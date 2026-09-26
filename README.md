@@ -103,6 +103,7 @@ uv run pytest
 | `no_repeat_days` | 30 | 비슷한 주제를 다시 쓰지 않는 기간 |
 | `avoid` | 노출이 과한 코디, 체형 비하, 정치·사회 이슈 | 다루지 않을 주제 |
 | `review_before_use` | true | 주제 목록을 텔레그램으로 먼저 보고 확정할지 |
+| `weather` | `{name: 서울, lat: 37.57, lon: 126.98}` | 날씨 예보를 볼 곳 (Open-Meteo, 키 필요 없음). `null` 이면 날씨를 보지 않음 |
 
 유형 예시: 아이템("레더자켓 입어보세요"), 상황("월요일 출근룩"), 컬러무드("무채색으로 분위기"),
 타깃("첫 데이트"), 팁("컬러 매치 TIP")
@@ -184,6 +185,24 @@ uv run pytest
 | `credit_size` | 20 | 출처 글자 크기 |
 | `source_names` | `{zigzag: 지그재그}` | 상품 소스 이름을 화면에 보일 이름으로 바꿈 |
 
+#### `copy` : 제목·문구·캡션 규칙 (6단계)
+Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검사합니다. 말투와 좋은 예시는 `voice.md` 에 씁니다.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `title_chars` | `[8, 16]` | 표지 제목 한 줄 글자 수 (공백 포함). 벗어나면 경고 |
+| `name_max_chars` | 18 | 상품 장 짧은 이름 최대 글자 수 (넘으면 경고) |
+| `comment_max_chars` | 60 | 상품 장 코멘트 최대 글자 수 (넘으면 경고) |
+| `points` | `[3, 3]` | 캡션 코디 포인트 줄 수 |
+| `hashtags` | `[10, 15]` | 기본 해시태그 포함 최종 해시태그 개수 |
+| `base_hashtags` | #데일리룩 #오늘의코디 … | 매번 붙는 해시태그 |
+| `max_emoji` / `max_exclaim` | 2 / 1 | 캡션 전체 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
+| `banned` | 무조건, 인생템, 역대급, 최저가 … | 쓰면 오류가 나는 표현 |
+| `ad_notice` / `ad_hashtag` | (광고) … / #광고 | `monetize: manual_link` 일 때 캡션 첫 줄과 첫 해시태그 |
+| `product_line` | `{shop} · {name}` | 캡션 제품 목록 한 줄 모양 |
+| `link_line` | 상품 정보는 프로필 링크에서 확인하세요 | 제품 목록 아래 안내 |
+| `ai_notice` | 이미지는 AI로 합성했으며 … | 모든 캡션 끝에 붙는 AI 합성 고지 |
+
 #### `schedule` : 시간 (`HH:MM` 형식)
 | 항목 | 예시 | 의미 |
 |---|---|---|
@@ -236,7 +255,7 @@ accounts:
 |---|---|
 | `PHOTOROOM_API_KEY` | 상품 누끼·그림자·배경 (Photoroom API 대시보드에서 발급, 아래 참고) |
 | `PHOTOROOM_API_KEY_SANDBOX` | (선택) 무료 테스트용 샌드박스 키 |
-| `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (`claude setup-token`, Pro·Max 구독) |
+| `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (터미널에서 `claude setup-token` 을 실행해 나온 값, Pro·Max 구독) |
 | `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` | 인스타 게시 (아래 참고) |
 | `R2_ACCOUNT_ID`, `R2_ACCESS_KEY`, `R2_SECRET`, `R2_BUCKET`, `R2_PUBLIC_BASE_URL` | 인스타가 가져갈 이미지 공개 주소 (Cloudflare R2) |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | 미리보기·승인·알림 (@BotFather) |
@@ -390,6 +409,30 @@ items:
 - Actions: `feed-sample` → Run workflow. 상품 창고 사진을 받아 슬라이드를 만들고 artifact와
   `feed-results` 브랜치의 `feed-<번호>/` 에 올립니다 (받은 원본 사진은 올리지 않음).
 
+## AI 기획 (6단계)
+
+사람이 고르던 주제·상품·문구를 Claude Code 스킬이 맡습니다 (`.claude/skills/`, `.claude/agents/`).
+판단은 스킬이 하고, 규칙 검사와 파일 만들기는 `tools.plan` 이 합니다. 하루 기획은 YAML 파일 하나
+(`core.models.DailyPlan`, 예시 `samples/women/plan_2026-09-27.yaml`)로 남아 무엇을 왜 골랐는지 볼 수 있습니다.
+
+```
+오늘 정보(날씨·요일·재고) → 주제·검색어 → (새 상품 수집) → 상품 조합 → 사진 확인(색·얼굴)
+ → 제목·코멘트·캡션 → 규칙 검사 → 코디컷(Photoroom) → 캐러셀 → 캡션 → manifest.json
+```
+
+- **버튼 하나로**: Actions → `daily` → Run workflow. `CLAUDE_CODE_OAUTH_TOKEN` 이 필요합니다.
+  결과(슬라이드, `preview.jpg`, `caption.txt`, `plan.yaml`, `manifest.json`)는 artifact와
+  `daily-results` 브랜치의 `<날짜>-run<번호>/` 에 올라갑니다. 게시는 하지 않습니다.
+  - `plan` 에 기획 파일을 주면 Claude 없이 그 기획으로 만들기만 합니다
+  - `sandbox` 를 켜면 Photoroom 무료 샌드박스(워터마크), `outfit: none` 이면 코디컷 없이
+  - `collect` 를 켜면 주제 검색어로 지그재그 새 상품을 먼저 모읍니다
+- **로컬 (Claude Code)**: `ACCOUNT=women claude "/daily-feed"`
+- **도구만**:
+  - `uv run python -m tools.plan context --account women` 오늘 정보
+  - `uv run python -m tools.plan candidates --account women --category 아우터` 고를 수 있는 상품
+  - `uv run python -m tools.plan check <plan.yaml>` 규칙 검사 (재고·판매 상태·재사용 기간·쇼핑몰 수·필수 카테고리·글자 수·금지 표현·해시태그)
+  - `uv run python -m tools.plan build <plan.yaml> --outfit none` 캐러셀·캡션·manifest
+
 ---
 
 ## 새 계정 추가
@@ -409,8 +452,8 @@ items:
 | 2 | 이미지 생성 품질 검증 | 완료 |
 | 3 | 제목 글자 합성 | 완료 |
 | 4 | 상품 수집 | 완료 |
-| 5 | 피드 구성 (캐러셀 슬라이드) | 진행 중 |
-| 6 | AI 기획 (Claude Code 스킬·에이전트) | |
+| 5 | 피드 구성 (캐러셀 슬라이드) | 완료 |
+| 6 | AI 기획 (Claude Code 스킬·에이전트) | 진행 중 |
 | 7 | 이미지 검수 | |
 | 8 | 인스타 게시 | |
 | 9 | GitHub Actions 매일 실행 | |

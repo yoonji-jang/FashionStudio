@@ -11,9 +11,9 @@ from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from core.models import Approval, Category, Monetize
+from core.models import Approval, Category, Monetize, ThemeType
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ACCOUNTS_DIR = REPO_ROOT / "accounts"
@@ -58,7 +58,10 @@ class ProductSourceConfig(BaseModel):
     recheck_days: int = Field(default=3, ge=0)  # 이 날짜가 지나면 판매 상태를 다시 확인
 
 
-ThemeType = Literal["아이템", "상황", "컬러무드", "타깃", "팁"]
+class Place(BaseModel):
+    name: str  # 사람이 보는 이름 (예: 서울)
+    lat: float = Field(ge=-90, le=90)
+    lon: float = Field(ge=-180, le=180)
 
 
 class ThemeRules(BaseModel):
@@ -71,6 +74,29 @@ class ThemeRules(BaseModel):
     no_repeat_days: int = Field(default=30, ge=0)  # 비슷한 주제 반복 금지 기간
     avoid: list[str] = []  # 다루지 않을 주제
     review_before_use: bool = True  # 주간 주제를 사람이 보고 확정할지
+    weather: Place | None = None  # 날씨 예보를 볼 곳 (없으면 날씨를 보지 않음)
+
+
+class Copy(BaseModel):
+    """제목·문구·캡션 규칙. write-copy 스킬이 따르고 tools.plan check 가 검사한다.
+    말투와 좋은 예시는 voice.md 에 둔다."""
+
+    title_chars: tuple[int, int] = (8, 16)  # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고)
+    name_max_chars: int = Field(default=18, ge=4)  # 상품 장 짧은 이름
+    comment_max_chars: int = Field(default=60, ge=0)  # 상품 장 코멘트
+    points: tuple[int, int] = (3, 3)  # 캡션 코디 포인트 줄 수
+    hashtags: tuple[int, int] = (10, 15)  # 기본 해시태그 포함 최종 개수
+    base_hashtags: list[str] = []  # 매번 넣는 해시태그
+    max_emoji: int = Field(default=2, ge=0)  # 캡션 전체 이모지 수 (제목에는 금지)
+    max_exclaim: int = Field(default=1, ge=0)  # 캡션 전체 느낌표 수
+    banned: list[str] = []  # 쓰면 안 되는 표현
+    ad_notice: str = (
+        "(광고) 이 게시물은 제휴 링크를 포함하고 있어요"  # monetize: manual_link 일 때 첫 줄
+    )
+    ad_hashtag: str = "#광고"  # monetize: manual_link 일 때 첫 해시태그
+    product_line: str = "{shop} · {name}"  # 캡션 제품 목록 한 줄
+    link_line: str = "상품 정보는 프로필 링크에서 확인하세요"
+    ai_notice: str = "이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요"
 
 
 class Visual(BaseModel):
@@ -157,6 +183,8 @@ class Instagram(BaseModel):
 
 
 class Profile(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     id: str = Field(pattern=r"^[a-z0-9_-]+$")
     display_name: str
     language: str = "ko"
@@ -167,6 +195,7 @@ class Profile(BaseModel):
     product_source: ProductSourceConfig
     visual: Visual
     feed: Feed = Feed()
+    copy_rules: Copy = Field(default=Copy(), alias="copy")
     schedule: Schedule
     monetize: Monetize = "none"
     approval: Approval = "required"
@@ -195,6 +224,13 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError("feed.slides 에 같은 종류가 두 번 들어 있습니다")
     if sum(profile.themes.type_mix.values()) != profile.themes.per_week:
         raise ValueError("themes.type_mix 개수의 합이 themes.per_week와 다릅니다")
+    c = profile.copy_rules
+    for name in ("title_chars", "points", "hashtags"):
+        lo, hi = getattr(c, name)
+        if lo > hi:
+            raise ValueError(f"copy.{name} 의 앞 숫자가 뒤 숫자보다 큽니다")
+    if any(not t.startswith("#") or " " in t for t in [*c.base_hashtags, c.ad_hashtag]):
+        raise ValueError("copy 해시태그는 #으로 시작하고 공백이 없어야 합니다")
     return profile
 
 
@@ -226,7 +262,11 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[실패] {account}\n{e}", file=sys.stderr)
             continue
         print(f"[통과] {account}")
-        print(yaml.safe_dump(profile.model_dump(mode="json"), allow_unicode=True, sort_keys=False))
+        print(
+            yaml.safe_dump(
+                profile.model_dump(mode="json", by_alias=True), allow_unicode=True, sort_keys=False
+            )
+        )
     return 0 if ok else 1
 
 
