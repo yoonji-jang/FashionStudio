@@ -100,6 +100,50 @@ class Visual(BaseModel):
     logo_color: str = Field(default="#EBEBEB", pattern=COLOR)
 
 
+SlideKind = Literal["cover", "products", "summary"]
+
+
+class Feed(BaseModel):
+    """캐러셀 구성과 슬라이드 모양 (tools.feed). 크기는 폭 1080px 기준."""
+
+    # 슬라이드 순서. products 는 상품마다 한 장씩 펼쳐진다. 인스타 캐러셀은 최대 10장
+    slides: list[SlideKind] = Field(default=["cover", "products", "summary"], min_length=1)
+    product_image: Literal["cutout", "photo"] = "photo"  # 쇼핑몰 원본 사진 또는 누끼
+    hide_faces: bool = True  # 원본 사진에서 모델 얼굴이 없는 사진을 고르고, 없으면 얼굴 아래로 자름
+    photo_candidates: int = Field(default=6, ge=1, le=20)  # 상품마다 살펴볼 창고 사진 수
+    background: str = Field(default="#EEEBE6", pattern=COLOR)  # 상품·요약 장 배경색
+    background_image: str | None = None  # accounts/<id>/ 기준 배경 사진 (있으면 배경색 대신)
+    text_color: str = Field(default="#222222", pattern=COLOR)
+    sub_color: str = Field(default="#8C867E", pattern=COLOR)  # 쇼핑몰·카테고리 같은 보조 글자
+    body_font: str = "Pretendard-Medium.otf"  # 보조 글자 폰트 (굵은 글자는 visual.font)
+    margin_x: float = Field(default=0.104, ge=0.035, lt=0.5)  # 좌우 여백 (폭 대비)
+    text_top: float = Field(default=0.70, gt=0.3, lt=0.95)  # 상품 장 글자가 시작하는 높이 (고정)
+    show_index: bool = True  # 상품 장 위쪽 "01 아우터"
+    show_shop: bool = True
+    show_price: bool = True
+    show_total: bool = False  # 요약 장에 가격 합계
+    index_size: int = Field(default=26, gt=0)
+    shop_size: int = Field(default=28, gt=0)
+    name_size: int = Field(default=52, gt=0)
+    name_max_lines: int = Field(default=2, ge=1, le=3)
+    price_size: int = Field(default=40, gt=0)
+    comment_size: int = Field(default=31, gt=0)
+    comment_max_lines: int = Field(default=3, ge=0, le=5)
+    comment_color: str = Field(default="#57524B", pattern=COLOR)
+    heading: str = "오늘의 코디"  # 요약 장 제목
+    heading_size: int = Field(default=60, gt=0)
+    row_name_size: int = Field(default=32, gt=0)
+    row_meta_size: int = Field(default=25, gt=0)
+    # 요약 장 맨 아래 문구. {logo} 는 visual.logo_text 로 바뀜. 첫 줄 앞에 저장 아이콘
+    cta_lines: list[str] = ["저장해 두고 코디 고민될 때 꺼내 보세요", "매일 아침 코디는 {logo}"]
+    cta_size: int = Field(default=30, gt=0)
+    # 사진 출처 표기. {source} 는 source_names 의 이름, {shop} 은 스토어 이름. 빈 문자열이면 생략
+    photo_credit: str = "사진 출처 {source} · {shop}"
+    summary_credit: str = ""  # 요약 장 목록 아래 출처 한 줄
+    credit_size: int = Field(default=20, gt=0)
+    source_names: dict[str, str] = {"zigzag": "지그재그"}  # 상품 소스 이름 → 보이는 이름
+
+
 class Schedule(BaseModel):
     timezone: str = "Asia/Seoul"
     generate_at: str = Field(pattern=HHMM)
@@ -122,6 +166,7 @@ class Profile(BaseModel):
     themes: ThemeRules
     product_source: ProductSourceConfig
     visual: Visual
+    feed: Feed = Feed()
     schedule: Schedule
     monetize: Monetize = "none"
     approval: Approval = "required"
@@ -146,6 +191,8 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError(f"폴더 이름({account})과 profile.id({profile.id})가 다릅니다")
     if profile.outfit.items_min > profile.outfit.items_max:
         raise ValueError("outfit.items_min이 items_max보다 큽니다")
+    if len(set(profile.feed.slides)) != len(profile.feed.slides):
+        raise ValueError("feed.slides 에 같은 종류가 두 번 들어 있습니다")
     if sum(profile.themes.type_mix.values()) != profile.themes.per_week:
         raise ValueError("themes.type_mix 개수의 합이 themes.per_week와 다릅니다")
     return profile

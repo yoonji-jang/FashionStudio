@@ -57,6 +57,30 @@ class OutfitPlan(BaseModel):
     reason: str
 
 
+class FeedItem(BaseModel):
+    """캐러셀 상품 장 한 장. product 가 있으면 상품 창고 값을 기본으로 쓰고, 적은 값이 우선한다."""
+
+    product: str | None = None  # "zigzag:12345678"
+    category: Category | None = None
+    name: str | None = None  # 슬라이드에 보일 짧은 상품명 (없으면 원래 이름에서 광고 문구를 뺌)
+    shop: str | None = None
+    source: str | None = None  # 사진 출처 (없으면 상품 창고의 source, 예: zigzag)
+    price: int | None = Field(default=None, ge=0)
+    comment: str = ""  # 한두 문장 코멘트
+    cutout: str | None = None  # 저장소 기준 누끼 PNG
+    photo: str | None = None  # 저장소 기준 원본 사진
+
+
+class FeedSpec(BaseModel):
+    """게시물 한 개의 캐러셀 재료. 기획 단계가 쓰고 tools.feed 가 읽는다."""
+
+    account: str
+    title_lines: list[str] = Field(min_length=1)
+    cover: str | None = None  # 제목 없는 코디컷 경로 (없으면 표지 장을 건너뜀)
+    cover_has_title: bool = False  # 이미 제목을 얹은 이미지면 true
+    items: list[FeedItem] = Field(min_length=1)
+
+
 class ReelsSpec(BaseModel):
     """9단계에서 채운다. 지금은 자리만 잡아 둔다."""
 

@@ -83,6 +83,45 @@ visual:
   logo_bottom: 0.065          # 이미지 아래에서 계정 이름까지
   logo_color: "#EBEBEB"
 
+# 캐러셀 구성 (tools.feed). 크기는 폭 1080px 기준, 굵은 글자는 visual.font, 포인트 색은 visual.accent_color
+feed:
+  slides: [cover, products, summary]  # 순서. products 는 상품마다 한 장. 전체 10장까지
+  product_image: photo       # 상품 장 사진: photo(쇼핑몰 원본 사진) 또는 cutout(누끼)
+  hide_faces: true           # 모델 얼굴이 없는 사진을 먼저 고르고, 없으면 얼굴 아래로 잘라 씀
+  photo_candidates: 6        # 상품마다 살펴볼 사진 수 (앞에서부터)
+  background: "#EEEBE6"      # 상품·요약 장 배경색
+  background_image: null     # accounts/women/ 기준 배경 사진 (있으면 배경색 대신)
+  text_color: "#222222"
+  sub_color: "#8C867E"       # 쇼핑몰·카테고리 같은 보조 글자
+  comment_color: "#57524B"
+  body_font: Pretendard-Medium.otf
+  margin_x: 0.104            # 좌우 여백 (표지 제목과 같게)
+  text_top: 0.70             # 상품 장 글자 시작 높이. 넘길 때 같은 자리에 오도록 고정
+  show_index: true           # 상품 장 위 "01 아우터"
+  show_shop: true
+  show_price: true
+  show_total: false          # 요약 장에 가격 합계
+  index_size: 26
+  shop_size: 28
+  name_size: 52
+  name_max_lines: 2
+  price_size: 40
+  comment_size: 31
+  comment_max_lines: 3
+  heading: 오늘의 코디         # 요약 장 제목
+  heading_size: 60
+  row_name_size: 32
+  row_meta_size: 25
+  cta_lines:                 # 요약 장 맨 아래. {logo} 는 visual.logo_text
+    - 저장해 두고 코디 고민될 때 꺼내 보세요
+    - 매일 아침 코디는 {logo}
+  cta_size: 30
+  # 사진 출처 표기 (사진 오른쪽 아래). {source} 는 source_names 의 이름, {shop} 은 스토어 이름
+  photo_credit: "사진 출처 {source} · {shop}"
+  summary_credit: "사진 출처 지그재그 · 각 상품 스토어"  # 요약 장 목록 아래. 빈 문자열이면 생략
+  credit_size: 20
+  source_names: {zigzag: 지그재그}
+
 schedule:
   timezone: Asia/Seoul
   generate_at: "21:17"  # 전날 생성

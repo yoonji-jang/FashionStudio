@@ -8,6 +8,7 @@
       "Bash(python -m tools.photoroom:*)",
       "Bash(python -m tools.compose:*)",
       "Bash(python -m tools.overlay:*)",
+      "Bash(python -m tools.feed:*)",
       "Bash(python -m tools.compare:*)",
       "Bash(python -m tools.poc:*)",
       "Bash(python -m tools.review_prep:*)",

@@ -1,0 +1,70 @@
+name: feed-sample
+
+# 5단계 캐러셀 샘플. 상품 창고 상품의 원본 사진을 받아 슬라이드를 만든다 (Photoroom 호출 없음).
+# - Actions 탭에서 "Run workflow"
+# - 작업 브랜치에 커밋 메시지에 [feed-sample] 를 넣어 푸시
+# 슬라이드는 artifact 와 feed-results 브랜치의 feed-<실행번호>/ 에 올라간다 (받은 원본 사진은 올리지 않음).
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 재료 파일
+        default: samples/women/feed_products.yaml
+      product_image:
+        description: 상품 장 사진 (cutout 또는 photo, 빈칸이면 프로필 값)
+        default: ""
+  push:
+    branches: ["claude/**"]
+    paths: ["tools/feed.py", "samples/**", "accounts/**", ".github/workflows/feed-sample.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zigzag
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[feed-sample]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SPEC: ${{ inputs.spec || 'samples/women/feed_products.yaml' }}
+      PRODUCT_IMAGE: ${{ inputs.product_image }}
+      OUT: out/feed/run-${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+
+      - name: 슬라이드 만들기
+        run: |
+          args=(--spec "$SPEC" --out "$OUT/slides" --photos out/feed/photos)
+          [ -n "$PRODUCT_IMAGE" ] && args+=(--product-image "$PRODUCT_IMAGE")
+          uv run python -m tools.feed "${args[@]}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: feed-${{ github.run_number }}
+          path: ${{ env.OUT }}
+
+      - name: feed-results 브랜치에 커밋
+        run: |
+          dest="feed-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin feed-results 2>/dev/null; then
+            git worktree add /tmp/results origin/feed-results
+            git -C /tmp/results checkout -B feed-results
+          else
+            git worktree add --detach /tmp/results
+            git -C /tmp/results checkout --orphan feed-results
+            git -C /tmp/results rm -rf --quiet .
+          fi
+          mkdir -p "/tmp/results/$dest"
+          cp -r "$OUT"/. "/tmp/results/$dest/"
+          echo "source: ${{ github.sha }} spec: $SPEC product_image: $PRODUCT_IMAGE" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "캐러셀 샘플 $dest"
+          git -C /tmp/results push origin feed-results

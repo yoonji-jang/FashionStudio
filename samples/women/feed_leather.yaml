@@ -1,0 +1,44 @@
+# 5단계 캐러셀 샘플: 가을 레더자켓 코디 최종본 (fall_leather_final.yaml).
+# 표지는 3단계에서 고른 F 디자인 이미지, 상품 장은 같은 누끼를 쓴다.
+# 가격·쇼핑몰은 모양 확인용 예시 값이다 (실제 게시물은 상품 창고 값을 쓴다).
+account: women
+title_lines: [가을 출근룩 고민이라면, 레더자켓 하나로 충분해요]
+cover: samples/women/feed_leather/cover.jpg
+cover_has_title: true
+items:
+  - category: 아우터
+    name: 다크 브라운 레더 블레이저
+    shop: 예시쇼핑몰
+    price: 69800
+    comment: 각 잡힌 어깨선 덕분에 셔츠만 받쳐 입어도 출근룩이 단정해져요. 블랙 셔츠 깃을 밖으로 꺼내 주세요.
+    cutout: samples/women/fall_leather_final/outer_top.png
+  - category: 하의
+    name: 블랙 와이드 슬랙스와 브라운 벨트
+    shop: 예시쇼핑몰
+    price: 32900
+    comment: 허리를 벨트로 잡아 주면 다리가 길어 보여요. 자켓과 같은 브라운 톤으로 맞췄어요.
+    cutout: samples/women/fall_leather_final/bottoms_belt.png
+  - category: 가방
+    name: 브라운 스웨이드 호보백
+    shop: 예시쇼핑몰
+    price: 45000
+    comment: 부드러운 스웨이드가 레더의 차가운 느낌을 풀어 줘요.
+    cutout: samples/women/fall_leather_final/bag.png
+  - category: 신발
+    name: 그린 스웨이드 페니 로퍼
+    shop: 예시쇼핑몰
+    price: 52000
+    comment: 브라운과 블랙 사이에 딥그린 하나로 포인트를 줘요.
+    cutout: samples/women/fall_leather_final/shoes.png
+  - category: 소품
+    name: 골드 하트 펜던트 목걸이
+    shop: 예시쇼핑몰
+    price: 18900
+    comment: 브이넥 사이로 살짝 보이는 길이예요.
+    cutout: samples/women/fall_leather_final/necklace.png
+  - category: 소품
+    name: 골드 볼드 링 귀걸이
+    shop: 예시쇼핑몰
+    price: 15900
+    comment: 목걸이와 같은 골드로 맞추면 과하지 않아요.
+    cutout: samples/women/fall_leather_final/earrings.png

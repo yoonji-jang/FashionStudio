@@ -47,7 +47,7 @@ uv run pytest
 
 | 파일 | 무엇을 정하나 | 얼마나 자주 |
 |---|---|---|
-| `accounts/<계정>/profile.yaml` | 대상·스타일·주제 기준·코디 규칙·이미지 모양·시간·수익·승인 | 처음 한 번, 가끔 조정 |
+| `accounts/<계정>/profile.yaml` | 대상·스타일·주제 기준·코디 규칙·이미지 모양·캐러셀 구성·시간·수익·승인 | 처음 한 번, 가끔 조정 |
 | `accounts/<계정>/voice.md` | 제목·캡션 말투, 좋은 제목 예시, 해시태그, 금지 표현 | 반응 보면서 가끔 |
 | `accounts/index.yaml` | 매일 돌릴 계정 목록 | 계정 추가·중지할 때 |
 | GitHub Secrets | API 키, 인스타 토큰 등 비밀값 (저장소 밖에 보관) | 처음 한 번, 토큰 만료 시 |
@@ -148,6 +148,41 @@ uv run pytest
 
 제목 모양은 이미지를 새로 만들지 않고 바로 확인할 수 있습니다:
 `uv run python -m tools.overlay --account women --image 코디컷.jpg --title "첫 줄" "둘째 줄" --out 확인.jpg`
+
+#### `feed` : 캐러셀 구성 (5단계)
+한 게시물의 슬라이드 순서와 모양입니다. 굵은 글자 폰트는 `visual.font`, 포인트 색(세로선·번호·저장 아이콘)은
+`visual.accent_color`, 계정 이름은 `visual.logo_text` 를 같이 씁니다. 크기는 폭 1080px 기준입니다.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `slides` | `[cover, products, summary]` | 슬라이드 순서. `cover` 표지(코디컷+제목), `products` 상품마다 한 장, `summary` 코디 목록. 빼고 싶은 장은 지우면 됨. 전체 10장까지 |
+| `product_image` | `photo` | 상품 장 사진. `photo` 는 쇼핑몰 원본 사진(모서리 둥근 카드), `cutout` 은 누끼(코디컷과 같은 모양) |
+| `hide_faces` | `true` | 원본 사진에서 모델 얼굴이 없는 사진을 먼저 고르고, 모두 얼굴이 있으면 얼굴 아래로 잘라 씀 (얼굴 검출 모델 YuNet, `assets/models/`) |
+| `photo_candidates` | 6 | 상품마다 앞에서부터 살펴볼 사진 수 |
+| `background` | `#EEEBE6` | 상품·요약 장 배경색 |
+| `background_image` | 없음 | 배경 사진 파일명 (`accounts/<계정>/` 기준). 있으면 배경색 대신 씀 |
+| `text_color` | `#222222` | 상품명·가격 색 |
+| `sub_color` | `#8C867E` | 쇼핑몰·카테고리·계정 이름 같은 보조 글자 색 |
+| `comment_color` | `#57524B` | 코멘트 색 |
+| `body_font` | Pretendard-Medium.otf | 보조 글자 폰트 |
+| `margin_x` | 0.104 | 좌우 여백 (폭 대비, 표지 제목과 같게) |
+| `text_top` | 0.70 | 상품 장 글자가 시작하는 높이 (이미지 대비). 넘겨 볼 때 같은 자리에 오도록 고정, 글자가 많으면 자동으로 올라감 |
+| `show_index` | `true` | 상품 장 위쪽 "01 아우터" 표시 |
+| `show_shop` / `show_price` | `true` | 쇼핑몰 이름, 가격 표시 |
+| `show_total` | `false` | 요약 장에 가격 합계 표시 |
+| `index_size` | 26 | 위쪽 번호·카테고리 글자 크기 |
+| `shop_size` | 28 | 쇼핑몰 이름 (요약 장 제목 아래 줄도 이 크기) |
+| `name_size` / `name_max_lines` | 52 / 2 | 상품명 크기와 최대 줄 수 (넘치면 …) |
+| `price_size` | 40 | 가격 |
+| `comment_size` / `comment_max_lines` | 31 / 3 | 코멘트 크기와 최대 줄 수. 코멘트가 없으면 생략 |
+| `heading` / `heading_size` | 오늘의 코디 / 60 | 요약 장 제목 |
+| `row_name_size` / `row_meta_size` | 32 / 25 | 요약 장 목록의 상품명, 카테고리·쇼핑몰 |
+| `cta_lines` | 저장해 두고… | 요약 장 맨 아래 문구. 첫 줄 앞에 저장 아이콘, `{logo}` 는 계정 이름으로 바뀜 |
+| `cta_size` | 30 | 맨 아래 문구 크기 |
+| `photo_credit` | 사진 출처 {source} · {shop} | 상품 사진 오른쪽 아래 출처 표기. `{source}` 는 `source_names` 의 이름, `{shop}` 은 스토어 이름. 빈 문자열이면 생략 |
+| `summary_credit` | 사진 출처 지그재그 · 각 상품 스토어 | 요약 장 목록 아래 출처 한 줄. 빈 문자열이면 생략 |
+| `credit_size` | 20 | 출처 글자 크기 |
+| `source_names` | `{zigzag: 지그재그}` | 상품 소스 이름을 화면에 보일 이름으로 바꿈 |
 
 #### `schedule` : 시간 (`HH:MM` 형식)
 | 항목 | 예시 | 의미 |
@@ -253,6 +288,7 @@ accounts:
 `layout.yaml` 은 1080×1350 캔버스에서 카테고리별 위치와 실제 크기입니다. `cm` 는 상품의 실제 치수
 (`measure: height` 는 옷 기장, `long` 은 가방·신발처럼 긴 쪽)이고, `px_per_cm` 를 곱해 화면 크기를 정하므로
 상품끼리 사람 몸 비율이 맞습니다. `center` 는 상품 중심(0~1 비율), `z` 는 겹칠 때 위에 오는 순서입니다.
+`feed_fill` 은 캐러셀 상품 장에서 누끼가 사진 자리를 채우는 최대 비율로, 귀걸이 같은 작은 상품이 옷만큼 커 보이지 않게 합니다.
 아우터가 없으면 `no_outer` 값을 씁니다.
 
 배경 사진은 프로필 `visual.backdrop` 문구로 한 번 생성합니다. 마음에 드는 배경을
@@ -310,7 +346,7 @@ accounts:
 ## 상품 수집 (4단계)
 
 프로필의 `product_source.queries` 검색어로 지그재그에서 후보를 모아 `data/<계정>/products.json`
-(상품 창고)에 쌓습니다. 5단계에서 Claude가 이 창고에서 그날 코디를 고릅니다.
+(상품 창고)에 쌓습니다. 6단계에서 Claude가 이 창고에서 그날 코디를 고릅니다.
 
 1. **검색**: 검색 페이지를 브라우저로 열어 상품 번호, 이름, 쇼핑몰, 가격, 평점, 리뷰 수를 읽습니다.
    `min_rating`, `min_reviews` 기준에 못 미치거나 품절인 상품은 여기서 뺍니다.
@@ -333,6 +369,27 @@ accounts:
 - 로컬: `uv sync --group scout && uv run playwright install chromium` 후
   `uv run python -m tools.collect --account women --max-queries 2 --report out/collect/test`
 
+## 피드 구성 (5단계)
+
+`tools.feed` 가 게시물 한 개의 캐러셀 슬라이드(JPEG)를 프로필 `feed` 순서대로 만듭니다. 재료는 YAML 파일
+하나(`core.models.FeedSpec`)이고, 6단계에서 Claude가 이 파일을 씁니다.
+
+```yaml
+account: women
+title_lines: [가을 출근룩 고민이라면, 레더자켓 하나로 충분해요]
+cover: out/2026-09-27/look.jpg   # 제목 없는 코디컷 (없으면 표지 장 생략)
+items:
+  - product: zigzag:165576378    # 상품 창고의 이름·쇼핑몰·가격을 기본으로 씀
+    name: 싱글 레더 하프자켓 블랙  # 슬라이드에 보일 짧은 이름 (없으면 광고 문구를 뺀 원래 이름)
+    comment: 허리를 살짝 덮는 기장이라 슬랙스와도 잘 어울려요.
+    cutout: out/2026-09-27/cutouts/outer.png   # 누끼 (또는 photo: 원본 사진)
+```
+
+- 로컬: `uv run python -m tools.feed --spec samples/women/feed_leather.yaml --out out/feed/test`
+  (`--product-image cutout` 으로 누끼 방식 비교, `--photos <폴더>` 를 주면 사진이 없는 상품은 창고 사진 중 모델 얼굴이 없는 것을 골라 받아 씀)
+- Actions: `feed-sample` → Run workflow. 상품 창고 사진을 받아 슬라이드를 만들고 artifact와
+  `feed-results` 브랜치의 `feed-<번호>/` 에 올립니다 (받은 원본 사진은 올리지 않음).
+
 ---
 
 ## 새 계정 추가
@@ -351,9 +408,11 @@ accounts:
 | 1 | 저장소 뼈대, 설정, 데이터 규격 | 완료 |
 | 2 | 이미지 생성 품질 검증 | 완료 |
 | 3 | 제목 글자 합성 | 완료 |
-| 4 | 상품 수집 | 진행 중 |
-| 5 | Claude Code 스킬·에이전트 | |
-| 6 | 이미지 검수 | |
-| 7 | 인스타 게시 | |
-| 8 | GitHub Actions 매일 실행 | |
-| 9 | 릴스 | |
+| 4 | 상품 수집 | 완료 |
+| 5 | 피드 구성 (캐러셀 슬라이드) | 진행 중 |
+| 6 | AI 기획 (Claude Code 스킬·에이전트) | |
+| 7 | 이미지 검수 | |
+| 8 | 인스타 게시 | |
+| 9 | GitHub Actions 매일 실행 | |
+| 10 | 상품 창고를 Actions 캐시로 이전 | |
+| 11 | 릴스 | |
