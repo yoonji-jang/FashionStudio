@@ -26,7 +26,28 @@ def test_apply_keeps_size_and_top_untouched(visual):
     out = apply(img, ["가을 필수템 야상", "고급스럽게 입는 법"], visual)
     assert out.size == img.size and out.mode == "RGB"
     assert out.getpixel((540, 100)) == (200, 200, 200)
-    assert out.crop((0, 1100, 1080, 1350)).getextrema()[0][1] == 255  # 흰 글자가 들어감
+    assert out.crop((0, 1000, 1080, 1350)).getextrema()[0][1] == 255  # 흰 글자가 들어감
+
+
+def _accent_x(visual) -> int:
+    margin = round(1080 * visual.title_margin_x)
+    return margin - visual.accent_gap - visual.accent_width // 2 - 1
+
+
+def test_accent_bar_left_of_title(visual):
+    out = apply(_grey(), ["가을 필수템 가디건", "단정하게 입는 법"], visual)
+    y = round(1350 * (1 - visual.title_bottom)) - 20
+    accent = tuple(int(visual.accent_color[i : i + 2], 16) for i in (1, 3, 5))
+    assert out.getpixel((_accent_x(visual), y)) == accent
+
+
+def test_no_accent_bar_when_unset_or_centered(visual):
+    y = round(1350 * (1 - visual.title_bottom)) - 20
+    for update in ({"accent_color": None}, {"title_align": "center"}):
+        v = visual.model_copy(update=update)
+        out = apply(_grey(), ["가을 필수템 가디건", "단정하게 입는 법"], v)
+        r, g, b = out.getpixel((_accent_x(visual), y))
+        assert abs(r - g) < 4 and abs(g - b) < 4  # 회색 그대로 (그라데이션만)
 
 
 def test_title_stays_inside_margins(visual):
@@ -45,8 +66,7 @@ def test_rejects_too_long_or_too_many_lines(visual):
 
 
 def test_scales_with_image_width(visual):
-    small = apply(_grey((540, 675)), ["가을 코디", "모음"], visual)
-    assert small.size == (540, 675)
+    assert apply(_grey((540, 675)), ["가을 코디", "모음"], visual).size == (540, 675)
 
 
 def test_cli(tmp_path):

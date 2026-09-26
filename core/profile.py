@@ -18,6 +18,7 @@ from core.models import Approval, Category, Monetize
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ACCOUNTS_DIR = REPO_ROOT / "accounts"
 HHMM = r"^([01]\d|2[0-3]):[0-5]\d$"
+COLOR = r"^#[0-9A-Fa-f]{6}$"
 
 
 class Audience(BaseModel):
@@ -73,21 +74,25 @@ class Visual(BaseModel):
     feed_ratio: Literal["4:5", "1:1"] = "4:5"
     # 제목 합성 (tools.overlay). 크기는 폭 1080px 기준, 위치는 이미지 높이·폭 대비 비율
     font: str  # assets/fonts/ 기준 파일명
-    title_font_size: int = Field(default=78, gt=0)  # 긴 줄은 자동으로 줄어듦
-    title_line_spacing: float = Field(default=1.45, gt=0)
+    title_font_size: int = Field(default=70, gt=0)  # 긴 줄은 자동으로 줄어듦
+    title_line_spacing: float = Field(default=1.34, gt=0)
     title_max_lines: int = Field(default=2, ge=1, le=4)
     title_align: Literal["left", "center"] = "left"
-    title_margin_x: float = Field(default=0.08, ge=0.035, lt=0.5)  # 좌우 여백 (격자가 양옆 3% 자름)
-    title_bottom: float = Field(default=0.18, ge=0, lt=1)  # 이미지 아래에서 마지막 줄 글자 바닥까지
-    title_color: str = Field(default="#FFFFFF", pattern=r"^#[0-9A-Fa-f]{6}$")
-    text_shadow: float = Field(default=0.25, ge=0, le=1)  # 글자 뒤 은은한 그림자 진하기
-    gradient_height: float = Field(default=0.5, gt=0, le=1)
-    gradient_opacity: float = Field(default=0.7, ge=0, le=1)
-    logo_text: str  # 맨 아래 가운데 계정 표시. 빈 문자열이면 생략
+    title_margin_x: float = Field(default=0.104, ge=0.035, lt=0.5)  # 좌우 여백 (격자 양옆 3% 잘림)
+    title_bottom: float = Field(default=0.155, ge=0, lt=1)  # 이미지 아래에서 마지막 줄 기준선까지
+    title_color: str = Field(default="#FFFFFF", pattern=COLOR)
+    text_shadow: float = Field(default=0.45, ge=0, le=1)  # 글자 뒤 그림자 진하기
+    accent_color: str | None = Field(default="#7A2E34", pattern=COLOR)  # 제목 옆 세로선 (null=없음)
+    accent_width: int = Field(default=6, ge=1)  # 세로선 굵기 (px)
+    accent_gap: int = Field(default=26, ge=0)  # 세로선과 제목 사이 (px)
+    gradient_height: float = Field(default=0.38, gt=0, le=1)
+    gradient_opacity: float = Field(default=0.5, ge=0, le=1)
+    logo_text: str  # 계정 표시. 빈 문자열이면 생략
     logo_font: str | None = None  # 없으면 font 사용
-    logo_font_size: int = Field(default=24, gt=0)
-    logo_bottom: float = Field(default=0.045, ge=0, lt=1)  # 이미지 아래에서 글자 바닥까지
-    logo_color: str = Field(default="#FFFFFF", pattern=r"^#[0-9A-Fa-f]{6}$")
+    logo_font_size: int = Field(default=22, gt=0)
+    logo_align: Literal["left", "center"] = "left"  # left 면 제목 왼쪽 끝에 맞춤
+    logo_bottom: float = Field(default=0.065, ge=0, lt=1)  # 이미지 아래에서 계정 표시 기준선까지
+    logo_color: str = Field(default="#EBEBEB", pattern=COLOR)
 
 
 class Schedule(BaseModel):

@@ -1,6 +1,7 @@
 r"""코디컷에 제목과 계정 이름을 합성한다 (AI 없음, Pillow).
 
-이미지 아래쪽을 점점 어둡게 깔고, 그 위에 제목 두 줄과 맨 아래 계정 이름을 얹는다.
+이미지 아래쪽을 살짝 어둡게 깔고, 왼쪽에 포인트 색 세로선을 둔 흰 제목 두 줄과
+그 아래 계정 이름을 얹는다.
 글자는 폰트로 그리므로 오타 없이 매번 같은 모양이다. 모양은 프로필 `visual` 을 따른다.
 
 사용법:
@@ -76,14 +77,18 @@ def _text_layer(
     return Image.alpha_composite(shade, text)
 
 
-def apply(image: Image.Image, title_lines: list[str], visual: Visual) -> Image.Image:
-    """image 위에 그라데이션, 제목, 계정 이름을 합성해 RGB 이미지로 돌려준다."""
+def _check_lines(title_lines: list[str], visual: Visual) -> list[str]:
     title_lines = [s.strip() for s in title_lines if s.strip()]
     if not title_lines:
         raise ValueError("제목이 비어 있습니다")
     if len(title_lines) > visual.title_max_lines:
         raise ValueError(f"제목은 {visual.title_max_lines}줄까지입니다: {title_lines}")
+    return title_lines
 
+
+def apply(image: Image.Image, title_lines: list[str], visual: Visual) -> Image.Image:
+    """image 에 그라데이션, 포인트 선, 제목, 계정 이름을 합성한 같은 크기의 RGB 이미지."""
+    lines = _check_lines(title_lines, visual)
     base = image.convert("RGBA")
     w, h = base.size
     k = w / BASE_WIDTH
@@ -91,26 +96,38 @@ def apply(image: Image.Image, title_lines: list[str], visual: Visual) -> Image.I
     base = Image.alpha_composite(base, shade)
 
     margin = round(w * visual.title_margin_x)
-    font = fit_font(title_lines, visual.font, round(visual.title_font_size * k), w - 2 * margin)
+    width = w - 2 * margin
+    font = fit_font(lines, visual.font, round(visual.title_font_size * k), width)
     step = font.size * visual.title_line_spacing
     last_baseline = h * (1 - visual.title_bottom)
+    first_baseline = last_baseline - step * (len(lines) - 1)
     items = []
-    for i, line in enumerate(title_lines):
-        y = last_baseline - step * (len(title_lines) - 1 - i)
+    for i, line in enumerate(lines):
+        x = margin
         if visual.title_align == "center":
-            x = (w - font.getlength(line)) / 2
-        else:
-            x = margin
-        items.append(((x, y), line, font, visual.title_color))
+            x += (width - font.getlength(line)) / 2
+        items.append(((x, first_baseline + step * i), line, font, visual.title_color))
 
     if visual.logo_text:
         logo_font = load_font(visual.logo_font or visual.font, round(visual.logo_font_size * k))
-        x = (w - logo_font.getlength(visual.logo_text)) / 2
+        if visual.logo_align == "center":
+            x = (w - logo_font.getlength(visual.logo_text)) / 2
+        else:
+            x = margin
         y = h * (1 - visual.logo_bottom)
         items.append(((x, y), visual.logo_text, logo_font, visual.logo_color))
 
-    text = _text_layer(base.size, items, visual.text_shadow, blur=max(1.0, 6 * k))
-    return Image.alpha_composite(base, text).convert("RGB")
+    out = Image.alpha_composite(base, _text_layer(base.size, items, visual.text_shadow, blur=8 * k))
+
+    if visual.accent_color and visual.title_align == "left":
+        # 제목 왼쪽 세로선: 첫 줄 글자 윗부분부터 마지막 줄 기준선 조금 아래까지
+        x1 = margin - round(visual.accent_gap * k)
+        x0 = x1 - max(1, round(visual.accent_width * k))
+        top = first_baseline - font.size * 0.8
+        bottom = last_baseline + font.size * 0.14
+        box = (x0, round(top), x1 - 1, round(bottom))
+        ImageDraw.Draw(out).rectangle(box, fill=visual.accent_color)
+    return out.convert("RGB")
 
 
 def main(argv: list[str] | None = None) -> int:

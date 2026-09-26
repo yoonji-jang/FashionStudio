@@ -122,21 +122,25 @@ uv run pytest
 | `backdrop_ref` | 없음 | 배경 참고 이미지 파일명 (`accounts/<계정>/` 기준) |
 | `feed_ratio` | `4:5` | 피드 이미지 비율 (`4:5` 또는 `1:1`) |
 | `font` | Pretendard-Bold.otf | 제목 폰트 (`assets/fonts/` 기준) |
-| `title_font_size` | 78 | 제목 글자 크기 (폭 1080px 기준). 줄이 너무 길면 자동으로 줄어듦 |
-| `title_line_spacing` | 1.45 | 제목 줄 간격 (글자 크기의 배수) |
+| `title_font_size` | 70 | 제목 글자 크기 (폭 1080px 기준). 줄이 너무 길면 자동으로 줄어듦 |
+| `title_line_spacing` | 1.34 | 제목 줄 간격 (글자 크기의 배수) |
 | `title_max_lines` | 2 | 제목 최대 줄 수 |
-| `title_align` | `left` | 제목 정렬 (`left` 또는 `center`) |
-| `title_margin_x` | 0.08 | 제목 좌우 여백 (폭 대비). 프로필 격자 미리보기가 양옆을 조금 자르므로 0.035 이상 |
-| `title_bottom` | 0.18 | 이미지 아래 끝에서 제목 마지막 줄까지 거리 (높이 대비) |
+| `title_align` | `left` | 제목 정렬 (`left` 또는 `center`). `center` 면 세로선은 생략 |
+| `title_margin_x` | 0.104 | 제목 좌우 여백 (폭 대비). 프로필 격자 미리보기가 양옆을 조금 자르므로 0.035 이상 |
+| `title_bottom` | 0.155 | 이미지 아래 끝에서 제목 마지막 줄까지 거리 (높이 대비) |
 | `title_color` | `#FFFFFF` | 제목 색 |
-| `text_shadow` | 0.25 | 글자 뒤 은은한 그림자 진하기 (0이면 없음) |
-| `gradient_height` | 0.5 | 제목 뒤 어두운 그라데이션 높이 (이미지 아래 50%) |
-| `gradient_opacity` | 0.7 | 그라데이션 맨 아래 진하기 (0~1) |
-| `logo_text` | `@계정이름` | 이미지 맨 아래 가운데 계정 표시. **본인 인스타 아이디로 바꿔야 함**. 빈 문자열이면 생략 |
-| `logo_font` | 없음 | 계정 표시 폰트. 없으면 `font` 사용 |
-| `logo_font_size` | 24 | 계정 표시 글자 크기 |
-| `logo_bottom` | 0.045 | 이미지 아래 끝에서 계정 표시까지 거리 (높이 대비) |
-| `logo_color` | `#FFFFFF` | 계정 표시 색 |
+| `text_shadow` | 0.45 | 글자 뒤 그림자 진하기 (0이면 없음). 밝은 옷 위에서도 읽히게 해 줌 |
+| `accent_color` | `#7A2E34` | 제목 왼쪽 세로선 색 (계정 포인트 색). `null` 이면 선 없음 |
+| `accent_width` | 6 | 세로선 굵기 (px, 폭 1080 기준) |
+| `accent_gap` | 26 | 세로선과 제목 사이 간격 (px) |
+| `gradient_height` | 0.38 | 제목 뒤 어두운 그라데이션 높이 (이미지 아래 38%) |
+| `gradient_opacity` | 0.5 | 그라데이션 맨 아래 진하기 (0~1) |
+| `logo_text` | `@계정이름` | 제목 아래 계정 표시. **본인 인스타 아이디로 바꿔야 함**. 빈 문자열이면 생략 |
+| `logo_font` | Pretendard-Medium.otf | 계정 표시 폰트. 없으면 `font` 사용 |
+| `logo_font_size` | 22 | 계정 표시 글자 크기 |
+| `logo_align` | `left` | 계정 표시 위치 (`left` 는 제목 왼쪽 끝에 맞춤, `center` 는 가운데) |
+| `logo_bottom` | 0.065 | 이미지 아래 끝에서 계정 표시까지 거리 (높이 대비) |
+| `logo_color` | `#EBEBEB` | 계정 표시 색 |
 
 제목 모양은 이미지를 새로 만들지 않고 바로 확인할 수 있습니다:
 `uv run python -m tools.overlay --account women --image 코디컷.jpg --title "첫 줄" "둘째 줄" --out 확인.jpg`
@@ -268,7 +272,7 @@ accounts:
 
 ### 7. `assets/fonts/` : 폰트
 
-`profile.yaml` 의 `visual.font` 에 적은 파일을 넣습니다. 기본으로 Pretendard Bold(SIL OFL, 상업 이용 가능)가 들어 있어 따로 받을 필요는 없습니다.
+`profile.yaml` 의 `visual.font` 에 적은 파일을 넣습니다. 기본으로 Pretendard Bold·Medium(SIL OFL, 상업 이용 가능)이 들어 있어 따로 받을 필요는 없습니다.
 
 ---
 
