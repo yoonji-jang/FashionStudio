@@ -1,0 +1,110 @@
+name: collect
+
+# 4단계 상품 수집. 프로필의 검색어로 지그재그 공개 페이지에서 후보를 모아 data/<계정>/products.json 에 쌓는다.
+# - Actions 탭에서 "Run workflow": 계정·카테고리·검색어를 고를 수 있다. commit 을 켜면 결과를 그 브랜치에 커밋
+# - 작업 브랜치에 커밋 메시지에 [collect] 를 넣어 푸시 ([collect:3] 이면 카테고리마다 검색어 3개만)
+# 보고서(report.md, sheet.jpg)는 artifact 와 scout-results 브랜치의 collect-<실행번호>/ 에 올라간다.
+# 매일 자동 실행은 8단계에서 붙인다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      category:
+        description: 이 카테고리만 (빈칸이면 전부)
+        default: ""
+      queries:
+        description: 검색어 (쉼표로 구분, category 와 함께)
+        default: ""
+      max_queries:
+        description: 카테고리마다 앞에서 N개 검색어만 (빈칸이면 전부)
+        default: ""
+      commit:
+        description: 상품 창고(data/)를 이 브랜치에 커밋
+        type: boolean
+        default: false
+  push:
+    branches: ["claude/**"]
+    paths: ["sources/**", "tools/scout.py", "tools/collect.py", "tools/photo_pick.py", "accounts/**", ".github/workflows/collect.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zigzag
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[collect')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      ACCOUNT: ${{ inputs.account || 'women' }}
+      OUT: out/collect/run-${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --group scout
+      - run: uv run playwright install --with-deps chromium
+
+      - name: 수집
+        env:
+          CATEGORY: ${{ inputs.category }}
+          QUERIES: ${{ inputs.queries }}
+          MAX_QUERIES: ${{ inputs.max_queries }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          args=(--account "$ACCOUNT" --report "$OUT")
+          re='\[collect:([0-9]+)\]'
+          [[ "$COMMIT_MSG" =~ $re ]] && MAX_QUERIES="${BASH_REMATCH[1]}"
+          [ -n "$MAX_QUERIES" ] && args+=(--max-queries "$MAX_QUERIES")
+          if [ -n "$CATEGORY" ]; then
+            args+=(--category "$CATEGORY")
+            IFS=',' read -ra qs <<< "$QUERIES"
+            for q in "${qs[@]}"; do q="$(echo "$q" | xargs)"; [ -n "$q" ] && args+=(--query "$q"); done
+          fi
+          uv run python -m tools.collect "${args[@]}"
+
+      - name: 요약 표시
+        if: always()
+        run: '[ -f "$OUT/report.md" ] && cat "$OUT/report.md" >> "$GITHUB_STEP_SUMMARY" || true'
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: collect-${{ github.run_number }}
+          path: ${{ env.OUT }}
+          if-no-files-found: ignore
+
+      - name: 상품 창고 커밋
+        if: inputs.commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          git add "data/$ACCOUNT/products.json"
+          git diff --cached --quiet || git commit -m "상품 창고 갱신 ($ACCOUNT, run ${{ github.run_number }})"
+          git push
+
+      - name: scout-results 브랜치에 보고서 커밋
+        if: always()
+        run: |
+          [ -d "$OUT" ] || exit 0
+          dest="collect-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin scout-results 2>/dev/null; then
+            git worktree add /tmp/results origin/scout-results
+            git -C /tmp/results checkout -B scout-results
+          else
+            git worktree add --detach /tmp/results
+            git -C /tmp/results checkout --orphan scout-results
+            git -C /tmp/results rm -rf --quiet .
+          fi
+          mkdir -p "/tmp/results/$dest"
+          cp -r "$OUT"/. "/tmp/results/$dest/"
+          echo "source: ${{ github.sha }}" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "상품 수집 결과 $dest"
+          git -C /tmp/results push origin scout-results

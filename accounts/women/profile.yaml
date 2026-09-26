@@ -45,6 +45,17 @@ product_source:
   min_rating: 4.5
   min_reviews: 20
   prefer_flat_shot: true
+  # 상품 창고를 채울 검색어 (카테고리별). 주제에 맞는 검색어는 5단계에서 Claude가 따로 더한다
+  queries:
+    아우터: [레더자켓, 트렌치코트, 울 코트, 트위드 자켓, 니트 가디건]
+    상의: [셔츠, 블라우스, 니트, 터틀넥]
+    하의: [와이드 슬랙스, 데님 팬츠, 롱스커트]
+    가방: [숄더백, 토트백]
+    신발: [로퍼, 앵클부츠, 메리제인]
+    소품: [목걸이, 귀걸이, 벨트]
+  per_query: 10          # 검색어마다 상세까지 확인할 상품 수
+  max_per_category: 60   # 카테고리별 창고 최대 보관 수
+  recheck_days: 3        # 창고 상품의 판매 상태를 다시 확인하는 주기
 
 visual:
   backdrop: warm light-grey textured plaster surface, soft even studio light, subtle natural drop shadows

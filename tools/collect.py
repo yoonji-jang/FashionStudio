@@ -1,0 +1,325 @@
+"""상품 수집. 프로필의 검색어로 후보를 찾아 계정별 상품 창고(data/<계정>/products.json)에 쌓는다.
+
+흐름: 검색(평점·리뷰 기준) → 상품 페이지 확인(판매 중인지, 사진 목록) → 사진 고르기(상품만 나온
+사진을 앞으로) → 창고에 합치기. 창고에 있던 상품도 recheck_days 가 지나면 다시 확인해
+판매 종료·품절이면 뺀다. 카테고리마다 max_per_category 개까지만 좋은 순서로 남긴다.
+
+사용법:
+  python -m tools.collect --account women                      # 프로필의 모든 검색어
+  python -m tools.collect --account women --category 아우터 --query 레더자켓 --query 트렌치코트
+  python -m tools.collect --account women --max-queries 3 --report out/collect
+결과 보고(--report 폴더): report.md (요약·표), sheet.jpg (새로 모은 상품 미리보기), products.json
+"""
+
+from __future__ import annotations
+
+import argparse
+import math
+import shutil
+import sys
+from dataclasses import dataclass, field
+from datetime import date, timedelta
+from io import BytesIO
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+from core.models import Category, Product
+from core.profile import REPO_ROOT, load_profile
+from core.store import Store
+from sources import ProductSource, SearchFilters, get_source
+from tools import photo_pick, scout
+
+MAX_SCORED_IMAGES = 5  # 상품마다 점수를 매길 사진 수 (요청 수를 줄이려고)
+FONT_DIR = REPO_ROOT / "assets" / "fonts"
+
+
+@dataclass
+class Report:
+    account: str
+    today: date
+    searched: dict[str, int] = field(default_factory=dict)  # 검색어 → 기준 통과 후보 수
+    added: list[Product] = field(default_factory=list)
+    refreshed: int = 0
+    dropped: list[tuple[Product, str]] = field(default_factory=list)  # (상품, 이유)
+    trimmed: int = 0
+    stopped: str | None = None  # 막혀서 중간에 멈춘 이유
+    total: dict[str, int] = field(default_factory=dict)  # 카테고리 → 창고 상품 수
+    thumbs: dict[str, bytes] = field(default_factory=dict)  # 상품 id → 대표 사진 (미리보기용)
+
+
+def quality(p: Product) -> float:
+    """창고에 남길 우선순위. 평점 × log(리뷰 수), 단독컷이 있으면 가산."""
+    base = (p.rating or 0) * math.log1p(p.review_count or 0)
+    return base * (1.15 if p.has_flat_shot else 1.0)
+
+
+def needs_check(p: Product, today: date, recheck_days: int) -> bool:
+    return p.checked_at is None or today - p.checked_at >= timedelta(days=recheck_days)
+
+
+def pick_photos(
+    source: ProductSource, p: Product, fetch, limit: int = MAX_SCORED_IMAGES
+) -> tuple[Product, bytes | None]:
+    """사진마다 점수를 매겨 상품만 나온 사진을 앞으로 보낸다. (새 상품, 대표 사진 bytes)."""
+    urls = [str(u) for u in p.image_urls]
+    scores: dict[str, photo_pick.PhotoScore] = {}
+    thumbs: dict[str, bytes] = {}
+    for url in urls[:limit]:
+        try:
+            data = fetch(source.thumb_url(url))
+            scores[url] = photo_pick.score_bytes(data)
+            thumbs[url] = data
+        except scout.Blocked:
+            raise
+        except Exception as e:  # noqa: BLE001 - 사진 한 장 실패는 건너뜀
+            print(f"  사진 점수 실패 {url}: {e}", file=sys.stderr)
+    if not scores:
+        return p, None
+    ranked = photo_pick.rank(scores)
+    ordered = ranked + [u for u in urls if u not in scores]
+    flat = any(s.flat for s in scores.values())
+    updated = Product.model_validate(
+        {**p.model_dump(), "image_urls": ordered, "has_flat_shot": flat}
+    )
+    return updated, thumbs.get(ranked[0])
+
+
+def collect(
+    account: str,
+    plan: dict[Category, list[str]] | None = None,
+    per_query: int | None = None,
+    recheck: bool = True,
+    source: ProductSource | None = None,
+    store: Store | None = None,
+    fetch=None,
+    today: date | None = None,
+) -> Report:
+    profile = load_profile(account)
+    cfg = profile.product_source
+    today = today or date.today()
+    source = source or get_source(cfg.name)
+    store = store or Store(account)
+    if fetch is None:
+        http = scout.client()
+        fetch = lambda url: scout.fetch_bytes(http, url)  # noqa: E731
+    plan = plan if plan is not None else cfg.queries
+    filters = SearchFilters(
+        min_rating=cfg.min_rating,
+        min_reviews=cfg.min_reviews,
+        max_results=per_query or cfg.per_query,
+    )
+
+    report = Report(account=account, today=today)
+    stock: dict[str, Product] = {p.id: p for p in store.products()}
+    seen: set[str] = set()
+
+    try:
+        for category, queries in plan.items():
+            if not queries:
+                continue
+            found = source.search(queries, category, filters)
+            for query, products in found.items():
+                report.searched[query] = len(products)
+                for cand in products:
+                    if cand.id in seen:
+                        continue
+                    seen.add(cand.id)
+                    old = stock.get(cand.id)
+                    if old and not needs_check(old, today, cfg.recheck_days):
+                        # 최근에 확인한 상품: 검색 카드의 가격·평점만 갱신
+                        stock[cand.id] = Product.model_validate(
+                            {
+                                **old.model_dump(),
+                                "price": cand.price,
+                                "rating": cand.rating,
+                                "review_count": cand.review_count,
+                            }
+                        )
+                        continue
+                    base = old or cand
+                    base = Product.model_validate(
+                        {
+                            **base.model_dump(),
+                            "price": cand.price,
+                            "rating": cand.rating,
+                            "review_count": cand.review_count,
+                        }
+                    )
+                    checked = source.detail(base)
+                    if checked.status != "on_sale":
+                        if old:
+                            report.dropped.append((old, checked.status))
+                            stock.pop(old.id, None)
+                        continue
+                    if old:
+                        stock[old.id] = checked
+                        report.refreshed += 1
+                        continue
+                    picked, thumb = pick_photos(source, checked, fetch)
+                    stock[picked.id] = picked
+                    report.added.append(picked)
+                    if thumb:
+                        report.thumbs[picked.id] = thumb
+
+        if recheck:
+            for p in list(stock.values()):
+                if p.id in seen or not needs_check(p, today, cfg.recheck_days):
+                    continue
+                checked = source.detail(p)
+                if checked.status != "on_sale":
+                    report.dropped.append((p, checked.status))
+                    stock.pop(p.id)
+                else:
+                    stock[p.id] = checked
+                    report.refreshed += 1
+    except scout.Blocked as e:
+        report.stopped = str(e)
+
+    kept: list[Product] = []
+    for category in dict.fromkeys(p.category for p in stock.values()):
+        items = sorted(
+            (p for p in stock.values() if p.category == category), key=quality, reverse=True
+        )
+        kept += items[: cfg.max_per_category]
+        report.trimmed += max(0, len(items) - cfg.max_per_category)
+        report.total[category] = min(len(items), cfg.max_per_category)
+    kept_ids = {p.id for p in kept}
+    report.added = [p for p in report.added if p.id in kept_ids]
+    store.save_products(kept)
+    return report
+
+
+# ---------- 보고서 ----------
+
+STATUS_KO = {"sold_out": "품절", "hidden": "판매 종료·비공개"}
+
+
+def write_report(report: Report, out: Path, store: Store) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+    lines = [
+        f"# 상품 수집 결과 ({report.account}, {report.today})",
+        "",
+        f"- 새로 모은 상품: {len(report.added)}개",
+        f"- 다시 확인한 상품: {report.refreshed}개",
+        f"- 뺀 상품 (판매 종료·품절): {len(report.dropped)}개",
+        f"- 창고 한도로 뺀 상품: {report.trimmed}개",
+        "- 창고: " + ", ".join(f"{k} {v}" for k, v in report.total.items()),
+    ]
+    if report.stopped:
+        lines.append(f"- **중간에 멈춤**: {report.stopped}")
+    lines += ["", "## 검색어별 후보 (평점·리뷰 기준 통과)", ""]
+    lines += [f"- {q}: {n}개" for q, n in report.searched.items()]
+    lines += [
+        "",
+        "## 새로 모은 상품",
+        "",
+        "| 카테고리 | 상품 | 쇼핑몰 | 가격 | 평점(리뷰) | 단독컷 | 검색어 |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for p in report.added:
+        lines.append(
+            f"| {p.category} | [{p.name[:40]}]({p.url}) | {p.shop} | {p.price:,}원 | "
+            f"{p.rating or '-'} ({p.review_count or 0}) | {'O' if p.has_flat_shot else ''} | "
+            f"{p.query or ''} |"
+        )
+    if report.dropped:
+        lines += ["", "## 뺀 상품", ""]
+        lines += [f"- {p.name[:40]} ({STATUS_KO.get(s, s)})" for p, s in report.dropped]
+    (out / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    src = store.dir / "products.json"
+    if src.exists():
+        shutil.copy(src, out / "products.json")
+    if report.added:
+        product_sheet(report.added, report.thumbs, out / "sheet.jpg")
+
+
+def _font(name: str, size: int) -> ImageFont.FreeTypeFont:
+    return ImageFont.truetype(str(FONT_DIR / name), size)
+
+
+def product_sheet(
+    products: list[Product], thumbs: dict[str, bytes], out: Path, per_row: int = 6
+) -> Path:
+    """새로 모은 상품 미리보기 한 장 (대표 사진, 이름, 쇼핑몰, 가격, 평점)."""
+    cell_w, img_h, text_h, pad = 240, 288, 118, 16
+    rows = (len(products) + per_row - 1) // per_row
+    sheet = Image.new(
+        "RGB",
+        (per_row * (cell_w + pad) + pad, rows * (img_h + text_h + pad) + pad),
+        (250, 250, 248),
+    )
+    draw = ImageDraw.Draw(sheet)
+    bold, regular = _font("Pretendard-Bold.otf", 17), _font("Pretendard-Medium.otf", 15)
+    for i, p in enumerate(products):
+        x = pad + (i % per_row) * (cell_w + pad)
+        y = pad + (i // per_row) * (img_h + text_h + pad)
+        draw.rectangle((x, y, x + cell_w, y + img_h), fill=(232, 232, 228))
+        if p.id in thumbs:
+            img = Image.open(BytesIO(thumbs[p.id])).convert("RGB")
+            img.thumbnail((cell_w, img_h))
+            sheet.paste(img, (x + (cell_w - img.width) // 2, y + (img_h - img.height) // 2))
+        if p.has_flat_shot:
+            draw.rectangle((x, y, x + 58, y + 24), fill=(122, 46, 52))
+            draw.text((x + 8, y + 3), "단독컷", font=regular, fill="white")
+        ty = y + img_h + 8
+        name = p.name
+        for _ in range(2):
+            cut = len(name)
+            while cut and draw.textlength(name[:cut], font=regular) > cell_w:
+                cut -= 1
+            draw.text((x, ty), name[:cut], font=regular, fill=(40, 40, 40))
+            name, ty = name[cut:], ty + 21
+            if not name:
+                break
+        draw.text(
+            (x, y + img_h + 52), f"{p.category} · {p.shop}"[:22], font=regular, fill=(110, 110, 110)
+        )
+        draw.text(
+            (x, y + img_h + 76),
+            f"{p.price:,}원  ★{p.rating or '-'} ({p.review_count or 0})",
+            font=bold,
+            fill=(40, 40, 40),
+        )
+    out.parent.mkdir(parents=True, exist_ok=True)
+    sheet.save(out, quality=88)
+    return out
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+    ap.add_argument("--account", required=True)
+    ap.add_argument("--category", help="이 카테고리만 (--query 와 함께 쓰면 그 검색어로)")
+    ap.add_argument("--query", action="append", default=[], help="검색어 (여러 번 가능)")
+    ap.add_argument("--max-queries", type=int, help="카테고리마다 앞에서 N개 검색어만")
+    ap.add_argument("--per-query", type=int, help="검색어마다 확인할 상품 수 (프로필 값 대신)")
+    ap.add_argument("--no-recheck", action="store_true", help="창고 상품 다시 확인 안 함")
+    ap.add_argument("--report", type=Path, help="보고서 폴더")
+    args = ap.parse_args(argv)
+
+    profile = load_profile(args.account)
+    plan: dict = dict(profile.product_source.queries)
+    if args.category:
+        plan = {args.category: args.query or plan.get(args.category, [])}
+    elif args.query:
+        ap.error("--query 는 --category 와 함께 써 주세요")
+    if args.max_queries:
+        plan = {k: v[: args.max_queries] for k, v in plan.items()}
+
+    store = Store(args.account)
+    report = collect(
+        args.account, plan, per_query=args.per_query, recheck=not args.no_recheck, store=store
+    )
+    print(
+        f"새 상품 {len(report.added)}, 다시 확인 {report.refreshed}, "
+        f"뺀 상품 {len(report.dropped)}, 창고 {sum(report.total.values())}"
+    )
+    if report.stopped:
+        print(f"중간에 멈춤: {report.stopped}", file=sys.stderr)
+    if args.report:
+        write_report(report, args.report, store)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
