@@ -13,12 +13,15 @@
 | 에이전트 | 역할 |
 |---|---|
 | photo-checker | 상품 사진이 고른 색과 맞는지, 얼굴이 없는지 보고 사진 번호를 고름 (읽기 전용) |
+| image-reviewer | 코디컷 후보를 원본 상품과 비교해 5개 항목 점수, 캐러셀 장 색·얼굴·글자 확인 (읽기 전용) |
 
-앞으로 붙일 것: `reviewer` (7단계 이미지 검수), `reels-storyboard` (11단계), `new-account`.
+앞으로 붙일 것: `reels-storyboard` (11단계), `new-account`.
 
 ## 흐름
 
 ```
 tools.plan context ─▶ plan-themes ─▶ (tools.collect 검색어 수집) ─▶ pick-outfit ─▶ tools.plan photos
-   ─▶ photo-checker ─▶ write-copy ─▶ tools.plan check (오류면 고치기) ─▶ tools.plan build
+   ─▶ photo-checker ─▶ write-copy ─▶ tools.plan check (오류면 고치기) ─▶ tools.plan build (후보 N장)
+   ─▶ tools.review prep ─▶ image-reviewer ─▶ tools.review apply
+        (0 통과 / 3 모두 미달 → tools.review more 후 다시 / 4 사람 확인)
 ```

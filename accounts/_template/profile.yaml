@@ -62,6 +62,10 @@ copy:  # 제목·문구·캡션 규칙. 생략한 값은 기본값 (README 참�
   base_hashtags: []
   banned: []
 
+review:  # 7단계 이미지 검수. 생략하면 기본값 (README 참고)
+  candidates: 2
+  min_score: 8
+
 schedule:
   timezone: Asia/Seoul
   generate_at: "21:17"

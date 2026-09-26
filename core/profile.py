@@ -170,6 +170,17 @@ class Feed(BaseModel):
     source_names: dict[str, str] = {"zigzag": "지그재그"}  # 상품 소스 이름 → 보이는 이름
 
 
+class ReviewRules(BaseModel):
+    """7단계 이미지 검수 (tools.review). 점수는 항목 5개 × 0~2점 = 10점 만점."""
+
+    candidates: int = Field(default=2, ge=1, le=4)  # 한 번에 만드는 코디컷 후보 수
+    max_rounds: int = Field(
+        default=2, ge=1, le=4
+    )  # 모두 기준 미달이면 다시 만드는 횟수 (첫 회 포함)
+    min_score: int = Field(default=8, ge=0, le=10)  # 이 점수 이상이고 0점 항목이 없어야 통과
+    check_slides: bool = True  # 상품 장 사진 색·얼굴·글자 잘림도 본다
+
+
 class Schedule(BaseModel):
     timezone: str = "Asia/Seoul"
     generate_at: str = Field(pattern=HHMM)
@@ -196,6 +207,7 @@ class Profile(BaseModel):
     visual: Visual
     feed: Feed = Feed()
     copy_rules: Copy = Field(default=Copy(), alias="copy")
+    review: ReviewRules = ReviewRules()
     schedule: Schedule
     monetize: Monetize = "none"
     approval: Approval = "required"

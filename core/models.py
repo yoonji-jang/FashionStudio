@@ -148,6 +148,64 @@ class ReelsSpec(BaseModel):
     duration_sec: float | None = Field(default=None, ge=5, le=90)
 
 
+ReviewCheck = Literal["color", "shape", "complete", "clean", "layout"]
+REVIEW_CHECKS: dict[str, str] = {
+    "color": "색이 원본 상품과 같은지",
+    "shape": "모양·디테일(기장, 소매, 단추, 로고)이 원본과 같은지",
+    "complete": "기획한 상품이 모두 보이는지",
+    "clean": "삐져나온 조각·덩어리·원본에 없는 물건이 없는지",
+    "layout": "상품끼리 겹치거나 화면 밖으로 잘리지 않았는지",
+}
+
+
+class CoverScore(BaseModel):
+    """검수 에이전트가 코디컷 후보 한 장에 매긴 점수. 항목마다 0(불합격)~2(좋음), 합계 10점."""
+
+    id: str  # 후보 번호 (c1, c2 …)
+    color: int = Field(ge=0, le=2)
+    shape: int = Field(ge=0, le=2)
+    complete: int = Field(ge=0, le=2)
+    clean: int = Field(ge=0, le=2)
+    layout: int = Field(ge=0, le=2)
+    notes: str = ""  # 문제가 있으면 어느 상품의 무엇이 문제인지
+
+    @property
+    def total(self) -> int:
+        return self.color + self.shape + self.complete + self.clean + self.layout
+
+    @property
+    def zeros(self) -> list[str]:
+        return [k for k in REVIEW_CHECKS if getattr(self, k) == 0]
+
+
+class SlideIssue(BaseModel):
+    """캐러셀 장의 문제 한 개. by: code(도구가 찾음) 또는 claude(검수 에이전트)."""
+
+    slide: str  # 슬라이드 파일 이름 (예: 03_상의.jpg)
+    kind: Literal["색", "얼굴", "글자", "사진", "기타"]
+    note: str
+    by: Literal["code", "claude"] = "claude"
+
+
+class Candidate(BaseModel):
+    id: str  # c1, c2 …
+    file: str  # 결과 폴더 기준 코디컷 경로
+    round: int = Field(default=1, ge=1)  # 몇 번째로 만든 묶음인지
+    score: CoverScore | None = None
+
+
+class Review(BaseModel):
+    """7단계 검수 결과 (out/<날짜>/review/review.json). manifest.review 에도 들어간다."""
+
+    candidates: list[Candidate] = []
+    chosen: str | None = None  # 표지로 고른 후보 id
+    rounds: int = Field(default=1, ge=1)
+    passed: bool = False  # 표지 기준 통과 + 캐러셀 문제 없음
+    status: Literal["passed", "retry", "failed", "not_reviewed"] = "not_reviewed"
+    slide_issues: list[SlideIssue] = []
+    summary: str = ""
+
+
 class Manifest(BaseModel):
     """하루치 결과물. 게시 job은 이 파일만 읽는다."""
 
@@ -155,8 +213,9 @@ class Manifest(BaseModel):
     date: date
     plan: OutfitPlan
     images: list[str] = Field(min_length=1, max_length=10)  # out/ 경로, 첫 장이 커버
-    review_score: float = Field(ge=0, le=10)  # 7단계 검수 전에는 0
-    needs_human: bool = False
+    review_score: float = Field(ge=0, le=10)  # 고른 표지 점수 (검수 전에는 0)
+    needs_human: bool = False  # 검수 불합격·미검수면 true (8단계 미리보기에서 사람이 판단)
+    review: Review | None = None
     title_lines: list[str] = Field(min_length=1)
     caption: str
     hashtags: list[str]

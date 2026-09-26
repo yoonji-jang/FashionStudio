@@ -1,6 +1,7 @@
 name: daily
 
 # 6단계 하루 게시물 만들기. Claude(daily-feed 스킬)가 주제·상품·문구를 정하고 코디컷·캐러셀·캡션까지 만든다.
+# 7단계: 코디컷 후보를 여러 장 만들고 Claude(image-reviewer)가 검수해 표지를 고른다.
 # - Actions 탭에서 "Run workflow": 버튼 하나로 주제 → 상품 → 코디컷 → 캐러셀 → 캡션
 #   (Secret CLAUDE_CODE_OAUTH_TOKEN 필요. 기획 파일(plan)을 주면 Claude 없이 그 기획으로 만들기만 한다)
 # - 작업 브랜치에 커밋 메시지에 [daily] 와 [plan:경로] 를 넣어 푸시하면 그 기획으로 만든다
@@ -29,9 +30,13 @@ on:
         description: 주제 검색어로 지그재그 새 상품 수집
         type: boolean
         default: false
+      review:
+        description: 기획 파일로 만들 때도 Claude 로 이미지 검수 (CLAUDE_CODE_OAUTH_TOKEN 필요)
+        type: boolean
+        default: true
   push:
     branches: ["claude/**"]
-    paths: ["samples/**", "tools/plan.py", ".claude/**", ".github/workflows/daily.yml"]
+    paths: ["samples/**", "tools/plan.py", "tools/review.py", ".claude/**", ".github/workflows/daily.yml"]
 
 permissions:
   contents: write
@@ -53,6 +58,8 @@ jobs:
       COLLECT: ${{ inputs.collect && '1' || '' }}
       SANDBOX: ${{ (github.event_name == 'push' || inputs.sandbox) && '1' || '' }}
       COMMIT_MSG: ${{ github.event.head_commit.message }}
+      HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+      REVIEW: ${{ (github.event_name == 'push' || inputs.review) && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -98,7 +105,7 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
           claude_args: >-
             --max-turns 150
-            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: 기획 파일로 만들기
         if: env.PLAN != ''
@@ -108,6 +115,23 @@ jobs:
           # Photoroom 한도에 막히면(종료 코드 2) 코디컷 없이라도 만든다
           python -m tools.plan build "out/$DATE/plan.yaml" --outfit "$OUTFIT" \
             || { [ $? -eq 2 ] && python -m tools.plan build "out/$DATE/plan.yaml" --outfit none; }
+          # 검수표까지 만든다 (점수는 Claude 가 매김. 없으면 needs_human 으로 남음)
+          python -m tools.review prep "out/$DATE"
+
+      - name: Claude 이미지 검수 (기획 파일로 만든 경우)
+        if: env.PLAN != '' && env.REVIEW == '1' && env.HAS_CLAUDE == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            .claude/skills/daily-feed/SKILL.md 의 10번(이미지 검수)만 out/${{ env.DATE }} 에 대해 해.
+            plan.yaml 은 고치지 말고, 종료 코드 4 는 그대로 두고 끝내.
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.review ...` 처럼 부르면 돼.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Bash(python -m tools.review:*),Read,Write,Glob,Task,Agent"
 
       - name: 요약 표시
         if: always()
@@ -121,7 +145,7 @@ jobs:
         run: |
           mkdir -p /tmp/upload
           [ -d "out/$DATE" ] || exit 0
-          rsync -a --exclude 'photos/' --exclude 'outfit/src/' --exclude 'outfit/originals/' "out/$DATE/" /tmp/upload/
+          rsync -a --exclude '/photos/' --exclude 'src/' --exclude 'originals/' "out/$DATE/" /tmp/upload/
 
       - uses: actions/upload-artifact@v4
         if: always()
