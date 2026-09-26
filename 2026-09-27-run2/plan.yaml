@@ -1,0 +1,83 @@
+# 6단계 샘플: daily-feed 스킬 순서대로 Claude가 쓴 하루 기획 (2026-09-27 일요일, 초가을).
+# 상품은 상품 창고(data/women/products.json)에서 골랐고, photo 는 사진 확인 뒤 채운다.
+account: women
+date: 2026-09-27
+theme:
+  date: 2026-09-27
+  type: 아이템
+  title_hint: 아침저녁 쌀쌀한 초가을, 하프 트렌치코트 하나로 완성하는 주말 코디
+  mood: 밝고 가벼운 베이지·화이트·연청에 블랙으로 아래를 잡는 클래식 캐주얼
+  why: >-
+    추석 연휴 직후 일요일이고 일교차가 커지는 초가을이라 가볍게 걸칠 아우터가 필요한 때.
+    최근 게시 기록이 없어 겹치는 주제가 없고, 창고에 하프 트렌치코트 후보가 충분하다.
+  slots:
+    - {category: 아우터, desc: 베이지 하프 트렌치코트}
+    - {category: 상의, desc: 화이트 코튼 셔츠}
+    - {category: 하의, desc: 연청 세미와이드 데님}
+    - {category: 가방, desc: 블랙 토트백}
+    - {category: 신발, desc: 블랙 페니로퍼}
+    - {category: 소품, desc: 실버 목걸이, 작은 귀걸이}
+  search_terms:
+    아우터: [하프 트렌치코트, 숏 트렌치코트]
+    상의: [코튼 셔츠, 오버핏 셔츠]
+    하의: [세미와이드 데님, 연청 와이드 데님]
+reason: >-
+  베이지 트렌치 + 화이트 셔츠 + 연청 데님으로 밝은 톤을 맞추고, 가방·로퍼를 블랙으로 통일해
+  아래쪽 무게를 잡았다. 주얼리는 실버 두 개로 과하지 않게. 모두 리뷰 많은 상품이고
+  신발·가방·주얼리는 단독컷이 있어 누끼가 깨끗하다.
+items:
+  - product: zigzag:168297481
+    color: 베이지
+    desc: 베이지 래글런 하프 트렌치코트 (beige raglan half-length trench coat)
+    name: 래글런 하프 트렌치코트
+    comment: 어깨선이 없는 래글런이라 셔츠 위에 걸쳐도 품이 편안해요.
+  - product: zigzag:136581318
+    color: 화이트
+    desc: 화이트 오버핏 코튼 셔츠 (white oversized cotton shirt)
+    name: 오버핏 포켓 코튼 셔츠
+    comment: 코트 안에서 깃과 소매만 살짝 보이게 입어 보세요.
+    wear_with: 아우터
+    wear_modes: [peek]
+    wear_how: >-
+      the trench coat is worn buttoned closed over the shirt, exactly as a person wears it.
+      The shirt is fully inside the coat: only the shirt collar shows at the coat neckline and
+      the shirt cuffs peek a little past the coat sleeves. No shirt body or sleeves show outside
+      the coat
+  - product: zigzag:145122681
+    color: 연청
+    desc: 연청 스판 세미와이드 데님 (light blue stretch semi-wide jeans)
+    name: 스판 세미와이드 데님
+    comment: 스판 원단이라 움직임이 편한 세미와이드 핏이에요.
+  - product: zigzag:168002860
+    color: 블랙
+    desc: 블랙 토트백 (black tote bag)
+    name: 슈비 토트백
+    comment: 손에 들어도 어깨에 메도 되는 크기라 주말 외출에 알맞아요.
+    segment: bag
+  - product: zigzag:130568193
+    color: 블랙
+    desc: 블랙 플랫폼 페니로퍼 (black platform penny loafers)
+    name: 몽글 플랫폼 페니로퍼
+    comment: 5cm 통굽이라 와이드 데님 밑단 아래로 자연스럽게 보여요.
+    segment: shoe
+  - product: zigzag:113341770
+    color: 실버
+    desc: 실버 볼 체인 목걸이 (silver ball chain necklace)
+    name: 실버 볼 체인 목걸이
+    comment: 셔츠 깃 사이로 실버가 살짝 보이면 깔끔해요.
+    slot: 목걸이
+    segment: necklace
+  - product: zigzag:127812392
+    color: 실버
+    desc: 실버 미니멀 귀걸이 (silver minimal earrings)
+    name: 페일 실버 이어링
+    comment: 작은 크기라 매일 하기 부담 없어요.
+    slot: 귀걸이
+    segment: earring
+text:
+  title_lines: [아침저녁 쌀쌀할 땐, 하프 트렌치코트 하나로]
+  points:
+    - 베이지 트렌치에 화이트 셔츠, 연청 데님으로 밝고 가볍게 맞췄어요
+    - 하프 기장이라 와이드 데님과 입어도 비율이 깔끔해 보여요
+    - 가방과 로퍼를 블랙으로 맞추면 전체가 또렷해 보여요
+  hashtags: ["#트렌치코트", "#하프트렌치", "#가을코디", "#초가을코디", "#셔츠코디", "#데님코디", "#주말코디"]
