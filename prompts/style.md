@@ -6,6 +6,8 @@ Top-down flat lay photo of the $base_desc from the main image, styled as if worn
 the $add_desc from the reference image: $how.
 The $base_desc is the outer layer: wherever the two items overlap, the $base_desc lies on top and
 covers the $add_desc, which is underneath it. Never paste the $add_desc on top of the $base_desc.
+The $add_desc never sticks out beyond the outline of the $base_desc, except for the parts named
+above as visible.
 Both items keep exactly the same color, material, shape, length and details as in their images.
 Laid flat and seen from directly above on a plain white background, no person, no other objects,
 no text.

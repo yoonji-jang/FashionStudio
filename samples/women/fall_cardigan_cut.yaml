@@ -13,13 +13,16 @@ items:
     cutout: samples/women/fall_cardigan/shirt.png
     wear_with: 아우터
     # over(셔츠를 본 이미지로)는 가디건을 셔츠 위에 작게 붙였다 (run-21). 가디건을 본 이미지로 먼저 시도
+    # run-23: 셔츠 소매·몸판이 가디건 밖으로 삐져나옴 → 소매·몸판을 가디건 안에 넣도록 지시
     wear_modes: [direct, over]
     wear_how: >-
-      the V-neck cardigan is worn buttoned closed over the shirt, exactly as a person wears it,
-      both at the same real body size (the cardigan is as wide as the shirt, never smaller):
-      the white shirt collar is spread over the cardigan V neckline, the shirt sleeves are hidden
-      inside the cardigan sleeves with only the shirt cuffs peeking out, and a little of the shirt
-      hem shows below the cardigan
+      the V-neck cardigan is worn buttoned closed over the shirt, exactly as a person wears it.
+      The shirt is fully tucked inside the cardigan: the shirt body is hidden under the cardigan
+      body and each shirt sleeve is hidden inside the cardigan sleeve, following the cardigan
+      sleeve angle. No white shirt shows at the shoulders, armpits, sides or along the sleeves.
+      Only three parts of the shirt are visible: the collar spread over the cardigan V neckline
+      with the shirt placket in the V, the shirt cuffs peeking a little past the cardigan cuffs,
+      and a narrow strip of shirt hem below the cardigan hem
   - category: 하의
     desc: 연청 와이드 데님 + 금장 버클 가죽 벨트
     cutout: samples/women/fall_cardigan/bottoms_belt.png
