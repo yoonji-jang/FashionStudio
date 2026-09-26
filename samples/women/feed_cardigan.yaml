@@ -3,7 +3,7 @@
 # 이름·스토어·가격·사진을 읽는다 (Actions 에서 --photos 로 실행).
 # 실버 물방울 목걸이(146334491)는 판매가 끝나 페이지를 읽을 수 없어 뺐다 (2026-09-26).
 account: women
-title_lines: [가을 데일리룩은, 니트 가디건 하나면 돼요]
+title_lines: [가을 필수템 가디건, 단정하게 입는 법]  # 표지 이미지의 제목과 같게
 cover: samples/women/feed_cardigan/cover.jpg
 cover_has_title: true
 items:
