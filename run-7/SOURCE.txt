@@ -1,0 +1,1 @@
+source: dc1a7dcd57e6956793ef3648dda594040e49a33e (samples/women/fall_leather.yaml)
