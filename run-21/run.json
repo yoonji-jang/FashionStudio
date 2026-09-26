@@ -1,0 +1,175 @@
+{
+  "samples": "samples/women/fall_cardigan.yaml",
+  "account": "women",
+  "started": "2026-09-26T11:32:04",
+  "sandbox": true,
+  "items": [
+    {
+      "slot": "01_outer",
+      "page": "https://zigzag.kr/catalog/products/159882348",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2025/3/24/43357_202503240027400249_59469.jpeg"
+    },
+    {
+      "slot": "02_top",
+      "page": "https://zigzag.kr/catalog/products/108849056",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2021/11/4/7385_202111041955200303_34745.jpeg"
+    },
+    {
+      "slot": "03_bottoms",
+      "page": "https://zigzag.kr/catalog/products/137809552",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/13/780/955/137809552-6953682982466974504.png"
+    },
+    {
+      "slot": "04_bag",
+      "page": "https://zigzag.kr/catalog/products/130666541",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2023/11/7/36212_202311071458360329_83658.png"
+    },
+    {
+      "slot": "05_shoes",
+      "page": "https://zigzag.kr/catalog/products/129664032",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2023/9/29/27810_202309290023240895_96044.jpeg"
+    },
+    {
+      "slot": "06_accessory",
+      "page": "https://zigzag.kr/catalog/products/153552340",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/d/2024/11/21/24081_202411211216230997_90696.jpeg"
+    },
+    {
+      "slot": "07_accessory",
+      "page": "https://zigzag.kr/catalog/products/146334491",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/14/633/449/146334491-5855094381463804560.gif"
+    },
+    {
+      "slot": "08_accessory",
+      "page": "https://zigzag.kr/catalog/products/101877686",
+      "image_url": "https://cf.product-image.s.zigzag.kr/original/c/10/187/768/101877686-5808753656416845797.jpeg"
+    }
+  ],
+  "cutouts": [
+    {
+      "repeat": 1,
+      "slot": "01_outer",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 8.9
+    },
+    {
+      "repeat": 1,
+      "slot": "02_top",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.6
+    },
+    {
+      "repeat": 1,
+      "slot": "03_bottoms",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.2
+    },
+    {
+      "repeat": 1,
+      "slot": "04_bag",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.2
+    },
+    {
+      "repeat": 1,
+      "slot": "05_shoes",
+      "method": "segment",
+      "ok": true,
+      "sec": 0.7
+    },
+    {
+      "repeat": 1,
+      "slot": "06_accessory",
+      "method": "segment",
+      "ok": true,
+      "sec": 0.9
+    },
+    {
+      "repeat": 1,
+      "slot": "07_accessory",
+      "method": "segment",
+      "ok": true,
+      "sec": 0.6
+    },
+    {
+      "repeat": 1,
+      "slot": "08_accessory",
+      "method": "segment",
+      "ok": true,
+      "sec": 0.4
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "04_bag",
+      "ok": true,
+      "sec": 10.2
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "05_shoes",
+      "ok": true,
+      "sec": 10.9
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "06_accessory",
+      "ok": true,
+      "sec": 10.6
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "07_accessory",
+      "ok": true,
+      "sec": 8.2
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "08_accessory",
+      "ok": true,
+      "sec": 8.1
+    },
+    {
+      "stage": "style",
+      "repeat": 1,
+      "slot": "01_outer+top",
+      "ok": true,
+      "sec": 11.7
+    },
+    {
+      "stage": "style",
+      "repeat": 1,
+      "slot": "03_bottoms+accessory",
+      "ok": true,
+      "sec": 13.5
+    }
+  ],
+  "runs": [
+    {
+      "variant": "B",
+      "run": 1,
+      "file": "results/B_1.jpg",
+      "ok": true,
+      "sec": 0.4
+    },
+    {
+      "variant": "C",
+      "run": 1,
+      "file": "results/C_1.jpg",
+      "ok": true,
+      "sec": 1.6
+    }
+  ],
+  "backdrop": "generated",
+  "finished": "2026-09-26T11:34:52",
+  "api_calls": 24,
+  "est_cost_usd": 0
+}
