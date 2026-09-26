@@ -5,22 +5,23 @@
 # 입은 듯한 코디: 자켓+셔츠, 바지+벨트처럼 합친 상품은 기준 상품(아우터, 하의) 자리에 놓는다.
 # 아우터가 없으면 no_outer 값으로 덮어쓴다.
 canvas: [1080, 1350]
-px_per_cm: 7.4
+px_per_cm: 7.0
 slots:
-  아우터: {cm: 68, measure: height, center: [0.50, 0.208], z: 3}
-  상의:   {cm: 64, measure: height, center: [0.60, 0.20], z: 2}
-  원피스: {cm: 105, measure: height, center: [0.50, 0.36], z: 2}
-  하의:   {cm: 100, measure: height, center: [0.53, 0.683], z: 1}  # 상의 밑단과 살짝 띄움
-  가방:   {cm: 44, measure: long, center: [0.19, 0.56], z: 5}
-  신발:   {cm: 30, measure: long, center: [0.22, 0.87], z: 5}  # 26cm 는 작아 보여 조금 키움
-  소품:   {cm: 22, measure: long, center: [0.88, 0.92], z: 5, rotate: -8}
-  # 주얼리는 옷 위에 올리지 않고 오른쪽 빈 공간에 세로로 놓는다 (샘플의 slot 으로 지정)
-  목걸이: {cm: 34, measure: long, center: [0.84, 0.52], z: 5}  # 가는 줄도 보이게 조금 크게
-  귀걸이: {cm: 9, measure: long, center: [0.84, 0.70], z: 5}
-  팔찌:   {cm: 12, measure: long, center: [0.84, 0.83], z: 5}
+  # 상의와 하의는 가운데(x)를 맞춰 세로로 정렬한다
+  아우터: {cm: 68, measure: height, center: [0.47, 0.205], z: 3}
+  상의:   {cm: 64, measure: height, center: [0.55, 0.195], z: 2}
+  원피스: {cm: 105, measure: height, center: [0.47, 0.36], z: 2}
+  하의:   {cm: 100, measure: height, center: [0.47, 0.655], z: 1}  # 상의 밑단과 살짝 띄움
+  가방:   {cm: 52, measure: long, center: [0.16, 0.57], z: 5}
+  신발:   {cm: 35, measure: long, center: [0.18, 0.88], z: 5}
+  소품:   {cm: 22, measure: long, center: [0.86, 0.60], z: 5, rotate: -8}
+  # 주얼리는 옷 위에 올리지 않고 상의 오른쪽 빈 공간에 세로로 놓는다 (샘플의 slot 으로 지정)
+  목걸이: {cm: 34, measure: long, center: [0.89, 0.21], z: 5}  # 가는 줄도 보이게 조금 크게
+  귀걸이: {cm: 9, measure: long, center: [0.89, 0.40], z: 5}
+  팔찌:   {cm: 12, measure: long, center: [0.88, 0.50], z: 5}
 no_outer:
-  상의:   {cm: 64, measure: height, center: [0.50, 0.198], z: 2}
-  하의:   {cm: 100, measure: height, center: [0.53, 0.662], z: 1}
+  상의:   {cm: 64, measure: height, center: [0.47, 0.195], z: 2}
+  하의:   {cm: 100, measure: height, center: [0.47, 0.64], z: 1}
 shadow:  # 코드 그림자 (AI 그림자를 쓰지 않을 때)
   offset: [10, 16]
   blur: 18
