@@ -57,7 +57,7 @@ class SampleItem(BaseModel):
     url: str | None = None
     image: str | None = None  # 저장소 기준 경로 (직접 캡처한 사진)
     cutout: str | None = (
-        None  # 이미 만든 누끼 (저장소 기준 경로). 있으면 누끼·다듬기·입히기를 건너뜀
+        None  # 이미 만든 누끼 (저장소 기준 경로). 있으면 누끼·다듬기를 건너뜀 (입히기는 함)
     )
     alternates: list[str] = []
     crop: tuple[float, float, float, float] | None = None  # 사진 일부만 쓸 때 (0~1 비율)
