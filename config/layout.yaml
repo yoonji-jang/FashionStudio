@@ -13,7 +13,7 @@ slots:
   원피스: {cm: 105, measure: height, center: [0.47, 0.36], z: 2}
   하의:   {cm: 100, measure: height, center: [0.47, 0.655], z: 1}  # 상의 밑단과 살짝 띄움
   가방:   {cm: 52, measure: long, center: [0.16, 0.57], z: 5}
-  신발:   {cm: 35, measure: long, center: [0.18, 0.88], z: 5}
+  신발:   {cm: 35, measure: long, center: [0.82, 0.84], z: 5}  # 바지와 겹치지 않게 밑단 오른쪽
   소품:   {cm: 22, measure: long, center: [0.86, 0.60], z: 5, rotate: -8}
   # 주얼리는 옷 위에 올리지 않고 상의 오른쪽 빈 공간에 세로로 놓는다 (샘플의 slot 으로 지정)
   목걸이: {cm: 34, measure: long, center: [0.89, 0.21], z: 5}  # 가는 줄도 보이게 조금 크게
