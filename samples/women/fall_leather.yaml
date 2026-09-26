@@ -1,4 +1,5 @@
 # 2단계 실험용 코디 1벌. 상품은 지그재그 공개 상품 페이지에서 골랐다 (검색 결과 기준, 2026-09-26).
+# wear_with 가 있으면 그 상품에 입힌 모양으로 합친다 (자켓 속 셔츠, 바지에 끼운 벨트).
 # url 대신 image: <저장소 기준 경로> 를 쓰면 직접 캡처한 사진을 쓴다.
 # 페이지가 사라졌으면 alternates 의 주소를 순서대로 시도한다.
 account: women
@@ -12,6 +13,11 @@ items:
     url: https://zigzag.kr/catalog/products/127512219
     alternates:
       - https://zigzag.kr/catalog/products/113920079
+    wear_with: 아우터
+    wear_how: >-
+      the jacket is laid open at the front and the shirt is worn inside it, the shirt collar and
+      a strip of the black shirt front show between the jacket lapels, and the shirt cuffs peek
+      out slightly from the ends of the jacket sleeves
   - category: 하의
     desc: 블랙 클래식 와이드 슬랙스 (black classic wide-leg trousers)
     url: https://zigzag.kr/catalog/products/141922448
@@ -32,6 +38,10 @@ items:
   - category: 소품
     desc: 브라운 가죽 벨트 (brown leather belt)
     segment: belt
+    wear_with: 하의
+    wear_how: >-
+      the belt is threaded through the belt loops of the trouser waistband with the buckle
+      fastened at the front center
     url: https://zigzag.kr/catalog/products/112980396
     alternates:
       - https://zigzag.kr/catalog/products/153552340

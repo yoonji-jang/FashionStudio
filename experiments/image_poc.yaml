@@ -1,15 +1,22 @@
 # 2단계 이미지 품질 실험 설정 (Photoroom). python -m tools.poc 가 읽는다.
-# 옷 누끼(Flat Lay)는 AI가 다시 그리므로 repeats 번 만들어 매번 원본과 같은지 본다.
-# 가방·신발·소품 잘라내기는 매번 같아서 1회차 결과를 재사용한다.
-repeats: 3
+# clean: true 면 누끼를 AI로 다듬고(가려진 부분 채우기) 입은 듯이 합친 뒤(자켓 속 셔츠 등) 배치한다.
+# 모든 방식은 config/layout.yaml 의 실제 치수(cm)로 크기를 맞춘다.
+# 샌드박스는 하루 100회라 기본 1회차만 돌린다 (1회차 약 20회 호출).
+repeats: 1
 
 variants:
   - id: A
-    name: 코드 배치 + 코드 그림자 (추가 호출 없음)
+    name: 누끼 그대로 + 실제 비율 배치 + 코드 그림자 (비교 기준)
     finish: code
   - id: B
-    name: 코드 배치 + Photoroom AI 그림자 (배경 사진 위)
-    finish: ai_shadow
+    name: AI 다듬기·입은 듯한 코디 + 코드 그림자
+    finish: code
+    clean: true
   - id: C
-    name: 코드 배치 + Photoroom AI 배경 (배경·그림자를 AI가 새로 만듦)
-    finish: ai_background
+    name: AI 다듬기·입은 듯한 코디 + Photoroom AI 그림자 (배경 사진 위)
+    finish: ai_shadow
+    clean: true
+  - id: D
+    name: AI 다듬기·입은 듯한 코디 + 장면 전체 AI 보정 (실제 촬영처럼)
+    finish: ai_scene
+    clean: true

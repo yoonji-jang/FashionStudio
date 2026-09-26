@@ -7,6 +7,7 @@ import pytest
 import yaml
 from PIL import Image
 
+from core.models import Category
 from core.profile import REPO_ROOT, load_profile
 from tools import compare, compose, photoroom, poc, scout
 
@@ -52,9 +53,14 @@ def test_prompts_render_without_leftover_placeholders():
     text = photoroom.render_prompt("flatlay", desc="브라운 레더자켓")
     assert "브라운 레더자켓" in text and "$" not in text and "<!--" not in text
     backdrop = load_profile("women").visual.backdrop
-    for name in ("backdrop", "background"):
+    for name in ("backdrop", "background", "scene"):
         text = photoroom.render_prompt(name, backdrop=backdrop)
         assert backdrop in text and "$" not in text
+    for cat in Category.__args__:
+        text = photoroom.render_prompt("refine", desc="x", hint=photoroom.refine_hint(cat))
+        assert "$" not in text
+    text = photoroom.render_prompt("style", base_desc="자켓", add_desc="셔츠", how="inside")
+    assert "자켓" in text and "셔츠" in text and "$" not in text
 
 
 def test_config_has_required_keys():
@@ -71,7 +77,6 @@ def test_default_method_by_category():
 
 
 def test_layout_covers_every_category():
-    from core.models import Category
 
     layout = compose.load_layout()
     assert set(layout["slots"]) == set(Category.__args__)
@@ -118,6 +123,49 @@ def test_finish_modes(tmp_path):
     assert shadow["shadow.subjectPoseOverride"] == "flatlay"
     assert "background.imageFile" in client.sent[0][1]
     assert "background.prompt" in background and "shadow.mode" not in background
+
+
+def _cut_bytes(size=(60, 90)) -> bytes:
+    cut = Image.new("RGBA", (200, 200), (0, 0, 0, 0))
+    cut.paste(Image.new("RGBA", size, (200, 0, 0, 255)), (10, 10))
+    return _png_bytes(cut)
+
+
+def test_refine_edits_with_ai_then_removes_background(tmp_path):
+    opaque = _png_bytes(Image.new("RGB", (1024, 1024), "white"))
+    client = RecordingClient([opaque, _cut_bytes()])
+    out = photoroom.refine(client, _cutout(tmp_path / "c.png"), "신발", "로퍼", tmp_path / "r.png")
+    (edit, files), (second, _) = client.sent
+    assert edit["editWithAI.mode"] == "ai.auto" and edit["removeBackground"] == "false"
+    assert "로퍼" in edit["editWithAI.prompt"] and "insole" in edit["editWithAI.prompt"]
+    square = Image.open(io.BytesIO(files["imageFile"]))
+    assert square.width == square.height  # 1K 정사각형 결과에 맞춰 흰 정사각형으로 보냄
+    assert "editWithAI.mode" not in second
+    assert Image.open(out).size == (60, 90)
+
+
+def test_style_sends_reference_image(tmp_path):
+    opaque = _png_bytes(Image.new("RGB", (1024, 1024), "white"))
+    client = RecordingClient([opaque, _cut_bytes()])
+    base, add = _cutout(tmp_path / "a.png"), _cutout(tmp_path / "b.png")
+    photoroom.style(client, base, "자켓", add, "셔츠", "shirt inside", tmp_path / "s.png")
+    fields, files = client.sent[0]
+    assert "shirt inside" in fields["editWithAI.prompt"]
+    assert "editWithAI.additionalImages.worn.imageFile" in files
+
+
+def test_scene_keeps_canvas_size(tmp_path):
+    client = RecordingClient([_png_bytes(Image.new("RGB", (1024, 1024), "grey"))])
+    composed = _img(tmp_path / "c.jpg")
+    out = photoroom.scene(client, composed, tmp_path / "s.jpg", (1080, 1350), "grey wall")
+    assert client.sent[0][0]["outputSize"] == "1080x1350"
+    assert Image.open(out).size == (1080, 1350)
+
+
+def test_trim_ignores_faint_watermark():
+    img = Image.new("RGBA", (300, 300), (0, 0, 0, 40))  # 샌드박스 워터마크처럼 옅은 알파
+    img.paste(Image.new("RGBA", (50, 70), (0, 0, 0, 255)), (100, 100))
+    assert photoroom.trim_alpha(img).size == (50, 70)
 
 
 def test_client_headers_sandbox_and_quota(tmp_path):
@@ -168,6 +216,15 @@ def test_layer_moves_top_when_no_outer(tmp_path):
     cx, cy = layout["no_outer"]["상의"]["center"]
     w, h = canvas.size
     assert canvas.getpixel((round(cx * w), round(cy * h)))[:3] == (0, 0, 255)
+
+
+def test_layer_uses_real_size(tmp_path):
+    layout = compose.load_layout()
+    rule = layout["slots"]["하의"]
+    item = compose.fit_real_size(Image.new("RGBA", (100, 300)), rule, layout)
+    assert item.height == round(rule["cm"] * layout["px_per_cm"])
+    shoes = compose.fit_real_size(Image.new("RGBA", (400, 100)), layout["slots"]["신발"], layout)
+    assert shoes.width == round(layout["slots"]["신발"]["cm"] * layout["px_per_cm"])  # 긴 쪽 기준
 
 
 def test_compose_with_code_shadow(tmp_path):
@@ -235,6 +292,36 @@ def test_poc_runs_end_to_end_with_fake_client(tmp_path):
     rows = (out / "scores.csv").read_text().splitlines()
     assert len(rows) == 1 + 6 * 5
     assert json.loads((out / "run.json").read_text())["est_cost_usd"] == 0
+
+
+def test_poc_clean_variant_merges_worn_items(tmp_path):
+    cats = ["아우터", "상의", "하의", "신발", "소품"]
+    items = [
+        {"category": c, "desc": f"item {i}", "image": str(_img(tmp_path / f"p{i}.jpg"))}
+        for i, c in enumerate(cats)
+    ]
+    items[1] |= {"wear_with": "아우터", "wear_how": "inside"}
+    items[4] |= {"wear_with": "하의"}
+    samples = tmp_path / "s.yaml"
+    samples.write_text(yaml.safe_dump({"account": "women", "name": "t", "items": items}))
+    exp = poc.Experiment.model_validate(
+        {
+            "repeats": 1,
+            "variants": [
+                {"id": "A", "name": "a", "finish": "code"},
+                {"id": "D", "name": "d", "finish": "ai_scene", "clean": True},
+            ],
+        }
+    )
+    out = tmp_path / "out"
+    log = poc.run(samples, out, exp, fake=True)
+    assert all(r["ok"] for r in log["runs"]), log["runs"]
+    stages = [e["stage"] for e in log["cutouts"] if "stage" in e]
+    assert stages.count("refine") == 2 and stages.count("style") == 2  # 신발·소품 다듬기
+    # 배경 1 + 누끼 5 + 다듬기 2×2 + 입히기 2×2 + 장면 1
+    assert log["api_calls"] == 1 + 5 + 4 + 4 + 1
+    assert (out / "styled/r1/01_outer+top.png").exists()
+    assert (out / "sheets/clean.jpg").exists() and (out / "results/D_1.jpg").exists()
 
 
 def test_sample_sets_are_valid():

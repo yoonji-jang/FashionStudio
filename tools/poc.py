@@ -1,7 +1,8 @@
 """2단계 이미지 품질 실험 (Photoroom). 같은 코디를 방식마다 여러 번 만들어 원본과 비교표를 만든다.
 
 흐름: 상품 원본 사진 → Photoroom 누끼(옷은 Flat Lay, 나머지는 잘라내기)
-      → 코드로 배치 → 그림자·배경 입히기 (방식마다 다름)
+      → (clean 방식) AI로 상품 다듬기(가려진 부분 채우기) → 입은 듯이 합치기(자켓 속 셔츠 등)
+      → 실제 비율로 코드 배치 → 그림자·배경 입히기 (방식마다 다름)
 
 사용법:
   python -m tools.poc --samples samples/women/fall_leather.yaml --out out/poc/fall_leather
@@ -10,8 +11,9 @@
 
 결과 (out 폴더):
   originals/  상품 페이지 원본 사진        cutouts/r<회차>/  누끼
+  refined/r<회차>/ AI로 다듬은 누끼         styled/r<회차>/  입은 듯이 합친 누끼
   backdrop.jpg 배경 사진                   results/  코디컷 (<방식>_<회차>.jpg)
-  sheets/     비교표 (cutouts.jpg, variant_<방식>.jpg)
+  sheets/     비교표 (cutouts.jpg, clean.jpg, variant_<방식>.jpg)
   report.md   요약, scores.csv 점수표, run.json 실행 기록
 """
 
@@ -58,6 +60,14 @@ class SampleItem(BaseModel):
     method: photoroom.CutoutMethod | None = None  # 생략하면 옷은 flatlay, 나머지는 segment
     segment: str | None = None  # segment 방식에서 남길 물건 (영어 단수)
     negative: str | None = None  # segment 방식에서 지울 물건 (예: 옆에 찍힌 다른 색 가방)
+    refine: bool | None = None  # AI로 다듬기. 생략하면 segment 누끼만 (Flat Lay 는 이미 AI 정리컷)
+    wear_with: Category | None = None  # 이 상품을 입힐 기준 상품 (예: 셔츠 → 아우터)
+    wear_how: str = "worn together naturally"  # 입는 방법 (영어, prompts/style.md 의 $how)
+
+    def needs_refine(self) -> bool:
+        if self.refine is not None:
+            return self.refine
+        return (self.method or photoroom.default_method(self.category)) == "segment"
 
 
 class SampleSet(BaseModel):
@@ -69,7 +79,8 @@ class SampleSet(BaseModel):
 class Variant(BaseModel):
     id: str
     name: str
-    finish: Literal["code", "ai_shadow", "ai_background"]
+    finish: Literal["code", "ai_shadow", "ai_background", "ai_scene"]
+    clean: bool = False  # AI로 다듬고 입은 듯이 합친 누끼를 쓸지
 
 
 class Experiment(BaseModel):
@@ -186,19 +197,30 @@ def run(
             log["cutouts"].append(entry)
         cutout_sets.append(paths if len(paths) == len(samples.items) else None)
 
+    clean_sets: list[list[tuple[str, Path]] | None] = [None] * len(cutout_sets)
     for r, paths in enumerate(cutout_sets, 1):
         if not paths:
             continue
-        pairs = [(it.category, p) for it, p in zip(samples.items, paths, strict=True)]
-        layered_path = out / "layered" / f"r{r}.png"
-        compose.layer(pairs, layout).save(_mk(layered_path))
+        raw = [(it.category, p) for it, p in zip(samples.items, paths, strict=True)]
+        sets = {False: raw}
+        if any(v.clean for v in variants):
+            sets[True] = clean_set(client, samples, paths, out, r, log)
+            clean_sets[r - 1] = sets[True]
+        for key, pairs in sets.items():
+            compose.layer(pairs, layout).save(_mk(out / "layered" / f"r{r}_{_set_name(key)}.png"))
         for v in variants:
+            pairs = sets[v.clean]
+            layered_path = out / "layered" / f"r{r}_{_set_name(v.clean)}.png"
             dest = out / "results" / f"{v.id}_{r}.jpg"
             entry = {"variant": v.id, "run": r, "file": str(dest.relative_to(out))}
             t0 = time.monotonic()
             try:
                 if v.finish == "code":
                     compose.compose(pairs, backdrop, dest, layout=layout)
+                elif v.finish == "ai_scene":
+                    base = out / "work" / f"{v.id}_{r}_code.jpg"
+                    compose.compose(pairs, backdrop, _mk(base), layout=layout)
+                    photoroom.scene(client, base, dest, size, profile.visual.backdrop)
                 else:
                     photoroom.finish(
                         client,
@@ -236,6 +258,21 @@ def run(
             result_h=320,
             per_row=len(labels),
         )
+    clean_results = [
+        (f"r{r} {CATEGORY_EN[cat]}", p)
+        for r, pairs in enumerate(clean_sets, 1)
+        if pairs
+        for cat, p in pairs
+    ]
+    if clean_results:
+        compare.contact_sheet(
+            refs,
+            clean_results,
+            out / "sheets" / "clean.jpg",
+            title="AI refined + worn styling (outer+top, bottoms+belt merged)",
+            result_h=420,
+            per_row=len(labels),
+        )
     for v in variants:
         done = [r for r in log["runs"] if r["variant"] == v.id and r["ok"]]
         if done:
@@ -243,7 +280,7 @@ def run(
                 refs,
                 [(f"{v.id}-{r['run']}", out / r["file"]) for r in done],
                 out / "sheets" / f"variant_{v.id}.jpg",
-                title=f"Variant {v.id}: finish={v.finish}",
+                title=f"Variant {v.id}: finish={v.finish}" + (" + AI clean" if v.clean else ""),
             )
 
     log["finished"] = time.strftime("%Y-%m-%dT%H:%M:%S")
@@ -255,6 +292,69 @@ def run(
     write_scores_template(out / "scores.csv", log["runs"], samples)
     write_report(out / "report.md", samples, variants, log)
     return log
+
+
+def _set_name(clean: bool) -> str:
+    return "clean" if clean else "raw"
+
+
+def _step(log: dict, entry: dict, fn, *args) -> bool:
+    """AI 단계 하나를 실행하고 기록한다. 실패하면 False (원래 누끼로 계속)."""
+    t0 = time.monotonic()
+    try:
+        fn(*args)
+        entry["ok"] = True
+    except photoroom.QuotaError:
+        raise
+    except Exception as e:  # noqa: BLE001 - 기록하고 원래 누끼를 쓴다
+        entry.update(ok=False, error=str(e)[:500])
+    entry["sec"] = round(time.monotonic() - t0, 1)
+    print(
+        f"[{entry['stage']} r{entry['repeat']} {entry['slot']}] {'ok' if entry['ok'] else 'FAIL'}",
+        flush=True,
+    )
+    log["cutouts"].append(entry)
+    return entry["ok"]
+
+
+def clean_set(
+    client: photoroom.EditClient,
+    samples: SampleSet,
+    paths: list[Path],
+    out: Path,
+    r: int,
+    log: dict,
+) -> list[tuple[str, Path]]:
+    """누끼를 AI로 다듬고(refine), wear_with 가 있는 상품은 기준 상품에 입힌다(style).
+    입힌 상품은 따로 놓지 않는다. 실패한 단계는 원래 누끼로 대신한다."""
+    items = samples.items
+    cur = list(paths)
+    for i, it in enumerate(items):
+        if not it.needs_refine():
+            continue
+        dest = out / "refined" / f"r{r}" / f"{_slug(i + 1, it)}.png"
+        entry = {"stage": "refine", "repeat": r, "slot": _slug(i + 1, it)}
+        if _step(log, entry, photoroom.refine, client, cur[i], it.category, it.desc, dest):
+            cur[i] = dest
+    dropped: set[int] = set()
+    for i, it in enumerate(items):
+        if not it.wear_with:
+            continue
+        j = next((k for k, b in enumerate(items) if b.category == it.wear_with and k != i), None)
+        if j is None or j in dropped:
+            continue
+        slot = f"{_slug(j + 1, items[j])}+{CATEGORY_EN[it.category]}"
+        dest = out / "styled" / f"r{r}" / f"{slot}.png"
+        entry = {"stage": "style", "repeat": r, "slot": slot}
+        args = (client, cur[j], items[j].desc, cur[i], it.desc, it.wear_how, dest)
+        if _step(log, entry, photoroom.style, *args):
+            cur[j] = dest
+            dropped.add(i)
+    return [
+        (it.category, p)
+        for k, (it, p) in enumerate(zip(items, cur, strict=True))
+        if k not in dropped
+    ]
 
 
 def _mk(path: Path) -> Path:

@@ -4,7 +4,11 @@ r"""Photoroom 이미지 API 도구.
     옷(아우터·상의·하의·원피스)은 Flat Lay 로 모델이 입은 사진을 바닥에 펼친 모양으로 바꾸고,
     가방·신발·소품은 글로 지정한 물건만 잘라낸다(Text-Guided Segmentation).
 - backdrop: 프로필 visual.backdrop 문구로 배경 사진 한 장 생성
+- refine: 누끼를 실제 상품 사진처럼 다듬음 (Edit With AI). 가려지거나 잘린 부분을 채우고
+    다른 물건(옆 가방 끈 등)을 지운다. 신발은 깔창까지 보이는 상세컷처럼 만든다.
+- style: 두 상품을 입은 것처럼 합친다 (자켓 속 셔츠, 바지에 끼운 벨트). Edit With AI + 참고 이미지
 - finish: 코드로 배치한 누끼 합성본에 AI 그림자 또는 AI 배경을 입힘 (상품 픽셀은 그대로)
+- scene: 코드 합성본 전체를 AI가 한 번 더 다듬어 실제 촬영 사진처럼 만듦
 
 사용법:
   python -m tools.photoroom cutout --image in.jpg --category 아우터 --desc "레더자켓" \
@@ -33,6 +37,7 @@ from PIL import Image, ImageOps
 from core.profile import REPO_ROOT, load_profile
 
 PROMPTS_DIR = REPO_ROOT / "prompts"
+REFINE_HINTS_PATH = PROMPTS_DIR / "refine_hints.yaml"
 CONFIG_PATH = REPO_ROOT / "config" / "models.yaml"
 
 FLATLAY_CATEGORIES = {"아우터", "상의", "하의", "원피스"}
@@ -68,9 +73,10 @@ def has_transparency(img: Image.Image) -> bool:
 
 
 def trim_alpha(img: Image.Image) -> Image.Image:
-    """투명한 가장자리를 잘라 상품만 남긴다."""
+    """투명한 가장자리를 잘라 상품만 남긴다.
+    샌드박스 워터마크가 투명 영역에 옅게 깔리므로 반 이상 불투명한 부분만 상품으로 본다."""
     img = img.convert("RGBA")
-    bbox = img.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox()
+    bbox = img.getchannel("A").point(lambda a: 255 if a > 128 else 0).getbbox()
     return img.crop(bbox) if bbox else img
 
 
@@ -145,8 +151,13 @@ class FakeClient:
     def edit(self, fields: dict[str, str], files: dict[str, Path | bytes]) -> bytes:
         self.calls += 1
         out = io.BytesIO()
-        if "imageFromPrompt.prompt" in fields:
-            Image.new("RGB", (768, 1024), (205, 200, 194)).save(out, format="PNG")
+        if "imageFromPrompt.prompt" in fields or "editWithAI.mode" in fields:
+            if "imageFile" not in files:
+                Image.new("RGB", (768, 1024), (205, 200, 194)).save(out, format="PNG")
+                return out.getvalue()
+            src = files["imageFile"]
+            img = Image.open(src if isinstance(src, Path) else io.BytesIO(src)).convert("RGB")
+            img.save(out, format="PNG")  # AI 편집: 불투명한 그림을 돌려준다
             return out.getvalue()
         src = files["imageFile"]
         img = Image.open(src if isinstance(src, Path) else io.BytesIO(src)).convert("RGBA")
@@ -200,9 +211,7 @@ def cutout(
         # Flat Lay 결과에 배경이 남아 있으면 한 번 더 배경만 지운다
         buf = io.BytesIO()
         img.convert("RGB").save(buf, format="PNG")
-        img = Image.open(
-            io.BytesIO(client.edit({"export.format": "png"}, {"imageFile": buf.getvalue()}))
-        )
+        img = remove_background(client, buf.getvalue())
     out.parent.mkdir(parents=True, exist_ok=True)
     trim_alpha(img).save(out)
     return out
@@ -220,6 +229,92 @@ def backdrop(client: EditClient, description: str, out: Path, config: dict | Non
     data = client.edit(fields, {})
     out.parent.mkdir(parents=True, exist_ok=True)
     Image.open(io.BytesIO(data)).convert("RGB").save(out, quality=92)
+    return out
+
+
+def on_white(path: Path, margin: float = 0.06) -> bytes:
+    """누끼를 흰 정사각형 가운데에 얹는다. AI 편집은 1K 정사각형으로 나오므로 미리 맞춘다."""
+    item = Image.open(path).convert("RGBA")
+    side = round(max(item.size) * (1 + 2 * margin))
+    base = Image.new("RGBA", (side, side), (255, 255, 255, 255))
+    base.alpha_composite(item, ((side - item.width) // 2, (side - item.height) // 2))
+    buf = io.BytesIO()
+    base.convert("RGB").save(buf, format="PNG")
+    return buf.getvalue()
+
+
+def remove_background(client: EditClient, data: bytes) -> Image.Image:
+    return Image.open(io.BytesIO(client.edit({"export.format": "png"}, {"imageFile": data})))
+
+
+def edit_with_ai(
+    client: EditClient,
+    image: bytes,
+    prompt: str,
+    references: dict[str, bytes] | None = None,
+    extra: dict[str, str] | None = None,
+) -> bytes:
+    """Edit With AI: 글로 지시해 사진을 고친다. references 는 참고 이미지 (최대 4장)."""
+    fields = {
+        "removeBackground": "false",
+        "editWithAI.mode": "ai.auto",
+        "editWithAI.prompt": prompt,
+        "export.format": "png",
+    } | (extra or {})
+    files: dict[str, Path | bytes] = {"imageFile": image}
+    for name, data in (references or {}).items():
+        files[f"editWithAI.additionalImages.{name}.imageFile"] = data
+    return client.edit(fields, files)
+
+
+def refine_hint(category: str, path: Path = REFINE_HINTS_PATH) -> str:
+    hints = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return hints.get(category, hints["default"])
+
+
+def refine(client: EditClient, cut: Path, category: str, desc: str, out: Path) -> Path:
+    """누끼 → 온전한 상품 사진 → 다시 누끼. 가려진 부분은 채우고 다른 물건은 지운다."""
+    prompt = render_prompt("refine", desc=desc, hint=refine_hint(category))
+    data = edit_with_ai(client, on_white(cut), prompt)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    trim_alpha(remove_background(client, data)).save(out)
+    return out
+
+
+def style(
+    client: EditClient,
+    base: Path,
+    base_desc: str,
+    add: Path,
+    add_desc: str,
+    how: str,
+    out: Path,
+) -> Path:
+    """base 상품에 add 상품을 입힌 모양으로 합친다 (예: 자켓 속 셔츠, 바지에 끼운 벨트)."""
+    prompt = render_prompt("style", base_desc=base_desc, add_desc=add_desc, how=how)
+    data = edit_with_ai(client, on_white(base), prompt, {"worn": on_white(add)})
+    out.parent.mkdir(parents=True, exist_ok=True)
+    trim_alpha(remove_background(client, data)).save(out)
+    return out
+
+
+def scene(
+    client: EditClient,
+    composed: Path,
+    out: Path,
+    size: tuple[int, int],
+    backdrop_text: str,
+) -> Path:
+    """코드 합성본 전체를 실제 촬영한 사진처럼 다듬는다 (그림자·천의 자연스러움)."""
+    prompt = render_prompt("scene", backdrop=backdrop_text)
+    data = edit_with_ai(
+        client, composed.read_bytes(), prompt, extra={"outputSize": f"{size[0]}x{size[1]}"}
+    )
+    img = Image.open(io.BytesIO(data)).convert("RGB")
+    if img.size != size:
+        img = ImageOps.fit(img, size, Image.LANCZOS)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out, quality=92)
     return out
 
 

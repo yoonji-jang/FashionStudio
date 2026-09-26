@@ -1,0 +1,13 @@
+# 상품 다듬기(refine.md) 의 $hint. 카테고리별, 없으면 default. 영어로 쓴다.
+default: Show the product from the front.
+아우터: Show the garment laid flat and seen from directly above.
+상의: Show the garment laid flat and seen from directly above, full length.
+하의: Show the garment laid flat and seen from directly above, full length.
+원피스: Show the garment laid flat and seen from directly above, full length.
+가방: Show the bag upright from the front with its complete handle or strap attached.
+신발: >-
+  Show both shoes of the pair side by side, seen from above at a slight angle like a shoe
+  detail photo, with the full insole and lining visible inside, no feet.
+소품: >-
+  Show the whole accessory laid flat and seen from directly above; a belt is shown complete
+  from buckle to tip in a gentle curve.

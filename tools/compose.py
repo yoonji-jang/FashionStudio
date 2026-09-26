@@ -18,6 +18,7 @@ import yaml
 from PIL import Image, ImageFilter, ImageOps
 
 from core.profile import REPO_ROOT
+from tools.photoroom import trim_alpha
 
 LAYOUT_PATH = REPO_ROOT / "config" / "layout.yaml"
 
@@ -33,8 +34,19 @@ def slot_rules(categories: list[str], layout: dict) -> dict[str, dict]:
     return rules
 
 
+def fit_real_size(item: Image.Image, rule: dict, layout: dict) -> Image.Image:
+    """실제 치수(cm)에 맞춰 크기를 정한다. 폭이 max_width 를 넘으면 더 줄인다."""
+    target = rule["cm"] * layout["px_per_cm"]
+    side = item.height if rule.get("measure", "height") == "height" else max(item.size)
+    scale = target / side
+    max_w = rule.get("max_width", 0.95) * layout["canvas"][0]
+    scale = min(scale, max_w / item.width)
+    size = (max(1, round(item.width * scale)), max(1, round(item.height * scale)))
+    return item.resize(size, Image.LANCZOS)
+
+
 def layer(cutouts: list[tuple[str, Path]], layout: dict) -> Image.Image:
-    """투명 캔버스 위에 누끼를 z 순서대로 놓는다."""
+    """투명 캔버스 위에 누끼를 실제 비율로 z 순서대로 놓는다."""
     w, h = layout["canvas"]
     canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     rules = slot_rules([c for c, _ in cutouts], layout)
@@ -43,13 +55,14 @@ def layer(cutouts: list[tuple[str, Path]], layout: dict) -> Image.Image:
         raise ValueError(f"layout.yaml 에 자리가 없는 카테고리: {missing}")
     for category, path in sorted(cutouts, key=lambda cp: rules[cp[0]].get("z", 0)):
         rule = rules[category]
-        item = Image.open(path).convert("RGBA")
+        item = fit_real_size(trim_alpha(Image.open(path)), rule, layout)
         if rule.get("rotate"):
             item = item.rotate(rule["rotate"], expand=True, resample=Image.BICUBIC)
-        box = (round(rule["size"][0] * w), round(rule["size"][1] * h))
-        item = ImageOps.contain(item, box, Image.LANCZOS)
         cx, cy = rule["center"][0] * w, rule["center"][1] * h
-        canvas.alpha_composite(item, (round(cx - item.width / 2), round(cy - item.height / 2)))
+        # 캔버스 밖으로 조금 나가도 되도록 (paste 는 음수 좌표 허용) 한 겹 만들어 겹친다
+        sheet = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        sheet.paste(item, (round(cx - item.width / 2), round(cy - item.height / 2)))
+        canvas.alpha_composite(sheet)
     return canvas
 
 

@@ -229,8 +229,10 @@ accounts:
 | `image.backdrop_size` | PORTRAIT_4_3 | 배경 사진 생성 비율 (합성 때 4:5로 자름) |
 | `image.shadow_model_version` | 2026-04-15 | AI 그림자 모델 버전 |
 
-`layout.yaml` 은 1080×1350 캔버스에서 카테고리별 위치입니다. `center` 는 상품 중심(0~1 비율),
-`size` 는 상품이 들어갈 상자 크기, `z` 는 겹칠 때 위에 오는 순서입니다. 아우터가 없으면 `no_outer` 자리를 씁니다.
+`layout.yaml` 은 1080×1350 캔버스에서 카테고리별 위치와 실제 크기입니다. `cm` 는 상품의 실제 치수
+(`measure: height` 는 옷 기장, `long` 은 가방·신발처럼 긴 쪽)이고, `px_per_cm` 를 곱해 화면 크기를 정하므로
+상품끼리 사람 몸 비율이 맞습니다. `center` 는 상품 중심(0~1 비율), `z` 는 겹칠 때 위에 오는 순서입니다.
+아우터가 없으면 `no_outer` 값을 씁니다.
 
 배경 사진은 프로필 `visual.backdrop` 문구로 한 번 생성합니다. 마음에 드는 배경을
 `accounts/<계정>/backdrop.jpg` 로 넣고 `visual.backdrop_ref: backdrop.jpg` 로 지정하면 그 사진을 계속 씁니다.
@@ -241,7 +243,10 @@ accounts:
 |---|---|
 | `flatlay.md` | 모델이 입은 옷 사진 → 바닥에 펼친 옷 (Flat Lay) |
 | `backdrop.md` | 빈 배경 사진 생성. 프로필 `visual.backdrop` 이 들어감 |
-| `background.md` | 코디 뒤에 AI 배경·그림자 생성 (실험 C 방식) |
+| `background.md` | 코디 뒤에 AI 배경·그림자 생성 |
+| `refine.md`, `refine_hints.yaml` | 누끼를 실제 상품 사진처럼 다듬기 (가려진 부분 채우기, 다른 물건 지우기). 힌트는 카테고리별 |
+| `style.md` | 두 상품을 입은 것처럼 합치기 (자켓 속 셔츠, 바지에 끼운 벨트) |
+| `scene.md` | 코디컷 전체를 실제 촬영 사진처럼 다듬기 |
 
 `$이름` 자리는 코드가 채우니 지우지 마세요. 맨 위 `<!-- -->` 주석은 보내지 않습니다.
 
@@ -254,18 +259,23 @@ accounts:
 ## 이미지 품질 실험 (2단계)
 
 같은 코디를 여러 방식으로 만들어 원본 상품과 비교합니다. Photoroom 요금이 나가므로 사람이 켤 때만 돕니다
-(기본 설정 한 번에 약 19회 호출, 약 $2).
+(기본 설정 한 번에 약 20회 호출, 약 $2. 샌드박스는 하루 100회 무료).
 
 1. `samples/<계정>/<이름>.yaml` 에 코디 한 벌(상품 5~7개)을 적습니다. 상품 페이지 주소(`url`) 또는
    직접 캡처한 사진 경로(`image`)를 씁니다. 한 사진에 여러 색이 있으면 `crop` 으로 일부만 쓰고,
    가방·신발·소품은 `segment` 에 남길 물건을 영어로 적습니다 (예: `bag`, `shoe`, `belt`).
+   입은 듯이 합칠 상품은 `wear_with` 에 기준 카테고리, `wear_how` 에 입는 방법을 영어로 적습니다
+   (예: 셔츠 `wear_with: 아우터`, 벨트 `wear_with: 하의`).
 2. 실험 방식은 `experiments/image_poc.yaml` 에서 정합니다.
-   - A: 코드 배치 + 코드 그림자 (추가 호출 없음)
-   - B: 코드 배치 + Photoroom AI 그림자
-   - C: 코드 배치 + Photoroom AI 배경
+   - A: 누끼 그대로 + 실제 비율 배치 + 코드 그림자 (비교 기준)
+   - B: AI 다듬기·입은 듯한 코디 + 코드 그림자
+   - C: AI 다듬기·입은 듯한 코디 + Photoroom AI 그림자
+   - D: AI 다듬기·입은 듯한 코디 + 장면 전체 AI 보정
+   - `finish` 는 `code`, `ai_shadow`, `ai_background`, `ai_scene` 중 하나, `clean: true` 면 AI 다듬기를 씁니다.
 3. GitHub → Actions → `image-poc` → Run workflow (샌드박스 체크 가능). 끝나면 결과가 artifact와
    `poc-results` 브랜치에 올라갑니다.
    - `sheets/cutouts.jpg`: 원본과 누끼 비교 (옷 누끼는 AI가 다시 그리므로 여기서 원본과 같은지 확인)
+   - `sheets/clean.jpg`: AI로 다듬고 입은 듯이 합친 누끼
    - `sheets/variant_<방식>.jpg`: 위 줄은 원본 상품, 아래는 코디컷
    - `scores.csv`: 상품별 색·형태·디테일 점수표
 4. 로컬에서는 환경 변수 `PHOTOROOM_API_KEY` 를 설정한 뒤
