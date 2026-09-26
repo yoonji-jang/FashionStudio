@@ -1,0 +1,49 @@
+name: zigzag-probe
+
+# 4단계 사전 조사 (일회성). 클라우드 개발 환경에서 zigzag.kr 이 막혀 있어 Actions 에서 확인한다.
+# 작업 브랜치에 커밋 메시지에 [zigzag-probe] 를 넣어 푸시하면 돈다. 결과는 scout-results 브랜치에 커밋.
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zigzag
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[zigzag-probe]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OUT: out/probe/run-${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - run: uv pip install playwright && uv run playwright install --with-deps chromium
+      - run: uv run python experiments/zigzag_probe.py --out "$OUT"
+      - name: scout-results 브랜치에 결과 커밋
+        if: always()
+        run: |
+          [ -d "$OUT" ] || exit 0
+          dest="probe-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin scout-results 2>/dev/null; then
+            git worktree add /tmp/results origin/scout-results
+            git -C /tmp/results checkout -B scout-results
+          else
+            git worktree add --detach /tmp/results
+            git -C /tmp/results checkout --orphan scout-results
+            git -C /tmp/results rm -rf --quiet .
+          fi
+          mkdir -p "/tmp/results/$dest"
+          cp -r "$OUT"/. "/tmp/results/$dest/"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "지그재그 조사 결과 $dest"
+          git -C /tmp/results push origin scout-results
