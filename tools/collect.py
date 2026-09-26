@@ -30,7 +30,7 @@ from core.store import Store
 from sources import ProductSource, SearchFilters, get_source
 from tools import photo_pick, scout
 
-MAX_SCORED_IMAGES = 5  # 상품마다 점수를 매길 사진 수 (요청 수를 줄이려고)
+MAX_SCORED_IMAGES = 8  # 상품마다 점수를 매길 사진 수 (요청 수를 줄이려고)
 FONT_DIR = REPO_ROOT / "assets" / "fonts"
 
 
@@ -46,6 +46,8 @@ class Report:
     stopped: str | None = None  # 막혀서 중간에 멈춘 이유
     total: dict[str, int] = field(default_factory=dict)  # 카테고리 → 창고 상품 수
     thumbs: dict[str, bytes] = field(default_factory=dict)  # 상품 id → 대표 사진 (미리보기용)
+    # 사진 점수 기록 (상품 id, 순번, 점수, 작은 사진). 보고서 photos/ 에 저장해 규칙을 다듬는다
+    photo_log: list[tuple[str, int, photo_pick.PhotoScore, bytes]] = field(default_factory=list)
 
 
 def quality(p: Product) -> float:
@@ -60,29 +62,30 @@ def needs_check(p: Product, today: date, recheck_days: int) -> bool:
 
 def pick_photos(
     source: ProductSource, p: Product, fetch, limit: int = MAX_SCORED_IMAGES
-) -> tuple[Product, bytes | None]:
-    """사진마다 점수를 매겨 상품만 나온 사진을 앞으로 보낸다. (새 상품, 대표 사진 bytes)."""
+) -> tuple[Product, dict[str, tuple[photo_pick.PhotoScore, bytes]]]:
+    """사진마다 점수를 매겨 상품만 나온 사진을 앞으로 보낸다.
+
+    반환: (새 상품, 사진 주소 → (점수, 작은 사진)).
+    """
     urls = [str(u) for u in p.image_urls]
-    scores: dict[str, photo_pick.PhotoScore] = {}
-    thumbs: dict[str, bytes] = {}
+    scored: dict[str, tuple[photo_pick.PhotoScore, bytes]] = {}
     for url in urls[:limit]:
         try:
             data = fetch(source.thumb_url(url))
-            scores[url] = photo_pick.score_bytes(data)
-            thumbs[url] = data
+            scored[url] = (photo_pick.score_bytes(data), data)
         except scout.Blocked:
             raise
         except Exception as e:  # noqa: BLE001 - 사진 한 장 실패는 건너뜀
             print(f"  사진 점수 실패 {url}: {e}", file=sys.stderr)
-    if not scores:
-        return p, None
-    ranked = photo_pick.rank(scores)
-    ordered = ranked + [u for u in urls if u not in scores]
-    flat = any(s.flat for s in scores.values())
+    if not scored:
+        return p, {}
+    ranked = photo_pick.rank({u: s for u, (s, _) in scored.items()})
+    ordered = ranked + [u for u in urls if u not in scored]
+    flat = any(s.flat for s, _ in scored.values())
     updated = Product.model_validate(
         {**p.model_dump(), "image_urls": ordered, "has_flat_shot": flat}
     )
-    return updated, thumbs.get(ranked[0])
+    return updated, scored
 
 
 def collect(
@@ -156,11 +159,13 @@ def collect(
                         stock[old.id] = checked
                         report.refreshed += 1
                         continue
-                    picked, thumb = pick_photos(source, checked, fetch)
+                    picked, scored = pick_photos(source, checked, fetch)
                     stock[picked.id] = picked
                     report.added.append(picked)
-                    if thumb:
-                        report.thumbs[picked.id] = thumb
+                    if scored:
+                        report.thumbs[picked.id] = scored[str(picked.image_urls[0])][1]
+                    for i, (score, data) in enumerate(scored.values()):
+                        report.photo_log.append((picked.id, i, score, data))
 
         if recheck:
             for p in list(stock.values()):
@@ -232,6 +237,26 @@ def write_report(report: Report, out: Path, store: Store) -> None:
         shutil.copy(src, out / "products.json")
     if report.added:
         product_sheet(report.added, report.thumbs, out / "sheet.jpg")
+    if report.photo_log:
+        photos = out / "photos"
+        photos.mkdir(exist_ok=True)
+        rows = ["file,product,index,score,plain,skin,parts,flat"]
+        for pid, i, sc, data in report.photo_log:
+            name = f"{pid.split(':')[-1]}_{i}.jpg"
+            (photos / name).write_bytes(data)
+            rows.append(
+                f"{name},{pid},{i},{sc.score:.3f},{sc.plain},{sc.skin},{sc.parts},{int(sc.flat)}"
+            )
+        (out / "photo_scores.csv").write_text("\n".join(rows) + "\n", encoding="utf-8")
+
+
+def _drawable(text: str) -> str:
+    """폰트에 없는 이모지 등을 뺀다 (미리보기 글자가 네모로 나오지 않게)."""
+    return "".join(
+        ch
+        for ch in text
+        if ord(ch) < 0x2000 or 0xAC00 <= ord(ch) <= 0xD7A3 or 0x3000 <= ord(ch) <= 0x318F
+    )
 
 
 def _font(name: str, size: int) -> ImageFont.FreeTypeFont:
@@ -263,7 +288,7 @@ def product_sheet(
             draw.rectangle((x, y, x + 58, y + 24), fill=(122, 46, 52))
             draw.text((x + 8, y + 3), "단독컷", font=regular, fill="white")
         ty = y + img_h + 8
-        name = p.name
+        name = _drawable(p.name)
         for _ in range(2):
             cut = len(name)
             while cut and draw.textlength(name[:cut], font=regular) > cell_w:

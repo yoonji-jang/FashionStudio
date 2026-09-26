@@ -32,7 +32,7 @@ class PhotoScore:
     @property
     def flat(self) -> bool:
         """사람 없이 상품 하나만 단색 배경에 찍힌 사진으로 보이는지."""
-        return self.plain >= 0.6 and self.skin < 0.04 and self.parts == 1
+        return self.plain >= 0.6 and self.skin < 0.012 and self.parts == 1
 
     @property
     def score(self) -> float:

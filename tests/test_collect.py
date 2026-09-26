@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw
 from core.models import Product
 from core.store import Store
 from sources import SearchFilters, zigzag
-from tools import collect, photo_pick
+from tools import collect, photo_pick, scout
 
 TODAY = date(2026, 9, 26)
 
@@ -303,3 +303,54 @@ def test_collect_trims_to_max_per_category(tmp_path: Path, monkeypatch):
     kept = [p.id for p in store.products()]
     assert kept == ["zigzag:5", "zigzag:4", "zigzag:3"]  # 리뷰 많은 순
     assert report.trimmed == 2 and len(report.added) == 3
+
+
+# ---------- 접근 도구 ----------
+
+
+def test_normalize_image_url():
+    s3 = "https://s3.ap-northeast-2.amazonaws.com/product-image.s.zigzag.kr/original/d/a.jpeg"
+    assert scout.normalize_image_url(s3) == "https://cf.product-image.s.zigzag.kr/original/d/a.jpeg"
+    assert scout.normalize_image_url("https://slowand.com/a.jpg") == "https://slowand.com/a.jpg"
+
+
+class _Resp:
+    def __init__(self, code: int):
+        self.status_code, self.content, self.text = code, b"", ""
+
+
+class _Client:
+    def __init__(self, codes: list[int]):
+        self.codes, self.calls = codes, 0
+
+    def get(self, url):
+        self.calls += 1
+        return _Resp(self.codes.pop(0))
+
+
+def test_get_retries_then_distinguishes_page_and_image():
+    waits: list[float] = []
+    page = _Client([403, 429, 200])
+    assert scout._get(page, "https://zigzag.kr/catalog/products/1", waits.append).status_code == 200
+    with pytest.raises(scout.Blocked):
+        scout._get(_Client([403, 403, 403]), "https://zigzag.kr/x", waits.append)
+    img = _Client([403, 403])
+    with pytest.raises(scout.ImageUnavailable):
+        scout._get(img, "https://cf.product-image.s.zigzag.kr/a.jpeg", waits.append)
+    assert img.calls == 2  # 사진은 한 번만 다시 시도
+
+
+def test_image_failure_does_not_stop_collect(tmp_path: Path):
+    store = Store("women", root=tmp_path)
+    source = FakeSource(cards={"q": [card(1)]}, pages={})
+
+    def flaky(url: str) -> bytes:
+        if "_model" in url:
+            raise scout.ImageUnavailable(url)
+        return fake_fetch(url)
+
+    report = collect.collect(
+        "women", plan={"아우터": ["q"]}, source=source, store=store, fetch=flaky, today=TODAY
+    )
+    assert report.stopped is None and [p.id for p in report.added] == ["zigzag:1"]
+    assert str(store.products()[0].image_urls[0]).endswith("1_flat.jpeg")

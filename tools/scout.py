@@ -32,7 +32,8 @@ USER_AGENT = (
 )
 MIN_INTERVAL_SEC = 3.0  # 같은 사이트 페이지 요청 사이
 IMAGE_INTERVAL_SEC = 1.0  # 이미지 서버(CDN) 요청 사이
-RETRY_WAITS_SEC = (30, 90)  # 막혔을 때 쉬는 시간
+RETRY_WAITS_SEC = (30, 90)  # 페이지가 막혔을 때 쉬는 시간
+IMAGE_RETRY_WAITS_SEC = (5,)  # 사진은 한 번만 다시 시도 (사진 한 장 실패로 수집을 멈추지 않음)
 RETRY_STATUS = {403, 429, 500, 502, 503, 504}
 SEARCH_URL = "https://zigzag.kr/search?keyword={keyword}"
 
@@ -43,7 +44,19 @@ _ATTR = re.compile(r'([a-zA-Z:_-]+)\s*=\s*("([^"]*)"|\'([^\']*)\')')
 
 
 class Blocked(RuntimeError):
-    """사이트가 계속 막아서 요청을 포기함."""
+    """사이트가 계속 막아서 요청을 포기함. 수집 전체를 멈추는 신호."""
+
+
+class ImageUnavailable(RuntimeError):
+    """사진 한 장을 받지 못함. 그 사진만 건너뛴다."""
+
+
+_S3_IMAGE = re.compile(r"^https?://s3\.[a-z0-9-]+\.amazonaws\.com/(product-image\.s\.zigzag\.kr)/")
+
+
+def normalize_image_url(url: str) -> str:
+    """S3 원본 주소로 온 상품 사진을 CDN 주소로 바꾼다 (S3 직접 요청은 403)."""
+    return _S3_IMAGE.sub(r"https://cf.\1/", url)
 
 
 def og_image(page_html: str) -> str | None:
@@ -72,21 +85,28 @@ def _wait_turn(url: str, sleep: Callable[[float], None] = time.sleep) -> None:
 def _get(
     client: httpx.Client, url: str, sleep: Callable[[float], None] = time.sleep
 ) -> httpx.Response:
-    """간격을 지키며 GET. 막히면 쉬었다 다시 시도한다. 404 등은 그대로 돌려준다."""
-    for attempt in range(len(RETRY_WAITS_SEC) + 1):
+    """간격을 지키며 GET. 막히면 쉬었다 다시 시도한다. 404 등은 그대로 돌려준다.
+
+    페이지가 계속 막히면 Blocked (수집 중단),
+    사진이 계속 안 되면 ImageUnavailable (그 사진만 건너뜀).
+    """
+    image = _is_image_host(url)
+    waits = IMAGE_RETRY_WAITS_SEC if image else RETRY_WAITS_SEC
+    for attempt in range(len(waits) + 1):
         _wait_turn(url, sleep)
         try:
             resp = client.get(url)
-        except httpx.TransportError:
-            if attempt == len(RETRY_WAITS_SEC):
-                raise
-            sleep(RETRY_WAITS_SEC[attempt])
+        except httpx.TransportError as e:
+            if attempt == len(waits):
+                raise (ImageUnavailable(f"{e}: {url}") if image else e) from e
+            sleep(waits[attempt])
             continue
         if resp.status_code not in RETRY_STATUS:
             return resp
-        if attempt == len(RETRY_WAITS_SEC):
-            raise Blocked(f"{resp.status_code} 로 계속 막힘: {url}")
-        sleep(RETRY_WAITS_SEC[attempt])
+        if attempt == len(waits):
+            err = ImageUnavailable if image else Blocked
+            raise err(f"{resp.status_code} 로 계속 막힘: {url}")
+        sleep(waits[attempt])
     raise AssertionError("unreachable")
 
 
@@ -106,7 +126,10 @@ def fetch_page(c: httpx.Client, url: str) -> tuple[int, str]:
 
 def fetch_bytes(c: httpx.Client, url: str) -> bytes:
     resp = _get(c, url)
-    resp.raise_for_status()
+    if resp.status_code != 200:
+        if _is_image_host(url):
+            raise ImageUnavailable(f"{resp.status_code}: {url}")
+        resp.raise_for_status()
     return resp.content
 
 

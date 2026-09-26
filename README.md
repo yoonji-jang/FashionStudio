@@ -329,7 +329,7 @@ accounts:
 실행 방법
 - GitHub → Actions → `collect` → Run workflow. 카테고리·검색어를 지정할 수 있고, `commit` 을 켜면
   상품 창고를 그 브랜치에 커밋합니다. 보고서는 artifact와 `scout-results` 브랜치의 `collect-<번호>/` 에
-  올라갑니다 (`report.md` 요약·표, `sheet.jpg` 새 상품 미리보기).
+  올라갑니다 (`report.md` 요약·표, `sheet.jpg` 새 상품 미리보기, `photos/`·`photo_scores.csv` 사진별 점수).
 - 로컬: `uv sync --group scout && uv run playwright install chromium` 후
   `uv run python -m tools.collect --account women --max-queries 2 --report out/collect/test`
 

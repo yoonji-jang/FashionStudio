@@ -76,6 +76,7 @@ def _price(card: dict) -> int | None:
 def card_to_product(card: dict, category: Category, query: str, today: date) -> Product | None:
     pid = str(card["catalog_product_id"])
     image = card.get("image_url") or card.get("jpeg_image_url") or card.get("webp_image_url")
+    image = scout.normalize_image_url(image) if image else image
     price = _price(card)
     name = card.get("title") or card.get("name")
     if not (image and price and name) or scout.is_placeholder(image):
@@ -170,6 +171,7 @@ def parse_page(status_code: int, page_html: str) -> PageInfo:
     images = []
     for im in product.get("product_image_list") or []:
         url = im.get("origin_url") or im.get("url")
+        url = scout.normalize_image_url(url) if url else url
         if not url or scout.is_placeholder(url) or url.split("?")[0].lower().endswith(".gif"):
             continue
         if url not in images:
