@@ -171,7 +171,8 @@ def test_scene_keeps_canvas_size(tmp_path):
     client = RecordingClient([_png_bytes(Image.new("RGB", (1024, 1024), "grey"))])
     composed = _img(tmp_path / "c.jpg")
     out = photoroom.scene(client, composed, tmp_path / "s.jpg", (1080, 1350), "grey wall")
-    assert client.sent[0][0]["outputSize"] == "1080x1350"
+    sent = Image.open(io.BytesIO(client.sent[0][1]["imageFile"]))
+    assert sent.width == sent.height  # 정사각형으로 보내 가장자리가 잘리지 않게
     assert Image.open(out).size == (1080, 1350)
 
 
@@ -269,6 +270,10 @@ def test_og_image_parsing():
     </head></html>"""
     assert scout.og_image(page) == "https://img.example.com/a.jpg?w=1&h=2"
     assert scout.og_image("<html></html>") is None
+    assert scout.is_placeholder("https://cf.image-farm.s.zigzag.kr/original/cms/2024/04/18/a.png")
+    assert not scout.is_placeholder(
+        "https://cf.product-image.s.zigzag.kr/original/c/1/2/3/1-6.jpeg"
+    )
 
 
 def test_contact_sheet(tmp_path):

@@ -50,6 +50,11 @@ def _get(client: httpx.Client, url: str) -> httpx.Response:
     return resp
 
 
+def is_placeholder(img_url: str) -> bool:
+    """판매가 끝난 페이지는 og:image 로 지그재그 안내 배너(/cms/)를 준다 (run-13 팔찌)."""
+    return "/cms/" in img_url
+
+
 def fetch_product_image(url: str, out: Path) -> tuple[Path, str]:
     """상품 페이지의 대표 이미지를 받아 저장한다. (저장 경로, 이미지 URL) 반환."""
     with httpx.Client(
@@ -62,6 +67,8 @@ def fetch_product_image(url: str, out: Path) -> tuple[Path, str]:
         if not img_url:
             raise RuntimeError(f"대표 이미지(og:image)를 찾지 못했습니다: {url}")
         img_url = str(page.url.join(img_url))
+        if is_placeholder(img_url):
+            raise RuntimeError(f"상품 사진이 아닌 안내 이미지입니다 (판매 종료?): {img_url}")
         data = _get(client, img_url).content
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(data)

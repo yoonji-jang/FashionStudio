@@ -328,19 +328,27 @@ def scene(
     size: tuple[int, int],
     backdrop_text: str,
 ) -> Path:
-    """코드 합성본 전체를 실제 촬영한 사진처럼 다듬는다 (그림자·천의 자연스러움)."""
-    prompt = render_prompt("scene", backdrop=backdrop_text)
-    data = edit_with_ai(
-        client, composed.read_bytes(), prompt, extra={"outputSize": f"{size[0]}x{size[1]}"}
-    )
-    img = Image.open(io.BytesIO(data)).convert("RGB")
-    bbox = img.convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
-    if bbox:  # AI가 가장자리에 검은 띠를 붙여 오는 경우가 있어 잘라낸다 (run-11)
-        img = img.crop(bbox)
-    if img.size != size:
-        img = ImageOps.fit(img, size, Image.LANCZOS)
+    """코드 합성본 전체를 실제 촬영한 사진처럼 다듬는다 (그림자·천의 자연스러움).
+
+    AI 편집은 1K 정사각형으로 나와 세로 사진을 보내면 가장자리가 잘린다 (run-13 팔찌).
+    그래서 좌우를 배경색으로 채운 정사각형을 보내고, 돌아온 사진에서 원래 비율만큼 가운데를 자른다.
+    """
+    img = Image.open(composed).convert("RGB")
+    w, h = img.size
+    side = max(w, h)
+    edge = img.crop((0, 0, 8, h)).resize((1, 1), Image.BOX).getpixel((0, 0))
+    square = Image.new("RGB", (side, side), edge)
+    square.paste(img, ((side - w) // 2, (side - h) // 2))
+    buf = io.BytesIO()
+    square.save(buf, format="PNG")
+    data = edit_with_ai(client, buf.getvalue(), render_prompt("scene", backdrop=backdrop_text))
+    res = Image.open(io.BytesIO(data)).convert("RGB")
+    scale = res.width / side
+    cw, ch = round(w * scale), round(h * scale)
+    left, top = (res.width - cw) // 2, (res.height - ch) // 2
+    res = res.crop((left, top, left + cw, top + ch)).resize(size, Image.LANCZOS)
     out.parent.mkdir(parents=True, exist_ok=True)
-    img.save(out, quality=92)
+    res.save(out, quality=92)
     return out
 
 
