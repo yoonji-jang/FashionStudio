@@ -25,9 +25,10 @@ def _font(size: int) -> ImageFont.ImageFont:
 
 
 def _fit(path: Path, box_w: int, box_h: int) -> Image.Image:
-    img = Image.open(path).convert("RGB")
+    img = Image.open(path).convert("RGBA")
     img.thumbnail((box_w, box_h), Image.LANCZOS)
-    return img
+    base = Image.new("RGBA", img.size, (236, 236, 232, 255))  # 투명 부분은 밝은 회색으로
+    return Image.alpha_composite(base, img).convert("RGB")
 
 
 def contact_sheet(

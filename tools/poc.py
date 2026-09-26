@@ -57,6 +57,7 @@ class SampleItem(BaseModel):
     crop: tuple[float, float, float, float] | None = None  # 사진 일부만 쓸 때 (0~1 비율)
     method: photoroom.CutoutMethod | None = None  # 생략하면 옷은 flatlay, 나머지는 segment
     segment: str | None = None  # segment 방식에서 남길 물건 (영어 단수)
+    negative: str | None = None  # segment 방식에서 지울 물건 (예: 옆에 찍힌 다른 색 가방)
 
 
 class SampleSet(BaseModel):
@@ -164,7 +165,16 @@ def run(
             t0 = time.monotonic()
             entry = {"repeat": r, "slot": _slug(i, it), "method": method}
             try:
-                photoroom.cutout(client, src, it.category, it.desc, dest, method, it.segment)
+                photoroom.cutout(
+                    client,
+                    src,
+                    it.category,
+                    it.desc,
+                    dest,
+                    method,
+                    it.segment,
+                    negative=it.negative,
+                )
                 entry["ok"] = True
                 paths.append(dest)
             except photoroom.QuotaError:

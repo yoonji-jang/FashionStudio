@@ -176,6 +176,7 @@ def cutout(
     method: CutoutMethod | None = None,
     segment: str | None = None,
     config: dict | None = None,
+    negative: str | None = None,
 ) -> Path:
     """상품 누끼를 만든다. 결과는 투명 배경 PNG, 가장자리는 잘라 둔다."""
     config = config or load_config()
@@ -190,7 +191,9 @@ def cutout(
     else:
         fields |= {
             "segmentation.prompt": segment or SEGMENT_NOUN.get(category, "product"),
-            "segmentation.negativePrompt": "person, hand, leg, skin, text",
+            "segmentation.negativePrompt": ", ".join(
+                x for x in ("person, hand, leg, skin, text", negative) if x
+            ),
         }
     img = Image.open(io.BytesIO(client.edit(fields, {"imageFile": image})))
     if not has_transparency(img.convert("RGBA")):
@@ -237,7 +240,7 @@ def finish(
         "keepExistingAlphaChannel": "auto",
         "referenceBox": "originalImage",
         "outputSize": f"{size[0]}x{size[1]}",
-        "export.format": "jpeg",
+        "export.format": "png",
     }
     files: dict[str, Path | bytes] = {"imageFile": layered}
     if mode == "ai_shadow":
@@ -247,9 +250,13 @@ def finish(
         files["background.imageFile"] = backdrop_image
     else:
         fields["background.prompt"] = render_prompt("background", backdrop=backdrop_text)
-    data = client.edit(fields, files)
+    img = Image.open(io.BytesIO(client.edit(fields, files))).convert("RGBA")
+    if has_transparency(img) and backdrop_image is not None:
+        # 배경이 비어서 오면 (그림자만 입힌 경우) 배경 사진 위에 직접 얹는다
+        base = ImageOps.fit(Image.open(backdrop_image).convert("RGBA"), img.size, Image.LANCZOS)
+        img = Image.alpha_composite(base, img)
     out.parent.mkdir(parents=True, exist_ok=True)
-    Image.open(io.BytesIO(data)).convert("RGB").save(out, quality=92)
+    img.convert("RGB").save(out, quality=92)
     return out
 
 
