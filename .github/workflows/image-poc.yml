@@ -22,7 +22,7 @@ on:
         default: false
   push:
     branches: ["claude/**"]
-    paths: ["experiments/**", "samples/**", "prompts/**", "config/**", "tools/**"]
+    paths: ["experiments/**", "samples/**", "prompts/**", "config/**", "tools/**", ".github/workflows/image-poc.yml"]
 
 permissions:
   contents: write
