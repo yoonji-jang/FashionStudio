@@ -1,0 +1,43 @@
+# 가을 니트 가디건 코디, run-21 누끼 재사용본.
+# run-22 에서 지그재그가 Actions 요청을 403 으로 막아, run-21 에서 받아 둔 누끼로 가디건+셔츠 입히기만 다시 한다.
+# 하의+벨트, 가방, 신발, 주얼리는 run-21 에서 다듬은 것을 그대로 쓴다. 원본 상품 페이지는 fall_cardigan.yaml 참고.
+account: women
+name: 가을 니트 가디건 코디
+items:
+  - category: 아우터
+    desc: 핑크 골지 브이넥 니트 가디건 (pink ribbed V-neck knit cardigan)
+    cm: 62  # 가디건 기장 + 아래로 살짝 보이는 셔츠 밑단
+    cutout: samples/women/fall_cardigan/cardigan.png
+  - category: 상의
+    desc: 화이트 기본 슬림핏 셔츠 (white basic slim fit shirt)
+    cutout: samples/women/fall_cardigan/shirt.png
+    wear_with: 아우터
+    # over(셔츠를 본 이미지로)는 가디건을 셔츠 위에 작게 붙였다 (run-21). 가디건을 본 이미지로 먼저 시도
+    # run-23: 셔츠 소매·몸판이 가디건 밖으로 삐져나옴 → 소매·몸판을 가디건 안에 넣도록 지시
+    # run-24: 셔츠 사진을 주면 지시해도 몸판·소매가 삐져나옴 → 가디건 사진만 주고 셔츠는 깃만 잘라 참고 (peek)
+    wear_modes: [peek]
+    wear_how: >-
+      the V-neck cardigan is worn buttoned closed over the shirt, exactly as a person wears it.
+      The shirt is fully tucked inside the cardigan: the shirt body is hidden under the cardigan
+      body and each shirt sleeve is hidden inside the cardigan sleeve, following the cardigan
+      sleeve angle. No white shirt shows at the shoulders, armpits, sides or along the sleeves.
+      Only three parts of the shirt are visible: the collar spread over the cardigan V neckline
+      with the shirt placket in the V, the shirt cuffs peeking a little past the cardigan cuffs,
+      and a narrow strip of shirt hem below the cardigan hem
+  - category: 하의
+    desc: 연청 와이드 데님 + 금장 버클 가죽 벨트
+    cutout: samples/women/fall_cardigan/bottoms_belt.png
+  - category: 가방
+    desc: 블랙 가죽 숄더백
+    cutout: samples/women/fall_cardigan/bag.png
+  - category: 신발
+    desc: 블랙 가죽 로퍼
+    cutout: samples/women/fall_cardigan/shoes.png
+  - category: 소품
+    slot: 목걸이
+    desc: 실버 물방울 펜던트 목걸이
+    cutout: samples/women/fall_cardigan/necklace.png
+  - category: 소품
+    slot: 귀걸이
+    desc: 실버 미니 진주 링 귀걸이
+    cutout: samples/women/fall_cardigan/earrings.png

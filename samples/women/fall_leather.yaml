@@ -1,0 +1,71 @@
+# 2단계 실험용 코디 1벌. 상품은 지그재그 공개 상품 페이지에서 골랐다 (검색 결과 기준, 2026-09-26).
+# wear_with 가 있으면 그 상품에 입힌 모양으로 합친다 (자켓 속 셔츠, 바지에 끼운 벨트).
+# url 대신 image: <저장소 기준 경로> 를 쓰면 직접 캡처한 사진을 쓴다.
+# 페이지가 사라졌으면 alternates 의 주소를 순서대로 시도한다.
+account: women
+name: 가을 레더자켓 코디
+items:
+  - category: 아우터
+    desc: 다크 브라운 레더 블레이저 자켓 (dark brown faux leather blazer jacket)
+    url: https://zigzag.kr/catalog/products/138268109
+  - category: 상의
+    desc: 블랙 랩 셔츠 블라우스 (black wrap shirt blouse)
+    url: https://zigzag.kr/catalog/products/127512219
+    alternates:
+      - https://zigzag.kr/catalog/products/113920079
+    wear_with: 아우터
+    wear_modes: [over]  # direct 는 셔츠가 자켓 위에 붙고(run-9), open 은 자켓이 빠지기도 함(run-11)
+    wear_how: >-
+      the jacket is worn buttoned closed over the shirt, exactly as a person wears it: the shirt
+      is inside the jacket, only the shirt collar lying over the jacket lapels and a little of
+      the black shirt front in the V neckline are visible, and the shirt cuffs peek out slightly
+      from the ends of the jacket sleeves
+  - category: 하의
+    desc: 블랙 클래식 와이드 슬랙스 (black classic wide-leg trousers)
+    url: https://zigzag.kr/catalog/products/141922448
+    alternates:
+      - https://zigzag.kr/catalog/products/131387352
+      - https://zigzag.kr/catalog/products/154582891
+  - category: 가방
+    desc: 브라운 스웨이드 호보 숄더백 (brown suede hobo shoulder bag)
+    url: https://zigzag.kr/catalog/products/149153996
+    crop: [0.06, 0.08, 0.475, 0.58]  # 사진에 가방 3개(색상별)가 있어 왼쪽 위 브라운만 사용
+    segment: bag  # "brown bag" + negative "black bag" 는 누끼가 실패해서 사용 안 함 (run-7)
+  - category: 신발
+    desc: 그린 스웨이드 페니 로퍼 (green suede penny loafers)
+    segment: shoe
+    url: https://zigzag.kr/catalog/products/141382083
+    alternates:
+      - https://store.zigzag.kr/catalog/products/144317804
+  - category: 소품
+    desc: 브라운 가죽 벨트 (brown leather belt)
+    segment: belt
+    wear_with: 하의
+    wear_how: >-
+      the belt is threaded through the belt loops of the trouser waistband with the buckle
+      fastened at the front center
+    url: https://zigzag.kr/catalog/products/112980396
+    alternates:
+      - https://zigzag.kr/catalog/products/153552340
+  # 주얼리: 옷 위가 아니라 빈 공간(layout.yaml 의 목걸이·귀걸이·팔찌 자리)에 놓는다
+  - category: 소품
+    slot: 목걸이
+    desc: 골드 하트 펜던트 목걸이 (gold heart pendant necklace)
+    segment: necklace
+    url: https://zigzag.kr/catalog/products/118871438
+    alternates:
+      - https://zigzag.kr/catalog/products/111083728
+  - category: 소품
+    slot: 귀걸이
+    desc: 골드 볼드 링 귀걸이 (gold chunky hoop earrings)
+    segment: earring
+    url: https://zigzag.kr/catalog/products/101455383
+    alternates:
+      - https://zigzag.kr/catalog/products/115535906
+  - category: 소품
+    slot: 팔찌
+    desc: 골드 체인 팔찌 (gold chain bracelet)
+    segment: bracelet
+    url: https://zigzag.kr/catalog/products/141974877
+    alternates:
+      - https://zigzag.kr/catalog/products/102365408

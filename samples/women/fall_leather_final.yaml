@@ -1,0 +1,27 @@
+# 가을 레더자켓 코디 최종본 (2026-09-26 사용자 선택: 12번 이미지 구성).
+# 누끼는 샌드박스 실행에서 잘 나온 것을 골라 저장소에 두고 다시 쓴다 (자켓+셔츠는 run-13, 나머지는 run-14).
+# 주얼리는 과하지 않게 목걸이·귀걸이 두 개만 쓴다 (팔찌 뺌).
+# 샌드박스 워터마크가 들어 있다. 원본 상품 페이지는 fall_leather.yaml 참고.
+account: women
+name: 가을 레더자켓 코디 (최종)
+items:
+  - category: 아우터
+    desc: 다크 브라운 레더 블레이저 + 블랙 랩 셔츠 (자켓 단추를 닫고 셔츠를 안에 입힘)
+    cutout: samples/women/fall_leather_final/outer_top.png
+  - category: 하의
+    desc: 블랙 와이드 슬랙스 + 브라운 가죽 벨트
+    cutout: samples/women/fall_leather_final/bottoms_belt.png
+  - category: 가방
+    desc: 브라운 스웨이드 호보 숄더백
+    cutout: samples/women/fall_leather_final/bag.png
+  - category: 신발
+    desc: 그린 스웨이드 페니 로퍼
+    cutout: samples/women/fall_leather_final/shoes.png
+  - category: 소품
+    slot: 목걸이
+    desc: 골드 하트 펜던트 목걸이
+    cutout: samples/women/fall_leather_final/necklace.png
+  - category: 소품
+    slot: 귀걸이
+    desc: 골드 볼드 링 귀걸이
+    cutout: samples/women/fall_leather_final/earrings.png

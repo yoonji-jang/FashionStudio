@@ -1,0 +1,98 @@
+name: image-poc
+
+# 2단계 이미지 품질 실험. Photoroom 요금(호출당 약 $0.10)이 나가므로 사람이 켤 때만 돈다.
+# - Actions 탭에서 "Run workflow" (main에 합쳐진 뒤)
+# - 또는 작업 브랜치에 커밋 메시지에 [image-poc] 를 넣어 푸시 ([sandbox] 도 넣으면 무료 샌드박스)
+# 결과는 artifact 로 올리고, 같은 내용을 poc-results 브랜치의 <실행번호>/ 폴더에도 커밋한다.
+on:
+  workflow_dispatch:
+    inputs:
+      samples:
+        description: 상품 목록 파일
+        default: samples/women/fall_leather.yaml
+      variants:
+        description: 실행할 방식 (빈칸이면 전부, 예 "A B")
+        default: ""
+      repeats:
+        description: 회차 수 (빈칸이면 experiments/image_poc.yaml)
+        default: ""
+      sandbox:
+        description: 무료 샌드박스로 실행 (결과에 워터마크)
+        type: boolean
+        default: false
+  push:
+    branches: ["claude/**"]
+    paths: ["experiments/**", "samples/**", "prompts/**", "config/**", "tools/**", ".github/workflows/image-poc.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: image-poc
+  cancel-in-progress: false
+
+jobs:
+  poc:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[image-poc]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SAMPLES: ${{ inputs.samples || 'samples/women/fall_leather.yaml' }}
+      VARIANTS: ${{ inputs.variants }}
+      REPEATS: ${{ inputs.repeats }}
+      OUT: out/poc/run-${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+
+      - name: 실험 실행
+        env:
+          PHOTOROOM_API_KEY: ${{ secrets.PHOTOROOM_API_KEY }}
+          SANDBOX_KEY: ${{ secrets.PHOTOROOM_API_KEY_SANDBOX }}
+          PHOTOROOM_SANDBOX: ${{ (inputs.sandbox || contains(github.event.head_commit.message, '[sandbox]')) && '1' || '' }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          # 샌드박스면 전용 키(PHOTOROOM_API_KEY_SANDBOX)를 우선 쓰고, 없으면 기본 키에 sandbox_ 를 붙인다
+          if [ -n "$PHOTOROOM_SANDBOX" ] && [ -n "$SANDBOX_KEY" ]; then export PHOTOROOM_API_KEY="$SANDBOX_KEY"; fi
+          # 푸시 실행은 커밋 메시지의 [samples:경로] [variants:D] 로 상품 목록·방식을 고를 수 있다
+          re_s='\[samples:([^]]+)\]'; re_v='\[variants:([^]]+)\]'
+          [[ "$COMMIT_MSG" =~ $re_s ]] && SAMPLES="${BASH_REMATCH[1]}"
+          [[ "$COMMIT_MSG" =~ $re_v ]] && VARIANTS="${BASH_REMATCH[1]}"
+          args=(--samples "$SAMPLES" --out "$OUT")
+          [ -n "$VARIANTS" ] && args+=(--variants $VARIANTS)
+          [ -n "$REPEATS" ] && args+=(--repeats "$REPEATS")
+          uv run python -m tools.poc "${args[@]}"
+
+      - name: 요약 표시
+        if: always()
+        run: '[ -f "$OUT/report.md" ] && cat "$OUT/report.md" >> "$GITHUB_STEP_SUMMARY" || true'
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: image-poc-${{ github.run_number }}
+          path: ${{ env.OUT }}
+          if-no-files-found: ignore
+
+      - name: poc-results 브랜치에 결과 커밋
+        if: always()
+        run: |
+          [ -d "$OUT" ] || exit 0
+          dest="run-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin poc-results 2>/dev/null; then
+            git worktree add /tmp/results origin/poc-results
+            git -C /tmp/results checkout -B poc-results
+          else
+            git worktree add --detach /tmp/results
+            git -C /tmp/results checkout --orphan poc-results
+            git -C /tmp/results rm -rf --quiet .
+          fi
+          mkdir -p "/tmp/results/$dest"
+          cp -r "$OUT"/. "/tmp/results/$dest/"
+          echo "source: ${{ github.sha }} ($SAMPLES)" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "이미지 실험 결과 $dest"
+          git -C /tmp/results push origin poc-results
