@@ -127,6 +127,31 @@ def pick_photo(product: Product, dest_dir: Path, feed: Feed) -> Path:
     return fallback
 
 
+def product_from_page(url: str, category: str) -> Product:
+    """창고에 없는 상품의 공개 상품 페이지를 읽어 Product 로 만든다 (tools.scout 로만 접근).
+    판매자 연락처 같은 정보는 읽지 않고 이름·스토어·가격·사진만 쓴다."""
+    from sources import zigzag
+    from tools import scout
+
+    with scout.client() as c:
+        code, text = scout.fetch_page(c, url)
+    info = zigzag.parse_page(code, text)
+    if not info.image_urls or not info.name:
+        raise ValueError(f"상품 페이지를 읽지 못했습니다 (판매 종료?): {url}")
+    pid = url.rstrip("/").split("/")[-1]
+    return Product(
+        id=f"zigzag:{pid}",
+        source="zigzag",
+        url=url,
+        shop=info.shop or "",
+        name=info.name,
+        price=info.price or 0,
+        category=category,
+        image_urls=info.image_urls,
+        status=info.status,
+    )
+
+
 def build_cards(
     spec: FeedSpec,
     feed: Feed,
@@ -143,6 +168,8 @@ def build_cards(
         base = products.get(it.product) if it.product else None
         if it.product and base is None:
             raise ValueError(f"상품 창고에 없는 상품입니다: {it.product}")
+        if base is None and it.url and photo_dir:
+            base = product_from_page(str(it.url), it.category or "소품")
         category = it.category or (base.category if base else None)
         name = it.name or (clean_name(base.name) if base else None)
         if not category or not name:
@@ -158,7 +185,9 @@ def build_cards(
                 category=category,
                 name=drawable(name),
                 shop=it.shop or (base.shop if base else None),
-                price=it.price if it.price is not None else (base.price if base else None),
+                price=it.price
+                if it.price is not None
+                else ((base.price or None) if base else None),
                 comment=drawable(it.comment),
                 image=image,
                 is_cutout=is_cutout,

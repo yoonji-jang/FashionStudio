@@ -1,0 +1,38 @@
+# 5단계 캐러셀 샘플: 가을 니트 가디건 코디 최종본 (fall_cardigan_final.yaml).
+# 표지는 3단계에서 고른 F 디자인 이미지. 상품은 fall_cardigan.yaml 의 지그재그 상품 페이지에서
+# 이름·스토어·가격·사진을 읽는다 (Actions 에서 --photos 로 실행).
+account: women
+title_lines: [가을 데일리룩은, 니트 가디건 하나면 돼요]
+cover: samples/women/feed_cardigan/cover.jpg
+cover_has_title: true
+items:
+  - category: 아우터
+    url: https://zigzag.kr/catalog/products/159882348
+    name: 브이넥 골지 니트 가디건
+    comment: 단추를 채우면 니트처럼, 풀면 가벼운 아우터처럼 입을 수 있어요.
+  - category: 상의
+    url: https://zigzag.kr/catalog/products/108849056
+    name: 화이트 베이직 슬림핏 셔츠
+    comment: 가디건 안에 입고 깃만 꺼내 주면 단정해 보여요.
+  - category: 하의
+    url: https://zigzag.kr/catalog/products/137809552
+    name: 연청 와이드 데님 팬츠
+    comment: 핑크 니트에 연청을 매치하면 부드러운 분위기가 나요.
+  - category: 가방
+    url: https://zigzag.kr/catalog/products/130666541
+    name: 블랙 가죽 숄더백
+    comment: 파스텔 톤 코디를 블랙 가방으로 잡아 줘요.
+  - category: 신발
+    url: https://zigzag.kr/catalog/products/129664032
+    name: 블랙 가죽 로퍼
+  - category: 소품
+    url: https://zigzag.kr/catalog/products/153552340
+    name: 금장 버클 가죽 벨트
+    comment: 데님에 벨트 하나로 허리선이 살아나요.
+  - category: 소품
+    url: https://zigzag.kr/catalog/products/146334491
+    name: 실버 물방울 펜던트 목걸이
+  - category: 소품
+    url: https://zigzag.kr/catalog/products/101877686
+    name: 실버 미니 진주 링 귀걸이
+    comment: 작은 진주 하나가 얼굴 주변을 환하게 해 줘요.

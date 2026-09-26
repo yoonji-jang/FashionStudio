@@ -2,7 +2,7 @@ name: feed-sample
 
 # 5단계 캐러셀 샘플. 상품 창고 상품의 원본 사진을 받아 슬라이드를 만든다 (Photoroom 호출 없음).
 # - Actions 탭에서 "Run workflow"
-# - 작업 브랜치에 커밋 메시지에 [feed-sample] 를 넣어 푸시
+# - 작업 브랜치에 커밋 메시지에 [feed-sample] 를 넣어 푸시 ([feed-sample:samples/women/feed_cardigan.yaml] 로 재료 지정)
 # 슬라이드는 artifact 와 feed-results 브랜치의 feed-<실행번호>/ 에 올라간다 (받은 원본 사진은 올리지 않음).
 on:
   workflow_dispatch:
@@ -39,7 +39,12 @@ jobs:
       - run: uv sync
 
       - name: 슬라이드 만들기
+        env:
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
+          re='\[feed-sample:([^] ]+)\]'
+          [[ "$COMMIT_MSG" =~ $re ]] && SPEC="${BASH_REMATCH[1]}"
+          echo "SPEC=$SPEC" >> "$GITHUB_ENV"
           args=(--spec "$SPEC" --out "$OUT/slides" --photos out/feed/photos)
           [ -n "$PRODUCT_IMAGE" ] && args+=(--product-image "$PRODUCT_IMAGE")
           uv run python -m tools.feed "${args[@]}"

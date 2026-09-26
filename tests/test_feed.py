@@ -191,3 +191,12 @@ def test_photo_credit_text():
     feed = load_profile("women").feed
     card = Card("상의", "셔츠", "데일리쥬", 1000, "", None, False, source="지그재그")
     assert photo_credit(card, feed) == "사진 출처 지그재그 · 데일리쥬"
+
+
+def test_page_price_prefers_final_price():
+    from sources.zigzag import page_price
+
+    product = {"name": "x", "product_price": {"max_price": 50000, "final_price": 39000}}
+    assert page_price(product) == 39000
+    assert page_price({"price": 12000}) == 12000
+    assert page_price({"name": "x"}) is None
