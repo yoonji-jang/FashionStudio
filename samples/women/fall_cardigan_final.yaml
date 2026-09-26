@@ -1,0 +1,27 @@
+# 가을 니트 가디건 코디 최종본 (2026-09-26 사용자 선택: 20번 이미지, run-25).
+# 가디건+셔츠는 run-25 의 peek 방식 결과(셔츠는 깃·소매 끝·밑단만 보임), 나머지는 run-21 에서 다듬은 누끼.
+# 샌드박스 워터마크가 들어 있다. 원본 상품 페이지는 fall_cardigan.yaml, 다시 입히려면 fall_cardigan_cut.yaml.
+account: women
+name: 가을 니트 가디건 코디 (최종)
+items:
+  - category: 아우터
+    desc: 핑크 골지 브이넥 니트 가디건 + 화이트 셔츠 (셔츠를 가디건 안에 입힘)
+    cm: 62
+    cutout: samples/women/fall_cardigan/outer_top.png
+  - category: 하의
+    desc: 연청 와이드 데님 + 금장 버클 가죽 벨트
+    cutout: samples/women/fall_cardigan/bottoms_belt.png
+  - category: 가방
+    desc: 블랙 가죽 숄더백
+    cutout: samples/women/fall_cardigan/bag.png
+  - category: 신발
+    desc: 블랙 가죽 로퍼
+    cutout: samples/women/fall_cardigan/shoes.png
+  - category: 소품
+    slot: 목걸이
+    desc: 실버 물방울 펜던트 목걸이
+    cutout: samples/women/fall_cardigan/necklace.png
+  - category: 소품
+    slot: 귀걸이
+    desc: 실버 미니 진주 링 귀걸이
+    cutout: samples/women/fall_cardigan/earrings.png
