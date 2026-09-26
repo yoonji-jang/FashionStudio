@@ -20,6 +20,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import json
 import shutil
@@ -66,6 +67,7 @@ class SampleItem(BaseModel):
     refine: bool | None = None  # AI로 다듬기. 생략하면 segment 누끼만 (Flat Lay 는 이미 AI 정리컷)
     wear_with: Category | None = None  # 이 상품을 입힐 기준 상품 (예: 셔츠 → 아우터)
     wear_how: str = "worn together naturally"  # 입는 방법 (영어, prompts/style.md 의 $how)
+    cm: float | None = None  # 실제 치수가 기본값(layout.yaml)과 다를 때 (예: 크롭 가디건 50)
     slot: str | None = (
         None  # layout.yaml 자리 이름. 생략하면 카테고리 (예: 소품 → 목걸이·귀걸이·팔찌)
     )
@@ -161,7 +163,7 @@ def run(
     profile = load_profile(samples.account)
     variants = [v for v in experiment.variants if not variant_ids or v.id in variant_ids]
     client: photoroom.EditClient = photoroom.FakeClient() if fake else photoroom.PhotoroomClient()
-    layout = compose.load_layout()
+    layout = with_item_sizes(compose.load_layout(), samples)
     size = tuple(layout["canvas"])
 
     log: dict = {
@@ -318,6 +320,25 @@ def run(
     write_scores_template(out / "scores.csv", log["runs"], samples)
     write_report(out / "report.md", samples, variants, log)
     return log
+
+
+def with_item_sizes(layout: dict, samples: SampleSet) -> dict:
+    """샘플에 cm 가 있으면 그 자리의 크기를 바꾼다. 세로 기준 자리는 밑단 위치를 그대로 두어
+    아래 상품과의 간격이 변하지 않게 한다."""
+    layout = copy.deepcopy(layout)
+    px, h = layout["px_per_cm"], layout["canvas"][1]
+    for it in samples.items:
+        if it.cm is None:
+            continue
+        for group in ("slots", "no_outer"):
+            rule = layout.get(group, {}).get(it.place)
+            if not rule:
+                continue
+            if rule.get("measure", "height") == "height":
+                cx, cy = rule["center"]
+                rule["center"] = [cx, cy + (rule["cm"] - it.cm) * px / 2 / h]
+            rule["cm"] = it.cm
+    return layout
 
 
 def _set_name(clean: bool) -> str:

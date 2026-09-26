@@ -353,6 +353,21 @@ def test_poc_clean_variant_merges_worn_items(tmp_path):
     assert (out / "sheets/clean.jpg").exists() and (out / "results/D_1.jpg").exists()
 
 
+def test_item_cm_override_keeps_hem():
+    layout = compose.load_layout()
+    item = {"category": "아우터", "desc": "x", "cm": 50, "url": "u"}
+    samples = poc.SampleSet.model_validate({"account": "women", "name": "t", "items": [item]})
+    changed = poc.with_item_sizes(layout, samples)
+    old, new = layout["slots"]["아우터"], changed["slots"]["아우터"]
+    px, h = layout["px_per_cm"], layout["canvas"][1]
+
+    def hem(rule):
+        return rule["center"][1] * h + rule["cm"] * px / 2
+
+    assert new["cm"] == 50 and abs(hem(new) - hem(old)) < 1e-6
+    assert layout["slots"]["아우터"]["cm"] == 68  # 원본은 그대로
+
+
 def test_sample_sets_are_valid():
     for path in (REPO_ROOT / "samples").rglob("*.yaml"):
         s = poc.SampleSet.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))

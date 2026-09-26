@@ -1,0 +1,64 @@
+# 새 주제 예시: 가을 데일리 니트 가디건 코디. 상품은 지그재그 공개 상품 페이지 (검색 결과 기준, 2026-09-26).
+# fall_leather 와 같은 규칙(누끼 → AI 다듬기 → 입히기 → 실제 비율 배치 → AI 그림자)으로 만든다.
+account: women
+name: 가을 니트 가디건 코디
+items:
+  - category: 아우터
+    desc: 그레이 꼬임 크롭 니트 가디건 (grey cable knit cropped cardigan)
+    cm: 58  # 크롭 기장 + 아래로 보이는 셔츠 밑단
+    url: https://zigzag.kr/catalog/products/130051440
+    alternates:
+      - https://zigzag.kr/catalog/products/133120535
+  - category: 상의
+    desc: 화이트 기본 슬림핏 셔츠 (white basic slim fit shirt)
+    url: https://zigzag.kr/catalog/products/108849056
+    alternates:
+      - https://zigzag.kr/catalog/products/120008696
+    wear_with: 아우터
+    wear_modes: [over]
+    wear_how: >-
+      the cardigan is worn buttoned closed over the shirt, exactly as a person wears it: the white
+      shirt collar lies neatly over the cardigan neckline, the shirt cuffs peek out slightly from
+      the cardigan sleeves, and a little of the shirt hem shows below the cropped cardigan
+  - category: 하의
+    desc: 연청 와이드 데님 팬츠 (light blue wide leg jeans)
+    url: https://zigzag.kr/catalog/products/137809552
+    alternates:
+      - https://zigzag.kr/catalog/products/121270655
+  - category: 가방
+    desc: 블랙 가죽 숄더백 (black leather shoulder bag)
+    segment: bag
+    url: https://zigzag.kr/catalog/products/130666541
+    alternates:
+      - https://zigzag.kr/catalog/products/131513241
+  - category: 신발
+    desc: 블랙 가죽 로퍼 (black leather loafers)
+    segment: shoe
+    url: https://zigzag.kr/catalog/products/129664032
+    alternates:
+      - https://zigzag.kr/catalog/products/137758810
+  - category: 소품
+    desc: 금장 버클 가죽 벨트 (leather belt with gold square buckle)
+    segment: belt
+    url: https://zigzag.kr/catalog/products/153552340
+    alternates:
+      - https://zigzag.kr/catalog/products/136789215
+    wear_with: 하의
+    wear_how: >-
+      the belt is threaded through the belt loops of the jeans waistband with the buckle fastened
+      at the front center
+  # 주얼리는 과하지 않게 두 개, 상의 오른쪽 빈 공간
+  - category: 소품
+    slot: 목걸이
+    desc: 실버 물방울 펜던트 목걸이 (silver teardrop pendant necklace)
+    segment: necklace
+    url: https://zigzag.kr/catalog/products/146334491
+    alternates:
+      - https://zigzag.kr/catalog/products/111136004
+  - category: 소품
+    slot: 귀걸이
+    desc: 실버 미니 진주 링 귀걸이 (silver mini pearl hoop earrings)
+    segment: earring
+    url: https://zigzag.kr/catalog/products/101877686
+    alternates:
+      - https://zigzag.kr/catalog/products/122103833
