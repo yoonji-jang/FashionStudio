@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m core.profile:*)",
+      "Bash(python -m tools.scout:*)",
+      "Bash(python -m tools.gemini_image:*)",
+      "Bash(python -m tools.overlay:*)",
+      "Bash(python -m tools.review_prep:*)",
+      "Bash(pytest:*)",
+      "Read",
+      "Write(out/**)",
+      "Write(data/**)"
+    ],
+    "deny": [
+      "Bash(python -m tools.ig_publish:*)",
+      "Bash(python -m tools.upload_r2:*)",
+      "Bash(curl:*)",
+      "Read(.env)",
+      "Read(.env.*)"
+    ]
+  }
+}
