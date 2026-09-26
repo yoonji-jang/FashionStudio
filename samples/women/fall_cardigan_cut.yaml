@@ -14,8 +14,8 @@ items:
     wear_with: 아우터
     # over(셔츠를 본 이미지로)는 가디건을 셔츠 위에 작게 붙였다 (run-21). 가디건을 본 이미지로 먼저 시도
     # run-23: 셔츠 소매·몸판이 가디건 밖으로 삐져나옴 → 소매·몸판을 가디건 안에 넣도록 지시
-    # run-24: 셔츠 사진을 주면 지시해도 몸판·소매가 삐져나옴 → 가디건 사진만 주고 셔츠는 글로 (peek)
-    wear_modes: [peek, direct]
+    # run-24: 셔츠 사진을 주면 지시해도 몸판·소매가 삐져나옴 → 가디건 사진만 주고 셔츠는 깃만 잘라 참고 (peek)
+    wear_modes: [peek]
     wear_how: >-
       the V-neck cardigan is worn buttoned closed over the shirt, exactly as a person wears it.
       The shirt is fully tucked inside the cardigan: the shirt body is hidden under the cardigan

@@ -172,7 +172,10 @@ def test_style_sends_reference_image(tmp_path):
     )
     fields, files = client.sent[0]
     assert "collar out" in fields["editWithAI.prompt"] and "셔츠" in fields["editWithAI.prompt"]
-    assert list(files) == ["imageFile"]  # 셔츠 사진은 보내지 않는다
+    # 셔츠는 깃 부분만 잘라 보낸다 (통째로 보내면 몸판·소매를 붙임)
+    assert list(files) == ["imageFile", "editWithAI.additionalImages.collar.imageFile"]
+    collar = Image.open(io.BytesIO(files["editWithAI.additionalImages.collar.imageFile"]))
+    assert collar.size[0] < Image.open(add).size[0]
 
 
 def test_scene_keeps_canvas_size(tmp_path):
