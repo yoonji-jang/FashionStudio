@@ -116,14 +116,14 @@ class PhotoroomClient:
         headers = {"x-api-key": self.api_key}
         if fields.get("shadow.mode") == "ai.auto-with-overrides":
             headers["pr-ai-shadows-model-version"] = self.config["shadow_model_version"]
-        payload = {
-            k: (Path(v).name, Path(v).read_bytes()) if isinstance(v, Path) else ("image.png", v)
+        # 파일이 없어도(배경 생성) multipart 로 보내야 하므로 글자 필드도 파일 목록에 넣는다
+        payload: list[tuple[str, tuple]] = [(k, (None, v)) for k, v in fields.items()]
+        payload += [
+            (k, (Path(v).name, Path(v).read_bytes()) if isinstance(v, Path) else ("image.png", v))
             for k, v in files.items()
-        }
+        ]
         for i in range(attempts):
-            resp = self.http.post(
-                self.config["endpoint"], data=fields, files=payload, headers=headers
-            )
+            resp = self.http.post(self.config["endpoint"], files=payload, headers=headers)
             self.calls += 1
             if resp.status_code in (429, 500, 502, 503, 504) and i < attempts - 1:
                 time.sleep(5 * 2**i)

@@ -243,3 +243,17 @@ def test_sample_sets_are_valid():
         load_profile(s.account)
         assert all(it.url or it.image for it in s.items), path
     poc.Experiment.model_validate(yaml.safe_load(poc.EXPERIMENT_PATH.read_text(encoding="utf-8")))
+
+
+def test_client_sends_multipart_even_without_files():
+    seen = {}
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        seen["ctype"] = req.headers["content-type"]
+        seen["body"] = req.content
+        return httpx.Response(200, content=b"img")
+
+    client = photoroom.PhotoroomClient("k", transport=httpx.MockTransport(handler))
+    client.edit({"imageFromPrompt.prompt": "grey wall"}, {})
+    assert seen["ctype"].startswith("multipart/form-data")
+    assert b'name="imageFromPrompt.prompt"' in seen["body"] and b"grey wall" in seen["body"]
