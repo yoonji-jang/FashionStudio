@@ -5,18 +5,18 @@
 # 입은 듯한 코디: 자켓+셔츠, 바지+벨트처럼 합친 상품은 기준 상품(아우터, 하의) 자리에 놓는다.
 # 아우터가 없으면 no_outer 값으로 덮어쓴다.
 canvas: [1080, 1350]
-px_per_cm: 8.0
+px_per_cm: 7.4
 slots:
-  아우터: {cm: 68, measure: height, center: [0.50, 0.225], z: 3}
-  상의:   {cm: 64, measure: height, center: [0.60, 0.215], z: 2}
+  아우터: {cm: 68, measure: height, center: [0.50, 0.208], z: 3}
+  상의:   {cm: 64, measure: height, center: [0.60, 0.20], z: 2}
   원피스: {cm: 105, measure: height, center: [0.50, 0.36], z: 2}
-  하의:   {cm: 100, measure: height, center: [0.55, 0.645], z: 1}
-  가방:   {cm: 42, measure: long, center: [0.20, 0.54], z: 5}
+  하의:   {cm: 100, measure: height, center: [0.53, 0.656], z: 4}  # 허리(벨트)가 자켓 밑단 위로 보이게
+  가방:   {cm: 44, measure: long, center: [0.19, 0.56], z: 5}
   신발:   {cm: 26, measure: long, center: [0.22, 0.87], z: 5}
   소품:   {cm: 22, measure: long, center: [0.87, 0.50], z: 5, rotate: -8}
 no_outer:
-  상의:   {cm: 64, measure: height, center: [0.50, 0.215], z: 2}
-  하의:   {cm: 100, measure: height, center: [0.55, 0.625], z: 1}
+  상의:   {cm: 64, measure: height, center: [0.50, 0.198], z: 2}
+  하의:   {cm: 100, measure: height, center: [0.53, 0.637], z: 4}
 shadow:  # 코드 그림자 (AI 그림자를 쓰지 않을 때)
   offset: [10, 16]
   blur: 18
