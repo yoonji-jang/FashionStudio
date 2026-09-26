@@ -65,7 +65,7 @@ visual:
   accent_gap: 26
   gradient_height: 0.38       # 아래쪽 어둡게 까는 높이 (이미지 아래 38%)
   gradient_opacity: 0.5       # 맨 아래 어두운 정도 (0~1)
-  logo_text: "@계정이름"      # 인스타 계정을 정하면 교체. 빈 문자열이면 생략
+  logo_text: "@janggu.zip"    # 인스타 아이디. 빈 문자열이면 생략
   logo_font: Pretendard-Medium.otf
   logo_font_size: 22
   logo_align: left            # left(제목에 맞춤) 또는 center
