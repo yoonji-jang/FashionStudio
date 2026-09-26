@@ -18,9 +18,11 @@ items:
     alternates:
       - https://zigzag.kr/catalog/products/120008696
     wear_with: 아우터
-    wear_modes: [over]
+    # over(셔츠를 본 이미지로)는 가디건을 셔츠 위에 작게 붙였다 (run-21). 가디건을 본 이미지로 먼저 시도
+    wear_modes: [direct, over]
     wear_how: >-
-      the V-neck cardigan is worn buttoned closed over the shirt, exactly as a person wears it:
+      the V-neck cardigan is worn buttoned closed over the shirt, exactly as a person wears it,
+      both at the same real body size (the cardigan is as wide as the shirt, never smaller):
       the white shirt collar is spread over the cardigan V neckline, the shirt sleeves are hidden
       inside the cardigan sleeves with only the shirt cuffs peeking out, and a little of the shirt
       hem shows below the cardigan
