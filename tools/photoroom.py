@@ -336,9 +336,12 @@ def scene(
     img = Image.open(composed).convert("RGB")
     w, h = img.size
     side = max(w, h)
-    edge = img.crop((0, 0, 8, h)).resize((1, 1), Image.BOX).getpixel((0, 0))
-    square = Image.new("RGB", (side, side), edge)
-    square.paste(img, ((side - w) // 2, (side - h) // 2))
+    # 빈 옆자리는 배경 가장자리를 거울처럼 이어 붙여 채운다 (단색이면 띠가 남음, run-14)
+    square = ImageOps.pad(img, (side, side), color=(0, 0, 0))
+    x0, y0 = (side - w) // 2, (side - h) // 2
+    if x0:
+        square.paste(ImageOps.mirror(img.crop((0, 0, x0, h))), (0, y0))
+        square.paste(ImageOps.mirror(img.crop((w - (side - w - x0), 0, w, h))), (x0 + w, y0))
     buf = io.BytesIO()
     square.save(buf, format="PNG")
     data = edit_with_ai(client, buf.getvalue(), render_prompt("scene", backdrop=backdrop_text))

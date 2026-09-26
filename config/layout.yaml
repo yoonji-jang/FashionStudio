@@ -15,9 +15,9 @@ slots:
   신발:   {cm: 26, measure: long, center: [0.22, 0.87], z: 5}
   소품:   {cm: 22, measure: long, center: [0.88, 0.92], z: 5, rotate: -8}
   # 주얼리는 옷 위에 올리지 않고 오른쪽 빈 공간에 세로로 놓는다 (샘플의 slot 으로 지정)
-  목걸이: {cm: 34, measure: long, center: [0.86, 0.52], z: 5}  # 가는 줄도 보이게 조금 크게
-  귀걸이: {cm: 9, measure: long, center: [0.86, 0.70], z: 5}
-  팔찌:   {cm: 12, measure: long, center: [0.86, 0.83], z: 5}
+  목걸이: {cm: 34, measure: long, center: [0.84, 0.52], z: 5}  # 가는 줄도 보이게 조금 크게
+  귀걸이: {cm: 9, measure: long, center: [0.84, 0.70], z: 5}
+  팔찌:   {cm: 12, measure: long, center: [0.84, 0.83], z: 5}
 no_outer:
   상의:   {cm: 64, measure: height, center: [0.50, 0.198], z: 2}
   하의:   {cm: 100, measure: height, center: [0.53, 0.662], z: 1}
