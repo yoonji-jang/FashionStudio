@@ -282,7 +282,7 @@ def refine(client: EditClient, cut: Path, slot: str, desc: str, out: Path) -> Pa
     return out
 
 
-StyleMode = Literal["direct", "open", "over"]
+StyleMode = Literal["direct", "open", "over", "peek"]
 
 
 def style(
@@ -302,10 +302,15 @@ def style(
     open:   base(아우터)만 먼저 연 뒤 입힌다. 연 사진은 <out>_opened.png 로 남긴다.
             run-11 에서는 자켓이 사라지고 셔츠만 남았다.
     over:   add(셔츠) 사진을 본 이미지로 두고 base(자켓)를 참고 이미지로 걸친다.
+    peek:   base(가디건) 사진만 보내고 add 는 글로만 설명해, 깃·소매 끝·밑단처럼 보이는 부분만
+            그리게 한다. 셔츠 사진을 주면 셔츠 몸판·소매를 통째로 붙였다 (run-23, 24).
+            무늬 없는 기본 이너에만 쓴다 (사진을 안 보내므로 디테일은 설명대로 나온다).
     """
     out.parent.mkdir(parents=True, exist_ok=True)
     values = {"base_desc": base_desc, "add_desc": add_desc, "how": how}
-    if mode == "over":
+    if mode == "peek":
+        data = edit_with_ai(client, on_white(base), render_prompt("style_peek", **values))
+    elif mode == "over":
         data = edit_with_ai(
             client, on_white(add), render_prompt("style_over", **values), {"outer": on_white(base)}
         )

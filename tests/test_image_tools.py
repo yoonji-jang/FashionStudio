@@ -166,6 +166,14 @@ def test_style_sends_reference_image(tmp_path):
     assert "put on over" in fields["editWithAI.prompt"]
     assert "editWithAI.additionalImages.outer.imageFile" in files
 
+    client = RecordingClient([opaque, _cut_bytes()])
+    photoroom.style(
+        client, base, "가디건", add, "셔츠", "collar out", tmp_path / "p.png", mode="peek"
+    )
+    fields, files = client.sent[0]
+    assert "collar out" in fields["editWithAI.prompt"] and "셔츠" in fields["editWithAI.prompt"]
+    assert list(files) == ["imageFile"]  # 셔츠 사진은 보내지 않는다
+
 
 def test_scene_keeps_canvas_size(tmp_path):
     client = RecordingClient([_png_bytes(Image.new("RGB", (1024, 1024), "grey"))])
