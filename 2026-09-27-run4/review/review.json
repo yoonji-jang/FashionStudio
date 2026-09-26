@@ -1,0 +1,22 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/C_1.jpg",
+      "round": 1,
+      "score": null
+    },
+    {
+      "id": "c2",
+      "file": "outfit/results/C_2.jpg",
+      "round": 1,
+      "score": null
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "not_reviewed",
+  "slide_issues": [],
+  "summary": ""
+}

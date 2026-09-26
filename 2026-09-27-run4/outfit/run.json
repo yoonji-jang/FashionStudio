@@ -1,0 +1,198 @@
+{
+  "samples": "out/2026-09-27/outfit/samples.yaml",
+  "account": "women",
+  "started": "2026-09-26T15:46:59",
+  "sandbox": true,
+  "items": [
+    {
+      "slot": "01_outer",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/168297481_0.jpg"
+    },
+    {
+      "slot": "02_top",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/136581318_1.jpg"
+    },
+    {
+      "slot": "03_bottoms",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/145122681_2.jpg"
+    },
+    {
+      "slot": "04_bag",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/168002860_0.jpg"
+    },
+    {
+      "slot": "05_shoes",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/130568193_0.jpg"
+    },
+    {
+      "slot": "06_accessory",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/113341770_0.jpg"
+    },
+    {
+      "slot": "07_accessory",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/127812392_0.jpg"
+    }
+  ],
+  "cutouts": [
+    {
+      "repeat": 1,
+      "slot": "01_outer",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.0
+    },
+    {
+      "repeat": 1,
+      "slot": "02_top",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.3
+    },
+    {
+      "repeat": 1,
+      "slot": "03_bottoms",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.2
+    },
+    {
+      "repeat": 1,
+      "slot": "04_bag",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.2
+    },
+    {
+      "repeat": 1,
+      "slot": "05_shoes",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.5
+    },
+    {
+      "repeat": 1,
+      "slot": "06_accessory",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.0
+    },
+    {
+      "repeat": 1,
+      "slot": "07_accessory",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.2
+    },
+    {
+      "repeat": 2,
+      "slot": "01_outer",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.2
+    },
+    {
+      "repeat": 2,
+      "slot": "02_top",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.3
+    },
+    {
+      "repeat": 2,
+      "slot": "03_bottoms",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.6
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "04_bag",
+      "ok": true,
+      "sec": 11.5
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "05_shoes",
+      "ok": true,
+      "sec": 12.5
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "06_accessory",
+      "ok": true,
+      "sec": 9.9
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "07_accessory",
+      "ok": true,
+      "sec": 10.6
+    },
+    {
+      "stage": "style",
+      "repeat": 1,
+      "slot": "01_outer+top",
+      "ok": true,
+      "sec": 13.2
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "04_bag",
+      "ok": true,
+      "sec": 11.5
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "05_shoes",
+      "ok": true,
+      "sec": 12.1
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "06_accessory",
+      "ok": true,
+      "sec": 10.0
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "07_accessory",
+      "ok": true,
+      "sec": 11.3
+    },
+    {
+      "stage": "style",
+      "repeat": 2,
+      "slot": "01_outer+top",
+      "ok": true,
+      "sec": 13.5
+    }
+  ],
+  "runs": [
+    {
+      "variant": "C",
+      "run": 1,
+      "file": "results/C_1.jpg",
+      "ok": true,
+      "sec": 3.0
+    },
+    {
+      "variant": "C",
+      "run": 2,
+      "file": "results/C_2.jpg",
+      "ok": true,
+      "sec": 2.8
+    }
+  ],
+  "backdrop": "generated",
+  "finished": "2026-09-26T15:50:17",
+  "api_calls": 33,
+  "est_cost_usd": 0
+}
