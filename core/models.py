@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field, HttpUrl
 Category = Literal["아우터", "상의", "하의", "원피스", "가방", "신발", "소품"]
 Monetize = Literal["none", "manual_link"]
 Approval = Literal["required", "optional"]
+SaleStatus = Literal["on_sale", "sold_out", "hidden"]
 
 
 class Product(BaseModel):
@@ -25,11 +26,17 @@ class Product(BaseModel):
     price: int = Field(ge=0)
     category: Category
     colors: list[str] = []
-    image_urls: list[HttpUrl] = Field(min_length=1)
-    has_flat_shot: bool = False
+    image_urls: list[HttpUrl] = Field(min_length=1)  # 누끼에 쓰기 좋은 사진부터 (첫 장이 대표)
+    has_flat_shot: bool = False  # 사람 없이 상품만 나온 사진이 있는지
     rating: float | None = Field(default=None, ge=0, le=5)
     review_count: int | None = Field(default=None, ge=0)
     last_used: date | None = None
+    # 4단계 수집 정보
+    status: SaleStatus = "on_sale"
+    style_tags: list[str] = []  # 쇼핑몰 스타일 (예: 심플베이직, 오피스룩)
+    query: str | None = None  # 이 상품을 찾은 검색어
+    collected_at: date | None = None  # 처음 모은 날
+    checked_at: date | None = None  # 판매 상태를 마지막으로 확인한 날
 
 
 class Slot(BaseModel):

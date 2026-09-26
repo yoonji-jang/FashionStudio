@@ -39,6 +39,12 @@ product_source:
   min_rating: 4.5
   min_reviews: 20
   prefer_flat_shot: true
+  queries:  # 카테고리별 검색어
+    상의: [셔츠, 니트]
+    하의: [슬랙스]
+  per_query: 10
+  max_per_category: 60
+  recheck_days: 3
 
 visual:
   backdrop: light-grey textured plaster surface, soft studio light

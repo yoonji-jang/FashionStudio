@@ -51,6 +51,11 @@ class ProductSourceConfig(BaseModel):
     min_rating: float = Field(default=4.5, ge=0, le=5)
     min_reviews: int = Field(default=20, ge=0)
     prefer_flat_shot: bool = True
+    # 상품 수집 (tools.collect). 카테고리별 검색어로 후보를 모아 data/<계정>/products.json 에 쌓는다
+    queries: dict[Category, list[str]] = {}
+    per_query: int = Field(default=20, ge=1, le=100)  # 검색어 하나당 상세까지 확인할 상품 수
+    max_per_category: int = Field(default=60, ge=1)  # 카테고리별 창고 최대 보관 수
+    recheck_days: int = Field(default=3, ge=0)  # 이 날짜가 지나면 판매 상태를 다시 확인
 
 
 ThemeType = Literal["아이템", "상황", "컬러무드", "타깃", "팁"]
