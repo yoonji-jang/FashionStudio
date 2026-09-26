@@ -1,0 +1,1 @@
+source: 6a8880e961b184fba55988d19246d2e3e6649678 spec: samples/women/feed_products.yaml product_image: photo
