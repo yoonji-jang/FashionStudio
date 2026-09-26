@@ -1,0 +1,46 @@
+{
+  "samples": "samples/women/fall_leather_final.yaml",
+  "account": "women",
+  "started": "2026-09-26T11:06:57",
+  "sandbox": true,
+  "items": [
+    {
+      "slot": "01_outer",
+      "source": "samples/women/fall_leather_final/outer_top.png"
+    },
+    {
+      "slot": "02_bottoms",
+      "source": "samples/women/fall_leather_final/bottoms_belt.png"
+    },
+    {
+      "slot": "03_bag",
+      "source": "samples/women/fall_leather_final/bag.png"
+    },
+    {
+      "slot": "04_shoes",
+      "source": "samples/women/fall_leather_final/shoes.png"
+    },
+    {
+      "slot": "05_accessory",
+      "source": "samples/women/fall_leather_final/necklace.png"
+    },
+    {
+      "slot": "06_accessory",
+      "source": "samples/women/fall_leather_final/earrings.png"
+    }
+  ],
+  "cutouts": [],
+  "runs": [
+    {
+      "variant": "C",
+      "run": 1,
+      "file": "results/C_1.jpg",
+      "ok": true,
+      "sec": 1.4
+    }
+  ],
+  "backdrop": "generated",
+  "finished": "2026-09-26T11:07:13",
+  "api_calls": 2,
+  "est_cost_usd": 0
+}
