@@ -44,7 +44,7 @@ visual:
   backdrop: light-grey textured plaster surface, soft studio light
   backdrop_ref: null
   feed_ratio: "4:5"
-  font: Pretendard-SemiBold.otf
+  font: Pretendard-Bold.otf  # 제목 모양 항목은 README의 visual 표 참고 (생략하면 기본값)
   logo_text: "@계정이름"
 
 schedule:
