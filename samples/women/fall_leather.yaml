@@ -22,8 +22,7 @@ items:
     desc: 브라운 스웨이드 호보 숄더백 (brown suede hobo shoulder bag)
     url: https://zigzag.kr/catalog/products/149153996
     crop: [0.06, 0.08, 0.475, 0.58]  # 사진에 가방 3개(색상별)가 있어 왼쪽 위 브라운만 사용
-    segment: brown bag
-    negative: black bag
+    segment: bag  # "brown bag" + negative "black bag" 는 누끼가 실패해서 사용 안 함 (run-7)
   - category: 신발
     desc: 그린 스웨이드 페니 로퍼 (green suede penny loafers)
     segment: shoe
