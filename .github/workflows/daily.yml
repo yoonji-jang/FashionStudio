@@ -5,7 +5,9 @@ name: daily
 # - Actions 탭에서 "Run workflow": 버튼 하나로 주제 → 상품 → 코디컷 → 캐러셀 → 캡션
 #   (Secret CLAUDE_CODE_OAUTH_TOKEN 필요. 기획 파일(plan)을 주면 Claude 없이 그 기획으로 만들기만 한다)
 # - 작업 브랜치에 커밋 메시지에 [daily] 와 [plan:경로] 를 넣어 푸시하면 그 기획으로 만든다
-# 게시는 하지 않는다 (8단계). 결과는 artifact 와 daily-results 브랜치의 <날짜>-run<번호>/ 에 올라간다
+# 8단계: 다 만들면 텔레그램으로 미리보기를 보낸다 (Secret TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 가 있을 때).
+# 게시는 여기서 하지 않고 publish 워크플로가 /ok 답장을 확인해 올린다.
+# 결과는 artifact 와 daily-results 브랜치의 <날짜>-run<번호>/ 에 올라간다
 # (쇼핑몰 원본 사진은 올리지 않음). 매일 자동 실행은 9단계에서 붙인다.
 on:
   workflow_dispatch:
@@ -34,6 +36,10 @@ on:
         description: 기획 파일로 만들 때도 Claude 로 이미지 검수 (CLAUDE_CODE_OAUTH_TOKEN 필요)
         type: boolean
         default: true
+      preview:
+        description: 텔레그램으로 미리보기 보내기 (샌드박스 결과는 게시 버튼 없이)
+        type: boolean
+        default: true
   push:
     branches: ["claude/**"]
     paths: ["samples/**", "tools/plan.py", "tools/review.py", ".claude/**", ".github/workflows/daily.yml"]
@@ -60,6 +66,9 @@ jobs:
       COMMIT_MSG: ${{ github.event.head_commit.message }}
       HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
       REVIEW: ${{ (github.event_name == 'push' || inputs.review) && '1' || '' }}
+      PREVIEW: ${{ inputs.preview && '1' || '' }}
+      HAS_TELEGRAM: ${{ secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
+      RUN: ${{ github.run_number }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -133,6 +142,18 @@ jobs:
             --max-turns 60
             --allowedTools "Bash(python -m tools.review:*),Read,Write,Glob,Task,Agent"
 
+      - name: 텔레그램 미리보기
+        if: env.PREVIEW == '1' && env.HAS_TELEGRAM == 'true'
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          [ -f "out/$DATE/manifest.json" ] || { echo "결과가 없어 미리보기를 보내지 않습니다"; exit 0; }
+          # 샌드박스 코디컷에는 워터마크가 있어 게시하지 않는다 (미리보기만)
+          flag=""; [ -n "$SANDBOX" ] && [ "$OUTFIT" = photoroom ] && flag="--sandbox"
+          python -m tools.notify preview "out/$DATE" --run "$DATE-run$RUN" $flag
+
       - name: 요약 표시
         if: always()
         run: |
@@ -146,6 +167,9 @@ jobs:
           mkdir -p /tmp/upload
           [ -d "out/$DATE" ] || exit 0
           rsync -a --exclude '/photos/' --exclude 'src/' --exclude 'originals/' "out/$DATE/" /tmp/upload/
+          # 게시 job 이 샌드박스(워터마크) 결과를 게시하지 않도록 만든 방식을 남긴다
+          sandbox=false; [ -n "$SANDBOX" ] && [ "$OUTFIT" = photoroom ] && sandbox=true
+          echo "{\"run\": \"$DATE-run$RUN\", \"account\": \"$ACCOUNT\", \"sandbox\": $sandbox}" > /tmp/upload/run.json
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -158,7 +182,7 @@ jobs:
         if: always()
         run: |
           [ -n "$(ls -A /tmp/upload)" ] || exit 0
-          dest="$DATE-run${{ github.run_number }}"
+          dest="$DATE-run$RUN"
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
           if git fetch origin daily-results 2>/dev/null; then

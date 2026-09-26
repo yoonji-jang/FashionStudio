@@ -1,0 +1,301 @@
+r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 부르지 않는다 (허용 목록에서 막힘).
+
+1. 결과 폴더 고르기: daily-results 브랜치의 <날짜>-run<번호>/ 중
+   이 계정의, 미리보기를 보낸 가장 최근 것
+2. 게시 전 검사: 사진 수·비율·용량, 캡션 길이, 해시태그 수, AI 합성 고지, 광고 고지(manual_link)
+3. 승인 확인: 텔레그램 답장 /ok, /skip (profile approval)
+   - required: /ok 가 있어야 게시
+   - optional: /skip 이 없으면 게시. 단 검수에서 사람 확인(needs_human)이 붙은 날은 /ok 가 있어야 함
+4. 사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
+5. 게시 기록(data/<계정>/posts.json)과 결과 폴더 published.json 을 쓰고 텔레그램으로 알림
+
+종료 코드: 0 게시·건너뜀·이미 게시됨, 3 아직 승인 없음(게시 안 함), 1 오류
+
+사용법:
+  python -m tools.publish --account women --date 2026-09-27 --results <daily-results 폴더>
+      [--run 2026-09-27-run12] [--dry-run] [--force] [--allow-sandbox]
+환경 변수: IG_TOKEN, IG_USER_ID (또는 프로필 instagram 의 Secret 이름), TELEGRAM_BOT_TOKEN,
+TELEGRAM_CHAT_ID, MEDIA_REPO_TOKEN
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+import time
+from datetime import date, datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import httpx
+from PIL import Image
+
+from core.models import Manifest, PostRecord, PreviewRecord, PublishRecord
+from core.profile import Profile, load_profile
+from core.store import Store
+from tools import notify
+from tools.ig_publish import IGError, Instagram
+from tools.media_host import GitHubHost
+
+WAITING = 3
+MAX_BYTES = 8 * 1024 * 1024  # 인스타 사진 최대 8MB
+RATIO = (0.8, 1.91)  # 폭/높이 (4:5 ~ 1.91:1)
+
+
+class Blocked(Exception):
+    """게시하면 안 되는 상태 (오류로 알림)."""
+
+
+def find_run(results: Path, account: str, day: date, run: str | None = None) -> Path:
+    if run:
+        path = results / run
+        if not (path / "manifest.json").exists():
+            raise FileNotFoundError(f"결과 폴더에 manifest.json 이 없습니다: {path}")
+        return path
+    found: list[tuple[bool, int, Path]] = []
+    for d in results.glob(f"{day}-run*"):
+        m = re.fullmatch(rf"{day}-run(\d+)", d.name)
+        if not m or not (d / "manifest.json").exists():
+            continue
+        if notify.load_manifest(d).account != account:
+            continue
+        found.append(((d / "telegram.json").exists(), int(m.group(1)), d))
+    if not found:
+        raise FileNotFoundError(f"{account} {day} 결과가 없습니다 ({results})")
+    return max(found)[2]  # 미리보기를 보낸 것 중 가장 최근, 없으면 가장 최근
+
+
+def made_with(out: Path) -> dict:
+    """daily 워크플로가 남긴 run.json (run, account, sandbox). 없으면 빈 dict."""
+    path = out / "run.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def guard(manifest: Manifest, profile: Profile, images: list[Path], cfg: dict) -> list[str]:
+    """게시 전 규칙 검사. 문제 목록 (비어 있으면 통과)."""
+    errors: list[str] = []
+    c = profile.copy_rules
+    if manifest.account != profile.id:
+        errors.append(f"계정이 다릅니다 ({manifest.account} ≠ {profile.id})")
+    if manifest.monetize != profile.monetize:
+        errors.append(
+            f"만든 뒤 수익 방식이 바뀌었습니다 ({manifest.monetize} → {profile.monetize}). "
+            "다시 만드세요"
+        )
+    if not 1 <= len(images) <= 10:
+        errors.append(f"사진은 1~10장이어야 합니다 (지금 {len(images)}장)")
+    for p in images:
+        if p.stat().st_size > MAX_BYTES:
+            errors.append(f"{p.name}: 8MB 를 넘습니다")
+        with Image.open(p) as im:
+            if im.format != "JPEG":
+                errors.append(f"{p.name}: JPEG 가 아닙니다 ({im.format})")
+            ratio = im.width / im.height
+            if not RATIO[0] - 0.005 <= ratio <= RATIO[1]:
+                errors.append(f"{p.name}: 비율 {im.width}x{im.height} 은 인스타에서 잘립니다")
+    text = notify.full_caption(manifest)
+    if len(text) > cfg.get("caption_max", 2200):
+        errors.append(f"캡션이 {len(text)}자로 {cfg.get('caption_max', 2200)}자를 넘습니다")
+    if len(manifest.hashtags) > cfg.get("hashtags_max", 30):
+        errors.append(f"해시태그가 {len(manifest.hashtags)}개로 너무 많습니다")
+    if c.ai_notice not in manifest.caption:
+        errors.append("캡션에 AI 합성 고지가 없습니다")
+    if profile.monetize == "manual_link":
+        if not manifest.caption.lstrip().startswith(c.ad_notice):
+            errors.append("manual_link 인데 캡션 맨 앞에 광고 고지가 없습니다")
+        if not manifest.hashtags or manifest.hashtags[0] != c.ad_hashtag:
+            errors.append(f"manual_link 인데 첫 해시태그가 {c.ad_hashtag} 가 아닙니다")
+    return errors
+
+
+def approval(
+    profile: Profile, manifest: Manifest, record: PreviewRecord | None, decided: str | None
+) -> tuple[str, str]:
+    """(ok·auto 게시 / skip 건너뜀 / wait 기다림, 설명)."""
+    if record is None:
+        return "wait", "미리보기를 보낸 기록이 없어 승인을 받을 수 없습니다"
+    if decided == "skip":
+        return "skip", "/skip 으로 건너뛰었습니다"
+    if decided == "ok":
+        return "ok", "/ok 로 승인했습니다"
+    if profile.approval == "optional" and not manifest.needs_human:
+        return "auto", "승인 생략 설정이라 자동 게시합니다"
+    why = "사람 확인이 필요한 날이라" if manifest.needs_human else "승인 필수 설정이라"
+    return "wait", f"{why} /ok 를 기다립니다"
+
+
+def run(
+    account: str,
+    day: date,
+    results: Path,
+    run_name: str | None = None,
+    dry_run: bool = False,
+    force: bool = False,
+    allow_sandbox: bool = False,
+    store: Store | None = None,
+    tg: notify.Telegram | None = None,
+    ig: Instagram | None = None,
+    host: GitHubHost | None = None,
+) -> int:
+    profile = load_profile(account)
+    store = store or Store(account)
+    cfg = notify.publish_config()
+    tag = f"[{account}] {day}"
+
+    if any(p.date == day for p in store.posts()):
+        print(f"{tag} 이미 게시했습니다 (posts.json)")
+        return 0
+    out = find_run(results, account, day, run_name)
+    if (out / "published.json").exists():
+        print(f"{tag} 이미 게시했습니다 ({out.name}/published.json)")
+        return 0
+    manifest = notify.load_manifest(out)
+    if manifest.date != day:
+        raise Blocked(f"결과 날짜가 다릅니다 ({manifest.date})")
+    images = notify.slide_paths(manifest, out)
+    errors = guard(manifest, profile, images, cfg.get("instagram", {}))
+    if errors:
+        raise Blocked("게시 전 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
+
+    record = notify.load_record(out)
+    if not allow_sandbox:
+        if (record and record.sandbox) or made_with(out).get("sandbox", True):
+            raise Blocked(
+                "샌드박스(워터마크) 결과이거나 만든 방식(run.json)을 알 수 없어 게시하지 않습니다"
+            )
+    if force:
+        how, why = "force", "승인 확인 없이 게시합니다 (--force)"
+    else:
+        if tg is None and not dry_run:
+            tg = notify.Telegram.from_env()
+        decided = None
+        if record and tg is not None:
+            decided = notify.find_decision(tg.updates(), record, tg.chat_id)
+        how, why = approval(profile, manifest, record, decided)
+    print(f"{tag} {out.name}: {why}")
+    if how == "skip":
+        return 0
+    if how == "wait":
+        if tg is not None and not dry_run:
+            tg.send(f"{tag} 아직 게시하지 않았어요. {why}")
+        return WAITING
+
+    if dry_run:
+        n = len(notify.full_caption(manifest))
+        print(f"(시험) 사진 {len(images)}장, 캡션 {n}자를 게시할 예정")
+        for p in images:
+            print(f"  {p.name}")
+        return 0
+
+    ig_cfg = cfg.get("instagram", {})
+    if ig is None:
+        # Actions 는 계정별 Secret 을 IG_USER_ID, IG_TOKEN 으로 넘긴다 (로컬은 Secret 이름도 됨)
+        env = os.environ.get
+        ig = Instagram(
+            env("IG_USER_ID") or env(profile.instagram.user_id_secret, ""),
+            env("IG_TOKEN") or env(profile.instagram.token_secret, ""),
+            ig_cfg.get("api_base", "https://graph.instagram.com/v23.0"),
+            wait_sec=ig_cfg.get("wait_sec", 5),
+            wait_tries=ig_cfg.get("wait_tries", 36),
+        )
+    host_cfg = cfg.get("image_host", {})
+    host = host or GitHubHost.from_config(host_cfg)
+    limit = ig.publish_limit()
+    if limit and limit[0] >= limit[1]:
+        raise Blocked(f"인스타 24시간 게시 한도에 닿았습니다 ({limit[0]}/{limit[1]})")
+
+    uploaded = host.upload(images, f"{account}/{out.name}")
+    try:
+        media_id = ig.publish([u.url for u in uploaded], notify.full_caption(manifest))
+    finally:
+        if not host_cfg.get("keep", False):
+            try:
+                host.delete(uploaded)
+            except (RuntimeError, httpx.HTTPError) as e:
+                print(f"경고: 게시용 사진을 지우지 못했습니다: {e}", file=sys.stderr)
+    link = ig.permalink(media_id)
+
+    now = int(time.time())
+    (out / "published.json").write_text(
+        PublishRecord(
+            account=account,
+            date=day,
+            run=out.name,
+            media_id=media_id,
+            permalink=link,
+            images=len(images),
+            decision=how,
+            published_at=now,  # type: ignore[arg-type]
+        ).model_dump_json(indent=2),
+        encoding="utf-8",
+    )
+    posts = store.posts()
+    posts.append(
+        PostRecord(
+            date=day,
+            title=" ".join(manifest.title_lines),
+            theme=manifest.plan.theme.title_hint,
+            products=[p.id for p in manifest.plan.items],
+            permalink=link,
+        )
+    )
+    store.save_posts(sorted(posts, key=lambda p: p.date))
+    print(f"{tag} 게시 완료: {link or media_id}")
+    if tg is not None:
+        tg.send(f"{tag} 게시했어요 ✓\n{link or ''}".strip())
+    return 0
+
+
+def today(profile: Profile) -> date:
+    return datetime.now(ZoneInfo(profile.schedule.timezone)).date()
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+    ap.add_argument(
+        "--account", default=os.environ.get("ACCOUNT"), required="ACCOUNT" not in os.environ
+    )
+    ap.add_argument("--date", help="게시 날짜 (기본: 계정 시간대 오늘)")
+    ap.add_argument("--results", type=Path, required=True, help="daily-results 브랜치를 꺼낸 폴더")
+    ap.add_argument("--run", help="게시할 결과 폴더 이름 (기본: 미리보기를 보낸 가장 최근 것)")
+    ap.add_argument("--dry-run", action="store_true", help="검사와 승인 확인까지만")
+    ap.add_argument("--force", action="store_true", help="텔레그램 승인 없이 게시")
+    ap.add_argument("--allow-sandbox", action="store_true", help="샌드박스 결과도 게시 (시험용)")
+    args = ap.parse_args(argv)
+
+    profile = load_profile(args.account)
+    day = date.fromisoformat(args.date) if args.date else today(profile)
+    tg = None
+    try:
+        tg = notify.Telegram.from_env()
+    except ValueError:
+        print("텔레그램 설정이 없어 승인·알림 없이 진행합니다", file=sys.stderr)
+    try:
+        return run(
+            args.account,
+            day,
+            args.results,
+            args.run,
+            args.dry_run,
+            args.force,
+            args.allow_sandbox,
+            tg=tg,
+        )
+    except (Blocked, IGError, ValueError, FileNotFoundError, RuntimeError, httpx.HTTPError) as e:
+        msg = f"[{args.account}] {day} 게시 실패: {e}"
+        if isinstance(e, IGError) and e.token_problem:
+            msg += "\n인스타 토큰이 만료됐거나 취소됐어요. 새 토큰을 Secret 에 다시 등록해 주세요."
+        print(msg, file=sys.stderr)
+        if tg is not None and not args.dry_run:
+            try:
+                tg.send(msg)
+            except (RuntimeError, httpx.HTTPError):
+                pass
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

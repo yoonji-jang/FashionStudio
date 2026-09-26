@@ -10,9 +10,10 @@
 | feed            | 5    | 캐러셀 슬라이드                        |
 | plan            | 6    | 하루 기획 검사·빌드                    |
 | review          | 7    | 코디컷 후보 검수표, 점수 적용·표지 선택 |
-| upload_r2       | 7    | 공개 URL 업로드                        |
-| guard           | 7    | 게시 전 규칙 검사                      |
-| ig_publish      | 7    | 인스타 게시 (Claude 허용 목록에 없음)  |
-| record          | 7    | 게시 기록, 링크 페이지 갱신            |
-| notify          | 8    | 텔레그램 미리보기·알림                 |
+| notify          | 8    | 텔레그램 미리보기·승인 읽기·알림       |
+| media_host      | 8    | 게시용 사진을 공개 주소에 잠시 올리기  |
+| ig_publish      | 8    | 인스타 게시 API                        |
+| publish         | 8    | 게시 job: 검사·승인 확인·게시·기록     |
+
+notify, media_host, ig_publish, publish 는 외부로 보내는 도구라 Claude 허용 목록에서 막혀 있다.
 """
