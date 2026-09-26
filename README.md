@@ -51,6 +51,7 @@ uv run pytest
 | `accounts/index.yaml` | 매일 돌릴 계정 목록 | 계정 추가·중지할 때 |
 | GitHub Secrets | API 키, 인스타 토큰 등 비밀값 (저장소 밖에 보관) | 처음 한 번, 토큰 만료 시 |
 | `config/models.yaml` | 사용할 Gemini 모델 이름 | 거의 안 바꿈 |
+| `prompts/` | Gemini에 보내는 연출 지시문(정리컷, 코디컷, 카테고리별 배치) | 이미지 품질을 다듬을 때 |
 | `assets/fonts/` | 제목 폰트 파일 | 처음 한 번 |
 
 사용자가 고치지 않는 곳: `core/`, `sources/`, `tools/`, `tests/`, `CLAUDE.md`, `.claude/settings.json`
@@ -213,9 +214,36 @@ accounts:
 | `image.retry` | gemini-3-pro-image | 품질 미달 시 재생성 (비싸지만 정확) |
 | `image.test` | gemini-3.1-flash-lite-image | 테스트용 저가 모델 |
 
-### 6. `assets/fonts/` : 폰트
+### 6. `prompts/` : 이미지 연출 지시문
+
+| 파일 | 역할 |
+|---|---|
+| `extract.md` | 상품 사진 1장 → 사람·글자 없는 단독 정리컷 |
+| `compose.md` | 정리컷 여러 장 → 플랫레이 코디컷. 배경은 프로필 `visual.backdrop` 이 들어감 |
+| `layout.yaml` | 카테고리별 기본 배치 (아우터는 위 가운데, 가방은 왼쪽 등) |
+
+`$이름` 자리는 코드가 채우니 지우지 마세요. 맨 위 `<!-- -->` 주석은 Gemini에 보내지 않습니다.
+
+### 7. `assets/fonts/` : 폰트
 
 `profile.yaml` 의 `visual.font` 에 적은 파일을 넣습니다. 기본은 Pretendard(SIL OFL, 상업 이용 가능)입니다.
+
+---
+
+## 이미지 품질 실험 (2단계)
+
+같은 코디를 여러 방식으로 만들어 원본 상품과 비교합니다. Gemini 요금이 나가므로 사람이 켤 때만 돕니다.
+
+1. `samples/<계정>/<이름>.yaml` 에 코디 한 벌(상품 5~7개)을 적습니다. 상품 페이지 주소(`url`) 또는
+   직접 캡처한 사진 경로(`image`)를 씁니다.
+2. 실험 방식은 `experiments/image_poc.yaml` 에서 정합니다 (정리컷 여부, 배치 지시 여부, 모델, 반복 횟수).
+3. GitHub → Actions → `image-poc` → Run workflow. 끝나면 결과가 artifact와 `poc-results` 브랜치에 올라갑니다.
+   - `sheets/variant_<방식>.jpg`: 위 줄은 원본 상품, 아래는 생성 결과
+   - `sheets/extract.jpg`: 원본과 정리컷 비교
+   - `scores.csv`: 상품별 색·형태·디테일 점수표
+4. 로컬에서는 환경 변수 `GEMINI_API_KEY` 를 설정한 뒤
+   `uv run python -m tools.poc --samples samples/women/fall_leather.yaml --out out/poc/test` 로 돌립니다.
+   `--fake` 를 붙이면 API 없이 흐름만 확인합니다.
 
 ---
 
@@ -232,8 +260,8 @@ accounts:
 
 | 단계 | 내용 | 상태 |
 |---|---|---|
-| 1 | 저장소 뼈대, 설정, 데이터 규격 | 진행 중 |
-| 2 | 이미지 생성 품질 검증 | |
+| 1 | 저장소 뼈대, 설정, 데이터 규격 | 완료 |
+| 2 | 이미지 생성 품질 검증 | 진행 중 |
 | 3 | 제목 글자 합성 | |
 | 4 | 상품 수집 | |
 | 5 | Claude Code 스킬·에이전트 | |

@@ -5,6 +5,8 @@
       "Bash(python -m tools.scout:*)",
       "Bash(python -m tools.gemini_image:*)",
       "Bash(python -m tools.overlay:*)",
+      "Bash(python -m tools.compare:*)",
+      "Bash(python -m tools.poc:*)",
       "Bash(python -m tools.review_prep:*)",
       "Bash(pytest:*)",
       "Read",
