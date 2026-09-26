@@ -39,7 +39,7 @@ class SlotRule(BaseModel):
 
 class Outfit(BaseModel):
     items_min: int = Field(default=5, ge=1)
-    items_max: int = Field(default=7, le=10)  # Gemini 참고 이미지 한도 안쪽
+    items_max: int = Field(default=7, le=10)  # 한 장에 배치할 수 있는 상품 수
     slots: list[SlotRule] = Field(min_length=1)
     reuse_cooldown_days: int = Field(default=14, ge=0)
     max_per_shop: int = Field(default=2, ge=1)

@@ -1,7 +1,8 @@
 # FashionStudio 프로젝트 규칙
 
 매일 인스타그램 코디 게시물(캐러셀, 릴스)을 자동으로 만드는 파이프라인.
-Claude는 기획·상품 선택·문구·검수를, Gemini는 이미지 생성을 맡고, GitHub Actions가 매일 실행한다.
+Claude는 기획·상품 선택·문구·검수를, Photoroom API는 상품 누끼·그림자·배경을 맡고, GitHub Actions가 매일 실행한다.
+코디컷은 상품 누끼를 코드로 배치해 만든다 (AI가 상품을 새로 그리지 않음).
 
 ## 반드시 지킬 것
 - 모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `accounts/$ACCOUNT/voice.md` 를 따른다.
@@ -11,7 +12,7 @@ Claude는 기획·상품 선택·문구·검수를, Gemini는 이미지 생성�
 - 하루 결과물은 반드시 `core.models.Manifest` 규격으로 `out/<날짜>/manifest.json` 에 쓴다.
 - 상품 사이트는 `tools.scout` 로만 접근한다 (로그인 없이 공개 페이지만, 요청 간격 유지).
 - 이미지 안의 글자는 AI가 그리지 않는다. 제목은 `tools.overlay` 가 합성한다.
-- 모델 ID는 `config/models.yaml` 에서 읽는다. 프롬프트는 `prompts/` 템플릿으로 분리한다.
+- 이미지 API 설정은 `config/models.yaml`, 배치는 `config/layout.yaml` 에서 읽는다. 프롬프트는 `prompts/` 템플릿으로 분리한다.
 - 비밀값(API 키, 토큰)은 파일에 쓰지 않는다. 로컬은 `.env`, Actions는 Secrets. 프로필에는 Secret 이름만 둔다.
 - `monetize: manual_link` 이면 캡션 맨 앞 광고 고지와 첫 해시태그 `#광고` 가 필수다.
 - 모든 캡션에 AI 합성 고지를 넣는다.

@@ -1,5 +1,7 @@
-# 사용하는 AI 모델 ID. 모델이 바뀌면 여기만 고친다 (계정 프로필과 분리).
+# 이미지 API 설정 (계정과 무관). 서비스나 모델이 바뀌면 여기만 고친다.
 image:
-  default: gemini-3.1-flash-image   # 참고 이미지 최대 10장
-  retry: gemini-3-pro-image         # 재생성 2회차
-  test: gemini-3.1-flash-lite-image
+  provider: photoroom
+  endpoint: https://image-api.photoroom.com/v2/edit
+  shadow_model_version: "2026-04-15"   # AI 그림자 모델 (pr-ai-shadows-model-version 헤더)
+  flat_lay_size: PORTRAIT_HD_3_2       # 옷 정리컷 비율
+  backdrop_size: PORTRAIT_4_3          # 배경 사진 생성 비율 (합성 때 4:5로 자름)

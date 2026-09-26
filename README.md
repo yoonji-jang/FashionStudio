@@ -3,7 +3,8 @@
 매일 인스타그램 코디 게시물을 자동으로 만들고 올리는 파이프라인입니다.
 
 - **Claude**: 주제 선정, 상품 조합, 제목·캡션, 이미지 검수 (Claude Code 스킬·에이전트)
-- **Gemini**: 상품 정리컷과 회색 배경 플랫레이 코디컷 생성
+- **Photoroom API**: 상품 사진에서 누끼 따기(옷은 바닥에 펼친 모양으로), 그림자·배경 입히기
+- **코드(Pillow)**: 누끼를 배경 위에 배치해 코디컷 합성. 상품을 AI가 새로 그리지 않아 원본 그대로 나옴
 - **GitHub Actions**: 매일 생성 → 텔레그램 승인 → 인스타 게시
 
 계정별 설정은 `accounts/<계정>/` 에 있고, 코드와 스킬은 모든 계정이 함께 씁니다.
@@ -50,8 +51,9 @@ uv run pytest
 | `accounts/<계정>/voice.md` | 제목·캡션 말투, 좋은 제목 예시, 해시태그, 금지 표현 | 반응 보면서 가끔 |
 | `accounts/index.yaml` | 매일 돌릴 계정 목록 | 계정 추가·중지할 때 |
 | GitHub Secrets | API 키, 인스타 토큰 등 비밀값 (저장소 밖에 보관) | 처음 한 번, 토큰 만료 시 |
-| `config/models.yaml` | 사용할 Gemini 모델 이름 | 거의 안 바꿈 |
-| `prompts/` | Gemini에 보내는 연출 지시문(정리컷, 코디컷, 카테고리별 배치) | 이미지 품질을 다듬을 때 |
+| `config/models.yaml` | 이미지 API(Photoroom) 설정 | 거의 안 바꿈 |
+| `config/layout.yaml` | 코디컷에서 상품별 위치·크기 | 배치를 바꾸고 싶을 때 |
+| `prompts/` | Photoroom에 보내는 지시문(옷 펼치기, 배경) | 이미지 품질을 다듬을 때 |
 | `assets/fonts/` | 제목 폰트 파일 | 처음 한 번 |
 
 사용자가 고치지 않는 곳: `core/`, `sources/`, `tools/`, `tests/`, `CLAUDE.md`, `.claude/settings.json`
@@ -176,7 +178,7 @@ accounts:
 
 | 이름 | 용도 |
 |---|---|
-| `GEMINI_API_KEY` | 이미지 생성 (Google AI Studio에서 발급, 결제 등록 필요) |
+| `PHOTOROOM_API_KEY` | 상품 누끼·그림자·배경 (Photoroom API 대시보드에서 발급, 아래 참고) |
 | `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (`claude setup-token`, Pro·Max 구독) |
 | `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` | 인스타 게시 (아래 참고) |
 | `R2_ACCOUNT_ID`, `R2_ACCESS_KEY`, `R2_SECRET`, `R2_BUCKET`, `R2_PUBLIC_BASE_URL` | 인스타가 가져갈 이미지 공개 주소 (Cloudflare R2) |
@@ -206,23 +208,40 @@ accounts:
 - 봇 토큰이 알려지면 누구나 봇을 조종할 수 있으니 파일이나 채팅에 붙여 넣지 마세요. 새어 나갔다면 @BotFather 에서 `/revoke` 로 재발급합니다.
 - 봇은 등록된 채팅 ID에서 온 명령만 따릅니다.
 
-### 5. `config/models.yaml` : AI 모델
+#### Photoroom API 키 발급
 
-| 항목 | 예시 | 의미 |
+1. [Photoroom API 대시보드](https://app.photoroom.com/api-dashboard)에 가입하고 API 키를 만듭니다.
+2. **Plus 요금제**(Image Editing API)가 필요합니다. 옷 펼치기(Flat Lay), AI 그림자·배경이 여기에 들어 있고,
+   호출 1번에 약 $0.10입니다. Basic 요금제는 배경 지우기만 돼서 쓸 수 없습니다.
+3. 키를 GitHub Secrets에 `PHOTOROOM_API_KEY` 로 등록합니다.
+4. 요금 없이 흐름만 보려면 샌드박스를 씁니다 (하루 100회 무료, 결과에 워터마크). 코드가 키 앞에
+   `sandbox_` 를 붙여 주므로 키는 그대로 두고, 실행할 때 샌드박스 옵션만 켜면 됩니다.
+
+### 5. `config/models.yaml`, `config/layout.yaml` : 이미지 설정
+
+`models.yaml` 은 Photoroom 주소와 옵션입니다.
+
+| 항목 | 기본값 | 의미 |
 |---|---|---|
-| `image.default` | gemini-3.1-flash-image | 기본 이미지 생성 |
-| `image.retry` | gemini-3-pro-image | 품질 미달 시 재생성 (비싸지만 정확) |
-| `image.test` | gemini-3.1-flash-lite-image | 테스트용 저가 모델 |
+| `image.flat_lay_size` | PORTRAIT_HD_3_2 | 옷 누끼 비율 |
+| `image.backdrop_size` | PORTRAIT_4_3 | 배경 사진 생성 비율 (합성 때 4:5로 자름) |
+| `image.shadow_model_version` | 2026-04-15 | AI 그림자 모델 버전 |
 
-### 6. `prompts/` : 이미지 연출 지시문
+`layout.yaml` 은 1080×1350 캔버스에서 카테고리별 위치입니다. `center` 는 상품 중심(0~1 비율),
+`size` 는 상품이 들어갈 상자 크기, `z` 는 겹칠 때 위에 오는 순서입니다. 아우터가 없으면 `no_outer` 자리를 씁니다.
+
+배경 사진은 프로필 `visual.backdrop` 문구로 한 번 생성합니다. 마음에 드는 배경을
+`accounts/<계정>/backdrop.jpg` 로 넣고 `visual.backdrop_ref: backdrop.jpg` 로 지정하면 그 사진을 계속 씁니다.
+
+### 6. `prompts/` : Photoroom 지시문
 
 | 파일 | 역할 |
 |---|---|
-| `extract.md` | 상품 사진 1장 → 사람·글자 없는 단독 정리컷 |
-| `compose.md` | 정리컷 여러 장 → 플랫레이 코디컷. 배경은 프로필 `visual.backdrop` 이 들어감 |
-| `layout.yaml` | 카테고리별 기본 배치 (아우터는 위 가운데, 가방은 왼쪽 등) |
+| `flatlay.md` | 모델이 입은 옷 사진 → 바닥에 펼친 옷 (Flat Lay) |
+| `backdrop.md` | 빈 배경 사진 생성. 프로필 `visual.backdrop` 이 들어감 |
+| `background.md` | 코디 뒤에 AI 배경·그림자 생성 (실험 C 방식) |
 
-`$이름` 자리는 코드가 채우니 지우지 마세요. 맨 위 `<!-- -->` 주석은 Gemini에 보내지 않습니다.
+`$이름` 자리는 코드가 채우니 지우지 마세요. 맨 위 `<!-- -->` 주석은 보내지 않습니다.
 
 ### 7. `assets/fonts/` : 폰트
 
@@ -232,16 +251,22 @@ accounts:
 
 ## 이미지 품질 실험 (2단계)
 
-같은 코디를 여러 방식으로 만들어 원본 상품과 비교합니다. Gemini 요금이 나가므로 사람이 켤 때만 돕니다.
+같은 코디를 여러 방식으로 만들어 원본 상품과 비교합니다. Photoroom 요금이 나가므로 사람이 켤 때만 돕니다
+(기본 설정 한 번에 약 19회 호출, 약 $2).
 
 1. `samples/<계정>/<이름>.yaml` 에 코디 한 벌(상품 5~7개)을 적습니다. 상품 페이지 주소(`url`) 또는
-   직접 캡처한 사진 경로(`image`)를 씁니다.
-2. 실험 방식은 `experiments/image_poc.yaml` 에서 정합니다 (정리컷 여부, 배치 지시 여부, 모델, 반복 횟수).
-3. GitHub → Actions → `image-poc` → Run workflow. 끝나면 결과가 artifact와 `poc-results` 브랜치에 올라갑니다.
-   - `sheets/variant_<방식>.jpg`: 위 줄은 원본 상품, 아래는 생성 결과
-   - `sheets/extract.jpg`: 원본과 정리컷 비교
+   직접 캡처한 사진 경로(`image`)를 씁니다. 한 사진에 여러 색이 있으면 `crop` 으로 일부만 쓰고,
+   가방·신발·소품은 `segment` 에 남길 물건을 영어로 적습니다 (예: `bag`, `shoe`, `belt`).
+2. 실험 방식은 `experiments/image_poc.yaml` 에서 정합니다.
+   - A: 코드 배치 + 코드 그림자 (추가 호출 없음)
+   - B: 코드 배치 + Photoroom AI 그림자
+   - C: 코드 배치 + Photoroom AI 배경
+3. GitHub → Actions → `image-poc` → Run workflow (샌드박스 체크 가능). 끝나면 결과가 artifact와
+   `poc-results` 브랜치에 올라갑니다.
+   - `sheets/cutouts.jpg`: 원본과 누끼 비교 (옷 누끼는 AI가 다시 그리므로 여기서 원본과 같은지 확인)
+   - `sheets/variant_<방식>.jpg`: 위 줄은 원본 상품, 아래는 코디컷
    - `scores.csv`: 상품별 색·형태·디테일 점수표
-4. 로컬에서는 환경 변수 `GEMINI_API_KEY` 를 설정한 뒤
+4. 로컬에서는 환경 변수 `PHOTOROOM_API_KEY` 를 설정한 뒤
    `uv run python -m tools.poc --samples samples/women/fall_leather.yaml --out out/poc/test` 로 돌립니다.
    `--fake` 를 붙이면 API 없이 흐름만 확인합니다.
 

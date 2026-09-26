@@ -1,8 +1,8 @@
 name: image-poc
 
-# 2단계 이미지 품질 실험. Gemini 요금이 나가므로 사람이 켤 때만 돈다.
+# 2단계 이미지 품질 실험. Photoroom 요금(호출당 약 $0.10)이 나가므로 사람이 켤 때만 돈다.
 # - Actions 탭에서 "Run workflow" (main에 합쳐진 뒤)
-# - 또는 작업 브랜치에 커밋 메시지에 [image-poc] 를 넣어 푸시
+# - 또는 작업 브랜치에 커밋 메시지에 [image-poc] 를 넣어 푸시 ([sandbox] 도 넣으면 무료 샌드박스)
 # 결과는 artifact 로 올리고, 같은 내용을 poc-results 브랜치의 <실행번호>/ 폴더에도 커밋한다.
 on:
   workflow_dispatch:
@@ -14,11 +14,15 @@ on:
         description: 실행할 방식 (빈칸이면 전부, 예 "A B")
         default: ""
       repeats:
-        description: 방식별 생성 횟수 (빈칸이면 experiments/image_poc.yaml)
+        description: 회차 수 (빈칸이면 experiments/image_poc.yaml)
         default: ""
+      sandbox:
+        description: 무료 샌드박스로 실행 (결과에 워터마크)
+        type: boolean
+        default: false
   push:
     branches: ["claude/**"]
-    paths: ["experiments/**", "samples/**", "prompts/**", "tools/gemini_image.py", "tools/poc.py"]
+    paths: ["experiments/**", "samples/**", "prompts/**", "config/**", "tools/**"]
 
 permissions:
   contents: write
@@ -44,7 +48,8 @@ jobs:
 
       - name: 실험 실행
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PHOTOROOM_API_KEY: ${{ secrets.PHOTOROOM_API_KEY }}
+          PHOTOROOM_SANDBOX: ${{ (inputs.sandbox || contains(github.event.head_commit.message, '[sandbox]')) && '1' || '' }}
         run: |
           args=(--samples "$SAMPLES" --out "$OUT")
           [ -n "$VARIANTS" ] && args+=(--variants $VARIANTS)

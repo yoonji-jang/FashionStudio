@@ -1,27 +1,15 @@
-# 2단계 이미지 품질 실험 설정. python -m tools.poc 가 읽는다.
-# 같은 코디를 방식(variant)마다 repeats 번씩 만들어 원본과 비교한다.
-repeats: 5
-image_size: 2K        # 코디컷 해상도 (1K, 2K, 4K)
-extract_size: 1K      # 정리컷 해상도
+# 2단계 이미지 품질 실험 설정 (Photoroom). python -m tools.poc 가 읽는다.
+# 옷 누끼(Flat Lay)는 AI가 다시 그리므로 repeats 번 만들어 매번 원본과 같은지 본다.
+# 가방·신발·소품 잘라내기는 매번 같아서 1회차 결과를 재사용한다.
+repeats: 3
 
 variants:
   - id: A
-    name: 정리컷 + 자유 배치
-    model: default    # config/models.yaml 키
-    inputs: extracted # extracted: 정리컷을 넣음 / raw: 원본 상품 사진을 그대로 넣음
-    layout: false
+    name: 코드 배치 + 코드 그림자 (추가 호출 없음)
+    finish: code
   - id: B
-    name: 정리컷 + 배치 지시
-    model: default
-    inputs: extracted
-    layout: true
+    name: 코드 배치 + Photoroom AI 그림자 (배경 사진 위)
+    finish: ai_shadow
   - id: C
-    name: 원본 사진 + 배치 지시 (정리컷 생략)
-    model: default
-    inputs: raw
-    layout: true
-  - id: D
-    name: 정리컷 + 배치 지시, Pro 모델
-    model: retry
-    inputs: extracted
-    layout: true
+    name: 코드 배치 + Photoroom AI 배경 (배경·그림자를 AI가 새로 만듦)
+    finish: ai_background
