@@ -156,7 +156,9 @@ uv run pytest
 | 항목 | 예시 | 의미 |
 |---|---|---|
 | `slides` | `[cover, products, summary]` | 슬라이드 순서. `cover` 표지(코디컷+제목), `products` 상품마다 한 장, `summary` 코디 목록. 빼고 싶은 장은 지우면 됨. 전체 10장까지 |
-| `product_image` | `cutout` | 상품 장 사진. `cutout` 은 누끼(코디컷과 같은 모양), `photo` 는 쇼핑몰 원본 사진(모서리 둥근 카드) |
+| `product_image` | `photo` | 상품 장 사진. `photo` 는 쇼핑몰 원본 사진(모서리 둥근 카드), `cutout` 은 누끼(코디컷과 같은 모양) |
+| `hide_faces` | `true` | 원본 사진에서 모델 얼굴이 없는 사진을 먼저 고르고, 모두 얼굴이 있으면 얼굴 아래로 잘라 씀 (얼굴 검출 모델 YuNet, `assets/models/`) |
+| `photo_candidates` | 6 | 상품마다 앞에서부터 살펴볼 사진 수 |
 | `background` | `#EEEBE6` | 상품·요약 장 배경색 |
 | `background_image` | 없음 | 배경 사진 파일명 (`accounts/<계정>/` 기준). 있으면 배경색 대신 씀 |
 | `text_color` | `#222222` | 상품명·가격 색 |
@@ -177,6 +179,10 @@ uv run pytest
 | `row_name_size` / `row_meta_size` | 32 / 25 | 요약 장 목록의 상품명, 카테고리·쇼핑몰 |
 | `cta_lines` | 저장해 두고… | 요약 장 맨 아래 문구. 첫 줄 앞에 저장 아이콘, `{logo}` 는 계정 이름으로 바뀜 |
 | `cta_size` | 30 | 맨 아래 문구 크기 |
+| `photo_credit` | 사진 출처 {source} · {shop} | 상품 사진 오른쪽 아래 출처 표기. `{source}` 는 `source_names` 의 이름, `{shop}` 은 스토어 이름. 빈 문자열이면 생략 |
+| `summary_credit` | 사진 출처 지그재그 · 각 상품 스토어 | 요약 장 목록 아래 출처 한 줄. 빈 문자열이면 생략 |
+| `credit_size` | 20 | 출처 글자 크기 |
+| `source_names` | `{zigzag: 지그재그}` | 상품 소스 이름을 화면에 보일 이름으로 바꿈 |
 
 #### `schedule` : 시간 (`HH:MM` 형식)
 | 항목 | 예시 | 의미 |
@@ -380,7 +386,7 @@ items:
 ```
 
 - 로컬: `uv run python -m tools.feed --spec samples/women/feed_leather.yaml --out out/feed/test`
-  (`--product-image photo` 로 사진 방식 비교, `--photos <폴더>` 를 주면 누끼·사진이 없는 상품은 창고의 첫 사진을 받아 씀)
+  (`--product-image cutout` 으로 누끼 방식 비교, `--photos <폴더>` 를 주면 사진이 없는 상품은 창고 사진 중 모델 얼굴이 없는 것을 골라 받아 씀)
 - Actions: `feed-sample` → Run workflow. 상품 창고 사진을 받아 슬라이드를 만들고 artifact와
   `feed-results` 브랜치의 `feed-<번호>/` 에 올립니다 (받은 원본 사진은 올리지 않음).
 

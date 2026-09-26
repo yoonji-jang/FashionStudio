@@ -23,7 +23,7 @@ import yaml
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pydantic import ValidationError
 
-from core.models import FeedItem, FeedSpec
+from core.models import FeedItem, FeedSpec, Product
 from core.profile import REPO_ROOT, Feed, Profile, account_dir, load_profile
 from core.store import Store
 from tools import overlay
@@ -46,6 +46,15 @@ class Card:
     comment: str
     image: Image.Image | None  # 누끼면 RGBA, 사진이면 RGB
     is_cutout: bool
+    source: str | None = None  # 사진을 가져온 곳 (예: 지그재그)
+
+
+def photo_credit(card: Card, feed: Feed) -> str:
+    """원본 사진 아래 출처 표기. 누끼든 사진이든 쇼핑몰 사진에서 왔으므로 둘 다 붙인다."""
+    if not feed.photo_credit or not (card.source or card.shop):
+        return ""
+    text = feed.photo_credit.format(source=card.source or "", shop=card.shop or "")
+    return drawable(" ".join(text.split()).strip(" ·"))
 
 
 # ---------- 상품 정보 ----------
@@ -89,6 +98,35 @@ def fetch_photo(image_url: str, dest: Path) -> Path:
     return dest
 
 
+def pick_photo(product: Product, dest_dir: Path, feed: Feed) -> Path:
+    """상품 창고 사진 중 모델 얼굴이 없는 사진을 앞에서부터 고른다 (창고 사진은 누끼 좋은 순).
+    모든 사진에 얼굴이 있으면 얼굴 아래로 잘라 낸 첫 사진을 쓴다."""
+    from tools import faces, scout
+
+    pid = product.id.split(":")[-1]
+    fallback = None
+    for i, url in enumerate(product.image_urls[: feed.photo_candidates]):
+        try:
+            path = fetch_photo(str(url), dest_dir / f"{pid}_{i}.jpg")
+        except (scout.ImageUnavailable, OSError) as e:
+            print(f"사진을 받지 못해 건너뜀: {url} ({e})", file=sys.stderr)
+            continue
+        if not feed.hide_faces:
+            return path
+        img = Image.open(path).convert("RGB")
+        found = faces.find_faces(img)
+        if not found:
+            return path
+        if fallback is None:
+            cropped = faces.crop_below_faces(img, found)
+            if cropped is not None:
+                fallback = dest_dir / f"{pid}_{i}_noface.jpg"
+                cropped.save(fallback, quality=95)
+    if fallback is None:
+        raise ValueError(f"{product.id}: 모델 얼굴 없이 쓸 수 있는 사진이 없습니다")
+    return fallback
+
+
 def build_cards(
     spec: FeedSpec,
     feed: Feed,
@@ -96,7 +134,7 @@ def build_cards(
     store: Store | None = None,
     photo_dir: Path | None = None,
 ) -> list[Card]:
-    """photo_dir 를 주면 누끼·사진이 없는 상품은 상품 창고의 첫 사진을 받아 쓴다."""
+    """photo_dir 를 주면 사진이 필요한데 없는 상품은 상품 창고 사진을 받아 쓴다 (pick_photo)."""
     products = {}
     if any(it.product for it in spec.items):
         products = {p.id: p for p in (store or Store(spec.account)).products()}
@@ -109,9 +147,9 @@ def build_cards(
         name = it.name or (clean_name(base.name) if base else None)
         if not category or not name:
             raise ValueError(f"category 와 name 이 필요합니다: {it.model_dump(exclude_none=True)}")
-        if not (it.cutout or it.photo) and base and photo_dir:
-            dest = photo_dir / f"{base.id.split(':')[-1]}.jpg"
-            it = it.model_copy(update={"photo": str(fetch_photo(str(base.image_urls[0]), dest))})
+        wants_photo = not it.photo and (feed.product_image == "photo" or not it.cutout)
+        if wants_photo and base and photo_dir:
+            it = it.model_copy(update={"photo": str(pick_photo(base, photo_dir, feed))})
         image, is_cutout = _item_image(it, feed, root)
         if image is None:
             raise ValueError(f"{name}: cutout 이나 photo 가 필요합니다 (상품 창고 사진은 --photos)")
@@ -124,6 +162,9 @@ def build_cards(
                 comment=drawable(it.comment),
                 image=image,
                 is_cutout=is_cutout,
+                source=feed.source_names.get(it.source or (base.source if base else ""), None)
+                or it.source
+                or (base.source if base else None),
             )
         )
     return cards
@@ -138,7 +179,14 @@ def _item_image(it: FeedItem, feed: Feed, root: Path) -> tuple[Image.Image | Non
             img = Image.open(root / path)
             if kind == "cutout":
                 return trim_alpha(img.convert("RGBA")), True
-            return img.convert("RGB"), False
+            img = img.convert("RGB")
+            if feed.hide_faces:
+                from tools import faces
+
+                img, ok = faces.hide_faces(img)
+                if not ok:
+                    print(f"경고: 얼굴을 잘라낼 수 없는 사진입니다: {path}", file=sys.stderr)
+            return img, False
     return None, False
 
 
@@ -253,10 +301,10 @@ def place_image(
     k: float,
     shadow: bool = True,
     fill: float = 1.0,
-) -> None:
-    """box 안 가운데에 상품을 비율 그대로 놓는다. fill 은 box 대비 최대 크기."""
+) -> tuple[int, int, int, int] | None:
+    """box 안 가운데에 상품을 비율 그대로 놓고, 놓인 자리를 돌려준다. fill 은 box 대비 최대 크기."""
     if card.image is None:
-        return
+        return None
     x0, y0, x1, y1 = box
     bw, bh = round((x1 - x0) * fill), round((y1 - y0) * fill)
     img = ImageOps.contain(card.image, (bw, bh), Image.LANCZOS)
@@ -269,6 +317,7 @@ def place_image(
         shade, (px, py) = drop_shadow(img, blur, opacity, (round(8 * k), round(14 * k)))
         canvas.alpha_composite(shade, (x - px, y - py))
     canvas.alpha_composite(img, (x, y))
+    return (x, y, x + img.width, y + img.height)
 
 
 def fill_ratio(card: Card, layout: dict | None = None) -> float:
@@ -335,7 +384,17 @@ def product_slide(card: Card, index: int, profile: Profile, size: tuple[int, int
 
     top_img, bottom_img = pt.h * 0.115, y - pt.px(56)
     box = (pt.m, round(top_img), pt.w - pt.m, round(bottom_img))
-    place_image(canvas, card, box, pt.k, fill=fill_ratio(card))
+    placed = place_image(canvas, card, box, pt.k, fill=fill_ratio(card))
+    credit = photo_credit(card, f)
+    if credit and placed:
+        # 사진 오른쪽 아래 바로 밑에 작게
+        draw.text(
+            (placed[2], placed[3] + pt.px(f.credit_size * 1.6)),
+            credit,
+            font=pt.body(f.credit_size),
+            fill=f.sub_color,
+            anchor="rs",
+        )
 
     name_top = name_bottom = None
     for text, gap, font, color in rows:
@@ -390,6 +449,9 @@ def summary_slide(cards: list[Card], spec: FeedSpec, profile: Profile, size: tup
     # 상품 목록
     list_top = y + pt.px(52)
     list_bottom = cta_top - cta_font.size - pt.px(64)
+    summary_credit = drawable(f.summary_credit) if f.summary_credit else ""
+    if summary_credit:
+        list_bottom -= pt.px(f.credit_size * 2.2)
     if f.show_total:
         list_bottom -= pt.px(64)
     row_h = min(pt.px(150), (list_bottom - list_top) / max(1, len(cards)))
@@ -432,6 +494,18 @@ def summary_slide(cards: list[Card], spec: FeedSpec, profile: Profile, size: tup
         if i < len(cards) - 1:
             ly = round(top + row_h)
             draw.line((tx, ly, pt.w - pt.m, ly), fill=line_color, width=max(1, pt.px(1.5)))
+
+    if summary_credit:
+        cy = list_top + row_h * len(cards) + pt.px(f.credit_size * 1.9)
+        if f.show_total:
+            cy += pt.px(64)
+        draw.text(
+            (pt.w - pt.m, cy),
+            summary_credit,
+            font=pt.body(f.credit_size),
+            fill=f.sub_color,
+            anchor="rs",
+        )
 
     if f.show_total:
         total = sum(c.price or 0 for c in cards)

@@ -108,7 +108,9 @@ class Feed(BaseModel):
 
     # 슬라이드 순서. products 는 상품마다 한 장씩 펼쳐진다. 인스타 캐러셀은 최대 10장
     slides: list[SlideKind] = Field(default=["cover", "products", "summary"], min_length=1)
-    product_image: Literal["cutout", "photo"] = "cutout"  # 누끼 또는 쇼핑몰 원본 사진
+    product_image: Literal["cutout", "photo"] = "photo"  # 쇼핑몰 원본 사진 또는 누끼
+    hide_faces: bool = True  # 원본 사진에서 모델 얼굴이 없는 사진을 고르고, 없으면 얼굴 아래로 자름
+    photo_candidates: int = Field(default=6, ge=1, le=20)  # 상품마다 살펴볼 창고 사진 수
     background: str = Field(default="#EEEBE6", pattern=COLOR)  # 상품·요약 장 배경색
     background_image: str | None = None  # accounts/<id>/ 기준 배경 사진 (있으면 배경색 대신)
     text_color: str = Field(default="#222222", pattern=COLOR)
@@ -135,6 +137,11 @@ class Feed(BaseModel):
     # 요약 장 맨 아래 문구. {logo} 는 visual.logo_text 로 바뀜. 첫 줄 앞에 저장 아이콘
     cta_lines: list[str] = ["저장해 두고 코디 고민될 때 꺼내 보세요", "매일 아침 코디는 {logo}"]
     cta_size: int = Field(default=30, gt=0)
+    # 사진 출처 표기. {source} 는 source_names 의 이름, {shop} 은 스토어 이름. 빈 문자열이면 생략
+    photo_credit: str = "사진 출처 {source} · {shop}"
+    summary_credit: str = ""  # 요약 장 목록 아래 출처 한 줄
+    credit_size: int = Field(default=20, gt=0)
+    source_names: dict[str, str] = {"zigzag": "지그재그"}  # 상품 소스 이름 → 보이는 이름
 
 
 class Schedule(BaseModel):

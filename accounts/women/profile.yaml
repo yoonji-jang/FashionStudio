@@ -86,7 +86,9 @@ visual:
 # 캐러셀 구성 (tools.feed). 크기는 폭 1080px 기준, 굵은 글자는 visual.font, 포인트 색은 visual.accent_color
 feed:
   slides: [cover, products, summary]  # 순서. products 는 상품마다 한 장. 전체 10장까지
-  product_image: cutout      # 상품 장 사진: cutout(누끼) 또는 photo(쇼핑몰 원본 사진)
+  product_image: photo       # 상품 장 사진: photo(쇼핑몰 원본 사진) 또는 cutout(누끼)
+  hide_faces: true           # 모델 얼굴이 없는 사진을 먼저 고르고, 없으면 얼굴 아래로 잘라 씀
+  photo_candidates: 6        # 상품마다 살펴볼 사진 수 (앞에서부터)
   background: "#EEEBE6"      # 상품·요약 장 배경색
   background_image: null     # accounts/women/ 기준 배경 사진 (있으면 배경색 대신)
   text_color: "#222222"
@@ -114,6 +116,11 @@ feed:
     - 저장해 두고 코디 고민될 때 꺼내 보세요
     - 매일 아침 코디는 {logo}
   cta_size: 30
+  # 사진 출처 표기 (사진 오른쪽 아래). {source} 는 source_names 의 이름, {shop} 은 스토어 이름
+  photo_credit: "사진 출처 {source} · {shop}"
+  summary_credit: "사진 출처 지그재그 · 각 상품 스토어"  # 요약 장 목록 아래. 빈 문자열이면 생략
+  credit_size: 20
+  source_names: {zigzag: 지그재그}
 
 schedule:
   timezone: Asia/Seoul

@@ -119,3 +119,75 @@ def test_feed_samples_are_valid():
     for path in (REPO_ROOT / "samples").rglob("feed_*.yaml"):
         spec = load_spec(path)
         load_profile(spec.account)
+
+
+def test_crop_below_faces():
+    from tools.faces import crop_below_faces
+
+    img = Image.new("RGB", (400, 1000), (200, 200, 200))
+    assert crop_below_faces(img, []) is img
+    out = crop_below_faces(img, [(150, 50, 250, 180)])
+    assert out.size == (400, 1000 - 220)  # 얼굴 아래 + 여백 4%
+    assert crop_below_faces(img, [(150, 400, 250, 600)]) is None  # 남는 부분이 너무 작음
+
+
+def test_find_faces_on_plain_image():
+    from tools.faces import find_faces
+
+    assert find_faces(Image.new("RGB", (300, 400), (230, 230, 230))) == []
+
+
+def _product(n=3):
+    from core.models import Product
+
+    return Product(
+        id="zigzag:1",
+        source="zigzag",
+        url="https://zigzag.kr/catalog/products/1",
+        shop="샵",
+        name="셔츠",
+        price=1000,
+        category="상의",
+        image_urls=[f"https://example.com/{i}.jpg" for i in range(n)],
+    )
+
+
+def _fake_fetch(monkeypatch, tmp_path):
+    import tools.feed as feed_mod
+
+    def fetch(url, dest):
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        Image.new("RGB", (400, 1000), (200, 200, 200)).save(dest)
+        return dest
+
+    monkeypatch.setattr(feed_mod, "fetch_photo", fetch)
+
+
+def test_pick_photo_prefers_photo_without_face(monkeypatch, tmp_path):
+    import tools.faces as faces
+    from tools.feed import pick_photo
+
+    _fake_fetch(monkeypatch, tmp_path)
+    calls = iter([[(1, 1, 50, 100)], []])  # 첫 사진에만 얼굴
+    monkeypatch.setattr(faces, "find_faces", lambda img: next(calls))
+    path = pick_photo(_product(), tmp_path, load_profile("women").feed)
+    assert path.name == "1_1.jpg"
+
+
+def test_pick_photo_crops_when_all_have_faces(monkeypatch, tmp_path):
+    import tools.faces as faces
+    from tools.feed import pick_photo
+
+    _fake_fetch(monkeypatch, tmp_path)
+    monkeypatch.setattr(faces, "find_faces", lambda img: [(100, 20, 200, 150)])
+    path = pick_photo(_product(), tmp_path, load_profile("women").feed)
+    assert path.name == "1_0_noface.jpg"
+    assert Image.open(path).height == 1000 - 190
+
+
+def test_photo_credit_text():
+    from tools.feed import Card, photo_credit
+
+    feed = load_profile("women").feed
+    card = Card("상의", "셔츠", "데일리쥬", 1000, "", None, False, source="지그재그")
+    assert photo_credit(card, feed) == "사진 출처 지그재그 · 데일리쥬"

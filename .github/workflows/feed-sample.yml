@@ -12,7 +12,7 @@ on:
         default: samples/women/feed_products.yaml
       product_image:
         description: 상품 장 사진 (cutout 또는 photo, 빈칸이면 프로필 값)
-        default: photo
+        default: ""
   push:
     branches: ["claude/**"]
     paths: ["tools/feed.py", "samples/**", "accounts/**", ".github/workflows/feed-sample.yml"]
@@ -31,7 +31,7 @@ jobs:
     timeout-minutes: 15
     env:
       SPEC: ${{ inputs.spec || 'samples/women/feed_products.yaml' }}
-      PRODUCT_IMAGE: ${{ inputs.product_image || 'photo' }}
+      PRODUCT_IMAGE: ${{ inputs.product_image }}
       OUT: out/feed/run-${{ github.run_number }}
     steps:
       - uses: actions/checkout@v4

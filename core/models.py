@@ -64,6 +64,7 @@ class FeedItem(BaseModel):
     category: Category | None = None
     name: str | None = None  # 슬라이드에 보일 짧은 상품명 (없으면 원래 이름에서 광고 문구를 뺌)
     shop: str | None = None
+    source: str | None = None  # 사진 출처 (없으면 상품 창고의 source, 예: zigzag)
     price: int | None = Field(default=None, ge=0)
     comment: str = ""  # 한두 문장 코멘트
     cutout: str | None = None  # 저장소 기준 누끼 PNG
