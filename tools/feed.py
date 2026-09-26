@@ -19,6 +19,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+import httpx
 import yaml
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pydantic import ValidationError
@@ -106,12 +107,19 @@ def pick_photo(product: Product, dest_dir: Path, feed: Feed) -> Path:
     pid = product.id.split(":")[-1]
     fallback = None
     tried = 0
-    for i, url in enumerate(product.image_urls):
+    # 사진 목록이 다른 서버에 있어 못 받는 경우가 있어 마지막에 페이지 대표 사진(og:image)도 본다
+    candidates = [str(u) for u in product.image_urls] + [None]
+    for i, url in enumerate(candidates):
         if tried >= feed.photo_candidates:
             break
         try:
-            path = fetch_photo(str(url), dest_dir / f"{pid}_{i}.jpg")
-        except (scout.ImageUnavailable, OSError, RuntimeError):
+            if url is None:
+                path = dest_dir / f"{pid}_og.jpg"
+                if not path.exists():
+                    scout.fetch_product_image(str(product.url), path)
+            else:
+                path = fetch_photo(url, dest_dir / f"{pid}_{i}.jpg")
+        except (scout.ImageUnavailable, OSError, RuntimeError, httpx.HTTPError):
             # 사진 주소에 판매자 정보가 들어 있을 수 있어 주소는 기록하지 않는다
             print(f"{product.id}: {i}번 사진을 받지 못해 건너뜀", file=sys.stderr)
             continue

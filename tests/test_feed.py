@@ -162,6 +162,13 @@ def _fake_fetch(monkeypatch, tmp_path):
 
     monkeypatch.setattr(feed_mod, "fetch_photo", fetch)
 
+    import tools.scout as scout
+
+    def og(url, out):
+        raise RuntimeError("대표 사진 없음")
+
+    monkeypatch.setattr(scout, "fetch_product_image", og)
+
 
 def test_pick_photo_prefers_photo_without_face(monkeypatch, tmp_path):
     import tools.faces as faces
@@ -200,3 +207,22 @@ def test_page_price_prefers_final_price():
     assert page_price(product) == 39000
     assert page_price({"price": 12000}) == 12000
     assert page_price({"name": "x"}) is None
+
+
+def test_pick_photo_falls_back_to_page_image(monkeypatch, tmp_path):
+    import tools.faces as faces
+    import tools.feed as feed_mod
+    import tools.scout as scout
+    from tools.feed import pick_photo
+
+    def broken(url, dest):
+        raise scout.ImageUnavailable("404")
+
+    def og(url, out):
+        Image.new("RGB", (400, 1000), (200, 200, 200)).save(out)
+        return out, "https://example.com/og.jpg"
+
+    monkeypatch.setattr(feed_mod, "fetch_photo", broken)
+    monkeypatch.setattr(scout, "fetch_product_image", og)
+    monkeypatch.setattr(faces, "find_faces", lambda img: [])
+    assert pick_photo(_product(2), tmp_path, load_profile("women").feed).name == "1_og.jpg"
