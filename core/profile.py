@@ -52,6 +52,21 @@ class ProductSourceConfig(BaseModel):
     prefer_flat_shot: bool = True
 
 
+ThemeType = Literal["아이템", "상황", "컬러무드", "타깃", "팁"]
+
+
+class ThemeRules(BaseModel):
+    """주간 주제를 정하는 기준. plan-themes 스킬(5단계)이 읽는다."""
+
+    per_week: int = Field(default=7, ge=1, le=14)
+    type_mix: dict[ThemeType, int] = Field(min_length=1)  # 주당 유형별 개수 (합계 = per_week)
+    consider: list[str] = []  # 날씨, 요일, 시즌 이벤트 등 반영할 요소
+    events: list[str] = []  # 챙길 시즌 이벤트
+    no_repeat_days: int = Field(default=30, ge=0)  # 비슷한 주제 반복 금지 기간
+    avoid: list[str] = []  # 다루지 않을 주제
+    review_before_use: bool = True  # 주간 주제를 사람이 보고 확정할지
+
+
 class Visual(BaseModel):
     backdrop: str  # 배경 묘사 (프롬프트에 들어감)
     backdrop_ref: str | None = None  # accounts/<id>/ 기준 참고 이미지 파일명
@@ -83,6 +98,7 @@ class Profile(BaseModel):
     audience: Audience
     style: Style
     outfit: Outfit
+    themes: ThemeRules
     product_source: ProductSourceConfig
     visual: Visual
     schedule: Schedule
@@ -109,6 +125,8 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError(f"폴더 이름({account})과 profile.id({profile.id})가 다릅니다")
     if profile.outfit.items_min > profile.outfit.items_max:
         raise ValueError("outfit.items_min이 items_max보다 큽니다")
+    if sum(profile.themes.type_mix.values()) != profile.themes.per_week:
+        raise ValueError("themes.type_mix 개수의 합이 themes.per_week와 다릅니다")
     return profile
 
 

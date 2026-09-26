@@ -65,6 +65,7 @@ def test_id_must_match_folder(tmp_path):
         (("schedule", "publish_at"), "7:23"),
         (("outfit", "items_max"), 11),
         (("audience", "gender"), "kids"),
+        (("themes", "type_mix"), {"뉴스": 7}),
     ],
 )
 def test_invalid_values_rejected(tmp_path, path, value):
@@ -75,6 +76,14 @@ def test_invalid_values_rejected(tmp_path, path, value):
     target[path[-1]] = value
     _write(tmp_path, "bad", data)
     with pytest.raises(ValidationError):
+        load_profile("bad", root=tmp_path)
+
+
+def test_theme_mix_must_sum_to_per_week(tmp_path):
+    data = _copy_template(tmp_path, "bad")
+    data["themes"]["per_week"] = 5
+    _write(tmp_path, "bad", data)
+    with pytest.raises(ValueError, match="type_mix"):
         load_profile("bad", root=tmp_path)
 
 

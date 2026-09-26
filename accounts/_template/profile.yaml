@@ -25,6 +25,15 @@ outfit:
   reuse_cooldown_days: 14
   max_per_shop: 2
 
+themes:
+  per_week: 7
+  type_mix: {아이템: 2, 상황: 2, 컬러무드: 1, 타깃: 1, 팁: 1}
+  consider: [계절, 날씨, 요일, 시즌 이벤트]
+  events: []
+  no_repeat_days: 30
+  avoid: []
+  review_before_use: true
+
 product_source:
   name: zigzag  # sources/<name>.py
   min_rating: 4.5
