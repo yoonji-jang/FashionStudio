@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from PIL import Image, ImageFilter, ImageOps
+from PIL import Image, ImageChops, ImageFilter, ImageOps
 
 from core.profile import REPO_ROOT
 from tools.photoroom import trim_alpha
@@ -45,23 +45,49 @@ def fit_real_size(item: Image.Image, rule: dict, layout: dict) -> Image.Image:
     return item.resize(size, Image.LANCZOS)
 
 
+def _overlaps(canvas: Image.Image, item: Image.Image, pos: tuple[int, int]) -> bool:
+    sheet = Image.new("L", canvas.size, 0)
+    sheet.paste(item.getchannel("A").point(lambda a: 255 if a > 128 else 0), pos)
+    body = canvas.getchannel("A").point(lambda a: 255 if a > 128 else 0)
+    return ImageChops.multiply(body, sheet).getbbox() is not None
+
+
 def layer(cutouts: list[tuple[str, Path]], layout: dict) -> Image.Image:
-    """투명 캔버스 위에 누끼를 실제 비율로 z 순서대로 놓는다."""
+    """투명 캔버스 위에 누끼를 실제 비율로 z 순서대로 놓는다.
+    avoid_overlap 자리(가방·신발·주얼리)는 먼저 놓인 옷과 겹치면 바깥쪽으로 밀고, 여백까지 밀어도
+    겹치면 조금씩 줄인다."""
     w, h = layout["canvas"]
     canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     rules = slot_rules([c for c, _ in cutouts], layout)
     missing = [c for c, _ in cutouts if c not in rules]
     if missing:
         raise ValueError(f"layout.yaml 에 자리가 없는 카테고리: {missing}")
+    m = layout.get("margin", 0.02) * w
     for category, path in sorted(cutouts, key=lambda cp: rules[cp[0]].get("z", 0)):
         rule = rules[category]
         item = fit_real_size(trim_alpha(Image.open(path)), rule, layout)
         if rule.get("rotate"):
             item = item.rotate(rule["rotate"], expand=True, resample=Image.BICUBIC)
-        cx, cy = rule["center"][0] * w, rule["center"][1] * h
+        cx0, cy0 = rule["center"][0] * w, rule["center"][1] * h
+        away = -1 if cx0 < w / 2 else 1  # 캔버스 가운데에서 멀어지는 방향
+        for _ in range(60):
+            # 가로로 긴 상품(가방 등)이 캔버스 밖으로 잘리지 않게 여백 안으로 밀어 넣는다
+            cx = min(max(cx0, m + item.width / 2), w - m - item.width / 2)
+            cy = min(max(cy0, m + item.height / 2), h - m - item.height / 2)
+            pos = (round(cx - item.width / 2), round(cy - item.height / 2))
+            if not rule.get("avoid_overlap") or not _overlaps(canvas, item, pos):
+                break
+            at_edge = (
+                (cx - item.width / 2 <= m + 1) if away < 0 else (cx + item.width / 2 >= w - m - 1)
+            )
+            if at_edge:
+                size = (max(1, round(item.width * 0.95)), max(1, round(item.height * 0.95)))
+                item = item.resize(size, Image.LANCZOS)
+            else:
+                cx0 = cx + away * 8
         # 캔버스 밖으로 조금 나가도 되도록 (paste 는 음수 좌표 허용) 한 겹 만들어 겹친다
         sheet = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-        sheet.paste(item, (round(cx - item.width / 2), round(cy - item.height / 2)))
+        sheet.paste(item, pos)
         canvas.alpha_composite(sheet)
     return canvas
 

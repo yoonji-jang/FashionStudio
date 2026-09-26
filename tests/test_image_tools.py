@@ -251,6 +251,14 @@ def test_jewelry_slots_sit_in_empty_space(tmp_path):
         assert overlap is None, slot  # 옷과 겹치지 않는다
 
 
+def test_layer_keeps_wide_items_inside_canvas(tmp_path):
+    layout = compose.load_layout()
+    wide = _cutout(tmp_path / "bag.png", size=(800, 300))  # 가방이 가로로 길면 왼쪽이 잘렸다
+    alpha = compose.layer([("가방", wide)], layout).getchannel("A")
+    x0, _, x1, _ = alpha.getbbox()
+    assert x0 > 0 and x1 < layout["canvas"][0]
+
+
 def test_compose_with_code_shadow(tmp_path):
     out = compose.compose(
         [("하의", _cutout(tmp_path / "b.png"))],
