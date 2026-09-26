@@ -50,12 +50,23 @@ visual:
   backdrop: warm light-grey textured plaster surface, soft even studio light, subtle natural drop shadows
   backdrop_ref: null  # 2단계에서 배경 참고 이미지를 만들면 backdrop_ref.jpg 로 지정
   feed_ratio: "4:5"
-  font: Pretendard-SemiBold.otf
-  title_font_size: 64
-  title_line_spacing: 1.25
-  gradient_height: 0.35
-  gradient_opacity: 0.45
-  logo_text: "@계정이름"  # 인스타 계정을 정하면 교체
+  # 제목 합성 (tools.overlay). 글자 크기는 폭 1080px 기준, 위치는 이미지 대비 비율
+  font: Pretendard-Bold.otf   # assets/fonts/ 에 있는 파일
+  title_font_size: 78         # 긴 줄은 자동으로 줄어듦
+  title_line_spacing: 1.45
+  title_max_lines: 2
+  title_align: left           # left 또는 center
+  title_margin_x: 0.08        # 좌우 여백 (폭 대비)
+  title_bottom: 0.18          # 이미지 아래에서 제목 마지막 줄까지 (높이 대비)
+  title_color: "#FFFFFF"
+  text_shadow: 0.25           # 글자 뒤 은은한 그림자 (0이면 없음)
+  gradient_height: 0.5        # 아래쪽 어둡게 까는 높이 (이미지 아래 50%)
+  gradient_opacity: 0.7       # 맨 아래 어두운 정도 (0~1)
+  logo_text: "@계정이름"      # 인스타 계정을 정하면 교체. 빈 문자열이면 생략
+  logo_font: null             # 없으면 font 사용
+  logo_font_size: 24
+  logo_bottom: 0.045          # 이미지 아래에서 계정 이름까지
+  logo_color: "#FFFFFF"
 
 schedule:
   timezone: Asia/Seoul

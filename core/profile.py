@@ -71,12 +71,23 @@ class Visual(BaseModel):
     backdrop: str  # 배경 묘사 (프롬프트에 들어감)
     backdrop_ref: str | None = None  # accounts/<id>/ 기준 참고 이미지 파일명
     feed_ratio: Literal["4:5", "1:1"] = "4:5"
+    # 제목 합성 (tools.overlay). 크기는 폭 1080px 기준, 위치는 이미지 높이·폭 대비 비율
     font: str  # assets/fonts/ 기준 파일명
-    title_font_size: int = Field(default=64, gt=0)
-    title_line_spacing: float = Field(default=1.25, gt=0)
-    gradient_height: float = Field(default=0.35, gt=0, le=1)
-    gradient_opacity: float = Field(default=0.45, ge=0, le=1)
-    logo_text: str
+    title_font_size: int = Field(default=78, gt=0)  # 긴 줄은 자동으로 줄어듦
+    title_line_spacing: float = Field(default=1.45, gt=0)
+    title_max_lines: int = Field(default=2, ge=1, le=4)
+    title_align: Literal["left", "center"] = "left"
+    title_margin_x: float = Field(default=0.08, ge=0.035, lt=0.5)  # 좌우 여백 (격자가 양옆 3% 자름)
+    title_bottom: float = Field(default=0.18, ge=0, lt=1)  # 이미지 아래에서 마지막 줄 글자 바닥까지
+    title_color: str = Field(default="#FFFFFF", pattern=r"^#[0-9A-Fa-f]{6}$")
+    text_shadow: float = Field(default=0.25, ge=0, le=1)  # 글자 뒤 은은한 그림자 진하기
+    gradient_height: float = Field(default=0.5, gt=0, le=1)
+    gradient_opacity: float = Field(default=0.7, ge=0, le=1)
+    logo_text: str  # 맨 아래 가운데 계정 표시. 빈 문자열이면 생략
+    logo_font: str | None = None  # 없으면 font 사용
+    logo_font_size: int = Field(default=24, gt=0)
+    logo_bottom: float = Field(default=0.045, ge=0, lt=1)  # 이미지 아래에서 글자 바닥까지
+    logo_color: str = Field(default="#FFFFFF", pattern=r"^#[0-9A-Fa-f]{6}$")
 
 
 class Schedule(BaseModel):
