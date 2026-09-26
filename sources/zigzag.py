@@ -132,6 +132,27 @@ class PageInfo:
     style_tags: list[str]
     name: str | None = None
     shop: str | None = None
+    price: int | None = None
+
+
+_PRICE_KEYS = ("final_price", "discount_price", "sales_price", "price")
+
+
+def page_price(product: dict) -> int | None:
+    """상품 정보에서 판매가를 찾는다. 가격 묶음(product_price 등) 안의 final_price 를 먼저 본다."""
+    found: dict[str, int] = {}
+
+    def walk(obj: Any, depth: int) -> None:
+        if depth > 3 or not isinstance(obj, dict):
+            return
+        for k, v in obj.items():
+            if k in _PRICE_KEYS and isinstance(v, int | float) and v > 0:
+                found.setdefault(k, int(v))
+            elif isinstance(v, dict) and "price" in k:
+                walk(v, depth + 1)
+
+    walk(product, 0)
+    return next((found[k] for k in _PRICE_KEYS if k in found), None)
 
 
 def _page_data(page_html: str) -> dict | None:
@@ -183,6 +204,7 @@ def parse_page(status_code: int, page_html: str) -> PageInfo:
         style_tags=[s.strip() for s in trait.split(",") if s.strip()],
         name=product.get("name"),
         shop=(data.get("shop") or {}).get("name"),
+        price=page_price(product),
     )
 
 

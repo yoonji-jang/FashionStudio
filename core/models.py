@@ -61,6 +61,9 @@ class FeedItem(BaseModel):
     """캐러셀 상품 장 한 장. product 가 있으면 상품 창고 값을 기본으로 쓰고, 적은 값이 우선한다."""
 
     product: str | None = None  # "zigzag:12345678"
+    url: HttpUrl | None = (
+        None  # 창고에 없는 상품은 공개 상품 페이지에서 이름·스토어·가격·사진을 읽음
+    )
     category: Category | None = None
     name: str | None = None  # 슬라이드에 보일 짧은 상품명 (없으면 원래 이름에서 광고 문구를 뺌)
     shop: str | None = None

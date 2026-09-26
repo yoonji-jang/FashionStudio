@@ -19,6 +19,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+import httpx
 import yaml
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pydantic import ValidationError
@@ -105,12 +106,24 @@ def pick_photo(product: Product, dest_dir: Path, feed: Feed) -> Path:
 
     pid = product.id.split(":")[-1]
     fallback = None
-    for i, url in enumerate(product.image_urls[: feed.photo_candidates]):
+    tried = 0
+    # 사진 목록이 다른 서버에 있어 못 받는 경우가 있어 마지막에 페이지 대표 사진(og:image)도 본다
+    candidates = [str(u) for u in product.image_urls] + [None]
+    for i, url in enumerate(candidates):
+        if tried >= feed.photo_candidates:
+            break
         try:
-            path = fetch_photo(str(url), dest_dir / f"{pid}_{i}.jpg")
-        except (scout.ImageUnavailable, OSError) as e:
-            print(f"사진을 받지 못해 건너뜀: {url} ({e})", file=sys.stderr)
+            if url is None:
+                path = dest_dir / f"{pid}_og.jpg"
+                if not path.exists():
+                    scout.fetch_product_image(str(product.url), path)
+            else:
+                path = fetch_photo(url, dest_dir / f"{pid}_{i}.jpg")
+        except (scout.ImageUnavailable, OSError, RuntimeError, httpx.HTTPError):
+            # 사진 주소에 판매자 정보가 들어 있을 수 있어 주소는 기록하지 않는다
+            print(f"{product.id}: {i}번 사진을 받지 못해 건너뜀", file=sys.stderr)
             continue
+        tried += 1
         if not feed.hide_faces:
             return path
         img = Image.open(path).convert("RGB")
@@ -125,6 +138,31 @@ def pick_photo(product: Product, dest_dir: Path, feed: Feed) -> Path:
     if fallback is None:
         raise ValueError(f"{product.id}: 모델 얼굴 없이 쓸 수 있는 사진이 없습니다")
     return fallback
+
+
+def product_from_page(url: str, category: str) -> Product:
+    """창고에 없는 상품의 공개 상품 페이지를 읽어 Product 로 만든다 (tools.scout 로만 접근).
+    판매자 연락처 같은 정보는 읽지 않고 이름·스토어·가격·사진만 쓴다."""
+    from sources import zigzag
+    from tools import scout
+
+    with scout.client() as c:
+        code, text = scout.fetch_page(c, url)
+    info = zigzag.parse_page(code, text)
+    if not info.image_urls or not info.name:
+        raise ValueError(f"상품 페이지를 읽지 못했습니다 (판매 종료?): {url}")
+    pid = url.rstrip("/").split("/")[-1]
+    return Product(
+        id=f"zigzag:{pid}",
+        source="zigzag",
+        url=url,
+        shop=info.shop or "",
+        name=info.name,
+        price=info.price or 0,
+        category=category,
+        image_urls=info.image_urls,
+        status=info.status,
+    )
 
 
 def build_cards(
@@ -143,6 +181,8 @@ def build_cards(
         base = products.get(it.product) if it.product else None
         if it.product and base is None:
             raise ValueError(f"상품 창고에 없는 상품입니다: {it.product}")
+        if base is None and it.url and photo_dir:
+            base = product_from_page(str(it.url), it.category or "소품")
         category = it.category or (base.category if base else None)
         name = it.name or (clean_name(base.name) if base else None)
         if not category or not name:
@@ -158,7 +198,9 @@ def build_cards(
                 category=category,
                 name=drawable(name),
                 shop=it.shop or (base.shop if base else None),
-                price=it.price if it.price is not None else (base.price if base else None),
+                price=it.price
+                if it.price is not None
+                else ((base.price or None) if base else None),
                 comment=drawable(it.comment),
                 image=image,
                 is_cutout=is_cutout,
