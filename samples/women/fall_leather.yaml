@@ -14,12 +14,12 @@ items:
     alternates:
       - https://zigzag.kr/catalog/products/113920079
     wear_with: 아우터
-    wear_modes: [over, open]  # direct 는 셔츠가 자켓 위에 붙어 나옴 (run-9)
+    wear_modes: [over]  # direct 는 셔츠가 자켓 위에 붙고(run-9), open 은 자켓이 빠지기도 함(run-11)
     wear_how: >-
-      the jacket is unbuttoned and open, its two front panels and lapels spread apart and lying
-      on top of the shirt; the shirt is worn underneath the jacket, so only the shirt collar,
-      the shirt front between the open jacket panels and the shirt cuffs at the ends of the
-      jacket sleeves are visible, and the shirt sleeves are hidden inside the jacket sleeves
+      the jacket is worn buttoned closed over the shirt, exactly as a person wears it: the shirt
+      is inside the jacket, only the shirt collar lying over the jacket lapels and a little of
+      the black shirt front in the V neckline are visible, and the shirt cuffs peek out slightly
+      from the ends of the jacket sleeves
   - category: 하의
     desc: 블랙 클래식 와이드 슬랙스 (black classic wide-leg trousers)
     url: https://zigzag.kr/catalog/products/141922448
@@ -47,3 +47,25 @@ items:
     url: https://zigzag.kr/catalog/products/112980396
     alternates:
       - https://zigzag.kr/catalog/products/153552340
+  # 주얼리: 옷 위가 아니라 빈 공간(layout.yaml 의 목걸이·귀걸이·팔찌 자리)에 놓는다
+  - category: 소품
+    slot: 목걸이
+    desc: 골드 하트 펜던트 목걸이 (gold heart pendant necklace)
+    segment: necklace
+    url: https://zigzag.kr/catalog/products/118871438
+    alternates:
+      - https://zigzag.kr/catalog/products/111083728
+  - category: 소품
+    slot: 귀걸이
+    desc: 골드 볼드 링 귀걸이 (gold chunky hoop earrings)
+    segment: earring
+    url: https://zigzag.kr/catalog/products/101455383
+    alternates:
+      - https://zigzag.kr/catalog/products/115535906
+  - category: 소품
+    slot: 팔찌
+    desc: 골드 체인 팔찌 (gold chain bracelet)
+    segment: bracelet
+    url: https://zigzag.kr/catalog/products/141974877
+    alternates:
+      - https://zigzag.kr/catalog/products/102365408

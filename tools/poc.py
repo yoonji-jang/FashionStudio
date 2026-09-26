@@ -63,8 +63,15 @@ class SampleItem(BaseModel):
     refine: bool | None = None  # AI로 다듬기. 생략하면 segment 누끼만 (Flat Lay 는 이미 AI 정리컷)
     wear_with: Category | None = None  # 이 상품을 입힐 기준 상품 (예: 셔츠 → 아우터)
     wear_how: str = "worn together naturally"  # 입는 방법 (영어, prompts/style.md 의 $how)
+    slot: str | None = (
+        None  # layout.yaml 자리 이름. 생략하면 카테고리 (예: 소품 → 목걸이·귀걸이·팔찌)
+    )
     # 입히는 방식 후보. 모두 만들어 비교표에 싣고 첫 번째로 성공한 것을 코디컷에 쓴다
     wear_modes: list[photoroom.StyleMode] = Field(default=["direct"], min_length=1)
+
+    @property
+    def place(self) -> str:
+        return self.slot or self.category
 
     def needs_refine(self) -> bool:
         if self.refine is not None:
@@ -203,7 +210,7 @@ def run(
     for r, paths in enumerate(cutout_sets, 1):
         if not paths:
             continue
-        raw = [(it.category, p) for it, p in zip(samples.items, paths, strict=True)]
+        raw = [(it.place, p) for it, p in zip(samples.items, paths, strict=True)]
         sets = {False: raw}
         if any(v.clean for v in variants):
             sets[True] = clean_set(client, samples, paths, out, r, log)
@@ -264,7 +271,7 @@ def run(
     for r, pairs in enumerate(clean_sets, 1):
         if not pairs:
             continue
-        clean_results += [(f"r{r} {CATEGORY_EN[cat]} (used)", p) for cat, p in pairs]
+        clean_results += [(f"r{r} {CATEGORY_EN.get(cat, cat)} (used)", p) for cat, p in pairs]
         used = {p for _, p in pairs}
         clean_results += [
             (f"r{r} {p.stem}", p)
@@ -341,7 +348,7 @@ def clean_set(
             continue
         dest = out / "refined" / f"r{r}" / f"{_slug(i + 1, it)}.png"
         entry = {"stage": "refine", "repeat": r, "slot": _slug(i + 1, it)}
-        if _step(log, entry, photoroom.refine, client, cur[i], it.category, it.desc, dest):
+        if _step(log, entry, photoroom.refine, client, cur[i], it.place, it.desc, dest):
             cur[i] = dest
     dropped: set[int] = set()
     for i, it in enumerate(items):
@@ -363,9 +370,7 @@ def clean_set(
             cur[j] = chosen
             dropped.add(i)
     return [
-        (it.category, p)
-        for k, (it, p) in enumerate(zip(items, cur, strict=True))
-        if k not in dropped
+        (it.place, p) for k, (it, p) in enumerate(zip(items, cur, strict=True)) if k not in dropped
     ]
 
 

@@ -1,4 +1,5 @@
-# 상품 다듬기(refine.md) 의 $hint. 카테고리별, 없으면 default. 영어로 쓴다.
+# 상품 다듬기(refine.md) 의 $hint. layout 자리(카테고리 또는 목걸이 같은 자리 이름)별, 없으면 default.
+# 영어로 쓴다.
 default: Show the product from the front.
 아우터: Show the garment laid flat and seen from directly above.
 상의: Show the garment laid flat and seen from directly above, full length.
@@ -11,3 +12,8 @@ default: Show the product from the front.
 소품: >-
   Show the whole accessory laid flat and seen from directly above; a belt is shown complete
   from buckle to tip in a gentle curve.
+목걸이: >-
+  Show only the necklace laid flat from directly above in a gentle U shape with the pendant and
+  clasp visible, no neck, no person, no other jewelry.
+귀걸이: Show the pair of earrings side by side from the front, no ear, no person.
+팔찌: Show only the bracelet laid flat from directly above as a loose closed loop, no wrist.

@@ -267,14 +267,15 @@ def edit_with_ai(
     return client.edit(fields, files)
 
 
-def refine_hint(category: str, path: Path = REFINE_HINTS_PATH) -> str:
+def refine_hint(slot: str, path: Path = REFINE_HINTS_PATH) -> str:
+    """slot 은 layout 자리 이름 또는 카테고리 (예: 목걸이, 신발)."""
     hints = yaml.safe_load(path.read_text(encoding="utf-8"))
-    return hints.get(category, hints["default"])
+    return hints.get(slot, hints["default"])
 
 
-def refine(client: EditClient, cut: Path, category: str, desc: str, out: Path) -> Path:
+def refine(client: EditClient, cut: Path, slot: str, desc: str, out: Path) -> Path:
     """누끼 → 온전한 상품 사진 → 다시 누끼. 가려진 부분은 채우고 다른 물건은 지운다."""
-    prompt = render_prompt("refine", desc=desc, hint=refine_hint(category))
+    prompt = render_prompt("refine", desc=desc, hint=refine_hint(slot))
     data = edit_with_ai(client, on_white(cut), prompt)
     out.parent.mkdir(parents=True, exist_ok=True)
     trim_alpha(remove_background(client, data)).save(out)

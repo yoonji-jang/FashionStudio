@@ -5,7 +5,7 @@ from pathlib import Path
 import httpx
 import pytest
 import yaml
-from PIL import Image
+from PIL import Image, ImageChops
 
 from core.models import Category
 from core.profile import REPO_ROOT, load_profile
@@ -56,8 +56,8 @@ def test_prompts_render_without_leftover_placeholders():
     for name in ("backdrop", "background", "scene"):
         text = photoroom.render_prompt(name, backdrop=backdrop)
         assert backdrop in text and "$" not in text
-    for cat in Category.__args__:
-        text = photoroom.render_prompt("refine", desc="x", hint=photoroom.refine_hint(cat))
+    for slot in compose.load_layout()["slots"]:
+        text = photoroom.render_prompt("refine", desc="x", hint=photoroom.refine_hint(slot))
         assert "$" not in text
     text = photoroom.render_prompt("style", base_desc="자켓", add_desc="셔츠", how="inside")
     assert "자켓" in text and "셔츠" in text and "$" not in text
@@ -79,7 +79,7 @@ def test_default_method_by_category():
 def test_layout_covers_every_category():
 
     layout = compose.load_layout()
-    assert set(layout["slots"]) == set(Category.__args__)
+    assert set(Category.__args__) <= set(layout["slots"])
 
 
 # ---------------------------------------------------------------- Photoroom 호출
@@ -240,6 +240,16 @@ def test_layer_uses_real_size(tmp_path):
     assert shoes.width == round(layout["slots"]["신발"]["cm"] * layout["px_per_cm"])  # 긴 쪽 기준
 
 
+def test_jewelry_slots_sit_in_empty_space(tmp_path):
+    layout = compose.load_layout()
+    clothes = [(c, _cutout(tmp_path / f"{c}.png", size=(300, 700))) for c in ("아우터", "하의")]
+    body = compose.layer(clothes, layout).getchannel("A")
+    for slot in ("목걸이", "귀걸이", "팔찌"):
+        jewel = compose.layer([(slot, _cutout(tmp_path / f"{slot}.png"))], layout).getchannel("A")
+        overlap = ImageChops.multiply(body, jewel).getbbox()
+        assert overlap is None, slot  # 옷과 겹치지 않는다
+
+
 def test_compose_with_code_shadow(tmp_path):
     out = compose.compose(
         [("하의", _cutout(tmp_path / "b.png"))],
@@ -343,6 +353,8 @@ def test_sample_sets_are_valid():
         s = poc.SampleSet.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))
         load_profile(s.account)
         assert all(it.url or it.image for it in s.items), path
+        slots = compose.load_layout()["slots"]
+        assert all(it.place in slots for it in s.items), path
     poc.Experiment.model_validate(yaml.safe_load(poc.EXPERIMENT_PATH.read_text(encoding="utf-8")))
 
 
