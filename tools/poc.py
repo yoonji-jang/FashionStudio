@@ -346,7 +346,8 @@ def clean_set(
         slot = f"{_slug(j + 1, items[j])}+{CATEGORY_EN[it.category]}"
         dest = out / "styled" / f"r{r}" / f"{slot}.png"
         entry = {"stage": "style", "repeat": r, "slot": slot}
-        args = (client, cur[j], items[j].desc, cur[i], it.desc, it.wear_how, dest)
+        open_base = items[j].category == "아우터"  # 아우터는 열어 둔 뒤 안에 입힌다
+        args = (client, cur[j], items[j].desc, cur[i], it.desc, it.wear_how, dest, open_base)
         if _step(log, entry, photoroom.style, *args):
             cur[j] = dest
             dropped.add(i)

@@ -10,13 +10,13 @@ slots:
   아우터: {cm: 68, measure: height, center: [0.50, 0.208], z: 3}
   상의:   {cm: 64, measure: height, center: [0.60, 0.20], z: 2}
   원피스: {cm: 105, measure: height, center: [0.50, 0.36], z: 2}
-  하의:   {cm: 100, measure: height, center: [0.53, 0.656], z: 4}  # 허리(벨트)가 자켓 밑단 위로 보이게
+  하의:   {cm: 100, measure: height, center: [0.53, 0.683], z: 1}  # 상의 밑단과 살짝 띄움
   가방:   {cm: 44, measure: long, center: [0.19, 0.56], z: 5}
   신발:   {cm: 26, measure: long, center: [0.22, 0.87], z: 5}
   소품:   {cm: 22, measure: long, center: [0.87, 0.50], z: 5, rotate: -8}
 no_outer:
   상의:   {cm: 64, measure: height, center: [0.50, 0.198], z: 2}
-  하의:   {cm: 100, measure: height, center: [0.53, 0.637], z: 4}
+  하의:   {cm: 100, measure: height, center: [0.53, 0.662], z: 1}
 shadow:  # 코드 그림자 (AI 그림자를 쓰지 않을 때)
   offset: [10, 16]
   blur: 18

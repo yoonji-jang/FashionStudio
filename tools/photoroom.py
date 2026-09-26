@@ -289,10 +289,16 @@ def style(
     add_desc: str,
     how: str,
     out: Path,
+    open_base: bool = False,
 ) -> Path:
-    """base 상품에 add 상품을 입힌 모양으로 합친다 (예: 자켓 속 셔츠, 바지에 끼운 벨트)."""
+    """base 상품에 add 상품을 입힌 모양으로 합친다 (예: 자켓 속 셔츠, 바지에 끼운 벨트).
+    open_base 면 먼저 base(아우터)만 열어 둔 뒤 그 안에 입힌다. 한 번에 시키면 셔츠를 자켓 위에
+    붙여 넣은 것처럼 나온다 (run-9)."""
+    image = on_white(base)
+    if open_base:
+        image = edit_with_ai(client, image, render_prompt("open_outer", desc=base_desc))
     prompt = render_prompt("style", base_desc=base_desc, add_desc=add_desc, how=how)
-    data = edit_with_ai(client, on_white(base), prompt, {"worn": on_white(add)})
+    data = edit_with_ai(client, image, prompt, {"worn": on_white(add)})
     out.parent.mkdir(parents=True, exist_ok=True)
     trim_alpha(remove_background(client, data)).save(out)
     return out

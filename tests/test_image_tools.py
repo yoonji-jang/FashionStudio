@@ -153,6 +153,12 @@ def test_style_sends_reference_image(tmp_path):
     assert "shirt inside" in fields["editWithAI.prompt"]
     assert "editWithAI.additionalImages.worn.imageFile" in files
 
+    client = RecordingClient([opaque, opaque, _cut_bytes()])
+    photoroom.style(client, base, "자켓", add, "셔츠", "inside", tmp_path / "o.png", open_base=True)
+    first, second = client.sent[0], client.sent[1]
+    assert "unbuttoned" in first[0]["editWithAI.prompt"] and len(first[1]) == 1  # 자켓만 먼저 연다
+    assert "editWithAI.additionalImages.worn.imageFile" in second[1]
+
 
 def test_scene_keeps_canvas_size(tmp_path):
     client = RecordingClient([_png_bytes(Image.new("RGB", (1024, 1024), "grey"))])
@@ -318,8 +324,8 @@ def test_poc_clean_variant_merges_worn_items(tmp_path):
     assert all(r["ok"] for r in log["runs"]), log["runs"]
     stages = [e["stage"] for e in log["cutouts"] if "stage" in e]
     assert stages.count("refine") == 2 and stages.count("style") == 2  # 신발·소품 다듬기
-    # 배경 1 + 누끼 5 + 다듬기 2×2 + 입히기 2×2 + 장면 1
-    assert log["api_calls"] == 1 + 5 + 4 + 4 + 1
+    # 배경 1 + 누끼 5 + 다듬기 2×2 + 입히기 2×2 (+아우터 열기 1) + 장면 1
+    assert log["api_calls"] == 1 + 5 + 4 + 4 + 1 + 1
     assert (out / "styled/r1/01_outer+top.png").exists()
     assert (out / "sheets/clean.jpg").exists() and (out / "results/D_1.jpg").exists()
 
