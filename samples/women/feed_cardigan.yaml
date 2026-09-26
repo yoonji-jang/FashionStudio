@@ -1,6 +1,7 @@
 # 5단계 캐러셀 샘플: 가을 니트 가디건 코디 최종본 (fall_cardigan_final.yaml).
 # 표지는 3단계에서 고른 F 디자인 이미지. 상품은 fall_cardigan.yaml 의 지그재그 상품 페이지에서
 # 이름·스토어·가격·사진을 읽는다 (Actions 에서 --photos 로 실행).
+# 실버 물방울 목걸이(146334491)는 판매가 끝나 페이지를 읽을 수 없어 뺐다 (2026-09-26).
 account: women
 title_lines: [가을 데일리룩은, 니트 가디건 하나면 돼요]
 cover: samples/women/feed_cardigan/cover.jpg
@@ -29,9 +30,6 @@ items:
     url: https://zigzag.kr/catalog/products/153552340
     name: 금장 버클 가죽 벨트
     comment: 데님에 벨트 하나로 허리선이 살아나요.
-  - category: 소품
-    url: https://zigzag.kr/catalog/products/146334491
-    name: 실버 물방울 펜던트 목걸이
   - category: 소품
     url: https://zigzag.kr/catalog/products/101877686
     name: 실버 미니 진주 링 귀걸이
