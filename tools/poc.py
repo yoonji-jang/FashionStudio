@@ -63,6 +63,8 @@ class SampleItem(BaseModel):
     refine: bool | None = None  # AI로 다듬기. 생략하면 segment 누끼만 (Flat Lay 는 이미 AI 정리컷)
     wear_with: Category | None = None  # 이 상품을 입힐 기준 상품 (예: 셔츠 → 아우터)
     wear_how: str = "worn together naturally"  # 입는 방법 (영어, prompts/style.md 의 $how)
+    # 입히는 방식 후보. 모두 만들어 비교표에 싣고 첫 번째로 성공한 것을 코디컷에 쓴다
+    wear_modes: list[photoroom.StyleMode] = Field(default=["direct"], min_length=1)
 
     def needs_refine(self) -> bool:
         if self.refine is not None:
@@ -258,12 +260,17 @@ def run(
             result_h=320,
             per_row=len(labels),
         )
-    clean_results = [
-        (f"r{r} {CATEGORY_EN[cat]}", p)
-        for r, pairs in enumerate(clean_sets, 1)
-        if pairs
-        for cat, p in pairs
-    ]
+    clean_results = []
+    for r, pairs in enumerate(clean_sets, 1):
+        if not pairs:
+            continue
+        clean_results += [(f"r{r} {CATEGORY_EN[cat]} (used)", p) for cat, p in pairs]
+        used = {p for _, p in pairs}
+        clean_results += [
+            (f"r{r} {p.stem}", p)
+            for p in sorted((out / "styled" / f"r{r}").glob("*.png"))
+            if p not in used
+        ]
     if clean_results:
         compare.contact_sheet(
             refs,
@@ -344,12 +351,16 @@ def clean_set(
         if j is None or j in dropped:
             continue
         slot = f"{_slug(j + 1, items[j])}+{CATEGORY_EN[it.category]}"
-        dest = out / "styled" / f"r{r}" / f"{slot}.png"
-        entry = {"stage": "style", "repeat": r, "slot": slot}
-        open_base = items[j].category == "아우터"  # 아우터는 열어 둔 뒤 안에 입힌다
-        args = (client, cur[j], items[j].desc, cur[i], it.desc, it.wear_how, dest, open_base)
-        if _step(log, entry, photoroom.style, *args):
-            cur[j] = dest
+        chosen = None
+        for mode in it.wear_modes:
+            name = slot if len(it.wear_modes) == 1 else f"{slot}_{mode}"
+            dest = out / "styled" / f"r{r}" / f"{name}.png"
+            entry = {"stage": "style", "repeat": r, "slot": name}
+            args = (client, cur[j], items[j].desc, cur[i], it.desc, it.wear_how, dest, mode)
+            if _step(log, entry, photoroom.style, *args) and chosen is None:
+                chosen = dest
+        if chosen:
+            cur[j] = chosen
             dropped.add(i)
     return [
         (it.category, p)

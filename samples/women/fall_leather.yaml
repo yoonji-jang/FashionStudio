@@ -14,6 +14,7 @@ items:
     alternates:
       - https://zigzag.kr/catalog/products/113920079
     wear_with: 아우터
+    wear_modes: [over, open]  # direct 는 셔츠가 자켓 위에 붙어 나옴 (run-9)
     wear_how: >-
       the jacket is unbuttoned and open, its two front panels and lapels spread apart and lying
       on top of the shirt; the shirt is worn underneath the jacket, so only the shirt collar,

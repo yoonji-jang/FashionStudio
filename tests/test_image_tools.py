@@ -154,10 +154,17 @@ def test_style_sends_reference_image(tmp_path):
     assert "editWithAI.additionalImages.worn.imageFile" in files
 
     client = RecordingClient([opaque, opaque, _cut_bytes()])
-    photoroom.style(client, base, "자켓", add, "셔츠", "inside", tmp_path / "o.png", open_base=True)
+    photoroom.style(client, base, "자켓", add, "셔츠", "inside", tmp_path / "o.png", mode="open")
     first, second = client.sent[0], client.sent[1]
     assert "unbuttoned" in first[0]["editWithAI.prompt"] and len(first[1]) == 1  # 자켓만 먼저 연다
     assert "editWithAI.additionalImages.worn.imageFile" in second[1]
+    assert (tmp_path / "o_opened.png").exists()
+
+    client = RecordingClient([opaque, _cut_bytes()])
+    photoroom.style(client, base, "자켓", add, "셔츠", "inside", tmp_path / "v.png", mode="over")
+    fields, files = client.sent[0]
+    assert "put on over" in fields["editWithAI.prompt"]
+    assert "editWithAI.additionalImages.outer.imageFile" in files
 
 
 def test_scene_keeps_canvas_size(tmp_path):
@@ -306,7 +313,7 @@ def test_poc_clean_variant_merges_worn_items(tmp_path):
         {"category": c, "desc": f"item {i}", "image": str(_img(tmp_path / f"p{i}.jpg"))}
         for i, c in enumerate(cats)
     ]
-    items[1] |= {"wear_with": "아우터", "wear_how": "inside"}
+    items[1] |= {"wear_with": "아우터", "wear_how": "inside", "wear_modes": ["over", "open"]}
     items[4] |= {"wear_with": "하의"}
     samples = tmp_path / "s.yaml"
     samples.write_text(yaml.safe_dump({"account": "women", "name": "t", "items": items}))
@@ -323,10 +330,11 @@ def test_poc_clean_variant_merges_worn_items(tmp_path):
     log = poc.run(samples, out, exp, fake=True)
     assert all(r["ok"] for r in log["runs"]), log["runs"]
     stages = [e["stage"] for e in log["cutouts"] if "stage" in e]
-    assert stages.count("refine") == 2 and stages.count("style") == 2  # 신발·소품 다듬기
-    # 배경 1 + 누끼 5 + 다듬기 2×2 + 입히기 2×2 (+아우터 열기 1) + 장면 1
-    assert log["api_calls"] == 1 + 5 + 4 + 4 + 1 + 1
-    assert (out / "styled/r1/01_outer+top.png").exists()
+    assert stages.count("refine") == 2 and stages.count("style") == 3  # 신발·소품 다듬기
+    # 배경 1 + 누끼 5 + 다듬기 2×2 + 입히기(걸치기 2, 열고 입히기 3, 벨트 2) + 장면 1
+    assert log["api_calls"] == 1 + 5 + 4 + 2 + 3 + 2 + 1
+    assert (out / "styled/r1/01_outer+top_over.png").exists()
+    assert (out / "styled/r1/01_outer+top_open_opened.png").exists()
     assert (out / "sheets/clean.jpg").exists() and (out / "results/D_1.jpg").exists()
 
 

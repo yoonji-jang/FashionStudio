@@ -281,6 +281,9 @@ def refine(client: EditClient, cut: Path, category: str, desc: str, out: Path) -
     return out
 
 
+StyleMode = Literal["direct", "open", "over"]
+
+
 def style(
     client: EditClient,
     base: Path,
@@ -289,17 +292,30 @@ def style(
     add_desc: str,
     how: str,
     out: Path,
-    open_base: bool = False,
+    mode: StyleMode = "direct",
 ) -> Path:
     """base 상품에 add 상품을 입힌 모양으로 합친다 (예: 자켓 속 셔츠, 바지에 끼운 벨트).
-    open_base 면 먼저 base(아우터)만 열어 둔 뒤 그 안에 입힌다. 한 번에 시키면 셔츠를 자켓 위에
-    붙여 넣은 것처럼 나온다 (run-9)."""
-    image = on_white(base)
-    if open_base:
-        image = edit_with_ai(client, image, render_prompt("open_outer", desc=base_desc))
-    prompt = render_prompt("style", base_desc=base_desc, add_desc=add_desc, how=how)
-    data = edit_with_ai(client, image, prompt, {"worn": on_white(add)})
+
+    direct: base 사진에 add 를 참고 이미지로 넣어 입힌다. 자켓+셔츠는 셔츠를 자켓 위에 붙인 것처럼
+            나오기도 한다 (run-9).
+    open:   base(아우터)만 먼저 연 뒤 입힌다. 연 사진은 <out>_opened.png 로 남긴다.
+            run-11 에서는 자켓이 사라지고 셔츠만 남았다.
+    over:   add(셔츠) 사진을 본 이미지로 두고 base(자켓)를 참고 이미지로 걸친다.
+    """
     out.parent.mkdir(parents=True, exist_ok=True)
+    values = {"base_desc": base_desc, "add_desc": add_desc, "how": how}
+    if mode == "over":
+        data = edit_with_ai(
+            client, on_white(add), render_prompt("style_over", **values), {"outer": on_white(base)}
+        )
+    else:
+        image = on_white(base)
+        if mode == "open":
+            image = edit_with_ai(client, image, render_prompt("open_outer", desc=base_desc))
+            Image.open(io.BytesIO(image)).save(out.with_name(out.stem + "_opened.png"))
+        data = edit_with_ai(
+            client, image, render_prompt("style", **values), {"worn": on_white(add)}
+        )
     trim_alpha(remove_background(client, data)).save(out)
     return out
 
@@ -317,6 +333,9 @@ def scene(
         client, composed.read_bytes(), prompt, extra={"outputSize": f"{size[0]}x{size[1]}"}
     )
     img = Image.open(io.BytesIO(data)).convert("RGB")
+    bbox = img.convert("L").point(lambda v: 255 if v > 12 else 0).getbbox()
+    if bbox:  # AI가 가장자리에 검은 띠를 붙여 오는 경우가 있어 잘라낸다 (run-11)
+        img = img.crop(bbox)
     if img.size != size:
         img = ImageOps.fit(img, size, Image.LANCZOS)
     out.parent.mkdir(parents=True, exist_ok=True)
