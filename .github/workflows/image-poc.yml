@@ -51,9 +51,14 @@ jobs:
           PHOTOROOM_API_KEY: ${{ secrets.PHOTOROOM_API_KEY }}
           SANDBOX_KEY: ${{ secrets.PHOTOROOM_API_KEY_SANDBOX }}
           PHOTOROOM_SANDBOX: ${{ (inputs.sandbox || contains(github.event.head_commit.message, '[sandbox]')) && '1' || '' }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           # 샌드박스면 전용 키(PHOTOROOM_API_KEY_SANDBOX)를 우선 쓰고, 없으면 기본 키에 sandbox_ 를 붙인다
           if [ -n "$PHOTOROOM_SANDBOX" ] && [ -n "$SANDBOX_KEY" ]; then export PHOTOROOM_API_KEY="$SANDBOX_KEY"; fi
+          # 푸시 실행은 커밋 메시지의 [samples:경로] [variants:D] 로 상품 목록·방식을 고를 수 있다
+          re_s='\[samples:([^]]+)\]'; re_v='\[variants:([^]]+)\]'
+          [[ "$COMMIT_MSG" =~ $re_s ]] && SAMPLES="${BASH_REMATCH[1]}"
+          [[ "$COMMIT_MSG" =~ $re_v ]] && VARIANTS="${BASH_REMATCH[1]}"
           args=(--samples "$SAMPLES" --out "$OUT")
           [ -n "$VARIANTS" ] && args+=(--variants $VARIANTS)
           [ -n "$REPEATS" ] && args+=(--repeats "$REPEATS")

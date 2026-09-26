@@ -55,6 +55,9 @@ class SampleItem(BaseModel):
     desc: str
     url: str | None = None
     image: str | None = None  # 저장소 기준 경로 (직접 캡처한 사진)
+    cutout: str | None = (
+        None  # 이미 만든 누끼 (저장소 기준 경로). 있으면 누끼·다듬기·입히기를 건너뜀
+    )
     alternates: list[str] = []
     crop: tuple[float, float, float, float] | None = None  # 사진 일부만 쓸 때 (0~1 비율)
     method: photoroom.CutoutMethod | None = None  # 생략하면 옷은 flatlay, 나머지는 segment
@@ -74,6 +77,8 @@ class SampleItem(BaseModel):
         return self.slot or self.category
 
     def needs_refine(self) -> bool:
+        if self.cutout:
+            return False
         if self.refine is not None:
             return self.refine
         return (self.method or photoroom.default_method(self.category)) == "segment"
@@ -107,7 +112,10 @@ def gather_originals(samples: SampleSet, out: Path, log: dict) -> list[Path]:
     for i, item in enumerate(samples.items, 1):
         stem = out / "originals" / _slug(i, item)
         stem.parent.mkdir(parents=True, exist_ok=True)
-        if item.image:
+        if item.cutout and not (item.image or item.url):
+            dest = REPO_ROOT / item.cutout  # 비교표 위 줄에는 누끼를 그대로 보여 준다
+            entry = {"slot": _slug(i, item), "source": item.cutout}
+        elif item.image:
             src = REPO_ROOT / item.image
             dest = stem.with_suffix(src.suffix)
             shutil.copy(src, dest)
@@ -176,6 +184,10 @@ def run(
         for i, (src, it) in enumerate(zip(originals, samples.items, strict=True), 1):
             method = it.method or photoroom.default_method(it.category)
             dest = out / "cutouts" / f"r{r}" / f"{_slug(i, it)}.png"
+            if it.cutout:
+                shutil.copy(REPO_ROOT / it.cutout, _mk(dest))
+                paths.append(dest)
+                continue
             if method == "segment" and r > 1 and cutout_sets[0]:
                 # 잘라내기는 매번 같으므로 1회차 결과를 재사용 (요금 절약)
                 dest.parent.mkdir(parents=True, exist_ok=True)

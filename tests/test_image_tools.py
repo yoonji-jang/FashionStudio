@@ -357,7 +357,7 @@ def test_sample_sets_are_valid():
     for path in (REPO_ROOT / "samples").rglob("*.yaml"):
         s = poc.SampleSet.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))
         load_profile(s.account)
-        assert all(it.url or it.image for it in s.items), path
+        assert all(it.url or it.image or it.cutout for it in s.items), path
         slots = compose.load_layout()["slots"]
         assert all(it.place in slots for it in s.items), path
     poc.Experiment.model_validate(yaml.safe_load(poc.EXPERIMENT_PATH.read_text(encoding="utf-8")))
