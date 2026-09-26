@@ -1,0 +1,65 @@
+{
+  "samples": "samples/women/fall_cardigan_cut.yaml",
+  "account": "women",
+  "started": "2026-09-26T11:50:39",
+  "sandbox": true,
+  "items": [
+    {
+      "slot": "01_outer",
+      "source": "samples/women/fall_cardigan/cardigan.png"
+    },
+    {
+      "slot": "02_top",
+      "source": "samples/women/fall_cardigan/shirt.png"
+    },
+    {
+      "slot": "03_bottoms",
+      "source": "samples/women/fall_cardigan/bottoms_belt.png"
+    },
+    {
+      "slot": "04_bag",
+      "source": "samples/women/fall_cardigan/bag.png"
+    },
+    {
+      "slot": "05_shoes",
+      "source": "samples/women/fall_cardigan/shoes.png"
+    },
+    {
+      "slot": "06_accessory",
+      "source": "samples/women/fall_cardigan/necklace.png"
+    },
+    {
+      "slot": "07_accessory",
+      "source": "samples/women/fall_cardigan/earrings.png"
+    }
+  ],
+  "cutouts": [
+    {
+      "stage": "style",
+      "repeat": 1,
+      "slot": "01_outer+top",
+      "ok": true,
+      "sec": 10.8
+    }
+  ],
+  "runs": [
+    {
+      "variant": "B",
+      "run": 1,
+      "file": "results/B_1.jpg",
+      "ok": true,
+      "sec": 0.3
+    },
+    {
+      "variant": "C",
+      "run": 1,
+      "file": "results/C_1.jpg",
+      "ok": true,
+      "sec": 1.6
+    }
+  ],
+  "backdrop": "generated",
+  "finished": "2026-09-26T11:51:06",
+  "api_calls": 4,
+  "est_cost_usd": 0
+}
