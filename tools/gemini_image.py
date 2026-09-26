@@ -55,6 +55,10 @@ class NoImageError(RuntimeError):
     """모델이 이미지를 돌려주지 않음 (안전 필터, 텍스트만 응답 등)."""
 
 
+class QuotaError(RuntimeError):
+    """재시도 후에도 429. 결제 미등록·한도 초과라 더 돌려도 소용없다."""
+
+
 # ---------------------------------------------------------------- 설정·지시문
 
 
@@ -160,12 +164,18 @@ class ImageClient(Protocol):
 
 
 class GeminiClient:
-    def __init__(self, model: str, api_key: str | None = None, timeout: float = 180.0):
+    def __init__(
+        self,
+        model: str,
+        api_key: str | None = None,
+        timeout: float = 180.0,
+        transport: httpx.BaseTransport | None = None,
+    ):
         self.model = model
         self.api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
         if not self.api_key:
             raise RuntimeError("GEMINI_API_KEY 가 없습니다 (.env 또는 GitHub Secrets)")
-        self.http = httpx.Client(timeout=timeout)
+        self.http = httpx.Client(timeout=timeout, transport=transport)
 
     def generate(
         self, parts: list[Part], aspect_ratio: str, image_size: str, attempts: int = 4
@@ -177,8 +187,10 @@ class GeminiClient:
             if resp.status_code in (429, 500, 502, 503, 504) and i < attempts - 1:
                 time.sleep(2 ** (i + 1) * 5)
                 continue
+            if resp.status_code == 429:
+                raise QuotaError(f"Gemini 429 ({self.model}): {resp.text[:1500]}")
             if resp.status_code >= 400:
-                raise RuntimeError(f"Gemini {resp.status_code}: {resp.text[:300]}")
+                raise RuntimeError(f"Gemini {resp.status_code} ({self.model}): {resp.text[:1500]}")
             return parse_image(resp.json())
         raise RuntimeError("unreachable")
 

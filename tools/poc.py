@@ -37,6 +37,7 @@ from tools.gemini_image import (
     FakeClient,
     GeminiClient,
     ImageClient,
+    QuotaError,
     compose,
     extract,
     prep_image,
@@ -164,7 +165,10 @@ def run(
                     image_size=experiment.extract_size,
                 )
                 entry = {"slot": _slug(i, it), "ok": True}
+            except QuotaError:
+                raise
             except Exception as e:  # noqa: BLE001 - 실패하면 원본으로 대신한다
+                dest.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy(src, dest)
                 entry = {"slot": _slug(i, it), "ok": False, "error": str(e)[:300]}
             entry.update(model=extract_client.model, sec=round(time.monotonic() - t0, 1))
@@ -203,6 +207,8 @@ def run(
                 image_size=experiment.image_size,
             )
             entry["ok"] = True
+        except QuotaError:
+            raise
         except Exception as e:  # noqa: BLE001 - 한 회차 실패는 기록만 하고 계속
             entry.update(ok=False, error=str(e)[:300])
         entry["sec"] = round(time.monotonic() - t0, 1)
@@ -316,7 +322,15 @@ def main(argv: list[str] | None = None) -> int:
     exp = Experiment.model_validate(yaml.safe_load(args.experiment.read_text(encoding="utf-8")))
     if args.repeats:
         exp.repeats = args.repeats
-    log = run(args.samples, args.out, exp, args.fake, args.variants, args.workers)
+    try:
+        log = run(args.samples, args.out, exp, args.fake, args.variants, args.workers)
+    except QuotaError as e:
+        print(
+            "Gemini 사용 한도에 막혔습니다. Google AI Studio에서 결제(유료 등급)가 켜져 있는지, "
+            f"한도가 남았는지 확인하세요.\n{e}",
+            file=sys.stderr,
+        )
+        return 2
     ok = sum(r["ok"] for r in log["runs"])
     print(f"완료: 코디컷 {ok}/{len(log['runs'])}, 결과 {args.out / 'report.md'}")
     return 0 if ok else 1

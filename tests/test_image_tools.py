@@ -167,3 +167,36 @@ def test_sample_sets_are_valid():
 def test_fake_client_respects_ratio(tmp_path):
     data = FakeClient().generate([_img(tmp_path / "a.png"), "x"], "9:16", "1K")
     assert Image.open(io.BytesIO(data)).size == (900, 1600)
+
+
+def test_gemini_client_raises_quota_error_on_429(tmp_path):
+    import httpx
+
+    from tools.gemini_image import GeminiClient, QuotaError
+
+    transport = httpx.MockTransport(lambda req: httpx.Response(429, json={"error": "quota"}))
+    client = GeminiClient("m", api_key="k", transport=transport)
+    with pytest.raises(QuotaError, match="429"):
+        client.generate(["x"], "1:1", "1K", attempts=1)
+
+
+def test_gemini_client_sends_key_header_and_parses(tmp_path):
+    import httpx
+
+    from tools.gemini_image import GeminiClient
+
+    png = io.BytesIO()
+    Image.new("RGB", (2, 2)).save(png, format="PNG")
+    seen = {}
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        seen["key"] = req.headers["x-goog-api-key"]
+        seen["url"] = str(req.url)
+        data = base64.b64encode(png.getvalue()).decode()
+        return httpx.Response(
+            200, json={"candidates": [{"content": {"parts": [{"inlineData": {"data": data}}]}}]}
+        )
+
+    client = GeminiClient("gemini-x", api_key="k", transport=httpx.MockTransport(handler))
+    assert client.generate(["x"], "1:1", "1K") == png.getvalue()
+    assert seen["key"] == "k" and "models/gemini-x:generateContent" in seen["url"]
