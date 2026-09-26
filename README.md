@@ -203,6 +203,17 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `link_line` | 상품 정보는 프로필 링크에서 확인하세요 | 제품 목록 아래 안내 |
 | `ai_notice` | 이미지는 AI로 합성했으며 … | 모든 캡션 끝에 붙는 AI 합성 고지 |
 
+#### `review` : 이미지 검수 (7단계)
+코디컷은 AI 입히기 결과가 매번 조금씩 달라서, 후보를 여러 장 만들고 Claude(image-reviewer 에이전트)가
+원본 상품 사진과 비교해 점수를 매깁니다. 항목 5개(색, 모양, 빠진 상품, 삐져나온 조각, 겹침·잘림) × 0~2점 = 10점 만점.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `candidates` | 2 | 한 번에 만드는 코디컷 후보 수. 늘리면 Photoroom 호출도 그만큼 늘어남 |
+| `max_rounds` | 2 | 후보가 모두 기준 미달일 때 다시 만드는 횟수 (첫 회 포함). 넘으면 사람 확인으로 표시 |
+| `min_score` | 8 | 이 점수 이상이고 0점 항목이 없어야 통과 |
+| `check_slides` | true | 상품 장 사진 색·모델 얼굴·글자 잘림도 확인 |
+
 #### `schedule` : 시간 (`HH:MM` 형식)
 | 항목 | 예시 | 의미 |
 |---|---|---|
@@ -372,7 +383,7 @@ accounts:
 2. **판매 확인**: 상품 페이지에서 판매 중인지와 사진 목록을 읽습니다. 판매 종료·품절·비공개면 뺍니다.
 3. **사진 고르기**: 사진마다 점수를 매겨 사람 없이 상품 하나만 단색 배경에 찍힌 사진을 앞으로 보냅니다
    (`image_urls` 첫 장이 누끼에 쓸 사진). 그런 사진이 있으면 `has_flat_shot: true`.
-   베이지·카멜 색 옷은 피부색으로 잘못 잡힐 수 있어, 최종 확인은 이미지 검수(6단계)가 합니다.
+   베이지·카멜 색 옷은 피부색으로 잘못 잡힐 수 있어, 최종 확인은 이미지 검수(7단계)가 합니다.
 4. **창고 정리**: 이미 있던 상품은 `recheck_days` 가 지나면 다시 확인해 판매가 끝났으면 뺍니다.
    카테고리마다 `max_per_category` 개까지 평점·리뷰 좋은 순으로 남깁니다. 사용 기록(`last_used`)은 유지합니다.
 
@@ -433,6 +444,26 @@ items:
   - `uv run python -m tools.plan check <plan.yaml>` 규칙 검사 (재고·판매 상태·재사용 기간·쇼핑몰 수·필수 카테고리·글자 수·금지 표현·해시태그)
   - `uv run python -m tools.plan build <plan.yaml> --outfit none` 캐러셀·캡션·manifest
 
+## 이미지 검수 (7단계)
+
+```
+코디컷 후보 N장 (build) → 검수표 (tools.review prep) → image-reviewer 점수 → tools.review apply
+   통과: 가장 좋은 후보를 표지로, manifest 에 점수
+   모두 미달: tools.review more 로 후보 한 묶음 더 (max_rounds 까지) → 다시 검수
+   그래도 미달, 또는 상품 장 문제: 가장 나은 후보를 표지로 두고 needs_human (8단계 미리보기에서 사람이 판단)
+```
+
+- 결과: `out/<날짜>/review/` 에 `covers.jpg`(원본과 후보 비교), `slides.jpg`, `input.md`, `scores.yaml`,
+  `review.json`. `manifest.json` 의 `review_score`, `needs_human`, `review` 와 `report.md` 에도 남습니다.
+- 도구가 직접 찾는 문제: 상품 장에 남은 얼굴, `…` 으로 잘린 이름·코멘트, 표지에 안 들어가는 제목.
+  색·모양·삐져나온 조각은 Claude 가 봅니다.
+- Actions `daily` 를 기획 파일(`plan`)로 돌리면 Claude 가 없어서 후보만 만들고 검수표까지 남깁니다
+  (`needs_human: true`).
+- 도구만:
+  - `uv run python -m tools.review prep out/<날짜>` 검수표
+  - `uv run python -m tools.review apply out/<날짜> --scores out/<날짜>/review/scores.yaml` 점수 적용·표지 고르기
+  - `uv run python -m tools.review more out/<날짜>` 후보 더 만들기
+
 ---
 
 ## 새 계정 추가
@@ -453,8 +484,8 @@ items:
 | 3 | 제목 글자 합성 | 완료 |
 | 4 | 상품 수집 | 완료 |
 | 5 | 피드 구성 (캐러셀 슬라이드) | 완료 |
-| 6 | AI 기획 (Claude Code 스킬·에이전트) | 진행 중 |
-| 7 | 이미지 검수 | |
+| 6 | AI 기획 (Claude Code 스킬·에이전트) | 완료 |
+| 7 | 이미지 검수 | 진행 중 |
 | 8 | 인스타 게시 | |
 | 9 | GitHub Actions 매일 실행 | |
 | 10 | 상품 창고를 Actions 캐시로 이전 | |

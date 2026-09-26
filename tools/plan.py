@@ -16,6 +16,7 @@ build 결과 (기획 파일이 있는 폴더, --out 으로 바꿀 수 있음):
   outfit/     코디컷 작업 (tools.poc 와 같은 구성)   slides/  캐러셀 슬라이드
   caption.txt 캡션 + 해시태그                         preview.jpg  슬라이드 한눈에 보기
   manifest.json  하루 결과물 (core.models.Manifest, 게시 job 이 읽음)
+  review/review.json  코디컷 후보 목록 (검수는 tools.review, 7단계)
 """
 
 from __future__ import annotations
@@ -508,8 +509,11 @@ def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
     return {"account": plan.account, "name": plan.theme.title_hint, "items": items}
 
 
-def make_outfit(plan: DailyPlan, store: Store, work: Path, fake: bool = False) -> Path | None:
-    """Photoroom 으로 코디컷을 만든다 (2단계와 같은 흐름). 실패하면 None."""
+def make_outfit(
+    plan: DailyPlan, store: Store, work: Path, fake: bool = False, count: int = 1
+) -> list[Path]:
+    """Photoroom 으로 코디컷 후보를 count 장 만든다 (2단계와 같은 흐름, 회차마다 AI 결과가 다름).
+    성공한 것만 돌려준다. 옷 누끼·입히기·그림자는 후보마다 새로 하고, 잘라내기 누끼는 재사용한다."""
     from tools import poc
 
     samples = work / "samples.yaml"
@@ -518,9 +522,8 @@ def make_outfit(plan: DailyPlan, store: Store, work: Path, fake: bool = False) -
     samples.write_text(yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
     cfg = outfit_config()
     variant = poc.Variant(id="C", name="하루 코디컷", finish=cfg["finish"], clean=cfg["clean"])
-    log = poc.run(samples, work, poc.Experiment(repeats=1, variants=[variant]), fake=fake)
-    done = [r for r in log["runs"] if r["ok"]]
-    return work / done[0]["file"] if done else None
+    log = poc.run(samples, work, poc.Experiment(repeats=count, variants=[variant]), fake=fake)
+    return [work / r["file"] for r in log["runs"] if r["ok"]]
 
 
 def preview(paths: list[Path], out: Path, per_row: int = 4, w: int = 360) -> Path:
@@ -554,16 +557,22 @@ def build(
     photo_dir = out / "photos"
     notes: list[str] = []
 
+    from tools import review as review_tool
+
     cover: Path | None = REPO_ROOT / plan.cover if plan.cover else None
+    made: list[Path] = [cover] if cover else []
     if cover is None and outfit == "photoroom":
         try:
-            cover = make_outfit(plan, store, out / "outfit", fake)
+            made = make_outfit(plan, store, out / "outfit", fake, profile.review.candidates)
         except photoroom.QuotaError:
             raise
         except Exception as e:  # noqa: BLE001 - 코디컷 없이 캐러셀은 만든다
             print(f"코디컷 실패: {e}", file=sys.stderr)
+        # 검수 전에는 첫 후보를 표지로 두고, 검수(tools.review apply)가 가장 좋은 후보로 바꾼다
+        cover = made[0] if made else None
         if cover is None:
             notes.append("코디컷을 만들지 못해 표지 없이 만들었습니다")
+    review = review_tool.start(out, made)
 
     items = []
     for it in plan.items:
@@ -606,8 +615,9 @@ def build(
             theme=plan.theme, items=[products[it.product] for it in plan.items], reason=plan.reason
         ),
         images=[rel(p) for p in slides],
-        review_score=0,  # 7단계 검수에서 채운다
+        review_score=0,  # 검수(tools.review apply)에서 채운다
         needs_human=True,
+        review=review,
         title_lines=plan.text.title_lines,
         caption=body,
         hashtags=tags,
@@ -619,7 +629,10 @@ def build(
         f"- 주제: [{plan.theme.type or '-'}] {plan.theme.title_hint}",
         f"- 조합: {plan.reason}",
     ]
-    report += [f"- 슬라이드 {len(slides)}장, 코디컷 {'있음' if cover else '없음'}"]
+    report += [
+        f"- 슬라이드 {len(slides)}장, 코디컷 {f'후보 {len(made)}장' if made else '없음'}"
+        " (검수 전: 첫 후보가 표지)"
+    ]
     report += [f"- 경고: {w}" for w in warns] + [f"- 참고: {n}" for n in notes]
     (out / "report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     return manifest

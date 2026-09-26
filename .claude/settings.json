@@ -12,7 +12,7 @@
       "Bash(python -m tools.plan:*)",
       "Bash(python -m tools.compare:*)",
       "Bash(python -m tools.poc:*)",
-      "Bash(python -m tools.review_prep:*)",
+      "Bash(python -m tools.review:*)",
       "Bash(pytest:*)",
       "Read",
       "Write(out/**)",
