@@ -1,0 +1,4 @@
+# 매일 실행할 계정 목록. GitHub Actions가 이 목록으로 계정별 작업을 돌린다.
+# 남성 계정을 추가할 때: accounts/men/ 을 만들고 여기에 men 을 추가.
+accounts:
+  - women

@@ -1,0 +1,52 @@
+# 새 계정용 틀. /new-account 스킬(5단계)이 이 파일을 복사해 채운다.
+# 복사 후 id 를 폴더 이름과 같게 바꾸고 accounts/index.yaml 에 추가할 것.
+id: _template
+display_name: 새 계정
+language: ko
+
+audience:
+  gender: women  # women | men | unisex
+  age_range: [20, 34]
+  description: 대상 독자 설명
+
+style:
+  keywords: [미니멀]
+  palette: []
+  avoid: []
+
+outfit:
+  items_min: 5
+  items_max: 7
+  slots:
+    - {category: 상의}
+    - {category: 하의}
+    - {category: 가방}
+    - {category: 신발}
+  reuse_cooldown_days: 14
+  max_per_shop: 2
+
+product_source:
+  name: zigzag  # sources/<name>.py
+  min_rating: 4.5
+  min_reviews: 20
+  prefer_flat_shot: true
+
+visual:
+  backdrop: light-grey textured plaster surface, soft studio light
+  backdrop_ref: null
+  feed_ratio: "4:5"
+  font: Pretendard-SemiBold.otf
+  logo_text: "@계정이름"
+
+schedule:
+  timezone: Asia/Seoul
+  generate_at: "21:17"
+  publish_at: "07:23"
+  reels_at: null
+
+monetize: none
+approval: required
+
+instagram:
+  token_secret: IG_NEWACCOUNT_TOKEN
+  user_id_secret: IG_NEWACCOUNT_USER_ID

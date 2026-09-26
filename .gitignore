@@ -1,0 +1,37 @@
+# 비밀값: 절대 커밋하지 않음 (GitHub Secrets 또는 로컬 .env 사용)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials*.json
+service-account*.json
+token*.json
+
+# 실행 결과 (Actions artifact로 전달)
+out/
+
+# 상품 이미지 캐시 (용량 큼)
+data/*/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# OS / 에디터
+.DS_Store
+.idea/
+.vscode/
+
+# Claude Code 개인 설정
+.claude/settings.local.json
+
+# 릴스 (9단계, Node)
+node_modules/

@@ -1,0 +1,59 @@
+# 여성 코디 계정 설정. 스킬·도구는 모두 이 파일을 읽어 판단한다.
+id: women
+display_name: 여성 데일리 코디
+language: ko
+
+audience:
+  gender: women
+  age_range: [20, 34]
+  description: 출근과 주말을 오가는 20~30대 여성. 과하지 않고 따라 입기 쉬운 코디를 찾음
+
+style:
+  keywords: [미니멀, 클래식, 데일리, 오피스룩]
+  palette: [블랙, 아이보리, 그레이, 베이지, 네이비, 버건디]
+  avoid: [과한 로고, 형광색, 코스튬 느낌]
+
+outfit:
+  items_min: 5
+  items_max: 7
+  slots:
+    - {category: 아우터, required: false}  # 계절에 따라 생략
+    - {category: 상의}
+    - {category: 하의}
+    - {category: 가방}
+    - {category: 신발}
+    - {category: 소품, required: false}
+  reuse_cooldown_days: 14
+  max_per_shop: 2
+
+product_source:
+  name: zigzag
+  min_rating: 4.5
+  min_reviews: 20
+  prefer_flat_shot: true
+
+visual:
+  backdrop: warm light-grey textured plaster surface, soft even studio light, subtle natural drop shadows
+  backdrop_ref: null  # 2단계에서 배경 참고 이미지를 만들면 backdrop_ref.jpg 로 지정
+  feed_ratio: "4:5"
+  font: Pretendard-SemiBold.otf
+  title_font_size: 64
+  title_line_spacing: 1.25
+  gradient_height: 0.35
+  gradient_opacity: 0.45
+  logo_text: "@계정이름"  # 인스타 계정을 정하면 교체
+
+schedule:
+  timezone: Asia/Seoul
+  generate_at: "21:17"  # 전날 생성
+  publish_at: "07:23"   # 다음날 게시 (정각은 Actions 지연이 커서 피함)
+  reels_at: "18:47"
+
+# none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
+monetize: none
+# required: 텔레그램 /ok 승인 후 게시 / optional: /skip 이 없으면 자동 게시
+approval: required
+
+instagram:
+  token_secret: IG_WOMEN_TOKEN      # GitHub Secret 이름 (값은 저장소에 두지 않음)
+  user_id_secret: IG_WOMEN_USER_ID
