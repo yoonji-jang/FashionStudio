@@ -1,0 +1,1 @@
+source: 6170edc304d746a519b015645501e8dbdc78b3c8 spec: samples/women/feed_cardigan.yaml product_image: 
