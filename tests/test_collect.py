@@ -354,3 +354,11 @@ def test_image_failure_does_not_stop_collect(tmp_path: Path):
     )
     assert report.stopped is None and [p.id for p in report.added] == ["zigzag:1"]
     assert str(store.products()[0].image_urls[0]).endswith("1_flat.jpeg")
+
+
+def test_model_on_plain_background_is_not_flat():
+    """단색 배경이라도 사람이 테두리에 걸쳐 잘리면(다리·몸통) 단독컷이 아니다 (collect-2 실측)."""
+    img = Image.new("RGB", (300, 360), (240, 240, 238))
+    ImageDraw.Draw(img).rectangle((100, 0, 200, 360), fill=(30, 30, 30))  # 위아래로 잘린 사람
+    s = photo_pick.score_image(img)
+    assert s.skin < 0.012 and s.parts == 1 and not s.flat

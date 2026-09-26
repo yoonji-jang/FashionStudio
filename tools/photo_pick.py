@@ -4,6 +4,8 @@ AI 없이 간단한 규칙으로 점수를 매긴다.
 - plain: 테두리가 한 가지 색에 가까울수록 높음 (단색 배경 단독컷)
 - skin:  피부색 비율 (모델 착용컷일수록 높음)
 - parts: 배경과 다른 덩어리 수 (여러 상품이 같이 찍히면 많음)
+단독컷은 테두리가 거의 전부 배경(plain 0.95 이상)이어야 한다. 단색 배경 앞 모델컷은 다리·몸통이
+테두리에 걸쳐 잘려 plain 이 0.6~0.9 로 나온다 (collect-2 실측 677장).
 한계: 베이지·카멜 색 옷은 피부색으로 잡힐 수 있다. 최종 확인은 이미지 검수(6단계)가 한다.
 
 사용법: python -m tools.photo_pick a.jpg b.jpg
@@ -32,7 +34,7 @@ class PhotoScore:
     @property
     def flat(self) -> bool:
         """사람 없이 상품 하나만 단색 배경에 찍힌 사진으로 보이는지."""
-        return self.plain >= 0.6 and self.skin < 0.012 and self.parts == 1
+        return self.plain >= 0.95 and self.skin < 0.012 and self.parts == 1
 
     @property
     def score(self) -> float:
