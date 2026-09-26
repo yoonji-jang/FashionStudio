@@ -37,15 +37,15 @@ permissions:
   contents: write
   id-token: write
 
-concurrency:
-  group: zigzag
-  cancel-in-progress: false
-
 jobs:
   daily:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[daily]')
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    # 워크플로 단위로 묶으면 같은 푸시에서 건너뛴 다른 워크플로가 대기 중인 실행을 취소해서 job 단위로 둔다
+    concurrency:
+      group: daily-${{ inputs.account || 'women' }}
+      cancel-in-progress: false
     env:
       ACCOUNT: ${{ inputs.account || 'women' }}
       PLAN: ${{ inputs.plan }}
