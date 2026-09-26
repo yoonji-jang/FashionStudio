@@ -49,8 +49,11 @@ jobs:
       - name: 실험 실행
         env:
           PHOTOROOM_API_KEY: ${{ secrets.PHOTOROOM_API_KEY }}
+          SANDBOX_KEY: ${{ secrets.PHOTOROOM_API_KEY_SANDBOX }}
           PHOTOROOM_SANDBOX: ${{ (inputs.sandbox || contains(github.event.head_commit.message, '[sandbox]')) && '1' || '' }}
         run: |
+          # 샌드박스면 전용 키(PHOTOROOM_API_KEY_SANDBOX)를 우선 쓰고, 없으면 기본 키에 sandbox_ 를 붙인다
+          if [ -n "$PHOTOROOM_SANDBOX" ] && [ -n "$SANDBOX_KEY" ]; then export PHOTOROOM_API_KEY="$SANDBOX_KEY"; fi
           args=(--samples "$SAMPLES" --out "$OUT")
           [ -n "$VARIANTS" ] && args+=(--variants $VARIANTS)
           [ -n "$REPEATS" ] && args+=(--repeats "$REPEATS")

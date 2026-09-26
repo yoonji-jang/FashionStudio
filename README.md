@@ -179,6 +179,7 @@ accounts:
 | 이름 | 용도 |
 |---|---|
 | `PHOTOROOM_API_KEY` | 상품 누끼·그림자·배경 (Photoroom API 대시보드에서 발급, 아래 참고) |
+| `PHOTOROOM_API_KEY_SANDBOX` | (선택) 무료 테스트용 샌드박스 키 |
 | `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (`claude setup-token`, Pro·Max 구독) |
 | `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` | 인스타 게시 (아래 참고) |
 | `R2_ACCOUNT_ID`, `R2_ACCESS_KEY`, `R2_SECRET`, `R2_BUCKET`, `R2_PUBLIC_BASE_URL` | 인스타가 가져갈 이미지 공개 주소 (Cloudflare R2) |
@@ -214,8 +215,9 @@ accounts:
 2. **Plus 요금제**(Image Editing API)가 필요합니다. 옷 펼치기(Flat Lay), AI 그림자·배경이 여기에 들어 있고,
    호출 1번에 약 $0.10입니다. Basic 요금제는 배경 지우기만 돼서 쓸 수 없습니다.
 3. 키를 GitHub Secrets에 `PHOTOROOM_API_KEY` 로 등록합니다.
-4. 요금 없이 흐름만 보려면 샌드박스를 씁니다 (하루 100회 무료, 결과에 워터마크). 코드가 키 앞에
-   `sandbox_` 를 붙여 주므로 키는 그대로 두고, 실행할 때 샌드박스 옵션만 켜면 됩니다.
+4. 요금 없이 흐름만 보려면 샌드박스를 씁니다 (하루 100회 무료, 결과에 워터마크). 대시보드의 샌드박스 키를
+   `PHOTOROOM_API_KEY_SANDBOX` 로 등록하고 실행할 때 샌드박스 옵션을 켜면 그 키를 씁니다.
+   샌드박스 키가 없으면 기본 키 앞에 `sandbox_` 를 붙여 호출합니다.
 
 ### 5. `config/models.yaml`, `config/layout.yaml` : 이미지 설정
 
