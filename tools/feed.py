@@ -105,12 +105,17 @@ def pick_photo(product: Product, dest_dir: Path, feed: Feed) -> Path:
 
     pid = product.id.split(":")[-1]
     fallback = None
-    for i, url in enumerate(product.image_urls[: feed.photo_candidates]):
+    tried = 0
+    for i, url in enumerate(product.image_urls):
+        if tried >= feed.photo_candidates:
+            break
         try:
             path = fetch_photo(str(url), dest_dir / f"{pid}_{i}.jpg")
-        except (scout.ImageUnavailable, OSError) as e:
-            print(f"사진을 받지 못해 건너뜀: {url} ({e})", file=sys.stderr)
+        except (scout.ImageUnavailable, OSError, RuntimeError):
+            # 사진 주소에 판매자 정보가 들어 있을 수 있어 주소는 기록하지 않는다
+            print(f"{product.id}: {i}번 사진을 받지 못해 건너뜀", file=sys.stderr)
             continue
+        tried += 1
         if not feed.hide_faces:
             return path
         img = Image.open(path).convert("RGB")
