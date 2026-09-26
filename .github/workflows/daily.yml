@@ -1,0 +1,153 @@
+name: daily
+
+# 6단계 하루 게시물 만들기. Claude(daily-feed 스킬)가 주제·상품·문구를 정하고 코디컷·캐러셀·캡션까지 만든다.
+# - Actions 탭에서 "Run workflow": 버튼 하나로 주제 → 상품 → 코디컷 → 캐러셀 → 캡션
+#   (Secret CLAUDE_CODE_OAUTH_TOKEN 필요. 기획 파일(plan)을 주면 Claude 없이 그 기획으로 만들기만 한다)
+# - 작업 브랜치에 커밋 메시지에 [daily] 와 [plan:경로] 를 넣어 푸시하면 그 기획으로 만든다
+# 게시는 하지 않는다 (8단계). 결과는 artifact 와 daily-results 브랜치의 <날짜>-run<번호>/ 에 올라간다
+# (쇼핑몰 원본 사진은 올리지 않음). 매일 자동 실행은 9단계에서 붙인다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      date:
+        description: 게시 날짜 YYYY-MM-DD (빈칸이면 내일)
+        default: ""
+      plan:
+        description: 이미 쓴 기획 파일 (빈칸이면 Claude 가 기획)
+        default: ""
+      outfit:
+        description: 코디컷 (photoroom 또는 none)
+        default: photoroom
+      sandbox:
+        description: Photoroom 무료 샌드박스 (코디컷에 워터마크)
+        type: boolean
+        default: true
+      collect:
+        description: 주제 검색어로 지그재그 새 상품 수집
+        type: boolean
+        default: false
+  push:
+    branches: ["claude/**"]
+    paths: ["samples/**", "tools/plan.py", ".claude/**", ".github/workflows/daily.yml"]
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: zigzag
+  cancel-in-progress: false
+
+jobs:
+  daily:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[daily]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      ACCOUNT: ${{ inputs.account || 'women' }}
+      PLAN: ${{ inputs.plan }}
+      OUTFIT: ${{ inputs.outfit || 'photoroom' }}
+      COLLECT: ${{ inputs.collect && '1' || '' }}
+      SANDBOX: ${{ (github.event_name == 'push' || inputs.sandbox) && '1' || '' }}
+      COMMIT_MSG: ${{ github.event.head_commit.message }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync ${{ inputs.collect && '--group scout' || '' }}
+      - if: inputs.collect
+        run: uv run playwright install --with-deps chromium
+      - name: 준비 (날짜, 기획 파일, Photoroom 키)
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+          PHOTOROOM_KEY: ${{ secrets.PHOTOROOM_API_KEY }}
+          SANDBOX_KEY: ${{ secrets.PHOTOROOM_API_KEY_SANDBOX }}
+        run: |
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          re='\[plan:([^]]+)\]'
+          [[ "$COMMIT_MSG" =~ $re ]] && PLAN="${BASH_REMATCH[1]}"
+          if [ -n "$PLAN" ]; then
+            DATE=$(uv run python -c "import yaml,sys; print(yaml.safe_load(open(sys.argv[1]))['date'])" "$PLAN")
+          elif [ -n "$INPUT_DATE" ]; then
+            DATE="$INPUT_DATE"
+          else
+            DATE=$(uv run python -c "from core.profile import load_profile; from tools.plan import default_date; print(default_date(load_profile('$ACCOUNT')))")
+          fi
+          mkdir -p "out/$DATE"
+          [ -n "$PLAN" ] && cp "$PLAN" "out/$DATE/plan.yaml"
+          # 샌드박스면 전용 키를 쓰고, 없으면 기본 키에 sandbox_ 를 붙인다
+          KEY="$PHOTOROOM_KEY"
+          if [ -n "$SANDBOX" ]; then
+            if [ -n "$SANDBOX_KEY" ]; then KEY="$SANDBOX_KEY"; else KEY="sandbox_$PHOTOROOM_KEY"; fi
+          fi
+          echo "::add-mask::$KEY"
+          { echo "DATE=$DATE"; echo "PLAN=$PLAN"; echo "PHOTOROOM_API_KEY=$KEY"; } >> "$GITHUB_ENV"
+
+      - name: Claude 기획 (daily-feed 스킬)
+        if: env.PLAN == ''
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }}
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
+          claude_args: >-
+            --max-turns 150
+            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+
+      - name: 기획 파일로 만들기
+        if: env.PLAN != ''
+        run: |
+          python -m tools.plan check "out/$DATE/plan.yaml"
+          python -m tools.plan photos "out/$DATE/plan.yaml"
+          # Photoroom 한도에 막히면(종료 코드 2) 코디컷 없이라도 만든다
+          python -m tools.plan build "out/$DATE/plan.yaml" --outfit "$OUTFIT" \
+            || { [ $? -eq 2 ] && python -m tools.plan build "out/$DATE/plan.yaml" --outfit none; }
+
+      - name: 요약 표시
+        if: always()
+        run: |
+          f="out/$DATE/report.md"; [ -f "$f" ] && cat "$f" >> "$GITHUB_STEP_SUMMARY"
+          f="out/$DATE/caption.txt"; [ -f "$f" ] && { echo; echo '```'; cat "$f"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          true
+
+      - name: 올릴 파일 고르기 (쇼핑몰 원본 사진 제외)
+        if: always()
+        run: |
+          mkdir -p /tmp/upload
+          [ -d "out/$DATE" ] || exit 0
+          rsync -a --exclude 'photos/' --exclude 'outfit/src/' --exclude 'outfit/originals/' "out/$DATE/" /tmp/upload/
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daily-${{ env.DATE }}-${{ github.run_number }}
+          path: /tmp/upload
+          if-no-files-found: ignore
+
+      - name: daily-results 브랜치에 커밋
+        if: always()
+        run: |
+          [ -n "$(ls -A /tmp/upload)" ] || exit 0
+          dest="$DATE-run${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin daily-results 2>/dev/null; then
+            git worktree add /tmp/results origin/daily-results
+            git -C /tmp/results checkout -B daily-results
+          else
+            git worktree add --detach /tmp/results
+            git -C /tmp/results checkout --orphan daily-results
+            git -C /tmp/results rm -rf --quiet .
+          fi
+          mkdir -p "/tmp/results/$dest"
+          cp -r /tmp/upload/. "/tmp/results/$dest/"
+          echo "source: ${{ github.sha }} account: $ACCOUNT plan: ${PLAN:-claude}" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "하루 게시물 $dest"
+          git -C /tmp/results push origin daily-results

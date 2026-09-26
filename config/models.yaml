@@ -5,3 +5,8 @@ image:
   shadow_model_version: "2026-04-15"   # AI 그림자 모델 (pr-ai-shadows-model-version 헤더)
   flat_lay_size: PORTRAIT_HD_3_2       # 옷 정리컷 비율
   backdrop_size: PORTRAIT_4_3          # 배경 사진 생성 비율 (합성 때 4:5로 자름)
+
+# 하루 코디컷 (tools.plan build --outfit photoroom). 2단계에서 고른 C 방식이 기본
+outfit:
+  finish: ai_shadow   # code(코드 그림자) | ai_shadow(AI 그림자) | ai_background | ai_scene
+  clean: true         # 누끼를 AI로 다듬고 입은 듯이 합치기 (자켓 속 셔츠, 바지+벨트)

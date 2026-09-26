@@ -39,6 +39,7 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
   no_repeat_days: 30
   avoid: [노출이 과한 코디, 특정 체형 비하, 정치·사회 이슈]
   review_before_use: true  # 텔레그램으로 주제 7개를 먼저 보고 확정
+  weather: {name: 서울, lat: 37.57, lon: 126.98}  # 날씨 예보를 볼 곳 (null 이면 안 봄)
 
 product_source:
   name: zigzag
@@ -121,6 +122,23 @@ feed:
   summary_credit: "사진 출처 지그재그 · 각 상품 스토어"  # 요약 장 목록 아래. 빈 문자열이면 생략
   credit_size: 20
   source_names: {zigzag: 지그재그}
+
+# 제목·문구·캡션 규칙 (write-copy 스킬이 따르고 tools.plan check 가 검사). 말투·예시는 voice.md
+copy:
+  title_chars: [8, 16]       # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고)
+  name_max_chars: 18         # 상품 장 짧은 이름
+  comment_max_chars: 60      # 상품 장 코멘트
+  points: [3, 3]             # 캡션 코디 포인트 줄 수
+  hashtags: [10, 15]         # 기본 해시태그 포함 최종 개수
+  base_hashtags: ["#데일리룩", "#오늘의코디", "#출근룩", "#코디추천", "#여자코디"]
+  max_emoji: 2               # 캡션 전체 (제목에는 금지)
+  max_exclaim: 1             # 캡션 전체 느낌표
+  banned: [뚱뚱해 보이는, 하체 비만, 무조건, 인생템, 역대급, 최저가]
+  ad_notice: "(광고) 이 게시물은 제휴 링크를 포함하고 있어요"  # monetize: manual_link 일 때 첫 줄
+  ad_hashtag: "#광고"        # monetize: manual_link 일 때 첫 해시태그
+  product_line: "{shop} · {name}"
+  link_line: 상품 정보는 프로필 링크에서 확인하세요
+  ai_notice: 이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요
 
 schedule:
   timezone: Asia/Seoul

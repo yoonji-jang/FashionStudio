@@ -9,17 +9,19 @@
 from __future__ import annotations
 
 import json
+from datetime import date, timedelta
 from pathlib import Path
 
 from pydantic import TypeAdapter
 
-from core.models import Product, Theme
+from core.models import PostRecord, Product, Theme
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
 
 _products = TypeAdapter(list[Product])
 _themes = TypeAdapter(list[Theme])
+_posts = TypeAdapter(list[PostRecord])
 
 
 class Store:
@@ -55,5 +57,24 @@ class Store:
     def save_themes(self, themes: list[Theme]) -> None:
         self._write("themes.json", _themes.dump_json(themes, indent=2))
 
-    def posts(self) -> list[dict]:
-        return self._read("posts.json")
+    def posts(self) -> list[PostRecord]:
+        return _posts.validate_python(self._read("posts.json"))
+
+    def save_posts(self, posts: list[PostRecord]) -> None:
+        self._write("posts.json", _posts.dump_json(posts, indent=2))
+
+    def recent_posts(self, today: date, days: int) -> list[PostRecord]:
+        since = today - timedelta(days=days)
+        return [p for p in self.posts() if since <= p.date < today]
+
+    def used_since(self, today: date, days: int) -> dict[str, date]:
+        """최근 days 일 안에 게시(또는 last_used)된 상품 id → 마지막 날짜."""
+        used: dict[str, date] = {}
+        for post in self.recent_posts(today, days):
+            for pid in post.products:
+                used[pid] = max(used.get(pid, post.date), post.date)
+        since = today - timedelta(days=days)
+        for p in self.products():
+            if p.last_used and since <= p.last_used < today:
+                used[p.id] = max(used.get(p.id, p.last_used), p.last_used)
+        return used

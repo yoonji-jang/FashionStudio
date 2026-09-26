@@ -40,9 +40,9 @@ def test_product_rejects_bad_id_and_category():
 def test_outfit_plan_item_count():
     OutfitPlan(theme=theme(), items=[product(i) for i in range(5)], reason="톤 통일")
     with pytest.raises(ValidationError):
-        OutfitPlan(theme=theme(), items=[product(i) for i in range(4)], reason="")
+        OutfitPlan(theme=theme(), items=[], reason="")
     with pytest.raises(ValidationError):
-        OutfitPlan(theme=theme(), items=[product(i) for i in range(8)], reason="")
+        OutfitPlan(theme=theme(), items=[product(i) for i in range(11)], reason="")
 
 
 def test_manifest_roundtrip():
@@ -53,7 +53,7 @@ def test_manifest_roundtrip():
         plan=plan,
         images=["out/2026-10-01/cover.jpg"],
         review_score=8.5,
-        title_lines=("가을 코디가 고민이라면", "레더자켓 입어보세요"),
+        title_lines=["가을 코디가 고민이라면", "레더자켓 입어보세요"],
         caption="캡션",
         hashtags=["#데일리룩"],
         monetize="none",

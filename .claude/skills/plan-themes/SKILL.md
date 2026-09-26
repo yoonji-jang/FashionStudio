@@ -1,0 +1,53 @@
+---
+name: plan-themes
+description: 게시물 주제를 정한다. 다음 주 주제를 한꺼번에 정해 data/<계정>/themes.json 에 저장하거나(주간), 정해 둔 주제가 없는 날 하나를 정한다(하루). 주제별 지그재그 검색어도 만든다.
+---
+
+# plan-themes: 주제 정하기
+
+기준: `accounts/$ACCOUNT/profile.yaml` 의 `themes` (per_week, type_mix, consider, events,
+no_repeat_days, avoid), `audience`, `style`, 그리고 `voice.md` 의 좋은 제목 예시.
+
+## 재료
+- `python -m tools.plan context --account $ACCOUNT --date <날짜>`: 요일, 계절, 날씨 예보, 최근 게시, 재고.
+  주간이면 7일치를 각각 보거나 첫날 기준으로 본다.
+- 상품 창고 재고: 주제에 필요한 카테고리의 "고를 수 있음"이 5개 미만이면 그 주제는 search_terms 로
+  새로 모아야 한다 (daily-feed 의 COLLECT).
+
+## 주제 한 개의 모양 (core.models.Theme)
+```yaml
+- date: 2026-09-28
+  type: 상황            # profile themes.type_mix 의 유형 중 하나
+  title_hint: 월요일 출근룩, 네이비 셔츠 하나로 단정하게
+  mood: 네이비·그레이 차분한 오피스룩
+  why: 월요일, 최고 21도라 셔츠 한 장에 가벼운 아우터
+  slots:               # 코디에 들어갈 자리와 대략의 상품
+    - {category: 아우터, desc: 그레이 싱글 블레이저}
+    - {category: 상의, desc: 네이비 셔츠}
+    - {category: 하의, desc: 블랙 와이드 슬랙스}
+    - {category: 가방, desc: 블랙 숄더백}
+    - {category: 신발, desc: 블랙 로퍼}
+  search_terms:        # 카테고리별 지그재그 검색어 1~3개. 창고에 이미 충분하면 비워도 됨
+    아우터: [싱글 블레이저]
+    상의: [네이비 셔츠]
+```
+
+## 정하는 방법
+1. **계절과 날씨가 먼저**: 기온에 맞는 겹 수(반팔, 셔츠 한 장, 가벼운 아우터, 코트)를 먼저 정한다.
+   비 예보면 우산·레인부츠·어두운 하의 같은 실용 주제를 고려한다.
+2. **요일**: 월~금 앞쪽은 출근·오피스, 금요일은 퇴근 후 약속, 주말은 나들이·데이트·브런치.
+3. **이벤트**: `themes.events` 중 날짜가 가까운 것만 (2주 안). 억지로 넣지 않는다.
+4. **유형 비율**: 주간이면 `type_mix` 개수를 맞춘다. 같은 유형이 이틀 연속되지 않게 섞는다.
+5. **반복 피하기**: 최근 `no_repeat_days` 일 게시와 주요 아이템·색이 겹치지 않게 한다.
+   `themes.avoid` 에 해당하는 주제는 쓰지 않는다.
+6. **따라 입기 쉬움**: `audience.description` 의 독자가 가진 옷으로 흉내 낼 수 있는 조합.
+   `style.keywords`, `style.palette` 안에서 고르고 `style.avoid` 는 피한다.
+7. **검색어**: 지그재그에서 실제로 쓰는 말로 짧게 (예: "하프 트렌치코트", "연청 와이드 데님").
+   색 + 종류 또는 핏 + 종류. 브랜드명, 광고 문구는 넣지 않는다.
+
+## 저장
+- 주간: 7일치를 `out/themes_<첫날>.yaml` 로 쓰고
+  `python -m tools.plan themes --account $ACCOUNT --file out/themes_<첫날>.yaml` 로 검사·저장한다.
+  `themes.review_before_use: true` 이면 사람 확인 전이므로, 보고에 7개를 한 줄씩 적는다
+  (텔레그램 확인은 8단계에서 붙는다).
+- 하루: plan.yaml 의 `theme` 에 바로 쓴다. 저장은 하지 않아도 된다.

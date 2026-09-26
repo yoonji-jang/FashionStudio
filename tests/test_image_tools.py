@@ -389,7 +389,7 @@ def test_item_cm_override_keeps_hem():
 
 def test_sample_sets_are_valid():
     for path in (REPO_ROOT / "samples").rglob("*.yaml"):
-        if path.name.startswith("feed_"):  # 캐러셀 재료 파일 (test_feed 에서 검사)
+        if path.name.startswith(("feed_", "plan_")):  # 캐러셀 재료, 하루 기획 (각자 테스트)
             continue
         s = poc.SampleSet.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))
         load_profile(s.account)

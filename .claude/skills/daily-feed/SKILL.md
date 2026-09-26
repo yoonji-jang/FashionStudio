@@ -1,0 +1,44 @@
+---
+name: daily-feed
+description: 하루치 인스타 코디 게시물을 처음부터 끝까지 만든다 (주제 → 검색어·수집 → 상품 조합 → 사진 확인 → 문구 → 검사 → 코디컷·캐러셀·캡션·manifest). "오늘 게시물 만들어", "/daily-feed", GitHub Actions daily 워크플로에서 쓴다.
+---
+
+# daily-feed: 하루 게시물 만들기
+
+입력: 환경변수 `ACCOUNT` (없으면 `women`), `DATE` (없으면 내일, `tools.plan` 기본값),
+`OUTFIT` (`photoroom` 또는 `none`, 없으면 `photoroom`), `COLLECT` (`1` 이면 주제 검색어로 새 상품 수집).
+결과: `out/<DATE>/plan.yaml` 과 `out/<DATE>/manifest.json` (core.models.Manifest), 슬라이드, 캡션.
+
+모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `accounts/$ACCOUNT/voice.md` 를 따른다.
+계정마다 다른 값(스타일, 색, 문구 규칙)을 이 문서에서 가정하지 말고 매번 파일에서 읽는다.
+게시·삭제·외부 전송은 하지 않는다. 판매자 이름·연락처 같은 개인정보는 읽거나 저장하지 않는다.
+
+## 순서
+
+1. **기준 읽기**: `accounts/$ACCOUNT/profile.yaml`, `accounts/$ACCOUNT/voice.md` 를 읽는다.
+2. **오늘 정보**: `python -m tools.plan context --account $ACCOUNT --date $DATE`
+   날짜·요일·계절·날씨 예보, 정해 둔 주제, 최근 게시, 상품 창고 재고가 나온다.
+3. **주제**: 정해 둔 주제가 있으면 그대로 쓴다. 없으면 `plan-themes` 스킬의 "하루 주제" 방법으로 하나 정한다.
+   주제에는 `search_terms` (카테고리별 지그재그 검색어 1~3개)를 꼭 넣는다.
+4. **새 상품 수집 (COLLECT=1 일 때만)**: 주제 검색어마다
+   `python -m tools.collect --account $ACCOUNT --category <카테고리> --query <검색어> --report out/$DATE/collect`
+   를 돌린다. 지그재그는 GitHub Actions 에서만 열린다. 실패해도 창고에 있는 상품으로 계속한다.
+5. **상품 조합**: `pick-outfit` 스킬을 따른다. `out/$DATE/plan.yaml` 에 theme, items, reason 을 쓴다.
+6. **사진 확인**: `python -m tools.plan photos out/$DATE/plan.yaml` 로 사진 확인표(`photo_check.jpg`)를 만들고
+   `photo-checker` 에이전트에게 plan.yaml 과 확인표를 넘긴다. 에이전트가 돌려준 번호로
+   items 의 `photo`, `cutout_photo` 를 채운다. 맞는 색 사진이 없는 상품은 같은 카테고리 다른 상품으로 바꾸고
+   이 단계를 다시 한다.
+7. **문구**: `write-copy` 스킬로 plan.yaml 의 `text` 와 items 의 `name`, `comment` 를 쓴다.
+8. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`.
+   오류가 있으면 고치고 다시 검사한다 (최대 3번). 경고는 이유가 있으면 두어도 된다.
+9. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`
+   코디컷(Photoroom), 슬라이드, `caption.txt`, `preview.jpg`, `manifest.json` 이 생긴다.
+   Photoroom 한도(종료 코드 2)면 `--outfit none` 으로 다시 만들고 보고에 적는다.
+10. **확인·보고**: `out/$DATE/preview.jpg` 를 직접 보고, 표지 제목이 잘리거나 상품 장 사진이 이상하면
+    plan.yaml 을 고쳐 8~9를 다시 한다. 마지막에 `out/$DATE/report.md` 에 짧게 덧붙인다:
+    주제와 이유, 고른 상품과 이유, 바꾼 것, 남은 경고.
+
+## 지키는 것
+- 상품 창고에 없는 상품은 쓰지 않는다 (id 는 `tools.plan candidates` 결과에서만 복사).
+- 상품의 색·소재·기능은 상품명과 사진으로 확인한 것만 쓴다. 모르면 쓰지 않는다.
+- plan.yaml 외에 `data/` 를 고치는 것은 주제 저장(`tools.plan themes`)과 수집(`tools.collect`)뿐이다.
