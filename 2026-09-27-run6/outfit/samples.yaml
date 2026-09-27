@@ -1,0 +1,37 @@
+account: women
+name: 아침저녁 쌀쌀한 초가을, 하프 트렌치코트 하나로 완성하는 주말 코디
+items:
+- category: 아우터
+  desc: 베이지 래글런 하프 트렌치코트 (beige raglan half-length trench coat)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/168297481_0.jpg
+- category: 상의
+  desc: 화이트 오버핏 코튼 셔츠 (white oversized cotton shirt)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/136581318_1.jpg
+  wear_with: 아우터
+  wear_how: 'the trench coat is worn buttoned closed over the shirt, exactly as a
+    person wears it. The shirt is fully inside the coat: only the shirt collar shows
+    at the coat neckline and the shirt cuffs peek a little past the coat sleeves.
+    No shirt body or sleeves show outside the coat'
+  wear_modes:
+  - peek
+- category: 하의
+  desc: 연청 스판 세미와이드 데님 (light blue stretch semi-wide jeans)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/145122681_2.jpg
+- category: 가방
+  desc: 블랙 토트백 (black tote bag)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/168002860_0.jpg
+  segment: bag
+- category: 신발
+  desc: 블랙 플랫폼 페니로퍼 (black platform penny loafers)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/130568193_0.jpg
+  segment: shoe
+- category: 소품
+  desc: 실버 볼 체인 목걸이 (silver ball chain necklace)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/113341770_0.jpg
+  slot: 목걸이
+  segment: necklace
+- category: 소품
+  desc: 실버 미니멀 귀걸이 (silver minimal earrings)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-27/outfit/src/127812392_0.jpg
+  slot: 귀걸이
+  segment: earring
