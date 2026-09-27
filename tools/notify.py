@@ -282,7 +282,10 @@ def find_chats(token: str, client: httpx.Client | None = None) -> tuple[str, dic
     tg = Telegram(token, "-", client)
     me = tg.call("getMe")
     chats: dict[int, int] = {}
-    for u in tg.call("getUpdates", limit=100):
+    updates = tg.call("getUpdates", limit=100)
+    kinds = sorted({k for u in updates for k in u if k != "update_id"})
+    print(f"받은 업데이트 {len(updates)}개 {kinds}")
+    for u in updates:
         chat = (u.get("message") or {}).get("chat") or {}
         if chat.get("type") == "private":
             chats[chat["id"]] = chats.get(chat["id"], 0) + 1

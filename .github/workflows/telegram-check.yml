@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: ["claude/**"]
-    paths: [".github/workflows/telegram-check.yml"]
+    paths: [".github/workflows/telegram-check.yml", "tools/notify.py"]
 
 permissions:
   contents: read
