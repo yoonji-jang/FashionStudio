@@ -282,7 +282,13 @@ def find_chats(token: str, client: httpx.Client | None = None) -> tuple[str, dic
     tg = Telegram(token, "-", client)
     me = tg.call("getMe")
     chats: dict[int, int] = {}
-    updates = tg.call("getUpdates", limit=100)
+    hook = tg.call("getWebhookInfo")
+    print(
+        f"웹훅 {'있음' if hook.get('url') else '없음'}, "
+        f"대기 중 업데이트 {hook.get('pending_update_count', 0)}개, "
+        f"받는 종류 {hook.get('allowed_updates') or '기본'}"
+    )
+    updates = tg.call("getUpdates", limit=100, allowed_updates=["message"])
     kinds = sorted({k for u in updates for k in u if k != "update_id"})
     print(f"받은 업데이트 {len(updates)}개 {kinds}")
     for u in updates:

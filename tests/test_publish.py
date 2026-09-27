@@ -274,6 +274,8 @@ def test_find_chats_checks_token_and_lists_private_chats():
     def handler(req):
         if req.url.path.endswith("/getMe"):
             return httpx.Response(200, json={"ok": True, "result": {"username": "my_bot"}})
+        if req.url.path.endswith("/getWebhookInfo"):
+            return httpx.Response(200, json={"ok": True, "result": {"url": ""}})
         return api(req)
 
     bot, chats = notify.find_chats("T", httpx.Client(transport=httpx.MockTransport(handler)))
