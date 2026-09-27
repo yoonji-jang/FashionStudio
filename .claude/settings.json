@@ -20,7 +20,9 @@
     ],
     "deny": [
       "Bash(python -m tools.ig_publish:*)",
-      "Bash(python -m tools.upload_r2:*)",
+      "Bash(python -m tools.publish:*)",
+      "Bash(python -m tools.notify:*)",
+      "Bash(python -m tools.media_host:*)",
       "Bash(curl:*)",
       "Read(.env)",
       "Read(.env.*)"

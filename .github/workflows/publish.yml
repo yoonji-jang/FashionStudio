@@ -1,0 +1,102 @@
+name: publish
+
+# 8단계 인스타 게시. Claude 없이 코드만 돈다 (tools.publish).
+# daily 가 만든 결과(daily-results 브랜치)를 골라 게시 전 검사 → 텔레그램 승인(/ok, /skip) 확인 →
+# 사진을 공개 사진 저장소에 잠시 올리고 인스타 캐러셀 게시 → 게시 기록(data/<계정>/posts.json) 커밋 → 텔레그램 알림.
+# 지금은 Actions 탭에서 "Run workflow" 로 돌린다. 매일 profile schedule.publish_at 에 자동으로 도는 것은 9단계.
+# 필요한 Secrets: 프로필 instagram 의 두 이름(예: IG_WOMEN_TOKEN, IG_WOMEN_USER_ID), MEDIA_REPO_TOKEN,
+# TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      date:
+        description: 게시 날짜 YYYY-MM-DD (빈칸이면 오늘)
+        default: ""
+      run:
+        description: 게시할 결과 폴더 (빈칸이면 미리보기를 보낸 가장 최근 것, 예 2026-09-27-run12)
+        default: ""
+      dry_run:
+        description: 시험 (검사와 승인 확인까지만, 게시하지 않음)
+        type: boolean
+        default: true
+      force:
+        description: 텔레그램 승인 없이 바로 게시
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: publish-${{ inputs.account || 'women' }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account || 'women' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+
+      - name: 계정 설정 읽기
+        id: cfg
+        run: |
+          uv run python - >> "$GITHUB_OUTPUT" <<'EOF'
+          import os
+          from core.profile import load_profile
+          ig = load_profile(os.environ["ACCOUNT"]).instagram
+          print(f"token={ig.token_secret}")
+          print(f"user_id={ig.user_id_secret}")
+          EOF
+
+      - name: 결과 가져오기 (daily-results 브랜치)
+        run: |
+          git fetch origin daily-results
+          git worktree add /tmp/results origin/daily-results
+          git -C /tmp/results checkout -B daily-results
+
+      - name: 게시
+        env:
+          IG_TOKEN: ${{ secrets[steps.cfg.outputs.token] }}
+          IG_USER_ID: ${{ secrets[steps.cfg.outputs.user_id] }}
+          MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DATE: ${{ inputs.date }}
+          RUN_DIR: ${{ inputs.run }}
+        run: |
+          args=(--account "$ACCOUNT" --results /tmp/results)
+          [ -n "$DATE" ] && args+=(--date "$DATE")
+          [ -n "$RUN_DIR" ] && args+=(--run "$RUN_DIR")
+          ${{ inputs.dry_run && 'args+=(--dry-run)' || '' }}
+          ${{ inputs.force && 'args+=(--force)' || '' }}
+          set +e
+          uv run python -m tools.publish "${args[@]}"
+          code=$?
+          # 3 = 아직 승인 없음 (실패가 아님)
+          [ $code -eq 3 ] && { echo "::notice::승인(/ok)이 없어 게시하지 않았습니다"; exit 0; }
+          exit $code
+
+      - name: 게시 기록 커밋
+        if: ${{ !inputs.dry_run }}
+        run: |
+          commit() {  # 폴더, 브랜치, 파일(pathspec)
+            git -C "$1" add -- "$3" 2>/dev/null || return 0  # 새 기록 없음
+            git -C "$1" diff --cached --quiet && return 0
+            git -C "$1" -c user.name="github-actions[bot]" \
+              -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
+              commit -m "게시 기록 $ACCOUNT"
+            for i in 1 2 3; do
+              git -C "$1" pull --rebase --autostash origin "$2" && git -C "$1" push origin "HEAD:$2" && return 0
+              sleep $((i * 5))
+            done
+            return 1
+          }
+          commit . "${{ github.ref_name }}" "data/$ACCOUNT/posts.json"
+          commit /tmp/results daily-results ':(glob)*/published.json'

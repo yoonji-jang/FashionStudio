@@ -1,0 +1,20 @@
+# 게시 설정 (계정과 무관, tools.publish). 비밀값은 여기 쓰지 않는다.
+
+instagram:
+  # Instagram API with Instagram Login (토큰이 IGAA 로 시작). 페이스북 로그인 토큰(EAA…)이면
+  # https://graph.facebook.com/v23.0 으로 바꾼다
+  api_base: https://graph.instagram.com/v23.0
+  wait_sec: 5          # 인스타가 사진을 받아 처리했는지 확인하는 간격
+  wait_tries: 36       # 확인 횟수 (5초 × 36 = 3분)
+  caption_max: 2200    # 인스타 캡션 최대 글자 수
+  hashtags_max: 30     # 인스타 해시태그 최대 개수
+
+# 인스타는 사진을 공개 주소로만 받는다. 저장소가 비공개라서 사진을 잠시 올려 둘 곳이 필요하다.
+image_host:
+  kind: github         # 공개 GitHub 저장소 (무료, 카드 등록 없음)
+  repo: ""             # 빈칸이면 <이 저장소 이름>-media (예: yoonji-jang/FashionStudio-media)
+  branch: main
+  keep: false          # 게시가 끝나면 사진을 지운다 (인스타에 이미 공개된 사진이라 기록에 남아도 됨)
+
+# 쓰는 GitHub Secret (이름 고정): MEDIA_REPO_TOKEN(사진 저장소에 쓰기), TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+# 인스타 토큰 Secret 이름은 계정마다 profile.yaml 의 instagram 에 적는다

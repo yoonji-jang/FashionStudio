@@ -139,6 +139,35 @@ class PostRecord(BaseModel):
     permalink: str | None = None
 
 
+class PreviewRecord(BaseModel):
+    """텔레그램으로 보낸 미리보기 (결과 폴더의 telegram.json).
+    게시 job 이 승인 답장을 찾을 때 쓴다."""
+
+    account: str
+    date: date
+    run: str  # daily-results 브랜치 안 결과 폴더 이름 (예: 2026-09-27-run12)
+    sent_at: int  # 보낸 시각 (유닉스 초). 이보다 뒤에 온 답장만 본다
+    message_ids: list[int] = []  # 봇이 보낸 메시지 (이 메시지에 답장한 /ok 는 이 미리보기 것)
+    sandbox: bool = False  # Photoroom 샌드박스(워터마크) 결과면 게시하지 않는다
+    needs_human: bool = False
+
+
+Decision = Literal["ok", "skip"]
+
+
+class PublishRecord(BaseModel):
+    """게시 결과 (결과 폴더의 published.json)."""
+
+    account: str
+    date: date
+    run: str
+    media_id: str
+    permalink: str | None = None
+    images: int
+    decision: Decision | Literal["auto", "force"]
+    published_at: int  # 유닉스 초
+
+
 class ReelsSpec(BaseModel):
     """9단계에서 채운다. 지금은 자리만 잡아 둔다."""
 

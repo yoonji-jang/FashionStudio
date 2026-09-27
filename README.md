@@ -52,6 +52,7 @@ uv run pytest
 | `accounts/index.yaml` | 매일 돌릴 계정 목록 | 계정 추가·중지할 때 |
 | GitHub Secrets | API 키, 인스타 토큰 등 비밀값 (저장소 밖에 보관) | 처음 한 번, 토큰 만료 시 |
 | `config/models.yaml` | 이미지 API(Photoroom) 설정 | 거의 안 바꿈 |
+| `config/publish.yaml` | 인스타 게시 API 주소, 게시용 사진 저장소 | 거의 안 바꿈 |
 | `config/layout.yaml` | 코디컷에서 상품별 위치·크기 | 배치를 바꾸고 싶을 때 |
 | `prompts/` | Photoroom에 보내는 지시문(옷 펼치기, 배경) | 이미지 품질을 다듬을 때 |
 | `assets/fonts/` | 제목 폰트 파일 (Pretendard 기본 포함) | 폰트를 바꿀 때 |
@@ -268,18 +269,46 @@ accounts:
 | `PHOTOROOM_API_KEY_SANDBOX` | (선택) 무료 테스트용 샌드박스 키 |
 | `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (터미널에서 `claude setup-token` 을 실행해 나온 값, Pro·Max 구독) |
 | `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` | 인스타 게시 (아래 참고) |
-| `R2_ACCOUNT_ID`, `R2_ACCESS_KEY`, `R2_SECRET`, `R2_BUCKET`, `R2_PUBLIC_BASE_URL` | 인스타가 가져갈 이미지 공개 주소 (Cloudflare R2) |
+| `MEDIA_REPO_TOKEN` | 인스타가 가져갈 사진을 잠시 올려 둘 공개 저장소에 쓰는 토큰 (아래 참고) |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | 미리보기·승인·알림 (@BotFather) |
 
 #### 인스타 계정 연결
 
-비밀번호는 어디에도 넣지 않습니다. 공식 게시 API는 아이디·비밀번호 대신 **액세스 토큰**을 씁니다.
+비밀번호는 어디에도 넣지 않습니다. 공식 게시 API(Instagram API with Instagram Login)는 **액세스 토큰**을 씁니다.
+이 방식은 페이스북 페이지 연결이 필요 없습니다.
 
-1. 인스타 앱 → 설정 → 계정 유형 → **프로페셔널 계정 → 비즈니스** 로 전환
-2. [developers.facebook.com](https://developers.facebook.com) 에서 앱 생성 → "Instagram 로그인(Instagram API with Instagram Login)" 추가
-3. 권한 `instagram_business_basic`, `instagram_business_content_publish` 로 본인 계정 연결 → 장기 토큰(약 60일)과 인스타 사용자 ID(숫자) 받기
-4. GitHub Secrets에 `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` 로 등록하고, 같은 이름을 `profile.yaml` 의 `instagram` 에 적기
-5. 인스타 아이디(@...)는 `profile.yaml` 의 `visual.logo_text` 에 적기
+1. 인스타 앱 → 설정 → 계정 유형 및 도구 → **프로페셔널 계정으로 전환** (크리에이터 또는 비즈니스 둘 다 됨)
+2. [developers.facebook.com](https://developers.facebook.com) 에 로그인 → 내 앱 → **앱 만들기**
+   - 사용 사례: **Instagram에서 메시지 및 콘텐츠 관리** 선택, 앱 유형은 비즈니스
+3. 앱 대시보드 → 앱 역할 → 역할 → **Instagram 테스터 추가** 에 게시할 인스타 아이디 입력
+   → 인스타 앱(또는 웹) 설정 → 웹사이트 권한 → 앱 및 웹사이트 → **테스터 초대** 수락
+   (본인 계정에만 올리므로 앱 검수·공개 전환은 필요 없음)
+4. 앱 대시보드 → Instagram → **Instagram 로그인을 통한 API 설정** → 액세스 토큰 생성 → 계정 추가 → 로그인
+   → **토큰 생성** 을 누르면 장기 토큰(약 60일, `IGAA…`)이 나옵니다
+5. 인스타 사용자 ID(숫자): 같은 화면의 계정 옆 숫자, 또는 브라우저에서
+   `https://graph.instagram.com/v23.0/me?fields=user_id,username&access_token=<토큰>` 을 열어 `user_id` 값
+6. GitHub Secrets에 `IG_<계정>_TOKEN`(토큰), `IG_<계정>_USER_ID`(숫자)로 등록하고, 같은 이름을 `profile.yaml` 의
+   `instagram` 에 적기 (여성 계정은 이미 `IG_WOMEN_TOKEN`, `IG_WOMEN_USER_ID`)
+7. 인스타 아이디(@...)는 `profile.yaml` 의 `visual.logo_text` 에 적기
+
+토큰은 약 60일 뒤 만료됩니다. 만료되면 게시가 실패하고 텔레그램으로 알림이 오니, 4번에서 새로 만들어 Secret 을
+바꾸면 됩니다 (자동 연장은 9단계).
+
+#### 게시용 사진 저장소 (공개 GitHub 저장소)
+
+인스타 게시 API 는 사진 파일을 직접 받지 않고 **누구나 열 수 있는 주소**로만 받습니다. 이 저장소는 비공개라서
+게시할 사진만 따로 공개 저장소에 잠시 올리고, 게시가 끝나면 지웁니다. 무료이고 카드 등록이 필요 없습니다.
+(인스타에 곧 공개될 슬라이드만 올라가고, 쇼핑몰 원본 사진·기획 파일은 올라가지 않습니다.)
+
+1. GitHub → **New repository** → 이름 `<이 저장소 이름>-media` (예: `FashionStudio-media`), **Public**,
+   **Add a README file** 체크 (main 브랜치가 생겨야 함)
+2. GitHub 설정 → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token
+   - Repository access: **Only select repositories** → 방금 만든 `…-media` 저장소만
+   - Permissions → Repository permissions → **Contents: Read and write**
+   - 만료일은 원하는 대로 (만료되면 게시 실패 알림이 옴)
+3. 나온 토큰을 이 저장소 Secrets 에 `MEDIA_REPO_TOKEN` 으로 등록
+
+저장소 이름을 다르게 지었으면 `config/publish.yaml` 의 `image_host.repo` 에 `owner/이름` 으로 적습니다.
 
 #### 텔레그램 봇 연결
 
@@ -464,6 +493,35 @@ items:
   - `uv run python -m tools.review apply out/<날짜> --scores out/<날짜>/review/scores.yaml` 점수 적용·표지 고르기
   - `uv run python -m tools.review more out/<날짜>` 후보 더 만들기
 
+## 인스타 게시 (8단계)
+
+```
+daily (전날 밤) → 텔레그램 미리보기: 슬라이드 전체, 캡션, 검수 점수, "사람 확인 필요" 이유
+                  입력창 아래 버튼 [/ok women 09-27] [/skip women 09-27]
+publish (게시 시간) → 게시 전 검사 → 답장 확인 → 사진을 공개 저장소에 올림 → 인스타 캐러셀 게시
+                   → 사진 지움 → 게시 기록(data/<계정>/posts.json) 커밋 → 텔레그램으로 게시물 주소
+```
+
+- **승인**: 프로필 `approval: required` 면 `/ok` 가 있어야 게시하고, `optional` 이면 `/skip` 이 없으면 게시합니다.
+  단 검수에서 "사람 확인 필요"가 붙은 날은 `optional` 이어도 `/ok` 가 있어야 게시합니다.
+  미리보기 메시지에 답장하거나 `/ok` 만 보내도 되고, 계정이 여러 개면 버튼처럼 계정·날짜를 붙입니다.
+  미리보기를 다시 보내면(같은 날짜로 다시 만들면) 그 뒤에 온 답장만 봅니다.
+- **게시 전 검사**: 사진 1~10장·JPEG·8MB·비율, 캡션 2,200자, 해시태그 30개, AI 합성 고지,
+  `manual_link` 일 때 캡션 첫 줄 광고 고지와 첫 해시태그 `#광고`. 하나라도 어긋나면 게시하지 않고 알립니다.
+- **샌드박스 결과는 게시하지 않습니다** (코디컷에 워터마크). 미리보기는 보내되 버튼이 없습니다.
+- **두 번 게시하지 않음**: 같은 계정·날짜가 `posts.json` 에 있으면 건너뜁니다. 이 기록은 6단계 상품 고르기가
+  최근에 쓴 상품을 피할 때도 씁니다 (`reuse_cooldown_days`).
+- 봇 서버 없이 동작합니다. 답장은 publish 가 돌 때 읽으며, 텔레그램은 답장을 24시간 보관합니다.
+
+실행 방법
+- 미리보기: Actions → `daily` → Run workflow (`preview` 체크, 기본 켜짐)
+- 게시: Actions → `publish` → Run workflow. **`dry_run` 이 기본으로 켜져 있어** 처음에는 검사와 승인 확인만 합니다.
+  끄고 돌리면 실제로 게시합니다. `force` 는 텔레그램 승인 없이 게시합니다. 매일 자동 실행은 9단계.
+- 로컬 시험: `uv run python -m tools.publish --account women --date 2026-09-27 --results <daily-results 폴더> --dry-run`
+
+Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.notify`, `tools.media_host`)를 부를 수 없게
+`.claude/settings.json` 에서 막아 두었습니다.
+
 ---
 
 ## 새 계정 추가
@@ -472,7 +530,7 @@ items:
 2. `profile.yaml` 의 `id` 를 폴더 이름과 같게 바꾸고 나머지 값 채우기
 3. `voice.md` 채우기
 4. `accounts/index.yaml` 에 `<id>` 추가
-5. GitHub Secrets에 `IG_<ID>_TOKEN`, `IG_<ID>_USER_ID` 등록
+5. GitHub Secrets에 `IG_<ID>_TOKEN`, `IG_<ID>_USER_ID` 등록 (텔레그램 봇과 사진 저장소는 계정끼리 함께 씀)
 6. `uv run python -m core.profile <id>` 로 검사
 
 ## 진행 단계
@@ -485,8 +543,8 @@ items:
 | 4 | 상품 수집 | 완료 |
 | 5 | 피드 구성 (캐러셀 슬라이드) | 완료 |
 | 6 | AI 기획 (Claude Code 스킬·에이전트) | 완료 |
-| 7 | 이미지 검수 | 진행 중 |
-| 8 | 인스타 게시 | |
+| 7 | 이미지 검수 | 완료 |
+| 8 | 인스타 게시 (텔레그램 승인) | 진행 중 |
 | 9 | GitHub Actions 매일 실행 | |
 | 10 | 상품 창고를 Actions 캐시로 이전 | |
 | 11 | 릴스 | |
