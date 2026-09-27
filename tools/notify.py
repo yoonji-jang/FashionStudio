@@ -12,6 +12,7 @@ r"""텔레그램 미리보기·승인·알림 (8단계). 외부로 보내는 도
   python -m tools.notify preview out/2026-09-27 --run 2026-09-27-run12 [--sandbox]
   python -m tools.notify decision out/2026-09-27
   python -m tools.notify send "메시지"
+  python -m tools.notify chats   봇 토큰 확인, 봇에게 말을 건 채팅 ID 찾기 (CHAT_ID 없어도 됨)
 """
 
 from __future__ import annotations
@@ -273,6 +274,21 @@ def decision(out: Path, tg: Telegram) -> Decision | None:
     return find_decision(tg.updates(), record, tg.chat_id)
 
 
+# ---------- 처음 설정 ----------
+
+
+def find_chats(token: str, client: httpx.Client | None = None) -> tuple[str, dict[int, int]]:
+    """(봇 아이디, 1:1 채팅 ID → 메시지 수). 봇 토큰이 맞는지도 여기서 알 수 있다."""
+    tg = Telegram(token, "-", client)
+    me = tg.call("getMe")
+    chats: dict[int, int] = {}
+    for u in tg.call("getUpdates", limit=100):
+        chat = (u.get("message") or {}).get("chat") or {}
+        if chat.get("type") == "private":
+            chats[chat["id"]] = chats.get(chat["id"], 0) + 1
+    return me.get("username", ""), chats
+
+
 # ---------- CLI ----------
 
 
@@ -287,8 +303,21 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("out", type=Path)
     s = sub.add_parser("send")
     s.add_argument("text")
+    sub.add_parser("chats")
     args = ap.parse_args(argv)
     try:
+        if args.cmd == "chats":
+            bot, chats = find_chats(os.environ.get("TELEGRAM_BOT_TOKEN", ""))
+            print(f"봇 토큰 정상: @{bot}")
+            if not chats:
+                print("봇에게 온 메시지가 없습니다. 봇에게 아무 말이나 보내고 다시 실행하세요")
+            for cid, n in chats.items():
+                print(f"채팅 ID: {cid} (메시지 {n}개)")
+                if len(chats) == 1:
+                    Telegram(os.environ["TELEGRAM_BOT_TOKEN"], str(cid)).send(
+                        f"연결 확인: 이 채팅 ID({cid})를 TELEGRAM_CHAT_ID 로 등록하세요"
+                    )
+            return 0
         tg = Telegram.from_env()
         if args.cmd == "preview":
             rec = preview(args.out, args.run, tg, args.sandbox)

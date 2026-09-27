@@ -45,7 +45,7 @@ class FakeApis:
                     "message": {
                         "message_id": 500 + i,
                         "date": at,
-                        "chat": {"id": int(CHAT)},
+                        "chat": {"id": int(CHAT), "type": "private"},
                         "text": text,
                         **({"reply_to_message": {"message_id": to}} if to else {}),
                     },
@@ -266,3 +266,15 @@ def test_instagram_errors_hide_token():
     with pytest.raises(IGError) as e:
         ig.publish(["https://x/1.jpg"], "c")
     assert e.value.token_problem and "IGTOKEN" not in str(e.value)
+
+
+def test_find_chats_checks_token_and_lists_private_chats():
+    api = FakeApis(replies=[(1, "hi", None), (2, "/start", None)])
+
+    def handler(req):
+        if req.url.path.endswith("/getMe"):
+            return httpx.Response(200, json={"ok": True, "result": {"username": "my_bot"}})
+        return api(req)
+
+    bot, chats = notify.find_chats("T", httpx.Client(transport=httpx.MockTransport(handler)))
+    assert bot == "my_bot" and chats == {int(CHAT): 2}
