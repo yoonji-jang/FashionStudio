@@ -1,0 +1,342 @@
+{
+  "account": "women",
+  "date": "2026-09-27",
+  "plan": {
+    "theme": {
+      "date": "2026-09-27",
+      "title_hint": "아침저녁 쌀쌀한 초가을, 하프 트렌치코트 하나로 완성하는 주말 코디",
+      "mood": "밝고 가벼운 베이지·화이트·연청에 블랙으로 아래를 잡는 클래식 캐주얼",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "베이지 하프 트렌치코트"
+        },
+        {
+          "category": "상의",
+          "desc": "화이트 코튼 셔츠"
+        },
+        {
+          "category": "하의",
+          "desc": "연청 세미와이드 데님"
+        },
+        {
+          "category": "가방",
+          "desc": "블랙 토트백"
+        },
+        {
+          "category": "신발",
+          "desc": "블랙 페니로퍼"
+        },
+        {
+          "category": "소품",
+          "desc": "실버 목걸이"
+        }
+      ],
+      "type": "아이템",
+      "why": "추석 연휴 직후 일요일이고 일교차가 커지는 초가을이라 가볍게 걸칠 아우터가 필요한 때. 최근 게시 기록이 없어 겹치는 주제가 없고, 창고에 하프 트렌치코트 후보가 충분하다.",
+      "search_terms": {
+        "아우터": [
+          "하프 트렌치코트",
+          "숏 트렌치코트"
+        ],
+        "상의": [
+          "코튼 셔츠",
+          "오버핏 셔츠"
+        ],
+        "하의": [
+          "세미와이드 데님",
+          "연청 와이드 데님"
+        ]
+      }
+    },
+    "items": [
+      {
+        "id": "zigzag:168297481",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168297481",
+        "shop": "메리어라운드",
+        "name": "[리뷰best..🤍][뉴컬러추가][가을아우터][mmore] 로드 래글런 하프 트렌치 코트",
+        "price": 71920,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/786_202608241138040722_41704.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/786_202608241138044404_12184.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/786_202608241138042943_24337.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/786_202608241138045813_45268.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/786_202608241138047029_28159.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 396,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "트렌치코트",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:136581318",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/136581318",
+        "shop": "데일리쥬",
+        "name": "[🤎어텀/3만장판매/MADE] 바틀렛 오버핏 포켓 코튼 셔츠 (공용)",
+        "price": 31840,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252020920_72390.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252030026_12283.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252040469_33958.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252040563_72365.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252030693_84119.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252040148_32647.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252030142_43925.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252040362_85259.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252040705_24917.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/4220_202603201252040800_52622.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 2888,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "빈티지"
+        ],
+        "query": "셔츠",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:145122681",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/145122681",
+        "shop": "고고싱",
+        "name": "[⚡New특가⚡쫀쫀스판💦]스판 세미와이드 데님팬츠 (청바지,와이드팬츠,롱데님,롱와이드,와이드청바지,가을바지,가을청바지,출근룩,키작녀,간절기)",
+        "price": 26910,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522010440_63776.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522010657_41254.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522010982_97048.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522020318_62044.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522020113_88826.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522020719_14561.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522020488_90262.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/2/92_202509021522010812_82578.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 782,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "러블리"
+        ],
+        "query": "데님 팬츠",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:168002860",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168002860",
+        "shop": "폴스부띠끄",
+        "name": "[BEST/당일출고/데일리백] NEW SHUBI_8colors 토트백 / 크로스백 / 가방 / 6차 리오더",
+        "price": 41300,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/8/12950_202602081835510935_64922.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/8/12950_202602081835510726_76517.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/12950_202609031219578053_62731.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/12950_202609031219584110_50934.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/12950_202609031219583134_56598.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/12950_202609031219586992_25840.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/12950_202609031219587718_96851.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/12950_202609031219586266_85424.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/8/12950_202602081835510278_45399.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/19/12950_202606191546120954_88856.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/19/12950_202606191546120805_60932.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 187,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "토트백",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:130568193",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/130568193",
+        "shop": "로제니크",
+        "name": "[하객룩/40년 장인 수제화 로제니크] 데스티 몽글 플랫폼 페니로퍼 (5cm/3colors)",
+        "price": 41000,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952190351_53561.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952191962_23235.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952193601_28292.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952195076_66516.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952196606_74322.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952198291_23650.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952187133_51128.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 3316,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "로퍼",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:113341770",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/113341770",
+        "shop": "제인트",
+        "name": "[3만판매돌파]실버925 소세지 볼 체인 실버 은 목걸이﻿",
+        "price": 28710,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2022/7/10/8156_202207101849000577_80282.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2022/7/10/8156_202207101849000574_71602.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2022/7/10/8156_202207101849000585_79841.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2022/7/10/8156_202207101849000576_78311.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 5285,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "목걸이",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:127812392",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/127812392",
+        "shop": "마뚜아",
+        "name": "[92.5 silver] Pale earring 2colors",
+        "price": 44000,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/17/8771_202308172128080472_39690.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/17/8771_202308172128080470_22153.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/17/8771_202308172128080472_11885.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/17/8771_202308172128080471_47015.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/17/8771_202308172128080586_29956.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 1129,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "귀걸이",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      }
+    ],
+    "reason": "베이지 트렌치 + 화이트 셔츠 + 연청 데님으로 밝은 톤을 맞추고, 가방·로퍼를 블랙으로 통일해 아래쪽 무게를 잡았다. 주얼리는 실버 두 개로 과하지 않게. 모두 리뷰 많은 상품이고 신발·가방·주얼리는 단독컷이 있어 누끼가 깨끗하다."
+  },
+  "images": [
+    "out/2026-09-27/slides/01_cover.jpg",
+    "out/2026-09-27/slides/02_아우터.jpg",
+    "out/2026-09-27/slides/03_상의.jpg",
+    "out/2026-09-27/slides/04_하의.jpg",
+    "out/2026-09-27/slides/05_가방.jpg",
+    "out/2026-09-27/slides/06_신발.jpg",
+    "out/2026-09-27/slides/07_소품.jpg",
+    "out/2026-09-27/slides/08_소품.jpg",
+    "out/2026-09-27/slides/09_summary.jpg"
+  ],
+  "review_score": 9.0,
+  "needs_human": false,
+  "review": {
+    "candidates": [
+      {
+        "id": "c1",
+        "file": "outfit/results/C_1.jpg",
+        "round": 1,
+        "score": {
+          "id": "c1",
+          "color": 2,
+          "shape": 2,
+          "complete": 2,
+          "clean": 1,
+          "layout": 2,
+          "notes": "코트 소매 끝에서 흰 셔츠 커프가 다소 크게(각진 덩어리처럼) 튀어나옴, 나머지는 원본과 일치"
+        }
+      },
+      {
+        "id": "c2",
+        "file": "outfit/results/C_2.jpg",
+        "round": 1,
+        "score": {
+          "id": "c2",
+          "color": 2,
+          "shape": 1,
+          "complete": 2,
+          "clean": 2,
+          "layout": 2,
+          "notes": "트렌치코트가 원본(단추 안 보이는 랩 스타일)과 달리 더블브레스트 4단추 + 손목 탭 스트랩으로 나와 원본에 없는 디테일이 생김"
+        }
+      }
+    ],
+    "chosen": "c1",
+    "rounds": 1,
+    "passed": true,
+    "status": "passed",
+    "slide_issues": [],
+    "summary": "c1이 코트 실루엣(래글런·단추 없는 랩 스타일)에서 원본과 더 가깝지만 소매 커프가 다소 크게 나옴, c2는 소매 처리는 깔끔하지만 코트가 원본에 없는 더블브레스트+탭 스트랩 디자인으로 바뀜; 둘 다 합계 9점으로 통과 기준(8점 이상, 0점 없음)은 충족하나 c1을 우선 추천"
+  },
+  "title_lines": [
+    "아침저녁 쌀쌀할 땐",
+    "하프 트렌치코트 하나로"
+  ],
+  "caption": "베이지 트렌치에 화이트 셔츠, 연청 데님으로 밝고 가볍게 맞췄어요\n하프 기장이라 와이드 데님과 입어도 비율이 깔끔해 보여요\n가방과 로퍼를 블랙으로 맞추면 전체가 또렷해 보여요\n\n메리어라운드 · 래글런 하프 트렌치코트\n데일리쥬 · 오버핏 포켓 코튼 셔츠\n고고싱 · 스판 세미와이드 데님\n폴스부띠끄 · 슈비 토트백\n로제니크 · 몽글 플랫폼 페니로퍼\n제인트 · 실버 볼 체인 목걸이\n마뚜아 · 페일 실버 이어링\n\n상품 정보는 프로필 링크에서 확인하세요\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#트렌치코트",
+    "#하프트렌치",
+    "#가을코디",
+    "#초가을코디",
+    "#셔츠코디",
+    "#데님코디",
+    "#주말코디",
+    "#데일리룩",
+    "#오늘의코디",
+    "#출근룩",
+    "#코디추천",
+    "#여자코디"
+  ],
+  "monetize": "none",
+  "reels": null
+}
