@@ -5,11 +5,12 @@ name: telegram-check
 # 작업 브랜치에서는 커밋 메시지에 [telegram-check] 를 넣어 이 파일을 푸시하면 돈다.
 # 커밋 메시지에 [telegram-preview:<결과 폴더>] 를 넣으면 daily-results 의 그 결과로
 # 미리보기도 보내 본다 (시험용이라 게시 버튼 없이, telegram.json 은 저장하지 않음).
+# [pick-status:<결과 폴더>] 를 넣으면 그 코디 후보에 온 답장을 읽어 어떻게 정할지 보여 준다 (기록·실행 없음).
 on:
   workflow_dispatch:
   push:
     branches: ["claude/**"]
-    paths: [".github/workflows/telegram-check.yml", "tools/notify.py"]
+    paths: [".github/workflows/telegram-check.yml", "tools/notify.py", "tools/pick.py"]
 
 permissions:
   contents: read
@@ -37,3 +38,13 @@ jobs:
           git fetch --depth 1 origin daily-results
           git worktree add /tmp/results FETCH_HEAD
           uv run python -m tools.notify preview "/tmp/results/$dir" --run "$dir" --sandbox
+      - name: 코디 고르기 답장 확인
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          dir=$(grep -oP '\[pick-status:\K[\w.-]+(?=\])' <<<"$MSG" || true)
+          [ -z "$dir" ] && exit 0
+          [ -d /tmp/results ] || { git fetch --depth 1 origin daily-results; git worktree add /tmp/results FETCH_HEAD; }
+          uv run python -m tools.pick status "/tmp/results/$dir"

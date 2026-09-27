@@ -192,13 +192,22 @@ def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: in
         top = f"{n}. " + (p.theme.title_hint if len(themes) > 1 else p.reason.split(". ")[0])
         lines.append(top.rstrip("."))
         lines.append("   " + " · ".join(short(it.desc) for it in p.items))
-    lines.append("")
-    lines.append('아래 버튼을 누르거나 "2번"처럼 보내면 그 코디만 코디컷을 만들어요.')
     after = "1번으로 만들어요" if rules.on_timeout == "first" else "오늘은 건너뛰어요"
-    lines.append(f"{s.pick_deadline}까지 고르지 않으면 {after}.")
+    lines += [
+        "",
+        "[고르는 방법]",
+        '• 마음에 드는 번호를 "2번"처럼 보내거나 아래 버튼을 눌러요',
+        f"  → {s.pick_check_every}분 안에 확인해 그 코디만 코디컷을 만들고,",
+        "     다 되면 미리보기를 보내요",
+    ]
     if round_ <= rules.max_again:
-        lines.append('마음에 드는 게 없으면 "다시"를 보내면 새 후보를 받아요.')
-    lines.append("사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.")
+        lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
+    lines += [
+        "• 오늘 쉬려면 /skip",
+        f"• {s.pick_deadline}까지 고르지 않으면 {after}",
+        "",
+        "사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.",
+    ]
     return "\n".join(lines)
 
 
@@ -438,11 +447,28 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("out", type=Path)
     s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
     s.add_argument("--round", type=int, default=1)
+    s = sub.add_parser(
+        "status", help="보낸 후보에 온 답장을 읽어 어떻게 정할지 보여 줌 (기록 안 함)"
+    )
+    s.add_argument(
+        "run_dir", type=Path, help="후보를 보낸 결과 폴더 (daily-results/<날짜>-run<번호>)"
+    )
     s = sub.add_parser("themes")
     s.add_argument("--account", required=True)
     s.add_argument("--first", required=True, help="첫 주제 날짜")
     args = ap.parse_args(argv)
     try:
+        if args.cmd == "status":
+            f = args.run_dir / "picks" / "pick.json"
+            record = PickRecord.model_validate_json(f.read_text(encoding="utf-8"))
+            tg = notify.Telegram.from_env()
+            profile = load_profile(record.account)
+            d, note, _ = decide(
+                tg.updates(), record, tg.chat_id, profile, False, 24 * 60, int(time.time())
+            )
+            print(f"{record.run} ({record.account} {record.date}) 후보 {record.count}개")
+            print(f"읽은 결정: {d.choice if d else '아직 없음'}" + (f" / {note}" if note else ""))
+            return 0
         if args.cmd == "themes":
             profile, store = load_profile(args.account), Store(args.account)
             rec = send_themes(
