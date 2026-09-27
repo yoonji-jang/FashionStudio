@@ -29,7 +29,7 @@ uv run pytest
 |---|---|---|---|
 | 처음 한 번 | 계정 설정, 비밀값 등록, 인스타·텔레그램 연결 | 이 README의 설정 가이드 | - |
 | 매주 1회 | 다음 주 주제 목록 확인 (마음에 안 들면 `/themes again`) | 텔레그램 | `themes.review_before_use: false` |
-| 매일 오전 | 코디 후보 5개 중 하나 고르기 (`/pick 3`, 새 후보 `/again`, 건너뛰기 `/skip`) | 텔레그램 | `pick.enabled: false` (마감까지 안 고르면 `pick.on_timeout`) |
+| 매일 오전 | 코디 후보 5개 중 하나 고르기 (버튼 또는 "3번", 새 후보 "다시", 건너뛰기 `/skip`) | 텔레그램 | `pick.enabled: false` (마감까지 안 고르면 `pick.on_timeout`) |
 | 매일 오후 | 고른 코디로 만든 미리보기에 `/ok` (게시) 또는 `/skip` (건너뛰기) | 텔레그램 | `approval: optional` 이면 `/skip` 만 필요 |
 | 문제가 생겼을 때 | 이미지 검수 2회 실패, 토큰 만료 등 알림 확인 | 텔레그램 | - |
 | 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 | 텔레그램 | `monetize: none` 이면 없음 |

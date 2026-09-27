@@ -193,11 +193,11 @@ def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: in
         lines.append(top.rstrip("."))
         lines.append("   " + " · ".join(short(it.desc) for it in p.items))
     lines.append("")
-    lines.append("번호를 누르면 그 코디만 코디컷을 만들어요.")
+    lines.append('아래 버튼을 누르거나 "2번"처럼 보내면 그 코디만 코디컷을 만들어요.')
     after = "1번으로 만들어요" if rules.on_timeout == "first" else "오늘은 건너뛰어요"
     lines.append(f"{s.pick_deadline}까지 고르지 않으면 {after}.")
     if round_ <= rules.max_again:
-        lines.append("마음에 드는 게 없으면 /again 으로 새 후보를 받아요.")
+        lines.append('마음에 드는 게 없으면 "다시"를 보내면 새 후보를 받아요.')
     lines.append("사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.")
     return "\n".join(lines)
 

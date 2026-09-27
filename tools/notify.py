@@ -229,7 +229,13 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
     계정·날짜를 적었으면 둘 다 이 계정·날짜와 맞아야 하고(아니면 None),
     안 적었으면 가장 최근 것으로 본다.
     day 가 None 이면 날짜를 적은 글은 받지 않는다."""
-    m = CMD.match(text.strip())
+    # 버튼 대신 직접 친 "2번", "2", "다시" 도 코디 고르기 명령으로 읽는다
+    plain = text.strip()
+    if re.fullmatch(r"\d{1,2}\s*번?", plain):
+        return Command("pick", [re.sub(r"\D", "", plain)], False)
+    if plain in ("다시", "다시 보내줘"):
+        return Command("again", [], False)
+    m = CMD.match(plain)
     if not m:
         return None
     args: list[str] = []

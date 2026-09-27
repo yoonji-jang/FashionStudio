@@ -88,6 +88,10 @@ def test_decide():
     ups = [upd(1, "/pick 2"), upd(2, "/pick 9"), upd(3, "/pick 4 women 09-28")]
     assert pick.decide(ups, rec(), CHAT, profile, False, 200, 5)[0].choice == 2
     assert pick.decide([upd(1, "/skip")], rec(), CHAT, profile, False, 200, 5)[0].choice == "skip"
+    # 직접 친 "2번", "4", "다시"
+    assert pick.decide([upd(1, "2번")], rec(), CHAT, profile, False, 200, 5)[0].choice == 2
+    assert pick.decide([upd(1, "4")], rec(), CHAT, profile, False, 200, 5)[0].choice == 4
+    assert pick.decide([upd(1, "다시")], rec(), CHAT, profile, False, 200, 5)[0].choice == "again"
     assert pick.decide([], rec(), CHAT, profile, False, 200, 5)[0] is None
     # 마감: on_timeout
     d, _, _ = pick.decide([], rec(), CHAT, profile, True, 0, 5)
