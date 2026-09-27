@@ -48,6 +48,7 @@ no_repeat_days, avoid), `audience`, `style`, 그리고 `voice.md` 의 좋은 제
 ## 저장
 - 주간: 7일치를 `out/themes_<첫날>.yaml` 로 쓰고
   `python -m tools.plan themes --account $ACCOUNT --file out/themes_<첫날>.yaml` 로 검사·저장한다.
-  `themes.review_before_use: true` 이면 사람 확인 전이므로, 보고에 7개를 한 줄씩 적는다
-  (텔레그램 확인은 8단계에서 붙는다).
+  보고(`out/themes_<첫날>.md`)에 7개를 한 줄씩 적는다. 텔레그램으로 보내는 것은 themes 워크플로가 한다
+  (`themes.review_before_use: true` 면 "/themes again" 버튼이 붙고, 누르면 이 주 주제를 다시 정한다).
+  `out/themes_previous.yaml` 이 있으면 사람이 다시 정해 달라고 한 주제다. 겹치지 않게 새로 정한다.
 - 하루: plan.yaml 의 `theme` 에 바로 쓴다. 저장은 하지 않아도 된다.

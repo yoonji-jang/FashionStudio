@@ -25,6 +25,7 @@ import sys
 import time
 from datetime import date
 from pathlib import Path
+from typing import NamedTuple
 
 import httpx
 import yaml
@@ -213,51 +214,100 @@ def preview(
 
 # ---------- 승인 읽기 ----------
 
-CMD = re.compile(r"^/(ok|skip)(?:@\w+)?(?:\s+(.*))?$", re.IGNORECASE | re.DOTALL)
+CMD = re.compile(r"^/([a-z]+)(?:@\w+)?(?:\s+(.*))?$", re.IGNORECASE | re.DOTALL)
 DAY = re.compile(r"^(?:(\d{4})-)?(\d{1,2})-(\d{1,2})$")
 
 
-def parse_command(text: str, record: PreviewRecord) -> Decision | None:
-    """ "/ok", "/ok women 09-27", "/skip 2026-09-27" 같은 글이
-    이 미리보기에 대한 것이면 결정을 돌려준다.
-    계정·날짜를 적었으면 둘 다 맞아야 하고, 안 적었으면 가장 최근 미리보기에 대한 것으로 본다."""
-    m = CMD.match(text.strip())
+class Command(NamedTuple):
+    name: str  # 소문자 명령 (ok, skip, pick, again, themes …)
+    args: list[str]  # 계정·날짜를 뺀 나머지 (예: /pick 3 → ["3"])
+    labeled: bool  # 계정이나 날짜를 적었는지
+
+
+def parse(text: str, account: str, day: date | None) -> Command | None:
+    """ "/ok", "/pick 3 women 09-28", "/skip 2026-09-27" 같은 글을 읽는다.
+    계정·날짜를 적었으면 둘 다 이 계정·날짜와 맞아야 하고(아니면 None),
+    안 적었으면 가장 최근 것으로 본다.
+    day 가 None 이면 날짜를 적은 글은 받지 않는다."""
+    # 버튼 대신 직접 친 "2번", "2", "다시" 도 코디 고르기 명령으로 읽는다
+    plain = text.strip()
+    if re.fullmatch(r"\d{1,2}\s*번?", plain):
+        return Command("pick", [re.sub(r"\D", "", plain)], False)
+    if plain in ("다시", "다시 보내줘"):
+        return Command("again", [], False)
+    m = CMD.match(plain)
     if not m:
         return None
+    args: list[str] = []
+    labeled = False
     for token in (m.group(2) or "").split():
         d = DAY.match(token)
         if d:
-            year = int(d.group(1) or record.date.year)
-            if (year, int(d.group(2)), int(d.group(3))) != (
-                record.date.year,
-                record.date.month,
-                record.date.day,
-            ):
+            if day is None:
                 return None
-        elif token.lower() != record.account.lower():
-            return None
-    return m.group(1).lower()  # type: ignore[return-value]
+            year = int(d.group(1) or day.year)
+            if (year, int(d.group(2)), int(d.group(3))) != (day.year, day.month, day.day):
+                return None
+            labeled = True
+        elif token.lower() == account.lower():
+            labeled = True
+        else:
+            args.append(token)
+    return Command(m.group(1).lower(), args, labeled)
 
 
-def find_decision(updates: list[dict], record: PreviewRecord, chat_id: str) -> Decision | None:
-    """미리보기 뒤 등록된 채팅에서 온 마지막 /ok 또는 /skip."""
-    found: tuple[int, Decision] | None = None
+def commands(
+    updates: list[dict],
+    chat_id: str,
+    since: int,
+    account: str,
+    day: date | None,
+    names: set[str],
+    own_ids: list[int],
+) -> list[tuple[int, Command]]:
+    """since 뒤 등록된 채팅에서 온, 이 계정·날짜에 대한 명령들 (update_id 순).
+    계정·날짜 없이 봇의 다른 메시지(다른 계정·다른 날)에 답장한 글은 그쪽 것이라 뺀다."""
+    found = []
     for u in updates:
         msg = u.get("message") or {}
         if str((msg.get("chat") or {}).get("id")) != str(chat_id):
             continue
-        if msg.get("date", 0) < record.sent_at:
+        if msg.get("date", 0) < since:
             continue
-        text = msg.get("text") or ""
+        cmd = parse(msg.get("text") or "", account, day)
+        if cmd is None or cmd.name not in names:
+            continue
         reply_to = (msg.get("reply_to_message") or {}).get("message_id")
-        decision = parse_command(text, record)
-        m = CMD.match(text.strip())
-        if decision and m and not m.group(2) and reply_to and reply_to not in record.message_ids:
-            # 계정·날짜 없이 다른 미리보기(다른 계정)에 답장한 /ok 는 그쪽 것이다
-            decision = None
-        if decision and (found is None or u["update_id"] > found[0]):
-            found = (u["update_id"], decision)
-    return found[1] if found else None
+        if not cmd.labeled and reply_to and reply_to not in own_ids:
+            continue
+        found.append((u["update_id"], cmd))
+    return sorted(found, key=lambda x: x[0])
+
+
+def parse_command(text: str, record: PreviewRecord) -> Decision | None:
+    """미리보기에 대한 /ok 또는 /skip (다른 글이 붙어 있으면 None)."""
+    cmd = parse(text, record.account, record.date)
+    if cmd and cmd.name in ("ok", "skip") and not cmd.args:
+        return cmd.name  # type: ignore[return-value]
+    return None
+
+
+def find_decision(updates: list[dict], record: PreviewRecord, chat_id: str) -> Decision | None:
+    """미리보기 뒤 등록된 채팅에서 온 마지막 /ok 또는 /skip."""
+    found = [
+        cmd
+        for _, cmd in commands(
+            updates,
+            chat_id,
+            record.sent_at,
+            record.account,
+            record.date,
+            {"ok", "skip"},
+            record.message_ids,
+        )
+        if not cmd.args
+    ]
+    return found[-1].name if found else None  # type: ignore[return-value]
 
 
 def load_record(out: Path) -> PreviewRecord | None:

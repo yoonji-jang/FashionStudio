@@ -1,0 +1,106 @@
+name: schedule
+
+# 9단계 매일 자동 실행. 계정마다 profile.yaml schedule 의 시각에 깨어나 할 일을 찾는다 (tools.schedule).
+# Claude 는 부르지 않고, 무거운 작업은 워크플로 실행 요청으로 넘긴다:
+#   candidates → daily (mode=candidates: 코디 후보를 텔레그램으로, Photoroom 없음)
+#   pick       → 고른 번호 확인. 고르면 daily (mode=render: 고른 코디만 Photoroom), "다시"면 새 후보
+#   publish    → publish (/ok 가 있으면 게시, 없으면 publish_retry_every 뒤 다시)
+#   themes / collect / token → themes / collect / token 워크플로
+# 아래 cron 줄은 `uv run python -m tools.schedule sync` 가 프로필에서 만든다 (UTC). 직접 고치지 않는다.
+# 수동으로 시험하려면 Actions 탭 "Run workflow" 에 cron 줄을 넣는다 (dry_run 이면 실행 요청은 보내지 않음).
+on:
+  schedule:
+    # >>> tools.schedule sync (직접 고치지 말고 profile.yaml schedule 을 바꾼 뒤 sync)
+    - cron: "17 1 * * *"  # women candidates 10:17
+    - cron: "47 1 * * *"  # women pick 10:47
+    - cron: "17 2 * * *"  # women pick 11:17
+    - cron: "47 2 * * *"  # women pick 11:47
+    - cron: "17 3 * * *"  # women pick 12:17
+    - cron: "47 3 * * *"  # women pick 12:47
+    - cron: "17 4 * * *"  # women pick 13:17
+    - cron: "47 4 * * *"  # women pick 13:47
+    - cron: "17 5 * * *"  # women pick 14:17
+    - cron: "47 5 * * *"  # women pick 14:47
+    - cron: "17 6 * * *"  # women pick 15:17
+    - cron: "17 9 * * 0"  # women themes 일 18:17
+    - cron: "47 9 * * 0"  # women token 일 18:47
+    - cron: "3 11 * * *"  # women publish 20:03
+    - cron: "33 11 * * *"  # women publish 20:33
+    - cron: "3 12 * * *"  # women publish 21:03
+    - cron: "33 12 * * *"  # women publish 21:33
+    - cron: "3 13 * * *"  # women publish 22:03
+    - cron: "17 19 * * 0,3"  # women collect 월,목 04:17
+    # <<< tools.schedule sync
+  workflow_dispatch:
+    inputs:
+      cron:
+        description: 흉내 낼 cron 줄 (tools.schedule list 참고)
+        required: true
+      dry_run:
+        description: 시험 (워크플로 실행 요청·텔레그램 알림·결정 기록 없이 무엇을 할지만 보여 줌)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: schedule
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CRON: ${{ github.event.schedule || inputs.cron }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+
+      - name: 결과 가져오기 (daily-results 브랜치)
+        run: |
+          if git fetch origin daily-results 2>/dev/null; then
+            git worktree add /tmp/results origin/daily-results
+            git -C /tmp/results checkout -B daily-results
+          else
+            mkdir -p /tmp/results
+          fi
+
+      - name: 할 일 실행
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          uv run python -m tools.schedule due --cron "$CRON"
+          uv run python -m tools.schedule run --cron "$CRON" --results /tmp/results \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: 결정 기록 커밋 (고른 번호, 주제 다시 정하기)
+        if: ${{ !inputs.dry_run }}
+        run: |
+          commit() {  # 폴더, 브랜치, 메시지, 파일(pathspec)
+            [ -d "$1/.git" ] || [ -f "$1/.git" ] || return 0
+            git -C "$1" add -- "${@:4}" 2>/dev/null || return 0
+            git -C "$1" diff --cached --quiet && return 0
+            git -C "$1" -c user.name="github-actions[bot]" \
+              -c user.email="41898279+github-actions[bot]@users.noreply.github.com" commit -m "$3"
+            for i in 1 2 3; do
+              git -C "$1" pull --rebase --autostash origin "$2" && git -C "$1" push origin "HEAD:$2" && return 0
+              sleep $((i * 5))
+            done
+            return 1
+          }
+          commit /tmp/results daily-results "코디 고르기 기록" ':(glob)*/picks/**'
+          commit . "${{ github.ref_name }}" "주제 다시 정하기 요청" ':(glob)data/*/themes_review.json'
+
+      - name: 실패 알림
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "자동 실행(schedule) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: .github/scripts/alert.sh

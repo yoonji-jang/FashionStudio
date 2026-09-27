@@ -155,6 +155,39 @@ class PreviewRecord(BaseModel):
 Decision = Literal["ok", "skip"]
 
 
+class PickRecord(BaseModel):
+    """텔레그램으로 보낸 코디 후보 (결과 폴더의 picks/pick.json, 9단계 tools.pick).
+    후보 기획은 같은 폴더의 p1.yaml … (text 없는 DailyPlan)."""
+
+    account: str
+    date: date
+    run: str  # daily-results 브랜치 안 결과 폴더 이름
+    round: int = Field(default=1, ge=1)  # "다시"로 몇 번째 받은 후보인지
+    count: int = Field(ge=1)  # 보낸 후보 수 (p1 ~ pN)
+    sent_at: int  # 보낸 시각 (유닉스 초). 이보다 뒤에 온 답장만 본다
+    message_ids: list[int] = []
+
+
+class PickDecision(BaseModel):
+    """후보에 대한 결정 (picks/picked.json). schedule job 이 쓰고, 한 번 정하면 다시 보지 않는다."""
+
+    choice: int | Literal["again", "skip"]  # 고른 번호 (1부터)
+    by: Literal["user", "timeout"]
+    decided_at: int  # 유닉스 초
+
+
+class ThemesRecord(BaseModel):
+    """텔레그램으로 보낸 주간 주제 (data/<계정>/themes_review.json).
+    "/themes again" 답장이 오면 schedule job 이 주제를 다시 정하게 한다."""
+
+    account: str
+    first: date  # 첫 주제 날짜
+    last: date
+    sent_at: int
+    message_ids: list[int] = []
+    handled: bool = False  # 다시 정하기를 이미 요청했으면 true
+
+
 class PublishRecord(BaseModel):
     """게시 결과 (결과 폴더의 published.json)."""
 

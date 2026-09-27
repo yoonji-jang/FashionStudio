@@ -148,11 +148,28 @@ review:
   min_score: 8       # 이 점수 이상이고 0점 항목이 없어야 통과
   check_slides: true # 상품 장 사진 색·모델 얼굴·글자 잘림도 본다
 
+# 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
+# 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
 schedule:
+  enabled: true             # false 면 자동 실행 안 함 (Actions 버튼으로만)
   timezone: Asia/Seoul
-  generate_at: "21:17"  # 전날 생성
-  publish_at: "07:23"   # 다음날 게시 (정각은 Actions 지연이 커서 피함)
-  reels_at: "18:47"
+  candidates_at: "10:17"    # 그날 코디 후보를 텔레그램으로 보냄 (Photoroom 안 씀)
+  pick_check_every: 30      # 고른 번호를 확인하는 간격 (분)
+  pick_deadline: "15:17"    # 이때까지 안 고르면 pick.on_timeout 대로
+  publish_at: "20:03"       # 게시 (승인 /ok 가 있으면)
+  publish_retry_every: 30   # 게시 시각에 승인이 없으면 다시 보는 간격 (분)
+  publish_retries: 4        # 다시 보는 횟수 (20:33 ~ 22:03)
+  themes_at: "일 18:17"     # 다음 주 주제 7개 (텔레그램으로 보냄)
+  collect_at: "월,목 04:17"  # 지그재그 새 상품 수집
+  token_refresh_at: "일 18:47"  # 인스타 토큰 연장 (60일 만료 전에 매주)
+  reels_at: null            # 릴스 (12단계)
+
+# 코디 고르기 (9단계). 후보를 쇼핑몰 원본 사진으로 보내고, 고른 코디만 Photoroom 으로 만든다
+pick:
+  enabled: true      # false 면 고르지 않고 Claude 가 정한 한 벌을 바로 만든다
+  count: 5           # 보내는 후보 수
+  on_timeout: first  # 마감까지 안 고르면 first(1번으로 진행) 또는 skip(그날 건너뜀)
+  max_again: 2       # "다시"로 새 후보를 받을 수 있는 횟수
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 monetize: none

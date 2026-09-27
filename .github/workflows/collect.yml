@@ -4,7 +4,7 @@ name: collect
 # - Actions 탭에서 "Run workflow": 계정·카테고리·검색어를 고를 수 있다. commit 을 켜면 결과를 그 브랜치에 커밋
 # - 작업 브랜치에 커밋 메시지에 [collect] 를 넣어 푸시 ([collect:3] 이면 카테고리마다 검색어 3개만)
 # 보고서(report.md, sheet.jpg)는 artifact 와 scout-results 브랜치의 collect-<실행번호>/ 에 올라간다.
-# 매일 자동 실행은 8단계에서 붙인다.
+# 9단계: schedule 워크플로가 profile schedule.collect_at 에 commit 을 켜고 부른다.
 on:
   workflow_dispatch:
     inputs:
@@ -84,8 +84,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
           git add "data/$ACCOUNT/products.json"
-          git diff --cached --quiet || git commit -m "상품 창고 갱신 ($ACCOUNT, run ${{ github.run_number }})"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "상품 창고 갱신 ($ACCOUNT, run ${{ github.run_number }})"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
 
       - name: scout-results 브랜치에 보고서 커밋
         if: always()
@@ -108,3 +113,11 @@ jobs:
           git -C /tmp/results add "$dest"
           git -C /tmp/results commit -m "상품 수집 결과 $dest"
           git -C /tmp/results push origin scout-results
+
+      - name: 실패 알림
+        if: failure() && github.event_name == 'workflow_dispatch'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "[${{ env.ACCOUNT }}] 상품 수집 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: .github/scripts/alert.sh

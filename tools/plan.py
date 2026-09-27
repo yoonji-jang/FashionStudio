@@ -7,7 +7,7 @@ r"""하루 게시물 기획을 돕는 도구 (6단계). Claude 스킬이 부르�
   python -m tools.plan context --account women [--date 2026-09-27]      오늘 정보 (날씨, 재고)
   python -m tools.plan candidates --account women --category 아우터 [--query 트렌치]  후보 상품
   python -m tools.plan themes --account women --file out/themes.yaml     주간 주제 검사·저장
-  python -m tools.plan check out/2026-09-27/plan.yaml     기획 검사 (오류면 종료 코드 1)
+  python -m tools.plan check out/2026-09-27/plan.yaml [--draft]  기획 검사 (오류면 종료 코드 1)
   python -m tools.plan photos out/2026-09-27/plan.yaml    상품 사진 확인표
   python -m tools.plan caption out/2026-09-27/plan.yaml   캡션 미리보기
   python -m tools.plan build out/2026-09-27/plan.yaml [--outfit photoroom|none] [--fake]
@@ -74,9 +74,13 @@ _EMOJI = re.compile("[\U0001f000-\U0001faff☀-➿⬀-⯿️]")
 # ---------- 공통 ----------
 
 
-def default_date(profile: Profile) -> date:
-    """게시 날짜 기본값: 프로필 시간대 기준 내일 (전날 밤 생성, 다음 날 아침 게시)."""
-    return datetime.now(ZoneInfo(profile.schedule.timezone)).date() + timedelta(days=1)
+def default_date(profile: Profile, now: datetime | None = None) -> date:
+    """게시 날짜 기본값: 프로필 시간대 기준 오늘 게시 시각 전이면 오늘, 지났으면 내일."""
+    now = (now or datetime.now(ZoneInfo(profile.schedule.timezone))).astimezone(
+        ZoneInfo(profile.schedule.timezone)
+    )
+    h, m = map(int, profile.schedule.publish_at.split(":"))
+    return now.date() + timedelta(days=0 if (now.hour, now.minute) < (h, m) else 1)
 
 
 def season(d: date) -> str:
@@ -274,8 +278,11 @@ def text_problems(text: str, profile: Profile, where: str) -> list[str]:
     return [f"{where}: 금지 표현 '{w}'" for w in profile.copy_rules.banned if w in text]
 
 
-def check(plan: DailyPlan, profile: Profile, store: Store) -> tuple[list[str], list[str]]:
-    """기획 파일을 프로필 규칙으로 검사한다. (오류, 경고). 오류가 있으면 빌드하지 않는다."""
+def check(
+    plan: DailyPlan, profile: Profile, store: Store, draft: bool = False
+) -> tuple[list[str], list[str]]:
+    """기획 파일을 프로필 규칙으로 검사한다. (오류, 경고). 오류가 있으면 빌드하지 않는다.
+    draft 는 문구(text)를 쓰기 전 코디 후보 (9단계 tools.pick): text 가 없어도 오류가 아니다."""
     errors: list[str] = []
     warns: list[str] = []
     rules, c = profile.outfit, profile.copy_rules
@@ -352,7 +359,8 @@ def check(plan: DailyPlan, profile: Profile, store: Store) -> tuple[list[str], l
         errors.append(f"최근 {profile.themes.no_repeat_days}일 안에 같은 주제가 있습니다")
 
     if plan.text is None:
-        errors.append("text(제목·코디 포인트·해시태그)가 아직 없습니다 (write-copy 스킬)")
+        if not draft:
+            errors.append("text(제목·코디 포인트·해시태그)가 아직 없습니다 (write-copy 스킬)")
     else:
         t = plan.text
         if len(t.title_lines) > profile.visual.title_max_lines:
@@ -667,6 +675,8 @@ def main(argv: list[str] | None = None) -> int:
         s.add_argument("plan", type=Path)
         if name in ("photos", "build"):
             s.add_argument("--out", type=Path, help="결과 폴더 (기본: 기획 파일 폴더)")
+        if name == "check":
+            s.add_argument("--draft", action="store_true", help="문구 없는 코디 후보 검사")
         if name == "build":
             s.add_argument("--outfit", choices=["photoroom", "none"], default="photoroom")
             s.add_argument("--fake", action="store_true", help="Photoroom 대신 가짜 이미지")
@@ -693,7 +703,7 @@ def main(argv: list[str] | None = None) -> int:
         plan = load_plan(args.plan)
         profile, store = load_profile(plan.account), Store(plan.account)
         if args.cmd == "check":
-            errors, warns = check(plan, profile, store)
+            errors, warns = check(plan, profile, store, args.draft)
             for e in errors:
                 print(f"오류: {e}")
             for w in warns:

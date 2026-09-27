@@ -23,6 +23,9 @@
       "Bash(python -m tools.publish:*)",
       "Bash(python -m tools.notify:*)",
       "Bash(python -m tools.media_host:*)",
+      "Bash(python -m tools.pick:*)",
+      "Bash(python -m tools.ig_token:*)",
+      "Bash(python -m tools.schedule run:*)",
       "Bash(curl:*)",
       "Read(.env)",
       "Read(.env.*)"
