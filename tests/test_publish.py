@@ -280,3 +280,22 @@ def test_find_chats_checks_token_and_lists_private_chats():
 
     bot, chats = notify.find_chats("T", httpx.Client(transport=httpx.MockTransport(handler)))
     assert bot == "my_bot" and chats == {int(CHAT): 2}
+
+
+def test_scheduled_publish_without_results_is_quiet(tmp_path, store):  # noqa: F811
+    (tmp_path / "empty").mkdir()
+    code = publish.run("women", DAY, tmp_path / "empty", store=store, scheduled=True)
+    assert code == 0
+    with pytest.raises(FileNotFoundError):
+        publish.run("women", DAY, tmp_path / "empty", store=store)
+
+
+def test_quiet_wait_sends_nothing(results, store):  # noqa: F811
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    sent(api, run)
+    tg, _, _ = clients(api)
+    before = len(api.calls)
+    code = publish.run("women", DAY, results, tg=tg, store=store, notify_wait=False)
+    assert code == publish.WAITING
+    assert [c for c in api.calls[before:] if c[1].endswith("sendMessage")] == []

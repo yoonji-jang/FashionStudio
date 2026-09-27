@@ -5,7 +5,8 @@
 
 | 스킬 | 역할 | 결과 |
 |---|---|---|
-| daily-feed | 하루 전체 지휘 (아래 스킬과 도구를 순서대로) | `out/<날짜>/plan.yaml`, `manifest.json`, 슬라이드, 캡션 |
+| daily-feed | 하루 전체 지휘 (아래 스킬과 도구를 순서대로). 고른 후보가 있으면 사진 확인부터 | `out/<날짜>/plan.yaml`, `manifest.json`, 슬라이드, 캡션 |
+| outfit-candidates | 코디 후보 여러 개 (문구·이미지 없이). 사람이 텔레그램에서 고른 것만 daily-feed 가 이어서 만듦 | `out/<날짜>/picks/p1.yaml` … |
 | plan-themes | 주간 주제 7개 또는 하루 주제 + 지그재그 검색어 | `data/<계정>/themes.json` 또는 plan.yaml `theme` |
 | pick-outfit | 상품 창고에서 코디 한 벌 고르기, 코디컷 배치 정보 | plan.yaml `items`, `reason` |
 | write-copy | 표지 제목, 상품 장 이름·코멘트, 캡션 포인트, 해시태그 | plan.yaml `text` |
@@ -15,9 +16,15 @@
 | photo-checker | 상품 사진이 고른 색과 맞는지, 얼굴이 없는지 보고 사진 번호를 고름 (읽기 전용) |
 | image-reviewer | 코디컷 후보를 원본 상품과 비교해 5개 항목 점수, 캐러셀 장 색·얼굴·글자 확인 (읽기 전용) |
 
-앞으로 붙일 것: `reels-storyboard` (11단계), `new-account`.
+앞으로 붙일 것: `reels-storyboard` (12단계), `new-account`.
 
 ## 흐름
+
+9단계 매일 자동 실행에서는 둘로 나뉜다 (`tools.schedule`, `tools.pick`):
+```
+(후보 시각) outfit-candidates ─▶ tools.pick validate ─▶ tools.pick send (텔레그램, Photoroom 없음)
+(사람이 번호 선택) ─▶ daily-feed "고른 후보로 시작" (사진 확인 → 문구 → 만들기 → 검수) ─▶ 미리보기
+```
 
 ```
 tools.plan context ─▶ plan-themes ─▶ (tools.collect 검색어 수집) ─▶ pick-outfit ─▶ tools.plan photos

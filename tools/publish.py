@@ -13,7 +13,7 @@ r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 
 
 사용법:
   python -m tools.publish --account women --date 2026-09-27 --results <daily-results 폴더>
-      [--run 2026-09-27-run12] [--dry-run] [--force] [--allow-sandbox]
+      [--run 2026-09-27-run12] [--dry-run] [--force] [--allow-sandbox] [--scheduled] [--quiet-wait]
 환경 변수: IG_TOKEN, IG_USER_ID (또는 프로필 instagram 의 Secret 이름), TELEGRAM_BOT_TOKEN,
 TELEGRAM_CHAT_ID, MEDIA_REPO_TOKEN
 """
@@ -139,6 +139,8 @@ def run(
     tg: notify.Telegram | None = None,
     ig: Instagram | None = None,
     host: GitHubHost | None = None,
+    scheduled: bool = False,
+    notify_wait: bool = True,
 ) -> int:
     profile = load_profile(account)
     store = store or Store(account)
@@ -148,7 +150,14 @@ def run(
     if any(p.date == day for p in store.posts()):
         print(f"{tag} 이미 게시했습니다 (posts.json)")
         return 0
-    out = find_run(results, account, day, run_name)
+    try:
+        out = find_run(results, account, day, run_name)
+    except FileNotFoundError:
+        if not scheduled:
+            raise
+        # 자동 실행: 그날 고르기를 건너뛰었거나 아직 만들지 않은 날 (만들기 실패는 daily 가 알림)
+        print(f"{tag} 게시할 결과가 없습니다")
+        return 0
     if (out / "published.json").exists():
         print(f"{tag} 이미 게시했습니다 ({out.name}/published.json)")
         return 0
@@ -179,7 +188,7 @@ def run(
     if how == "skip":
         return 0
     if how == "wait":
-        if tg is not None and not dry_run:
+        if tg is not None and not dry_run and notify_wait:
             tg.send(f"{tag} 아직 게시하지 않았어요. {why}")
         return WAITING
 
@@ -264,6 +273,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="검사와 승인 확인까지만")
     ap.add_argument("--force", action="store_true", help="텔레그램 승인 없이 게시")
     ap.add_argument("--allow-sandbox", action="store_true", help="샌드박스 결과도 게시 (시험용)")
+    ap.add_argument("--scheduled", action="store_true", help="자동 실행: 결과가 없으면 조용히 끝냄")
+    ap.add_argument("--quiet-wait", action="store_true", help="승인 대기 알림을 보내지 않음")
     args = ap.parse_args(argv)
 
     profile = load_profile(args.account)
@@ -283,6 +294,8 @@ def main(argv: list[str] | None = None) -> int:
             args.force,
             args.allow_sandbox,
             tg=tg,
+            scheduled=args.scheduled,
+            notify_wait=not args.quiet_wait,
         )
     except (Blocked, IGError, ValueError, FileNotFoundError, RuntimeError, httpx.HTTPError) as e:
         msg = f"[{args.account}] {day} 게시 실패: {e}"

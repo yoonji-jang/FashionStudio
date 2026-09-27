@@ -3,7 +3,8 @@ name: publish
 # 8단계 인스타 게시. Claude 없이 코드만 돈다 (tools.publish).
 # daily 가 만든 결과(daily-results 브랜치)를 골라 게시 전 검사 → 텔레그램 승인(/ok, /skip) 확인 →
 # 사진을 공개 사진 저장소에 잠시 올리고 인스타 캐러셀 게시 → 게시 기록(data/<계정>/posts.json) 커밋 → 텔레그램 알림.
-# 지금은 Actions 탭에서 "Run workflow" 로 돌린다. 매일 profile schedule.publish_at 에 자동으로 도는 것은 9단계.
+# 9단계: schedule 워크플로가 profile schedule.publish_at 에 부른다 (scheduled). 승인이 늦으면
+# publish_retry_every 마다 다시 불리고, 대기 알림은 처음과 마지막에만 보낸다. Actions 탭에서 직접 돌려도 된다.
 # 필요한 Secrets: 프로필 instagram 의 두 이름(예: IG_WOMEN_TOKEN, IG_WOMEN_USER_ID), MEDIA_REPO_TOKEN,
 # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 on:
@@ -26,6 +27,14 @@ on:
         description: 텔레그램 승인 없이 바로 게시
         type: boolean
         default: false
+      scheduled:
+        description: 자동 실행 (게시할 결과가 없으면 조용히 끝냄)
+        type: boolean
+        default: false
+      notify_wait:
+        description: 승인이 없을 때 텔레그램으로 알림
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -76,6 +85,8 @@ jobs:
           [ -n "$RUN_DIR" ] && args+=(--run "$RUN_DIR")
           ${{ inputs.dry_run && 'args+=(--dry-run)' || '' }}
           ${{ inputs.force && 'args+=(--force)' || '' }}
+          ${{ inputs.scheduled && 'args+=(--scheduled)' || '' }}
+          ${{ !inputs.notify_wait && 'args+=(--quiet-wait)' || '' }}
           set +e
           uv run python -m tools.publish "${args[@]}"
           code=$?

@@ -5,7 +5,7 @@
 - **Claude**: 주제 선정, 상품 조합, 제목·캡션, 이미지 검수 (Claude Code 스킬·에이전트)
 - **Photoroom API**: 상품 사진에서 누끼 따기(옷은 바닥에 펼친 모양으로), 그림자·배경 입히기
 - **코드(Pillow)**: 누끼를 배경 위에 배치해 코디컷 합성. 상품을 AI가 새로 그리지 않아 원본 그대로 나옴
-- **GitHub Actions**: 매일 생성 → 텔레그램 승인 → 인스타 게시
+- **GitHub Actions**: 매일 코디 후보 → 텔레그램에서 고르기 → 고른 코디만 이미지 생성 → 텔레그램 승인 → 인스타 게시
 
 계정별 설정은 `accounts/<계정>/` 에 있고, 코드와 스킬은 모든 계정이 함께 씁니다.
 기본으로 여성 계정 예시(`accounts/women/`)가 들어 있습니다.
@@ -28,8 +28,9 @@ uv run pytest
 | 언제 | 하는 일 | 어디서 | 끌 수 있나 |
 |---|---|---|---|
 | 처음 한 번 | 계정 설정, 비밀값 등록, 인스타·텔레그램 연결 | 이 README의 설정 가이드 | - |
-| 매주 1회 | 다음 주 주제 목록 확인 (고칠 것만 답장) | 텔레그램 | `themes.review_before_use: false` |
-| 매일 1회 | 전날 밤 도착한 미리보기에 `/ok` (게시) 또는 `/skip` (건너뛰기) | 텔레그램 | `approval: optional` 이면 `/skip` 만 필요 |
+| 매주 1회 | 다음 주 주제 목록 확인 (마음에 안 들면 `/themes again`) | 텔레그램 | `themes.review_before_use: false` |
+| 매일 오전 | 코디 후보 5개 중 하나 고르기 (`/pick 3`, 새 후보 `/again`, 건너뛰기 `/skip`) | 텔레그램 | `pick.enabled: false` (마감까지 안 고르면 `pick.on_timeout`) |
+| 매일 오후 | 고른 코디로 만든 미리보기에 `/ok` (게시) 또는 `/skip` (건너뛰기) | 텔레그램 | `approval: optional` 이면 `/skip` 만 필요 |
 | 문제가 생겼을 때 | 이미지 검수 2회 실패, 토큰 만료 등 알림 확인 | 텔레그램 | - |
 | 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 | 텔레그램 | `monetize: none` 이면 없음 |
 | 가끔 | 반응 보면서 말투·제목 예시·금지 표현 다듬기 | `voice.md`, `profile.yaml` | - |
@@ -215,15 +216,39 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `min_score` | 8 | 이 점수 이상이고 0점 항목이 없어야 통과 |
 | `check_slides` | true | 상품 장 사진 색·모델 얼굴·글자 잘림도 확인 |
 
-#### `schedule` : 시간 (`HH:MM` 형식)
+#### `schedule` : 매일 자동 실행 시간표 (9단계)
+시간은 `timezone` 기준 `HH:MM`, 주간 작업은 `"요일 HH:MM"` (여러 요일은 쉼표, 예: `"월,목 04:17"`).
+
 | 항목 | 예시 | 의미 |
 |---|---|---|
+| `enabled` | true | false 면 이 계정은 자동으로 돌지 않음 (Actions 버튼으로만) |
 | `timezone` | Asia/Seoul | 시간대 |
-| `generate_at` | 21:17 | 전날 밤 게시물 생성 |
-| `publish_at` | 07:23 | 다음날 게시 |
-| `reels_at` | 18:47 | 릴스 게시 (없으면 `null`) |
+| `candidates_at` | "10:17" | 그날 코디 후보를 텔레그램으로 보냄 |
+| `pick_check_every` | 30 | 고른 번호를 확인하는 간격 (분). 고른 뒤 이만큼 안에 이미지 만들기 시작 |
+| `pick_deadline` | "15:17" | 이때까지 안 고르면 `pick.on_timeout` 대로. 게시 시각보다 1시간 이상 앞서야 함 |
+| `publish_at` | "20:03" | 게시 (승인이 있으면) |
+| `publish_retry_every` | 30 | 게시 시각에 `/ok` 가 없으면 다시 보는 간격 (분) |
+| `publish_retries` | 4 | 다시 보는 횟수. 늦게 `/ok` 해도 이 안이면 게시 |
+| `themes_at` | "일 18:17" | 다음 주 주제 정하기 (없으면 `null`, 그날그날 주제를 정함) |
+| `collect_at` | "월,목 04:17" | 지그재그 새 상품 수집 |
+| `token_refresh_at` | "일 18:47" | 인스타 토큰 연장 (60일 만료라 매주) |
+| `reels_at` | null | 릴스 (12단계) |
 
-GitHub 예약 실행은 정각에 몰려 늦어지기 쉬워서 정각을 피하는 것을 권장합니다.
+**시간을 바꾼 뒤에는** `uv run python -m tools.schedule sync` 를 돌려 `.github/workflows/schedule.yml` 의
+cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 실패합니다). `uv run python -m tools.schedule list` 로
+계정별 시간표와 UTC cron 을 볼 수 있습니다. GitHub 예약 실행은 몇 분~30분 늦게 돌 때가 많고 정각에 더 몰려서
+정각을 피하는 것을 권장합니다. 예약 실행은 기본 브랜치(main)에 합친 뒤부터 돕니다.
+
+#### `pick` : 코디 고르기 (9단계)
+Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 **쇼핑몰 원본 사진으로** 먼저 보여 주고
+고른 한 벌만 코디컷을 만듭니다. 후보 단계에서는 Photoroom 을 부르지 않습니다.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | true | false 면 고르지 않고 Claude 가 정한 한 벌을 바로 만듦 |
+| `count` | 5 | 보내는 후보 수 (2~8) |
+| `on_timeout` | first | 마감까지 안 고르면 `first`(1번으로 진행) 또는 `skip`(그날 건너뜀) |
+| `max_again` | 2 | `/again` 으로 새 후보를 받을 수 있는 횟수 |
 
 #### 수익·승인
 | 항목 | 예시 | 선택지 |
@@ -270,7 +295,8 @@ accounts:
 | `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (터미널에서 `claude setup-token` 을 실행해 나온 값, Pro·Max 구독) |
 | `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` | 인스타 게시 (아래 참고) |
 | `MEDIA_REPO_TOKEN` | 인스타가 가져갈 사진을 잠시 올려 둘 공개 저장소에 쓰는 토큰 (아래 참고) |
-| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | 미리보기·승인·알림 (@BotFather) |
+| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | 코디 고르기·미리보기·승인·알림 (@BotFather) |
+| `SECRETS_TOKEN` | (선택) 인스타 토큰을 연장했을 때 값이 바뀌면 `IG_<계정>_TOKEN` 을 자동으로 바꾸는 토큰 (아래 참고) |
 
 #### 인스타 계정 연결
 
@@ -516,11 +542,57 @@ publish (게시 시간) → 게시 전 검사 → 답장 확인 → 사진을 �
 실행 방법
 - 미리보기: Actions → `daily` → Run workflow (`preview` 체크, 기본 켜짐)
 - 게시: Actions → `publish` → Run workflow. **`dry_run` 이 기본으로 켜져 있어** 처음에는 검사와 승인 확인만 합니다.
-  끄고 돌리면 실제로 게시합니다. `force` 는 텔레그램 승인 없이 게시합니다. 매일 자동 실행은 9단계.
+  끄고 돌리면 실제로 게시합니다. `force` 는 텔레그램 승인 없이 게시합니다. 매일 자동 실행은 아래 9단계.
 - 로컬 시험: `uv run python -m tools.publish --account women --date 2026-09-27 --results <daily-results 폴더> --dry-run`
 
 Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.notify`, `tools.media_host`)를 부를 수 없게
 `.claude/settings.json` 에서 막아 두었습니다.
+
+## 매일 자동 실행 (9단계)
+
+`main` 에 합치면 사람 손 없이 아래처럼 돕니다 (시간은 `profile.yaml` 의 `schedule`, 예시는 기본값).
+
+```
+10:17  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, Photoroom 없음)
+       → 텔레그램: 후보마다 상품 원본 사진 한 장 모음 + 목록
+         버튼 [/pick 1 women 09-28] … [/pick 5 …] [/again …] [/skip …]
+10:47~15:17 (30분마다) schedule: 고른 번호 확인
+       번호 → daily(mode=render): 그 후보로 사진 확인 → 문구 → 코디컷(Photoroom) → 검수 → 미리보기
+       /again → 겹치지 않는 새 후보 5개 (max_again 번까지, 마감 1시간 전까지)
+       /skip → 그날 건너뜀
+       15:17 까지 안 고르면 → on_timeout (1번으로 만들기 또는 건너뛰기)
+20:03  schedule → publish: /ok 가 있으면 게시. 없으면 30분마다 4번 더 확인 (알림은 처음과 마지막만)
+일 18:17  다음 주 주제 7개 (themes 워크플로) → 텔레그램. /themes again 이면 그 주를 다시 정함
+월·목 04:17  지그재그 상품 수집 (collect, 창고 커밋)
+일 18:47  인스타 토큰 연장 (token)
+```
+
+- **워크플로**: `schedule.yml` 이 profile 시각(UTC cron)에 깨어나 `tools.schedule` 로 할 일을 찾고,
+  무거운 작업은 `daily`, `publish`, `themes`, `collect`, `token` 워크플로에 실행을 요청합니다.
+  Actions 가 늦게 깨어나도 "어느 시각 칸으로 깨어났는지"로 작업을 정해서 날짜가 밀리지 않습니다.
+- **고른 번호 확인**: 봇 서버 없이 schedule 이 돌 때 텔레그램 답장을 읽습니다. 그래서 번호를 누른 뒤
+  다음 확인(최대 `pick_check_every` 분)에 이미지 만들기가 시작되고, 30분쯤 뒤 미리보기가 옵니다.
+  결정은 daily-results 브랜치의 `<날짜>-run<번호>/picks/picked.json` 에 남아 두 번 만들지 않습니다.
+- **Photoroom 사용량**: 후보 단계는 0회, 고른 한 벌만 코디컷 후보 `review.candidates` 장을 만듭니다.
+- **실패 알림**: daily·themes·collect·schedule 이 실패하면 텔레그램으로 실행 주소를 보냅니다. 게시 실패와
+  토큰 문제는 publish·token 이 직접 알립니다. 검수를 통과하지 못한 날은 미리보기에 "사람 확인 필요"로 옵니다.
+- **인스타 토큰 연장**: 토큰은 발급 24시간 뒤부터 연장할 수 있고, 연장하면 다시 60일이 됩니다.
+  연장 결과로 토큰 값이 바뀌면 Secret 을 바꿔야 하는데, `SECRETS_TOKEN` 이 있으면 자동으로 바꿉니다.
+  만드는 법: GitHub → Settings → Developer settings → Fine-grained tokens → 이 저장소만 선택 →
+  Repository permissions 의 **Secrets: Read and write** → 만든 값을 Secret `SECRETS_TOKEN` 으로 등록.
+  없으면 값이 바뀌었을 때 텔레그램으로 알려 드립니다 (토큰 값은 보내지 않음).
+- **Actions 사용 시간**: 비공개 저장소는 GitHub 무료 요금제에서 한 달 2,000분까지입니다. 확인 칸 하나가
+  1분씩(하루 약 16번), Claude 가 도는 후보·만들기가 각각 20~40분이라 한 달 2,000분 안팎이 됩니다.
+  넘으면 `pick_check_every` 를 60으로 늘리거나 `publish_retries` 를 줄이세요.
+- **시험**: Actions → `schedule` → Run workflow 에 cron 줄(`tools.schedule list` 참고)을 넣습니다.
+  `dry_run` 이면 답장만 읽고 무엇을 할지 보여 줍니다 (실행 요청·텔레그램 알림·결정 기록 없음).
+  후보만 보고 싶으면 Actions → `daily` → Run workflow 에서 `mode` 를 `candidates` 로.
+- 도구만:
+  - `uv run python -m tools.schedule list` 시간표, `sync` cron 줄 맞추기, `due --cron "17 1 * * *"` 그 칸의 할 일
+  - `uv run python -m tools.pick validate out/<날짜>` 후보 검사, `send` 텔레그램으로 보내기
+  - `uv run python -m tools.ig_token refresh --account women` 토큰 연장
+
+Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 없게 막아 두었습니다.
 
 ---
 
@@ -544,7 +616,8 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 | 5 | 피드 구성 (캐러셀 슬라이드) | 완료 |
 | 6 | AI 기획 (Claude Code 스킬·에이전트) | 완료 |
 | 7 | 이미지 검수 | 완료 |
-| 8 | 인스타 게시 (텔레그램 승인) | 진행 중 |
-| 9 | GitHub Actions 매일 실행 | |
-| 10 | 상품 창고를 Actions 캐시로 이전 | |
-| 11 | 릴스 | |
+| 8 | 인스타 게시 (텔레그램 승인) | 완료 |
+| 9 | 매일 자동 실행 + 텔레그램 코디 고르기 | 진행 중 |
+| 10 | 댓글 → DM 코디 링크 | |
+| 11 | 상품 창고를 Actions 캐시로 이전 | |
+| 12 | 릴스 | |

@@ -9,13 +9,24 @@ name: daily
 # 8단계: 다 만들면 텔레그램으로 미리보기를 보낸다 (Secret TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 가 있을 때).
 # 게시는 여기서 하지 않고 publish 워크플로가 /ok 답장을 확인해 올린다.
 # 결과는 artifact 와 daily-results 브랜치의 <날짜>-run<번호>/ 에 올라간다
-# (쇼핑몰 원본 사진은 올리지 않음). 매일 자동 실행은 9단계에서 붙인다.
+# (쇼핑몰 원본 사진은 올리지 않음).
+# 9단계: schedule 워크플로가 매일 실행을 요청한다 (mode).
+# - candidates: Claude(outfit-candidates)가 코디 후보 여러 개를 짜서 텔레그램으로 보낸다 (Photoroom 없음).
+#   pick 에 지난 결과 폴더를 주면 "다시"를 누른 것: 그 후보와 겹치지 않게 새로 짠다
+# - render: 사람이 고른 후보(pick = <결과 폴더>/<번호>)로 사진 확인 → 문구 → 코디컷 → 검수 → 미리보기
+# - full: 예전처럼 한 번에 한 벌 (profile pick.enabled 가 false 일 때)
 on:
   workflow_dispatch:
     inputs:
       account:
         description: 계정
         default: women
+      mode:
+        description: full(한 벌 바로) / candidates(후보 보내기) / render(고른 후보 만들기)
+        default: full
+      pick:
+        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더
+        default: ""
       date:
         description: 게시 날짜 YYYY-MM-DD (빈칸이면 내일)
         default: ""
@@ -60,6 +71,8 @@ jobs:
       cancel-in-progress: false
     env:
       ACCOUNT: ${{ inputs.account || 'women' }}
+      MODE: ${{ inputs.mode || 'full' }}
+      PICK: ${{ inputs.pick }}
       PLAN: ${{ inputs.plan }}
       OUTFIT: ${{ inputs.outfit || 'photoroom' }}
       COLLECT: ${{ inputs.collect && '1' || '' }}
@@ -94,22 +107,65 @@ jobs:
           fi
           mkdir -p "out/$DATE"
           [ -n "$PLAN" ] && cp "$PLAN" "out/$DATE/plan.yaml"
+          ROUND=1
+          if [ -n "$PICK" ]; then
+            # 후보가 있는 결과 폴더를 가져온다 (render: 고른 후보, candidates: "다시" 누른 지난 후보)
+            git fetch origin daily-results
+            git worktree add /tmp/prev origin/daily-results
+            src="/tmp/prev/${PICK%%/*}/picks"
+            if [ "$MODE" = render ]; then
+              cp "$src/p${PICK##*/}.yaml" "out/$DATE/plan.yaml"
+            else
+              mkdir -p "out/$DATE/previous"
+              cp "$src"/p*.yaml "out/$DATE/previous/"
+              ROUND=$(( $(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['round'])" "$src/pick.json") + 1 ))
+            fi
+          fi
           # 샌드박스면 전용 키를 쓰고, 없으면 기본 키에 sandbox_ 를 붙인다
           KEY="$PHOTOROOM_KEY"
           if [ -n "$SANDBOX" ]; then
             if [ -n "$SANDBOX_KEY" ]; then KEY="$SANDBOX_KEY"; else KEY="sandbox_$PHOTOROOM_KEY"; fi
           fi
           echo "::add-mask::$KEY"
-          { echo "DATE=$DATE"; echo "PLAN=$PLAN"; echo "PHOTOROOM_API_KEY=$KEY"; } >> "$GITHUB_ENV"
+          { echo "DATE=$DATE"; echo "PLAN=$PLAN"; echo "ROUND=$ROUND"; echo "PHOTOROOM_API_KEY=$KEY"; } >> "$GITHUB_ENV"
 
-      - name: Claude 기획 (daily-feed 스킬)
-        if: env.PLAN == ''
+      - name: Claude 코디 후보 (outfit-candidates 스킬)
+        if: env.MODE == 'candidates'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            .claude/skills/outfit-candidates/SKILL.md 의 순서를 그대로 따라 코디 후보를 만들어.
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} COLLECT=${{ env.COLLECT }}
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            Photoroom(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 120
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan check:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.collect:*),Read,Write,Edit,Glob,Grep"
+
+      - name: 후보 검사·텔레그램으로 보내기
+        if: env.MODE == 'candidates'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -m tools.pick validate "out/$DATE"
+          if [ "$HAS_TELEGRAM" = true ]; then
+            python -m tools.pick send "out/$DATE" --run "$DATE-run$RUN" --round "$ROUND"
+          else
+            echo "::warning::텔레그램 설정이 없어 후보를 보내지 않았습니다"
+          fi
+
+      - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
+        if: env.PLAN == '' && env.MODE != 'candidates'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
+            out/${{ env.DATE }}/plan.yaml 이 이미 있으면 사람이 고른 후보이니 "고른 후보로 시작" 절을 따라.
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }}
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
@@ -167,10 +223,11 @@ jobs:
         run: |
           mkdir -p /tmp/upload
           [ -d "out/$DATE" ] || exit 0
-          rsync -a --exclude '/photos/' --exclude 'src/' --exclude 'originals/' "out/$DATE/" /tmp/upload/
+          rsync -a --exclude '/photos/' --exclude 'src/' --exclude 'originals/' \
+            --exclude '/picks/photos/' --exclude '/picks/sheets/' --exclude '/previous/' "out/$DATE/" /tmp/upload/
           # 게시 job 이 샌드박스(워터마크) 결과를 게시하지 않도록 만든 방식을 남긴다
           sandbox=false; [ -n "$SANDBOX" ] && [ "$OUTFIT" = photoroom ] && sandbox=true
-          echo "{\"run\": \"$DATE-run$RUN\", \"account\": \"$ACCOUNT\", \"sandbox\": $sandbox}" > /tmp/upload/run.json
+          echo "{\"run\": \"$DATE-run$RUN\", \"account\": \"$ACCOUNT\", \"sandbox\": $sandbox, \"mode\": \"$MODE\", \"pick\": \"$PICK\"}" > /tmp/upload/run.json
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -200,3 +257,11 @@ jobs:
           git -C /tmp/results add "$dest"
           git -C /tmp/results commit -m "하루 게시물 $dest"
           git -C /tmp/results push origin daily-results
+
+      - name: 실패 알림
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "[${{ env.ACCOUNT }}] ${{ env.DATE }} 게시물 만들기(${{ env.MODE }}) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: .github/scripts/alert.sh

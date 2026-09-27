@@ -1,0 +1,42 @@
+name: token
+
+# 9단계 인스타 토큰 연장 (tools.ig_token). 장기 토큰은 약 60일 뒤 끝나서 매주 연장한다.
+# schedule 워크플로가 profile schedule.token_refresh_at 에 부른다.
+# 연장한 토큰 문자열이 바뀌면 Secret 을 바꿔야 한다: Secret SECRETS_TOKEN 이 있으면 자동, 없으면 텔레그램 알림.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+
+permissions:
+  contents: read
+
+jobs:
+  token:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ACCOUNT: ${{ inputs.account }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+
+      - name: 계정 설정 읽기
+        id: cfg
+        run: |
+          uv run python - >> "$GITHUB_OUTPUT" <<'EOF2'
+          import os
+          from core.profile import load_profile
+          print(f"token={load_profile(os.environ['ACCOUNT']).instagram.token_secret}")
+          EOF2
+
+      - name: 토큰 연장
+        env:
+          IG_TOKEN: ${{ secrets[steps.cfg.outputs.token] }}
+          SECRETS_TOKEN: ${{ secrets.SECRETS_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: uv run python -m tools.ig_token refresh --account "$ACCOUNT"

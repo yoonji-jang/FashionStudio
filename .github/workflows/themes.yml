@@ -1,0 +1,112 @@
+name: themes
+
+# 9단계 주간 주제. Claude(plan-themes 스킬)가 date 부터 profile themes.per_week 일치 주제를 정해
+# data/<계정>/themes.json 에 저장·커밋하고 텔레그램으로 보낸다.
+# profile themes.review_before_use 면 "/themes again" 버튼이 붙고, 누르면 schedule 이 이 워크플로를 다시 부른다.
+# schedule 워크플로가 profile schedule.themes_at 에 부른다. Actions 탭에서 직접 돌려도 된다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      date:
+        description: 첫 주제 날짜 YYYY-MM-DD (빈칸이면 내일)
+        default: ""
+      then_candidates:
+        description: 주제를 정한 뒤 이 게시 날짜의 코디 후보를 보냄 (schedule 이 씀)
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+  id-token: write
+
+jobs:
+  themes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    concurrency:
+      group: themes-${{ inputs.account }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+
+      - name: 준비 (날짜, 다시 정하는 주제)
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          FIRST="$INPUT_DATE"
+          [ -n "$FIRST" ] || FIRST=$(uv run python -c "from datetime import datetime, timedelta; from zoneinfo import ZoneInfo; from core.profile import load_profile; p = load_profile('$ACCOUNT'); print((datetime.now(ZoneInfo(p.schedule.timezone)) + timedelta(days=1)).date())")
+          mkdir -p out
+          # 이미 정한 같은 주 주제가 있으면 "다시" 요청이다: Claude 가 겹치지 않게 참고한다
+          uv run python - "$FIRST" <<'PY'
+          import os, sys, yaml
+          from datetime import date, timedelta
+          from core.profile import load_profile
+          from core.store import Store
+          acc = os.environ["ACCOUNT"]
+          first = date.fromisoformat(sys.argv[1])
+          last = first + timedelta(days=load_profile(acc).themes.per_week - 1)
+          old = [t.model_dump(mode="json") for t in Store(acc).themes() if first <= t.date <= last]
+          if old:
+              with open("out/themes_previous.yaml", "w", encoding="utf-8") as f:
+                  yaml.safe_dump(old, f, allow_unicode=True)
+          PY
+          echo "FIRST=$FIRST" >> "$GITHUB_ENV"
+
+      - name: Claude 주간 주제 (plan-themes 스킬)
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            .claude/skills/plan-themes/SKILL.md 의 "주간" 방법으로 ${{ env.FIRST }} 부터 주제를 정해 저장해.
+            ACCOUNT=${{ env.ACCOUNT }}
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Read,Write,Edit,Glob,Grep"
+
+      - name: 텔레그램으로 보내기
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          [ -n "$TELEGRAM_BOT_TOKEN" ] || { echo "텔레그램 설정 없음"; exit 0; }
+          python -m tools.pick themes --account "$ACCOUNT" --first "$FIRST"
+
+      - name: 주제 커밋
+        run: |
+          git add "data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
+            commit -m "주간 주제 $ACCOUNT $FIRST"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: 코디 후보 보내기 요청
+        if: inputs.then_candidates != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run daily.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
+            -f date="${{ inputs.then_candidates }}" -f mode=candidates -f sandbox=false
+
+      - name: 실패 알림
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "[${{ inputs.account }}] 주간 주제 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: .github/scripts/alert.sh

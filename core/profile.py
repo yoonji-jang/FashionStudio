@@ -181,11 +181,41 @@ class ReviewRules(BaseModel):
     check_slides: bool = True  # 상품 장 사진 색·얼굴·글자 잘림도 본다
 
 
+WEEKDAYS = "월화수목금토일"
+WEEKLY = r"^[월화수목금토일](,[월화수목금토일])* ([01]\d|2[0-3]):[0-5]\d$"
+
+
+def minutes(hhmm: str) -> int:
+    h, m = hhmm.split(":")
+    return int(h) * 60 + int(m)
+
+
 class Schedule(BaseModel):
+    """매일 자동 실행 시간표 (9단계, tools.schedule). 시간은 timezone 기준 HH:MM.
+    정각은 GitHub Actions 지연이 커서 피한다. 바꾼 뒤에는 `python -m tools.schedule sync`."""
+
+    enabled: bool = True  # false 면 이 계정은 자동으로 돌지 않음 (버튼으로만)
     timezone: str = "Asia/Seoul"
-    generate_at: str = Field(pattern=HHMM)
-    publish_at: str = Field(pattern=HHMM)
+    candidates_at: str = Field(pattern=HHMM)  # 코디 후보를 텔레그램으로 보내는 시각
+    pick_check_every: int = Field(default=30, ge=15, le=240)  # 고른 번호를 확인하는 간격 (분)
+    pick_deadline: str = Field(pattern=HHMM)  # 이때까지 안 고르면 pick.on_timeout
+    publish_at: str = Field(pattern=HHMM)  # 게시 시각
+    publish_retry_every: int = Field(default=30, ge=15, le=240)  # 승인이 늦을 때 다시 볼 간격 (분)
+    publish_retries: int = Field(default=4, ge=0, le=12)  # 게시 시각 뒤 다시 보는 횟수
+    themes_at: str | None = Field(default=None, pattern=WEEKLY)  # 주간 주제 (예: "일 18:17")
+    collect_at: str | None = Field(default=None, pattern=WEEKLY)  # 상품 수집 (예: "월,목 04:17")
+    token_refresh_at: str | None = Field(default=None, pattern=WEEKLY)  # 인스타 토큰 연장
     reels_at: str | None = Field(default=None, pattern=HHMM)
+
+
+class PickRules(BaseModel):
+    """텔레그램으로 코디 후보를 보내고 사람이 고른 것만 이미지로 만든다 (9단계, tools.pick).
+    후보는 쇼핑몰 원본 사진으로 보여 주고 Photoroom 은 고른 뒤에만 부른다."""
+
+    enabled: bool = True  # false 면 고르지 않고 Claude 가 한 벌을 정해 바로 만든다
+    count: int = Field(default=5, ge=2, le=8)  # 보내는 후보 수
+    on_timeout: Literal["first", "skip"] = "first"  # 마감까지 안 고르면: 1번으로 / 그날 건너뜀
+    max_again: int = Field(default=2, ge=0, le=5)  # "다시"로 새 후보를 받을 수 있는 횟수
 
 
 class Instagram(BaseModel):
@@ -209,6 +239,7 @@ class Profile(BaseModel):
     copy_rules: Copy = Field(default=Copy(), alias="copy")
     review: ReviewRules = ReviewRules()
     schedule: Schedule
+    pick: PickRules = PickRules()
     monetize: Monetize = "none"
     approval: Approval = "required"
     instagram: Instagram
@@ -241,6 +272,17 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         lo, hi = getattr(c, name)
         if lo > hi:
             raise ValueError(f"copy.{name} 의 앞 숫자가 뒤 숫자보다 큽니다")
+    sch = profile.schedule
+    start, deadline, publish = (
+        minutes(sch.candidates_at),
+        minutes(sch.pick_deadline),
+        minutes(sch.publish_at),
+    )
+    # 후보 → 마감 → 게시 순서 (자정을 넘겨도 됨). 마감 뒤 이미지 만들 시간이 1시간은 있어야 함
+    if not 0 < (deadline - start) % 1440 < (publish - start) % 1440:
+        raise ValueError("schedule: candidates_at → pick_deadline → publish_at 순서여야 합니다")
+    if (publish - deadline) % 1440 < 60:
+        raise ValueError("schedule: pick_deadline 은 publish_at 보다 1시간 이상 앞서야 합니다")
     if any(not t.startswith("#") or " " in t for t in [*c.base_hashtags, c.ad_hashtag]):
         raise ValueError("copy 해시태그는 #으로 시작하고 공백이 없어야 합니다")
     return profile
