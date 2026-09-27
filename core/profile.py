@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 from typing import Literal
@@ -218,6 +219,32 @@ class PickRules(BaseModel):
     max_again: int = Field(default=2, ge=0, le=5)  # "다시"로 새 후보를 받을 수 있는 횟수
 
 
+class Comments(BaseModel):
+    """댓글 → DM 코디 링크 (10단계, tools.comments). 캡션에 안내 문구를 넣고,
+    키워드 댓글이 달리면 인스타 비공개 답장(댓글 1개에 DM 1번, 댓글 후 7일 안)으로
+    상품 링크를 보낸다. 댓글 확인은 schedule 워크플로가 다른 자동 실행 때 같이 하고,
+    check_at 에 적은 시각에 따로 깨어나서도 한다."""
+
+    enabled: bool = False
+    # 캡션에 넣는 안내 문구 (copy.link_line 대신). {keyword} 는 keywords 첫 번째
+    cta: str = (
+        "코디 정보가 궁금하면 댓글로 '{keyword}'라고 남겨 주세요. DM으로 상품 링크를 보내 드려요"
+    )
+    keywords: list[str] = Field(default=["정보"], min_length=1)  # 댓글에 이 말이 들어 있으면 DM
+    check_at: list[str] = []  # 댓글 확인만 하러 따로 깨어나는 시각 (계정 시간대 HH:MM)
+    with_other_ticks: bool = True  # 후보·고르기·게시 같은 다른 자동 실행 때도 같이 확인
+    days: int = Field(default=7, ge=1, le=7)  # 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 7일)
+    # DM 글. {date} 게시 날짜, {title} 제목. 상품 줄 {index} {category} {shop} {name} {url}
+    dm_intro: str = "댓글 남겨 주셔서 고마워요. '{title}' 코디 상품 정보예요"
+    dm_item: str = "{index}. {category} · {shop} {name}\n{url}"
+    dm_outro: str = "사이즈·재고는 링크에서 확인해 주세요"
+    public_reply: str = ""  # 댓글에 공개 답글도 달기 (예: "DM 보내 드렸어요"). 빈 문자열이면 안 함
+    # 링크 방식: zigzag(상품 링크 그대로)
+    #   share_reward(게시 뒤 텔레그램으로 공유리워드 링크를 받아 씀)
+    link_mode: Literal["zigzag", "share_reward"] = "zigzag"
+    share_wait_hours: int = Field(default=6, ge=0, le=72)  # 공유 링크 대기 (넘으면 상품 링크)
+
+
 class Instagram(BaseModel):
     token_secret: str  # GitHub Secret 이름 (값이 아님)
     user_id_secret: str
@@ -240,6 +267,7 @@ class Profile(BaseModel):
     review: ReviewRules = ReviewRules()
     schedule: Schedule
     pick: PickRules = PickRules()
+    comments: Comments = Comments()
     monetize: Monetize = "none"
     approval: Approval = "required"
     instagram: Instagram
@@ -283,6 +311,14 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError("schedule: candidates_at → pick_deadline → publish_at 순서여야 합니다")
     if (publish - deadline) % 1440 < 60:
         raise ValueError("schedule: pick_deadline 은 publish_at 보다 1시간 이상 앞서야 합니다")
+    cm = profile.comments
+    if any(not re.fullmatch(HHMM, t) for t in cm.check_at):
+        raise ValueError("comments.check_at 은 HH:MM 목록이어야 합니다")
+    if cm.link_mode == "share_reward" and profile.monetize != "manual_link":
+        raise ValueError(
+            "comments.link_mode: share_reward 는 monetize: manual_link 일 때만 쓸 수 있습니다 "
+            "(광고 표기)"
+        )
     if any(not t.startswith("#") or " " in t for t in [*c.base_hashtags, c.ad_hashtag]):
         raise ValueError("copy 해시태그는 #으로 시작하고 공백이 없어야 합니다")
     return profile

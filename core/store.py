@@ -2,7 +2,8 @@
 
 - products.json: 수집한 상품 후보
 - themes.json:   주간 주제
-- posts.json:    게시 기록 (중복 게시 방지)
+- posts.json:    게시 기록 (중복 게시 방지, 댓글 DM 링크)
+- dm.json:       댓글 DM 기록 (댓글 id 해시만)
 - cache/:        상품별 정리컷 이미지 (git 제외)
 """
 
@@ -14,7 +15,7 @@ from pathlib import Path
 
 from pydantic import TypeAdapter
 
-from core.models import PostRecord, Product, Theme
+from core.models import DmState, PostRecord, Product, Theme
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
@@ -62,6 +63,15 @@ class Store:
 
     def save_posts(self, posts: list[PostRecord]) -> None:
         self._write("posts.json", _posts.dump_json(posts, indent=2))
+
+    def dm(self) -> DmState:
+        path = self.dir / "dm.json"
+        if not path.exists():
+            return DmState()
+        return DmState.model_validate_json(path.read_text(encoding="utf-8"))
+
+    def save_dm(self, state: DmState) -> None:
+        self._write("dm.json", state.model_dump_json(indent=2).encode())
 
     def recent_posts(self, today: date, days: int) -> list[PostRecord]:
         since = today - timedelta(days=days)

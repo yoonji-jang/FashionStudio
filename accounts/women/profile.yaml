@@ -171,6 +171,24 @@ pick:
   on_timeout: first  # 마감까지 안 고르면 first(1번으로 진행) 또는 skip(그날 건너뜀)
   max_again: 2       # "다시"로 새 후보를 받을 수 있는 횟수
 
+# 댓글 → DM 코디 링크 (10단계, tools.comments). 켜면 캡션의 "프로필 링크" 문구 대신 cta 가 들어가고,
+# 키워드 댓글에 인스타 비공개 답장으로 상품 링크를 보낸다 (댓글 1개에 DM 1번, 댓글 후 7일 안).
+# 켜거나 check_at 을 바꾸면 `uv run python -m tools.schedule sync`. 댓글·메시지 권한이 있는 토큰이 필요하다 (README)
+comments:
+  enabled: false     # 토큰을 다시 받고 시험한 뒤 true
+  cta: "코디 정보가 궁금하면 댓글로 '{keyword}'라고 남겨 주세요. DM으로 상품 링크를 보내 드려요"
+  keywords: [정보, 링크]   # 댓글에 이 말이 들어 있으면 DM. cta 의 {keyword} 는 첫 번째
+  # 댓글만 확인하러 따로 깨어나는 시각. 한 번에 Actions 1분쯤 (하루 3번 = 한 달 약 90분)
+  check_at: ["08:17", "17:17", "23:17"]
+  with_other_ticks: true   # 후보·고르기(10:17~15:17)·게시(20:03~22:03) 때도 같이 확인 (추가 시간 거의 없음)
+  days: 7                  # 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 최대 7)
+  dm_intro: "댓글 남겨 주셔서 고마워요. '{title}' 코디 상품 정보예요"
+  dm_item: "{index}. {category} · {shop} {name}\n{url}"
+  dm_outro: "사이즈·재고는 링크에서 확인해 주세요"
+  public_reply: ""         # 댓글에 공개 답글도 달기 (예: "DM 보내 드렸어요"). 빈칸이면 안 함
+  link_mode: zigzag        # zigzag(상품 링크) / share_reward(게시 뒤 텔레그램으로 공유리워드 링크를 받아 씀, monetize: manual_link 필요)
+  share_wait_hours: 6      # 공유 링크를 기다리는 시간. 넘으면 상품 링크로 보냄
+
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 monetize: none
 # required: 텔레그램 /ok 승인 후 게시 / optional: /skip 이 없으면 자동 게시

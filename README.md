@@ -32,7 +32,7 @@ uv run pytest
 | 매일 오전 | 코디 후보 5개 중 하나 고르기 (버튼 또는 "3번", 새 후보 "다시", 건너뛰기 `/skip`) | 텔레그램 | `pick.enabled: false` (마감까지 안 고르면 `pick.on_timeout`) |
 | 매일 오후 | 고른 코디로 만든 미리보기에 `/ok` (게시) 또는 `/skip` (건너뛰기) | 텔레그램 | `approval: optional` 이면 `/skip` 만 필요 |
 | 문제가 생겼을 때 | 이미지 검수 2회 실패, 토큰 만료 등 알림 확인 | 텔레그램 | - |
-| 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 | 텔레그램 | `monetize: none` 이면 없음 |
+| 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 (댓글 DM 에 씀) | 텔레그램 | `comments.link_mode: zigzag` 이면 없음 |
 | 가끔 | 반응 보면서 말투·제목 예시·금지 표현 다듬기 | `voice.md`, `profile.yaml` | - |
 
 처음 2~3주는 매일 승인하며 품질을 확인하고, 안정되면 `approval: optional` 로 바꾸는 것을 권장합니다.
@@ -249,6 +249,23 @@ Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 
 | `count` | 5 | 보내는 후보 수 (2~8) |
 | `on_timeout` | first | 마감까지 안 고르면 `first`(1번으로 진행) 또는 `skip`(그날 건너뜀) |
 | `max_again` | 2 | `/again` 으로 새 후보를 받을 수 있는 횟수 |
+
+#### `comments` : 댓글 → DM 코디 링크 (10단계)
+캡션에 "댓글로 '정보'라고 남겨 주세요" 안내를 넣고, 키워드 댓글이 달리면 인스타 공식 기능(비공개 답장)으로
+그 게시물의 상품 링크를 DM 으로 보냅니다. 켜기 전에 아래 [댓글 DM 준비](#댓글-dm-준비-10단계)를 먼저 하세요.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | false | true 면 캡션 안내 문구(`copy.link_line` 대신)와 댓글 확인이 켜짐. 바꾸면 `tools.schedule sync` |
+| `cta` | `코디 정보가 궁금하면 댓글로 '{keyword}'라고…` | 캡션 안내 문구. `{keyword}` 는 `keywords` 첫 번째 |
+| `keywords` | [정보, 링크] | 댓글에 이 말이 들어 있으면 DM (띄어쓰기·대소문자 무시) |
+| `check_at` | ["08:17", "17:17", "23:17"] | 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분) |
+| `with_other_ticks` | true | 후보·고르기·게시로 깨어날 때도 같이 확인 (추가 시간 거의 없음) |
+| `days` | 7 | 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 최대 7) |
+| `dm_intro`, `dm_item`, `dm_outro` | | DM 글. `{title}` 제목, 상품 줄 `{index} {category} {shop} {name} {url}` |
+| `public_reply` | "" | 댓글에 공개 답글도 달기 (예: "DM 보내 드렸어요"). 빈칸이면 안 함 |
+| `link_mode` | zigzag | `zigzag`: 상품 링크 / `share_reward`: 공유리워드 링크 (`monetize: manual_link` 필요) |
+| `share_wait_hours` | 6 | 공유 링크를 기다리는 시간. 넘으면 상품 링크로 보냄 |
 
 #### 수익·승인
 | 항목 | 예시 | 선택지 |
@@ -596,6 +613,57 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 
 ---
 
+## 댓글 → DM 코디 링크 (10단계)
+
+```
+게시 (캡션: "코디 정보가 궁금하면 댓글로 '정보'라고 남겨 주세요…")
+  → schedule 이 깨어날 때마다 (다른 작업 때 + check_at) tools.comments:
+     최근 7일 게시물의 댓글 읽기 → 키워드 댓글 → 비공개 답장 DM (상품 링크)
+     → data/<계정>/dm.json 에 댓글 id 해시만 기록 (커밋)
+```
+
+- **인스타 규칙**: 댓글 하나에 DM 한 번, 댓글을 단 뒤 7일 안에만 보낼 수 있습니다. 같은 사람이 여러 번
+  댓글을 달아도 한 번만 보냅니다. 내 계정 댓글에는 보내지 않습니다.
+- **개인정보**: 댓글 작성자 이름·id·댓글 내용은 저장하지 않습니다. 두 번 보내지 않으려고 댓글 id 의 해시만
+  남기고, 기간이 지나면 지웁니다.
+- **DM 이 가는 때**: 봇 서버 없이 schedule 이 깰 때 확인해서, 댓글 뒤 DM 까지 기본 설정으로 30분~몇 시간
+  걸립니다 (10:17~15:17·20:03~22:03 은 30분마다, 그 밖에는 `check_at`). 밤 23:17 뒤 댓글은 아침 08:17 에 갑니다.
+- **Actions 사용 시간**: 다른 작업 때 같이 보는 것은 거의 추가가 없고, `check_at` 한 칸이 하루 1분이라
+  기본 3칸이면 한 달 약 90분이 늘어납니다. 더 빨리 보내려고 칸을 늘리면 한 칸당 한 달 30분씩 늘어납니다.
+- **공유리워드**: 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않습니다.
+  `link_mode: share_reward` 면 게시 뒤 첫 확인 때 텔레그램으로 상품 목록을 보내고, 그 메시지에 답장으로
+  링크를 붙이면(한 줄에 하나, `1 https://…` 처럼 번호를 붙여도 됨) 그 링크로 DM 을 보냅니다.
+  `share_wait_hours` 안에 안 오면 상품 링크로 보냅니다. 공유 링크를 보낼 때는 DM 맨 앞에 광고 고지가 붙습니다.
+- **오류**: 토큰 만료·권한 부족이면 텔레그램으로 하루 한 번 알리고, 다음 확인 때 다시 시도합니다.
+
+### 댓글 DM 준비 (10단계)
+
+게시만 하던 토큰에는 댓글 읽기·DM 권한이 없어서 토큰을 다시 받아야 합니다.
+
+1. 인스타 앱 → 설정 → **메시지 및 스토리 답장** → 메시지 제어 → 연결된 도구 → **메시지 액세스 허용** 켜기
+   (꺼져 있으면 오류 없이 DM 이 안 갑니다)
+2. [developers.facebook.com](https://developers.facebook.com) → 내 앱 → 사용 사례 **Instagram에서 메시지 및
+   콘텐츠 관리** → 맞춤 설정 → 권한에서 `instagram_business_manage_comments`,
+   `instagram_business_manage_messages` 가 추가돼 있는지 확인 (없으면 추가)
+3. 같은 화면 **Instagram 로그인을 통한 API 설정** → 액세스 토큰 생성에서 계정의 **토큰 생성** 을 다시 눌러
+   새 토큰(`IGAA…`)을 받고, 권한 화면에서 댓글·메시지 항목을 모두 허용
+4. GitHub Secret `IG_WOMEN_TOKEN` 을 새 토큰으로 바꾸기 (사용자 ID 는 그대로)
+5. 시험: 다른 인스타 계정으로 최근 게시물에 "정보" 댓글 → Actions → `comments` → Run workflow
+   (`dry_run` 켜면 보낼 댓글 수만, 끄면 실제 DM) → 그 계정 DM 함(또는 메시지 요청함)에 링크가 오는지 확인
+6. 잘 되면 `profile.yaml` 의 `comments.enabled: true` → `uv run python -m tools.schedule sync` → main 에 합치기
+
+**앱 모드 주의**: 개발 모드 앱은 앱 역할(관리자·테스터)이 있는 계정끼리만 메시지 기능이 확실히 됩니다.
+5번 시험에서 일반 계정에 DM 이 안 가고 권한 오류가 나면, 앱을 **라이브 모드**로 바꾸고(개인정보처리방침 주소
+필요) 그래도 안 되면 `instagram_business_manage_messages`·`instagram_business_manage_comments` 의
+**고급 액세스(앱 검수)** 를 신청해야 합니다.
+
+- 도구만: `uv run python -m tools.comments text --account women` DM 글 미리 보기 (보내지 않음),
+  `run --account women --dry-run --even-if-off` 보낼 댓글 수 세기
+
+Claude 는 `tools.comments` 를 부를 수 없게 막아 두었습니다.
+
+---
+
 ## 새 계정 추가
 
 1. `accounts/_template/` 을 `accounts/<id>/` 로 복사
@@ -617,7 +685,8 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 | 6 | AI 기획 (Claude Code 스킬·에이전트) | 완료 |
 | 7 | 이미지 검수 | 완료 |
 | 8 | 인스타 게시 (텔레그램 승인) | 완료 |
-| 9 | 매일 자동 실행 + 텔레그램 코디 고르기 | 진행 중 |
-| 10 | 댓글 → DM 코디 링크 | |
-| 11 | 상품 창고를 Actions 캐시로 이전 | |
-| 12 | 릴스 | |
+| 9 | 매일 자동 실행 + 텔레그램 코디 고르기 | 완료 |
+| 10 | 댓글 → DM 코디 링크 | 진행 중 |
+| 11 | 표지 컨셉 변경 (사람이 입은 핀터레스트 감성) | |
+| 12 | 상품 창고를 Actions 캐시로 이전 | |
+| 13 | 릴스 | |

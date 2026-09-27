@@ -203,6 +203,9 @@ def test_publish_after_ok(results, store):  # noqa: F811
     posts = store.posts()
     assert posts[-1].date == DAY and posts[-1].permalink == "https://www.instagram.com/p/abc/"
     assert len(posts[-1].products) == 7
+    # 댓글 DM 에 쓸 게시물 id 와 상품 링크
+    assert posts[-1].media_id == "m777" and len(posts[-1].links) == 7
+    assert posts[-1].links[0].url.startswith("https://")
     done = json.loads((run / "published.json").read_text())
     assert done["media_id"] == "m777" and done["decision"] == "ok"
     assert api.files == {}  # 게시 후 사진 지움

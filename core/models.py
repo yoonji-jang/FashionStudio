@@ -127,16 +127,52 @@ class FeedSpec(BaseModel):
     items: list[FeedItem] = Field(min_length=1)
 
 
+class PostLink(BaseModel):
+    """게시물 상품 한 개의 링크 (10단계 댓글 DM 에 씀)."""
+
+    product: str  # 상품 창고 id
+    category: str
+    shop: str
+    name: str  # 짧은 이름
+    url: str  # 상품 페이지
+
+
 class PostRecord(BaseModel):
     """게시 기록 한 줄 (data/<계정>/posts.json). 8단계 게시 job 이 쓰고,
-    기획이 중복을 피할 때 읽는다.
-    상품은 id(링크)만 남긴다."""
+    기획이 중복을 피할 때, 10단계 댓글 DM 이 링크를 보낼 때 읽는다.
+    상품 정보(링크)만 남긴다."""
 
     date: date
     title: str  # 제목 두 줄을 이은 것
     theme: str = ""  # 주제 (title_hint)
     products: list[str] = []  # 상품 창고 id
     permalink: str | None = None
+    media_id: str | None = None  # 인스타 게시물 id (댓글 확인용)
+    links: list[PostLink] = []  # 상품 링크 (없으면 상품 창고에서 찾음)
+
+
+class ShareRequest(BaseModel):
+    """공유리워드 링크를 붙여 달라고 텔레그램으로 보낸 요청 (link_mode: share_reward)."""
+
+    sent_at: int
+    message_ids: list[int] = []
+    links: dict[int, str] = {}  # 상품 순서(1부터) → 붙여 준 공유 링크
+
+
+class PostDm(BaseModel):
+    """게시물 하나의 댓글 DM 기록. 댓글 작성자 정보는 남기지 않고 댓글 id 의 해시만 둔다."""
+
+    media_id: str | None = None
+    sent: list[str] = []  # DM 을 보낸 댓글 (해시)
+    skipped: list[str] = []  # 보내지 못해 다시 시도하지 않을 댓글 (해시)
+    share: ShareRequest | None = None
+
+
+class DmState(BaseModel):
+    """댓글 DM 상태 (data/<계정>/dm.json). 게시 날짜 → 기록. 기간(comments.days)이 지나면 지운다."""
+
+    posts: dict[str, PostDm] = {}
+    alerted: str | None = None  # 오류 알림을 마지막으로 보낸 날짜 (같은 날 여러 번 보내지 않음)
 
 
 class PreviewRecord(BaseModel):

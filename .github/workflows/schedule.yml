@@ -6,6 +6,8 @@ name: schedule
 #   pick       → 고른 번호 확인. 고르면 daily (mode=render: 고른 코디만 Photoroom), "다시"면 새 후보
 #   publish    → publish (/ok 가 있으면 게시, 없으면 publish_retry_every 뒤 다시)
 #   themes / collect / token → themes / collect / token 워크플로
+#   comments   → 댓글 확인 → DM 코디 링크 (10단계, tools.comments, 이 job 안에서 바로).
+#                profile comments.check_at 에 따로 깨어나고, 다른 작업 때도 같이 본다
 # 아래 cron 줄은 `uv run python -m tools.schedule sync` 가 프로필에서 만든다 (UTC). 직접 고치지 않는다.
 # 수동으로 시험하려면 Actions 탭 "Run workflow" 에 cron 줄을 넣는다 (dry_run 이면 실행 요청은 보내지 않음).
 on:
@@ -74,12 +76,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # 댓글 DM: 계정마다 Secret 이름이 profile instagram 에 있어서 JSON 으로 넘기고,
+          # tools.comments 가 그 계정의 두 이름만 꺼내 쓴다 (값은 로그에 가려짐)
+          IG_SECRETS: ${{ toJSON(secrets) }}
         run: |
           uv run python -m tools.schedule due --cron "$CRON"
           uv run python -m tools.schedule run --cron "$CRON" --results /tmp/results \
             ${{ inputs.dry_run && '--dry-run' || '' }}
 
-      - name: 결정 기록 커밋 (고른 번호, 주제 다시 정하기)
+      - name: 결정 기록 커밋 (고른 번호, 주제 다시 정하기, 댓글 DM)
         if: ${{ !inputs.dry_run }}
         run: |
           commit() {  # 폴더, 브랜치, 메시지, 파일(pathspec)
@@ -96,6 +101,7 @@ jobs:
           }
           commit /tmp/results daily-results "코디 고르기 기록" ':(glob)*/picks/**'
           commit . "${{ github.ref_name }}" "주제 다시 정하기 요청" ':(glob)data/*/themes_review.json'
+          commit . "${{ github.ref_name }}" "댓글 DM 기록" ':(glob)data/*/dm.json'
 
       - name: 실패 알림
         if: failure()
