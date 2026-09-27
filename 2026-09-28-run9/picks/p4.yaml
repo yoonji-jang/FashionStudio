@@ -1,0 +1,57 @@
+account: women
+date: '2026-09-28'
+items:
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 하이넥 카라 셔츠 (ivory high-neck collar shirt)
+  name: 아이보리 하이넥 셔츠
+  product: zigzag:168774216
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 핀턱 슬랙스 (navy pintuck slacks)
+  name: 네이비 핀턱 슬랙스
+  product: zigzag:128532296
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더 토트백 (black shoulder tote bag)
+  name: 블랙 숄더 토트백
+  product: zigzag:159408342
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 클래식 페니로퍼 (black classic penny loafers)
+  name: 블랙 페니로퍼
+  product: zigzag:129223675
+  segment: shoe
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 골드 미니 와이드 원터치 귀걸이 (gold mini wide one-touch earrings)
+  name: 골드 미니 귀걸이
+  product: zigzag:138377436
+  segment: earring
+  slot: 귀걸이
+reason: 아이보리 하이넥 셔츠와 네이비 슬랙스로 색을 반반 나눠 캐주얼하면서도 단정하게, 블랙 소품으로 정리해 아우터 없이도 허전하지 않게 만든다.
+theme:
+  date: '2026-09-28'
+  mood: 블랙·그레이·베이지·아이보리 무채색 베이스에 버건디 포인트, 이슬비 대비 가벼운 레더 아우터와 앵클부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 레더 자켓
+  - category: 상의
+    desc: 아이보리 셔츠
+  - category: 하의
+    desc: 그레이 와이드 슬랙스
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠
+  title_hint: 월요일 이슬비 출근길엔 가벼운 아우터로 산뜻하게
+  type: 상황
+  why: 월요일 출근, 서울 약한 이슬비 18~24도라 무거운 트렌치코트보다 가벼운 레더 아우터나 아우터 없이 셔츠·블라우스로 산뜻하게 입는다.
+    어제(2026-09-27) 하프 트렌치코트 주제와 겹치지 않게 다른 아우터로 고른다.

@@ -1,0 +1,61 @@
+account: women
+date: '2026-09-28'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오버핏 레더 자켓 (black oversized leather jacket)
+  name: 블랙 오버핏 레더자켓
+  product: zigzag:148146251
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 포켓 워크 셔츠 (ivory pocket work shirt)
+  name: 아이보리 포켓 워크셔츠
+  product: zigzag:163979005
+  wear_how: the jacket is zipped closed and only the shirt collar and cuffs peek out
+    at the neck and sleeves
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 와이드 트레이닝 슬랙스 (grey wide training slacks)
+  name: 그레이 와이드 슬랙스
+  product: zigzag:141360158
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 핀턱 미디움 숄더백 (black pintuck medium shoulder bag)
+  name: 블랙 미디움 숄더백
+  product: zigzag:165871135
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black sock ankle boots)
+  name: 블랙 삭스 앵클부츠
+  product: zigzag:107677011
+  segment: shoe
+reason: 블랙 레더 자켓 안에 아이보리 셔츠를 살짝 보이게 입혀 이슬비 오는 월요일에도 단정한 오피스 무드를 낸다. 그레이 와이드 슬랙스로 힘을
+  빼고 블랙 숄더백·앵클부츠로 정리해 가장 무난하게 따라 입기 좋은 조합이다.
+theme:
+  date: '2026-09-28'
+  mood: 블랙·그레이·베이지·아이보리 무채색 베이스에 버건디 포인트, 이슬비 대비 가벼운 레더 아우터와 앵클부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 레더 자켓
+  - category: 상의
+    desc: 아이보리 셔츠
+  - category: 하의
+    desc: 그레이 와이드 슬랙스
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠
+  title_hint: 월요일 이슬비 출근길엔 가벼운 아우터로 산뜻하게
+  type: 상황
+  why: 월요일 출근, 서울 약한 이슬비 18~24도라 무거운 트렌치코트보다 가벼운 레더 아우터나 아우터 없이 셔츠·블라우스로 산뜻하게 입는다.
+    어제(2026-09-27) 하프 트렌치코트 주제와 겹치지 않게 다른 아우터로 고른다.

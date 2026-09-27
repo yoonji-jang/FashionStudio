@@ -1,0 +1,61 @@
+account: women
+date: '2026-09-28'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 오버핏 투웨이 레더 자켓 (grey oversized two-way leather jacket)
+  name: 그레이 투웨이 레더자켓
+  product: zigzag:168778500
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 링클프리 라인 셔츠 (ivory wrinkle-free line shirt)
+  name: 아이보리 라인 셔츠
+  product: zigzag:168608209
+  wear_how: the jacket is zipped closed and only the shirt collar and cuffs peek out
+    at the neck and sleeves
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 세미와이드 슬랙스 (black semi-wide slacks)
+  name: 블랙 세미와이드 슬랙스
+  product: zigzag:171413990
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 리브 숄더백 (burgundy ribbed shoulder bag)
+  name: 버건디 숄더백
+  product: zigzag:169612789
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 뒷지퍼 앵클부츠 (black back-zip ankle boots)
+  name: 블랙 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  segment: shoe
+reason: 그레이 레더 자켓과 블랙 슬랙스로 무채색 베이스를 잡고 버건디 숄더백 하나로 포인트를 준 조합. 아이보리 셔츠를 살짝 보이게 입혀 딱딱하지
+  않게 했다.
+theme:
+  date: '2026-09-28'
+  mood: 블랙·그레이·베이지·아이보리 무채색 베이스에 버건디 포인트, 이슬비 대비 가벼운 레더 아우터와 앵클부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 레더 자켓
+  - category: 상의
+    desc: 아이보리 셔츠
+  - category: 하의
+    desc: 그레이 와이드 슬랙스
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠
+  title_hint: 월요일 이슬비 출근길엔 가벼운 아우터로 산뜻하게
+  type: 상황
+  why: 월요일 출근, 서울 약한 이슬비 18~24도라 무거운 트렌치코트보다 가벼운 레더 아우터나 아우터 없이 셔츠·블라우스로 산뜻하게 입는다.
+    어제(2026-09-27) 하프 트렌치코트 주제와 겹치지 않게 다른 아우터로 고른다.

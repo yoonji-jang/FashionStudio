@@ -1,0 +1,58 @@
+account: women
+date: '2026-09-28'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 셔링 스트랩 롱 블라우스 (grey shirred strap long blouse)
+  name: 그레이 롱 블라우스
+  product: zigzag:168593537
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 하프 슬랙스 (black cropped slacks)
+  name: 블랙 하프 슬랙스
+  product: zigzag:159433991
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 숄더백 (grey shoulder bag)
+  name: 그레이 숄더백
+  product: zigzag:170305230
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 로우힐 앵클부츠 (black square-toe low-heel ankle boots)
+  name: 블랙 로우힐 앵클부츠
+  product: zigzag:115614194
+  segment: shoe
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 드롭 귀걸이 (silver water-drop earrings)
+  name: 실버 드롭 귀걸이
+  product: zigzag:116459948
+  segment: earring
+  slot: 귀걸이
+reason: 그레이 롱 블라우스와 블랙 하프 슬랙스만으로 무채색 미니멀 룩을 만들어 아우터 없이도 이슬비 오는 날 가볍게 입을 수 있다. 그레이
+  숄더백과 실버 귀걸이로 톤을 맞췄다.
+theme:
+  date: '2026-09-28'
+  mood: 블랙·그레이·베이지·아이보리 무채색 베이스에 버건디 포인트, 이슬비 대비 가벼운 레더 아우터와 앵클부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 레더 자켓
+  - category: 상의
+    desc: 아이보리 셔츠
+  - category: 하의
+    desc: 그레이 와이드 슬랙스
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠
+  title_hint: 월요일 이슬비 출근길엔 가벼운 아우터로 산뜻하게
+  type: 상황
+  why: 월요일 출근, 서울 약한 이슬비 18~24도라 무거운 트렌치코트보다 가벼운 레더 아우터나 아우터 없이 셔츠·블라우스로 산뜻하게 입는다.
+    어제(2026-09-27) 하프 트렌치코트 주제와 겹치지 않게 다른 아우터로 고른다.
