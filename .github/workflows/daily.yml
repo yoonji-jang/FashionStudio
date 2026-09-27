@@ -5,6 +5,7 @@ name: daily
 # - Actions 탭에서 "Run workflow": 버튼 하나로 주제 → 상품 → 코디컷 → 캐러셀 → 캡션
 #   (Secret CLAUDE_CODE_OAUTH_TOKEN 필요. 기획 파일(plan)을 주면 Claude 없이 그 기획으로 만들기만 한다)
 # - 작업 브랜치에 커밋 메시지에 [daily] 와 [plan:경로] 를 넣어 푸시하면 그 기획으로 만든다
+#   (푸시는 샌드박스로 돈다. [live] 를 넣으면 정식 Photoroom 키로 워터마크 없이 만든다)
 # 8단계: 다 만들면 텔레그램으로 미리보기를 보낸다 (Secret TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 가 있을 때).
 # 게시는 여기서 하지 않고 publish 워크플로가 /ok 답장을 확인해 올린다.
 # 결과는 artifact 와 daily-results 브랜치의 <날짜>-run<번호>/ 에 올라간다
@@ -62,11 +63,11 @@ jobs:
       PLAN: ${{ inputs.plan }}
       OUTFIT: ${{ inputs.outfit || 'photoroom' }}
       COLLECT: ${{ inputs.collect && '1' || '' }}
-      SANDBOX: ${{ (github.event_name == 'push' || inputs.sandbox) && '1' || '' }}
+      SANDBOX: ${{ ((github.event_name == 'push' && !contains(github.event.head_commit.message, '[live]')) || inputs.sandbox) && '1' || '' }}
       COMMIT_MSG: ${{ github.event.head_commit.message }}
       HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
       REVIEW: ${{ (github.event_name == 'push' || inputs.review) && '1' || '' }}
-      PREVIEW: ${{ inputs.preview && '1' || '' }}
+      PREVIEW: ${{ (github.event_name == 'push' || inputs.preview) && '1' || '' }}
       HAS_TELEGRAM: ${{ secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
       RUN: ${{ github.run_number }}
     steps:
