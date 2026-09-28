@@ -1,0 +1,31 @@
+name: link-page
+
+# 10단계 상품 페이지 (ManyChat DM 이 가리키는 곳)를 지금 바로 다시 만들어 올린다.
+# 평소에는 publish 가 게시할 때마다 알아서 올리므로, 처음 한 번이나 profile link_page 를 바꿨을 때만 누른다.
+# 주소: https://<GitHub 아이디>.github.io/<사진 저장소>/<계정>/ (사진 저장소 Settings → Pages 를 켜야 함)
+# 필요한 Secret: MEDIA_REPO_TOKEN
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+
+permissions:
+  contents: read
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - name: 상품 페이지 올리기
+        env:
+          MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
+          ACCOUNT: ${{ inputs.account || 'women' }}
+        run: |
+          url=$(uv run python -m tools.link_page push --account "$ACCOUNT")
+          echo "::notice::상품 페이지 $url"

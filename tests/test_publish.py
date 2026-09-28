@@ -1,3 +1,4 @@
+import base64
 import json
 import shutil
 from datetime import date
@@ -208,10 +209,14 @@ def test_publish_after_ok(results, store):  # noqa: F811
     assert posts[-1].links[0].url.startswith("https://")
     done = json.loads((run / "published.json").read_text())
     assert done["media_id"] == "m777" and done["decision"] == "ok"
-    assert api.files == {}  # 게시 후 사진 지움
+    # 게시 후 사진은 지우고, 상품 페이지(link_page)만 남는다
+    assert set(api.files) == {"women/index.html"}
+    page = base64.b64decode(api.files["women/index.html"]).decode()
+    assert posts[-1].links[0].url in page and posts[-1].title in page
     slides = len(notify.slide_paths(notify.load_manifest(run), run))
     puts = [c for c in api.calls if c[0] == "PUT"]
-    assert len(puts) == slides and puts[0][1].endswith("/contents/women/2026-09-27-run5/01.jpg")
+    assert len(puts) == slides + 1
+    assert puts[0][1].endswith("/contents/women/2026-09-27-run5/01.jpg")
     # 다시 돌려도 두 번 게시하지 않는다
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 1

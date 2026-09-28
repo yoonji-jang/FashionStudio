@@ -84,6 +84,25 @@ class GitHubHost:
             )
         return done
 
+    def put(self, path: str, data: bytes, message: str) -> None:
+        """파일 하나를 쓰거나 바꾼다 (상품 페이지)."""
+        url = f"{GITHUB_API}/repos/{self.repo}/contents/{path}"
+        body = {
+            "message": message,
+            "content": base64.b64encode(data).decode(),
+            "branch": self.branch,
+        }
+        old = self.client.get(url, headers=self.headers, params={"ref": self.branch})
+        if old.status_code == 200:
+            if base64.b64decode(old.json().get("content", "")) == data:
+                return  # 그대로
+            body["sha"] = old.json()["sha"]
+        self._check(self.client.put(url, headers=self.headers, json=body), "쓰기")
+
+    def pages_url(self, path: str = "") -> str:
+        owner, name = self.repo.split("/", 1)
+        return f"https://{owner.lower()}.github.io/{name}/{path}"
+
     def delete(self, items: list[Uploaded]) -> None:
         for it in items:
             url = f"{GITHUB_API}/repos/{self.repo}/contents/{it.path}"

@@ -226,6 +226,9 @@ class Comments(BaseModel):
     check_at 에 적은 시각에 따로 깨어나서도 한다."""
 
     enabled: bool = False
+    # DM 을 누가 보내나: external(ManyChat 같은 공식 파트너가 댓글 즉시 보냄, 여기서는 캡션만)
+    #   builtin(tools.comments 가 자동 실행 때 댓글을 확인해 보냄, 30분~몇 시간 늦음)
+    mode: Literal["external", "builtin"] = "external"
     # 캡션에 넣는 안내 문구 (copy.link_line 대신). {keyword} 는 keywords 첫 번째
     cta: str = (
         "코디 정보가 궁금하면 댓글로 '{keyword}'라고 남겨 주세요. DM으로 상품 링크를 보내 드려요"
@@ -243,6 +246,19 @@ class Comments(BaseModel):
     #   share_reward(게시 뒤 텔레그램으로 공유리워드 링크를 받아 씀)
     link_mode: Literal["zigzag", "share_reward"] = "zigzag"
     share_wait_hours: int = Field(default=6, ge=0, le=72)  # 공유 링크 대기 (넘으면 상품 링크)
+
+
+class LinkPage(BaseModel):
+    """최근 게시물 상품 링크를 모은 공개 페이지 (10단계, tools.link_page). 게시할 때마다 새로 쓴다.
+    ManyChat DM 에 이 주소 하나만 넣어 두면 게시물마다 DM 을 고치지 않아도 된다.
+    공개 사진 저장소(config/publish.yaml image_host)의 GitHub Pages 에 <계정>/index.html 로
+    올린다."""
+
+    enabled: bool = False
+    title: str = "코디 상품 모음"  # 페이지 맨 위 제목
+    intro: str = "게시물에 나온 상품 링크예요. 최신 게시물이 맨 위에 있어요"
+    keep: int = Field(default=14, ge=1, le=60)  # 보여 줄 최근 게시물 수
+    item_line: str = "{category} · {shop}"  # 상품 이름 위 작은 글자
 
 
 class Instagram(BaseModel):
@@ -268,6 +284,7 @@ class Profile(BaseModel):
     schedule: Schedule
     pick: PickRules = PickRules()
     comments: Comments = Comments()
+    link_page: LinkPage = LinkPage()
     monetize: Monetize = "none"
     approval: Approval = "required"
     instagram: Instagram

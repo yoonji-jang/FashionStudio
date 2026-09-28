@@ -252,11 +252,13 @@ Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 
 
 #### `comments` : 댓글 → DM 코디 링크 (10단계)
 캡션에 "댓글로 '정보'라고 남겨 주세요" 안내를 넣고, 키워드 댓글이 달리면 인스타 공식 기능(비공개 답장)으로
-그 게시물의 상품 링크를 DM 으로 보냅니다. 켜기 전에 아래 [댓글 DM 준비](#댓글-dm-준비-10단계)를 먼저 하세요.
+상품 링크를 DM 으로 보냅니다. 켜기 전에 아래 [ManyChat 연결](#manychat-연결-처음-한-번)을 먼저 하세요.
+`check_at` 부터 `share_wait_hours` 까지는 `mode: builtin` 일 때만 씁니다.
 
 | 항목 | 예시 | 의미 |
 |---|---|---|
-| `enabled` | false | true 면 캡션 안내 문구(`copy.link_line` 대신)와 댓글 확인이 켜짐. 바꾸면 `tools.schedule sync` |
+| `enabled` | false | true 면 캡션 안내 문구(`copy.link_line` 대신)가 들어감 (builtin 이면 댓글 확인도) |
+| `mode` | external | `external`: ManyChat 이 DM (여기서는 캡션만) / `builtin`: 자동 실행 때 확인해 직접 DM, 바꾸면 `tools.schedule sync` |
 | `cta` | `코디 정보가 궁금하면 댓글로 '{keyword}'라고…` | 캡션 안내 문구. `{keyword}` 는 `keywords` 첫 번째 |
 | `keywords` | [정보, 링크] | 댓글에 이 말이 들어 있으면 DM (띄어쓰기·대소문자 무시) |
 | `check_at` | ["08:17", "17:17", "23:17"] | 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분) |
@@ -615,52 +617,83 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 
 ## 댓글 → DM 코디 링크 (10단계)
 
+댓글 달자마자 DM 이 가려면 메타가 댓글을 즉시 알려 주는 **웹훅**을 받는 서버가 있어야 합니다. 서버를 직접 두지
+않고 메타 공식 파트너인 **ManyChat** 이 댓글을 받아 DM 을 보내고, 이 저장소는 캡션 안내 문구와 DM 에 넣을
+**상품 페이지**를 맡습니다 (`comments.mode: external`).
+
 ```
 게시 (캡션: "코디 정보가 궁금하면 댓글로 '정보'라고 남겨 주세요…")
-  → schedule 이 깨어날 때마다 (다른 작업 때 + check_at) tools.comments:
-     최근 7일 게시물의 댓글 읽기 → 키워드 댓글 → 비공개 답장 DM (상품 링크)
-     → data/<계정>/dm.json 에 댓글 id 해시만 기록 (커밋)
+  → publish 가 상품 페이지(최근 게시물 상품 링크)를 새로 올림 (tools.link_page)
+댓글 "정보" → ManyChat 이 바로 DM: "코디 상품 링크는 여기에 모아 뒀어요 [상품 보기]" → 상품 페이지
+```
+
+- **상품 페이지**: 공개 사진 저장소의 GitHub Pages 에 `<계정>/index.html` 로 올립니다
+  (예: `https://yoonji-jang.github.io/FashionStudio-media/women/`). 최근 `link_page.keep` 개 게시물의 제목·날짜·
+  상품 링크만 들어가고, 최신 게시물이 맨 위입니다. DM 주소는 한 번만 넣어 두면 됩니다.
+- **ManyChat 없이** (`comments.mode: builtin`): `tools.comments` 가 자동 실행 때 댓글을 확인해 인스타 비공개
+  답장으로 게시물별 링크를 보냅니다. 서버가 없어 30분~몇 시간 늦고, 댓글·메시지 권한 토큰과 (일반 사용자에게
+  보내려면) 메타 앱 검수가 필요합니다. 아래 [직접 보내기](#직접-보내기-mode-builtin) 참고.
+
+### ManyChat 연결 (처음 한 번)
+
+1. **상품 페이지 켜기**: GitHub 에서 사진 저장소(`FashionStudio-media`) → Settings → **Pages** → Source
+   **Deploy from a branch**, Branch **main** / **(root)** → Save. 그다음 이 저장소 Actions → `link-page` →
+   Run workflow → 실행 기록의 주소를 폰에서 열어 보기
+2. **인스타 설정**: 인스타 앱 → 설정 → 메시지 및 스토리 답장 → 메시지 제어 → 연결된 도구 →
+   **메시지 액세스 허용** 켜기 (꺼져 있으면 ManyChat 도 DM 을 못 보냄)
+3. **ManyChat 가입**: [manychat.com](https://manychat.com) → Instagram 으로 시작 → 게시할 인스타 계정 연결
+4. **자동화 만들기**: Automation → New Automation → 트리거 **사용자가 게시물·릴스에 댓글을 남김**
+   - 게시물: **모든 게시물(Any post)** (무료 요금제에서 막혀 있으면 Pro 가 필요할 수 있음)
+   - 키워드: `정보`, `링크` 포함 (`profile.yaml` 의 `comments.keywords` 와 같게)
+   - (선택) 댓글 공개 답글: "DM 보내 드렸어요"
+   - 액션 **메시지 보내기**: "댓글 남겨 주셔서 고마워요. 코디 상품 링크는 여기에 모아 뒀어요" + 버튼
+     "상품 보기" → 1번의 상품 페이지 주소
+5. 자동화를 **켜고(Set Live)**, 다른 인스타 계정으로 게시물에 "정보" 댓글 → DM 이 바로 오는지 확인
+6. 잘 되면 `profile.yaml` 의 `comments.enabled: true` → main 에 합치기. 다음 게시물부터 캡션에 안내 문구가 들어감
+
+#### `link_page` 설정
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | true | 게시할 때마다 상품 페이지를 새로 올림 |
+| `title`, `intro` | janggu.zip 코디 상품 | 페이지 맨 위 제목과 한 줄 설명 |
+| `keep` | 14 | 보여 줄 최근 게시물 수 |
+| `item_line` | `{category} · {shop}` | 상품 이름 위 작은 글자 |
+
+### 직접 보내기 (mode: builtin)
+
+```
+schedule 이 깨어날 때마다 (다른 작업 때 + check_at) tools.comments:
+  최근 7일 게시물의 댓글 읽기 → 키워드 댓글 → 비공개 답장 DM (게시물별 상품 링크)
+  → data/<계정>/dm.json 에 댓글 id 해시만 기록 (커밋)
 ```
 
 - **인스타 규칙**: 댓글 하나에 DM 한 번, 댓글을 단 뒤 7일 안에만 보낼 수 있습니다. 같은 사람이 여러 번
   댓글을 달아도 한 번만 보냅니다. 내 계정 댓글에는 보내지 않습니다.
 - **개인정보**: 댓글 작성자 이름·id·댓글 내용은 저장하지 않습니다. 두 번 보내지 않으려고 댓글 id 의 해시만
   남기고, 기간이 지나면 지웁니다.
-- **DM 이 가는 때**: 봇 서버 없이 schedule 이 깰 때 확인해서, 댓글 뒤 DM 까지 기본 설정으로 30분~몇 시간
-  걸립니다 (10:17~15:17·20:03~22:03 은 30분마다, 그 밖에는 `check_at`). 밤 23:17 뒤 댓글은 아침 08:17 에 갑니다.
-- **Actions 사용 시간**: 다른 작업 때 같이 보는 것은 거의 추가가 없고, `check_at` 한 칸이 하루 1분이라
-  기본 3칸이면 한 달 약 90분이 늘어납니다. 더 빨리 보내려고 칸을 늘리면 한 칸당 한 달 30분씩 늘어납니다.
+- **DM 이 가는 때**: 10:17~15:17·20:03~22:03 은 30분마다, 그 밖에는 `check_at` (기본 08:17·17:17·23:17).
+- **Actions 사용 시간**: `check_at` 한 칸이 하루 1분이라 기본 3칸이면 한 달 약 90분이 늘어납니다.
 - **공유리워드**: 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않습니다.
   `link_mode: share_reward` 면 게시 뒤 첫 확인 때 텔레그램으로 상품 목록을 보내고, 그 메시지에 답장으로
   링크를 붙이면(한 줄에 하나, `1 https://…` 처럼 번호를 붙여도 됨) 그 링크로 DM 을 보냅니다.
   `share_wait_hours` 안에 안 오면 상품 링크로 보냅니다. 공유 링크를 보낼 때는 DM 맨 앞에 광고 고지가 붙습니다.
 - **오류**: 토큰 만료·권한 부족이면 텔레그램으로 하루 한 번 알리고, 다음 확인 때 다시 시도합니다.
 
-### 댓글 DM 준비 (10단계)
-
-게시만 하던 토큰에는 댓글 읽기·DM 권한이 없어서 토큰을 다시 받아야 합니다.
-
-1. 인스타 앱 → 설정 → **메시지 및 스토리 답장** → 메시지 제어 → 연결된 도구 → **메시지 액세스 허용** 켜기
-   (꺼져 있으면 오류 없이 DM 이 안 갑니다)
+준비:
+1. 위 ManyChat 연결 2번처럼 **메시지 액세스 허용** 켜기
 2. [developers.facebook.com](https://developers.facebook.com) → 내 앱 → 사용 사례 **Instagram에서 메시지 및
-   콘텐츠 관리** → 맞춤 설정 → 권한에서 `instagram_business_manage_comments`,
-   `instagram_business_manage_messages` 가 추가돼 있는지 확인 (없으면 추가)
-3. 같은 화면 **Instagram 로그인을 통한 API 설정** → 액세스 토큰 생성에서 계정의 **토큰 생성** 을 다시 눌러
-   새 토큰(`IGAA…`)을 받고, 권한 화면에서 댓글·메시지 항목을 모두 허용
-4. GitHub Secret `IG_WOMEN_TOKEN` 을 새 토큰으로 바꾸기 (사용자 ID 는 그대로)
-5. 시험: 다른 인스타 계정으로 최근 게시물에 "정보" 댓글 → Actions → `comments` → Run workflow
-   (`dry_run` 켜면 보낼 댓글 수만, 끄면 실제 DM) → 그 계정 DM 함(또는 메시지 요청함)에 링크가 오는지 확인
-6. 잘 되면 `profile.yaml` 의 `comments.enabled: true` → `uv run python -m tools.schedule sync` → main 에 합치기
+   콘텐츠 관리** → 권한에 `instagram_business_manage_comments`, `instagram_business_manage_messages` 추가
+3. **Instagram 로그인을 통한 API 설정** → **토큰 생성** 을 다시 눌러 새 토큰을 받고 Secret `IG_WOMEN_TOKEN` 교체
+4. 시험: 다른 계정으로 "정보" 댓글 → Actions → `comments` → Run workflow (`dry_run` 끄면 실제 DM)
+5. 잘 되면 `comments.enabled: true`, `mode: builtin` → `uv run python -m tools.schedule sync` → main 에 합치기
 
-**앱 모드 주의**: 개발 모드 앱은 앱 역할(관리자·테스터)이 있는 계정끼리만 메시지 기능이 확실히 됩니다.
-5번 시험에서 일반 계정에 DM 이 안 가고 권한 오류가 나면, 앱을 **라이브 모드**로 바꾸고(개인정보처리방침 주소
-필요) 그래도 안 되면 `instagram_business_manage_messages`·`instagram_business_manage_comments` 의
-**고급 액세스(앱 검수)** 를 신청해야 합니다.
+개발 모드 앱은 앱 역할(관리자·테스터)이 있는 계정끼리만 메시지 기능이 확실히 됩니다. 일반 계정에 권한 오류가
+나면 앱을 라이브 모드로 바꾸고, 그래도 안 되면 두 권한의 **고급 액세스(앱 검수)** 가 필요합니다.
 
-- 도구만: `uv run python -m tools.comments text --account women` DM 글 미리 보기 (보내지 않음),
-  `run --account women --dry-run --even-if-off` 보낼 댓글 수 세기
+- 도구만: `uv run python -m tools.link_page build --account women` 상품 페이지 파일로 만들기,
+  `uv run python -m tools.comments text --account women` DM 글 미리 보기
 
-Claude 는 `tools.comments` 를 부를 수 없게 막아 두었습니다.
+Claude 는 `tools.comments`, `tools.link_page push` 를 부를 수 없게 막아 두었습니다.
 
 ---
 

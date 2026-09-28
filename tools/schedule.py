@@ -115,7 +115,7 @@ def slots(profile: Profile) -> list[Slot]:
         if value:
             days, hhmm = _weekly(value)
             out.append(Slot(a, task, hhmm, days=days))
-    if profile.comments.enabled:
+    if profile.comments.enabled and profile.comments.mode == "builtin":
         out += [Slot(a, "comments", hhmm) for hhmm in profile.comments.check_at]
     return out
 
@@ -221,7 +221,8 @@ def due(cron: str, now: datetime | None = None, accounts: list[str] | None = Non
         profile = load_profile(account)
         mine = [t for t in tasks if t.account == account]
         cm = profile.comments
-        if cm.enabled and cm.with_other_ticks and all(t.task != "comments" for t in mine):
+        builtin = cm.enabled and cm.mode == "builtin"
+        if builtin and cm.with_other_ticks and all(t.task != "comments" for t in mine):
             tasks.append(Task(account, "comments", mine[0].date, True, True, 0))
     return tasks
 

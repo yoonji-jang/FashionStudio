@@ -26,6 +26,7 @@
       "Bash(python -m tools.pick:*)",
       "Bash(python -m tools.ig_token:*)",
       "Bash(python -m tools.comments:*)",
+      "Bash(python -m tools.link_page push:*)",
       "Bash(python -m tools.schedule run:*)",
       "Bash(curl:*)",
       "Read(.env)",

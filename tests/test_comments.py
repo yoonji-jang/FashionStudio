@@ -95,6 +95,7 @@ def store(tmp_path):
 def profile():
     p = load_profile("women")
     p.comments.enabled = True
+    p.comments.mode = "builtin"
     return p
 
 
@@ -275,6 +276,10 @@ def test_schedule_runs_comments_with_other_ticks(monkeypatch, profile):
     assert [t.task for t in tasks] == ["publish", "comments"]
     tasks = schedule.due("17 23 * * *", datetime(2026, 9, 27, 23, 20, tzinfo=UTC), ["women"])
     assert [t.task for t in tasks] == ["comments"]
+    profile.comments.mode = "external"  # ManyChat 이 보내면 확인하지 않음
+    assert [t.task for t in schedule.due("3 11 * * *", now, ["women"])] == ["publish"]
+    assert not [s for s in schedule.slots(profile) if s.task == "comments"]
+    profile.comments.mode = "builtin"
     profile.comments.with_other_ticks = False
     assert [t.task for t in schedule.due("3 11 * * *", now, ["women"])] == ["publish"]
     ran = []

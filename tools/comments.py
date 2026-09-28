@@ -218,8 +218,8 @@ def run(
 ) -> Report:
     cm = profile.comments
     rep = Report()
-    if not cm.enabled and not even_if_off:
-        rep.notes.append("comments.enabled 가 꺼져 있어요")
+    if not (cm.enabled and cm.mode == "builtin") and not even_if_off:
+        rep.notes.append("comments 가 꺼져 있거나 mode 가 builtin 이 아니에요")
         return rep
     now = now or datetime.now(UTC)
     today = now.astimezone(ZoneInfo(profile.schedule.timezone)).date()

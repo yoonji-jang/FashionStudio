@@ -271,6 +271,16 @@ def run(
     )
     store.save_posts(sorted(posts, key=lambda p: p.date))
     print(f"{tag} 게시 완료: {link or media_id}")
+    if profile.link_page.enabled:
+        # 상품 페이지 (ManyChat DM 이 가리키는 곳). 실패해도 게시는 끝났으니 경고만
+        from tools import link_page
+
+        try:
+            print(f"{tag} 상품 페이지: {link_page.push(profile, store, host)}")
+        except (RuntimeError, ValueError, httpx.HTTPError) as e:
+            print(f"경고: 상품 페이지를 올리지 못했습니다: {e}", file=sys.stderr)
+            if tg is not None:
+                tg.send(f"{tag} 게시는 했지만 상품 페이지를 올리지 못했어요: {e}")
     if tg is not None:
         tg.send(f"{tag} 게시했어요 ✓\n{link or ''}".strip())
     return 0
