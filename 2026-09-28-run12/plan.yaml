@@ -1,0 +1,58 @@
+account: women
+date: '2026-09-28'
+items:
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 드레이프 타이 블라우스 (navy drape tie-neck blouse)
+  name: 네이비 타이 블라우스
+  product: zigzag:168251408
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 핀턱 와이드 슬랙스 (beige pintuck wide slacks)
+  name: 베이지 와이드 슬랙스
+  product: zigzag:144667358
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 토트백 (beige tote bag)
+  name: 베이지 토트백
+  product: zigzag:161886716
+  segment: bag
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 로퍼 (beige loafers)
+  name: 베이지 로퍼
+  product: zigzag:109454411
+  segment: shoe
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 미니 큐빅 목걸이 (silver mini cubic necklace)
+  name: 실버 미니 목걸이
+  product: zigzag:113461869
+  segment: necklace
+  slot: 목걸이
+reason: 아우터 없이 네이비 타이 블라우스 하나로 포인트를 주고 베이지 슬랙스·토트백·로퍼로 톤을 맞춰 부드러운 오피스룩을 만든다. 얇은 실버
+  목걸이로 밋밋하지 않게 마무리했다.
+theme:
+  date: '2026-09-28'
+  mood: 블랙·그레이·베이지·아이보리 무채색 베이스에 버건디 포인트, 이슬비 대비 가벼운 레더 아우터와 앵클부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 레더 자켓
+  - category: 상의
+    desc: 아이보리 셔츠
+  - category: 하의
+    desc: 그레이 와이드 슬랙스
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠
+  title_hint: 월요일 이슬비 출근길엔 가벼운 아우터로 산뜻하게
+  type: 상황
+  why: 월요일 출근, 서울 약한 이슬비 18~24도라 무거운 트렌치코트보다 가벼운 레더 아우터나 아우터 없이 셔츠·블라우스로 산뜻하게 입는다.
+    어제(2026-09-27) 하프 트렌치코트 주제와 겹치지 않게 다른 아우터로 고른다.
