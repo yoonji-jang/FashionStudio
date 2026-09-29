@@ -265,6 +265,16 @@ def run(
         ).model_dump_json(indent=2),
         encoding="utf-8",
     )
+    links = post_links(manifest)
+    ask = None
+    if share.enabled(profile):
+        # 미리보기에 답장으로 미리 붙여 둔 공유리워드 링크가 있으면 첫 상품 페이지부터 쓴다
+        ask = ShareRequest(
+            sent_at=record.sent_at if record else now,
+            message_ids=list(record.message_ids) if record else [],
+        )
+        if tg is not None and ask.message_ids:
+            share.read_links(ask, tg.updates(), tg.chat_id, len(links))
     posts = store.posts()
     posts.append(
         PostRecord(
@@ -274,7 +284,8 @@ def run(
             products=[p.id for p in manifest.plan.items],
             permalink=link,
             media_id=media_id,
-            links=post_links(manifest),
+            links=links,
+            share=ask,
         )
     )
     store.save_posts(sorted(posts, key=lambda p: p.date))
@@ -291,14 +302,13 @@ def run(
                 tg.send(f"{tag} 게시는 했지만 상품 페이지를 올리지 못했어요: {e}")
     if tg is not None:
         done = f"{tag} 게시했어요 ✓\n{link or ''}".strip()
-        record_links = posts[-1].links
-        if share.enabled(profile) and record_links:
+        if ask is not None and links:
             # 게시 알림이 공유리워드 링크 요청을 겸한다. 답장은 schedule 이 읽어 상품 페이지에 반영
-            mid = tg.send(share.request_text(done, record_links))
+            mid = tg.send(share.request_text(done, links, ask.links))
             posts = store.posts()
             for p in posts:
-                if p.date == day:
-                    p.share = ShareRequest(sent_at=now, message_ids=[mid])
+                if p.date == day and p.share is not None:
+                    p.share.message_ids.append(mid)
             store.save_posts(posts)
         else:
             tg.send(done)

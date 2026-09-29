@@ -199,6 +199,14 @@ def preview(
             "one_time_keyboard": True,
         }
     ids.append(tg.send(control_text(manifest, profile, sandbox), reply_markup=markup))
+    from tools import share
+
+    if not sandbox and share.enabled(profile):
+        # 상품별 지그재그 링크. 공유리워드 링크를 답장하면 게시 때 상품 페이지에 들어간다
+        from tools.publish import post_links
+
+        head = f"[{profile.id}] {manifest.date} 상품 링크 (공유리워드 링크는 게시 뒤에 붙여도 돼요)"
+        ids.append(tg.send(share.request_text(head, post_links(manifest))))
     record = PreviewRecord(
         account=manifest.account,
         date=manifest.date,

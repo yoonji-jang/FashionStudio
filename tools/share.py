@@ -1,8 +1,10 @@
 """공유리워드 링크 받기 (monetize: manual_link). 외부로 올리는 작업이라 schedule 안에서만 돈다.
 
 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않는다. 그래서
-1. 게시가 끝나면 tools.publish 가 텔레그램 게시 알림에 상품 번호 목록을 붙여 보낸다 (request_text).
+1. 미리보기(tools.notify)와 게시 알림(tools.publish)에 상품 번호와 지그재그 링크 목록을 붙여 보낸다
+   (request_text). 사용자는 앱에서 그 링크를 열어 공유리워드 링크를 만든다.
 2. 사용자가 그 메시지에 답장으로 "1 https://…" 처럼 링크를 붙인다. 링크 모양은 거르지 않는다.
+   게시 전에 미리보기에 붙이면 게시 때 바로 반영된다.
 3. schedule 이 깨어날 때마다 check 가 답장을 읽어 게시 기록(posts.json)의 share 에 넣고,
    바뀌었으면 상품 페이지(tools.link_page)를 다시 올린다. 링크가 없는 상품은 상품 링크 그대로.
 
@@ -29,15 +31,20 @@ def enabled(profile: Profile) -> bool:
     return profile.monetize == "manual_link" and profile.link_page.enabled
 
 
-def request_text(head: str, links: list[PostLink]) -> str:
+def request_text(head: str, links: list[PostLink], got: dict[int, str] | None = None) -> str:
+    """상품마다 지그재그 링크를 붙여 보낸다 (앱에서 열어 공유리워드 링크를 만들 수 있게)."""
+    got = got or {}
     rows = [
         head,
         "",
-        "공유리워드 링크를 이 메시지에 답장으로 붙여 주세요. 한 줄에 하나씩, 번호와 함께요 (예: 1 https://…).",
-        "보내 주신 링크로 상품 페이지를 바꿔요. 안 보낸 상품은 상품 링크 그대로 둬요.",
+        "아래 링크를 지그재그 앱에서 열어 공유리워드 링크를 만든 뒤",
+        "이 메시지에 답장으로 붙여 주세요.",
+        "한 줄에 하나씩 번호와 함께요 (예: 1 https://…). 안 보낸 상품은 상품 링크 그대로 둬요.",
         "",
     ]
-    rows += [f"{i}. {ln.category} · {ln.shop} {ln.name}" for i, ln in enumerate(links, 1)]
+    for i, ln in enumerate(links, 1):
+        mark = " ✓ 받음" if i in got else ""
+        rows.append(f"{i}. {ln.category} · {ln.shop} {ln.name}{mark}\n{ln.url}")
     return "\n".join(rows)
 
 

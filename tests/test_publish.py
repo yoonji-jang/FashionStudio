@@ -2,6 +2,7 @@ import base64
 import json
 import shutil
 from datetime import date
+from urllib.parse import parse_qs
 
 import httpx
 import pytest
@@ -26,6 +27,7 @@ class FakeApis:
         self.next_id = 100
         self.files: dict[str, str] = {}
         self.statuses: dict[str, list[str]] = {}
+        self.texts: list[str] = []  # 보낸 텔레그램 글
 
     def __call__(self, req: httpx.Request) -> httpx.Response:
         host, path = req.url.host, req.url.path
@@ -59,6 +61,9 @@ class FakeApis:
             n = body.count('filename="p')
             ids = [{"message_id": self._id()} for _ in range(n)]
             return httpx.Response(200, json={"ok": True, "result": ids})
+        if method == "sendMessage":
+            form = parse_qs(req.content.decode())
+            self.texts.append(form.get("text", [""])[0])
         return httpx.Response(200, json={"ok": True, "result": {"message_id": self._id()}})
 
     def instagram(self, req, path):
@@ -164,9 +169,12 @@ def test_preview_sends_slides_caption_and_buttons(results):
     tg, _, _ = clients(api)
     rec = notify.preview(run, "2026-09-27-run5", tg)
     methods = [c[1].rsplit("/", 1)[-1] for c in api.calls]
-    assert methods == ["sendMediaGroup", "sendMessage", "sendMessage"]
+    # 슬라이드, 캡션, 승인 버튼, 상품 링크 목록 (monetize: manual_link, 공유리워드 링크 만들기용)
+    assert methods == ["sendMediaGroup", "sendMessage", "sendMessage", "sendMessage"]
     slides = notify.slide_paths(notify.load_manifest(run), run)
-    assert len(rec.message_ids) == len(slides) + 2
+    assert len(rec.message_ids) == len(slides) + 3
+    items = notify.load_manifest(run).plan.items
+    assert all(str(p.url) in api.texts[-1] for p in items) and "1. " in api.texts[-1]
     saved = notify.load_record(run)
     assert saved.run == "2026-09-27-run5" and saved.needs_human  # 검수 전
     text = notify.control_text(notify.load_manifest(run), load_profile("women"), False)

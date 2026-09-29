@@ -85,10 +85,13 @@ def test_publish_asks_for_links_then_schedule_applies_them(
     tg, ig, host = clients(api)
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     post = store.posts()[-1]
-    assert post.share is not None and post.share.message_ids and post.share.links == {}
+    assert post.share is not None and post.share.links == {}
+    # 미리보기 메시지와 게시 알림 모두 답장을 받는다. 게시 알림에도 상품별 지그재그 링크
+    assert set(rec.message_ids) < set(post.share.message_ids)
+    assert post.links[0].url in api.texts[-1] and "게시했어요" in api.texts[-1]
 
     # 사용자가 게시 알림에 답장으로 링크를 붙임 → schedule 이 반영
-    ask = post.share.message_ids[0]
+    ask = post.share.message_ids[-1]
     api.replies.append((post.share.sent_at + 60, "1 https://s.zigzag.kr/one", ask))
     monkeypatch.setattr(share, "Store", lambda account: store)
     now = datetime.fromtimestamp(post.share.sent_at + 120, UTC)
@@ -131,3 +134,24 @@ def test_schedule_adds_share_task(monkeypatch):
     monkeypatch.setattr(schedule, "load_profile", manual)
     tasks = schedule.due("17 1 * * *", NOW)
     assert [t.task for t in tasks] == ["candidates", "share"]
+
+
+def test_links_replied_to_preview_are_used_at_publish(
+    results,  # noqa: F811
+    store,  # noqa: F811
+):
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)  # women 은 manual_link: 미리보기 끝에 상품 링크 목록
+    links_msg = rec.message_ids[-1]
+    api.replies = [
+        (rec.sent_at + 5, "/ok women 09-27", None),
+        (rec.sent_at + 9, "2 https://s.zigzag.kr/two", links_msg),
+    ]
+    tg, ig, host = clients(api)
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    post = store.posts()[-1]
+    assert post.share is not None and post.share.links == {2: "https://s.zigzag.kr/two"}
+    page = base64.b64decode(api.files["women/index.html"]).decode()
+    assert "https://s.zigzag.kr/two" in page  # 게시하자마자 올린 첫 페이지부터
+    assert "2. " in api.texts[-1] and "✓ 받음" in api.texts[-1]
