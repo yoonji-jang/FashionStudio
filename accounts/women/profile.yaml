@@ -203,7 +203,7 @@ comments:
 # 최근 게시물 상품 링크 페이지 (10단계, tools.link_page). 게시할 때마다 새로 올린다.
 # 주소: https://<GitHub 아이디>.github.io/<사진 저장소>/women/ (사진 저장소 GitHub Pages 를 켜야 함, README)
 link_page:
-  enabled: true
+  enabled: false           # 2026-09-30 끔: DM 링크는 직접 ManyChat 에서 설정. 올려 둔 페이지는 link-page 워크플로 remove 로 내림
   title: janggu.zip 코디 상품
   intro: 게시물에 나온 상품 링크예요. 최신 게시물이 맨 위에 있어요
   keep: 14                 # 보여 줄 최근 게시물 수

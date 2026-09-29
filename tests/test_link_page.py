@@ -104,3 +104,26 @@ def test_pages_base_custom_domain(monkeypatch):
     cfg = {"repo": "Me/R", "pages_base": "https://janggu.zip"}
     monkeypatch.setenv("MEDIA_REPO_TOKEN", "t")
     assert GitHubHost.from_config(cfg).pages_url("women/") == "https://janggu.zip/women/"
+
+
+def test_remove_deletes_page_once():
+    profile = load_profile("women")
+    files = {"women/index.html": "s1"}
+    deleted: list[str] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        name = req.url.path.split("/contents/", 1)[1]
+        if name not in files:
+            return httpx.Response(404, json={"message": "Not Found"})
+        if req.method == "GET":
+            return httpx.Response(200, json={"sha": files[name], "content": ""})
+        import json
+
+        assert req.method == "DELETE" and json.loads(req.content)["sha"] == "s1"
+        deleted.append(files.pop(name))
+        return httpx.Response(200, json={})
+
+    host = GitHubHost("me/media", "t", client=httpx.Client(transport=httpx.MockTransport(handler)))
+    assert link_page.remove(profile, host) is True
+    assert link_page.remove(profile, host) is False
+    assert deleted == ["s1"]

@@ -667,7 +667,7 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 #### `link_page` 설정
 | 항목 | 예시 | 의미 |
 |---|---|---|
-| `enabled` | true | 게시할 때마다 상품 페이지를 새로 올림 |
+| `enabled` | true | 게시할 때마다 상품 페이지를 새로 올림. 끈 뒤 이미 올린 페이지는 Actions → **link-page** 를 `action: remove` 로 실행해 내림 |
 | `title`, `intro` | janggu.zip 코디 상품 | 페이지 맨 위 제목과 한 줄 설명 |
 | `keep` | 14 | 보여 줄 최근 게시물 수 |
 | `item_line` | `{category} · {shop}` | 상품 이름 위 작은 글자 |
@@ -730,7 +730,7 @@ schedule 이 깨어날 때마다 (다른 작업 때 + check_at) tools.comments:
 - 도구만: `uv run python -m tools.link_page build --account women` 상품 페이지 파일로 만들기,
   `uv run python -m tools.comments text --account women` DM 글 미리 보기
 
-Claude 는 `tools.comments`, `tools.link_page push` 를 부를 수 없게 막아 두었습니다.
+Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없게 막아 두었습니다.
 
 ---
 

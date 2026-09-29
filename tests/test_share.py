@@ -4,7 +4,14 @@ from datetime import UTC, date, datetime
 from core.models import PostLink, PostRecord, ShareRequest
 from core.profile import load_profile
 from core.store import Store
-from tests.test_publish import DAY, FakeApis, clients, results, sent  # noqa: F401 - fixture
+from tests.test_publish import (  # noqa: F401 - fixture
+    DAY,
+    FakeApis,
+    clients,
+    results,
+    sent,
+    with_link_page,
+)
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
 from tools import link_page, notify, publish, schedule, share
 
@@ -125,6 +132,7 @@ def test_schedule_adds_share_task(monkeypatch):
     def manual(account):
         p = real(account)
         p.monetize = "manual_link"
+        p.link_page.enabled = True
         return p
 
     monkeypatch.setattr(schedule, "load_profile", manual)
@@ -146,6 +154,8 @@ def test_links_sent_after_ok_and_replies_used_at_publish(
 ):
     monkeypatch.setattr(share, "Store", lambda account: store)
     monkeypatch.setattr(share, "enabled", lambda profile: True)
+    monkeypatch.setattr(publish, "load_profile", with_link_page)
+    monkeypatch.setattr(share, "load_profile", with_link_page)
     run = results / "2026-09-27-run5"
     api = FakeApis()
     rec = sent(api, run)

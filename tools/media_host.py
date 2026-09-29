@@ -105,6 +105,19 @@ class GitHubHost:
             body["sha"] = old.json()["sha"]
         self._check(self.client.put(url, headers=self.headers, json=body), "쓰기")
 
+    def remove(self, path: str, message: str) -> bool:
+        """파일 하나를 지운다 (상품 페이지 내리기). 없으면 False."""
+        url = f"{GITHUB_API}/repos/{self.repo}/contents/{path}"
+        old = self.client.get(url, headers=self.headers, params={"ref": self.branch})
+        if old.status_code == 404:
+            return False
+        body = {"message": message, "sha": self._check(old, "확인")["sha"], "branch": self.branch}
+        r = self.client.request("DELETE", url, headers=self.headers, json=body)
+        if r.status_code == 404:
+            return False
+        self._check(r, "지우기")
+        return True
+
     def pages_url(self, path: str = "") -> str:
         """GitHub Pages 주소. 개인 도메인을 연결했으면 config 의 pages_base 를 쓴다."""
         if self.pages_base:
