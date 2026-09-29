@@ -19,6 +19,11 @@ description: 하루치 인스타 코디 게시물을 처음부터 끝까지 만�
 상품 구성은 사람이 고른 것이라 바꾸지 않는다. 6번에서 맞는 색 사진이 없는 상품만 같은 카테고리의 비슷한
 상품으로 바꾸고, 바꾼 것을 보고에 적는다.
 
+## 에이전트 부르기
+`photo-checker`, `image-reviewer` 에이전트는 반드시 앞에서(`run_in_background: false`) 불러 결과를 받은 뒤
+다음 단계로 간다. 백그라운드로 부르면 결과를 기다리는 동안 실행이 끝나 버려 게시물이 만들어지지 않는다.
+report.md 를 쓰기 전에는 끝내지 않는다.
+
 ## 순서
 
 1. **기준 읽기**: `accounts/$ACCOUNT/profile.yaml`, `accounts/$ACCOUNT/voice.md` 를 읽는다.
