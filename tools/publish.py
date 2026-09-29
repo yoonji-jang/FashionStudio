@@ -138,6 +138,7 @@ def post_links(manifest: Manifest) -> list[PostLink]:
             shop=p.shop,
             name=clean_name(p.name),
             url=str(p.url),
+            image=str(p.image_urls[0]),
         )
         for p in manifest.plan.items
     ]

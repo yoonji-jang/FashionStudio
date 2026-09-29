@@ -40,15 +40,27 @@ def render(profile: Profile, posts: list[PostRecord], store: Store) -> str:
     lp, feed = profile.link_page, profile.feed
     accent = profile.visual.accent_color or feed.text_color
     recent = sorted(posts, key=lambda p: p.date, reverse=True)[: lp.keep]
+    photos: dict[str, str] | None = None
     blocks: list[str] = []
     for post in recent:
         rows = []
         for ln in post_links(post, store):
             meta = lp.item_line.format(category=ln.category, shop=ln.shop)
+            image = ln.image
+            if not image:  # 썸네일이 생기기 전 기록은 상품 창고의 대표 사진
+                if photos is None:
+                    photos = {p.id: str(p.image_urls[0]) for p in store.products()}
+                image = photos.get(ln.product, "")
+            thumb = (
+                f'<img class="thumb" src="{escape(image)}" alt="" loading="lazy"'
+                ' referrerpolicy="no-referrer">'
+                if image
+                else '<span class="thumb"></span>'
+            )
             rows.append(
-                f'<a class="item" href="{escape(ln.url)}" target="_blank" rel="noopener">'
-                f'<span class="meta">{escape(meta)}</span>'
-                f'<span class="name">{escape(ln.name)}</span></a>'
+                f'<a class="item" href="{escape(ln.url)}" target="_blank" rel="noopener">{thumb}'
+                f'<span class="text"><span class="meta">{escape(meta)}</span>'
+                f'<span class="name">{escape(ln.name)}</span></span></a>'
             )
         ig = (
             f' · <a href="{escape(post.permalink)}" target="_blank" rel="noopener">게시물 보기</a>'
@@ -83,8 +95,11 @@ section {{ margin-top: 32px; }}
 .date {{ color: {feed.sub_color}; font-size: 13px; margin: 0 0 4px; }}
 .date a {{ color: {feed.sub_color}; }}
 h2 {{ font-size: 18px; margin: 0 0 12px; }}
-.item {{ display: block; background: #fff; border-radius: 12px; padding: 12px 14px; margin: 8px 0;
-  text-decoration: none; color: inherit; }}
+.item {{ display: flex; align-items: center; gap: 12px; background: #fff; border-radius: 12px;
+  padding: 10px 14px 10px 10px; margin: 8px 0; text-decoration: none; color: inherit; }}
+.thumb {{ flex: none; width: 64px; height: 64px; border-radius: 8px; object-fit: cover;
+  background: {feed.background}; }}
+.text {{ min-width: 0; }}
 .meta {{ display: block; font-size: 12px; color: {feed.sub_color}; }}
 .name {{ display: block; font-size: 15px; margin-top: 2px; }}
 .empty {{ color: {feed.sub_color}; }}

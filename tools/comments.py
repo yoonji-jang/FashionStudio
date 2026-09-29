@@ -84,6 +84,7 @@ def post_links(post: PostRecord, store: Store) -> list[PostLink]:
             shop=p.shop,
             name=clean_name(p.name),
             url=str(p.url),
+            image=str(p.image_urls[0]),
         )
         for pid in post.products
         if (p := products.get(pid))

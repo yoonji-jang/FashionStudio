@@ -15,6 +15,9 @@ image_host:
   repo: ""             # 빈칸이면 <이 저장소 이름>-media (예: yoonji-jang/FashionStudio-media)
   branch: main
   keep: false          # 게시가 끝나면 사진을 지운다 (인스타에 이미 공개된 사진이라 기록에 남아도 됨)
+  # 상품 페이지(tools.link_page) 주소 앞부분. 빈칸이면 https://<owner>.github.io/<저장소 이름>/
+  # 사진 저장소 Pages 에 개인 도메인을 연결했으면 적는다 (예: https://janggu.zip)
+  pages_base: ""
 
 # 쓰는 GitHub Secret (이름 고정): MEDIA_REPO_TOKEN(사진 저장소에 쓰기), TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 # 인스타 토큰 Secret 이름은 계정마다 profile.yaml 의 instagram 에 적는다
