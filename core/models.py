@@ -135,6 +135,7 @@ class PostLink(BaseModel):
     shop: str
     name: str  # 짧은 이름
     url: str  # 상품 페이지
+    image: str = ""  # 대표 사진 주소 (상품 페이지 썸네일)
 
 
 class PostRecord(BaseModel):

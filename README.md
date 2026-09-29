@@ -629,7 +629,11 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 
 - **상품 페이지**: 공개 사진 저장소의 GitHub Pages 에 `<계정>/index.html` 로 올립니다
   (예: `https://yoonji-jang.github.io/FashionStudio-media/women/`). 최근 `link_page.keep` 개 게시물의 제목·날짜·
-  상품 링크만 들어가고, 최신 게시물이 맨 위입니다. DM 주소는 한 번만 넣어 두면 됩니다.
+  상품 링크와 상품별 썸네일(쇼핑몰 대표 사진)만 들어가고, 최신 게시물이 맨 위입니다. DM 주소는 한 번만 넣어 두면
+  됩니다.
+- **주소를 내 이름으로**: 도메인(예: `janggu.zip`)을 사서 사진 저장소 Settings → Pages → **Custom domain** 에
+  적고, 도메인 판매처 DNS 에 GitHub Pages 주소를 연결한 뒤 `config/publish.yaml` 의 `image_host.pages_base` 에
+  `https://janggu.zip` 을 적습니다. 그러면 주소가 `https://janggu.zip/women/` 이 됩니다.
 - **ManyChat 없이** (`comments.mode: builtin`): `tools.comments` 가 자동 실행 때 댓글을 확인해 인스타 비공개
   답장으로 게시물별 링크를 보냅니다. 서버가 없어 30분~몇 시간 늦고, 댓글·메시지 권한 토큰과 (일반 사용자에게
   보내려면) 메타 앱 검수가 필요합니다. 아래 [직접 보내기](#직접-보내기-mode-builtin) 참고.

@@ -207,12 +207,14 @@ def test_publish_after_ok(results, store):  # noqa: F811
     # 댓글 DM 에 쓸 게시물 id 와 상품 링크
     assert posts[-1].media_id == "m777" and len(posts[-1].links) == 7
     assert posts[-1].links[0].url.startswith("https://")
+    assert posts[-1].links[0].image.startswith("https://")
     done = json.loads((run / "published.json").read_text())
     assert done["media_id"] == "m777" and done["decision"] == "ok"
     # 게시 후 사진은 지우고, 상품 페이지(link_page)만 남는다
     assert set(api.files) == {"women/index.html"}
     page = base64.b64decode(api.files["women/index.html"]).decode()
     assert posts[-1].links[0].url in page and posts[-1].title in page
+    assert posts[-1].links[0].image in page
     slides = len(notify.slide_paths(notify.load_manifest(run), run))
     puts = [c for c in api.calls if c[0] == "PUT"]
     assert len(puts) == slides + 1

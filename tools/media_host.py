@@ -30,7 +30,12 @@ class Uploaded:
 
 class GitHubHost:
     def __init__(
-        self, repo: str, token: str, branch: str = "main", client: httpx.Client | None = None
+        self,
+        repo: str,
+        token: str,
+        branch: str = "main",
+        client: httpx.Client | None = None,
+        pages_base: str = "",
     ):
         if not repo or "/" not in repo:
             raise ValueError(
@@ -39,6 +44,7 @@ class GitHubHost:
         if not token:
             raise ValueError("사진 저장소 토큰이 없습니다 (Secret MEDIA_REPO_TOKEN)")
         self.repo, self.branch = repo, branch
+        self.pages_base = pages_base
         self.client = client or httpx.Client(timeout=60)
         self.headers = {
             "Authorization": f"Bearer {token}",
@@ -52,7 +58,7 @@ class GitHubHost:
         if not repo and os.environ.get("GITHUB_REPOSITORY"):
             repo = os.environ["GITHUB_REPOSITORY"] + "-media"
         token = os.environ.get("MEDIA_REPO_TOKEN", "")
-        return cls(repo, token, cfg.get("branch", "main"), client)
+        return cls(repo, token, cfg.get("branch", "main"), client, cfg.get("pages_base") or "")
 
     def _check(self, r: httpx.Response, what: str) -> dict:
         if r.status_code >= 300:
@@ -100,6 +106,9 @@ class GitHubHost:
         self._check(self.client.put(url, headers=self.headers, json=body), "쓰기")
 
     def pages_url(self, path: str = "") -> str:
+        """GitHub Pages 주소. 개인 도메인을 연결했으면 config 의 pages_base 를 쓴다."""
+        if self.pages_base:
+            return f"{self.pages_base.rstrip('/')}/{path}"
         owner, name = self.repo.split("/", 1)
         return f"https://{owner.lower()}.github.io/{name}/{path}"
 
