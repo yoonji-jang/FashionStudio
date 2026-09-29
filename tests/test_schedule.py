@@ -42,8 +42,8 @@ def test_pick_disabled_has_no_pick_slots():
 
 
 def due(*args) -> list[schedule.Task]:
-    """공유리워드 확인(share)은 모든 작업에 붙어서 빼고 본다 (test_share)."""
-    return [t for t in schedule.due(*args) if t.task != "share"]
+    """공유리워드 작업(links, share)은 모든 작업에 붙어서 빼고 본다 (test_share)."""
+    return [t for t in schedule.due(*args) if t.task not in ("links", "share")]
 
 
 def test_due_uses_fired_cron_even_when_actions_is_late():

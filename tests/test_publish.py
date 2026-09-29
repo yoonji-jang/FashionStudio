@@ -169,12 +169,11 @@ def test_preview_sends_slides_caption_and_buttons(results):
     tg, _, _ = clients(api)
     rec = notify.preview(run, "2026-09-27-run5", tg)
     methods = [c[1].rsplit("/", 1)[-1] for c in api.calls]
-    # 슬라이드, 캡션, 승인 버튼, 상품 링크 목록 (monetize: manual_link, 공유리워드 링크 만들기용)
-    assert methods == ["sendMediaGroup", "sendMessage", "sendMessage", "sendMessage"]
+    assert methods == ["sendMediaGroup", "sendMessage", "sendMessage"]
     slides = notify.slide_paths(notify.load_manifest(run), run)
-    assert len(rec.message_ids) == len(slides) + 3
-    items = notify.load_manifest(run).plan.items
-    assert all(str(p.url) in api.texts[-1] for p in items) and "1. " in api.texts[-1]
+    assert len(rec.message_ids) == len(slides) + 2
+    # 상품 링크는 /ok 뒤에 보낸다 (tools.share.send_after_ok)
+    assert "zigzag.kr" not in api.texts[-1] and "상품 링크를 보내 드려요" in api.texts[-1]
     saved = notify.load_record(run)
     assert saved.run == "2026-09-27-run5" and saved.needs_human  # 검수 전
     text = notify.control_text(notify.load_manifest(run), load_profile("women"), False)

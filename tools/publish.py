@@ -268,10 +268,11 @@ def run(
     links = post_links(manifest)
     ask = None
     if share.enabled(profile):
-        # 미리보기에 답장으로 미리 붙여 둔 공유리워드 링크가 있으면 첫 상품 페이지부터 쓴다
+        # 게시 전에 답장으로 붙여 둔 공유리워드 링크가 있으면 첫 상품 페이지부터 쓴다
+        # 미리보기와 /ok 뒤 보낸 상품 링크 목록(share.send_after_ok)에 단 답장을 모두 읽는다
         ask = ShareRequest(
             sent_at=record.sent_at if record else now,
-            message_ids=list(record.message_ids) if record else [],
+            message_ids=[*(record.message_ids if record else []), *share.asked_ids(out)],
         )
         if tg is not None and ask.message_ids:
             share.read_links(ask, tg.updates(), tg.chat_id, len(links))

@@ -159,6 +159,7 @@ schedule:
   publish_at: "20:03"       # 게시 (승인 /ok 가 있으면)
   publish_retry_every: 30   # 게시 시각에 승인이 없으면 다시 보는 간격 (분)
   publish_retries: 4        # 다시 보는 횟수 (20:33 ~ 22:03)
+  ok_check_every: 60        # manual_link: 고르기 마감~게시 사이 /ok 확인 간격(분). /ok 면 상품 링크를 보냄 (0 이면 안 봄)
   themes_at: "일 18:17"     # 다음 주 주제 7개 (텔레그램으로 보냄)
   collect_at: "월,목 04:17"  # 지그재그 새 상품 수집
   token_refresh_at: "일 18:47"  # 인스타 토큰 연장 (60일 만료 전에 매주)

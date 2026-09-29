@@ -203,6 +203,9 @@ class Schedule(BaseModel):
     publish_at: str = Field(pattern=HHMM)  # 게시 시각
     publish_retry_every: int = Field(default=30, ge=15, le=240)  # 승인이 늦을 때 다시 볼 간격 (분)
     publish_retries: int = Field(default=4, ge=0, le=12)  # 게시 시각 뒤 다시 보는 횟수
+    # monetize: manual_link 일 때 고르기 마감~게시 사이에 /ok 를 확인하는 간격 (분, 0 이면 안 봄).
+    # /ok 가 보이면 상품별 지그재그 링크를 보내 공유리워드 링크를 미리 만들게 한다 (tools.share)
+    ok_check_every: int = Field(default=60, ge=0, le=240)
     themes_at: str | None = Field(default=None, pattern=WEEKLY)  # 주간 주제 (예: "일 18:17")
     collect_at: str | None = Field(default=None, pattern=WEEKLY)  # 상품 수집 (예: "월,목 04:17")
     token_refresh_at: str | None = Field(default=None, pattern=WEEKLY)  # 인스타 토큰 연장

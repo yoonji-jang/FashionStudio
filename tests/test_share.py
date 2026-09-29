@@ -6,7 +6,7 @@ from core.profile import load_profile
 from core.store import Store
 from tests.test_publish import DAY, FakeApis, clients, results, sent  # noqa: F401 - fixture
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
-from tools import link_page, publish, schedule, share
+from tools import link_page, notify, publish, schedule, share
 
 NOW = datetime(2026, 9, 28, 3, 0, tzinfo=UTC)  # 서울 9/28 12:00
 
@@ -133,25 +133,51 @@ def test_schedule_adds_share_task(monkeypatch):
     monkeypatch.undo()
     monkeypatch.setattr(schedule, "load_profile", manual)
     tasks = schedule.due("17 1 * * *", NOW)
-    assert [t.task for t in tasks] == ["candidates", "share"]
+    assert [t.task for t in tasks] == ["candidates", "links", "share"]
+    # 고르기 마감 뒤 /ok 확인 칸 (서울 17:17)
+    tasks = schedule.due("17 8 * * *", datetime(2026, 9, 28, 8, 20, tzinfo=UTC))
+    assert [(t.task, t.date) for t in tasks] == [("links", "2026-09-28"), ("share", "2026-09-28")]
 
 
-def test_links_replied_to_preview_are_used_at_publish(
+def test_links_sent_after_ok_and_replies_used_at_publish(
     results,  # noqa: F811
     store,  # noqa: F811
+    monkeypatch,
 ):
+    monkeypatch.setattr(share, "Store", lambda account: store)
     run = results / "2026-09-27-run5"
     api = FakeApis()
-    rec = sent(api, run)  # women 은 manual_link: 미리보기 끝에 상품 링크 목록
-    links_msg = rec.message_ids[-1]
-    api.replies = [
-        (rec.sent_at + 5, "/ok women 09-27", None),
-        (rec.sent_at + 9, "2 https://s.zigzag.kr/two", links_msg),
-    ]
+    rec = sent(api, run)
     tg, ig, host = clients(api)
+    day = str(DAY)
+    assert "/ok 기다림" in share.send_after_ok("women", day, results, tg)
+    api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
+    assert "시험" in share.send_after_ok("women", day, results, tg, dry_run=True)
+    assert not (run / share.ASKED).exists()
+    assert "7개 보냄" in share.send_after_ok("women", day, results, tg)
+    items = notify.load_manifest(run).plan.items
+    assert all(str(p.url) in api.texts[-1] for p in items) and "/ok 확인" in api.texts[-1]
+    [ask] = share.asked_ids(run)
+    assert "이미 보냄" in share.send_after_ok("women", day, results, tg)
+
+    # 게시 전에 링크 목록에 답장 → 게시하자마자 올린 첫 상품 페이지부터 공유리워드 링크
+    api.replies.append((rec.sent_at + 9, "2 https://s.zigzag.kr/two", ask))
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     post = store.posts()[-1]
     assert post.share is not None and post.share.links == {2: "https://s.zigzag.kr/two"}
     page = base64.b64decode(api.files["women/index.html"]).decode()
-    assert "https://s.zigzag.kr/two" in page  # 게시하자마자 올린 첫 페이지부터
+    assert "https://s.zigzag.kr/two" in page
     assert "2. " in api.texts[-1] and "✓ 받음" in api.texts[-1]
+    assert "이미 보냄" in share.send_after_ok("women", day, results, tg)
+
+
+def test_links_slots_between_deadline_and_publish():
+    profile = load_profile("women")
+    profile.monetize = "manual_link"
+    got = [s.local() for s in schedule.slots(profile) if s.task == "links"]
+    assert got == ["16:17", "17:17", "18:17", "19:17"]
+    profile.schedule.ok_check_every = 0
+    assert not [s for s in schedule.slots(profile) if s.task == "links"]
+    profile.schedule.ok_check_every = 60
+    profile.monetize = "none"
+    assert not [s for s in schedule.slots(profile) if s.task == "links"]
