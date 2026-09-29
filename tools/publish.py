@@ -33,10 +33,17 @@ from zoneinfo import ZoneInfo
 import httpx
 from PIL import Image
 
-from core.models import Manifest, PostLink, PostRecord, PreviewRecord, PublishRecord
+from core.models import (
+    Manifest,
+    PostLink,
+    PostRecord,
+    PreviewRecord,
+    PublishRecord,
+    ShareRequest,
+)
 from core.profile import Profile, load_profile
 from core.store import Store
-from tools import notify
+from tools import notify, share
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
@@ -283,7 +290,18 @@ def run(
             if tg is not None:
                 tg.send(f"{tag} 게시는 했지만 상품 페이지를 올리지 못했어요: {e}")
     if tg is not None:
-        tg.send(f"{tag} 게시했어요 ✓\n{link or ''}".strip())
+        done = f"{tag} 게시했어요 ✓\n{link or ''}".strip()
+        record_links = posts[-1].links
+        if share.enabled(profile) and record_links:
+            # 게시 알림이 공유리워드 링크 요청을 겸한다. 답장은 schedule 이 읽어 상품 페이지에 반영
+            mid = tg.send(share.request_text(done, record_links))
+            posts = store.posts()
+            for p in posts:
+                if p.date == day:
+                    p.share = ShareRequest(sent_at=now, message_ids=[mid])
+            store.save_posts(posts)
+        else:
+            tg.send(done)
     return 0
 
 

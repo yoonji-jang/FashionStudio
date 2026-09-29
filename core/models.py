@@ -138,6 +138,16 @@ class PostLink(BaseModel):
     image: str = ""  # 대표 사진 주소 (상품 페이지 썸네일)
 
 
+class ShareRequest(BaseModel):
+    """공유리워드 링크를 붙여 달라고 텔레그램으로 보낸 요청.
+    monetize: manual_link 면 게시 알림이 이 요청을 겸한다 (tools.share, 상품 페이지에 씀).
+    comments.link_mode: share_reward 면 댓글 DM 도구가 따로 보낸다."""
+
+    sent_at: int
+    message_ids: list[int] = []
+    links: dict[int, str] = {}  # 상품 순서(1부터) → 붙여 준 공유 링크
+
+
 class PostRecord(BaseModel):
     """게시 기록 한 줄 (data/<계정>/posts.json). 8단계 게시 job 이 쓰고,
     기획이 중복을 피할 때, 10단계 댓글 DM 이 링크를 보낼 때 읽는다.
@@ -150,14 +160,7 @@ class PostRecord(BaseModel):
     permalink: str | None = None
     media_id: str | None = None  # 인스타 게시물 id (댓글 확인용)
     links: list[PostLink] = []  # 상품 링크 (없으면 상품 창고에서 찾음)
-
-
-class ShareRequest(BaseModel):
-    """공유리워드 링크를 붙여 달라고 텔레그램으로 보낸 요청 (link_mode: share_reward)."""
-
-    sent_at: int
-    message_ids: list[int] = []
-    links: dict[int, str] = {}  # 상품 순서(1부터) → 붙여 준 공유 링크
+    share: ShareRequest | None = None  # 공유리워드 링크 요청과 받은 링크 (monetize: manual_link)
 
 
 class PostDm(BaseModel):

@@ -257,6 +257,8 @@ class LinkPage(BaseModel):
     intro: str = "게시물에 나온 상품 링크예요. 최신 게시물이 맨 위에 있어요"
     keep: int = Field(default=14, ge=1, le=60)  # 보여 줄 최근 게시물 수
     item_line: str = "{category} · {shop}"  # 상품 이름 위 작은 글자
+    # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
+    share_days: int = Field(default=7, ge=1, le=30)
 
 
 class Instagram(BaseModel):
