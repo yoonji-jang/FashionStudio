@@ -406,10 +406,10 @@ def test_long_outer_keeps_shoulder_and_bottom_keeps_waist():
     ]
     samples = poc.SampleSet.model_validate({"account": "women", "name": "t", "items": items})
     changed = poc.with_item_sizes(layout, samples)
-    px, h = layout["px_per_cm"], layout["canvas"][1]
+    h = layout["canvas"][1]
 
     def top(rule):
-        return rule["center"][1] * h - rule["cm"] * px / 2
+        return rule["center"][1] * h - rule["cm"] * rule.get("px_per_cm", layout["px_per_cm"]) / 2
 
     for group in ("slots", "outer_and_top"):
         for cat in ("아우터", "하의"):

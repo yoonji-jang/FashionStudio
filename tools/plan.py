@@ -327,6 +327,9 @@ def check(
             errors.append(f"{label}: cutout_photo {it.cutout_photo} 번 사진이 없습니다")
         if it.slot and it.slot not in layout_slots:
             errors.append(f"{label}: slot '{it.slot}' 은 config/layout.yaml 에 없습니다")
+        if it.method and it.method not in get_args(photoroom.CutoutMethod):
+            methods = list(get_args(photoroom.CutoutMethod))
+            errors.append(f"{label}: method 는 {methods} 중에서 고릅니다")
         if it.wear_modes and set(it.wear_modes) - modes:
             errors.append(f"{label}: wear_modes 는 {sorted(modes)} 중에서 고릅니다")
         if p.category == "소품" and not it.slot and not it.wear_with:
@@ -534,7 +537,7 @@ def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
         src = feed.fetch_photo(url, work / "src" / f"{p.id.split(':')[-1]}_{it.cutout_photo}.jpg")
         item = {"category": p.category, "desc": it.desc, "image": str(src.resolve())}
         beside = it.wear_modes == [BESIDE]  # 입히지 않고 아우터 옆에 둔다
-        for key in ("slot", "segment", "cm", "wear_with", "wear_how", "wear_modes"):
+        for key in ("slot", "segment", "method", "cm", "wear_with", "wear_how", "wear_modes"):
             if getattr(it, key) is not None and not (beside and key.startswith("wear_")):
                 item[key] = getattr(it, key)
         if p.category == "상의" and "아우터" in cats and not it.wear_with and not beside:

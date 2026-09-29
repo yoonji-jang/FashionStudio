@@ -53,6 +53,8 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
   `wear_modes: [over]` 로 하고 경고로 남긴다.
 - **벨트**: `wear_with: 하의`, `segment: belt`, `wear_how: the belt is threaded through the belt loops ...`.
 - **가방·신발**: `segment: bag` / `segment: shoe`.
+- **착용컷밖에 없는 하의**: Flat Lay 가 와이드·스트레이트 바지를 부츠컷으로 바꾸기 쉽다. 모델이 똑바로 서서
+  허리부터 밑단까지 다 보이는 사진이면 `method: segment`, `segment: trousers` 로 사진 속 모양 그대로 오린다.
 - **주얼리**: `slot: 목걸이|귀걸이|팔찌`, `segment: necklace|earring|bracelet`. 과하지 않게 1~2개.
 - 크기는 실제 기장(cm) 비율로 놓는다. 기본값(config/layout.yaml slots)은 아우터 68, 상의 64, 하의 100.
   상품 이름에 롱·하프·크롭·스커트 같은 말이 있으면 도구가 `lengths` 표로 기장을 정한다 (롱코트 110).

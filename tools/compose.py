@@ -48,7 +48,7 @@ def real_length(category: str, text: str, layout: dict) -> float | None:
 
 def fit_real_size(item: Image.Image, rule: dict, layout: dict) -> Image.Image:
     """실제 치수(cm)에 맞춰 크기를 정한다. 폭이 max_width 를 넘으면 더 줄인다."""
-    target = rule["cm"] * layout["px_per_cm"]
+    target = rule["cm"] * rule.get("px_per_cm", layout["px_per_cm"])
     side = item.height if rule.get("measure", "height") == "height" else max(item.size)
     scale = target / side
     max_w = rule.get("max_width", 0.95) * layout["canvas"][0]

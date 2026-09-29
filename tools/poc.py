@@ -329,7 +329,7 @@ def with_item_sizes(layout: dict, samples: SampleSet) -> dict:
       입은 것처럼 하의 위를 덮는다.
     - 기본보다 짧은 옷(크롭 가디건 등): 밑단을 그대로 두어 아래 상품과의 간격이 변하지 않게 한다."""
     layout = copy.deepcopy(layout)
-    px, h = layout["px_per_cm"], layout["canvas"][1]
+    h = layout["canvas"][1]
     for it in samples.items:
         if it.cm is None:
             continue
@@ -337,6 +337,7 @@ def with_item_sizes(layout: dict, samples: SampleSet) -> dict:
             rule = layout.get(group, {}).get(it.place)
             if not rule:
                 continue
+            px = rule.get("px_per_cm", layout["px_per_cm"])
             if rule.get("measure", "height") == "height":
                 cx, cy = rule["center"]
                 keep_top = it.place == "하의" or it.cm > rule["cm"]

@@ -24,6 +24,8 @@ items:
   desc: 그레이 하이웨이스트 와이드 슬랙스 (gray high-waist wide straight-leg full-length slacks, legs equally wide from thigh to hem, no flare)
   name: 하이머스트 슬랙스
   product: zigzag:156246160
+  method: segment  # Flat Lay 가 네 번 모두 부츠컷으로 바꿈 (run23~28). 착용 사진 모양 그대로
+  segment: trousers
 - color: 블랙
   comment: 블랙 숄더백으로 전체 룩을 단정하게 잡아 줘요.
   cutout_photo: 0
