@@ -1,8 +1,12 @@
 """공유리워드 링크 받기 (monetize: manual_link). 외부로 올리는 작업이라 schedule 안에서만 돈다.
 
 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않는다. 그래서
-1. 게시가 끝나면 tools.publish 가 텔레그램 게시 알림에 상품 번호 목록을 붙여 보낸다 (request_text).
+1. 미리보기에 /ok 가 오면 상품 번호와 지그재그 링크 목록을 보낸다 (send_after_ok, schedule 이
+   고르기 마감~게시 사이 schedule.ok_check_every 마다와 다른 작업 때 확인). 게시 알림(tools.publish)
+   에도 같은 목록이 붙는다 (자동 승인이면 이때 처음).
+   사용자는 앱에서 링크를 열어 공유리워드 링크를 만든다.
 2. 사용자가 그 메시지에 답장으로 "1 https://…" 처럼 링크를 붙인다. 링크 모양은 거르지 않는다.
+   게시 전에 붙이면 게시 때 바로 반영된다.
 3. schedule 이 깨어날 때마다 check 가 답장을 읽어 게시 기록(posts.json)의 share 에 넣고,
    바뀌었으면 상품 페이지(tools.link_page)를 다시 올린다. 링크가 없는 상품은 상품 링크 그대로.
 
@@ -12,8 +16,11 @@
 
 from __future__ import annotations
 
+import json
 import re
+import time
 from datetime import UTC, datetime, timedelta
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -23,21 +30,34 @@ from core.profile import Profile, load_profile
 from core.store import Store
 
 URL = re.compile(r"https?://\S+")
+ASKED = "links.json"  # 결과 폴더(daily-results)에 남기는 "/ok 뒤 링크 목록을 보냈음" 기록
+
+
+def asked_ids(out: Path) -> list[int]:
+    path = out / ASKED
+    if not path.exists():
+        return []
+    return [int(json.loads(path.read_text(encoding="utf-8"))["message_id"])]
 
 
 def enabled(profile: Profile) -> bool:
     return profile.monetize == "manual_link" and profile.link_page.enabled
 
 
-def request_text(head: str, links: list[PostLink]) -> str:
+def request_text(head: str, links: list[PostLink], got: dict[int, str] | None = None) -> str:
+    """상품마다 지그재그 링크를 붙여 보낸다 (앱에서 열어 공유리워드 링크를 만들 수 있게)."""
+    got = got or {}
     rows = [
         head,
         "",
-        "공유리워드 링크를 이 메시지에 답장으로 붙여 주세요. 한 줄에 하나씩, 번호와 함께요 (예: 1 https://…).",
-        "보내 주신 링크로 상품 페이지를 바꿔요. 안 보낸 상품은 상품 링크 그대로 둬요.",
+        "아래 링크를 지그재그 앱에서 열어 공유리워드 링크를 만든 뒤",
+        "이 메시지에 답장으로 붙여 주세요.",
+        "한 줄에 하나씩 번호와 함께요 (예: 1 https://…). 안 보낸 상품은 상품 링크 그대로 둬요.",
         "",
     ]
-    rows += [f"{i}. {ln.category} · {ln.shop} {ln.name}" for i, ln in enumerate(links, 1)]
+    for i, ln in enumerate(links, 1):
+        mark = " ✓ 받음" if i in got else ""
+        rows.append(f"{i}. {ln.category} · {ln.shop} {ln.name}{mark}\n{ln.url}")
     return "\n".join(rows)
 
 
@@ -128,3 +148,37 @@ def check(account: str, tg, now: datetime | None = None, dry_run: bool = False, 
         return f"{summary} (상품 페이지 실패: {e})"
     tg.send(f"{summary}\n상품 페이지에 반영했어요 {url}")
     return summary
+
+
+def send_after_ok(account: str, day: str, results: Path | None, tg, dry_run: bool = False) -> str:
+    """그날 미리보기에 /ok 가 왔으면 상품별 지그재그 링크를 한 번 보낸다. schedule 이 부른다."""
+    from tools import notify, publish
+
+    profile = load_profile(account)
+    tag = f"[{account}] {day} 상품 링크"
+    if not enabled(profile) or tg is None or results is None:
+        return f"{tag}: 꺼짐"
+    d = datetime.strptime(day, "%Y-%m-%d").date()
+    try:
+        out = publish.find_run(results, account, d)
+    except FileNotFoundError:
+        return f"{tag}: 결과 없음"
+    record = notify.load_record(out)
+    if record is None or record.sandbox:
+        return f"{tag}: 미리보기 없음"
+    if asked_ids(out):
+        return f"{tag}: 이미 보냄"
+    if any(p.date == d for p in Store(account).posts()):
+        return f"{tag}: 이미 게시함 (게시 알림에 붙음)"
+    if notify.find_decision(tg.updates(), record, tg.chat_id) != "ok":
+        return f"{tag}: /ok 기다림"
+    links = publish.post_links(notify.load_manifest(out))
+    if dry_run:
+        return f"{tag}: /ok 확인, {len(links)}개 보낼 예정 (시험)"
+    mid = tg.send(
+        request_text(f"[{account}] {d} /ok 확인했어요. 게시 전에 상품 링크를 보내 드려요", links)
+    )
+    (out / ASKED).write_text(
+        json.dumps({"message_id": mid, "sent_at": int(time.time())}), encoding="utf-8"
+    )
+    return f"{tag}: /ok 확인, {len(links)}개 보냄"

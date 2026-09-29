@@ -263,6 +263,7 @@ def test_share_reward_needs_manual_link(tmp_path):
     path = tmp_path / "accounts/women/profile.yaml"
     data = yaml.safe_load(path.read_text())
     data["comments"]["link_mode"] = "share_reward"
+    data["monetize"] = "none"
     path.write_text(yaml.safe_dump(data, allow_unicode=True))
     with pytest.raises(ValueError, match="manual_link"):
         load_profile("women", tmp_path / "accounts")
@@ -270,6 +271,7 @@ def test_share_reward_needs_manual_link(tmp_path):
 
 def test_schedule_runs_comments_with_other_ticks(monkeypatch, profile):
     profile.comments.check_at = ["08:17"]
+    profile.monetize = "none"  # 공유리워드 확인(share)은 test_share
     monkeypatch.setattr(schedule, "load_profile", lambda a: profile)
     crons = {(s.task, s.local()): s.cron("Asia/Seoul", DAY) for s in schedule.slots(profile)}
     assert crons[("comments", "08:17")] == "17 23 * * *"

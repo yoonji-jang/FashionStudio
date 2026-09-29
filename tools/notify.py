@@ -174,6 +174,8 @@ def control_text(manifest: Manifest, profile: Profile, sandbox: bool) -> str:
     if profile.approval == "required" or manifest.needs_human:
         lines.append(f"게시하려면 /ok {label}, 건너뛰려면 /skip {label}")
         lines.append("(아래 버튼을 누르거나 이 메시지에 /ok 로 답장해도 돼요)")
+        if profile.monetize == "manual_link" and profile.link_page.enabled:
+            lines.append("/ok 를 확인하면 공유리워드 링크를 만들 상품 링크를 보내 드려요")
     else:
         lines.append(
             f"/skip {label} 을 보내지 않으면 {profile.schedule.publish_at} 에 자동 게시해요"

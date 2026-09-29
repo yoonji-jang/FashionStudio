@@ -6,7 +6,7 @@ from core.profile import load_profile
 from core.store import Store
 from tests.test_publish import DAY, FakeApis, clients, results, sent  # noqa: F401 - fixture
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
-from tools import link_page, publish, schedule, share
+from tools import link_page, notify, publish, schedule, share
 
 NOW = datetime(2026, 9, 28, 3, 0, tzinfo=UTC)  # 서울 9/28 12:00
 
@@ -85,10 +85,13 @@ def test_publish_asks_for_links_then_schedule_applies_them(
     tg, ig, host = clients(api)
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     post = store.posts()[-1]
-    assert post.share is not None and post.share.message_ids and post.share.links == {}
+    assert post.share is not None and post.share.links == {}
+    # 미리보기 메시지와 게시 알림 모두 답장을 받는다. 게시 알림에도 상품별 지그재그 링크
+    assert set(rec.message_ids) < set(post.share.message_ids)
+    assert post.links[0].url in api.texts[-1] and "게시했어요" in api.texts[-1]
 
     # 사용자가 게시 알림에 답장으로 링크를 붙임 → schedule 이 반영
-    ask = post.share.message_ids[0]
+    ask = post.share.message_ids[-1]
     api.replies.append((post.share.sent_at + 60, "1 https://s.zigzag.kr/one", ask))
     monkeypatch.setattr(share, "Store", lambda account: store)
     now = datetime.fromtimestamp(post.share.sent_at + 120, UTC)
@@ -105,8 +108,7 @@ def test_publish_asks_for_links_then_schedule_applies_them(
 
 
 def test_check_off_or_old(tmp_path, monkeypatch):
-    profile = load_profile("women")
-    assert not share.enabled(profile)  # monetize: none
+    monkeypatch.setattr(share, "enabled", lambda profile: False)
     assert "꺼짐" in share.check("women", object(), NOW)
     monkeypatch.setattr(share, "enabled", lambda profile: True)
     st = Store("women", root=tmp_path)
@@ -131,4 +133,51 @@ def test_schedule_adds_share_task(monkeypatch):
     monkeypatch.undo()
     monkeypatch.setattr(schedule, "load_profile", manual)
     tasks = schedule.due("17 1 * * *", NOW)
-    assert [t.task for t in tasks] == ["candidates", "share"]
+    assert [t.task for t in tasks] == ["candidates", "links", "share"]
+    # 고르기 마감 뒤 /ok 확인 칸 (서울 17:17)
+    tasks = schedule.due("17 8 * * *", datetime(2026, 9, 28, 8, 20, tzinfo=UTC))
+    assert [(t.task, t.date) for t in tasks] == [("links", "2026-09-28"), ("share", "2026-09-28")]
+
+
+def test_links_sent_after_ok_and_replies_used_at_publish(
+    results,  # noqa: F811
+    store,  # noqa: F811
+    monkeypatch,
+):
+    monkeypatch.setattr(share, "Store", lambda account: store)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)
+    tg, ig, host = clients(api)
+    day = str(DAY)
+    assert "/ok 기다림" in share.send_after_ok("women", day, results, tg)
+    api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
+    assert "시험" in share.send_after_ok("women", day, results, tg, dry_run=True)
+    assert not (run / share.ASKED).exists()
+    assert "7개 보냄" in share.send_after_ok("women", day, results, tg)
+    items = notify.load_manifest(run).plan.items
+    assert all(str(p.url) in api.texts[-1] for p in items) and "/ok 확인" in api.texts[-1]
+    [ask] = share.asked_ids(run)
+    assert "이미 보냄" in share.send_after_ok("women", day, results, tg)
+
+    # 게시 전에 링크 목록에 답장 → 게시하자마자 올린 첫 상품 페이지부터 공유리워드 링크
+    api.replies.append((rec.sent_at + 9, "2 https://s.zigzag.kr/two", ask))
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    post = store.posts()[-1]
+    assert post.share is not None and post.share.links == {2: "https://s.zigzag.kr/two"}
+    page = base64.b64decode(api.files["women/index.html"]).decode()
+    assert "https://s.zigzag.kr/two" in page
+    assert "2. " in api.texts[-1] and "✓ 받음" in api.texts[-1]
+    assert "이미 보냄" in share.send_after_ok("women", day, results, tg)
+
+
+def test_links_slots_between_deadline_and_publish():
+    profile = load_profile("women")
+    profile.monetize = "manual_link"
+    got = [s.local() for s in schedule.slots(profile) if s.task == "links"]
+    assert got == ["16:17", "17:17", "18:17", "19:17"]
+    profile.schedule.ok_check_every = 0
+    assert not [s for s in schedule.slots(profile) if s.task == "links"]
+    profile.schedule.ok_check_every = 60
+    profile.monetize = "none"
+    assert not [s for s in schedule.slots(profile) if s.task == "links"]

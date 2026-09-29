@@ -26,8 +26,12 @@ on:
     - cron: "17 5 * * *"  # women pick 14:17
     - cron: "47 5 * * *"  # women pick 14:47
     - cron: "17 6 * * *"  # women pick 15:17
+    - cron: "17 7 * * *"  # women links 16:17
+    - cron: "17 8 * * *"  # women links 17:17
     - cron: "17 9 * * 0"  # women themes 일 18:17
+    - cron: "17 9 * * *"  # women links 18:17
     - cron: "47 9 * * 0"  # women token 일 18:47
+    - cron: "17 10 * * *"  # women links 19:17
     - cron: "3 11 * * *"  # women publish 20:03
     - cron: "33 11 * * *"  # women publish 20:33
     - cron: "3 12 * * *"  # women publish 21:03
@@ -104,6 +108,7 @@ jobs:
             return 1
           }
           commit /tmp/results daily-results "코디 고르기 기록" ':(glob)*/picks/**'
+          commit /tmp/results daily-results "상품 링크 보낸 기록" ':(glob)*/links.json'
           commit . "${{ github.ref_name }}" "주제 다시 정하기 요청" ':(glob)data/*/themes_review.json'
           commit . "${{ github.ref_name }}" "댓글 DM 기록" ':(glob)data/*/dm.json'
           commit . "${{ github.ref_name }}" "공유리워드 링크" ':(glob)data/*/posts.json'

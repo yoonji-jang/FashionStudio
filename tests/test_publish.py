@@ -2,6 +2,7 @@ import base64
 import json
 import shutil
 from datetime import date
+from urllib.parse import parse_qs
 
 import httpx
 import pytest
@@ -26,6 +27,7 @@ class FakeApis:
         self.next_id = 100
         self.files: dict[str, str] = {}
         self.statuses: dict[str, list[str]] = {}
+        self.texts: list[str] = []  # 보낸 텔레그램 글
 
     def __call__(self, req: httpx.Request) -> httpx.Response:
         host, path = req.url.host, req.url.path
@@ -59,6 +61,9 @@ class FakeApis:
             n = body.count('filename="p')
             ids = [{"message_id": self._id()} for _ in range(n)]
             return httpx.Response(200, json={"ok": True, "result": ids})
+        if method == "sendMessage":
+            form = parse_qs(req.content.decode())
+            self.texts.append(form.get("text", [""])[0])
         return httpx.Response(200, json={"ok": True, "result": {"message_id": self._id()}})
 
     def instagram(self, req, path):
@@ -167,6 +172,8 @@ def test_preview_sends_slides_caption_and_buttons(results):
     assert methods == ["sendMediaGroup", "sendMessage", "sendMessage"]
     slides = notify.slide_paths(notify.load_manifest(run), run)
     assert len(rec.message_ids) == len(slides) + 2
+    # 상품 링크는 /ok 뒤에 보낸다 (tools.share.send_after_ok)
+    assert "zigzag.kr" not in api.texts[-1] and "상품 링크를 보내 드려요" in api.texts[-1]
     saved = notify.load_record(run)
     assert saved.run == "2026-09-27-run5" and saved.needs_human  # 검수 전
     text = notify.control_text(notify.load_manifest(run), load_profile("women"), False)
@@ -183,6 +190,11 @@ def test_guard(results):
     assert publish.guard(m, profile, images, {}) == []
     m.caption = m.caption.replace(profile.copy_rules.ai_notice, "")
     assert any("AI 합성 고지" in e for e in publish.guard(m, profile, images, {}))
+    # 광고 표기 없이 만든 결과를 manual_link 프로필로 게시하려 하면 막는다
+    c = profile.copy_rules
+    m.monetize = "none"
+    m.caption = m.caption.replace(c.ad_notice, "").lstrip()
+    m.hashtags = [t for t in m.hashtags if t != c.ad_hashtag]
     profile.monetize = "manual_link"
     errors = "\n".join(publish.guard(m, profile, images, {}))
     assert "수익 방식이 바뀌었습니다" in errors and "광고 고지" in errors and "#광고" in errors
