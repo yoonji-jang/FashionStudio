@@ -9,7 +9,8 @@ DM 을 고칠 필요가 없다. 설정은 profile `link_page`.
 사용법:
   python -m tools.link_page build --account women [--out out/link_page.html]   파일로 만들기
   python -m tools.link_page push --account women                               만들어서 올리기
-환경 변수(push): MEDIA_REPO_TOKEN, GITHUB_REPOSITORY
+  python -m tools.link_page remove --account women                             올려 둔 페이지 내리기
+환경 변수(push, remove): MEDIA_REPO_TOKEN, GITHUB_REPOSITORY
 """
 
 from __future__ import annotations
@@ -124,10 +125,16 @@ def push(profile: Profile, store: Store, host: GitHubHost | None = None) -> str:
     return host.pages_url(f"{profile.id}/")
 
 
+def remove(profile: Profile, host: GitHubHost | None = None) -> bool:
+    """올려 둔 페이지를 내린다 (link_page 를 끈 뒤). 지웠으면 True."""
+    host = host or GitHubHost.from_config(notify.publish_config().get("image_host", {}))
+    return host.remove(page_path(profile), f"상품 페이지 내림 {profile.id}")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("build", "push"):
+    for name in ("build", "push", "remove"):
         s = sub.add_parser(name)
         s.add_argument("--account", required=True)
         if name == "build":
@@ -141,6 +148,9 @@ def main(argv: list[str] | None = None) -> int:
         print(args.out)
         return 0
     try:
+        if args.cmd == "remove":
+            print("지웠어요" if remove(profile) else "올려 둔 페이지가 없어요")
+            return 0
         print(push(profile, store))
     except (ValueError, RuntimeError, httpx.HTTPError) as e:
         print(f"오류: {e}", file=sys.stderr)

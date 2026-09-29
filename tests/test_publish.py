@@ -10,7 +10,7 @@ import pytest
 from core.models import PreviewRecord
 from core.profile import load_profile
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
-from tools import notify, publish
+from tools import notify, publish, share
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
@@ -214,7 +214,16 @@ def sent(api: FakeApis, run) -> PreviewRecord:
     return notify.preview(run, run.name, tg)
 
 
-def test_publish_after_ok(results, store):  # noqa: F811
+def with_link_page(account):
+    """상품 페이지를 켠 프로필 (women 은 2026-09-30 부터 끔)."""
+    p = load_profile(account)
+    p.link_page.enabled = True
+    return p
+
+
+def test_publish_after_ok(results, store, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(publish, "load_profile", with_link_page)
+    monkeypatch.setattr(share, "load_profile", with_link_page)
     run = results / "2026-09-27-run5"
     api = FakeApis()
     rec = sent(api, run)
