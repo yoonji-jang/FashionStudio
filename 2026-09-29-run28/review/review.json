@@ -1,0 +1,38 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/C_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 1,
+        "clean": 2,
+        "layout": 1,
+        "notes": "3번 슬랙스가 원본의 와이드 스트레이트에서 아래로 갈수록 넓어지는 부츠컷으로 바뀜. 6번 귀걸이는 작아서 형태를 알아보기 어려움. 4번 가방과 5번 신발이 실제 크기 비율보다 작게 배치됨"
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit/results/C_2.jpg",
+      "round": 1,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 0,
+        "complete": 1,
+        "clean": 2,
+        "layout": 1,
+        "notes": "3번 슬랙스가 원본의 와이드 스트레이트에서 부츠컷으로 바뀌고 밑단이 더 벌어짐. 6번 귀걸이가 원본의 큐브형 스터드가 아닌 긴 드롭형으로 바뀌고 작음. 4번 가방과 5번 신발이 실제 크기 비율보다 작게 배치됨"
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "retry",
+  "slide_issues": [],
+  "summary": "c1 과 c2 모두 3번 슬랙스가 부츠컷으로 바뀌어 shape 0점이라 통과 기준에 못 미침. 그 외 색과 깨끗함은 좋음. 귀걸이는 c1 이 원본 스터드 형태에 더 가까움. 슬랙스를 와이드 스트레이트로 다시 만들어야 함."
+}
