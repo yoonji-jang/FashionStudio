@@ -32,7 +32,7 @@ uv run pytest
 | 매일 오전 | 코디 후보 5개 중 하나 고르기 (버튼 또는 "3번", 새 후보 "다시", 건너뛰기 `/skip`) | 텔레그램 | `pick.enabled: false` (마감까지 안 고르면 `pick.on_timeout`) |
 | 매일 오후 | 고른 코디로 만든 미리보기에 `/ok` (게시) 또는 `/skip` (건너뛰기) | 텔레그램 | `approval: optional` 이면 `/skip` 만 필요 |
 | 문제가 생겼을 때 | 이미지 검수 2회 실패, 토큰 만료 등 알림 확인 | 텔레그램 | - |
-| 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 | 텔레그램 | `monetize: none` 이면 없음 |
+| 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 (댓글 DM 에 씀) | 텔레그램 | `comments.link_mode: zigzag` 이면 없음 |
 | 가끔 | 반응 보면서 말투·제목 예시·금지 표현 다듬기 | `voice.md`, `profile.yaml` | - |
 
 처음 2~3주는 매일 승인하며 품질을 확인하고, 안정되면 `approval: optional` 로 바꾸는 것을 권장합니다.
@@ -249,6 +249,25 @@ Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 
 | `count` | 5 | 보내는 후보 수 (2~8) |
 | `on_timeout` | first | 마감까지 안 고르면 `first`(1번으로 진행) 또는 `skip`(그날 건너뜀) |
 | `max_again` | 2 | `/again` 으로 새 후보를 받을 수 있는 횟수 |
+
+#### `comments` : 댓글 → DM 코디 링크 (10단계)
+캡션에 "댓글을 남겨 주세요" 안내를 넣고, 댓글(키워드를 정하면 그 말이 든 댓글)이 달리면 인스타 공식 기능(비공개 답장)으로
+상품 링크를 DM 으로 보냅니다. 켜기 전에 아래 [ManyChat 연결](#manychat-연결-처음-한-번)을 먼저 하세요.
+`check_at` 부터 `share_wait_hours` 까지는 `mode: builtin` 일 때만 씁니다.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | false | true 면 캡션 안내 문구(`copy.link_line` 대신)가 들어감 (builtin 이면 댓글 확인도) |
+| `mode` | external | `external`: ManyChat 이 DM (여기서는 캡션만) / `builtin`: 자동 실행 때 확인해 직접 DM, 바꾸면 `tools.schedule sync` |
+| `cta` | `코디 정보가 궁금하면 댓글을 남겨 주세요…` | 캡션 안내 문구. `{keyword}` 를 쓰면 `keywords` 첫 번째로 바뀜 |
+| `keywords` | [] | 비어 있으면 모든 댓글에 DM. `[정보]` 처럼 적으면 그 말이 든 댓글만 (띄어쓰기·대소문자 무시) |
+| `check_at` | ["08:17", "17:17", "23:17"] | 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분) |
+| `with_other_ticks` | true | 후보·고르기·게시로 깨어날 때도 같이 확인 (추가 시간 거의 없음) |
+| `days` | 7 | 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 최대 7) |
+| `dm_intro`, `dm_item`, `dm_outro` | | DM 글. `{title}` 제목, 상품 줄 `{index} {category} {shop} {name} {url}` |
+| `public_reply` | "" | 댓글에 공개 답글도 달기 (예: "DM 보내 드렸어요"). 빈칸이면 안 함 |
+| `link_mode` | zigzag | `zigzag`: 상품 링크 / `share_reward`: 공유리워드 링크 (`monetize: manual_link` 필요) |
+| `share_wait_hours` | 6 | 공유 링크를 기다리는 시간. 넘으면 상품 링크로 보냄 |
 
 #### 수익·승인
 | 항목 | 예시 | 선택지 |
@@ -596,6 +615,89 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 
 ---
 
+## 댓글 → DM 코디 링크 (10단계)
+
+댓글 달자마자 DM 이 가려면 메타가 댓글을 즉시 알려 주는 **웹훅**을 받는 서버가 있어야 합니다. 서버를 직접 두지
+않고 메타 공식 파트너인 **ManyChat** 이 댓글을 받아 DM 을 보내고, 이 저장소는 캡션 안내 문구와 DM 에 넣을
+**상품 페이지**를 맡습니다 (`comments.mode: external`).
+
+```
+게시 (캡션: "코디 정보가 궁금하면 댓글을 남겨 주세요…")
+  → publish 가 상품 페이지(최근 게시물 상품 링크)를 새로 올림 (tools.link_page)
+댓글 → ManyChat 이 바로 DM: "코디 상품 링크는 여기에 모아 뒀어요 [상품 보기]" → 상품 페이지
+```
+
+- **상품 페이지**: 공개 사진 저장소의 GitHub Pages 에 `<계정>/index.html` 로 올립니다
+  (예: `https://yoonji-jang.github.io/FashionStudio-media/women/`). 최근 `link_page.keep` 개 게시물의 제목·날짜·
+  상품 링크만 들어가고, 최신 게시물이 맨 위입니다. DM 주소는 한 번만 넣어 두면 됩니다.
+- **ManyChat 없이** (`comments.mode: builtin`): `tools.comments` 가 자동 실행 때 댓글을 확인해 인스타 비공개
+  답장으로 게시물별 링크를 보냅니다. 서버가 없어 30분~몇 시간 늦고, 댓글·메시지 권한 토큰과 (일반 사용자에게
+  보내려면) 메타 앱 검수가 필요합니다. 아래 [직접 보내기](#직접-보내기-mode-builtin) 참고.
+
+### ManyChat 연결 (처음 한 번)
+
+1. **상품 페이지 켜기**: GitHub 에서 사진 저장소(`FashionStudio-media`) → Settings → **Pages** → Source
+   **Deploy from a branch**, Branch **main** / **(root)** → Save. 그다음 이 저장소 Actions → `link-page` →
+   Run workflow → 실행 기록의 주소를 폰에서 열어 보기
+2. **인스타 설정**: 인스타 앱 → 설정 → 메시지 및 스토리 답장 → 메시지 제어 → 연결된 도구 →
+   **메시지 액세스 허용** 켜기 (꺼져 있으면 ManyChat 도 DM 을 못 보냄)
+3. **ManyChat 가입**: [manychat.com](https://manychat.com) → Instagram 으로 시작 → 게시할 인스타 계정 연결
+4. **자동화 만들기**: Automation → New Automation → 트리거 **사용자가 게시물·릴스에 댓글을 남김**
+   - 게시물: **모든 게시물(Any post)** (무료 요금제에서 막혀 있으면 Pro 가 필요할 수 있음)
+   - 키워드: **모든 댓글(Any comment / 키워드 없음)** (`profile.yaml` 의 `comments.keywords: []` 와 같게.
+     특정 말만 받으려면 둘 다 같은 말로)
+   - (선택) 댓글 공개 답글: "DM 보내 드렸어요"
+   - 액션 **메시지 보내기**: "댓글 남겨 주셔서 고마워요. 코디 상품 링크는 여기에 모아 뒀어요" + 버튼
+     "상품 보기" → 1번의 상품 페이지 주소
+5. 자동화를 **켜고(Set Live)**, 다른 인스타 계정으로 게시물에 아무 댓글 → DM 이 바로 오는지 확인
+6. 잘 되면 `profile.yaml` 의 `comments.enabled: true` → main 에 합치기. 다음 게시물부터 캡션에 안내 문구가 들어감
+
+#### `link_page` 설정
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | true | 게시할 때마다 상품 페이지를 새로 올림 |
+| `title`, `intro` | janggu.zip 코디 상품 | 페이지 맨 위 제목과 한 줄 설명 |
+| `keep` | 14 | 보여 줄 최근 게시물 수 |
+| `item_line` | `{category} · {shop}` | 상품 이름 위 작은 글자 |
+
+### 직접 보내기 (mode: builtin)
+
+```
+schedule 이 깨어날 때마다 (다른 작업 때 + check_at) tools.comments:
+  최근 7일 게시물의 댓글 읽기 → 키워드 댓글 → 비공개 답장 DM (게시물별 상품 링크)
+  → data/<계정>/dm.json 에 댓글 id 해시만 기록 (커밋)
+```
+
+- **인스타 규칙**: 댓글 하나에 DM 한 번, 댓글을 단 뒤 7일 안에만 보낼 수 있습니다. 같은 사람이 여러 번
+  댓글을 달아도 한 번만 보냅니다. 내 계정 댓글에는 보내지 않습니다.
+- **개인정보**: 댓글 작성자 이름·id·댓글 내용은 저장하지 않습니다. 두 번 보내지 않으려고 댓글 id 의 해시만
+  남기고, 기간이 지나면 지웁니다.
+- **DM 이 가는 때**: 10:17~15:17·20:03~22:03 은 30분마다, 그 밖에는 `check_at` (기본 08:17·17:17·23:17).
+- **Actions 사용 시간**: `check_at` 한 칸이 하루 1분이라 기본 3칸이면 한 달 약 90분이 늘어납니다.
+- **공유리워드**: 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않습니다.
+  `link_mode: share_reward` 면 게시 뒤 첫 확인 때 텔레그램으로 상품 목록을 보내고, 그 메시지에 답장으로
+  링크를 붙이면(한 줄에 하나, `1 https://…` 처럼 번호를 붙여도 됨) 그 링크로 DM 을 보냅니다.
+  `share_wait_hours` 안에 안 오면 상품 링크로 보냅니다. 공유 링크를 보낼 때는 DM 맨 앞에 광고 고지가 붙습니다.
+- **오류**: 토큰 만료·권한 부족이면 텔레그램으로 하루 한 번 알리고, 다음 확인 때 다시 시도합니다.
+
+준비:
+1. 위 ManyChat 연결 2번처럼 **메시지 액세스 허용** 켜기
+2. [developers.facebook.com](https://developers.facebook.com) → 내 앱 → 사용 사례 **Instagram에서 메시지 및
+   콘텐츠 관리** → 권한에 `instagram_business_manage_comments`, `instagram_business_manage_messages` 추가
+3. **Instagram 로그인을 통한 API 설정** → **토큰 생성** 을 다시 눌러 새 토큰을 받고 Secret `IG_WOMEN_TOKEN` 교체
+4. 시험: 다른 계정으로 아무 댓글 → Actions → `comments` → Run workflow (`dry_run` 끄면 실제 DM)
+5. 잘 되면 `comments.enabled: true`, `mode: builtin` → `uv run python -m tools.schedule sync` → main 에 합치기
+
+개발 모드 앱은 앱 역할(관리자·테스터)이 있는 계정끼리만 메시지 기능이 확실히 됩니다. 일반 계정에 권한 오류가
+나면 앱을 라이브 모드로 바꾸고, 그래도 안 되면 두 권한의 **고급 액세스(앱 검수)** 가 필요합니다.
+
+- 도구만: `uv run python -m tools.link_page build --account women` 상품 페이지 파일로 만들기,
+  `uv run python -m tools.comments text --account women` DM 글 미리 보기
+
+Claude 는 `tools.comments`, `tools.link_page push` 를 부를 수 없게 막아 두었습니다.
+
+---
+
 ## 새 계정 추가
 
 1. `accounts/_template/` 을 `accounts/<id>/` 로 복사
@@ -617,7 +719,8 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 | 6 | AI 기획 (Claude Code 스킬·에이전트) | 완료 |
 | 7 | 이미지 검수 | 완료 |
 | 8 | 인스타 게시 (텔레그램 승인) | 완료 |
-| 9 | 매일 자동 실행 + 텔레그램 코디 고르기 | 진행 중 |
-| 10 | 댓글 → DM 코디 링크 | |
-| 11 | 상품 창고를 Actions 캐시로 이전 | |
-| 12 | 릴스 | |
+| 9 | 매일 자동 실행 + 텔레그램 코디 고르기 | 완료 |
+| 10 | 댓글 → DM 코디 링크 | 진행 중 |
+| 11 | 표지 컨셉 변경 (사람이 입은 핀터레스트 감성) | |
+| 12 | 상품 창고를 Actions 캐시로 이전 | |
+| 13 | 릴스 | |

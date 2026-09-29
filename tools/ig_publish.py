@@ -1,4 +1,4 @@
-"""인스타그램 게시 API (8단계). 캐러셀(2~10장) 또는 사진 한 장과 캡션을 올린다.
+"""인스타그램 API (8단계 게시, 10단계 댓글·DM). 캐러셀(2~10장) 또는 사진 한 장과 캡션을 올린다.
 
 순서: 사진마다 캐러셀 항목 만들기 → 캐러셀 묶기(캡션) → 처리 끝날 때까지 기다리기
 → 게시 → 게시물 주소.
@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import json
 import time
 from collections.abc import Callable
 
@@ -15,9 +16,9 @@ import httpx
 
 
 class IGError(RuntimeError):
-    def __init__(self, message: str, code: int | None = None):
+    def __init__(self, message: str, code: int | None = None, subcode: int | None = None):
         super().__init__(message)
-        self.code = code
+        self.code, self.subcode = code, subcode
 
     @property
     def token_problem(self) -> bool:
@@ -59,6 +60,7 @@ class Instagram:
             raise IGError(
                 f"인스타 {path} 실패 ({r.status_code}): {msg}".replace(self.token, "***"),
                 err.get("code"),
+                err.get("error_subcode"),
             )
         return body
 
@@ -107,3 +109,37 @@ class Instagram:
             return self._call("GET", media_id, fields="permalink").get("permalink")
         except IGError:
             return None
+
+    # ---------- 댓글·DM (10단계, tools.comments) ----------
+
+    def recent_media(self, limit: int = 25) -> list[dict]:
+        """최근 게시물 [{id, permalink, timestamp}]."""
+        return self._call(
+            "GET", f"{self.user_id}/media", fields="id,permalink,timestamp", limit=limit
+        ).get("data", [])
+
+    def comments(self, media_id: str, max_pages: int = 20) -> list[dict]:
+        """게시물의 댓글 [{id, text, timestamp, from{id}}] (답글 제외). 작성자 이름은 안 받음."""
+        out: list[dict] = []
+        params: dict = {"fields": "id,text,timestamp,from{id}", "limit": 50}
+        for _ in range(max_pages):
+            body = self._call("GET", f"{media_id}/comments", **params)
+            out += body.get("data", [])
+            after = (body.get("paging") or {}).get("cursors", {}).get("after")
+            if not after or not (body.get("paging") or {}).get("next"):
+                break
+            params["after"] = after
+        return out
+
+    def private_reply(self, comment_id: str, text: str) -> None:
+        """댓글 작성자에게 비공개 답장(DM). 댓글 하나에 한 번, 댓글 후 7일 안에만 된다."""
+        self._call(
+            "POST",
+            f"{self.user_id}/messages",
+            recipient=json.dumps({"comment_id": comment_id}),
+            message=json.dumps({"text": text}, ensure_ascii=False),
+        )
+
+    def reply_comment(self, comment_id: str, text: str) -> None:
+        """댓글에 공개 답글."""
+        self._call("POST", f"{comment_id}/replies", message=text)

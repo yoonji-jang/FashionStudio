@@ -33,7 +33,7 @@ from zoneinfo import ZoneInfo
 import httpx
 from PIL import Image
 
-from core.models import Manifest, PostRecord, PreviewRecord, PublishRecord
+from core.models import Manifest, PostLink, PostRecord, PreviewRecord, PublishRecord
 from core.profile import Profile, load_profile
 from core.store import Store
 from tools import notify
@@ -125,6 +125,22 @@ def approval(
         return "auto", "승인 생략 설정이라 자동 게시합니다"
     why = "사람 확인이 필요한 날이라" if manifest.needs_human else "승인 필수 설정이라"
     return "wait", f"{why} /ok 를 기다립니다"
+
+
+def post_links(manifest: Manifest) -> list[PostLink]:
+    """게시물 상품 링크 (댓글 DM 용). 짧은 이름은 캡션 제품 목록과 같은 규칙으로 다듬는다."""
+    from tools.feed import clean_name
+
+    return [
+        PostLink(
+            product=p.id,
+            category=p.category,
+            shop=p.shop,
+            name=clean_name(p.name),
+            url=str(p.url),
+        )
+        for p in manifest.plan.items
+    ]
 
 
 def run(
@@ -249,10 +265,22 @@ def run(
             theme=manifest.plan.theme.title_hint,
             products=[p.id for p in manifest.plan.items],
             permalink=link,
+            media_id=media_id,
+            links=post_links(manifest),
         )
     )
     store.save_posts(sorted(posts, key=lambda p: p.date))
     print(f"{tag} 게시 완료: {link or media_id}")
+    if profile.link_page.enabled:
+        # 상품 페이지 (ManyChat DM 이 가리키는 곳). 실패해도 게시는 끝났으니 경고만
+        from tools import link_page
+
+        try:
+            print(f"{tag} 상품 페이지: {link_page.push(profile, store, host)}")
+        except (RuntimeError, ValueError, httpx.HTTPError) as e:
+            print(f"경고: 상품 페이지를 올리지 못했습니다: {e}", file=sys.stderr)
+            if tg is not None:
+                tg.send(f"{tag} 게시는 했지만 상품 페이지를 올리지 못했어요: {e}")
     if tg is not None:
         tg.send(f"{tag} 게시했어요 ✓\n{link or ''}".strip())
     return 0

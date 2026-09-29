@@ -158,6 +158,20 @@ def test_caption_manual_link_adds_ad_notice(store):
     assert plan.final_hashtags(p, profile)[0] == "#광고"
 
 
+def test_caption_uses_comment_cta_when_enabled(store):
+    profile = load_profile("women")
+    link = profile.copy_rules.link_line
+    profile.comments.enabled = False
+    assert link in plan.caption(daily(), profile, store)
+    profile.comments.enabled = True
+    body = plan.caption(daily(), profile, store)
+    assert link not in body and profile.comments.cta in body
+    profile.comments.cta = "댓글로 '{keyword}'라고 남겨 주세요"
+    profile.comments.keywords = ["정보"]
+    assert "댓글로 '정보'라고" in plan.caption(daily(), profile, store)
+    assert body.rstrip().endswith(profile.copy_rules.ai_notice)
+
+
 def test_context_mentions_stock_and_theme(store):
     profile = load_profile("women")
     store.save_themes([daily().theme])

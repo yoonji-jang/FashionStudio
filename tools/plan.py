@@ -426,7 +426,10 @@ def caption(plan: DailyPlan, profile: Profile, store: Store) -> str:
             if it.product in products
         ]
     )
-    blocks.append([c.link_line])
+    cm = profile.comments
+    # 댓글 DM 을 켜면 "프로필 링크" 대신 댓글 안내 문구 (10단계)
+    keyword = cm.keywords[0] if cm.keywords else ""
+    blocks.append([cm.cta.format(keyword=keyword) if cm.enabled else c.link_line])
     blocks.append([c.ai_notice])
     return "\n\n".join("\n".join(b) for b in blocks if any(b))
 

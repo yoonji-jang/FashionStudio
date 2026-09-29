@@ -171,6 +171,35 @@ pick:
   on_timeout: first  # 마감까지 안 고르면 first(1번으로 진행) 또는 skip(그날 건너뜀)
   max_again: 2       # "다시"로 새 후보를 받을 수 있는 횟수
 
+# 댓글 → DM 코디 링크 (10단계). 켜면 캡션의 "프로필 링크" 문구 대신 cta 가 들어간다.
+# DM 은 mode 에 따라 external: ManyChat 이 댓글 즉시 보냄 (DM 에는 아래 link_page 주소)
+#                     builtin: tools.comments 가 자동 실행 때 확인해 보냄 (30분~몇 시간 늦음, 토큰 권한 필요)
+# builtin 으로 켜거나 check_at 을 바꾸면 `uv run python -m tools.schedule sync`
+comments:
+  enabled: true      # ManyChat 규칙이 켜져 있어야 함 (끄면 캡션이 예전 "프로필 링크" 문구로)
+  mode: external
+  cta: "코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요"
+  keywords: []   # 비어 있으면 모든 댓글에 DM. 특정 말만 받으려면 [정보] 처럼 적고 cta 에 {keyword}, ManyChat 규칙도 같게
+  # 아래는 mode: builtin 일 때만 씀
+  check_at: ["08:17", "17:17", "23:17"]  # 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분)
+  with_other_ticks: true   # 후보·고르기·게시 때도 같이 확인
+  days: 7                  # 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 최대 7)
+  dm_intro: "댓글 남겨 주셔서 고마워요. '{title}' 코디 상품 정보예요"
+  dm_item: "{index}. {category} · {shop} {name}\n{url}"
+  dm_outro: "사이즈·재고는 링크에서 확인해 주세요"
+  public_reply: ""         # 댓글에 공개 답글 (빈칸이면 안 함)
+  link_mode: zigzag        # zigzag / share_reward(텔레그램으로 공유리워드 링크를 받아 씀, monetize: manual_link 필요)
+  share_wait_hours: 6
+
+# 최근 게시물 상품 링크 페이지 (10단계, tools.link_page). 게시할 때마다 새로 올린다.
+# 주소: https://<GitHub 아이디>.github.io/<사진 저장소>/women/ (사진 저장소 GitHub Pages 를 켜야 함, README)
+link_page:
+  enabled: true
+  title: janggu.zip 코디 상품
+  intro: 게시물에 나온 상품 링크예요. 최신 게시물이 맨 위에 있어요
+  keep: 14                 # 보여 줄 최근 게시물 수
+  item_line: "{category} · {shop}"
+
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 monetize: none
 # required: 텔레그램 /ok 승인 후 게시 / optional: /skip 이 없으면 자동 게시

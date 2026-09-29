@@ -12,6 +12,9 @@ Actions 는 늦게 깨어날 때가 많아서 지금 시각이 아니라 "어느
   themes      다음 주 주제 (themes 워크플로)
   collect     지그재그 상품 수집 (collect 워크플로, 창고 커밋)
   token       인스타 토큰 연장 (token 워크플로)
+  comments    댓글 확인 → DM 코디 링크 (tools.comments, 이 job 안에서 바로 돈다).
+              profile comments.check_at 시각에 따로 깨어나고, with_other_ticks 면
+              다른 작업으로 깨어날 때도 같이 한다 (Actions 시간을 거의 더 쓰지 않음)
 
 사용법:
   python -m tools.schedule list                    계정별 시간표와 cron 줄
@@ -20,7 +23,7 @@ Actions 는 늦게 깨어날 때가 많아서 지금 시각이 아니라 "어느
   python -m tools.schedule run --cron "17 1 * * *" --results <daily-results 폴더> [--dry-run]
       작업을 실행한다 (워크플로 실행 요청, 고른 번호 확인).
       환경 변수 GITHUB_TOKEN, GITHUB_REPOSITORY,
-      GITHUB_REF_NAME, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+      GITHUB_REF_NAME, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, IG_SECRETS(댓글 DM, Secrets JSON)
 """
 
 from __future__ import annotations
@@ -112,6 +115,8 @@ def slots(profile: Profile) -> list[Slot]:
         if value:
             days, hhmm = _weekly(value)
             out.append(Slot(a, task, hhmm, days=days))
+    if profile.comments.enabled and profile.comments.mode == "builtin":
+        out += [Slot(a, "comments", hhmm) for hhmm in profile.comments.check_at]
     return out
 
 
@@ -211,6 +216,14 @@ def due(cron: str, now: datetime | None = None, accounts: list[str] | None = Non
         elif sl.task == "themes":
             day = base + timedelta(days=1)
         tasks.append(Task(sl.account, sl.task, day.isoformat(), sl.first, sl.final, left))
+    # 다른 작업으로 깨어난 계정은 댓글도 같이 본다 (따로 깨어나는 것보다 Actions 시간이 덜 듦)
+    for account in dict.fromkeys(t.account for t in tasks):
+        profile = load_profile(account)
+        mine = [t for t in tasks if t.account == account]
+        cm = profile.comments
+        builtin = cm.enabled and cm.mode == "builtin"
+        if builtin and cm.with_other_ticks and all(t.task != "comments" for t in mine):
+            tasks.append(Task(account, "comments", mine[0].date, True, True, 0))
     return tasks
 
 
@@ -280,6 +293,7 @@ def execute(
     gh,
     tg=None,
     now: datetime | None = None,
+    dry_run: bool = False,
 ) -> list[str]:
     """작업을 돌린다. 실행 요청을 보낸 워크플로 목록(로그)을 돌려준다.
     고른 번호 결정은 results 폴더(daily-results)의 picks/picked.json 에 쓰고,
@@ -348,6 +362,11 @@ def execute(
             send("collect.yml", account=t.account, commit=True)
         elif t.task == "token":
             send("token.yml", account=t.account)
+        elif t.task == "comments":
+            from tools import comments
+
+            # 오류가 나도 다른 작업을 막지 않는다 (알림은 tools.comments 가 하루 한 번)
+            print(comments.check(t.account, tg, now, dry_run))
     return log
 
 
@@ -402,7 +421,7 @@ def main(argv: list[str] | None = None) -> int:
         gh = DryRun() if args.dry_run else GitHub.from_env()
         if args.dry_run and tg is not None:
             tg = QuietTelegram(tg)
-        for line in execute(tasks, args.results, gh, tg, now):
+        for line in execute(tasks, args.results, gh, tg, now, args.dry_run):
             print(f"실행 요청: {line}")
         return 0
     except (ValueError, RuntimeError, FileNotFoundError, httpx.HTTPError) as e:

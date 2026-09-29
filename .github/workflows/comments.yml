@@ -1,0 +1,73 @@
+name: comments
+
+# 10단계 댓글 → DM 코디 링크를 손으로 돌려 보는 워크플로 (자동 실행은 schedule 워크플로가 한다).
+# 토큰을 다시 받은 뒤 시험: 다른 계정으로 게시물에 "정보" 댓글을 달고 dry_run 끄고 실행 → DM 이 오는지 확인.
+# 필요한 Secrets: 프로필 instagram 의 두 이름(예: IG_WOMEN_TOKEN, IG_WOMEN_USER_ID),
+# TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (공유리워드 모드)
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      dry_run:
+        description: 시험 (DM 을 보내지 않고 보낼 댓글 수만 셈)
+        type: boolean
+        default: true
+      even_if_off:
+        description: profile comments.enabled 가 꺼져 있어도 실행 (켜기 전 시험)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  comments:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: comments-${{ inputs.account || 'women' }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account || 'women' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+
+      - name: 계정 설정 읽기
+        id: cfg
+        run: |
+          uv run python - >> "$GITHUB_OUTPUT" <<'PY'
+          import os
+          from core.profile import load_profile
+          ig = load_profile(os.environ["ACCOUNT"]).instagram
+          print(f"token={ig.token_secret}")
+          print(f"user_id={ig.user_id_secret}")
+          PY
+
+      - name: 댓글 확인
+        env:
+          IG_TOKEN: ${{ secrets[steps.cfg.outputs.token] }}
+          IG_USER_ID: ${{ secrets[steps.cfg.outputs.user_id] }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          args=(--account "$ACCOUNT")
+          ${{ inputs.dry_run && 'args+=(--dry-run)' || '' }}
+          ${{ inputs.even_if_off && 'args+=(--even-if-off)' || '' }}
+          uv run python -m tools.comments run "${args[@]}"
+
+      - name: 댓글 DM 기록 커밋
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git add -- "data/$ACCOUNT/dm.json" 2>/dev/null || exit 0
+          git diff --cached --quiet && exit 0
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898279+github-actions[bot]@users.noreply.github.com" commit -m "댓글 DM 기록 $ACCOUNT"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
