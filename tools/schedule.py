@@ -15,7 +15,8 @@ Actions 는 늦게 깨어날 때가 많아서 지금 시각이 아니라 "어느
   comments    댓글 확인 → DM 코디 링크 (tools.comments, 이 job 안에서 바로 돈다).
               profile comments.check_at 시각에 따로 깨어나고, with_other_ticks 면
               다른 작업으로 깨어날 때도 같이 한다 (Actions 시간을 거의 더 쓰지 않음)
-  links       미리보기에 /ok 가 오면 상품별 지그재그 링크 보내기 (tools.share, manual_link).
+  links       미리보기에 /ok 가 오면 상품별 지그재그 링크 보내기
+              (tools.share, manual_link 나 link_page.send_links).
               고르기 마감~게시 사이 schedule.ok_check_every 마다, 다른 작업 때도 같이
   share       공유리워드 링크 답장 반영, 상품 페이지 다시 올림 (tools.share, manual_link).
               따로 깨어나지 않고 다른 작업으로 깨어날 때마다 같이 한다
@@ -121,7 +122,7 @@ def slots(profile: Profile) -> list[Slot]:
         if value:
             days, hhmm = _weekly(value)
             out.append(Slot(a, task, hhmm, days=days))
-    if share.enabled(profile) and s.ok_check_every:
+    if share.sends_list(profile) and s.ok_check_every:
         # 고르기 마감(고르기를 끄면 후보 시각) 뒤 게시 전까지 /ok 확인 → 상품 링크 (tools.share)
         start = s.pick_deadline if profile.pick.enabled else s.candidates_at
         span = (minutes(s.publish_at) - minutes(start)) % 1440
@@ -240,11 +241,11 @@ def due(cron: str, now: datetime | None = None, accounts: list[str] | None = Non
         if builtin and cm.with_other_ticks and all(t.task != "comments" for t in mine):
             tasks.append(Task(account, "comments", mine[0].date, True, True, 0))
         # 공유리워드: /ok 뒤 상품 링크 보내기와 링크 답장 반영도 깨어날 때마다 본다 (tools.share)
+        if share.sends_list(profile) and all(t.task != "links" for t in mine):
+            local = now.astimezone(ZoneInfo(profile.schedule.timezone)).date()
+            day = post_date(profile, local).isoformat()
+            tasks.append(Task(account, "links", day, True, True, 0))
         if share.enabled(profile):
-            if all(t.task != "links" for t in mine):
-                local = now.astimezone(ZoneInfo(profile.schedule.timezone)).date()
-                day = post_date(profile, local).isoformat()
-                tasks.append(Task(account, "links", day, True, True, 0))
             tasks.append(Task(account, "share", mine[0].date, True, True, 0))
     return tasks
 

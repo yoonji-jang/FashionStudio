@@ -196,7 +196,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `name_max_chars` | 18 | 상품 장 짧은 이름 최대 글자 수 (넘으면 경고) |
 | `comment_max_chars` | 60 | 상품 장 코멘트 최대 글자 수 (넘으면 경고) |
 | `points` | `[3, 3]` | 캡션 코디 포인트 줄 수 |
-| `hashtags` | `[10, 15]` | 기본 해시태그 포함 최종 해시태그 개수 |
+| `hashtags` | `[8, 12]` | 기본 해시태그 포함 코디 해시태그 개수 (`comment_tags` 소통용은 따로) |
 | `base_hashtags` | #데일리룩 #오늘의코디 … | 매번 붙는 해시태그 |
 | `max_emoji` / `max_exclaim` | 2 / 1 | 캡션 전체 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
 | `banned` | 무조건, 인생템, 역대급, 최저가 … | 쓰면 오류가 나는 표현 |
@@ -204,6 +204,11 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `product_line` | `{shop} · {name}` | 캡션 제품 목록 한 줄 모양 |
 | `link_line` | 상품 정보는 프로필 링크에서 확인하세요 | 제품 목록 아래 안내 |
 | `ai_notice` | 이미지는 AI로 합성했으며 … | 모든 캡션 끝에 붙는 AI 합성 고지 |
+
+`comment_tags` 를 켜면 게시 직후 내 댓글(`comment`, 기본 🤍)을 달고, 그 대댓글로 해시태그를 답니다.
+대댓글은 코디 해시태그 뒤에 `follow_hashtags`(예: #맞팔 #선팔 #소통)를 붙여 최대 `max`(15)개이고,
+캡션에는 해시태그를 넣지 않습니다 (`manual_link` 의 #광고 는 고지라서 캡션에 남김).
+댓글을 달지 못해도 게시는 그대로 두고 텔레그램 게시 알림에 적습니다.
 
 #### `review` : 이미지 검수 (7단계)
 코디컷은 AI 입히기 결과가 매번 조금씩 달라서, 후보를 여러 장 만들고 Claude(image-reviewer 에이전트)가
@@ -393,7 +398,10 @@ accounts:
 (`measure: height` 는 옷 기장, `long` 은 가방·신발처럼 긴 쪽)이고, `px_per_cm` 를 곱해 화면 크기를 정하므로
 상품끼리 사람 몸 비율이 맞습니다. `center` 는 상품 중심(0~1 비율), `z` 는 겹칠 때 위에 오는 순서입니다.
 `feed_fill` 은 캐러셀 상품 장에서 누끼가 사진 자리를 채우는 최대 비율로, 귀걸이 같은 작은 상품이 옷만큼 커 보이지 않게 합니다.
-아우터가 없으면 `no_outer` 값을 씁니다.
+아우터가 없으면 `no_outer` 값을 씁니다. 아우터와 상의가 함께면 상의를 아우터에 입히고(기획이 정하지 않으면
+아우터를 연 모양), 입히기가 실패해 따로 놓게 되면 `outer_and_top` 값으로 나란히 둡니다.
+`lengths` 는 상품 이름에 든 말(롱, 하프, 크롭, 스커트 …)로 실제 기장을 정하는 표입니다 (롱코트 110cm).
+기본보다 긴 아우터는 어깨를 맞춰 아래로 늘어나 입은 것처럼 하의 위를 덮습니다.
 
 배경 사진은 프로필 `visual.backdrop` 문구로 한 번 생성합니다. 마음에 드는 배경을
 `accounts/<계정>/backdrop.jpg` 로 넣고 `visual.backdrop_ref: backdrop.jpg` 로 지정하면 그 사진을 계속 씁니다.
@@ -664,6 +672,7 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 | `keep` | 14 | 보여 줄 최근 게시물 수 |
 | `item_line` | `{category} · {shop}` | 상품 이름 위 작은 글자 |
 | `share_days` | 7 | `monetize: manual_link` 일 때 게시 뒤 이 기간 동안 공유리워드 링크 답장을 반영 |
+| `send_links` | false | `/ok` 뒤 상품별 지그재그 링크 목록을 텔레그램으로 보냄 (`monetize: none` 이어도, 링크를 직접 만들 때 씀). 답장은 반영하지 않음 |
 
 #### 공유리워드 링크로 수익화 (`monetize: manual_link`)
 

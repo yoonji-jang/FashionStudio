@@ -1,7 +1,7 @@
 # 코디컷 배치 기본값 (계정과 무관). 좌표는 캔버스 비율 0~1.
 # 상품 크기는 실제 치수(cm)로 정해 사람 몸 비율을 맞춘다: 화면 크기 = cm × px_per_cm.
 #   measure: height 는 세로 길이(옷 기장), long 은 긴 쪽 길이(가방·신발·소품)
-#   center: 상품 중심, z: 클수록 위에 놓임, avoid_overlap: 옷과 겹치면 바깥으로 밀거나 줄임, rotate: 도(시계 반대), max_width: 캔버스 대비 최대 폭
+#   center: 상품 중심, z: 클수록 위에 놓임, px_per_cm: 이 자리만 다른 배율, avoid_overlap: 옷과 겹치면 바깥으로 밀거나 줄임, rotate: 도(시계 반대), max_width: 캔버스 대비 최대 폭
 # 입은 듯한 코디: 자켓+셔츠, 바지+벨트처럼 합친 상품은 기준 상품(아우터, 하의) 자리에 놓는다.
 # 아우터가 없으면 no_outer 값으로 덮어쓴다.
 canvas: [1080, 1350]
@@ -23,6 +23,39 @@ slots:
 no_outer:
   상의:   {cm: 64, measure: height, center: [0.47, 0.195], z: 2}
   하의:   {cm: 100, measure: height, center: [0.47, 0.64], z: 1}
+# 아우터와 상의를 따로 놓을 때 (입히지 않을 때). 겹치지 않게 나란히 둔다.
+# 옷 세 벌이 두 줄로 서서 좀 작게 그린다 (px_per_cm). 표지 제목 자리(왼쪽 아래)는 비워 둔다.
+outer_and_top:  # 아우터는 왼쪽, 상의·하의는 오른쪽에 입은 순서로, 가방은 아우터 아래, 신발은 바지 밑단 아래
+  아우터: {cm: 68, measure: height, center: [0.28, 0.170], z: 3, px_per_cm: 5.6}
+  상의:   {cm: 64, measure: height, center: [0.75, 0.162], z: 2, px_per_cm: 5.6}
+  하의:   {cm: 100, measure: height, center: [0.75, 0.516], z: 1, px_per_cm: 5.6}
+  가방:   {cm: 52, measure: long, center: [0.20, 0.585], z: 5, avoid_overlap: true, px_per_cm: 5.6}
+  신발:   {cm: 35, measure: long, center: [0.80, 0.86], z: 5, avoid_overlap: true, px_per_cm: 5.6}
+  소품:   {cm: 22, measure: long, center: [0.52, 0.12], z: 5, avoid_overlap: true, rotate: -8, px_per_cm: 5.6}
+  귀걸이: {cm: 9, measure: long, center: [0.52, 0.10], z: 5, avoid_overlap: true, px_per_cm: 5.6}
+  목걸이: {cm: 34, measure: long, center: [0.52, 0.12], z: 5, avoid_overlap: true, px_per_cm: 5.6}
+  팔찌:   {cm: 12, measure: long, center: [0.52, 0.20], z: 5, avoid_overlap: true, px_per_cm: 5.6}
+# 기획에 cm 가 없을 때 상품 이름·설명에 든 말로 정하는 실제 기장 (세로 기준 자리만, 위에서부터 먼저 맞는 것).
+# 없으면 slots 의 기본값. 쇼핑몰 실측과 다르면 기획에서 cm 로 직접 적는다.
+lengths:
+  아우터:
+    하프: 88
+    미디: 95
+    맥시: 120
+    롱: 110
+    long: 110
+    크롭: 48
+    숏: 55
+  상의:
+    크롭: 45
+  하의:
+    롱스커트: 85
+    미디스커트: 75
+    미니스커트: 42
+    스커트: 65
+    반바지: 38
+    쇼츠: 38
+    버뮤다: 55
 shadow:  # 코드 그림자 (AI 그림자를 쓰지 않을 때)
   offset: [10, 16]
   blur: 18

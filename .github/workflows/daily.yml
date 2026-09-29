@@ -173,6 +173,8 @@ jobs:
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }}
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
+            에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
+            백그라운드로 부르면 기다리는 동안 실행이 끝나 버린다.
           claude_args: >-
             --max-turns 150
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
@@ -201,6 +203,7 @@ jobs:
             plan.yaml 은 고치지 말고, 종료 코드 4 는 그대로 두고 끝내.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.review ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
+            image-reviewer 에이전트는 run_in_background: false 로 불러 결과를 기다려.
           claude_args: >-
             --max-turns 60
             --allowedTools "Bash(python -m tools.review:*),Read,Write,Glob,Task,Agent"

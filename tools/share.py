@@ -41,20 +41,29 @@ def asked_ids(out: Path) -> list[int]:
 
 
 def enabled(profile: Profile) -> bool:
+    """공유리워드 링크 답장을 받아 상품 페이지에 반영하는지."""
     return profile.monetize == "manual_link" and profile.link_page.enabled
 
 
-def request_text(head: str, links: list[PostLink], got: dict[int, str] | None = None) -> str:
-    """상품마다 지그재그 링크를 붙여 보낸다 (앱에서 열어 공유리워드 링크를 만들 수 있게)."""
+def sends_list(profile: Profile) -> bool:
+    """/ok 뒤 상품별 지그재그 링크 목록을 텔레그램으로 보내는지 (답장 반영은 enabled 일 때만)."""
+    return enabled(profile) or profile.link_page.send_links
+
+
+def request_text(
+    head: str, links: list[PostLink], got: dict[int, str] | None = None, ask_reply: bool = True
+) -> str:
+    """상품마다 지그재그 링크를 붙여 보낸다 (앱에서 열어 공유리워드 링크를 만들 수 있게).
+    ask_reply 가 False 면 답장 안내 없이 목록만."""
     got = got or {}
-    rows = [
-        head,
-        "",
-        "아래 링크를 지그재그 앱에서 열어 공유리워드 링크를 만든 뒤",
-        "이 메시지에 답장으로 붙여 주세요.",
-        "한 줄에 하나씩 번호와 함께요 (예: 1 https://…). 안 보낸 상품은 상품 링크 그대로 둬요.",
-        "",
-    ]
+    rows = [head, ""]
+    if ask_reply:
+        rows += [
+            "아래 링크를 지그재그 앱에서 열어 공유리워드 링크를 만든 뒤",
+            "이 메시지에 답장으로 붙여 주세요.",
+            "한 줄에 하나씩 번호와 함께요 (예: 1 https://…). 안 보낸 상품은 상품 링크 그대로 둬요.",
+            "",
+        ]
     for i, ln in enumerate(links, 1):
         mark = " ✓ 받음" if i in got else ""
         rows.append(f"{i}. {ln.category} · {ln.shop} {ln.name}{mark}\n{ln.url}")
@@ -156,7 +165,7 @@ def send_after_ok(account: str, day: str, results: Path | None, tg, dry_run: boo
 
     profile = load_profile(account)
     tag = f"[{account}] {day} 상품 링크"
-    if not enabled(profile) or tg is None or results is None:
+    if not sends_list(profile) or tg is None or results is None:
         return f"{tag}: 꺼짐"
     d = datetime.strptime(day, "%Y-%m-%d").date()
     try:
@@ -175,9 +184,8 @@ def send_after_ok(account: str, day: str, results: Path | None, tg, dry_run: boo
     links = publish.post_links(notify.load_manifest(out))
     if dry_run:
         return f"{tag}: /ok 확인, {len(links)}개 보낼 예정 (시험)"
-    mid = tg.send(
-        request_text(f"[{account}] {d} /ok 확인했어요. 게시 전에 상품 링크를 보내 드려요", links)
-    )
+    head = f"[{account}] {d} /ok 확인했어요. 게시 전에 상품 링크를 보내 드려요"
+    mid = tg.send(request_text(head, links, ask_reply=enabled(profile)))
     (out / ASKED).write_text(
         json.dumps({"message_id": mid, "sent_at": int(time.time())}), encoding="utf-8"
     )

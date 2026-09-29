@@ -129,16 +129,24 @@ copy:
   name_max_chars: 18         # 상품 장 짧은 이름
   comment_max_chars: 60      # 상품 장 코멘트
   points: [3, 3]             # 캡션 코디 포인트 줄 수
-  hashtags: [10, 15]         # 기본 해시태그 포함 최종 개수
-  base_hashtags: ["#데일리룩", "#오늘의코디", "#출근룩", "#코디추천", "#여자코디"]
+  hashtags: [8, 12]          # 기본 해시태그 포함 코디 해시태그 개수 (comment_tags 소통용은 따로)
+  base_hashtags: ["#데일리룩", "#오늘의코디", "#코디추천", "#여자코디", "#패션"]
   max_emoji: 2               # 캡션 전체 (제목에는 금지)
   max_exclaim: 1             # 캡션 전체 느낌표
   banned: [뚱뚱해 보이는, 하체 비만, 무조건, 인생템, 역대급, 최저가]
-  ad_notice: "(광고) 이 게시물은 제휴 링크를 포함하고 있어요"  # monetize: manual_link 일 때 첫 줄
+  ad_notice: "(광고)"  # monetize: manual_link 일 때 첫 줄 (공정위 지침: 맨 앞에 잘 보이게, 빼지 않는다)
   ad_hashtag: "#광고"        # monetize: manual_link 일 때 첫 해시태그
   product_line: "{shop} · {name}"
   link_line: 상품 정보는 프로필 링크에서 확인하세요
   ai_notice: 이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요
+
+# 게시 직후 내 댓글(🤍)을 달고 그 대댓글로 해시태그를 단다 (tools.publish). 켜면 캡션에는 해시태그가 없다.
+# 대댓글 = 코디 해시태그(copy.hashtags) + 소통용 follow_hashtags, 최대 max 개
+comment_tags:
+  enabled: true
+  comment: "🤍"
+  follow_hashtags: ["#맞팔", "#선팔", "#소통"]
+  max: 15
 
 # 이미지 검수 (tools.review, 7단계). 코디컷 후보를 여러 장 만들고 검수 에이전트가 원본 상품과 비교해 점수를 매긴다.
 # 항목 5개(색, 모양, 빠진 상품, 삐져나온 조각, 겹침·잘림) × 0~2점 = 10점 만점
@@ -201,10 +209,11 @@ link_page:
   keep: 14                 # 보여 줄 최근 게시물 수
   item_line: "{category} · {shop}"
   share_days: 7            # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
+  send_links: true         # /ok 뒤 상품별 지그재그 링크를 텔레그램으로 (링크를 직접 만들 때 씀)
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)
-monetize: manual_link
+monetize: none
 # required: 텔레그램 /ok 승인 후 게시 / optional: /skip 이 없으면 자동 게시
 approval: required
 

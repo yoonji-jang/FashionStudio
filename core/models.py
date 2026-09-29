@@ -73,6 +73,9 @@ class PlanItem(BaseModel):
     cutout_photo: int = Field(default=0, ge=0)  # 코디컷 누끼에 쓸 창고 사진 번호
     slot: str | None = None  # config/layout.yaml 자리 (예: 목걸이). 없으면 카테고리
     segment: str | None = None  # 누끼에서 남길 물건 (영어 단수, 예: bag, belt, necklace)
+    # 누끼 방식 (flatlay, segment). 생략하면 옷은 flatlay. 착용컷을 flatlay 로 바꾸면
+    # 핏이 바뀌는 옷은 segment 로 사진 속 모양 그대로 오린다 (2026-09-29 슬랙스가 부츠컷이 됨)
+    method: str | None = None
     cm: float | None = Field(default=None, gt=0)  # 실제 치수가 기본값과 다를 때
     wear_with: Category | None = None  # 이 상품을 입힐 기준 상품 (셔츠 → 아우터, 벨트 → 하의)
     wear_how: str | None = None  # 입는 방법 (영어)

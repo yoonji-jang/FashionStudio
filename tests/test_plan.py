@@ -152,7 +152,7 @@ def test_caption_manual_link_adds_ad_notice(store):
     assert profile.copy_rules.ai_notice in body
     assert "샵1 · 상품 1" in body
     tags = plan.final_hashtags(p, profile)
-    assert "#광고" not in tags and tags[-1] == "#여자코디"
+    assert "#광고" not in tags and tags[-1] == profile.copy_rules.base_hashtags[-1]
 
     profile.monetize = "manual_link"
     body = plan.caption(p, profile, store)
@@ -221,6 +221,24 @@ def test_build_with_fake_outfit(store, tmp_path):
     shirt = samples["items"][1]
     assert shirt["wear_with"] == "아우터" and shirt["wear_modes"] == ["peek"]
     assert samples["items"][5]["slot"] == "목걸이"
+
+
+def test_outfit_samples_wears_top_and_sets_length(store, tmp_path):
+    p = daily()
+    p.items[0].desc = "차콜 롱코트 (charcoal long coat)"
+    p.items[1].wear_with = None
+    p.items[1].wear_modes = None
+    data = plan.outfit_samples(p, store, tmp_path)
+    coat, top = data["items"][0], data["items"][1]
+    assert coat["cm"] == 110  # 이름의 "롱"으로 실제 기장
+    assert top["wear_with"] == "아우터" and top["wear_modes"] == ["over"]
+    assert "open" in top["wear_how"]
+    assert "cm" not in data["items"][2]  # 맞는 말이 없으면 기본값
+    p.items[0].cm = 95
+    assert plan.outfit_samples(p, store, tmp_path)["items"][0]["cm"] == 95  # 기획 값이 먼저
+    p.items[1].wear_modes = ["beside"]
+    top = plan.outfit_samples(p, store, tmp_path)["items"][1]
+    assert not any(k.startswith("wear_") for k in top)  # 입히지 않고 옆에 둠
 
 
 def test_build_refuses_plan_with_errors(store, tmp_path):

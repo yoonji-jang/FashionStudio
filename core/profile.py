@@ -100,6 +100,16 @@ class Copy(BaseModel):
     ai_notice: str = "이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요"
 
 
+class CommentTags(BaseModel):
+    """게시 직후 내 댓글(예: 🤍)을 달고, 그 대댓글로 해시태그를 단다 (tools.publish).
+    켜면 캡션에는 해시태그를 넣지 않는다."""
+
+    enabled: bool = False
+    comment: str = "🤍"
+    follow_hashtags: list[str] = []  # 코디 해시태그 뒤에 붙이는 소통용 (예: #맞팔)
+    max: int = Field(default=15, ge=1, le=30)  # 대댓글 해시태그 최대 개수
+
+
 class Visual(BaseModel):
     backdrop: str  # 배경 묘사 (프롬프트에 들어감)
     backdrop_ref: str | None = None  # accounts/<id>/ 기준 참고 이미지 파일명
@@ -262,6 +272,10 @@ class LinkPage(BaseModel):
     item_line: str = "{category} · {shop}"  # 상품 이름 위 작은 글자
     # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
     share_days: int = Field(default=7, ge=1, le=30)
+    # /ok 뒤 상품별 지그재그 링크를 텔레그램으로 보낸다
+    # (monetize 가 none 이어도, 링크를 직접 만들 때 쓰게).
+    # manual_link 이면 늘 보내고 답장한 공유리워드 링크를 상품 페이지에 반영한다
+    send_links: bool = False
 
 
 class Instagram(BaseModel):
@@ -283,6 +297,7 @@ class Profile(BaseModel):
     visual: Visual
     feed: Feed = Feed()
     copy_rules: Copy = Field(default=Copy(), alias="copy")
+    comment_tags: CommentTags = CommentTags()
     review: ReviewRules = ReviewRules()
     schedule: Schedule
     pick: PickRules = PickRules()

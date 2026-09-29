@@ -60,6 +60,7 @@ def test_build_makes_candidates_and_prep_sheets(store, tmp_path):
 
     text = review.prep(out).read_text()
     assert "c1" in text and "c2" in text and "화이트" not in text  # 고른 색이 없으면 -
+    assert "기장 68cm" in text and "긴 쪽 52cm" in text  # 크기 비율 검수용 실제 크기
     assert (out / "review" / "covers.jpg").exists()
     assert (out / "review" / "slides.jpg").exists()
 

@@ -40,7 +40,7 @@ from core.models import DailyPlan, FeedItem, FeedSpec, Manifest, OutfitPlan, Pro
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
 from tools import feed, photoroom
-from tools.compose import load_layout
+from tools.compose import load_layout, real_length
 from tools.overlay import load_font
 
 WEEKDAYS = "월화수목금토일"
@@ -306,7 +306,7 @@ def check(
         errors.append(f"슬라이드가 {slides}장이 됩니다 (최대 {feed.MAX_SLIDES}). 상품을 줄이세요")
 
     layout_slots = set(load_layout()["slots"])
-    modes = set(get_args(photoroom.StyleMode))
+    modes = set(get_args(photoroom.StyleMode)) | {BESIDE}
     cats: list[str] = []
     shops: dict[str, int] = {}
     for it in plan.items:
@@ -327,6 +327,9 @@ def check(
             errors.append(f"{label}: cutout_photo {it.cutout_photo} 번 사진이 없습니다")
         if it.slot and it.slot not in layout_slots:
             errors.append(f"{label}: slot '{it.slot}' 은 config/layout.yaml 에 없습니다")
+        if it.method and it.method not in get_args(photoroom.CutoutMethod):
+            methods = list(get_args(photoroom.CutoutMethod))
+            errors.append(f"{label}: method 는 {methods} 중에서 고릅니다")
         if it.wear_modes and set(it.wear_modes) - modes:
             errors.append(f"{label}: wear_modes 는 {sorted(modes)} 중에서 고릅니다")
         if p.category == "소품" and not it.slot and not it.wear_with:
@@ -504,18 +507,45 @@ def outfit_config() -> dict:
     return data.get("outfit") or {"finish": "ai_shadow", "clean": True}
 
 
+BESIDE = "beside"  # 기획의 wear_modes: [beside] = 상의를 아우터에 입히지 않고 옆에 나란히 둔다
+OPEN_OUTER_HOW = (
+    "the outer is worn open and unbuttoned over the top, exactly as a person wears it, "
+    "its fronts falling naturally to both sides so the whole front of the top shows down "
+    "the middle; the outer sleeves cover the top sleeves and any belt hangs loose at the sides"
+)
+
+
+def item_length(it, product: Product, layout: dict) -> float | None:
+    """코디컷에 쓸 실제 기장(cm). 기획의 cm, 없으면 이름·설명의 말(롱, 크롭 …)로. 둘 다 없으면 None
+    (layout.yaml 기본값)."""
+    if it.cm is not None:
+        return it.cm
+    if it.slot:
+        return None
+    return real_length(product.category, f"{product.name} {it.name} {it.desc}", layout)
+
+
 def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
     """기획을 tools.poc 상품 목록(SampleSet) 으로 바꾼다. 누끼 사진은 창고 사진에서 받아 둔다."""
     products = {p.id: p for p in store.products()}
+    layout = load_layout()
+    cats = [products[it.product].category for it in plan.items]
     items = []
     for it in plan.items:
         p = products[it.product]
         url = str(p.image_urls[it.cutout_photo])
         src = feed.fetch_photo(url, work / "src" / f"{p.id.split(':')[-1]}_{it.cutout_photo}.jpg")
         item = {"category": p.category, "desc": it.desc, "image": str(src.resolve())}
-        for key in ("slot", "segment", "cm", "wear_with", "wear_how", "wear_modes"):
-            if getattr(it, key) is not None:
+        beside = it.wear_modes == [BESIDE]  # 입히지 않고 아우터 옆에 둔다
+        for key in ("slot", "segment", "method", "cm", "wear_with", "wear_how", "wear_modes"):
+            if getattr(it, key) is not None and not (beside and key.startswith("wear_")):
                 item[key] = getattr(it, key)
+        if p.category == "상의" and "아우터" in cats and not it.wear_with and not beside:
+            # 아우터와 따로 두면 상의가 가려진다. 기획이 정하지 않았으면 열어 걸친 모양으로 입힌다
+            item |= {"wear_with": "아우터", "wear_modes": ["over"], "wear_how": OPEN_OUTER_HOW}
+        cm = item_length(it, p, layout)
+        if it.cm is None and cm is not None:
+            item["cm"] = cm
         items.append(item)
     return {"account": plan.account, "name": plan.theme.title_hint, "items": items}
 

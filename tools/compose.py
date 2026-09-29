@@ -31,12 +31,24 @@ def slot_rules(categories: list[str], layout: dict) -> dict[str, dict]:
     rules = dict(layout["slots"])
     if "아우터" not in categories:
         rules |= layout.get("no_outer", {})
+    elif "상의" in categories:
+        # 상의를 아우터에 입히지 못해 따로 놓을 때: 아우터 뒤에 가려지지 않게 옆에 둔다
+        rules |= layout.get("outer_and_top", {})
     return rules
+
+
+def real_length(category: str, text: str, layout: dict) -> float | None:
+    """상품 이름·설명에 든 말(롱, 크롭 …)로 실제 기장(cm)을 정한다. 맞는 말이 없으면 None."""
+    low = text.lower()
+    for word, cm in (layout.get("lengths", {}).get(category) or {}).items():
+        if str(word).lower() in low:
+            return float(cm)
+    return None
 
 
 def fit_real_size(item: Image.Image, rule: dict, layout: dict) -> Image.Image:
     """실제 치수(cm)에 맞춰 크기를 정한다. 폭이 max_width 를 넘으면 더 줄인다."""
-    target = rule["cm"] * layout["px_per_cm"]
+    target = rule["cm"] * rule.get("px_per_cm", layout["px_per_cm"])
     side = item.height if rule.get("measure", "height") == "height" else max(item.size)
     scale = target / side
     max_w = rule.get("max_width", 0.95) * layout["canvas"][0]

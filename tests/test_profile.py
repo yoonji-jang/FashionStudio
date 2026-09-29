@@ -20,7 +20,8 @@ def test_index_accounts_all_load():
 def test_women_profile_values():
     profile = load_profile("women")
     assert profile.audience.gender == "women"
-    assert profile.monetize == "manual_link"
+    assert profile.monetize == "none"  # 공유리워드 링크는 사용자가 직접 달기로 함 (2026-09-30)
+    assert profile.comment_tags.enabled and profile.link_page.send_links
     assert profile.approval == "required"
     assert profile.outfit.items_min <= profile.outfit.items_max
     assert profile.instagram.token_secret == "IG_WOMEN_TOKEN"

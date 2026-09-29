@@ -225,14 +225,31 @@ def test_client_requires_key(monkeypatch):
 
 def test_layer_places_items_in_z_order(tmp_path):
     layout = compose.load_layout()
+    bottom = _cutout(tmp_path / "bottom.png", color=(0, 0, 255))
+    outer = _cutout(tmp_path / "outer.png", color=(255, 0, 0))
+    item = {"category": "아우터", "desc": "롱코트", "cm": 110, "url": "u"}
+    samples = poc.SampleSet.model_validate({"account": "women", "name": "t", "items": [item]})
+    layout = poc.with_item_sizes(layout, samples)
+    canvas = compose.layer([("하의", bottom), ("아우터", outer)], layout)
+    assert canvas.size == tuple(layout["canvas"])
+    w, h = canvas.size
+    # 롱코트 밑단 근처는 바지 위쪽과 겹치고, 아우터가 위에 놓인다
+    x = round(layout["slots"]["하의"]["center"][0] * w)
+    rule = layout["slots"]["아우터"]
+    hem = rule["center"][1] * h + rule["cm"] * layout["px_per_cm"] / 2
+    assert canvas.getpixel((x, round(hem) - 20))[:3] == (255, 0, 0)
+    assert canvas.getpixel((2, 2))[3] == 0
+
+
+def test_layer_puts_unworn_top_beside_outer(tmp_path):
+    layout = compose.load_layout()
     top = _cutout(tmp_path / "top.png", color=(0, 0, 255))
     outer = _cutout(tmp_path / "outer.png", color=(255, 0, 0))
     canvas = compose.layer([("상의", top), ("아우터", outer)], layout)
-    assert canvas.size == tuple(layout["canvas"])
     w, h = canvas.size
-    cx, cy = layout["slots"]["아우터"]["center"]
-    assert canvas.getpixel((round(cx * w), round(cy * h)))[:3] == (255, 0, 0)  # 아우터가 위
-    assert canvas.getpixel((2, 2))[3] == 0
+    for cat, color in (("아우터", (255, 0, 0)), ("상의", (0, 0, 255))):
+        cx, cy = layout["outer_and_top"][cat]["center"]
+        assert canvas.getpixel((round(cx * w), round(cy * h)))[:3] == color  # 가려지지 않음
 
 
 def test_layer_moves_top_when_no_outer(tmp_path):
@@ -370,6 +387,34 @@ def test_poc_clean_variant_merges_worn_items(tmp_path):
     assert (out / "styled/r1/01_outer+top_over.png").exists()
     assert (out / "styled/r1/01_outer+top_open_opened.png").exists()
     assert (out / "sheets/clean.jpg").exists() and (out / "results/D_1.jpg").exists()
+
+
+def test_real_length_from_name():
+    layout = compose.load_layout()
+    assert compose.real_length("아우터", "차콜 핸드메이드 롱코트", layout) == 110
+    assert compose.real_length("아우터", "하프 롱코트", layout) == 88  # 하프가 먼저
+    assert compose.real_length("아우터", "크롭 트위드 자켓", layout) == 48
+    assert compose.real_length("아우터", "울 자켓", layout) is None
+    assert compose.real_length("하의", "플리츠 롱스커트", layout) == 85
+
+
+def test_long_outer_keeps_shoulder_and_bottom_keeps_waist():
+    layout = compose.load_layout()
+    items = [
+        {"category": "아우터", "desc": "x", "cm": 110, "url": "u"},
+        {"category": "하의", "desc": "x", "cm": 40, "url": "u"},
+    ]
+    samples = poc.SampleSet.model_validate({"account": "women", "name": "t", "items": items})
+    changed = poc.with_item_sizes(layout, samples)
+    h = layout["canvas"][1]
+
+    def top(rule):
+        return rule["center"][1] * h - rule["cm"] * rule.get("px_per_cm", layout["px_per_cm"]) / 2
+
+    for group in ("slots", "outer_and_top"):
+        for cat in ("아우터", "하의"):
+            assert abs(top(changed[group][cat]) - top(layout[group][cat])) < 1e-6, (group, cat)
+    assert changed["slots"]["아우터"]["cm"] == 110
 
 
 def test_item_cm_override_keeps_hem():
