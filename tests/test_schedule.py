@@ -41,21 +41,26 @@ def test_pick_disabled_has_no_pick_slots():
     assert schedule.slots(p) == []
 
 
+def due(*args) -> list[schedule.Task]:
+    """공유리워드 확인(share)은 모든 작업에 붙어서 빼고 본다 (test_share)."""
+    return [t for t in schedule.due(*args) if t.task != "share"]
+
+
 def test_due_uses_fired_cron_even_when_actions_is_late():
     # 10:17 KST 후보 cron 이 40분 늦게 깨어나도 그날 게시물
-    tasks = schedule.due("17 1 * * *", utc("2026-09-28T01:57:00"), ["women"])
+    tasks = due("17 1 * * *", utc("2026-09-28T01:57:00"), ["women"])
     assert [(t.task, t.date) for t in tasks] == [("candidates", "2026-09-28")]
     assert tasks[0].minutes_left == 5 * 60 - 40
     # 마감 칸
-    [t] = schedule.due("17 6 * * *", utc("2026-09-28T06:25:00"), ["women"])
+    [t] = due("17 6 * * *", utc("2026-09-28T06:25:00"), ["women"])
     assert t.task == "pick" and t.final and t.date == "2026-09-28" and t.minutes_left == 0
     # 게시 마지막 확인
-    [t] = schedule.due("3 13 * * *", utc("2026-09-28T13:10:00"), ["women"])
+    [t] = due("3 13 * * *", utc("2026-09-28T13:10:00"), ["women"])
     assert t.task == "publish" and t.final and not t.first
     # 주간 주제: 일요일 저녁 → 다음 날부터
-    [t] = schedule.due("17 9 * * 0", utc("2026-09-27T09:30:00"), ["women"])
+    [t] = due("17 9 * * 0", utc("2026-09-27T09:30:00"), ["women"])
     assert t.task == "themes" and t.date == "2026-09-28"
-    assert schedule.due("0 0 * * *", utc("2026-09-28T00:00:00"), ["women"]) == []
+    assert due("0 0 * * *", utc("2026-09-28T00:00:00"), ["women"]) == []
 
 
 def test_workflow_crons_match_profiles():

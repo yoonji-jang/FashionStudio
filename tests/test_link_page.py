@@ -29,6 +29,7 @@ def post(d: date, title: str) -> PostRecord:
 def test_render_newest_first_escaped_and_limited(tmp_path):
     profile = load_profile("women")
     profile.link_page.keep = 2
+    profile.monetize = "none"
     store = Store("women", root=tmp_path)
     posts = [post(DAY - timedelta(days=i), f"제목 {i}") for i in range(3)]
     html = link_page.render(profile, posts, store)

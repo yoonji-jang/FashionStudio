@@ -203,7 +203,7 @@ link_page:
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)
-monetize: none
+monetize: manual_link
 # required: 텔레그램 /ok 승인 후 게시 / optional: /skip 이 없으면 자동 게시
 approval: required
 

@@ -94,6 +94,7 @@ def test_check_passes(store):
 
 def test_check_catches_rule_breaks(store):
     profile = load_profile("women")
+    profile.monetize = "none"
     store.save_posts([PostRecord(date=date(2026, 9, 20), title="t", products=["zigzag:3"])])
     p = daily()
     p.items[0].product = "zigzag:404"  # 창고에 없음
@@ -144,6 +145,7 @@ def test_candidates_skip_used_and_sold_out(store):
 
 def test_caption_manual_link_adds_ad_notice(store):
     profile = load_profile("women")
+    profile.monetize = "none"
     p = daily()
     body = plan.caption(p, profile, store)
     assert body.startswith("첫째 포인트")

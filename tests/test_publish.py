@@ -183,6 +183,11 @@ def test_guard(results):
     assert publish.guard(m, profile, images, {}) == []
     m.caption = m.caption.replace(profile.copy_rules.ai_notice, "")
     assert any("AI 합성 고지" in e for e in publish.guard(m, profile, images, {}))
+    # 광고 표기 없이 만든 결과를 manual_link 프로필로 게시하려 하면 막는다
+    c = profile.copy_rules
+    m.monetize = "none"
+    m.caption = m.caption.replace(c.ad_notice, "").lstrip()
+    m.hashtags = [t for t in m.hashtags if t != c.ad_hashtag]
     profile.monetize = "manual_link"
     errors = "\n".join(publish.guard(m, profile, images, {}))
     assert "수익 방식이 바뀌었습니다" in errors and "광고 고지" in errors and "#광고" in errors

@@ -20,7 +20,7 @@ def test_index_accounts_all_load():
 def test_women_profile_values():
     profile = load_profile("women")
     assert profile.audience.gender == "women"
-    assert profile.monetize == "none"
+    assert profile.monetize == "manual_link"
     assert profile.approval == "required"
     assert profile.outfit.items_min <= profile.outfit.items_max
     assert profile.instagram.token_secret == "IG_WOMEN_TOKEN"

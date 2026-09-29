@@ -105,8 +105,7 @@ def test_publish_asks_for_links_then_schedule_applies_them(
 
 
 def test_check_off_or_old(tmp_path, monkeypatch):
-    profile = load_profile("women")
-    assert not share.enabled(profile)  # monetize: none
+    monkeypatch.setattr(share, "enabled", lambda profile: False)
     assert "꺼짐" in share.check("women", object(), NOW)
     monkeypatch.setattr(share, "enabled", lambda profile: True)
     st = Store("women", root=tmp_path)
