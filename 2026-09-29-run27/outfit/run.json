@@ -1,0 +1,173 @@
+{
+  "samples": "out/2026-09-29/outfit/samples.yaml",
+  "account": "women",
+  "started": "2026-09-29T09:38:37",
+  "sandbox": false,
+  "items": [
+    {
+      "slot": "01_outer",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/171904453_0.jpg"
+    },
+    {
+      "slot": "02_top",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/146700566_0.jpg"
+    },
+    {
+      "slot": "03_bottoms",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/156246160_3.jpg"
+    },
+    {
+      "slot": "04_bag",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/159313221_0.jpg"
+    },
+    {
+      "slot": "05_shoes",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/109454411_1.jpg"
+    },
+    {
+      "slot": "06_accessory",
+      "source": "/home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/168924788_0.jpg"
+    }
+  ],
+  "cutouts": [
+    {
+      "repeat": 1,
+      "slot": "01_outer",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.5
+    },
+    {
+      "repeat": 1,
+      "slot": "02_top",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 8.9
+    },
+    {
+      "repeat": 1,
+      "slot": "03_bottoms",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.6
+    },
+    {
+      "repeat": 1,
+      "slot": "04_bag",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.2
+    },
+    {
+      "repeat": 1,
+      "slot": "05_shoes",
+      "method": "segment",
+      "ok": true,
+      "sec": 2.0
+    },
+    {
+      "repeat": 1,
+      "slot": "06_accessory",
+      "method": "segment",
+      "ok": true,
+      "sec": 1.3
+    },
+    {
+      "repeat": 2,
+      "slot": "01_outer",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.2
+    },
+    {
+      "repeat": 2,
+      "slot": "02_top",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 8.7
+    },
+    {
+      "repeat": 2,
+      "slot": "03_bottoms",
+      "method": "flatlay",
+      "ok": true,
+      "sec": 9.6
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "04_bag",
+      "ok": true,
+      "sec": 12.2
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "05_shoes",
+      "ok": true,
+      "sec": 16.5
+    },
+    {
+      "stage": "refine",
+      "repeat": 1,
+      "slot": "06_accessory",
+      "ok": true,
+      "sec": 12.2
+    },
+    {
+      "stage": "style",
+      "repeat": 1,
+      "slot": "01_outer+top",
+      "ok": true,
+      "sec": 13.1
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "04_bag",
+      "ok": true,
+      "sec": 11.0
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "05_shoes",
+      "ok": true,
+      "sec": 15.8
+    },
+    {
+      "stage": "refine",
+      "repeat": 2,
+      "slot": "06_accessory",
+      "ok": true,
+      "sec": 11.5
+    },
+    {
+      "stage": "style",
+      "repeat": 2,
+      "slot": "01_outer+top",
+      "ok": true,
+      "sec": 13.1
+    }
+  ],
+  "runs": [
+    {
+      "variant": "C",
+      "run": 1,
+      "file": "results/C_1.jpg",
+      "ok": true,
+      "sec": 2.4
+    },
+    {
+      "variant": "C",
+      "run": 2,
+      "file": "results/C_2.jpg",
+      "ok": true,
+      "sec": 2.7
+    }
+  ],
+  "backdrop": "generated",
+  "finished": "2026-09-29T09:41:44",
+  "api_calls": 28,
+  "est_cost_usd": 2.8
+}

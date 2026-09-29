@@ -1,0 +1,35 @@
+account: women
+name: 화요일 출근룩, 일교차엔 가볍게 걸치는 아우터
+items:
+- category: 아우터
+  desc: 차콜 그레이 핸드메이드 롱코트 (charcoal gray handmade long belted coat, below the knee)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/171904453_0.jpg
+  cm: 110.0
+- category: 상의
+  desc: 버건디 투톤 레이어 니트 (burgundy rib knit with a white shirt collar and white shirt
+    hem)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/146700566_0.jpg
+  wear_with: 아우터
+  wear_how: the coat is worn open and unbuttoned over the knit, exactly as a person
+    wears it, its fronts falling naturally to both sides so the whole front of the
+    burgundy knit with its white collar and white hem shows down the middle; the coat
+    sleeves cover the knit sleeves and the coat belt hangs loose at the sides
+  wear_modes:
+  - over
+- category: 하의
+  desc: 그레이 하이웨이스트 와이드 슬랙스 (gray high-waist wide straight-leg full-length slacks,
+    legs equally wide from thigh to hem, no flare)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/156246160_3.jpg
+- category: 가방
+  desc: 블랙 숄더백 (black shoulder bag)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/159313221_0.jpg
+  segment: bag
+- category: 신발
+  desc: 블랙 로퍼 (black loafers)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/109454411_1.jpg
+  segment: shoe
+- category: 소품
+  desc: 실버 미니멀 귀걸이 (silver minimal earrings)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-29/outfit/src/168924788_0.jpg
+  slot: 귀걸이
+  segment: earring
