@@ -251,7 +251,7 @@ Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 
 | `max_again` | 2 | `/again` 으로 새 후보를 받을 수 있는 횟수 |
 
 #### `comments` : 댓글 → DM 코디 링크 (10단계)
-캡션에 "댓글로 '정보'라고 남겨 주세요" 안내를 넣고, 키워드 댓글이 달리면 인스타 공식 기능(비공개 답장)으로
+캡션에 "댓글을 남겨 주세요" 안내를 넣고, 댓글(키워드를 정하면 그 말이 든 댓글)이 달리면 인스타 공식 기능(비공개 답장)으로
 상품 링크를 DM 으로 보냅니다. 켜기 전에 아래 [ManyChat 연결](#manychat-연결-처음-한-번)을 먼저 하세요.
 `check_at` 부터 `share_wait_hours` 까지는 `mode: builtin` 일 때만 씁니다.
 
@@ -259,8 +259,8 @@ Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 
 |---|---|---|
 | `enabled` | false | true 면 캡션 안내 문구(`copy.link_line` 대신)가 들어감 (builtin 이면 댓글 확인도) |
 | `mode` | external | `external`: ManyChat 이 DM (여기서는 캡션만) / `builtin`: 자동 실행 때 확인해 직접 DM, 바꾸면 `tools.schedule sync` |
-| `cta` | `코디 정보가 궁금하면 댓글로 '{keyword}'라고…` | 캡션 안내 문구. `{keyword}` 는 `keywords` 첫 번째 |
-| `keywords` | [정보, 링크] | 댓글에 이 말이 들어 있으면 DM (띄어쓰기·대소문자 무시) |
+| `cta` | `코디 정보가 궁금하면 댓글을 남겨 주세요…` | 캡션 안내 문구. `{keyword}` 를 쓰면 `keywords` 첫 번째로 바뀜 |
+| `keywords` | [] | 비어 있으면 모든 댓글에 DM. `[정보]` 처럼 적으면 그 말이 든 댓글만 (띄어쓰기·대소문자 무시) |
 | `check_at` | ["08:17", "17:17", "23:17"] | 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분) |
 | `with_other_ticks` | true | 후보·고르기·게시로 깨어날 때도 같이 확인 (추가 시간 거의 없음) |
 | `days` | 7 | 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 최대 7) |
@@ -622,9 +622,9 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 **상품 페이지**를 맡습니다 (`comments.mode: external`).
 
 ```
-게시 (캡션: "코디 정보가 궁금하면 댓글로 '정보'라고 남겨 주세요…")
+게시 (캡션: "코디 정보가 궁금하면 댓글을 남겨 주세요…")
   → publish 가 상품 페이지(최근 게시물 상품 링크)를 새로 올림 (tools.link_page)
-댓글 "정보" → ManyChat 이 바로 DM: "코디 상품 링크는 여기에 모아 뒀어요 [상품 보기]" → 상품 페이지
+댓글 → ManyChat 이 바로 DM: "코디 상품 링크는 여기에 모아 뒀어요 [상품 보기]" → 상품 페이지
 ```
 
 - **상품 페이지**: 공개 사진 저장소의 GitHub Pages 에 `<계정>/index.html` 로 올립니다
@@ -644,11 +644,12 @@ Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 �
 3. **ManyChat 가입**: [manychat.com](https://manychat.com) → Instagram 으로 시작 → 게시할 인스타 계정 연결
 4. **자동화 만들기**: Automation → New Automation → 트리거 **사용자가 게시물·릴스에 댓글을 남김**
    - 게시물: **모든 게시물(Any post)** (무료 요금제에서 막혀 있으면 Pro 가 필요할 수 있음)
-   - 키워드: `정보`, `링크` 포함 (`profile.yaml` 의 `comments.keywords` 와 같게)
+   - 키워드: **모든 댓글(Any comment / 키워드 없음)** (`profile.yaml` 의 `comments.keywords: []` 와 같게.
+     특정 말만 받으려면 둘 다 같은 말로)
    - (선택) 댓글 공개 답글: "DM 보내 드렸어요"
    - 액션 **메시지 보내기**: "댓글 남겨 주셔서 고마워요. 코디 상품 링크는 여기에 모아 뒀어요" + 버튼
      "상품 보기" → 1번의 상품 페이지 주소
-5. 자동화를 **켜고(Set Live)**, 다른 인스타 계정으로 게시물에 "정보" 댓글 → DM 이 바로 오는지 확인
+5. 자동화를 **켜고(Set Live)**, 다른 인스타 계정으로 게시물에 아무 댓글 → DM 이 바로 오는지 확인
 6. 잘 되면 `profile.yaml` 의 `comments.enabled: true` → main 에 합치기. 다음 게시물부터 캡션에 안내 문구가 들어감
 
 #### `link_page` 설정
@@ -684,7 +685,7 @@ schedule 이 깨어날 때마다 (다른 작업 때 + check_at) tools.comments:
 2. [developers.facebook.com](https://developers.facebook.com) → 내 앱 → 사용 사례 **Instagram에서 메시지 및
    콘텐츠 관리** → 권한에 `instagram_business_manage_comments`, `instagram_business_manage_messages` 추가
 3. **Instagram 로그인을 통한 API 설정** → **토큰 생성** 을 다시 눌러 새 토큰을 받고 Secret `IG_WOMEN_TOKEN` 교체
-4. 시험: 다른 계정으로 "정보" 댓글 → Actions → `comments` → Run workflow (`dry_run` 끄면 실제 DM)
+4. 시험: 다른 계정으로 아무 댓글 → Actions → `comments` → Run workflow (`dry_run` 끄면 실제 DM)
 5. 잘 되면 `comments.enabled: true`, `mode: builtin` → `uv run python -m tools.schedule sync` → main 에 합치기
 
 개발 모드 앱은 앱 역할(관리자·테스터)이 있는 계정끼리만 메시지 기능이 확실히 됩니다. 일반 계정에 권한 오류가

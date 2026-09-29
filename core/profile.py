@@ -229,11 +229,9 @@ class Comments(BaseModel):
     # DM 을 누가 보내나: external(ManyChat 같은 공식 파트너가 댓글 즉시 보냄, 여기서는 캡션만)
     #   builtin(tools.comments 가 자동 실행 때 댓글을 확인해 보냄, 30분~몇 시간 늦음)
     mode: Literal["external", "builtin"] = "external"
-    # 캡션에 넣는 안내 문구 (copy.link_line 대신). {keyword} 는 keywords 첫 번째
-    cta: str = (
-        "코디 정보가 궁금하면 댓글로 '{keyword}'라고 남겨 주세요. DM으로 상품 링크를 보내 드려요"
-    )
-    keywords: list[str] = Field(default=["정보"], min_length=1)  # 댓글에 이 말이 들어 있으면 DM
+    # 캡션에 넣는 안내 문구 (copy.link_line 대신). {keyword} 는 keywords 첫 번째 (있을 때)
+    cta: str = "코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요"
+    keywords: list[str] = []  # 댓글에 이 말이 있어야 DM. 비어 있으면 모든 댓글에 DM
     check_at: list[str] = []  # 댓글 확인만 하러 따로 깨어나는 시각 (계정 시간대 HH:MM)
     with_other_ticks: bool = True  # 후보·고르기·게시 같은 다른 자동 실행 때도 같이 확인
     days: int = Field(default=7, ge=1, le=7)  # 게시 후 며칠 동안 댓글을 볼지 (인스타 규칙상 7일)

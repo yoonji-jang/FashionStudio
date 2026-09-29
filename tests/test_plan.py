@@ -164,7 +164,10 @@ def test_caption_uses_comment_cta_when_enabled(store):
     assert link in plan.caption(daily(), profile, store)
     profile.comments.enabled = True
     body = plan.caption(daily(), profile, store)
-    assert link not in body and "댓글로 '정보'라고" in body
+    assert link not in body and profile.comments.cta in body
+    profile.comments.cta = "댓글로 '{keyword}'라고 남겨 주세요"
+    profile.comments.keywords = ["정보"]
+    assert "댓글로 '정보'라고" in plan.caption(daily(), profile, store)
     assert body.rstrip().endswith(profile.copy_rules.ai_notice)
 
 

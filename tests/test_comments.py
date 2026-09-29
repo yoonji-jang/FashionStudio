@@ -96,6 +96,7 @@ def profile():
     p = load_profile("women")
     p.comments.enabled = True
     p.comments.mode = "builtin"
+    p.comments.keywords = ["정보", "링크"]
     return p
 
 
@@ -113,6 +114,7 @@ def test_matches_and_parse_share_links():
     assert comments.matches("코디 정 보 부탁해요", ["정보"])
     assert comments.matches("LINK please", ["link"])
     assert not comments.matches("너무 예뻐요", ["정보", "링크"])
+    assert comments.matches("너무 예뻐요", [])  # 키워드가 없으면 모든 댓글
     text = "2 https://s.zig.kr/b\nhttps://s.zig.kr/a\n없음\nhttps://s.zig.kr/c extra"
     assert comments.parse_share_links(text, 3) == {
         2: "https://s.zig.kr/b",
@@ -286,3 +288,11 @@ def test_schedule_runs_comments_with_other_ticks(monkeypatch, profile):
     monkeypatch.setattr(comments, "check", lambda *a: ran.append(a) or "ok")
     schedule.execute(tasks, None, schedule.DryRun(), None, now, dry_run=True)
     assert ran and ran[0][0] == "women" and ran[0][3] is True
+
+
+def test_no_keywords_sends_to_every_comment(profile, store):
+    profile.comments.keywords = []
+    api = FakeApis([c("c1", "너무 예뻐요", "u1"), c("c2", "어디 거예요?", "u2")])
+    ig, tg = clients(api)
+    rep = comments.run(profile, store, ig, tg, NOW)
+    assert rep.sent == 2

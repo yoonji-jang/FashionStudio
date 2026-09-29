@@ -1,6 +1,6 @@
 r"""댓글 → DM 코디 링크 (10단계). 외부로 보내는 도구라 Claude 허용 목록에서 막혀 있다.
 
-profile `comments` 를 켜면 캡션에 "댓글로 '정보'라고 남겨 주세요" 같은 안내 문구가 들어가고
+profile `comments` 를 켜면 캡션에 "댓글을 남겨 주세요" 같은 안내 문구가 들어가고
 (tools.plan),
 schedule 워크플로가 깨어날 때마다 이 도구가 최근 게시물(comments.days 일 안)의 새 댓글을 본다.
 키워드가 든 댓글이면 인스타 비공개 답장으로 그 게시물의 상품 링크를 DM 으로 보낸다.
@@ -59,6 +59,9 @@ def comment_key(account: str, comment_id: str) -> str:
 
 
 def matches(text: str, keywords: list[str]) -> bool:
+    """키워드가 없으면 모든 댓글."""
+    if not keywords:
+        return True
     t = "".join(text.split()).lower()
     return any("".join(k.split()).lower() in t for k in keywords)
 

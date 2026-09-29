@@ -178,8 +178,8 @@ pick:
 comments:
   enabled: false     # ManyChat 규칙을 켠 뒤 true (그 전에 켜면 캡션만 바뀌고 DM 이 안 감)
   mode: external
-  cta: "코디 정보가 궁금하면 댓글로 '{keyword}'라고 남겨 주세요. DM으로 상품 링크를 보내 드려요"
-  keywords: [정보, 링크]   # cta 의 {keyword} 는 첫 번째. ManyChat 규칙에도 같은 말을 넣는다
+  cta: "코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요"
+  keywords: []   # 비어 있으면 모든 댓글에 DM. 특정 말만 받으려면 [정보] 처럼 적고 cta 에 {keyword}, ManyChat 규칙도 같게
   # 아래는 mode: builtin 일 때만 씀
   check_at: ["08:17", "17:17", "23:17"]  # 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분)
   with_other_ticks: true   # 후보·고르기·게시 때도 같이 확인
