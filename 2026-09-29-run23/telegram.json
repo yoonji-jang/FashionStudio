@@ -1,0 +1,20 @@
+{
+  "account": "women",
+  "date": "2026-09-29",
+  "run": "2026-09-29-run23",
+  "sent_at": 1790673110,
+  "message_ids": [
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81
+  ],
+  "sandbox": false,
+  "needs_human": false
+}

@@ -1,0 +1,38 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/C_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 1,
+        "shape": 1,
+        "complete": 1,
+        "clean": 2,
+        "layout": 2,
+        "notes": "3번 슬랙스가 원본(통 넓은 와이드 핏, 진한 그레이)과 달리 밝은 청회색 부츠컷으로 나옴. 5번 로퍼 안쪽이 원본에 없는 갈색으로 보임. 6번 귀걸이가 아주 작고 흰 덩어리처럼 보이며 원본의 실버 모양을 알아보기 어려움"
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit/results/C_2.jpg",
+      "round": 1,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 1,
+        "clean": 2,
+        "layout": 2,
+        "notes": "3번 슬랙스가 원본의 와이드 스트레이트보다 폭이 좁은 부츠컷 핏으로 바뀜. 6번 귀걸이가 아주 작고 흰 덩어리처럼 보여 형태를 알아보기 어려움"
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 가 더 낫다. 색이 원본과 같고 로퍼 안쪽이 검정이다. 둘 다 슬랙스 핏이 달라졌고 귀걸이가 너무 작다. 두 후보 모두 0점 항목은 없고, c2 는 합계 8점으로 통과 기준에 걸친다."
+}
