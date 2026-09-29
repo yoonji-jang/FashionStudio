@@ -323,20 +323,25 @@ def run(
 
 
 def with_item_sizes(layout: dict, samples: SampleSet) -> dict:
-    """샘플에 cm 가 있으면 그 자리의 크기를 바꾼다. 세로 기준 자리는 밑단 위치를 그대로 두어
-    아래 상품과의 간격이 변하지 않게 한다."""
+    """샘플에 cm 가 있으면 그 자리의 크기를 바꾼다 (세로 기준 자리는 위치도 맞춘다).
+    - 하의: 허리(위 끝)를 그대로 둔다. 상의 밑단과의 간격이 변하지 않는다.
+    - 기본보다 긴 옷(롱코트 등): 어깨(위 끝)를 그대로 두고 아래로 늘인다.
+      입은 것처럼 하의 위를 덮는다.
+    - 기본보다 짧은 옷(크롭 가디건 등): 밑단을 그대로 두어 아래 상품과의 간격이 변하지 않게 한다."""
     layout = copy.deepcopy(layout)
     px, h = layout["px_per_cm"], layout["canvas"][1]
     for it in samples.items:
         if it.cm is None:
             continue
-        for group in ("slots", "no_outer"):
+        for group in ("slots", "no_outer", "outer_and_top"):
             rule = layout.get(group, {}).get(it.place)
             if not rule:
                 continue
             if rule.get("measure", "height") == "height":
                 cx, cy = rule["center"]
-                rule["center"] = [cx, cy + (rule["cm"] - it.cm) * px / 2 / h]
+                keep_top = it.place == "하의" or it.cm > rule["cm"]
+                shift = (it.cm - rule["cm"]) * px / 2 / h
+                rule["center"] = [cx, cy + shift if keep_top else cy - shift]
             rule["cm"] = it.cm
     return layout
 

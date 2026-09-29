@@ -23,6 +23,37 @@ slots:
 no_outer:
   상의:   {cm: 64, measure: height, center: [0.47, 0.195], z: 2}
   하의:   {cm: 100, measure: height, center: [0.47, 0.64], z: 1}
+# 아우터와 상의를 따로 놓을 때 (상의를 아우터에 입히지 못했을 때). 겹치지 않게 나란히 둔다
+outer_and_top:  # 아우터는 왼쪽, 상의·하의는 오른쪽에 입은 순서로, 가방·신발은 아우터 아래
+  아우터: {cm: 68, measure: height, center: [0.29, 0.205], z: 3}
+  상의:   {cm: 64, measure: height, center: [0.72, 0.195], z: 2}
+  하의:   {cm: 100, measure: height, center: [0.72, 0.655], z: 1}
+  가방:   {cm: 52, measure: long, center: [0.36, 0.80], z: 5, avoid_overlap: true}
+  신발:   {cm: 35, measure: long, center: [0.12, 0.89], z: 5, avoid_overlap: true}
+  귀걸이: {cm: 9, measure: long, center: [0.52, 0.10], z: 5, avoid_overlap: true}
+  목걸이: {cm: 34, measure: long, center: [0.52, 0.12], z: 5, avoid_overlap: true}
+  팔찌:   {cm: 12, measure: long, center: [0.52, 0.20], z: 5, avoid_overlap: true}
+# 기획에 cm 가 없을 때 상품 이름·설명에 든 말로 정하는 실제 기장 (세로 기준 자리만, 위에서부터 먼저 맞는 것).
+# 없으면 slots 의 기본값. 쇼핑몰 실측과 다르면 기획에서 cm 로 직접 적는다.
+lengths:
+  아우터:
+    하프: 88
+    미디: 95
+    맥시: 120
+    롱: 110
+    long: 110
+    크롭: 48
+    숏: 55
+  상의:
+    크롭: 45
+  하의:
+    롱스커트: 85
+    미디스커트: 75
+    미니스커트: 42
+    스커트: 65
+    반바지: 38
+    쇼츠: 38
+    버뮤다: 55
 shadow:  # 코드 그림자 (AI 그림자를 쓰지 않을 때)
   offset: [10, 16]
   blur: 18

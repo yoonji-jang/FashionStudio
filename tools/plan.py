@@ -40,7 +40,7 @@ from core.models import DailyPlan, FeedItem, FeedSpec, Manifest, OutfitPlan, Pro
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
 from tools import feed, photoroom
-from tools.compose import load_layout
+from tools.compose import load_layout, real_length
 from tools.overlay import load_font
 
 WEEKDAYS = "월화수목금토일"
@@ -504,9 +504,28 @@ def outfit_config() -> dict:
     return data.get("outfit") or {"finish": "ai_shadow", "clean": True}
 
 
+OPEN_OUTER_HOW = (
+    "the outer is worn open and unbuttoned over the top, exactly as a person wears it, "
+    "its fronts falling naturally to both sides so the whole front of the top shows down "
+    "the middle; the outer sleeves cover the top sleeves and any belt hangs loose at the sides"
+)
+
+
+def item_length(it, product: Product, layout: dict) -> float | None:
+    """코디컷에 쓸 실제 기장(cm). 기획의 cm, 없으면 이름·설명의 말(롱, 크롭 …)로. 둘 다 없으면 None
+    (layout.yaml 기본값)."""
+    if it.cm is not None:
+        return it.cm
+    if it.slot:
+        return None
+    return real_length(product.category, f"{product.name} {it.name} {it.desc}", layout)
+
+
 def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
     """기획을 tools.poc 상품 목록(SampleSet) 으로 바꾼다. 누끼 사진은 창고 사진에서 받아 둔다."""
     products = {p.id: p for p in store.products()}
+    layout = load_layout()
+    cats = [products[it.product].category for it in plan.items]
     items = []
     for it in plan.items:
         p = products[it.product]
@@ -516,6 +535,12 @@ def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
         for key in ("slot", "segment", "cm", "wear_with", "wear_how", "wear_modes"):
             if getattr(it, key) is not None:
                 item[key] = getattr(it, key)
+        if p.category == "상의" and "아우터" in cats and not it.wear_with:
+            # 아우터와 따로 두면 상의가 가려진다. 기획이 정하지 않았으면 열어 걸친 모양으로 입힌다
+            item |= {"wear_with": "아우터", "wear_modes": ["over"], "wear_how": OPEN_OUTER_HOW}
+        cm = item_length(it, p, layout)
+        if it.cm is None and cm is not None:
+            item["cm"] = cm
         items.append(item)
     return {"account": plan.account, "name": plan.theme.title_hint, "items": items}
 

@@ -34,10 +34,17 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
 - product: zigzag:168297481     # candidates 결과의 id 를 그대로 복사
   color: 베이지                  # 이 코디에 쓰는 색 옵션
   desc: 베이지 래글런 하프 트렌치코트 (beige raglan half-length trench coat)  # 코디컷 지시문, 끝에 (영어)
+  # 영어 설명에 핏과 기장을 꼭 넣는다 (wide straight-leg, bootcut, cropped, oversized, long …).
+  # 모델 착용컷으로 누끼를 만들면 AI가 핏을 바꾸기 쉬워서, 핏을 적어야 원본대로 나온다
   name: 래글런 하프 트렌치코트     # write-copy 가 다듬음
   comment: ""                    # write-copy 가 씀
 ```
 코디컷 배치(2단계에서 확인한 방법):
+- **아우터와 상의가 함께 있으면 상의는 반드시 아우터에 입힌다** (`wear_with: 아우터`).
+  따로 놓으면 상의가 아우터 뒤에 가려진다 (2026-09-29). 니트·티셔츠처럼 상의 앞판을 보여 줄 옷은
+  `wear_modes: [over]`, `wear_how` 는 "the coat is worn open and unbuttoned over the knit, its fronts
+  falling naturally to both sides so the whole front of the knit shows" 처럼 아우터를 자연스럽게 연
+  모양으로 쓴다. 기획이 정하지 않으면 도구가 이 방식으로 입힌다. 입히기가 실패하면 아우터 옆에 따로 둔다.
 - **셔츠·블라우스를 아우터 안에 입힐 때**: 상의에 `wear_with: 아우터`, `wear_modes: [peek]`,
   `wear_how` 에 "아우터를 잠그고 셔츠는 깃과 소매 끝만 보이게" 를 영어로. 셔츠 사진을 통째로 주면
   몸판이 삐져나오므로 기본 무늬 없는 상의일 때만 peek 을 쓴다. 무늬·장식이 큰 상의면 아우터를 빼거나
@@ -45,6 +52,9 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
 - **벨트**: `wear_with: 하의`, `segment: belt`, `wear_how: the belt is threaded through the belt loops ...`.
 - **가방·신발**: `segment: bag` / `segment: shoe`.
 - **주얼리**: `slot: 목걸이|귀걸이|팔찌`, `segment: necklace|earring|bracelet`. 과하지 않게 1~2개.
-- 기장이 기본값과 크게 다르면 `cm` (예: 크롭 가디건 50). 롱코트처럼 길면 넣지 말고 기본값을 쓴다.
+- 크기는 실제 기장(cm) 비율로 놓는다. 기본값(config/layout.yaml slots)은 아우터 68, 상의 64, 하의 100.
+  상품 이름에 롱·하프·크롭·스커트 같은 말이 있으면 도구가 `lengths` 표로 기장을 정한다 (롱코트 110).
+  쇼핑몰 실측(총장)을 알거나 이름으로 알 수 없는 기장이면 `cm` 에 직접 적는다 (예: 크롭 가디건 50).
+  기본보다 긴 아우터는 어깨를 맞춰 아래로 늘어나 입은 것처럼 하의 위를 덮는다.
 
 마지막에 `reason` 에 조합 이유를 2~3문장으로 쓴다 (색, 분위기, 왜 이 상품인지).

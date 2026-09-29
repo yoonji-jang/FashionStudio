@@ -250,13 +250,14 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         "",
         "## 기획 상품 (covers.jpg 위 줄 번호)",
         "",
-        "| # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 원본 사진 |",
-        "|---|---|---|---|---|---|",
+        "| # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |",
+        "|---|---|---|---|---|---|---|",
     ]
+    sizes = real_sizes(plan)
     for i, (it, ref) in enumerate(zip(plan.items, refs, strict=True), 1):
         how = f"{it.wear_with}에 입힘" if it.wear_with else "-"
         lines.append(
-            f"| {i} | {cats[i - 1]} | {it.desc} | {it.color or '-'} | {how} | "
+            f"| {i} | {cats[i - 1]} | {it.desc} | {it.color or '-'} | {how} | {sizes[i - 1]} | "
             f"{_ref(out, ref) if ref else '없음'} |"
         )
     lines += ["", "## 점수를 매길 코디컷 후보", ""]
@@ -280,6 +281,27 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     dest = out / "review" / "input.md"
     dest.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return dest
+
+
+def real_sizes(plan: DailyPlan) -> list[str]:
+    """상품마다 코디컷에 쓴 실제 크기 ("기장 110cm"). 크기 비율을 검수할 때 본다."""
+    from tools import plan as plan_tool
+    from tools.compose import load_layout
+
+    layout = load_layout()
+    products = {p.id: p for p in Store(plan.account).products()}
+    rows = []
+    for it in plan.items:
+        p = products.get(it.product)
+        if p is None:
+            rows.append("-")
+            continue
+        place = it.slot or p.category
+        rule = layout["slots"].get(place, {})
+        cm = plan_tool.item_length(it, p, layout) or rule.get("cm")
+        kind = "기장" if rule.get("measure", "height") == "height" else "긴 쪽"
+        rows.append(f"{kind} {cm:g}cm" if cm else "-")
+    return rows
 
 
 def categories(plan: DailyPlan) -> list[str]:
