@@ -161,6 +161,7 @@ def test_caption_manual_link_adds_ad_notice(store):
 def test_caption_uses_comment_cta_when_enabled(store):
     profile = load_profile("women")
     link = profile.copy_rules.link_line
+    profile.comments.enabled = False
     assert link in plan.caption(daily(), profile, store)
     profile.comments.enabled = True
     body = plan.caption(daily(), profile, store)
