@@ -1,0 +1,286 @@
+{
+  "account": "women",
+  "date": "2026-09-29",
+  "plan": {
+    "theme": {
+      "date": "2026-09-29",
+      "title_hint": "화요일 출근룩, 일교차엔 가볍게 걸치는 아우터",
+      "mood": "블랙·아이보리·그레이 차분한 초가을 오피스룩",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "가볍게 걸치는 아우터"
+        },
+        {
+          "category": "상의",
+          "desc": "아이보리 셔츠·니트"
+        },
+        {
+          "category": "하의",
+          "desc": "슬랙스"
+        },
+        {
+          "category": "가방",
+          "desc": "블랙 숄더백"
+        },
+        {
+          "category": "신발",
+          "desc": "블랙 로퍼·플랫"
+        }
+      ],
+      "type": "상황",
+      "why": "화요일, 서울 14~25도로 아침저녁은 쌀쌀하고 낮은 따뜻해 걸쳤다 벗기 좋은 아우터가 필요",
+      "search_terms": {}
+    },
+    "items": [
+      {
+        "id": "zigzag:171900729",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171900729",
+        "shop": "미쏘",
+        "name": "울블렌디드 테일러드 롱코트_MIWJHGV0PB",
+        "price": 96750,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-992e8d02dac50bdac44c/brands/rna37y57jeyj2ys1eg9f7jxm/ocvdwb9f42fexmqqc94fe01d/MIWJHGV0PB_17_%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926580612_71148.jpeg",
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-f5e9b6362b11c2314b31/brands/rna37y57jeyj2ys1eg9f7jxm/gyzufayiyu6kn5f1eh6iseo7/MIWJHGV0PB_37_1.jpg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926576309_27092.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926571575_80448.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926561139_52417.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926566892_91899.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 1160,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "오피스룩",
+          "캐주얼"
+        ],
+        "query": "울 코트",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:140069145",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/140069145",
+        "shop": "슬로우앤드",
+        "name": "[가을셔츠!] made. 톤앤결 여리핏 코튼셔츠 - 5 color",
+        "price": 30600,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137368098_96193.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137369293_83966.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137371884_58531.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137370370_12667.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 5859,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "셔츠",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:156246160",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/156246160",
+        "shop": "삐뽕언니",
+        "name": "[가을하객룩🍁/13만장🏆][B-MADE/옆지퍼ver]하이머스트 슬랙스(XL까지/9color) [기장선택 숨은지퍼 숏 롱 와이드 플러스사이즈 빅사이즈 시즌리스 사계절  간절기]",
+        "price": 31840,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739350675_29466.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739360656_21816.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739360031_66723.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739360524_64226.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739360826_87768.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739360193_98094.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739350869_11780.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/1726_202609111943170578_59292.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739360986_36517.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/11/1726_202602111739370179_43037.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.6,
+        "review_count": 2367,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "오피스룩"
+        ],
+        "query": "와이드 슬랙스",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:159313221",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/159313221",
+        "shop": "맥끌라니",
+        "name": "멜다 숄더백",
+        "price": 55860,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/12/18/11628_202412181023230846_79856.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/12/17/11628_202512171352570032_84466.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/12/17/11628_202512171352560719_24380.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 455,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:109454411",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/109454411",
+        "shop": "어텀",
+        "name": "시더로퍼",
+        "price": 29850,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://autumnshop.kr/web/product/extra/big/202112/35d1be9f9cbaf7f78421f4dd91290f14.jpg",
+          "https://autumnshop.kr/web/product/extra/big/202112/08e772d6df52402d7df6ba885f08df0e.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 873,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "로퍼",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:168924788",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168924788",
+        "shop": "이비누아",
+        "name": "[자체제작/은침925] 매트 무광 미니멀이어링 심플 베이직 데일리 실버포스트925",
+        "price": 12350,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122450762_37573.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122500626_11328.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122310787_61735.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122350042_14803.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122280007_35005.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122390866_57338.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122420602_92470.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/5/53986_202604050122240923_50354.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 688,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크"
+        ],
+        "query": "귀걸이",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      }
+    ],
+    "reason": "서울 14~25도 일교차에 걸쳤다 벗기 좋은 블랙 롱코트를 중심으로 아이보리 셔츠, 그레이 슬랙스, 블랙 가방과 로퍼를 맞춘 차분한 오피스룩. 팔레트 안의 세 색만 써서 화요일 출근룩으로 무난하다."
+  },
+  "images": [
+    "out/2026-09-29/slides/01_cover.jpg",
+    "out/2026-09-29/slides/02_아우터.jpg",
+    "out/2026-09-29/slides/03_상의.jpg",
+    "out/2026-09-29/slides/04_하의.jpg",
+    "out/2026-09-29/slides/05_가방.jpg",
+    "out/2026-09-29/slides/06_신발.jpg",
+    "out/2026-09-29/slides/07_소품.jpg",
+    "out/2026-09-29/slides/08_summary.jpg"
+  ],
+  "review_score": 8.0,
+  "needs_human": false,
+  "review": {
+    "candidates": [
+      {
+        "id": "c1",
+        "file": "outfit/results/C_1.jpg",
+        "round": 1,
+        "score": {
+          "id": "c1",
+          "color": 2,
+          "shape": 1,
+          "complete": 1,
+          "clean": 2,
+          "layout": 2,
+          "notes": "3번 바지가 원본의 넓은 스트레이트보다 밑단이 좁고 살짝 나팔처럼 보임. 6번 귀걸이가 아주 작아 형태를 알아보기 어려움."
+        }
+      },
+      {
+        "id": "c2",
+        "file": "outfit/results/C_2.jpg",
+        "round": 1,
+        "score": {
+          "id": "c2",
+          "color": 2,
+          "shape": 0,
+          "complete": 1,
+          "clean": 2,
+          "layout": 2,
+          "notes": "3번 바지가 원본 와이드 스트레이트와 달리 밑단이 벌어진 부츠컷으로 바뀜. 6번 귀걸이가 작고 둥근 스터드처럼 보여 원본 형태와 다름."
+        }
+      }
+    ],
+    "chosen": "c1",
+    "rounds": 1,
+    "passed": true,
+    "status": "passed",
+    "slide_issues": [],
+    "summary": "c1 이 c2 보다 원본에 가까움. c2 는 바지 핏이 부츠컷으로 바뀜. 두 후보 모두 바지가 원본보다 좁게 나오고 귀걸이가 작음. c1 은 합계 8점이고 0점 항목이 없음. 캐러셀 상품 장은 문제 없음."
+  },
+  "title_lines": [
+    "일교차 큰 출근길엔",
+    "블랙 롱코트 걸치세요"
+  ],
+  "caption": "(광고) 이 게시물은 제휴 링크를 포함하고 있어요\n\n블랙, 아이보리, 그레이 세 색만 맞춰 차분하게 정리했어요\n롱코트 안에 셔츠 깃만 살짝 보이게 입으면 단정해요\n하이웨이스트 슬랙스에 로퍼를 신어 다리 라인이 길어 보여요\n\n미쏘 · 블랙 울블렌드 롱코트\n슬로우앤드 · 아이보리 코튼 셔츠\n삐뽕언니 · 그레이 하이웨이스트 슬랙스\n맥끌라니 · 멜다 숄더백\n어텀 · 블랙 시더 로퍼\n이비누아 · 실버 미니멀 이어링\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#광고",
+    "#롱코트",
+    "#가을코디",
+    "#오피스룩",
+    "#슬랙스코디",
+    "#일교차코디",
+    "#미니멀룩",
+    "#데일리룩",
+    "#오늘의코디",
+    "#출근룩",
+    "#코디추천",
+    "#여자코디"
+  ],
+  "monetize": "manual_link",
+  "reels": null
+}
