@@ -236,6 +236,9 @@ def test_outfit_samples_wears_top_and_sets_length(store, tmp_path):
     assert "cm" not in data["items"][2]  # 맞는 말이 없으면 기본값
     p.items[0].cm = 95
     assert plan.outfit_samples(p, store, tmp_path)["items"][0]["cm"] == 95  # 기획 값이 먼저
+    p.items[1].wear_modes = ["beside"]
+    top = plan.outfit_samples(p, store, tmp_path)["items"][1]
+    assert not any(k.startswith("wear_") for k in top)  # 입히지 않고 옆에 둠
 
 
 def test_build_refuses_plan_with_errors(store, tmp_path):

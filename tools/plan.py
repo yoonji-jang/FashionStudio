@@ -306,7 +306,7 @@ def check(
         errors.append(f"슬라이드가 {slides}장이 됩니다 (최대 {feed.MAX_SLIDES}). 상품을 줄이세요")
 
     layout_slots = set(load_layout()["slots"])
-    modes = set(get_args(photoroom.StyleMode))
+    modes = set(get_args(photoroom.StyleMode)) | {BESIDE}
     cats: list[str] = []
     shops: dict[str, int] = {}
     for it in plan.items:
@@ -504,6 +504,7 @@ def outfit_config() -> dict:
     return data.get("outfit") or {"finish": "ai_shadow", "clean": True}
 
 
+BESIDE = "beside"  # 기획의 wear_modes: [beside] = 상의를 아우터에 입히지 않고 옆에 나란히 둔다
 OPEN_OUTER_HOW = (
     "the outer is worn open and unbuttoned over the top, exactly as a person wears it, "
     "its fronts falling naturally to both sides so the whole front of the top shows down "
@@ -532,10 +533,11 @@ def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
         url = str(p.image_urls[it.cutout_photo])
         src = feed.fetch_photo(url, work / "src" / f"{p.id.split(':')[-1]}_{it.cutout_photo}.jpg")
         item = {"category": p.category, "desc": it.desc, "image": str(src.resolve())}
+        beside = it.wear_modes == [BESIDE]  # 입히지 않고 아우터 옆에 둔다
         for key in ("slot", "segment", "cm", "wear_with", "wear_how", "wear_modes"):
-            if getattr(it, key) is not None:
+            if getattr(it, key) is not None and not (beside and key.startswith("wear_")):
                 item[key] = getattr(it, key)
-        if p.category == "상의" and "아우터" in cats and not it.wear_with:
+        if p.category == "상의" and "아우터" in cats and not it.wear_with and not beside:
             # 아우터와 따로 두면 상의가 가려진다. 기획이 정하지 않았으면 열어 걸친 모양으로 입힌다
             item |= {"wear_with": "아우터", "wear_modes": ["over"], "wear_how": OPEN_OUTER_HOW}
         cm = item_length(it, p, layout)

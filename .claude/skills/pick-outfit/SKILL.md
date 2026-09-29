@@ -45,6 +45,8 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
   `wear_modes: [over]`, `wear_how` 는 "the coat is worn open and unbuttoned over the knit, its fronts
   falling naturally to both sides so the whole front of the knit shows" 처럼 아우터를 자연스럽게 연
   모양으로 쓴다. 기획이 정하지 않으면 도구가 이 방식으로 입힌다. 입히기가 실패하면 아우터 옆에 따로 둔다.
+  AI 입히기가 아우터 모양(소매 길이·칼라·단추)을 바꾸기 쉬운 옷이면 `wear_modes: [beside]` 로 처음부터
+  옆에 나란히 둔다 (2026-09-29 롱코트+니트: over 로 입히자 코트 소매가 7부, 니트가 조끼가 됨).
 - **셔츠·블라우스를 아우터 안에 입힐 때**: 상의에 `wear_with: 아우터`, `wear_modes: [peek]`,
   `wear_how` 에 "아우터를 잠그고 셔츠는 깃과 소매 끝만 보이게" 를 영어로. 셔츠 사진을 통째로 주면
   몸판이 삐져나오므로 기본 무늬 없는 상의일 때만 peek 을 쓴다. 무늬·장식이 큰 상의면 아우터를 빼거나

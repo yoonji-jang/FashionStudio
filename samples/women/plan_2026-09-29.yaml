@@ -1,4 +1,4 @@
-# 2026-09-29 다시 만들기: run23 기획에 니트를 연 코트 안에 입히고 슬랙스 핏을 적음 (사용자 피드백)
+# 2026-09-29 다시 만들기: run23 기획에서 니트를 코트 옆에 두고 슬랙스 핏을 적음 (사용자 피드백)
 account: women
 date: '2026-09-29'
 items:
@@ -16,13 +16,7 @@ items:
   desc: 버건디 투톤 레이어 니트 (burgundy rib knit with a white shirt collar and white shirt hem)
   name: 버건디 투톤 레이어 니트
   product: zigzag:146700566
-  wear_with: 아우터
-  wear_modes: [over]
-  wear_how: >-
-    the coat is worn open and unbuttoned over the knit, exactly as a person wears it, its fronts
-    falling naturally to both sides so the whole front of the burgundy knit with its white collar
-    and white hem shows down the middle; the coat sleeves cover the knit sleeves and the coat
-    belt hangs loose at the sides
+  wear_modes: [beside]  # over 로 입히면 코트 소매가 짧아지고 니트가 조끼처럼 됨 (run27)
 - color: 그레이
   comment: 그레이 슬랙스는 코트와 톤을 맞춰 깔끔하게 이어 줘요.
   cutout_photo: 3
