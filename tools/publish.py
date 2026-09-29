@@ -242,7 +242,7 @@ def run(
 
     uploaded = host.upload(images, f"{account}/{out.name}")
     try:
-        media_id = ig.publish([u.url for u in uploaded], notify.full_caption(manifest))
+        media_id = ig.publish([u.url for u in uploaded], post_caption(profile, manifest))
     finally:
         if not host_cfg.get("keep", False):
             try:
@@ -250,6 +250,15 @@ def run(
             except (RuntimeError, httpx.HTTPError) as e:
                 print(f"경고: 게시용 사진을 지우지 못했습니다: {e}", file=sys.stderr)
     link = ig.permalink(media_id)
+    tagged = ""
+    if profile.comment_tags.enabled:
+        # 내 댓글 + 대댓글 해시태그. 실패해도 게시는 끝났으니 알림만
+        try:
+            n = comment_hashtags(ig, media_id, profile, manifest)
+            print(f"{tag} 댓글 해시태그 {n}개")
+        except (IGError, httpx.HTTPError) as e:
+            print(f"경고: 댓글 해시태그를 달지 못했습니다: {e}", file=sys.stderr)
+            tagged = f"\n댓글 해시태그를 달지 못했어요: {e}"
 
     now = int(time.time())
     (out / "published.json").write_text(
@@ -302,8 +311,11 @@ def run(
             if tg is not None:
                 tg.send(f"{tag} 게시는 했지만 상품 페이지를 올리지 못했어요: {e}")
     if tg is not None:
-        done = f"{tag} 게시했어요 ✓\n{link or ''}".strip()
-        if ask is not None and links:
+        done = (f"{tag} 게시했어요 ✓\n{link or ''}".strip() + tagged).strip()
+        if ask is None and links and share.sends_list(profile) and not share.asked_ids(out):
+            # 링크를 직접 만들 때 쓰는 목록 (/ok 뒤에 아직 못 보냈으면 여기서)
+            tg.send(share.request_text(done, links, ask_reply=False))
+        elif ask is not None and links:
             # 게시 알림이 공유리워드 링크 요청을 겸한다. 답장은 schedule 이 읽어 상품 페이지에 반영
             mid = tg.send(share.request_text(done, links, ask.links))
             posts = store.posts()
@@ -314,6 +326,37 @@ def run(
         else:
             tg.send(done)
     return 0
+
+
+def comment_tag_list(profile: Profile, manifest: Manifest) -> list[str]:
+    """대댓글에 달 해시태그: 코디 해시태그(기획+기본) 뒤에 소통용, 겹치지 않게 최대 max 개.
+    넘치면 소통용을 남기고 코디 해시태그를 줄인다."""
+    ct = profile.comment_tags
+    follow = [t for t in dict.fromkeys(ct.follow_hashtags)][: ct.max]
+    main = [t for t in dict.fromkeys(manifest.hashtags) if t not in follow]
+    return main[: ct.max - len(follow)] + follow
+
+
+def post_caption(profile: Profile, manifest: Manifest) -> str:
+    """인스타에 올릴 캡션. 댓글 해시태그를 켜면 캡션에는 해시태그를 넣지 않는다.
+    광고 해시태그(#광고)는 고지라서 캡션에 남긴다."""
+    if not profile.comment_tags.enabled:
+        return notify.full_caption(manifest)
+    c = profile.copy_rules
+    text = manifest.caption.rstrip()
+    if profile.monetize == "manual_link" and c.ad_hashtag in manifest.hashtags:
+        text += "\n\n" + c.ad_hashtag
+    return text
+
+
+def comment_hashtags(ig: Instagram, media_id: str, profile: Profile, manifest: Manifest) -> int:
+    ad = profile.copy_rules.ad_hashtag
+    tags = [t for t in comment_tag_list(profile, manifest) if t != ad]
+    if not tags:
+        return 0
+    comment_id = ig.comment(media_id, profile.comment_tags.comment)
+    ig.reply_comment(comment_id, " ".join(tags))
+    return len(tags)
 
 
 def today(profile: Profile) -> date:

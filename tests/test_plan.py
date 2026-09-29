@@ -152,7 +152,7 @@ def test_caption_manual_link_adds_ad_notice(store):
     assert profile.copy_rules.ai_notice in body
     assert "샵1 · 상품 1" in body
     tags = plan.final_hashtags(p, profile)
-    assert "#광고" not in tags and tags[-1] == "#여자코디"
+    assert "#광고" not in tags and tags[-1] == profile.copy_rules.base_hashtags[-1]
 
     profile.monetize = "manual_link"
     body = plan.caption(p, profile, store)

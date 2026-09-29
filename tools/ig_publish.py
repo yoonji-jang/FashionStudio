@@ -140,6 +140,10 @@ class Instagram:
             message=json.dumps({"text": text}, ensure_ascii=False),
         )
 
+    def comment(self, media_id: str, text: str) -> str:
+        """내 게시물에 댓글. 댓글 id 를 돌려준다."""
+        return self._call("POST", f"{media_id}/comments", message=text)["id"]
+
     def reply_comment(self, comment_id: str, text: str) -> None:
         """댓글에 공개 답글."""
         self._call("POST", f"{comment_id}/replies", message=text)

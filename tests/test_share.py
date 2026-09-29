@@ -145,6 +145,7 @@ def test_links_sent_after_ok_and_replies_used_at_publish(
     monkeypatch,
 ):
     monkeypatch.setattr(share, "Store", lambda account: store)
+    monkeypatch.setattr(share, "enabled", lambda profile: True)
     run = results / "2026-09-27-run5"
     api = FakeApis()
     rec = sent(api, run)
@@ -180,4 +181,32 @@ def test_links_slots_between_deadline_and_publish():
     assert not [s for s in schedule.slots(profile) if s.task == "links"]
     profile.schedule.ok_check_every = 60
     profile.monetize = "none"
+    profile.link_page.send_links = True  # 수익화를 꺼도 링크 목록은 보냄
+    assert [s for s in schedule.slots(profile) if s.task == "links"]
+    profile.link_page.send_links = False
     assert not [s for s in schedule.slots(profile) if s.task == "links"]
+
+
+def test_links_list_without_monetize_and_comment_hashtags(
+    results,  # noqa: F811
+    store,  # noqa: F811
+    monkeypatch,
+):
+    """수익화를 꺼도 /ok 뒤 상품 링크 목록은 보내고(답장 안내 없이), 게시 뒤 🤍 댓글에 해시태그."""
+    monkeypatch.setattr(share, "Store", lambda account: store)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)
+    tg, ig, host = clients(api)
+    api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
+    assert "7개 보냄" in share.send_after_ok("women", str(DAY), results, tg)
+    assert "답장" not in api.texts[-1] and "zigzag.kr" in api.texts[-1]
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert store.posts()[-1].share is None
+    manifest = notify.load_manifest(run)
+    profile = load_profile("women")
+    assert "#" not in publish.post_caption(profile, manifest)  # 해시태그는 캡션에 없음
+    (kind, heart), (kind2, tags) = api.comments
+    assert (kind, heart, kind2) == ("comment", "🤍", "reply")
+    words = tags.split()
+    assert len(words) <= profile.comment_tags.max and words[-1] == "#소통" and "#맞팔" in words

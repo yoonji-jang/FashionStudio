@@ -28,6 +28,7 @@ class FakeApis:
         self.files: dict[str, str] = {}
         self.statuses: dict[str, list[str]] = {}
         self.texts: list[str] = []  # 보낸 텔레그램 글
+        self.comments: list[tuple[str, str]] = []  # 인스타 댓글·대댓글
 
     def __call__(self, req: httpx.Request) -> httpx.Response:
         host, path = req.url.host, req.url.path
@@ -76,6 +77,14 @@ class FakeApis:
             return httpx.Response(200, json={"id": cid})
         if path.endswith("/media_publish"):
             return httpx.Response(200, json={"id": "m777"})
+        if req.method == "POST" and path.endswith("/comments"):
+            msg = parse_qs(req.content.decode()).get("message", [""])[0]
+            self.comments.append(("comment", msg))
+            return httpx.Response(200, json={"id": "k1"})
+        if req.method == "POST" and path.endswith("/replies"):
+            msg = parse_qs(req.content.decode()).get("message", [""])[0]
+            self.comments.append(("reply", msg))
+            return httpx.Response(200, json={"id": "k2"})
         key = path.rsplit("/", 1)[-1]
         if key in self.statuses:
             left = self.statuses[key]
