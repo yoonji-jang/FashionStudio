@@ -1,0 +1,55 @@
+account: women
+date: '2026-09-29'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 울블렌디드 하프코트 (beige wool-blend half coat)
+  name: 울블렌디드 하프코트
+  product: zigzag:171900742
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 스트라이프 배색 니트 (navy striped contrast knit)
+  name: 딥무드 배색니트
+  product: zigzag:165918925
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 하이웨스트 슬랙스 (ivory high-waist slacks)
+  name: 하이머스트 슬랙스
+  product: zigzag:156246160
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 클리프 숄더백
+  product: zigzag:151166447
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 페니로퍼 (black penny loafers)
+  name: 클래식 페니로퍼
+  product: zigzag:129223675
+  segment: shoe
+reason: 베이지 하프코트에 네이비 배색 니트와 아이보리 슬랙스로 톤온톤 분위기를 낸 코디. 베이지·네이비·아이보리로 부드럽게 이어지는 톤이라
+  가을 느낌이 가장 잘 나요. 아침저녁엔 코트, 낮엔 니트만으로 조절해요.
+theme:
+  date: '2026-09-29'
+  mood: 차분한 그레이·아이보리·네이비 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 아우터
+  - category: 상의
+    desc: 단정한 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 로퍼나 플랫
+  title_hint: 일교차 큰 화요일, 가벼운 아우터로 챙기는 출근룩
+  type: 상황
+  why: 화요일 출근길, 서울 14~25도로 아침저녁 쌀쌀하고 낮엔 따뜻해 벗고 입기 쉬운 아우터가 필요

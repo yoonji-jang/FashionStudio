@@ -1,0 +1,59 @@
+account: women
+date: '2026-09-29'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 자켓 (black leather jacket)
+  name: 베리스 레더 자켓
+  product: zigzag:146665389
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 워싱 셔츠 (ivory washed shirt)
+  name: 더블스티치 워싱셔츠
+  product: zigzag:127356723
+  wear_how: wear the shirt under the jacket with only the collar and cuffs visible
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 밴딩 롱스커트 (gray banded long skirt)
+  name: 델리 밴딩 롱스커트
+  product: zigzag:168618198
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 미디움 숄더백 (burgundy medium shoulder bag)
+  name: 핀턱 로우 숄더백
+  product: zigzag:165871135
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 키튼힐 메리제인 슬링백 (black kitten heel mary jane slingbacks)
+  name: 키튼힐 메리제인
+  product: zigzag:156434065
+  segment: shoe
+reason: 블랙 레더자켓으로 시크하게, 아이보리 셔츠와 그레이 롱스커트를 매치한 모던 출근룩. 자켓 하나로 바람 부는 아침에도 든든하고, 버건디
+  가방이 유일한 포인트예요.
+theme:
+  date: '2026-09-29'
+  mood: 차분한 그레이·아이보리·네이비 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 아우터
+  - category: 상의
+    desc: 단정한 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 로퍼나 플랫
+  title_hint: 일교차 큰 화요일, 가벼운 아우터로 챙기는 출근룩
+  type: 상황
+  why: 화요일 출근길, 서울 14~25도로 아침저녁 쌀쌀하고 낮엔 따뜻해 벗고 입기 쉬운 아우터가 필요

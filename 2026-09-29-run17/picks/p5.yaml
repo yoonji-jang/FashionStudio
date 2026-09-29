@@ -1,0 +1,54 @@
+account: women
+date: '2026-09-29'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 울블렌디드 테일러드 롱코트 (gray wool-blend tailored long coat)
+  name: 테일러드 롱코트
+  product: zigzag:171900729
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라운드넥 니트 (ivory round neck knit)
+  name: 시오 니트
+  product: zigzag:147921597
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 슬랙스 (navy slacks)
+  name: 어텐션슬랙스
+  product: zigzag:119143697
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 나일론 숄더백 (black nylon shoulder bag)
+  name: 이브닝 나일론 숄더백
+  product: zigzag:146668296
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 플랫 로퍼 (black suede flat loafers)
+  name: 스티치 플랫 로퍼
+  product: zigzag:165485536
+  segment: shoe
+reason: 그레이 롱코트에 아이보리 니트와 네이비 슬랙스로 깊이 있게 차려입은 코디. 낮 기온이 25도라 이른 아침 출근이나 미팅 있는 날에 맞아요.
+theme:
+  date: '2026-09-29'
+  mood: 차분한 그레이·아이보리·네이비 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 아우터
+  - category: 상의
+    desc: 단정한 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 로퍼나 플랫
+  title_hint: 일교차 큰 화요일, 가벼운 아우터로 챙기는 출근룩
+  type: 상황
+  why: 화요일 출근길, 서울 14~25도로 아침저녁 쌀쌀하고 낮엔 따뜻해 벗고 입기 쉬운 아우터가 필요

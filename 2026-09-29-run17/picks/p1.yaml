@@ -1,0 +1,59 @@
+account: women
+date: '2026-09-29'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 베이직 니트 가디건 (gray basic knit cardigan)
+  name: 데이베이직 가디건
+  product: zigzag:136080843
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 코튼 셔츠 (ivory cotton shirt)
+  name: 여리핏 코튼셔츠
+  product: zigzag:140069145
+  wear_how: wear the shirt under the cardigan with only the collar and cuffs visible
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 핀턱 와이드 슬랙스 (black pintuck wide slacks)
+  name: 핀턱 와이드 슬랙스
+  product: zigzag:144667358
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 멜다 숄더백
+  product: zigzag:159313221
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 로퍼 (black loafers)
+  name: 시더로퍼
+  product: zigzag:109454411
+  segment: shoe
+reason: 그레이 가디건에 아이보리 셔츠를 받쳐 블랙 슬랙스로 가장 무난하게 단정한 출근룩. 그레이·아이보리·블랙 무채색 조합이라 실패가 없는
+  안전한 코디예요. 가디건은 낮에 벗어 들기 좋아 일교차에 맞고, 셔츠 깃만 살짝 보여 단정해요.
+theme:
+  date: '2026-09-29'
+  mood: 차분한 그레이·아이보리·네이비 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 아우터
+  - category: 상의
+    desc: 단정한 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 로퍼나 플랫
+  title_hint: 일교차 큰 화요일, 가벼운 아우터로 챙기는 출근룩
+  type: 상황
+  why: 화요일 출근길, 서울 14~25도로 아침저녁 쌀쌀하고 낮엔 따뜻해 벗고 입기 쉬운 아우터가 필요

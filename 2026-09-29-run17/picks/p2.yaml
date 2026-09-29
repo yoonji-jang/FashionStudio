@@ -1,0 +1,63 @@
+account: women
+date: '2026-09-29'
+items:
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라운드 트위드 자켓 (ivory round tweed jacket)
+  name: 모리 트위드 자켓
+  product: zigzag:128885359
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 하프넥 니트 (black half-neck knit)
+  name: 톡톡 하프넥 니트
+  product: zigzag:146407231
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 H라인 롱 스커트 (black H-line long skirt)
+  name: 모덴 롱 스커트
+  product: zigzag:140288768
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 토트백 (burgundy tote bag)
+  name: 마리백
+  product: zigzag:130366243
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 플랫 (black mary jane flats)
+  name: 안도르 메리제인 플랫
+  product: zigzag:130585059
+  segment: shoe
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 미니 큐빅 링 귀걸이 (silver mini cubic ring earrings)
+  name: 미니 큐빅링 귀걸이
+  product: zigzag:169324851
+  segment: earring
+  slot: 귀걸이
+reason: 아이보리 트위드 자켓에 블랙 롱스커트, 버건디 백으로 포인트를 준 클래식 출근룩. 트위드 자켓의 아이보리와 블랙 이너·스커트를 대비시키고
+  버건디 가방을 포인트로 하나만 넣었어요. 귀걸이는 작은 것으로 과하지 않게 했어요.
+theme:
+  date: '2026-09-29'
+  mood: 차분한 그레이·아이보리·네이비 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 아우터
+  - category: 상의
+    desc: 단정한 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 로퍼나 플랫
+  title_hint: 일교차 큰 화요일, 가벼운 아우터로 챙기는 출근룩
+  type: 상황
+  why: 화요일 출근길, 서울 14~25도로 아침저녁 쌀쌀하고 낮엔 따뜻해 벗고 입기 쉬운 아우터가 필요
