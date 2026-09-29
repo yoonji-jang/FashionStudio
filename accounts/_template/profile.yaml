@@ -89,7 +89,7 @@ link_page:  # 최근 게시물 상품 링크 페이지 (ManyChat DM 에 넣는 �
   enabled: true
   title: 코디 상품 모음
 
-monetize: none
+monetize: none  # manual_link: 게시 알림에 답장한 공유리워드 링크를 상품 페이지에 씀, 광고 표기 자동
 approval: required
 
 instagram:

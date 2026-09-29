@@ -7,7 +7,7 @@ import pytest
 from core.models import PostLink, PostRecord
 from core.profile import load_profile
 from core.store import Store
-from tools import comments, notify, schedule
+from tools import comments, notify, schedule, share
 from tools.ig_publish import Instagram
 
 DAY = date(2026, 9, 28)
@@ -116,7 +116,7 @@ def test_matches_and_parse_share_links():
     assert not comments.matches("너무 예뻐요", ["정보", "링크"])
     assert comments.matches("너무 예뻐요", [])  # 키워드가 없으면 모든 댓글
     text = "2 https://s.zig.kr/b\nhttps://s.zig.kr/a\n없음\nhttps://s.zig.kr/c extra"
-    assert comments.parse_share_links(text, 3) == {
+    assert share.parse_links(text, 3) == {
         2: "https://s.zig.kr/b",
         1: "https://s.zig.kr/a",
         3: "https://s.zig.kr/c",

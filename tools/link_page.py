@@ -36,6 +36,7 @@ def page_path(profile: Profile) -> str:
 
 def render(profile: Profile, posts: list[PostRecord], store: Store) -> str:
     from tools.comments import post_links
+    from tools.share import share_url
 
     lp, feed = profile.link_page, profile.feed
     accent = profile.visual.accent_color or feed.text_color
@@ -44,7 +45,8 @@ def render(profile: Profile, posts: list[PostRecord], store: Store) -> str:
     blocks: list[str] = []
     for post in recent:
         rows = []
-        for ln in post_links(post, store):
+        for i, ln in enumerate(post_links(post, store), 1):
+            url = share_url(post, i, ln)
             meta = lp.item_line.format(category=ln.category, shop=ln.shop)
             image = ln.image
             if not image:  # 썸네일이 생기기 전 기록은 상품 창고의 대표 사진
@@ -58,7 +60,7 @@ def render(profile: Profile, posts: list[PostRecord], store: Store) -> str:
                 else '<span class="thumb"></span>'
             )
             rows.append(
-                f'<a class="item" href="{escape(ln.url)}" target="_blank" rel="noopener">{thumb}'
+                f'<a class="item" href="{escape(url)}" target="_blank" rel="noopener">{thumb}'
                 f'<span class="text"><span class="meta">{escape(meta)}</span>'
                 f'<span class="name">{escape(ln.name)}</span></span></a>'
             )

@@ -15,6 +15,8 @@ Actions 는 늦게 깨어날 때가 많아서 지금 시각이 아니라 "어느
   comments    댓글 확인 → DM 코디 링크 (tools.comments, 이 job 안에서 바로 돈다).
               profile comments.check_at 시각에 따로 깨어나고, with_other_ticks 면
               다른 작업으로 깨어날 때도 같이 한다 (Actions 시간을 거의 더 쓰지 않음)
+  share       공유리워드 링크 답장 반영, 상품 페이지 다시 올림 (tools.share, manual_link).
+              따로 깨어나지 않고 다른 작업으로 깨어날 때마다 같이 한다
 
 사용법:
   python -m tools.schedule list                    계정별 시간표와 cron 줄
@@ -23,7 +25,8 @@ Actions 는 늦게 깨어날 때가 많아서 지금 시각이 아니라 "어느
   python -m tools.schedule run --cron "17 1 * * *" --results <daily-results 폴더> [--dry-run]
       작업을 실행한다 (워크플로 실행 요청, 고른 번호 확인).
       환경 변수 GITHUB_TOKEN, GITHUB_REPOSITORY,
-      GITHUB_REF_NAME, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, IG_SECRETS(댓글 DM, Secrets JSON)
+      GITHUB_REF_NAME, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, IG_SECRETS(댓글 DM, Secrets JSON),
+      MEDIA_REPO_TOKEN(공유리워드 링크를 반영한 상품 페이지)
 """
 
 from __future__ import annotations
@@ -41,6 +44,7 @@ import httpx
 
 from core.profile import REPO_ROOT, WEEKDAYS, Profile, load_index, load_profile, minutes
 from core.store import Store
+from tools import share
 
 WORKFLOW = REPO_ROOT / ".github" / "workflows" / "schedule.yml"
 BEGIN = "    # >>> tools.schedule sync"
@@ -224,6 +228,9 @@ def due(cron: str, now: datetime | None = None, accounts: list[str] | None = Non
         builtin = cm.enabled and cm.mode == "builtin"
         if builtin and cm.with_other_ticks and all(t.task != "comments" for t in mine):
             tasks.append(Task(account, "comments", mine[0].date, True, True, 0))
+        # 공유리워드 링크 답장도 깨어날 때마다 본다 (tools.share, 게시 뒤 share_days 일 동안)
+        if share.enabled(profile):
+            tasks.append(Task(account, "share", mine[0].date, True, True, 0))
     return tasks
 
 
@@ -367,6 +374,12 @@ def execute(
 
             # 오류가 나도 다른 작업을 막지 않는다 (알림은 tools.comments 가 하루 한 번)
             print(comments.check(t.account, tg, now, dry_run))
+        elif t.task == "share":
+            # 오류가 나도 다른 작업을 막지 않는다
+            try:
+                print(share.check(t.account, tg, now, dry_run))
+            except (RuntimeError, ValueError, httpx.HTTPError) as e:
+                print(f"{tag} 공유리워드 확인 실패: {e}", file=sys.stderr)
     return log
 
 

@@ -199,8 +199,10 @@ link_page:
   intro: 게시물에 나온 상품 링크예요. 최신 게시물이 맨 위에 있어요
   keep: 14                 # 보여 줄 최근 게시물 수
   item_line: "{category} · {shop}"
+  share_days: 7            # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
+# (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)
 monetize: none
 # required: 텔레그램 /ok 승인 후 게시 / optional: /skip 이 없으면 자동 게시
 approval: required

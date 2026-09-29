@@ -26,7 +26,6 @@ import argparse
 import hashlib
 import json
 import os
-import re
 import sys
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
@@ -38,11 +37,11 @@ from core.models import PostDm, PostLink, PostRecord, ShareRequest
 from core.profile import Profile, load_profile
 from core.store import Store
 from tools import notify
+from tools import share as share_mod
 from tools.ig_publish import IGError, Instagram
 
 DM_MAX = 1000  # 인스타 DM 글 최대 길이
 REPLY_WINDOW = timedelta(days=7)
-URL = re.compile(r"https?://\S+")
 # 전체를 멈추고 다음에 다시 볼 오류 (토큰, 권한, 호출 한도). 나머지는 그 댓글만 건너뜀
 FATAL_CODES = {190, 3, 4, 10, 17, 32, 613}
 WINDOW_SUBCODES = {2018278, 2534022}  # 보낼 수 있는 기간이 지남 (code 10 이어도 그 댓글만 건너뜀)
@@ -137,46 +136,6 @@ def share_request_text(profile: Profile, post: PostRecord, links: list[PostLink]
     return "\n".join(rows)
 
 
-def parse_share_links(text: str, count: int) -> dict[int, str]:
-    """번호("1 https://…")가 있으면 그 번호, 없으면 비어 있는 순서대로."""
-    found: dict[int, str] = {}
-    loose: list[str] = []
-    for line in text.splitlines():
-        url = URL.search(line)
-        if not url:
-            continue
-        m = re.match(r"\s*(\d+)\s*[.)·:\-]?\s*https?://", line)
-        if m and 1 <= int(m.group(1)) <= count:
-            found[int(m.group(1))] = url.group(0)
-        else:
-            loose.append(url.group(0))
-    for i in range(1, count + 1):
-        if not loose:
-            break
-        if i not in found:
-            found[i] = loose.pop(0)
-    return found
-
-
-def read_share_links(req: ShareRequest, updates: list[dict], chat_id: str, count: int) -> bool:
-    """텔레그램 답장에서 공유 링크를 읽어 req.links 에 넣는다. 새로 읽었으면 True."""
-    changed = False
-    for u in updates:
-        msg = u.get("message") or {}
-        if str((msg.get("chat") or {}).get("id")) != str(chat_id):
-            continue
-        if msg.get("date", 0) < req.sent_at:
-            continue
-        to = (msg.get("reply_to_message") or {}).get("message_id")
-        if to not in req.message_ids:
-            continue
-        links = parse_share_links(msg.get("text") or "", count)
-        if links and links != req.links:
-            req.links = links
-            changed = True
-    return changed
-
-
 # ---------- 확인 ----------
 
 
@@ -247,7 +206,8 @@ def run(
                 rep.notes.append(f"{key}: 보낼 상품 링크가 없어요")
                 continue
 
-            share: dict[int, str] = {}
+            # 게시 알림 답장으로 받은 공유리워드 링크 (monetize: manual_link, tools.share)
+            share: dict[int, str] = dict(post.share.links) if post.share else {}
             waiting = False
             if cm.link_mode == "share_reward" and tg is not None:
                 if pd.share is None:
@@ -258,7 +218,7 @@ def run(
                 else:
                     if updates is None:
                         updates = tg.updates()
-                    read_share_links(pd.share, updates, tg.chat_id, len(links))
+                    share_mod.read_links(pd.share, updates, tg.chat_id, len(links))
                     share = pd.share.links
                     age = now.timestamp() - pd.share.sent_at
                     waiting = len(share) < len(links) and age < cm.share_wait_hours * 3600
