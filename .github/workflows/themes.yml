@@ -65,6 +65,8 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
           prompt: |
             .claude/skills/plan-themes/SKILL.md 의 "주간" 방법으로 ${{ env.FIRST }} 부터 주제를 정해 저장해.
             ACCOUNT=${{ env.ACCOUNT }}

@@ -104,3 +104,18 @@ def test_execute_dispatches_workflows(tmp_path, monkeypatch):
     gh = schedule.DryRun()
     schedule.execute([T("women", "pick", "2026-09-28", False, False, 100)], tmp_path, gh)
     assert gh.sent[0][1]["mode"] == "render" and gh.sent[0][1]["pick"] == "2026-09-28-run3/2"
+
+
+def test_claude_steps_accept_bot_dispatch():
+    """schedule 이 띄운 실행은 실행자가 봇이라 allowed_bots 가 없으면 Claude 단계가 멈춘다."""
+    from pathlib import Path
+
+    import yaml
+
+    for path in sorted(Path(".github/workflows").glob("*.yml")):
+        jobs = yaml.safe_load(path.read_text(encoding="utf-8"))["jobs"]
+        for job in jobs.values():
+            for step in job.get("steps", []):
+                if str(step.get("uses", "")).startswith("anthropics/claude-code-action"):
+                    bots = step["with"].get("allowed_bots", "")
+                    assert "github-actions" in bots, f"{path.name}: {step.get('name')}"

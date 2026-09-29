@@ -135,6 +135,8 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
           prompt: |
             .claude/skills/outfit-candidates/SKILL.md 의 순서를 그대로 따라 코디 후보를 만들어.
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} COLLECT=${{ env.COLLECT }}
@@ -163,6 +165,8 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
             out/${{ env.DATE }}/plan.yaml 이 이미 있으면 사람이 고른 후보이니 "고른 후보로 시작" 절을 따라.
@@ -190,6 +194,8 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 10번(이미지 검수)만 out/${{ env.DATE }} 에 대해 해.
             plan.yaml 은 고치지 말고, 종료 코드 4 는 그대로 두고 끝내.
