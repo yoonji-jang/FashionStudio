@@ -192,6 +192,21 @@ class ReviewRules(BaseModel):
     check_slides: bool = True  # 상품 장 사진 색·얼굴·글자 잘림도 본다
 
 
+class OutfitImage(BaseModel):
+    """표지 코디컷 만드는 방식 (11단계). generate 는 쇼핑몰 사진을 참고로 생성형 AI 가 코디 전체를
+    한 장으로 그린다 (tools.outfit_gen). photoroom 은 예전 방식 (누끼를 코드로 배치, tools.poc)."""
+
+    engine: Literal["generate", "photoroom"] = "generate"
+    model: str = "nano_banana_pro"  # config/models.yaml generate.models 키
+    prompt: str = "outfit_generate"  # prompts/<이름>.md
+    scene: str = (
+        "smooth warm light-grey linen-textured floor, soft natural window light from the upper "
+        "left, calm and clean"
+    )
+    # 아우터가 있는 날 기본으로 입히는 방법 (영어). 기획의 styling 이 있으면 그것을 쓴다
+    outer_styling: str = ""
+
+
 WEEKDAYS = "월화수목금토일"
 WEEKLY = r"^[월화수목금토일](,[월화수목금토일])* ([01]\d|2[0-3]):[0-5]\d$"
 
@@ -224,7 +239,7 @@ class Schedule(BaseModel):
 
 class PickRules(BaseModel):
     """텔레그램으로 코디 후보를 보내고 사람이 고른 것만 이미지로 만든다 (9단계, tools.pick).
-    후보는 쇼핑몰 원본 사진으로 보여 주고 Photoroom 은 고른 뒤에만 부른다."""
+    후보는 쇼핑몰 원본 사진으로 보여 주고 코디컷 이미지 AI 는 고른 뒤에만 부른다."""
 
     enabled: bool = True  # false 면 고르지 않고 Claude 가 한 벌을 정해 바로 만든다
     count: int = Field(default=5, ge=2, le=8)  # 보내는 후보 수
@@ -299,6 +314,7 @@ class Profile(BaseModel):
     copy_rules: Copy = Field(default=Copy(), alias="copy")
     comment_tags: CommentTags = CommentTags()
     review: ReviewRules = ReviewRules()
+    outfit_image: OutfitImage = OutfitImage()
     schedule: Schedule
     pick: PickRules = PickRules()
     comments: Comments = Comments()

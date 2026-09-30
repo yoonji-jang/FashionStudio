@@ -22,7 +22,7 @@
 
 9단계 매일 자동 실행에서는 둘로 나뉜다 (`tools.schedule`, `tools.pick`):
 ```
-(후보 시각) outfit-candidates ─▶ tools.pick validate ─▶ tools.pick send (텔레그램, Photoroom 없음)
+(후보 시각) outfit-candidates ─▶ tools.pick validate ─▶ tools.pick send (텔레그램, 이미지 AI 없음)
 (사람이 번호 선택) ─▶ daily-feed "고른 후보로 시작" (사진 확인 → 문구 → 만들기 → 검수) ─▶ 미리보기
 ```
 

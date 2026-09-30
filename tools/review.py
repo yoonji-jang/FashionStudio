@@ -4,11 +4,11 @@ r"""7단계 이미지 검수 도구. 판단은 image-reviewer 에이전트(Claud
 사용법 (out 은 tools.plan build 결과 폴더):
   python -m tools.review prep out/2026-09-27     검수표·도구 검사 (review/ 폴더)
   python -m tools.review apply out/2026-09-27 --scores out/2026-09-27/review/scores.yaml
-  python -m tools.review more out/2026-09-27 [--fake]   코디컷 후보를 한 묶음 더 만든다 (Photoroom)
+  python -m tools.review more out/2026-09-27 [--fake]   코디컷 후보 한 묶음 더 (build 와 같은 방식)
 
 apply 종료 코드: 0 통과 / 3 표지 후보가 모두 기준 미달 (more 로 다시 만들 수 있음)
                  / 4 사람 확인 필요 (최대 회차를 넘었거나 캐러셀 장에 문제가 남음) / 1 입력 오류
-more 종료 코드: 0 성공 / 2 Photoroom 한도 / 3 최대 회차를 넘음
+more 종료 코드: 0 성공 / 2 이미지 서비스 한도 / 3 최대 회차를 넘음
 
 만드는 파일 (out/review/):
   review.json   후보 목록·점수·선택 (core.models.Review, manifest.review 에도 복사)
@@ -371,8 +371,9 @@ def apply(out: Path, scores: Scores, profile: Profile | None = None) -> tuple[Re
     best = pick(review, profile)
     cover_ok = best is not None and passes(best.score, profile)
     if best is None:
-        # 코디컷이 없는 날 (Photoroom 없이 만든 경우): 캐러셀만 본다
-        code = 0 if not review.slide_issues else EXIT_HUMAN
+        # 코디컷이 없는 날: --outfit none 이면 캐러셀만 본다. 만들려다 실패했으면 사람이 본다
+        failed = (out / "outfit" / "engine.txt").exists()
+        code = 0 if not review.slide_issues and not failed else EXIT_HUMAN
         review.status = "passed" if code == 0 else "failed"
     elif not cover_ok and review.rounds < profile.review.max_rounds:
         review.status, code = "retry", EXIT_RETRY
@@ -435,8 +436,20 @@ def more(out: Path, fake: bool = False) -> list[Candidate]:
     if review.rounds >= profile.review.max_rounds:
         raise OverflowError(f"최대 회차({profile.review.max_rounds})를 넘습니다")
     rnd = review.rounds + 1
+    engine_file = out / "outfit" / "engine.txt"
+    engine = (
+        engine_file.read_text(encoding="utf-8").strip()
+        if engine_file.exists()
+        else profile.outfit_image.engine
+    )
     made = plan_tool.make_outfit(
-        plan, Store(plan.account), out / f"outfit_r{rnd}", fake, profile.review.candidates
+        plan,
+        Store(plan.account),
+        out / f"outfit_r{rnd}",
+        fake,
+        profile.review.candidates,
+        engine,
+        profile,
     )
     start_no = len(review.candidates)
     new = [
@@ -463,10 +476,10 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--scores", type=Path, required=True)
     s = sub.add_parser("more", help="코디컷 후보 더 만들기")
     s.add_argument("out", type=Path)
-    s.add_argument("--fake", action="store_true", help="Photoroom 대신 가짜 이미지")
+    s.add_argument("--fake", action="store_true", help="이미지 API 대신 가짜 이미지")
     args = ap.parse_args(argv)
 
-    from tools import photoroom
+    from tools.plan import QUOTA_ERRORS
 
     try:
         if args.cmd == "prep":
@@ -499,8 +512,8 @@ def main(argv: list[str] | None = None) -> int:
     except (ValueError, FileNotFoundError, ValidationError) as e:
         print(f"오류: {e}", file=sys.stderr)
         return 1
-    except photoroom.QuotaError as e:
-        print(f"Photoroom 크레딧·요금제 한도에 막혔습니다.\n{e}", file=sys.stderr)
+    except QUOTA_ERRORS as e:
+        print(f"코디컷 이미지 서비스 크레딧·요금제 한도에 막혔습니다.\n{e}", file=sys.stderr)
         return 2
 
 

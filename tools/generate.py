@@ -1,4 +1,5 @@
 """생성형 이미지 AI 비교 실험 (11단계). 상품 사진 여러 장을 넣어 장면 한 장을 새로 그리게 한다.
+하루 코디컷은 tools.outfit_gen 이 이 파일의 부품(참고판, API 호출)을 쓴다.
 
 누끼를 오려 붙이는 지금 방식(tools.poc, Photoroom)과 달리, 모델이 코디 전체를 한 번에 그려서
 빛·각도·천의 주름이 자연스럽다. 대신 상품이 원본과 달라질 수 있어 비교표로 사람이 확인한다.
@@ -201,6 +202,10 @@ def fit_canvas(data: bytes, size: tuple[int, int] = CANVAS) -> Image.Image:
     return im.crop((left, top, left + tw, top + th))
 
 
+class QuotaError(RuntimeError):
+    """402: OpenRouter 크레딧 부족. 더 돌려도 소용없다."""
+
+
 class Client(Protocol):
     def generate(self, model: dict, prompt: str, images: list[bytes]) -> tuple[bytes, float | None]:
         ...
@@ -216,6 +221,8 @@ class OpenRouterClient:
     def generate(self, model: dict, prompt: str, images: list[bytes]) -> tuple[bytes, float | None]:
         payload = build_payload(model, prompt, images, self.cfg)
         res = self.http.post(self.cfg["endpoint"], json=payload)
+        if res.status_code == 402:
+            raise QuotaError(f"OpenRouter 크레딧이 부족합니다: {res.text[:300]}")
         if res.status_code >= 400:
             raise RuntimeError(f"HTTP {res.status_code}: {res.text[:300]}")
         return parse_response(res.json())

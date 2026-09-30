@@ -71,6 +71,12 @@ class PlanItem(BaseModel):
     comment: str = ""  # 상품 장 코멘트 한두 문장
     photo: int | None = None  # 상품 장에 쓸 창고 사진 번호 (사진 확인 뒤, 없으면 자동)
     cutout_photo: int = Field(default=0, ge=0)  # 코디컷 누끼에 쓸 창고 사진 번호
+    # 생성형 코디컷(outfit_image.engine: generate)에 참고로 보낼 창고 사진 번호 1~3개 (고른 색만).
+    # 없으면 cutout_photo 와 photo 를 쓴다
+    ref_photos: list[int] | None = Field(default=None, max_length=4)
+    # 생성형 코디컷용 실제 크기 (영어, 예: "about 110 cm long from shoulder to hem").
+    # 없으면 cm·기본값으로 도구가 쓴다
+    size: str | None = None
     slot: str | None = None  # config/layout.yaml 자리 (예: 목걸이). 없으면 카테고리
     segment: str | None = None  # 누끼에서 남길 물건 (영어 단수, 예: bag, belt, necklace)
     # 누끼 방식 (flatlay, segment). 생략하면 옷은 flatlay. 착용컷을 flatlay 로 바꾸면
@@ -100,7 +106,9 @@ class DailyPlan(BaseModel):
     items: list[PlanItem] = Field(min_length=1, max_length=10)
     reason: str  # 이 조합을 고른 이유 (색, 분위기)
     text: PlanText | None = None
-    cover: str | None = None  # 이미 만든 코디컷 (있으면 Photoroom 을 부르지 않음)
+    # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
+    styling: str | None = None
+    cover: str | None = None  # 이미 만든 코디컷 (있으면 코디컷을 새로 만들지 않음)
 
 
 class FeedItem(BaseModel):

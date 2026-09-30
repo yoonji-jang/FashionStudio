@@ -151,10 +151,27 @@ comment_tags:
 # 이미지 검수 (tools.review, 7단계). 코디컷 후보를 여러 장 만들고 검수 에이전트가 원본 상품과 비교해 점수를 매긴다.
 # 항목 5개(색, 모양, 빠진 상품, 삐져나온 조각, 겹침·잘림) × 0~2점 = 10점 만점
 review:
-  candidates: 2      # 한 번에 만드는 코디컷 후보 수 (Photoroom 호출이 후보 수만큼 늘어남)
+  candidates: 3      # 한 번에 만드는 코디컷 후보 수 (생성 1장 약 $0.15, 후보 수만큼 늘어남)
   max_rounds: 2      # 모두 기준 미달이면 다시 만드는 횟수 (첫 회 포함). 넘으면 사람 확인으로 표시
   min_score: 8       # 이 점수 이상이고 0점 항목이 없어야 통과
   check_slides: true # 상품 장 사진 색·모델 얼굴·글자 잘림도 본다
+
+# 표지 코디컷 만드는 방식 (11단계, 2026-09-30 Photoroom 에서 바꿈). generate: 쇼핑몰 사진을 참고로
+# 생성형 AI 가 코디 전체를 한 장으로 그린다 (OpenRouter, Secret OPENROUTER_API_KEY). photoroom: 예전 누끼 배치
+outfit_image:
+  engine: generate
+  model: nano_banana_pro     # config/models.yaml generate.models 키
+  prompt: outfit_generate    # prompts/outfit_generate.md
+  scene: >-
+    smooth warm light-grey linen-textured floor, soft natural window light from the upper left with
+    faint diagonal window-frame light stripes across the floor, calm and clean
+  # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
+  outer_styling: >-
+    The outer is unbuttoned but almost closed: its two front edges lie close together with only a
+    narrow gap of about a hand's width down the middle, where the top shows at the neckline and a
+    little at the waist; any belt hangs loose at the sides. The top's sleeves are inside the outer
+    sleeves, with the top's cuffs peeking out slightly at the outer cuffs. The top's hem sits over
+    the waistband of the bottoms.
 
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.

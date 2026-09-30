@@ -39,6 +39,22 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
   name: 래글런 하프 트렌치코트     # write-copy 가 다듬음
   comment: ""                    # write-copy 가 씀
 ```
+### 생성형 코디컷 (profile `outfit_image.engine: generate`, 기본)
+AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참고로 코디 전체를 한 장으로 그린다.
+지시문은 `desc` 의 괄호 속 영어, 실제 크기, 입는 방법으로 만든다. 바뀌기 쉬운 것을 영어로 꼭 적는다
+(2026-09-30 실험: 귀걸이를 두 쌍으로, 셔츠 칼라를 테일러드 깃으로, 스퀘어토 로퍼를 페니 로퍼로 그림).
+- `desc` 영어: 색, 소재, 핏·기장, **깃·목선 모양**(shirt collar, notched lapel, crew neck …),
+  **신발 앞코·종류**(square-toe slip-on loafers …), 바지 주름 유무(flat front, no pleats), 벨트·단추.
+  개수가 헷갈리는 소품은 개수까지: "exactly one pair (two earrings) of ...", "one pair (two shoes) of ...".
+  사진에 다른 색·다른 상품이 함께 있으면 "the photos also show a gold pair, ignore it" 처럼 적는다.
+- `size` (선택, 영어): 실제 크기. 없으면 도구가 옷은 cm(아래 기장 규칙), 가방·신발·주얼리는
+  config/models.yaml `default_sizes` 로 쓴다. 쇼핑몰 실측을 알면 "about 110 cm long from shoulder to hem".
+- plan.yaml 맨 위 `styling` (선택, 영어): 한 벌을 어떻게 입혀 펼칠지. 없으면 아우터가 있는 날은
+  profile `outfit_image.outer_styling`(거의 닫고 가운데만 살짝 벌림)을 쓴다. 아우터를 활짝 열지 않는다.
+  예: "The cardigan is buttoned only at the top; the shirt collar shows at the neckline."
+- 아래 `wear_modes`·`segment`·`method` 는 예전 누끼 방식에서만 쓴다 (넣어도 생성형에는 영향 없음).
+
+### 예전 누끼 방식 (profile `outfit_image.engine: photoroom`)
 코디컷 배치(2단계에서 확인한 방법):
 - **아우터와 상의가 함께 있으면 상의는 반드시 아우터에 입힌다** (`wear_with: 아우터`).
   따로 놓으면 상의가 아우터 뒤에 가려진다 (2026-09-29). 니트·티셔츠처럼 상의 앞판을 보여 줄 옷은

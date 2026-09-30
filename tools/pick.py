@@ -1,6 +1,6 @@
 r"""코디 고르기 (9단계). 외부로 보내는 도구라 Claude 허용 목록에 없다.
 
-Photoroom 을 아끼려고, Claude 가 짠 코디 후보(profile pick.count 개)를 쇼핑몰 원본 사진 묶음으로
+이미지 AI 비용을 아끼려고, Claude 가 짠 코디 후보(profile pick.count 개)를 쇼핑몰 원본 사진 묶음으로
 텔레그램에 보내고 사람이 고른 한 벌만 코디컷을 만든다.
 
 - validate: 후보 기획(out/<날짜>/picks/p1.yaml …)을 검사해 문제 있는 후보를 빼고 번호를 다시 붙인다

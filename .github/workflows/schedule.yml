@@ -2,8 +2,8 @@ name: schedule
 
 # 9단계 매일 자동 실행. 계정마다 profile.yaml schedule 의 시각에 깨어나 할 일을 찾는다 (tools.schedule).
 # Claude 는 부르지 않고, 무거운 작업은 워크플로 실행 요청으로 넘긴다:
-#   candidates → daily (mode=candidates: 코디 후보를 텔레그램으로, Photoroom 없음)
-#   pick       → 고른 번호 확인. 고르면 daily (mode=render: 고른 코디만 Photoroom), "다시"면 새 후보
+#   candidates → daily (mode=candidates: 코디 후보를 텔레그램으로, 이미지 AI 없음)
+#   pick       → 고른 번호 확인. 고르면 daily (mode=render: 고른 코디만 코디컷 생성), "다시"면 새 후보
 #   publish    → publish (/ok 가 있으면 게시, 없으면 publish_retry_every 뒤 다시)
 #   themes / collect / token → themes / collect / token 워크플로
 #   comments   → 댓글 확인 → DM 코디 링크 (10단계, tools.comments, 이 job 안에서 바로).

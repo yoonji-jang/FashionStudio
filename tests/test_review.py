@@ -18,7 +18,15 @@ def store(tmp_path, monkeypatch):
     # review 는 계정 이름으로 창고를 열기 때문에 같은 임시 창고를 쓰게 한다
     monkeypatch.setattr(review, "Store", lambda account: s)
     monkeypatch.setattr(plan, "Store", lambda account: s)
+    # 후보 수는 계정 설정과 무관하게 2장으로 시험한다
+    monkeypatch.setattr(review, "load_profile", two_candidates)
     return s
+
+
+def two_candidates(account: str = "women"):
+    profile = load_profile(account)
+    profile.review.candidates = 2
+    return profile
 
 
 @pytest.fixture(autouse=True)
@@ -41,7 +49,7 @@ def built(store, tmp_path) -> Path:
     (out / "plan.yaml").write_text(
         yaml.safe_dump(p.model_dump(mode="json"), allow_unicode=True), encoding="utf-8"
     )
-    plan.build(p, out, load_profile("women"), store, fake=True)
+    plan.build(p, out, two_candidates(), store, fake=True)
     return out
 
 
@@ -141,3 +149,11 @@ def test_rebuild_with_chosen_cover_keeps_scores(store, tmp_path):
     assert r.chosen == "c2" and r.candidates[0].score.total == 9 and r.status == "not_reviewed"
     r, code = review.apply(out, review.Scores())
     assert code == 0 and r.chosen == "c2"
+
+
+def test_failed_outfit_needs_human(store, tmp_path):
+    """코디컷을 만들려다 한 장도 못 만들면 표지 없이 자동 게시되지 않게 사람 확인으로 둔다."""
+    out = built(store, tmp_path)
+    review.start(out, [])  # 후보가 하나도 없는 상태
+    r, code = review.apply(out, review.Scores())
+    assert code == review.EXIT_HUMAN and not r.passed

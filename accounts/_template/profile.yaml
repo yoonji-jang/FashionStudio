@@ -66,6 +66,11 @@ review:  # 7단계 이미지 검수. 생략하면 기본값 (README 참고)
   candidates: 2
   min_score: 8
 
+outfit_image:  # 표지 코디컷 만드는 방식. 생략하면 기본값 (README 참고)
+  engine: generate           # generate(생성형 AI) 또는 photoroom(누끼 배치)
+  scene: smooth warm light-grey linen-textured floor, soft natural window light from the upper left
+  outer_styling: ""          # 아우터를 어떻게 입힐지 (영어)
+
 schedule:  # 매일 자동 실행 시간표. 바꾸면 python -m tools.schedule sync (README 참고)
   timezone: Asia/Seoul
   candidates_at: "10:17"
