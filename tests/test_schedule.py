@@ -124,3 +124,147 @@ def test_claude_steps_accept_bot_dispatch():
                 if str(step.get("uses", "")).startswith("anthropics/claude-code-action"):
                     bots = step["with"].get("allowed_bots", "")
                     assert "github-actions" in bots, f"{path.name}: {step.get('name')}"
+
+
+# ---------- auto: 밀린 칸 따라잡기, 한 번만 실행 (12단계) ----------
+
+
+def auto(ticks, now, results=None):
+    tasks, missed = schedule.due_auto(ticks, results, utc(now), ["women"])
+    main = [t for t in tasks if t.task in ("candidates", "pick", "publish")]
+    return main, missed
+
+
+def test_auto_runs_slot_once_and_skips_done(tmp_path):
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-28T01:10:00"))
+    # 10:18 KST: 후보 칸
+    tasks, missed = auto(ticks, "2026-09-28T01:18:00")
+    assert [(t.task, t.date) for t in tasks] == [("candidates", "2026-09-28")]
+    assert tasks[0].keys == ["women candidates 2026-09-28 10:17"] and tasks[0].late == 1
+    assert missed == []  # 기록 시작 전 칸(어제 게시 등)은 알리지 않음
+    schedule.execute(tasks, tmp_path, schedule.DryRun(), ticks=ticks)
+    ticks.save(utc("2026-09-28T01:18:00"))
+    # GitHub 예약이 늦게 같은 칸을 또 깨워도 하지 않는다
+    again = schedule.Ticks(tmp_path)
+    assert auto(again, "2026-09-28T01:40:00") == ([], [])
+
+
+def test_auto_catches_up_missed_slots_with_latest_one(tmp_path):
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-28T00:00:00"))
+    # 12:30 KST 까지 아무것도 안 돌았음: 후보 + 고르기(가장 최근 12:17 칸 하나)
+    tasks, missed = auto(ticks, "2026-09-28T03:30:00")
+    assert [t.task for t in tasks] == ["candidates", "pick"]
+    cand, pick = tasks
+    assert cand.late == 133
+    assert pick.first and not pick.final
+    assert pick.keys == [f"women pick 2026-09-28 {h}" for h in ("10:47", "11:17", "11:47", "12:17")]
+    assert pick.minutes_left == 167
+
+
+def test_auto_skips_stale_candidates_and_reports_once(tmp_path):
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-28T00:00:00"))
+    # 14:50 KST: 고를 시간이 30분도 안 남아 후보는 건너뛰고 알림, 고르기는 계속
+    tasks, missed = auto(ticks, "2026-09-28T05:50:00")
+    assert [t.task for t in tasks] == ["pick"]
+    assert [(t.task, t.at) for t in missed] == [("candidates", "10:17")]
+    # 다음 칸에서는 다시 알리지 않는다
+    _, missed = auto(ticks, "2026-09-28T06:17:00")
+    assert missed == []
+
+
+def test_auto_publish_retries_group_and_final_alert(tmp_path):
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-28T00:00:00"))
+    for k in ("candidates 2026-09-28 10:17", "pick 2026-09-28 15:17"):
+        ticks.mark([f"women {k}"], "done", utc("2026-09-28T06:17:00"))
+    # 21:10 KST: 20:03, 20:33, 21:03 칸이 모두 밀림 → 게시 한 번 (첫 칸 표시 이어받음)
+    tasks, missed = auto(ticks, "2026-09-28T12:10:00")
+    [pub] = [t for t in tasks if t.task == "publish"]
+    assert pub.first and not pub.final and len(pub.keys) == 3
+    assert not [t for t in missed if t.task == "publish"]
+    # 22:40 KST 까지 하나도 못 돌면 마지막 칸을 놓친 것으로 알림
+    ticks2 = schedule.Ticks(tmp_path / "x", utc("2026-09-28T00:00:00"))
+    _, missed = auto(ticks2, "2026-09-28T13:40:00")
+    finals = [t for t in missed if t.task == "publish" and t.final]
+    assert len(finals) == 1
+
+
+def test_auto_skips_candidates_already_sent(tmp_path, monkeypatch):
+    from tools import pick
+
+    monkeypatch.setattr(pick, "latest", lambda *a: (tmp_path, None))
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-28T00:00:00"))
+    tasks, _ = auto(ticks, "2026-09-28T03:25:00", tmp_path)
+    assert [t.task for t in tasks] == ["pick"]
+    assert "women candidates 2026-09-28 10:17" in ticks
+
+
+class FakeTG:
+    chat_id = "1"
+
+    def __init__(self):
+        self.sent: list[str] = []
+
+    def send(self, text: str, **kw) -> int:
+        self.sent.append(text)
+        return 0
+
+    def updates(self) -> list[dict]:
+        return []
+
+
+def test_auto_late_and_missed_alerts(tmp_path, monkeypatch):
+    from tools import pick
+
+    monkeypatch.setattr(pick, "themes_again", lambda *a: None)
+    tg = FakeTG()
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-28T00:00:00"))
+    tasks, missed = auto(ticks, "2026-09-28T02:30:00")  # 11:30 KST, 73분 늦음
+    schedule.report_missed(missed, tg)
+    schedule.execute(tasks, tmp_path, schedule.DryRun(), tg, ticks=ticks)
+    assert any("코디 후보 보내기 자동 실행이 73분 늦게" in s for s in tg.sent)
+    assert "women candidates 2026-09-28 10:17" in ticks
+    tg = FakeTG()
+    ticks = schedule.Ticks(tmp_path / "y", utc("2026-09-28T00:00:00"))
+    _, missed = auto(ticks, "2026-09-28T05:50:00")
+    schedule.report_missed(missed, tg)
+    assert tg.sent and "코디 후보 보내기(10:17) 자동 실행을 놓쳤어요" in tg.sent[0]
+
+
+def test_ticks_file_is_pruned(tmp_path):
+    ticks = schedule.Ticks(tmp_path, utc("2026-09-01T00:00:00"))
+    ticks.mark(
+        ["women pick 2026-09-01 10:47", "women pick 2026-09-28 10:47"],
+        "done",
+        utc("2026-09-28T02:00:00"),
+    )
+    ticks.save(utc("2026-09-28T02:00:00"))
+    kept = schedule.Ticks(tmp_path)
+    assert "women pick 2026-09-28 10:47" in kept and "women pick 2026-09-01 10:47" not in kept
+    assert kept.since == utc("2026-09-01T00:00:00")
+
+
+def test_external_jobs_cover_every_slot():
+    lines = schedule.external_jobs(["women"])
+    assert "Asia/Seoul  매일  10~14시  17,47분" in lines
+    assert "Asia/Seoul  매일  20~21시  03,33분" in lines
+    # 일 18:17 주제는 매일 18:17 칸과 같아서 따로 만들지 않음
+    assert not any(line.split()[1] == "일" and "17분" in line for line in lines)
+
+
+def test_schedule_event_runs_auto():
+    import yaml
+
+    wf = yaml.safe_load(open(".github/workflows/schedule.yml", encoding="utf-8"))
+    env = wf["jobs"]["tick"]["env"]["CRON"]
+    assert "'auto'" in env and "github.event_name == 'schedule'" in env
+
+
+def test_backup_cron_keeps_only_key_slots():
+    p = load_profile("women")
+    p.schedule.github_cron = "backup"
+    lines = schedule.cron_lines([(p, sl) for sl in schedule.slots(p)], REF)
+    kinds = sorted(d.split()[1] + " " + d.split()[-1] for ds in lines.values() for d in ds)
+    assert "candidates 10:17" in kinds and "pick 10:47" in kinds and "pick 15:17" in kinds
+    assert "publish 20:03" in kinds and "publish 22:03" in kinds
+    assert "pick 12:17" not in kinds and "publish 21:03" not in kinds
+    assert not [k for k in kinds if k.startswith("links")]
