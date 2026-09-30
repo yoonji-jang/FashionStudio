@@ -20,29 +20,22 @@ name: schedule
 on:
   schedule:
     # >>> tools.schedule sync (직접 고치지 말고 profile.yaml schedule 을 바꾼 뒤 sync)
-    - cron: "17 1 * * *"  # women candidates 10:17
-    - cron: "47 1 * * *"  # women pick 10:47
-    - cron: "17 2 * * *"  # women pick 11:17
-    - cron: "47 2 * * *"  # women pick 11:47
-    - cron: "17 3 * * *"  # women pick 12:17
-    - cron: "47 3 * * *"  # women pick 12:47
-    - cron: "17 4 * * *"  # women pick 13:17
-    - cron: "47 4 * * *"  # women pick 13:47
-    - cron: "17 5 * * *"  # women pick 14:17
-    - cron: "47 5 * * *"  # women pick 14:47
-    - cron: "17 6 * * *"  # women pick 15:17
-    - cron: "17 7 * * *"  # women links 16:17
-    - cron: "17 8 * * *"  # women links 17:17
-    - cron: "17 9 * * 0"  # women themes 일 18:17
-    - cron: "17 9 * * *"  # women links 18:17
-    - cron: "47 9 * * 0"  # women token 일 18:47
-    - cron: "17 10 * * *"  # women links 19:17
-    - cron: "3 11 * * *"  # women publish 20:03
-    - cron: "33 11 * * *"  # women publish 20:33
-    - cron: "3 12 * * *"  # women publish 21:03
-    - cron: "33 12 * * *"  # women publish 21:33
-    - cron: "3 13 * * *"  # women publish 22:03
-    - cron: "17 19 * * 0,3"  # women collect 월,목 04:17
+    - cron: "0 1 * * *"  # women candidates 10:00
+    - cron: "0 2 * * *"  # women pick 11:00
+    - cron: "0 3 * * *"  # women pick 12:00
+    - cron: "0 4 * * *"  # women pick 13:00
+    - cron: "0 5 * * *"  # women pick 14:00
+    - cron: "0 6 * * *"  # women pick 15:00
+    - cron: "0 7 * * *"  # women links 16:00
+    - cron: "0 8 * * *"  # women links 17:00
+    - cron: "0 9 * * 0"  # women themes 일 18:00
+    - cron: "0 9 * * *"  # women links 18:00
+    - cron: "0 10 * * 0"  # women token 일 19:00
+    - cron: "0 10 * * *"  # women links 19:00
+    - cron: "0 11 * * *"  # women publish 20:00
+    - cron: "0 12 * * *"  # women publish 21:00
+    - cron: "0 13 * * *"  # women publish 22:00
+    - cron: "0 19 * * 0,3"  # women collect 월,목 04:00
     # <<< tools.schedule sync
   workflow_dispatch:
     inputs:
