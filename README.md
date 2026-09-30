@@ -198,7 +198,9 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `points` | `[3, 3]` | 캡션 코디 포인트 줄 수 |
 | `hashtags` | `[8, 12]` | 기본 해시태그 포함 코디 해시태그 개수 (`comment_tags` 소통용은 따로) |
 | `base_hashtags` | #데일리룩 #오늘의코디 … | 매번 붙는 해시태그 |
-| `max_emoji` / `max_exclaim` | 2 / 1 | 캡션 전체 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
+| `intro` | false | true 면 캡션 맨 앞에 도입 한 줄(`text.intro`)이 필수 |
+| `max_emoji` / `max_exclaim` | 2 / 1 | 도입·코디 포인트의 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
+| `max_emoji_per_line` | 1 | 도입·코디 포인트 한 줄의 이모지 수 |
 | `banned` | 무조건, 인생템, 역대급, 최저가 … | 쓰면 오류가 나는 표현 |
 | `ad_notice` / `ad_hashtag` | (광고) … / #광고 | `monetize: manual_link` 일 때 캡션 첫 줄과 첫 해시태그 |
 | `product_line` | `{shop} · {name}` | 캡션 제품 목록 한 줄 모양 |
