@@ -232,7 +232,7 @@ def test_build_without_outfit(store, tmp_path):
     p.items[0].photo = 2
     m = plan.build(p, tmp_path / "out", load_profile("women"), store, outfit="none")
     names = [Path(x).name for x in m.images]
-    assert names[0] == "01_아우터.jpg" and names[-1] == "08_summary.jpg"
+    assert names[0] == "01_아우터.jpg" and names[-2:] == ["08_summary.jpg", "09_comment.jpg"]
     assert (tmp_path / "out" / "photos" / "1_2.jpg").exists()
     saved = Manifest.model_validate_json((tmp_path / "out" / "manifest.json").read_text())
     assert saved.hashtags == m.hashtags and saved.needs_human

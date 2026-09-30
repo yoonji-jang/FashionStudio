@@ -3,7 +3,8 @@ r"""게시물 한 개의 캐러셀 슬라이드를 만든다 (AI 없음, Pillow)
 기본 구성 (프로필 `feed.slides` 로 순서·종류를 바꿀 수 있다):
   1장 표지: 코디컷 + 제목 (tools.overlay)
   상품 장: 상품 한 장씩, 누끼(또는 원본 사진)·쇼핑몰·상품명·가격·코멘트
-  마지막 장: 코디 전체 목록과 저장·팔로우 문구
+  요약 장: 코디 전체 목록과 저장·팔로우 문구
+  댓글 안내 장(comment): 상품 정보는 댓글을 남기면 DM으로 받는다는 안내
 모양은 프로필 `feed` 와 `visual` 을 따른다. 상품 정보는 재료 파일(FeedSpec)에 적은 값이 우선이고,
 product 로 지정하면 data/<계정>/products.json 의 값을 기본으로 쓴다.
 
@@ -574,6 +575,80 @@ def summary_slide(cards: list[Card], spec: FeedSpec, profile: Profile, size: tup
     return canvas.convert("RGB")
 
 
+def comment_icon(draw: ImageDraw.ImageDraw, cx: float, cy: float, h: float, color: str):
+    """말풍선 아이콘 (둥근 풍선 + 왼쪽 아래 꼬리)."""
+    w = h * 1.15
+    lw = max(2, round(h * 0.075))
+    box = (cx - w / 2, cy - h / 2, cx + w / 2, cy + h * 0.32)
+    draw.rounded_rectangle(box, radius=h * 0.34, outline=color, width=lw)
+    tail = [(cx - w * 0.2, box[3] - lw), (cx - w * 0.3, cy + h / 2), (cx - w * 0.02, box[3] - lw)]
+    draw.polygon(tail, fill=color)
+    r = h * 0.07
+    for dx in (-w * 0.22, 0, w * 0.22):
+        y = (box[1] + box[3]) / 2
+        draw.ellipse((cx + dx - r, y - r, cx + dx + r, y + r), fill=color)
+
+
+def comment_slide(profile: Profile, size: tuple[int, int]) -> Image.Image:
+    """상품 정보는 댓글로 받으라는 안내 장. 글자는 모두 가운데 정렬."""
+    pt = Painter(profile, size)
+    f, v = pt.f, pt.v
+    canvas = pt.background().convert("RGBA")
+    draw = ImageDraw.Draw(canvas)
+    accent = v.accent_color or f.text_color
+    pt.header(draw, [("INFO", pt.bold(f.index_size), accent)])
+
+    def fill(s: str) -> str:
+        return drawable(s.replace("{logo}", v.logo_text))
+
+    title = [fill(s) for s in f.comment_title]
+    sub = [fill(s) for s in f.comment_sub]
+    title_font, sub_font = pt.bold(f.comment_title_size), pt.body(f.comment_sub_size)
+    icon_h = pt.px(110)
+    title_step, sub_step = title_font.size * 1.35, sub_font.size * 1.6
+    box_h = pt.px(96) if f.comment_box else 0
+    block = (
+        icon_h
+        + pt.px(70)
+        + title_step * len(title)
+        + pt.px(34)
+        + sub_step * len(sub)
+        + (pt.px(70) + box_h if box_h else 0)
+    )
+    y = (pt.h - block) / 2
+    comment_icon(draw, pt.w / 2, y + icon_h / 2, icon_h, accent)
+    y += icon_h + pt.px(70)
+    for line in title:
+        y += title_font.size
+        draw.text((pt.w / 2, y), line, font=title_font, fill=f.text_color, anchor="ms")
+        y += title_step - title_font.size
+    y += pt.px(34)
+    for line in sub:
+        y += sub_font.size
+        draw.text((pt.w / 2, y), line, font=sub_font, fill=f.sub_color, anchor="ms")
+        y += sub_step - sub_font.size
+    if box_h:
+        # 인스타 댓글 입력창처럼 보이는 둥근 칸: 왼쪽에 안내 글자, 오른쪽에 "게시"
+        y += pt.px(70)
+        bw = pt.w - 2 * pt.m
+        x0 = (pt.w - bw) / 2
+        tile = Image.new("RGBA", (round(bw), box_h), _mix(f.background, "#FFFFFF", 0.7))
+        canvas.alpha_composite(rounded(tile, box_h // 2), (round(x0), round(y)))
+        font = pt.body(f.comment_sub_size - 2)
+        mid = y + box_h / 2
+        draw.text(
+            (x0 + pt.px(40), mid), fill(f.comment_box), font=font, fill=f.sub_color, anchor="lm"
+        )
+        draw.text(
+            (x0 + bw - pt.px(40), mid),
+            "게시",
+            font=pt.bold(f.comment_sub_size - 2),
+            fill=accent,
+            anchor="rm",
+        )
+    return canvas.convert("RGB")
+
+
 def _mix(a: str, b: str, t: float) -> tuple[int, int, int]:
     ca = [int(a[i : i + 2], 16) for i in (1, 3, 5)]
     cb = [int(b[i : i + 2], 16) for i in (1, 3, 5)]
@@ -623,6 +698,8 @@ def render(
         elif kind == "products":
             for i, card in enumerate(cards, 1):
                 save(product_slide(card, i, profile, size), card.category)
+        elif kind == "comment":
+            save(comment_slide(profile, size), "comment")
         else:
             save(summary_slide(cards, spec, profile, size), "summary")
     return paths

@@ -51,12 +51,14 @@ def xmp_packet(source_type: str) -> bytes:
 
 def slide_kind(path: Path) -> str:
     """슬라이드 파일 이름으로 종류를 안다.
-    tools.feed 가 01_cover, 02_아우터 … 09_summary 로 저장한다."""
+    tools.feed 가 01_cover, 02_아우터 … 09_summary, 10_comment 로 저장한다."""
     stem = path.stem
     if stem.endswith("_cover"):
         return "cover"
     if stem.endswith("_summary"):
         return "summary"
+    if stem.endswith("_comment"):
+        return "comment"
     return "products"
 
 
