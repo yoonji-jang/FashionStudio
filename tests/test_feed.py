@@ -55,6 +55,7 @@ def test_render_default_order(spec, tmp_path):
         "02_아우터.jpg",
         "03_하의.jpg",
         "04_summary.jpg",
+        "05_comment.jpg",
     ]
     for p in paths:
         assert Image.open(p).size == (1080, 1350)
@@ -70,6 +71,18 @@ def test_slides_follow_profile(spec, tmp_path):
     profile.feed.slides = ["products", "cover"]
     paths = render(spec, tmp_path / "out", root=tmp_path, profile=profile)
     assert [p.name for p in paths] == ["01_아우터.jpg", "02_하의.jpg", "03_cover.jpg"]
+
+
+def test_comment_slide_texts_from_profile(spec, tmp_path):
+    profile = load_profile("women")
+    profile.feed.slides = ["comment"]
+    profile.feed.comment_box = ""  # 입력창 없이도 그려진다
+    paths = render(spec, tmp_path / "out", root=tmp_path, profile=profile)
+    assert [p.name for p in paths] == ["01_comment.jpg"]
+    img = Image.open(paths[0])
+    assert img.size == (1080, 1350)
+    # 가운데에 글자가 있어 배경색만 있지 않다
+    assert len(img.crop((200, 500, 880, 850)).getcolors(1 << 16) or []) > 10
 
 
 def test_no_cover_skips_cover(spec, tmp_path):
@@ -99,7 +112,7 @@ def test_duplicate_slide_kind_rejected(tmp_path):
     p = root / "women" / "profile.yaml"
     p.write_text(
         p.read_text(encoding="utf-8").replace(
-            "slides: [cover, products, summary]", "slides: [cover, products, cover]"
+            "slides: [cover, products, summary, comment]", "slides: [cover, products, cover]"
         ),
         encoding="utf-8",
     )
@@ -109,7 +122,7 @@ def test_duplicate_slide_kind_rejected(tmp_path):
 
 def test_cli_sample(tmp_path):
     assert main(["--spec", "samples/women/feed_leather.yaml", "--out", str(tmp_path)]) == 0
-    assert len(list(tmp_path.glob("*.jpg"))) == 8
+    assert len(list(tmp_path.glob("*.jpg"))) == 9  # 표지 + 상품 6 + 요약 + 댓글 안내
 
 
 def test_feed_samples_are_valid():
