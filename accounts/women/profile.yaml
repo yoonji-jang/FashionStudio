@@ -196,16 +196,19 @@ outfit_image:
 schedule:
   enabled: true             # false 면 자동 실행 안 함 (Actions 버튼으로만)
   timezone: Asia/Seoul
-  candidates_at: "10:00"    # 그날 코디 후보를 텔레그램으로 보냄 (Photoroom 안 씀)
+  candidates_at: "09:00"    # 코디 후보를 텔레그램으로 보냄. 게시는 다음 날 아침 (Photoroom 안 씀)
   pick_check_every: 60      # 고른 번호를 확인하는 간격 (분). 외부 스케줄러가 매시 정각에 깨움
-  pick_deadline: "15:00"    # 이때까지 안 고르면 pick.on_timeout 대로
-  publish_at: "20:00"       # 게시 (승인 /ok 가 있으면)
-  publish_retry_every: 60   # 게시 시각에 승인이 없으면 다시 보는 간격 (분)
-  publish_retries: 2        # 다시 보는 횟수 (21:00, 22:00)
-  ok_check_every: 60        # manual_link: 고르기 마감~게시 사이 /ok 확인 간격(분). /ok 면 상품 링크를 보냄 (0 이면 안 봄)
-  themes_at: "일 18:00"     # 다음 주 주제 7개 (텔레그램으로 보냄)
+  pick_deadline: "18:00"    # 이때까지 안 고르면 pick.on_timeout 대로
+  publish_at: "07:00"       # 게시 (후보 시각보다 이르면 다음 날. 승인 /ok 가 있으면)
+  publish_retry_every: 60   # 게시가 실패하면 다시 해 보는 간격 (분)
+  publish_retries: 1        # 다시 해 보는 횟수 (08:00)
+  ok_check_every: 60        # 후보를 보낸 뒤~승인 마감 사이 /ok 확인 간격(분). /ok 를 기록하고 상품 링크를 보냄
+  ok_deadline: "05:00"      # 승인 마감. 이 뒤에 온 /ok 는 게시에 쓰지 않음 (/fix 는 feedback.render_minutes 전까지)
+  ok_remind_at: "22:00"     # 이때까지 /ok 가 없으면 승인 마감을 한 번 알림
+  themes_at: "토 18:00"     # 다음 주(월~일 게시) 주제 7개. 월요일 게시 후보가 일요일 09:00 이라 토요일에
   collect_at: "월,목 04:00"  # 지그재그 새 상품 수집
   token_refresh_at: "일 19:00"  # 인스타 토큰 연장 (60일 만료 전에 매주)
+  github_cron: backup       # 외부 스케줄러가 매시 깨우므로 GitHub 예약은 주요 칸만 (Actions 시간 절약)
   reels_at: null            # 릴스 (12단계)
 
 # 코디 고르기 (9단계). 후보를 쇼핑몰 원본 사진으로 보내고, 고른 코디만 Photoroom 으로 만든다
@@ -219,8 +222,8 @@ pick:
 feedback:
   enabled: true
   max_fixes: 2        # 하루에 다시 만드는 횟수
-  check_every: 60     # 고르기 마감~게시 사이 /fix 확인 간격(분, 매시 정각). 바꾸면 tools.schedule sync
-  render_minutes: 40  # 게시 마지막 확인(22:00)까지 이만큼 남아야 다시 만듦 (21:20 까지 받음)
+  check_every: 60     # 후보를 보낸 뒤~승인 마감 사이 /fix 확인 간격(분, 매시 정각). 바꾸면 tools.schedule sync
+  render_minutes: 40  # 승인 마감(05:00)까지 이만큼 남아야 다시 만듦 (04:20 까지 받음)
   recent_days: 14     # 최근 피드백을 다음 기획·검수에 보여 줄 기간(일)
 
 # 댓글 → DM 코디 링크 (10단계). 켜면 캡션의 "프로필 링크" 문구 대신 cta 가 들어간다.

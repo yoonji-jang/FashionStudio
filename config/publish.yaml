@@ -21,3 +21,8 @@ image_host:
 
 # 쓰는 GitHub Secret (이름 고정): MEDIA_REPO_TOKEN(사진 저장소에 쓰기), TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 # 인스타 토큰 Secret 이름은 계정마다 profile.yaml 의 instagram 에 적는다
+
+# 텔레그램 알림 (계정과 무관, 채팅이 하나라서). quiet 시간대에는 소리 없이 보낸다 (자는 시간)
+telegram:
+  timezone: Asia/Seoul
+  quiet: ["23:00", "07:00"]

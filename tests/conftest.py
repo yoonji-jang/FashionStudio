@@ -12,6 +12,8 @@ FIXED_SCHEDULE = {
     "publish_retry_every": 30,
     "publish_retries": 4,
     "ok_check_every": 60,
+    "ok_deadline": None,
+    "ok_remind_at": None,
     "themes_at": "일 18:17",
     "collect_at": "월,목 04:17",
     "token_refresh_at": "일 18:47",
@@ -30,10 +32,15 @@ def fixed_times(monkeypatch, request):
         return profile
 
     import tools.comments
+    import tools.feedback
+    import tools.notify
     import tools.pick
+    import tools.publish
     import tools.schedule
     import tools.share
+    import tools.story
 
-    for mod in (tools.schedule, tools.share, tools.pick, tools.comments, request.module):
+    mods = (tools.schedule, tools.share, tools.pick, tools.comments, tools.feedback, tools.notify)
+    for mod in (*mods, tools.publish, tools.story, request.module):
         if hasattr(mod, "load_profile"):
             monkeypatch.setattr(mod, "load_profile", load)

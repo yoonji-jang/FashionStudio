@@ -20,13 +20,15 @@ daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약�
   comments    댓글 확인 → DM 코디 링크 (tools.comments, 이 job 안에서 바로 돈다).
               profile comments.check_at 시각에 따로 깨어나고, with_other_ticks 면
               다른 작업으로 깨어날 때도 같이 한다 (Actions 시간을 거의 더 쓰지 않음)
-  links       미리보기에 /ok 가 오면 상품별 지그재그 링크 보내기
-              (tools.share, manual_link 나 link_page.send_links).
-              고르기 마감~게시 사이 schedule.ok_check_every 마다, 다른 작업 때도 같이
+  links       미리보기의 /ok·/skip 을 결과 폴더에 남기고, /ok 면 상품별 지그재그 링크 보내기
+              (tools.share, 링크는 manual_link 나 link_page.send_links 일 때).
+              후보를 보낸 뒤~승인 마감(schedule.ok_deadline, 없으면 게시) 사이
+              schedule.ok_check_every 마다, 다른 작업 때도 같이
+  remind      schedule.ok_remind_at 까지 /ok·/skip 이 없으면 승인 마감을 한 번 알림
   share       공유리워드 링크 답장 반영, 상품 페이지 다시 올림 (tools.share, manual_link).
               따로 깨어나지 않고 다른 작업으로 깨어날 때마다 같이 한다
   fix         미리보기에 온 /fix 피드백 확인 (15단계, tools.feedback). 다시 만들 것이면
-              daily(mode=fix). 고르기 마감~게시 사이 profile feedback.check_every 마다,
+              daily(mode=fix). 후보를 보낸 뒤~승인 마감(게시) 사이 feedback.check_every 마다,
               다른 작업 때도 같이
 
 사용법:
@@ -135,19 +137,28 @@ def slots(profile: Profile) -> list[Slot]:
         if value:
             days, hhmm = _weekly(value)
             out.append(Slot(a, task, hhmm, days=days))
-    if share.sends_list(profile) and s.ok_check_every:
-        # 고르기 마감(고르기를 끄면 후보 시각) 뒤 게시 전까지 /ok 확인 → 상품 링크 (tools.share)
-        start = s.pick_deadline if profile.pick.enabled else s.candidates_at
-        span = (minutes(s.publish_at) - minutes(start)) % 1440
+    # 미리보기는 고르자마자 만들어지므로 /ok·/fix 는 후보를 보낸 뒤부터
+    # 승인 마감(없으면 게시)까지 본다
+    span = (minutes(s.ok_deadline or s.publish_at) - minutes(s.candidates_at)) % 1440
+    if s.ok_check_every and (share.sends_list(profile) or s.ok_deadline):
+        # /ok 확인 → 기록, 상품 링크 (tools.share). 승인 마감 시각에도 한 번 본다
+        stop = span + 1 if s.ok_deadline else span
         out += [
-            Slot(a, "links", start, off) for off in range(s.ok_check_every, span, s.ok_check_every)
+            Slot(a, "links", s.candidates_at, off)
+            for off in range(s.ok_check_every, stop, s.ok_check_every)
         ]
+    # 승인 알림: ok_remind_at 에 한 번, 승인 마감에 "게시 안 함" 한 번 (final)
+    for at, final in ((s.ok_remind_at, False), (s.ok_deadline, True)):
+        if at and profile.approval == "required":
+            off = (minutes(at) - minutes(s.candidates_at)) % 1440
+            out.append(Slot(a, "remind", s.candidates_at, off, first=not final, final=final))
     fb = profile.feedback
     if fb.enabled and fb.check_every:
-        # 고르기 마감(고르기를 끄면 후보 시각) 뒤 게시 전까지 /fix 확인 (게시 재시도 때는 같이 봄)
-        start = s.pick_deadline if profile.pick.enabled else s.candidates_at
-        span = (minutes(s.publish_at) - minutes(start)) % 1440
-        out += [Slot(a, "fix", start, off) for off in range(fb.check_every, span, fb.check_every)]
+        # /fix 확인 (게시 재시도 때는 같이 봄)
+        out += [
+            Slot(a, "fix", s.candidates_at, off)
+            for off in range(fb.check_every, span, fb.check_every)
+        ]
     if profile.comments.enabled and profile.comments.mode == "builtin":
         out += [Slot(a, "comments", hhmm) for hhmm in profile.comments.check_at]
     return out
@@ -247,7 +258,7 @@ def _task(profile: Profile, sl: Slot, base: date, now: datetime) -> Task:
     tz = profile.schedule.timezone
     day = base
     left = 0
-    if sl.task in ("links", "fix"):
+    if sl.task in ("links", "fix", "remind"):
         day = post_date(profile, base)
     elif sl.task in ("candidates", "pick"):
         day = post_date(profile, base)
@@ -256,8 +267,19 @@ def _task(profile: Profile, sl: Slot, base: date, now: datetime) -> Task:
         )
         left = max(0, int((deadline - now).total_seconds() // 60))
     elif sl.task == "themes":
-        day = base + timedelta(days=1)
+        # 다음 후보(내일)의 게시 날짜부터 한 주. 게시가 다음 날 아침이면 하루 더 뒤
+        day = post_date(profile, base + timedelta(days=1))
     return Task(sl.account, sl.task, day.isoformat(), sl.first, sl.final, left)
+
+
+def cycle_post_date(profile: Profile, now: datetime) -> date:
+    """지금 진행 중인 하루(가장 최근에 후보를 보낸 날)의 게시 날짜.
+    게시가 다음 날 아침이면 자정 뒤에도 어제 후보의 게시 날짜 (오늘 후보 시각 전까지)."""
+    local = now.astimezone(ZoneInfo(profile.schedule.timezone))
+    base = local.date()
+    if (local.hour * 60 + local.minute) < minutes(profile.schedule.candidates_at):
+        base -= timedelta(days=1)
+    return post_date(profile, base)
 
 
 def _extras(tasks: list[Task], now: datetime) -> list[Task]:
@@ -273,15 +295,13 @@ def _extras(tasks: list[Task], now: datetime) -> list[Task]:
             extra.append(Task(account, "comments", mine[0].date, True, True, 0))
         # 공유리워드: /ok 뒤 상품 링크 보내기와 링크 답장 반영도 깨어날 때마다 본다 (tools.share)
         if share.sends_list(profile) and all(t.task != "links" for t in mine):
-            local = now.astimezone(ZoneInfo(profile.schedule.timezone)).date()
-            day = post_date(profile, local).isoformat()
+            day = cycle_post_date(profile, now).isoformat()
             extra.append(Task(account, "links", day, True, True, 0))
         if share.enabled(profile):
             extra.append(Task(account, "share", mine[0].date, True, True, 0))
         # 피드백 /fix 도 깨어날 때마다 본다 (tools.feedback)
         if profile.feedback.enabled and all(t.task != "fix" for t in mine):
-            local = now.astimezone(ZoneInfo(profile.schedule.timezone)).date()
-            day = post_date(profile, local).isoformat()
+            day = cycle_post_date(profile, now).isoformat()
             extra.append(Task(account, "fix", day, True, True, 0))
     return tasks + extra
 
@@ -327,6 +347,8 @@ def last_chance(profile: Profile, sl: Slot, at: datetime) -> datetime:
             return next_at(s.pick_deadline) - timedelta(minutes=30)
         return next_at(s.publish_at) - timedelta(minutes=60)
     if sl.task in ("pick", "links", "fix"):
+        return next_at(s.publish_at)
+    if sl.task == "remind":
         return next_at(s.publish_at)
     if sl.task == "publish":
         # 마지막 재시도 칸 + 간격까지 (앞 칸을 놓쳐도 뒤 칸이 이어받는다)
@@ -460,9 +482,44 @@ def external_jobs(accounts: list[str] | None = None) -> list[str]:
 
 def t_day(profile: Profile, sl: Slot, base: date) -> str:
     """같은 작업의 칸을 하나로 묶는 날짜 (고르기·링크는 게시 날짜)."""
-    if sl.task in ("candidates", "pick", "links", "fix"):
+    if sl.task in ("candidates", "pick", "links", "fix", "remind"):
         return post_date(profile, base).isoformat()
     return base.isoformat()
+
+
+def remind(
+    account: str, day: str, results: Path | None, tg, final: bool = False, dry_run: bool = False
+) -> str:
+    """미리보기에 아직 /ok·/skip 이 없으면 승인 마감을 알린다 (ticks.json 으로 칸마다 한 번).
+    final: 승인 마감 칸. 이 날은 게시하지 않는다고 알린다."""
+    from tools import notify, publish
+
+    profile = load_profile(account)
+    tag = f"[{account}] {day}"
+    if tg is None or results is None:
+        return f"{tag} 승인 알림: 꺼짐"
+    d = date.fromisoformat(day)
+    try:
+        out = publish.find_run(results, account, d)
+    except FileNotFoundError:
+        return f"{tag} 승인 알림: 결과 없음"
+    record = notify.load_record(out)
+    if record is None or record.sandbox:
+        return f"{tag} 승인 알림: 미리보기 없음"
+    if any(p.date == d for p in Store(account).posts()):
+        return f"{tag} 승인 알림: 이미 게시함"
+    if notify.approval_now(out, record, profile, tg.updates(), tg.chat_id):
+        return f"{tag} 승인 알림: 이미 답함"
+    dl = notify.ok_deadline(profile, d)
+    by = f"{dl:%m/%d %H:%M}" if dl else profile.schedule.publish_at
+    label = notify.command_label(profile, d)
+    text = f"{tag} 아직 승인하지 않았어요. {by}까지 /ok {label} 가 없으면 게시하지 않아요"
+    if final:
+        text = f"{tag} 승인 마감({by})까지 /ok 가 없어 이 날은 게시하지 않아요"
+    if dry_run:
+        return f"{tag} 승인 알림 (시험): {text}"
+    tg.send(text)
+    return f"{tag} 승인 알림 보냄"
 
 
 class GitHub:
@@ -615,6 +672,11 @@ def execute(
                 print(share.send_after_ok(t.account, t.date, results, tg, dry_run))
             except (RuntimeError, ValueError, httpx.HTTPError) as e:
                 print(f"{tag} 상품 링크 보내기 실패: {e}", file=sys.stderr)
+        elif t.task == "remind":
+            try:
+                print(remind(t.account, t.date, results, tg, t.final, dry_run))
+            except (RuntimeError, ValueError, httpx.HTTPError) as e:
+                print(f"{tag} 승인 알림 실패: {e}", file=sys.stderr)
         elif t.task == "fix":
             from tools import feedback
 

@@ -289,7 +289,9 @@ schedule 이 그 시각에 publish 워크플로(`story` 체크)를 부르고, �
 | `pick_deadline` | "15:17" | 이때까지 안 고르면 `pick.on_timeout` 대로. 게시 시각보다 1시간 이상 앞서야 함 |
 | `publish_at` | "20:03" | 게시 (승인이 있으면) |
 | `publish_retry_every` | 30 | 게시 시각에 `/ok` 가 없으면 다시 보는 간격 (분) |
-| `publish_retries` | 4 | 다시 보는 횟수. 늦게 `/ok` 해도 이 안이면 게시 |
+| `publish_retries` | 4 | 다시 보는 횟수. 늦게 `/ok` 해도 이 안이면 게시 (승인 마감이 있으면 게시 실패 때만 의미) |
+| `ok_deadline` | null | 승인 마감 "HH:MM". 이 뒤에 온 `/ok` 는 게시에 쓰지 않고, `/fix` 는 `feedback.render_minutes` 전까지 받음. 고르기 마감과 게시 사이 (게시가 다음 날 아침이면 그 전 새벽) |
+| `ok_remind_at` | null | 이때까지 `/ok`·`/skip` 이 없으면 승인 마감을 한 번 알림. 승인 마감에도 "게시 안 함"을 한 번 알림 |
 | `themes_at` | "일 18:17" | 다음 주 주제 정하기 (없으면 `null`, 그날그날 주제를 정함) |
 | `collect_at` | "월,목 04:17" | 지그재그 새 상품 수집 |
 | `token_refresh_at` | "일 18:47" | 인스타 토큰 연장 (60일 만료라 매주) |
@@ -660,22 +662,30 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 
 ## 매일 자동 실행 (9단계)
 
-`main` 에 합치면 사람 손 없이 아래처럼 돕니다 (시간은 `profile.yaml` 의 `schedule`, 예시는 기본값).
+`main` 에 합치면 사람 손 없이 아래처럼 돕니다 (시간은 `profile.yaml` 의 `schedule`, 예시는 women 계정).
+게시가 후보 시각보다 이르면 다음 날 게시입니다 (D 에 후보 → D+1 아침 게시).
 
 ```
-10:00  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, 이미지 AI 없음)
-       → 텔레그램: 후보마다 상품 원본 사진 한 장 모음 + 목록
-         버튼 [/pick 1 women 09-28] … [/pick 5 …] [/again …] [/skip …]
-11:00~15:00 (1시간마다) schedule: 고른 번호 확인
-       번호 → daily(mode=render): 그 후보로 사진 확인 → 문구 → 코디컷(생성형 AI) → 검수 → 미리보기
-       /again → 겹치지 않는 새 후보 5개 (max_again 번까지, 마감 1시간 전까지)
-       /skip → 그날 건너뜀
-       15:00 까지 안 고르면 → on_timeout (1번으로 만들기 또는 건너뛰기)
-20:00  schedule → publish: /ok 가 있으면 게시. 없으면 1시간마다 2번 더 확인 (알림은 처음과 마지막만)
-일 18:00  다음 주 주제 7개 (themes 워크플로) → 텔레그램. /themes again 이면 그 주를 다시 정함
+D 09:00  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, 이미지 AI 없음)
+         → 텔레그램: 후보마다 상품 원본 사진 한 장 모음 + 목록
+           버튼 [/pick 1 women 10-02] … [/pick 5 …] [/again …] [/skip …]
+10:00~18:00 (1시간마다) schedule: 고른 번호 확인
+         번호 → daily(mode=render): 그 후보로 사진 확인 → 문구 → 코디컷(생성형 AI) → 검수 → 미리보기
+         /again → 겹치지 않는 새 후보 5개 (max_again 번까지, 마감 1시간 전까지)
+         /skip → 그날 건너뜀
+         18:00 까지 안 고르면 → on_timeout (1번으로 만들기 또는 건너뛰기)
+미리보기 뒤 매시 schedule: /ok·/skip 을 결과 폴더에 기록(approval.json), /ok 면 상품 링크 목록, /fix 면 고치기
+22:00    아직 /ok 가 없으면 "승인 마감" 알림 한 번
+D+1 05:00  승인 마감. /ok 가 없으면 "게시하지 않아요" 알림 (/fix 는 04:20 까지)
+D+1 07:00  schedule → publish: 마감 전 /ok 가 있으면 게시. 실패하면 08:00 에 한 번 더
+토 18:00  다음 주(월~일 게시) 주제 7개 (themes 워크플로) → 텔레그램. /themes again 이면 그 주를 다시 정함
 월·목 04:00  지그재그 상품 수집 (collect, 창고 커밋)
 일 19:00  인스타 토큰 연장 (token)
 ```
+
+- **밤 알림**: `config/publish.yaml` 의 `telegram.quiet` 시간대(기본 23:00~07:00)에는 텔레그램을 소리 없이 보냅니다.
+- **승인 기록**: 텔레그램은 답장을 24시간만 보관해서, 매시 확인할 때 본 `/ok`·`/skip` 을 daily-results 의
+  `<날짜>-run<번호>/approval.json` 에 남기고 게시 때 텔레그램에 없으면 이 기록을 씁니다.
 
 - **워크플로**: `schedule.yml` 이 깨어나 `tools.schedule` 로 할 일을 찾고,
   무거운 작업은 `daily`, `publish`, `themes`, `collect`, `token` 워크플로에 실행을 요청합니다.
@@ -841,7 +851,7 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않고, 보내 주신 링크를 씁니다.
 
 ```
-미리보기에 /ok → schedule 이 확인하는 대로 (고르기 마감~게시 사이 ok_check_every 분마다, 기본 1시간)
+미리보기에 /ok → schedule 이 확인하는 대로 (후보를 보낸 뒤~승인 마감 사이 ok_check_every 분마다, 기본 1시간)
   상품 번호와 지그재그 상품 링크 목록을 보냄 (게시 전에 답장해 두면 게시 때 바로 반영)
 게시 → 텔레그램 "게시했어요 ✓" 알림에도 같은 목록이 붙어 옴 (받은 상품은 ✓ 받음. 자동 승인이면 이때 처음)
 사용자: 상품 링크를 지그재그 앱에서 열어 공유리워드 링크를 만들고, 목록 메시지에 답장으로
@@ -850,7 +860,7 @@ schedule 이 다음에 깨어날 때 (tools.share): 답장을 읽어 게시 기�
   → 텔레그램으로 "공유리워드 링크 반영" 알림
 ```
 
-- /ok 확인 칸(`schedule.ok_check_every`)은 하루 4번이면 Actions 시간이 한 달 약 120분 늘어납니다. `0` 이면 끕니다.
+- /ok 확인 칸(`schedule.ok_check_every`)은 외부 스케줄러가 매시 깨우는 시각과 같아서 Actions 시간이 거의 늘지 않습니다 (`github_cron: backup`). `0` 이면 끕니다.
 - 링크를 안 보낸 상품은 상품 링크 그대로입니다. 같은 번호를 다시 보내면 새 링크로 바뀝니다.
 - 텔레그램은 답장을 24시간만 보관합니다. schedule 은 하루에도 여러 번 깨어나므로 보통 몇십 분~반나절 안에
   반영됩니다 (22:03 이후 답장은 다음 날 10:17).

@@ -10,6 +10,8 @@ from tests.test_publish import CHAT, DAY, FakeApis, clients, record, results, se
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
 from tools import feedback, notify, plan, publish, review, schedule
 
+pytestmark = pytest.mark.usefixtures("fixed_times")
+
 RUN = "2026-09-27-run5"
 # 2026-09-27 게시 마지막 확인(22:00) - 40분 = 21:20 KST 보다 앞
 EARLY = datetime(2026, 9, 27, 9, 0, tzinfo=UTC)  # 18:00 KST
@@ -213,14 +215,14 @@ def test_publish_ignores_fix_that_was_only_recorded(results, store):  # noqa: F8
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
 
 
-def test_schedule_checks_fix_between_deadline_and_publish(monkeypatch, tmp_path):
+def test_schedule_checks_fix_after_candidates_until_publish(monkeypatch, tmp_path):
     profile = load_profile("women")
     fix = [sl for sl in schedule.slots(profile) if sl.task == "fix"]
-    # 외부 스케줄러가 매시 정각에 깨우는 시각과 같다 (새로 깨울 시각이 늘지 않음)
-    assert [sl.local() for sl in fix] == ["16:00", "17:00", "18:00", "19:00"]
+    # 고르자마자 미리보기가 오므로 후보(10:17) 뒤 매 간격, 게시(20:03) 전까지
+    assert [sl.local() for sl in fix] == [f"{h}:17" for h in range(11, 20)]
     assert not any(schedule.backup_slot(sl) for sl in fix)
-    # 다른 작업으로 깨어날 때도 같이 본다
-    tasks = schedule.due("0 1 * * *", datetime(2026, 9, 28, 1, 0, tzinfo=UTC))
+    # 다른 작업(후보 10:17)으로 깨어날 때도 같이 본다
+    tasks = schedule.due("17 1 * * *", datetime(2026, 9, 28, 1, 17, tzinfo=UTC))
     assert [t.task for t in tasks if t.task == "fix"] == ["fix"]
 
     calls = []

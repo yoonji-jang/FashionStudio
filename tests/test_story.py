@@ -2,12 +2,15 @@ import json
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
+import pytest
 from PIL import Image
 
 from core.profile import load_profile
 from tests.test_publish import DAY, FakeApis, clients, results, sent  # noqa: F401 - fixture
 from tests.test_review import fake_photos, store  # noqa: F401 - pytest fixture
 from tools import ai_label, publish, schedule, story
+
+pytestmark = pytest.mark.usefixtures("fixed_times")
 
 KST = ZoneInfo("Asia/Seoul")
 
@@ -120,8 +123,8 @@ def test_schedule_story_slot_only_when_delayed(monkeypatch):
     assert not [s for s in schedule.slots(p) if s.task == "story"]
     p.story.delay_minutes = 180
     [sl] = [s for s in schedule.slots(p) if s.task == "story"]
-    # 게시 20:00 (매시 정각 시간표, PR #29) + 180분
-    assert sl.local() == "23:00" and sl.cron("Asia/Seoul", DAY) == "0 14 * * *"
+    # 게시 20:03 (conftest 고정 시간표) + 180분
+    assert sl.local() == "23:03" and sl.cron("Asia/Seoul", DAY) == "3 14 * * *"
     assert schedule._task(p, sl, DAY, datetime(2026, 9, 27, 23, 5, tzinfo=KST)).date == str(DAY)
     gh = schedule.DryRun()
     schedule.execute([schedule.Task("women", "story", str(DAY), True, True, 0)], None, gh)

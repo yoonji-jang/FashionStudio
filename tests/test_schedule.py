@@ -1,11 +1,14 @@
 from datetime import UTC, date, datetime
+from zoneinfo import ZoneInfo
 
 import pytest
 
+import core.profile
 from core.profile import load_profile
 from tools import schedule
 
 REF = date(2026, 9, 28)
+KST = ZoneInfo("Asia/Seoul")
 
 # 시간 계산은 고정 시간표(conftest FIXED_SCHEDULE)로 본다. 실제 시각은 test_women_profile_is_hourly
 pytestmark = pytest.mark.usefixtures("fixed_times")
@@ -83,14 +86,30 @@ def test_profile_rejects_deadline_after_publish(tmp_path):
     shutil.copytree("accounts/women", tmp_path / "women")
     path = tmp_path / "women" / "profile.yaml"
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
-    data["schedule"]["pick_deadline"] = "19:30"
+    sch = data["schedule"]
+    sch.update(candidates_at="10:00", pick_deadline="19:30", publish_at="20:00", ok_deadline=None)
+    sch["ok_remind_at"] = None
     path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
     with pytest.raises(ValueError, match="1시간"):
         load_profile("women", root=tmp_path)
-    data["schedule"]["pick_deadline"] = "09:00"
+    sch["pick_deadline"] = "09:00"
     path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
     with pytest.raises(ValueError, match="순서"):
         load_profile("women", root=tmp_path)
+    # 승인 마감은 고르기 마감과 게시 사이 (게시가 다음 날 아침이면 그 전 새벽)
+    sch.update(candidates_at="09:00", pick_deadline="18:00", publish_at="07:00")
+    sch["ok_deadline"] = "08:00"
+    path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    with pytest.raises(ValueError, match="ok_deadline"):
+        load_profile("women", root=tmp_path)
+    sch.update(ok_deadline="05:00", ok_remind_at="06:00")
+    path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    with pytest.raises(ValueError, match="ok_remind_at"):
+        load_profile("women", root=tmp_path)
+    sch["ok_remind_at"] = "22:00"
+    path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    # fixed_times 가 바꾼 load_profile 말고 원래 것으로 읽는다
+    assert core.profile.load_profile("women", root=tmp_path).schedule.ok_deadline == "05:00"
 
 
 def test_execute_dispatches_workflows(tmp_path, monkeypatch):
@@ -284,3 +303,33 @@ def test_women_profile_is_hourly(monkeypatch):
     monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     lines = schedule.external_jobs(["women"])
     assert all(line.split()[-1] == "00분" for line in lines), lines
+
+
+def test_women_overnight_schedule_dates(monkeypatch, tmp_path):
+    """09시 후보 → 18시 고르기 마감 → 05시 승인 마감 → 다음 날 07시 게시 (2026-10-01 부터)."""
+    monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
+    p = core.profile.load_profile("women")
+    got = {}
+    for sl in schedule.slots(p):
+        got.setdefault(sl.task, []).append(sl.local())
+    assert got["links"][0] == "10:00" and got["links"][-1] == "05:00"
+    assert got["fix"][-1] == "04:00" and got["remind"] == ["22:00", "05:00"]
+    assert got["publish"] == ["07:00", "08:00"] and got["themes"] == ["토 18:00"]
+    ticks = schedule.Ticks(tmp_path, datetime(2026, 9, 30, 0, 0, tzinfo=UTC))
+    kst = lambda d, h: datetime(2026, 10, d, h, 0, tzinfo=KST)  # noqa: E731
+    # 자정 넘어서도 어제 후보의 게시 날짜 (10/1)
+    for when, want in [(kst(1, 3), "2026-10-01"), (kst(1, 10), "2026-10-02")]:
+        tasks, _ = schedule.due_auto(ticks, None, when.astimezone(UTC))
+        assert {t.date for t in tasks if t.task in ("links", "fix")} == {want}
+        for t in tasks:
+            ticks.mark(t.keys, "done", when)
+    # 게시 07:00 은 그날 날짜, 주제(토)는 월요일(일요일 후보의 게시 날짜)부터
+    [pub] = [
+        t
+        for t in schedule.due_auto(ticks, None, kst(2, 7).astimezone(UTC))[0]
+        if t.task == "publish"
+    ]
+    assert pub.date == "2026-10-02"
+    sat = datetime(2026, 10, 3, 18, 0, tzinfo=KST).astimezone(UTC)
+    [th] = [t for t in schedule.due_auto(ticks, None, sat)[0] if t.task == "themes"]
+    assert th.date == "2026-10-05"
