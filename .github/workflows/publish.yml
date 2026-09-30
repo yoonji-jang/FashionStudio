@@ -5,6 +5,8 @@ name: publish
 # 사진을 공개 사진 저장소에 잠시 올리고 인스타 캐러셀 게시 → 게시 기록(data/<계정>/posts.json) 커밋 → 텔레그램 알림.
 # 9단계: schedule 워크플로가 profile schedule.publish_at 에 부른다 (scheduled). 승인이 늦으면
 # publish_retry_every 마다 다시 불리고, 대기 알림은 처음과 마지막에만 보낸다. Actions 탭에서 직접 돌려도 된다.
+# 17단계: profile story 가 켜져 있으면 피드 직후 스토리도 올린다. delay_minutes 가 있으면 schedule 이
+# story: true 로 따로 부른다 (tools.story post).
 # 필요한 Secrets: 프로필 instagram 의 두 이름(예: IG_WOMEN_TOKEN, IG_WOMEN_USER_ID), MEDIA_REPO_TOKEN,
 # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 on:
@@ -35,6 +37,10 @@ on:
         description: 승인이 없을 때 텔레그램으로 알림
         type: boolean
         default: true
+      story:
+        description: 스토리만 올리기 (그날 게시한 게시물, profile story. 17단계)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -70,7 +76,22 @@ jobs:
           git worktree add /tmp/results origin/daily-results
           git -C /tmp/results checkout -B daily-results
 
+      - name: 스토리
+        if: ${{ inputs.story }}
+        env:
+          IG_TOKEN: ${{ secrets[steps.cfg.outputs.token] }}
+          IG_USER_ID: ${{ secrets[steps.cfg.outputs.user_id] }}
+          MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DATE: ${{ inputs.date }}
+        run: |
+          args=(post --account "$ACCOUNT" --results /tmp/results)
+          [ -n "$DATE" ] && args+=(--date "$DATE")
+          uv run python -m tools.story "${args[@]}"
+
       - name: 게시
+        if: ${{ !inputs.story }}
         env:
           IG_TOKEN: ${{ secrets[steps.cfg.outputs.token] }}
           IG_USER_ID: ${{ secrets[steps.cfg.outputs.user_id] }}
@@ -111,3 +132,4 @@ jobs:
           }
           commit . "${{ github.ref_name }}" "data/$ACCOUNT/posts.json"
           commit /tmp/results daily-results ':(glob)*/published.json'
+          commit /tmp/results daily-results ':(glob)*/story.json'

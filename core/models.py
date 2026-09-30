@@ -253,6 +253,16 @@ class PublishRecord(BaseModel):
     published_at: int  # 유닉스 초
 
 
+class StoryRecord(BaseModel):
+    """스토리 게시 결과 (결과 폴더의 story.json, 17단계)."""
+
+    account: str
+    date: date
+    run: str
+    media_ids: list[str]
+    posted_at: int  # 유닉스 초
+
+
 class ReelsSpec(BaseModel):
     """9단계에서 채운다. 지금은 자리만 잡아 둔다."""
 

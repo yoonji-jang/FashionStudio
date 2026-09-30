@@ -246,6 +246,27 @@ link_page:
   share_days: 7            # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
   send_links: true         # /ok 뒤 상품별 지그재그 링크를 텔레그램으로 (링크를 직접 만들 때 씀)
 
+# 피드 게시 뒤 스토리 (17단계, tools.story). API 로는 링크·멘션 스티커를 못 붙여서 피드 앞 장을
+# 1080x1920 세로 판에 옮기고 문구를 합성한다. 크기는 폭 1080px 기준
+# delay_minutes 를 바꾸면 `uv run python -m tools.schedule sync` (0 이면 게시 job 이 바로 올려 칸이 없음)
+story:
+  enabled: true
+  delay_minutes: 0        # 0: 게시 직후. 예) 180 이면 게시 시각(publish_at) 3시간 뒤
+  slides: 1               # 피드 앞에서부터 몇 장 (1: 표지만, 2~3: 표지+상품)
+  background: blur        # blur(그 장을 흐리게 깔기) 또는 색 "#E7E9EB"
+  blur_dim: 0.35          # blur 배경을 어둡게 (0~1)
+  card_width: 0.84        # 가운데 사진 폭 (화면 폭 대비)
+  card_center: 0.5        # 가운데 사진 세로 중심 (인스타 위·아래 화면 요소를 피함)
+  card_radius: 18
+  text_color: "#FFFFFF"   # 밝은 색 배경이면 어두운 색으로
+  heading: 오늘의 코디     # 사진 위 (빈 문자열이면 생략)
+  heading_size: 46
+  cta: 새 게시물 보러가기 →  # 사진 아래
+  cta_size: 38
+  show_logo: false        # 문구 밑에 visual.logo_text (표지 안에 이미 있어서 끔)
+  logo_size: 26
+  sticker_hint: false     # true 면 게시 알림에 "앱에서 링크 스티커 붙이기" 안내
+
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)
 monetize: none

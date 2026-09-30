@@ -247,13 +247,16 @@ def test_publish_after_ok(results, store, monkeypatch):  # noqa: F811
     assert posts[-1].links[0].image in page
     slides = len(notify.slide_paths(notify.load_manifest(run), run))
     puts = [c for c in api.calls if c[0] == "PUT"]
-    assert len(puts) == slides + 1
+    assert len(puts) == slides + 1 + 1  # 슬라이드, 상품 페이지, 스토리 (women story: 표지 1장)
     assert puts[0][1].endswith("/contents/women/2026-09-27-run5/01.jpg")
+    assert puts[-1][1].endswith("/contents/women/2026-09-27-run5-story/01.jpg")
+    assert json.loads((run / "story.json").read_text())["media_ids"] == ["m777"]
+    assert "스토리 1장도 올렸어요" in api.texts[-1]
     # 표지에는 AI 합성 표시(IPTC)가 들어간 채로 올라간다 (women 프로필 ai_label: metadata)
     assert ai_label.read(run / "slides" / "01_cover.jpg") == "trainedAlgorithmicMedia"
     # 다시 돌려도 두 번 게시하지 않는다
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
-    assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 1
+    assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 2  # 피드 + 스토리
 
 
 def test_publish_waits_or_skips(results, store):  # noqa: F811
