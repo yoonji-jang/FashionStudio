@@ -18,7 +18,7 @@ no_repeat_days, avoid), `audience`, `style`, 그리고 `voice.md` 의 좋은 제
 ```yaml
 - date: 2026-09-28
   type: 상황            # profile themes.type_mix 의 유형 중 하나
-  title_hint: 월요일 출근룩, 네이비 셔츠 하나로 단정하게
+  title_hint: 출근룩, 네이비 셔츠에 그레이 블레이저로 톤 맞추기
   mood: 네이비·그레이 차분한 오피스룩
   why: 월요일, 최고 21도라 셔츠 한 장에 가벼운 아우터
   slots:               # 코디에 들어갈 자리와 대략의 상품

@@ -208,6 +208,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `max_emoji` / `max_exclaim` | 2 / 1 | 도입·코디 포인트의 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
 | `max_emoji_per_line` | 1 | 도입·코디 포인트 한 줄의 이모지 수 |
 | `banned` | 무조건, 인생템, 역대급, 최저가 … | 쓰면 오류가 나는 표현 |
+| `title_banned` | 월요일 … 일요일 | 표지 제목에 쓰면 오류가 나는 말 (캡션에는 써도 됨) |
 | `ad_notice` / `ad_hashtag` | (광고) … / #광고 | `monetize: manual_link` 일 때 캡션 첫 줄과 첫 해시태그 |
 | `product_line` | `{shop} · {name}` | 캡션 제품 목록 한 줄 모양 |
 | `link_line` | 상품 정보는 프로필 링크에서 확인하세요 | 제품 목록 아래 안내 |

@@ -398,6 +398,7 @@ def check(
             if not lo <= len(line) <= hi:
                 warns.append(f"제목 줄 '{line}' 은 {len(line)}자입니다 (권장 {lo}~{hi}자)")
             errors += text_problems(line, profile, "제목")
+            errors += [f"제목: 쓰지 않는 말 '{w}'" for w in c.title_banned if w in line]
         lo, hi = c.points
         if not lo <= len(t.points) <= hi:
             errors.append(f"코디 포인트는 {lo}~{hi}줄이어야 합니다 (지금 {len(t.points)})")
