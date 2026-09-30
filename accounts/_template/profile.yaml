@@ -101,11 +101,6 @@ link_page:  # 최근 게시물 상품 링크 페이지 (ManyChat DM 에 넣는 �
   enabled: true
   title: 코디 상품 모음
 
-story:  # 피드 게시 뒤 스토리 (1080x1920, 문구 합성). 나머지 값은 core/profile.py Story 기본값
-  enabled: false
-  delay_minutes: 0  # 0: 게시 직후, 그 밖: 게시 시각 몇 분 뒤 (바꾸면 tools.schedule sync)
-  slides: 1         # 표지부터 몇 장 (최대 3)
-
 monetize: none  # manual_link: 게시 알림에 답장한 공유리워드 링크를 상품 페이지에 씀, 광고 표기 자동
 approval: required
 
