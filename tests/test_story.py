@@ -120,7 +120,8 @@ def test_schedule_story_slot_only_when_delayed(monkeypatch):
     assert not [s for s in schedule.slots(p) if s.task == "story"]
     p.story.delay_minutes = 180
     [sl] = [s for s in schedule.slots(p) if s.task == "story"]
-    assert sl.local() == "23:03" and sl.cron("Asia/Seoul", DAY) == "3 14 * * *"
+    # 게시 20:00 (매시 정각 시간표, PR #29) + 180분
+    assert sl.local() == "23:00" and sl.cron("Asia/Seoul", DAY) == "0 14 * * *"
     assert schedule._task(p, sl, DAY, datetime(2026, 9, 27, 23, 5, tzinfo=KST)).date == str(DAY)
     gh = schedule.DryRun()
     schedule.execute([schedule.Task("women", "story", str(DAY), True, True, 0)], None, gh)

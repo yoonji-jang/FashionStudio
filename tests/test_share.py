@@ -1,6 +1,8 @@
 import base64
 from datetime import UTC, date, datetime
 
+import pytest
+
 from core.models import PostLink, PostRecord, ShareRequest
 from core.profile import load_profile
 from core.store import Store
@@ -126,6 +128,7 @@ def test_check_off_or_old(tmp_path, monkeypatch):
     assert "기다리는 게시물 없음" in share.check("women", object(), NOW)
 
 
+@pytest.mark.usefixtures("fixed_times")
 def test_schedule_adds_share_task(monkeypatch):
     real = schedule.load_profile
 
@@ -141,10 +144,13 @@ def test_schedule_adds_share_task(monkeypatch):
     monkeypatch.undo()
     monkeypatch.setattr(schedule, "load_profile", manual)
     tasks = schedule.due("17 1 * * *", NOW)
-    assert [t.task for t in tasks] == ["candidates", "links", "share"]
+    assert [t.task for t in tasks if t.task != "fix"] == ["candidates", "links", "share"]
     # 고르기 마감 뒤 /ok 확인 칸 (서울 17:17)
     tasks = schedule.due("17 8 * * *", datetime(2026, 9, 28, 8, 20, tzinfo=UTC))
-    assert [(t.task, t.date) for t in tasks] == [("links", "2026-09-28"), ("share", "2026-09-28")]
+    assert [(t.task, t.date) for t in tasks if t.task != "fix"] == [
+        ("links", "2026-09-28"),
+        ("share", "2026-09-28"),
+    ]
 
 
 def test_links_sent_after_ok_and_replies_used_at_publish(
@@ -182,6 +188,7 @@ def test_links_sent_after_ok_and_replies_used_at_publish(
     assert "이미 보냄" in share.send_after_ok("women", day, results, tg)
 
 
+@pytest.mark.usefixtures("fixed_times")
 def test_links_slots_between_deadline_and_publish():
     profile = load_profile("women")
     profile.monetize = "manual_link"

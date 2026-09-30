@@ -276,6 +276,14 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         )
     else:
         lines.append("- 없음")
+    from tools import feedback
+
+    fb = feedback.recent_lines(
+        Store(plan.account), plan.date, profile.feedback.recent_days, {"cover", "product", "all"}
+    )
+    if fb:
+        # 15단계 /fix 로 사람이 지적한 것. 같은 문제가 다시 보이면 해당 항목 점수에 반영한다
+        lines += ["", "## 최근 사람 피드백 (같은 문제가 보이면 감점)", ""] + fb
     lines += ["", "## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)", ""]
     lines += [f"- {s.slide} [{s.kind}] {s.note}" for s in code_issues] or ["- 없음"]
     dest = out / "review" / "input.md"

@@ -6,6 +6,7 @@ r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 
 3. 승인 확인: 텔레그램 답장 /ok, /skip (profile approval)
    - required: /ok 가 있어야 게시
    - optional: /skip 이 없으면 게시. 단 검수에서 사람 확인(needs_human)이 붙은 날은 /ok 가 있어야 함
+   - 마지막 답장이 다시 만들 /fix 면 고친 미리보기를 기다림 (15단계 tools.feedback)
 4. 프로필 ai_label 이 켜져 있으면 표지 등에 AI 합성 표시(IPTC)가 없을 때 넣기 (tools.ai_label)
    사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
 5. 프로필 story 가 켜져 있으면 스토리도 올리기 (tools.story, 17단계. 늦게 올리면 schedule 이)
@@ -45,7 +46,7 @@ from core.models import (
 )
 from core.profile import Profile, load_profile
 from core.store import Store
-from tools import ai_label, notify, share, story
+from tools import ai_label, feedback, notify, share, story
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
@@ -207,9 +208,16 @@ def run(
         if tg is None and not dry_run:
             tg = notify.Telegram.from_env()
         decided = None
+        fixing = None
         if record and tg is not None:
-            decided = notify.find_decision(tg.updates(), record, tg.chat_id)
+            updates = tg.updates()
+            decided = notify.find_decision(updates, record, tg.chat_id)
+            if decided != "skip":
+                # /fix 뒤에는 고친 미리보기를 기다린다 (15단계, /fix 뒤 /ok 면 지금 것으로 게시)
+                fixing = feedback.waiting(updates, record, tg.chat_id, out, profile, store)
         how, why = approval(profile, manifest, record, decided)
+        if fixing and how != "skip":
+            how, why = "wait", fixing
     print(f"{tag} {out.name}: {why}")
     if how == "skip":
         return 0

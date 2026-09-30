@@ -25,6 +25,9 @@ daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약�
               고르기 마감~게시 사이 schedule.ok_check_every 마다, 다른 작업 때도 같이
   share       공유리워드 링크 답장 반영, 상품 페이지 다시 올림 (tools.share, manual_link).
               따로 깨어나지 않고 다른 작업으로 깨어날 때마다 같이 한다
+  fix         미리보기에 온 /fix 피드백 확인 (15단계, tools.feedback). 다시 만들 것이면
+              daily(mode=fix). 고르기 마감~게시 사이 profile feedback.check_every 마다,
+              다른 작업 때도 같이
 
 사용법:
   python -m tools.schedule list                    계정별 시간표와 cron 줄
@@ -139,6 +142,12 @@ def slots(profile: Profile) -> list[Slot]:
         out += [
             Slot(a, "links", start, off) for off in range(s.ok_check_every, span, s.ok_check_every)
         ]
+    fb = profile.feedback
+    if fb.enabled and fb.check_every:
+        # 고르기 마감(고르기를 끄면 후보 시각) 뒤 게시 전까지 /fix 확인 (게시 재시도 때는 같이 봄)
+        start = s.pick_deadline if profile.pick.enabled else s.candidates_at
+        span = (minutes(s.publish_at) - minutes(start)) % 1440
+        out += [Slot(a, "fix", start, off) for off in range(fb.check_every, span, fb.check_every)]
     if profile.comments.enabled and profile.comments.mode == "builtin":
         out += [Slot(a, "comments", hhmm) for hhmm in profile.comments.check_at]
     return out
@@ -156,7 +165,7 @@ def backup_slot(sl: Slot) -> bool:
     """github_cron: backup 에서도 GitHub 예약 줄을 두는 칸. 나머지는 auto 가 따라잡는다."""
     if sl.task in ("pick", "publish"):
         return sl.first or sl.final
-    return sl.task not in ("links", "comments")
+    return sl.task not in ("links", "comments", "fix")
 
 
 def cron_lines(items: list[tuple[Profile, Slot]], ref: date) -> dict[str, list[str]]:
@@ -238,7 +247,7 @@ def _task(profile: Profile, sl: Slot, base: date, now: datetime) -> Task:
     tz = profile.schedule.timezone
     day = base
     left = 0
-    if sl.task == "links":
+    if sl.task in ("links", "fix"):
         day = post_date(profile, base)
     elif sl.task in ("candidates", "pick"):
         day = post_date(profile, base)
@@ -269,6 +278,11 @@ def _extras(tasks: list[Task], now: datetime) -> list[Task]:
             extra.append(Task(account, "links", day, True, True, 0))
         if share.enabled(profile):
             extra.append(Task(account, "share", mine[0].date, True, True, 0))
+        # 피드백 /fix 도 깨어날 때마다 본다 (tools.feedback)
+        if profile.feedback.enabled and all(t.task != "fix" for t in mine):
+            local = now.astimezone(ZoneInfo(profile.schedule.timezone)).date()
+            day = post_date(profile, local).isoformat()
+            extra.append(Task(account, "fix", day, True, True, 0))
     return tasks + extra
 
 
@@ -312,7 +326,7 @@ def last_chance(profile: Profile, sl: Slot, at: datetime) -> datetime:
         if profile.pick.enabled:
             return next_at(s.pick_deadline) - timedelta(minutes=30)
         return next_at(s.publish_at) - timedelta(minutes=60)
-    if sl.task in ("pick", "links"):
+    if sl.task in ("pick", "links", "fix"):
         return next_at(s.publish_at)
     if sl.task == "publish":
         # 마지막 재시도 칸 + 간격까지 (앞 칸을 놓쳐도 뒤 칸이 이어받는다)
@@ -446,7 +460,7 @@ def external_jobs(accounts: list[str] | None = None) -> list[str]:
 
 def t_day(profile: Profile, sl: Slot, base: date) -> str:
     """같은 작업의 칸을 하나로 묶는 날짜 (고르기·링크는 게시 날짜)."""
-    if sl.task in ("candidates", "pick", "links"):
+    if sl.task in ("candidates", "pick", "links", "fix"):
         return post_date(profile, base).isoformat()
     return base.isoformat()
 
@@ -601,6 +615,26 @@ def execute(
                 print(share.send_after_ok(t.account, t.date, results, tg, dry_run))
             except (RuntimeError, ValueError, httpx.HTTPError) as e:
                 print(f"{tag} 상품 링크 보내기 실패: {e}", file=sys.stderr)
+        elif t.task == "fix":
+            from tools import feedback
+
+            # 오류가 나도 다른 작업을 막지 않는다
+            try:
+                fix = feedback.check(
+                    t.account, date.fromisoformat(t.date), results, tg, now, dry_run
+                )
+            except (RuntimeError, ValueError, FileNotFoundError, httpx.HTTPError) as e:
+                print(f"{tag} 피드백 확인 실패: {e}", file=sys.stderr)
+                fix = None
+            if fix is not None:
+                send(
+                    "daily.yml",
+                    account=t.account,
+                    date=t.date,
+                    mode="fix",
+                    pick=json.dumps(fix, ensure_ascii=False),
+                    sandbox=False,
+                )
         elif t.task == "share":
             # 오류가 나도 다른 작업을 막지 않는다
             try:

@@ -7,6 +7,9 @@ from tools import schedule
 
 REF = date(2026, 9, 28)
 
+# 시간 계산은 고정 시간표(conftest FIXED_SCHEDULE)로 본다. 실제 시각은 test_women_profile_is_hourly
+pytestmark = pytest.mark.usefixtures("fixed_times")
+
 
 def utc(text: str) -> datetime:
     return datetime.fromisoformat(text).replace(tzinfo=UTC)
@@ -42,8 +45,9 @@ def test_pick_disabled_has_no_pick_slots():
 
 
 def due(*args) -> list[schedule.Task]:
-    """공유리워드 작업(links, share)은 모든 작업에 붙어서 빼고 본다 (test_share)."""
-    return [t for t in schedule.due(*args) if t.task not in ("links", "share")]
+    """공유리워드(links, share)·피드백(fix) 작업은 모든 작업에 붙어서 빼고 본다
+    (test_share, test_feedback)."""
+    return [t for t in schedule.due(*args) if t.task not in ("links", "share", "fix")]
 
 
 def test_due_uses_fired_cron_even_when_actions_is_late():
@@ -63,8 +67,11 @@ def test_due_uses_fired_cron_even_when_actions_is_late():
     assert due("0 0 * * *", utc("2026-09-28T00:00:00"), ["women"]) == []
 
 
-def test_workflow_crons_match_profiles():
-    """profile.yaml schedule 을 바꾸고 sync 를 안 하면 실패한다."""
+def test_workflow_crons_match_profiles(monkeypatch):
+    """profile.yaml schedule 을 바꾸고 sync 를 안 하면 실패한다 (실제 시간표로 본다)."""
+    import core.profile
+
+    monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     assert not schedule.sync(check_only=True), "python -m tools.schedule sync 를 돌리세요"
 
 
@@ -268,3 +275,12 @@ def test_backup_cron_keeps_only_key_slots():
     assert "publish 20:03" in kinds and "publish 22:03" in kinds
     assert "pick 12:17" not in kinds and "publish 21:03" not in kinds
     assert not [k for k in kinds if k.startswith("links")]
+
+
+def test_women_profile_is_hourly(monkeypatch):
+    """women 은 외부 스케줄러가 매시 정각에 깨운다 (cron-job.org Every 1 hour)."""
+    import core.profile
+
+    monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
+    lines = schedule.external_jobs(["women"])
+    assert all(line.split()[-1] == "00분" for line in lines), lines
