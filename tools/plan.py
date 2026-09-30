@@ -10,10 +10,14 @@ r"""하루 게시물 기획을 돕는 도구 (6단계). Claude 스킬이 부르�
   python -m tools.plan check out/2026-09-27/plan.yaml [--draft]  기획 검사 (오류면 종료 코드 1)
   python -m tools.plan photos out/2026-09-27/plan.yaml    상품 사진 확인표
   python -m tools.plan caption out/2026-09-27/plan.yaml   캡션 미리보기
-  python -m tools.plan build out/2026-09-27/plan.yaml [--outfit photoroom|none] [--fake]
+  python -m tools.plan build out/2026-09-27/plan.yaml [--outfit auto|generate|photoroom|none]
+                                                      [--fake]
+
+--outfit auto 는 profile outfit_image.engine
+(generate: 생성형 AI tools.outfit_gen, photoroom: 누끼 배치 tools.poc).
 
 build 결과 (기획 파일이 있는 폴더, --out 으로 바꿀 수 있음):
-  outfit/     코디컷 작업 (tools.poc 와 같은 구성)   slides/  캐러셀 슬라이드
+  outfit/     코디컷 작업 (results/ 후보, engine.txt 만든 방식)   slides/  캐러셀 슬라이드
   caption.txt 캡션 + 해시태그                         preview.jpg  슬라이드 한눈에 보기
   manifest.json  하루 결과물 (core.models.Manifest, 게시 job 이 읽음)
   review/review.json  코디컷 후보 목록 (검수는 tools.review, 7단계)
@@ -39,7 +43,7 @@ from pydantic import TypeAdapter, ValidationError
 from core.models import DailyPlan, FeedItem, FeedSpec, Manifest, OutfitPlan, Product, Theme
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
-from tools import feed, photoroom
+from tools import feed, generate, photoroom
 from tools.compose import load_layout, real_length
 from tools.overlay import load_font
 
@@ -68,6 +72,9 @@ WEATHER_CODES = {
     82: "강한 소나기",
     95: "뇌우",
 }
+# 코디컷 서비스 크레딧·요금제 한도 (종료 코드 2: 코디컷 없이 다시 만든다)
+QUOTA_ERRORS = (photoroom.QuotaError, generate.QuotaError)
+ENGINES = ("generate", "photoroom")
 _EMOJI = re.compile("[\U0001f000-\U0001faff☀-➿⬀-⯿️]")
 
 
@@ -329,6 +336,9 @@ def check(
             errors.append(f"{label}: photo {it.photo} 번 사진이 없습니다 ({len(p.image_urls)}장)")
         if it.cutout_photo >= len(p.image_urls):
             errors.append(f"{label}: cutout_photo {it.cutout_photo} 번 사진이 없습니다")
+        bad = [k for k in it.ref_photos or [] if not 0 <= k < len(p.image_urls)]
+        if bad:
+            errors.append(f"{label}: ref_photos {bad} 번 사진이 없습니다 ({len(p.image_urls)}장)")
         if it.slot and it.slot not in layout_slots:
             errors.append(f"{label}: slot '{it.slot}' 은 config/layout.yaml 에 없습니다")
         if it.method and it.method not in get_args(photoroom.CutoutMethod):
@@ -341,7 +351,7 @@ def check(
                 f"{label}: 소품은 slot(목걸이·귀걸이·팔찌)이나 wear_with 를 정하면 배치가 좋아요"
             )
         if not re.search(r"\([^)]*[A-Za-z][^)]*\)", it.desc):
-            warns.append(f"{label}: desc 끝에 영어 설명을 괄호로 붙이세요 (Photoroom 지시문)")
+            warns.append(f"{label}: desc 끝에 영어 설명을 괄호로 붙이세요 (코디컷 지시문)")
         if _EMOJI.search(it.name + it.comment):
             errors.append(f"{label}: 상품 장 이름·코멘트에는 이모지를 쓰지 않습니다")
         if len(it.name) > c.name_max_chars:
@@ -406,6 +416,12 @@ def check(
         lo, hi = c.hashtags
         if not lo <= n <= hi:
             errors.append(f"해시태그가 기본 묶음 포함 {n}개입니다 ({lo}~{hi}개)")
+    oi = profile.outfit_image
+    if oi.engine == "generate":
+        if oi.model not in generate.load_config()["models"]:
+            errors.append(f"outfit_image.model '{oi.model}' 이 config/models.yaml 에 없습니다")
+        if not (photoroom.PROMPTS_DIR / f"{oi.prompt}.md").exists():
+            errors.append(f"outfit_image.prompt '{oi.prompt}' 파일이 prompts/ 에 없습니다")
     if plan.cover and not (REPO_ROOT / plan.cover).exists():
         errors.append(f"cover 파일이 없습니다: {plan.cover}")
     return errors, warns
@@ -566,10 +582,24 @@ def outfit_samples(plan: DailyPlan, store: Store, work: Path) -> dict:
 
 
 def make_outfit(
-    plan: DailyPlan, store: Store, work: Path, fake: bool = False, count: int = 1
+    plan: DailyPlan,
+    store: Store,
+    work: Path,
+    fake: bool = False,
+    count: int = 1,
+    engine: str = "photoroom",
+    profile: Profile | None = None,
 ) -> list[Path]:
-    """Photoroom 으로 코디컷 후보를 count 장 만든다 (2단계와 같은 흐름, 회차마다 AI 결과가 다름).
-    성공한 것만 돌려준다. 옷 누끼·입히기·그림자는 후보마다 새로 하고, 잘라내기 누끼는 재사용한다."""
+    """코디컷 후보를 count 장 만든다 (회차마다 AI 결과가 다름). 성공한 것만 돌려준다.
+    generate: 생성형 AI 가 쇼핑몰 사진을 참고로 코디 전체를 그린다 (tools.outfit_gen).
+    photoroom: 2단계 흐름. 옷 누끼·입히기·그림자는 후보마다 새로 하고, 잘라내기 누끼는
+    재사용한다."""
+    if engine == "generate":
+        from tools import outfit_gen
+
+        profile = profile or load_profile(plan.account)
+        return outfit_gen.make_candidates(plan, store, work, profile, count, fake)
+
     from tools import poc
 
     samples = work / "samples.yaml"
@@ -600,7 +630,7 @@ def build(
     out: Path,
     profile: Profile,
     store: Store,
-    outfit: str = "photoroom",
+    outfit: str = "auto",
     fake: bool = False,
 ) -> Manifest:
     errors, warns = check(plan, profile, store)
@@ -617,10 +647,17 @@ def build(
 
     cover: Path | None = REPO_ROOT / plan.cover if plan.cover else None
     made: list[Path] = [cover] if cover else []
-    if cover is None and outfit == "photoroom":
+    engine = profile.outfit_image.engine if outfit == "auto" else outfit
+    if cover is None and engine in ENGINES:
+        work = out / "outfit"
+        work.mkdir(parents=True, exist_ok=True)
+        # tools.review more 가 같은 방식으로 후보를 더 만든다
+        (work / "engine.txt").write_text(engine, encoding="utf-8")
         try:
-            made = make_outfit(plan, store, out / "outfit", fake, profile.review.candidates)
-        except photoroom.QuotaError:
+            made = make_outfit(
+                plan, store, work, fake, profile.review.candidates, engine, profile
+            )
+        except QUOTA_ERRORS:
             raise
         except Exception as e:  # noqa: BLE001 - 코디컷 없이 캐러셀은 만든다
             print(f"코디컷 실패: {e}", file=sys.stderr)
@@ -628,6 +665,10 @@ def build(
         cover = made[0] if made else None
         if cover is None:
             notes.append("코디컷을 만들지 못해 표지 없이 만들었습니다")
+        if engine == "generate":
+            from tools import outfit_gen
+
+            notes.append(f"코디컷 생성 비용 약 ${outfit_gen.cost(work):.2f} (후보 {len(made)}장)")
     review = review_tool.start(out, made)
 
     items = []
@@ -726,8 +767,8 @@ def main(argv: list[str] | None = None) -> int:
         if name == "check":
             s.add_argument("--draft", action="store_true", help="문구 없는 코디 후보 검사")
         if name == "build":
-            s.add_argument("--outfit", choices=["photoroom", "none"], default="photoroom")
-            s.add_argument("--fake", action="store_true", help="Photoroom 대신 가짜 이미지")
+            s.add_argument("--outfit", choices=["auto", *ENGINES, "none"], default="auto")
+            s.add_argument("--fake", action="store_true", help="이미지 API 대신 가짜 이미지")
     args = ap.parse_args(argv)
 
     try:
@@ -773,8 +814,8 @@ def main(argv: list[str] | None = None) -> int:
     except (ValueError, FileNotFoundError, ValidationError) as e:
         print(f"오류: {e}", file=sys.stderr)
         return 1
-    except photoroom.QuotaError as e:
-        print(f"Photoroom 크레딧·요금제 한도에 막혔습니다.\n{e}", file=sys.stderr)
+    except QUOTA_ERRORS as e:
+        print(f"코디컷 이미지 서비스 크레딧·요금제 한도에 막혔습니다.\n{e}", file=sys.stderr)
         return 2
 
 

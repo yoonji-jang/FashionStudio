@@ -10,7 +10,7 @@ description: 하루 게시물의 코디 후보 여러 개(profile pick.count)를
 `core.models.DailyPlan` 이다. 사람이 텔레그램에서 번호를 고르면 그 파일이 `plan.yaml` 이 되어
 daily-feed 의 "고른 후보로 시작" 절부터 이어진다.
 
-Photoroom 을 부르지 않는다 (`tools.plan build` 금지). 사진 확인·문구도 고른 뒤에 하므로 여기서는 하지 않는다.
+코디컷 이미지를 만들지 않는다 (`tools.plan build` 금지, 이미지 AI 비용). 사진 확인·문구도 고른 뒤에 하므로 여기서는 하지 않는다.
 모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `voice.md` 를 따른다. 게시·외부 전송은 하지 않는다.
 
 ## 순서

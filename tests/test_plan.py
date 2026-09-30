@@ -241,12 +241,56 @@ def test_build_without_outfit(store, tmp_path):
 
 
 def test_build_with_fake_outfit(store, tmp_path):
-    m = plan.build(daily(), tmp_path / "out", load_profile("women"), store, fake=True)
+    m = plan.build(
+        daily(), tmp_path / "out", load_profile("women"), store, outfit="photoroom", fake=True
+    )
     assert Path(m.images[0]).name == "01_cover.jpg"
     samples = yaml.safe_load((tmp_path / "out" / "outfit" / "samples.yaml").read_text())
     shirt = samples["items"][1]
     assert shirt["wear_with"] == "아우터" and shirt["wear_modes"] == ["peek"]
     assert samples["items"][5]["slot"] == "목걸이"
+
+
+def test_build_with_generated_outfit(store, tmp_path):
+    """기본(profile outfit_image.engine: generate): 쇼핑몰 사진 참고판으로 생성형 코디컷 후보."""
+    out = tmp_path / "out"
+    profile = load_profile("women")
+    m = plan.build(daily(), out, profile, store, fake=True)
+    assert Path(m.images[0]).name == "01_cover.jpg"
+    assert (out / "outfit" / "engine.txt").read_text() == "generate"
+    assert len(list((out / "outfit" / "results").glob("G_*.jpg"))) == profile.review.candidates
+    assert len(list((out / "outfit" / "originals").glob("*.jpg"))) == len(CATS)
+    prompt = (out / "outfit" / "prompt.txt").read_text()
+    assert "Image 1: the outer, item 1." in prompt
+    assert "exactly one pair (two earrings)" in prompt  # 귀걸이 개수
+    assert "almost closed" in prompt  # 아우터 기본 입히기 (profile outer_styling)
+    assert "$" not in prompt
+    assert "코디컷 생성 비용" in (out / "report.md").read_text()
+    assert not (out / "outfit" / "samples.yaml").exists()  # Photoroom 흐름을 타지 않음
+
+
+def test_generated_outfit_prompt_parts(store):
+    from tools import outfit_gen
+
+    p = daily(styling="The jacket is buttoned.")
+    products = {x.id: x for x in store.products()}
+    p.items[0].ref_photos = [2, 0, 2]
+    p.items[1].photo = 1
+    assert outfit_gen.ref_indexes(p.items[0]) == [2, 0]
+    assert outfit_gen.ref_indexes(p.items[1]) == [0, 1]  # 없으면 cutout_photo + photo
+    assert outfit_gen.english("차콜 롱코트 (charcoal long coat)") == "charcoal long coat"
+    profile = load_profile("women")
+    assert outfit_gen.styling_text(p, products, profile) == "The jacket is buttoned."
+    p.items[0].size = "about 50 cm long"
+    cfg = outfit_gen.generate.load_config()
+    assert "Real size: about 50 cm long." in outfit_gen.item_lines(p, products, cfg)
+
+
+def test_check_ref_photos_index(store):
+    p = daily()
+    p.items[0].ref_photos = [0, 5]
+    errors, _ = plan.check(p, load_profile("women"), store)
+    assert any("ref_photos" in e for e in errors)
 
 
 def test_outfit_samples_wears_top_and_sets_length(store, tmp_path):

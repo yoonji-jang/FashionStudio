@@ -1,8 +1,11 @@
 # FashionStudio 프로젝트 규칙
 
 매일 인스타그램 코디 게시물(캐러셀, 릴스)을 자동으로 만드는 파이프라인.
-Claude는 기획·상품 선택·문구·검수를, Photoroom API는 상품 누끼·그림자·배경을 맡고, GitHub Actions가 매일 실행한다.
-코디컷은 상품 누끼를 코드로 배치해 만든다 (AI가 상품을 새로 그리지 않음).
+Claude는 기획·상품 선택·문구·검수를, 생성형 이미지 AI(OpenRouter, 기본 Nano Banana Pro)는 표지 코디컷을 맡고,
+GitHub Actions가 매일 실행한다.
+코디컷은 쇼핑몰 사진(고른 색)을 참고로 생성형 AI가 코디 전체를 한 장으로 그린다 (2026-09-30부터, `tools.outfit_gen`).
+AI가 상품을 새로 그리므로 원본과 같은지 image-reviewer 검수를 꼭 거치고, 캐러셀 상품 장은 쇼핑몰 원본 사진을 쓴다.
+예전 방식(Photoroom 누끼를 코드로 배치)은 profile `outfit_image.engine: photoroom` 으로 남아 있다.
 
 ## 반드시 지킬 것
 - 모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `accounts/$ACCOUNT/voice.md` 를 따른다.

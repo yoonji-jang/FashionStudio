@@ -6,7 +6,40 @@ image:
   flat_lay_size: PORTRAIT_HD_3_2       # 옷 정리컷 비율
   backdrop_size: PORTRAIT_4_3          # 배경 사진 생성 비율 (합성 때 4:5로 자름)
 
-# 하루 코디컷 (tools.plan build --outfit photoroom). 2단계에서 고른 C 방식이 기본
+# 예전 하루 코디컷 (profile outfit_image.engine: photoroom). 2단계에서 고른 C 방식
 outfit:
   finish: ai_shadow   # code(코드 그림자) | ai_shadow(AI 그림자) | ai_background | ai_scene
   clean: true         # 누끼를 AI로 다듬고 입은 듯이 합치기 (자켓 속 셔츠, 바지+벨트)
+
+# 생성형 이미지 AI (11단계). 여러 상품 사진을 넣어 장면 한 장을 새로 그린다.
+# 하루 코디컷(tools.outfit_gen, profile outfit_image)과 비교 실험(tools.generate)이 함께 쓴다.
+# OpenRouter 키 하나로 여러 회사 모델을 부른다. 키는 환경 변수 OPENROUTER_API_KEY (Secrets).
+generate:
+  endpoint: https://openrouter.ai/api/v1/chat/completions
+  aspect_ratio: "4:5"
+  image_size: 2K
+  input_max_px: 1024      # 참고판에 넣는 사진 한 장의 긴 변
+  panel_max_px: 1536      # 상품 참고판(누끼 + 쇼핑몰 사진 몇 장) 긴 변. 크면 느리고 조금 비쌈
+  timeout_sec: 300
+  models:
+    nano_banana_pro:
+      id: google/gemini-3-pro-image-preview
+      name: Nano Banana Pro (Google)
+      modalities: [image, text]
+    gpt_image_2:
+      id: openai/gpt-5.4-image-2
+      name: GPT Image 2 (OpenAI)
+      modalities: [image, text]
+    seedream_5_pro:
+      id: bytedance-seed/seedream-5-0-pro
+      name: Seedream 5.0 Pro (ByteDance)
+      modalities: [image]
+  # 기획에 size 가 없을 때 쓰는 실제 크기 (영어). 옷은 cm(기획 cm, 이름의 롱·크롭, layout.yaml)로 쓴다.
+  # 개수를 함께 적어야 귀걸이를 두 쌍으로 그리지 않는다 (2026-09-30 실험)
+  default_sizes:
+    가방: one bag, body about 30 cm wide
+    신발: exactly one pair (two shoes), each about 24 cm long
+    귀걸이: exactly one pair (two earrings), each only about 1 to 2 cm, tiny next to the clothes
+    목걸이: one necklace, chain about 42 cm long, thin
+    팔찌: one bracelet, about 7 cm across
+    소품: one small accessory at its real size, small next to the clothes

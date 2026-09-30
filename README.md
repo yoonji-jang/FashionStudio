@@ -3,8 +3,10 @@
 매일 인스타그램 코디 게시물을 자동으로 만들고 올리는 파이프라인입니다.
 
 - **Claude**: 주제 선정, 상품 조합, 제목·캡션, 이미지 검수 (Claude Code 스킬·에이전트)
-- **Photoroom API**: 상품 사진에서 누끼 따기(옷은 바닥에 펼친 모양으로), 그림자·배경 입히기
-- **코드(Pillow)**: 누끼를 배경 위에 배치해 코디컷 합성. 상품을 AI가 새로 그리지 않아 원본 그대로 나옴
+- **생성형 이미지 AI (OpenRouter, 기본 Nano Banana Pro)**: 쇼핑몰 사진을 참고로 바닥에 펼친 코디컷 한 장을 그림.
+  빛·주름·겹침이 자연스러운 대신 상품이 원본과 달라질 수 있어 Claude 검수가 원본과 대조함
+- **코드(Pillow)**: 제목 글자 합성, 캐러셀 상품 장(쇼핑몰 원본 사진) 만들기
+- (예전 방식) **Photoroom API**: 누끼를 따서 코드로 배치. `outfit_image.engine: photoroom` 으로 계속 쓸 수 있음
 - **GitHub Actions**: 매일 코디 후보 → 텔레그램에서 고르기 → 고른 코디만 이미지 생성 → 텔레그램 승인 → 인스타 게시
 
 계정별 설정은 `accounts/<계정>/` 에 있고, 코드와 스킬은 모든 계정이 함께 씁니다.
@@ -52,10 +54,10 @@ uv run pytest
 | `accounts/<계정>/voice.md` | 제목·캡션 말투, 좋은 제목 예시, 해시태그, 금지 표현 | 반응 보면서 가끔 |
 | `accounts/index.yaml` | 매일 돌릴 계정 목록 | 계정 추가·중지할 때 |
 | GitHub Secrets | API 키, 인스타 토큰 등 비밀값 (저장소 밖에 보관) | 처음 한 번, 토큰 만료 시 |
-| `config/models.yaml` | 이미지 API(Photoroom) 설정 | 거의 안 바꿈 |
+| `config/models.yaml` | 이미지 AI(생성형 모델, Photoroom) 설정 | 거의 안 바꿈 |
 | `config/publish.yaml` | 인스타 게시 API 주소, 게시용 사진 저장소 | 거의 안 바꿈 |
 | `config/layout.yaml` | 코디컷에서 상품별 위치·크기 | 배치를 바꾸고 싶을 때 |
-| `prompts/` | Photoroom에 보내는 지시문(옷 펼치기, 배경) | 이미지 품질을 다듬을 때 |
+| `prompts/` | 이미지 AI 지시문 (`outfit_generate.md` 하루 코디컷, 나머지는 실험·예전 방식) | 이미지 품질을 다듬을 때 |
 | `assets/fonts/` | 제목 폰트 파일 (Pretendard 기본 포함) | 폰트를 바꿀 때 |
 
 사용자가 고치지 않는 곳: `core/`, `sources/`, `tools/`, `tests/`, `CLAUDE.md`, `.claude/settings.json`
@@ -232,10 +234,23 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 
 | 항목 | 예시 | 의미 |
 |---|---|---|
-| `candidates` | 2 | 한 번에 만드는 코디컷 후보 수. 늘리면 Photoroom 호출도 그만큼 늘어남 |
+| `candidates` | 3 | 한 번에 만드는 코디컷 후보 수. 생성 1장 약 $0.15 (Nano Banana Pro), 후보 수만큼 늘어남 |
 | `max_rounds` | 2 | 후보가 모두 기준 미달일 때 다시 만드는 횟수 (첫 회 포함). 넘으면 사람 확인으로 표시 |
 | `min_score` | 8 | 이 점수 이상이고 0점 항목이 없어야 통과 |
 | `check_slides` | true | 상품 장 사진 색·모델 얼굴·글자 잘림도 확인 |
+
+#### `outfit_image` : 표지 코디컷 만드는 방식 (11단계)
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `engine` | generate | `generate` 생성형 AI가 코디 전체를 그림 / `photoroom` 예전 누끼 배치 |
+| `model` | nano_banana_pro | `config/models.yaml` 의 `generate.models` 키 |
+| `prompt` | outfit_generate | `prompts/<이름>.md` 지시문 |
+| `scene` | linen floor, window light … | 바닥과 빛 (영어) |
+| `outer_styling` | almost closed … | 아우터가 있는 날 입히는 방법 (영어). 기획의 `styling` 이 있으면 그것을 씀 |
+
+생성형은 상품마다 쇼핑몰 사진 1~3장(사진 확인 단계가 고른 `ref_photos`, 고른 색만)을 한 장의 참고판으로 붙여 보냅니다.
+모델 얼굴은 잘라 내고 보내며, 참고판은 결과 브랜치에 올리지 않습니다. 한 달 비용은 하루 후보 3장 기준 약 $13~14
+(다시 만드는 날이 많으면 늘어남)이고, 매일 `report.md` 에 그날 생성 비용이 남습니다.
 
 #### `schedule` : 매일 자동 실행 시간표 (9단계)
 시간은 `timezone` 기준 `HH:MM`, 주간 작업은 `"요일 HH:MM"` (여러 요일은 쉼표, 예: `"월,목 04:17"`).
@@ -262,8 +277,8 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 정각을 피하는 것을 권장합니다. 예약 실행은 기본 브랜치(main)에 합친 뒤부터 돕니다.
 
 #### `pick` : 코디 고르기 (9단계)
-Photoroom 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 **쇼핑몰 원본 사진으로** 먼저 보여 주고
-고른 한 벌만 코디컷을 만듭니다. 후보 단계에서는 Photoroom 을 부르지 않습니다.
+이미지 AI 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 **쇼핑몰 원본 사진으로** 먼저 보여 주고
+고른 한 벌만 코디컷을 만듭니다. 후보 단계에서는 이미지 AI 를 부르지 않습니다.
 
 | 항목 | 예시 | 의미 |
 |---|---|---|
@@ -331,8 +346,9 @@ accounts:
 
 | 이름 | 용도 |
 |---|---|
-| `PHOTOROOM_API_KEY` | 상품 누끼·그림자·배경 (Photoroom API 대시보드에서 발급, 아래 참고) |
-| `PHOTOROOM_API_KEY_SANDBOX` | (선택) 무료 테스트용 샌드박스 키 |
+| `OPENROUTER_API_KEY` | 생성형 코디컷 (OpenRouter에서 발급, 아래 참고) |
+| `PHOTOROOM_API_KEY` | (예전 방식 `engine: photoroom` 일 때만) 상품 누끼·그림자·배경 |
+| `PHOTOROOM_API_KEY_SANDBOX` | (선택, 예전 방식) 무료 테스트용 샌드박스 키 |
 | `CLAUDE_CODE_OAUTH_TOKEN` | GitHub Actions에서 Claude Code 실행 (터미널에서 `claude setup-token` 을 실행해 나온 값, Pro·Max 구독) |
 | `IG_<계정>_TOKEN`, `IG_<계정>_USER_ID` | 인스타 게시 (아래 참고) |
 | `MEDIA_REPO_TOKEN` | 인스타가 가져갈 사진을 잠시 올려 둘 공개 저장소에 쓰는 토큰 (아래 참고) |
@@ -391,7 +407,14 @@ accounts:
 - 봇 토큰이 알려지면 누구나 봇을 조종할 수 있으니 파일이나 채팅에 붙여 넣지 마세요. 새어 나갔다면 @BotFather 에서 `/revoke` 로 재발급합니다.
 - 봇은 등록된 채팅 ID에서 온 명령만 따릅니다.
 
-#### Photoroom API 키 발급
+#### OpenRouter API 키 발급
+
+1. [OpenRouter](https://openrouter.ai)에 가입하고 Credits 에서 선불로 충전합니다 (한 달 약 $15면 충분).
+2. Keys 에서 키를 만들 때 사용 한도(credit limit)를 걸어 두면 비용이 넘치지 않습니다.
+3. 키를 GitHub Secrets에 `OPENROUTER_API_KEY` 로 등록합니다.
+4. 크레딧이 떨어지면 그날은 코디컷 없이 만들어지고 사람 확인으로 남습니다 (텔레그램 미리보기에서 보임).
+
+#### Photoroom API 키 발급 (예전 방식일 때만)
 
 1. [Photoroom API 대시보드](https://app.photoroom.com/api-dashboard)에 가입하고 API 키를 만듭니다.
 2. **Plus 요금제**(Image Editing API)가 필요합니다. 옷 펼치기(Flat Lay), AI 그림자·배경이 여기에 들어 있고,
@@ -403,7 +426,8 @@ accounts:
 
 ### 5. `config/models.yaml`, `config/layout.yaml` : 이미지 설정
 
-`models.yaml` 은 Photoroom 주소와 옵션입니다.
+`models.yaml` 의 `generate` 는 생성형 코디컷 설정입니다 (OpenRouter 주소, 비율·해상도, 모델 목록, 기획에 크기가
+없을 때 쓰는 `default_sizes`). 아래 `image` 는 예전 Photoroom 방식의 옵션입니다.
 
 | 항목 | 기본값 | 의미 |
 |---|---|---|
@@ -423,7 +447,10 @@ accounts:
 배경 사진은 프로필 `visual.backdrop` 문구로 한 번 생성합니다. 마음에 드는 배경을
 `accounts/<계정>/backdrop.jpg` 로 넣고 `visual.backdrop_ref: backdrop.jpg` 로 지정하면 그 사진을 계속 씁니다.
 
-### 6. `prompts/` : Photoroom 지시문
+### 6. `prompts/` : 이미지 AI 지시문
+
+하루 코디컷은 `outfit_generate.md` 하나를 씁니다 (상품 설명·실제 크기·입는 방법·바닥이 채워짐).
+`gen_*.md` 는 모델 비교 실험(`tools.generate`), 아래 표는 예전 Photoroom 방식의 지시문입니다.
 
 | 파일 | 역할 |
 |---|---|
@@ -527,14 +554,15 @@ items:
 
 ```
 오늘 정보(날씨·요일·재고) → 주제·검색어 → (새 상품 수집) → 상품 조합 → 사진 확인(색·얼굴)
- → 제목·코멘트·캡션 → 규칙 검사 → 코디컷(Photoroom) → 캐러셀 → 캡션 → manifest.json
+ → 제목·코멘트·캡션 → 규칙 검사 → 코디컷(생성형 AI) → 캐러셀 → 캡션 → manifest.json
 ```
 
 - **버튼 하나로**: Actions → `daily` → Run workflow. `CLAUDE_CODE_OAUTH_TOKEN` 이 필요합니다.
   결과(슬라이드, `preview.jpg`, `caption.txt`, `plan.yaml`, `manifest.json`)는 artifact와
   `daily-results` 브랜치의 `<날짜>-run<번호>/` 에 올라갑니다. 게시는 하지 않습니다.
   - `plan` 에 기획 파일을 주면 Claude 없이 그 기획으로 만들기만 합니다
-  - `sandbox` 를 켜면 Photoroom 무료 샌드박스(워터마크), `outfit: none` 이면 코디컷 없이
+  - `outfit` 은 `auto`(계정 설정), `generate`, `photoroom`, `none`(코디컷 없이).
+    `sandbox` 는 photoroom 방식일 때만 무료 샌드박스(워터마크)
   - `collect` 를 켜면 주제 검색어로 지그재그 새 상품을 먼저 모읍니다
 - **로컬 (Claude Code)**: `ACCOUNT=women claude "/daily-feed"`
 - **도구만**:
@@ -597,11 +625,11 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 `main` 에 합치면 사람 손 없이 아래처럼 돕니다 (시간은 `profile.yaml` 의 `schedule`, 예시는 기본값).
 
 ```
-10:17  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, Photoroom 없음)
+10:17  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, 이미지 AI 없음)
        → 텔레그램: 후보마다 상품 원본 사진 한 장 모음 + 목록
          버튼 [/pick 1 women 09-28] … [/pick 5 …] [/again …] [/skip …]
 10:47~15:17 (30분마다) schedule: 고른 번호 확인
-       번호 → daily(mode=render): 그 후보로 사진 확인 → 문구 → 코디컷(Photoroom) → 검수 → 미리보기
+       번호 → daily(mode=render): 그 후보로 사진 확인 → 문구 → 코디컷(생성형 AI) → 검수 → 미리보기
        /again → 겹치지 않는 새 후보 5개 (max_again 번까지, 마감 1시간 전까지)
        /skip → 그날 건너뜀
        15:17 까지 안 고르면 → on_timeout (1번으로 만들기 또는 건너뛰기)
@@ -618,7 +646,8 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 - **고른 번호 확인**: 봇 서버 없이 schedule 이 돌 때 텔레그램 답장을 읽습니다. 그래서 번호를 누른 뒤
   다음 확인(최대 `pick_check_every` 분)에 이미지 만들기가 시작되고, 30분쯤 뒤 미리보기가 옵니다.
   결정은 daily-results 브랜치의 `<날짜>-run<번호>/picks/picked.json` 에 남아 두 번 만들지 않습니다.
-- **Photoroom 사용량**: 후보 단계는 0회, 고른 한 벌만 코디컷 후보 `review.candidates` 장을 만듭니다.
+- **이미지 AI 사용량**: 후보 단계는 0회, 고른 한 벌만 코디컷 후보 `review.candidates` 장을 만듭니다.
+  모두 기준 미달이면 한 묶음 더 만듭니다 (`max_rounds`).
 - **실패 알림**: daily·themes·collect·schedule 이 실패하면 텔레그램으로 실행 주소를 보냅니다. 게시 실패와
   토큰 문제는 publish·token 이 직접 알립니다. 검수를 통과하지 못한 날은 미리보기에 "사람 확인 필요"로 옵니다.
 - **인스타 토큰 연장**: 토큰은 발급 24시간 뒤부터 연장할 수 있고, 연장하면 다시 60일이 됩니다.

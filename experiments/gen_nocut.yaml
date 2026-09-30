@@ -1,0 +1,52 @@
+# 11단계 2차: Photoroom 없이 쇼핑몰 사진만으로 Nano Banana Pro 펼친 코디컷 (tools.generate).
+# 상품마다 상품 창고 사진 번호(photos, 고른 색과 같은 사진만)를 참고판으로 이어 붙여 보낸다. 누끼 없음.
+# 실행: 커밋 메시지에 [gen-exp] [spec:experiments/gen_nocut.yaml] [models:nano_banana_pro] [shots:flatlay]
+title: 9/29 차콜 롱코트 출근룩 (누끼 없이 쇼핑몰 사진만)
+account: women
+compare_with: daily-results:2026-09-29-run31/outfit/results/C_1.jpg
+
+items:
+  - category: 아우터
+    product: zigzag:171904453
+    desc: charcoal gray wool long coat with a self-tie belt, single-breasted buttons, below the knee
+    size: about 110 cm long from shoulder to hem, 45 cm across the shoulders
+    photos: [0, 4]
+  - category: 상의
+    product: zigzag:146700566
+    desc: burgundy rib knit top with long sleeves, an attached white shirt collar and white shirt hem
+    size: about 58 cm long, 38 cm across the shoulders
+    photos: [0, 1, 5]
+  - category: 하의
+    product: zigzag:156246160
+    desc: gray high-waist wide straight-leg full-length slacks with a pressed center crease, flat front without pleats, equally wide from thigh to hem, no flare
+    size: about 102 cm long from waist to hem, 34 cm across the waist
+    photos: [3]
+  - category: 가방
+    product: zigzag:159313221
+    desc: black glossy leather rectangular shoulder tote bag with two thin handles
+    size: body about 32 cm wide and 25 cm tall, handles rise about 25 cm above it
+    photos: [0, 2]
+  - category: 신발
+    product: zigzag:109454411
+    desc: one pair (two shoes) of black leather square-toe slip-on loafers
+    size: about 24 cm long each
+    photos: [1]
+  - category: 소품
+    product: zigzag:168924788
+    desc: exactly one pair (two earrings) of matte silver chunky cushion-shaped stud earrings; the photos also show a gold pair, ignore it
+    size: about 1.5 cm each, very small next to the clothes
+    photos: [0, 2]
+
+styling: >-
+  The coat is unbuttoned but almost closed: its two front edges lie close together with only a
+  narrow gap of about a hand's width down the middle, where the burgundy knit and the white collar
+  show at the neckline and a little of the white hem shows at the waist; the coat belt hangs loose at
+  the sides. The knit sleeves are inside the coat sleeves, with the burgundy knit cuffs peeking out
+  slightly at both coat cuffs. The knit hem sits over the waistband of the slacks.
+
+shots:
+  flatlay:
+    repeats: 3
+    scene: >-
+      smooth warm light-grey linen-textured floor, soft natural window light from the upper left with
+      faint diagonal window-frame light stripes across the floor, calm and clean

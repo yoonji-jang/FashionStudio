@@ -1,0 +1,85 @@
+# 11단계 생성형 이미지 AI 비교 실험 (tools.generate). 같은 코디를 모델마다, 장면마다 만든다.
+# 상품마다 9/29 게시물 run31 누끼(image, git 브랜치:경로)와 쇼핑몰 사진(photos, 상품 창고 사진 번호,
+# 고른 색과 같은 사진만)을 한 장의 참고판으로 이어 붙여 보낸다. Photoroom 호출 없음.
+# size 는 실제 치수 (쇼핑몰 실측이 아닌 일반 치수 추정). guide 는 flatlay_guide 장면의 구도 가이드.
+# 실행: 이 파일이나 prompts/gen_*.md 를 고친 커밋 메시지에 [gen-exp] 를 넣어 푸시 (1차 2026-09-30)
+title: 9/29 차콜 롱코트 출근룩
+account: women
+guide: daily-results:2026-09-29-run31/outfit/results/C_1.jpg
+compare_with: daily-results:2026-09-29-run31/outfit/results/C_1.jpg  # 비교표 맨 왼쪽 "지금 방식"
+
+items:
+  - category: 아우터
+    product: zigzag:171904453
+    desc: charcoal gray wool long coat with a self-tie belt, single-breasted buttons, below the knee
+    size: about 110 cm long from shoulder to hem, 45 cm across the shoulders
+    image: daily-results:2026-09-29-run31/outfit/cutouts/r1/01_outer.png
+    photos: [4]
+  - category: 상의
+    product: zigzag:146700566
+    desc: burgundy rib knit top with an attached white shirt collar and white shirt hem
+    size: about 58 cm long, 38 cm across the shoulders
+    image: daily-results:2026-09-29-run31/outfit/cutouts/r1/02_top.png
+    photos: [1, 5]
+  - category: 하의
+    product: zigzag:156246160
+    desc: gray high-waist wide straight-leg full-length slacks, equally wide from thigh to hem, no flare
+    size: about 102 cm long from waist to hem, 34 cm across the waist
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/03_bottoms.png
+    photos: [3]
+  - category: 가방
+    product: zigzag:159313221
+    desc: black glossy leather rectangular shoulder tote bag with two thin handles
+    size: body about 32 cm wide and 25 cm tall, handles rise about 25 cm above it
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/04_bag.png
+    photos: [2]
+  - category: 신발
+    product: zigzag:109454411
+    desc: black leather square-toe slip-on loafers
+    size: about 24 cm long each
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/05_shoes.png
+    photos: [1]
+  - category: 소품
+    product: zigzag:168924788
+    desc: matte silver chunky cushion-shaped stud earrings (use only the silver pair, not the gold one)
+    size: about 1.5 cm each, very small next to the clothes
+    photos: [0, 2]
+
+# 모든 장면 공통 입는 방법
+styling: >-
+  The coat is worn only slightly open, the way it falls naturally when unbuttoned: the front edges
+  stay close together and partly overlap, showing just a narrow strip of the burgundy knit and the
+  white collar at the neckline and a little of the white hem; the coat belt hangs loose at the sides.
+  The knit hem sits over the waistband of the slacks.
+
+# 장면별 값. repeats: 모델마다 몇 장. 값이 목록이면 회차마다 하나씩 돌아가며 쓴다
+shots:
+  flatlay:
+    repeats: 2
+    scene: >-
+      smooth warm light-grey linen-textured floor, soft natural window light from the upper left with
+      faint diagonal window-frame light stripes across the floor, calm and clean
+  flatlay_guide:
+    repeats: 1
+    scene: >-
+      smooth warm light-grey linen-textured floor, soft natural window light from the upper left with
+      faint diagonal window-frame light stripes across the floor, calm and clean
+  person:
+    repeats: 2
+    person:
+      - >-
+        a slim young Korean woman in her twenties taking a full-body mirror selfie in a bright
+        apartment entrance; she holds her phone up in front of her face so the phone naturally hides
+        her face, the bag on her shoulder, one earring visible below the phone
+      - >-
+        a slim young Korean woman in her twenties walking away on a quiet street, full body, head
+        turned away over her shoulder so only her hair, cheek line and one earring show, the bag on
+        her shoulder; a soft beige bucket hat brim also hides her face
+    mood: early autumn morning in a quiet Seoul neighborhood with warm low sunlight, Pinterest editorial
+  mannequin:
+    repeats: 1
+    mannequin: >-
+      a beige linen dress form (headless torso on a thin wooden stand) wearing the coat and knit,
+      the slacks worn by a matching full-leg form below it, in a bright minimal studio with a warm
+      off-white wall and light wood floor; the loafers stand on the floor at its feet, the bag hangs
+      from the stand, and the earrings float in mid-air at ear height just above the neck of the form
