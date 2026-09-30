@@ -92,6 +92,7 @@ class PlanText(BaseModel):
     """제목과 캡션 재료. 캡션 전체는 tools.plan 이 프로필 copy 규칙으로 조립한다."""
 
     title_lines: list[str] = Field(min_length=1)
+    intro: str | None = None  # 캡션 맨 앞 도입 한 줄 (profile copy.intro 가 켜져 있으면 필수)
     points: list[str] = Field(min_length=1)  # 캡션 코디 포인트 (한 줄씩)
     hashtags: list[str] = []  # 기본 해시태그(profile copy.base_hashtags)는 자동으로 더함
 

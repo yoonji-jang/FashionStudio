@@ -200,7 +200,9 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `points` | `[3, 3]` | 캡션 코디 포인트 줄 수 |
 | `hashtags` | `[8, 12]` | 기본 해시태그 포함 코디 해시태그 개수 (`comment_tags` 소통용은 따로) |
 | `base_hashtags` | #데일리룩 #오늘의코디 … | 매번 붙는 해시태그 |
-| `max_emoji` / `max_exclaim` | 2 / 1 | 캡션 전체 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
+| `intro` | false | true 면 캡션 맨 앞에 도입 한 줄(`text.intro`)이 필수 |
+| `max_emoji` / `max_exclaim` | 2 / 1 | 도입·코디 포인트의 이모지·느낌표 수 (제목·상품 장에는 이모지 금지) |
+| `max_emoji_per_line` | 1 | 도입·코디 포인트 한 줄의 이모지 수 |
 | `banned` | 무조건, 인생템, 역대급, 최저가 … | 쓰면 오류가 나는 표현 |
 | `ad_notice` / `ad_hashtag` | (광고) … / #광고 | `monetize: manual_link` 일 때 캡션 첫 줄과 첫 해시태그 |
 | `product_line` | `{shop} · {name}` | 캡션 제품 목록 한 줄 모양 |
@@ -211,6 +213,20 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 대댓글은 코디 해시태그 뒤에 `follow_hashtags`(예: #맞팔 #선팔 #소통)를 붙여 최대 `max`(15)개이고,
 캡션에는 해시태그를 넣지 않습니다 (`manual_link` 의 #광고 는 고지라서 캡션에 남김).
 댓글을 달지 못해도 게시는 그대로 두고 텔레그램 게시 알림에 적습니다.
+
+#### `ai_label` : 인스타 "AI 정보" 레이블 (13단계)
+인스타 게시 API 에는 AI 레이블을 켜는 값이 없습니다. 대신 Meta 는 이미지 파일 안의 업계 표준 표시
+(IPTC `DigitalSourceType`, XMP)를 읽어 게시물에 "AI 정보" 레이블을 붙입니다. 그래서 슬라이드를 저장할 때
+그 표시를 파일에 넣습니다 (`tools.ai_label`). 캡션의 `ai_notice` 고지는 이와 별개로 늘 넣습니다.
+
+| 항목 | 기본값 | 뜻 |
+|---|---|---|
+| `mode` | `none` | `metadata` 면 표시를 넣음, `none` 이면 안 넣음 |
+| `source_type` | `composite` | `composite`: 실제 사진 + AI 편집 (누끼·AI 그림자 코디컷), `generated`: AI 가 통째로 만든 이미지 |
+| `slides` | `[cover]` | 표시를 넣는 슬라이드 종류 (`cover`, `products`, `summary`) |
+
+게시 직전(`tools.publish`)에도 표시가 없으면 픽셀을 다시 압축하지 않고 넣습니다.
+파일 확인: `uv run python -m tools.ai_label out/<날짜>/slides/*.jpg`
 
 #### `review` : 이미지 검수 (7단계)
 코디컷은 AI 입히기 결과가 매번 조금씩 달라서, 후보를 여러 장 만들고 Claude(image-reviewer 에이전트)가
@@ -253,6 +269,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `collect_at` | "월,목 04:17" | 지그재그 새 상품 수집 |
 | `token_refresh_at` | "일 18:47" | 인스타 토큰 연장 (60일 만료라 매주) |
 | `reels_at` | null | 릴스 (12단계) |
+| `github_cron` | all | GitHub 예약 줄. 외부 스케줄러를 설정했으면 `backup` (주요 칸만 예비로 남겨 Actions 시간 절약) |
 
 **시간을 바꾼 뒤에는** `uv run python -m tools.schedule sync` 를 돌려 `.github/workflows/schedule.yml` 의
 cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 실패합니다). `uv run python -m tools.schedule list` 로
@@ -622,9 +639,10 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 일 18:47  인스타 토큰 연장 (token)
 ```
 
-- **워크플로**: `schedule.yml` 이 profile 시각(UTC cron)에 깨어나 `tools.schedule` 로 할 일을 찾고,
+- **워크플로**: `schedule.yml` 이 깨어나 `tools.schedule` 로 할 일을 찾고,
   무거운 작업은 `daily`, `publish`, `themes`, `collect`, `token` 워크플로에 실행을 요청합니다.
-  Actions 가 늦게 깨어나도 "어느 시각 칸으로 깨어났는지"로 작업을 정해서 날짜가 밀리지 않습니다.
+  깨어나면 "지금까지 해야 했는데 아직 안 한 칸"을 찾아서 하므로(auto), 늦게 깨어나도 밀린 일을 따라잡고
+  같은 칸을 두 번 하지 않습니다. GitHub 예약은 자주 빠지거나 늦어서 아래 **외부 스케줄러**를 권장합니다.
 - **고른 번호 확인**: 봇 서버 없이 schedule 이 돌 때 텔레그램 답장을 읽습니다. 그래서 번호를 누른 뒤
   다음 확인(최대 `pick_check_every` 분)에 이미지 만들기가 시작되고, 30분쯤 뒤 미리보기가 옵니다.
   결정은 daily-results 브랜치의 `<날짜>-run<번호>/picks/picked.json` 에 남아 두 번 만들지 않습니다.
@@ -640,7 +658,8 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 - **Actions 사용 시간**: 비공개 저장소는 GitHub 무료 요금제에서 한 달 2,000분까지입니다. 확인 칸 하나가
   1분씩(하루 약 16번), Claude 가 도는 후보·만들기가 각각 20~40분이라 한 달 2,000분 안팎이 됩니다.
   넘으면 `pick_check_every` 를 60으로 늘리거나 `publish_retries` 를 줄이세요.
-- **시험**: Actions → `schedule` → Run workflow 에 cron 줄(`tools.schedule list` 참고)을 넣습니다.
+- **시험**: Actions → `schedule` → Run workflow 에 `auto`(지금 할 일) 또는 cron 줄(`tools.schedule list` 참고,
+  기록과 상관없이 그 칸을 다시 함)을 넣습니다.
   `dry_run` 이면 답장만 읽고 무엇을 할지 보여 줍니다 (실행 요청·텔레그램 알림·결정 기록 없음).
   후보만 보고 싶으면 Actions → `daily` → Run workflow 에서 `mode` 를 `candidates` 로.
 - 도구만:
@@ -649,6 +668,62 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
   - `uv run python -m tools.ig_token refresh --account women` 토큰 연장
 
 Claude 는 `tools.pick`, `tools.ig_token`, `tools.schedule run` 도 부를 수 없게 막아 두었습니다.
+
+### 외부 스케줄러 (12단계, 권장)
+
+GitHub 예약(cron)은 부하가 많으면 몇 시간 늦거나 통째로 빠집니다 (2026-09-29 최대 6시간 지연,
+09-30 오전 칸 전부 미실행). 그래서 무료 서비스 [cron-job.org](https://cron-job.org) 가 정해진 시각에
+`schedule` 워크플로를 `cron=auto` 로 실행하게 하고, GitHub 예약은 예비로 둡니다.
+
+**어떻게 도나**
+- 어느 쪽으로 깨어나든 `auto` 가 아직 안 한 칸을 찾습니다. 한 칸은 daily-results 브랜치 `ticks.json` 에
+  기록해서, 외부 스케줄러와 GitHub 예약이 둘 다 깨워도 후보·게시가 두 번 나가지 않습니다.
+- 밀린 칸이 여럿이면 같은 작업은 가장 최근 칸으로 한 번만 합니다 (예: 10:47~12:17 고르기 확인이 밀리면 한 번).
+- 늦게 해도 소용없는 칸은 건너뛰고 텔레그램으로 알립니다: 후보 보내기는 고르기 마감 30분 전까지,
+  게시는 마지막 재시도 칸 + 간격까지. 주요 작업(후보, 게시, 주간 주제)이 30분 넘게 늦게 돌면 "N분 늦게 돌았어요" 알림.
+
+**1) GitHub 토큰 만들기** (실행 요청 전용)
+GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal access tokens → **Fine-grained tokens**
+→ Generate new token
+- Token name: `cron-job` / Expiration: 1년 (만료 전에 GitHub 이 메일로 알려 줌)
+- Repository access: **Only select repositories** → 이 저장소 하나
+- Permissions → Repository permissions → **Actions: Read and write** (Metadata: Read 는 자동). 다른 권한은 주지 않습니다.
+- 만든 토큰(`github_pat_...`)을 복사해 둡니다. 이 토큰은 cron-job.org 에만 넣고 저장소나 Secrets 에는 넣지 않습니다.
+
+**2) cron-job.org 작업 만들기**
+가입(무료) → Settings 에서 Timezone 을 계정 시간대(예: Asia/Seoul)로 → Cronjobs → **Create cronjob**
+- COMMON 탭
+  - Title: 예) `fashionstudio 10~14시`
+  - URL: `https://api.github.com/repos/<owner>/<repo>/actions/workflows/schedule.yml/dispatches`
+  - Execution schedule: **Custom** → 아래 표의 요일·시·분을 고릅니다 (여러 개 선택 가능)
+- ADVANCED 탭
+  - Request method: **POST**
+  - Headers (4줄):
+    - `Authorization`: `Bearer github_pat_...` (1에서 만든 토큰)
+    - `Accept`: `application/vnd.github+json`
+    - `X-GitHub-Api-Version`: `2022-11-28`
+    - `Content-Type`: `application/json`
+  - Request body: `{"ref":"main","inputs":{"cron":"auto","dry_run":"false"}}`
+- 저장 후 **TEST RUN** → 응답이 `204` 면 성공 (GitHub Actions 탭에 `schedule` 실행이 생김).
+  `401`/`403` 은 토큰·권한, `404` 는 주소(owner/repo) 확인. 알림 탭에서 실패 시 메일 받기를 켜 두면 좋습니다.
+
+작업 시각은 `uv run python -m tools.schedule external` 이 계정 시간표에서 만들어 줍니다. 기본값(women) 예:
+
+| 작업 | 요일 | 시 | 분 |
+|---|---|---|---|
+| 후보·고르기 | 매일 | 10~14 | 17, 47 |
+| 고르기 마감·상품 링크 | 매일 | 15~19 | 17 |
+| 게시 | 매일 | 20~21 | 03, 33 |
+| 게시 마지막 확인 | 매일 | 22 | 03 |
+| 상품 수집 | 월, 목 | 4 | 17 |
+| 토큰 연장 | 일 | 18 | 47 |
+
+(일 18:17 주제는 매일 18:17 칸과 같아서 따로 만들지 않습니다.) profile `schedule` 시각을 바꾸면 이 표도
+다시 뽑아 cron-job.org 작업을 맞춰 주세요.
+
+**3) GitHub 예약 줄이기** (선택): 외부 스케줄러가 잘 도는 것을 확인했으면 profile `schedule.github_cron: backup`
+으로 바꾸고 `uv run python -m tools.schedule sync` → 커밋. GitHub 예약이 주요 칸 몇 개만 남아 Actions 시간이
+두 배로 들지 않습니다 (빠진 칸은 auto 가 따라잡음).
 
 ---
 

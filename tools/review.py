@@ -345,8 +345,8 @@ def rerender_cover(out: Path, cover: Path, profile: Profile) -> None:
         encoding="utf-8",
     )
     size = feed.canvas_size(profile)
-    feed.cover_slide(spec, profile, size, REPO_ROOT).save(
-        out / "slides" / "01_cover.jpg", "JPEG", quality=93
+    feed.save_slide(
+        feed.cover_slide(spec, profile, size, REPO_ROOT), out / "slides" / "01_cover.jpg", profile
     )
 
 

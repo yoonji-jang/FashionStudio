@@ -85,10 +85,12 @@ class Copy(BaseModel):
     title_chars: tuple[int, int] = (8, 16)  # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고)
     name_max_chars: int = Field(default=18, ge=4)  # 상품 장 짧은 이름
     comment_max_chars: int = Field(default=60, ge=0)  # 상품 장 코멘트
+    intro: bool = False  # 캡션 맨 앞에 그날 상황을 여는 도입 한 줄 (plan text.intro)
     points: tuple[int, int] = (3, 3)  # 캡션 코디 포인트 줄 수
     hashtags: tuple[int, int] = (10, 15)  # 기본 해시태그 포함 최종 개수
     base_hashtags: list[str] = []  # 매번 넣는 해시태그
-    max_emoji: int = Field(default=2, ge=0)  # 캡션 전체 이모지 수 (제목에는 금지)
+    max_emoji: int = Field(default=2, ge=0)  # 도입·코디 포인트 이모지 수 (제목·상품 장에는 금지)
+    max_emoji_per_line: int = Field(default=1, ge=0)  # 도입·코디 포인트 한 줄의 이모지 수
     max_exclaim: int = Field(default=1, ge=0)  # 캡션 전체 느낌표 수
     banned: list[str] = []  # 쓰면 안 되는 표현
     ad_notice: str = (
@@ -98,6 +100,17 @@ class Copy(BaseModel):
     product_line: str = "{shop} · {name}"  # 캡션 제품 목록 한 줄
     link_line: str = "상품 정보는 프로필 링크에서 확인하세요"
     ai_notice: str = "이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요"
+
+
+class AiLabel(BaseModel):
+    """이미지 파일 안에 AI 합성 표시(IPTC DigitalSourceType, XMP)를 넣는다 (13단계, tools.ai_label).
+    인스타 게시 API 에는 AI 레이블 값이 없어서,
+    Meta 가 이 표시를 읽어 "AI 정보" 레이블을 붙이게 한다."""
+
+    mode: Literal["metadata", "none"] = "none"
+    # composite: 실제 사진 + AI 편집 (누끼·AI 그림자 코디컷), generated: AI 가 통째로 만든 이미지
+    source_type: Literal["composite", "generated"] = "composite"
+    slides: list[Literal["cover", "products", "summary"]] = ["cover"]  # 표시를 넣는 슬라이드 종류
 
 
 class CommentTags(BaseModel):
@@ -235,6 +248,10 @@ class Schedule(BaseModel):
     collect_at: str | None = Field(default=None, pattern=WEEKLY)  # 상품 수집 (예: "월,목 04:17")
     token_refresh_at: str | None = Field(default=None, pattern=WEEKLY)  # 인스타 토큰 연장
     reels_at: str | None = Field(default=None, pattern=HHMM)
+    # GitHub 예약(cron) 줄 (12단계). all: 모든 칸. backup: 외부 스케줄러(cron-job.org)가 정시에
+    # 깨울 때 예비로 주요 칸(후보, 고르기 처음·마감, 게시 처음·마지막, 주간 작업)만 둬서
+    # Actions 시간을 아낌
+    github_cron: Literal["all", "backup"] = "all"
 
 
 class PickRules(BaseModel):
@@ -313,6 +330,7 @@ class Profile(BaseModel):
     feed: Feed = Feed()
     copy_rules: Copy = Field(default=Copy(), alias="copy")
     comment_tags: CommentTags = CommentTags()
+    ai_label: AiLabel = AiLabel()
     review: ReviewRules = ReviewRules()
     outfit_image: OutfitImage = OutfitImage()
     schedule: Schedule

@@ -128,10 +128,12 @@ copy:
   title_chars: [8, 16]       # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고)
   name_max_chars: 18         # 상품 장 짧은 이름
   comment_max_chars: 60      # 상품 장 코멘트
+  intro: true                # 캡션 맨 앞 도입 한 줄 (피드에서 먼저 보이는 줄)
   points: [3, 3]             # 캡션 코디 포인트 줄 수
   hashtags: [8, 12]          # 기본 해시태그 포함 코디 해시태그 개수 (comment_tags 소통용은 따로)
   base_hashtags: ["#데일리룩", "#오늘의코디", "#코디추천", "#여자코디", "#패션"]
-  max_emoji: 2               # 캡션 전체 (제목에는 금지)
+  max_emoji: 3               # 도입 + 코디 포인트 (제목·상품 장에는 금지)
+  max_emoji_per_line: 1      # 한 줄에 하나까지
   max_exclaim: 1             # 캡션 전체 느낌표
   banned: [뚱뚱해 보이는, 하체 비만, 무조건, 인생템, 역대급, 최저가]
   ad_notice: "(광고)"  # monetize: manual_link 일 때 첫 줄 (공정위 지침: 맨 앞에 잘 보이게, 빼지 않는다)
@@ -139,6 +141,15 @@ copy:
   product_line: "{shop} · {name}"
   link_line: 상품 정보는 프로필 링크에서 확인하세요
   ai_notice: 이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요
+
+# 이미지 파일 안에 AI 합성 표시(IPTC DigitalSourceType)를 넣는다 (13단계, tools.ai_label).
+# 인스타 게시 API 에는 AI 레이블 값이 없어서, Meta 가 이 표시를 읽어 "AI 정보" 레이블을 붙이게 한다.
+# mode: metadata(넣음) | none, source_type: composite(실제 사진 + AI 편집) | generated(AI 가 통째로 만듦)
+ai_label:
+  mode: metadata
+  # generated: 이름 아래 "AI 콘텐츠" 레이블이 보이게 (composite 는 ⋯ 메뉴 안에만 보일 수 있음)
+  source_type: generated
+  slides: [cover]  # 누끼·AI 그림자로 만든 코디컷 표지만. 상품 장·요약 장은 쇼핑몰 사진이라 넣지 않음
 
 # 게시 직후 내 댓글(🤍)을 달고 그 대댓글로 해시태그를 단다 (tools.publish). 켜면 캡션에는 해시태그가 없다.
 # 대댓글 = 코디 해시태그(copy.hashtags) + 소통용 follow_hashtags, 최대 max 개
@@ -205,7 +216,7 @@ pick:
 comments:
   enabled: true      # ManyChat 규칙이 켜져 있어야 함 (끄면 캡션이 예전 "프로필 링크" 문구로)
   mode: external
-  cta: "코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요"
+  cta: "코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌"
   keywords: []   # 비어 있으면 모든 댓글에 DM. 특정 말만 받으려면 [정보] 처럼 적고 cta 에 {keyword}, ManyChat 규칙도 같게
   # 아래는 mode: builtin 일 때만 씀
   check_at: ["08:17", "17:17", "23:17"]  # 댓글만 확인하러 따로 깨어나는 시각 (한 번에 Actions 약 1분)

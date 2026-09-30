@@ -73,6 +73,7 @@ def daily(**kw) -> DailyPlan:
         "reason": "톤 맞춤",
         "text": {
             "title_lines": ["아침저녁 쌀쌀할 땐", "트렌치코트 하나로"],
+            "intro": "도입 한 줄이에요 🍂",
             "points": ["첫째 포인트", "둘째 포인트", "셋째 포인트"],
             "hashtags": ["#트렌치코트", "#가을코디", "#초가을코디", "#셔츠코디", "#주말코디"],
         },
@@ -143,12 +144,36 @@ def test_candidates_skip_used_and_sold_out(store):
     assert "원문" in plan.candidate_line(products[0])
 
 
+def test_check_intro_and_emoji_rules(store):
+    profile = load_profile("women")
+    p = daily()
+    p.text.intro = None
+    p.text.points = ["첫째 🍂", "둘째 🖤🤍", "셋째 ☕"]
+    p.items[0].comment = "가볍게 걸쳐요 🍂"
+    errors, _ = plan.check(p, profile, store)
+    text = "\n".join(errors)
+    for expected in [
+        "도입 한 줄",
+        "이모지는 3개까지",
+        "한 줄에 이모지는 1개까지",
+        "이모지를 쓰지 않습니다",
+    ]:
+        assert expected in text, expected
+
+    profile.copy_rules.intro = False
+    p = daily()
+    p.text.intro = None
+    errors, _ = plan.check(p, profile, store)
+    assert errors == []
+    assert plan.caption(p, profile, store).startswith("첫째 포인트")
+
+
 def test_caption_manual_link_adds_ad_notice(store):
     profile = load_profile("women")
     profile.monetize = "none"
     p = daily()
     body = plan.caption(p, profile, store)
-    assert body.startswith("첫째 포인트")
+    assert body.startswith("도입 한 줄이에요 🍂\n\n첫째 포인트")
     assert profile.copy_rules.ai_notice in body
     assert "샵1 · 상품 1" in body
     tags = plan.final_hashtags(p, profile)
@@ -157,6 +182,7 @@ def test_caption_manual_link_adds_ad_notice(store):
     profile.monetize = "manual_link"
     body = plan.caption(p, profile, store)
     assert body.splitlines()[0] == profile.copy_rules.ad_notice
+    assert body.splitlines()[2] == p.text.intro
     assert plan.final_hashtags(p, profile)[0] == "#광고"
 
 

@@ -1,6 +1,6 @@
 ---
 name: write-copy
-description: 기획된 코디의 표지 제목 두 줄, 상품 장 짧은 이름과 코멘트, 캡션 코디 포인트, 해시태그를 voice.md 말투로 쓴다. 고지 문구와 제품 목록은 도구가 붙인다.
+description: 기획된 코디의 표지 제목 두 줄, 상품 장 짧은 이름과 코멘트, 캡션 도입 한 줄과 코디 포인트, 해시태그를 voice.md 말투로 쓴다. 고지 문구와 제품 목록은 도구가 붙인다.
 ---
 
 # write-copy: 문구 쓰기
@@ -16,6 +16,7 @@ items:
     comment: 어깨선이 없는 래글런이라 …    # 상품 장 코멘트
 text:
   title_lines: [아침저녁 쌀쌀할 땐, 하프 트렌치코트 하나로]
+  intro: 아침저녁으로 쌀쌀한 주말, 하프 트렌치코트 하나 걸쳐 보세요 🍂   # copy.intro 가 켜져 있을 때
   points: [ …, …, … ]                  # 캡션 코디 포인트
   hashtags: ["#트렌치코트", …]          # 기본 해시태그는 도구가 붙이므로 주제 해시태그만
 ```
@@ -31,6 +32,8 @@ text:
   (소재, 기장, 굽 높이 등). 모르는 기능을 지어내지 않는다.
 
 ## 캡션
+- `intro`: profile `copy.intro` 가 true 면 한 줄 필수. 그날 날씨·요일·상황을 열고 오늘 아이템을 권한다.
+- 이모지: voice.md 규칙대로 (개수는 `copy.max_emoji`, 한 줄에 `copy.max_emoji_per_line`). 표지 제목·상품 장에는 없음.
 - `points`: `copy.points` 줄 수. 한 줄에 한 가지 (색 조합, 핏, 소재, 입는 방법).
 - 광고 고지, 제품 목록, 링크 안내, AI 고지는 `tools.plan` 이 profile `copy` 문구로 붙인다.
   직접 쓰지 않는다. `monetize: manual_link` 면 `#광고` 도 도구가 맨 앞에 붙인다.

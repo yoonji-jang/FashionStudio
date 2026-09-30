@@ -281,6 +281,10 @@ def save_themes(profile: Profile, store: Store, new: list[Theme]) -> list[str]:
 # ---------- check ----------
 
 
+def _emoji_count(text: str) -> int:
+    return len(_EMOJI.findall(text.replace("️", "")))
+
+
 def text_problems(text: str, profile: Profile, where: str) -> list[str]:
     return [f"{where}: 금지 표현 '{w}'" for w in profile.copy_rules.banned if w in text]
 
@@ -348,6 +352,8 @@ def check(
             )
         if not re.search(r"\([^)]*[A-Za-z][^)]*\)", it.desc):
             warns.append(f"{label}: desc 끝에 영어 설명을 괄호로 붙이세요 (코디컷 지시문)")
+        if _EMOJI.search(it.name + it.comment):
+            errors.append(f"{label}: 상품 장 이름·코멘트에는 이모지를 쓰지 않습니다")
         if len(it.name) > c.name_max_chars:
             warns.append(f"{label}: 이름이 {len(it.name)}자입니다 (권장 {c.name_max_chars}자 이하)")
         if len(it.comment) > c.comment_max_chars:
@@ -388,10 +394,17 @@ def check(
         lo, hi = c.points
         if not lo <= len(t.points) <= hi:
             errors.append(f"코디 포인트는 {lo}~{hi}줄이어야 합니다 (지금 {len(t.points)})")
-        body = "\n".join(t.points)
-        errors += text_problems(body, profile, "코디 포인트")
-        if len(_EMOJI.findall(body.replace("️", ""))) > c.max_emoji:
+        if c.intro and not (t.intro or "").strip():
+            errors.append("캡션 도입 한 줄(text.intro)이 없습니다")
+        if t.intro and "\n" in t.intro.strip():
+            errors.append("캡션 도입은 한 줄이어야 합니다")
+        lines = [*([t.intro] if t.intro else []), *t.points]
+        body = "\n".join(lines)
+        errors += text_problems(body, profile, "캡션")
+        if sum(_emoji_count(line) for line in lines) > c.max_emoji:
             errors.append(f"캡션 이모지는 {c.max_emoji}개까지입니다")
+        if any(_emoji_count(line) > c.max_emoji_per_line for line in lines):
+            errors.append(f"캡션 한 줄에 이모지는 {c.max_emoji_per_line}개까지입니다")
         if body.count("!") > c.max_exclaim:
             errors.append(f"캡션 느낌표는 {c.max_exclaim}개까지입니다")
         for tag in t.hashtags:
@@ -437,6 +450,8 @@ def caption(plan: DailyPlan, profile: Profile, store: Store) -> str:
     blocks: list[list[str]] = []
     if profile.monetize == "manual_link":
         blocks.append([c.ad_notice])
+    if plan.text.intro:
+        blocks.append([plan.text.intro.strip()])
     blocks.append(list(plan.text.points))
     blocks.append(
         [
