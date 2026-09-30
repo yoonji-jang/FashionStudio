@@ -1,0 +1,307 @@
+{
+  "account": "women",
+  "date": "2026-10-01",
+  "plan": {
+    "theme": {
+      "date": "2026-10-01",
+      "title_hint": "목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게",
+      "mood": "아이보리·그레이·블랙 위주의 차분한 오피스 데일리",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "가볍게 걸치는 가디건이나 자켓"
+        },
+        {
+          "category": "상의",
+          "desc": "아이보리 셔츠나 니트"
+        },
+        {
+          "category": "하의",
+          "desc": "슬랙스나 데님"
+        },
+        {
+          "category": "가방",
+          "desc": "단정한 숄더백"
+        },
+        {
+          "category": "신발",
+          "desc": "로퍼나 메리제인"
+        }
+      ],
+      "type": "상황",
+      "why": "목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게 가디건·자켓 중심",
+      "search_terms": {}
+    },
+    "items": [
+      {
+        "id": "zigzag:146665389",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/146665389",
+        "shop": "가내스라",
+        "name": "[지안씨PICK][얼리어텀🍂][ordinaire] 베리스 레더 자켓 (2color/단독주",
+        "price": 69600,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/8/29/3548_202508291443430766_18576.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/8/29/3548_202508291443430184_79247.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/8/29/3548_202508291443440106_45427.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/8/29/3548_202508291443440368_39995.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 2045,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "레더자켓",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:140069145",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/140069145",
+        "shop": "슬로우앤드",
+        "name": "[가을셔츠!] made. 톤앤결 여리핏 코튼셔츠 - 5 color",
+        "price": 30600,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137368098_96193.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137369293_83966.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137371884_58531.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137370370_12667.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 5859,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "셔츠",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:168618198",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168618198",
+        "shop": "가내스라",
+        "name": "[서경 PICK][어텀🍂][🔥모델소장/주문폭주][ordinaire] 델리 밴딩 롱스커트 (3color/숏·롱)",
+        "price": 26400,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006522891_57483.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006517514_68174.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006518554_75511.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006516552_49931.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006515405_40230.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/7/3548_202609071057123914_88348.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006520213_38611.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006521608_39386.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3548_202608252006523882_61279.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 1535,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "롱스커트",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:169612789",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/169612789",
+        "shop": "돈키",
+        "name": "[직잭단독] 리브 숄더백 - 7color",
+        "price": 44220,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/4/26/9044_202604261736030494_71679.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/9044_202609171840218540_98246.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/9044_202609171840221967_77476.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/13/9044_202608131936240352_88082.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/23/9044_202606232007090247_42328.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/9044_202609171840224673_82550.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 143,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:156434065",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/156434065",
+        "shop": "슈펜",
+        "name": "[매트블랙단독] 스틸레토 버클 키튼힐 메리제인 슬링백 4cm (HPWWVFS403 re) HPWWVGS403",
+        "price": 23870,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/15/11998_202506152038060843_87669.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/15/11998_202506152038070191_69220.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/28/11998_202601280811360010_31535.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/15/11998_202506152038050108_30657.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/15/11998_202506152038050510_90112.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/15/11998_202506152038050905_66715.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/15/11998_202506152038060282_20111.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 1376,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "메리제인",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      }
+    ],
+    "reason": "블랙 레더 자켓으로 시크하게, 그레이 스커트로 부드럽게 균형을 잡아. 아이보리 코튼셔츠와 그레이 롱스커트로 풀고 블랙 숄더백과 키튼힐 메리제인으로 정돈한다. 다른 후보와 달리 스커트로 실루엣을 바꿨다."
+  },
+  "images": [
+    "out/2026-10-01/slides/01_cover.jpg",
+    "out/2026-10-01/slides/02_아우터.jpg",
+    "out/2026-10-01/slides/03_상의.jpg",
+    "out/2026-10-01/slides/04_하의.jpg",
+    "out/2026-10-01/slides/05_가방.jpg",
+    "out/2026-10-01/slides/06_신발.jpg",
+    "out/2026-10-01/slides/07_summary.jpg",
+    "out/2026-10-01/slides/08_comment.jpg"
+  ],
+  "review_score": 7.0,
+  "needs_human": true,
+  "review": {
+    "candidates": [
+      {
+        "id": "c1",
+        "file": "outfit/results/G_2.jpg",
+        "round": 1,
+        "score": {
+          "id": "c1",
+          "color": 2,
+          "shape": 2,
+          "complete": 2,
+          "clean": 0,
+          "layout": 1,
+          "notes": "이미 매긴 점수(review/scores.yaml)를 그대로 옮김. 2번 셔츠 칼라 안쪽에 라벨 글자가 그려져 있음. 4번 가방이 자켓 밑단과 소매 끝을 살짝 덮음. 자켓 88cm 대비 스커트 85cm 비율이 어긋남"
+        }
+      },
+      {
+        "id": "c2",
+        "file": "outfit/results/G_3.jpg",
+        "round": 1,
+        "score": {
+          "id": "c2",
+          "color": 1,
+          "shape": 0,
+          "complete": 2,
+          "clean": 0,
+          "layout": 1,
+          "notes": "이미 매긴 점수를 그대로 옮김. 1번 자켓이 스탠드 칼라 지퍼 라이더로 바뀜. 5번 신발이 둥근 앞코 메리제인으로 바뀜. 3번 스커트가 원본보다 밝은 회색. 2번 셔츠 칼라에 라벨 글자가 그려져 있음"
+        }
+      },
+      {
+        "id": "c3",
+        "file": "outfit_r2/results/G_1.jpg",
+        "round": 2,
+        "score": {
+          "id": "c3",
+          "color": 1,
+          "shape": 2,
+          "complete": 2,
+          "clean": 0,
+          "layout": 1,
+          "notes": "2번 셔츠 칼라 안쪽에 작은 라벨 글자가 그려져 있음(원본은 무지). 3번 스커트가 원본 진회색보다 밝은 회색. 4번 가방이 자켓 밑단에 닿음. 자켓 88cm 대비 스커트 85cm 비율이 어긋나 스커트가 훨씬 길어 보임. 신발은 뾰족한 키튼힐 슬링백 한 켤레 2짝으로 맞음"
+        }
+      },
+      {
+        "id": "c4",
+        "file": "outfit_r2/results/G_2.jpg",
+        "round": 2,
+        "score": {
+          "id": "c4",
+          "color": 1,
+          "shape": 0,
+          "complete": 2,
+          "clean": 2,
+          "layout": 1,
+          "notes": "5번 신발이 뾰족한 슬링백 대신 사각 앞코 메리제인으로 바뀜. 1번 자켓이 단추 자켓 대신 지퍼 앞여밈에 매끈한 칼라의 다른 디자인으로 나옴. 3번 스커트가 A라인 대신 몸에 붙는 일자 핏으로 바뀌고 허리 밴딩이 셔츠에 가려짐. 4번 가방이 각진 숄더백 대신 둥근 호보백으로 바뀌고 자켓 소매에 닿음. 스커트가 원본보다 밝은 회색"
+        }
+      },
+      {
+        "id": "c5",
+        "file": "outfit_r2/results/G_3.jpg",
+        "round": 2,
+        "score": {
+          "id": "c5",
+          "color": 1,
+          "shape": 2,
+          "complete": 2,
+          "clean": 0,
+          "layout": 1,
+          "notes": "2번 셔츠 칼라 안쪽에 작은 라벨 글자가 그려져 있음. 3번 스커트가 원본 진회색보다 밝은 회색. 자켓 88cm 대비 스커트 85cm 비율이 어긋남. 가방 손잡이가 자켓 밑단 옆에 닿음. 신발은 뾰족한 키튼힐 슬링백 2짝으로 맞음"
+        }
+      }
+    ],
+    "chosen": "c1",
+    "rounds": 2,
+    "passed": false,
+    "status": "failed",
+    "slide_issues": [
+      {
+        "slide": "04_하의.jpg",
+        "kind": "사진",
+        "note": "스커트가 사진 아래쪽 절반만 보이고 밑단은 잘림. 꽃다발과 베이지 니트가 눈에 더 잘 띄어 스커트가 주인공처럼 보이지 않음. 스커트 전체가 나오는 사진으로 바꾸는 것이 좋음",
+        "by": "claude"
+      }
+    ],
+    "summary": "이번에 바꾼 02_아우터(블랙 자켓)와 03_상의(아이보리 셔츠) 사진은 문제 없음. 자켓은 블랙이 맞고 얼굴은 안 보이며 자켓이 사진의 중심임. 셔츠도 아이보리가 맞고 얼굴이 안 보이며 셔츠가 중심임. 05_가방과 06_신발은 원본 색이 맞고 글자 잘림도 없음. 04_하의만 사진 문제가 있음. 코디컷 c1~c5 는 이번에 새로 매기지 않았고 review/review.json 에 이미 있는 점수 그대로임(c1 7점, c2 4점, c3 6점, c4 6점, c5 6점). 통과 기준(8점 이상, 0점 없음)을 넘는 후보가 없어서 covers 는 input.md 지침대로 비워 둠."
+  },
+  "title_lines": [
+    "목요일 출근길엔",
+    "레더자켓 하나 걸쳐요"
+  ],
+  "caption": "일교차 큰 목요일 출근길, 블랙 레더자켓 하나 걸쳐 보세요 🍂\n\n블랙 레더자켓 안에 아이보리 셔츠를 받쳐 단정하게 입어요\n그레이 롱스커트로 자켓의 시크함을 부드럽게 풀어 줘요 🤍\n블랙 숄더백과 키튼힐 메리제인으로 톤을 맞춰 마무리해요\n\n가내스라 · 블랙 레더 하프 자켓\n슬로우앤드 · 아이보리 코튼 셔츠\n가내스라 · 그레이 밴딩 롱스커트\n돈키 · 블랙 숄더백\n슈펜 · 블랙 키튼힐 메리제인\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#레더자켓",
+    "#출근룩",
+    "#오피스룩",
+    "#가을코디",
+    "#롱스커트",
+    "#메리제인",
+    "#무채색코디",
+    "#데일리룩",
+    "#오늘의코디",
+    "#코디추천",
+    "#여자코디",
+    "#패션"
+  ],
+  "monetize": "none",
+  "reels": null
+}

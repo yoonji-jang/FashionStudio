@@ -1,0 +1,26 @@
+[
+  {
+    "model": "nano_banana_pro",
+    "n": 1,
+    "ok": true,
+    "cost": 0.145486,
+    "file": "results/G_1.jpg",
+    "sec": 24.8
+  },
+  {
+    "model": "nano_banana_pro",
+    "n": 2,
+    "ok": true,
+    "cost": 0.146854,
+    "file": "results/G_2.jpg",
+    "sec": 27.3
+  },
+  {
+    "model": "nano_banana_pro",
+    "n": 3,
+    "ok": true,
+    "cost": 0.146602,
+    "file": "results/G_3.jpg",
+    "sec": 27.4
+  }
+]

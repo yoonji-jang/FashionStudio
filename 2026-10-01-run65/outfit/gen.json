@@ -1,0 +1,25 @@
+[
+  {
+    "model": "nano_banana_pro",
+    "n": 1,
+    "ok": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"OpenRouter could not verify available credits for this request in time. Retry shortly.\",\"code\":429,\"metadata\":{\"limit_source\":\"openrouter_admission_control\",\"remedy_hint\":\"Slow down the request rate for this account, then retry after the reset (see X-RateLimit-Reset).\"",
+    "sec": 1.8
+  },
+  {
+    "model": "nano_banana_pro",
+    "n": 2,
+    "ok": true,
+    "cost": 0.145714,
+    "file": "results/G_2.jpg",
+    "sec": 27.8
+  },
+  {
+    "model": "nano_banana_pro",
+    "n": 3,
+    "ok": true,
+    "cost": 0.145498,
+    "file": "results/G_3.jpg",
+    "sec": 27.9
+  }
+]

@@ -1,0 +1,75 @@
+account: women
+date: '2026-10-01'
+items:
+- color: 블랙
+  comment: 허리선에 오는 슬림한 기장이라 롱스커트와 비율이 잘 맞아요. 시크한 무드를 더해요.
+  cutout_photo: 3
+  photo: 2
+  ref_photos: [3, 2]
+  desc: 블랙 레더 자켓 (black leather jacket, waist length, slim fit, notched collar, front
+    zip)
+  name: 블랙 레더 하프 자켓
+  product: zigzag:146665389
+- color: 아이보리
+  comment: 넉넉한 핏의 아이보리 셔츠라 자켓 안에 받쳐 입기 좋아요. 깃만 살짝 보여도 단정해요.
+  cutout_photo: 3
+  photo: 1
+  ref_photos: [3, 1]
+  desc: 아이보리 코튼 셔츠 (ivory cotton shirt, relaxed fit, classic shirt collar, plain)
+  name: 아이보리 코튼 셔츠
+  product: zigzag:140069145
+- color: 그레이
+  comment: 발목까지 내려오는 밴딩 스커트라 편하게 입기 좋아요. 셔츠와 톤을 맞춰 차분해요.
+  cutout_photo: 1
+  photo: 1
+  ref_photos: [1]
+  desc: 그레이 밴딩 롱스커트 (gray long straight skirt, ankle length, elastic waist, plain)
+  name: 그레이 밴딩 롱스커트
+  product: zigzag:168618198
+- color: 블랙
+  comment: 블랙 숄더백으로 무채색 코디를 깔끔하게 이어 줘요. 출근길에 매기 좋아요.
+  cutout_photo: 5
+  photo: 5
+  ref_photos: [5, 3]
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 블랙 숄더백
+  product: zigzag:169612789
+- color: 블랙
+  comment: 낮은 키튼힐이라 부담 없이 신기 좋아요. 롱스커트에 단정한 포인트가 돼요.
+  cutout_photo: 0
+  photo: 0
+  ref_photos: [0, 1]
+  desc: 블랙 키튼힐 메리제인 슬링백 (matte black kitten-heel Mary Jane slingback pumps, exactly
+    one pair)
+  name: 블랙 키튼힐 메리제인
+  product: zigzag:156434065
+cover: out/2026-10-01/outfit/results/G_2.jpg
+reason: 블랙 레더 자켓으로 시크하게, 그레이 스커트로 부드럽게 균형을 잡아. 아이보리 코튼셔츠와 그레이 롱스커트로 풀고 블랙 숄더백과 키튼힐
+  메리제인으로 정돈한다. 다른 후보와 달리 스커트로 실루엣을 바꿨다.
+text:
+  title_lines: [목요일 출근길엔, 레더자켓 하나 걸쳐요]
+  intro: 일교차 큰 목요일 출근길, 블랙 레더자켓 하나 걸쳐 보세요 🍂
+  points:
+  - 블랙 레더자켓 안에 아이보리 셔츠를 받쳐 단정하게 입어요
+  - 그레이 롱스커트로 자켓의 시크함을 부드럽게 풀어 줘요 🤍
+  - 블랙 숄더백과 키튼힐 메리제인으로 톤을 맞춰 마무리해요
+  hashtags: ['#레더자켓', '#출근룩', '#오피스룩', '#가을코디', '#롱스커트', '#메리제인', '#무채색코디']
+theme:
+  date: '2026-10-01'
+  mood: 아이보리·그레이·블랙 위주의 차분한 오피스 데일리
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건이나 자켓
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 데님
+  - category: 가방
+    desc: 단정한 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게
+  type: 상황
+  why: 목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게
+    가디건·자켓 중심
