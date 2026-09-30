@@ -1,0 +1,288 @@
+{
+  "account": "women",
+  "date": "2026-09-30",
+  "plan": {
+    "theme": {
+      "date": "2026-09-30",
+      "title_hint": "비 오는 수요일 출근길, 차분한 무채색으로 단정하게",
+      "mood": "블랙·아이보리·그레이 차분한 오피스룩",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "가볍게 걸치는 가디건·자켓"
+        },
+        {
+          "category": "상의",
+          "desc": "셔츠·니트"
+        },
+        {
+          "category": "하의",
+          "desc": "어두운 슬랙스·팬츠"
+        },
+        {
+          "category": "가방",
+          "desc": "숄더백"
+        },
+        {
+          "category": "신발",
+          "desc": "비 오는 날 신기 좋은 단화·부츠"
+        }
+      ],
+      "type": "상황",
+      "why": "수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의",
+      "search_terms": {}
+    },
+    "items": [
+      {
+        "id": "zigzag:148146251",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/148146251",
+        "shop": "에드모어",
+        "name": "[🍂CHUSEOK20%][MADE] mjk467 헤일리 오버핏 레더 자켓",
+        "price": 61200,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038174768_87506.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038177512_95642.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038189404_72862.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038176511_10219.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038188154_37010.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038179621_79284.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038178622_74097.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/10/1988_202608101038186934_97909.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 6522,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "레더자켓",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:127356723",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/127356723",
+        "shop": "슬로우앤드",
+        "name": "[✨하객룩] made. 더블스티치 워싱셔츠 - 13 color",
+        "price": 25420,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081141211323_44637.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081141208440_15875.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081141205996_45671.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081141212323_16252.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081141207116_58051.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081141209756_19044.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 17187,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "셔츠",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:141911042",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/141911042",
+        "shop": "리얼코코",
+        "name": "[가을바지🍁/5만장돌파🏆/made] 모티브 핀턱 슬랙스 (숏/기본)",
+        "price": 22510,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758428568_48666.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758434665_56535.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758431565_68085.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758433138_69564.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758436556_73789.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758438190_79743.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758440046_32641.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758441310_56168.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758442752_35956.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/200_202609231758444047_41736.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 8022,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "러블리"
+        ],
+        "query": "와이드 슬랙스",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:146668296",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/146668296",
+        "shop": "고세",
+        "name": "[나일론BEST🩶] 이브닝 나일론 숄더백 GL278K",
+        "price": 48930,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/3887_202606220017310046_21700.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/3887_202606220017300320_68710.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/3887_202606220017290893_78542.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031214265539_35304.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031214267374_33056.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 314,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:147232545",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/147232545",
+        "shop": "사뿐",
+        "name": "리오사 삭스 앵클부츠 (3.5cm)",
+        "price": 55920,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/8/30/558_202408301014090362_14848.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/8/30/558_202408301014090190_42944.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/8/30/558_202408301014080442_92825.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609181222592499_56725.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609181222593443_49014.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/8/30/558_202408301014090003_52952.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609181222594734_13531.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 625,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "앵클부츠",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      }
+    ],
+    "reason": "블랙 레더 자켓으로 시크하게, 앵클부츠로 비 오는 날도 깔끔하게. 라이트그레이 셔츠와 차콜 슬랙스로 무채색 톤을 맞췄어요. 발끝까지 젖을 걱정을 덜어 주는 조합이에요."
+  },
+  "images": [
+    "out/2026-09-30/slides/01_cover.jpg",
+    "out/2026-09-30/slides/02_아우터.jpg",
+    "out/2026-09-30/slides/03_상의.jpg",
+    "out/2026-09-30/slides/04_하의.jpg",
+    "out/2026-09-30/slides/05_가방.jpg",
+    "out/2026-09-30/slides/06_신발.jpg",
+    "out/2026-09-30/slides/07_summary.jpg"
+  ],
+  "review_score": 8.0,
+  "needs_human": true,
+  "review": {
+    "candidates": [
+      {
+        "id": "c1",
+        "file": "outfit/results/G_1.jpg",
+        "round": 1,
+        "score": {
+          "id": "c1",
+          "color": 2,
+          "shape": 2,
+          "complete": 2,
+          "clean": 1,
+          "layout": 1,
+          "notes": "셔츠 목 뒤에 작은 사이즈 라벨 같은 네모가 그려짐. 바지가 재킷 기장의 약 1.3배라 100cm 대 68cm 비율보다 조금 짧아 보임. 가방 손잡이가 재킷 소매에 살짝 닿음."
+        }
+      },
+      {
+        "id": "c2",
+        "file": "outfit/results/G_2.jpg",
+        "round": 1,
+        "score": {
+          "id": "c2",
+          "color": 1,
+          "shape": 1,
+          "complete": 2,
+          "clean": 1,
+          "layout": 2,
+          "notes": "2번 셔츠가 라이트그레이보다 흰색에 가깝게 밝음. 3번 바지가 슬림 스트레이트가 아니라 통이 넓고 허리에 턱이 크게 잡힘. 4번 가방이 원통형 배럴백이 아니라 버클 스트랩이 달린 더플형이고 로고 판이 작아짐. 셔츠 목 안쪽에 작은 글자 라벨이 그려짐."
+        }
+      },
+      {
+        "id": "c3",
+        "file": "outfit/results/G_3.jpg",
+        "round": 1,
+        "score": {
+          "id": "c3",
+          "color": 1,
+          "shape": 1,
+          "complete": 2,
+          "clean": 1,
+          "layout": 2,
+          "notes": "2번 셔츠가 라이트그레이보다 흰색에 가깝게 밝음. 3번 바지가 슬림 스트레이트가 아니라 통이 넓고 허리에 턱이 있음. 4번 가방이 원통형 배럴백이 아니라 버클 스트랩이 달린 더플형임. 셔츠 목 안쪽에 작은 글자 라벨이 그려짐."
+        }
+      }
+    ],
+    "chosen": "c1",
+    "rounds": 1,
+    "passed": false,
+    "status": "failed",
+    "slide_issues": [
+      {
+        "slide": "02_아우터.jpg",
+        "kind": "사진",
+        "note": "재킷이 프레임 왼쪽에 잘려 있고 흰 스커트와 ADDMORE 글자가 더 눈에 띔. 상품이 주인공처럼 보이지 않음",
+        "by": "claude"
+      },
+      {
+        "slide": "04_하의.jpg",
+        "kind": "색",
+        "note": "고른 색은 차콜인데 사진 속 바지는 검정에 가까운 어두운 남색으로 보임",
+        "by": "claude"
+      }
+    ],
+    "summary": "c1 이 색과 실루엣이 원본에 가장 가깝고 통과 기준(8점 이상, 0점 없음)을 겨우 채움. c2 와 c3 는 셔츠가 너무 밝고 바지 통이 넓으며 가방 형태가 달라 7점임. c1 은 바지 기장 비율이 조금 짧고 셔츠 목 라벨 흔적이 있어 완벽하지는 않음."
+  },
+  "title_lines": [
+    "비 오는 수요일 출근길엔",
+    "무채색으로 단정하게"
+  ],
+  "caption": "이슬비 내리는 수요일 출근길엔 블랙 레더 자켓 하나 걸쳐 보세요 ☔\n\n라이트그레이 셔츠에 차콜 슬랙스로 무채색 톤을 맞춰 차분해요\n블랙 레더 자켓을 걸치면 단정한 룩에 시크한 힘이 생겨요 🖤\n블랙 앵클부츠와 숄더백으로 비 오는 날도 깔끔하게 마무리해요 👟\n\n에드모어 · 블랙 오버핏 레더 자켓\n슬로우앤드 · 더블스티치 워싱셔츠\n리얼코코 · 모티브 핀턱 슬랙스\n고세 · 블랙 나일론 숄더백\n사뿐 · 리오사 삭스 앵클부츠\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#출근룩",
+    "#오피스룩",
+    "#레더자켓",
+    "#무채색코디",
+    "#비오는날코디",
+    "#데일리룩",
+    "#오늘의코디",
+    "#코디추천",
+    "#여자코디",
+    "#패션"
+  ],
+  "monetize": "none",
+  "reels": null
+}
