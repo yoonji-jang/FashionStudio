@@ -14,7 +14,7 @@ items:
   cutout_photo: 0
   photo: 0
   ref_photos: [0]
-  desc: 라이트그레이 워싱 셔츠 (light grey washed cotton button-up shirt with a regular shirt collar, relaxed fit, hip length, double stitching; the photo shows two shirts (front and back views), draw exactly one shirt)
+  desc: 라이트그레이 워싱 셔츠 (light grey washed cotton button-up shirt with a regular shirt collar, relaxed fit, hip length, double stitching; the photo shows two shirts as front and back views, draw exactly one shirt)
   name: 더블스티치 워싱셔츠
   product: zigzag:127356723
 - color: 차콜
@@ -22,9 +22,10 @@ items:
   cutout_photo: 0
   photo: 3
   ref_photos: [0, 3]
-  desc: 차콜 핀턱 슬랙스 (charcoal gray straight-leg slacks with pintucks, full length)
+  desc: 차콜 핀턱 슬랙스 (charcoal gray slim straight-leg slacks with a sharp pintuck crease down each leg, narrow legs that stay the same width from hip to hem, extra long length whose hem covers the top of the foot when worn)
   name: 모티브 핀턱 슬랙스
   product: zigzag:141911042
+  size: about 106 cm long from waist to hem (long enough to cover the top of the foot), each leg about 20 cm wide at the hem
 - color: 블랙
   comment: 나일론 소재라 비 오는 날 들기 편해요. 심플한 숄더 스트랩이라 출근룩에 잘 어울려요.
   cutout_photo: 0
@@ -69,3 +70,12 @@ theme:
   title_hint: 비 오는 수요일 출근길, 차분한 무채색으로 단정하게
   type: 상황
   why: 수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의
+styling: >-
+  The outer is unbuttoned but almost closed: its two front edges lie close together with only a
+  narrow gap of about a hand's width down the middle, where the shirt shows at the neckline and a
+  little at the waist. The shirt's sleeves are inside the outer sleeves, with the shirt's cuffs
+  peeking out slightly at the outer cuffs. The shirt is front-tucked (French tuck): the center front
+  of its hem is folded and tucked a little into the trouser waistband, so the waistband and the top
+  of the trouser crease show at the center with a soft loose blouse of shirt fabric folding over it,
+  while the shirt hem at both sides hangs out naturally just below the jacket's hem band.
+cover: samples/women/cover_2026-09-30.jpg

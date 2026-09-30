@@ -290,6 +290,8 @@ def test_generated_outfit_prompt_parts(store):
     assert outfit_gen.ref_indexes(p.items[0]) == [2, 0]
     assert outfit_gen.ref_indexes(p.items[1]) == [0, 1]  # 없으면 cutout_photo + photo
     assert outfit_gen.english("차콜 롱코트 (charcoal long coat)") == "charcoal long coat"
+    nested = "블랙 부츠 (black ankle boots, one pair (two boots))"
+    assert outfit_gen.english(nested) == "black ankle boots, one pair (two boots)"
     profile = load_profile("women")
     assert outfit_gen.styling_text(p, products, profile) == "The jacket is buttoned."
     p.items[0].size = "about 50 cm long"
