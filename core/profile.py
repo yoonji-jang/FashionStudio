@@ -251,6 +251,12 @@ class Schedule(BaseModel):
     # monetize: manual_link 일 때 고르기 마감~게시 사이에 /ok 를 확인하는 간격 (분, 0 이면 안 봄).
     # /ok 가 보이면 상품별 지그재그 링크를 보내 공유리워드 링크를 미리 만들게 한다 (tools.share)
     ok_check_every: int = Field(default=60, ge=0, le=240)
+    # 승인 마감 (12단계). 이 시각 뒤에 온 /ok 는 게시에 쓰지 않는다 (없으면 게시 마지막 확인까지).
+    # 게시가 다음 날 아침이면 그 전 새벽. /ok·/fix 확인은 후보를 보낸 뒤부터 이때까지 매 간격
+    ok_deadline: str | None = Field(default=None, pattern=HHMM)
+    ok_remind_at: str | None = Field(
+        default=None, pattern=HHMM
+    )  # 이때까지 /ok 가 없으면 한 번 알림
     themes_at: str | None = Field(default=None, pattern=WEEKLY)  # 주간 주제 (예: "일 18:17")
     collect_at: str | None = Field(default=None, pattern=WEEKLY)  # 상품 수집 (예: "월,목 04:17")
     token_refresh_at: str | None = Field(default=None, pattern=WEEKLY)  # 인스타 토큰 연장
@@ -406,6 +412,18 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError("schedule: candidates_at → pick_deadline → publish_at 순서여야 합니다")
     if (publish - deadline) % 1440 < 60:
         raise ValueError("schedule: pick_deadline 은 publish_at 보다 1시간 이상 앞서야 합니다")
+    end = publish
+    if sch.ok_deadline:
+        end = minutes(sch.ok_deadline)
+        if not (deadline - start) % 1440 < (end - start) % 1440 < (publish - start) % 1440:
+            raise ValueError("schedule: pick_deadline → ok_deadline → publish_at 순서여야 합니다")
+    if (
+        sch.ok_remind_at
+        and not 0 < (minutes(sch.ok_remind_at) - start) % 1440 < (end - start) % 1440
+    ):
+        raise ValueError(
+            "schedule: ok_remind_at 은 candidates_at 과 승인 마감(게시) 사이여야 합니다"
+        )
     cm = profile.comments
     if any(not re.fullmatch(HHMM, t) for t in cm.check_at):
         raise ValueError("comments.check_at 은 HH:MM 목록이어야 합니다")

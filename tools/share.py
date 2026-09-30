@@ -2,7 +2,8 @@
 
 지그재그 공유리워드 링크는 로그인한 앱에서만 만들 수 있어 자동으로 만들지 않는다. 그래서
 1. 미리보기에 /ok 가 오면 상품 번호와 지그재그 링크 목록을 보낸다 (send_after_ok, schedule 이
-   고르기 마감~게시 사이 schedule.ok_check_every 마다와 다른 작업 때 확인). 게시 알림(tools.publish)
+   후보를 보낸 뒤~승인 마감(게시) 사이 schedule.ok_check_every 마다와 다른 작업 때 확인.
+   이때 /ok·/skip 을 결과 폴더 approval.json 에도 남긴다). 게시 알림(tools.publish)
    에도 같은 목록이 붙는다 (자동 승인이면 이때 처음).
    사용자는 앱에서 링크를 열어 공유리워드 링크를 만든다.
 2. 사용자가 그 메시지에 답장으로 "1 https://…" 처럼 링크를 붙인다. 링크 모양은 거르지 않는다.
@@ -165,7 +166,7 @@ def send_after_ok(account: str, day: str, results: Path | None, tg, dry_run: boo
 
     profile = load_profile(account)
     tag = f"[{account}] {day} 상품 링크"
-    if not sends_list(profile) or tg is None or results is None:
+    if tg is None or results is None:
         return f"{tag}: 꺼짐"
     d = datetime.strptime(day, "%Y-%m-%d").date()
     try:
@@ -175,11 +176,17 @@ def send_after_ok(account: str, day: str, results: Path | None, tg, dry_run: boo
     record = notify.load_record(out)
     if record is None or record.sandbox:
         return f"{tag}: 미리보기 없음"
-    if asked_ids(out):
-        return f"{tag}: 이미 보냄"
     if any(p.date == d for p in Store(account).posts()):
         return f"{tag}: 이미 게시함 (게시 알림에 붙음)"
-    if notify.find_decision(tg.updates(), record, tg.chat_id) != "ok":
+    # 승인을 결과 폴더에 남긴다: 게시가 다음 날 아침이면 텔레그램(24시간 보관)에서 사라질 수 있음
+    decided = notify.approval_now(out, record, profile, tg.updates(), tg.chat_id)
+    if decided and not dry_run:
+        notify.remember(out, decided)
+    if not sends_list(profile):
+        return f"{tag}: 승인 {decided or '기다림'} (링크 목록 꺼짐)"
+    if asked_ids(out):
+        return f"{tag}: 이미 보냄"
+    if decided != "ok":
         return f"{tag}: /ok 기다림"
     links = publish.post_links(notify.load_manifest(out))
     if dry_run:

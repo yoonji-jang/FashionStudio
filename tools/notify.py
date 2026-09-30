@@ -24,24 +24,39 @@ import os
 import re
 import sys
 import time
-from datetime import date
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import NamedTuple
+from zoneinfo import ZoneInfo
 
 import httpx
 import yaml
 
 from core.models import Decision, Manifest, PreviewRecord
-from core.profile import REPO_ROOT, Profile, load_profile
+from core.profile import REPO_ROOT, Profile, load_profile, minutes
 
 CONFIG_PATH = REPO_ROOT / "config" / "publish.yaml"
 API = "https://api.telegram.org"
 MAX_TEXT = 4096
 MAX_PHOTO_CAPTION = 1024
+SEND_METHODS = {"sendMessage", "sendPhoto", "sendMediaGroup"}
+APPROVAL = "approval.json"  # 결과 폴더에 남기는 /ok·/skip 기록 (텔레그램은 답장을 24시간만 보관)
 
 
 def publish_config() -> dict:
     return yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8")) or {}
+
+
+def quiet_now(cfg: dict | None = None, now: datetime | None = None) -> bool:
+    """config/publish.yaml telegram.quiet 시간대(예: 23:00~07:00)면 알림 소리 없이 보낸다."""
+    tcfg = (publish_config() if cfg is None else cfg).get("telegram") or {}
+    quiet = tcfg.get("quiet")
+    if not quiet:
+        return False
+    start, end = (minutes(t) for t in quiet)
+    local = (now or datetime.now(UTC)).astimezone(ZoneInfo(tcfg.get("timezone", "Asia/Seoul")))
+    t = local.hour * 60 + local.minute
+    return start <= t < end if start < end else t >= start or t < end
 
 
 class Telegram:
@@ -58,6 +73,8 @@ class Telegram:
         return cls(token, os.environ.get("TELEGRAM_CHAT_ID", ""), client)
 
     def call(self, method: str, files: dict | None = None, **params) -> dict | list:
+        if method in SEND_METHODS and "disable_notification" not in params and quiet_now():
+            params["disable_notification"] = True
         data = {
             k: v if isinstance(v, str) else json.dumps(v, ensure_ascii=False)
             for k, v in params.items()
@@ -188,6 +205,9 @@ def control_text(
     label = command_label(profile, day)
     if profile.approval == "required" or manifest.needs_human:
         lines.append(f"게시하려면 /ok {label}, 건너뛰려면 /skip {label}")
+        dl = ok_deadline(profile, day)
+        if dl is not None:
+            lines.append(f"승인 마감 {dl:%m/%d %H:%M}. 그때까지 /ok 가 없으면 게시하지 않아요")
         lines.append("(아래 버튼을 누르거나 이 메시지에 /ok 로 답장해도 돼요)")
         from tools import share
 
@@ -299,8 +319,10 @@ def commands(
     day: date | None,
     names: set[str],
     own_ids: list[int],
+    until: int | None = None,
 ) -> list[tuple[int, Command]]:
-    """since 뒤 등록된 채팅에서 온, 이 계정·날짜에 대한 명령들 (update_id 순).
+    """since 뒤(until 이 있으면 그때까지) 등록된 채팅에서 온, 이 계정·날짜에 대한 명령들
+    (update_id 순).
     계정·날짜 없이 봇의 다른 메시지(다른 계정·다른 날)에 답장한 글은 그쪽 것이라 뺀다."""
     found = []
     for u in updates:
@@ -308,6 +330,8 @@ def commands(
         if str((msg.get("chat") or {}).get("id")) != str(chat_id):
             continue
         if msg.get("date", 0) < since:
+            continue
+        if until is not None and msg.get("date", 0) > until:
             continue
         cmd = parse(msg.get("text") or "", account, day)
         if cmd is None or cmd.name not in names:
@@ -327,8 +351,10 @@ def parse_command(text: str, record: PreviewRecord) -> Decision | None:
     return None
 
 
-def find_decision(updates: list[dict], record: PreviewRecord, chat_id: str) -> Decision | None:
-    """미리보기 뒤 등록된 채팅에서 온 마지막 /ok 또는 /skip."""
+def find_decision(
+    updates: list[dict], record: PreviewRecord, chat_id: str, until: int | None = None
+) -> Decision | None:
+    """미리보기 뒤(until 이 있으면 그때까지) 등록된 채팅에서 온 마지막 /ok 또는 /skip."""
     found = [
         cmd
         for _, cmd in commands(
@@ -339,10 +365,51 @@ def find_decision(updates: list[dict], record: PreviewRecord, chat_id: str) -> D
             record.date,
             {"ok", "skip"},
             record.message_ids,
+            until,
         )
         if not cmd.args
     ]
     return found[-1].name if found else None  # type: ignore[return-value]
+
+
+def ok_deadline(profile: Profile, day: date) -> datetime | None:
+    """게시 날짜(day)의 승인 마감 시각 (schedule.ok_deadline). 게시 시각보다 늦은 시각이면 전날."""
+    s = profile.schedule
+    if not s.ok_deadline:
+        return None
+    at = datetime.combine(day, datetime.min.time(), ZoneInfo(s.timezone)) + timedelta(
+        minutes=minutes(s.ok_deadline)
+    )
+    if minutes(s.ok_deadline) > minutes(s.publish_at):
+        at -= timedelta(days=1)
+    return at
+
+
+def remembered(out: Path) -> Decision | None:
+    """매시 확인 때 남긴 /ok·/skip (텔레그램에서 답장이 사라져도 쓴다)."""
+    path = out / APPROVAL
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8")).get("decision")
+
+
+def approval_now(
+    out: Path, record: PreviewRecord, profile: Profile, updates: list[dict], chat_id: str
+) -> Decision | None:
+    """승인 마감까지 온 마지막 /ok·/skip. 텔레그램에 없으면 남겨 둔 기록."""
+    dl = ok_deadline(profile, record.date)
+    decided = find_decision(updates, record, chat_id, int(dl.timestamp()) if dl else None)
+    return decided or remembered(out)
+
+
+def remember(out: Path, decided: Decision) -> bool:
+    """/ok·/skip 을 결과 폴더에 남긴다 (schedule 이 매시 확인할 때). 바뀌었으면 True."""
+    if remembered(out) == decided:
+        return False
+    (out / APPROVAL).write_text(
+        json.dumps({"decision": decided, "at": int(time.time())}), encoding="utf-8"
+    )
+    return True
 
 
 def load_record(out: Path) -> PreviewRecord | None:

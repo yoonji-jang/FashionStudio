@@ -22,22 +22,16 @@ name: schedule
 on:
   schedule:
     # >>> tools.schedule sync (직접 고치지 말고 profile.yaml schedule 을 바꾼 뒤 sync)
-    - cron: "0 1 * * *"  # women candidates 10:00
-    - cron: "0 2 * * *"  # women pick 11:00
-    - cron: "0 3 * * *"  # women pick 12:00
-    - cron: "0 4 * * *"  # women pick 13:00
-    - cron: "0 5 * * *"  # women pick 14:00
-    - cron: "0 6 * * *"  # women pick 15:00
-    - cron: "0 7 * * *"  # women links 16:00, women fix 16:00
-    - cron: "0 8 * * *"  # women links 17:00, women fix 17:00
-    - cron: "0 9 * * 0"  # women themes 일 18:00
-    - cron: "0 9 * * *"  # women links 18:00, women fix 18:00
+    - cron: "0 0 * * *"  # women candidates 09:00
+    - cron: "0 1 * * *"  # women pick 10:00
+    - cron: "0 9 * * *"  # women pick 18:00
+    - cron: "0 9 * * 6"  # women themes 토 18:00
     - cron: "0 10 * * 0"  # women token 일 19:00
-    - cron: "0 10 * * *"  # women links 19:00, women fix 19:00
-    - cron: "0 11 * * *"  # women publish 20:00
-    - cron: "0 12 * * *"  # women publish 21:00
-    - cron: "0 13 * * *"  # women publish 22:00
+    - cron: "0 13 * * *"  # women remind 22:00
     - cron: "0 19 * * 0,3"  # women collect 월,목 04:00
+    - cron: "0 20 * * *"  # women remind 05:00
+    - cron: "0 22 * * *"  # women publish 07:00
+    - cron: "0 23 * * *"  # women publish 08:00
     # <<< tools.schedule sync
   workflow_dispatch:
     inputs:
@@ -113,6 +107,7 @@ jobs:
           commit /tmp/results daily-results "자동 실행 기록" ticks.json
           commit /tmp/results daily-results "코디 고르기 기록" ':(glob)*/picks/**'
           commit /tmp/results daily-results "상품 링크 보낸 기록" ':(glob)*/links.json'
+          commit /tmp/results daily-results "승인 기록" ':(glob)*/approval.json'
           commit . "${{ github.ref_name }}" "주제 다시 정하기 요청" ':(glob)data/*/themes_review.json'
           commit . "${{ github.ref_name }}" "댓글 DM 기록" ':(glob)data/*/dm.json'
           commit . "${{ github.ref_name }}" "공유리워드 링크" ':(glob)data/*/posts.json'

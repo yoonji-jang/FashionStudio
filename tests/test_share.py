@@ -17,6 +17,8 @@ from tests.test_publish import (  # noqa: F401 - fixture
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
 from tools import link_page, notify, publish, schedule, share
 
+pytestmark = pytest.mark.usefixtures("fixed_times")
+
 NOW = datetime(2026, 9, 28, 3, 0, tzinfo=UTC)  # 서울 9/28 12:00
 
 
@@ -185,15 +187,15 @@ def test_links_sent_after_ok_and_replies_used_at_publish(
     page = base64.b64decode(api.files["women/index.html"]).decode()
     assert "https://s.zigzag.kr/two" in page
     assert "2. " in api.texts[-1] and "✓ 받음" in api.texts[-1]
-    assert "이미 보냄" in share.send_after_ok("women", day, results, tg)
+    assert "이미 게시함" in share.send_after_ok("women", day, results, tg)
 
 
 @pytest.mark.usefixtures("fixed_times")
-def test_links_slots_between_deadline_and_publish():
+def test_links_slots_after_candidates_until_publish():
     profile = load_profile("women")
     profile.monetize = "manual_link"
     got = [s.local() for s in schedule.slots(profile) if s.task == "links"]
-    assert got == ["16:17", "17:17", "18:17", "19:17"]
+    assert got == [f"{h}:17" for h in range(11, 20)]
     profile.schedule.ok_check_every = 0
     assert not [s for s in schedule.slots(profile) if s.task == "links"]
     profile.schedule.ok_check_every = 60
