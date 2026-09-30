@@ -156,5 +156,62 @@
       }
     ],
     "share": null
+  },
+  {
+    "date": "2026-10-01",
+    "title": "목요일 출근길엔 가디건 하나 걸쳐요",
+    "theme": "목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게",
+    "products": [
+      "zigzag:165682745",
+      "zigzag:140069145",
+      "zigzag:141360158",
+      "zigzag:159478154",
+      "zigzag:130585059"
+    ],
+    "permalink": "https://www.instagram.com/p/Dd7XFGGGXb0/",
+    "media_id": "18018867932932889",
+    "links": [
+      {
+        "product": "zigzag:165682745",
+        "category": "아우터",
+        "shop": "매니크",
+        "name": "데얼드 비스코스 라운드 가디건",
+        "url": "https://zigzag.kr/catalog/products/165682745",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/9512_202608241202066155_46742.jpeg"
+      },
+      {
+        "product": "zigzag:140069145",
+        "category": "상의",
+        "shop": "슬로우앤드",
+        "name": "톤앤결 여리핏 코튼셔츠",
+        "url": "https://zigzag.kr/catalog/products/140069145",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137368098_96193.jpeg"
+      },
+      {
+        "product": "zigzag:141360158",
+        "category": "하의",
+        "shop": "슬로우앤드",
+        "name": "마켓 와이드 트레이닝슬랙스 (+숏/베이직/",
+        "url": "https://zigzag.kr/catalog/products/141360158",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/2833_202608191719195715_99767.jpeg"
+      },
+      {
+        "product": "zigzag:159478154",
+        "category": "가방",
+        "shop": "맥끌라니",
+        "name": "608벤타 토트앤 크로스백",
+        "url": "https://zigzag.kr/catalog/products/159478154",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2025/11/11/11628_202511111334240096_42385.jpeg"
+      },
+      {
+        "product": "zigzag:130585059",
+        "category": "신발",
+        "shop": "로제니크",
+        "name": "안도르 메리제인 플랫",
+        "url": "https://zigzag.kr/catalog/products/130585059",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654521043_52100.jpeg"
+      }
+    ],
+    "share": null
   }
 ]
