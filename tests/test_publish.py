@@ -14,6 +14,8 @@ from tools import ai_label, notify, publish, share
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
+pytestmark = pytest.mark.usefixtures("fixed_times")
+
 DAY = date(2026, 9, 27)
 CHAT = "4242"
 
@@ -215,8 +217,10 @@ def sent(api: FakeApis, run) -> PreviewRecord:
 
 
 def with_link_page(account):
-    """상품 페이지를 켠 프로필 (women 은 2026-09-30 부터 끔)."""
-    p = load_profile(account)
+    """상품 페이지를 켠 프로필 (women 은 2026-09-30 부터 끔).
+    fixed_times 가 바꿔 둔 load_profile 을 쓰려고 tools.notify 것을 부른다
+    (다른 테스트 파일에서도)."""
+    p = notify.load_profile(account)
     p.link_page.enabled = True
     return p
 
@@ -341,3 +345,88 @@ def test_quiet_wait_sends_nothing(results, store):  # noqa: F811
     code = publish.run("women", DAY, results, tg=tg, store=store, notify_wait=False)
     assert code == publish.WAITING
     assert [c for c in api.calls[before:] if c[1].endswith("sendMessage")] == []
+
+
+def overnight(account):
+    """게시가 다음 날 아침이고 승인 마감이 새벽인 시간표 (women 2026-10-01 부터)."""
+    p = with_link_page(account)
+    p.schedule = p.schedule.model_copy(
+        update={
+            "candidates_at": "09:00",
+            "pick_deadline": "18:00",
+            "publish_at": "07:00",
+            "ok_deadline": "05:00",
+        }
+    )
+    return p
+
+
+def test_ok_deadline_is_night_before_morning_post():
+    p = overnight("women")
+    dl = notify.ok_deadline(p, DAY)
+    assert dl is not None and dl.isoformat() == "2026-09-27T05:00:00+09:00"
+    p.schedule.ok_deadline = "23:00"  # 게시(07:00)보다 늦은 시각이면 전날 밤
+    assert notify.ok_deadline(p, DAY).isoformat() == "2026-09-26T23:00:00+09:00"
+
+
+def test_ok_after_deadline_is_not_used(results, store, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(publish, "load_profile", overnight)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)  # 지금 보낸 미리보기라 /ok 도 마감(9/27 05:00) 뒤
+    api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
+    tg, ig, host = clients(api)
+    before = len(api.texts)
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert not store.posts() or store.posts()[-1].date != DAY
+    assert len(api.texts) == before  # 마감 알림은 schedule remind 가 보냄
+
+
+def test_remembered_ok_is_used_when_telegram_forgot(results, store, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(publish, "load_profile", with_link_page)
+    monkeypatch.setattr(share, "load_profile", with_link_page)
+    monkeypatch.setattr(share, "Store", lambda account: store)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)
+    api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
+    tg, ig, host = clients(api)
+    # 매시 확인이 /ok 를 결과 폴더에 남긴다
+    share.send_after_ok("women", str(DAY), results, tg)
+    assert notify.remembered(run) == "ok"
+    # 텔레그램이 24시간 지나 답장을 지웠어도 게시한다
+    api.replies = []
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert store.posts()[-1].date == DAY
+    # 텔레그램에 남은 /skip 이 기록보다 우선
+    api.replies = [(rec.sent_at + 9, "/skip women 09-27", None)]
+    assert (
+        notify.approval_now(run, rec, with_link_page("women"), tg.updates(), tg.chat_id) == "skip"
+    )
+
+
+def test_quiet_hours_send_without_sound():
+    from datetime import UTC, datetime
+
+    cfg = {"telegram": {"timezone": "Asia/Seoul", "quiet": ["23:00", "07:00"]}}
+    kst = [(14, 30, True), (21, 59, True), (22, 0, False), (13, 59, False)]  # UTC 시각
+    for h, m, quiet in kst:
+        assert notify.quiet_now(cfg, datetime(2026, 9, 30, h, m, tzinfo=UTC)) is quiet
+    assert not notify.quiet_now({}, datetime(2026, 9, 30, 15, 0, tzinfo=UTC))
+
+
+def test_remind_until_ok_then_deadline_notice(results, store, monkeypatch):  # noqa: F811
+    from tools import schedule
+
+    monkeypatch.setattr(schedule, "Store", lambda account: store)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)
+    tg, _, _ = clients(api)
+    day = str(DAY)
+    assert "보냄" in schedule.remind("women", day, results, tg)
+    assert "게시하지 않아요" in api.texts[-1] and "/ok women 09-27" in api.texts[-1]
+    assert "보냄" in schedule.remind("women", day, results, tg, final=True)
+    assert "승인 마감" in api.texts[-1]
+    api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
+    assert "이미 답함" in schedule.remind("women", day, results, tg)

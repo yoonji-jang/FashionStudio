@@ -28,7 +28,7 @@ import os
 import re
 import sys
 import time
-from datetime import date, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -210,13 +210,19 @@ def run(
         fixing = None
         if record and tg is not None:
             updates = tg.updates()
-            decided = notify.find_decision(updates, record, tg.chat_id)
+            # 승인 마감(schedule.ok_deadline) 뒤 /ok 는 빼고, 텔레그램에서 사라졌으면 매시 남긴 기록
+            decided = notify.approval_now(out, record, profile, updates, tg.chat_id)
             if decided != "skip":
                 # /fix 뒤에는 고친 미리보기를 기다린다 (15단계, /fix 뒤 /ok 면 지금 것으로 게시)
                 fixing = feedback.waiting(updates, record, tg.chat_id, out, profile, store)
         how, why = approval(profile, manifest, record, decided)
         if fixing and how != "skip":
             how, why = "wait", fixing
+        dl = notify.ok_deadline(profile, day)
+        if how == "wait" and dl is not None and datetime.now(UTC) > dl:
+            # 승인 마감이 지남: 게시하지 않는다 (마감 알림은 schedule remind 가 한 번 보냄)
+            print(f"{tag} {out.name}: 승인 마감 {dl:%m/%d %H:%M} 이 지나 게시하지 않습니다 ({why})")
+            return 0
     print(f"{tag} {out.name}: {why}")
     if how == "skip":
         return 0
