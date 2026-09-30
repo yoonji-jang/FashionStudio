@@ -1,0 +1,27 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/outfit_r2/results/G_1.jpg
+cover_has_title: false
+items:
+- comment: 오버핏이라 안에 셔츠를 입어도 여유 있게 걸쳐져요. 쌀쌀한 아침에 가볍게 걸치기 좋아요.
+  name: 블랙 오버핏 레더 자켓
+  photo: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/photos/148146251_2.jpg
+  product: zigzag:148146251
+- comment: 자켓 안에 받쳐 입기 좋은 워싱 셔츠예요. 밝은 그레이라 무채색 코디가 답답하지 않아요.
+  name: 더블스티치 워싱셔츠
+  photo: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/photos/127356723_0.jpg
+  product: zigzag:127356723
+- comment: 핀턱이 있는 스트레이트 슬랙스예요. 어두운 차콜이라 비 오는 날에도 부담 없어요.
+  name: 모티브 핀턱 슬랙스
+  photo: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/photos/141911042_3.jpg
+  product: zigzag:141911042
+- comment: 나일론 소재라 비 오는 날 들기 편해요. 심플한 숄더 스트랩이라 출근룩에 잘 어울려요.
+  name: 블랙 나일론 숄더백
+  photo: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/photos/146668296_0.jpg
+  product: zigzag:146668296
+- comment: 발목을 감싸는 삭스 스타일이라 슬랙스 밑단이 깔끔하게 떨어져요. 낮은 굽이라 오래 걸어도 편해요.
+  name: 리오사 삭스 앵클부츠
+  photo: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/photos/147232545_0.jpg
+  product: zigzag:147232545
+title_lines:
+- 비 오는 수요일 출근길엔
+- 무채색으로 단정하게
