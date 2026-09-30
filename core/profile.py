@@ -85,10 +85,12 @@ class Copy(BaseModel):
     title_chars: tuple[int, int] = (8, 16)  # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고)
     name_max_chars: int = Field(default=18, ge=4)  # 상품 장 짧은 이름
     comment_max_chars: int = Field(default=60, ge=0)  # 상품 장 코멘트
+    intro: bool = False  # 캡션 맨 앞에 그날 상황을 여는 도입 한 줄 (plan text.intro)
     points: tuple[int, int] = (3, 3)  # 캡션 코디 포인트 줄 수
     hashtags: tuple[int, int] = (10, 15)  # 기본 해시태그 포함 최종 개수
     base_hashtags: list[str] = []  # 매번 넣는 해시태그
-    max_emoji: int = Field(default=2, ge=0)  # 캡션 전체 이모지 수 (제목에는 금지)
+    max_emoji: int = Field(default=2, ge=0)  # 도입·코디 포인트 이모지 수 (제목·상품 장에는 금지)
+    max_emoji_per_line: int = Field(default=1, ge=0)  # 도입·코디 포인트 한 줄의 이모지 수
     max_exclaim: int = Field(default=1, ge=0)  # 캡션 전체 느낌표 수
     banned: list[str] = []  # 쓰면 안 되는 표현
     ad_notice: str = (
