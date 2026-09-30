@@ -1,0 +1,61 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 비스코스 라운드 가디건 (navy round-neck viscose knit cardigan, regular fit, buttoned
+    front, hip length)
+  name: 라운드 가디건
+  product: zigzag:165682745
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 블라우스 (ivory blouse, relaxed fit, soft collar, button front)
+  name: 드멜린 블라우스
+  product: zigzag:160291434
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 와이드 팬츠 (beige wide-leg trousers, flat front, no pleats, full length)
+  name: 나스 디테일러 와이드팬츠
+  product: zigzag:140796259
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 토트 크로스백 (black structured tote bag with crossbody strap)
+  name: 608벤타 토트앤 크로스백
+  product: zigzag:159478154
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 로퍼 뮬 (black square-toe loafer mules, one pair (two shoes))
+  name: 리버린 스퀘어 로퍼
+  product: zigzag:130244883
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 미니 큐빅 목걸이 (thin silver necklace with one tiny cubic pendant)
+  name: 미니 큐빅 목걸이
+  product: zigzag:113461869
+  slot: 목걸이
+reason: 네이비 가디건에 아이보리 블라우스, 베이지 팬츠로 부드럽게 푼 출근룩. 밝은 톤을 섞어 비 오는 날에도 칙칙하지 않게 입고 싶을 때
+  좋아요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·아이보리·그레이 차분한 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건·자켓
+  - category: 상의
+    desc: 셔츠·니트
+  - category: 하의
+    desc: 어두운 슬랙스·팬츠
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 비 오는 날 신기 좋은 단화·부츠
+  title_hint: 비 오는 수요일 출근길, 차분한 무채색으로 단정하게
+  type: 상황
+  why: 수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의

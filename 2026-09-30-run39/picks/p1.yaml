@@ -1,0 +1,55 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 플레인 데일리 가디건 (gray plain knit cardigan, classic fit, round neck, buttoned
+    front, hip length)
+  name: 플레인 데이베이직 가디건
+  product: zigzag:136080843
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 워싱 셔츠 (ivory washed cotton shirt, relaxed regular fit, pointed shirt
+    collar, button front, no pocket)
+  name: 더블스티치 워싱셔츠
+  product: zigzag:127356723
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 와이드 슬랙스 (black wide straight-leg slacks, flat front, no pleats, full length)
+  name: 어텐션슬랙스
+  product: zigzag:119143697
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black shoulder bag, structured, single strap)
+  name: 클리프 숄더백
+  product: zigzag:151166447
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 페니로퍼 (black round-toe penny loafers, one pair (two shoes))
+  name: 라운드토 클래식 페니로퍼
+  product: zigzag:129223675
+reason: 그레이 가디건 한 장으로 가볍게 걸치는 가장 무난한 출근룩. 아이보리 셔츠에 블랙 하의로 차분하게 맞췄어요. 일교차엔 벗기 쉬운 가디건,
+  비 오는 날엔 젖어도 부담 없는 어두운 하의라 가장 안전한 조합이에요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·아이보리·그레이 차분한 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건·자켓
+  - category: 상의
+    desc: 셔츠·니트
+  - category: 하의
+    desc: 어두운 슬랙스·팬츠
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 비 오는 날 신기 좋은 단화·부츠
+  title_hint: 비 오는 수요일 출근길, 차분한 무채색으로 단정하게
+  type: 상황
+  why: 수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의

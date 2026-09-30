@@ -1,0 +1,55 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오버핏 레더 자켓 (black oversized faux leather jacket, notched collar, hip length,
+    zip front)
+  name: 헤일리 오버핏 레더 자켓
+  product: zigzag:148146251
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라운드넥 니트 (ivory crew neck knit sweater, regular fit, hip length)
+  name: 시오 니트
+  product: zigzag:147921597
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 핀턱 슬랙스 (charcoal gray straight-leg slacks with pintucks, full length)
+  name: 모티브 핀턱 슬랙스
+  product: zigzag:141911042
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 나일론 숄더백 (black nylon shoulder bag, slim, single strap)
+  name: 이브닝 나일론 숄더백
+  product: zigzag:146668296
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black sock ankle boots with low heel, pointed toe, one pair (two
+    boots))
+  name: 리오사 삭스 앵클부츠
+  product: zigzag:147232545
+reason: 블랙 레더 자켓으로 시크하게, 앵클부츠로 비 오는 날도 깔끔하게. 아이보리 니트와 차콜 슬랙스로 무채색 톤을 맞췄어요. 발끝까지 젖을
+  걱정을 덜어 주는 조합이에요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·아이보리·그레이 차분한 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건·자켓
+  - category: 상의
+    desc: 셔츠·니트
+  - category: 하의
+    desc: 어두운 슬랙스·팬츠
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 비 오는 날 신기 좋은 단화·부츠
+  title_hint: 비 오는 수요일 출근길, 차분한 무채색으로 단정하게
+  type: 상황
+  why: 수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의

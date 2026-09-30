@@ -1,0 +1,55 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 울블렌디드 하프코트 (beige wool-blend half-length coat, single breasted, notched
+    lapel, hip to thigh length)
+  name: 울블렌디드 하프코트
+  product: zigzag:171900742
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 하프넥 니트 (black half-neck knit top, slim fit, long sleeves)
+  name: 톡톡 하프넥 니트
+  product: zigzag:146407231
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 밴딩 롱스커트 (navy long straight skirt with elastic waist, ankle length, no
+    slit)
+  name: 델리 밴딩 롱스커트
+  product: zigzag:168618198
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 토트백 (burgundy tote bag with two top handles)
+  name: 셀루나 토트백
+  product: zigzag:161886716
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 슈즈 (black Mary Jane shoes with strap, round toe, one pair (two shoes))
+  name: 러브이즈 메리제인슈즈
+  product: zigzag:135322669
+reason: 베이지 하프코트로 계절감을 살린 포근한 출근룩. 블랙 하프넥 니트와 네이비 롱스커트로 톤을 나눴어요. 아침 15도로 쌀쌀한 날에 맞는
+  조금 더 따뜻한 버전이에요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·아이보리·그레이 차분한 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건·자켓
+  - category: 상의
+    desc: 셔츠·니트
+  - category: 하의
+    desc: 어두운 슬랙스·팬츠
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 비 오는 날 신기 좋은 단화·부츠
+  title_hint: 비 오는 수요일 출근길, 차분한 무채색으로 단정하게
+  type: 상황
+  why: 수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의
