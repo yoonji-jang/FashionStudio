@@ -28,6 +28,8 @@ daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약�
   fix         미리보기에 온 /fix 피드백 확인 (15단계, tools.feedback). 다시 만들 것이면
               daily(mode=fix). 후보를 보낸 뒤~승인 마감(게시) 사이 feedback.check_every 마다,
               다른 작업 때도 같이
+  rules       새 /fix 피드백을 규칙에 반영하는 PR (feedback-rules 워크플로, profile
+              feedback.rules_at 에 하루 한 번. 새 피드백이 없으면 워크플로가 건너뜀)
 
 사용법:
   python -m tools.schedule list                    계정별 시간표와 cron 줄
@@ -154,6 +156,8 @@ def slots(profile: Profile) -> list[Slot]:
             Slot(a, "fix", s.candidates_at, off)
             for off in range(fb.check_every, span, fb.check_every)
         ]
+    if fb.enabled and fb.rules_at:
+        out.append(Slot(a, "rules", fb.rules_at))  # 피드백을 규칙에 반영하는 PR (하루 한 번)
     if profile.comments.enabled and profile.comments.mode == "builtin":
         out += [Slot(a, "comments", hhmm) for hhmm in profile.comments.check_at]
     return out
@@ -655,6 +659,8 @@ def execute(
             send("collect.yml", account=t.account, commit=True)
         elif t.task == "token":
             send("token.yml", account=t.account)
+        elif t.task == "rules":
+            send("feedback-rules.yml", account=t.account)
         elif t.task == "comments":
             from tools import comments
 

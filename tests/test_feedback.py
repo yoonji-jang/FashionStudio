@@ -255,3 +255,38 @@ def test_context_shows_recent_feedback(store):  # noqa: F811
 def test_parse_fix_command_keeps_args(text):
     cmd = notify.parse(text, "women", DAY)
     assert cmd.name == "fix" and cmd.args == ["1", "가방"]
+
+
+def test_pending_rules_only_new_feedback(store):  # noqa: F811
+    assert feedback.pending_entries(store) == []
+    store.add_feedback([entry(text="신발 더 크게", slide=1, kind="cover", update_id=3)])
+    store.add_feedback([entry(text="캡션 짧게", kind="caption", update_id=7)])
+    report = feedback.pending_report(store, DAY)
+    assert "새 피드백 2개" in report and "1장 표지: 신발 더 크게" in report
+    feedback.mark_rules(store, 3)
+    assert [e.text for e in feedback.pending_entries(store)] == ["캡션 짧게"]
+    feedback.mark_rules(store, 1)  # 되돌아가지 않는다
+    assert feedback.rules_state(store) == 3
+    feedback.mark_rules(store, 7)
+    assert feedback.pending_entries(store) == []
+
+
+def test_pending_cli_exit_code(store, tmp_path, capsys, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(feedback, "Store", lambda account: store)
+    assert feedback.main(["pending", "--account", store.account]) == feedback.NO_NEW
+    store.add_feedback([entry(text="캡션 짧게", kind="caption", update_id=9)])
+    out = tmp_path / "rules.md"
+    assert feedback.main(["pending", "--account", store.account, "--out", str(out)]) == 0
+    assert "UPTO=9" in capsys.readouterr().out and "캡션 짧게" in out.read_text(encoding="utf-8")
+    assert feedback.main(["mark", "--account", store.account, "--upto", "9"]) == 0
+    assert feedback.main(["pending", "--account", store.account]) == feedback.NO_NEW
+
+
+def test_schedule_rules_once_a_day(tmp_path):
+    profile = load_profile("women")
+    rules = [sl for sl in schedule.slots(profile) if sl.task == "rules"]
+    assert [sl.local() for sl in rules] == [profile.feedback.rules_at]
+    gh = schedule.DryRun()
+    t = schedule.Task("women", "rules", "2026-09-28", True, True, 0)
+    schedule.execute([t], tmp_path, gh, object(), datetime(2026, 9, 28, 23, 0, tzinfo=UTC))
+    assert gh.sent == [("feedback-rules.yml", {"account": "women"})]

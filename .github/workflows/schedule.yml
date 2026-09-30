@@ -31,7 +31,7 @@ on:
     - cron: "0 19 * * 0,3"  # women collect 월,목 04:00
     - cron: "0 20 * * *"  # women remind 05:00
     - cron: "0 22 * * *"  # women publish 07:00
-    - cron: "0 23 * * *"  # women publish 08:00
+    - cron: "0 23 * * *"  # women publish 08:00, women rules 08:00
     # <<< tools.schedule sync
   workflow_dispatch:
     inputs:

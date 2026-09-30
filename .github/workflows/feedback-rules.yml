@@ -1,0 +1,149 @@
+name: feedback-rules
+
+# 15단계 뒤: 텔레그램 /fix 로 쌓인 새 피드백(data/<계정>/feedback.jsonl)을 규칙에 반영하는 PR 을 만든다.
+# schedule 워크플로가 profile feedback.rules_at 에 하루 한 번 부른다. Actions 탭에서 직접 돌려도 된다.
+# 1. 새 피드백이 없으면 끝 (tools.feedback pending 종료 코드 5)
+# 2. Claude(feedback-rules 스킬)가 지시문·검수 기준·스킬·계정 설정을 고치고 PR 설명을 쓴다
+# 3. 고친 게 있으면 feedback-rules/<계정>-<날짜> 브랜치로 PR 을 만들고 ci 를 돌린 뒤 텔레그램으로 알린다
+#    (GITHUB_TOKEN 으로 만든 PR 에는 ci 가 저절로 돌지 않아서 workflow_dispatch 로 부른다)
+# 4. 다룬 피드백을 data/<계정>/feedback_rules.json 에 적어 main 에 커밋 (다음 날 다시 다루지 않음)
+# 처음 한 번: 저장소 Settings → Actions → General → Workflow permissions 에서
+# "Allow GitHub Actions to create and approve pull requests" 를 켜야 PR 을 만들 수 있다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+  id-token: write
+
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    concurrency:
+      group: feedback-rules-${{ inputs.account }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+
+      - name: 새 피드백 확인
+        id: pending
+        run: |
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          set +e
+          uv run python -m tools.feedback pending --account "$ACCOUNT" --out "out/feedback_rules/$ACCOUNT.md" | tee /tmp/pending.txt
+          code=${PIPESTATUS[0]}
+          set -e
+          if [ "$code" = 5 ]; then echo "new=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          [ "$code" = 0 ] || exit "$code"
+          echo "new=true" >> "$GITHUB_OUTPUT"
+          grep -oP '^UPTO=\K\d+' /tmp/pending.txt | tail -1 | sed 's/^/upto=/' >> "$GITHUB_OUTPUT"
+          echo "day=$(TZ=Asia/Seoul date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Claude 규칙 반영 (feedback-rules 스킬)
+        if: steps.pending.outputs.new == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
+          prompt: |
+            .claude/skills/feedback-rules/SKILL.md 의 순서를 그대로 따라 새 피드백을 규칙에 반영해.
+            ACCOUNT=${{ env.ACCOUNT }} 재료: out/feedback_rules/${{ env.ACCOUNT }}.md
+            python 은 이미 가상환경이 잡혀 있으니 `python -m ...` 처럼 부르면 돼.
+            git 커밋·푸시, PR 만들기, 게시, 외부 전송은 하지 마 (워크플로가 한다).
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Bash(python -m tools.feedback summary:*),Bash(python -m core.profile:*),Bash(python -m pytest:*),Read,Write,Edit,Glob,Grep"
+
+      - name: PR 만들기
+        id: pr
+        if: steps.pending.outputs.new == 'true'
+        env:
+          DAY: ${{ steps.pending.outputs.day }}
+        run: |
+          # 상태 파일(data/)과 결과(out/)는 PR 에 넣지 않는다
+          git checkout -- data/ 2>/dev/null || true
+          git clean -fdq data/ || true
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "반영할 규칙이 없어 PR 을 만들지 않습니다"
+            [ -f out/feedback_rules/pr_body.md ] && cat out/feedback_rules/pr_body.md
+            echo "url=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          uv run ruff check . && uv run python -m core.profile && uv run pytest -q > /tmp/test.txt 2>&1 \
+            && result="통과" || result="실패 (아래 로그 확인)"
+          branch="feedback-rules/$ACCOUNT-$DAY"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A -- . ':!out' ':!data'
+          git commit -qm "피드백 규칙 반영: $ACCOUNT $DAY"
+          git push -f origin "$branch"
+          body=out/feedback_rules/pr_body_full.md
+          { cat out/feedback_rules/pr_body.md 2>/dev/null || echo "(Claude 가 PR 설명을 남기지 않았습니다)"
+            echo; echo "---"; echo "검사(ruff, 프로필, pytest): $result"
+            echo; echo "텔레그램 /fix 피드백으로 feedback-rules 워크플로가 만들었습니다. 합치기 전에 바뀐 문장을 확인해 주세요."
+          } > "$body"
+          url=$(gh pr view "$branch" --json url -q .url 2>/dev/null || true)
+          if [ -z "$url" ]; then
+            url=$(gh pr create --base "${{ github.ref_name }}" --head "$branch" \
+              --title "피드백 규칙 반영 ($ACCOUNT $DAY)" --body-file "$body" \
+              --assignee "${{ github.repository_owner }}")
+          else
+            gh pr edit "$branch" --body-file "$body"
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "tests=$result" >> "$GITHUB_OUTPUT"
+          # GITHUB_TOKEN 으로 만든 PR 에는 ci 가 저절로 돌지 않아 직접 부른다 (결과는 PR 검사에 보임)
+          gh workflow run ci.yml --ref "$branch" || echo "::warning::ci 실행 요청 실패"
+
+      - name: 다룬 피드백 기록 (main)
+        if: steps.pending.outputs.new == 'true'
+        env:
+          UPTO: ${{ steps.pending.outputs.upto }}
+        run: |
+          git fetch -q origin "${{ github.ref_name }}"
+          git checkout -q -f -B state "origin/${{ github.ref_name }}"
+          uv run python -m tools.feedback mark --account "$ACCOUNT" --upto "$UPTO"
+          git add "data/$ACCOUNT/feedback_rules.json"
+          git diff --cached --quiet && exit 0
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
+            commit -qm "피드백 규칙 반영 기록 ($ACCOUNT)"
+          for i in 1 2 3; do
+            git pull -q --rebase origin "${{ github.ref_name }}" && git push -q origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: 텔레그램 알림
+        if: steps.pr.outputs.url != '' && steps.pr.outputs.url != null
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          URL: ${{ steps.pr.outputs.url }}
+          TESTS: ${{ steps.pr.outputs.tests }}
+        run: |
+          uv run python -m tools.notify send "[$ACCOUNT] 📝 피드백을 규칙에 반영한 PR 을 만들었어요. 확인하고 괜찮으면 합쳐 주세요 (검사: $TESTS)
+          $URL"
+
+      - name: 실패 알림
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "[${{ env.ACCOUNT }}] 피드백 규칙 PR 만들기 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: .github/scripts/alert.sh
