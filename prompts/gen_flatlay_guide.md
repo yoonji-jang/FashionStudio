@@ -6,8 +6,9 @@ Create one photorealistic top-down flat lay photograph of a complete outfit, as 
 the real clothes on the floor and photographed them from directly above with a camera.
 
 The attached images are reference sheets of the exact items to use, in this order. Each sheet shows
-several photos of the same single item (a clean cut-out and the shop photos, sometimes worn by a
-model); use them together to get its true details, and draw the item only once:
+several photos of the same single item (shop photos, sometimes a clean cut-out, sometimes worn by a
+model); use them together to get its true details, and draw the item only once. Shop photos may show
+other clothes or props worn with the item: ignore everything except the named item:
 $items
 The last attached image is a rough layout guide made by pasting cut-out product photos. Use it only
 for which items appear and their approximate position; follow the real sizes given above for
@@ -26,4 +27,6 @@ fills about 85 percent of the frame height with no large empty areas.
 
 Scene: $scene.
 Every item casts a soft contact shadow on the floor, one consistent light direction for everything.
-Vertical 4:5 image, high detail, no people, no mannequin, no hanger, no text, no watermark.
+Vertical 4:5 image, high detail, no people, no mannequin, no hanger, no text, no numbers, no labels,
+no watermark. Draw exactly the number of pieces stated for each item (a pair of earrings is two
+earrings, a pair of shoes is two shoes).

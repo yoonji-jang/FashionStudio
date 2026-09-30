@@ -2,7 +2,7 @@ name: gen-experiment
 
 # 11단계 생성형 이미지 AI 비교 실험 (tools.generate). OpenRouter 요금이 나가므로 사람이 켤 때만 돈다.
 # - Actions 탭에서 "Run workflow" (main에 합쳐진 뒤)
-# - 또는 작업 브랜치에 커밋 메시지에 [gen-exp] 를 넣어 푸시 ([models:a b] [shots:flatlay] 로 좁히기)
+# - 또는 작업 브랜치에 커밋 메시지에 [gen-exp] 를 넣어 푸시 ([spec:경로] [models:a b] [shots:flatlay])
 # 결과는 artifact 로 올리고, poc-results 브랜치의 gen-<실행번호>/ 폴더에도 커밋한다.
 on:
   workflow_dispatch:
@@ -50,7 +50,8 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          re_m='\[models:([^]]+)\]'; re_s='\[shots:([^]]+)\]'
+          re_m='\[models:([^]]+)\]'; re_s='\[shots:([^]]+)\]'; re_p='\[spec:([^]]+)\]'
+          [[ "$COMMIT_MSG" =~ $re_p ]] && SPEC="${BASH_REMATCH[1]}"
           [[ "$COMMIT_MSG" =~ $re_m ]] && MODELS="${BASH_REMATCH[1]}"
           [[ "$COMMIT_MSG" =~ $re_s ]] && SHOTS="${BASH_REMATCH[1]}"
           args=(--spec "$SPEC" --out "$OUT")

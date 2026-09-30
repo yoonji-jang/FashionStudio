@@ -4,8 +4,9 @@
 Create one photorealistic studio photo of this exact outfit dressed on a mannequin.
 
 The attached images are reference sheets of the exact items to use, in this order. Each sheet shows
-several photos of the same single item (a clean cut-out and the shop photos, sometimes worn by a
-model); use them together to get its true details, and draw the item only once:
+several photos of the same single item (shop photos, sometimes a clean cut-out, sometimes worn by a
+model); use them together to get its true details, and draw the item only once. Shop photos may show
+other clothes or props worn with the item: ignore everything except the named item:
 $items
 
 Keep every item identical to its product photo: same color, fabric texture, pattern, cut, length,

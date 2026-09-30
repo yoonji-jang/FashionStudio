@@ -7,7 +7,8 @@ exact outfit.
 
 The attached images are reference sheets of the exact items the person wears or carries, in this
 order. Each sheet shows several photos of the same single item (a clean cut-out and the shop photos,
-sometimes worn by a model whose identity must not be copied); draw each item only once:
+sometimes worn by a model whose identity must not be copied); draw each item only once. Shop
+photos may show other clothes or props: ignore everything except the named item:
 $items
 
 Keep every item identical to its product photo: same color, fabric texture, pattern, cut, length,
@@ -20,4 +21,6 @@ The face is never visible, hidden naturally by the pose or an object described a
 cropping the photo), so no identity can be recognized. The person is fictional and does not resemble
 the models in the reference sheets.
 Mood and place: $mood
-Natural light, shallow depth of field, subtle film grain, vertical 4:5, no text, no watermark.
+Natural light, shallow depth of field, subtle film grain, vertical 4:5, no text, no numbers, no labels,
+no watermark. Draw exactly the number of pieces stated for each item (a pair of earrings is two
+earrings, a pair of shoes is two shoes).
