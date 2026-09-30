@@ -1,0 +1,55 @@
+account: women
+date: '2026-10-01'
+items:
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라운드넥 트위드 자켓 (ivory round-neck tweed jacket, waist length, collarless,
+    front buttons)
+  name: 모리 트위드 자켓
+  product: zigzag:128885359
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 하프넥 니트 (black half-neck knit top, fitted, long sleeves)
+  name: 소프트 하프넥 니트
+  product: zigzag:146407231
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 슬랙스 (gray straight-leg trousers, flat front, no pleats, full length)
+  name: 어텐션 슬랙스
+  product: zigzag:119143697
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 토트백 (burgundy structured tote bag)
+  name: 마리백
+  product: zigzag:130366243
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 플랫 (black Mary Jane flats with one strap, round toe, exactly one pair)
+  name: 안도르 메리제인 플랫
+  product: zigzag:130585059
+reason: 아이보리 트위드 자켓에 버건디 백으로 클래식하게. 블랙 하프넥 니트와 그레이 슬랙스로 받치고 버건디 마리백을 포인트 색 하나로 둔다.
+  블랙 메리제인 플랫으로 무겁지 않게 마무리.
+theme:
+  date: '2026-10-01'
+  mood: 아이보리·그레이·블랙 위주의 차분한 오피스 데일리
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건이나 자켓
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 데님
+  - category: 가방
+    desc: 단정한 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게
+  type: 상황
+  why: 목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게
+    가디건·자켓 중심

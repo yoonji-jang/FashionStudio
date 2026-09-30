@@ -1,0 +1,61 @@
+account: women
+date: '2026-10-01'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 데이 베이직 니트 가디건 (gray plain knit cardigan, hip length, round neck, buttoned
+    front)
+  name: 데이 베이직 가디건
+  product: zigzag:136080843
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 무지 셔츠 (ivory plain shirt, regular fit, classic shirt collar, no pattern)
+  name: 로셀 라인 셔츠
+  product: zigzag:145426176
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 핀턱 와이드 슬랙스 (black pintuck wide-leg trousers, full length, pleated front)
+  name: 콤마 핀턱 슬랙스
+  product: zigzag:144667358
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 로우 미디움 숄더백 (black medium leather shoulder bag)
+  name: 핀턱 로우 숄더백
+  product: zigzag:165871135
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 페니 로퍼 (black round-toe penny loafers, exactly one pair)
+  name: 클래식 페니로퍼
+  product: zigzag:129223675
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 큐빅 귀걸이 (exactly one pair (two earrings) of tiny 2mm silver cubic stud earrings)
+  name: 실버 큐빅 귀걸이
+  product: zigzag:116318715
+reason: 그레이 가디건에 아이보리 셔츠를 받치고 블랙으로 정리해 가장 무난하고 단정하게. 가장 안전한 조합으로, 가디건은 후기 8천 개 이상이라
+  검증된 상품이고 실버 귀걸이로 포인트만 살짝 준다.
+theme:
+  date: '2026-10-01'
+  mood: 아이보리·그레이·블랙 위주의 차분한 오피스 데일리
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건이나 자켓
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 데님
+  - category: 가방
+    desc: 단정한 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게
+  type: 상황
+  why: 목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게
+    가디건·자켓 중심

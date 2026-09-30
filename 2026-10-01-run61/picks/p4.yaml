@@ -1,0 +1,56 @@
+account: women
+date: '2026-10-01'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 자켓 (black leather jacket, waist length, slim fit, notched collar, front
+    zip)
+  name: 베리스 레더 자켓
+  product: zigzag:146665389
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 코튼 셔츠 (ivory cotton shirt, relaxed fit, classic shirt collar, plain)
+  name: 톤앤결 코튼셔츠
+  product: zigzag:140069145
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 밴딩 롱스커트 (gray long straight skirt, ankle length, elastic waist, plain)
+  name: 델리 밴딩 롱스커트
+  product: zigzag:168618198
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 리브 숄더백
+  product: zigzag:169612789
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 키튼힐 메리제인 슬링백 (matte black kitten-heel Mary Jane slingback pumps, exactly
+    one pair)
+  name: 키튼힐 메리제인
+  product: zigzag:156434065
+reason: 블랙 레더 자켓으로 시크하게, 그레이 스커트로 부드럽게 균형을 잡아. 아이보리 코튼셔츠와 그레이 롱스커트로 풀고 블랙 숄더백과 키튼힐
+  메리제인으로 정돈한다. 다른 후보와 달리 스커트로 실루엣을 바꿨다.
+theme:
+  date: '2026-10-01'
+  mood: 아이보리·그레이·블랙 위주의 차분한 오피스 데일리
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건이나 자켓
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 데님
+  - category: 가방
+    desc: 단정한 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게
+  type: 상황
+  why: 목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게
+    가디건·자켓 중심

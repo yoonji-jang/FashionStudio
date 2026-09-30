@@ -1,0 +1,60 @@
+account: women
+date: '2026-10-01'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 울블렌디드 하프코트 (beige wool-blend half coat, hip length, notched lapel, single-breasted)
+  name: 울블렌디드 하프코트
+  product: zigzag:171900742
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라운드넥 니트 (ivory round-neck knit top, regular fit, plain)
+  name: 시오 니트
+  product: zigzag:147921597
+- color: 진청
+  comment: ''
+  cutout_photo: 0
+  desc: 진청 세미와이드 데님 (dark blue semi-wide straight denim jeans, full length, no rips)
+  name: 워싱 세미와이드 데님
+  product: zigzag:133330805
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 클리프 숄더백
+  product: zigzag:151166447
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 로퍼 (black square-toe loafers, exactly one pair)
+  name: 스퀘어 로퍼
+  product: zigzag:130244883
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 클래식 벨트 (black slim classic belt with small buckle)
+  name: 클래식 벨트
+  product: zigzag:137568598
+reason: 베이지 하프코트에 진청 데님을 매치해 깔끔하게. 아이보리 니트와 진청 데님으로 단정한 데일리를 만들고 블랙 백·로퍼·벨트로 색을 정리한다.
+  아침엔 코트, 낮엔 벗어 들기 좋은 하프 기장.
+theme:
+  date: '2026-10-01'
+  mood: 아이보리·그레이·블랙 위주의 차분한 오피스 데일리
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건이나 자켓
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 데님
+  - category: 가방
+    desc: 단정한 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게
+  type: 상황
+  why: 목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게
+    가디건·자켓 중심
