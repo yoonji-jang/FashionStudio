@@ -11,6 +11,7 @@
 | pick-outfit | 상품 창고에서 코디 한 벌 고르기, 코디컷 배치 정보 | plan.yaml `items`, `reason` |
 | write-copy | 표지 제목, 상품 장 이름·코멘트, 캡션 포인트, 해시태그 | plan.yaml `text` |
 | fix-feed | 텔레그램 `/fix` 피드백대로 같은 기획에서 고칠 곳만 바꿔 다시 만들고 검수 (15단계, daily mode=fix) | 고친 슬라이드·캡션, `fix_result.yaml` |
+| feedback-rules | 새 `/fix` 피드백 중 되풀이될 지적을 지시문·검수 기준·스킬·계정 설정에 옮김 (하루 한 번, feedback-rules 워크플로가 PR 을 만듦) | 고친 규칙 파일, `out/feedback_rules/pr_body.md` |
 
 | 에이전트 | 역할 |
 |---|---|

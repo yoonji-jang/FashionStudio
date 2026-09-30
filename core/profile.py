@@ -287,6 +287,10 @@ class FeedbackRules(BaseModel):
     # 기획(tools.plan context)과 검수(tools.review prep)에 보여 줄 최근 피드백 기간
     # (일, 0 이면 안 보임)
     recent_days: int = Field(default=14, ge=0, le=60)
+    # 새 피드백을 규칙(지시문·검수 기준·스킬·계정 설정)에 반영하는 PR 을 만드는 시각
+    # (계정 시간대 HH:MM, 하루 한 번, feedback-rules 워크플로). 새 피드백이 없으면 건너뛴다.
+    # null 이면 안 함
+    rules_at: str | None = Field(default=None, pattern=HHMM)
 
 
 class Comments(BaseModel):

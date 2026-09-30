@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  # 봇이 GITHUB_TOKEN 으로 만든 PR(feedback-rules)은 pull_request 로 돌지 않아 직접 부른다
+  workflow_dispatch:
 
 permissions:
   contents: read

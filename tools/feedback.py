@@ -21,6 +21,10 @@ Claude(fix-feed 스킬)가 피드백대로 기획을 고친 뒤 다시 만들고
       --out out/<날짜>
   python -m tools.feedback summary --account women [--days 30]
       피드백 모아 보기 (규칙에 반영할 후보)
+  python -m tools.feedback pending --account women [--out 파일]
+      규칙 PR 에 아직 넣지 않은 피드백 (없으면 종료 코드 5, 마지막 줄 UPTO=<update_id>)
+  python -m tools.feedback mark --account women --upto <update_id>
+      규칙 PR 에서 다룬 피드백 기록 (data/<계정>/feedback_rules.json)
 check 는 텔레그램으로 글을 보내서 schedule 만 부른다 (CLI 없음).
 """
 
@@ -424,6 +428,47 @@ def summary(store: Store, today: date, days: int) -> str:
     return "\n".join(out)
 
 
+# ---------- 규칙 반영 PR (feedback-rules 워크플로) ----------
+
+RULES_STATE = "feedback_rules.json"  # data/<계정>/ 안. 규칙 PR 에 넣은 마지막 피드백 update_id
+NO_NEW = 5  # pending 종료 코드: 새 피드백 없음
+
+
+def rules_state(store: Store) -> int:
+    path = store.dir / RULES_STATE
+    if not path.exists():
+        return 0
+    return int(json.loads(path.read_text(encoding="utf-8")).get("last_update_id", 0))
+
+
+def pending_entries(store: Store) -> list[FeedbackEntry]:
+    """아직 규칙 PR 에서 다루지 않은 피드백."""
+    last = rules_state(store)
+    return [e for e in store.feedback() if e.update_id > last]
+
+
+def pending_report(store: Store, today: date, days: int = 30) -> str:
+    """규칙 반영 재료: 새 피드백과 최근 days 일 모아 보기 (같은 지적이 몇 번 나왔는지)."""
+    new = pending_entries(store)
+    out = [f"# 새 피드백 {len(new)}개 ({store.account})", ""]
+    for e in new:
+        where = label({"slide": e.slide, "kind": e.kind})
+        extra = f", 상품 {e.product}" if e.product else ""
+        out.append(f"- {e.date} {where}: {e.text} (처리: {e.result}, 미리보기 {e.run}{extra})")
+    out += ["", summary(store, today, days)]
+    return "\n".join(out) + "\n"
+
+
+def mark_rules(store: Store, upto: int, now: datetime | None = None) -> None:
+    """upto 까지의 피드백을 규칙 PR 에서 다뤘다고 적는다 (워크플로가 main 에 커밋)."""
+    stamp = (now or datetime.now(UTC)).isoformat(timespec="seconds")
+    store.dir.mkdir(parents=True, exist_ok=True)
+    (store.dir / RULES_STATE).write_text(
+        json.dumps({"last_update_id": max(upto, rules_state(store)), "at": stamp}) + "\n",
+        encoding="utf-8",
+    )
+
+
 # ---------- CLI ----------
 
 
@@ -437,6 +482,12 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("summary", help="피드백 모아 보기")
     s.add_argument("--account", required=True)
     s.add_argument("--days", type=int, default=30)
+    s = sub.add_parser("pending", help="규칙 PR 에 아직 넣지 않은 피드백 (없으면 종료 코드 5)")
+    s.add_argument("--account", required=True)
+    s.add_argument("--out", type=Path, help="재료를 쓸 파일 (기본: 화면)")
+    s = sub.add_parser("mark", help="규칙 PR 에서 다룬 피드백 기록")
+    s.add_argument("--account", required=True)
+    s.add_argument("--upto", type=int, required=True, help="다룬 마지막 update_id")
     args = ap.parse_args(argv)
     try:
         if args.cmd == "prepare":
@@ -444,6 +495,21 @@ def main(argv: list[str] | None = None) -> int:
             for f in data["fixes"]:
                 print(f"- {label(f)}: {f['text']}")
             print(f"표지 코디컷: {data['cover'] or '없음 (새로 만듦)'}")
+        elif args.cmd == "pending":
+            store = Store(args.account)
+            new = pending_entries(store)
+            if not new:
+                print("새 피드백 없음")
+                return NO_NEW
+            report = pending_report(store, date.today())
+            if args.out:
+                args.out.parent.mkdir(parents=True, exist_ok=True)
+                args.out.write_text(report, encoding="utf-8")
+            print(report if not args.out else f"새 피드백 {len(new)}개 → {args.out}")
+            print(f"UPTO={max(e.update_id for e in new)}")
+        elif args.cmd == "mark":
+            mark_rules(Store(args.account), args.upto)
+            print(f"규칙 PR 기록: update_id {args.upto} 까지")
         else:
             print(summary(Store(args.account), date.today(), args.days))
         return 0

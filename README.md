@@ -303,6 +303,7 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 | `check_every` | 60 | 고르기 마감~게시 시각 사이 `/fix` 를 확인하는 간격(분). 0 이면 다른 자동 실행 때만. 바꾸면 `tools.schedule sync` |
 | `render_minutes` | 40 | 게시 마지막 확인 시각까지 이만큼(분) 남아야 다시 만듦 |
 | `recent_days` | 14 | 최근 며칠 피드백을 다음 기획·검수에 보여 줄지 (0 이면 안 보임) |
+| `rules_at` | 템플릿 08:00 | 새 피드백을 규칙에 반영하는 PR 을 만드는 시각 (하루 한 번, `null` 이면 안 함). 바꾸면 `tools.schedule sync` |
 
 #### `comments` : 댓글 → DM 코디 링크 (10단계)
 캡션에 "댓글을 남겨 주세요" 안내를 넣고, 댓글(키워드를 정하면 그 말이 든 댓글)이 달리면 인스타 공식 기능(비공개 답장)으로
@@ -761,6 +762,22 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
   (자주 나오는 것은 검수 기준·지시문·배치 규칙에 반영할 후보).
 - 흐름: schedule `fix` (tools.feedback check) → daily `mode=fix` (`tools.feedback prepare` → Claude `fix-feed`
   스킬 → `tools.plan build` → 검수) → 새 미리보기.
+
+### 피드백을 규칙에 반영하는 PR (하루 한 번)
+
+`feedback.rules_at`(women 은 게시 다음 08:00)에 `feedback-rules` 워크플로가 돕니다.
+
+1. 지난번 PR 뒤로 새 피드백이 없으면 아무것도 하지 않습니다.
+2. 있으면 Claude(`feedback-rules` 스킬)가 되풀이될 만한 지적만 골라 코디컷 지시문(`prompts/`), 검수 기준
+   (`.claude/agents/`), 스킬, 계정 설정(`voice.md`, `profile.yaml`)을 고칩니다. 그날 상품 하나에만 해당하는
+   지적이나 코드로 고칠 문제는 고치지 않고 PR 설명에 적습니다.
+3. 고친 게 있으면 `feedback-rules/<계정>-<날짜>` 브랜치로 PR 을 만들고 검사(ci)를 돌린 뒤, 텔레그램으로
+   "확인하고 합쳐 주세요" 알림과 PR 주소를 보냅니다. **자동으로 합치지는 않습니다.** 합쳐야 다음 게시물부터 적용돼요.
+4. 다룬 피드백은 `data/<계정>/feedback_rules.json` 에 적어 다음 날 다시 다루지 않습니다 (PR 을 닫아도 마찬가지).
+
+처음 한 번: 저장소 **Settings → Actions → General → Workflow permissions** 에서
+**Allow GitHub Actions to create and approve pull requests** 를 켜야 워크플로가 PR 을 만들 수 있습니다.
+직접 돌리려면 Actions 탭 → feedback-rules → Run workflow.
 
 ---
 

@@ -222,6 +222,7 @@ feedback:
   check_every: 60     # 고르기 마감~게시 사이 /fix 확인 간격(분, 매시 정각). 바꾸면 tools.schedule sync
   render_minutes: 40  # 게시 마지막 확인(22:00)까지 이만큼 남아야 다시 만듦 (21:20 까지 받음)
   recent_days: 14     # 최근 피드백을 다음 기획·검수에 보여 줄 기간(일)
+  rules_at: "08:00"   # 새 피드백을 규칙에 반영하는 PR 만들기 (하루 한 번, 없으면 건너뜀). 바꾸면 tools.schedule sync
 
 # 댓글 → DM 코디 링크 (10단계). 켜면 캡션의 "프로필 링크" 문구 대신 cta 가 들어간다.
 # DM 은 mode 에 따라 external: ManyChat 이 댓글 즉시 보냄 (DM 에는 아래 link_page 주소)
