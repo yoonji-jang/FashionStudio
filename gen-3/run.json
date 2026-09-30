@@ -1,0 +1,169 @@
+{
+  "spec": "experiments/gen_compare.yaml",
+  "started": "2026-09-30T03:47:59",
+  "results": [
+    {
+      "model": "nano_banana_pro",
+      "shot": "flatlay",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.150008,
+      "file": "nano_banana_pro/flatlay_1.jpg",
+      "sec": 33.3
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "flatlay",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.146564,
+      "file": "nano_banana_pro/flatlay_2.jpg",
+      "sec": 27.3
+    },
+    {
+      "model": "gpt_image_2",
+      "shot": "flatlay",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.464244,
+      "file": "gpt_image_2/flatlay_1.jpg",
+      "sec": 119.2
+    },
+    {
+      "model": "gpt_image_2",
+      "shot": "flatlay",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.411119,
+      "file": "gpt_image_2/flatlay_2.jpg",
+      "sec": 118.5
+    },
+    {
+      "model": "seedream_5_pro",
+      "shot": "flatlay",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.105,
+      "file": "seedream_5_pro/flatlay_1.jpg",
+      "sec": 110.5
+    },
+    {
+      "model": "seedream_5_pro",
+      "shot": "flatlay",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.105,
+      "file": "seedream_5_pro/flatlay_2.jpg",
+      "sec": 129.9
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "flatlay_guide",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.147154,
+      "file": "nano_banana_pro/flatlay_guide_1.jpg",
+      "sec": 27.0
+    },
+    {
+      "model": "gpt_image_2",
+      "shot": "flatlay_guide",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.469673,
+      "file": "gpt_image_2/flatlay_guide_1.jpg",
+      "sec": 118.4
+    },
+    {
+      "model": "seedream_5_pro",
+      "shot": "flatlay_guide",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.108,
+      "file": "seedream_5_pro/flatlay_guide_1.jpg",
+      "sec": 168.9
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "person",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.142514,
+      "file": "nano_banana_pro/person_1.jpg",
+      "sec": 23.8
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "person",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.145396,
+      "file": "nano_banana_pro/person_2.jpg",
+      "sec": 27.8
+    },
+    {
+      "model": "gpt_image_2",
+      "shot": "person",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.459713,
+      "file": "gpt_image_2/person_1.jpg",
+      "sec": 119.1
+    },
+    {
+      "model": "gpt_image_2",
+      "shot": "person",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.457015,
+      "file": "gpt_image_2/person_2.jpg",
+      "sec": 132.5
+    },
+    {
+      "model": "seedream_5_pro",
+      "shot": "person",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.105,
+      "file": "seedream_5_pro/person_1.jpg",
+      "sec": 112.5
+    },
+    {
+      "model": "seedream_5_pro",
+      "shot": "person",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.105,
+      "file": "seedream_5_pro/person_2.jpg",
+      "sec": 124.3
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "mannequin",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.144164,
+      "file": "nano_banana_pro/mannequin_1.jpg",
+      "sec": 29.6
+    },
+    {
+      "model": "gpt_image_2",
+      "shot": "mannequin",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.456396,
+      "file": "gpt_image_2/mannequin_1.jpg",
+      "sec": 107.4
+    },
+    {
+      "model": "seedream_5_pro",
+      "shot": "mannequin",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.105,
+      "file": "seedream_5_pro/mannequin_1.jpg",
+      "sec": 121.9
+    }
+  ],
+  "finished": "2026-09-30T04:15:31"
+}
