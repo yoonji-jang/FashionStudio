@@ -162,11 +162,10 @@ outfit_image:
   engine: generate
   model: nano_banana_pro     # config/models.yaml generate.models 키
   prompt: outfit_generate    # prompts/outfit_generate.md
-  # 모던한 명품샵 느낌의 흰 바닥 (2026-09-30 사용자: 아이보리·베이지는 흔함). 흰 옷이 묻히지 않게 그림자는 남긴다
+  # 모던한 명품샵 느낌의 쿨그레이 콘크리트 (2026-09-30 사용자가 4안 선택. 아이보리·베이지는 흔함)
   scene: >-
-    seamless matte white plaster floor with a barely visible fine mineral texture, like a minimal
-    luxury boutique or art gallery; bright, soft, diffused daylight from the upper left, pure neutral
-    white with no warm or yellow cast, clean and quiet
+    smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
+    flagship store; soft even daylight from the upper left, cool neutral tone with no warm cast
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
   outer_styling: >-
     The outer is unbuttoned but almost closed: its two front edges lie close together with only a
