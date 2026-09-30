@@ -1,0 +1,59 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "4번 가방이 1번 자켓 소매와 3번 바지 위에 살짝 겹침"
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit/results/G_2.jpg",
+      "round": 1,
+      "score": {
+        "id": "c2",
+        "color": 1,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "2번 셔츠가 원본보다 어두운 회색으로 나옴. 4번 가방이 자켓 밑단과 바지에 겹치고, 5번 부츠 두 짝이 서로 닿음"
+      }
+    },
+    {
+      "id": "c3",
+      "file": "outfit/results/G_3.jpg",
+      "round": 1,
+      "score": {
+        "id": "c3",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "원본에 없는 손목시계와 반지가 바지 옆에 생김"
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [
+    {
+      "slide": "04_하의.jpg",
+      "kind": "색",
+      "note": "고른 색은 차콜인데 사진 속 바지는 거의 검정에 가까운 진한 네이비로 보임",
+      "by": "claude"
+    }
+  ],
+  "summary": "c1 이 원본과 가장 가깝고 없는 물건도 없음(9점). c2 는 셔츠 색이 어둡고 상품끼리 겹침(8점). c3 는 시계와 반지가 생겨 clean 0."
+}
