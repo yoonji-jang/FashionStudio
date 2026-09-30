@@ -38,9 +38,8 @@ def fixed_times(monkeypatch, request):
     import tools.publish
     import tools.schedule
     import tools.share
-    import tools.story
 
     mods = (tools.schedule, tools.share, tools.pick, tools.comments, tools.feedback, tools.notify)
-    for mod in (*mods, tools.publish, tools.story, request.module):
+    for mod in (*mods, tools.publish, request.module):
         if hasattr(mod, "load_profile"):
             monkeypatch.setattr(mod, "load_profile", load)
