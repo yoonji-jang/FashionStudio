@@ -102,6 +102,17 @@ class Copy(BaseModel):
     ai_notice: str = "이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요"
 
 
+class AiLabel(BaseModel):
+    """이미지 파일 안에 AI 합성 표시(IPTC DigitalSourceType, XMP)를 넣는다 (13단계, tools.ai_label).
+    인스타 게시 API 에는 AI 레이블 값이 없어서,
+    Meta 가 이 표시를 읽어 "AI 정보" 레이블을 붙이게 한다."""
+
+    mode: Literal["metadata", "none"] = "none"
+    # composite: 실제 사진 + AI 편집 (누끼·AI 그림자 코디컷), generated: AI 가 통째로 만든 이미지
+    source_type: Literal["composite", "generated"] = "composite"
+    slides: list[Literal["cover", "products", "summary"]] = ["cover"]  # 표시를 넣는 슬라이드 종류
+
+
 class CommentTags(BaseModel):
     """게시 직후 내 댓글(예: 🤍)을 달고, 그 대댓글로 해시태그를 단다 (tools.publish).
     켜면 캡션에는 해시태그를 넣지 않는다."""
@@ -304,6 +315,7 @@ class Profile(BaseModel):
     feed: Feed = Feed()
     copy_rules: Copy = Field(default=Copy(), alias="copy")
     comment_tags: CommentTags = CommentTags()
+    ai_label: AiLabel = AiLabel()
     review: ReviewRules = ReviewRules()
     schedule: Schedule
     pick: PickRules = PickRules()

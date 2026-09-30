@@ -10,7 +10,7 @@ import pytest
 from core.models import PreviewRecord
 from core.profile import load_profile
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
-from tools import notify, publish, share
+from tools import ai_label, notify, publish, share
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
@@ -249,6 +249,8 @@ def test_publish_after_ok(results, store, monkeypatch):  # noqa: F811
     puts = [c for c in api.calls if c[0] == "PUT"]
     assert len(puts) == slides + 1
     assert puts[0][1].endswith("/contents/women/2026-09-27-run5/01.jpg")
+    # 표지에는 AI 합성 표시(IPTC)가 들어간 채로 올라간다 (women 프로필 ai_label: metadata)
+    assert ai_label.read(run / "slides" / "01_cover.jpg") == "trainedAlgorithmicMedia"
     # 다시 돌려도 두 번 게시하지 않는다
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 1

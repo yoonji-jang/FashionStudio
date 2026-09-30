@@ -212,6 +212,20 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 캡션에는 해시태그를 넣지 않습니다 (`manual_link` 의 #광고 는 고지라서 캡션에 남김).
 댓글을 달지 못해도 게시는 그대로 두고 텔레그램 게시 알림에 적습니다.
 
+#### `ai_label` : 인스타 "AI 정보" 레이블 (13단계)
+인스타 게시 API 에는 AI 레이블을 켜는 값이 없습니다. 대신 Meta 는 이미지 파일 안의 업계 표준 표시
+(IPTC `DigitalSourceType`, XMP)를 읽어 게시물에 "AI 정보" 레이블을 붙입니다. 그래서 슬라이드를 저장할 때
+그 표시를 파일에 넣습니다 (`tools.ai_label`). 캡션의 `ai_notice` 고지는 이와 별개로 늘 넣습니다.
+
+| 항목 | 기본값 | 뜻 |
+|---|---|---|
+| `mode` | `none` | `metadata` 면 표시를 넣음, `none` 이면 안 넣음 |
+| `source_type` | `composite` | `composite`: 실제 사진 + AI 편집 (누끼·AI 그림자 코디컷), `generated`: AI 가 통째로 만든 이미지 |
+| `slides` | `[cover]` | 표시를 넣는 슬라이드 종류 (`cover`, `products`, `summary`) |
+
+게시 직전(`tools.publish`)에도 표시가 없으면 픽셀을 다시 압축하지 않고 넣습니다.
+파일 확인: `uv run python -m tools.ai_label out/<날짜>/slides/*.jpg`
+
 #### `review` : 이미지 검수 (7단계)
 코디컷은 AI 입히기 결과가 매번 조금씩 달라서, 후보를 여러 장 만들고 Claude(image-reviewer 에이전트)가
 원본 상품 사진과 비교해 점수를 매깁니다. 항목 5개(색, 모양, 빠진 상품, 삐져나온 조각, 겹침·잘림) × 0~2점 = 10점 만점.

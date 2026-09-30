@@ -62,6 +62,10 @@ copy:  # 제목·문구·캡션 규칙. 생략한 값은 기본값 (README 참�
   base_hashtags: []
   banned: []
 
+ai_label:  # 이미지 안에 AI 합성 표시(IPTC)를 넣어 인스타 "AI 정보" 레이블을 받는다 (README 참고)
+  mode: metadata
+  slides: [cover]
+
 review:  # 7단계 이미지 검수. 생략하면 기본값 (README 참고)
   candidates: 2
   min_score: 8

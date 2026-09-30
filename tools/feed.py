@@ -27,7 +27,7 @@ from pydantic import ValidationError
 from core.models import FeedItem, FeedSpec, Product
 from core.profile import REPO_ROOT, Feed, Profile, account_dir, load_profile
 from core.store import Store
-from tools import overlay
+from tools import ai_label, overlay
 from tools.compose import load_layout
 from tools.overlay import load_font
 from tools.photoroom import trim_alpha
@@ -587,6 +587,12 @@ def canvas_size(profile: Profile) -> tuple[int, int]:
     return (1080, 1350) if profile.visual.feed_ratio == "4:5" else (1080, 1080)
 
 
+def save_slide(img: Image.Image, path: Path, profile: Profile) -> None:
+    """슬라이드 JPEG 저장. 프로필 ai_label 이 켜진 종류면 AI 합성 표시를 파일에 넣는다."""
+    label = ai_label.save_options(profile.ai_label, ai_label.slide_kind(path))
+    img.save(path, "JPEG", quality=93, **label)
+
+
 def render(
     spec: FeedSpec,
     out: Path,
@@ -608,7 +614,7 @@ def render(
 
     def save(img: Image.Image, name: str) -> None:
         path = out / f"{len(paths) + 1:02d}_{name}.jpg"
-        img.save(path, "JPEG", quality=93)
+        save_slide(img, path, profile)
         paths.append(path)
 
     for kind in kinds:
