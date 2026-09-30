@@ -1,0 +1,30 @@
+account: women
+name: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+items:
+- category: 아우터
+  desc: 블랙 U넥 트위드 자켓 (black collarless U-neck tweed jacket, cropped hip length, slightly
+    boxy fit)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/outfit/src/169380990_4.jpg
+  cm: 110.0
+- category: 상의
+  desc: 아이보리 포켓 워크 셔츠 (ivory cotton work shirt with chest pockets, relaxed regular
+    fit)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/outfit/src/163979005_0.jpg
+  wear_with: 아우터
+  wear_how: the jacket is buttoned up and only the shirt collar and cuffs peek out
+    from it
+  wear_modes:
+  - peek
+- category: 하의
+  desc: 그레이 핀턱 와이드 슬랙스 (grey pintuck wide straight-leg slacks, full length)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/outfit/src/144667358_0.jpg
+  segment: trousers
+  method: segment
+- category: 가방
+  desc: 블랙 나일론 숄더백 (black nylon shoulder bag)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/outfit/src/146668296_0.jpg
+  segment: bag
+- category: 신발
+  desc: 블랙 뒷지퍼 앵클부츠 (black low-heel ankle boots with back zipper)
+  image: /home/runner/work/FashionStudio/FashionStudio/out/2026-09-30/outfit/src/130586820_0.jpg
+  segment: shoe

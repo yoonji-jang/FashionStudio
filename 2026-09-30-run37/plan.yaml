@@ -1,0 +1,92 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 블랙
+  comment: 노카라 U넥이라 안에 받친 셔츠 깃이 깔끔하게 보이고, 격식 있는 오피스룩을 완성해요.
+  photo: 4
+  cutout_photo: 4
+  desc: 블랙 U넥 트위드 자켓 (black collarless U-neck tweed jacket, cropped hip length, slightly boxy fit)
+  name: 블랙 U넥 트위드 자켓
+  product: zigzag:169380990
+- color: 아이보리
+  comment: 자켓 안에 받쳐 입으면 깃과 소매 끝만 살짝 보여 단정해요.
+  photo: 0
+  cutout_photo: 0
+  desc: 아이보리 포켓 워크 셔츠 (ivory cotton work shirt with chest pockets, relaxed regular fit)
+  name: 아이보리 포켓 워크 셔츠
+  product: zigzag:163979005
+  wear_how: the jacket is buttoned up and only the shirt collar and cuffs peek out
+    from it
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 그레이
+  comment: 비 오는 날에도 부담 없는 그레이 톤이고, 와이드 핏이라 앵클부츠와 잘 어울려요.
+  photo: 0
+  cutout_photo: 0
+  desc: 그레이 핀턱 와이드 슬랙스 (grey pintuck wide straight-leg slacks, full length)
+  name: 그레이 핀턱 와이드 슬랙스
+  product: zigzag:144667358
+  method: segment
+  segment: trousers
+- color: 블랙
+  comment: 비에 강한 나일론 소재라 궂은 날 출근길에 들기 좋아요.
+  photo: 0
+  cutout_photo: 0
+  desc: 블랙 나일론 숄더백 (black nylon shoulder bag)
+  name: 블랙 나일론 숄더백
+  product: zigzag:146668296
+  segment: bag
+- color: 블랙
+  comment: 낮은 굽이라 비 오는 날에도 편하게 신을 수 있는 앵클부츠예요.
+  photo: 0
+  cutout_photo: 0
+  desc: 블랙 뒷지퍼 앵클부츠 (black low-heel ankle boots with back zipper)
+  name: 블랙 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  segment: shoe
+reason: 비 오는 날에도 단정한 블랙 U넥 트위드 자켓에 아이보리 워크 셔츠를 안에 받쳐 입는 가장 무난한 오피스룩으로 트위드로 격식을 살리고 그레이 슬랙스와
+  앵클부츠로 젖어도 부담 없게 맞췄어요. 블랙·그레이·아이보리 세 색만 써서 따라 입기 쉽고, 나일론 백은 비에 강해요.
+text:
+  title_lines:
+  - 비 오는 수요일 출근길엔
+  - 블랙 트위드로 단정하게
+  intro: 비 소식 있는 수요일 출근길엔 블랙 트위드 자켓으로 단정하게 입어요 ☔
+  points:
+  - 블랙 트위드 자켓 안에 아이보리 셔츠를 받쳐 깃만 살짝 보이게 입어요
+  - 그레이 슬랙스와 블랙 앵클부츠로 어두운 톤을 맞췄어요 🖤
+  - 나일론 숄더백이라 비 오는 날에도 부담 없이 들 수 있어요
+  hashtags:
+  - '#트위드자켓'
+  - '#출근룩'
+  - '#오피스룩'
+  - '#비오는날코디'
+  - '#슬랙스코디'
+  - '#앵클부츠'
+  - '#가을코디'
+theme:
+  date: '2026-09-30'
+  mood: 블랙·그레이·아이보리 차분한 오피스룩
+  search_terms:
+    가방:
+    - 나일론 숄더백
+    신발:
+    - 앵클부츠
+    아우터:
+    - 블랙 트위드 자켓
+    하의:
+    - 그레이 슬랙스
+  slots:
+  - category: 아우터
+    desc: 블랙 트위드 자켓 또는 가벼운 아우터
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 그레이·블랙 슬랙스나 데님
+  - category: 가방
+    desc: 블랙 나일론 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠나 로퍼
+  title_hint: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+  type: 상황
+  why: 수요일, 서울 약한 비 15~24도라 젖어도 부담 없는 어두운 하의와 낮은 굽 신발, 가볍게 걸칠 아우터
