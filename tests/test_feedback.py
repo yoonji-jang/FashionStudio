@@ -22,7 +22,9 @@ def slides_of(results):  # noqa: F811
 
 def test_slide_map_follows_carousel_order(results):  # noqa: F811
     slides = slides_of(results)
-    assert slides[0]["kind"] == "cover" and slides[-1]["kind"] == "summary"
+    assert slides[0]["kind"] == "cover"
+    # profile feed.slides 순서: cover, products, summary, comment(댓글 안내 장)
+    assert [s["kind"] for s in slides if s["kind"] != "product"] == ["cover", "summary", "comment"]
     products = [s for s in slides if s["kind"] == "product"]
     m = notify.load_manifest(results / RUN)
     assert [s["product"] for s in products] == [p.id for p in m.plan.items]

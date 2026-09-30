@@ -10,7 +10,7 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
 
 - `fix.json`: 받은 피드백. `fixes` 는 `{slide, kind, product, category, text}` 목록이다.
   `kind`: `cover`(표지 코디컷·제목), `product`(상품 장, `product` 는 상품 창고 id), `summary`(요약 장),
-  `caption`(캡션), `all`(장을 정하지 않음), `slide`(그 밖의 장). `slides` 는 장 번호 → 종류 표다.
+  `comment`(댓글 안내 장), `caption`(캡션), `all`(장을 정하지 않음), `slide`(그 밖의 장). `slides` 는 장 번호 → 종류 표다.
 - `plan.yaml`: 지난 기획. `cover:` 에 지난 표지 코디컷(이미 검수한 것)이 적혀 있다.
 - `review/review.json`: 지난 검수 기록 (표지 점수 그대로).
 - `before/`: 지난 `slides/`, `preview.jpg`, `caption.txt`, `report.md`, 코디컷 지시문 `prompt.txt`.
@@ -43,6 +43,7 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      상품 자체를 바꿔 달라는 요청이면 같은 카테고리 상품을 `python -m tools.plan candidates` 에서 골라
      바꾸고, 사진 확인(`photo-checker`)과 이름·코멘트를 새로 한 뒤 `cover:` 를 지운다 (표지에도 보이므로).
    - **요약 장**: 상품 이름이 문제면 그 상품의 `name` 을 고친다. 레이아웃 같은 코드 문제면 고치지 않고 적는다.
+   - **댓글 안내 장**: 문구·모양은 profile 설정이라 고치지 않고 `fix_result.yaml` 에 적는다.
    - **캡션**: `text.intro`, `text.points`, `text.hashtags` 를 `write-copy` 기준으로 고친다.
      고지 문구와 제품 목록은 도구가 붙이므로 손대지 않는다.
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.

@@ -49,6 +49,7 @@ KIND_NAMES = {
     "cover": "표지",
     "product": "상품 장",
     "summary": "요약 장",
+    "comment": "댓글 안내 장",
     "slide": "장",
     "caption": "캡션",
     "all": "전체",
@@ -69,8 +70,8 @@ def slide_map(manifest: Manifest) -> list[dict]:
         entry: dict = {"no": i, "file": Path(img).name}
         if stem == "cover":
             entry["kind"] = "cover"
-        elif stem == "summary":
-            entry["kind"] = "summary"
+        elif stem in ("summary", "comment"):
+            entry["kind"] = stem
         elif (
             n_product < len(manifest.plan.items) and stem == manifest.plan.items[n_product].category
         ):

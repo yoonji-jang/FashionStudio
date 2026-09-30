@@ -220,7 +220,7 @@ class FeedbackEntry(BaseModel):
     date: date  # 게시 날짜
     run: str | None = None  # 피드백을 받은 미리보기 결과 폴더 (daily-results)
     slide: int | None = None  # 장 번호 (1부터). 캡션이나 전체면 None
-    kind: Literal["cover", "product", "summary", "slide", "caption", "all"] = "all"
+    kind: Literal["cover", "product", "summary", "comment", "slide", "caption", "all"] = "all"
     product: str | None = None  # 상품 장이면 상품 창고 id
     text: str
     at: int  # 보낸 시각 (유닉스 초)
