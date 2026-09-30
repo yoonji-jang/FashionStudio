@@ -6,7 +6,8 @@ r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 
 3. 승인 확인: 텔레그램 답장 /ok, /skip (profile approval)
    - required: /ok 가 있어야 게시
    - optional: /skip 이 없으면 게시. 단 검수에서 사람 확인(needs_human)이 붙은 날은 /ok 가 있어야 함
-4. 사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
+4. 프로필 ai_label 이 켜져 있으면 표지 등에 AI 합성 표시(IPTC)가 없을 때 넣기 (tools.ai_label)
+   사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
 5. 게시 기록(data/<계정>/posts.json)과 결과 폴더 published.json 을 쓰고 텔레그램으로 알림
 
 종료 코드: 0 게시·건너뜀·이미 게시됨, 3 아직 승인 없음(게시 안 함), 1 오류
@@ -43,7 +44,7 @@ from core.models import (
 )
 from core.profile import Profile, load_profile
 from core.store import Store
-from tools import notify, share
+from tools import ai_label, notify, share
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
@@ -220,7 +221,9 @@ def run(
         n = len(notify.full_caption(manifest))
         print(f"(시험) 사진 {len(images)}장, 캡션 {n}자를 게시할 예정")
         for p in images:
-            print(f"  {p.name}")
+            marked = ai_label.labeled(profile.ai_label, ai_label.slide_kind(p))
+            mark = " (AI 합성 표시)" if marked else ""
+            print(f"  {p.name}{mark}")
         return 0
 
     ig_cfg = cfg.get("instagram", {})
@@ -240,6 +243,8 @@ def run(
     if limit and limit[0] >= limit[1]:
         raise Blocked(f"인스타 24시간 게시 한도에 닿았습니다 ({limit[0]}/{limit[1]})")
 
+    for name in ai_label.ensure(profile.ai_label, images):
+        print(f"{tag} {name}: AI 합성 표시(IPTC)를 넣었습니다")
     uploaded = host.upload(images, f"{account}/{out.name}")
     try:
         media_id = ig.publish([u.url for u in uploaded], post_caption(profile, manifest))

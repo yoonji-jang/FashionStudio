@@ -140,6 +140,14 @@ copy:
   link_line: 상품 정보는 프로필 링크에서 확인하세요
   ai_notice: 이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요
 
+# 이미지 파일 안에 AI 합성 표시(IPTC DigitalSourceType)를 넣는다 (13단계, tools.ai_label).
+# 인스타 게시 API 에는 AI 레이블 값이 없어서, Meta 가 이 표시를 읽어 "AI 정보" 레이블을 붙이게 한다.
+# mode: metadata(넣음) | none, source_type: composite(실제 사진 + AI 편집) | generated(AI 가 통째로 만듦)
+ai_label:
+  mode: metadata
+  source_type: composite
+  slides: [cover]  # 누끼·AI 그림자로 만든 코디컷 표지만. 상품 장·요약 장은 쇼핑몰 사진이라 넣지 않음
+
 # 게시 직후 내 댓글(🤍)을 달고 그 대댓글로 해시태그를 단다 (tools.publish). 켜면 캡션에는 해시태그가 없다.
 # 대댓글 = 코디 해시태그(copy.hashtags) + 소통용 follow_hashtags, 최대 max 개
 comment_tags:
