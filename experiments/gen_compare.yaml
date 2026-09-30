@@ -1,0 +1,59 @@
+# 11단계 생성형 이미지 AI 비교 실험 (tools.generate). 같은 코디를 모델마다, 장면마다 만든다.
+# 상품 사진은 9/29 게시물 run31 의 누끼를 쓴다 (git 브랜치:경로). Photoroom 호출 없음.
+# guide 는 flatlay_guide 장면에 구도 가이드로 보낼 우리 코디컷.
+title: 9/29 차콜 롱코트 출근룩
+guide: daily-results:2026-09-29-run31/outfit/results/C_1.jpg
+compare_with: daily-results:2026-09-29-run31/outfit/results/C_1.jpg  # 비교표 맨 왼쪽 "지금 방식"
+
+items:
+  - category: 아우터
+    desc: charcoal gray wool long coat with a self-tie belt, below the knee
+    image: daily-results:2026-09-29-run31/outfit/cutouts/r1/01_outer.png
+  - category: 상의
+    desc: burgundy rib knit top with an attached white shirt collar and white shirt hem
+    image: daily-results:2026-09-29-run31/outfit/cutouts/r1/02_top.png
+  - category: 하의
+    desc: gray high-waist wide straight-leg full-length slacks, equally wide from thigh to hem, no flare
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/03_bottoms.png
+  - category: 가방
+    desc: black glossy leather shoulder tote bag
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/04_bag.png
+  - category: 신발
+    desc: black leather loafers
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/05_shoes.png
+  - category: 소품
+    desc: small silver drop earrings
+    image: daily-results:2026-09-29-run31/outfit/refined/r1/06_accessory.png
+
+# 모든 장면 공통 입는 방법
+styling: >-
+  The coat is worn open over the knit, so the burgundy knit with its white collar and white hem is
+  clearly visible down the front between the open coat panels; the coat belt hangs loose. The knit
+  hem sits over the waistband of the slacks.
+
+# 장면별 추가 값. repeats: 모델마다 몇 장
+shots:
+  flatlay:
+    repeats: 2
+    scene: >-
+      smooth warm light-grey linen-textured floor, soft natural window light from the upper left with
+      faint diagonal window-frame light stripes across the floor, calm and clean
+  flatlay_guide:
+    repeats: 1
+    scene: >-
+      smooth warm light-grey linen-textured floor, soft natural window light from the upper left with
+      faint diagonal window-frame light stripes across the floor, calm and clean
+  person:
+    repeats: 2
+    person: >-
+      a slim young Korean woman in her twenties, full body from the shoulders down to the shoes,
+      walking on a quiet autumn street, the bag on her shoulder, earrings visible near the jaw line
+      at the top edge of the frame
+    mood: early autumn morning in a quiet Seoul side street with warm sunlight, Pinterest editorial
+  mannequin:
+    repeats: 1
+    mannequin: >-
+      a beige linen dress form (headless torso on a thin wooden stand) in a bright minimal studio
+      with a warm off-white wall and light wood floor; the slacks are worn by a matching full-leg
+      form, the loafers on the floor at its feet, the bag hanging from the stand, earrings on a small
+      tray beside it

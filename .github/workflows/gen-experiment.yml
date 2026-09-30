@@ -1,0 +1,86 @@
+name: gen-experiment
+
+# 11단계 생성형 이미지 AI 비교 실험 (tools.generate). OpenRouter 요금이 나가므로 사람이 켤 때만 돈다.
+# - Actions 탭에서 "Run workflow" (main에 합쳐진 뒤)
+# - 또는 작업 브랜치에 커밋 메시지에 [gen-exp] 를 넣어 푸시 ([models:a b] [shots:flatlay] 로 좁히기)
+# 결과는 artifact 로 올리고, poc-results 브랜치의 gen-<실행번호>/ 폴더에도 커밋한다.
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 실험 설정 파일
+        default: experiments/gen_compare.yaml
+      models:
+        description: 모델 (빈칸이면 config/models.yaml generate 전부, 예 "nano_banana_pro")
+        default: ""
+      shots:
+        description: 장면 (빈칸이면 전부, 예 "flatlay person")
+        default: ""
+  push:
+    branches: ["claude/**"]
+    paths: ["experiments/**", "prompts/**", "config/**", "tools/generate.py",
+            ".github/workflows/gen-experiment.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gen-experiment
+  cancel-in-progress: false
+
+jobs:
+  gen:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[gen-exp]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SPEC: ${{ inputs.spec || 'experiments/gen_compare.yaml' }}
+      MODELS: ${{ inputs.models }}
+      SHOTS: ${{ inputs.shots }}
+      OUT: out/gen/gen-${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: 상품 사진이 있는 결과 브랜치 받기
+        run: git fetch origin daily-results poc-results || true
+
+      - name: 실험 실행
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          re_m='\[models:([^]]+)\]'; re_s='\[shots:([^]]+)\]'
+          [[ "$COMMIT_MSG" =~ $re_m ]] && MODELS="${BASH_REMATCH[1]}"
+          [[ "$COMMIT_MSG" =~ $re_s ]] && SHOTS="${BASH_REMATCH[1]}"
+          args=(--spec "$SPEC" --out "$OUT")
+          [ -n "$MODELS" ] && args+=(--models $MODELS)
+          [ -n "$SHOTS" ] && args+=(--shots $SHOTS)
+          uv run python -m tools.generate "${args[@]}"
+
+      - name: 요약 표시
+        if: always()
+        run: '[ -f "$OUT/report.md" ] && cat "$OUT/report.md" >> "$GITHUB_STEP_SUMMARY" || true'
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gen-${{ github.run_number }}
+          path: ${{ env.OUT }}
+          if-no-files-found: ignore
+
+      - name: poc-results 브랜치에 결과 커밋
+        if: always()
+        run: |
+          [ -d "$OUT" ] || exit 0
+          dest="gen-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          git worktree add /tmp/results origin/poc-results
+          git -C /tmp/results checkout -B poc-results
+          mkdir -p "/tmp/results/$dest"
+          cp -r "$OUT"/. "/tmp/results/$dest/"
+          echo "source: ${{ github.sha }} ($SPEC)" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "생성형 이미지 실험 결과 $dest"
+          git -C /tmp/results push origin poc-results
