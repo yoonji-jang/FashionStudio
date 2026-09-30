@@ -220,6 +220,10 @@ class Schedule(BaseModel):
     collect_at: str | None = Field(default=None, pattern=WEEKLY)  # 상품 수집 (예: "월,목 04:17")
     token_refresh_at: str | None = Field(default=None, pattern=WEEKLY)  # 인스타 토큰 연장
     reels_at: str | None = Field(default=None, pattern=HHMM)
+    # GitHub 예약(cron) 줄 (12단계). all: 모든 칸. backup: 외부 스케줄러(cron-job.org)가 정시에
+    # 깨울 때 예비로 주요 칸(후보, 고르기 처음·마감, 게시 처음·마지막, 주간 작업)만 둬서
+    # Actions 시간을 아낌
+    github_cron: Literal["all", "backup"] = "all"
 
 
 class PickRules(BaseModel):
