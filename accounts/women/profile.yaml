@@ -90,11 +90,11 @@ feed:
   product_image: photo       # 상품 장 사진: photo(쇼핑몰 원본 사진) 또는 cutout(누끼)
   hide_faces: true           # 모델 얼굴이 없는 사진을 먼저 고르고, 없으면 얼굴 아래로 잘라 씀
   photo_candidates: 6        # 상품마다 살펴볼 사진 수 (앞에서부터)
-  background: "#EEEBE6"      # 상품·요약 장 배경색
+  background: "#E7E9EB"      # 상품·요약 장 배경색 (코디컷 쿨그레이 바닥에 맞춤, 2026-09-30)
   background_image: null     # accounts/women/ 기준 배경 사진 (있으면 배경색 대신)
   text_color: "#222222"
-  sub_color: "#8C867E"       # 쇼핑몰·카테고리 같은 보조 글자
-  comment_color: "#57524B"
+  sub_color: "#868B90"       # 쇼핑몰·카테고리 같은 보조 글자
+  comment_color: "#51565B"
   body_font: Pretendard-Medium.otf
   margin_x: 0.104            # 좌우 여백 (표지 제목과 같게)
   text_top: 0.70             # 상품 장 글자 시작 높이. 넘길 때 같은 자리에 오도록 고정
