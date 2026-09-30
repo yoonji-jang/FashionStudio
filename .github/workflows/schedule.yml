@@ -10,6 +10,8 @@ name: schedule
 #                profile comments.check_at 에 따로 깨어나고, 다른 작업 때도 같이 본다
 #   share      → 게시 알림에 답장한 공유리워드 링크를 게시 기록에 넣고 상품 페이지를 다시 올림
 #                (monetize: manual_link, tools.share, 다른 작업 때 같이)
+#   fix        → 미리보기에 온 /fix 피드백을 data/<계정>/feedback.jsonl 에 쌓고, 다시 만들 것이면
+#                daily (mode=fix: 같은 기획을 피드백대로 고쳐 새 미리보기, 15단계 tools.feedback)
 # 아래 cron 줄은 `uv run python -m tools.schedule sync` 가 프로필에서 만든다 (UTC). 직접 고치지 않는다.
 # 12단계: GitHub 예약은 자주 빠지거나 몇 시간 늦어서, 외부 스케줄러(cron-job.org)가 정시에
 # workflow_dispatch(cron=auto)로 깨우고 GitHub 예약은 예비로 남긴다 (README "외부 스케줄러").
@@ -31,12 +33,17 @@ on:
     - cron: "17 5 * * *"  # women pick 14:17
     - cron: "47 5 * * *"  # women pick 14:47
     - cron: "17 6 * * *"  # women pick 15:17
-    - cron: "17 7 * * *"  # women links 16:17
-    - cron: "17 8 * * *"  # women links 17:17
+    - cron: "47 6 * * *"  # women fix 15:47
+    - cron: "17 7 * * *"  # women links 16:17, women fix 16:17
+    - cron: "47 7 * * *"  # women fix 16:47
+    - cron: "17 8 * * *"  # women links 17:17, women fix 17:17
+    - cron: "47 8 * * *"  # women fix 17:47
     - cron: "17 9 * * 0"  # women themes 일 18:17
-    - cron: "17 9 * * *"  # women links 18:17
+    - cron: "17 9 * * *"  # women links 18:17, women fix 18:17
     - cron: "47 9 * * 0"  # women token 일 18:47
-    - cron: "17 10 * * *"  # women links 19:17
+    - cron: "47 9 * * *"  # women fix 18:47
+    - cron: "17 10 * * *"  # women links 19:17, women fix 19:17
+    - cron: "47 10 * * *"  # women fix 19:47
     - cron: "3 11 * * *"  # women publish 20:03
     - cron: "33 11 * * *"  # women publish 20:33
     - cron: "3 12 * * *"  # women publish 21:03
@@ -99,7 +106,7 @@ jobs:
           uv run python -m tools.schedule run --cron "$CRON" --results /tmp/results \
             ${{ inputs.dry_run && '--dry-run' || '' }}
 
-      - name: 결정 기록 커밋 (실행한 칸, 고른 번호, 주제 다시 정하기, 댓글 DM, 공유리워드 링크)
+      - name: 결정 기록 커밋 (실행한 칸, 고른 번호, 주제 다시 정하기, 댓글 DM, 공유리워드 링크, 피드백)
         # 실행 요청을 보낸 뒤 실패해도 한 칸 기록은 남겨야 두 번 보내지 않는다
         if: ${{ always() && !inputs.dry_run }}
         run: |
@@ -121,6 +128,7 @@ jobs:
           commit . "${{ github.ref_name }}" "주제 다시 정하기 요청" ':(glob)data/*/themes_review.json'
           commit . "${{ github.ref_name }}" "댓글 DM 기록" ':(glob)data/*/dm.json'
           commit . "${{ github.ref_name }}" "공유리워드 링크" ':(glob)data/*/posts.json'
+          commit . "${{ github.ref_name }}" "이미지 피드백 기록" ':(glob)data/*/feedback.jsonl'
 
       - name: 실패 알림
         if: failure()

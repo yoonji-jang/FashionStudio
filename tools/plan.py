@@ -190,6 +190,13 @@ def context(profile: Profile, store: Store, day: date, with_weather: bool = True
     lines += [f"- {p.date}: {p.title}" + (f" ({p.theme})" if p.theme else "") for p in recent]
     if not recent:
         lines.append("- 없음")
+    from tools import feedback
+
+    fb = feedback.recent_lines(store, day, profile.feedback.recent_days)
+    if fb:
+        # 15단계 /fix 피드백: 같은 지적이 다시 나오지 않게 상품·문구·코디컷 배치에서 참고한다
+        lines += ["", f"## 최근 {profile.feedback.recent_days}일 사람 피드백 (같은 문제 피하기)"]
+        lines += fb
     week = [t for t in store.themes() if day - timedelta(days=7) <= t.date < day]
     if week:
         lines += ["", "## 지난 7일 주제"]

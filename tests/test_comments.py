@@ -277,17 +277,17 @@ def test_schedule_runs_comments_with_other_ticks(monkeypatch, profile):
     assert crons[("comments", "08:17")] == "17 23 * * *"
     now = datetime(2026, 9, 28, 11, 5, tzinfo=UTC)
     tasks = schedule.due("3 11 * * *", now, ["women"])
-    assert [t.task for t in tasks if t.task != "links"] == ["publish", "comments"]
+    assert [t.task for t in tasks if t.task not in ("links", "fix")] == ["publish", "comments"]
     tasks = schedule.due("17 23 * * *", datetime(2026, 9, 27, 23, 20, tzinfo=UTC), ["women"])
-    assert [t.task for t in tasks if t.task != "links"] == ["comments"]
+    assert [t.task for t in tasks if t.task not in ("links", "fix")] == ["comments"]
     profile.comments.mode = "external"  # ManyChat 이 보내면 확인하지 않음
     ext = schedule.due("3 11 * * *", now, ["women"])
-    assert [t.task for t in ext if t.task != "links"] == ["publish"]
+    assert [t.task for t in ext if t.task not in ("links", "fix")] == ["publish"]
     assert not [s for s in schedule.slots(profile) if s.task == "comments"]
     profile.comments.mode = "builtin"
     profile.comments.with_other_ticks = False
     off = schedule.due("3 11 * * *", now, ["women"])
-    assert [t.task for t in off if t.task != "links"] == ["publish"]
+    assert [t.task for t in off if t.task not in ("links", "fix")] == ["publish"]
     ran = []
     monkeypatch.setattr(comments, "check", lambda *a: ran.append(a) or "ok")
     schedule.execute(tasks, None, schedule.DryRun(), None, now, dry_run=True)

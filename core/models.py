@@ -206,6 +206,28 @@ class PreviewRecord(BaseModel):
 
 Decision = Literal["ok", "skip"]
 
+# 피드백 처리 결과. rerender: 고친 게시물을 다시 만듦 / limit: 하루 횟수를 넘음 / late: 게시 마감이
+# 가까움 / busy: 앞의 피드백으로 다시 만드는 중 / after_post: 이미 게시함 / sandbox: 시험 미리보기
+# / no_preview: 미리보기를 보내기 전
+FeedbackResult = Literal["rerender", "limit", "late", "busy", "after_post", "sandbox", "no_preview"]
+
+
+class FeedbackEntry(BaseModel):
+    """텔레그램 /fix 피드백 한 줄 (data/<계정>/feedback.jsonl, 15단계 tools.feedback).
+    자주 나오는 피드백은 검수 기준·배치 규칙과 11단계 시험 세트에 더할 후보가 된다."""
+
+    account: str
+    date: date  # 게시 날짜
+    run: str | None = None  # 피드백을 받은 미리보기 결과 폴더 (daily-results)
+    slide: int | None = None  # 장 번호 (1부터). 캡션이나 전체면 None
+    kind: Literal["cover", "product", "summary", "slide", "caption", "all"] = "all"
+    product: str | None = None  # 상품 장이면 상품 창고 id
+    text: str
+    at: int  # 보낸 시각 (유닉스 초)
+    update_id: int  # 텔레그램 업데이트 번호 (같은 글을 두 번 처리하지 않음)
+    result: FeedbackResult
+    round: int = 0  # rerender 면 그날 몇 번째 다시 만들기인지
+
 
 class PickRecord(BaseModel):
     """텔레그램으로 보낸 코디 후보 (결과 폴더의 picks/pick.json, 9단계 tools.pick).

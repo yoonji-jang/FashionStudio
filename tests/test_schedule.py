@@ -42,8 +42,9 @@ def test_pick_disabled_has_no_pick_slots():
 
 
 def due(*args) -> list[schedule.Task]:
-    """공유리워드 작업(links, share)은 모든 작업에 붙어서 빼고 본다 (test_share)."""
-    return [t for t in schedule.due(*args) if t.task not in ("links", "share")]
+    """공유리워드(links, share)·피드백(fix) 작업은 모든 작업에 붙어서 빼고 본다
+    (test_share, test_feedback)."""
+    return [t for t in schedule.due(*args) if t.task not in ("links", "share", "fix")]
 
 
 def test_due_uses_fired_cron_even_when_actions_is_late():
@@ -245,7 +246,8 @@ def test_ticks_file_is_pruned(tmp_path):
 
 def test_external_jobs_cover_every_slot():
     lines = schedule.external_jobs(["women"])
-    assert "Asia/Seoul  매일  10~14시  17,47분" in lines
+    # 고르기(10~15시)와 /fix 확인(15:47~19:47)이 30분 간격으로 이어진다
+    assert "Asia/Seoul  매일  10~19시  17,47분" in lines
     assert "Asia/Seoul  매일  20~21시  03,33분" in lines
     # 일 18:17 주제는 매일 18:17 칸과 같아서 따로 만들지 않음
     assert not any(line.split()[1] == "일" and "17분" in line for line in lines)

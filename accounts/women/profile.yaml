@@ -209,6 +209,14 @@ pick:
   on_timeout: first  # 마감까지 안 고르면 first(1번으로 진행) 또는 skip(그날 건너뜀)
   max_again: 2       # "다시"로 새 후보를 받을 수 있는 횟수
 
+# 미리보기 고칠 점 (15단계). 텔레그램 /fix 1 신발 더 크게 → 같은 코디로 고쳐 새 미리보기
+feedback:
+  enabled: true
+  max_fixes: 2        # 하루에 다시 만드는 횟수
+  check_every: 30     # 고르기 마감~게시 사이 /fix 확인 간격(분). 바꾸면 tools.schedule sync
+  render_minutes: 40  # 게시 마지막 확인(22:03)까지 이만큼 남아야 다시 만듦
+  recent_days: 14     # 최근 피드백을 다음 기획·검수에 보여 줄 기간(일)
+
 # 댓글 → DM 코디 링크 (10단계). 켜면 캡션의 "프로필 링크" 문구 대신 cta 가 들어간다.
 # DM 은 mode 에 따라 external: ManyChat 이 댓글 즉시 보냄 (DM 에는 아래 link_page 주소)
 #                     builtin: tools.comments 가 자동 실행 때 확인해 보냄 (30분~몇 시간 늦음, 토큰 권한 필요)

@@ -4,6 +4,7 @@
 - themes.json:   주간 주제
 - posts.json:    게시 기록 (중복 게시 방지, 댓글 DM 링크)
 - dm.json:       댓글 DM 기록 (댓글 id 해시만)
+- feedback.jsonl: 텔레그램 /fix 피드백 (15단계, 한 줄에 하나)
 - cache/:        상품별 정리컷 이미지 (git 제외)
 """
 
@@ -15,7 +16,7 @@ from pathlib import Path
 
 from pydantic import TypeAdapter
 
-from core.models import DmState, PostRecord, Product, Theme
+from core.models import DmState, FeedbackEntry, PostRecord, Product, Theme
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
@@ -72,6 +73,22 @@ class Store:
 
     def save_dm(self, state: DmState) -> None:
         self._write("dm.json", state.model_dump_json(indent=2).encode())
+
+    def feedback(self) -> list[FeedbackEntry]:
+        path = self.dir / "feedback.jsonl"
+        if not path.exists():
+            return []
+        lines = path.read_text(encoding="utf-8").splitlines()
+        return [FeedbackEntry.model_validate_json(line) for line in lines if line.strip()]
+
+    def add_feedback(self, entries: list[FeedbackEntry]) -> None:
+        """한 줄씩 덧붙인다 (지난 줄은 고치지 않음)."""
+        if not entries:
+            return
+        self.dir.mkdir(parents=True, exist_ok=True)
+        with (self.dir / "feedback.jsonl").open("a", encoding="utf-8") as f:
+            for e in entries:
+                f.write(e.model_dump_json() + "\n")
 
     def recent_posts(self, today: date, days: int) -> list[PostRecord]:
         since = today - timedelta(days=days)

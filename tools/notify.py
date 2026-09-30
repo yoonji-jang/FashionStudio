@@ -3,6 +3,7 @@ r"""텔레그램 미리보기·승인·알림 (8단계). 외부로 보내는 도
 - preview: 캐러셀 슬라이드, 캡션, 검수 결과를 보내고 결과 폴더에 telegram.json 을 남긴다.
   승인 버튼(/ok, /skip)은 텔레그램 입력창 아래 키보드로 나온다. 누르면 그 글이 채팅에 남는다.
 - decision: 미리보기 뒤에 온 답장에서 /ok 또는 /skip 을 찾는다 (게시 job 이 부름).
+  고칠 점 /fix 는 tools.feedback 이 읽는다 (15단계).
 - send: 알림 한 줄.
 
 봇 서버 없이 동작한다. 답장은 게시 job 이 돌 때 getUpdates 로 읽는다 (텔레그램이 24시간 보관).
@@ -156,10 +157,24 @@ def command_label(profile: Profile, day: date) -> str:
     return f"{profile.id} {day:%m-%d}"
 
 
-def control_text(manifest: Manifest, profile: Profile, sandbox: bool) -> str:
+def control_text(
+    manifest: Manifest,
+    profile: Profile,
+    sandbox: bool,
+    fix: dict | None = None,
+    changes: list[str] | None = None,
+) -> str:
     day = manifest.date
     lines = [f"[{profile.id}] {day} {profile.schedule.publish_at} 게시 예정"]
     lines.append("제목: " + " / ".join(manifest.title_lines))
+    if fix:
+        lines.append("")
+        lines.append(f"고친 점 ({fix.get('round', 1)}/{profile.feedback.max_fixes}회)")
+        from tools.feedback import label
+
+        lines += [f"- {c}" for c in changes or []] or [
+            f"- {label(f)}: {f['text']}" for f in fix.get("fixes", [])
+        ]
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
     if manifest.needs_human:
@@ -184,16 +199,29 @@ def control_text(manifest: Manifest, profile: Profile, sandbox: bool) -> str:
         lines.append(
             f"/skip {label} 을 보내지 않으면 {profile.schedule.publish_at} 에 자동 게시해요"
         )
+    fb = profile.feedback
+    left = fb.max_fixes - (fix or {}).get("round", 0)
+    if fb.enabled and left > 0:
+        lines.append(
+            f"고칠 점은 /fix 1 신발 더 크게 처럼 보내 주세요 (1 = 사진 순서, 캡션은 /fix 캡션 …, "
+            f"사진에 답장해도 돼요. 남은 횟수 {left}번)"
+        )
     return "\n".join(lines)
 
 
 def preview(
     out: Path, run: str, tg: Telegram, sandbox: bool = False, profile: Profile | None = None
 ) -> PreviewRecord:
+    from tools import feedback
+
     manifest = load_manifest(out)
     profile = profile or load_profile(manifest.account)
     slides = slide_paths(manifest, out)
-    head = f"[{profile.id}] {manifest.date} 미리보기 · {len(slides)}장"
+    fix = feedback.load_fix(out)
+    kind = (
+        f"고친 미리보기 {fix.get('round', 1)}/{profile.feedback.max_fixes}회" if fix else "미리보기"
+    )
+    head = f"[{profile.id}] {manifest.date} {kind} · {len(slides)}장"
     ids = tg.send_photos(slides, head)
     ids.append(tg.send(full_caption(manifest)))
     markup = None
@@ -204,7 +232,8 @@ def preview(
             "resize_keyboard": True,
             "one_time_keyboard": True,
         }
-    ids.append(tg.send(control_text(manifest, profile, sandbox), reply_markup=markup))
+    text = control_text(manifest, profile, sandbox, fix, feedback.fix_changes(out))
+    ids.append(tg.send(text, reply_markup=markup))
     record = PreviewRecord(
         account=manifest.account,
         date=manifest.date,

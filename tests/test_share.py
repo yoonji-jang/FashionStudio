@@ -141,10 +141,13 @@ def test_schedule_adds_share_task(monkeypatch):
     monkeypatch.undo()
     monkeypatch.setattr(schedule, "load_profile", manual)
     tasks = schedule.due("17 1 * * *", NOW)
-    assert [t.task for t in tasks] == ["candidates", "links", "share"]
+    assert [t.task for t in tasks if t.task != "fix"] == ["candidates", "links", "share"]
     # 고르기 마감 뒤 /ok 확인 칸 (서울 17:17)
     tasks = schedule.due("17 8 * * *", datetime(2026, 9, 28, 8, 20, tzinfo=UTC))
-    assert [(t.task, t.date) for t in tasks] == [("links", "2026-09-28"), ("share", "2026-09-28")]
+    assert [(t.task, t.date) for t in tasks if t.task != "fix"] == [
+        ("links", "2026-09-28"),
+        ("share", "2026-09-28"),
+    ]
 
 
 def test_links_sent_after_ok_and_replies_used_at_publish(

@@ -264,6 +264,24 @@ class PickRules(BaseModel):
     max_again: int = Field(default=2, ge=0, le=5)  # "다시"로 새 후보를 받을 수 있는 횟수
 
 
+class FeedbackRules(BaseModel):
+    """최종 이미지 피드백 (15단계, tools.feedback). 미리보기를 받은 뒤 텔레그램에
+    `/fix 1 신발 더 크게` (1 = 장 번호), `/fix 캡션 더 짧게` 를 보내면 schedule 이 읽어
+    같은 기획으로 고친 게시물을 다시 만들고(daily mode=fix) 새 미리보기를 보낸다.
+    받은 피드백은 모두 data/<계정>/feedback.jsonl 에 쌓는다."""
+
+    enabled: bool = True
+    max_fixes: int = Field(default=2, ge=0, le=5)  # 하루에 다시 만드는 횟수
+    # /fix 를 확인하는 간격 (분). 고르기 마감(고르기를 끄면 후보 시각)부터 게시 시각까지.
+    # 0 이면 따로 깨어나지 않고 다른 자동 실행 때만 본다
+    check_every: int = Field(default=30, ge=0, le=240)
+    # 게시 마지막 확인 시각까지 이만큼(분) 남아야 다시 만든다 (Claude·코디컷·검수 시간)
+    render_minutes: int = Field(default=40, ge=10, le=180)
+    # 기획(tools.plan context)과 검수(tools.review prep)에 보여 줄 최근 피드백 기간
+    # (일, 0 이면 안 보임)
+    recent_days: int = Field(default=14, ge=0, le=60)
+
+
 class Comments(BaseModel):
     """댓글 → DM 코디 링크 (10단계, tools.comments). 캡션에 안내 문구를 넣고,
     키워드 댓글이 달리면 인스타 비공개 답장(댓글 1개에 DM 1번, 댓글 후 7일 안)으로
@@ -335,6 +353,7 @@ class Profile(BaseModel):
     outfit_image: OutfitImage = OutfitImage()
     schedule: Schedule
     pick: PickRules = PickRules()
+    feedback: FeedbackRules = FeedbackRules()
     comments: Comments = Comments()
     link_page: LinkPage = LinkPage()
     monetize: Monetize = "none"
