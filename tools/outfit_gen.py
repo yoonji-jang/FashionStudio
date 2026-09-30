@@ -36,8 +36,19 @@ CLOTHES_FROM_SHOULDER = ("아우터", "상의", "원피스")
 
 
 def english(desc: str) -> str:
-    """기획 desc "한국어 (영어)" 에서 괄호 안 영어. 괄호가 없으면 desc 그대로."""
-    found = re.findall(r"\(([^()]*[A-Za-z][^()]*)\)", desc)
+    """기획 desc "한국어 (영어)" 에서 괄호 안 영어. 괄호가 없으면 desc 그대로.
+    영어 안에 괄호가 또 있어도 ("… boots, one pair (two boots))") 바깥 괄호 전체를 쓴다."""
+    groups, depth, start = [], 0, 0
+    for i, ch in enumerate(desc):
+        if ch == "(":
+            if depth == 0:
+                start = i + 1
+            depth += 1
+        elif ch == ")" and depth:
+            depth -= 1
+            if depth == 0:
+                groups.append(desc[start:i])
+    found = [g for g in groups if re.search(r"[A-Za-z]", g)]
     return found[-1].strip() if found else desc.strip()
 
 

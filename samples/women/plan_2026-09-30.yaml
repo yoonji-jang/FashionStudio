@@ -14,7 +14,7 @@ items:
   cutout_photo: 0
   photo: 0
   ref_photos: [0]
-  desc: 라이트그레이 워싱 셔츠 (light grey washed cotton button-up shirt with a regular shirt collar, relaxed fit, hip length, double stitching; the photo shows two shirts (front and back views), draw exactly one shirt)
+  desc: 라이트그레이 워싱 셔츠 (light grey washed cotton button-up shirt with a regular shirt collar, relaxed fit, hip length, double stitching; the photo shows two shirts as front and back views, draw exactly one shirt)
   name: 더블스티치 워싱셔츠
   product: zigzag:127356723
 - color: 차콜
@@ -22,9 +22,10 @@ items:
   cutout_photo: 0
   photo: 3
   ref_photos: [0, 3]
-  desc: 차콜 핀턱 슬랙스 (charcoal gray straight-leg slacks with pintucks, full length)
+  desc: 차콜 핀턱 슬랙스 (charcoal gray slim straight-leg slacks with a sharp pintuck crease down each leg, narrow legs that stay the same width from hip to hem, extra long length whose hem covers the top of the foot when worn)
   name: 모티브 핀턱 슬랙스
   product: zigzag:141911042
+  size: about 106 cm long from waist to hem (long enough to cover the top of the foot), each leg about 20 cm wide at the hem
 - color: 블랙
   comment: 나일론 소재라 비 오는 날 들기 편해요. 심플한 숄더 스트랩이라 출근룩에 잘 어울려요.
   cutout_photo: 0
