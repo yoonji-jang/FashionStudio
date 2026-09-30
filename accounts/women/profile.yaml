@@ -145,7 +145,8 @@ copy:
 # mode: metadata(넣음) | none, source_type: composite(실제 사진 + AI 편집) | generated(AI 가 통째로 만듦)
 ai_label:
   mode: metadata
-  source_type: composite
+  # generated: 이름 아래 "AI 콘텐츠" 레이블이 보이게 (composite 는 ⋯ 메뉴 안에만 보일 수 있음)
+  source_type: generated
   slides: [cover]  # 누끼·AI 그림자로 만든 코디컷 표지만. 상품 장·요약 장은 쇼핑몰 사진이라 넣지 않음
 
 # 게시 직후 내 댓글(🤍)을 달고 그 대댓글로 해시태그를 단다 (tools.publish). 켜면 캡션에는 해시태그가 없다.

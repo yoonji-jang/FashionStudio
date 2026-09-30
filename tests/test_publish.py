@@ -250,7 +250,7 @@ def test_publish_after_ok(results, store, monkeypatch):  # noqa: F811
     assert len(puts) == slides + 1
     assert puts[0][1].endswith("/contents/women/2026-09-27-run5/01.jpg")
     # 표지에는 AI 합성 표시(IPTC)가 들어간 채로 올라간다 (women 프로필 ai_label: metadata)
-    assert ai_label.read(run / "slides" / "01_cover.jpg") == "compositeWithTrainedAlgorithmicMedia"
+    assert ai_label.read(run / "slides" / "01_cover.jpg") == "trainedAlgorithmicMedia"
     # 다시 돌려도 두 번 게시하지 않는다
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 1
