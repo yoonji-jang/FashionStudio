@@ -5,10 +5,13 @@
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
 the real clothes on the floor and photographed them from directly above with a camera.
 
-The attached images are product photos of the exact items to use, in this order:
+The attached images are reference sheets of the exact items to use, in this order. Each sheet shows
+several photos of the same single item (a clean cut-out and the shop photos, sometimes worn by a
+model); use them together to get its true details, and draw the item only once:
 $items
 The last attached image is a rough layout guide made by pasting cut-out product photos. Use it only
-for which items appear, their approximate position, size ratio and length. Do not copy its
+for which items appear and their approximate position; follow the real sizes given above for
+size ratios. Do not copy its
 lighting, its perspective, its background or its stiff pasted look.
 
 Keep every item identical to its product photo: same color, fabric texture, pattern, cut, length,
@@ -18,8 +21,9 @@ not add logos or text. Use every item exactly once and add no other clothing.
 Styling: $styling
 Re-photograph the layout as real clothes lying on the floor: garments overlap naturally, sleeves and
 trouser legs relax with soft real fabric folds and a slight natural bend, everything seen from
-directly above with one camera. Shoes are shown from above as a pair.
+directly above with one camera. Shoes are shown from above as a pair. Keep margins small: the outfit
+fills about 85 percent of the frame height with no large empty areas.
 
-Scene: $scene
+Scene: $scene.
 Every item casts a soft contact shadow on the floor, one consistent light direction for everything.
 Vertical 4:5 image, high detail, no people, no mannequin, no hanger, no text, no watermark.

@@ -17,7 +17,8 @@ generate:
   endpoint: https://openrouter.ai/api/v1/chat/completions
   aspect_ratio: "4:5"
   image_size: 2K
-  input_max_px: 1024      # 보낼 상품 사진 긴 변 (크면 느리고 비쌈)
+  input_max_px: 1024      # 참고판에 넣는 사진 한 장의 긴 변
+  panel_max_px: 1536      # 상품 참고판(누끼 + 쇼핑몰 사진 몇 장) 긴 변. 크면 느리고 조금 비쌈
   timeout_sec: 300
   models:
     nano_banana_pro:

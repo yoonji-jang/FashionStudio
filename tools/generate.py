@@ -11,7 +11,11 @@
   python -m tools.generate ... --models nano_banana_pro --shots flatlay
   python -m tools.generate ... --fake        # API 없이 흐름만 확인
 
-결과 (out 폴더): inputs/ 보낸 상품 사진, <모델>/<장면>_<회차>.jpg, sheet.jpg 비교표,
+상품마다 누끼 1장 + 쇼핑몰 사진 몇 장(experiments 의 photos 번호, 같은 색만)을 한 장의 참고판으로
+이어 붙여 보낸다. 사진 수가 늘어도 보내는 이미지는 상품당 1장이라 모델 입력 한도에 걸리지 않는다.
+쇼핑몰 사진은 tools.scout 로 받고, 모델 얼굴은 잘라 낸다.
+
+결과 (out 폴더): inputs/ 보낸 상품 참고판, <모델>/<장면>_<회차>.jpg, sheet.jpg 비교표,
 report.md 요약(모델별 성공 수·시간·비용), run.json 실행 기록.
 API 키는 환경 변수 OPENROUTER_API_KEY.
 """
@@ -25,6 +29,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 from typing import Protocol
@@ -55,6 +60,8 @@ CATEGORY_EN = {
     "소품": "accessory",
 }
 CANVAS = (1080, 1350)
+# 쇼핑몰 원본 사진은 결과 폴더(브랜치에 올라감)에 두지 않는다
+CACHE_DIR = Path(tempfile.gettempdir()) / "fashionstudio_gen"
 
 
 def load_config(path: Path = CONFIG_PATH) -> dict:
@@ -95,16 +102,61 @@ def prepare_input(data: bytes, max_px: int) -> bytes:
     return buf.getvalue()
 
 
+def product_photos(product_id: str, indexes: list[int], account: str, cache: Path) -> list[bytes]:
+    """상품 창고의 쇼핑몰 사진 중 고른 번호만 받아, 모델 얼굴을 잘라 낸 JPEG 로 돌려준다."""
+    from core.store import Store
+    from tools import faces, feed
+
+    product = next(p for p in Store(account).products() if p.id == product_id)
+    out = []
+    for i in indexes:
+        dest = cache / f"{product_id.split(':')[-1]}_{i}.jpg"
+        path = feed.fetch_photo(str(product.image_urls[i]), dest)
+        img, ok = faces.hide_faces(Image.open(path).convert("RGB"))
+        if not ok:
+            print(f"{product_id} #{i}: 얼굴을 잘라 낼 수 없어 뺌", file=sys.stderr)
+            continue
+        buf = io.BytesIO()
+        img.save(buf, "JPEG", quality=92)
+        out.append(buf.getvalue())
+    return out
+
+
+def reference_panel(images: list[bytes], max_px: int) -> bytes:
+    """같은 상품 사진 여러 장을 흰 바탕에 가로로 이어 붙인 참고판 (긴 변 max_px)."""
+    ims = [Image.open(io.BytesIO(prepare_input(b, max_px))).convert("RGB") for b in images]
+    h = min(im.height for im in ims)
+    ims = [im.resize((round(im.width * h / im.height), h)) for im in ims]
+    gap = h // 30
+    panel = Image.new("RGB", (sum(im.width for im in ims) + gap * (len(ims) - 1), h), "white")
+    x = 0
+    for im in ims:
+        panel.paste(im, (x, 0))
+        x += im.width + gap
+    panel.thumbnail((max_px, max_px))
+    buf = io.BytesIO()
+    panel.save(buf, "JPEG", quality=90)
+    return buf.getvalue()
+
+
 def item_lines(items: list[dict]) -> str:
-    return "\n".join(
-        f"Image {i}: the {CATEGORY_EN.get(it['category'], it['category'])}, {it['desc']}."
-        for i, it in enumerate(items, 1)
-    )
+    lines = []
+    for i, it in enumerate(items, 1):
+        size = f" Real size: {it['size']}." if it.get("size") else ""
+        lines.append(
+            f"Image {i}: the {CATEGORY_EN.get(it['category'], it['category'])}, {it['desc']}.{size}"
+        )
+    return "\n".join(lines)
 
 
-def build_prompt(shot: str, spec: dict) -> str:
+def build_prompt(shot: str, spec: dict, repeat: int = 1) -> str:
+    """repeat 회차 지시문. 장면 값이 목록이면 회차마다 하나씩 돌아가며 쓴다 (포즈 등)."""
     extra = spec.get("shots", {}).get(shot, {}) or {}
-    values = {k: str(v) for k, v in extra.items() if k != "repeats"}
+    values = {}
+    for k, v in extra.items():
+        if k == "repeats":
+            continue
+        values[k] = str(v[(repeat - 1) % len(v)] if isinstance(v, list) else v)
     return render_prompt(
         f"gen_{shot}", items=item_lines(spec["items"]), styling=spec.get("styling", ""), **values
     )
@@ -220,8 +272,12 @@ def run(
     max_px = cfg.get("input_max_px", 1024)
 
     inputs = []
+    account = spec.get("account", "women")
     for i, it in enumerate(spec["items"], 1):
-        jpeg = prepare_input(read_ref(it["image"]), max_px)
+        shots_in = [read_ref(it["image"])] if it.get("image") else []
+        if it.get("photos"):
+            shots_in += product_photos(it["product"], it["photos"], account, CACHE_DIR)
+        jpeg = reference_panel(shots_in, cfg.get("panel_max_px", 1536))
         (out / "inputs" / f"{i:02d}_{CATEGORY_EN.get(it['category'], 'item')}.jpg").write_bytes(
             jpeg
         )
@@ -236,14 +292,14 @@ def run(
     record: dict = {"spec": str(spec_path), "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
                     "results": []}
     for shot in shot_keys:
-        prompt = build_prompt(shot, spec)
-        (out / f"prompt_{shot}.txt").write_text(prompt, encoding="utf-8")
         images = inputs + ([guide] if shot == "flatlay_guide" and guide else [])
         repeats = int(spec["shots"][shot].get("repeats", 1))
         for key in model_keys:
             model = cfg["models"][key]
             (out / key).mkdir(exist_ok=True)
             for n in range(1, repeats + 1):
+                prompt = build_prompt(shot, spec, n)
+                (out / f"prompt_{shot}_{n}.txt").write_text(prompt, encoding="utf-8")
                 t0 = time.time()
                 entry = {"model": key, "shot": shot, "repeat": n}
                 try:

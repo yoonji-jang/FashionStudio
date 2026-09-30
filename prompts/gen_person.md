@@ -5,8 +5,9 @@ $person: 인물·구도, $mood: 장소·분위기. 이 주석은 전송되지 �
 Create one photorealistic lifestyle fashion photo in a candid Pinterest mood of a person wearing this
 exact outfit.
 
-The attached images are product photos of the exact items the person wears or carries, in this
-order:
+The attached images are reference sheets of the exact items the person wears or carries, in this
+order. Each sheet shows several photos of the same single item (a clean cut-out and the shop photos,
+sometimes worn by a model whose identity must not be copied); draw each item only once:
 $items
 
 Keep every item identical to its product photo: same color, fabric texture, pattern, cut, length,
@@ -15,7 +16,8 @@ The person wears every clothing item and no other clothing.
 
 Styling: $styling
 Person and framing: $person
-The face is never visible (cropped out of the frame, turned away or hidden), so no identity can be
-recognized. The person is fictional.
+The face is never visible, hidden naturally by the pose or an object described above (not by
+cropping the photo), so no identity can be recognized. The person is fictional and does not resemble
+the models in the reference sheets.
 Mood and place: $mood
 Natural light, shallow depth of field, subtle film grain, vertical 4:5, no text, no watermark.

@@ -86,3 +86,20 @@ def test_run_with_fake_client(tmp_path):
     assert [r["ok"] for r in rec["results"]] == [True, True]
     assert (tmp_path / "out" / "sheet.jpg").exists()
     assert "2/2" in (tmp_path / "out" / "report.md").read_text(encoding="utf-8")
+
+
+def test_reference_panel_joins_photos_side_by_side():
+    buf = io.BytesIO()
+    Image.new("RGB", (400, 600), "gray").save(buf, "JPEG")
+    panel = Image.open(io.BytesIO(generate.reference_panel([_png(), buf.getvalue()], 1536)))
+    assert panel.width > panel.height
+
+
+def test_list_values_rotate_by_repeat():
+    spec = {
+        "items": [{"category": "상의", "desc": "knit"}],
+        "shots": {"person": {"person": ["mirror selfie", "head turned"], "mood": "m"}},
+    }
+    assert "mirror selfie" in generate.build_prompt("person", spec, 1)
+    assert "head turned" in generate.build_prompt("person", spec, 2)
+    assert "mirror selfie" in generate.build_prompt("person", spec, 3)

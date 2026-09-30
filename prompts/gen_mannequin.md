@@ -3,7 +3,9 @@
 -->
 Create one photorealistic studio photo of this exact outfit dressed on a mannequin.
 
-The attached images are product photos of the exact items to use, in this order:
+The attached images are reference sheets of the exact items to use, in this order. Each sheet shows
+several photos of the same single item (a clean cut-out and the shop photos, sometimes worn by a
+model); use them together to get its true details, and draw the item only once:
 $items
 
 Keep every item identical to its product photo: same color, fabric texture, pattern, cut, length,
@@ -12,6 +14,5 @@ Use every clothing item on the mannequin and add no other clothing.
 
 Styling: $styling
 Mannequin and scene: $mannequin
-Items that cannot be worn by the mannequin (bag, shoes, jewelry) are placed naturally beside it or
-hung on it. Soft natural light, realistic fabric drape and folds, vertical 4:5, no people, no text,
+Place the items that the mannequin cannot wear exactly as described above. Soft natural light, realistic fabric drape and folds, vertical 4:5, no people, no text,
 no watermark.
