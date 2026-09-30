@@ -2,6 +2,7 @@
 # 상품마다 9/29 게시물 run31 누끼(image, git 브랜치:경로)와 쇼핑몰 사진(photos, 상품 창고 사진 번호,
 # 고른 색과 같은 사진만)을 한 장의 참고판으로 이어 붙여 보낸다. Photoroom 호출 없음.
 # size 는 실제 치수 (쇼핑몰 실측이 아닌 일반 치수 추정). guide 는 flatlay_guide 장면의 구도 가이드.
+# 실행: 이 파일이나 prompts/gen_*.md 를 고친 커밋 메시지에 [gen-exp] 를 넣어 푸시 (1차 2026-09-30)
 title: 9/29 차콜 롱코트 출근룩
 account: women
 guide: daily-results:2026-09-29-run31/outfit/results/C_1.jpg
