@@ -269,6 +269,17 @@ def test_build_with_generated_outfit(store, tmp_path):
     assert not (out / "outfit" / "samples.yaml").exists()  # Photoroom 흐름을 타지 않음
 
 
+def test_rebuild_with_cover_keeps_generation_cost(store, tmp_path, monkeypatch):
+    """검수 뒤 cover 를 정해 다시 빌드해도 report.md 에 생성 비용이 남는다."""
+    out = tmp_path / "out"
+    profile = load_profile("women")
+    plan.build(daily(), out, profile, store, fake=True)
+    monkeypatch.setattr(plan, "REPO_ROOT", tmp_path)
+    p = daily(cover="out/outfit/results/G_1.jpg")
+    plan.build(p, out, profile, store, fake=True)
+    assert "코디컷 생성 비용" in (out / "report.md").read_text()
+
+
 def test_generated_outfit_prompt_parts(store):
     from tools import outfit_gen
 

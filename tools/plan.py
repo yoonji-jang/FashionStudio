@@ -665,10 +665,13 @@ def build(
         cover = made[0] if made else None
         if cover is None:
             notes.append("코디컷을 만들지 못해 표지 없이 만들었습니다")
-        if engine == "generate":
-            from tools import outfit_gen
+    # 생성 비용: 다시 빌드해도(검수 뒤 cover 지정) 남도록 모든 회차(outfit, outfit_r2 …)를 더한다
+    runs = sorted(out.glob("outfit*/gen.json"))
+    if runs:
+        from tools import outfit_gen
 
-            notes.append(f"코디컷 생성 비용 약 ${outfit_gen.cost(work):.2f} (후보 {len(made)}장)")
+        total = sum(outfit_gen.cost(r.parent) for r in runs)
+        notes.append(f"코디컷 생성 비용 약 ${total:.2f} ({len(runs)}회차)")
     review = review_tool.start(out, made)
 
     items = []
