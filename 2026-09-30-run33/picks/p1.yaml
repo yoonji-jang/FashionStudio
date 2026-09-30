@@ -1,0 +1,69 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 라운드넥 트위드 자켓 (black round-neck tweed jacket, cropped hip length, slightly
+    boxy fit)
+  name: 블랙 라운드 트위드 자켓
+  product: zigzag:128885359
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 워싱 셔츠 (ivory washed cotton shirt, relaxed regular fit)
+  name: 아이보리 워싱 셔츠
+  product: zigzag:127356723
+  wear_how: the jacket is buttoned up and only the shirt collar and cuffs peek out
+    from it
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 슬랙스 (grey wide straight-leg slacks, full length)
+  name: 그레이 와이드 슬랙스
+  product: zigzag:119143697
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 나일론 숄더백 (black nylon shoulder bag)
+  name: 블랙 나일론 숄더백
+  product: zigzag:146668296
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 뒷지퍼 앵클부츠 (black low-heel ankle boots with back zipper)
+  name: 블랙 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  segment: shoe
+reason: 비 오는 날에도 단정한 블랙 트위드 자켓에 아이보리 셔츠를 안에 받쳐 입는 가장 무난한 오피스룩으로 트위드로 격식을 살리고 그레이 슬랙스와
+  앵클부츠로 젖어도 부담 없게 맞췄어요. 블랙·그레이·아이보리 세 색만 써서 따라 입기 쉽고, 나일론 백은 비에 강해요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·그레이·아이보리 차분한 오피스룩
+  search_terms:
+    가방:
+    - 나일론 숄더백
+    신발:
+    - 앵클부츠
+    아우터:
+    - 블랙 트위드 자켓
+    하의:
+    - 그레이 슬랙스
+  slots:
+  - category: 아우터
+    desc: 블랙 트위드 자켓 또는 가벼운 아우터
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 그레이·블랙 슬랙스나 데님
+  - category: 가방
+    desc: 블랙 나일론 숄더백
+  - category: 신발
+    desc: 블랙 앵클부츠나 로퍼
+  title_hint: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+  type: 상황
+  why: 수요일, 서울 약한 비 15~24도라 젖어도 부담 없는 어두운 하의와 낮은 굽 신발, 가볍게 걸칠 아우터

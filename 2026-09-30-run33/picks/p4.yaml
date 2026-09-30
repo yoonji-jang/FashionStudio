@@ -1,0 +1,64 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 울블렌디드 하프코트 (navy wool-blend half-length coat, tailored straight fit, hip
+    to thigh length)
+  name: 네이비 울블렌디드 하프코트
+  product: zigzag:171900742
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 하프넥 니트 (ivory half-neck knit top, regular fit)
+  name: 아이보리 하프넥 니트
+  product: zigzag:146407231
+  wear_modes:
+  - beside
+  wear_with: 아우터
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 세미와이드 데님 (dark navy semi-wide straight-leg denim jeans, full length, no
+    flare)
+  name: 네이비 세미와이드 데님
+  product: zigzag:133330805
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 숄더백 (burgundy leather-look shoulder bag)
+  name: 버건디 숄더백
+  product: zigzag:169612789
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 로퍼 (black square-toe loafers)
+  name: 블랙 스퀘어토 로퍼
+  product: zigzag:130244883
+  segment: shoe
+reason: 네이비 하프코트와 어두운 데님으로 톤을 맞추고 버건디 가방 하나로 포인트를 줬어요. 비 오는 날 우중충하지 않게 분위기를 살리는 조합이고,
+  하프 기장이라 젖은 바닥에 끌릴 걱정이 없어요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·그레이·아이보리 차분한 오피스룩
+  search_terms:
+    가방:
+    - 버건디 숄더백
+    하의:
+    - 다크 세미와이드 데님
+  slots:
+  - category: 아우터
+    desc: 네이비 울 하프코트
+  - category: 상의
+    desc: 아이보리 하프넥 니트
+  - category: 하의
+    desc: 네이비 데님
+  - category: 가방
+    desc: 버건디 숄더백
+  - category: 신발
+    desc: 블랙 스퀘어 로퍼
+  title_hint: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+  type: 상황
+  why: 수요일, 서울 약한 비 15~24도라 젖어도 부담 없는 어두운 하의와 낮은 굽 신발, 가볍게 걸칠 아우터

@@ -1,0 +1,64 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오버핏 레더 자켓 (black oversized leather jacket, hip length, boxy fit)
+  name: 블랙 오버핏 레더 자켓
+  product: zigzag:148146251
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 하프넥 니트 (ivory half-neck knit top, regular fit)
+  name: 아이보리 하프넥 니트
+  product: zigzag:146407231
+  wear_how: the jacket is worn open and unzipped over the knit, its fronts falling
+    naturally to both sides so the whole front of the knit shows
+  wear_modes:
+  - over
+  wear_with: 아우터
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 트레이닝 슬랙스 (grey wide straight-leg track slacks, full length)
+  name: 그레이 와이드 슬랙스
+  product: zigzag:141360158
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 미디엄 토트백 (black medium tote bag)
+  name: 블랙 미디엄 토트백
+  product: zigzag:113320430
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 페니로퍼 (black round-toe penny loafers)
+  name: 블랙 페니로퍼
+  product: zigzag:129223675
+  segment: shoe
+reason: 블랙 레더 자켓으로 비 오는 날에도 젖어도 부담 없게 시크하게 입고 아이보리 니트로 부드러운 대비를 줬어요. 레더 자켓의 시크함에 그레이
+  슬랙스와 로퍼를 더해 출근길에도 과하지 않은 모던시크 조합이에요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·그레이·아이보리 차분한 오피스룩
+  search_terms:
+    상의:
+    - 하프넥 니트
+    아우터:
+    - 블랙 레더자켓
+  slots:
+  - category: 아우터
+    desc: 블랙 레더 자켓
+  - category: 상의
+    desc: 아이보리 하프넥 니트
+  - category: 하의
+    desc: 그레이 슬랙스
+  - category: 가방
+    desc: 블랙 토트백
+  - category: 신발
+    desc: 블랙 페니로퍼
+  title_hint: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+  type: 상황
+  why: 수요일, 서울 약한 비 15~24도라 젖어도 부담 없는 어두운 하의와 낮은 굽 신발, 가볍게 걸칠 아우터

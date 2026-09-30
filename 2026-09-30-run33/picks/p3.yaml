@@ -1,0 +1,64 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 데이베이직 가디건 (beige plain knit cardigan, regular fit, hip length)
+  name: 베이지 데이베이직 가디건
+  product: zigzag:136080843
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 링클프리 셔츠 (ivory plain wrinkle-free shirt, regular fit)
+  name: 아이보리 링클프리 셔츠
+  product: zigzag:146606946
+  wear_how: the cardigan is buttoned up and only the shirt collar and cuffs peek out
+    from it
+  wear_modes:
+  - peek
+  wear_with: 아우터
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 밴딩 롱스커트 (navy elastic-waist long skirt, straight fit, ankle length)
+  name: 네이비 밴딩 롱스커트
+  product: zigzag:168618198
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 경량 나일론 더플백 (navy lightweight nylon duffle shoulder bag)
+  name: 네이비 나일론 더플백
+  product: zigzag:168986088
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 플랫 (black mary jane flat shoes)
+  name: 블랙 메리제인 플랫
+  product: zigzag:130585059
+  segment: shoe
+reason: 베이지 가디건과 아이보리 셔츠로 부드럽게 시작하고 네이비 롱스커트로 톤을 잡아 비 오는 날에도 차분하게 스커트로 입는 조합이에요. 가디건이라
+  최고 24도에도 답답하지 않고, 낮은 플랫과 가벼운 나일론 백으로 우산 들고 다니기 편해요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·그레이·아이보리 차분한 오피스룩
+  search_terms:
+    가방:
+    - 경량 나일론 토트백
+    하의:
+    - 네이비 롱스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 니트 가디건
+  - category: 상의
+    desc: 아이보리 셔츠
+  - category: 하의
+    desc: 네이비 롱스커트
+  - category: 가방
+    desc: 네이비 나일론 더플백
+  - category: 신발
+    desc: 블랙 메리제인 플랫
+  title_hint: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+  type: 상황
+  why: 수요일, 서울 약한 비 15~24도라 젖어도 부담 없는 어두운 하의와 낮은 굽 신발, 가볍게 걸칠 아우터

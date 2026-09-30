@@ -1,0 +1,62 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 스트라이프 배색 니트 (navy striped contrast knit sweater, regular fit, hip length)
+  name: 네이비 스트라이프 배색니트
+  product: zigzag:165918925
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 핀턱 와이드 슬랙스 (black pintuck wide-leg slacks, full length)
+  name: 블랙 핀턱 와이드 슬랙스
+  product: zigzag:144667358
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 블랙 숄더백
+  product: zigzag:170305230
+  segment: bag
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black sock ankle boots, 5cm heel)
+  name: 블랙 삭스 앵클부츠
+  product: zigzag:107677011
+  segment: shoe
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 클래식 벨트 (black classic slim belt)
+  name: 블랙 클래식 벨트
+  product: zigzag:137568598
+  segment: belt
+  wear_how: the belt is threaded through the belt loops of the trousers
+  wear_with: 하의
+reason: 아우터 없이 니트 한 장으로 입는 가벼운 출근룩으로 네이비 스트라이프 니트에 블랙 슬랙스를 맞추고 벨트로 허리선을 잡았어요. 최고 24도인
+  날 겹쳐 입지 않아도 되고, 삭스 앵클부츠라 비 오는 날 발이 덜 젖어요.
+theme:
+  date: '2026-09-30'
+  mood: 블랙·그레이·아이보리 차분한 오피스룩
+  search_terms:
+    상의:
+    - 배색 니트
+    하의:
+    - 블랙 핀턱 와이드 슬랙스
+  slots:
+  - category: 상의
+    desc: 네이비 스트라이프 배색 니트
+  - category: 하의
+    desc: 블랙 핀턱 와이드 슬랙스
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 블랙 삭스 앵클부츠
+  - category: 소품
+    desc: 블랙 슬림 벨트
+  title_hint: 비 오는 수요일 출근룩, 어두운 톤으로 단정하게
+  type: 상황
+  why: 수요일, 서울 약한 비 15~24도라 젖어도 부담 없는 어두운 하의와 낮은 굽 신발, 가볍게 걸칠 아우터
