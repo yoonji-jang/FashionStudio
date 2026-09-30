@@ -5,6 +5,7 @@ $items: 번호별 상품 설명과 실제 크기, $styling: 입는 방법, $scen
 2026-09-30 첫 게시(run40) 피드백: 바지가 자켓에 비해 짧게 그려짐, 왼쪽 아래 신발이 표지 제목에 가려짐
 → 기장 비율 문장, 신발은 오른쪽 아래, 왼쪽 아래(제목 자리)는 비우기.
 다시 만든 run44 피드백: 바지가 여전히 짧고 펼친 핏이 펑퍼짐함 → 착용컷 핏(슬림 스트레이트, 발등 덮는 기장) 문장.
+run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문에 반지·시계를 그려 넣음 → 목록에 있을 때만.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -43,8 +44,9 @@ the collar near the top edge to the trouser hem near the bottom edge, filling ab
 frame height, centered horizontally, with only small even margins and no large empty areas. The bag
 lies close to the left side of the clothes at waist height, slightly overlapping the edge of the
 clothes, and never lower than the knees. The shoes sit as a pair at an angle in the lower right,
-beside the trouser hem, not overlapping the trousers. Small accessories sit in a neat vertical column
-on the right side at chest height. Keep the lower left area of the frame (the bottom third, left of
+beside the trouser hem, not overlapping the trousers. Only if jewelry or small accessories are in
+the numbered list above, they sit in a neat vertical column on the right side at chest height; if
+the list has none, draw no jewelry, watch, rings, earrings or any other accessory at all. Keep the lower left area of the frame (the bottom third, left of
 the trouser legs) empty floor with no shoes, bag or accessories, because a title is placed there later.
 
 Scene: $scene.
