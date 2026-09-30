@@ -12,6 +12,8 @@ daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약�
   pick        고른 번호 확인 (tools.pick). 고르면 daily(mode=render), "다시"면 새 후보,
               마감이면 profile pick.on_timeout
   publish     게시 (publish 워크플로). 승인이 늦으면 publish_retry_every 마다 다시
+  story       스토리 (publish 워크플로 story). profile story.delay_minutes 가 있을 때만
+              게시 시각 + 그 분. 0 이면 칸 없이 게시 job 이 피드 직후 바로 올린다
   themes      다음 주 주제 (themes 워크플로)
   collect     지그재그 상품 수집 (collect 워크플로, 창고 커밋)
   token       인스타 토큰 연장 (token 워크플로)
@@ -122,6 +124,9 @@ def slots(profile: Profile) -> list[Slot]:
         Slot(a, "publish", s.publish_at, i * s.publish_retry_every, first=i == 0, final=i == n)
         for i in range(n + 1)
     ]
+    if profile.story.enabled and profile.story.delay_minutes:
+        # 게시 시각 + delay_minutes 에 스토리 (17단계). 그보다 늦게 게시하면 게시 job 이 바로 올린다
+        out.append(Slot(a, "story", s.publish_at, profile.story.delay_minutes))
     for task, value in (
         ("themes", s.themes_at),
         ("collect", s.collect_at),
@@ -327,7 +332,7 @@ def last_chance(profile: Profile, sl: Slot, at: datetime) -> datetime:
         # 마지막 재시도 칸 + 간격까지 (앞 칸을 놓쳐도 뒤 칸이 이어받는다)
         last = (s.publish_retries + 1) * s.publish_retry_every
         return at - timedelta(minutes=sl.offset) + timedelta(minutes=last)
-    if sl.task == "comments":
+    if sl.task in ("comments", "story"):
         return at + timedelta(hours=3)
     return at + timedelta(hours=12)  # themes, collect, token
 
@@ -592,6 +597,8 @@ def execute(
                 scheduled=True,
                 notify_wait=t.first or t.final,
             )
+        elif t.task == "story":
+            send("publish.yml", account=t.account, date=t.date, dry_run=False, story=True)
         elif t.task == "themes":
             send("themes.yml", account=t.account, date=t.date)
         elif t.task == "collect":

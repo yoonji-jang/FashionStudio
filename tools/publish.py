@@ -9,7 +9,8 @@ r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 
    - 마지막 답장이 다시 만들 /fix 면 고친 미리보기를 기다림 (15단계 tools.feedback)
 4. 프로필 ai_label 이 켜져 있으면 표지 등에 AI 합성 표시(IPTC)가 없을 때 넣기 (tools.ai_label)
    사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
-5. 게시 기록(data/<계정>/posts.json)과 결과 폴더 published.json 을 쓰고 텔레그램으로 알림
+5. 프로필 story 가 켜져 있으면 스토리도 올리기 (tools.story, 17단계. 늦게 올리면 schedule 이)
+6. 게시 기록(data/<계정>/posts.json)과 결과 폴더 published.json 을 쓰고 텔레그램으로 알림
 
 종료 코드: 0 게시·건너뜀·이미 게시됨, 3 아직 승인 없음(게시 안 함), 1 오류
 
@@ -45,7 +46,7 @@ from core.models import (
 )
 from core.profile import Profile, load_profile
 from core.store import Store
-from tools import ai_label, feedback, notify, share
+from tools import ai_label, feedback, notify, share, story
 from tools.ig_publish import IGError, Instagram
 from tools.media_host import GitHubHost
 
@@ -232,19 +233,12 @@ def run(
             marked = ai_label.labeled(profile.ai_label, ai_label.slide_kind(p))
             mark = " (AI 합성 표시)" if marked else ""
             print(f"  {p.name}{mark}")
+        if story.post_now(profile, day):
+            print(f"스토리 {min(profile.story.slides, len(images))}장도 올릴 예정")
         return 0
 
-    ig_cfg = cfg.get("instagram", {})
     if ig is None:
-        # Actions 는 계정별 Secret 을 IG_USER_ID, IG_TOKEN 으로 넘긴다 (로컬은 Secret 이름도 됨)
-        env = os.environ.get
-        ig = Instagram(
-            env("IG_USER_ID") or env(profile.instagram.user_id_secret, ""),
-            env("IG_TOKEN") or env(profile.instagram.token_secret, ""),
-            ig_cfg.get("api_base", "https://graph.instagram.com/v23.0"),
-            wait_sec=ig_cfg.get("wait_sec", 5),
-            wait_tries=ig_cfg.get("wait_tries", 36),
-        )
+        ig = story.instagram_from_env(profile, cfg.get("instagram", {}))
     host_cfg = cfg.get("image_host", {})
     host = host or GitHubHost.from_config(host_cfg)
     limit = ig.publish_limit()
@@ -323,8 +317,18 @@ def run(
             print(f"경고: 상품 페이지를 올리지 못했습니다: {e}", file=sys.stderr)
             if tg is not None:
                 tg.send(f"{tag} 게시는 했지만 상품 페이지를 올리지 못했어요: {e}")
+    storied = ""
+    if story.post_now(profile, day):
+        # 스토리 (17단계). 실패해도 피드 게시는 끝났으니 알림만
+        try:
+            ids = story.post(profile, out, ig, host, keep=host_cfg.get("keep", False))
+            print(f"{tag} 스토리 {len(ids)}장")
+            storied = story.notice(profile, ids)
+        except (IGError, RuntimeError, ValueError, OSError, httpx.HTTPError) as e:
+            print(f"경고: 스토리를 올리지 못했습니다: {e}", file=sys.stderr)
+            storied = story.notice(profile, [], str(e))
     if tg is not None:
-        done = (f"{tag} 게시했어요 ✓\n{link or ''}".strip() + tagged).strip()
+        done = (f"{tag} 게시했어요 ✓\n{link or ''}".strip() + tagged + storied).strip()
         if ask is None and links and share.sends_list(profile) and not share.asked_ids(out):
             # 링크를 직접 만들 때 쓰는 목록 (/ok 뒤에 아직 못 보냈으면 여기서)
             tg.send(share.request_text(done, links, ask_reply=False))

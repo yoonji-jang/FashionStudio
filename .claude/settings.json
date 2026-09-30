@@ -15,6 +15,7 @@
       "Bash(python -m tools.review:*)",
       "Bash(python -m tools.feedback summary:*)",
       "Bash(python -m tools.feedback prepare:*)",
+      "Bash(python -m tools.story render:*)",
       "Bash(pytest:*)",
       "Read",
       "Write(out/**)",
@@ -31,6 +32,7 @@
       "Bash(python -m tools.link_page push:*)",
       "Bash(python -m tools.link_page remove:*)",
       "Bash(python -m tools.schedule run:*)",
+      "Bash(python -m tools.story post:*)",
       "Bash(curl:*)",
       "Read(.env)",
       "Read(.env.*)"
