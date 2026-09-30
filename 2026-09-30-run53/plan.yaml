@@ -1,0 +1,81 @@
+account: women
+date: '2026-09-30'
+items:
+- color: 블랙
+  comment: 오버핏이라 안에 셔츠를 입어도 여유 있게 걸쳐져요. 쌀쌀한 아침에 가볍게 걸치기 좋아요.
+  cutout_photo: 2
+  photo: 2
+  ref_photos: [2, 4]
+  desc: 블랙 오버핏 레더 자켓 (black oversized faux leather bomber jacket, pointed shirt collar, hip length, zip front, snap-button cuffs, elastic ribbed hem band)
+  name: 블랙 오버핏 레더 자켓
+  product: zigzag:148146251
+- color: 라이트그레이
+  comment: 자켓 안에 받쳐 입기 좋은 워싱 셔츠예요. 밝은 그레이라 무채색 코디가 답답하지 않아요.
+  cutout_photo: 0
+  photo: 0
+  ref_photos: [0]
+  desc: 라이트그레이 워싱 셔츠 (light grey washed cotton button-up shirt with a regular shirt collar, relaxed fit, hip length, double stitching; the photo shows two shirts as front and back views, draw exactly one shirt)
+  name: 더블스티치 워싱셔츠
+  product: zigzag:127356723
+- color: 차콜
+  comment: 핀턱이 있는 스트레이트 슬랙스예요. 어두운 차콜이라 비 오는 날에도 부담 없어요.
+  cutout_photo: 0
+  photo: 3
+  ref_photos: [0, 3]
+  desc: 차콜 핀턱 슬랙스 (charcoal gray slim straight-leg slacks with a sharp pintuck crease down each leg, narrow legs that stay the same width from hip to hem, extra long length whose hem covers the top of the foot when worn)
+  name: 모티브 핀턱 슬랙스
+  product: zigzag:141911042
+  size: about 106 cm long from waist to hem (long enough to cover the top of the foot), each leg about 20 cm wide at the hem
+- color: 블랙
+  comment: 나일론 소재라 비 오는 날 들기 편해요. 심플한 숄더 스트랩이라 출근룩에 잘 어울려요.
+  cutout_photo: 0
+  photo: 0
+  ref_photos: [0, 2, 3]
+  desc: 블랙 나일론 숄더백 (black nylon barrel-shaped shoulder bag with two long thin black leather handles, small oval metal logo plate, zip top)
+  name: 블랙 나일론 숄더백
+  product: zigzag:146668296
+- color: 블랙
+  comment: 발목을 감싸는 삭스 스타일이라 슬랙스 밑단이 깔끔하게 떨어져요. 낮은 굽이라 오래 걸어도 편해요.
+  cutout_photo: 0
+  photo: 0
+  ref_photos: [0, 3, 4]
+  desc: 블랙 삭스 앵클부츠 (black smooth leather sock ankle boots, slim shaft, low block heel, softly rounded almond toe, one pair (two boots))
+  name: 리오사 삭스 앵클부츠
+  product: zigzag:147232545
+reason: 블랙 레더 자켓으로 시크하게, 앵클부츠로 비 오는 날도 깔끔하게. 라이트그레이 셔츠와 차콜 슬랙스로 무채색 톤을 맞췄어요. 발끝까지 젖을
+  걱정을 덜어 주는 조합이에요.
+text:
+  title_lines: [비 오는 수요일 출근길엔, 무채색으로 단정하게]
+  intro: 이슬비 내리는 수요일 출근길엔 블랙 레더 자켓 하나 걸쳐 보세요 ☔
+  points:
+  - 라이트그레이 셔츠에 차콜 슬랙스로 무채색 톤을 맞춰 차분해요
+  - 블랙 레더 자켓을 걸치면 단정한 룩에 시크한 힘이 생겨요 🖤
+  - 블랙 앵클부츠와 숄더백으로 비 오는 날도 깔끔하게 마무리해요 👟
+  hashtags: ["#출근룩", "#오피스룩", "#레더자켓", "#무채색코디", "#비오는날코디"]
+theme:
+  date: '2026-09-30'
+  mood: 블랙·아이보리·그레이 차분한 오피스룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건·자켓
+  - category: 상의
+    desc: 셔츠·니트
+  - category: 하의
+    desc: 어두운 슬랙스·팬츠
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 비 오는 날 신기 좋은 단화·부츠
+  title_hint: 비 오는 수요일 출근길, 차분한 무채색으로 단정하게
+  type: 상황
+  why: 수요일, 서울 이슬비(강수확률 90%)에 15~24도 일교차라 벗기 쉬운 가벼운 아우터와 젖어도 부담 없는 어두운 하의
+styling: >-
+  The outer is unbuttoned but almost closed: its two front edges lie close together with only a
+  narrow gap of about a hand's width down the middle, where the shirt shows at the neckline and a
+  little at the waist. The shirt's sleeves are inside the outer sleeves, with the shirt's cuffs
+  peeking out slightly at the outer cuffs. The shirt is front-tucked (French tuck): the center front
+  of its hem is folded and tucked a little into the trouser waistband, so the waistband and the top
+  of the trouser crease show at the center with a soft loose blouse of shirt fabric folding over it,
+  while the shirt hem at both sides hangs out naturally just below the jacket's hem band.
+cover: samples/women/cover_2026-09-30.jpg
