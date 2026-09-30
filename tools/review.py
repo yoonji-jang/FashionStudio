@@ -138,7 +138,7 @@ def reference_photos(plan: DailyPlan, out: Path) -> list[Path | None]:
 def product_slides(manifest: Manifest, out: Path) -> list[Path]:
     """manifest 의 슬라이드 중 상품 장 (표지·요약 제외), 기획 상품 순서와 같다."""
     paths = [out / "slides" / Path(p).name for p in manifest.images]
-    return [p for p in paths if not p.stem.endswith(("_cover", "_summary"))]
+    return [p for p in paths if not p.stem.endswith(("_cover", "_summary", "_comment"))]
 
 
 def slide_checks(

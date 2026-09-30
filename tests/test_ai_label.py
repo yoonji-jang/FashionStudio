@@ -22,7 +22,7 @@ def test_render_marks_only_cover(spec, tmp_path):  # noqa: F811
     paths = render(spec, tmp_path / "out", root=tmp_path, profile=profile)
     marks = {p.name: ai_label.read(p) for p in paths}
     assert marks["01_cover.jpg"] == "compositeWithTrainedAlgorithmicMedia"
-    assert [v for k, v in marks.items() if k != "01_cover.jpg"] == [None, None, None]
+    assert [v for k, v in marks.items() if k != "01_cover.jpg"] == [None, None, None, None]
 
 
 def test_render_without_label(spec, tmp_path):  # noqa: F811
@@ -38,6 +38,7 @@ def test_generated_type_and_slide_kinds(tmp_path):
     assert ai_label.read(cover) == "trainedAlgorithmicMedia"
     assert ai_label.save_options(label, "products") == {}
     assert ai_label.slide_kind(tmp_path / "09_summary.jpg") == "summary"
+    assert ai_label.slide_kind(tmp_path / "10_comment.jpg") == "comment"
     assert ai_label.slide_kind(tmp_path / "02_아우터.jpg") == "products"
 
 

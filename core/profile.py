@@ -102,6 +102,10 @@ class Copy(BaseModel):
     ai_notice: str = "이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요"
 
 
+# 캐러셀 슬라이드 종류 (tools.feed). comment 는 "상품 정보는 댓글로" 안내 장
+SlideKind = Literal["cover", "products", "summary", "comment"]
+
+
 class AiLabel(BaseModel):
     """이미지 파일 안에 AI 합성 표시(IPTC DigitalSourceType, XMP)를 넣는다 (13단계, tools.ai_label).
     인스타 게시 API 에는 AI 레이블 값이 없어서,
@@ -110,7 +114,7 @@ class AiLabel(BaseModel):
     mode: Literal["metadata", "none"] = "none"
     # composite: 실제 사진 + AI 편집 (누끼·AI 그림자 코디컷), generated: AI 가 통째로 만든 이미지
     source_type: Literal["composite", "generated"] = "composite"
-    slides: list[Literal["cover", "products", "summary"]] = ["cover"]  # 표시를 넣는 슬라이드 종류
+    slides: list[SlideKind] = ["cover"]  # 표시를 넣는 슬라이드 종류
 
 
 class CommentTags(BaseModel):
@@ -150,9 +154,6 @@ class Visual(BaseModel):
     logo_color: str = Field(default="#EBEBEB", pattern=COLOR)
 
 
-SlideKind = Literal["cover", "products", "summary"]
-
-
 class Feed(BaseModel):
     """캐러셀 구성과 슬라이드 모양 (tools.feed). 크기는 폭 1080px 기준."""
 
@@ -187,6 +188,12 @@ class Feed(BaseModel):
     # 요약 장 맨 아래 문구. {logo} 는 visual.logo_text 로 바뀜. 첫 줄 앞에 저장 아이콘
     cta_lines: list[str] = ["저장해 두고 코디 고민될 때 꺼내 보세요", "매일 아침 코디는 {logo}"]
     cta_size: int = Field(default=30, gt=0)
+    # 댓글 안내 장 (slides 의 comment). 상품 정보는 댓글로 받으라는 안내. {logo} 는 visual.logo_text
+    comment_title: list[str] = ["상품 정보가 궁금하다면", "댓글을 남겨 주세요"]
+    comment_sub: list[str] = ["댓글을 남기면 DM으로", "상품 링크를 보내 드려요"]
+    comment_box: str = "댓글 달기..."  # 가운데 댓글 입력창 모양 안의 글자. 빈 문자열이면 창 없음
+    comment_title_size: int = Field(default=64, gt=0)
+    comment_sub_size: int = Field(default=32, gt=0)
     # 사진 출처 표기. {source} 는 source_names 의 이름, {shop} 은 스토어 이름. 빈 문자열이면 생략
     photo_credit: str = "사진 출처 {source} · {shop}"
     summary_credit: str = ""  # 요약 장 목록 아래 출처 한 줄

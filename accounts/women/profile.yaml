@@ -86,7 +86,7 @@ visual:
 
 # 캐러셀 구성 (tools.feed). 크기는 폭 1080px 기준, 굵은 글자는 visual.font, 포인트 색은 visual.accent_color
 feed:
-  slides: [cover, products, summary]  # 순서. products 는 상품마다 한 장. 전체 10장까지
+  slides: [cover, products, summary, comment]  # 순서. products 는 상품마다 한 장, comment 는 댓글 안내 장. 전체 10장까지
   product_image: photo       # 상품 장 사진: photo(쇼핑몰 원본 사진) 또는 cutout(누끼)
   hide_faces: true           # 모델 얼굴이 없는 사진을 먼저 고르고, 없으면 얼굴 아래로 잘라 씀
   photo_candidates: 6        # 상품마다 살펴볼 사진 수 (앞에서부터)
@@ -117,6 +117,12 @@ feed:
     - 저장해 두고 코디 고민될 때 꺼내 보세요
     - 매일 아침 코디는 {logo}
   cta_size: 30
+  # 댓글 안내 장 (slides 의 comment, 2026-09-30). 댓글을 남기면 ManyChat 이 DM 으로 링크를 보냄
+  comment_title: [상품 정보가 궁금하다면, 댓글을 남겨 주세요]
+  comment_sub: [댓글을 남기면 DM으로, 상품 링크를 보내 드려요]
+  comment_box: ""   # 댓글 입력창 모양 안의 글자. 빈 문자열이면 창 없음 (2026-09-30 사용자: 없어도 됨)
+  comment_title_size: 64
+  comment_sub_size: 32
   # 사진 출처 표기 (사진 오른쪽 아래). {source} 는 source_names 의 이름, {shop} 은 스토어 이름
   photo_credit: "사진 출처 {source} · {shop}"
   summary_credit: "사진 출처 지그재그 · 각 상품 스토어"  # 요약 장 목록 아래. 빈 문자열이면 생략

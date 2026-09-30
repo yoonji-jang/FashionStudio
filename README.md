@@ -161,7 +161,7 @@ uv run pytest
 
 | 항목 | 예시 | 의미 |
 |---|---|---|
-| `slides` | `[cover, products, summary]` | 슬라이드 순서. `cover` 표지(코디컷+제목), `products` 상품마다 한 장, `summary` 코디 목록. 빼고 싶은 장은 지우면 됨. 전체 10장까지 |
+| `slides` | `[cover, products, summary, comment]` | 슬라이드 순서. `cover` 표지(코디컷+제목), `products` 상품마다 한 장, `summary` 코디 목록, `comment` "상품 정보는 댓글로" 안내 장 (댓글 DM 을 켠 계정용). 빼고 싶은 장은 지우면 됨. 전체 10장까지 |
 | `product_image` | `photo` | 상품 장 사진. `photo` 는 쇼핑몰 원본 사진(모서리 둥근 카드), `cutout` 은 누끼(코디컷과 같은 모양) |
 | `hide_faces` | `true` | 원본 사진에서 모델 얼굴이 없는 사진을 먼저 고르고, 모두 얼굴이 있으면 얼굴 아래로 잘라 씀 (얼굴 검출 모델 YuNet, `assets/models/`) |
 | `photo_candidates` | 6 | 상품마다 앞에서부터 살펴볼 사진 수 |
@@ -186,6 +186,9 @@ uv run pytest
 | `cta_lines` | 저장해 두고… | 요약 장 맨 아래 문구. 첫 줄 앞에 저장 아이콘, `{logo}` 는 계정 이름으로 바뀜 |
 | `cta_size` | 30 | 맨 아래 문구 크기 |
 | `photo_credit` | 사진 출처 {source} · {shop} | 상품 사진 오른쪽 아래 출처 표기. `{source}` 는 `source_names` 의 이름, `{shop}` 은 스토어 이름. 빈 문자열이면 생략 |
+| `comment_title` | 상품 정보가 궁금하다면 / 댓글을 남겨 주세요 | 댓글 안내 장의 큰 글자 (줄마다 하나). `{logo}` 는 계정 이름 |
+| `comment_sub` | 댓글을 남기면 DM으로 / 상품 링크를 보내 드려요 | 큰 글자 아래 작은 글자 |
+| `comment_box` | 댓글 달기... | 댓글 입력창 모양 안의 글자. 빈 문자열이면 입력창 없이 |
 | `summary_credit` | 사진 출처 지그재그 · 각 상품 스토어 | 요약 장 목록 아래 출처 한 줄. 빈 문자열이면 생략 |
 | `credit_size` | 20 | 출처 글자 크기 |
 | `source_names` | `{zigzag: 지그재그}` | 상품 소스 이름을 화면에 보일 이름으로 바꿈 |
@@ -224,7 +227,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 |---|---|---|
 | `mode` | `none` | `metadata` 면 표시를 넣음, `none` 이면 안 넣음 |
 | `source_type` | `composite` | `composite`: 실제 사진 + AI 편집 (누끼·AI 그림자 코디컷), `generated`: AI 가 통째로 만든 이미지 |
-| `slides` | `[cover]` | 표시를 넣는 슬라이드 종류 (`cover`, `products`, `summary`) |
+| `slides` | `[cover]` | 표시를 넣는 슬라이드 종류 (`cover`, `products`, `summary`, `comment`) |
 
 게시 직전(`tools.publish`)에도 표시가 없으면 픽셀을 다시 압축하지 않고 넣습니다.
 파일 확인: `uv run python -m tools.ai_label out/<날짜>/slides/*.jpg`

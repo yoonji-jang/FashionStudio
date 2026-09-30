@@ -55,7 +55,7 @@ visual:
   logo_text: "@계정이름"
 
 feed:  # 캐러셀 구성 (생략하면 기본값). 항목은 README의 feed 표 참고
-  slides: [cover, products, summary]
+  slides: [cover, products, summary]  # 댓글 DM 을 켜면 끝에 comment (상품 정보는 댓글로 안내 장)
   cta_lines: [저장해 두고 코디 고민될 때 꺼내 보세요, "매일 아침 코디는 {logo}"]
 
 copy:  # 제목·문구·캡션 규칙. 생략한 값은 기본값 (README 참고)
