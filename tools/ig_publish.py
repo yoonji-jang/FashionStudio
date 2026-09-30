@@ -1,5 +1,6 @@
 """인스타그램 API (8단계 게시, 10단계 댓글·DM). 캐러셀(2~10장) 또는 사진 한 장과 캡션을 올린다.
 
+스토리(17단계)는 사진 한 장씩 media_type=STORIES.
 순서: 사진마다 캐러셀 항목 만들기 → 캐러셀 묶기(캡션) → 처리 끝날 때까지 기다리기
 → 게시 → 게시물 주소.
 공개 작업이라 Claude 허용 목록에서 막혀 있다. 게시 job(tools.publish)이 부른다.
@@ -101,6 +102,12 @@ class Instagram:
             container = self._container(
                 media_type="CAROUSEL", children=",".join(children), caption=caption
             )
+        self.wait(container)
+        return self._call("POST", f"{self.user_id}/media_publish", creation_id=container)["id"]
+
+    def publish_story(self, image_url: str) -> str:
+        """스토리 사진 한 장을 올리고 id 를 돌려준다 (17단계). 스티커·링크는 API 로 못 붙인다."""
+        container = self._container(image_url=image_url, media_type="STORIES")
         self.wait(container)
         return self._call("POST", f"{self.user_id}/media_publish", creation_id=container)["id"]
 

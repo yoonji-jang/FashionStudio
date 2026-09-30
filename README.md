@@ -228,6 +228,27 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 게시 직전(`tools.publish`)에도 표시가 없으면 픽셀을 다시 압축하지 않고 넣습니다.
 파일 확인: `uv run python -m tools.ai_label out/<날짜>/slides/*.jpg`
 
+#### `story` : 게시 직후 스토리 (17단계)
+인스타 게시 API 로 스토리 사진은 올릴 수 있지만 링크·멘션 스티커나 "게시물 공유" 스토리는 만들 수 없습니다.
+그래서 피드 앞 장(표지)을 1080x1920 세로 판 가운데에 놓고 위아래에 안내 문구를 합성해 올립니다 (`tools.story`).
+표지에서 만든 스토리에는 표지와 같은 AI 합성 표시(`ai_label`)가 들어갑니다.
+
+| 항목 | 기본값 | 뜻 |
+|---|---|---|
+| `enabled` | `false` | 켜면 피드 게시 뒤 스토리도 올림 |
+| `delay_minutes` | `0` | `0`: 피드 게시 직후. 그 밖: 게시 시각(`schedule.publish_at`) 몇 분 뒤. 바꾸면 `tools.schedule sync` |
+| `slides` | `1` | 피드 앞에서부터 몇 장 (1: 표지만, 2~3: 표지+상품) |
+| `background` | `blur` | `blur`(그 장을 흐리고 어둡게 깔기, `blur_dim`) 또는 색 `"#E7E9EB"` |
+| `heading`, `cta` | 오늘의 코디 / 새 게시물 보러가기 → | 사진 위·아래 문구 (빈 문자열이면 생략) |
+| `text_color` | `#FFFFFF` | 밝은 단색 배경이면 어두운 색으로 |
+| `show_logo` | `true` | 아래 문구 밑에 `visual.logo_text` |
+| `sticker_hint` | `false` | 게시 알림에 "앱에서 링크 스티커 붙이기" 안내 |
+
+스토리가 실패해도 피드 게시는 성공으로 두고 텔레그램 게시 알림에 이유를 적습니다. `delay_minutes` 가 있으면
+schedule 이 그 시각에 publish 워크플로(`story` 체크)를 부르고, 승인이 늦어 그 시각이 지난 뒤 게시한 날은 게시
+직후 바로 올립니다. 외부 스케줄러를 쓰면 `tools.schedule external` 에 나오는 스토리 시각도 등록합니다.
+미리 보기: `uv run python -m tools.story render --account women --slides out/<날짜>/slides/*.jpg --out /tmp/story`
+
 #### `review` : 이미지 검수 (7단계)
 코디컷은 AI 입히기 결과가 매번 조금씩 달라서, 후보를 여러 장 만들고 Claude(image-reviewer 에이전트)가
 원본 상품 사진과 비교해 점수를 매깁니다. 항목 5개(색, 모양, 빠진 상품, 삐져나온 조각, 겹침·잘림) × 0~2점 = 10점 만점.
@@ -617,7 +638,7 @@ publish (게시 시간) → 게시 전 검사 → 답장 확인 → 사진을 �
   끄고 돌리면 실제로 게시합니다. `force` 는 텔레그램 승인 없이 게시합니다. 매일 자동 실행은 아래 9단계.
 - 로컬 시험: `uv run python -m tools.publish --account women --date 2026-09-27 --results <daily-results 폴더> --dry-run`
 
-Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.notify`, `tools.media_host`)를 부를 수 없게
+Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.notify`, `tools.media_host`, `tools.story post`)를 부를 수 없게
 `.claude/settings.json` 에서 막아 두었습니다.
 
 ## 매일 자동 실행 (9단계)

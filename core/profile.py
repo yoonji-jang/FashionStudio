@@ -310,6 +310,34 @@ class LinkPage(BaseModel):
     send_links: bool = False
 
 
+class Story(BaseModel):
+    """게시 직후 스토리 (17단계, tools.story). 인스타 API 는 스토리에 링크·멘션 스티커를 못 붙여서
+    피드 앞 장(표지 등)을 1080x1920 세로 판에 옮기고 안내 문구를 이미지에 합성한다.
+    크기는 폭 1080px 기준, 위치는 높이·폭 대비 비율."""
+
+    enabled: bool = False
+    # 0: 피드 게시 직후 같은 job 에서. 그 밖: 게시 시각(publish_at) 몇 분 뒤 schedule 이 올림
+    delay_minutes: int = Field(default=0, ge=0, le=720)
+    slides: int = Field(default=1, ge=1, le=3)  # 피드 앞에서부터 몇 장 (1: 표지만, 2~3: 표지+상품)
+    # blur(그 장을 흐리게 깔기) 또는 색 "#RRGGBB"
+    background: str = Field(default="blur", pattern=r"^(blur|#[0-9A-Fa-f]{6})$")
+    blur_dim: float = Field(default=0.35, ge=0, le=1)  # blur 배경을 어둡게 하는 정도
+    card_width: float = Field(default=0.84, gt=0, le=1)  # 가운데 사진 폭 (화면 폭 대비)
+    card_center: float = Field(default=0.5, gt=0, lt=1)  # 가운데 사진 세로 중심 (높이 대비)
+    card_radius: int = Field(default=18, ge=0)  # 사진 모서리 둥글기
+    text_color: str = "#FFFFFF"
+    text_shadow: float = Field(default=0.4, ge=0, le=1)
+    heading: str = "오늘의 코디"  # 사진 위. 빈 문자열이면 생략
+    heading_size: int = Field(default=46, gt=0)
+    cta: str = "새 게시물 보러가기 →"  # 사진 아래. 빈 문자열이면 생략
+    cta_size: int = Field(default=38, gt=0)
+    text_gap: int = Field(default=44, ge=0)  # 사진과 글자 사이
+    show_logo: bool = True  # 사진 아래 문구 밑에 visual.logo_text
+    logo_size: int = Field(default=26, gt=0)
+    # 게시 알림에 "앱에서 스토리에 링크 스티커를 붙여 주세요" 안내를 덧붙인다 (API 로는 못 붙임)
+    sticker_hint: bool = False
+
+
 class Instagram(BaseModel):
     token_secret: str  # GitHub Secret 이름 (값이 아님)
     user_id_secret: str
@@ -337,6 +365,7 @@ class Profile(BaseModel):
     pick: PickRules = PickRules()
     comments: Comments = Comments()
     link_page: LinkPage = LinkPage()
+    story: Story = Story()
     monetize: Monetize = "none"
     approval: Approval = "required"
     instagram: Instagram
