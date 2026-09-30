@@ -1,0 +1,317 @@
+{
+  "account": "women",
+  "date": "2026-10-01",
+  "plan": {
+    "theme": {
+      "date": "2026-10-01",
+      "title_hint": "목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게",
+      "mood": "아이보리·그레이·블랙 위주의 차분한 오피스 데일리",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "가볍게 걸치는 가디건이나 자켓"
+        },
+        {
+          "category": "상의",
+          "desc": "아이보리 셔츠나 니트"
+        },
+        {
+          "category": "하의",
+          "desc": "슬랙스나 데님"
+        },
+        {
+          "category": "가방",
+          "desc": "단정한 숄더백"
+        },
+        {
+          "category": "신발",
+          "desc": "로퍼나 메리제인"
+        }
+      ],
+      "type": "상황",
+      "why": "목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게 가디건·자켓 중심",
+      "search_terms": {}
+    },
+    "items": [
+      {
+        "id": "zigzag:165682745",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165682745",
+        "shop": "매니크",
+        "name": "[2만장판매/무료배송] 데얼드 비스코스 라운드 가디건",
+        "price": 27360,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/9512_202608241202066155_46742.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/9512_202608241202062871_68198.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/9512_202608241202065004_62537.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/9512_202608241202064009_39936.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 3542,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "니트 가디건",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:140069145",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/140069145",
+        "shop": "슬로우앤드",
+        "name": "[가을셔츠!] made. 톤앤결 여리핏 코튼셔츠 - 5 color",
+        "price": 30600,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137368098_96193.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137369293_83966.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137371884_58531.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/2833_202609081137370370_12667.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 5859,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "셔츠",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      },
+      {
+        "id": "zigzag:141360158",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/141360158",
+        "shop": "슬로우앤드",
+        "name": "[🏆역대급100만장/3기장선택!] made. 마켓 와이드 트레이닝슬랙스 (+숏/베이직/",
+        "price": 24670,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/2833_202608191719195715_99767.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/2833_202608191719196803_50744.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/2833_202608191719194547_87867.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/2833_202608191719193264_34702.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/2833_202608191719191924_90130.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 78674,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "와이드 슬랙스",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:159478154",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/159478154",
+        "shop": "맥끌라니",
+        "name": "[하객룩] 608벤타 토트앤 크로스백",
+        "price": 43260,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/11/11/11628_202511111334240096_42385.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/12/5/11628_202412051110450546_22952.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/12/5/11628_202412051110450361_45415.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/11/11/11628_202511111334240384_78882.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/12/11628_202506121617340003_36756.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 346,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "토트백",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-26"
+      },
+      {
+        "id": "zigzag:130585059",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/130585059",
+        "shop": "로제니크",
+        "name": "[혜진 PICK / 40년 장인 수제화 로제니크] 안도르 메리제인 플랫 (2cm/3colors)",
+        "price": 35210,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654521043_52100.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654526540_78237.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654531517_60356.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654505610_65912.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654508866_43989.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654515503_58818.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031654519075_86902.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/13326_202609141639518563_55509.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 1869,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "메리제인",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-27"
+      }
+    ],
+    "reason": "아이보리 가디건과 코튼 셔츠로 밝은 상체를 만들고 블랙 슬랙스·토트백·메리제인으로 아래를 정리한다. 아이보리와 블랙 두 색만 써서 차분하고 단정한 오피스 데일리로 맞췄다. (사람이 고른 후보의 아이보리 트위드 자켓·니트·그레이 슬랙스·버건디 백은 맞는 색 사진이 없어 바꿈)"
+  },
+  "images": [
+    "out/2026-10-01/slides/01_cover.jpg",
+    "out/2026-10-01/slides/02_아우터.jpg",
+    "out/2026-10-01/slides/03_상의.jpg",
+    "out/2026-10-01/slides/04_하의.jpg",
+    "out/2026-10-01/slides/05_가방.jpg",
+    "out/2026-10-01/slides/06_신발.jpg",
+    "out/2026-10-01/slides/07_summary.jpg",
+    "out/2026-10-01/slides/08_comment.jpg"
+  ],
+  "review_score": 9.0,
+  "needs_human": true,
+  "review": {
+    "candidates": [
+      {
+        "id": "c1",
+        "file": "outfit/results/G_1.jpg",
+        "round": 1,
+        "score": {
+          "id": "c1",
+          "color": 2,
+          "shape": 0,
+          "complete": 2,
+          "clean": 2,
+          "layout": 2,
+          "notes": "5번 가방이 원본(손잡이 달린 보스턴형 크로스백) 대신 네모난 토트백으로 바뀜. 5번 신발은 앞코가 둥글고 원본의 스퀘어토와 다름. 2번 셔츠는 스탠드 칼라로 바뀜. 3번 바지에 앞주름이 생김"
+        }
+      },
+      {
+        "id": "c2",
+        "file": "outfit/results/G_2.jpg",
+        "round": 1,
+        "score": {
+          "id": "c2",
+          "color": 2,
+          "shape": 2,
+          "complete": 2,
+          "clean": 0,
+          "layout": 2,
+          "notes": "2번 셔츠 칼라에 원본에 없는 작은 글자 라벨이 그려짐"
+        }
+      },
+      {
+        "id": "c3",
+        "file": "outfit/results/G_3.jpg",
+        "round": 1,
+        "score": {
+          "id": "c3",
+          "color": 2,
+          "shape": 2,
+          "complete": 2,
+          "clean": 0,
+          "layout": 1,
+          "notes": "2번 셔츠 칼라에 원본에 없는 작은 글자 라벨이 그려짐. 4번 가방이 바지와 가디건에 걸쳐 겹침"
+        }
+      },
+      {
+        "id": "c4",
+        "file": "outfit_r2/results/G_1.jpg",
+        "round": 2,
+        "score": {
+          "id": "c4",
+          "color": 2,
+          "shape": 1,
+          "complete": 2,
+          "clean": 0,
+          "layout": 2,
+          "notes": "2번 셔츠 칼라에 작은 라벨 글자가 그려져 있음 (글자 금지 위반). 3번 바지가 밑단 쪽으로 살짝 좁아져 원본의 일자 와이드보다 슬림해 보임"
+        }
+      },
+      {
+        "id": "c5",
+        "file": "outfit_r2/results/G_2.jpg",
+        "round": 2,
+        "score": {
+          "id": "c5",
+          "color": 2,
+          "shape": 2,
+          "complete": 2,
+          "clean": 0,
+          "layout": 2,
+          "notes": "2번 셔츠 칼라에 라벨 글자가 그려져 있음 (글자 금지 위반)"
+        }
+      },
+      {
+        "id": "c6",
+        "file": "outfit_r2/results/G_3.jpg",
+        "round": 2,
+        "score": {
+          "id": "c6",
+          "color": 2,
+          "shape": 1,
+          "complete": 2,
+          "clean": 2,
+          "layout": 2,
+          "notes": "4번 가방의 크로스 스트랩이 보이지 않음. 3번 바지 밑단이 살짝 좁아짐"
+        }
+      }
+    ],
+    "chosen": "c6",
+    "rounds": 2,
+    "passed": false,
+    "status": "failed",
+    "slide_issues": [
+      {
+        "slide": "03_상의.jpg",
+        "kind": "색",
+        "note": "고른 색은 아이보리인데 사진 속 셔츠는 노란 기가 도는 크림색에 가까움. 주스 잔과 파란 소품도 크게 나와 시선을 끎",
+        "by": "claude"
+      }
+    ],
+    "summary": "점수를 매길 코디컷 후보가 없어 covers 는 비움. 캐러셀 02, 04, 05, 06 장은 상품이 주인공이고 얼굴 노출과 글자 잘림이 없음. 03 상의만 색 확인이 필요함"
+  },
+  "title_lines": [
+    "목요일 출근길엔",
+    "가디건 하나 걸쳐요"
+  ],
+  "caption": "일교차 큰 목요일 출근길엔 가벼운 가디건 하나 걸쳐 보세요 🍂\n\n아이보리 가디건과 셔츠로 밝고 단정하게 맞췄어요\n블랙 슬랙스로 아래를 정리해 톤을 차분하게 잡아요 🖤\n토트백과 메리제인까지 블랙으로 이어 깔끔하게 마무리해요 👜\n\n매니크 · 아이보리 라운드 가디건\n슬로우앤드 · 아이보리 코튼 셔츠\n슬로우앤드 · 블랙 와이드 슬랙스\n맥끌라니 · 블랙 토트 크로스백\n로제니크 · 블랙 메리제인 플랫\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#가디건코디",
+    "#출근룩",
+    "#오피스룩",
+    "#가을코디",
+    "#아이보리코디",
+    "#블랙슬랙스",
+    "#메리제인",
+    "#데일리룩",
+    "#오늘의코디",
+    "#코디추천",
+    "#여자코디",
+    "#패션"
+  ],
+  "monetize": "none",
+  "reels": null
+}

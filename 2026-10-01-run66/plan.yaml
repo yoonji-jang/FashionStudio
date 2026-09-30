@@ -1,0 +1,73 @@
+account: women
+date: '2026-10-01'
+items:
+- color: 아이보리
+  comment: 일교차가 큰 날 셔츠 위에 가볍게 걸치기 좋은 라운드 가디건이에요.
+  desc: 아이보리 라운드 가디건 (ivory round-neck knit cardigan)
+  name: 아이보리 라운드 가디건
+  product: zigzag:165682745
+  photo: 2
+  cutout_photo: 2
+  ref_photos: [2]
+- color: 아이보리
+  comment: 가디건 안에 받쳐 입으면 깃이 살짝 보여 단정해 보여요.
+  desc: 아이보리 코튼 셔츠 (ivory cotton shirt, open pointed shirt collar, no label or text on the collar)
+  name: 아이보리 코튼 셔츠
+  product: zigzag:140069145
+  photo: 1
+  cutout_photo: 3
+  ref_photos: [3, 1]
+- color: 블랙
+  comment: 상의가 밝은 날 아래를 블랙으로 잡아 주는 와이드 슬랙스예요.
+  desc: 블랙 와이드 슬랙스 (black wide straight-leg trousers, flat front, no pleats, full length)
+  name: 블랙 와이드 슬랙스
+  product: zigzag:141360158
+  photo: 1
+  cutout_photo: 1
+  ref_photos: [1, 2]
+- color: 블랙
+  comment: 크로스 스트랩이 있어 손이 자유로운 출근용 토트백이에요.
+  desc: 블랙 토트백 (black structured tote bag with crossbody strap)
+  name: 블랙 토트 크로스백
+  product: zigzag:159478154
+  photo: 0
+  cutout_photo: 0
+  ref_photos: [0, 3]
+- color: 블랙
+  comment: 굽 부담 없이 신기 좋은 스트랩 플랫이에요.
+  desc: 블랙 메리제인 플랫 (black suede Mary Jane flats with one strap, round toe, exactly one pair)
+  name: 블랙 메리제인 플랫
+  product: zigzag:130585059
+  photo: 2
+  cutout_photo: 0
+  ref_photos: [2, 1]
+reason: 아이보리 가디건과 코튼 셔츠로 밝은 상체를 만들고 블랙 슬랙스·토트백·메리제인으로 아래를 정리한다. 아이보리와 블랙 두
+  색만 써서 차분하고 단정한 오피스 데일리로 맞췄다. (사람이 고른 후보의 아이보리 트위드 자켓·니트·그레이 슬랙스·버건디 백은 맞는 색 사진이 없어 바꿈)
+text:
+  title_lines: [목요일 출근길엔, 가디건 하나 걸쳐요]
+  intro: 일교차 큰 목요일 출근길엔 가벼운 가디건 하나 걸쳐 보세요 🍂
+  points:
+  - 아이보리 가디건과 셔츠로 밝고 단정하게 맞췄어요
+  - 블랙 슬랙스로 아래를 정리해 톤을 차분하게 잡아요 🖤
+  - 토트백과 메리제인까지 블랙으로 이어 깔끔하게 마무리해요 👜
+  hashtags: ["#가디건코디", "#출근룩", "#오피스룩", "#가을코디", "#아이보리코디", "#블랙슬랙스", "#메리제인"]
+cover: out/2026-10-01/outfit_r2/results/G_3.jpg
+theme:
+  date: '2026-10-01'
+  mood: 아이보리·그레이·블랙 위주의 차분한 오피스 데일리
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가볍게 걸치는 가디건이나 자켓
+  - category: 상의
+    desc: 아이보리 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 데님
+  - category: 가방
+    desc: 단정한 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 목요일 출근길, 일교차엔 가벼운 아우터 하나로 단정하게
+  type: 상황
+  why: 목요일 출근, 서울 12~20도에 맑아서 셔츠나 니트 위에 가볍게 걸치는 아우터가 알맞음. 최근 트렌치·롱코트·무채색 주제와 겹치지 않게
+    가디건·자켓 중심

@@ -1,0 +1,101 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "5번 가방이 원본(손잡이 달린 보스턴형 크로스백) 대신 네모난 토트백으로 바뀜. 5번 신발은 앞코가 둥글고 원본의 스퀘어토와 다름. 2번 셔츠는 스탠드 칼라로 바뀜. 3번 바지에 앞주름이 생김"
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit/results/G_2.jpg",
+      "round": 1,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "2번 셔츠 칼라에 원본에 없는 작은 글자 라벨이 그려짐"
+      }
+    },
+    {
+      "id": "c3",
+      "file": "outfit/results/G_3.jpg",
+      "round": 1,
+      "score": {
+        "id": "c3",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 1,
+        "notes": "2번 셔츠 칼라에 원본에 없는 작은 글자 라벨이 그려짐. 4번 가방이 바지와 가디건에 걸쳐 겹침"
+      }
+    },
+    {
+      "id": "c4",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c4",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "2번 셔츠 칼라에 작은 라벨 글자가 그려져 있음 (글자 금지 위반). 3번 바지가 밑단 쪽으로 살짝 좁아져 원본의 일자 와이드보다 슬림해 보임"
+      }
+    },
+    {
+      "id": "c5",
+      "file": "outfit_r2/results/G_2.jpg",
+      "round": 2,
+      "score": {
+        "id": "c5",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "2번 셔츠 칼라에 라벨 글자가 그려져 있음 (글자 금지 위반)"
+      }
+    },
+    {
+      "id": "c6",
+      "file": "outfit_r2/results/G_3.jpg",
+      "round": 2,
+      "score": {
+        "id": "c6",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "4번 가방의 크로스 스트랩이 보이지 않음. 3번 바지 밑단이 살짝 좁아짐"
+      }
+    }
+  ],
+  "chosen": "c6",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [
+    {
+      "slide": "03_상의.jpg",
+      "kind": "색",
+      "note": "고른 색은 아이보리인데 사진 속 셔츠는 노란 기가 도는 크림색에 가까움. 주스 잔과 파란 소품도 크게 나와 시선을 끎",
+      "by": "claude"
+    }
+  ],
+  "summary": "점수를 매길 코디컷 후보가 없어 covers 는 비움. 캐러셀 02, 04, 05, 06 장은 상품이 주인공이고 얼굴 노출과 글자 잘림이 없음. 03 상의만 색 확인이 필요함"
+}
