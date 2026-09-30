@@ -269,6 +269,7 @@ def test_share_reward_needs_manual_link(tmp_path):
         load_profile("women", tmp_path / "accounts")
 
 
+@pytest.mark.usefixtures("fixed_times")
 def test_schedule_runs_comments_with_other_ticks(monkeypatch, profile):
     profile.comments.check_at = ["08:17"]
     profile.monetize = "none"  # 공유리워드 확인(share)은 test_share

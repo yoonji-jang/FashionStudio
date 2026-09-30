@@ -51,6 +51,7 @@ def test_validate_drops_bad_and_duplicate_candidates(out, store):  # noqa: F811
     assert pick.load_candidates(out)[1].items[1].product == "zigzag:99"
 
 
+@pytest.mark.usefixtures("fixed_times")
 def test_send_makes_sheets_and_keyboard(out, store):  # noqa: F811
     profile = load_profile("women")
     pick.validate(out, profile, store)

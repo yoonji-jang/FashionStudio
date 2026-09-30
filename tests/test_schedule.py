@@ -7,6 +7,9 @@ from tools import schedule
 
 REF = date(2026, 9, 28)
 
+# 시간 계산은 고정 시간표(conftest FIXED_SCHEDULE)로 본다. 실제 시각은 test_women_profile_is_hourly
+pytestmark = pytest.mark.usefixtures("fixed_times")
+
 
 def utc(text: str) -> datetime:
     return datetime.fromisoformat(text).replace(tzinfo=UTC)
@@ -64,8 +67,11 @@ def test_due_uses_fired_cron_even_when_actions_is_late():
     assert due("0 0 * * *", utc("2026-09-28T00:00:00"), ["women"]) == []
 
 
-def test_workflow_crons_match_profiles():
-    """profile.yaml schedule 을 바꾸고 sync 를 안 하면 실패한다."""
+def test_workflow_crons_match_profiles(monkeypatch):
+    """profile.yaml schedule 을 바꾸고 sync 를 안 하면 실패한다 (실제 시간표로 본다)."""
+    import core.profile
+
+    monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     assert not schedule.sync(check_only=True), "python -m tools.schedule sync 를 돌리세요"
 
 
@@ -246,8 +252,7 @@ def test_ticks_file_is_pruned(tmp_path):
 
 def test_external_jobs_cover_every_slot():
     lines = schedule.external_jobs(["women"])
-    # 고르기(10~15시)와 /fix 확인(15:47~19:47)이 30분 간격으로 이어진다
-    assert "Asia/Seoul  매일  10~19시  17,47분" in lines
+    assert "Asia/Seoul  매일  10~14시  17,47분" in lines
     assert "Asia/Seoul  매일  20~21시  03,33분" in lines
     # 일 18:17 주제는 매일 18:17 칸과 같아서 따로 만들지 않음
     assert not any(line.split()[1] == "일" and "17분" in line for line in lines)
@@ -270,3 +275,12 @@ def test_backup_cron_keeps_only_key_slots():
     assert "publish 20:03" in kinds and "publish 22:03" in kinds
     assert "pick 12:17" not in kinds and "publish 21:03" not in kinds
     assert not [k for k in kinds if k.startswith("links")]
+
+
+def test_women_profile_is_hourly(monkeypatch):
+    """women 은 외부 스케줄러가 매시 정각에 깨운다 (cron-job.org Every 1 hour)."""
+    import core.profile
+
+    monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
+    lines = schedule.external_jobs(["women"])
+    assert all(line.split()[-1] == "00분" for line in lines), lines

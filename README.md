@@ -277,8 +277,9 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 
 **시간을 바꾼 뒤에는** `uv run python -m tools.schedule sync` 를 돌려 `.github/workflows/schedule.yml` 의
 cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 실패합니다). `uv run python -m tools.schedule list` 로
-계정별 시간표와 UTC cron 을 볼 수 있습니다. GitHub 예약 실행은 몇 분~30분 늦게 돌 때가 많고 정각에 더 몰려서
-정각을 피하는 것을 권장합니다. 예약 실행은 기본 브랜치(main)에 합친 뒤부터 돕니다.
+계정별 시간표와 UTC cron 을 볼 수 있습니다. GitHub 예약 실행은 늦거나 빠질 때가 많아(정각에 더 몰림)
+외부 스케줄러(아래 "외부 스케줄러")가 정각에 깨우게 하고, 모든 칸을 정각으로 두면 외부 작업 하나(Every 1 hour)로
+충분합니다. 예약 실행은 기본 브랜치(main)에 합친 뒤부터 돕니다.
 
 #### `pick` : 코디 고르기 (9단계)
 이미지 AI 비용을 아끼려고, Claude 가 코디 후보를 여러 개 짜서 **쇼핑몰 원본 사진으로** 먼저 보여 주고
@@ -299,7 +300,7 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 |---|---|---|
 | `enabled` | true | false 면 `/fix` 를 읽지 않음 |
 | `max_fixes` | 2 | 하루에 다시 만드는 횟수 (넘으면 피드백만 기록) |
-| `check_every` | 30 | 고르기 마감~게시 시각 사이 `/fix` 를 확인하는 간격(분). 0 이면 다른 자동 실행 때만. 바꾸면 `tools.schedule sync` |
+| `check_every` | 60 | 고르기 마감~게시 시각 사이 `/fix` 를 확인하는 간격(분). 0 이면 다른 자동 실행 때만. 바꾸면 `tools.schedule sync` |
 | `render_minutes` | 40 | 게시 마지막 확인 시각까지 이만큼(분) 남아야 다시 만듦 |
 | `recent_days` | 14 | 최근 며칠 피드백을 다음 기획·검수에 보여 줄지 (0 이면 안 보임) |
 
@@ -641,18 +642,18 @@ Claude 는 게시·알림 도구(`tools.publish`, `tools.ig_publish`, `tools.not
 `main` 에 합치면 사람 손 없이 아래처럼 돕니다 (시간은 `profile.yaml` 의 `schedule`, 예시는 기본값).
 
 ```
-10:17  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, 이미지 AI 없음)
+10:00  schedule → daily(mode=candidates): Claude 가 코디 후보 5개 (outfit-candidates 스킬, 이미지 AI 없음)
        → 텔레그램: 후보마다 상품 원본 사진 한 장 모음 + 목록
          버튼 [/pick 1 women 09-28] … [/pick 5 …] [/again …] [/skip …]
-10:47~15:17 (30분마다) schedule: 고른 번호 확인
+11:00~15:00 (1시간마다) schedule: 고른 번호 확인
        번호 → daily(mode=render): 그 후보로 사진 확인 → 문구 → 코디컷(생성형 AI) → 검수 → 미리보기
        /again → 겹치지 않는 새 후보 5개 (max_again 번까지, 마감 1시간 전까지)
        /skip → 그날 건너뜀
-       15:17 까지 안 고르면 → on_timeout (1번으로 만들기 또는 건너뛰기)
-20:03  schedule → publish: /ok 가 있으면 게시. 없으면 30분마다 4번 더 확인 (알림은 처음과 마지막만)
-일 18:17  다음 주 주제 7개 (themes 워크플로) → 텔레그램. /themes again 이면 그 주를 다시 정함
-월·목 04:17  지그재그 상품 수집 (collect, 창고 커밋)
-일 18:47  인스타 토큰 연장 (token)
+       15:00 까지 안 고르면 → on_timeout (1번으로 만들기 또는 건너뛰기)
+20:00  schedule → publish: /ok 가 있으면 게시. 없으면 1시간마다 2번 더 확인 (알림은 처음과 마지막만)
+일 18:00  다음 주 주제 7개 (themes 워크플로) → 텔레그램. /themes again 이면 그 주를 다시 정함
+월·목 04:00  지그재그 상품 수집 (collect, 창고 커밋)
+일 19:00  인스타 토큰 연장 (token)
 ```
 
 - **워크플로**: `schedule.yml` 이 깨어나 `tools.schedule` 로 할 일을 찾고,
@@ -711,7 +712,7 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 - COMMON 탭
   - Title: 예) `fashionstudio 10~14시`
   - URL: `https://api.github.com/repos/<owner>/<repo>/actions/workflows/schedule.yml/dispatches`
-  - Execution schedule: **Custom** → 아래 표의 요일·시·분을 고릅니다 (여러 개 선택 가능)
+  - Execution schedule: **Every 1 hour** (기본 시간표일 때, 아래 참고)
 - ADVANCED 탭
   - Request method: **POST**
   - Headers (4줄):
@@ -723,19 +724,10 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 - 저장 후 **TEST RUN** → 응답이 `204` 면 성공 (GitHub Actions 탭에 `schedule` 실행이 생김).
   `401`/`403` 은 토큰·권한, `404` 는 주소(owner/repo) 확인. 알림 탭에서 실패 시 메일 받기를 켜 두면 좋습니다.
 
-작업 시각은 `uv run python -m tools.schedule external` 이 계정 시간표에서 만들어 줍니다. 기본값(women) 예:
-
-| 작업 | 요일 | 시 | 분 |
-|---|---|---|---|
-| 후보·고르기 | 매일 | 10~14 | 17, 47 |
-| 고르기 마감·상품 링크 | 매일 | 15~19 | 17 |
-| 게시 | 매일 | 20~21 | 03, 33 |
-| 게시 마지막 확인 | 매일 | 22 | 03 |
-| 상품 수집 | 월, 목 | 4 | 17 |
-| 토큰 연장 | 일 | 18 | 47 |
-
-(일 18:17 주제는 매일 18:17 칸과 같아서 따로 만들지 않습니다.) profile `schedule` 시각을 바꾸면 이 표도
-다시 뽑아 cron-job.org 작업을 맞춰 주세요.
+작업 시각은 `uv run python -m tools.schedule external` 이 계정 시간표에서 만들어 줍니다.
+기본값(women)은 모든 칸이 정각이라 **Execution schedule → Every 1 hour** 작업 하나면 됩니다
+(밤에도 깨우지만 할 일이 없으면 1분 안에 끝남). 칸 시각을 정각이 아닌 값으로 바꾸면 **Custom** 에서
+`external` 이 알려 주는 요일·시·분을 골라 작업을 나눠 만드세요.
 
 **3) GitHub 예약 줄이기** (선택): 외부 스케줄러가 잘 도는 것을 확인했으면 profile `schedule.github_cron: backup`
 으로 바꾸고 `uv run python -m tools.schedule sync` → 커밋. GitHub 예약이 주요 칸 몇 개만 남아 Actions 시간이
@@ -746,7 +738,7 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 ## 미리보기 고치기 (15단계)
 
 미리보기가 마음에 들지 않으면 텔레그램에 고칠 점을 보냅니다. 봇 서버 없이 자동 실행(schedule)이 깨어날 때
-읽어서 같은 코디로 고쳐 다시 만들고, 20~40분 뒤 "고친 미리보기"가 옵니다. 그 미리보기에 `/ok` 하면 게시돼요.
+읽어서(매시 정각) 같은 코디로 고쳐 다시 만들고, 20~40분 뒤 "고친 미리보기"가 옵니다. 그 미리보기에 `/ok` 하면 게시돼요.
 
 | 보내는 글 | 뜻 |
 |---|---|
