@@ -467,6 +467,9 @@ def check(
     return errors, warns
 
 
+_LOOK_COUNT = re.compile(r"(\d+|한|두|세|네|다섯|여섯|일곱|여덟|아홉|열)\s*(벌|가지\s*(룩|코디))")
+
+
 def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: bool) -> list[str]:
     """여러 벌 게시물 규칙 (20단계): 벌 수, 벌 사이 상품 겹침."""
     lk = profile.looks
@@ -478,6 +481,12 @@ def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: boo
     for n, look in enumerate(plan.looks, 1):
         for it in look.items:
             seen.setdefault(it.product, []).append(n)
+    if not lk.title_count and plan.text:
+        title = " ".join(plan.text.title_lines)
+        if m := _LOOK_COUNT.search(title):
+            errors.append(
+                f"제목에 벌 수를 쓰지 않습니다: '{m.group(0)}' (profile looks.title_count)"
+            )
     for pid, where in seen.items():
         if len(where) < 2:
             continue

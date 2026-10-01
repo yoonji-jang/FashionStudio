@@ -219,6 +219,8 @@ class Looks(BaseModel):
     )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)
     # 표지(1장, 제목) 다음 벌 장에 1번 벌을 다시 넣을지. false 면 1번 벌은 표지로만 보임
     repeat_cover_look: bool = True
+    # 표지 제목에 벌 수("여섯 벌", "6벌")를 써도 되는지. false 면 tools.plan check 가 막는다
+    title_count: bool = True
     # 벌 장 글자 (tools.feed). 크기는 폭 1080px 기준, 위치는 높이 대비
     label: str = "LOOK {n}"  # 벌 번호 (빈 문자열이면 생략)
     label_size: int = Field(default=26, gt=0)
