@@ -77,6 +77,8 @@ jobs:
           MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # schedule 이 남긴 받은 글 기록도 읽는다 (여기서는 기록하지 않음)
+          TELEGRAM_UPDATES_LOG: /tmp/results/telegram_updates.json
           DATE: ${{ inputs.date }}
           RUN_DIR: ${{ inputs.run }}
         run: |

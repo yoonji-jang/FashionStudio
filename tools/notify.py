@@ -7,6 +7,8 @@ r"""텔레그램 미리보기·승인·알림 (8단계). 외부로 보내는 도
 - send: 알림 한 줄.
 
 봇 서버 없이 동작한다. 답장은 게시 job 이 돌 때 getUpdates 로 읽는다 (텔레그램이 24시간 보관).
+schedule 은 받은 글을 daily-results 의 telegram_updates.json 에 남기고(이름 등은 빼고 72시간),
+남긴 글은 텔레그램에서 확인 처리한다. 확인하지 않은 옛 글이 쌓이면 새 글이 안 오는 일이 있어서.
 등록된 채팅 ID 에서 온 글만 본다.
 
 사용법 (환경 변수 TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 필요):
@@ -60,20 +62,77 @@ def quiet_now(cfg: dict | None = None, now: datetime | None = None) -> bool:
 
 
 UPDATES_LIMIT = 100  # getUpdates 한 번에 받는 최대 개수
+UPDATES_KEEP_HOURS = 72  # 받은 글 기록을 남기는 시간
+
+
+def load_updates_log(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def slim_update(u: dict) -> dict:
+    """기록에 남길 것만: 번호, 시각, 채팅 ID, 글, 답장한 메시지 번호.
+    보낸 사람 이름·아이디 같은 개인정보는 남기지 않는다."""
+    msg = u.get("message") or {}
+    out: dict = {
+        "message_id": msg.get("message_id"),
+        "date": msg.get("date", 0),
+        "chat": {"id": (msg.get("chat") or {}).get("id")},
+        "text": msg.get("text") or "",
+    }
+    reply = (msg.get("reply_to_message") or {}).get("message_id")
+    if reply:
+        out["reply_to_message"] = {"message_id": reply}
+    return {"update_id": u["update_id"], "message": out}
+
+
+def save_updates_log(
+    path: Path, updates: list[dict], chat_id: str, now: float | None = None
+) -> None:
+    """등록 채팅에서 온 최근 글만 줄여서 남긴다 (다른 채팅 글, 오래된 글은 버림)."""
+    cutoff = (now if now is not None else time.time()) - UPDATES_KEEP_HOURS * 3600
+    keep = [
+        slim_update(u)
+        for u in updates
+        if str(((u.get("message") or {}).get("chat") or {}).get("id")) == str(chat_id)
+        and (u.get("message") or {}).get("date", 0) >= cutoff
+    ]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(keep, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
 class Telegram:
-    def __init__(self, token: str, chat_id: str, client: httpx.Client | None = None):
+    def __init__(
+        self,
+        token: str,
+        chat_id: str,
+        client: httpx.Client | None = None,
+        log: Path | None = None,
+        save_log: bool = False,
+    ):
         if not token or not chat_id:
             raise ValueError("텔레그램 봇 토큰과 채팅 ID 가 필요합니다 (Secrets)")
         self.base = f"{API}/bot{token}"
         self.chat_id = str(chat_id)
         self.client = client or httpx.Client(timeout=60)
+        # 받은 글 기록 (daily-results 의 telegram_updates.json). 있으면 기록한 글은 텔레그램에서
+        # 확인 처리하고 기록에서 읽는다. 오래된 글을 확인하지 않고 두면 새 글이 안 오는 일이 있어서
+        self.log = log
+        self.save_log = save_log
+        self._base: int | None = None  # 이 실행을 시작할 때 기록에 있던 마지막 update_id
 
     @classmethod
     def from_env(cls, client: httpx.Client | None = None) -> Telegram:
         token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-        return cls(token, os.environ.get("TELEGRAM_CHAT_ID", ""), client)
+        log = os.environ.get("TELEGRAM_UPDATES_LOG")
+        return cls(
+            token,
+            os.environ.get("TELEGRAM_CHAT_ID", ""),
+            client,
+            Path(log) if log else None,
+            os.environ.get("TELEGRAM_UPDATES_SAVE") == "1",
+        )
 
     def call(self, method: str, files: dict | None = None, **params) -> dict | list:
         if method in SEND_METHODS and "disable_notification" not in params and quiet_now():
@@ -123,6 +182,8 @@ class Telegram:
         return ids
 
     def updates(self) -> list[dict]:
+        if self.log is not None:
+            return self._logged_updates()
         # offset 을 넘기지 않아 읽은 답장을 지우지 않는다 (다른 계정 게시 job 도 읽어야 해서)
         old = self.call("getUpdates", allowed_updates=["message"], limit=UPDATES_LIMIT)
         if len(old) < UPDATES_LIMIT:
@@ -134,6 +195,24 @@ class Telegram:
         )
         seen = {u["update_id"] for u in new}
         return [u for u in old if u["update_id"] not in seen] + new
+
+    def _logged_updates(self) -> list[dict]:
+        """기록 + 새 글. 텔레그램에는 이 실행 시작 때 이미 기록(커밋)돼 있던 글까지만 확인 처리한다
+        (이번 실행에서 처음 받은 글은 기록이 커밋된 뒤 다음 실행에서 확인)."""
+        assert self.log is not None
+        logged = load_updates_log(self.log)
+        if self._base is None:
+            self._base = max((u["update_id"] for u in logged), default=0)
+        params: dict = {"allowed_updates": ["message"], "limit": UPDATES_LIMIT}
+        if self._base:
+            params["offset"] = self._base + 1
+        fresh = self.call("getUpdates", **params)
+        merged = {u["update_id"]: u for u in logged}
+        merged.update({u["update_id"]: u for u in fresh})
+        out = [merged[k] for k in sorted(merged)]
+        if self.save_log:
+            save_updates_log(self.log, out, self.chat_id)
+        return out
 
 
 # ---------- 미리보기 ----------

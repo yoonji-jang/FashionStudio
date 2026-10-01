@@ -78,6 +78,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # 받은 텔레그램 글 기록. 기록한 글은 텔레그램에서 확인 처리해 새 글이 막히지 않게 한다
+          TELEGRAM_UPDATES_LOG: /tmp/results/telegram_updates.json
+          TELEGRAM_UPDATES_SAVE: "1"
           # 댓글 DM: 계정마다 Secret 이름이 profile instagram 에 있어서 JSON 으로 넘기고,
           # tools.comments 가 그 계정의 두 이름만 꺼내 쓴다 (값은 로그에 가려짐)
           IG_SECRETS: ${{ toJSON(secrets) }}
@@ -105,6 +108,7 @@ jobs:
             return 1
           }
           commit /tmp/results daily-results "자동 실행 기록" ticks.json
+          commit /tmp/results daily-results "받은 텔레그램 글 기록" telegram_updates.json
           commit /tmp/results daily-results "코디 고르기 기록" ':(glob)*/picks/**'
           commit /tmp/results daily-results "상품 링크 보낸 기록" ':(glob)*/links.json'
           commit /tmp/results daily-results "승인 기록" ':(glob)*/approval.json'

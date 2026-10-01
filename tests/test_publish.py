@@ -31,6 +31,7 @@ class FakeApis:
         self.statuses: dict[str, list[str]] = {}
         self.texts: list[str] = []  # 보낸 텔레그램 글
         self.comments: list[tuple[str, str]] = []  # 인스타 댓글·대댓글
+        self.offsets: list[int] = []  # getUpdates 에 넘긴 offset (0 = 안 넘김)
 
     def __call__(self, req: httpx.Request) -> httpx.Response:
         host, path = req.url.host, req.url.path
@@ -51,7 +52,8 @@ class FakeApis:
                     "message": {
                         "message_id": 500 + i,
                         "date": at,
-                        "chat": {"id": int(CHAT), "type": "private"},
+                        "chat": {"id": int(CHAT), "type": "private", "first_name": "보낸이"},
+                        "from": {"id": int(CHAT), "first_name": "보낸이", "username": "sender"},
                         "text": text,
                         **({"reply_to_message": {"message_id": to}} if to else {}),
                     },
@@ -62,8 +64,11 @@ class FakeApis:
             form = parse_qs(req.content.decode())
             limit = int(form.get("limit", ["100"])[0])
             offset = int(form.get("offset", ["0"])[0])
+            self.offsets.append(offset)
             if offset < 0:
                 updates = updates[offset:]
+            elif offset > 0:
+                updates = [u for u in updates if u["update_id"] >= offset]
             return httpx.Response(200, json={"ok": True, "result": updates[:limit]})
         if method == "sendMediaGroup":
             body = req.content.decode("utf-8", "ignore")
