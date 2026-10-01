@@ -42,6 +42,13 @@ text:
   직접 쓰지 않는다. `monetize: manual_link` 면 `#광고` 도 도구가 맨 앞에 붙인다.
 - 해시태그: 주제·아이템·상황·계절 해시태그. 기본 묶음과 합쳐 `copy.hashtags` 개수 안.
 
+## 여러 벌 (plan.yaml 에 `looks`, 20단계)
+- 표지 제목: 여러 벌 전체를 한 문장으로 (예: "출근룩 고민될 때 / 가을 코디 여섯 벌"). 한 벌만 말하지 않는다.
+- 상품 `name`: 벌 장 아래쪽에 "카테고리 이름 스토어" 한 줄로 들어간다. 12자 안팎으로 짧게. `comment` 는 쓰지 않는다.
+- `looks[].point`: 캡션에 "LOOK n" 뒤에 붙는 그 벌 한 줄. 그 벌의 포인트(색 조합, 입는 법, 상황) 하나.
+  `copy.comment_max_chars` 이하, 이모지 규칙은 캡션과 같다(합계에 들어감).
+- `text.points` 는 비워 둔다 (벌마다 point 가 대신). `intro`, `hashtags` 는 같다.
+
 ## 마지막 확인
 `python -m tools.plan caption out/$DATE/plan.yaml` 로 완성된 캡션을 읽어 보고,
 voice.md 의 금지 표현(체형 비하, 과장, 가격 단정)이 없는지 한 번 더 본다.

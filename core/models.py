@@ -9,7 +9,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Literal
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, model_validator
 
 Category = Literal["아우터", "상의", "하의", "원피스", "가방", "신발", "소품"]
 Monetize = Literal["none", "manual_link"]
@@ -57,8 +57,9 @@ class Theme(BaseModel):
 
 class OutfitPlan(BaseModel):
     theme: Theme
-    items: list[Product] = Field(min_length=1, max_length=10)  # 개수 규칙은 profile outfit
+    items: list[Product] = Field(min_length=1, max_length=60)  # 개수 규칙은 profile outfit
     reason: str
+    looks: list[list[str]] = []  # 여러 벌 게시물이면 벌마다 상품 id (20단계)
 
 
 class PlanItem(BaseModel):
@@ -93,23 +94,65 @@ class PlanText(BaseModel):
 
     title_lines: list[str] = Field(min_length=1)
     intro: str | None = None  # 캡션 맨 앞 도입 한 줄 (profile copy.intro 가 켜져 있으면 필수)
-    points: list[str] = Field(min_length=1)  # 캡션 코디 포인트 (한 줄씩)
+    # 캡션 코디 포인트 (한 줄씩). 여러 벌 게시물은 벌마다 looks[].point 를 써서 비워도 됨
+    points: list[str] = []
     hashtags: list[str] = []  # 기본 해시태그(profile copy.base_hashtags)는 자동으로 더함
+
+
+class Look(BaseModel):
+    """코디 여러 벌 게시물(20단계, profile looks)의 한 벌. 벌마다 코디컷 한 장을 만든다."""
+
+    items: list[PlanItem] = Field(min_length=1, max_length=10)
+    reason: str = ""  # 이 벌을 고른 이유. 첫 문장은 텔레그램 후보 목록에 한 줄로 보인다
+    point: str = ""  # 캡션에 넣는 이 벌 한 줄 (write-copy)
+    # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
+    styling: str | None = None
+    cover: str | None = None  # 이미 만든 코디컷 (있으면 이 벌은 새로 만들지 않음)
 
 
 class DailyPlan(BaseModel):
     """하루 게시물 기획. daily-feed 스킬이 out/<날짜>/plan.yaml 로 쓰고
-    tools.plan 이 검사·빌드한다."""
+    tools.plan 이 검사·빌드한다. 한 벌이면 items, 여러 벌(20단계)이면 looks 를 쓴다."""
 
     account: str
     date: date
     theme: Theme
-    items: list[PlanItem] = Field(min_length=1, max_length=10)
+    items: list[PlanItem] = Field(default=[], max_length=10)
+    looks: list[Look] = Field(default=[], max_length=9)
     reason: str  # 이 조합을 고른 이유 (색, 분위기)
     text: PlanText | None = None
     # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 코디컷을 새로 만들지 않음)
+
+    @model_validator(mode="after")
+    def _items_or_looks(self) -> DailyPlan:
+        if bool(self.items) == bool(self.looks):
+            raise ValueError("items(한 벌)와 looks(여러 벌) 중 하나만 써야 합니다")
+        return self
+
+    def all_items(self) -> list[PlanItem]:
+        """모든 상품 (여러 벌이면 벌 순서대로 이어서, 같은 상품은 처음 한 번만)."""
+        if not self.looks:
+            return list(self.items)
+        seen: dict[str, PlanItem] = {}
+        for look in self.looks:
+            for it in look.items:
+                seen.setdefault(it.product, it)
+        return list(seen.values())
+
+    def look_plan(self, index: int) -> DailyPlan:
+        """index 번째(0부터) 벌을 한 벌짜리 기획으로. 코디컷·검수 도구가 한 벌 기획 그대로 쓴다."""
+        look = self.looks[index]
+        return self.model_copy(
+            update={
+                "items": list(look.items),
+                "looks": [],
+                "reason": look.reason or self.reason,
+                "styling": look.styling,
+                "cover": look.cover,
+            }
+        )
 
 
 class FeedItem(BaseModel):
@@ -129,6 +172,13 @@ class FeedItem(BaseModel):
     photo: str | None = None  # 저장소 기준 원본 사진
 
 
+class FeedLook(BaseModel):
+    """여러 벌 게시물의 한 벌 장 (20단계). 코디컷 위에 상품 정보 몇 줄을 얹는다."""
+
+    image: str | None = None  # 코디컷 경로 (없으면 이 벌 장을 건너뜀)
+    items: list[FeedItem] = Field(min_length=1)
+
+
 class FeedSpec(BaseModel):
     """게시물 한 개의 캐러셀 재료. 기획 단계가 쓰고 tools.feed 가 읽는다."""
 
@@ -137,6 +187,7 @@ class FeedSpec(BaseModel):
     cover: str | None = None  # 제목 없는 코디컷 경로 (없으면 표지 장을 건너뜀)
     cover_has_title: bool = False  # 이미 제목을 얹은 이미지면 true
     items: list[FeedItem] = Field(min_length=1)
+    looks: list[FeedLook] = []  # 여러 벌 게시물이면 벌마다 (feed.slides 의 looks)
 
 
 class PostLink(BaseModel):
@@ -148,6 +199,7 @@ class PostLink(BaseModel):
     name: str  # 짧은 이름
     url: str  # 상품 페이지
     image: str = ""  # 대표 사진 주소 (상품 페이지 썸네일)
+    look: int | None = None  # 여러 벌 게시물이면 몇 번째 벌인지 (1부터, 20단계)
 
 
 class ShareRequest(BaseModel):
@@ -220,8 +272,11 @@ class FeedbackEntry(BaseModel):
     date: date  # 게시 날짜
     run: str | None = None  # 피드백을 받은 미리보기 결과 폴더 (daily-results)
     slide: int | None = None  # 장 번호 (1부터). 캡션이나 전체면 None
-    kind: Literal["cover", "product", "summary", "comment", "slide", "caption", "all"] = "all"
+    kind: Literal["cover", "product", "look", "summary", "comment", "slide", "caption", "all"] = (
+        "all"
+    )
     product: str | None = None  # 상품 장이면 상품 창고 id
+    look: int | None = None  # 벌 장이면 몇 번째 벌인지 (1부터)
     text: str
     at: int  # 보낸 시각 (유닉스 초)
     update_id: int  # 텔레그램 업데이트 번호 (같은 글을 두 번 처리하지 않음)
@@ -237,7 +292,9 @@ class PickRecord(BaseModel):
     date: date
     run: str  # daily-results 브랜치 안 결과 폴더 이름
     round: int = Field(default=1, ge=1)  # "다시"로 몇 번째 받은 후보인지
-    count: int = Field(ge=1)  # 보낸 후보 수 (p1 ~ pN)
+    count: int = Field(ge=1)  # 보낸 후보 수 (p1 ~ pN). 여러 벌 게시물이면 p1 안의 벌 수
+    looks: int = 0  # 여러 벌 게시물(20단계)이면 게시물에 넣을 벌 수 (profile looks.count)
+    looks_min: int = 0  # 고르기에서 빼더라도 남아야 하는 벌 수
     sent_at: int  # 보낸 시각 (유닉스 초). 이보다 뒤에 온 답장만 본다
     message_ids: list[int] = []
 
@@ -245,7 +302,8 @@ class PickRecord(BaseModel):
 class PickDecision(BaseModel):
     """후보에 대한 결정 (picks/picked.json). schedule job 이 쓰고, 한 번 정하면 다시 보지 않는다."""
 
-    choice: int | Literal["again", "skip"]  # 고른 번호 (1부터)
+    # 고른 번호 (1부터). 여러 벌 게시물(20단계)이면 쓸 벌 번호 목록
+    choice: int | list[int] | Literal["again", "skip"]
     by: Literal["user", "timeout"]
     decided_at: int  # 유닉스 초
 

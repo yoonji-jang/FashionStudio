@@ -152,8 +152,15 @@ class Telegram:
         return body["result"]
 
     def send(self, text: str, **kw) -> int:
-        msg = self.call("sendMessage", chat_id=self.chat_id, text=text[:MAX_TEXT], **kw)
-        return msg["message_id"]
+        """글을 보내고 첫 메시지 번호를 돌려준다. 한도보다 길면 줄 단위로 나눠 보낸다
+        (여러 벌 게시물의 상품 링크 목록 등). 버튼(reply_markup)은 마지막 메시지에 단다."""
+        chunks = split_text(text, MAX_TEXT)
+        first = None
+        for i, chunk in enumerate(chunks):
+            extra = kw if i == len(chunks) - 1 else {}
+            msg = self.call("sendMessage", chat_id=self.chat_id, text=chunk, **extra)
+            first = first if first is not None else msg["message_id"]
+        return first
 
     def send_photos(self, paths: list[Path], caption: str = "") -> list[int]:
         if len(paths) == 1:
@@ -370,6 +377,20 @@ class Command(NamedTuple):
     labeled: bool  # 계정이나 날짜를 적었는지
 
 
+def split_text(text: str, limit: int) -> list[str]:
+    """limit 글자 안으로 줄 단위로 나눈다 (한 줄이 넘치면 그 줄은 자른다)."""
+    chunks: list[str] = []
+    cur = ""
+    for line in text.split("\n"):
+        line = line[:limit]
+        cand = f"{cur}\n{line}" if cur else line
+        if len(cand) > limit and cur:
+            chunks.append(cur)
+            cand = line
+        cur = cand
+    return [*chunks, cur] if cur or not chunks else chunks
+
+
 def parse(text: str, account: str, day: date | None) -> Command | None:
     """ "/ok", "/pick 3 women 09-28", "/skip 2026-09-27" 같은 글을 읽는다.
     계정·날짜를 적었으면 둘 다 이 계정·날짜와 맞아야 하고(아니면 None),
@@ -379,6 +400,13 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
     plain = text.strip()
     if re.fullmatch(r"\d{1,2}\s*번?", plain):
         return Command("pick", [re.sub(r"\D", "", plain)], False)
+    # 여러 벌 게시물(20단계): "1 2 3 5 6 7" 은 쓸 벌 번호들, "4번 빼고" 는 그 벌만 빼기
+    nums = r"\d{1,2}(?:\s*[,\s]\s*\d{1,2})*"
+    if re.fullmatch(r"\d{1,2}(?:\s*[,\s]\s*\d{1,2})+\s*번?", plain):
+        return Command("pick", re.findall(r"\d+", plain), False)
+    m = re.fullmatch(rf"({nums})\s*번?\s*(?:은|는)?\s*빼(?:고|줘|주세요|기)?.*", plain)
+    if m:
+        return Command("drop", re.findall(r"\d+", m.group(1)), False)
     if plain in ("다시", "다시 보내줘"):
         return Command("again", [], False)
     m = CMD.match(plain)

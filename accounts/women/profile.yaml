@@ -23,7 +23,7 @@ outfit:
     - {category: 가방}
     - {category: 신발}
     - {category: 소품, required: false}
-  reuse_cooldown_days: 14
+  reuse_cooldown_days: 7    # 하루 코디 6벌(20단계)이라 상품을 많이 써서 14일 → 7일 (2026-10-01)
   max_per_shop: 2
 
 themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생성)
@@ -55,7 +55,7 @@ product_source:
     신발: [로퍼, 앵클부츠, 메리제인]
     소품: [목걸이, 귀걸이, 벨트]
   per_query: 10          # 검색어마다 상세까지 확인할 상품 수
-  max_per_category: 60   # 카테고리별 창고 최대 보관 수
+  max_per_category: 150  # 카테고리별 창고 최대 보관 수 (하루 6벌이라 60 → 150, 2026-10-01)
   recheck_days: 3        # 창고 상품의 판매 상태를 다시 확인하는 주기
 
 visual:
@@ -86,7 +86,9 @@ visual:
 
 # 캐러셀 구성 (tools.feed). 크기는 폭 1080px 기준, 굵은 글자는 visual.font, 포인트 색은 visual.accent_color
 feed:
-  slides: [cover, products, summary, comment]  # 순서. products 는 상품마다 한 장, comment 는 댓글 안내 장. 전체 10장까지
+  # 순서. products 는 상품마다 한 장, looks 는 코디 벌마다 한 장(20단계), comment 는 댓글 안내 장. 전체 10장까지
+  # 예전 한 벌 게시물로 되돌리려면 [cover, products, summary, comment] 와 looks.enabled: false
+  slides: [cover, looks, comment]
   product_image: photo       # 상품 장 사진: photo(쇼핑몰 원본 사진) 또는 cutout(누끼)
   hide_faces: true           # 모델 얼굴이 없는 사진을 먼저 고르고, 없으면 얼굴 아래로 잘라 씀
   photo_candidates: 6        # 상품마다 살펴볼 사진 수 (앞에서부터)
@@ -157,7 +159,7 @@ ai_label:
   mode: metadata
   # generated: 이름 아래 "AI 콘텐츠" 레이블이 보이게 (composite 는 ⋯ 메뉴 안에만 보일 수 있음)
   source_type: generated
-  slides: [cover]  # 누끼·AI 그림자로 만든 코디컷 표지만. 상품 장·요약 장은 쇼핑몰 사진이라 넣지 않음
+  slides: [cover, looks]  # AI 가 그린 코디컷 장(표지·벌 장)만. 상품 장·요약 장은 쇼핑몰 사진이라 넣지 않음
 
 # 게시 직후 내 댓글(🤍)을 달고 그 대댓글로 해시태그를 단다 (tools.publish). 켜면 캡션에는 해시태그가 없다.
 # 대댓글 = 코디 해시태그(copy.hashtags) + 소통용 follow_hashtags, 최대 max 개
@@ -174,6 +176,22 @@ review:
   max_rounds: 2      # 모두 기준 미달이면 다시 만드는 횟수 (첫 회 포함). 넘으면 사람 확인으로 표시
   min_score: 8       # 이 점수 이상이고 0점 항목이 없어야 통과
   check_slides: true # 상품 장 사진 색·모델 얼굴·글자 잘림도 본다
+
+# 코디 여러 벌 게시물 (20단계, 2026-10-01 사용자 요청). 같은 주제로 코디 count 벌을 한 게시물에 담고
+# 장마다 코디컷 위에 상품 정보 몇 줄 (표지 → 벌 장 → 댓글 안내 장). 끄면 예전 한 벌 + 상품 장
+# 후보는 count + spare 벌을 텔레그램으로 보내고, 그대로 두면 앞의 count 벌, "4번 빼고" 면 예비 벌이 채움
+looks:
+  enabled: true
+  count: 6           # 게시물에 넣는 벌 수 (표지 1 + 벌 6 + 댓글 안내 1 = 8장)
+  min: 5             # 직접 고를 때 최소 벌 수
+  spare: 2           # 예비로 더 보내는 벌 수 (이미지 비용 없음, 고른 벌만 그림)
+  share_categories: [가방, 신발, 소품]  # 이 카테고리는 같은 상품을 max_share 벌까지 같이 써도 됨
+  max_share: 2
+  candidates: 1      # 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 한 장 더 (review.max_rounds)
+  repeat_cover_look: true  # 표지 다음 장에 1번 벌을 상품 정보와 함께 다시 보여 줌
+  label: "LOOK {n}"
+  show_shop: true
+  show_price: false  # 가격은 바뀔 수 있어 넣지 않음
 
 # 표지 코디컷 만드는 방식 (11단계, 2026-09-30 Photoroom 에서 바꿈). generate: 쇼핑몰 사진을 참고로
 # 생성형 AI 가 코디 전체를 한 장으로 그린다 (OpenRouter, Secret OPENROUTER_API_KEY). photoroom: 예전 누끼 배치

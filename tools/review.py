@@ -5,6 +5,12 @@ r"""7단계 이미지 검수 도구. 판단은 image-reviewer 에이전트(Claud
   python -m tools.review prep out/2026-09-27     검수표·도구 검사 (review/ 폴더)
   python -m tools.review apply out/2026-09-27 --scores out/2026-09-27/review/scores.yaml
   python -m tools.review more out/2026-09-27 [--fake]   코디컷 후보 한 묶음 더 (build 와 같은 방식)
+  python -m tools.review finish out/2026-10-02           여러 벌: 고른 코디컷으로 슬라이드 다시
+
+여러 벌 게시물(20단계, tools.looks)은 벌마다 out/looks/<n>/ 에 한 벌 기획·후보·검수가 있다.
+prep/apply/more 는 벌 폴더(out/looks/1)에 그대로 쓰고, 다 끝나면 finish 로 게시물 폴더를
+다시 만든다.
+게시물 폴더에 prep 을 하면 모든 벌 폴더를 prep 한다.
 
 apply 종료 코드: 0 통과 / 3 표지 후보가 모두 기준 미달 (more 로 다시 만들 수 있음)
                  / 4 사람 확인 필요 (최대 회차를 넘었거나 캐러셀 장에 문제가 남음) / 1 입력 오류
@@ -279,7 +285,10 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     from tools import feedback
 
     fb = feedback.recent_lines(
-        Store(plan.account), plan.date, profile.feedback.recent_days, {"cover", "product", "all"}
+        Store(plan.account),
+        plan.date,
+        profile.feedback.recent_days,
+        {"cover", "product", "look", "all"},
     )
     if fb:
         # 15단계 /fix 로 사람이 지적한 것. 같은 문제가 다시 보이면 해당 항목 점수에 반영한다
@@ -444,6 +453,9 @@ def more(out: Path, fake: bool = False) -> list[Candidate]:
     if review.rounds >= profile.review.max_rounds:
         raise OverflowError(f"최대 회차({profile.review.max_rounds})를 넘습니다")
     rnd = review.rounds + 1
+    from tools import looks
+
+    count = profile.looks.candidates if looks.is_look_dir(out) else profile.review.candidates
     engine_file = out / "outfit" / "engine.txt"
     engine = (
         engine_file.read_text(encoding="utf-8").strip()
@@ -455,7 +467,7 @@ def more(out: Path, fake: bool = False) -> list[Candidate]:
         Store(plan.account),
         out / f"outfit_r{rnd}",
         fake,
-        profile.review.candidates,
+        count,
         engine,
         profile,
     )
@@ -485,11 +497,31 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("more", help="코디컷 후보 더 만들기")
     s.add_argument("out", type=Path)
     s.add_argument("--fake", action="store_true", help="이미지 API 대신 가짜 이미지")
+    s = sub.add_parser("finish", help="여러 벌: 고른 코디컷으로 슬라이드·manifest 다시 만들기")
+    s.add_argument("out", type=Path)
     args = ap.parse_args(argv)
 
+    from tools import looks
     from tools.plan import QUOTA_ERRORS
 
     try:
+        if args.cmd == "finish":
+            m = looks.finish(args.out)
+            print(
+                json.dumps(
+                    {
+                        "status": m.review.status if m.review else "-",
+                        "slides": len(m.images),
+                        "summary": m.review.summary if m.review else "",
+                    },
+                    ensure_ascii=False,
+                )
+            )
+            return 0 if m.review and m.review.passed else EXIT_HUMAN
+        if args.cmd == "prep" and not review_path(args.out).exists() and looks.look_dirs(args.out):
+            for d in looks.look_dirs(args.out):
+                print(prep(d))
+            return 0
         if args.cmd == "prep":
             print(prep(args.out))
             review = load_review(args.out)

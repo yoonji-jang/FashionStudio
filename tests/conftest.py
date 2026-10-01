@@ -43,3 +43,33 @@ def fixed_times(monkeypatch, request):
     for mod in (*mods, tools.publish, request.module):
         if hasattr(mod, "load_profile"):
             monkeypatch.setattr(mod, "load_profile", load)
+
+
+# 20단계부터 women 계정은 코디 여러 벌 게시물(looks)이다. 한 벌 게시물 흐름 테스트는 예전 구성
+# (표지 → 상품 장 → 요약 → 댓글 안내)으로 보고,
+# 여러 벌 테스트만 @pytest.mark.looks 로 실제 설정을 쓴다.
+SINGLE_OUTFIT = {
+    "looks": {"enabled": False},
+    "feed": {"slides": ["cover", "products", "summary", "comment"]},
+    "ai_label": {"slides": ["cover"]},
+}
+
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "looks: women 계정의 실제 여러 벌(looks) 설정으로 테스트")
+
+
+@pytest.fixture(autouse=True)
+def single_outfit(monkeypatch, request):
+    if request.node.get_closest_marker("looks"):
+        return
+    original = core.profile.Profile.model_validate.__func__
+
+    def validate(cls, data, *args, **kwargs):
+        if isinstance(data, dict) and data.get("id") == "women":
+            data = dict(data)
+            for key, values in SINGLE_OUTFIT.items():
+                data[key] = {**(data.get(key) or {}), **values}
+        return original(cls, data, *args, **kwargs)
+
+    monkeypatch.setattr(core.profile.Profile, "model_validate", classmethod(validate))

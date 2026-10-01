@@ -102,6 +102,7 @@ def test_item_needs_image(spec, tmp_path):
         render(bad, tmp_path / "out", root=tmp_path)
 
 
+@pytest.mark.looks
 def test_duplicate_slide_kind_rejected(tmp_path):
     import shutil
 
@@ -112,7 +113,7 @@ def test_duplicate_slide_kind_rejected(tmp_path):
     p = root / "women" / "profile.yaml"
     p.write_text(
         p.read_text(encoding="utf-8").replace(
-            "slides: [cover, products, summary, comment]", "slides: [cover, products, cover]"
+            "slides: [cover, looks, comment]", "slides: [cover, looks, cover]"
         ),
         encoding="utf-8",
     )

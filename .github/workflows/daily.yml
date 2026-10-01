@@ -17,6 +17,7 @@ name: daily
 # - candidates: Claude(outfit-candidates)가 코디 후보 여러 개를 짜서 텔레그램으로 보낸다 (Photoroom 없음).
 #   pick 에 지난 결과 폴더를 주면 "다시"를 누른 것: 그 후보와 겹치지 않게 새로 짠다
 # - render: 사람이 고른 후보(pick = <결과 폴더>/<번호>)로 사진 확인 → 문구 → 코디컷 → 검수 → 미리보기
+#   (여러 벌 게시물(20단계)은 <결과 폴더>/chosen: 고른 벌만 담은 picks/chosen.yaml)
 # - full: 예전처럼 한 번에 한 벌 (profile pick.enabled 가 false 일 때)
 # 15단계: fix: 미리보기에 온 /fix 피드백대로 고친다 (schedule 이 tools.feedback 으로 요청).
 #   pick 은 {"run": 지난 결과 폴더, "round": 몇 번째, "fixes": [...]} JSON. Claude(fix-feed)가 같은 기획을
@@ -126,7 +127,10 @@ jobs:
             git worktree add /tmp/prev origin/daily-results
             src="/tmp/prev/${PICK%%/*}/picks"
             if [ "$MODE" = render ]; then
-              cp "$src/p${PICK##*/}.yaml" "out/$DATE/plan.yaml"
+              # 번호면 p<번호>.yaml, 여러 벌 게시물(20단계)이면 고른 벌만 담은 chosen.yaml
+              n="${PICK##*/}"
+              if [ -f "$src/$n.yaml" ]; then cp "$src/$n.yaml" "out/$DATE/plan.yaml"
+              else cp "$src/p$n.yaml" "out/$DATE/plan.yaml"; fi
             else
               mkdir -p "out/$DATE/previous"
               cp "$src"/p*.yaml "out/$DATE/previous/"
@@ -202,7 +206,7 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/fix_result.yaml 과 report.md 를 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
           claude_args: >-
-            --max-turns 100
+            --max-turns 180
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
@@ -221,8 +225,9 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
             백그라운드로 부르면 기다리는 동안 실행이 끝나 버린다.
+          # 여러 벌 게시물(20단계)은 벌마다 검수해서 턴이 많이 든다
           claude_args: >-
-            --max-turns 150
+            --max-turns 250
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: 기획 파일로 만들기
@@ -251,7 +256,7 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
             image-reviewer 에이전트는 run_in_background: false 로 불러 결과를 기다려.
           claude_args: >-
-            --max-turns 60
+            --max-turns 120
             --allowedTools "Bash(python -m tools.review:*),Read,Write,Glob,Task,Agent"
 
       - name: 텔레그램 미리보기

@@ -65,7 +65,11 @@ def request_text(
             "한 줄에 하나씩 번호와 함께요 (예: 1 https://…). 안 보낸 상품은 상품 링크 그대로 둬요.",
             "",
         ]
+    look = None
     for i, ln in enumerate(links, 1):
+        if ln.look is not None and ln.look != look:
+            look = ln.look
+            rows.append(f"{'' if i == 1 else chr(10)}[LOOK {look}]")  # 여러 벌 게시물 (20단계)
         mark = " ✓ 받음" if i in got else ""
         rows.append(f"{i}. {ln.category} · {ln.shop} {ln.name}{mark}\n{ln.url}")
     return "\n".join(rows)

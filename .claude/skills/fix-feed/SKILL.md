@@ -46,12 +46,17 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
    - **댓글 안내 장**: 문구·모양은 profile 설정이라 고치지 않고 `fix_result.yaml` 에 적는다.
    - **캡션**: `text.intro`, `text.points`, `text.hashtags` 를 `write-copy` 기준으로 고친다.
      고지 문구와 제품 목록은 도구가 붙이므로 손대지 않는다.
+   - **코디 장** (`kind: look`, 여러 벌 게시물, `look` = 벌 번호): plan.yaml `looks[look-1]` 만 고친다.
+     코디컷(옷 모양·배치) 문제면 그 벌의 `cover:` 를 지우고 그 벌의 `styling`·상품 `desc`·`size` 를 위 "표지
+     코디컷" 방식으로 고친다 (다른 벌은 `cover:` 를 두어 다시 그리지 않음). 상품 이름 글자면 `name`.
+     지난 지시문은 `before/prompt_<벌 번호>.txt`. 1장 표지는 1번 벌 코디컷이라 표지 코디컷 피드백은 1번 벌을 고친다.
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.
 3. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`. 오류는 고치고 다시 (최대 3번).
 4. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`
    (`cover:` 가 있으면 코디컷을 새로 만들지 않는다). 종료 코드 2(이미지 서비스 한도)면 `cover:` 를 지난
    값으로 되돌려 다시 만들고, 표지를 못 고쳤다고 적는다.
-5. **이미지 검수**: `daily-feed` 스킬 10번과 똑같이 한다 (`tools.review prep` → `image-reviewer` →
+5. **이미지 검수**: `daily-feed` 스킬 10번과 똑같이 한다 (여러 벌이면 그 스킬의 "여러 벌 게시물" 절대로 벌 폴더마다,
+   `cover:` 를 둔 벌은 지난 점수가 남아 있어 새 후보만 매기고, 끝나면 `tools.review finish`) (`tools.review prep` → `image-reviewer` →
    `tools.review apply`, 종료 코드 3이면 `more`). 표지 피드백이 있었으면 `image-reviewer` 에게 넘길 때
    그 피드백을 함께 적어, 고쳐졌는지도 보게 한다. 점수는 받은 그대로 쓴다.
 6. **확인**: `out/$DATE/preview.jpg` 를 보고 피드백이 반영됐는지 확인한다. 반영이 안 됐으면 한 번만 더

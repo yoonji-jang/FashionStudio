@@ -106,12 +106,16 @@ def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:
 
 def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile, cfg: dict) -> str:
     oi = profile.outfit_image
-    return render_prompt(
+    prompt = render_prompt(
         oi.prompt,
         items=item_lines(plan, products, cfg),
         styling=styling_text(plan, products, profile),
         scene=oi.scene,
     )
+    if profile.looks.enabled and profile.looks.composition:
+        # 여러 벌 게시물(20단계): 벌 장 상품 정보 자리를 비운다
+        prompt += " " + " ".join(profile.looks.composition.split())
+    return prompt
 
 
 def reference_panels(
