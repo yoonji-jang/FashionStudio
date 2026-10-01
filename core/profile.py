@@ -93,6 +93,7 @@ class Copy(BaseModel):
     max_emoji_per_line: int = Field(default=1, ge=0)  # 도입·코디 포인트 한 줄의 이모지 수
     max_exclaim: int = Field(default=1, ge=0)  # 캡션 전체 느낌표 수
     banned: list[str] = []  # 쓰면 안 되는 표현
+    title_banned: list[str] = []  # 표지 제목에만 쓰면 안 되는 말 (예: 요일)
     ad_notice: str = (
         "(광고) 이 게시물은 제휴 링크를 포함하고 있어요"  # monetize: manual_link 일 때 첫 줄
     )

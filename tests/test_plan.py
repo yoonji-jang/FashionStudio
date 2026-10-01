@@ -120,6 +120,13 @@ def test_check_catches_rule_breaks(store):
         assert expected in text, expected
 
 
+def test_check_title_banned_weekday(store):
+    p = daily()
+    p.text.title_lines = ["비 오는 수요일 출근길엔", "트렌치 끈 묶어 입기"]
+    errors, _ = plan.check(p, load_profile("women"), store)
+    assert any("쓰지 않는 말 '수요일'" in e for e in errors)
+
+
 def test_check_counts_shops_and_required(store):
     profile = load_profile("women")
     products = store.products()

@@ -61,6 +61,7 @@ feed:  # 캐러셀 구성 (생략하면 기본값). 항목은 README의 feed 표
 copy:  # 제목·문구·캡션 규칙. 생략한 값은 기본값 (README 참고)
   base_hashtags: []
   banned: []
+  title_banned: []           # 표지 제목에만 쓰지 않는 말 (예: 요일)
 
 ai_label:  # 이미지 안에 AI 합성 표시(IPTC)를 넣어 인스타 "AI 정보" 레이블을 받는다 (README 참고)
   mode: metadata
