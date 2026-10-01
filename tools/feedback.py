@@ -254,6 +254,15 @@ def check(
     ]
     if not fixes:
         print(f"[{account}] {day} 새 /fix 없음 ({run_dir.name}, 텔레그램 글 {len(updates)}개 확인)")
+        # 왜 못 읽었는지 알 수 있게 받은 글을 짧게 남긴다 (등록된 채팅 여부, 미리보기 전후, 앞부분)
+        for u in updates[-10:]:
+            msg = u.get("message") or {}
+            same = str((msg.get("chat") or {}).get("id")) == str(tg.chat_id)
+            chat = "등록 채팅" if same else "다른 채팅"
+            when = datetime.fromtimestamp(msg.get("date", 0), UTC).strftime("%m-%d %H:%M UTC")
+            after = "미리보기 뒤" if msg.get("date", 0) >= record.sent_at else "미리보기 전"
+            head = (msg.get("text") or "(글 아님)").replace("\n", " ")[:20]
+            print(f"  - {u['update_id']} {when} {chat} {after}: {head}")
         return None
     result = decide(profile, store, run_dir, record, now, known)
     rnd = rounds_used(store, day) + 1 if result == "rerender" else 0
