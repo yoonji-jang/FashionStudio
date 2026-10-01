@@ -1,0 +1,374 @@
+{
+  "account": "women",
+  "date": "2026-10-02",
+  "plan": {
+    "theme": {
+      "date": "2026-10-02",
+      "title_hint": "금요일 퇴근 후 약속, 단정하게 입고 저녁까지",
+      "mood": "오피스룩에서 저녁 약속까지 이어지는 차분한 가을 코디",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "단정한 자켓이나 하프코트"
+        },
+        {
+          "category": "상의",
+          "desc": "셔츠나 니트"
+        },
+        {
+          "category": "하의",
+          "desc": "슬랙스나 롱스커트"
+        },
+        {
+          "category": "가방",
+          "desc": "숄더백"
+        },
+        {
+          "category": "신발",
+          "desc": "로퍼나 메리제인"
+        },
+        {
+          "category": "소품",
+          "desc": "작은 주얼리나 벨트"
+        }
+      ],
+      "type": "상황",
+      "why": "금요일, 서울 흐림 11~20도. 낮엔 가볍고 저녁엔 쌀쌀해서 걸칠 아우터가 필요하고, 퇴근 후 약속으로 이어지는 단정한 룩. 최근 이틀 아우터는 트렌치·롱코트·가디건이라 이번엔 자켓·코트·레더로 변화",
+      "search_terms": {
+        "상의": [
+          "셔츠",
+          "니트"
+        ],
+        "아우터": [
+          "트위드 자켓",
+          "울 코트"
+        ],
+        "하의": [
+          "와이드 슬랙스",
+          "롱스커트"
+        ]
+      }
+    },
+    "items": [
+      {
+        "id": "zigzag:171900729",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171900729",
+        "shop": "미쏘",
+        "name": "울블렌디드 테일러드 롱코트_MIWJHGV0PB",
+        "price": 104000,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926561139_52417.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926566892_91899.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926571575_80448.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926576309_27092.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/11864_202609150926580612_71148.jpeg",
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-992e8d02dac50bdac44c/brands/rna37y57jeyj2ys1eg9f7jxm/ocvdwb9f42fexmqqc94fe01d/MIWJHGV0PB_17_%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg",
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-f5e9b6362b11c2314b31/brands/rna37y57jeyj2ys1eg9f7jxm/gyzufayiyu6kn5f1eh6iseo7/MIWJHGV0PB_37_1.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 1174,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "오피스룩",
+          "캐주얼"
+        ],
+        "query": "울 코트",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:115652994",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/115652994",
+        "shop": "프렌치오브",
+        "name": "[10만장🏆][쫀쫀/21컬러]소프티 목폴라 레이어드 티셔츠 (21color)",
+        "price": 15800,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622120236_20096.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/15/8533_202601151722360193_76221.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622110420_34688.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622110924_35813.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622100790_65299.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622100578_73924.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622110208_79765.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/14/8533_202510141622100993_92137.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 18888,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "러블리"
+        ],
+        "query": "터틀넥",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:144667358",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/144667358",
+        "shop": "커먼유니크",
+        "name": "[우와,유진PICK] [4만장돌파/S-2XL/숏,기본,롱 기장옵션] 콤마 핀턱 와이드 슬랙스 - 2 타입 (당일출고/가을/빅사이즈/하객룩/출근룩/오피스룩)",
+        "price": 29200,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231615550391_27396.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231234267258_30787.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231234270145_75547.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231234271771_98588.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231234273578_35290.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231234275103_89798.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/176_202609231234276436_92533.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 8431,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "캐주얼"
+        ],
+        "query": "와이드 슬랙스",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:162858655",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/162858655",
+        "shop": "라룸",
+        "name": "[라룸] [방수｜오늘출발] 올데이백",
+        "price": 24800,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://la-room.kr/web/product/big/202604/b6e02d49644a4168f0568b59224a46ca.jpg",
+          "https://la-room.kr/web/product/extra/big/202604/9f93b482e39303767f7e7bd17aa1600f.jpg",
+          "https://la-room.kr/web/product/extra/big/202604/b134a68d823b0fafe59d9b681f2f3b96.jpg",
+          "https://la-room.kr/web/product/extra/big/202604/7fc7a7362aa88b880efc6b8e496ef179.jpg",
+          "https://la-room.kr/web/product/extra/big/202604/d21aa30f5e6f8545a4e1b766fb82fe7e.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 551,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:166028838",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/166028838",
+        "shop": "소보",
+        "name": "트리트 소가죽 메리제인 미들힐 3cm",
+        "price": 42290,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734410636_39377.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734420758_27532.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734420170_90823.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734400924_32385.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734410283_54256.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734410860_46550.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734400633_59763.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 667,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "메리제인",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:116459948",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/116459948",
+        "shop": "듀엘브",
+        "name": "[4만개돌파] 925실버 드롭 워터 물방울 데일리 은귀걸이",
+        "price": 18810,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2022/11/8/13968_202211081505550410_51017.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 8099,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "귀걸이",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      }
+    ],
+    "reason": "차콜 그레이 롱코트 안에 아이보리 목폴라로 밝게 받쳐 퇴근 후 약속까지 이어지는 단정한 대비를 줬어요. 블랙 슬랙스·올데이백·메리제인으로 무게를 잡아 차분하게 마무리하고 실버 귀걸이로 얼굴 주변을 밝혀요."
+  },
+  "images": [
+    "out/2026-10-02/slides/01_cover.jpg",
+    "out/2026-10-02/slides/02_아우터.jpg",
+    "out/2026-10-02/slides/03_상의.jpg",
+    "out/2026-10-02/slides/04_하의.jpg",
+    "out/2026-10-02/slides/05_가방.jpg",
+    "out/2026-10-02/slides/06_신발.jpg",
+    "out/2026-10-02/slides/07_소품.jpg",
+    "out/2026-10-02/slides/08_summary.jpg",
+    "out/2026-10-02/slides/09_comment.jpg"
+  ],
+  "review_score": 7.0,
+  "needs_human": true,
+  "review": {
+    "candidates": [
+      {
+        "id": "c1",
+        "file": "outfit/results/G_1.jpg",
+        "round": 1,
+        "score": {
+          "id": "c1",
+          "color": 1,
+          "shape": 1,
+          "complete": 1,
+          "clean": 2,
+          "layout": 2,
+          "notes": "1번 코트가 원본(차콜)보다 훨씬 밝은 라이트 그레이. 4번 가방이 원본의 부드러운 슬라우치 숄더백이 아니라 각진 가죽 토트로 바뀜. 6번 귀걸이가 한 짝만 보이고 원본 물방울 모양과도 다름. 3번 바지는 핀턱이 거의 안 보임."
+        }
+      },
+      {
+        "id": "c2",
+        "file": "outfit/results/G_2.jpg",
+        "round": 1,
+        "score": {
+          "id": "c2",
+          "color": 2,
+          "shape": 0,
+          "complete": 2,
+          "clean": 0,
+          "layout": 2,
+          "notes": "6번 귀걸이가 두 쌍(4개)으로 그려짐. 3번 바지가 와이드 핀턱이 아니라 슬림 스트레이트에 센터 크리즈로 바뀌어 핏이 달라짐. 가방은 원본과 가장 비슷함."
+        }
+      },
+      {
+        "id": "c3",
+        "file": "outfit/results/G_3.jpg",
+        "round": 1,
+        "score": {
+          "id": "c3",
+          "color": 1,
+          "shape": 1,
+          "complete": 1,
+          "clean": 1,
+          "layout": 2,
+          "notes": "1번 코트가 푸른기 도는 라이트 그레이로 원본(차콜)보다 밝고, 단추가 1개뿐인 형태로 바뀜. 4번 가방이 각진 가죽 토트로 바뀜. 6번 귀걸이가 한 짝만 보이고 후크형 구슬 모양이라 원본과 다름. 3번 바지는 핀턱 와이드로 원본과 가장 가까움."
+        }
+      },
+      {
+        "id": "c4",
+        "file": "outfit_r2/results/G_1.jpg",
+        "round": 2,
+        "score": {
+          "id": "c4",
+          "color": 1,
+          "shape": 0,
+          "complete": 2,
+          "clean": 1,
+          "layout": 2,
+          "notes": "1번 코트에 원본에 없는 허리 벨트가 생겨 끈이 늘어짐, 코트 색이 푸른 기가 도는 짙은 회색. 4번 가방이 원본(부드러운 나일론 호보백)과 달리 손잡이 두 개의 각진 가죽 토트로 바뀜"
+        }
+      },
+      {
+        "id": "c5",
+        "file": "outfit_r2/results/G_2.jpg",
+        "round": 2,
+        "score": {
+          "id": "c5",
+          "color": 1,
+          "shape": 2,
+          "complete": 1,
+          "clean": 0,
+          "layout": 1,
+          "notes": "6번 귀걸이가 'Dueelve' 글자가 있는 카드째 그려져 글자와 원본에 없는 물건이 생김, 귀걸이가 작아 형태를 알아보기 어려움. 1번 코트가 원본(차콜)보다 확연히 밝은 회색. 4번 가방이 코트 소매·몸판 위를 많이 덮음"
+        }
+      },
+      {
+        "id": "c6",
+        "file": "outfit_r2/results/G_3.jpg",
+        "round": 2,
+        "score": {
+          "id": "c6",
+          "color": 2,
+          "shape": 1,
+          "complete": 2,
+          "clean": 0,
+          "layout": 2,
+          "notes": "사진 안에 숫자 1~5가 그려져 있음. 4번 가방이 원본(부드러운 나일론 호보백)과 달리 각진 가죽 숏더백으로 바뀜"
+        }
+      }
+    ],
+    "chosen": "c1",
+    "rounds": 2,
+    "passed": false,
+    "status": "failed",
+    "slide_issues": [
+      {
+        "slide": "03_상의.jpg",
+        "kind": "사진",
+        "note": "상의(아이보리 목폴라)가 사진 위쪽에 작게 나오고 청바지가 더 크게 보여 청바지가 주인공처럼 보임",
+        "by": "claude"
+      },
+      {
+        "slide": "07_소품.jpg",
+        "kind": "사진",
+        "note": "귀걸이가 너무 작고 카드의 'Dueelve' 글자와 손, 털 소재 배경이 더 눈에 띔",
+        "by": "claude"
+      }
+    ],
+    "summary": "c6 은 색과 모양이 원본에 가장 가깝지만 숫자가 그려져 clean 0 이라 통과 기준(0점 항목 없음)을 못 넘음. c5 는 귀걸이 카드 글자 때문에 clean 0, c4 는 코트 벨트가 생기고 가방 모양이 바뀌어 shape 0 이라 셋 다 통과 못 함. 재생성이 필요함"
+  },
+  "title_lines": [
+    "차콜 롱코트 안에",
+    "아이보리 목폴라로 밝게"
+  ],
+  "caption": "맑지만 저녁엔 쌀쌀한 금요일, 퇴근 후 약속엔 롱코트 걸쳐 보세요 🍂\n\n차콜 코트 안에 아이보리 목폴라를 받쳐 얼굴 주변을 밝게 했어요\n블랙 와이드 슬랙스와 올데이백으로 무채색 톤을 맞춰 단정하게 입어요 🖤\n메리제인과 실버 물방울 귀걸이로 저녁 약속 느낌을 더해 줘요 ✨\n\n미쏘 · 울블렌디드 테일러드 롱코트\n프렌치오브 · 소프티 목폴라 티셔츠\n커먼유니크 · 블랙 핀턱 와이드 슬랙스\n라룸 · 블랙 올데이백\n소보 · 블랙 소가죽 메리제인\n듀엘브 · 실버 물방울 귀걸이\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#롱코트",
+    "#목폴라",
+    "#출근룩",
+    "#퇴근후약속룩",
+    "#가을코디",
+    "#무채색코디",
+    "#메리제인",
+    "#데일리룩",
+    "#오늘의코디",
+    "#코디추천",
+    "#여자코디",
+    "#패션"
+  ],
+  "monetize": "none",
+  "reels": null
+}
