@@ -1,6 +1,7 @@
 import json
 from datetime import UTC, date, datetime
 
+import httpx
 import pytest
 import yaml
 
@@ -308,3 +309,33 @@ def test_check_reads_new_fix_when_more_than_100_messages(results, store):  # noq
         (5, "가방 정보가 다름"),
     ]
     assert [e.slide for e in store.feedback()] == [1, 5]
+
+
+def test_updates_log_confirms_only_committed_and_keeps_new(tmp_path):
+    # 기록이 있으면 기록 끝 다음부터 받아 텔레그램에서 확인 처리하고, 기록과 합쳐 돌려준다
+    api = FakeApis()
+    http = httpx.Client(transport=httpx.MockTransport(api))
+    log = tmp_path / "telegram_updates.json"
+    now = int(datetime.now(UTC).timestamp())
+    api.replies = [(now - 60, "/ok", None), (now - 30, "2", None)]
+    tg = notify.Telegram("T", CHAT, http, log=log, save_log=True)
+    assert [u["update_id"] for u in tg.updates()] == [1, 2]
+    assert api.offsets == [0]  # 기록이 없으면 offset 없이
+    saved = log.read_text(encoding="utf-8")
+    assert "보낸이" not in saved and "sender" not in saved  # 이름·아이디는 남기지 않음
+    assert [u["message"]["text"] for u in json.loads(saved)] == ["/ok", "2"]
+    # 같은 실행에서는 시작 때 기록(없음) 기준이라 새 글을 확인 처리하지 않는다
+    api.replies.append((now - 10, "/fix 1 단추", None))
+    assert [u["update_id"] for u in tg.updates()] == [1, 2, 3]
+    assert api.offsets == [0, 0]
+    # 다음 실행: 커밋된 기록 끝(3) 다음부터. 텔레그램이 옛 글을 지워도 기록에서 읽는다
+    api.replies[0] = (now - 60, "(지워짐)", None)
+    tg2 = notify.Telegram("T", CHAT, http, log=log, save_log=False)
+    got = tg2.updates()
+    assert api.offsets[-1] == 4
+    assert [u["message"]["text"] for u in got] == ["/ok", "2", "/fix 1 단추"]
+    # 다른 채팅 글과 오래된 글은 기록하지 않는다
+    other = {"update_id": 9, "message": {"date": now, "chat": {"id": 1}, "text": "x"}}
+    old = {"update_id": 8, "message": {"date": now - 4 * 86400, "chat": {"id": int(CHAT)}}}
+    notify.save_updates_log(log, [old, other], CHAT, now)
+    assert json.loads(log.read_text(encoding="utf-8")) == []
