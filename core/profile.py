@@ -284,6 +284,37 @@ class OutfitImage(BaseModel):
     )
 
 
+class Reels(BaseModel):
+    """릴스 (19단계, tools.reels). 그날 캐러셀 슬라이드를 세로 영상(1080×1920)으로 이어 붙인다.
+    영상 AI 는 쓰지 않는다 (코드로 확대·넘기기 효과만). 게시는 schedule.reels_at
+    (없으면 캐러셀 게시 직후)."""
+
+    enabled: bool = False
+    slides: list[SlideKind] = Field(
+        default=["cover", "products", "summary", "comment"], min_length=1
+    )
+    # 장 종류별로 보여 주는 시간 (초). 넘기는 시간은 앞 장에 포함
+    seconds: dict[SlideKind, float] = {
+        "cover": 2.5,
+        "products": 1.6,
+        "summary": 2.5,
+        "comment": 2.0,
+    }
+    transition: Literal["slide", "fade", "cut"] = "slide"  # slide: 캐러셀 넘기듯 옆으로
+    transition_sec: float = Field(default=0.35, ge=0, le=1.5)
+    cover_zoom: float = Field(default=0.06, ge=0, le=0.3)  # 표지가 천천히 커지는 정도
+    zoom: float = Field(default=0.02, ge=0, le=0.3)  # 나머지 장
+    # 슬라이드(4:5) 위쪽 끝 위치 (세로 1920 대비). 아래쪽은 인스타 캡션·버튼이 덮는다
+    top: float = Field(default=0.105, ge=0, le=0.3)
+    background: str | None = Field(default=None, pattern=COLOR)  # 없으면 feed.background
+    fps: int = Field(default=30, ge=24, le=60)
+    # 배경 음악 폴더 (저장소 기준). 상업 이용이 허락된 음원만 (mp3, m4a, wav).
+    # 여러 곡이면 날짜마다 돌려 쓴다. 비어 있거나 없으면 소리 없는 영상
+    music_dir: str | None = None
+    music_volume: float = Field(default=0.8, ge=0, le=2)
+    share_to_feed: bool = True  # 릴스를 프로필 피드 격자에도 보이게
+
+
 WEEKDAYS = "월화수목금토일"
 WEEKLY = r"^[월화수목금토일](,[월화수목금토일])* ([01]\d|2[0-3]):[0-5]\d$"
 
@@ -317,6 +348,8 @@ class Schedule(BaseModel):
     themes_at: str | None = Field(default=None, pattern=WEEKLY)  # 주간 주제 (예: "일 18:17")
     collect_at: str | None = Field(default=None, pattern=WEEKLY)  # 상품 수집 (예: "월,목 04:17")
     token_refresh_at: str | None = Field(default=None, pattern=WEEKLY)  # 인스타 토큰 연장
+    # 릴스 게시 시각 (19단계, profile reels). 캐러셀을 게시한 날에만 올린다.
+    # null 이면 캐러셀 게시 직후
     reels_at: str | None = Field(default=None, pattern=HHMM)
     # GitHub 예약(cron) 줄 (12단계). all: 모든 칸. backup: 외부 스케줄러(cron-job.org)가 정시에
     # 깨울 때 예비로 주요 칸(후보, 고르기 처음·마감, 게시 처음·마지막, 주간 작업)만 둬서
@@ -431,6 +464,7 @@ class Profile(BaseModel):
     feedback: FeedbackRules = FeedbackRules()
     comments: Comments = Comments()
     link_page: LinkPage = LinkPage()
+    reels: Reels = Reels()
     monetize: Monetize = "none"
     approval: Approval = "required"
     instagram: Instagram
@@ -454,6 +488,8 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError(f"폴더 이름({account})과 profile.id({profile.id})가 다릅니다")
     if profile.outfit.items_min > profile.outfit.items_max:
         raise ValueError("outfit.items_min이 items_max보다 큽니다")
+    if len(set(profile.reels.slides)) != len(profile.reels.slides):
+        raise ValueError("reels.slides 에 같은 종류가 두 번 들어 있습니다")
     if len(set(profile.feed.slides)) != len(profile.feed.slides):
         raise ValueError("feed.slides 에 같은 종류가 두 번 들어 있습니다")
     if sum(profile.themes.type_mix.values()) != profile.themes.per_week:

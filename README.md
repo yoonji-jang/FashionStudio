@@ -303,7 +303,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `themes_at` | "일 18:17" | 다음 주 주제 정하기 (없으면 `null`, 그날그날 주제를 정함) |
 | `collect_at` | "월,목 04:17" | 지그재그 새 상품 수집 |
 | `token_refresh_at` | "일 18:47" | 인스타 토큰 연장 (60일 만료라 매주) |
-| `reels_at` | null | 릴스 (12단계) |
+| `reels_at` | null | 릴스 게시 (19단계, `reels.enabled` 일 때). 그날 캐러셀을 게시했을 때만. `null` 이면 캐러셀 바로 뒤에. 바꾸면 `tools.schedule sync` |
 | `github_cron` | all | GitHub 예약 줄. 외부 스케줄러를 설정했으면 `backup` (주요 칸만 예비로 남겨 Actions 시간 절약) |
 
 **시간을 바꾼 뒤에는** `uv run python -m tools.schedule sync` 를 돌려 `.github/workflows/schedule.yml` 의
@@ -358,6 +358,24 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 | `public_reply` | "" | 댓글에 공개 답글도 달기 (예: "DM 보내 드렸어요"). 빈칸이면 안 함 |
 | `link_mode` | zigzag | `zigzag`: 상품 링크 / `share_reward`: 공유리워드 링크 (`monetize: manual_link` 필요) |
 | `share_wait_hours` | 6 | 공유 링크를 기다리는 시간. 넘으면 상품 링크로 보냄 |
+
+#### `reels` : 릴스 (19단계)
+그날 캐러셀 슬라이드를 세로 영상(1080×1920)으로 이어 붙여 `schedule.reels_at` 에 올립니다.
+영상 AI 는 쓰지 않아 추가 비용이 없습니다. 자세한 내용은 아래 [릴스](#릴스-19단계).
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | true | false 면 릴스를 만들지도 올리지도 않음 (바꾸면 `tools.schedule sync`) |
+| `slides` | [cover, products, summary, comment] | 넣을 장과 순서 (`products` 는 상품마다 한 장) |
+| `seconds` | {cover: 2.5, products: 1.6, summary: 2.5, comment: 2.0} | 장마다 보여 주는 시간 (초) |
+| `transition` | slide | 장 사이 효과: `slide`(캐러셀 넘기듯) / `fade` / `cut` |
+| `transition_sec` | 0.35 | 넘기는 시간 (초) |
+| `cover_zoom`, `zoom` | 0.06, 0.02 | 표지·나머지 장이 천천히 커지는 정도 |
+| `top` | 0.105 | 슬라이드 위쪽 끝 위치 (세로 대비). 아래쪽은 인스타 캡션·버튼이 덮는 자리라 비움 |
+| `background` | null | 남는 곳 색. `null` 이면 `feed.background` |
+| `music_dir` | accounts/women/music | 배경 음악 폴더. 상업 이용이 허락된 mp3·m4a 를 넣으면 날짜마다 돌려 씀. 비어 있으면 소리 없음 |
+| `music_volume` | 0.8 | 음악 크기 |
+| `share_to_feed` | true | 프로필 격자에도 릴스가 보이게 |
 
 #### 수익·승인
 | 항목 | 예시 | 선택지 |
@@ -936,6 +954,27 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 
 ---
 
+## 릴스 (19단계)
+
+캐러셀과 같은 코디로 짧은 세로 영상을 만들어 따로 올립니다. 영상 AI 없이 코드(`tools.reels`, ffmpeg)로 만듭니다.
+
+1. **만들기**: daily 워크플로가 캐러셀을 다 만들면 `python -m tools.reels build out/<날짜>` 로
+   `reels/reel.mp4` 를 만듭니다. 표지가 천천히 커지고, 장 사이는 캐러셀을 넘기듯 옆으로 밀립니다 (약 12~15초).
+   `/fix` 로 고친 미리보기도 릴스를 다시 만듭니다. 릴스 만들기가 실패해도 캐러셀은 그대로 갑니다.
+2. **미리보기**: 텔레그램 미리보기에 영상이 같이 옵니다. **`/ok` 하나로 캐러셀과 릴스를 같이 승인**합니다.
+3. **게시**: schedule 이 `schedule.reels_at` 에 publish 워크플로(`reels: true`)를 부릅니다.
+   그날 캐러셀을 게시했을 때만 같은 캡션으로 릴스를 올리고, 댓글 해시태그(`comment_tags`)도 답니다.
+   영상 파일은 인스타 업로드 서버로 바로 보냅니다 (`config/publish.yaml` `instagram.reels_upload: file`).
+   안 되면 `url` 로 바꾸면 사진 저장소에 잠시 올려 공개 주소로 넘깁니다.
+4. **음악**: 인스타 앱의 음악은 게시 API 로 넣을 수 없습니다. `reels.music_dir` 폴더에 상업 이용이 허락된
+   음원을 넣으면 영상에 직접 넣습니다 (`accounts/women/music/README.md`). 비어 있으면 소리 없는 릴스입니다.
+5. **ManyChat**: 마지막 장이 "댓글을 남기면 DM" 안내라서, ManyChat 댓글 규칙이 릴스에도 걸리게(모든 게시물·릴스) 해 두세요.
+
+손으로 만들어 보기: `uv run python -m tools.reels build out/2026-10-01 --force` (ffmpeg 필요).
+릴스만 손으로 올리기: Actions → publish → `reels` 체크 (`dry_run` 을 끄면 실제 게시).
+
+---
+
 ## 새 계정 추가
 
 1. `accounts/_template/` 을 `accounts/<id>/` 로 복사
@@ -961,4 +1000,4 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 | 10 | 댓글 → DM 코디 링크 | 진행 중 |
 | 11 | 표지 컨셉 변경 (사람이 입은 핀터레스트 감성) | |
 | 12 | 상품 창고를 Actions 캐시로 이전 | |
-| 13 | 릴스 | |
+| 13 | 릴스 | 진행 중 (19단계) |

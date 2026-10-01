@@ -13,6 +13,7 @@
       "Bash(python -m tools.compare:*)",
       "Bash(python -m tools.poc:*)",
       "Bash(python -m tools.review:*)",
+      "Bash(python -m tools.reels:*)",
       "Bash(python -m tools.feedback summary:*)",
       "Bash(python -m tools.feedback prepare:*)",
       "Bash(pytest:*)",

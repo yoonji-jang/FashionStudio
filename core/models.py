@@ -225,6 +225,8 @@ class PostRecord(BaseModel):
     media_id: str | None = None  # 인스타 게시물 id (댓글 확인용)
     links: list[PostLink] = []  # 상품 링크 (없으면 상품 창고에서 찾음)
     share: ShareRequest | None = None  # 공유리워드 링크 요청과 받은 링크 (monetize: manual_link)
+    reel_media_id: str | None = None  # 같은 코디로 올린 릴스 (19단계)
+    reel_permalink: str | None = None
 
 
 class PostDm(BaseModel):
@@ -331,15 +333,19 @@ class PublishRecord(BaseModel):
     images: int
     decision: Decision | Literal["auto", "force"]
     published_at: int  # 유닉스 초
+    # 릴스 (19단계). 캐러셀 뒤에 올리면 채운다
+    reel_media_id: str | None = None
+    reel_permalink: str | None = None
+    reel_published_at: int | None = None
 
 
 class ReelsSpec(BaseModel):
-    """9단계에서 채운다. 지금은 자리만 잡아 둔다."""
+    """릴스 영상 (19단계, tools.reels 가 manifest 에 채운다). 경로는 결과 폴더 기준."""
 
-    video: str | None = None
-    cover: str | None = None
-    audio: str | None = None
-    duration_sec: float | None = Field(default=None, ge=5, le=90)
+    video: str | None = None  # reels/reel.mp4
+    cover: str | None = None  # 첫 화면 JPEG (텔레그램 미리보기용, 인스타는 영상 첫 프레임)
+    audio: str | None = None  # 넣은 음원 파일 이름 (없으면 소리 없음)
+    duration_sec: float | None = Field(default=None, gt=0)  # 게시 전 검사가 길이를 본다
 
 
 ReviewCheck = Literal["color", "shape", "complete", "clean", "layout"]

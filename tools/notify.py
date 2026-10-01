@@ -34,14 +34,14 @@ from zoneinfo import ZoneInfo
 import httpx
 import yaml
 
-from core.models import Decision, Manifest, PreviewRecord
+from core.models import Decision, Manifest, PreviewRecord, ReelsSpec
 from core.profile import REPO_ROOT, Profile, load_profile, minutes
 
 CONFIG_PATH = REPO_ROOT / "config" / "publish.yaml"
 API = "https://api.telegram.org"
 MAX_TEXT = 4096
 MAX_PHOTO_CAPTION = 1024
-SEND_METHODS = {"sendMessage", "sendPhoto", "sendMediaGroup"}
+SEND_METHODS = {"sendMessage", "sendPhoto", "sendMediaGroup", "sendVideo"}
 APPROVAL = "approval.json"  # 결과 폴더에 남기는 /ok·/skip 기록 (텔레그램은 답장을 24시간만 보관)
 
 
@@ -188,6 +188,22 @@ class Telegram:
             ids += [m["message_id"] for m in msgs]
         return ids
 
+    def send_video(
+        self, path: Path, caption: str = "", width: int = 1080, height: int = 1920
+    ) -> int:
+        """영상 한 개 (릴스 미리보기, 텔레그램 봇은 50MB 까지)."""
+        with path.open("rb") as f:
+            msg = self.call(
+                "sendVideo",
+                files={"video": (path.name, f, "video/mp4")},
+                chat_id=self.chat_id,
+                caption=caption[:MAX_PHOTO_CAPTION],
+                width=str(width),
+                height=str(height),
+                supports_streaming="true",
+            )
+        return msg["message_id"]
+
     def updates(self) -> list[dict]:
         if self.log is not None:
             return self._logged_updates()
@@ -327,6 +343,14 @@ def control_text(
     return "\n".join(lines)
 
 
+def reel_caption(profile: Profile, spec: ReelsSpec | None) -> str:
+    when = profile.schedule.reels_at or "캐러셀 게시 직후"
+    sound = f"음원 {spec.audio}" if spec is not None and spec.audio else "소리 없음"
+    sec = spec.duration_sec if spec is not None else None
+    length = f"{sec:g}초 · " if sec else ""
+    return f"[{profile.id}] 릴스 {length}{sound} · {when} 게시 예정"
+
+
 def preview(
     out: Path, run: str, tg: Telegram, sandbox: bool = False, profile: Profile | None = None
 ) -> PreviewRecord:
@@ -341,6 +365,12 @@ def preview(
     )
     head = f"[{profile.id}] {manifest.date} {kind} · {len(slides)}장"
     ids = tg.send_photos(slides, head)
+    from tools import reels
+
+    video = reels.video_path(manifest, out) if profile.reels.enabled else None
+    if video is not None:
+        # 릴스도 같은 /ok 로 승인한다 (게시는 schedule.reels_at)
+        ids.append(tg.send_video(video, reel_caption(profile, manifest.reels)))
     ids.append(tg.send(full_caption(manifest)))
     markup = None
     if not sandbox:
