@@ -58,7 +58,7 @@ def fit_font(lines: list[str], font_name: str, size: int, max_width: int) -> Ima
         size -= 2
 
 
-def _text_layer(
+def text_layer(
     size: tuple[int, int],
     items: list[tuple[tuple[float, float], str, ImageFont.FreeTypeFont, str]],
     shadow: float,
@@ -117,7 +117,7 @@ def apply(image: Image.Image, title_lines: list[str], visual: Visual) -> Image.I
         y = h * (1 - visual.logo_bottom)
         items.append(((x, y), visual.logo_text, logo_font, visual.logo_color))
 
-    out = Image.alpha_composite(base, _text_layer(base.size, items, visual.text_shadow, blur=8 * k))
+    out = Image.alpha_composite(base, text_layer(base.size, items, visual.text_shadow, blur=8 * k))
 
     if visual.accent_color and visual.title_align == "left":
         # 제목 왼쪽 세로선: 첫 줄 글자 윗부분부터 마지막 줄 기준선 조금 아래까지

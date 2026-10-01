@@ -103,8 +103,9 @@ class Copy(BaseModel):
     ai_notice: str = "이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요"
 
 
-# 캐러셀 슬라이드 종류 (tools.feed). comment 는 "상품 정보는 댓글로" 안내 장
-SlideKind = Literal["cover", "products", "summary", "comment"]
+# 캐러셀 슬라이드 종류 (tools.feed). comment 는 "상품 정보는 댓글로" 안내 장,
+# looks 는 여러 벌 게시물(20단계)의 벌마다 한 장 (코디컷 + 상품 정보 몇 줄)
+SlideKind = Literal["cover", "products", "looks", "summary", "comment"]
 
 
 class AiLabel(BaseModel):
@@ -200,6 +201,48 @@ class Feed(BaseModel):
     summary_credit: str = ""  # 요약 장 목록 아래 출처 한 줄
     credit_size: int = Field(default=20, gt=0)
     source_names: dict[str, str] = {"zigzag": "지그재그"}  # 상품 소스 이름 → 보이는 이름
+
+
+class Looks(BaseModel):
+    """코디 여러 벌 게시물 (20단계). 같은 주제로 코디 여러 벌을 한 게시물에 담고, 벌마다
+    코디컷 한 장 위에 상품 정보 몇 줄을 얹는다. 켜면 feed.slides 에 looks 를 넣는다."""
+
+    enabled: bool = False  # false 면 예전처럼 한 벌 + 상품 장
+    count: int = Field(default=6, ge=2, le=8)  # 게시물에 넣는 벌 수
+    min: int = Field(default=5, ge=2, le=8)  # 고르기에서 빼더라도 이만큼은 남아야 함
+    spare: int = Field(default=2, ge=0, le=3)  # 후보로 더 보내는 벌 수 (고르기에서 바꿔 넣기)
+    # 같은 게시물 안에서 다시 써도 되는 카테고리와 횟수 (가방·신발은 두 벌까지 같이 써도 자연스러움)
+    share_categories: list[Category] = ["가방", "신발", "소품"]
+    max_share: int = Field(default=2, ge=1, le=4)
+    candidates: int = Field(
+        default=1, ge=1, le=3
+    )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)
+    # 표지(1장, 제목) 다음 벌 장에 1번 벌을 다시 넣을지. false 면 1번 벌은 표지로만 보임
+    repeat_cover_look: bool = True
+    # 벌 장 글자 (tools.feed). 크기는 폭 1080px 기준, 위치는 높이 대비
+    label: str = "LOOK {n}"  # 벌 번호 (빈 문자열이면 생략)
+    label_size: int = Field(default=26, gt=0)
+    # 상품 한 줄: 카테고리(보조 색) 이름(굵게) 스토어·가격(작게, 자리가 있을 때)
+    line_size: int = Field(default=28, gt=0)
+    shop_size: int = Field(default=21, gt=0)
+    text_width: float = Field(default=0.5, gt=0.2, le=1)  # 글자가 들어가는 폭 (이미지 폭 대비)
+    show_shop: bool = True
+    show_price: bool = False  # 가격은 바뀔 수 있어 기본으로 넣지 않음
+    line_spacing: float = Field(default=1.55, ge=1.0)
+    bottom: float = Field(default=0.07, ge=0, le=0.4)  # 이미지 아래에서 마지막 줄까지
+    text_color: str = Field(default="#FFFFFF", pattern=COLOR)
+    sub_color: str = Field(default="#E3E3E3", pattern=COLOR)
+    gradient_height: float = Field(default=0.42, ge=0, le=1)
+    gradient_opacity: float = Field(default=0.55, ge=0, le=1)
+    # 벌 코디컷 지시문 끝에 붙이는 배치 (영어). 상품 정보 글자 자리(왼쪽 아래)를 비운다
+    composition: str = (
+        "Layout for this image, overriding the composition above: product names are written later"
+        " in the lower left, so keep the whole lower-left area (the left 45 percent of the width,"
+        " the bottom 35 percent of the height) completely empty floor with no clothing, bag, shoes"
+        " or accessories. To make room, shift the clothes slightly to the right of center, put the"
+        " bag on the right side next to the top at waist height, and put the shoes in the lower"
+        " right beside the trouser hem."
+    )
 
 
 class ReviewRules(BaseModel):
@@ -368,6 +411,7 @@ class Profile(BaseModel):
     comment_tags: CommentTags = CommentTags()
     ai_label: AiLabel = AiLabel()
     review: ReviewRules = ReviewRules()
+    looks: Looks = Looks()
     outfit_image: OutfitImage = OutfitImage()
     schedule: Schedule
     pick: PickRules = PickRules()
@@ -401,6 +445,24 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError("feed.slides 에 같은 종류가 두 번 들어 있습니다")
     if sum(profile.themes.type_mix.values()) != profile.themes.per_week:
         raise ValueError("themes.type_mix 개수의 합이 themes.per_week와 다릅니다")
+    lk = profile.looks
+    if lk.enabled:
+        if "looks" not in profile.feed.slides:
+            raise ValueError("looks.enabled 면 feed.slides 에 looks 를 넣어야 합니다")
+        if lk.min > lk.count:
+            raise ValueError("looks.min 이 looks.count 보다 큽니다")
+        slides = (
+            len(profile.feed.slides)
+            - 1
+            + lk.count
+            - (0 if lk.repeat_cover_look or "cover" not in profile.feed.slides else 1)
+        )
+        if "products" in profile.feed.slides:
+            raise ValueError("looks 와 products 는 함께 쓸 수 없습니다 (슬라이드가 너무 많아짐)")
+        if slides > 10:
+            raise ValueError(f"looks: 슬라이드가 {slides}장이 됩니다 (최대 10). count 를 줄이세요")
+    elif "looks" in profile.feed.slides:
+        raise ValueError("feed.slides 에 looks 가 있으면 looks.enabled 를 켜야 합니다")
     c = profile.copy_rules
     for name in ("title_chars", "points", "hashtags"):
         lo, hi = getattr(c, name)

@@ -9,6 +9,9 @@ tools: Read, Glob
 받는 것: `out/<날짜>/plan.yaml`, `out/<날짜>/photo_check.jpg` (상품마다 한 줄, 사진 아래 `#번호`,
 얼굴이 잡힌 사진은 빨간 "얼굴 N"), `out/<날짜>/photos.json` (번호별 파일 경로와 얼굴 수).
 필요하면 `out/<날짜>/photos/` 의 사진을 하나씩 크게 본다.
+여러 벌 게시물(20단계, plan.yaml 에 `looks`)이면 확인표가 벌마다 `photo_check_<벌 번호>.jpg` 로 나온다.
+상품 장이 없으니 `photo` 는 비워도 되고 `cutout_photo`·`ref_photos`(코디컷 참고)만 고르면 된다.
+같은 상품(가방·신발)이 두 벌에 있으면 한 번만 돌려준다.
 
 상품마다 판단할 것:
 1. **색**: plan.yaml 의 `color` 와 같은 색의 상품이 찍힌 사진인지. 한 사진에 여러 색이 함께 있으면

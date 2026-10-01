@@ -52,6 +52,7 @@ ALL_WORDS = {"전체", "all"}
 KIND_NAMES = {
     "cover": "표지",
     "product": "상품 장",
+    "look": "코디 장",
     "summary": "요약 장",
     "comment": "댓글 안내 장",
     "slide": "장",
@@ -72,8 +73,11 @@ def slide_map(manifest: Manifest) -> list[dict]:
     for i, img in enumerate(manifest.images, 1):
         stem = Path(img).stem.split("_", 1)[-1]
         entry: dict = {"no": i, "file": Path(img).name}
+        look = re.fullmatch(r"look(\d+)", stem)
         if stem == "cover":
             entry["kind"] = "cover"
+        elif look:  # 여러 벌 게시물의 벌 장 (20단계)
+            entry |= {"kind": "look", "look": int(look.group(1))}
         elif stem in ("summary", "comment"):
             entry["kind"] = stem
         elif (
@@ -92,6 +96,8 @@ def label(fix: dict) -> str:
     """ "1장 표지", "3장 상의", "캡션" """
     if fix.get("slide"):
         what = fix.get("category") or KIND_NAMES.get(fix["kind"], "")
+        if fix.get("look"):
+            what = f"{fix['look']}번 코디"
         return f"{fix['slide']}장 {what}".strip()
     return KIND_NAMES.get(fix["kind"], "전체")
 
@@ -118,7 +124,7 @@ def target(
         return {"slide": None, "kind": "all", "text": whole}
     s = slides[found["slide"] - 1]
     found["kind"] = s["kind"]
-    for key in ("product", "category"):
+    for key in ("product", "category", "look"):
         if key in s:
             found[key] = s[key]
     return found
@@ -274,6 +280,7 @@ def check(
             slide=f.get("slide"),
             kind=f["kind"],
             product=f.get("product"),
+            look=f.get("look"),
             text=f["text"],
             at=f["at"],
             update_id=f["update_id"],
@@ -295,7 +302,7 @@ def check(
         "run": run_dir.name,
         "round": rnd,
         "fixes": [
-            {k: f[k] for k in ("slide", "kind", "product", "category", "text") if f.get(k)}
+            {k: f[k] for k in ("slide", "kind", "product", "category", "look", "text") if f.get(k)}
             for f in fixes
         ],
     }
@@ -373,7 +380,18 @@ def prepare(pick: dict, prev_root: Path, out: Path) -> dict:
             shutil.copy2(src / chosen.file, dest)
             review_tool.save_review(out, review)  # 점수를 그대로 두고 캐러셀만 다시 검수
             cover = rel(dest)
-    plan = plan.model_copy(update={"cover": cover})
+    if plan.looks:
+        # 여러 벌 (20단계): 벌마다 지난 코디컷과 검수 기록을 가져와 그 벌의 cover 로 둔다
+        looks = []
+        for n, look in enumerate(plan.looks, 1):
+            looks.append(look.model_copy(update={"cover": _keep_chosen(src, out, f"looks/{n}")}))
+            prompt = src / "looks" / str(n) / "outfit" / "prompt.txt"
+            if prompt.exists():
+                (out / "before").mkdir(parents=True, exist_ok=True)
+                shutil.copy2(prompt, out / "before" / f"prompt_{n}.txt")
+        plan = plan.model_copy(update={"looks": looks})
+    else:
+        plan = plan.model_copy(update={"cover": cover})
     (out / "plan.yaml").write_text(
         yaml.safe_dump(
             plan.model_dump(mode="json", exclude_none=True), allow_unicode=True, sort_keys=False
@@ -400,6 +418,25 @@ def prepare(pick: dict, prev_root: Path, out: Path) -> dict:
     return data
 
 
+def _keep_chosen(src: Path, out: Path, sub: str) -> str | None:
+    """src/sub 의 검수로 고른 코디컷을 out/sub 로 복사하고 검수 기록도 둔다. 저장소 기준 경로."""
+    from tools import review as review_tool
+    from tools.plan import rel
+
+    s, o = src / sub, out / sub
+    if not review_tool.review_path(s).exists():
+        return None
+    review = review_tool.load_review(s)
+    chosen = next((c for c in review.candidates if c.id == review.chosen), None)
+    if not chosen or Path(chosen.file).is_absolute() or not (s / chosen.file).exists():
+        return None
+    dest = o / chosen.file
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(s / chosen.file, dest)
+    review_tool.save_review(o, review)
+    return rel(dest)
+
+
 def fix_changes(out: Path) -> list[str]:
     """Claude 가 fix_result.yaml 에 적은 고친 내용 (미리보기에 보임)."""
     path = out / "fix_result.yaml"
@@ -421,7 +458,7 @@ def recent_lines(store: Store, today: date, days: int, kinds: set[str] | None = 
     for e in store.feedback():
         if not since <= e.date <= today or (kinds and e.kind not in kinds):
             continue
-        fix = {"slide": e.slide, "kind": e.kind}
+        fix = {"slide": e.slide, "kind": e.kind, "look": e.look}
         lines.append(f"- {e.date:%m-%d} {label(fix)}: {e.text}")
     return lines
 

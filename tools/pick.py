@@ -8,6 +8,9 @@ r"""코디 고르기 (9단계). 외부로 보내는 도구라 Claude 허용 목�
   버튼(/pick 1 … /again /skip)은 입력창 아래 키보드로 나온다
 - check: schedule job 이 부른다. 고른 번호, "다시", 건너뛰기, 마감(on_timeout)을 판단해
   picks/picked.json 에 쓴다
+- 여러 벌 게시물(20단계, profile looks): 후보는 p1.yaml 하나에 벌 여러 개(looks.count + spare).
+  벌마다 시트를 보내고, 그대로 두면 앞의 looks.count 벌로 만든다. "1 2 3 5 6 7" 로 쓸 벌을 고르거나
+  "4번 빼고"(/drop 4)로 그 벌만 빼면 뒤의 남는 벌이 채운다. 고른 기획은 picks/chosen.yaml
 - themes: 주간 주제를 보낸다 (review_before_use 면 "/themes again" 버튼)
 
 봇 서버 없이 동작한다. 답장은 schedule job 이 돌 때 getUpdates 로 읽는다.
@@ -89,7 +92,7 @@ def validate(out: Path, profile: Profile, store: Store) -> list[str]:
         if errors:
             notes.append(f"{path.name}: " + "; ".join(errors))
             continue
-        key = frozenset(it.product for it in plan.items)
+        key = frozenset(it.product for it in plan.all_items())
         if key in seen:
             notes.append(f"{path.name}: 앞 후보와 상품 구성이 같음")
             continue
@@ -111,8 +114,16 @@ def validate(out: Path, profile: Profile, store: Store) -> list[str]:
 # ---------- 후보 시트 ----------
 
 
-def sheet(plan: DailyPlan, number: int, store: Store, out: Path, width: int = 1080) -> Path:
-    """후보 한 벌을 한 장으로: 위에 번호와 주제, 아래에 상품 원본 사진 격자 (카테고리·색)."""
+def sheet(
+    plan: DailyPlan,
+    number: int,
+    store: Store,
+    out: Path,
+    width: int = 1080,
+    title: str | None = None,
+) -> Path:
+    """후보 한 벌을 한 장으로: 위에 번호와 주제, 아래에 상품 원본 사진 격자 (카테고리·색).
+    title 이 있으면 주제 대신 그 글 (여러 벌 게시물은 벌 설명)."""
     products = {p.id: p for p in store.products()}
     pad = 24
     cols = 4 if len(plan.items) > 6 else 3  # 7개 이상이면 두 줄에 담는다
@@ -124,13 +135,13 @@ def sheet(plan: DailyPlan, number: int, store: Store, out: Path, width: int = 10
     img = Image.new("RGB", (width, head_h + rows * (photo_h + label_h + pad) + pad), "#F4F2EE")
     draw = ImageDraw.Draw(img)
     bold = load_font("Pretendard-Bold.otf", 44)
-    title = load_font("Pretendard-Bold.otf", 34)
+    head_font = load_font("Pretendard-Bold.otf", 34)
     body = load_font("Pretendard-Medium.otf", 24)
     draw.text((pad, 30), f"{number}번", font=bold, fill="#7A2E34")
     for k, line in enumerate(
-        feed.wrap(feed.drawable(plan.theme.title_hint), title, width - 180, 2)
+        feed.wrap(feed.drawable(title or plan.theme.title_hint), head_font, width - 180, 2)
     ):
-        draw.text((pad + 130, 34 + k * 44), line, font=title, fill="#222222")
+        draw.text((pad + 130, 34 + k * 44), line, font=head_font, fill="#222222")
     photo_dir = picks_dir(out) / "photos"
     for i, it in enumerate(plan.items):
         x = pad + (i % cols) * (tile + pad)
@@ -178,6 +189,49 @@ def keyboard(profile: Profile, day: date, count: int, can_again: bool) -> dict:
     return {"keyboard": rows, "resize_keyboard": True, "one_time_keyboard": True}
 
 
+def looks_keyboard(profile: Profile, day: date, can_again: bool) -> dict:
+    lab = label(profile, day)
+    last = [{"text": f"/skip {lab}"}]
+    if can_again:
+        last.insert(0, {"text": f"/again {lab}"})
+    rows = [[{"text": f"/pick {lab}"}], last]
+    return {"keyboard": rows, "resize_keyboard": True, "one_time_keyboard": True}
+
+
+def looks_text(plan: DailyPlan, profile: Profile, day: date, round_: int) -> str:
+    """여러 벌 후보 안내 (20단계). 앞의 looks.count 벌이 기본, 나머지는 바꿔 넣을 예비."""
+    s, rules, lk = profile.schedule, profile.pick, profile.looks
+    use = min(lk.count, len(plan.looks))
+    head = f"[{profile.id}] {day:%m-%d}({WEEKDAYS[day.weekday()]}) 코디 {len(plan.looks)}벌 후보"
+    if round_ > 1:
+        head += f" · 다시 {round_ - 1}번째"
+    lines = [head, f"주제: {plan.theme.title_hint}", ""]
+    for n, look in enumerate(plan.looks, 1):
+        mark = "" if n <= use else " (예비)"
+        top = f"{n}. " + (look.reason.split(". ")[0] if look.reason else "") + mark
+        lines.append(top.rstrip("."))
+        lines.append("   " + " · ".join(short(it.desc) for it in look.items))
+    after = f"1~{use}번으로 만들어요" if rules.on_timeout == "first" else "오늘은 건너뛰어요"
+    lines += [
+        "",
+        "[고르는 방법]",
+        f"• 그대로 좋으면 아무것도 안 해도 돼요. {s.pick_deadline}에 {after}",
+        "  (바로 만들려면 /pick)",
+        '• 빼고 싶은 벌이 있으면 "4번 빼고" → 예비 벌이 그 자리를 채워요',
+        '• 직접 고르려면 "1 2 3 5 6 7" 처럼 번호를 보내요'
+        + (f" ({lk.min}~{lk.count}벌)" if lk.min != lk.count else ""),
+    ]
+    if round_ <= rules.max_again:
+        lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
+    lines += [
+        "• 오늘 쉬려면 /skip",
+        f"  → {s.pick_check_every}분 안에 확인해 고른 벌만 코디컷을 만들고 미리보기를 보내요",
+        "",
+        "사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.",
+    ]
+    return "\n".join(lines)
+
+
 def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: int) -> str:
     s, rules = profile.schedule, profile.pick
     head = f"[{profile.id}] {day:%m-%d}({WEEKDAYS[day.weekday()]}) 코디 후보 {len(plans)}개"
@@ -223,16 +277,31 @@ def send(
     if not plans:
         raise FileNotFoundError(f"코디 후보가 없습니다: {picks_dir(out)}")
     day = plans[0].date
-    sheets = [sheet(p, n, store, out) for n, p in enumerate(plans, 1)]
+    can_again = round_ <= profile.pick.max_again
+    looks = plans[0].looks
+    if looks:
+        # 여러 벌: 후보 기획 하나(p1) 안의 벌마다 시트 한 장
+        plan = plans[0]
+        sheets = [
+            sheet(plan.look_plan(n - 1), n, store, out, title=look.reason.split(". ")[0] or None)
+            for n, look in enumerate(looks, 1)
+        ]
+        text = looks_text(plan, profile, day, round_)
+        markup = looks_keyboard(profile, day, can_again)
+    else:
+        sheets = [sheet(p, n, store, out) for n, p in enumerate(plans, 1)]
+        text = control_text(plans, profile, day, round_)
+        markup = keyboard(profile, day, len(plans), can_again)
     ids = tg.send_photos(sheets, f"[{profile.id}] {day} 코디 후보")
-    markup = keyboard(profile, day, len(plans), round_ <= profile.pick.max_again)
-    ids.append(tg.send(control_text(plans, profile, day, round_), reply_markup=markup))
+    ids.append(tg.send(text, reply_markup=markup))
     record = PickRecord(
         account=profile.id,
         date=day,
         run=run,
         round=round_,
-        count=len(plans),
+        count=len(looks) if looks else len(plans),
+        looks=min(profile.looks.count, len(looks)) if looks else 0,
+        looks_min=min(profile.looks.min, len(looks)) if looks else 0,
         sent_at=int(time.time()),
         message_ids=ids,
     )
@@ -247,7 +316,7 @@ def send(
 class Action:
     action: str  # render(만들기) again(새 후보) skip wait(아직) done(이미 정함) none(후보 없음)
     run: str = ""
-    choice: int = 0
+    choice: int | str = 0  # 고른 후보 번호. 여러 벌이면 "chosen" (picks/chosen.yaml)
     detail: str = ""
 
 
@@ -292,11 +361,20 @@ def decide(
         record.sent_at,
         record.account,
         record.date,
-        {"pick", "again", "skip"},
+        {"pick", "again", "skip", "drop"},
         record.message_ids,
     )
     note, refused_id = "", None
+    default = list(range(1, record.looks + 1))
     for uid, cmd in reversed(cmds):
+        if record.looks and cmd.name in ("pick", "drop"):
+            chosen, why = look_choice(cmd, record, default)
+            if chosen:
+                return PickDecision(choice=chosen, by="user", decided_at=now), "", None
+            if why and uid not in (refused or set()):
+                note, refused_id = why, uid
+                break
+            continue
         if cmd.name == "pick":
             if (
                 len(cmd.args) == 1
@@ -318,9 +396,40 @@ def decide(
                 note, refused_id = f"{why}. 지금 후보 중에서 골라 주세요.", uid
             break
     if final:
-        choice = 1 if rules.on_timeout == "first" else "skip"
+        first: int | list[int] = default if record.looks else 1
+        choice = first if rules.on_timeout == "first" else "skip"
         return PickDecision(choice=choice, by="timeout", decided_at=now), note, refused_id
     return None, note, refused_id
+
+
+def look_choice(cmd: notify.Command, record: PickRecord, default: list[int]) -> tuple[list, str]:
+    """여러 벌 고르기 명령을 쓸 벌 번호 목록으로. (번호들, 받지 않은 이유)"""
+    nums = [int(x) for a in cmd.args for x in re.findall(r"\d+", a)]
+    if cmd.name == "pick" and not nums:
+        return default, ""  # 그대로 바로 만들기
+    bad = [n for n in nums if not 1 <= n <= record.count]
+    if bad:
+        return [], f"{', '.join(map(str, bad))}번 벌은 없어요 (1~{record.count}번)."
+    if cmd.name == "drop":
+        nums = [n for n in range(1, record.count + 1) if n not in nums][: record.looks]
+    nums = list(dict.fromkeys(nums))
+    lo, hi = record.looks_min or record.looks, record.looks
+    if not lo <= len(nums) <= hi:
+        span = f"{lo}~{hi}" if lo != hi else f"{hi}"
+        return [], f"{span}벌을 골라 주세요 (지금 {len(nums)}벌)."
+    return nums, ""
+
+
+def write_chosen(run_dir: Path, nums: list[int]) -> Path:
+    """여러 벌 후보(p1)에서 고른 벌만 그 순서대로 담은 기획 (picks/chosen.yaml)."""
+    plan = load_candidates(run_dir)[0]
+    chosen = plan.model_copy(update={"looks": [plan.looks[n - 1] for n in nums]})
+    path = picks_dir(run_dir) / "chosen.yaml"
+    path.write_text(
+        yaml.safe_dump(chosen.model_dump(mode="json", exclude_none=True), allow_unicode=True),
+        encoding="utf-8",
+    )
+    return path
 
 
 def check(
@@ -374,6 +483,11 @@ def check(
     elif decision.choice == "skip":
         act = Action("skip", run_dir.name, detail=decision.by)
         msgs.append(f"{late}오늘은 건너뛸게요.")
+    elif isinstance(decision.choice, list):
+        write_chosen(run_dir, decision.choice)
+        act = Action("render", run_dir.name, "chosen", decision.by)
+        nums = ", ".join(map(str, decision.choice))
+        msgs.append(f"{late}{nums}번 벌로 코디컷을 만들어요. 다 되면 미리보기를 보낼게요.")
     else:
         act = Action("render", run_dir.name, int(decision.choice), decision.by)
         msgs.append(

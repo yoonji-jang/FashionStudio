@@ -140,6 +140,11 @@ def post_links(manifest: Manifest) -> list[PostLink]:
     """게시물 상품 링크 (댓글 DM 용). 짧은 이름은 캡션 제품 목록과 같은 규칙으로 다듬는다."""
     from tools.feed import clean_name
 
+    # 여러 벌 게시물(20단계)이면 벌 순서대로, 상품마다 처음 나온 벌 번호를 붙인다
+    look_of: dict[str, int] = {}
+    for n, ids in enumerate(manifest.plan.looks, 1):
+        for pid in ids:
+            look_of.setdefault(pid, n)
     return [
         PostLink(
             product=p.id,
@@ -148,6 +153,7 @@ def post_links(manifest: Manifest) -> list[PostLink]:
             name=clean_name(p.name),
             url=str(p.url),
             image=str(p.image_urls[0]),
+            look=look_of.get(p.id),
         )
         for p in manifest.plan.items
     ]

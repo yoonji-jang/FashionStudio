@@ -81,8 +81,9 @@ def test_run_with_fake_client(tmp_path):
     spec_path = tmp_path / "spec.yaml"
     spec_path.write_text(yaml.safe_dump(spec, allow_unicode=True), encoding="utf-8")
     cfg = generate.load_config()
-    rec = generate.run(spec_path, tmp_path / "out", generate.FakeClient(), cfg,
-                       models=["nano_banana_pro"])
+    rec = generate.run(
+        spec_path, tmp_path / "out", generate.FakeClient(), cfg, models=["nano_banana_pro"]
+    )
     assert [r["ok"] for r in rec["results"]] == [True, True]
     assert (tmp_path / "out" / "sheet.jpg").exists()
     assert "2/2" in (tmp_path / "out" / "report.md").read_text(encoding="utf-8")

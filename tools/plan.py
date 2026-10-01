@@ -311,29 +311,57 @@ def check(
 
     products = {p.id: p for p in store.products()}
     used = store.used_since(plan.date, rules.reuse_cooldown_days)
-    ids = [it.product for it in plan.items]
-    if len(set(ids)) != len(ids):
-        errors.append("같은 상품이 두 번 들어 있습니다")
-    if not rules.items_min <= len(plan.items) <= rules.items_max:
-        errors.append(
-            f"상품은 {rules.items_min}~{rules.items_max}개여야 합니다 (지금 {len(plan.items)})"
-        )
+    lk = profile.looks
+    if plan.looks and not lk.enabled:
+        errors.append("looks(여러 벌)는 profile looks.enabled 가 켜져 있을 때만 씁니다")
+    if lk.enabled and not plan.looks:
+        errors.append("profile looks.enabled 라서 looks(여러 벌)로 기획해야 합니다")
+    groups = [look.items for look in plan.looks] if plan.looks else [plan.items]
+    for n, group in enumerate(groups, 1):
+        where = f"{n}번 벌: " if plan.looks else ""
+        ids = [it.product for it in group]
+        if len(set(ids)) != len(ids):
+            errors.append(f"{where}같은 상품이 두 번 들어 있습니다")
+        if not rules.items_min <= len(group) <= rules.items_max:
+            span = f"{rules.items_min}~{rules.items_max}"
+            errors.append(f"{where}상품은 {span}개여야 합니다 (지금 {len(group)})")
+        cats = [products[it.product].category for it in group if it.product in products]
+        for it in group:
+            if it.wear_with and it.wear_with not in cats:
+                errors.append(
+                    f"{where}{it.product}: wear_with {it.wear_with} 상품이 코디에 없습니다"
+                )
+        for rule in rules.slots:
+            if rule.required and rule.category not in cats:
+                errors.append(f"{where}필수 카테고리 {rule.category} 상품이 없습니다")
+        shops: dict[str, int] = {}
+        for it in group:
+            if it.product in products:
+                shop = products[it.product].shop
+                shops[shop] = shops.get(shop, 0) + 1
+        for shop, k in shops.items():
+            if k > rules.max_per_shop:
+                errors.append(
+                    f"{where}쇼핑몰 {shop} 상품이 {k}개입니다 (최대 {rules.max_per_shop})"
+                )
+    if plan.looks:
+        errors += looks_problems(plan, profile, products, draft)
 
-    slides = sum(len(plan.items) if k == "products" else 1 for k in profile.feed.slides)
-    if slides > feed.MAX_SLIDES:
+    if plan.looks:
+        per = {"looks": len(plan.looks) - (0 if lk.repeat_cover_look else 1)}
+    else:
+        per = {"products": len(plan.items)}
+    slides = sum(per.get(k, 1) for k in profile.feed.slides)
+    if slides > feed.MAX_SLIDES and not draft:
         errors.append(f"슬라이드가 {slides}장이 됩니다 (최대 {feed.MAX_SLIDES}). 상품을 줄이세요")
 
     layout_slots = set(load_layout()["slots"])
     modes = set(get_args(photoroom.StyleMode)) | {BESIDE}
-    cats: list[str] = []
-    shops: dict[str, int] = {}
-    for it in plan.items:
+    for it in plan.all_items():
         p = products.get(it.product)
         if p is None:
             errors.append(f"{it.product}: 상품 창고에 없습니다")
             continue
-        cats.append(p.category)
-        shops[p.shop] = shops.get(p.shop, 0) + 1
         label = f"{it.product} ({it.name})"
         if p.status != "on_sale":
             errors.append(f"{label}: 판매 중이 아닙니다 ({p.status})")
@@ -370,15 +398,6 @@ def check(
         if _EMOJI.search(it.name + it.comment):
             errors.append(f"{label}: 상품 장 문구에는 이모지를 쓰지 않습니다")
         errors += text_problems(it.name + " " + it.comment, profile, label)
-    for it in plan.items:
-        if it.wear_with and it.wear_with not in cats:
-            errors.append(f"{it.product}: wear_with {it.wear_with} 상품이 코디에 없습니다")
-    for rule in rules.slots:
-        if rule.required and rule.category not in cats:
-            errors.append(f"필수 카테고리 {rule.category} 상품이 없습니다")
-    for shop, n in shops.items():
-        if n > rules.max_per_shop:
-            errors.append(f"쇼핑몰 {shop} 상품이 {n}개입니다 (최대 {rules.max_per_shop})")
 
     recent = store.recent_posts(plan.date, profile.themes.no_repeat_days)
     if any(p.theme and p.theme == plan.theme.title_hint for p in recent):
@@ -400,13 +419,25 @@ def check(
             errors += text_problems(line, profile, "제목")
             errors += [f"제목: 쓰지 않는 말 '{w}'" for w in c.title_banned if w in line]
         lo, hi = c.points
-        if not lo <= len(t.points) <= hi:
+        if plan.looks:
+            # 여러 벌이면 캡션은 도입 + 벌마다 한 줄(looks[].point). text.points 는 쓰지 않아도 됨
+            for n, look in enumerate(plan.looks, 1):
+                if not look.point.strip():
+                    errors.append(f"{n}번 벌 캡션 한 줄(point)이 없습니다")
+                elif "\n" in look.point.strip():
+                    errors.append(f"{n}번 벌 point 는 한 줄이어야 합니다")
+                elif len(look.point) > c.comment_max_chars:
+                    warns.append(
+                        f"{n}번 벌 point 가 {len(look.point)}자입니다 "
+                        f"(권장 {c.comment_max_chars}자 이하)"
+                    )
+        elif not lo <= len(t.points) <= hi:
             errors.append(f"코디 포인트는 {lo}~{hi}줄이어야 합니다 (지금 {len(t.points)})")
         if c.intro and not (t.intro or "").strip():
             errors.append("캡션 도입 한 줄(text.intro)이 없습니다")
         if t.intro and "\n" in t.intro.strip():
             errors.append("캡션 도입은 한 줄이어야 합니다")
-        lines = [*([t.intro] if t.intro else []), *t.points]
+        lines = [*([t.intro] if t.intro else []), *t.points, *(lk.point for lk in plan.looks)]
         body = "\n".join(lines)
         errors += text_problems(body, profile, "캡션")
         if sum(_emoji_count(line) for line in lines) > c.max_emoji:
@@ -430,9 +461,33 @@ def check(
             errors.append(f"outfit_image.model '{oi.model}' 이 config/models.yaml 에 없습니다")
         if not (photoroom.PROMPTS_DIR / f"{oi.prompt}.md").exists():
             errors.append(f"outfit_image.prompt '{oi.prompt}' 파일이 prompts/ 에 없습니다")
-    if plan.cover and not (REPO_ROOT / plan.cover).exists():
-        errors.append(f"cover 파일이 없습니다: {plan.cover}")
+    for cover in [plan.cover, *(lk.cover for lk in plan.looks)]:
+        if cover and not (REPO_ROOT / cover).exists():
+            errors.append(f"cover 파일이 없습니다: {cover}")
     return errors, warns
+
+
+def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: bool) -> list[str]:
+    """여러 벌 게시물 규칙 (20단계): 벌 수, 벌 사이 상품 겹침."""
+    lk = profile.looks
+    errors = []
+    lo, hi = (lk.min, lk.count + lk.spare) if draft else (lk.min, lk.count)
+    if not lo <= len(plan.looks) <= hi:
+        errors.append(f"벌은 {lo}~{hi}개여야 합니다 (지금 {len(plan.looks)})")
+    seen: dict[str, list[int]] = {}
+    for n, look in enumerate(plan.looks, 1):
+        for it in look.items:
+            seen.setdefault(it.product, []).append(n)
+    for pid, where in seen.items():
+        if len(where) < 2:
+            continue
+        cat = products[pid].category if pid in products else "?"
+        nums = ", ".join(map(str, where))
+        if cat not in lk.share_categories:
+            errors.append(f"{pid} ({cat}): 여러 벌({nums}번)에 들어 있습니다 (옷은 한 벌에만)")
+        elif len(where) > lk.max_share:
+            errors.append(f"{pid} ({cat}): {nums}번 벌에 들어 있습니다 (최대 {lk.max_share}벌)")
+    return errors
 
 
 # ---------- caption ----------
@@ -461,13 +516,22 @@ def caption(plan: DailyPlan, profile: Profile, store: Store) -> str:
     if plan.text.intro:
         blocks.append([plan.text.intro.strip()])
     blocks.append(list(plan.text.points))
-    blocks.append(
-        [
-            c.product_line.format(shop=products[it.product].shop, name=it.name)
-            for it in plan.items
-            if it.product in products
-        ]
-    )
+    if plan.looks:
+        # 여러 벌: 벌마다 한 줄. 상품 정보는 장마다 적혀 있고 링크는 댓글 DM 으로
+        blocks.append(
+            [
+                f"{profile.looks.label.format(n=n) or n}  {lk.point.strip()}"
+                for n, lk in enumerate(plan.looks, 1)
+            ]
+        )
+    else:
+        blocks.append(
+            [
+                c.product_line.format(shop=products[it.product].shop, name=it.name)
+                for it in plan.items
+                if it.product in products
+            ]
+        )
     cm = profile.comments
     # 댓글 DM 을 켜면 "프로필 링크" 대신 댓글 안내 문구 (10단계)
     keyword = cm.keywords[0] if cm.keywords else ""
@@ -489,7 +553,7 @@ def fetch_candidates(plan: DailyPlan, profile: Profile, store: Store, dest: Path
 
     products = {p.id: p for p in store.products()}
     result: dict[str, list[dict]] = {}
-    for it in plan.items:
+    for it in plan.all_items():
         p = products[it.product]
         pid = p.id.split(":")[-1]
         rows = []
@@ -647,6 +711,10 @@ def build(
     for w in warns:
         print(f"경고: {w}", file=sys.stderr)
     out.mkdir(parents=True, exist_ok=True)
+    if plan.looks:
+        from tools import looks
+
+        return looks.build(plan, out, profile, store, outfit, fake, warns)
     products = {p.id: p for p in store.products()}
     photo_dir = out / "photos"
     notes: list[str] = []
@@ -662,9 +730,7 @@ def build(
         # tools.review more 가 같은 방식으로 후보를 더 만든다
         (work / "engine.txt").write_text(engine, encoding="utf-8")
         try:
-            made = make_outfit(
-                plan, store, work, fake, profile.review.candidates, engine, profile
-            )
+            made = make_outfit(plan, store, work, fake, profile.review.candidates, engine, profile)
         except QUOTA_ERRORS:
             raise
         except Exception as e:  # noqa: BLE001 - 코디컷 없이 캐러셀은 만든다
@@ -817,7 +883,11 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "photos":
             photos = fetch_candidates(plan, profile, store, out / "photos")
             (out / "photos.json").write_text(json.dumps(photos, ensure_ascii=False, indent=2))
-            print(photo_sheet(plan, photos, out / "photo_check.jpg"))
+            if not plan.looks:
+                print(photo_sheet(plan, photos, out / "photo_check.jpg"))
+            # 여러 벌이면 벌마다 한 장 (한 장에 다 넣으면 너무 길어 읽기 어려움)
+            for n in range(1, len(plan.looks) + 1):
+                print(photo_sheet(plan.look_plan(n - 1), photos, out / f"photo_check_{n}.jpg"))
             return 0
         manifest = build(plan, out, profile, store, args.outfit, args.fake)
         print(f"완료: 슬라이드 {len(manifest.images)}장 → {rel(out / 'manifest.json')}")

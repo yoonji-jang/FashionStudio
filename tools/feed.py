@@ -5,6 +5,7 @@ r"""게시물 한 개의 캐러셀 슬라이드를 만든다 (AI 없음, Pillow)
   상품 장: 상품 한 장씩, 누끼(또는 원본 사진)·쇼핑몰·상품명·가격·코멘트
   요약 장: 코디 전체 목록과 저장·팔로우 문구
   댓글 안내 장(comment): 상품 정보는 댓글을 남기면 DM으로 받는다는 안내
+  벌 장(looks, 20단계): 여러 벌 게시물에서 벌마다 코디컷 + 아래쪽에 상품 정보 몇 줄 (profile looks)
 모양은 프로필 `feed` 와 `visual` 을 따른다. 상품 정보는 재료 파일(FeedSpec)에 적은 값이 우선이고,
 product 로 지정하면 data/<계정>/products.json 의 값을 기본으로 쓴다.
 
@@ -25,7 +26,7 @@ import yaml
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pydantic import ValidationError
 
-from core.models import FeedItem, FeedSpec, Product
+from core.models import FeedItem, FeedLook, FeedSpec, Product
 from core.profile import REPO_ROOT, Feed, Profile, account_dir, load_profile
 from core.store import Store
 from tools import ai_label, overlay
@@ -379,6 +380,97 @@ def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: P
     return overlay.apply(img, spec.title_lines, profile.visual)
 
 
+@dataclass
+class LookLine:
+    """벌 장에 적는 상품 한 줄."""
+
+    category: str
+    name: str
+    shop: str | None
+    price: int | None
+
+
+def look_lines(
+    look: FeedLook, account: str, store: Store | None = None, products: dict | None = None
+) -> list[LookLine]:
+    """벌 장 글자 재료. 사진은 받지 않는다 (상품 창고 값 + 재료 파일에 적은 값)."""
+    if products is None and any(it.product for it in look.items):
+        products = {p.id: p for p in (store or Store(account)).products()}
+    rows = []
+    for it in look.items:
+        base = (products or {}).get(it.product) if it.product else None
+        if it.product and base is None:
+            raise ValueError(f"상품 창고에 없는 상품입니다: {it.product}")
+        category = it.category or (base.category if base else "")
+        name = it.name or (clean_name(base.name) if base else "")
+        if not category or not name:
+            raise ValueError(f"category 와 name 이 필요합니다: {it.model_dump(exclude_none=True)}")
+        price = it.price if it.price is not None else (base.price or None) if base else None
+        rows.append(
+            LookLine(
+                category=drawable(category),
+                name=drawable(name),
+                shop=it.shop or (base.shop if base else None),
+                price=price,
+            )
+        )
+    return rows
+
+
+def look_slide(
+    image: Path,
+    lines: list[LookLine],
+    number: int,
+    profile: Profile,
+    size: tuple[int, int],
+) -> Image.Image:
+    """벌 장: 코디컷 위 왼쪽 아래(표지 제목 자리, 코디컷 지시문이 비워 둠)에 상품 정보 몇 줄."""
+    lk, v = profile.looks, profile.visual
+    img = ImageOps.fit(Image.open(image).convert("RGB"), size, Image.LANCZOS).convert("RGBA")
+    w, h = size
+    k = w / BASE
+    img = Image.alpha_composite(
+        img, overlay.gradient(size, lk.gradient_height, lk.gradient_opacity)
+    )
+    margin = round(w * profile.feed.margin_x)
+    width = round(w * lk.text_width) - margin  # 코디컷 지시문이 비워 둔 왼쪽 아래 폭 안에
+    label_font = load_font(v.font, round(lk.label_size * k))
+    name_font = load_font(v.font, round(lk.line_size * k))
+    cat_font = load_font(profile.feed.body_font, round(lk.line_size * k))
+    shop_font = load_font(profile.feed.body_font, round(lk.shop_size * k))
+    step = name_font.size * lk.line_spacing
+    last = h * (1 - lk.bottom)
+    first = last - step * (len(lines) - 1)
+    items: list = []
+    for i, ln in enumerate(lines):
+        y = first + step * i
+        # 카테고리(보조 색) · 이름(굵게) · 스토어(작게, 자리가 있을 때). 넘치면 이름을 줄인다
+        x = margin
+        cat = f"{ln.category}  "
+        items.append(((x, y), cat, cat_font, lk.sub_color))
+        x += cat_font.getlength(cat)
+        name = wrap(ln.name, name_font, margin + width - x, 1)[0]
+        items.append(((x, y), name, name_font, lk.text_color))
+        x += name_font.getlength(name)
+        extra = [ln.shop] if lk.show_shop and ln.shop else []
+        if lk.show_price and ln.price:
+            extra.append(price_text(ln.price))
+        tail = f"  {drawable(' · '.join(extra))}" if extra else ""
+        if tail and x + shop_font.getlength(tail) <= margin + width:
+            items.append(((x, y), tail, shop_font, lk.sub_color))
+    label_y = None
+    if lk.label:
+        label_y = first - name_font.size * 1.25 - label_font.size * 0.4
+        items.append(((margin, label_y), lk.label.format(n=number), label_font, lk.text_color))
+    out = Image.alpha_composite(img, overlay.text_layer(size, items, v.text_shadow, blur=8 * k))
+    if v.accent_color and label_y is not None:
+        x1 = margin - round(v.accent_gap * k)
+        x0 = x1 - max(1, round(v.accent_width * k))
+        box = (x0, round(label_y - label_font.size * 0.8), x1 - 1, round(label_y + 2 * k))
+        ImageDraw.Draw(out).rectangle(box, fill=v.accent_color)
+    return out.convert("RGB")
+
+
 def product_slide(card: Card, index: int, profile: Profile, size: tuple[int, int]) -> Image.Image:
     pt = Painter(profile, size)
     f = pt.f
@@ -676,12 +768,20 @@ def render(
     store: Store | None = None,
     photo_dir: Path | None = None,
 ) -> list[Path]:
-    """슬라이드를 out/01_cover.jpg, 02_아우터.jpg … 로 저장하고 순서대로 경로를 돌려준다."""
+    """슬라이드를 out/01_cover.jpg, 02_아우터.jpg (벌 장은 02_look1.jpg) … 로 저장하고
+    순서대로 경로를 돌려준다."""
     profile = profile or load_profile(spec.account)
     size = canvas_size(profile)
-    cards = build_cards(spec, profile.feed, root, store, photo_dir)
     kinds = [k for k in profile.feed.slides if k != "cover" or spec.cover]
-    count = sum(len(cards) if k == "products" else 1 for k in kinds)
+    # 상품 장·요약 장이 없으면 상품 사진을 받지 않는다 (여러 벌 게시물)
+    needs_cards = "products" in kinds or "summary" in kinds
+    cards = build_cards(spec, profile.feed, root, store, photo_dir) if needs_cards else []
+    looks = [lk for lk in spec.looks if lk.image]
+    shown = list(enumerate(looks, 1))
+    if spec.cover and "cover" in kinds and not profile.looks.repeat_cover_look:
+        shown = shown[1:]  # 1번 벌은 표지로만
+    counts = {"products": len(cards), "looks": len(shown)}
+    count = sum(counts.get(k, 1) for k in kinds)
     if count > MAX_SLIDES:
         raise ValueError(f"슬라이드가 {count}장입니다 (최대 {MAX_SLIDES}장). 상품 수를 줄이세요")
     out.mkdir(parents=True, exist_ok=True)
@@ -698,6 +798,11 @@ def render(
         elif kind == "products":
             for i, card in enumerate(cards, 1):
                 save(product_slide(card, i, profile, size), card.category)
+        elif kind == "looks":
+            products = {p.id: p for p in (store or Store(spec.account)).products()}
+            for n, look in shown:
+                lines = look_lines(look, spec.account, products=products)
+                save(look_slide(root / look.image, lines, n, profile, size), f"look{n}")
         elif kind == "comment":
             save(comment_slide(profile, size), "comment")
         else:

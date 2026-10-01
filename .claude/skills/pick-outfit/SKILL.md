@@ -26,7 +26,8 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
 4. **코디컷이 잘 나오는 것**: 가방·신발·주얼리는 단독컷이 있는 상품을 먼저 (`prefer_flat_shot`).
 5. **품질**: 같은 조건이면 리뷰 수가 많은 것.
 6. **규칙**: 개수 `items_min`~`items_max`, 한 쇼핑몰 `max_per_shop` 개까지,
-   슬라이드는 표지 + 상품 수 + 요약 ≤ 10장.
+   슬라이드는 표지 + 상품 수 + 요약 ≤ 10장. 여러 벌 게시물(profile `looks`)은 이 기준이 벌 하나에
+   적용되고, 벌 사이 규칙은 `outfit-candidates` 스킬의 "여러 벌" 절.
 7. 가격대가 한 상품만 튀지 않게 한다 (다른 상품의 3배 이상이면 다시 본다).
 
 ## plan.yaml 에 쓰는 것 (items 한 개, core.models.PlanItem)

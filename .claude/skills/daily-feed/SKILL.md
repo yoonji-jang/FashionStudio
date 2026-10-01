@@ -21,6 +21,22 @@ description: 하루치 인스타 코디 게시물을 처음부터 끝까지 만�
 상품으로 바꾸고, 바꾼 것을 보고에 적는다. 코디컷 배치 값(`desc` 의 영어 핏·기장, `wear_with`·`wear_modes`·
 `wear_how`, `cm`)은 `pick-outfit` 스킬의 "코디컷 배치" 기준으로 다듬는다 (후보에 빠져 있을 수 있다).
 
+## 여러 벌 게시물 (profile `looks.enabled`, 20단계)
+plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌만 들어 있으니 벌을 더하거나 빼지 않는다.
+순서는 같고, 아래만 다르다.
+- 5. 상품 조합 (고르기 없이 처음부터 만들 때만): `outfit-candidates` 스킬의 "여러 벌" 절대로 `looks.count` 벌을 짠다.
+- 6. 사진 확인: 확인표가 벌마다 `photo_check_<n>.jpg` 로 나온다. `photo-checker` 에게 plan.yaml 과
+  확인표들을 한 번에 넘기고, 돌려받은 `cutout_photo`·`ref_photos` 를 그 상품이 있는 벌마다 채운다
+  (상품 장이 없어 `photo` 는 안 써도 됨). 바꿀 상품은 같은 벌 안에서 같은 카테고리로 바꾼다.
+- 7. 문구: `write-copy` 의 "여러 벌" 절 (제목, 도입, 벌마다 `point`, 상품 `name`).
+- 9. 만들기: 벌마다 `out/$DATE/looks/<n>/` 에 코디컷 후보(`looks.candidates` 장)가 생긴다.
+- 10. 검수: 벌 폴더마다 따로 한다. `python -m tools.review prep out/$DATE` 가 모든 벌을 prep 한다. 그다음
+  벌마다(`out/$DATE/looks/<n>`) `image-reviewer` → `scores.yaml` → `tools.review apply out/$DATE/looks/<n>`,
+  종료 코드 3이면 그 벌만 `tools.review more out/$DATE/looks/<n>` 하고 그 벌만 다시 검수한다.
+  모든 벌이 끝나면 `python -m tools.review finish out/$DATE` 로 고른 코디컷으로 슬라이드·manifest 를
+  다시 만든다 (종료 코드 4 = 통과 못 한 벌이 있어 사람 확인, 그대로 11로).
+  벌 하나만 계속 떨어지면 그 벌의 상품을 바꾸지 말고 사람 확인으로 둔다 (사람이 고른 구성).
+
 ## 에이전트 부르기
 `photo-checker`, `image-reviewer` 에이전트는 반드시 앞에서(`run_in_background: false`) 불러 결과를 받은 뒤
 다음 단계로 간다. 백그라운드로 부르면 결과를 기다리는 동안 실행이 끝나 버려 게시물이 만들어지지 않는다.

@@ -42,7 +42,9 @@ def test_outfit_plan_item_count():
     with pytest.raises(ValidationError):
         OutfitPlan(theme=theme(), items=[], reason="")
     with pytest.raises(ValidationError):
-        OutfitPlan(theme=theme(), items=[product(i) for i in range(11)], reason="")
+        OutfitPlan(theme=theme(), items=[product(i) for i in range(61)], reason="")
+    # 여러 벌 게시물(20단계)은 상품이 많다
+    OutfitPlan(theme=theme(), items=[product(i) for i in range(30)], reason="", looks=[["a"]])
 
 
 def test_manifest_roundtrip():

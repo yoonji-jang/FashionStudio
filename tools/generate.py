@@ -207,8 +207,9 @@ class QuotaError(RuntimeError):
 
 
 class Client(Protocol):
-    def generate(self, model: dict, prompt: str, images: list[bytes]) -> tuple[bytes, float | None]:
-        ...
+    def generate(
+        self, model: dict, prompt: str, images: list[bytes]
+    ) -> tuple[bytes, float | None]: ...
 
 
 class OpenRouterClient:
@@ -296,8 +297,11 @@ def run(
 
     model_keys = models or list(cfg["models"])
     shot_keys = [s for s in (shots or SHOTS) if s in spec.get("shots", {})]
-    record: dict = {"spec": str(spec_path), "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                    "results": []}
+    record: dict = {
+        "spec": str(spec_path),
+        "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "results": [],
+    }
     for shot in shot_keys:
         images = inputs + ([guide] if shot == "flatlay_guide" and guide else [])
         repeats = int(spec["shots"][shot].get("repeats", 1))
@@ -336,8 +340,12 @@ def run(
 
 
 def report(spec: dict, record: dict, cfg: dict, model_keys: list[str]) -> str:
-    lines = [f"# 생성형 이미지 AI 비교: {spec.get('title', '')}", "",
-             "| 모델 | 성공 | 평균 시간(초) | 비용($) |", "|---|---|---|---|"]
+    lines = [
+        f"# 생성형 이미지 AI 비교: {spec.get('title', '')}",
+        "",
+        "| 모델 | 성공 | 평균 시간(초) | 비용($) |",
+        "|---|---|---|---|",
+    ]
     total = 0.0
     for key in model_keys:
         rs = [r for r in record["results"] if r["model"] == key]
@@ -345,8 +353,9 @@ def report(spec: dict, record: dict, cfg: dict, model_keys: list[str]) -> str:
         cost = sum(r.get("cost") or 0 for r in ok)
         total += cost
         avg = sum(r["sec"] for r in rs) / len(rs) if rs else 0
-        lines.append(f"| {cfg['models'][key]['name']} | {len(ok)}/{len(rs)} | {avg:.0f} | "
-                     f"{cost:.3f} |")
+        lines.append(
+            f"| {cfg['models'][key]['name']} | {len(ok)}/{len(rs)} | {avg:.0f} | {cost:.3f} |"
+        )
     lines += ["", f"총 비용 약 ${total:.2f} (OpenRouter 가 알려 준 값)", "", "## 실패", ""]
     fails = [r for r in record["results"] if not r["ok"]]
     lines += [f"- {r['model']} {r['shot']}_{r['repeat']}: {r['error']}" for r in fails] or ["없음"]
