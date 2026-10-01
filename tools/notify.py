@@ -59,6 +59,9 @@ def quiet_now(cfg: dict | None = None, now: datetime | None = None) -> bool:
     return start <= t < end if start < end else t >= start or t < end
 
 
+UPDATES_LIMIT = 100  # getUpdates 한 번에 받는 최대 개수
+
+
 class Telegram:
     def __init__(self, token: str, chat_id: str, client: httpx.Client | None = None):
         if not token or not chat_id:
@@ -121,7 +124,16 @@ class Telegram:
 
     def updates(self) -> list[dict]:
         # offset 을 넘기지 않아 읽은 답장을 지우지 않는다 (다른 계정 게시 job 도 읽어야 해서)
-        return self.call("getUpdates", allowed_updates=["message"], limit=100)
+        old = self.call("getUpdates", allowed_updates=["message"], limit=UPDATES_LIMIT)
+        if len(old) < UPDATES_LIMIT:
+            return old
+        # 쌓인 글이 100개를 넘으면 오래된 100개만 와서 새 답장(/ok, /fix)이 안 보인다.
+        # 끝에서 100개를 다시 받는다 (텔레그램이 그보다 오래된 글은 지움)
+        new = self.call(
+            "getUpdates", allowed_updates=["message"], limit=UPDATES_LIMIT, offset=-UPDATES_LIMIT
+        )
+        seen = {u["update_id"] for u in new}
+        return [u for u in old if u["update_id"] not in seen] + new
 
 
 # ---------- 미리보기 ----------

@@ -58,7 +58,13 @@ class FakeApis:
                 }
                 for i, (at, text, to) in enumerate(self.replies, 1)
             ]
-            return httpx.Response(200, json={"ok": True, "result": updates})
+            # 텔레그램처럼 limit(기본 100)개까지, 오래된 것부터. 음수 offset 은 끝에서 그만큼
+            form = parse_qs(req.content.decode())
+            limit = int(form.get("limit", ["100"])[0])
+            offset = int(form.get("offset", ["0"])[0])
+            if offset < 0:
+                updates = updates[offset:]
+            return httpx.Response(200, json={"ok": True, "result": updates[:limit]})
         if method == "sendMediaGroup":
             body = req.content.decode("utf-8", "ignore")
             n = body.count('filename="p')

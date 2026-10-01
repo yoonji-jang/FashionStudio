@@ -136,16 +136,18 @@ def find_fixes(
             continue
         if msg.get("date", 0) < record.sent_at:
             continue
-        cmd = notify.parse(msg.get("text") or "", record.account, record.date)
-        if cmd is None or cmd.name != "fix":
-            continue
         reply_to = (msg.get("reply_to_message") or {}).get("message_id")
-        if not cmd.labeled and reply_to and reply_to not in record.message_ids:
-            continue
-        fix = target(cmd.args, reply_to, record, slides)
-        if not fix["text"]:
-            continue  # 고칠 내용이 없는 /fix
-        found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
+        # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다
+        for part in re.split(r"\n(?=\s*/fix\b)", msg.get("text") or ""):
+            cmd = notify.parse(part, record.account, record.date)
+            if cmd is None or cmd.name != "fix":
+                continue
+            if not cmd.labeled and reply_to and reply_to not in record.message_ids:
+                continue
+            fix = target(cmd.args, reply_to, record, slides)
+            if not fix["text"]:
+                continue  # 고칠 내용이 없는 /fix
+            found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
     return found
 
 
@@ -246,12 +248,12 @@ def check(
     known = store.feedback()
     seen = {e.update_id for e in known}
     slides = slide_map(notify.load_manifest(run_dir))
+    updates = tg.updates()
     fixes = [
-        f
-        for f in find_fixes(tg.updates(), record, tg.chat_id, slides)
-        if f["update_id"] not in seen
+        f for f in find_fixes(updates, record, tg.chat_id, slides) if f["update_id"] not in seen
     ]
     if not fixes:
+        print(f"[{account}] {day} 새 /fix 없음 ({run_dir.name}, 텔레그램 글 {len(updates)}개 확인)")
         return None
     result = decide(profile, store, run_dir, record, now, known)
     rnd = rounds_used(store, day) + 1 if result == "rerender" else 0

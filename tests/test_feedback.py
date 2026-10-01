@@ -290,3 +290,21 @@ def test_schedule_rules_once_a_day(tmp_path):
     t = schedule.Task("women", "rules", "2026-09-28", True, True, 0)
     schedule.execute([t], tmp_path, gh, object(), datetime(2026, 9, 28, 23, 0, tzinfo=UTC))
     assert gh.sent == [("feedback-rules.yml", {"account": "women"})]
+
+
+def test_check_reads_new_fix_when_more_than_100_messages(results, store):  # noqa: F811
+    # 텔레그램은 offset 없이 오래된 100개만 준다. 그 뒤에 온 /fix 도 읽어야 한다
+    api = FakeApis()
+    rec = sent(api, results / RUN)
+    tg, _, _ = clients(api)
+    chatter = [(rec.sent_at - 100 + i, "2", None) for i in range(100)]
+    multi = "/fix 1 단추가 3개\n/fix 5 가방 정보가 다름"
+    api.replies = chatter + [(rec.sent_at + 5, multi, None)]
+    fix = feedback.check("women", DAY, results, tg, EARLY, store=store)
+    # 한 메시지의 /fix 두 줄은 장마다 따로 읽는다
+    assert fix is not None
+    assert [(f["slide"], f["text"]) for f in fix["fixes"]] == [
+        (1, "단추가 3개"),
+        (5, "가방 정보가 다름"),
+    ]
+    assert [e.slide for e in store.feedback()] == [1, 5]
