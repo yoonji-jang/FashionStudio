@@ -1,0 +1,70 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 베이직 니트 가디건 (grey fine-knit cardigan, V-neck, regular fit, hip length,
+    buttons)
+  name: 그레이 데이베이직 가디건
+  product: zigzag:136080843
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라인 셔츠 (ivory plain shirt with a regular shirt collar, relaxed fit, long
+    sleeves)
+  name: 아이보리 로셀 셔츠
+  product: zigzag:145426176
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 와이드 팬츠 (black wide-leg trousers, flat front, no pleats, full length)
+  name: 블랙 디테일러 와이드팬츠
+  product: zigzag:140796259
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 올데이 백 (black everyday shoulder bag)
+  name: 블랙 올데이백
+  product: zigzag:162858655
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 플랫 로퍼 (black suede flat loafers with stitching, round toe, one pair
+    of two shoes)
+  name: 블랙 스티치 플랫 로퍼
+  product: zigzag:165485536
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 커브 두줄 귀걸이 (exactly one pair (two earrings) of thin silver double-line curve
+    earrings)
+  name: 실버 커브 두줄 귀걸이
+  product: zigzag:168924754
+reason: 그레이 가디건과 아이보리 셔츠에 블랙 와이드 팬츠로 무채색 톤온톤을 잡아 부담 없이 입어요. 가볍게 걸쳐 낮과 저녁을 오가는 편한 한
+  벌이에요.
+theme:
+  date: '2026-10-02'
+  mood: 오피스룩에서 저녁 약속까지 이어지는 차분한 가을 코디
+  search_terms:
+    아우터:
+    - 니트 가디건
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 단정한 자켓이나 하프코트
+  - category: 상의
+    desc: 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  - category: 소품
+    desc: 작은 주얼리나 벨트
+  title_hint: 금요일 퇴근 후 약속, 단정하게 입고 저녁까지
+  type: 상황
+  why: 금요일, 서울 흐림 11~20도. 낮엔 가볍고 저녁엔 쌀쌀해서 걸칠 아우터가 필요하고, 퇴근 후 약속으로 이어지는 단정한 룩. 최근 이틀
+    아우터는 트렌치·롱코트·가디건이라 이번엔 자켓·코트·레더로 변화

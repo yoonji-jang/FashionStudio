@@ -1,0 +1,71 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 자켓 (black faux-leather jacket, slim straight fit, cropped to the waist,
+    collared, front zip)
+  name: 블랙 레더 자켓
+  product: zigzag:146665389
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 세미크롭 니트 (ivory round-neck knit top, semi-cropped length, regular fit)
+  name: 아이보리 세미크롭 니트
+  product: zigzag:128235325
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 핀턱 와이드 슬랙스 (navy wide-leg pintuck trousers, full length)
+  name: 네이비 핀턱 와이드 슬랙스
+  product: zigzag:161586134
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 숄더백 (burgundy leather shoulder bag)
+  name: 버건디 클리프 숄더백
+  product: zigzag:151166447
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 앵클부츠 (black leather ankle boots with a back zipper, low 2 cm heel, one
+    pair of two boots)
+  name: 블랙 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 클래식 벨트 (black slim leather belt with a small silver buckle, threaded through
+    the trouser belt loops)
+  name: 블랙 클래식 벨트
+  product: zigzag:137568598
+reason: 블랙 레더 자켓에 네이비 슬랙스로 금요일 저녁다운 시크한 분위기를 냈어요. 버건디 숄더백 하나만 포인트로 두고 아이보리 니트로 톤을
+  밝혀요.
+theme:
+  date: '2026-10-02'
+  mood: 오피스룩에서 저녁 약속까지 이어지는 차분한 가을 코디
+  search_terms:
+    상의:
+    - 니트
+    아우터:
+    - 레더자켓
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 단정한 자켓이나 하프코트
+  - category: 상의
+    desc: 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  - category: 소품
+    desc: 작은 주얼리나 벨트
+  title_hint: 금요일 퇴근 후 약속, 단정하게 입고 저녁까지
+  type: 상황
+  why: 금요일, 서울 흐림 11~20도. 낮엔 가볍고 저녁엔 쌀쌀해서 걸칠 아우터가 필요하고, 퇴근 후 약속으로 이어지는 단정한 룩. 최근 이틀
+    아우터는 트렌치·롱코트·가디건이라 이번엔 자켓·코트·레더로 변화

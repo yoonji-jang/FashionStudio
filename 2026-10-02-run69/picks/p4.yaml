@@ -1,0 +1,69 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 라운드넥 트위드 자켓 (beige round-neck tweed jacket, collarless, cropped boxy fit,
+    front buttons)
+  name: 베이지 라운드 트위드 자켓
+  product: zigzag:128885359
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 라인 셔츠 (ivory plain shirt with a regular shirt collar, relaxed fit, long
+    sleeves)
+  name: 아이보리 라인 셔츠
+  product: zigzag:136083756
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 H라인 롱스커트 (black H-line long skirt with a back slit, ankle length, no belt)
+  name: 블랙 H라인 롱스커트
+  product: zigzag:140288768
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 숄더백 (burgundy shoulder bag, structured, a single bag)
+  name: 버건디 노아르 숄더백
+  product: zigzag:164013796
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 슬링백 (black stiletto mary jane slingback flats, pointed toe, 1 cm heel,
+    one pair of two shoes)
+  name: 블랙 메리제인 슬링백
+  product: zigzag:160137199
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 미니 큐빅 목걸이 (one thin silver necklace with a tiny 3 mm cubic pendant)
+  name: 실버 미니 큐빅 목걸이
+  product: zigzag:113461869
+reason: 베이지 트위드와 블랙 롱스커트로 바지가 아닌 우아한 실루엣을 만들었어요. 아이보리 셔츠에 버건디 가방 하나로 퇴근 후 약속 분위기를
+  살려요.
+theme:
+  date: '2026-10-02'
+  mood: 오피스룩에서 저녁 약속까지 이어지는 차분한 가을 코디
+  search_terms:
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 롱스커트
+  slots:
+  - category: 아우터
+    desc: 단정한 자켓이나 하프코트
+  - category: 상의
+    desc: 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  - category: 소품
+    desc: 작은 주얼리나 벨트
+  title_hint: 금요일 퇴근 후 약속, 단정하게 입고 저녁까지
+  type: 상황
+  why: 금요일, 서울 흐림 11~20도. 낮엔 가볍고 저녁엔 쌀쌀해서 걸칠 아우터가 필요하고, 퇴근 후 약속으로 이어지는 단정한 룩. 최근 이틀
+    아우터는 트렌치·롱코트·가디건이라 이번엔 자켓·코트·레더로 변화

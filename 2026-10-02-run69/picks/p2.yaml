@@ -1,0 +1,74 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 울블렌드 하프코트 (grey wool-blend half-length coat, straight fit, notched lapel,
+    hip-length)
+  name: 그레이 울블렌드 하프코트
+  product: zigzag:171900742
+- color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 하프넥 니트 (burgundy fine-knit half-neck (low mock-neck) sweater, regular
+    fit, long sleeves)
+  name: 버건디 하프넥 니트
+  product: zigzag:146407231
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 핀턱 와이드 슬랙스 (black wide-leg pintuck trousers, full length)
+  name: 블랙 핀턱 와이드 슬랙스
+  product: zigzag:144667358
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 호보백 (black suede hobo shoulder bag)
+  name: 블랙 스웨이드 호보백
+  product: zigzag:159416332
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 (black leather mary jane shoes with a strap, round toe, 3 cm heel,
+    one pair of two shoes)
+  name: 블랙 소가죽 메리제인
+  product: zigzag:166028838
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 귀걸이 (exactly one pair (two earrings) of small silver drop earrings)
+  name: 실버 물방울 귀걸이
+  product: zigzag:116459948
+reason: 그레이 하프코트 안에 버건디 니트로 퇴근 후 약속에 어울리는 깊은 포인트를 줬어요. 블랙 슬랙스·스웨이드 호보백으로 무게를 잡아 차분하게
+  마무리해요.
+theme:
+  date: '2026-10-02'
+  mood: 오피스룩에서 저녁 약속까지 이어지는 차분한 가을 코디
+  search_terms:
+    상의:
+    - 셔츠
+    - 니트
+    아우터:
+    - 트위드 자켓
+    - 울 코트
+    하의:
+    - 와이드 슬랙스
+    - 롱스커트
+  slots:
+  - category: 아우터
+    desc: 단정한 자켓이나 하프코트
+  - category: 상의
+    desc: 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  - category: 소품
+    desc: 작은 주얼리나 벨트
+  title_hint: 금요일 퇴근 후 약속, 단정하게 입고 저녁까지
+  type: 상황
+  why: 금요일, 서울 흐림 11~20도. 낮엔 가볍고 저녁엔 쌀쌀해서 걸칠 아우터가 필요하고, 퇴근 후 약속으로 이어지는 단정한 룩. 최근 이틀
+    아우터는 트렌치·롱코트·가디건이라 이번엔 자켓·코트·레더로 변화
