@@ -10,12 +10,15 @@ r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 
 4. 프로필 ai_label 이 켜져 있으면 표지 등에 AI 합성 표시(IPTC)가 없을 때 넣기 (tools.ai_label)
    사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
 5. 게시 기록(data/<계정>/posts.json)과 결과 폴더 published.json 을 쓰고 텔레그램으로 알림
+6. 릴스 (19단계, profile reels): schedule.reels_at 이 있으면 그 시각에 --reels 로 따로,
+   없으면 캐러셀 바로 뒤에 같은 캡션으로 올린다. 캐러셀 /ok 가 릴스 승인을 겸한다
 
 종료 코드: 0 게시·건너뜀·이미 게시됨, 3 아직 승인 없음(게시 안 함), 1 오류
 
 사용법:
   python -m tools.publish --account women --date 2026-09-27 --results <daily-results 폴더>
       [--run 2026-09-27-run12] [--dry-run] [--force] [--allow-sandbox] [--scheduled] [--quiet-wait]
+  python -m tools.publish --account women --date 2026-10-01 --results <폴더> --reels [--dry-run]
 환경 변수: IG_TOKEN, IG_USER_ID (또는 프로필 instagram 의 Secret 이름), TELEGRAM_BOT_TOKEN,
 TELEGRAM_CHAT_ID, MEDIA_REPO_TOKEN
 """
@@ -240,17 +243,7 @@ def run(
             print(f"  {p.name}{mark}")
         return 0
 
-    ig_cfg = cfg.get("instagram", {})
-    if ig is None:
-        # Actions 는 계정별 Secret 을 IG_USER_ID, IG_TOKEN 으로 넘긴다 (로컬은 Secret 이름도 됨)
-        env = os.environ.get
-        ig = Instagram(
-            env("IG_USER_ID") or env(profile.instagram.user_id_secret, ""),
-            env("IG_TOKEN") or env(profile.instagram.token_secret, ""),
-            ig_cfg.get("api_base", "https://graph.instagram.com/v23.0"),
-            wait_sec=ig_cfg.get("wait_sec", 5),
-            wait_tries=ig_cfg.get("wait_tries", 36),
-        )
+    ig = ig or make_instagram(profile, cfg)
     host_cfg = cfg.get("image_host", {})
     host = host or GitHubHost.from_config(host_cfg)
     limit = ig.publish_limit()
@@ -319,6 +312,14 @@ def run(
     )
     store.save_posts(sorted(posts, key=lambda p: p.date))
     print(f"{tag} 게시 완료: {link or media_id}")
+    if profile.reels.enabled and profile.schedule.reels_at is None:
+        # 릴스 시각이 없으면 캐러셀 바로 뒤에 올린다. 실패해도 캐러셀은 올라갔으니 알림만
+        try:
+            _, reel, reel_tags = publish_reel(profile, manifest, out, ig, cfg, store, host)
+            tagged += f"\n릴스도 올렸어요: {reel or ''}{reel_tags}"
+        except (Blocked, IGError, RuntimeError, ValueError, httpx.HTTPError) as e:
+            print(f"경고: 릴스를 올리지 못했습니다: {e}", file=sys.stderr)
+            tagged += f"\n릴스를 올리지 못했어요: {e}"
     if profile.link_page.enabled:
         # 상품 페이지 (ManyChat DM 이 가리키는 곳). 실패해도 게시는 끝났으니 경고만
         from tools import link_page
@@ -344,6 +345,146 @@ def run(
             store.save_posts(posts)
         else:
             tg.send(done)
+    return 0
+
+
+def make_instagram(profile: Profile, cfg: dict) -> Instagram:
+    ig_cfg = cfg.get("instagram", {})
+    # Actions 는 계정별 Secret 을 IG_USER_ID, IG_TOKEN 으로 넘긴다 (로컬은 Secret 이름도 됨)
+    env = os.environ.get
+    return Instagram(
+        env("IG_USER_ID") or env(profile.instagram.user_id_secret, ""),
+        env("IG_TOKEN") or env(profile.instagram.token_secret, ""),
+        ig_cfg.get("api_base", "https://graph.instagram.com/v23.0"),
+        wait_sec=ig_cfg.get("wait_sec", 5),
+        wait_tries=ig_cfg.get("wait_tries", 36),
+    )
+
+
+# ---------- 릴스 (19단계) ----------
+
+REEL_SECONDS = (3, 90)  # 인스타 릴스 길이 (초)
+REEL_MAX_BYTES = 300 * 1024 * 1024
+
+
+def reel_guard(manifest: Manifest, video: Path | None) -> list[str]:
+    if video is None:
+        return ["릴스 영상이 없습니다 (daily 의 릴스 만들기 단계 확인)"]
+    errors = []
+    sec = manifest.reels.duration_sec if manifest.reels else None
+    if sec is None or not REEL_SECONDS[0] <= sec <= REEL_SECONDS[1]:
+        errors.append(f"릴스 길이 {sec}초는 {REEL_SECONDS[0]}~{REEL_SECONDS[1]}초여야 합니다")
+    if video.stat().st_size > REEL_MAX_BYTES:
+        errors.append("릴스 영상이 300MB 를 넘습니다")
+    return errors
+
+
+def publish_reel(
+    profile: Profile,
+    manifest: Manifest,
+    out: Path,
+    ig: Instagram,
+    cfg: dict,
+    store: Store,
+    host: GitHubHost | None = None,
+) -> tuple[str, str | None, str]:
+    """릴스를 올리고 (게시물 id, 주소, 댓글 해시태그 오류) 를 돌려준다.
+    published.json 과 posts.json 에 릴스를 적는다."""
+    from tools import reels
+
+    video = reels.video_path(manifest, out)
+    errors = reel_guard(manifest, video)
+    if errors:
+        raise Blocked("릴스 게시 전 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
+    assert video is not None
+    ig_cfg = cfg.get("instagram", {})
+    caption = post_caption(profile, manifest)
+    kw = dict(share_to_feed=profile.reels.share_to_feed, wait_tries=ig_cfg.get("reels_wait_tries"))
+    if ig_cfg.get("reels_upload", "file") == "url":
+        host_cfg = cfg.get("image_host", {})
+        host = host or GitHubHost.from_config(host_cfg)
+        uploaded = host.upload([video], f"{profile.id}/{out.name}-reel")
+        try:
+            media_id = ig.publish_reel(caption, video_url=uploaded[0].url, **kw)
+        finally:
+            if not host_cfg.get("keep", False):
+                try:
+                    host.delete(uploaded)
+                except (RuntimeError, httpx.HTTPError) as e:
+                    print(f"경고: 게시용 영상을 지우지 못했습니다: {e}", file=sys.stderr)
+    else:
+        media_id = ig.publish_reel(caption, video=video, **kw)
+    link = ig.permalink(media_id)
+    tag_error = ""
+    if profile.comment_tags.enabled:
+        try:
+            comment_hashtags(ig, media_id, profile, manifest)
+        except (IGError, httpx.HTTPError) as e:
+            print(f"경고: 릴스 댓글 해시태그를 달지 못했습니다: {e}", file=sys.stderr)
+            tag_error = f"\n릴스 댓글 해시태그를 달지 못했어요: {e}"
+    done = out / "published.json"
+    rec = PublishRecord.model_validate_json(done.read_text(encoding="utf-8"))
+    rec.reel_media_id, rec.reel_permalink = media_id, link
+    rec.reel_published_at = int(time.time())
+    done.write_text(rec.model_dump_json(indent=2), encoding="utf-8")
+    posts = store.posts()
+    for p in posts:
+        if p.date == manifest.date:
+            p.reel_media_id, p.reel_permalink = media_id, link
+    store.save_posts(posts)
+    return media_id, link, tag_error
+
+
+def run_reels(
+    account: str,
+    day: date,
+    results: Path,
+    run_name: str | None = None,
+    dry_run: bool = False,
+    store: Store | None = None,
+    tg: notify.Telegram | None = None,
+    ig: Instagram | None = None,
+    host: GitHubHost | None = None,
+) -> int:
+    """schedule.reels_at 에 릴스만 올린다. 그날 캐러셀을 게시한 결과 폴더의 영상을 쓴다
+    (캐러셀 /ok 가 릴스 승인을 겸한다). 캐러셀을 안 올린 날은 조용히 끝낸다."""
+    profile = load_profile(account)
+    store = store or Store(account)
+    tag = f"[{account}] {day}"
+    if not profile.reels.enabled:
+        print(f"{tag} 릴스가 꺼져 있습니다 (profile reels.enabled)")
+        return 0
+    try:
+        out = find_run(results, account, day, run_name)
+    except FileNotFoundError:
+        print(f"{tag} 결과가 없어 릴스를 올리지 않습니다")
+        return 0
+    done = out / "published.json"
+    if not done.exists():
+        print(f"{tag} 캐러셀을 게시하지 않은 날이라 릴스도 올리지 않습니다 ({out.name})")
+        return 0
+    rec = PublishRecord.model_validate_json(done.read_text(encoding="utf-8"))
+    if rec.reel_media_id:
+        print(f"{tag} 릴스를 이미 올렸습니다 ({rec.reel_permalink or rec.reel_media_id})")
+        return 0
+    manifest = notify.load_manifest(out)
+    from tools import reels
+
+    errors = reel_guard(manifest, reels.video_path(manifest, out))
+    if errors:
+        raise Blocked("릴스 게시 전 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
+    if dry_run:
+        print(f"(시험) {out.name} 릴스 {manifest.reels.duration_sec:g}초를 게시할 예정")  # type: ignore[union-attr]
+        return 0
+    cfg = notify.publish_config()
+    ig = ig or make_instagram(profile, cfg)
+    limit = ig.publish_limit()
+    if limit and limit[0] >= limit[1]:
+        raise Blocked(f"인스타 24시간 게시 한도에 닿았습니다 ({limit[0]}/{limit[1]})")
+    _, link, tag_error = publish_reel(profile, manifest, out, ig, cfg, store, host)
+    print(f"{tag} 릴스 게시 완료: {link}")
+    if tg is not None:
+        tg.send(f"{tag} 릴스도 올렸어요 ✓\n{link or ''}".strip() + tag_error)
     return 0
 
 
@@ -395,6 +536,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--allow-sandbox", action="store_true", help="샌드박스 결과도 게시 (시험용)")
     ap.add_argument("--scheduled", action="store_true", help="자동 실행: 결과가 없으면 조용히 끝냄")
     ap.add_argument("--quiet-wait", action="store_true", help="승인 대기 알림을 보내지 않음")
+    ap.add_argument(
+        "--reels", action="store_true", help="릴스만 올림 (그날 캐러셀을 게시한 결과의 영상)"
+    )
     args = ap.parse_args(argv)
 
     profile = load_profile(args.account)
@@ -405,6 +549,8 @@ def main(argv: list[str] | None = None) -> int:
     except ValueError:
         print("텔레그램 설정이 없어 승인·알림 없이 진행합니다", file=sys.stderr)
     try:
+        if args.reels:
+            return run_reels(args.account, day, args.results, args.run, args.dry_run, tg=tg)
         return run(
             args.account,
             day,
@@ -418,7 +564,8 @@ def main(argv: list[str] | None = None) -> int:
             notify_wait=not args.quiet_wait,
         )
     except (Blocked, IGError, ValueError, FileNotFoundError, RuntimeError, httpx.HTTPError) as e:
-        msg = f"[{args.account}] {day} 게시 실패: {e}"
+        what = "릴스 게시" if args.reels else "게시"
+        msg = f"[{args.account}] {day} {what} 실패: {e}"
         if isinstance(e, IGError) and e.token_problem:
             msg += "\n인스타 토큰이 만료됐거나 취소됐어요. 새 토큰을 Secret 에 다시 등록해 주세요."
         print(msg, file=sys.stderr)

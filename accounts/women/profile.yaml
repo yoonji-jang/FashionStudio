@@ -211,7 +211,7 @@ schedule:
   collect_at: "월,목 04:00"  # 지그재그 새 상품 수집
   token_refresh_at: "일 19:00"  # 인스타 토큰 연장 (60일 만료 전에 매주)
   github_cron: backup       # 외부 스케줄러가 매시 깨우므로 GitHub 예약은 주요 칸만 (Actions 시간 절약)
-  reels_at: null            # 릴스 (12단계)
+  reels_at: "19:00"         # 릴스 게시 (19단계). 아침 캐러셀과 같은 코디를 저녁에. null 이면 캐러셀 직후
 
 # 코디 고르기 (9단계). 후보를 쇼핑몰 원본 사진으로 보내고, 고른 코디만 Photoroom 으로 만든다
 pick:
@@ -259,6 +259,24 @@ link_page:
   item_line: "{category} · {shop}"
   share_days: 7            # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
   send_links: true         # /ok 뒤 상품별 지그재그 링크를 텔레그램으로 (링크를 직접 만들 때 씀)
+
+# 릴스 (19단계, tools.reels). 그날 캐러셀 슬라이드를 세로 영상(1080×1920)으로 이어 붙여 schedule.reels_at 에 올린다.
+# 영상 AI 없이 코드로 만든다 (추가 비용 없음). 텔레그램 미리보기에 영상도 같이 오고, /ok 하나로 둘 다 승인
+reels:
+  enabled: true
+  slides: [cover, products, summary, comment]  # 순서. products 는 상품마다 한 장
+  seconds: {cover: 2.5, products: 1.6, summary: 2.5, comment: 2.0}  # 장마다 보여 주는 시간 (초)
+  transition: slide        # slide(캐러셀 넘기듯) / fade / cut
+  transition_sec: 0.35
+  cover_zoom: 0.06         # 표지가 천천히 커지는 정도
+  zoom: 0.02               # 나머지 장
+  top: 0.105               # 슬라이드 위쪽 끝 위치 (세로 대비). 아래는 인스타 캡션이 덮는 자리
+  background: null         # null 이면 feed.background
+  # 배경 음악 폴더. 상업 이용이 허락된 음원 파일(mp3·m4a)을 넣으면 날짜마다 돌려 씀. 비어 있으면 소리 없음
+  # (인스타 앱의 음악은 API 로 넣을 수 없다)
+  music_dir: accounts/women/music
+  music_volume: 0.8
+  share_to_feed: true      # 프로필 격자에도 보이게
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)

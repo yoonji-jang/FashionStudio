@@ -17,6 +17,7 @@ FIXED_SCHEDULE = {
     "themes_at": "일 18:17",
     "collect_at": "월,목 04:17",
     "token_refresh_at": "일 18:47",
+    "reels_at": None,
 }
 
 
