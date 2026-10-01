@@ -1,0 +1,60 @@
+{
+  "run": "2026-10-02-run77",
+  "round": 3,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "표지 제목 글자만 '일교차 큰 날 출근룩부터 / 약속룩까지 가을 코디 모음' 으로 바꿔줘 (2026-10-02-run78 에서 고친 제목). 코디컷 그림은 다시 그리지 말고 지금 그대로 둬"
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 4,
+      "file": "04_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 5,
+      "file": "05_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 6,
+      "file": "06_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 7,
+      "file": "07_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 8,
+      "file": "08_comment.jpg",
+      "kind": "comment"
+    }
+  ]
+}

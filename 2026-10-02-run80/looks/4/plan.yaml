@@ -1,0 +1,83 @@
+account: women
+cover: out/2026-10-02/looks/4/outfit_r2/results/G_1.jpg
+date: '2026-10-02'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 라운드 트위드 자켓 (black collarless round-neck tweed jacket, cropped, gold buttons,
+    chest flap pockets, boxy fit)
+  name: 라운드 트위드 자켓
+  product: zigzag:122319307
+  ref_photos:
+  - 0
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 자개 단추 블라우스 (ivory blouse with pearl buttons, shirt collar)
+  name: 자개 단추 블라우스
+  product: zigzag:161099295
+  ref_photos:
+  - 2
+  - 1
+- color: 베이지
+  comment: ''
+  cutout_photo: 4
+  desc: 베이지 와이드 팬츠 (beige wide straight-leg trousers, flat front, no pleats, back
+    welt pockets)
+  name: 베이지 와이드 팬츠
+  product: zigzag:113058586
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 지퍼 스터드 미니 토트백 (black mini tote bag with a zipper and small studs)
+  name: 블랙 스터드 미니토트
+  product: zigzag:170446634
+  ref_photos:
+  - 5
+  - 1
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스틸레토 메리제인 슬링백 (black Mary Jane slingback flats, pointed toe, 1 cm heel)
+  name: 블랙 메리제인 슬링백
+  product: zigzag:160137199
+  ref_photos:
+  - 1
+looks: []
+reason: 블랙 트위드 자켓에 아이보리 블라우스와 베이지 와이드팬츠로 단정하게. 오피스룩 느낌을 살렸어요
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#롱코트'
+  - '#트위드자켓'
+  - '#가을아우터'
+  - '#오피스룩'
+  intro: 낮엔 맑아도 저녁엔 쌀쌀한 퇴근길, 아우터 하나 챙겨 약속 나가요 🍂
+  points: []
+  title_lines:
+  - 일교차 큰 날 출근룩부터
+  - 약속룩까지 가을 코디 모음
+theme:
+  date: '2026-10-02'
+  mood: 블랙·차콜·베이지 중심의 단정한 퇴근 후 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 코트나 재킷
+  - category: 상의
+    desc: 니트나 셔츠
+  - category: 하의
+    desc: 슬랙스나 스커트
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 퇴근 후 약속룩, 맑고 일교차 큰 가을 저녁에 걸쳐 입는 아우터
+  type: 상황
+  why: 금요일 퇴근 후 약속, 서울 맑음 11~20도라 낮엔 가볍고 저녁엔 아우터 한 겹이 필요
