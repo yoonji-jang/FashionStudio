@@ -342,13 +342,18 @@ def passes(score: CoverScore, profile: Profile) -> bool:
 
 
 def pick(review: Review, profile: Profile) -> Candidate | None:
-    """통과한 후보를 먼저, 그 안에서 점수가 높은 것, 같으면 먼저 만든 것."""
+    """/fix 요청을 반영한 후보를 먼저, 그 안에서 통과한 것, 점수가 높은 것, 같으면 먼저 만든 것."""
     scored = [c for c in review.candidates if c.score]
     if not scored:
         return None
     return max(
         scored,
-        key=lambda c: (passes(c.score, profile), c.score.total, -review.candidates.index(c)),
+        key=lambda c: (
+            c.score.feedback_ok is not False,
+            passes(c.score, profile),
+            c.score.total,
+            -review.candidates.index(c),
+        ),
     )
 
 

@@ -8,7 +8,7 @@ import pytest
 import yaml
 from PIL import Image
 
-from core.models import DailyPlan, Manifest, PickRecord
+from core.models import Candidate, CoverScore, DailyPlan, Manifest, PickRecord, Review
 from core.profile import load_profile
 from core.store import Store
 from tests.test_pick import rec, tg_of, upd, write_candidates
@@ -286,6 +286,12 @@ def test_fix_redraws_only_uncovered_look(tmp_path, store):
         review.apply(
             out / "looks" / str(n), review.Scores.model_validate({"covers": [score("c1", 10)]})
         )
+    # 1번 벌은 2회차 후보까지 있었음 (고르지 않은 후보 파일은 /fix 폴더로 옮겨지지 않음)
+    r = review.load_review(out / "looks" / "1")
+    extra = r.candidates[0].model_copy(update={"id": "c2", "file": "outfit_r2/results/G_1.jpg"})
+    review.save_review(
+        out / "looks" / "1", r.model_copy(update={"candidates": [*r.candidates, extra]})
+    )
     prev = tmp_path / "prev"
     prev.mkdir()
     (prev / "run1").symlink_to(out)
@@ -306,4 +312,20 @@ def test_fix_redraws_only_uncovered_look(tmp_path, store):
     assert r3.status == "not_reviewed" and r3.candidates[0].score is None
     r1 = review.load_review(new / "looks" / "1")
     assert r1.candidates[0].score is not None  # 다시 그리지 않은 벌은 점수 그대로
+    assert r1.status == "passed" and [c.id for c in r1.candidates] == ["c1"]  # 검수 결과도 그대로
+    review.prep(new / "looks" / "1")  # 옮기지 않은 후보 때문에 멈추지 않음
     assert m.review.status == "not_reviewed"
+
+
+def test_pick_prefers_candidate_that_follows_fix():
+    prof = load_profile("women")
+    r = Review(
+        candidates=[
+            Candidate(id="c1", file="a.jpg", score=CoverScore(**score("c1", 9), feedback_ok=False)),
+            Candidate(id="c2", file="b.jpg", score=CoverScore(**score("c2", 7), feedback_ok=True)),
+        ]
+    )
+    assert review.pick(r, prof).id == "c2"
+    r.candidates[1].score.feedback_ok = None  # 요청이 없으면 점수대로
+    r.candidates[0].score.feedback_ok = None
+    assert review.pick(r, prof).id == "c1"

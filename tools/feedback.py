@@ -433,7 +433,8 @@ def _keep_chosen(src: Path, out: Path, sub: str) -> str | None:
     dest = o / chosen.file
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(s / chosen.file, dest)
-    review_tool.save_review(o, review)
+    # 고른 코디컷 파일만 옮기므로 검수 기록에도 그 후보만 남긴다 (없는 파일로 prep 이 멈추지 않게)
+    review_tool.save_review(o, review.model_copy(update={"candidates": [chosen]}))
     return rel(dest)
 
 
