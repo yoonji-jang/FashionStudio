@@ -246,12 +246,12 @@ def check(
     known = store.feedback()
     seen = {e.update_id for e in known}
     slides = slide_map(notify.load_manifest(run_dir))
+    updates = tg.updates()
     fixes = [
-        f
-        for f in find_fixes(tg.updates(), record, tg.chat_id, slides)
-        if f["update_id"] not in seen
+        f for f in find_fixes(updates, record, tg.chat_id, slides) if f["update_id"] not in seen
     ]
     if not fixes:
+        print(f"[{account}] {day} 새 /fix 없음 ({run_dir.name}, 텔레그램 글 {len(updates)}개 확인)")
         return None
     result = decide(profile, store, run_dir, record, now, known)
     rnd = rounds_used(store, day) + 1 if result == "rerender" else 0
