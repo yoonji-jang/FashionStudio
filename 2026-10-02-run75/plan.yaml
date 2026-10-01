@@ -1,0 +1,118 @@
+account: women
+date: '2026-10-02'
+theme:
+  date: '2026-10-02'
+  title_hint: 금요일 퇴근 후 약속, 단정하게 입고 저녁까지
+  mood: 오피스룩에서 저녁 약속까지 이어지는 차분한 가을 코디
+  slots:
+  - category: 아우터
+    desc: 단정한 자켓이나 하프코트
+  - category: 상의
+    desc: 셔츠나 니트
+  - category: 하의
+    desc: 슬랙스나 롱스커트
+  - category: 가방
+    desc: 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  - category: 소품
+    desc: 작은 주얼리나 벨트
+  type: 상황
+  why: 금요일, 서울 흐림 11~20도. 낮엔 가볍고 저녁엔 쌀쌀해서 걸칠 아우터가 필요하고, 퇴근 후 약속으로 이어지는 단정한 룩. 최근 이틀
+    아우터는 트렌치·롱코트·가디건이라 이번엔 자켓·코트·레더로 변화
+  search_terms:
+    상의:
+    - 셔츠
+    - 니트
+    아우터:
+    - 트위드 자켓
+    - 울 코트
+    하의:
+    - 와이드 슬랙스
+    - 롱스커트
+items:
+- product: zigzag:171900729
+  color: 그레이
+  desc: 그레이 울블렌디드 테일러드 롱코트 (grey wool-blend tailored long coat, straight fit, notched
+    lapel, three front buttons exactly (3 buttons in a vertical row), knee-to-mid-calf length)
+  name: 울블렌디드 테일러드 롱코트
+  comment: 낮엔 가볍게, 저녁엔 쌀쌀한 날 깔끔하게 걸치기 좋은 차콜 롱코트예요.
+  photo: 5
+  cutout_photo: 5
+  ref_photos:
+  - 5
+- product: zigzag:115652994
+  color: 아이보리
+  desc: 아이보리 목폴라 티셔츠 (ivory slim-fit soft turtleneck (mock-neck) long-sleeve top,
+    regular length)
+  name: 소프티 목폴라 티셔츠
+  comment: 어두운 코트 안에 받치면 얼굴 주변이 밝아 보이는 목폴라예요.
+  photo: 2
+  cutout_photo: 2
+  ref_photos:
+  - 2
+- product: zigzag:144667358
+  color: 블랙
+  desc: 블랙 핀턱 와이드 슬랙스 (black wide-leg pintuck trousers, full length)
+  name: 블랙 핀턱 와이드 슬랙스
+  comment: 핀턱이 잡혀 있어 다리 라인이 곧게 떨어지는 와이드 슬랙스예요.
+  photo: 2
+  cutout_photo: 5
+  ref_photos:
+  - 2
+  - 5
+  - 3
+- product: zigzag:159416332
+  color: 블랙
+  desc: 블랙 스웨이드 호보백 (black suede hobo shoulder bag, soft slouchy crescent shape, single shoulder strap)
+  name: 블랙 스웨이드 호보백
+  comment: 부드러운 스웨이드라 가을 분위기가 나고, 어깨에 편하게 걸치기 좋아요.
+  photo: 1
+  cutout_photo: 1
+  ref_photos:
+  - 1
+  - 0
+- product: zigzag:166028838
+  color: 블랙
+  desc: 블랙 메리제인 (black leather mary jane shoes with a strap, round toe, 3 cm heel,
+    one pair of two shoes)
+  name: 블랙 소가죽 메리제인
+  comment: 스트랩이 있어 발등을 잡아 주고 단정하게 마무리해 줘요.
+  photo: 1
+  cutout_photo: 1
+  ref_photos:
+  - 1
+  - 4
+  - 3
+- product: zigzag:116459948
+  color: 실버
+  desc: 실버 물방울 귀걸이 (exactly one pair (two earrings) of small silver drop earrings)
+  name: 실버 물방울 귀걸이
+  comment: 작은 물방울 모양이라 얼굴 옆에서 은은하게 반짝여요.
+  photo: 0
+  cutout_photo: 0
+  ref_photos:
+  - 0
+looks: []
+styling: The coat has exactly three front buttons in a vertical row, all visible. The earrings are drawn as
+  exactly one pair of small silver teardrop (water-drop) shaped drop earrings, matching the reference
+  photo's design, with no card or packaging. The bag is a soft slouchy black suede hobo bag, not a structured tote.
+reason: 차콜 그레이 롱코트 안에 아이보리 목폴라로 밝게 받쳐 퇴근 후 약속까지 이어지는 단정한 대비를 줬어요. 블랙 슬랙스·스웨이드 호보백·메리제인으로
+  무게를 잡아 차분하게 마무리하고 실버 귀걸이로 얼굴 주변을 밝혀요.
+text:
+  title_lines:
+  - 차콜 롱코트 안에
+  - 아이보리 목폴라로 밝게
+  intro: 맑지만 저녁엔 쌀쌀한 금요일, 퇴근 후 약속엔 롱코트 걸쳐 보세요 🍂
+  points:
+  - 차콜 코트 안에 아이보리 목폴라를 받쳐 얼굴 주변을 밝게 했어요
+  - 블랙 와이드 슬랙스와 스웨이드 호보백으로 무채색 톤을 맞춰 단정하게 입어요 🖤
+  - 메리제인과 실버 물방울 귀걸이로 저녁 약속 느낌을 더해 줘요 ✨
+  hashtags:
+  - '#롱코트'
+  - '#목폴라'
+  - '#출근룩'
+  - '#퇴근후약속룩'
+  - '#가을코디'
+  - '#무채색코디'
+  - '#메리제인'

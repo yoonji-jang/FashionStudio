@@ -1,0 +1,106 @@
+{
+  "run": "2026-10-02-run70",
+  "round": 1,
+  "cover": "out/2026-10-02/outfit/results/G_1.jpg",
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "단추 상세페이지엔 3갠데 여긴 2개네. 단추갯수 이미지 수정해줘. 그리고 귀걸이도 고른제품과 디자인이 달라. 수정해줘"
+    },
+    {
+      "slide": 5,
+      "kind": "product",
+      "product": "zigzag:162858655",
+      "category": "가방",
+      "text": "제품 이거 아니잖아. 너가고른건 블랙 스웨이드 호보백인데 제품정보는 잘못된 제품이야 제대로 올려줘"
+    },
+    {
+      "slide": 8,
+      "kind": "summary",
+      "text": "여기도 가방정보 잘못됐다. 너가고른 가방으로 수정해줘"
+    },
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "단추 상세페이지엔 3갠데 여긴 2개네. 단추갯수 이미지 수정해줘. 그리고 귀걸이도 고른제품과 디자인이 달라. 수정해줘"
+    },
+    {
+      "slide": 5,
+      "kind": "product",
+      "product": "zigzag:162858655",
+      "category": "가방",
+      "text": "제품 이거 아니잖아. 너가고른건 블랙 스웨이드 호보백인데 제품정보는 잘못된 제품이야 제대로 올려줘"
+    },
+    {
+      "slide": 8,
+      "kind": "summary",
+      "text": "여기도 가방정보 잘못됐다. 너가고른 가방으로 수정해줘"
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_아우터.jpg",
+      "kind": "product",
+      "item": 0,
+      "product": "zigzag:171900729",
+      "category": "아우터"
+    },
+    {
+      "no": 3,
+      "file": "03_상의.jpg",
+      "kind": "product",
+      "item": 1,
+      "product": "zigzag:115652994",
+      "category": "상의"
+    },
+    {
+      "no": 4,
+      "file": "04_하의.jpg",
+      "kind": "product",
+      "item": 2,
+      "product": "zigzag:144667358",
+      "category": "하의"
+    },
+    {
+      "no": 5,
+      "file": "05_가방.jpg",
+      "kind": "product",
+      "item": 3,
+      "product": "zigzag:162858655",
+      "category": "가방"
+    },
+    {
+      "no": 6,
+      "file": "06_신발.jpg",
+      "kind": "product",
+      "item": 4,
+      "product": "zigzag:166028838",
+      "category": "신발"
+    },
+    {
+      "no": 7,
+      "file": "07_소품.jpg",
+      "kind": "product",
+      "item": 5,
+      "product": "zigzag:116459948",
+      "category": "소품"
+    },
+    {
+      "no": 8,
+      "file": "08_summary.jpg",
+      "kind": "summary"
+    },
+    {
+      "no": 9,
+      "file": "09_comment.jpg",
+      "kind": "comment"
+    }
+  ]
+}
