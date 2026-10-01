@@ -301,5 +301,10 @@ def test_check_reads_new_fix_when_more_than_100_messages(results, store):  # noq
     multi = "/fix 1 단추가 3개\n/fix 5 가방 정보가 다름"
     api.replies = chatter + [(rec.sent_at + 5, multi, None)]
     fix = feedback.check("women", DAY, results, tg, EARLY, store=store)
-    assert fix is not None and fix["fixes"][0]["slide"] == 1
-    assert "단추가 3개" in fix["fixes"][0]["text"] and "가방 정보" in fix["fixes"][0]["text"]
+    # 한 메시지의 /fix 두 줄은 장마다 따로 읽는다
+    assert fix is not None
+    assert [(f["slide"], f["text"]) for f in fix["fixes"]] == [
+        (1, "단추가 3개"),
+        (5, "가방 정보가 다름"),
+    ]
+    assert [e.slide for e in store.feedback()] == [1, 5]

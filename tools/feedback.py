@@ -136,16 +136,18 @@ def find_fixes(
             continue
         if msg.get("date", 0) < record.sent_at:
             continue
-        cmd = notify.parse(msg.get("text") or "", record.account, record.date)
-        if cmd is None or cmd.name != "fix":
-            continue
         reply_to = (msg.get("reply_to_message") or {}).get("message_id")
-        if not cmd.labeled and reply_to and reply_to not in record.message_ids:
-            continue
-        fix = target(cmd.args, reply_to, record, slides)
-        if not fix["text"]:
-            continue  # 고칠 내용이 없는 /fix
-        found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
+        # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다
+        for part in re.split(r"\n(?=\s*/fix\b)", msg.get("text") or ""):
+            cmd = notify.parse(part, record.account, record.date)
+            if cmd is None or cmd.name != "fix":
+                continue
+            if not cmd.labeled and reply_to and reply_to not in record.message_ids:
+                continue
+            fix = target(cmd.args, reply_to, record, slides)
+            if not fix["text"]:
+                continue  # 고칠 내용이 없는 /fix
+            found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
     return found
 
 
