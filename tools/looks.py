@@ -101,7 +101,12 @@ def build(
                 notes.append(f"{n}번 벌 코디컷을 만들지 못했습니다 (그 벌 장은 빠짐)")
         elif not made:
             d.mkdir(parents=True, exist_ok=True)
-        review_tool.start(d, made)
+        kept = review_tool.load_review(d) if made and review_tool.review_path(d).exists() else None
+        review = review_tool.start(d, made)
+        if kept and review.chosen == kept.chosen:
+            # 지난 코디컷을 그대로 쓰는 벌 (/fix 로 안 고친 벌): 벌 장에는 상품 장 검사가 없어서
+            # 지난 검수 결과를 그대로 둔다 (다시 검수하지 않아도 되게)
+            review_tool.save_review(d, kept)
     return finish(out, profile, store, warns or [], notes)
 
 

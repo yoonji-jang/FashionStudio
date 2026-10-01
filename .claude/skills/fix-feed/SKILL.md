@@ -56,9 +56,11 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
    (`cover:` 가 있으면 코디컷을 새로 만들지 않는다). 종료 코드 2(이미지 서비스 한도)면 `cover:` 를 지난
    값으로 되돌려 다시 만들고, 표지를 못 고쳤다고 적는다.
 5. **이미지 검수**: `daily-feed` 스킬 10번과 똑같이 한다 (여러 벌이면 그 스킬의 "여러 벌 게시물" 절대로 벌 폴더마다,
-   `cover:` 를 둔 벌은 지난 점수가 남아 있어 새 후보만 매기고, 끝나면 `tools.review finish`) (`tools.review prep` → `image-reviewer` →
-   `tools.review apply`, 종료 코드 3이면 `more`). 표지 피드백이 있었으면 `image-reviewer` 에게 넘길 때
-   그 피드백을 함께 적어, 고쳐졌는지도 보게 한다. 점수는 받은 그대로 쓴다.
+   다시 그린 벌만 검수하고, 끝나면 `tools.review finish`) (`tools.review prep` → `image-reviewer` →
+   `tools.review apply`, 종료 코드 3이면 `more`). 코디컷 피드백(표지·벌 장)이 있었으면 `image-reviewer` 에게 넘길 때
+   그 피드백을 함께 적어, 후보마다 `feedback_ok`(요청이 그림에 보이는지)도 쓰게 한다. 여러 벌이면 그 벌에 온
+   피드백만 적는다. 도구는 반영한 후보를 먼저 고른다. 점수와 `feedback_ok` 는 받은 그대로 쓴다.
+   `cover:` 를 둔 벌(안 고친 벌)은 지난 검수 결과가 그대로 남으니 다시 검수하지 않는다.
 6. **확인**: `out/$DATE/preview.jpg` 를 보고 피드백이 반영됐는지 확인한다. 반영이 안 됐으면 한 번만 더
    2~5를 한다 (표지는 이미지 AI 비용이 들어서 검수 회차 안에서만).
 7. **남기기**:

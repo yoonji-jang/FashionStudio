@@ -362,6 +362,8 @@ class CoverScore(BaseModel):
     clean: int = Field(ge=0, le=2)
     layout: int = Field(ge=0, le=2)
     notes: str = ""  # 문제가 있으면 어느 상품의 무엇이 문제인지
+    # /fix 로 다시 그린 후보: 사람이 요청한 수정이 그려졌는지 (모르면 None). 점수 합계와 따로 본다
+    feedback_ok: bool | None = None
 
     @property
     def total(self) -> int:
