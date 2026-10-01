@@ -1,0 +1,88 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 5
+  desc: 차콜 울블렌드 테일러드 롱코트 (charcoal wool-blend tailored long coat, notched lapel, long
+    length)
+  name: 울 테일러드 롱코트
+  product: zigzag:171900729
+  ref_photos:
+  - 5
+  - 0
+- color: 버건디
+  comment: ''
+  cutout_photo: 2
+  desc: 버건디 라운드넥 니트 (burgundy fine-knit crew neck sweater, regular fit)
+  name: 버건디 라운드 니트
+  product: zigzag:147921597
+  ref_photos:
+  - 3
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 와이드 슬랙스 (black wide straight-leg trousers, flat front, no pleats)
+  name: 블랙 와이드 슬랙스
+  product: zigzag:119143697
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black structured shoulder bag)
+  name: 블랙 숄더백
+  product: zigzag:159408342
+  ref_photos:
+  - 2
+  - 1
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 라운드토 페니로퍼 (black round-toe penny loafers)
+  name: 블랙 페니로퍼
+  product: zigzag:129223675
+  ref_photos:
+  - 1
+  - 4
+looks: []
+reason: 차콜 롱코트에 버건디 니트로 차분하게 포인트를 줬어요. 가장 무난한 무채색 조합이라 1번에 뒀어요
+styling: 'The trousers are drawn at full length, long enough to nearly reach the floor
+  with a slight break over the shoes, with a sleek slim straight model fit: narrow
+  through the hip and thigh, falling straight and slim to the hem, thin and elegant
+  rather than baggy.'
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#롱코트'
+  - '#트위드자켓'
+  - '#가을아우터'
+  - '#오피스룩'
+  intro: 낮엔 맑아도 저녁엔 쌀쌀한 퇴근길, 아우터 하나 챙겨 약속 나가요 🍂
+  points: []
+  title_lines:
+  - 일교차 큰 날 출근룩부터
+  - 약속룩까지 가을 코디 모음
+theme:
+  date: '2026-10-02'
+  mood: 블랙·차콜·베이지 중심의 단정한 퇴근 후 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 코트나 재킷
+  - category: 상의
+    desc: 니트나 셔츠
+  - category: 하의
+    desc: 슬랙스나 스커트
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 퇴근 후 약속룩, 맑고 일교차 큰 가을 저녁에 걸쳐 입는 아우터
+  type: 상황
+  why: 금요일 퇴근 후 약속, 서울 맑음 11~20도라 낮엔 가볍고 저녁엔 아우터 한 겹이 필요

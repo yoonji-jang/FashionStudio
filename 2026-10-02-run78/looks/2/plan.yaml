@@ -1,0 +1,94 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 라운드넥 트위드 자켓 (ivory cream tweed round-neck jacket, collarless, cropped
+    at the waist, 4 gold buttons, two chest flap pockets, slightly boxy fit)
+  name: 아이보리 트위드 자켓
+  product: zigzag:136566993
+  ref_photos:
+  - 2
+  - 3
+- color: 네이비
+  comment: ''
+  cutout_photo: 5
+  desc: 네이비 크루넥 크롭 니트 (navy fine-knit crew-neck sweater, slim fit, cropped length,
+    ribbed hem and cuffs)
+  name: 네이비 크루넥 니트
+  product: zigzag:128235325
+  ref_photos:
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 H라인 롱 스커트 (black H-line long skirt with a side slit)
+  name: 블랙 H라인 롱스커트
+  product: zigzag:140288768
+  ref_photos:
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 핀턱 로우 숄더백 (black low-slung shoulder bag with a pintuck)
+  name: 블랙 핀턱 숄더백
+  product: zigzag:165871135
+  ref_photos:
+  - 3
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 메리제인 펌프스 (black Mary Jane pumps, round toe, 4 cm heel, one strap with button)
+  name: 블랙 메리제인 펌프스
+  product: zigzag:165870982
+  ref_photos:
+  - 3
+  - 5
+  - 1
+- color: 실버
+  comment: ''
+  cutout_photo: 3
+  desc: 실버 큐빅 귀걸이 (exactly one pair (two earrings) of small silver cubic stud earrings)
+  name: 실버 큐빅 귀걸이
+  product: zigzag:116318715
+  ref_photos:
+  - 0
+  - 3
+looks: []
+reason: 아이보리 트위드 자켓에 블랙 롱스커트로 우아하게. 은빛 귀걸이로 얼굴 주변을 밝혀요
+styling: The knit is tucked slightly into the skirt waist so the top edge of the skirt
+  shows a soft gentle puff of fabric around the waistband, a natural half-tucked look.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#롱코트'
+  - '#트위드자켓'
+  - '#가을아우터'
+  - '#오피스룩'
+  intro: 낮엔 맑아도 저녁엔 쌀쌀한 퇴근길, 아우터 하나 챙겨 약속 나가요 🍂
+  points: []
+  title_lines:
+  - 일교차 큰 날 출근룩부터
+  - 약속룩까지 가을 코디 모음
+theme:
+  date: '2026-10-02'
+  mood: 블랙·차콜·베이지 중심의 단정한 퇴근 후 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 코트나 재킷
+  - category: 상의
+    desc: 니트나 셔츠
+  - category: 하의
+    desc: 슬랙스나 스커트
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 퇴근 후 약속룩, 맑고 일교차 큰 가을 저녁에 걸쳐 입는 아우터
+  type: 상황
+  why: 금요일 퇴근 후 약속, 서울 맑음 11~20도라 낮엔 가볍고 저녁엔 아우터 한 겹이 필요

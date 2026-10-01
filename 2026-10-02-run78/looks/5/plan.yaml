@@ -1,0 +1,86 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 1
+  desc: 베이지 젠틀 하프 트렌치코트 (beige half-length trench coat, notched collar, belted)
+  name: 젠틀 하프 트렌치코트
+  product: zigzag:171477130
+  ref_photos:
+  - 1
+  - 0
+  - 2
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 스트라이프 니트 (grey crew-neck knit sweater with thin navy horizontal stripes,
+    relaxed fit)
+  name: 스트라이프 배색 니트
+  product: zigzag:165918925
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 부츠컷 데님 팬츠 (high-rise faded black bootcut jeans, slim through the thigh,
+    flared from the knee, full length)
+  name: 블랙 부츠컷 데님
+  product: zigzag:144681897
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 클리프 숄더백 (black simple shoulder bag)
+  name: 블랙 클리프 숄더백
+  product: zigzag:151166447
+  ref_photos:
+  - 4
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black sock ankle boots, 5 cm heel)
+  name: 블랙 삭스 앵클부츠
+  product: zigzag:118900684
+  ref_photos:
+  - 0
+  - 2
+looks: []
+reason: 베이지 트렌치에 그레이 스트라이프 니트와 블랙 부츠컷으로 캐주얼하게
+styling: The bootcut jeans are drawn longer, at full length reaching the ground, the
+  hems covering the top of the ankle boots, with a flared opening from the knee.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#롱코트'
+  - '#트위드자켓'
+  - '#가을아우터'
+  - '#오피스룩'
+  intro: 낮엔 맑아도 저녁엔 쌀쌀한 퇴근길, 아우터 하나 챙겨 약속 나가요 🍂
+  points: []
+  title_lines:
+  - 일교차 큰 날 출근룩부터
+  - 약속룩까지 가을 코디 모음
+theme:
+  date: '2026-10-02'
+  mood: 블랙·차콜·베이지 중심의 단정한 퇴근 후 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 코트나 재킷
+  - category: 상의
+    desc: 니트나 셔츠
+  - category: 하의
+    desc: 슬랙스나 스커트
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 퇴근 후 약속룩, 맑고 일교차 큰 가을 저녁에 걸쳐 입는 아우터
+  type: 상황
+  why: 금요일 퇴근 후 약속, 서울 맑음 11~20도라 낮엔 가볍고 저녁엔 아우터 한 겹이 필요

@@ -1,0 +1,85 @@
+account: women
+date: '2026-10-02'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 1
+  desc: 베이지 발마칸 롱코트 (beige wool-blend raglan balmacaan long coat, shirt collar, single-breasted
+    with 5 buttons, tie belt, calf length)
+  name: 발마칸 롱코트
+  product: zigzag:171354460
+  ref_photos:
+  - 1
+  - 2
+- color: 아이보리
+  comment: ''
+  cutout_photo: 5
+  desc: 아이보리 브이넥 니트 (ivory fine-knit v-neck sweater, regular fit)
+  name: 아이보리 브이넥 니트
+  product: zigzag:129456378
+  ref_photos:
+  - 5
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 와이드 슬랙스 (dark navy straight wide-leg trousers with a sharp center crease,
+    full length)
+  name: 네이비 와이드 슬랙스
+  product: zigzag:109853004
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오닉 숄더백 (black shoulder bag)
+  name: 블랙 오닉 숄더백
+  product: zigzag:166400700
+  ref_photos:
+  - 0
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스티치 플랫 로퍼 (black flat loafers with a stitched cover)
+  name: 블랙 스티치 로퍼
+  product: zigzag:165485536
+  ref_photos:
+  - 1
+  - 5
+looks: []
+reason: 베이지 롱코트에 아이보리 니트와 네이비 슬랙스로 부드럽게
+styling: 'The trousers are not drawn as flat stiff tubes: they hang with a fitted
+  waist, soft natural drape and gentle folds, with a clean flattering wide-leg line
+  that keeps its shape from hip to hem.'
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#롱코트'
+  - '#트위드자켓'
+  - '#가을아우터'
+  - '#오피스룩'
+  intro: 낮엔 맑아도 저녁엔 쌀쌀한 퇴근길, 아우터 하나 챙겨 약속 나가요 🍂
+  points: []
+  title_lines:
+  - 일교차 큰 날 출근룩부터
+  - 약속룩까지 가을 코디 모음
+theme:
+  date: '2026-10-02'
+  mood: 블랙·차콜·베이지 중심의 단정한 퇴근 후 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 코트나 재킷
+  - category: 상의
+    desc: 니트나 셔츠
+  - category: 하의
+    desc: 슬랙스나 스커트
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 퇴근 후 약속룩, 맑고 일교차 큰 가을 저녁에 걸쳐 입는 아우터
+  type: 상황
+  why: 금요일 퇴근 후 약속, 서울 맑음 11~20도라 낮엔 가볍고 저녁엔 아우터 한 겹이 필요

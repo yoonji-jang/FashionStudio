@@ -1,0 +1,92 @@
+account: women
+cover: out/2026-10-02/looks/3/outfit/results/G_1.jpg
+date: '2026-10-02'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 베이직 니트 가디건 (grey knit cardigan, regular fit, buttoned front, round neck)
+  name: 베이직 니트 가디건
+  product: zigzag:136080843
+  ref_photos:
+  - 2
+  - 3
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 목폴라 티셔츠 (ivory fitted mock-neck long-sleeve top)
+  name: 아이보리 목폴라
+  product: zigzag:115652994
+  ref_photos:
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 핀턱 와이드 슬랙스 (black high-waist wide-leg trousers with two front pintucks
+    and a side button tab, full length)
+  name: 블랙 핀턱 슬랙스
+  product: zigzag:144667358
+  ref_photos:
+  - 2
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 올데이백 (black everyday tote bag, medium size)
+  name: 블랙 올데이백
+  product: zigzag:162858655
+  ref_photos:
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스퀘어토 로퍼 (black square-toe loafers)
+  name: 블랙 스퀘어토 로퍼
+  product: zigzag:130244883
+  ref_photos:
+  - 2
+  - 3
+- color: 골드
+  comment: ''
+  cutout_photo: 4
+  desc: 골드 볼드 물방울 귀걸이 (exactly one pair (two earrings) of gold bold drop earrings)
+  name: 골드 물방울 귀걸이
+  product: zigzag:169414958
+  ref_photos:
+  - 4
+  - 2
+looks: []
+reason: 그레이 가디건에 아이보리 터틀넥과 블랙 슬랙스로 차분하게. 골드 귀걸이로 포인트를 줘서 편안한 약속에 좋아요
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#롱코트'
+  - '#트위드자켓'
+  - '#가을아우터'
+  - '#오피스룩'
+  intro: 낮엔 맑아도 저녁엔 쌀쌀한 퇴근길, 아우터 하나 챙겨 약속 나가요 🍂
+  points: []
+  title_lines:
+  - 일교차 큰 날 출근룩부터
+  - 약속룩까지 가을 코디 모음
+theme:
+  date: '2026-10-02'
+  mood: 블랙·차콜·베이지 중심의 단정한 퇴근 후 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 코트나 재킷
+  - category: 상의
+    desc: 니트나 셔츠
+  - category: 하의
+    desc: 슬랙스나 스커트
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  title_hint: 퇴근 후 약속룩, 맑고 일교차 큰 가을 저녁에 걸쳐 입는 아우터
+  type: 상황
+  why: 금요일 퇴근 후 약속, 서울 맑음 11~20도라 낮엔 가볍고 저녁엔 아우터 한 겹이 필요
