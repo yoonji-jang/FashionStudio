@@ -65,7 +65,7 @@ def looks_plan(count: int = 6, **kw) -> DailyPlan:
         "looks": [look(n) for n in range(1, count + 1)],
         "reason": "같은 주제로 색과 아우터를 다르게",
         "text": {
-            "title_lines": ["출근룩 고민될 때", "가을 코디 여섯 벌"],
+            "title_lines": ["출근룩 고민될 때", "가을 코디 모음"],
             "intro": "출근룩 고민될 때 하나씩 골라 입어 보세요 🍂",
             "hashtags": ["#출근룩", "#가을코디", "#오피스룩", "#직장인코디", "#데일리코디"],
         },
@@ -329,3 +329,17 @@ def test_pick_prefers_candidate_that_follows_fix():
     r.candidates[1].score.feedback_ok = None  # 요청이 없으면 점수대로
     r.candidates[0].score.feedback_ok = None
     assert review.pick(r, prof).id == "c1"
+
+
+def test_title_must_not_count_looks(store):
+    prof = load_profile("women")
+    assert prof.looks.title_count is False
+    p = looks_plan()
+    for title, bad in [
+        (["출근룩 고민될 때", "가을 코디 여섯 벌"], True),
+        (["출근룩 고민될 때", "6가지 룩 모음"], True),
+        (["일교차 큰 날 출근룩부터", "약속룩까지 가을 코디 모음"], False),
+    ]:
+        q = p.model_copy(update={"text": p.text.model_copy(update={"title_lines": title})})
+        errs = plan.looks_problems(q, prof, {pr.id: pr for pr in store.products()}, False)
+        assert any("벌 수" in e for e in errs) is bad, title
