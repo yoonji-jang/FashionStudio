@@ -22,6 +22,9 @@ name: daily
 # 15단계: fix: 미리보기에 온 /fix 피드백대로 고친다 (schedule 이 tools.feedback 으로 요청).
 #   pick 은 {"run": 지난 결과 폴더, "round": 몇 번째, "fixes": [...]} JSON. Claude(fix-feed)가 같은 기획을
 #   고쳐 다시 만들고 검수해서 새 미리보기를 보낸다. 표지를 고칠 일이 없으면 지난 코디컷을 그대로 쓴다
+# 16단계: model: 전날 게시한 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로 (profile schedule.post_days 의 model 날).
+#   pick 은 전날 결과 폴더 (예 2026-10-05-run90). tools.model_post 가 기획을 만들고 Claude(model-feed)가
+#   제목·캡션을 새로 쓴 뒤 만들기·검수·미리보기는 평소와 같다
 on:
   workflow_dispatch:
     inputs:
@@ -29,10 +32,10 @@ on:
         description: 계정
         default: women
       mode:
-        description: full(한 벌 바로) / candidates(후보 보내기) / render(고른 후보 만들기) / fix(피드백대로 고치기)
+        description: full(한 벌 바로) / candidates(후보 보내기) / render(고른 후보 만들기) / fix(피드백대로 고치기) / model(전날 게시물을 모델컷으로)
         default: full
       pick:
-        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더, fix 면 피드백 JSON
+        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더, fix 면 피드백 JSON, model 이면 전날 게시한 결과 폴더
         default: ""
       date:
         description: 게시 날짜 YYYY-MM-DD (빈칸이면 내일)
@@ -121,6 +124,11 @@ jobs:
             git fetch origin daily-results
             git worktree add /tmp/prev origin/daily-results
             uv run python -m tools.feedback prepare "$PICK" --prev /tmp/prev --out "out/$DATE"
+          elif [ "$MODE" = model ]; then
+            # 전날 게시한 결과에서 같은 벌로 모델컷 기획을 만든다 (창고에서 빠진 상품도 다시 넣음)
+            git fetch origin daily-results
+            git worktree add /tmp/prev origin/daily-results
+            uv run python -m tools.model_post prepare "$PICK" --prev /tmp/prev --date "$DATE" --out "out/$DATE"
           elif [ -n "$PICK" ]; then
             # 후보가 있는 결과 폴더를 가져온다 (render: 고른 후보, candidates: "다시" 누른 지난 후보)
             git fetch origin daily-results
@@ -211,8 +219,29 @@ jobs:
             --max-turns 180
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
+      - name: Claude 모델컷 게시물 (model-feed 스킬)
+        if: env.MODE == 'model'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
+          prompt: |
+            .claude/skills/model-feed/SKILL.md 의 순서를 그대로 따라 out/${{ env.DATE }} 모델컷 게시물을 만들어.
+            기획은 out/${{ env.DATE }}/plan.yaml (전날 ${{ env.PICK }} 게시물의 벌 그대로)에 있어.
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }}
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
+            에이전트(image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
+            Bash 명령도 백그라운드로 돌리지 말고, 파이프·cd·&& 없이 `python -m tools...` 한 줄로 불러 (허용 목록에 걸려 막힌다).
+            out/${{ env.DATE }}/manifest.json 이 생기기 전에는 끝내지 마.
+          claude_args: >-
+            --max-turns 200
+            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+
       - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
-        if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'fix'
+        if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'fix' && env.MODE != 'model'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

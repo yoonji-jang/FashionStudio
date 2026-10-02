@@ -46,7 +46,7 @@ from core.models import (
 )
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
-from tools import compare, feed, overlay
+from tools import compare, faces, feed, overlay
 
 EXIT_RETRY = 3
 EXIT_HUMAN = 4
@@ -120,6 +120,20 @@ def start(out: Path, made: list[Path]) -> Review:
     review.chosen = review.candidates[0].id if review.candidates else None
     save_review(out, review)
     return review
+
+
+def face_counts(out: Path, plan: DailyPlan, review: Review) -> dict[str, int]:
+    """모델컷(기획 shot: model, 16단계) 후보마다 얼굴 검출 도구(YuNet)가 찾은 얼굴 수.
+    얼굴이 보이는 후보는 apply 에서 clean 0 이 된다. 펼친 코디컷이면 보지 않는다."""
+    if plan.shot != "model":
+        return {}
+    found = {}
+    for c in review.candidates:
+        path = cand_path(out, c)
+        if path.exists():
+            with Image.open(path) as img:
+                found[c.id] = len(faces.find_faces(img.convert("RGB")))
+    return found
 
 
 # ---------- prep ----------
@@ -254,6 +268,13 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         "점수 파일 형식과 기준은 `.claude/agents/image-reviewer.md` 를 따른다.",
         f"통과 기준: 합계 {profile.review.min_score}점 이상이고 0점 항목이 없을 것.",
         "",
+        "코디컷 종류: "
+        + (
+            "**모델컷** (옷을 입은 얼굴 없는 AI 인물. image-reviewer.md 의 모델컷 기준도 본다)"
+            if plan.shot == "model"
+            else "펼친 코디컷"
+        ),
+        "",
         "## 기획 상품 (covers.jpg 위 줄 번호)",
         "",
         "| # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |",
@@ -294,7 +315,13 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         # 15단계 /fix 로 사람이 지적한 것. 같은 문제가 다시 보이면 해당 항목 점수에 반영한다
         lines += ["", "## 최근 사람 피드백 (같은 문제가 보이면 감점)", ""] + fb
     lines += ["", "## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)", ""]
-    lines += [f"- {s.slide} [{s.kind}] {s.note}" for s in code_issues] or ["- 없음"]
+    todo_ids = {c.id for c in todo}
+    found = [
+        f"- {cid} [얼굴] 얼굴 검출 도구가 얼굴 {n}개를 찾음 (apply 가 clean 0 으로 바꾼다)"
+        for cid, n in face_counts(out, plan, review).items()
+        if n and cid in todo_ids
+    ]
+    lines += found + [f"- {s.slide} [{s.kind}] {s.note}" for s in code_issues] or ["- 없음"]
     dest = out / "review" / "input.md"
     dest.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return dest
@@ -384,6 +411,12 @@ def apply(out: Path, scores: Scores, profile: Profile | None = None) -> tuple[Re
     missing = [c.id for c in review.candidates if c.score is None]
     if missing:
         raise ValueError(f"점수가 없는 후보가 있습니다: {', '.join(missing)}")
+    for cid, n in face_counts(out, plan, review).items():
+        c = ids[cid]
+        if n and c.score and "얼굴 검출" not in c.score.notes:
+            note = f"얼굴 검출 도구가 얼굴 {n}개를 찾음"
+            notes = f"{c.score.notes}, {note}" if c.score.notes else note
+            c.score = c.score.model_copy(update={"clean": 0, "notes": notes})
     review.slide_issues = [s for s in review.slide_issues if s.by == "code"] + [
         s.model_copy(update={"by": "claude"}) for s in scores.slides
     ]

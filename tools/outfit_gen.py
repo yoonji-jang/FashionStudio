@@ -2,7 +2,8 @@
 
 누끼를 오려 붙이지 않고, 상품마다 쇼핑몰 사진(기획의 ref_photos, 고른 색만)을 한 장의
 참고판으로 이어 붙여 보내면 모델(config/models.yaml generate, 기본 Nano Banana Pro)이
-코디 전체를 한 장으로 그린다.
+코디 전체를 한 장으로 그린다. 기획 shot 이 model 이면 (16단계) 옷을 입은 얼굴 없는 AI 모델컷을
+그린다 (profile model_shot, 인물·포즈는 기획 pose).
 Photoroom 을 쓰지 않는다. 상품이 원본과 달라질 수 있어 검수(tools.review, image-reviewer)가 꼭 본다.
 
 tools.plan build / tools.review more 가 부른다. 결과 (work 폴더):
@@ -123,8 +124,25 @@ def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:
     return "\n".join(lines)
 
 
+def season_en(d) -> str:
+    """월로 본 계절 (영어, tools.plan.season 과 같은 기준). 모델컷 장소의 빛·나무를 맞춘다."""
+    name = ["winter", "spring", "summer", "autumn"][(d.month % 12) // 3]
+    return ["early ", "", "late "][d.month % 3] + name
+
+
 def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile, cfg: dict) -> str:
     oi = profile.outfit_image
+    if plan.shot == "model":
+        ms = profile.model_shot
+        # 모델컷 지시문은 상품 정보 자리(왼쪽 아래)를 비우는 구도를 따로 갖고 있다
+        return render_prompt(
+            ms.prompt,
+            items=item_lines(plan, products, cfg),
+            styling=styling_text(plan, products, profile),
+            pose=plan.pose or ms.poses[0],
+            mood=plan.mood or ms.mood,
+            season=season_en(plan.date),
+        )
     prompt = render_prompt(
         oi.prompt,
         items=item_lines(plan, products, cfg),

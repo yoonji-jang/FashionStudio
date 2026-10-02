@@ -333,3 +333,96 @@ def test_women_overnight_schedule_dates(monkeypatch, tmp_path):
     sat = datetime(2026, 10, 3, 18, 0, tzinfo=KST).astimezone(UTC)
     [th] = [t for t in schedule.due_auto(ticks, None, sat)[0] if t.task == "themes"]
     assert th.date == "2026-10-05"
+
+
+def _post_days(monkeypatch):
+    """women 시간표에 16단계 요일별 게시물(월수금 펼친컷, 화목토 모델컷, 일 쉼)을 켠다."""
+    days = {"월": "flatlay", "화": "model", "수": "flatlay", "목": "model", "금": "flatlay"}
+    days["토"] = "model"
+    load = schedule.load_profile
+
+    def with_days(account, *a, **k):
+        p = load(account, *a, **k)
+        p.schedule = p.schedule.model_copy(update={"post_days": days})
+        return p
+
+    monkeypatch.setattr(schedule, "load_profile", with_days)
+    return with_days("women")
+
+
+def _published(results, run: str, account: str = "women"):
+    import json
+
+    d = results / run
+    d.mkdir(parents=True)
+    (d / "manifest.json").write_text(json.dumps({"account": account}), encoding="utf-8")
+    (d / "published.json").write_text("{}", encoding="utf-8")
+
+
+def test_post_kind_by_weekday(monkeypatch):
+    p = _post_days(monkeypatch)
+    kinds = [p.schedule.post_kind(date(2026, 10, 5 + i)) for i in range(7)]  # 월~일
+    assert kinds == ["flatlay", "model", "flatlay", "model", "flatlay", "model", None]
+    assert (
+        load_profile("women")
+        .schedule.model_copy(update={"post_days": None})
+        .post_kind(date(2026, 10, 11))
+        == "flatlay"
+    )
+
+
+def test_model_day_dispatches_model_render_from_yesterday(tmp_path, monkeypatch):
+    """화요일 게시(모델컷): 월요일 게시한 결과로 daily(mode=model). 고르기는 하지 않는다."""
+    _post_days(monkeypatch)
+    _published(tmp_path, "2026-10-05-run90")
+    _published(tmp_path, "2026-10-05-run88")
+    (tmp_path / "2026-10-05-run91").mkdir()  # 게시 안 한 실행은 쓰지 않음
+    T = schedule.Task
+    gh = schedule.DryRun()
+    tasks = [
+        T("women", "candidates", "2026-10-06", True, True, 300),
+        T("women", "pick", "2026-10-06", False, True, 0),
+        T("women", "publish", "2026-10-06", True, False, 0),
+    ]
+    schedule.execute(tasks, tmp_path, gh)
+    assert gh.sent[0] == (
+        "daily.yml",
+        {
+            "account": "women",
+            "date": "2026-10-06",
+            "mode": "model",
+            "pick": "2026-10-05-run90",
+            "sandbox": False,
+        },
+    )
+    assert [w for w, _ in gh.sent] == ["daily.yml", "publish.yml"]  # 고르기 없음, 게시는 함
+
+
+def test_model_day_without_yesterday_post_rests(tmp_path, monkeypatch):
+    _post_days(monkeypatch)
+    sent = []
+
+    class TG:
+        chat_id = "1"
+
+        def send(self, text, **kw):
+            sent.append(text)
+
+    gh = schedule.DryRun()
+    T = schedule.Task
+    schedule.execute([T("women", "candidates", "2026-10-06", True, True, 300)], tmp_path, gh, TG())
+    assert gh.sent == [] and "쉬어요" in sent[0]
+
+
+def test_rest_day_skips_candidates_pick_and_publish(tmp_path, monkeypatch):
+    _post_days(monkeypatch)
+    ticks = schedule.Ticks(tmp_path)
+    T = schedule.Task
+    tasks = [
+        T("women", "candidates", "2026-10-11", True, True, 300, keys=["women candidates x"]),
+        T("women", "pick", "2026-10-11", True, True, 300),
+        T("women", "publish", "2026-10-11", True, True, 0),
+    ]
+    gh = schedule.DryRun()
+    schedule.execute(tasks, tmp_path, gh, ticks=ticks)
+    assert gh.sent == [] and "women candidates x" in ticks

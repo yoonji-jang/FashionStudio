@@ -228,6 +228,36 @@ outfit_image:
     sleeves, with the top's cuffs peeking out slightly at the outer cuffs. The top's hem sits over
     the waistband of the bottoms.
 
+# 모델컷 게시물 (16단계, 2026-10-02 사용자): 화·목·토는 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
+# 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.
+# 얼굴은 자르지 않고 폰·뒤돌기·고개 돌림으로 가린다 (모자 같은 없는 상품을 쓰지 않게)
+model_shot:
+  prompt: outfit_model   # prompts/outfit_model.md
+  poses:
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie in a
+      bright, tidy apartment entrance with a tall standing mirror, holding her phone up in front of
+      her face so the phone hides her whole face; relaxed stance with one knee slightly bent
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she walks away from the camera on a quiet
+      street, seen from behind at a slight angle, full body, her head facing forward away from the
+      camera so only the back of her hair shows
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she stands by a large bright window, her
+      back and shoulders turned three-quarters away from the camera as she looks out of the window, so
+      only her hair and the back of her head show, never her profile
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie in a
+      minimal fitting-room style space with a large standing mirror, the phone in front of her face
+      hiding it completely, her other hand resting lightly on the bag strap
+  mood: >-
+    a calm Pinterest editorial outfit photo in Seoul, either a quiet residential street or a bright
+    minimal interior with light walls and pale floors, soft natural daylight, clean true-to-life tones
+
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
 schedule:
@@ -247,6 +277,9 @@ schedule:
   token_refresh_at: "일 19:00"  # 인스타 토큰 연장 (60일 만료 전에 매주)
   github_cron: backup       # 외부 스케줄러가 매시 깨우므로 GitHub 예약은 주요 칸만 (Actions 시간 절약)
   reels_at: null            # 릴스 (12단계)
+  # 요일별 게시물 (16단계, 게시 날짜 기준. 2026-10-02 사용자): 월·수·금 펼친 코디컷(전날 09:00 후보),
+  # 화·목·토 전날 벌의 모델컷(전날 09:00 에 바로 만듦, 고르기 없음), 일요일 쉼
+  post_days: {월: flatlay, 화: model, 수: flatlay, 목: model, 금: flatlay, 토: model}
 
 # 코디 고르기 (9단계). 후보를 쇼핑몰 원본 사진으로 보내고, 고른 코디만 Photoroom 으로 만든다
 pick:
