@@ -221,12 +221,14 @@ outfit_image:
     smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
     flagship store; soft even daylight from the upper left, cool neutral tone with no warm cast
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
+  # 상의는 기본으로 넣어 입어 허리선을 높게 (2026-10-02 사용자: 바지·치마가 짧고 작아 보임)
   outer_styling: >-
     The outer is unbuttoned but almost closed: its two front edges lie close together with only a
     narrow gap of about a hand's width down the middle, where the top shows at the neckline and a
     little at the waist; any belt hangs loose at the sides. The top's sleeves are inside the outer
     sleeves, with the top's cuffs peeking out slightly at the outer cuffs. The top's hem sits over
-    the waistband of the bottoms.
+    the waistband of the bottoms only if the styling says to wear it out; otherwise it is tucked in
+    so the waistband shows and the waist looks high.
 
 # 모델컷 게시물 (16단계, 2026-10-02 사용자): 화·목·토는 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
 # 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.

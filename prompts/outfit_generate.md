@@ -6,6 +6,11 @@ $items: 번호별 상품 설명과 실제 크기, $styling: 입는 방법, $scen
 → 기장 비율 문장, 신발은 오른쪽 아래, 왼쪽 아래(제목 자리)는 비우기.
 다시 만든 run44 피드백: 바지가 여전히 짧고 펼친 핏이 펑퍼짐함 → 착용컷 핏(슬림 스트레이트, 발등 덮는 기장) 문장.
 run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문에 반지·시계를 그려 넣음 → 목록에 있을 때만.
+2026-10-02 피드백(/fix 5건 + 스레드 "이미지 검토"): 바지·치마가 짧고 작고, 핏이 자로 잰 통짜처럼 정직함.
+참고 계정(finleu.archive, lcod.kr)과 비교: 허리선이 높고(상의는 짧게·넣어 입고 벨트가 보임) 하의가 그림의 60%,
+다리에 볼륨과 살짝 벌어진·휜 선, 밑단에 천이 접히는 주름 → '곧고 평행, 밑단 20cm' 문장을 빼고 비율·연출 문장으로.
+같은 날: 오프숄더 니트의 넓은 깃이 가죽자켓 어깨 위로 덮임, 니트가 자켓 어깨 위로 올라옴(10/3 /fix)
+→ 안에 입은 옷은 겉옷 위로 올라오지 않는다는 겹침 순서 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -24,23 +29,39 @@ remove or redesign any detail, do not add logos or text. Use every item exactly 
 other clothing or objects.
 
 Styling: $styling
+Layering order is physical, exactly as on a real body: an item worn inside lies under the item
+worn over it everywhere they overlap. An inner top never lies on top of an outer's shoulders,
+collar, lapels, front panels or sleeves; it shows only where it really would: at the neckline inside
+the outer's front opening, a little at the cuffs and at the hem. A wide neckline, off-shoulder
+neckline, big collar or puffy sleeve of an inner top is hidden under the outer and only shows inside
+the front opening, folded or tucked under the outer's edges; never copy its shape from the shop
+photo over the outer.
 Lay the outfit out like a person wearing it: the top sits at the shoulders, the bottoms continue
-below the top with the waist tucked slightly under the hem, garments overlap naturally, sleeves and
+below the top, garments overlap naturally, sleeves and
 trouser legs relax with soft real fabric folds and a slight natural bend, never stiff or symmetric.
 Every item is drawn at its real size given above, all at one common scale, so the size ratios
 between items are exactly true to life (shoes are about a quarter of the length of full-length
-trousers, jewelry is tiny). Lengths must follow the stated cm exactly: full-length trousers are the
-longest piece, clearly longer than any jacket or top (an item stated as 100 cm is about 1.6 times as
-long as one stated as 62 cm), and they are drawn at their full length down to where the ankles would
-be, never shortened, cropped or ankle-length unless the product itself is cropped.
-Trousers keep the leg silhouette seen in the worn photos: laid flat they must look like the worn
-cut, not wider. Straight or slim legs stay narrow and fall straight and parallel from hip to hem
-(each leg about 20 cm wide at the hem for straight slacks), never flared, bell-shaped, baggy or
-widening toward the hem; if the worn photos show the hem covering the top of the foot, draw that
-full long length.
+trousers, jewelry is tiny). Lengths must follow the stated cm exactly and are never shortened,
+cropped or ankle-length unless the product itself is cropped.
+
+Proportions like a tall model with long legs: the waistline sits high, at about 40 percent of the
+figure height from the collar, and stays visible (unless the styling says otherwise, the top is tucked in or ends at the
+waist and any belt shows; an outer may fall over the hips but the waistband of the bottoms still shows in its
+opening). Below it the bottoms are the biggest and longest part of the figure, about 60 percent of
+its height: full-length trousers run from that waistline all the way down near the bottom edge of
+the frame, clearly longer than any jacket or top (an item stated as 100 cm is about 1.6 times as
+long as one stated as 62 cm), and midi or long skirts flow well below where the knees would be.
+Style the bottoms like a fashion stylist, not like a stiff product shot: keep the exact cut seen in
+the worn photos (never change straight or wide legs into flared, bootcut or skinny, and never make
+them wider), but give the fabric real body and drape. The two trouser legs are not two rigid
+parallel tubes: they open slightly apart from the hips, one leg is gently curved or turned inward,
+pressed creases run down the front, and at the hem the fabric breaks into a few soft folds as if
+resting on the foot. Skirts spread with soft natural folds and a slightly swaying hem. Tops and
+outers look relaxed and compact: sleeves slightly bent, pushed up or folded at the cuff, never
+spread out stiffly, so the bottoms read as the long, elegant line of the outfit.
 
 Composition like a professional outfit flat lay account: the clothes form one continuous figure from
-the collar near the top edge to the trouser hem near the bottom edge, filling about 90 percent of the
+the collar near the top edge to the trouser hem near the bottom edge, filling about 95 percent of the
 frame height, centered horizontally, with only small even margins and no large empty areas. The bag
 lies close to the left side of the clothes at waist height, slightly overlapping the edge of the
 clothes, and never lower than the knees. The shoes sit as a pair at an angle in the lower right,
