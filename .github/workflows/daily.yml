@@ -272,6 +272,27 @@ jobs:
           flag=""; [ -n "$SANDBOX" ] && { [ "$ENGINE" = photoroom ] || [ "$GITHUB_EVENT_NAME" = push ]; } && flag="--sandbox"
           python -m tools.notify preview "out/$DATE" --run "$DATE-run$RUN" $flag
 
+      # 만들기(render·full·fix)인데 결과(manifest)가 없으면 실패로 끝내 알림이 가게 한다.
+      # Claude 가 도중에 멈춰도 단계는 성공으로 끝나서, 예전에는 아무 알림 없이 미리보기만 오지 않았다 (12단계)
+      - name: 결과 확인
+        id: result
+        if: env.MODE != 'candidates'
+        run: |
+          [ -f "out/$DATE/manifest.json" ] && exit 0
+          echo "::error::$MODE 인데 out/$DATE/manifest.json 이 없습니다 (Claude 가 도중에 멈춤)"
+          f=/home/runner/work/_temp/claude-execution-output.json
+          [ -f "$f" ] && { mkdir -p /tmp/claude-log; cp "$f" /tmp/claude-log/; }
+          exit 1
+
+      - name: Claude 실행 기록 (결과가 없을 때 원인 확인용, 저장소에는 올리지 않음)
+        if: failure() && steps.result.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-log-${{ env.DATE }}-${{ github.run_number }}
+          path: /tmp/claude-log
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: 요약 표시
         if: always()
         run: |
