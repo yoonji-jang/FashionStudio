@@ -1,0 +1,101 @@
+account: women
+date: '2026-10-03'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 크롭 스웨이드 자켓 (brown cropped suede jacket, short at the waist)
+  name: 크롭 스웨이드 자켓
+  product: zigzag:165484531
+  ref_photos:
+  - 2
+  - 1
+  - 3
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 링클프리 블라우스 (ivory blouse, classic collar, long sleeves with cuffs)
+  name: 링클프리 블라우스
+  product: zigzag:171584015
+  ref_photos:
+  - 2
+  - 4
+  wear_with: 상의
+- color: 버건디
+  comment: ''
+  cutout_photo: 5
+  desc: 버건디 헨리넥 니트 (burgundy henley-neck knit, fitted, cropped length)
+  name: 헨리넥 니트
+  product: zigzag:168185673
+  ref_photos:
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 롱 플리츠 스커트 (black long pleated skirt, falls to mid-calf)
+  name: 롱 플리츠 스커트
+  product: zigzag:171318242
+  ref_photos:
+  - 2
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 위빙 호보백 (woven hobo bag)
+  name: 위빙 호보백
+  product: zigzag:161978790
+  ref_photos:
+  - 0
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 스웨이드 니하이 롱부츠 (black suede knee-high boots, round toe, straight wide shaft)
+  name: 스웨이드 니하이 부츠
+  product: zigzag:147005253
+  ref_photos:
+  - 3
+- color: 골드
+  comment: ''
+  cutout_photo: 5
+  desc: 골드 볼드 물방울 링 귀걸이 (exactly one pair (two earrings) of gold bold teardrop hoop
+    earrings)
+  name: 볼드 링 귀걸이
+  product: zigzag:169325375
+  ref_photos:
+  - 5
+looks: []
+reason: 버건디 헨리넥 니트 안에 아이보리 블라우스 깃과 소매를 빼고 브라운 크롭 스웨이드 자켓을 걸쳐 버건디에 브라운 조합. 블랙 플리츠 롱스커트에
+  니하이 부츠와 골드 링 귀걸이
+text:
+  hashtags:
+  - '#주말코디'
+  - '#나들이룩'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#스웨이드자켓'
+  - '#꾸안꾸'
+  intro: 흐리고 일교차 큰 주말엔 질감 다른 옷을 겹쳐 나들이 가요 🍂
+  points: []
+  title_lines:
+  - 스웨이드부터 새틴까지
+  - 질감 섞어 입은 가을 여섯 벌
+theme:
+  date: '2026-10-03'
+  mood: 흐리고 11~21도 일교차 큰 토요일, 질감과 두 색 조합으로 꾸민 듯 편한 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 스웨이드·레더·트위드 아우터
+  - category: 상의
+    desc: 셔츠를 베스트·니트 안에 받쳐 입는 레이어드
+  - category: 하의
+    desc: 체크·플리츠·새틴 스커트나 데님
+  - category: 가방
+    desc: 호보백·위빙백·스웨이드 숄더백
+  - category: 신발
+    desc: 메리제인·로퍼·슬링백
+  - category: 소품
+    desc: 쁘띠 스카프·볼캡·귀걸이
+  title_hint: 주말 나들이, 스웨이드·레더·새틴 질감 섞어 레이어드한 가을 코디
+  type: 상황
+  why: 토요일 흐림 최고 21도라 가벼운 아우터에 레이어드. 최근 출근·무채색 코디가 많아 주말 질감 믹스와 컬러 포인트로
