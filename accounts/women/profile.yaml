@@ -301,7 +301,7 @@ reels:
   slides: null             # null 이면 그날 캐러셀 장 전부를 순서대로 (펼친컷 날·모델컷 날 모두)
   seconds: {cover: 2.5, comment: 2.0}  # 장 종류별로 보여 주는 시간 (초). 나머지 장은 default_sec
   default_sec: 1.6
-  transition: slide        # slide(캐러셀 넘기듯) / fade / cut. 확대 효과 없음
+  transition: cut          # cut(바로 다음 장으로) / slide(캐러셀 넘기듯) / fade. 확대 효과 없음
   transition_sec: 0.35
   top: 0.105               # 슬라이드 위쪽 끝 위치 (세로 대비). 아래는 인스타 캡션이 덮는 자리
   background: null         # null 이면 feed.background

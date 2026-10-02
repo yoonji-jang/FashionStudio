@@ -295,7 +295,8 @@ class Reels(BaseModel):
     # 장 종류별로 보여 주는 시간 (초). 넘기는 시간은 앞 장에 포함. 없는 종류는 default_sec
     seconds: dict[SlideKind, float] = {"cover": 2.5, "comment": 2.0}
     default_sec: float = Field(default=1.6, gt=0.3, le=10)
-    transition: Literal["slide", "fade", "cut"] = "slide"  # slide: 캐러셀 넘기듯 옆으로
+    # cut: 바로 다음 장 / slide: 캐러셀 넘기듯 옆으로 / fade
+    transition: Literal["slide", "fade", "cut"] = "cut"
     transition_sec: float = Field(default=0.35, ge=0, le=1.5)
     # 슬라이드(4:5) 위쪽 끝 위치 (세로 1920 대비). 아래쪽은 인스타 캡션·버튼이 덮는다
     top: float = Field(default=0.105, ge=0, le=0.3)

@@ -369,8 +369,8 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 | `slides` | null | 넣을 장 종류. `null` 이면 그날 캐러셀 장 전부를 캐러셀 순서대로 (펼친컷 날·모델컷 날 모두) |
 | `seconds` | {cover: 2.5, comment: 2.0} | 장 종류별로 보여 주는 시간 (초) |
 | `default_sec` | 1.6 | `seconds` 에 없는 장(벌 장, 상품 장)의 시간 |
-| `transition` | slide | 장 사이 효과: `slide`(캐러셀 넘기듯) / `fade` / `cut` |
-| `transition_sec` | 0.35 | 넘기는 시간 (초) |
+| `transition` | cut | 장 사이 효과: `cut`(바로 다음 장으로) / `slide`(캐러셀 넘기듯) / `fade` |
+| `transition_sec` | 0.35 | 넘기는 시간 (초, `cut` 이면 안 씀) |
 | `top` | 0.105 | 슬라이드 위쪽 끝 위치 (세로 대비). 아래쪽은 인스타 캡션·버튼이 덮는 자리라 비움 |
 | `background` | null | 남는 곳 색. `null` 이면 `feed.background` |
 | `music_dir` | accounts/women/music | 배경 음악 폴더. 상업 이용이 허락된 mp3·m4a 를 넣으면 날짜마다 돌려 씀. 비어 있으면 소리 없음 |
@@ -959,7 +959,7 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 캐러셀과 같은 코디로 짧은 세로 영상을 만들어 따로 올립니다. 영상 AI 없이 코드(`tools.reels`, ffmpeg)로 만듭니다.
 
 1. **만들기**: daily 워크플로가 캐러셀을 다 만들면 `python -m tools.reels build out/<날짜>` 로
-   `reels/reel.mp4` 를 만듭니다. 그날 캐러셀 장을 순서대로 보여 주고, 장 사이는 캐러셀을 넘기듯 옆으로 밀립니다 (확대 효과 없음, 8장이면 약 12초).
+   `reels/reel.mp4` 를 만듭니다. 그날 캐러셀 장을 순서대로 보여 주고, 장은 효과 없이 바로 바뀝니다 (확대·밀기 없음, 8장이면 약 14초).
    `/fix` 로 고친 미리보기도 릴스를 다시 만듭니다. 릴스 만들기가 실패해도 캐러셀은 그대로 갑니다.
 2. **미리보기**: 텔레그램 미리보기에 영상이 같이 옵니다. **`/ok` 하나로 캐러셀과 릴스를 같이 승인**합니다.
 3. **게시**: schedule 이 `schedule.reels_at` 에 publish 워크플로(`reels: true`)를 부릅니다.
