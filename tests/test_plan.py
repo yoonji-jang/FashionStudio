@@ -6,7 +6,7 @@ import pytest
 import yaml
 from PIL import Image
 
-from core.models import DailyPlan, Manifest, PostRecord, Product
+from core.models import DailyPlan, Manifest, PlanItem, PostRecord, Product
 from core.profile import load_profile
 from core.store import Store
 from tools import feed, plan
@@ -90,7 +90,14 @@ def test_sample_plan_passes_check():
 
 def test_check_passes(store):
     errors, warns = plan.check(daily(), load_profile("women"), store)
-    assert errors == [] and warns == []
+    assert errors == []
+    assert warns == [
+        "포인트 아이템(profile style.point_words)이 없습니다"
+    ]  # 테스트 상품 이름이 평범
+    # 이름에 포인트 말(21단계)이 있는 상품이 하나라도 있으면 경고가 없다
+    point = store.products()[0].model_copy(update={"name": "[MADE] 스웨이드 상품 1"})
+    store.save_products([point] + store.products()[1:])
+    assert plan.check(daily(), load_profile("women"), store) == ([], [])
 
 
 def test_check_catches_rule_breaks(store):
@@ -304,6 +311,23 @@ def test_generated_outfit_prompt_parts(store):
     p.items[0].size = "about 50 cm long"
     cfg = outfit_gen.generate.load_config()
     assert "Real size: about 50 cm long." in outfit_gen.item_lines(p, products, cfg)
+
+
+def test_layered_tops_get_layer_styling(store):
+    """상의 레이어드 (21단계): wear_with: 상의 인 셔츠를 다른 상의(니트) 안에 입힌다."""
+    from tools import outfit_gen
+
+    p = daily()
+    p.items[1].wear_with = None
+    p.items[1].wear_modes = None
+    p.items.insert(
+        2, PlanItem(product="zigzag:99", desc="셔츠 (shirt)", name="셔츠", wear_with="상의")
+    )
+    products = {x.id: x for x in store.products()}
+    text = outfit_gen.styling_text(p, products, load_profile("women"))
+    assert "The top in image 3 is layered under the top in image 2" in text
+    p.items[2].wear_with = None
+    assert "layered under" not in outfit_gen.styling_text(p, products, load_profile("women"))
 
 
 def test_check_ref_photos_index(store):

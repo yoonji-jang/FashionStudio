@@ -275,6 +275,13 @@ class OutfitImage(BaseModel):
     )
     # 아우터가 있는 날 기본으로 입히는 방법 (영어). 기획의 styling 이 있으면 그것을 쓴다
     outer_styling: str = ""
+    # 상의 두 개를 겹쳐 입는 레이어드 (21단계). 기획에서 안에 입는 상의에 wear_with: 상의 를 적으면
+    # 이 문장으로 입힌다. {inner} 안쪽 상의, {top} 겉 상의 (영어 이름은 도구가 채움)
+    layer_styling: str = (
+        "The {inner} is layered under the {top}: its collar shows at the neckline, its cuffs peek "
+        "out about 3 cm beyond the sleeves of the {top}, and its hem shows a little below the hem "
+        "of the {top}."
+    )
 
 
 WEEKDAYS = "월화수목금토일"

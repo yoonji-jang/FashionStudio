@@ -6,7 +6,7 @@ description: 게시물 주제를 정한다. 다음 주 주제를 한꺼번에 �
 # plan-themes: 주제 정하기
 
 기준: `accounts/$ACCOUNT/profile.yaml` 의 `themes` (per_week, type_mix, consider, events,
-no_repeat_days, avoid), `audience`, `style`, 그리고 `voice.md` 의 좋은 제목 예시.
+no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코디 기준), `voice.md` 의 좋은 제목 예시.
 
 ## 재료
 - `python -m tools.plan context --account $ACCOUNT --date <날짜>`: 요일, 계절, 날씨 예보, 최근 게시, 재고.
@@ -40,10 +40,13 @@ no_repeat_days, avoid), `audience`, `style`, 그리고 `voice.md` 의 좋은 제
 4. **유형 비율**: 주간이면 `type_mix` 개수를 맞춘다. 같은 유형이 이틀 연속되지 않게 섞는다.
 5. **반복 피하기**: 최근 `no_repeat_days` 일 게시와 주요 아이템·색이 겹치지 않게 한다.
    `themes.avoid` 에 해당하는 주제는 쓰지 않는다.
-6. **따라 입기 쉬움**: `audience.description` 의 독자가 가진 옷으로 흉내 낼 수 있는 조합.
+6. **센스 있는 데일리룩**: `audience.description` 의 독자가 저장해 두고 따라 하고 싶은 꾸민 듯한 조합.
+   "출근룩"처럼 상황만 있는 주제보다 styling.md 의 포인트(레이어링, 소재 믹스, 두 색 조합, 소품)가 보이는 주제
+   (예: "셔츠 깃 빼 입는 니트 레이어드", "브라운에 하늘색 한 방울", "체크 스커트에 니삭스").
    `style.keywords`, `style.palette` 안에서 고르고 `style.avoid` 는 피한다.
-7. **검색어**: 지그재그에서 실제로 쓰는 말로 짧게 (예: "하프 트렌치코트", "연청 와이드 데님").
-   색 + 종류 또는 핏 + 종류. 브랜드명, 광고 문구는 넣지 않는다.
+7. **검색어**: 지그재그에서 실제로 쓰는 말로 짧게, 포인트가 되는 아이템 위주 (예: "스웨이드 자켓", "체크 미디스커트",
+   "니트 뷔스티에", "쁘띠 스카프"). 색 + 종류, 소재 + 종류, 핏 + 종류. 브랜드명, 광고 문구는 넣지 않는다.
+   slots 의 desc 도 기본템 이름만 쓰지 말고 포인트를 적는다 (예: "하늘색 스트라이프 셔츠, 니트 밖으로 깃").
 
 ## 저장
 - 주간: 7일치를 `out/themes_<첫날>.yaml` 로 쓰고
