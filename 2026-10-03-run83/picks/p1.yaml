@@ -1,0 +1,344 @@
+account: women
+date: '2026-10-03'
+items: []
+looks:
+- items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 라이트 가디건 (beige lightweight knit cardigan, round neck, buttoned front)
+    name: 마르소 가디건
+    product: zigzag:159422845
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 셔츠 (ivory shirt, regular shirt collar, relaxed fit)
+    name: 로셀 라인 셔츠
+    product: zigzag:145426176
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 세미부츠컷 슬랙스 (black high-waist semi-bootcut slacks, flat front, no pleats,
+      full length)
+    name: 모찌 슬랙스
+    product: zigzag:113041967
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 호보백 (black suede hobo shoulder bag)
+    name: 미들클레어 호보백
+    product: zigzag:159416332
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 메리제인 플랫슈즈 (black leather Mary Jane flat shoes with a strap, round
+      toe)
+    name: 메리제인 플랫
+    product: zigzag:109877237
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 미니 링 귀걸이 (gold mini hoop earrings with small cubic, exactly one pair
+      (two earrings))
+    name: 미니 링귀걸이
+    product: zigzag:169324851
+  point: ''
+  reason: 베이지 가디건에 아이보리 셔츠로 가장 편안하게. 블랙 슬랙스와 호보백으로 단정하게 마무리
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드넥 울 트위드 자켓 (black round-neck wool tweed jacket, collarless, cropped
+      length)
+    name: 울트위드 자켓
+    product: zigzag:171067682
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하프넥 니트 (ivory soft half-neck knit top, fitted)
+    name: 소프트 하프넥 니트
+    product: zigzag:146407231
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 코튼 플레어 롱스커트 (beige cotton pintuck flared long skirt, ankle length)
+    name: 핀턱 플레어 스커트
+    product: zigzag:128487064
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black structured shoulder bag)
+    name: 노아르 숄더백
+    product: zigzag:164013796
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드토 레이스업 로퍼 (black round-toe lace-up loafers with stitching)
+    name: 레이스업 로퍼
+    product: zigzag:111145203
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 귀걸이 (silver small drop earrings, exactly one pair (two earrings))
+    name: 실버 드롭 귀걸이
+    product: zigzag:116459948
+  point: ''
+  reason: 블랙 트위드 자켓에 베이지 롱스커트로 단정하게. 로퍼로 클래식하게 차려입은 느낌
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 울블렌드 하프코트 (grey wool-blend half-length coat, notched lapel, single-breasted)
+    name: 울블렌드 하프코트
+    product: zigzag:171900742
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 블라우스 (ivory blouse, soft collar, relaxed fit)
+    name: 드멜린 블라우스
+    product: zigzag:160291434
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 투핀턱 와이드 슬랙스 (grey two-pintuck wide-leg slacks, full length)
+    name: 투핀턱 와이드 슬랙스
+    product: zigzag:135443091
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트 숄더백 (black structured tote bag)
+    name: 마리백
+    product: zigzag:130366243
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 삭스 앵클부츠 (black sock-style ankle boots, round toe, low heel)
+    name: 삭스 앵클부츠
+    product: zigzag:107677011
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 미니 볼드 물방울 귀걸이 (gold mini bold drop earrings, exactly one pair (two earrings))
+    name: 미니 물방울 귀걸이
+    product: zigzag:169325375
+  point: ''
+  reason: 그레이 하프코트에 와이드 슬랙스로 쌀쌀한 아침을 차분하게. 앵클부츠로 톤 낮춰 마무리
+- items:
+  - color: 버건디
+    comment: ''
+    cutout_photo: 0
+    desc: 버건디 니트 가디건 (burgundy knit cardigan, round neck, buttoned front, pendant-free)
+    name: 맬리 니트 가디건
+    product: zigzag:151404778
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 슬림핏 셔츠 (ivory slim-fit stretch shirt, regular shirt collar)
+    name: 슬림핏 스판 셔츠
+    product: zigzag:128321624
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 핀턱 와이드 슬랙스 (navy pintuck wide-leg slacks, full length)
+    name: 핀턱 와이드 슬랙스
+    product: zigzag:161586134
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트백 (black structured tote bag)
+    name: 셀루나 토트백
+    product: zigzag:161886716
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 페니 로퍼 (black leather penny loafers)
+    name: 기본 로퍼
+    product: zigzag:115867734
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 타원 목걸이 (silver thin oval pendant necklace, exactly one necklace)
+    name: 오벌 목걸이
+    product: zigzag:113396559
+  point: ''
+  reason: 버건디 가디건으로 포인트를 주고 네이비 톤 슬랙스로 깔끔하게. 로퍼와 토트백으로 약속룩 완성
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 자켓 (black faux leather jacket, notched lapel, zip front, cropped fit)
+    name: 베리스 레더 자켓
+    product: zigzag:146665389
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 반팔 니트 (ivory soft wool knit top with cap sleeves, round neck, fitted)
+    name: 캡소매 반팔 니트
+    product: zigzag:149691267
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 세미와이드 데님 (dark navy semi-wide straight denim pants, full length)
+    name: 세미와이드 데님
+    product: zigzag:133330805
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스퀘어 바게트 숄더백 (black square baguette shoulder bag)
+    name: 스퀘어 바게트백
+    product: zigzag:132365859
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 뒷지퍼 앵클부츠 (black leather ankle boots with back zip, almond toe, low heel)
+    name: 뒷지퍼 앵클부츠
+    product: zigzag:130586820
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 클래식 벨트 (black slim classic leather belt with a small buckle)
+    name: 클래식 벨트
+    product: zigzag:113974752
+  point: ''
+  reason: 블랙 레더 자켓에 네이비 데님으로 시크하게. 앵클부츠와 벨트로 주말 분위기를 살림
+- items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 하프 트렌치코트 (beige half-length trench coat, notched lapel, single-breasted)
+    name: 하프 트렌치코트
+    product: zigzag:171067688
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 레이어드 블라우스 (ivory layered blouse, soft collar, relaxed fit)
+    name: 플롯 레이어드 블라우스
+    product: zigzag:159975319
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 밴딩 롱스커트 (grey elastic-waist long skirt, ankle length, straight A-line)
+    name: 델리 롱스커트
+    product: zigzag:168618198
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black structured shoulder bag)
+    name: 노아르 숄더백
+    product: zigzag:164013796
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 메리제인 (black leather Mary Jane shoes with strap, round toe, 3cm heel)
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 미니 원터치 귀걸이 (silver small simple earrings, exactly one pair (two earrings))
+    name: 원터치 귀걸이
+    product: zigzag:162518487
+  point: ''
+  reason: 베이지 하프 트렌치에 그레이 롱스커트로 부드럽게. 메리제인으로 여성스러운 주말룩
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 골지 니트 가디건 (grey ribbed knit cardigan, V-neck, buttoned front, slim fit)
+    name: 쟈말린 골지 가디건
+    product: zigzag:148436246
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 반목 반팔 니트 (ivory viscose knit top with short sleeves, mock neck, fitted)
+    name: 반목 반팔 니트
+    product: zigzag:165611097
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 하이웨스트 H라인 롱스커트 (black high-waist H-line long skirt, ankle length)
+    name: H라인 롱스커트
+    product: zigzag:167147018
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 호보백 (black suede hobo shoulder bag)
+    name: 미들클레어 호보백
+    product: zigzag:159416332
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드토 레이스업 로퍼 (black round-toe lace-up loafers with stitching)
+    name: 레이스업 로퍼
+    product: zigzag:111145203
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 두줄 커브 귀걸이 (silver double-line curved earrings, exactly one pair (two
+      earrings))
+    name: 커브 귀걸이
+    product: zigzag:168924754
+  point: ''
+  reason: 그레이 골지 가디건에 블랙 롱스커트로 차분하게. 같은 무채색이라 실루엣이 길어 보임
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 노카라 브이넥 트위드 자켓 (ivory collarless V-neck tweed jacket, single-breasted,
+      cropped)
+    name: 시즈닝 트위드 자켓
+    product: zigzag:135328702
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 링클프리 셔츠 (white wrinkle-free shirt, regular shirt collar, relaxed fit)
+    name: 링클프리 셔츠
+    product: zigzag:146606946
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 와이드 팬츠 (beige wide-leg trousers, full length)
+    name: 나스 와이드 팬츠
+    product: zigzag:140796259
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 애니 숄더백
+    product: zigzag:170305230
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 메리제인 플랫슈즈 (black leather Mary Jane flat shoes with a strap, round
+      toe)
+    name: 메리제인 플랫
+    product: zigzag:109877237
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬림 벨트 (black slim leather belt with a gold buckle)
+    name: 슬림 소가죽 벨트
+    product: zigzag:140368861
+  point: ''
+  reason: 아이보리 트위드 자켓에 베이지 와이드 팬츠로 밝게. 메리제인과 벨트로 포인트만 블랙
+reason: 토요일 약속에 맞춰 주말 브런치·산책용으로 가디건, 자켓, 코트를 바꿔 가며 여덟 가지로 짠 가을 코디 모음
+theme:
+  date: '2026-10-03'
+  mood: 베이지·아이보리·블랙 차분한 주말 약속룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 가디건이나 가벼운 자켓
+  - category: 상의
+    desc: 아이보리 셔츠·블라우스·니트
+  - category: 하의
+    desc: 슬랙스 또는 롱스커트
+  - category: 가방
+    desc: 블랙 숄더백
+  - category: 신발
+    desc: 로퍼나 메리제인
+  - category: 소품
+    desc: 심플한 귀걸이나 벨트
+  title_hint: 토요일 약속룩, 브런치부터 산책까지 가볍게 걸쳐 입는 가을 코디
+  type: 상황
+  why: 토요일, 흐리고 11~21도라 아침엔 쌀쌀하고 낮엔 따뜻해서 얇은 이너에 가디건·자켓을 걸치는 주말 약속 코디
