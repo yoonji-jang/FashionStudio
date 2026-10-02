@@ -9326,6 +9326,68 @@
     "checked_at": "2026-10-02"
   },
   {
+    "id": "zigzag:108185036",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/108185036",
+    "shop": "솔트앤초콜릿",
+    "name": "(샤틴/기모안감) 라운드 토 메리제인 플랫 (1cm/4colors+3colors)",
+    "price": 44240,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547270738_11529.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547280187_37641.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547280296_34023.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547280470_72180.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547280571_65713.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547270840_51546.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547280013_64659.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/3/10403_202512031130560571_75012.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/10403_202502121547280718_43761.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 6165,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:161729124",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/161729124",
+    "shop": "빅토리아슈즈",
+    "name": "[인플루언서 PICK] 빅토리아 오다 메리제인 (104913-NEGRO)",
+    "price": 55300,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://pic.sabangnet.co.kr/product_image4/mw72382/100/100075_16.jpg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/7/10687_202507071242030650_54392.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/15/10687_202607151755456892_59726.jpeg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/100/XkXGc_100075_7.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/100/aK5Zt_100075_8.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/100/3CgpJ_100075_9.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/100/zT8gG_100075_10.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 6606,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:111145203",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/111145203",
@@ -9355,6 +9417,64 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:134105153",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/134105153",
+    "shop": "로제니크",
+    "name": "[40년 장인 수제화 로제니크] 엘리스 레이스업 로퍼 (3cm/3colors)",
+    "price": 42630,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438332165_76596.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438334601_74378.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438337016_73685.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438338829_91915.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438340503_16982.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438341867_29752.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438326220_28532.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 233,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:147005253",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147005253",
+    "shop": "마리공주",
+    "name": "베어리 일자핏 통넓은부츠 둥근코 스웨이드 니하이 롱부츠 (2.5cm)",
+    "price": 56720,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/26/1826_202409261728510320_15062.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390334_44585.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390585_73159.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390054_20842.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390154_58037.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 300,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:166028838",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/166028838",
@@ -9374,7 +9494,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.8,
-    "review_count": 667,
+    "review_count": 673,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -9383,6 +9503,88 @@
     "query": "메리제인",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:145695732",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/145695732",
+    "shop": "유엠",
+    "name": "[220~270추가제작/당일배송] 빅사이즈 출시 유엠 앤드리 스틸레토 슬링백 발편한 가을 힐 펌프스 (6CM)",
+    "price": 40890,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://you-m.kr/web/product/extra/big/202502/483a6e7368007f267abe826ee997e7bf.png",
+      "https://you-m.kr/web/product/extra/big/202408/a3bee74a944f963627c6e3d3899cd94d.png",
+      "https://you-m.kr/web/product/extra/big/202408/8de258ae01865f98e37df64f95ccfdc0.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 1546,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:147715415",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147715415",
+    "shop": "슈스프레소",
+    "name": "[단독] 앤서니 투톤 슬링백 스틸레토 힐 하객룩 구두 면접 결혼식 데이트룩 국산 발편한 수제화 5cm 7cm 봄 졸업식 개강룩 드뮤어룩",
+    "price": 42240,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/20/15640_202409200150360457_77280.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 435,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:130148639",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/130148639",
+    "shop": "클락스",
+    "name": "[🍁가을룩] 클락스 왈라비 오리지널스 레이스업 로퍼 메이플 스웨이드 하객룩 슈즈",
+    "price": 174800,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/16965_202603201214460059_94492.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/16965_202603201214450821_24291.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/16965_202603201214450570_37526.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/1/20/16965_202501201153320454_55647.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/20/16965_202603201214460679_94876.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/1/20/16965_202501201153320546_35774.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/21/16965_202311211642390187_14266.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/1/20/16965_202501201153320198_69121.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 285,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:156848174",
@@ -9408,6 +9610,324 @@
     "query": "로퍼",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:151111416",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/151111416",
+    "shop": "사뿐",
+    "name": "모비나 스퀘어 슬링백힐 (4 / 6cm)",
+    "price": 43120,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609180959335416_60947.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/20/558_202508201726550121_52623.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/20/558_202508201726540627_30852.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609180959334485_67138.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/20/558_202508201726550229_57653.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609180959331435_70916.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/20/558_202508201726550411_48001.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/20/558_202508201726540955_25323.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 1069,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:100425954",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/100425954",
+    "shop": "사뿐",
+    "name": "버딘즈 스웨이드 페니로퍼 (1cm)",
+    "price": 47920,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_08.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_01.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_07.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_06.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_02.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_03.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_05.jpg",
+      "https://sappun.img13.kr/2026/06/sa0055/sa0055_960_04.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 834,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:105600542",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/105600542",
+    "shop": "사뿐",
+    "name": "트윌리 스웨이드 슬링백힐 (5 / 7 / 9cm)",
+    "price": 43120,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609181408182030_27367.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/13/558_202408131636190004_78768.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/13/558_202408131636180997_73888.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/13/558_202408131636190002_38547.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/13/558_202408131636190000_16205.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609181408181274_80893.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/558_202609181408183105_35352.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/13/558_202408131636180996_12974.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 1511,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:105600430",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/105600430",
+    "shop": "사뿐",
+    "name": "트윌리 스틸레토 슬링백힐 (5 / 7 / 9cm)",
+    "price": 43120,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/1/17/558_202401171818460420_42154.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/1/17/558_202401171818460451_61484.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/558_202609171747194524_89185.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/558_202609171747195954_82657.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/1/17/558_202401171818460475_27328.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/558_202609171747196743_42400.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/558_202609171747198386_70690.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/558_202609171747197567_78996.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 3815,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:107428444",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/107428444",
+    "shop": "슈카르페",
+    "name": "한파대비🔥흘러내림 절대없는🔥스웨이드 스판 기모 니하이 빅사이즈롱부츠 3cm·5cm·7cm",
+    "price": 47360,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://shoecarpe.com/web/product/extra/big/202509/6c29c1ad2e80be304042596ac5ef741a.jpg",
+      "https://shoecarpe.com/web/product/extra/big/202509/7e4524471c5df6b50e5a39c21962d740.jpg",
+      "https://shoecarpe.com/web/product/extra/big/202509/06b0f714b60f87edea062adea8597f05.jpg",
+      "https://shoecarpe.com/web/product/extra/big/202509/9c31432fc7c47c23e030f2e156d572b3.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 290,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168504725",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168504725",
+    "shop": "보가",
+    "name": "[Premium 국내제작] 포루안 가보시 메리제인 펌프스 (9cm) 베이직 편한 인생구두 착화감 데이트룩 하객룩 오피스룩 면접구두",
+    "price": 56900,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/4/2/567_202404021132210219_46258.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/4/2/567_202404021132210211_64623.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/4/2/567_202404021132210209_59662.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/4/2/567_202404021132210214_87473.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/13/567_202604131013370280_84716.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 215,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:160825244",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/160825244",
+    "shop": "플로리다스튜디오",
+    "name": "[직진] 에브리데이 베르그 레트로 스티치 레이스업 스니커즈 ED2422",
+    "price": 44850,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/9/16/9770_202509161212480391_32758.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/14/9770_202504140959030465_86582.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/14/9770_202504140959040039_86352.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 223,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "레트로 스니커즈",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:158948889",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/158948889",
+    "shop": "로제니크",
+    "name": "[40년 장인 수제화 로제니크] 샤린느 발레리나 리본 메리제인 플랫 (2cm/5colors)",
+    "price": 48300,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623575126_91350.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623576515_90750.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623578343_91169.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623571578_71896.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623573321_52271.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623568355_13841.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 90,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:136665746",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/136665746",
+    "shop": "마리공주",
+    "name": "[단독] 루아니 스틸레토 뾰족코 착화감 좋은 기본 슬링백 (4.5cm)",
+    "price": 42320,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/31/1826_202507311552260237_93734.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/31/1826_202507311552250831_39689.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/31/1826_202507311552250694_86969.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/31/1826_202507311552250994_23792.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 187,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:167613041",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167613041",
+    "shop": "유엠",
+    "name": "[자체제작/220~270까지빅사이즈] 앤드리VOL2 까짐없는슬링백 발편한 발볼넓은 구두 (3/5/7CM)",
+    "price": 43590,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://you-m.kr/web/product/extra/big/202512/fcd8fba0d57068a8beb27daecf5221c7.png",
+      "https://you-m.kr/web/product/extra/big/202512/1cd57572ba21ddbdb6747d3966465443.png",
+      "https://you-m.kr/web/product/extra/big/202512/86e776023cd680e070ddfd6418b146b4.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 148,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168228826",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168228826",
+    "shop": "세인트새틴",
+    "name": "[레드벨벳 예리 착용] 바인 소가죽 레이스업 메리제인 스니커즈 4color",
+    "price": 71300,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/9614_202602061407190915_39161.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/9614_202602061407190828_96983.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/9614_202602061407200100_85165.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/9614_202602061407200004_27678.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/9614_202609091032387332_58851.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/9614_202609091032381709_22766.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/9614_202609091032386285_35498.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/9614_202609091032388101_92007.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 92,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:147232545",
@@ -9529,6 +10049,54 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:165484410",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165484410",
+    "shop": "슈스프레소",
+    "name": "루미엘 메리제인 슬링백 3cm 5cm 구두 플랫 수제화 스틸레토 힐 봄 가을 웨딩 결혼 하객룩 슈즈",
+    "price": 42240,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/29/15640_202508291121570419_68783.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 128,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:165484436",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165484436",
+    "shop": "슈스프레소",
+    "name": "카르넬 메리제인 슬링백 3cm 구두 플랫 수제화 스틸레토 힐 봄 가을 웨딩 결혼 하객룩 슈즈",
+    "price": 42240,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/29/15640_202508291125030407_57804.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 88,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:166397158",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/166397158",
@@ -9593,6 +10161,37 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:170609181",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170609181",
+    "shop": "빅토리아슈즈",
+    "name": "빅토리아슈즈 쿵푸 코튼 발레리나 (1080905-COTTON)",
+    "price": 42140,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/LV7ll_106173_17.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/cpz85_106173_11.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/g44CF_106173_13.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/rUn3f_106173_1.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/Rpp19_106173_7.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/fUSoL_106173_8.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/eE9D1_106173_9.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/9dTNP_106173_10.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 555,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:130660542",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/130660542",
@@ -9624,6 +10223,148 @@
     "query": "앵클부츠",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:128694133",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/128694133",
+    "shop": "마리공주",
+    "name": "[통넓은부츠] 하비 심플 각코 옆지퍼 미들힐 니하이 롱부츠 (4cm)",
+    "price": 47120,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/10/1826_202609101747477133_38593.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 252,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:165948923",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165948923",
+    "shop": "슈스프레소",
+    "name": "샤이라 메리제인 리본 통굽 힐 3cm 5cm 구두 수제화 스웨이드 가죽 봄 가을 웨딩 결혼 하객룩 슈즈",
+    "price": 42240,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/9/23/15640_202509231428420961_25324.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 73,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:165725019",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165725019",
+    "shop": "솔트앤초콜릿",
+    "name": "브로디 스웨이드 로퍼 412539001 (3.5cm)",
+    "price": 66600,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/I7Vtu_102007_8.png",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/R5RlP_102007_9.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/10403_202509291752110464_17245.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/10403_202509291752110104_30057.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 61,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:131281211",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/131281211",
+    "shop": "쥬드",
+    "name": "오늘출발🚀3.5cm,7cm 존예핏🎀 흘러내림 절대없음💘 르시엘 핸드메이드 스판 오버니 니하이 싸이하이 스웨이드 롱부츠",
+    "price": 48880,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320797_83063.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320794_94228.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320781_15371.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320785_56761.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320794_17686.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320785_75805.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320788_23491.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320795_84094.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320796_25362.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/11/9/4099_202311091653320798_41752.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 67,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168824822",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168824822",
+    "shop": "소보",
+    "name": "슬링백 VER. 트리트 소가죽 미들힐 3cm 5cm",
+    "price": 42290,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600290253_47598.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600280264_52839.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600280671_53770.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600280480_22262.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600280873_92167.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600280022_29317.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600290492_20573.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600270337_61466.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600290832_69388.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600300018_44729.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/3/528_202603031600300209_22948.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 70,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:147059381",
@@ -9719,6 +10460,82 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:165955513",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165955513",
+    "shop": "엘리자베스스튜어트",
+    "name": "[FW재진행] 키높이 플랫폼 로퍼 스니커즈 EBAL157505",
+    "price": 78600,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/29/11418_202609291726128331_99687.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/29/11418_202609291726126292_27516.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/29/11418_202609291726123770_96378.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 120,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:115619071",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/115619071",
+    "shop": "스윙비",
+    "name": "SwingBee_스웨이드 슬립온 베이직 로퍼 단화 (4.5cm/2색상) sb00576●",
+    "price": 41500,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/11/561/907/115619071-8495739917217110954.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 42,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168785062",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168785062",
+    "shop": "유엠",
+    "name": "[자체제작/빅사이즈/3CM추가270까지] 레아 스틸레토 발편한구두 발볼넓은구두 슬링백 (5/3cm)",
+    "price": 44490,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://you-m.kr/web/product/extra/big/202603/9a41cfe93d758a798448423d1491156e.png",
+      "https://you-m.kr/web/product/extra/big/202603/cbb7ccb8192547f8479c1a25d5913a75.png",
+      "https://you-m.kr/web/product/extra/big/202604/99ce7d3515f8a37ef61f17809286f53e.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.5,
+    "review_count": 43,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:129462075",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/129462075",
@@ -9771,6 +10588,38 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:130877289",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/130877289",
+    "shop": "유이르무이",
+    "name": "벨 말랑 스웨이드 리본 발레리나 플랫슈즈 1cm",
+    "price": 41830,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://yuirmui.kr/web/product/extra/big/20231030/d5057a29bc772a3c998fd10eecdc1298.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20231030/5a4db3c00bd36f8e55eda87ae9700250.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20231030/ae3f2d79167878c014f39b3540bd3976.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20231030/ededc8e50732155065daf58fa61d18ea.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20231030/cb9fb7d83c5f705b80100f53621bf72b.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20231030/4cff8d882daca4a7dc466cfe021a008c.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20231030/3f122f6b7ec8cd97191770a7c6f0b6cf.jpg",
+      "https://yuirmui.kr/web/product/big/202310/3a119af7d484d63edc0a16993205a780.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 34,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:119684251",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/119684251",
@@ -9793,6 +10642,62 @@
     "query": "로퍼",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:167560120",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167560120",
+    "shop": "슬로우앤드",
+    "name": "[오늘드림🚚/🔥퍼안감로퍼] #LENTO. Winter Suede fur loafer - 2 color",
+    "price": 41550,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/16/756/012/167560120-9046616226468901281.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 73,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:152501732",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/152501732",
+    "shop": "르플리에",
+    "name": "[당일출고] 더 로우 발레리나 플랫 라운드 메리제인 슈즈",
+    "price": 45000,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbn2a0b6njd29250q3r05.jpg",
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbnfj0b6ojd29nrurlzey.jpg",
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbl7q0b6ijd29z3vfpcrr.jpg",
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbmam0b6ljd29wvnlvje8.jpg",
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbmos0b6mjd29t4ywxo3s.jpg",
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbly40b6kjd29aqkb4v6l.jpg",
+      "https://image.onesell.kr/files/66580de3009fa22f4c92c230/202411/cm3ffbllc0b6jjd29tt5r3ydg.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 22,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:167011810",
@@ -9828,6 +10733,32 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:146926302",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/146926302",
+    "shop": "드레스코드에이치디",
+    "name": "[~270]  사각코 심플 하비롱부츠 (빅사이즈 니하이 롱부츠 통넓은롱부츠 255 260 265 270)",
+    "price": 47840,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://dresscodehd.com/web/product/extra/big/20240826/27a84a6c83ec706626079bf1f7520fcf.jpg",
+      "https://dresscodehd.com/web/product/extra/big/20240826/34896a0bc224f0f054237c49bb163895.jpg",
+      "https://dresscodehd.com/web/product/extra/big/20240826/84e3c54b7d9bd505cefa19f97c699618.jpg",
+      "https://dresscodehd.com/web/product/extra/big/20240826/f9bbd826fc89333847dde248359f56d1.jpg",
+      "https://dresscodehd.com/web/product/extra/big/20240826/57ac9d784a7478ca6a07cd9b8c98d67a.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 54,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:171487933",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171487933",
@@ -9861,6 +10792,242 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:122305697",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/122305697",
+    "shop": "비스크돌",
+    "name": "🖤콘서트화 스포티버전🖤 리벤저스 8.5cm 통굽 워커 운동화 (키높이운동화,스탠딩화,플랫폼화,통굽운동화,키작녀운동화,펑크)",
+    "price": 47920,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://vskdoll.com/web/product/extra/big/202304/0c3cf6209f93a560495de6aa53d3f007.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 37,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니크",
+      "러블리"
+    ],
+    "query": "레트로 스니커즈",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:128978822",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/128978822",
+    "shop": "르라니",
+    "name": "솔밀라노 리본 플랫슈즈 발레리나 슈즈 (3color)",
+    "price": 42000,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://image.onesell.kr/files/6491571dc8dd1d10726d4800/202309/clmbedj4l1rjtla15aejeorg3.jpg",
+      "https://image.onesell.kr/files/6491571dc8dd1d10726d4800/202309/clmbedmpq1rjxla15lro5ceod.jpg",
+      "https://image.onesell.kr/files/6491571dc8dd1d10726d4800/202309/clmbedkdz1rjula15ro4ijbir.jpg",
+      "https://image.onesell.kr/files/6491571dc8dd1d10726d4800/202309/clmbedlk31rjvla15wh653lno.jpg",
+      "https://image.onesell.kr/files/6491571dc8dd1d10726d4800/202309/clmbedgvs1rjrla152zo0llgj.jpg",
+      "https://image.onesell.kr/files/6491571dc8dd1d10726d4800/202309/clmbedi0p1rjsla15ynyypu46.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 39,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "러블리"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:121870656",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/121870656",
+    "shop": "유이르무이",
+    "name": "리나 말랑 리본 라운드 미들힐 발레리나 플랫슈즈 3cm",
+    "price": 41830,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://yuirmui.kr/web/product/extra/big/20230326/a2797a7c275792b291a009df933b2d25.jpg",
+      "https://yuirmui.kr/web/product/big/202303/5f4492bc83f06e87cc4ef4acbd1d8af2.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/e60973678c60fab82d3f085d26bdd3bb.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/ae7d1ff5165f09aeab151f2abad93751.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/90ce6e2e2c097d8020491fdd97e329ac.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/0cf43b691e80eff0f92549501f5a3901.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/347c9cfa9b4dcd0faad5d2e84e16e90d.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/588287622f9e5fa41ab3b8dadf402cfe.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/d625b7769d37f87fdfefb65ebdf5ff7f.jpg",
+      "https://yuirmui.kr/web/product/extra/big/20230326/509caf94a4a62d509486d119ba3fe97a.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.5,
+    "review_count": 45,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168648087",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168648087",
+    "shop": "솔트앤초콜릿",
+    "name": "[키높이] 루미 메리제인 스니커즈 412610005 (6cm)",
+    "price": 72150,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/DUrT0_102058_13.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/00fLx_102058_1.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/3jNMX_102058_7.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/E6jj5_102058_8.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/pm3mB_102058_9.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/m2z5N_102058_10.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw63102/102/8osy8_102058_11.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.6,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "메리제인",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:158704130",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/158704130",
+    "shop": "플러스몰",
+    "name": "멕시코66 남녀공용 빈티지 시리즈 운동화 1183B391-200",
+    "price": 94000,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430080701_16627.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261429180712_64454.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430080976_36525.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430080887_82087.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430090063_47255.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430080435_82473.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430080772_20166.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261429180142_58021.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430090156_24422.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430090224_73943.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/26/49999_202502261430090328_81608.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 22,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "레트로 스니커즈",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:151601765",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/151601765",
+    "shop": "올인",
+    "name": "스웨이드 페니로퍼 데일리 클래식 기본라인 단화 2cm",
+    "price": 42230,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827050683_31643.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827050769_52835.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827050263_36432.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827060084_51492.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827050869_89817.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827050968_40236.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/6/43199_202411061827050499_59232.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 16,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:161725575",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/161725575",
+    "shop": "빅토리아슈즈",
+    "name": "[인플루언서 PICK] 빅토리아 하다 발레리나 (1046900-TEJA)",
+    "price": 45150,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/7/10687_202507071241360125_10218.jpeg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/g84fp_106431_7.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/VBZfj_106431_8.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/6FQ9T_106431_9.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw72382/106/5UXUs_106431_10.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 29,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:146545243",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/146545243",
+    "shop": "가내스라",
+    "name": "[🍂스웨이드]  덴버 스웨이드 로퍼 (3color/230-250)",
+    "price": 55500,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://ganaesra.com/web/product/big/202408/9149da928618bc8004dfb044c418568c.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:170765282",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/170765282",
@@ -9890,6 +11057,363 @@
     "query": "로퍼",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:140739205",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/140739205",
+    "shop": "뉴발란스",
+    "name": "(정품) 뉴발란스 2002R 남여공용 운동화 프리미엄 빈티지 그레이 M2002RNM",
+    "price": 128350,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/9/16139_202408091650060871_49220.jpeg",
+      "https://pic.sabangnet.co.kr/product_image/mw57202/104/yJBXd_104109_7.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw57202/104/xvxf5_104109_8.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw57202/104/sSRuj_104109_13.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 14,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "레트로 스니커즈",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168939097",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168939097",
+    "shop": "로제니크",
+    "name": "[신상/40년 장인 수제화 로제니크] 로랑 스퀘어 소프트 로퍼 슬립온 (3cm/3colors)",
+    "price": 55230,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145360308_96284.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145360604_21481.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145360760_56560.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145370116_25135.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145360949_45538.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145360443_84632.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/10/13326_202603101145350965_12597.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 13,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 로퍼",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:107799679",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/107799679",
+    "shop": "마리공주",
+    "name": "감각적인 니하이 통굽 둥근코 슬림핏 롱부츠 (5cm)",
+    "price": 63920,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/10/779/967/107799679-898611865034587483.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 19,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:130914498",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/130914498",
+    "shop": "마리공주",
+    "name": "빈티지 스웨이드 통넓은 니하이 롱부츠 (2cm)",
+    "price": 55920,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/13/091/449/130914498-5879970767595909326.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 7,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:135328879",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/135328879",
+    "shop": "나이키",
+    "name": "나이키 V2K 런 서밋 화이트 메탈릭 실버 FD0736-100",
+    "price": 153900,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/14/37377_202402141716420222_53061.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/31/37377_202407311552210628_87628.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/14/37377_202402141716420227_26038.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/14/37377_202402141716420219_96186.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 14,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "레트로 스니커즈",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170371077",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170371077",
+    "shop": "로지니스",
+    "name": "[가을신상🍂/2컬러] 엘드 플라워 레이스 망사 리본 플랫슈즈 발레리나슈즈 메리제인 레이스슈즈 데일리 슈즈 로맨틱 페미닌 플랫",
+    "price": 41600,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://rosiness.co.kr/web/product/big/202606/55b8a78d282ee74e7a84d3a8cfea6b46.jpg",
+      "https://rosiness.co.kr/web/product/extra/big/202606/7066bab43397b505c764873020ecef59.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 7,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170477261",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170477261",
+    "shop": "블랙업",
+    "name": "푸니앙 버클 스틸레토",
+    "price": 44870,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/26/517_202606261118220897_19780.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/26/517_202606261118230414_94608.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/26/517_202606261118220153_56748.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/26/517_202606261118220679_60001.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/26/517_202606261118220792_44316.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/26/517_202606261118230641_55319.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "심플베이직"
+    ],
+    "query": "슬링백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:171742629",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171742629",
+    "shop": "705호",
+    "name": "[225-255] 발 편한 리본 플랫슈즈 발레리나 미들힐 3.5cm 여성 블랙 단화",
+    "price": 48490,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/18618_202609041358513650_48569.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/18618_202609032011541982_21494.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/18618_202609041638295721_86374.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/18618_202609032011529520_34244.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/18618_202609041358506641_54458.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/18618_202609032011538868_76454.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/18618_202609041638286602_93307.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/18618_202609042114091376_43405.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/18618_202609032011531847_35423.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/18618_202609032011533600_30173.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/18618_202609032011536590_78974.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 10,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:153067960",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/153067960",
+    "shop": "밴지르르",
+    "name": "[말랑플랫🤎}스웨이드 리본 플랫슈즈 레오파드 호피 발레리나슈즈 겨울 플랫 1cm",
+    "price": 48900,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y8ee0shl9r15rwbzdqpy.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y6y10shh9r15piyo88tp.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y7r30shj9r15nkqpscrm.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y9fo0sho9r151gkliev8.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y9330shn9r15xnciybyy.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4ya3d0shq9r153gse2kyw.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y7b80shi9r15xcw3o5ge.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y8re0shm9r15tgup8eb1.jpg",
+      "https://image.onesell.kr/files/64fbf4aa89c2c26e81921484/202411/cm3k4y9qx0shp9r150w913sip.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 5,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "발레리나 플랫",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:101383063",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/101383063",
+    "shop": "카멜브라운",
+    "name": "지쎄수제화 빈티지 하프 스니커즈 [7color/누빔안감]",
+    "price": 80000,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://camelbrown.com/web/product/big/202204/bf63853a61b1b45600413d5105308de8.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 9,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "레트로 스니커즈",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:166127095",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/166127095",
+    "shop": "어텀",
+    "name": "플랫롱부츠",
+    "price": 54600,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://autumnshop.kr/web/product/extra/big/202510/d8053bae21c79149eb56bf2e3c5236d4.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202510/2318c968965cf0466dafdf71fdd03bde.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202510/a03446a65b72155500324edf85af722e.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 10,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:166325651",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/166325651",
+    "shop": "마리공주",
+    "name": "[자체제작][고퀄리티] 바이엔 여유핏 통넓은 버클 벨트 니하이 롱부츠 (2.5cm)",
+    "price": 63920,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/21/1826_202609211446346924_35849.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/21/1826_202609211446346033_47917.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/21/1826_202609211446347917_26096.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 8,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:155987496",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/155987496",
+    "shop": "위위미유",
+    "name": "KNEE HIGH STILETTO LONG BOOTS / 니 하이 스틸레토 롱 부츠",
+    "price": 51510,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/15/598/749/155987496-5403093470982552891.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 7,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "유니크"
+    ],
+    "query": "니하이 부츠",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:127748170",
