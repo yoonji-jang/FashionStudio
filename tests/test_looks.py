@@ -387,10 +387,11 @@ def test_model_post_redraws_yesterday_looks_as_model_shots(tmp_path, store, monk
     assert "wearing this exact outfit" in prompt and poses[0].split(";")[0] in prompt
     assert "flat lay" not in prompt and "$" not in prompt
 
-    # 얼굴 검출 도구가 얼굴을 찾은 후보는 점수와 상관없이 clean 0
+    # 얼굴 검출 도구가 찾은 자리는 잘라 두고 검수가 판단한다 (폰에 가린 얼굴도 잡으므로)
     d = out2 / "looks" / "1"
-    monkeypatch.setattr(faces, "find_faces", lambda img: [(0, 0, 10, 10)])
+    monkeypatch.setattr(faces, "find_faces", lambda img: [(20, 20, 60, 70)])
     text = review.prep(d).read_text()
-    assert "모델컷" in text and "c1 [얼굴]" in text
+    assert "모델컷" in text and "c1 [얼굴 확인]" in text and "review/face_c1_1.jpg" in text
+    assert (d / "review" / "face_c1_1.jpg").exists()
     r, _ = review.apply(d, review.Scores.model_validate({"covers": [score("c1", 10)]}))
-    assert r.candidates[0].score.clean == 0 and "얼굴 검출" in r.candidates[0].score.notes
+    assert r.candidates[0].score.clean == 2

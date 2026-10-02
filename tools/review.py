@@ -122,17 +122,28 @@ def start(out: Path, made: list[Path]) -> Review:
     return review
 
 
-def face_counts(out: Path, plan: DailyPlan, review: Review) -> dict[str, int]:
-    """모델컷(기획 shot: model, 16단계) 후보마다 얼굴 검출 도구(YuNet)가 찾은 얼굴 수.
-    얼굴이 보이는 후보는 apply 에서 clean 0 이 된다. 펼친 코디컷이면 보지 않는다."""
+def face_crops(out: Path, plan: DailyPlan, review: Review) -> dict[str, list[Path]]:
+    """모델컷(기획 shot: model, 16단계) 후보마다 얼굴 검출 도구(YuNet)가 찾은 자리를 크게 잘라
+    review/face_<후보>_<n>.jpg 로 저장한다. 펼친 코디컷이면 보지 않는다.
+    거울 셀카처럼 폰이 얼굴을 다 가려도 얼굴로 잡으므로(2026-10-02 시안 gen-23·24) 도구가
+    떨어뜨리지 않고, image-reviewer 가 잘라 낸 사진을 열어 눈·코·입이 보이는지 판단한다."""
     if plan.shot != "model":
         return {}
-    found = {}
+    found: dict[str, list[Path]] = {}
     for c in review.candidates:
         path = cand_path(out, c)
-        if path.exists():
-            with Image.open(path) as img:
-                found[c.id] = len(faces.find_faces(img.convert("RGB")))
+        if not path.exists():
+            continue
+        with Image.open(path) as img:
+            rgb = img.convert("RGB")
+            for n, (x0, y0, x1, y1) in enumerate(faces.find_faces(rgb), 1):
+                pad = (x1 - x0) * 0.6
+                box = (max(0, x0 - pad), max(0, y0 - pad), min(rgb.width, x1 + pad),
+                       min(rgb.height, y1 + pad))
+                dest = out / "review" / f"face_{c.id}_{n}.jpg"
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                rgb.crop(tuple(round(v) for v in box)).save(dest, quality=90)
+                found.setdefault(c.id, []).append(dest)
     return found
 
 
@@ -317,9 +328,11 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     lines += ["", "## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)", ""]
     todo_ids = {c.id for c in todo}
     found = [
-        f"- {cid} [얼굴] 얼굴 검출 도구가 얼굴 {n}개를 찾음 (apply 가 clean 0 으로 바꾼다)"
-        for cid, n in face_counts(out, plan, review).items()
-        if n and cid in todo_ids
+        f"- {cid} [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: "
+        + ", ".join(f"`{_ref(out, f)}`" for f in crops)
+        + " (열어 보고 눈·코·입이 하나라도 보이면 clean 0, 폰·머리카락에 다 가려졌으면 괜찮음)"
+        for cid, crops in face_crops(out, plan, review).items()
+        if cid in todo_ids
     ]
     lines += found + [f"- {s.slide} [{s.kind}] {s.note}" for s in code_issues] or ["- 없음"]
     dest = out / "review" / "input.md"
@@ -411,12 +424,6 @@ def apply(out: Path, scores: Scores, profile: Profile | None = None) -> tuple[Re
     missing = [c.id for c in review.candidates if c.score is None]
     if missing:
         raise ValueError(f"점수가 없는 후보가 있습니다: {', '.join(missing)}")
-    for cid, n in face_counts(out, plan, review).items():
-        c = ids[cid]
-        if n and c.score and "얼굴 검출" not in c.score.notes:
-            note = f"얼굴 검출 도구가 얼굴 {n}개를 찾음"
-            notes = f"{c.score.notes}, {note}" if c.score.notes else note
-            c.score = c.score.model_copy(update={"clean": 0, "notes": notes})
     review.slide_issues = [s for s in review.slide_issues if s.by == "code"] + [
         s.model_copy(update={"by": "claude"}) for s in scores.slides
     ]

@@ -8,6 +8,7 @@ $mood: 장소·분위기 (기획 mood, 없으면 profile model_shot.mood),
 $season: 게시 날짜의 계절 (영어).
 2026-09-30 비교(gen-3 사람컷)와 펼친 코디컷에서 나온 실수를 막는 문장을 넣었다:
 지시에 없는 버킷햇을 씌움, 귀걸이 두 쌍, 깃·신발 모양 바뀜, 바지 핏, 걷는 컷에서 옆얼굴이 보임.
+2026-10-02 모델컷 시안(gen-23·24): 창가 컷 옆얼굴, 폰 든 손에 반지.
 제목·상품 줄은 왼쪽 아래(가로 45%, 세로 35%)에 얹으므로 인물은 오른쪽으로, 그 자리는 배경만.
 이 주석은 전송되지 않는다.
 -->
@@ -28,7 +29,7 @@ remove or redesign any detail, no logos or text. Trousers keep the leg silhouett
 the worn photos (never flared, cropped or wider than in the photos).
 The person wears or carries every item in the list and nothing else: no hat, cap, scarf, sunglasses,
 glasses, belt, watch, rings, necklace, earrings or other jewelry unless it is in the numbered list,
-and no other bag or clothing on top. Hair, skin and the phone are the only other things on the body.
+and no other bag or clothing on top. Hair, skin and the phone are the only other things on the body: bare fingers with no rings.
 
 Styling: $styling
 Person and pose: $pose

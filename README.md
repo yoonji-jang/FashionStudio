@@ -835,7 +835,8 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 - 흐름: `tools.model_post prepare` (전날 기획을 `shot: model` 로, 벌마다 포즈) → Claude `model-feed` 스킬
   (제목·캡션 새로 쓰기, 장소 분위기) → `tools.plan build` (지시문 `prompts/outfit_model.md`) → 검수 → 미리보기.
 - 인물·포즈·장소는 `model_shot` (`poses` 를 벌마다 돌려 씀, 인물 묘사를 같게 써서 한 사람처럼). 얼굴은 자르지 않고
-  폰·뒤돌기로 가리며, 얼굴 검출 도구가 얼굴을 찾은 후보는 검수에서 자동 탈락합니다.
+  폰·뒤돌기로 가립니다. 얼굴 검출 도구가 얼굴로 본 자리는 잘라 두고, 검수가 열어 눈·코·입이 보이면 떨어뜨립니다
+  (폰이 다 가린 거울 셀카도 도구는 얼굴로 잡아서 자동 탈락은 하지 않습니다).
 - 비용은 펼친 코디컷과 같습니다 (벌마다 한 장, 떨어진 벌만 한 장 더).
 - 상품 창고가 수집 때 정리되어 전날 상품이 빠져 있어도, 전날 결과의 manifest 에 남은 상품 정보로 다시 넣어 씁니다.
 - 시험: `experiments/model_look*.yaml` 을 `gen-experiment` 워크플로로 (`[gen-exp] [spec:…] [shots:model]`).
