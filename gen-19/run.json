@@ -1,0 +1,31 @@
+{
+  "spec": "experiments/model_look2.yaml",
+  "started": "2026-10-02T16:10:06",
+  "results": [
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 1,
+      "ok": false,
+      "error": "OpenRouter 크레딧이 부족합니다: {\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 21262. To increase, visit https://openrouter.ai/settings/credits and add more credits\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\"",
+      "sec": 0.3
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 2,
+      "ok": false,
+      "error": "OpenRouter 크레딧이 부족합니다: {\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 21262. To increase, visit https://openrouter.ai/settings/credits and add more credits\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\"",
+      "sec": 0.1
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 3,
+      "ok": false,
+      "error": "OpenRouter 크레딧이 부족합니다: {\"error\":{\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 21262. To increase, visit https://openrouter.ai/settings/credits and add more credits\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\"",
+      "sec": 0.1
+    }
+  ],
+  "finished": "2026-10-02T16:10:07"
+}
