@@ -32,6 +32,9 @@
   ("깃은 목선에, 소매 끝은 3cm 밖으로, 밑단은 살짝 아래로")로 입힌다.
 - 다르게 입힐 때(셔츠 위 튜브톱, 어깨에 니트 두르기, 목에 스카프 묶기)는 벌의 `styling` 에 영어로 직접 쓴다.
   예: "The striped knit is draped over the shoulders with its sleeves loosely tied at the chest."
+- 오프숄더·넓은 보트넥·큰 칼라·퍼프 소매 상의를 짧거나 몸에 붙는 아우터 안에 고르지 않는다. 코디컷에서 넓은 목선이
+  아우터 어깨 위로 올라와 입을 수 없는 모양이 된다 (2026-10-02). 그 상의가 포인트면 아우터 없이 쓰거나,
+  아우터를 어깨에 걸치는 `styling` ("The jacket is draped over the shoulders behind the knit ...")을 영어로 쓴다.
 - 아우터 + 상의 두 개면 상의 개수가 늘어 슬롯이 8개까지 된다 (profile `outfit.items_max`).
 
 ## 하의 비율 (2026-10-02 피드백)

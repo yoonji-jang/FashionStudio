@@ -9,6 +9,8 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 2026-10-02 피드백(/fix 5건 + 스레드 "이미지 검토"): 바지·치마가 짧고 작고, 핏이 자로 잰 통짜처럼 정직함.
 참고 계정(finleu.archive, lcod.kr)과 비교: 허리선이 높고(상의는 짧게·넣어 입고 벨트가 보임) 하의가 그림의 60%,
 다리에 볼륨과 살짝 벌어진·휜 선, 밑단에 천이 접히는 주름 → '곧고 평행, 밑단 20cm' 문장을 빼고 비율·연출 문장으로.
+같은 날: 오프숄더 니트의 넓은 깃이 가죽자켓 어깨 위로 덮임, 니트가 자켓 어깨 위로 올라옴(10/3 /fix)
+→ 안에 입은 옷은 겉옷 위로 올라오지 않는다는 겹침 순서 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -27,6 +29,13 @@ remove or redesign any detail, do not add logos or text. Use every item exactly 
 other clothing or objects.
 
 Styling: $styling
+Layering order is physical, exactly as on a real body: an item worn inside lies under the item
+worn over it everywhere they overlap. An inner top never lies on top of an outer's shoulders,
+collar, lapels, front panels or sleeves; it shows only where it really would: at the neckline inside
+the outer's front opening, a little at the cuffs and at the hem. A wide neckline, off-shoulder
+neckline, big collar or puffy sleeve of an inner top is hidden under the outer and only shows inside
+the front opening, folded or tucked under the outer's edges; never copy its shape from the shop
+photo over the outer.
 Lay the outfit out like a person wearing it: the top sits at the shoulders, the bottoms continue
 below the top, garments overlap naturally, sleeves and
 trouser legs relax with soft real fabric folds and a slight natural bend, never stiff or symmetric.
