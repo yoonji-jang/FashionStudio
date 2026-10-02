@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-03-run94",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-03-run87\", \"round\": 1, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"니트조끼에 단추 없애고 옷 모양대로 지켜줘\"}, {\"slide\": 1, \"kind\": \"cover\", \"text\": \"표지 제목에서 여섯 벌 같은 벌 수 표현을 빼고 voice.md 여러 벌 게시물 표지 지침대로 제목 다시 써줘\"}, {\"slide\": 3, \"kind\": \"look\", \"look\": 2, \"text\": \"어깨쪽 가죽자켓 위로 니트가 있는데 가죽자켓 안으로 넣어줘.\"}]}"
+}
