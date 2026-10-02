@@ -1,0 +1,60 @@
+# 16단계 시안: 전날 게시물(10/2 run80) 벌을 모델컷으로 (tools.generate, shot model = prompts/outfit_model.md).
+# 실행: 커밋 메시지에 [gen-exp] [spec:experiments/model_look1.yaml] [models:nano_banana_pro] [shots:model]
+title: '16-1 시안: 10/2 LOOK 1 차콜 롱코트 + 버건디 니트 (모델컷)'
+account: women
+products_from: daily-results:2026-10-02-run80/manifest.json
+items:
+- category: 아우터
+  product: zigzag:171900729
+  photos:
+  - 5
+  - 0
+  desc: charcoal wool-blend tailored long coat, notched lapel, long length
+  size: about 110 cm long from shoulder to hem, below the knee
+- category: 상의
+  product: zigzag:147921597
+  photos:
+  - 3
+  - 2
+  desc: burgundy fine-knit crew neck sweater, regular fit
+- category: 하의
+  product: zigzag:119143697
+  photos:
+  - 1
+  - 0
+  desc: black wide straight-leg trousers, flat front, no pleats, full length
+  size: full length, the hem covers the top of the foot
+- category: 가방
+  product: zigzag:159408342
+  photos:
+  - 2
+  - 1
+  - 4
+  desc: black structured shoulder bag
+- category: 신발
+  product: zigzag:129223675
+  photos:
+  - 1
+  - 4
+  desc: one pair (two shoes) of black round-toe penny loafers
+styling: The coat is worn open over the burgundy knit, hanging straight; the knit is tucked loosely into
+  the front of the trousers so the waistline shows; the bag hangs on one shoulder.
+shots:
+  model:
+    repeats: 3
+    pose:
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she takes a full-body mirror selfie in a bright, tidy
+      apartment entrance with a tall standing mirror, holding her phone up in front of her face so the
+      phone hides her whole face, relaxed stance with one knee slightly bent'
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she walks away from the camera on a quiet Seoul residential
+      street, seen from behind at a slight angle, full body, her head facing forward away from the camera
+      so only the back of her hair shows'
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she stands by a large bright cafe window, her back
+      and shoulders turned three-quarters away from the camera as she looks out of the window, so only
+      her hair and the back of her head show, never her profile'
+    mood: an early autumn evening after work in Seoul, Pinterest editorial outfit photo, soft warm late-afternoon
+      daylight, calm clean tones
+    season: early autumn

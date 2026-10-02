@@ -41,9 +41,8 @@ def test_build_prompt_fills_items_and_shot_values():
 
 @pytest.mark.parametrize("shot", generate.SHOTS)
 def test_all_prompt_templates_render(shot):
-    spec = yaml.safe_load(
-        (generate.REPO_ROOT / "experiments" / "gen_compare.yaml").read_text(encoding="utf-8")
-    )
+    name = "model_look1.yaml" if shot == "model" else "gen_compare.yaml"
+    spec = yaml.safe_load((generate.REPO_ROOT / "experiments" / name).read_text(encoding="utf-8"))
     assert "$" not in generate.build_prompt(shot, spec)
 
 
