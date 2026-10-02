@@ -1,0 +1,254 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/1/outfit_r2/results/G_1.jpg
+cover_has_title: false
+items:
+- comment: ''
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:157438223
+- comment: ''
+  name: 부클 니트 베스트
+  product: zigzag:150449770
+- comment: ''
+  name: 빈티지 와이드 데님
+  product: zigzag:171292012
+- comment: ''
+  name: 호보 숄더백
+  product: zigzag:167878705
+- comment: ''
+  name: 스웨이드 페니로퍼
+  product: zigzag:100425954
+- comment: ''
+  name: 레더 크롭 자켓
+  product: zigzag:119553614
+- comment: ''
+  name: 오프숄더 니트
+  product: zigzag:167280062
+- comment: ''
+  name: 헤링본 롱스커트
+  product: zigzag:132499988
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:169369601
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:108185036
+- comment: ''
+  name: 니삭스
+  product: zigzag:148867821
+- comment: ''
+  name: 쁘띠 스카프
+  product: zigzag:147477007
+- comment: ''
+  name: 버튼 트위드 자켓
+  product: zigzag:150918386
+- comment: ''
+  name: 레이스 블라우스
+  product: zigzag:169713161
+- comment: ''
+  name: 핀스트라이프 팬츠
+  product: zigzag:168339118
+- comment: ''
+  name: 스웨이드 바질백
+  product: zigzag:172149893
+- comment: ''
+  name: 스웨이드 슬링백
+  product: zigzag:105600542
+- comment: ''
+  name: 실버 롱 목걸이
+  product: zigzag:154156593
+- comment: ''
+  name: 울 하프코트
+  product: zigzag:165939128
+- comment: ''
+  name: 화이트 셔츠
+  product: zigzag:136083756
+- comment: ''
+  name: 헨리넥 골지 니트
+  product: zigzag:171413342
+- comment: ''
+  name: 새틴 롱스커트
+  product: zigzag:165836528
+- comment: ''
+  name: 스웨이드 숄더백
+  product: zigzag:164580854
+- comment: ''
+  name: 리본 발레리나 플랫
+  product: zigzag:158948889
+- comment: ''
+  name: 니삭스
+  product: zigzag:161559034
+- comment: ''
+  name: 울 후디 집업 니트
+  product: zigzag:171658465
+- comment: ''
+  name: 링클프리 블라우스
+  product: zigzag:171584015
+- comment: ''
+  name: 니트 조끼
+  product: zigzag:171826596
+- comment: ''
+  name: 롱 플리츠 스커트
+  product: zigzag:171318242
+- comment: ''
+  name: 빅 호보백
+  product: zigzag:168594319
+- comment: ''
+  name: 니하이 부츠
+  product: zigzag:147005253
+- comment: ''
+  name: 볼드 링 귀걸이
+  product: zigzag:169325375
+- comment: ''
+  name: 오버핏 레더 블루종
+  product: zigzag:168701836
+- comment: ''
+  name: 와플 루즈핏 티셔츠
+  product: zigzag:168841655
+- comment: ''
+  name: 와이드 생지 데님
+  product: zigzag:149107295
+- comment: ''
+  name: 보스턴 숄더백
+  product: zigzag:133826914
+- comment: ''
+  name: 레트로 스니커즈
+  product: zigzag:160825244
+- comment: ''
+  name: 워시드 볼캡
+  product: zigzag:166003887
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 자켓
+    product: zigzag:168776088
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:157438223
+  - comment: ''
+    name: 부클 니트 베스트
+    product: zigzag:150449770
+  - comment: ''
+    name: 빈티지 와이드 데님
+    product: zigzag:171292012
+  - comment: ''
+    name: 호보 숄더백
+    product: zigzag:167878705
+  - comment: ''
+    name: 스웨이드 페니로퍼
+    product: zigzag:100425954
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 크롭 자켓
+    product: zigzag:119553614
+  - comment: ''
+    name: 오프숄더 니트
+    product: zigzag:167280062
+  - comment: ''
+    name: 헤링본 롱스커트
+    product: zigzag:132499988
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:108185036
+  - comment: ''
+    name: 니삭스
+    product: zigzag:148867821
+  - comment: ''
+    name: 쁘띠 스카프
+    product: zigzag:147477007
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 버튼 트위드 자켓
+    product: zigzag:150918386
+  - comment: ''
+    name: 레이스 블라우스
+    product: zigzag:169713161
+  - comment: ''
+    name: 핀스트라이프 팬츠
+    product: zigzag:168339118
+  - comment: ''
+    name: 스웨이드 바질백
+    product: zigzag:172149893
+  - comment: ''
+    name: 스웨이드 슬링백
+    product: zigzag:105600542
+  - comment: ''
+    name: 실버 롱 목걸이
+    product: zigzag:154156593
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/4/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울 하프코트
+    product: zigzag:165939128
+  - comment: ''
+    name: 화이트 셔츠
+    product: zigzag:136083756
+  - comment: ''
+    name: 헨리넥 골지 니트
+    product: zigzag:171413342
+  - comment: ''
+    name: 새틴 롱스커트
+    product: zigzag:165836528
+  - comment: ''
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+  - comment: ''
+    name: 리본 발레리나 플랫
+    product: zigzag:158948889
+  - comment: ''
+    name: 니삭스
+    product: zigzag:161559034
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울 후디 집업 니트
+    product: zigzag:171658465
+  - comment: ''
+    name: 링클프리 블라우스
+    product: zigzag:171584015
+  - comment: ''
+    name: 니트 조끼
+    product: zigzag:171826596
+  - comment: ''
+    name: 롱 플리츠 스커트
+    product: zigzag:171318242
+  - comment: ''
+    name: 빅 호보백
+    product: zigzag:168594319
+  - comment: ''
+    name: 니하이 부츠
+    product: zigzag:147005253
+  - comment: ''
+    name: 볼드 링 귀걸이
+    product: zigzag:169325375
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-03/looks/6/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 오버핏 레더 블루종
+    product: zigzag:168701836
+  - comment: ''
+    name: 와플 루즈핏 티셔츠
+    product: zigzag:168841655
+  - comment: ''
+    name: 와이드 생지 데님
+    product: zigzag:149107295
+  - comment: ''
+    name: 보스턴 숄더백
+    product: zigzag:133826914
+  - comment: ''
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - comment: ''
+    name: 워시드 볼캡
+    product: zigzag:166003887
+title_lines:
+- 일교차 큰 가을 나들이엔
+- 질감 섞어 레이어드한 코디
