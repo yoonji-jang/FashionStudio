@@ -1,10 +1,11 @@
 r"""하루 게시물로 릴스 영상 만들기 (19단계). Claude·영상 AI 는 부르지 않는다.
 
 그날 캐러셀 슬라이드(manifest.images)를 세로 영상(1080×1920, 9:16)으로 이어 붙인다.
-- 순서·장마다 시간·넘기는 효과·확대 정도는 profile.yaml `reels` 에서 읽는다.
+- 장마다 시간·넘기는 효과는 profile.yaml `reels` 에서 읽는다.
 - 슬라이드(4:5)는 위쪽에 두고(reels.top) 남는 곳은 상품 장 배경색(feed.background)으로 채운다.
   아래쪽은 인스타 캡션·버튼이 덮는 자리라 비워 둔다.
-- 표지는 천천히 커지고(reels.cover_zoom), 장 사이는 캐러셀을 넘기듯 옆으로 밀린다(transition).
+- 장 사이는 캐러셀을 넘기듯 옆으로 밀린다(transition). 확대 같은 다른 효과는 없다.
+- 장은 그날 캐러셀 순서 그대로 (reels.slides 가 null 이면 전부). 펼친컷 날·모델컷 날 모두 같은 방식.
 - 배경 음악: reels.music_dir 의 음원 하나를 날짜마다 돌려 쓴다 (상업 이용이 허락된 파일만).
   폴더가 비어 있으면 소리 없는 오디오 트랙을 넣는다.
 - 결과: <결과 폴더>/reels/reel.mp4 (H.264 + AAC, 30fps), reels/cover.jpg (첫 화면),
@@ -13,7 +14,7 @@ r"""하루 게시물로 릴스 영상 만들기 (19단계). Claude·영상 AI �
 ffmpeg 가 필요하다 (GitHub Actions ubuntu 에는 기본으로 있음).
 
 사용법:
-  python -m tools.reels build out/2026-10-01 [--no-music] [--seconds 2]
+  python -m tools.reels build out/2026-10-01 [--no-music]
 """
 
 from __future__ import annotations
@@ -41,20 +42,19 @@ COVER = "reels/cover.jpg"
 @dataclass
 class Clip:
     path: Path
-    kind: str  # cover, products, summary, comment
+    kind: str  # cover, looks, products, summary, comment
     seconds: float  # 다음 장으로 넘어가는 시간 포함
-    zoom: float
 
 
 def timeline(slides: list[Path], cfg: Reels) -> list[Clip]:
-    """릴스에 넣을 장과 시간. 슬라이드 종류는 파일 이름으로 안다 (01_cover, 02_아우터 …)."""
+    """릴스에 넣을 장과 시간. 캐러셀 순서 그대로, 종류는 파일 이름으로 안다
+    (01_cover, 02_look1 …, 08_comment). reels.slides 가 있으면 그 종류만."""
     clips = []
-    for kind in cfg.slides:
-        for p in slides:
-            if ai_label.slide_kind(p) != kind:
-                continue
-            zoom = cfg.cover_zoom if kind == "cover" else cfg.zoom
-            clips.append(Clip(p, kind, cfg.seconds.get(kind, 1.6), zoom))
+    for p in slides:
+        kind = ai_label.slide_kind(p)
+        if cfg.slides is not None and kind not in cfg.slides:
+            continue
+        clips.append(Clip(p, kind, cfg.seconds.get(kind, cfg.default_sec)))
     if not clips:
         raise ValueError("릴스에 넣을 슬라이드가 없습니다 (profile reels.slides 확인)")
     return clips
@@ -121,26 +121,15 @@ class Frames:
         # 슬라이드가 아래로 넘치지 않게 (1:1 피드 등)
         self.top = min(round(cfg.top * h), max(0, h - tallest))
 
-    def card(self, i: int, u: float) -> Image.Image:
-        """i 번째 장을 그 장 시간 u 초에. 시간이 지나면서 가운데 기준으로 조금씩 커진다."""
-        img, clip = self.cards[i], self.clips[i]
-        if clip.zoom <= 0:
-            return img
-        z = 1 + clip.zoom * min(max(u / clip.seconds, 0.0), 1.0)
-        w, h = img.size
-        cw, ch = w / z, h / z
-        box = ((w - cw) / 2, (h - ch) / 2, (w + cw) / 2, (h + ch) / 2)
-        return img.resize((w, h), Image.Resampling.BILINEAR, box=box)
-
     def at(self, t: float) -> Image.Image:
         n = len(self.clips)
         i = max(k for k in range(n) if self.starts[k] <= t + 1e-9)
         frame = self.base.copy()
-        cur = self.card(i, t - self.starts[i])
+        cur = self.cards[i]
         # 앞 장이 아직 끝나지 않았으면 넘기는 중
         if i > 0 and self.overlap > 0 and t < self.starts[i] + self.overlap:
             p = ease((t - self.starts[i]) / self.overlap)
-            prev = self.card(i - 1, t - self.starts[i - 1])
+            prev = self.cards[i - 1]
             if self.cfg.transition == "fade":
                 a, b = frame.copy(), frame.copy()
                 a.paste(prev, (0, self.top))

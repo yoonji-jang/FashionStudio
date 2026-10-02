@@ -286,24 +286,17 @@ class OutfitImage(BaseModel):
 
 class Reels(BaseModel):
     """릴스 (19단계, tools.reels). 그날 캐러셀 슬라이드를 세로 영상(1080×1920)으로 이어 붙인다.
-    영상 AI 는 쓰지 않는다 (코드로 확대·넘기기 효과만). 게시는 schedule.reels_at
+    영상 AI 는 쓰지 않는다 (코드로 장을 옆으로 넘기기만). 게시는 schedule.reels_at
     (없으면 캐러셀 게시 직후)."""
 
     enabled: bool = False
-    slides: list[SlideKind] = Field(
-        default=["cover", "products", "summary", "comment"], min_length=1
-    )
-    # 장 종류별로 보여 주는 시간 (초). 넘기는 시간은 앞 장에 포함
-    seconds: dict[SlideKind, float] = {
-        "cover": 2.5,
-        "products": 1.6,
-        "summary": 2.5,
-        "comment": 2.0,
-    }
+    # 넣을 장 종류. null 이면 캐러셀 장 전부를 캐러셀 순서대로 (펼친컷·모델컷 어느 날이든)
+    slides: list[SlideKind] | None = None
+    # 장 종류별로 보여 주는 시간 (초). 넘기는 시간은 앞 장에 포함. 없는 종류는 default_sec
+    seconds: dict[SlideKind, float] = {"cover": 2.5, "comment": 2.0}
+    default_sec: float = Field(default=1.6, gt=0.3, le=10)
     transition: Literal["slide", "fade", "cut"] = "slide"  # slide: 캐러셀 넘기듯 옆으로
     transition_sec: float = Field(default=0.35, ge=0, le=1.5)
-    cover_zoom: float = Field(default=0.06, ge=0, le=0.3)  # 표지가 천천히 커지는 정도
-    zoom: float = Field(default=0.02, ge=0, le=0.3)  # 나머지 장
     # 슬라이드(4:5) 위쪽 끝 위치 (세로 1920 대비). 아래쪽은 인스타 캡션·버튼이 덮는다
     top: float = Field(default=0.105, ge=0, le=0.3)
     background: str | None = Field(default=None, pattern=COLOR)  # 없으면 feed.background
@@ -488,7 +481,7 @@ def load_profile(account: str, root: Path = ACCOUNTS_DIR) -> Profile:
         raise ValueError(f"폴더 이름({account})과 profile.id({profile.id})가 다릅니다")
     if profile.outfit.items_min > profile.outfit.items_max:
         raise ValueError("outfit.items_min이 items_max보다 큽니다")
-    if len(set(profile.reels.slides)) != len(profile.reels.slides):
+    if profile.reels.slides and len(set(profile.reels.slides)) != len(profile.reels.slides):
         raise ValueError("reels.slides 에 같은 종류가 두 번 들어 있습니다")
     if len(set(profile.feed.slides)) != len(profile.feed.slides):
         raise ValueError("feed.slides 에 같은 종류가 두 번 들어 있습니다")

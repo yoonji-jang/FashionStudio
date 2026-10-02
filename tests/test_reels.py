@@ -28,20 +28,23 @@ def slides(tmp_path, names=("01_cover", "02_아우터", "03_상의", "04_summary
     return paths
 
 
-def test_timeline_follows_profile_order_and_seconds(tmp_path):
-    cfg = Reels(slides=["cover", "summary", "products"], seconds={"cover": 3, "products": 1})
-    clips = reels.timeline(slides(tmp_path), cfg)
-    assert [c.kind for c in clips] == ["cover", "summary", "products", "products"]
-    assert [c.seconds for c in clips] == [3, 1.6, 1, 1]  # summary 는 기본값
-    assert clips[0].zoom == cfg.cover_zoom and clips[2].zoom == cfg.zoom
+def test_timeline_follows_carousel_order_and_seconds(tmp_path):
+    names = ("01_cover", "02_look1", "03_look2", "04_comment")
+    cfg = Reels(seconds={"cover": 3, "comment": 2})
+    clips = reels.timeline(slides(tmp_path, names), cfg)
+    assert [c.kind for c in clips] == ["cover", "looks", "looks", "comment"]
+    assert [c.seconds for c in clips] == [3, 1.6, 1.6, 2]  # 벌 장은 default_sec
     # 다음 장은 앞 장 끝나기 transition_sec 전에 들어온다
-    assert reels.total_seconds(clips, 0.5) == pytest.approx(6.6 - 1.5)
+    assert reels.total_seconds(clips, 0.5) == pytest.approx(8.2 - 1.5)
+    # reels.slides 를 적으면 그 종류만 (순서는 캐러셀 그대로)
+    only = reels.timeline(slides(tmp_path), Reels(slides=["summary", "cover"]))
+    assert [c.kind for c in only] == ["cover", "summary"]
     with pytest.raises(ValueError):
         reels.timeline(slides(tmp_path, ("01_cover",)), Reels(slides=["summary"]))
 
 
 def test_frames_slide_like_carousel(tmp_path):
-    cfg = Reels(transition="slide", transition_sec=0.5, cover_zoom=0, zoom=0, top=0.1)
+    cfg = Reels(transition="slide", transition_sec=0.5, top=0.1)
     clips = reels.timeline(slides(tmp_path, ("01_cover", "02_아우터")), cfg)
     fr = reels.Frames(clips, cfg, "#E7E9EB", size=(108, 192))
     w, h = fr.size
