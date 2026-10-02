@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "5번 신발은 원본이 스퀘어토 로퍼형 레이스업인데 그림에서는 투박한 스니커즈형이고 앞코가 달라졌다. 신발 안쪽에 작은 라벨 글씨가 보인다. 6번 모자의 ffound 글자는 원본 로고와 같아 감점하지 않았다. 3번 바지 왼쪽 다리가 왼쪽 아래 제목 자리에 걸친다. 바지 기장은 자켓의 약 1.3배로 빠듯하다.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "c1 은 상품 6개가 모두 보이고 색도 같지만 신발 모양이 달라 7점. c2 는 색, 구성, 크기 비율은 맞지만 5번 신발 종류가 원본과 달라 shape 0, 합계 7점."
+}
