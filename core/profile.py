@@ -32,6 +32,8 @@ class Style(BaseModel):
     keywords: list[str] = Field(min_length=1)
     palette: list[str] = []
     avoid: list[str] = []
+    # 상품 이름에 이 말이 있으면 코디 포인트가 되는 상품으로 보고 창고·후보 순서에서 앞으로 (21단계)
+    point_words: list[str] = []
 
 
 class SlotRule(BaseModel):
@@ -57,6 +59,10 @@ class ProductSourceConfig(BaseModel):
     per_query: int = Field(default=20, ge=1, le=100)  # 검색어 하나당 상세까지 확인할 상품 수
     max_per_category: int = Field(default=60, ge=1)  # 카테고리별 창고 최대 보관 수
     recheck_days: int = Field(default=3, ge=0)  # 이 날짜가 지나면 판매 상태를 다시 확인
+    # 가성비 베스트셀러만 쌓이지 않게 (21단계). 카테고리별 [최저, 최고] 가격(원), 없으면 제한 없음
+    price_range: dict[Category, tuple[int, int]] = {}
+    exclude_words: list[str] = []  # 이름에 있으면 빼는 말 (만장, 1위, 특가 같은 판매량 광고)
+    review_cap: int = Field(default=0, ge=0)  # 순위에 리뷰 수를 이 수까지만 반영 (0이면 제한 없음)
 
 
 class Place(BaseModel):
@@ -269,6 +275,13 @@ class OutfitImage(BaseModel):
     )
     # 아우터가 있는 날 기본으로 입히는 방법 (영어). 기획의 styling 이 있으면 그것을 쓴다
     outer_styling: str = ""
+    # 상의 두 개를 겹쳐 입는 레이어드 (21단계). 기획에서 안에 입는 상의에 wear_with: 상의 를 적으면
+    # 이 문장으로 입힌다. {inner} 안쪽 상의, {top} 겉 상의 (영어 이름은 도구가 채움)
+    layer_styling: str = (
+        "The {inner} is layered under the {top}: its collar shows at the neckline, its cuffs peek "
+        "out about 3 cm beyond the sleeves of the {top}, and its hem shows a little below the hem "
+        "of the {top}."
+    )
 
 
 WEEKDAYS = "월화수목금토일"

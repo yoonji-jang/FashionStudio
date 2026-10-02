@@ -14,6 +14,20 @@ class SearchFilters(BaseModel):
     min_reviews: int = 0
     exclude_sold_out: bool = True
     max_results: int = 30
+    min_price: int = 0
+    max_price: int = 0  # 0이면 제한 없음
+    exclude_words: list[str] = []  # 상품 이름에 있으면 뺀다
+
+
+def name_excluded(name: str, words: list[str]) -> bool:
+    low = name.lower()
+    return any(w.lower() in low for w in words)
+
+
+def price_ok(price: int | None, low: int, high: int) -> bool:
+    if price is None:
+        return True
+    return price >= low and (not high or price <= high)
 
 
 class ProductSource(ABC):

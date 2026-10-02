@@ -44,7 +44,7 @@ report.md 를 쓰기 전에는 끝내지 않는다.
 
 ## 순서
 
-1. **기준 읽기**: `accounts/$ACCOUNT/profile.yaml`, `accounts/$ACCOUNT/voice.md` 를 읽는다.
+1. **기준 읽기**: `accounts/$ACCOUNT/profile.yaml`, `accounts/$ACCOUNT/voice.md`, `accounts/$ACCOUNT/styling.md`(코디 기준, 있으면) 를 읽는다.
 2. **오늘 정보**: `python -m tools.plan context --account $ACCOUNT --date $DATE`
    날짜·요일·계절·날씨 예보, 정해 둔 주제, 최근 게시, 상품 창고 재고가 나온다.
 3. **주제**: 정해 둔 주제가 있으면 그대로 쓴다. 없으면 `plan-themes` 스킬의 "하루 주제" 방법으로 하나 정한다.

@@ -84,6 +84,7 @@ def styling_text(plan: DailyPlan, products: dict[str, Product], profile: Profile
     cats = [products[it.product].category for it in plan.items]
     outer = profile.outfit_image.outer_styling if "아우터" in cats else ""
     parts = [outer] if outer else []
+    parts += layer_sentences(plan, products, profile)
     for it in plan.items:
         if not it.wear_how or it.wear_modes == ["beside"]:
             continue
@@ -91,6 +92,24 @@ def styling_text(plan: DailyPlan, products: dict[str, Product], profile: Profile
             continue  # 예전 누끼 방식의 "활짝 열기" 지시와 겹치지 않게 아우터 기본을 쓴다
         parts.append(it.wear_how)
     return " ".join(parts) or "Each item lies naturally as described, like a person wearing it."
+
+
+def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Profile) -> list[str]:
+    """상의 레이어드 (21단계): wear_with: 상의 인 상의를 다른 상의 안에 입힌다."""
+
+    def label(i: int) -> str:
+        cat = generate.CATEGORY_EN.get(products[plan.items[i].product].category, "item")
+        return f"{cat} in image {i + 1}"
+
+    tops = [i for i, it in enumerate(plan.items) if products[it.product].category == "상의"]
+    inner = [i for i in tops if plan.items[i].wear_with == "상의"]
+    outer = [i for i in tops if i not in inner]
+    if not inner or not outer or not profile.outfit_image.layer_styling:
+        return []
+    return [
+        profile.outfit_image.layer_styling.format(inner=label(i), top=label(outer[0]))
+        for i in inner
+    ]
 
 
 def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:

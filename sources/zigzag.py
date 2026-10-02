@@ -16,7 +16,7 @@ from datetime import date
 from typing import Any
 
 from core.models import Category, Product, SaleStatus
-from sources.base import ProductSource, SearchFilters
+from sources.base import ProductSource, SearchFilters, name_excluded, price_ok
 from tools import scout
 
 PRODUCT_URL = "https://zigzag.kr/catalog/products/{id}"
@@ -107,6 +107,10 @@ def passes(p: Product, filters: SearchFilters) -> bool:
     if filters.exclude_sold_out and p.status != "on_sale":
         return False
     if (p.rating or 0) < filters.min_rating:
+        return False
+    if not price_ok(p.price, filters.min_price, filters.max_price):
+        return False
+    if name_excluded(p.name, filters.exclude_words):
         return False
     return (p.review_count or 0) >= filters.min_reviews
 

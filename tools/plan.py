@@ -150,9 +150,10 @@ def eligible(
         and (p.review_count or 0) >= src.min_reviews
         and p.id not in used
     ]
-    from tools.collect import quality
+    from tools.collect import fits, quality
 
-    ok.sort(key=quality, reverse=True)
+    ok = [p for p in ok if fits(p, src)]
+    ok.sort(key=lambda p: quality(p, profile), reverse=True)
     return ok, used
 
 
@@ -327,10 +328,20 @@ def check(
             errors.append(f"{where}상품은 {span}개여야 합니다 (지금 {len(group)})")
         cats = [products[it.product].category for it in group if it.product in products]
         for it in group:
-            if it.wear_with and it.wear_with not in cats:
+            own = products[it.product].category if it.product in products else None
+            # 상의 레이어드(wear_with: 상의)는 자기 말고 상의가 하나 더 있어야 한다
+            need = 2 if it.wear_with and it.wear_with == own else 1
+            if it.wear_with and cats.count(it.wear_with) < need:
                 errors.append(
                     f"{where}{it.product}: wear_with {it.wear_with} 상품이 코디에 없습니다"
                 )
+        if profile.style.point_words:
+            from tools.collect import is_point
+
+            if not any(
+                is_point(products[it.product], profile) for it in group if it.product in products
+            ):
+                warns.append(f"{where}포인트 아이템(profile style.point_words)이 없습니다")
         for rule in rules.slots:
             if rule.required and rule.category not in cats:
                 errors.append(f"{where}필수 카테고리 {rule.category} 상품이 없습니다")
