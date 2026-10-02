@@ -7505,7 +7505,7 @@
     "url": "https://zigzag.kr/catalog/products/169750197",
     "shop": "무르",
     "name": "[미소츄 pick] 포그 호보백 메쉬 (7color)",
-    "price": 93800,
+    "price": 56280,
     "category": "가방",
     "colors": [],
     "image_urls": [
@@ -7521,7 +7521,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 582,
+    "review_count": 585,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -7530,6 +7530,174 @@
     "query": "숄더백",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:167878705",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167878705",
+    "shop": "무르",
+    "name": "포그 호보백(7color)",
+    "price": 52080,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151070507_25650.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151070128_86539.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151070686_13972.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151060939_88348.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151070337_25490.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151060827_32327.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 316,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:130117567",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/130117567",
+    "shop": "돈키",
+    "name": "[스웨이드 뉴컬러] 콘라드 숄더백 - 6color",
+    "price": 44590,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/18/9044_202503182118540091_62485.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 377,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:172149893",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/172149893",
+    "shop": "린츠",
+    "name": "basil bag 바질 백 (스웨이드 올리브)",
+    "price": 43110,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/7/58866_202609072030110544_28998.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/2/58866_202610021217391591_63843.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 256,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:169369601",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169369601",
+    "shop": "고세",
+    "name": "[민제PICK🍂] 아렌위빙 숄더백 GN245K (5colors)",
+    "price": 44870,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271916191040_26515.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212314020730_95834.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212314030239_13857.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271916189347_80109.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271916199735_82012.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271916196948_36643.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/10/3887_202606101352100593_35264.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271916203024_58442.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/10/3887_202606101352100883_18367.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 204,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168594319",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168594319",
+    "shop": "고세",
+    "name": "오브리 빅 호보백 GL256K (3colors)",
+    "price": 48930,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420143562_55591.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420144743_47190.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420141716_91688.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420145838_32226.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 198,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:164580854",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/164580854",
+    "shop": "레더리",
+    "name": "스웨이드 쇼퍼 드롭 숄더백 [2COLOR]",
+    "price": 42840,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/16804_202508211412050919_75245.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/16804_202508211412060156_37033.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/16804_202508211412060318_60128.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/16804_202508211412060508_29524.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/18/16804_202508181538080555_43281.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/18/16804_202508181538080879_65655.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/18/16804_202508181538080334_47809.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/18/16804_202508181538090034_70753.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 91,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니크"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:159313221",
@@ -7611,6 +7779,221 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:153923114",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/153923114",
+    "shop": "맥끌라니",
+    "name": "[윤경PICK] [하객룩] 607아로디 숄더앤 크로스백",
+    "price": 36260,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330421_18154.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330671_51943.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/9/11628_202506091033120828_15503.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330570_74195.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/16/11628_202609161441291979_62287.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330769_90971.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/11628_202606241322590665_63769.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/16/11628_202609161441289993_86908.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330917_93840.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 2876,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:133826914",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/133826914",
+    "shop": "레더리",
+    "name": "[하객룩 가방] 보스턴 나일론 숄더백 [3COLOR]",
+    "price": 37120,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/23/16804_202407231637520138_92445.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260271_30042.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/16804_202410081622320926_35064.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/1/26/16804_202401261119390048_15536.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260281_91169.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260255_77230.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260271_65865.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/1/26/16804_202401261119390050_63771.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/23/16804_202407231637520145_25459.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 571,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니크"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:161978790",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/161978790",
+    "shop": "고세",
+    "name": "플로우위빙호보백 GM167K",
+    "price": 46830,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250453_41168.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126240907_86458.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250275_86203.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250600_37979.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126240772_44431.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250091_14348.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126240511_70784.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/5/3887_202603051317560552_13316.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 140,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:150848794",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/150848794",
+    "shop": "맥끌라니",
+    "name": "엘론 숄더백",
+    "price": 36260,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603360649_48244.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603370281_94690.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603370447_71739.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603370630_83268.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603370809_88234.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603360831_62021.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/3/11628_202602031321360653_73306.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/3/11628_202602031321360229_30221.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/6/11628_202502061603370977_15099.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 1105,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170726447",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170726447",
+    "shop": "고세",
+    "name": "[🚀5차재입고][한삐우,민제PICK] 아비오 백 Avio Bag GN289K (3colors)",
+    "price": 53130,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/19/3887_202607192320421359_61531.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/19/3887_202607192320427921_36225.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/29/3887_202607291743164547_60948.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/3887_202609141047015060_44188.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/19/3887_202607192320425137_40550.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/3887_202609141047012080_64340.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/3887_202609141047017956_38762.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/3887_202609152107145040_25073.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271924222982_26838.png"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 263,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170446631",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170446631",
+    "shop": "미쏘",
+    "name": "[일부예약판매]스트랩 빅 숄더백_MIABCG706B/MIABCG96QB",
+    "price": 39920,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/center/v8/brands/rna37y57jeyj2ys1eg9f7jxm/gjcaasgpfddnnlgg0gmfzfyj/MIABCG706B_19_20.jpg",
+      "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/center/v8/brands/rna37y57jeyj2ys1eg9f7jxm/r1lvpvnihsk5dd41vqnf250b/MIABCG706B_49_14.jpg",
+      "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/center/v8/brands/rna37y57jeyj2ys1eg9f7jxm/t73op1mxy9t1i14mqfsf5dry/MIABCG706B_85_________.jpg",
+      "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/center/v8/brands/rna37y57jeyj2ys1eg9f7jxm/nmlyb3ci13q08ysujhj013mn/MIABCG706B_30_17.jpg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/7/11864_202607071407540751_80665.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/7/11864_202607071407550549_45976.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 182,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "오피스룩",
+      "캐주얼"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:137453892",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/137453892",
+    "shop": "벨류엣",
+    "name": "[천연가죽/하객룩/퀼팅백] 셀리 WOC 체인 미니백 - 2colors",
+    "price": 169930,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/8/10343_202403081014340427_11846.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/8/10343_202403081014340354_47048.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/8/10343_202403081014340351_34238.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 81,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "퀼팅 체인백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:164013796",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/164013796",
@@ -7633,7 +8016,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 1825,
+    "review_count": 1837,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -7649,7 +8032,7 @@
     "url": "https://zigzag.kr/catalog/products/134883967",
     "shop": "히어리",
     "name": "오로라 셔링 더플백_라일락",
-    "price": 58310,
+    "price": 58800,
     "category": "가방",
     "colors": [],
     "image_urls": [
@@ -7658,7 +8041,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 1394,
+    "review_count": 1411,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -7667,6 +8050,127 @@
     "query": "숄더백",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:129584739",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/129584739",
+    "shop": "루비나틴",
+    "name": "[인기] 직장인 여성 보스턴 가방 숄더 토트백 아이패드 데일리코디 8컬러 ",
+    "price": 43200,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141808469837_48308.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/9/25/7272_202309251331550696_61143.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/16/7272_202402161706200262_67805.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/16/7272_202402161706200263_24691.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141808472015_53698.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/16/7272_202402161706200271_80390.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/16/7272_202402161706200268_47489.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/2/16/7272_202402161706200265_73454.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141808467821_36234.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 1480,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:145494888",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/145494888",
+    "shop": "히어리",
+    "name": "오로라 셔링 더플백_플로랄",
+    "price": 57270,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/6/39799_202408061524140937_75321.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 867,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:117733398",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/117733398",
+    "shop": "루비나틴",
+    "name": "[A4 / 노트북 수납] 빅 스퀘어 쇼퍼백",
+    "price": 45200,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/16/7272_202403161245140618_10085.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/11/24/7272_202211241517010740_78901.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141830132525_50782.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/16/7272_202403161245140622_57731.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141830137467_97800.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141830134616_83862.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/3/16/7272_202403161245140617_49426.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141830139218_10738.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/7272_202609141830130689_40414.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 1433,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:165368299",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165368299",
+    "shop": "아노에틱",
+    "name": "[아노에틱][알로하PICK]데일리 위빙 메쉬백_5COLOR",
+    "price": 118300,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/7/18152_202601071232030467_45330.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/7/18152_202601071232030611_94261.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/7/18152_202601071232030691_62702.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/18152_202508211022260221_22369.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/18152_202508211022260640_14822.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/7/18152_202601071232030388_94560.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/7/18152_202601071232030254_69646.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/21/18152_202508211022260476_36406.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/7/18152_202601071232030802_39974.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 79,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "컨템포러리",
+      "심플베이직"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:161886716",
@@ -7694,6 +8198,34 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:165216354",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165216354",
+    "shop": "돈키",
+    "name": "[대학생가방] 로젤 숄더백 - 8color",
+    "price": 62720,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/11/9044_202508112117160040_46990.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/9/9044_202601091729210721_95242.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/11/9044_202508112117150637_29712.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/11/9044_202508112117150337_14369.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/17/9044_202609171828476588_96884.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 286,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:151166447",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/151166447",
@@ -7715,7 +8247,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.8,
-    "review_count": 3307,
+    "review_count": 3311,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -7780,6 +8312,41 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:169383407",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169383407",
+    "shop": "아노에틱",
+    "name": "[아노에틱]데일리 위빙 메쉬 미니백_8COLOR",
+    "price": 76300,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330423_17851.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330271_21838.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330519_50282.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330623_11903.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330819_80581.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337320920_91617.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330712_51953.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330127_13846.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337330992_86192.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/7/18152_202604071337340128_96214.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/16/18152_202607161709375974_48515.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 78,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "컨템포러리",
+      "심플베이직"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:170305230",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/170305230",
@@ -7801,7 +8368,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 240,
+    "review_count": 246,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -7810,6 +8377,66 @@
     "query": "숄더백",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:168002869",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168002869",
+    "shop": "폴스부띠끄",
+    "name": "[윤지 Pick!] CLOSES_8colors  11차 리오더 / 가을하객룩 / 숄더백 / 가방",
+    "price": 41300,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/12950_202609021604137003_59859.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/12950_202609021604134941_23306.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/12950_202609021604133654_81629.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/12950_202609021604138109_52119.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/12950_202608241618255295_70620.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/12950_202609231358369091_58790.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/12950_202609021604135898_72643.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/26/12950_202608261400568962_73447.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/13/12950_202601132253450933_98255.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/13/12950_202601132253440818_78078.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/13/12950_202601132253450300_37421.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 302,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:147738628",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147738628",
+    "shop": "히어리",
+    "name": "테일 버클 호보백_블랙",
+    "price": 72400,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042047000191_47725.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/5/39799_202409051635080848_50675.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042046570982_96575.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 64,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:170446634",
@@ -7843,6 +8470,31 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:157688262",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/157688262",
+    "shop": "돈키",
+    "name": "소부 숄더백 - 11color",
+    "price": 52920,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/18/9044_202503182122380794_64830.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/9044_202502121121370895_31355.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 154,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:169612789",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/169612789",
@@ -7870,6 +8522,30 @@
     "query": "숄더백",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:151166348",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/151166348",
+    "shop": "돈키",
+    "name": "보니타 숄더백 - 5color",
+    "price": 42770,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/18/9044_202503182109020005_20203.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 143,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:167741389",
@@ -7958,6 +8634,36 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:162619421",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/162619421",
+    "shop": "브리치",
+    "name": "[쏘울백] 쏘울 위빙 메쉬 버킷 토트 숄더백 (4color)",
+    "price": 50100,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://s3.ap-northeast-2.amazonaws.com/storage.b-flow.io/92231409/conversions/resize.jpg",
+      "https://s3.ap-northeast-2.amazonaws.com/storage.b-flow.io/92231410/conversions/resize.jpg",
+      "https://s3.ap-northeast-2.amazonaws.com/storage.b-flow.io/92231411/conversions/resize.jpg",
+      "https://s3.ap-northeast-2.amazonaws.com/storage.b-flow.io/92444498/conversions/resize.jpg",
+      "https://s3.ap-northeast-2.amazonaws.com/storage.b-flow.io/92231412/conversions/resize.jpg",
+      "https://s3.ap-northeast-2.amazonaws.com/storage.b-flow.io/92231413/conversions/resize.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 23,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:166400700",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/166400700",
@@ -8016,6 +8722,30 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:133231747",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/133231747",
+    "shop": "질바이질스튜어트",
+    "name": "[조이] 보스턴백 - 2colors",
+    "price": 82950,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/22/9800_202601221436080076_54791.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 70,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:171145247",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171145247",
@@ -8051,12 +8781,174 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:169682178",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169682178",
+    "shop": "졸리",
+    "name": "LUNE BAG 루윈백 - WEAVING BLACK 위빙블랙",
+    "price": 59640,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/9736_202604212328500544_54868.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 14,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:105424126",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/105424126",
+    "shop": "프롬데이원",
+    "name": "볼렌 퀼팅 체인백",
+    "price": 36600,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/10/542/412/105424126-1617342536523.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 19,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "러블리",
+      "오피스룩"
+    ],
+    "query": "퀼팅 체인백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:135922060",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/135922060",
+    "shop": "모노어딕트",
+    "name": "모노어딕트 퀼팅 코코 체인백",
+    "price": 52900,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://monoaddict.co.kr/web/product/extra/big/202402/5604175ed3d49b017a2a436a8ea70e62.jpg",
+      "https://monoaddict.co.kr/web/product/big/202402/02ee3c28df2691b0b961305becf31ba6.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/f7d25382f9291d41f105bd4f4b281c63.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/787ad5d3102a6e928615bc50cdf293e3.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/ca0b0dfea59e5ac491bb9671fbea51e8.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/21bd198f381f747ea453ec45cf6b25e8.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/a5afd57470c2d012fadbedea288c5015.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/0541a60645130d1acc5953b62cb42a0f.jpg",
+      "https://monoaddict.co.kr/web/product/extra/big/202402/49b900a4524aad6db9f76d8c99d5ffaa.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 17,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크"
+    ],
+    "query": "퀼팅 체인백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:171519345",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171519345",
+    "shop": "쓰리마인즈",
+    "name": "[윤경PICK👜직잭단독/국내제작] TRM Suede Soft Hobo Bag T37P",
+    "price": 43680,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/15701_202609091032331609_56469.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/15701_202609091032335874_95795.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/15701_202609091032336704_82841.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/15701_202609091032330609_46164.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/9/15701_202609091032334889_24712.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/15701_202609140942520939_31726.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/15701_202609140942522198_86921.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 17,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:165726653",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165726653",
+    "shop": "오스트카카",
+    "name": "소프트 숄더 미니 스웨이드 브라운",
+    "price": 194250,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://pic.sabangnet.co.kr/product_image/mw58380/104/ijUrW_104471_15.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw58380/104/0HPdx_104471_16.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw58380/104/a4Cen_104471_23.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw58380/104/Qmqgs_104471_14.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "컨템포러리"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170651652",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170651652",
+    "shop": "졸리",
+    "name": "LINDA BAG 린다백 - WEAVING DARK BROWN 위빙다크브라운",
+    "price": 49000,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/9/9736_202607091607056498_41726.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 5.0,
+    "review_count": 7,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:171374344",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171374344",
     "shop": "드파운드",
     "name": "[연선 PICK][단독] pino bag (hobo) - black (M)",
-    "price": 71540,
+    "price": 73500,
     "category": "가방",
     "colors": [],
     "image_urls": [
@@ -8069,8 +8961,8 @@
       "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/63142_202608241351269504_66462.jpeg"
     ],
     "has_flat_shot": false,
-    "rating": 4.7,
-    "review_count": 21,
+    "rating": 4.8,
+    "review_count": 24,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -8080,6 +8972,64 @@
     "query": "숄더백",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:171413799",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171413799",
+    "shop": "히어리",
+    "name": "오로라 셔링 더플백_퍼플",
+    "price": 65170,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/39799_202608211830099555_27080.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/39799_202608211830100788_89744.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/39799_202608211830096705_72893.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/39799_202608211830093808_65559.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/39799_202608211830095023_72173.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/39799_202608211830092078_79265.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 5.0,
+    "review_count": 13,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:162894023",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/162894023",
+    "shop": "리(LEE)",
+    "name": "Lee 더플백 보부상 그린 그레이 핑크 블랙 스카이블루 LE240139M",
+    "price": 56250,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/53449_202602061431360740_77897.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/53449_202602061431360201_97127.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/6/53449_202602061431370084_81317.png",
+      "https://pic.sabangnet.co.kr/product_image/mw159611/101/SAdrU_101143_7.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw159611/101/2hkLO_101143_10.jpg",
+      "https://pic.sabangnet.co.kr/product_image/mw159611/101/PGBRt_101143_9.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 5.0,
+    "review_count": 13,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:170776993",
@@ -8114,6 +9064,266 @@
     "query": "토트백",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:169612807",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169612807",
+    "shop": "돈키",
+    "name": "[직잭단독] 네로 미니 보스턴백- 8color",
+    "price": 52920,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/26/9044_202604261820470165_97989.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/26/9044_202604261820460584_79550.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/26/9044_202604261820470462_88059.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/26/9044_202604261820460933_22485.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 18,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:172006048",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/172006048",
+    "shop": "슬로우앤드",
+    "name": "[무료배송] #LENTO. Cut-out Leather hobo bag - 2 color",
+    "price": 61470,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://slowand.com/web/product/extra/big/202609/550fc4f883ceaceba1d4bdf70f12f6e7.jpg",
+      "https://slowand.com/web/product/extra/big/202609/48f3b87a3092d45f2f540f91d46ac0dc.jpg",
+      "https://slowand.com/web/product/extra/big/202609/48ce1214e5eacd4cfba38f7cdfeed08c.jpg",
+      "https://slowand.com/web/product/extra/big/202609/6320ffdef415144ee9c9188ae687e91e.jpg",
+      "https://slowand.com/web/product/extra/big/202609/0a18ed2aa867042d05c54e38b21b20e1.jpg",
+      "https://slowand.com/web/product/extra/big/202609/dbf65bd1939c300c5c6c801f08a96d8c.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 14,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170859735",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170859735",
+    "shop": "루비나틴",
+    "name": "레이 위빙 호보백 ",
+    "price": 46800,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129465170_40969.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129460635_99136.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129455497_32073.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129458117_89991.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129468197_46550.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129470419_89992.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/26/7272_202607262129472087_13195.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 7,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "호보백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:169682683",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169682683",
+    "shop": "셀프서비스",
+    "name": "[소가죽] 위빙 토트 숄더백 (M)",
+    "price": 66000,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://self-service.kr/web/product/extra/big/202604/3567c211143c8cf3491263e5c765a979.jpg",
+      "https://self-service.kr/web/product/extra/big/202604/2bdd750cd6480a88a027af768d9d5391.jpg",
+      "https://self-service.kr/web/product/extra/big/202604/bcd6bdb151cd4aa8a250a561b7e423b3.jpg",
+      "https://self-service.kr/web/product/extra/big/202604/5bce98485d432fcd5a0ac4610786a2c8.jpg",
+      "https://self-service.kr/web/product/big/202604/d6ac1b5e9ddf090436ec14c410e4630b.jpg",
+      "https://self-service.kr/web/product/extra/big/202604/566fe9cedd31cfe6ef881f73afea9adc.jpg",
+      "https://self-service.kr/web/product/extra/big/202604/995e8d6daca7741fb417d12d02408c4a.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.6,
+    "review_count": 5,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:171469724",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171469724",
+    "shop": "슬로우앤드",
+    "name": "[무료배송/오늘드림🚚] #LENTO. Modern & Classic Flap Leather Bag",
+    "price": 53170,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://slowand.com/web/product/extra/big/202608/58344c6da2974dfdb29a3154e2bc34c7.jpg",
+      "https://slowand.com/web/product/extra/big/202608/694a83bf6c376d19b985a831d22e1805.jpg",
+      "https://slowand.com/web/product/extra/big/202608/a18c41eb2c706cffa0b7408462b52829.jpg",
+      "https://slowand.com/web/product/extra/big/202608/3019174a9ab8cbe9f416f42642bc4b0f.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "퍼 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:171374348",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171374348",
+    "shop": "드파운드",
+    "name": "pino bag (suede) - brown (M)",
+    "price": 103500,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/63142_202608241349231539_62274.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/63142_202608241349226306_64872.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/63142_202608241349227781_78614.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/24/63142_202608241349228786_50659.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "컨템포러리",
+      "클래식"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168989631",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168989631",
+    "shop": "몽돌",
+    "name": "나일론 폴딩 더플 백 MDBG010_2 Colors",
+    "price": 52200,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/25/11060_202603251837220383_46273.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/25/11060_202603251837210088_63877.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/3/11060_202604031817060473_66897.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/3/11060_202604031817060272_63610.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/3/11060_202604031817060673_91965.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/25/11060_202603251837210227_66536.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/25/11060_202603251837210580_32154.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/25/11060_202603251837210470_50229.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 9,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "보스턴백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168305853",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168305853",
+    "shop": "히어리",
+    "name": "아이비 위빙 숄더백_블랙",
+    "price": 83300,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042047560895_44625.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042047550348_45201.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/39799_202602121729280777_73757.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 5,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼"
+    ],
+    "query": "위빙백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:171436733",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171436733",
+    "shop": "벨류엣",
+    "name": "[26FW] 멜브백 - 3colors",
+    "price": 136250,
+    "category": "가방",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/10343_202608281502358747_22782.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/10343_202608281502361814_20845.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/10343_202608281502363534_17247.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/10343_202608281502360201_22218.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/10343_202608281502362737_68358.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 5,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "스웨이드 숄더백",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:111145203",
