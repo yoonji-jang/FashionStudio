@@ -205,6 +205,8 @@ jobs:
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/fix_result.yaml 과 report.md 를 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
+            Bash 명령도 백그라운드로 돌리지 말고, 파이프·cd·&& 없이 `python -m tools...` 한 줄로 불러 (허용 목록에 걸려 막힌다).
+            fix_result.yaml 과 manifest.json 이 생기기 전에는 끝내지 마.
           claude_args: >-
             --max-turns 180
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Read,Write,Edit,Glob,Grep,Task,Agent"
@@ -225,6 +227,8 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
             백그라운드로 부르면 기다리는 동안 실행이 끝나 버린다.
+            Bash 명령도 백그라운드로 돌리지 말고, 파이프·cd·&& 없이 `python -m tools...` 한 줄로 불러 (허용 목록에 걸려 막힌다).
+            out/${{ env.DATE }}/manifest.json 이 생기기 전에는 끝내지 마.
           # 여러 벌 게시물(20단계)은 벌마다 검수해서 턴이 많이 든다
           claude_args: >-
             --max-turns 250
@@ -281,7 +285,16 @@ jobs:
           [ -f "out/$DATE/manifest.json" ] && exit 0
           echo "::error::$MODE 인데 out/$DATE/manifest.json 이 없습니다 (Claude 가 도중에 멈춤)"
           f=/home/runner/work/_temp/claude-execution-output.json
-          [ -f "$f" ] && { mkdir -p /tmp/claude-log; cp "$f" /tmp/claude-log/; }
+          [ -f "$f" ] || exit 1
+          mkdir -p /tmp/claude-log; cp "$f" /tmp/claude-log/
+          # 원인을 바로 볼 수 있게 막힌 도구, 실행한 명령, 마지막 말을 로그에 남긴다
+          echo "--- 막힌 도구"
+          jq -c '.[] | select(.type=="result") | .permission_denials[]? | {tool_name, tool_input}' "$f" | cut -c1-600 || true
+          echo "--- 실행한 명령 (마지막 25개)"
+          jq -r '.[] | select(.type=="assistant") | .message.content[]? | select(.type=="tool_use")
+            | "\(.name) \(.input.command // .input.file_path // .input.description // "" | tostring)"' "$f" | tail -25 | cut -c1-300 || true
+          echo "--- Claude 마지막 말"
+          jq -r '[.[] | select(.type=="assistant") | .message.content[]? | select(.type=="text") | .text] | .[-3:][]' "$f" | cut -c1-800 || true
           exit 1
 
       - name: Claude 실행 기록 (결과가 없을 때 원인 확인용, 저장소에는 올리지 않음)
