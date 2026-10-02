@@ -252,6 +252,20 @@ def _stored(pid: int, checked: date, **kw) -> Product:
     return Product.model_validate({**p.model_dump(), "checked_at": checked, **kw})
 
 
+@pytest.fixture(autouse=True)
+def no_price_rules(monkeypatch):
+    """가짜 카드 가격(42,400원)이 계정의 실제 가격대에 걸리지 않게 가격대·제외어를 끈다."""
+    original = collect.load_profile
+
+    def load(account, *args, **kwargs):
+        profile = original(account, *args, **kwargs)
+        profile.product_source.price_range = {}
+        profile.product_source.exclude_words = []
+        return profile
+
+    monkeypatch.setattr(collect, "load_profile", load)
+
+
 def test_collect_adds_drops_and_orders_photos(tmp_path: Path):
     store = Store("women", root=tmp_path)
     store.save_products(
@@ -362,3 +376,43 @@ def test_model_on_plain_background_is_not_flat():
     ImageDraw.Draw(img).rectangle((100, 0, 200, 360), fill=(30, 30, 30))  # 위아래로 잘린 사람
     s = photo_pick.score_image(img)
     assert s.skin < 0.012 and s.parts == 1 and not s.flat
+
+
+def test_cards_filtered_by_price_and_hype_words():
+    resp = search_response(
+        [
+            card(1),
+            card(2, final_price=9900),
+            card(3, title="[10만장돌파] 베이직 니트"),
+            card(4, title="[BEST] 스웨이드 자켓"),
+        ]
+    )
+    filters = SearchFilters(min_price=20000, max_price=100000, exclude_words=["만장", "best"])
+    products = zigzag.cards_to_products([resp], "아우터", "레더자켓", filters, TODAY)
+    assert [p.id for p in products] == ["zigzag:1"]
+
+
+def test_quality_caps_reviews_and_prefers_point_items():
+    from core.profile import load_profile
+    from tools.collect import fits, quality
+
+    profile = load_profile("women")
+    cap = profile.product_source.review_cap
+    base = dict(
+        source="zigzag",
+        url="https://zigzag.kr/catalog/products/1",
+        shop="s",
+        category="상의",
+        rating=4.8,
+        image_urls=["https://img.example/a.jpg"],
+    )
+    seller = Product(
+        id="zigzag:1", name="베이직 라운드 니트", price=39000, review_count=cap * 50, **base
+    )
+    point = Product(
+        id="zigzag:2", name="모헤어 스트라이프 니트", price=39000, review_count=cap, **base
+    )
+    assert quality(point, profile) > quality(seller, profile)
+    assert quality(seller) > quality(point)  # 프로필 없이는 예전처럼 리뷰 수 순
+    cheap = Product(id="zigzag:3", name="모헤어 니트", price=9000, review_count=100, **base)
+    assert fits(point, profile.product_source) and not fits(cheap, profile.product_source)

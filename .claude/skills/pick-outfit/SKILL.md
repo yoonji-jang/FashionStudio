@@ -5,8 +5,8 @@ description: 주제에 맞춰 상품 창고에서 코디 한 벌(아우터·상�
 
 # pick-outfit: 상품 조합
 
-기준: profile `outfit` (items_min, items_max, slots, reuse_cooldown_days, max_per_shop),
-`style`, `product_source` (min_rating, min_reviews, prefer_flat_shot).
+기준: `accounts/$ACCOUNT/styling.md` (코디 기준, 있으면 가장 먼저), profile `outfit` (items_min, items_max,
+slots, reuse_cooldown_days, max_per_shop), `style`, `product_source` (min_rating, min_reviews, prefer_flat_shot).
 
 ## 후보 보기
 카테고리마다:
@@ -14,21 +14,26 @@ description: 주제에 맞춰 상품 창고에서 코디 한 벌(아우터·상�
 python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 아우터
 python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상의 --query "코튼 셔츠"
 ```
-판매 중, 평점·리뷰 기준 이상, 최근에 쓰지 않은 상품만 좋은 순으로 나온다.
+판매 중, 평점·리뷰 기준 이상, 가격대·제외어(profile `product_source`)에 맞고 최근에 쓰지 않은 상품만 나온다.
+순서는 포인트 아이템(이름에 profile `style.point_words`)이 앞이고, 리뷰 수는 `review_cap` 까지만 센다.
+앞쪽만 보지 말고 `--query` 로 styling.md 의 포인트 아이템(스웨이드, 레이스, 체크, 쁘띠 스카프 …)을 찾아본다.
 각 줄: `id | 카테고리 | 짧은 이름 | 쇼핑몰 | 가격 | 평점(리뷰) | 단독컷/모델컷 | 스타일 | 검색어 | 원문`.
 
 ## 고르는 기준 (순서대로)
 1. **주제 slots 을 채운다**. 필수 카테고리(`required: true`)는 반드시, 선택 카테고리는 주제와 계절에 맞으면.
-2. **색**: 한 벌에 주 색 2~3개. `style.palette` 안에서. 포인트 색은 하나만.
+2. **센스 포인트 2개 이상** (styling.md "벌마다 지키는 것"): 상의 레이어링, 소재 대비, 패턴 하나, 소품 한 끗,
+   실루엣 대비 중 서로 다른 두 가지. 기본템(무지 니트, 슬랙스, 기본 숄더백, 로퍼)은 받쳐 주는 역할로만.
+   포인트 아이템이 하나도 없으면 `tools.plan check` 가 경고한다.
+3. **색**: styling.md 의 두 색 조합 + 무채색. `style.palette` 안에서. 무채색만으로 끝내지 않는다.
    상품명에 색이 없거나 여러 색(2color, 7color)이면 `color` 에 쓰려는 색을 적고, 사진 확인에서 확인한다.
-3. **분위기**: `style_tags` 가 주제 분위기와 맞는 것 (예: 오피스룩이면 심플베이직·모던시크·오피스룩).
-   한 벌 안에서 러블리와 모던시크처럼 반대 분위기를 섞지 않는다.
-4. **코디컷이 잘 나오는 것**: 가방·신발·주얼리는 단독컷이 있는 상품을 먼저 (`prefer_flat_shot`).
-5. **품질**: 같은 조건이면 리뷰 수가 많은 것.
-6. **규칙**: 개수 `items_min`~`items_max`, 한 쇼핑몰 `max_per_shop` 개까지,
+4. **소품 1~3개**: 벨트·양말·모자·목걸이·귀걸이·스카프를 코디가 살아날 때. 여성스러운 것과 스포티한 것을
+   섞는 꾸안꾸 믹스는 괜찮다. 코스튬 느낌·과한 로고는 피한다.
+5. **레이어드**: 상의 두 개를 겹치면 안에 입는 상의에 `wear_with: 상의` (아래 "생성형 코디컷").
+6. **코디컷이 잘 나오는 것**: 가방·신발·주얼리는 단독컷이 있는 상품을 먼저 (`prefer_flat_shot`).
+7. **규칙**: 개수 `items_min`~`items_max`, 한 쇼핑몰 `max_per_shop` 개까지,
    슬라이드는 표지 + 상품 수 + 요약 ≤ 10장. 여러 벌 게시물(profile `looks`)은 이 기준이 벌 하나에
    적용되고, 벌 사이 규칙은 `outfit-candidates` 스킬의 "여러 벌" 절.
-7. 가격대가 한 상품만 튀지 않게 한다 (다른 상품의 3배 이상이면 다시 본다).
+8. 가격대가 한 상품만 튀지 않게 한다 (다른 상품의 3배 이상이면 다시 본다).
 
 ## plan.yaml 에 쓰는 것 (items 한 개, core.models.PlanItem)
 ```yaml
@@ -50,6 +55,11 @@ AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참�
   사진에 다른 색·다른 상품이 함께 있으면 "the photos also show a gold pair, ignore it" 처럼 적는다.
 - `size` (선택, 영어): 실제 크기. 없으면 도구가 옷은 cm(아래 기장 규칙), 가방·신발·주얼리는
   config/models.yaml `default_sizes` 로 쓴다. 쇼핑몰 실측을 알면 "about 110 cm long from shoulder to hem".
+- **상의 레이어드** (21단계): 셔츠를 니트·베스트·뷔스티에 안에 입히면 안쪽 상의에 `wear_with: 상의`.
+  도구가 profile `outfit_image.layer_styling`(깃은 목선에, 소매 끝 3cm, 밑단 살짝)으로 입힌다.
+  셔츠 위 튜브톱, 어깨에 니트 두르기, 목에 스카프 묶기처럼 다르게 입힐 때는 `styling` 에 영어로 직접 쓴다
+  ("The striped knit is draped over the shoulders with its sleeves loosely tied at the chest.").
+  여러 벌 게시물은 벌마다 `styling`.
 - plan.yaml 맨 위 `styling` (선택, 영어): 한 벌을 어떻게 입혀 펼칠지. 없으면 아우터가 있는 날은
   profile `outfit_image.outer_styling`(거의 닫고 가운데만 살짝 벌림)을 쓴다. 아우터를 활짝 열지 않는다.
   예: "The cardigan is buttoned only at the top; the shirt collar shows at the neckline."
@@ -78,4 +88,5 @@ AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참�
   쇼핑몰 실측(총장)을 알거나 이름으로 알 수 없는 기장이면 `cm` 에 직접 적는다 (예: 크롭 가디건 50).
   기본보다 긴 아우터는 어깨를 맞춰 아래로 늘어나 입은 것처럼 하의 위를 덮는다.
 
-마지막에 `reason` 에 조합 이유를 2~3문장으로 쓴다 (색, 분위기, 왜 이 상품인지).
+마지막에 `reason` 에 조합 이유를 2~3문장으로 쓴다. 첫 문장은 이 벌의 센스 포인트
+(예: "브라운 니트 밖으로 하늘색 셔츠 깃과 소매를 빼고 볼캡으로 블루를 이어 줌"), 다음은 색과 왜 이 상품인지.
