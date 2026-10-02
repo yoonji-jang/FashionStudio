@@ -82,9 +82,19 @@ def daily(**kw) -> DailyPlan:
     return DailyPlan.model_validate(data)
 
 
-def test_sample_plan_passes_check():
+def test_sample_plan_passes_check(tmp_path):
     p = plan.load_plan(Path("samples/women/plan_2026-09-27.yaml"))
-    errors, _ = plan.check(p, load_profile("women"), Store("women"))
+    # 샘플 상품은 21단계 수집 기준(가격대·판매량 제목)으로 실제 창고에서 빠졌으니 형식만 본다
+    cats = ["아우터", "상의", "하의", "가방", "신발", "소품", "소품"]
+    photos = [f"https://example.com/{k}.jpg" for k in range(6)]
+    s = Store("women", root=tmp_path / "data")
+    s.save_products(
+        [
+            product(int(it.product.split(":")[1]), c).model_copy(update={"image_urls": photos})
+            for it, c in zip(p.items, cats, strict=True)
+        ]
+    )
+    errors, _ = plan.check(p, load_profile("women"), s)
     assert errors == []
 
 
