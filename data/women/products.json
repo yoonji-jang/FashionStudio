@@ -9892,6 +9892,81 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:127748170",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/127748170",
+    "shop": "세인트스코트주얼리",
+    "name": "브렌타 레더 시계 / ST5088SWBK",
+    "price": 32850,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/6/22/10960_202306221355510834_96386.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/10960_202601301129060932_25549.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/10960_202601301129070138_88531.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/10960_202601301129070284_12370.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 854,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:166003887",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/166003887",
+    "shop": "휴먼앤캣",
+    "name": "파운드2 워시드 빈티지 볼캡 [블랙]",
+    "price": 19880,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/14/52246_202504142215050691_51269.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 218,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:171308977",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171308977",
+    "shop": "휴먼앤캣",
+    "name": "파운드2 빈티지 스톤 워시드 볼캡 (9색상)",
+    "price": 20930,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/13/52246_202608131915494940_35058.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 186,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:157821589",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/157821589",
@@ -9935,7 +10010,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 492,
+    "review_count": 442,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -9952,7 +10027,7 @@
     "url": "https://zigzag.kr/catalog/products/143131438",
     "shop": "더노블",
     "name": "[3colors/소가죽] 레더 골드버클 얇은 버클 왓츠 소가죽 슬림벨트",
-    "price": 12420,
+    "price": 11320,
     "category": "소품",
     "colors": [],
     "image_urls": [
@@ -9962,7 +10037,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 330,
+    "review_count": 335,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -9971,6 +10046,57 @@
     "query": "벨트",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:171308973",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171308973",
+    "shop": "휴먼앤캣",
+    "name": "[단독컬러] 파운드2 워시드 빈티지 볼캡 (11색상)",
+    "price": 20910,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/13/52246_202608131912123015_23414.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 304,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:130846670",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/130846670",
+    "shop": "세인트스코트주얼리",
+    "name": "브렌타 레더 시계 / ST5088RRBR",
+    "price": 32850,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/10960_202601201411010272_88985.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/10960_202601201411010633_89418.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/10960_202601201411010481_80985.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/10960_202601201411010802_99912.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 1426,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:169414958",
@@ -9995,7 +10121,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.8,
-    "review_count": 3856,
+    "review_count": 3859,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -10004,6 +10130,224 @@
     "query": "귀걸이",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:150956611",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/150956611",
+    "shop": "모노플로르",
+    "name": "울 니트 삼각 머플러 헤어 커치프 두건 쁘띠 스카프",
+    "price": 13000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808130211_78628.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120440_72853.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120656_14986.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120353_27768.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120260_53910.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120859_23755.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808130291_91515.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 419,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:140731963",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/140731963",
+    "shop": "비마이뮤즈",
+    "name": "[생활방수/바스락원단] 레코드 자수 볼캡 여름 물놀이 워터밤 바캉스 수영장 파란색 모자",
+    "price": 14310,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/9/4882_202405091343440910_73585.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 1663,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:110794612",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/110794612",
+    "shop": "아세르로조",
+    "name": "데일리 베스트 힙템! c silver 써지컬 두줄 체인 볼드 토글바 목걸이",
+    "price": 14700,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/31/7780_202210311721580939_58077.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/31/7780_202210311721580933_41925.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/31/7780_202210311721580936_77363.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/31/7780_202210311721580933_91653.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/31/7780_202210311721580936_94094.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/31/7780_202210311721580947_82275.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 1432,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:115750083",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/115750083",
+    "shop": "아세르로조",
+    "name": "시크힙 볼드 halo 써지컬 하트 자물쇠 열쇠 드롭 두줄 목걸이",
+    "price": 17400,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/17/7780_202210171154010359_36846.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/17/7780_202210171154010359_97078.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/7780_202609021821249069_77033.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/7780_202609021821253639_50489.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/7780_202609021806314294_79362.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/10/17/7780_202210171154010358_69399.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 640,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:139297257",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/139297257",
+    "shop": "블루아925",
+    "name": "[5size] 실버925 볼드 물방울 원터치 링 귀걸이",
+    "price": 22500,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807050404_81549.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807050567_52223.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807050148_55534.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807060197_88364.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807060065_74291.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807050721_21779.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/5/30/38025_202505301326260924_74618.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/12/29/38025_202512291807050889_90255.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 4032,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:158546103",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/158546103",
+    "shop": "베니토",
+    "name": "[9천개돌파/faux레더/파우치증정] made  MOIRE 슬림 골드 버클 벨트 (봄/간절기/데일리/데일리룩/출근룩/데이트룩/하객룩/격식룩/오피스룩/벚꽃/개강/벨트)",
+    "price": 22300,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/15/854/610/158546103-8023670768668764367.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 942,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "오피스룩"
+    ],
+    "query": "가죽 벨트",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:109742299",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/109742299",
+    "shop": "블루씨티",
+    "name": "[무배] 프리미엄 슬림 레더 스마트워치 38mm 40mm 41mm 스트랩 6color",
+    "price": 11610,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://blue-city.kr/web/product/extra/big/20220106/fb52e2631570752ff635501060803bad.jpg",
+      "https://blue-city.kr/web/product/extra/big/20220106/9cb53bf51145f7cabcdaf579efd15588.jpg",
+      "https://blue-city.kr/web/product/extra/big/20220106/9c6153a4f56a872fc5ecd0070c37b708.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 2146,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:142880069",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/142880069",
+    "shop": "위드링",
+    "name": "[all써지컬/한쌍!] 12~16mm 물방울 볼드 원터치 링귀걸이 써지컬스틸 골드 실버",
+    "price": 10900,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/14/288/006/142880069-7813405376502961896.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 288,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:169325375",
@@ -10027,7 +10371,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.7,
-    "review_count": 2296,
+    "review_count": 2304,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -10036,6 +10380,237 @@
     "query": "귀걸이",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:143617362",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/143617362",
+    "shop": "프롤로그이어링",
+    "name": "물방울 원터치 써지컬스틸 귀걸이 써지컬귀걸이  볼드링 귀걸이",
+    "price": 12220,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/10/5774_202606101503340171_66974.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 439,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:148600384",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/148600384",
+    "shop": "모어티엡",
+    "name": "[써지컬] 2size 하트 펜던트 롱 드롭 긴 레이어드 목걸이 ",
+    "price": 20400,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450779_35701.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450784_73282.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450788_37029.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450789_60345.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450789_23553.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450787_87619.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450785_30723.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450788_64809.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450788_83228.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/8/34088_202405081113450786_76706.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 113,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:147477007",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147477007",
+    "shop": "스플리",
+    "name": "마름모 쁘띠 스카프 모음 삼각",
+    "price": 14940,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445090720_10225.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445080288_23879.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445090367_17669.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445100392_89996.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445100136_11355.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445080028_95330.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/3/8801_202409031445080584_50585.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 230,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:161559034",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/161559034",
+    "shop": "데일리나인",
+    "name": "[1+1할인🌼아일렛 시스루양말]발레코어 가을 니삭스 여름 삭스 양말  하이틴 반스타킹 종아리 장목 롱삭스 검정 회색 루즈 간절기(dz)",
+    "price": 10770,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021419590703_55423.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021420000543_91322.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021419590858_46897.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021420000374_35825.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021420000043_98161.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 214,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:150290269",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/150290269",
+    "shop": "레이디23",
+    "name": "wool100% 스웨트 헤어커치프 삼각 니트 숄 미니 머플러 스카프 두건 스트라이프목도리 슬림 빨간 파란 하늘색 트윌리 울 스카프 손수건",
+    "price": 15120,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://lady23.co.kr/web/product/extra/big/202503/b1c311d802054a1e83cfd97f11fb4663.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202503/7adf3160b7985418aa89843bf157298b.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202410/fe2f4b5bd19ca9c8e6d009a88d60d3f5.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202410/35c2852ef20b3939070f3b41d64841c1.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202503/feb8681bfa9ca40201252b003dde87b8.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202503/d6f15e8b15dfa04fbe4c9ff34b3106cb.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202503/076e4def5cdf8b0aaa2df51856faedf9.jpg",
+      "https://lady23.co.kr/web/product/extra/big/202503/604480d22ce5d7d3e382e0c5ce68513e.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 229,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:165609253",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165609253",
+    "shop": "언니가간다",
+    "name": "완벽핏 소두효과🧢쌩얼지켜/올림픽 피그먼트 볼캡 - 기본소장 모자 올림피아 레터링 피그먼트 볼캡 워싱 소두 핏좋은  캡모자 사계절 기본 핏좋은  캡 얼리어텀",
+    "price": 15750,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://img01.gosister.co.kr/goods/up_img_square/ACC-29168_SQ.jpg",
+      "https://img01.gosister.co.kr/goods/up_img_square/ACC-29168_SQ2.jpg",
+      "https://img01.gosister.co.kr/goods/up_img_square/ACC-29168_SQ4.jpg",
+      "https://img01.gosister.co.kr/goods/up_img_square/ACC-29168_SQ3.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 188,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "러블리"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:167165434",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167165434",
+    "shop": "휴먼앤캣",
+    "name": "파운드 워시드 빈티지 볼캡 [블랙]",
+    "price": 19880,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/14/52246_202504142205140087_75384.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 155,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:159234512",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/159234512",
+    "shop": "슬리피슬립",
+    "name": "[아이브 가을착용,직잭단독]두왓 유캔트 볼캡(19컬러)",
+    "price": 29920,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121129080393_60744.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121129070293_38214.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121129070583_20661.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121129070830_96304.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121129080159_23646.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121100350335_73900.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121100350771_50610.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121100350539_11974.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/12/11144_202503121129080594_92946.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 148,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:113341770",
@@ -10119,6 +10694,183 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:129442070",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/129442070",
+    "shop": "에드모어",
+    "name": "[소미PICK][MADE] mac284 시즈너블 볼륨 벨트(belt)",
+    "price": 15010,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936064670_67719.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936062894_24659.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936061825_81640.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936065593_70680.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936066534_79322.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936069117_80434.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936063685_38373.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/1988_202609280936059676_25277.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 5063,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "가죽 벨트",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:106737926",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/106737926",
+    "shop": "프롬산타",
+    "name": "10켤레 자체제작 기본 양말 세트 무지중목 여자 남자 중목 흰 블랙 스니커즈 검정 면 국산 필라테스 개강룩 하객룩 블랙 화이트 봄 여름 가을 겨울 반 발목",
+    "price": 13410,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://fromsanta.co.kr/web/product/extra/big/202110/d6b73de2cb4e1cf22d5e85459b6eddf5.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/1f97e0a7d0c0d90d0da631821cda0d45.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/373d770bfd1351bfe45cb78a5d29dd7f.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/b29dc6ff899dda66cb4195e9b6f2ba06.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/b1af996ae4b60f2e32197df2597585a7.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/e5c16705515cd6a2f5f746553d45c391.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/61df29ef009b29d9688b0c15ad0f6d0e.jpg",
+      "https://fromsanta.co.kr/web/product/extra/big/202110/8b5239dc71aa107bc4b061ef1f6f26b1.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 1165,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:115960912",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/115960912",
+    "shop": "앵브록스",
+    "name": "[태연, 여자아이들 미연, 아이브 리즈 착용] holiday heart necklace",
+    "price": 22400,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/27/9303_202408271042530438_87593.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/27/9303_202408271042530337_14255.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/14/9303_202502141100030961_39388.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/27/9303_202408271042520700_76520.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/8/27/9303_202408271042530028_24162.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 709,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:113382000",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/113382000",
+    "shop": "리끌로우",
+    "name": "B019 BLACK 블랙 안경 (3size) / 뿔테 스퀘어 패션 쌩얼 긱시크 안경 [안경 닦이+케이스포함]",
+    "price": 16730,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2023/10/23/3837_202310231407390932_19774.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/3837_202608251817144977_14072.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/7/3837_202503071603490013_87985.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 447,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:169299009",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169299009",
+    "shop": "토마토스토어",
+    "name": "르미 시스루머플러 스카프",
+    "price": 10360,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/1/8835_202604011801070572_78321.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/1/8835_202604011801070762_85474.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/1/8835_202604011801070668_77698.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 70,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "유니크"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:148867821",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/148867821",
+    "shop": "마이싹",
+    "name": "당일출고📦 자체제작 2켤레 슬림 라인 잔골지 니삭스 반스타킹 양말",
+    "price": 10710,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411508415_61396.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411516637_78130.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411521811_84190.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411510136_31130.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411520269_31527.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411511151_60943.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411519316_86368.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411506998_47171.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/6/14/34661_202406140858250305_35899.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/6/14/34661_202406140858250305_20002.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 98,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:138377436",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/138377436",
@@ -10145,6 +10897,67 @@
     "query": "귀걸이",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:157668212",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/157668212",
+    "shop": "루아루아",
+    "name": "볼루메 물방울 볼드 원터치 써지컬 링 귀걸이(2size/2color)",
+    "price": 15840,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/42594_202510222011120007_75093.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/42594_202510222011120944_61744.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/42594_202510222011120446_35288.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/42594_202510222011130624_53163.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/42594_202510222011130231_96785.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 122,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니크"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:169915449",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169915449",
+    "shop": "나나퀸",
+    "name": "써지컬 스틸 물방울 볼드 볼륨 원터치 링 귀걸이 볼드한 데일리 실버 골드",
+    "price": 10710,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035010570_83581.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035010025_49818.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035010209_81000.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035020044_64407.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035010912_67550.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035010751_21292.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035010389_59997.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035000868_94410.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035020172_92083.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/12/9239_202605122035020293_16498.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 127,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니섹스"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:147846100",
@@ -10176,6 +10989,60 @@
     "query": "목걸이",
     "collected_at": "2026-09-26",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:153946176",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/153946176",
+    "shop": "앵브록스",
+    "name": "heart and cubic ring necklace",
+    "price": 34300,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/5/9303_202506051045020028_81938.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/5/9303_202506051045010813_77216.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/26/9303_202411261802140071_28577.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/28/9303_202510281724180834_48873.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/10/9303_202507101540250364_30353.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/11/26/9303_202411261802140336_78157.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/10/9303_202507101540250024_62530.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 710,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:166284897",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/166284897",
+    "shop": "럼튼",
+    "name": "럼튼 자개 시계 하버 여성 가죽 손목 시계",
+    "price": 92880,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://pic.sabangnet.co.kr/product_image/mw65384/101/SnUDs_101601_1.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 472,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:154156593",
@@ -10248,7 +11115,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.8,
-    "review_count": 1983,
+    "review_count": 1986,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -10401,6 +11268,270 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:105723459",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/105723459",
+    "shop": "에프터먼데이",
+    "name": "lace petit scarf (4colors)",
+    "price": 10900,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/10/572/345/105723459-440488219602772449.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 645,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:119702727",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/119702727",
+    "shop": "매니크",
+    "name": "스퀘어 버클 벨트",
+    "price": 12400,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/28/9512_202502281803340936_10828.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 711,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "가죽 벨트",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:128441975",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/128441975",
+    "shop": "슬로우앤드",
+    "name": "[🏆후기인정] #LENTO. 시즌리스 스퀘어 벨트 (belt) - 3 color",
+    "price": 15910,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/12/844/197/128441975-1882300521646302958.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 1190,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "가죽 벨트",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:100511766",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/100511766",
+    "shop": "우셀",
+    "name": "*컬러추가*[무배]  Eban 리얼소가죽 손목시계 (3color)",
+    "price": 26010,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://wooselfish.cafe24.com/web/product/big/202104/c896f38255cbad3e053e9a831414c31d.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 1231,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:111117347",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/111117347",
+    "shop": "비마이뮤즈",
+    "name": "[브랜드퀄리티] 브로드 투명 스트릿 안경테 뿔테 선글라스 캣아이 남녀공용 안경 4color",
+    "price": 12510,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/3/25/4882_202203251037190774_48982.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 4149,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:141311302",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/141311302",
+    "shop": "리끌로우",
+    "name": "[몬스타엑스 형원 PICK❤️] NIRNIR 5컬러 접이식 폴더 자외선차단 선글라스 / 뿔테 동글이 긱시크 쌩얼 패션 틴트 썬글라스 [안경 닦이+케이스포함]",
+    "price": 18130,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/3837_202604211354460880_11881.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/3837_202604211632190801_15424.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/3837_202604211354460666_74327.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/3837_202604211632190449_14100.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/5/3837_202603051602160867_14377.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/5/3837_202603051546020481_11868.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/6/12/3837_202606121442130151_69485.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/3837_202604211632190662_63831.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/27/3837_202601271015350579_54082.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/20/3837_202405201130290298_86826.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3837_202609031321534645_34851.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 1190,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:166003897",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/166003897",
+    "shop": "휴먼앤캣",
+    "name": "파운드 워시드 플랫 브림 캡 [네이비]",
+    "price": 19880,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/14/52246_202504142234300516_44716.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 298,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168887889",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168887889",
+    "shop": "베이델리",
+    "name": "[당일출고][MADE/2PACK]알리 골지 레이어드 니삭스",
+    "price": 11800,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://beidelli.com/web/product/extra/big/202603/6df2da6e08f609861530b544808cd87d.jpg",
+      "https://beidelli.com/web/product/extra/big/202603/8a47cf0b655f3a01a2ebd4cda9903daf.jpg",
+      "https://beidelli.com/web/product/extra/big/202603/acb51389ce26c43fe18fd410d3698fdc.jpg",
+      "https://beidelli.com/web/product/big/202603/1aad61d78a04e1e4441054ea52ffe8d3.jpg",
+      "https://beidelli.com/web/product/extra/big/202603/46867a63e28535c3c9d3ff0081fb6849.jpg",
+      "https://beidelli.com/web/product/extra/big/202603/254b9c01488c91bd40541826880fc387.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 43,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:150577244",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/150577244",
+    "shop": "배드걸",
+    "name": "[12컬러] 간편하고 부드러운 울 삼각 무지 쁘띠 숏 머플러 스카프 커치프 바부슈카",
+    "price": 12400,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://badgirlshop.co.kr/web/product/extra/big/202410/b9623c4ce767e038e2ffe989a6cb83cc.jpg",
+      "https://badgirlshop.co.kr/web/product/extra/big/202410/ec26e9a4eb7720a8a29a00d0b483e6cc.jpg",
+      "https://badgirlshop.co.kr/web/product/extra/big/202410/33a0acb9e29ad2fbcb1ab2ac54b5ddcf.jpg",
+      "https://badgirlshop.co.kr/web/product/extra/big/202410/e5a0585ae1124e506b125384df50c5fa.jpg",
+      "https://badgirlshop.co.kr/web/product/extra/big/202410/9705c7f2840f92dae7c35ab58992cccf.jpg",
+      "https://badgirlshop.co.kr/web/product/extra/big/202410/ceec3ede2be5f64d2e09d5641e834ed6.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 83,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:133241182",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/133241182",
+    "shop": "우셀",
+    "name": "Eban 리얼소가죽 손목시계 (3color)",
+    "price": 25110,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/1/10/1426_202401101227240085_47590.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 279,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:126882444",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/126882444",
@@ -10429,6 +11560,64 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:168376418",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168376418",
+    "shop": "포지타노",
+    "name": "[베스트🏆] CELIO 3색상 납작이 긱시크 뿔테 호피 블루라이트차단 안경",
+    "price": 15000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751060713_34405.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751070001_45388.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751060868_93880.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751060420_47220.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751050675_16239.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751050383_93457.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751040720_68640.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/58995_202601301751050046_87032.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 133,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:162040169",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/162040169",
+    "shop": "고고싱",
+    "name": "[오늘출발][소가죽/4type] 레이어드 베이직 벨트 (둥근스퀘어,사각스퀘어,오벌,미니오벌,레더,유광)",
+    "price": 12950,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://ggsing.com/web/product/extra/big/202505/4bcb5c5716caae7ce6977efc20c65070.jpg",
+      "https://ggsing.com/web/product/big/202505/58c7b1e4839c949102c8b94674b9e0b2.jpg",
+      "https://ggsing.com/web/product/extra/big/202505/73d1181c540d6b6675ebe0828db05b6a.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 67,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "러블리"
+    ],
+    "query": "가죽 벨트",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:149685113",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/149685113",
@@ -10455,6 +11644,36 @@
     "query": "벨트",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:146969420",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/146969420",
+    "shop": "룩캐스트",
+    "name": "아샤 오버니삭스 / ASHA OVERKNEE SOCKS_3colors",
+    "price": 13460,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "http://image.sellic.co.kr/images/product_img/005/041/759/original/LK2EFTAS006-CH_01.jpg",
+      "http://image.sellic.co.kr/images/product_img/005/041/761/original/LK2EFTAS006-BK_01.jpg",
+      "http://image.sellic.co.kr/images/product_img/005/041/760/original/LK2EFTAS006-IV_01.jpg",
+      "http://image.sellic.co.kr/images/product_img/005/041/757/original/LK2EFTAS006-IV_M01.jpg",
+      "http://image.sellic.co.kr/images/product_img/005/041/758/original/LK2EFTAS006-BK_M01.jpg",
+      "http://image.sellic.co.kr/images/product_img/005/039/337/original/LK2EFTAS006-CH_M02.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 38,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱",
+      "캐주얼"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:168924788",
@@ -10488,6 +11707,59 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:123955500",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/123955500",
+    "shop": "골드앤디어",
+    "name": "[직잭단독] 골드앤디어 베스트 귀걸이 20종 모음 / 14KGF 무니켈 원터치 링",
+    "price": 18550,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/13/25520_202506131030190626_49943.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 394,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:116774776",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/116774776",
+    "shop": "리끌로우",
+    "name": "FBB82 4컬러 안경 / 메탈 하은테 긱시크 쌩얼 패션 안경테 [안경 닦이+케이스포함]",
+    "price": 16730,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/3837_202601291337060723_42128.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/11/16/3837_202211161332500588_30967.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/11/16/3837_202211161332500595_18189.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/13/3837_202608131534516506_70628.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/9/16/3837_202509161858190350_92963.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/1/3837_202609011825140245_46367.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 681,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:135598371",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/135598371",
@@ -10510,6 +11782,38 @@
     "query": "귀걸이",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:168176909",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168176909",
+    "shop": "포지타노",
+    "name": "[베스트🏆] LUCA 3색상 데일리 얼굴형 보완 뿔테 호피 블루라이트차단 안경",
+    "price": 15000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/58995_202601201657260886_40060.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/58995_202601201657270029_83407.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/58995_202601201657250670_15267.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/58995_202601201657260171_11204.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/5/58995_202602050941410935_53351.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/5/58995_202602050941410124_63089.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/5/58995_202602050941410554_57088.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/5/58995_202602050941420358_88292.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/58995_202601201657270392_12463.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 133,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:168924738",
@@ -10542,6 +11846,89 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:161983454",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/161983454",
+    "shop": "아워호프",
+    "name": "Square Classic Leather Watch - Black",
+    "price": 26460,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/21/17226_202604211911530735_27037.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/5/21/17226_202505211511280265_81147.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/5/21/17226_202505211511270975_65762.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/5/21/17226_202505211511280509_33441.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 118,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "클래식",
+      "로맨틱"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:159638010",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/159638010",
+    "shop": "리에티",
+    "name": "[급상승 Pick🍀] 리에티 DIO 3색상 데일리 블루라이트차단 뿔테 안경",
+    "price": 30800,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/24/4269_202503241406160636_12001.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/3/24/4269_202503241406160896_78749.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/18/4269_202511181613190388_40026.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/18/4269_202511181613190688_51323.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/26/4269_202508261749270178_99885.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/26/4269_202508261749270622_47692.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/8/26/4269_202508261749270891_34804.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 124,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:114534241",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/114534241",
+    "shop": "헤이",
+    "name": "[유튜버 PICK][레드벨벳 조이 착용]heart chain necklace",
+    "price": 14000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/9/5/11275_202209051607080716_52689.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2022/9/5/11275_202209051607080717_39161.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 208,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "내추럴"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:166018656",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/166018656",
@@ -10564,6 +11951,205 @@
     "query": "귀걸이",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:128507670",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/128507670",
+    "shop": "핫핑",
+    "name": "하트실버 목걸이 (가을-신상-쥬얼리-악세사리-데일리-포인트악세사리-하트팬던트)",
+    "price": 15910,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://hotping.co.kr/web/product/big/202308/b0565e3cb6214aa87e63abaa5e0343db.jpg",
+      "https://hotping.co.kr/web/product/extra/big/202308/1df55adab8826f4f99e525970ccf0303.jpg",
+      "https://hotping.co.kr/web/product/extra/big/202308/f61110e63abe6ecc16efa425c0b67b81.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 50,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "러블리"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:151190990",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/151190990",
+    "shop": "바온",
+    "name": "[BAONHAUS] 모니코 폼폼 도트 스트라이프 쁘띠 머플러 (2color)",
+    "price": 18020,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/15/119/099/151190990-5606110102994018077.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 46,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니크",
+      "빈티지"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:157592343",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/157592343",
+    "shop": "우셀",
+    "name": "Elloy 클래식 스키니 밴드 소가죽 손목시계 (4color)",
+    "price": 24720,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337590277_42568.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337580685_20219.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337590461_84899.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337590002_87181.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337580848_74270.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337590121_54314.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/10/1426_202502101337590597_51336.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 143,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:166206648",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/166206648",
+    "shop": "타티아나",
+    "name": "트라이앵글 쁘띠 머플러 MF8114 8컬러",
+    "price": 22050,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850420944_58935.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850430693_57592.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850430488_97723.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850430188_13143.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850440012_14642.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850430851_77327.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/10/15/15571_202510151850430325_33560.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 158,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170098640",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170098640",
+    "shop": "이비누아",
+    "name": "[자체제작/은침925] 볼드 하프링 더블라인 심플귀걸이 베이직이어링 링귀걸이 실버 골드 은침 실버포스트925",
+    "price": 12350,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260156030946_79272.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260155260619_36848.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260155450430_38017.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260155400352_18326.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260155510006_85292.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260155340313_67864.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/5/26/53986_202605260155560955_74112.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 42,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:147391225",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147391225",
+    "shop": "아세르로조",
+    "name": "힙 롱 더블 트윈  vbb 써지컬  레이어드 볼 목걸이",
+    "price": 15200,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/2/7780_202409021528560816_70709.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/2/7780_202409021528560225_97578.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/7780_202609231629241261_51155.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/2/7780_202409021528550933_96129.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/7780_202609231629249024_89859.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/23/7780_202609231629247026_29827.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 119,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:167348787",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167348787",
+    "shop": "비마이뮤즈",
+    "name": "[가을코디/울8%/팬던트💗] 소싱 리벳 니트 포근 레이어드 니삭스 롱 양말",
+    "price": 10710,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/25/4882_202511251614520097_84438.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/25/4882_202511251614510766_49629.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/25/4882_202511251614510311_33691.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/25/4882_202511251614520008_75076.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/11/25/4882_202511251614510496_65162.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.5,
+    "review_count": 52,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:115151027",
@@ -10618,6 +12204,34 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:169365768",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169365768",
+    "shop": "비마이뮤즈",
+    "name": "[가을코디/레이어드] 슈얼 레이스 포인트 니삭스 양말 트렌디템",
+    "price": 10710,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/6/4882_202604061119010692_70690.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/6/4882_202604061119010575_12835.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/6/4882_202604061119010801_51448.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/6/4882_202604061119010466_31685.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/6/4882_202604061119010350_32642.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 33,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:124347427",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/124347427",
@@ -10642,6 +12256,34 @@
     "query": "목걸이",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:169871564",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169871564",
+    "shop": "마뗑킴",
+    "name": "MATIN BLOCK LOGO BALL CAP IN DARK NAVY",
+    "price": 48000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://matinkim1.speedgabia.com/MATINKIM/960x1280/MK2600HT045VDV_1.jpg",
+      "https://matinkim1.speedgabia.com/MATINKIM/960x1280/MK2600HT045VDV_2.jpg",
+      "https://matinkim1.speedgabia.com/MATINKIM/960x1280/MK2600HT045VDV_3.jpg",
+      "https://matinkim1.speedgabia.com/MATINKIM/960x1280/MK2600HT045VDV_4.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 44,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:149806200",
@@ -10699,6 +12341,33 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:167863211",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167863211",
+    "shop": "타임셀럽",
+    "name": "카시오 LTP-V007L-7E1 빈티지 심플 스퀘어 데일리 여자 가죽 시계 d",
+    "price": 33000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "http://ad2.shoplinker.co.kr/product_image9/a0015984/202512/prd180441028_700.jpg",
+      "http://ad2.shoplinker.co.kr/product_image9/a0015984/202512/prd180441028_500_7.jpg",
+      "http://ad2.shoplinker.co.kr/product_image9/a0015984/202512/prd180441028_500_6.jpg",
+      "http://ad2.shoplinker.co.kr/product_image9/a0015984/202512/prd180441028_500_8.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 55,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:132240504",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/132240504",
@@ -10722,6 +12391,30 @@
     "query": "목걸이",
     "collected_at": "2026-09-27",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:145927115",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/145927115",
+    "shop": "카시오",
+    "name": "카시오 여성 가죽 손목 시계 LTP-V007L-7E2",
+    "price": 33750,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "http://file7.omp2.playauto.org/img/amp_blesscompany_shop/202203/25/202191_59.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 48,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "데일리"
+    ],
+    "query": "가죽 시계",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   },
   {
     "id": "zigzag:155429668",
@@ -10802,6 +12495,88 @@
     "checked_at": "2026-09-30"
   },
   {
+    "id": "zigzag:100751206",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/100751206",
+    "shop": "더노블",
+    "name": "[국내제작/2colors] 다이아스카프 실크 마름모 투톤 스카프",
+    "price": 11140,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://thenoble.kr/web/product/big/20200605/ef87003ae60426c2d9ad7555767bc629.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 19,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168376421",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168376421",
+    "shop": "포지타노",
+    "name": "[블루라이트 차단] TAVO 2색상 데일리 스퀘어 여자 뿔테 브라운 안경",
+    "price": 15000,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/58995_202609111727319505_87151.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/58995_202609111727320473_68325.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/58995_202609111727321395_43968.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/58995_202609111727310482_91232.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/58995_202609111727313629_75338.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/11/58995_202609111727316851_41705.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 23,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:168376420",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168376420",
+    "shop": "포지타노",
+    "name": "[자외선차단] RAVIE 2색상 스퀘어 심플 뿔테 선글라스",
+    "price": 13500,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/4/58995_202602040945440652_34450.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/4/58995_202602040945440818_92313.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/4/58995_202602041628360164_73388.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/4/58995_202602041628360622_37881.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/4/58995_202602041628370518_95176.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/4/58995_202602041628360854_51051.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.6,
+    "review_count": 24,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
     "id": "zigzag:169515935",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/169515935",
@@ -10844,7 +12619,7 @@
     ],
     "has_flat_shot": false,
     "rating": 4.9,
-    "review_count": 28,
+    "review_count": 29,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
@@ -10854,5 +12629,207 @@
     "query": "벨트",
     "collected_at": "2026-09-30",
     "checked_at": "2026-09-30"
+  },
+  {
+    "id": "zigzag:169387588",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169387588",
+    "shop": "휴먼앤캣",
+    "name": "파운드3 워시드 플랫 브림 캡 [네이비]",
+    "price": 20930,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/15/52246_202504150153340053_34269.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 35,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "빈티지"
+    ],
+    "query": "볼캡",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:135886552",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/135886552",
+    "shop": "키치앤멜로우",
+    "name": "[3size] 물방울 미니 볼드 원터치 실버 골드 링 귀걸이",
+    "price": 11800,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/2/12/23639_202502120329180678_87523.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 11,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "큐트"
+    ],
+    "query": "볼드 골드 귀걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:155974672",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/155974672",
+    "shop": "클라우드이모션",
+    "name": "poin ribbon strap over knee socks",
+    "price": 11070,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cloudemotion.kr/web/product/big/202412/f0fdf589dc2f7f6d37fb98692593ae73.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 22,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "러블리",
+      "빈티지"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:135963866",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/135963866",
+    "shop": "모코블링",
+    "name": "스퀴드빅 (뿔테안경/안경테)",
+    "price": 14400,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/13/596/386/135963866-3492880622139534309.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 20,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "심플베이직"
+    ],
+    "query": "뿔테 안경",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:170928315",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170928315",
+    "shop": "헤이",
+    "name": "[B1A4 산들,빌리 하람,하츠투하츠 지우 착용] Y drop heart necklace",
+    "price": 24500,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/11/11275_202506111546130326_37787.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/11/11275_202506111546130200_51382.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/6/11/11275_202506111546120989_41983.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 17,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "내추럴"
+    ],
+    "query": "하트 목걸이",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:114520120",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/114520120",
+    "shop": "스프링콤마",
+    "name": "[당일/양말/MADE/국내] 바이플레 펜던트하이니삭스 (단독주문만 당일 출고 가능!)",
+    "price": 19600,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/11/452/012/114520120-8648016339794149208.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 9,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "러블리"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:133452555",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/133452555",
+    "shop": "에프터먼데이",
+    "name": "layered over knee socks (5c)",
+    "price": 10900,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/13/345/255/133452555-7880803255426557709.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 14,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "니삭스",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
+  },
+  {
+    "id": "zigzag:136886445",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/136886445",
+    "shop": "타티아나",
+    "name": "커넥트 리본 트윌리 실크 스카프 SF2903",
+    "price": 47600,
+    "category": "소품",
+    "colors": [],
+    "image_urls": [
+      "https://tatiana.co.kr/web/product/extra/big/202403/43e445afa0269da09f7316d91a940d39.jpg",
+      "https://tatiana.co.kr/web/product/big/202403/5086c9db3c2bb6076c80873cb5a11b95.jpg",
+      "https://tatiana.co.kr/web/product/extra/big/202403/47a5666230a6589050fa4665ff658835.jpg",
+      "https://tatiana.co.kr/web/product/extra/big/202403/c7a8f36572481954637cad47a30383df.jpg",
+      "https://tatiana.co.kr/web/product/extra/big/202403/62f364bdf80fcd776c97cca29586ca7d.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 6,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱"
+    ],
+    "query": "쁘띠 스카프",
+    "collected_at": "2026-10-02",
+    "checked_at": "2026-10-02"
   }
 ]
