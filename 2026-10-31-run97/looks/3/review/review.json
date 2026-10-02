@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "/home/runner/work/FashionStudio/FashionStudio/samples/women/check_bottoms/look3.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "원본 사진이 없어 설명과 대조함. 블라우스 목선과 가방에 작은 글씨 같은 라벨이 보여 clean 1. 3번 바지 왼쪽 다리와 밑단이 왼쪽 아래 상품 이름 자리에 걸치고, 4번 가방이 바지 허리에 살짝 닿아 layout 1.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c1 은 6개 상품이 모두 설명과 같고 색도 맞음. 가방이 바지에 닿는 점과 왼쪽 아래 이름 자리에 바지가 걸치는 점, 작은 라벨이 흠. 합계 8점이고 0점 항목은 없음."
+}

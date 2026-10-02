@@ -1,0 +1,83 @@
+account: women
+date: '2026-10-31'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 라운드 트위드 자켓 (black collarless round-neck tweed jacket, cropped, gold buttons,
+    chest flap pockets, boxy fit)
+  name: 라운드 트위드 자켓
+  product: zigzag:122319307
+  ref_photos:
+  - 0
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 자개 단추 블라우스 (ivory blouse with pearl buttons, shirt collar)
+  name: 자개 단추 블라우스
+  product: zigzag:161099295
+  ref_photos:
+  - 2
+  - 1
+- color: 베이지
+  comment: ''
+  cutout_photo: 4
+  desc: 베이지 와이드 팬츠 (beige wide straight-leg trousers, flat front, no pleats, back
+    welt pockets)
+  name: 베이지 와이드 팬츠
+  product: zigzag:113058586
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 지퍼 스터드 미니 토트백 (black mini tote bag with a zipper and small studs)
+  name: 블랙 스터드 미니토트
+  product: zigzag:170446634
+  ref_photos:
+  - 5
+  - 1
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스틸레토 메리제인 슬링백 (black Mary Jane slingback flats, pointed toe, 1 cm heel)
+  name: 블랙 메리제인 슬링백
+  product: zigzag:160137199
+  ref_photos:
+  - 1
+looks: []
+reason: 블랙 트위드 자켓에 아이보리 블라우스와 베이지 와이드팬츠로 단정하게. 오피스룩 느낌을 살렸어요
+text:
+  hashtags:
+  - '#주말코디'
+  - '#나들이룩'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#스웨이드자켓'
+  - '#꾸안꾸'
+  intro: 흐리고 일교차 큰 주말엔 질감 다른 옷을 겹쳐 나들이 가요 🍂
+  points: []
+  title_lines:
+  - 스웨이드부터 새틴까지
+  - 질감 섞어 입은 가을 여섯 벌
+theme:
+  date: '2026-10-31'
+  mood: 흐리고 11~21도 일교차 큰 토요일, 질감과 두 색 조합으로 꾸민 듯 편한 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 스웨이드·레더·트위드 아우터
+  - category: 상의
+    desc: 셔츠를 베스트·니트 안에 받쳐 입는 레이어드
+  - category: 하의
+    desc: 체크·플리츠·새틴 스커트나 데님
+  - category: 가방
+    desc: 호보백·위빙백·스웨이드 숄더백
+  - category: 신발
+    desc: 메리제인·로퍼·슬링백
+  - category: 소품
+    desc: 쁘띠 스카프·볼캡·귀걸이
+  title_hint: 주말 나들이, 스웨이드·레더·새틴 질감 섞어 레이어드한 가을 코디
+  type: 상황
+  why: 토요일 흐림 최고 21도라 가벼운 아우터에 레이어드. 최근 출근·무채색 코디가 많아 주말 질감 믹스와 컬러 포인트로

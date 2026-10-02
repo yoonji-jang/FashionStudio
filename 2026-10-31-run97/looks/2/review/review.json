@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "2번 상의는 원본이 오프숄더(보트넥) 니트인데 그림은 목선이 높은 라운드넥으로 바뀜. 3번 스커트 아랫단 왼쪽이 왼쪽 아래 상품 이름 자리(폭 45%, 아래 35%)에 일부 걸침.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "retry",
+  "slide_issues": [],
+  "summary": "c1 은 색, 개수, 가방, 신발, 니삭스, 자켓이 원본과 같고 군더더기가 없음. 다만 니트 목선이 오프숄더에서 라운드넥으로 바뀌어 shape 0 이라 통과 기준 미달."
+}

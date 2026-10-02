@@ -1,0 +1,99 @@
+account: women
+cover: samples/women/check_bottoms/look1.jpg
+date: '2026-10-31'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 하프 자켓 (brown suede half-length jacket, collared, cropped at the hip)
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+  ref_photos:
+  - 0
+  - 3
+  - 5
+- color: 하늘색
+  comment: ''
+  cutout_photo: 0
+  desc: 하늘색 스트라이프 셔츠 (sky blue striped shirt, classic shirt collar, regular fit)
+  name: 스트라이프 셔츠
+  product: zigzag:157438223
+  ref_photos:
+  - 1
+  - 3
+  wear_with: 상의
+- color: 아이보리
+  comment: ''
+  cutout_photo: 4
+  desc: 아이보리 부클 니트 베스트 (ivory boucle knit vest, high neck with buttons, cropped length)
+  name: 부클 니트 베스트
+  product: zigzag:150449770
+  ref_photos:
+  - 4
+  - 2
+  - 1
+- color: 연청
+  comment: ''
+  cutout_photo: 0
+  desc: 연청 빈티지 와이드 데님 (light blue vintage wide-leg denim jeans, straight and long
+    to the shoes)
+  name: 빈티지 와이드 데님
+  product: zigzag:171292012
+  ref_photos:
+  - 0
+  - 4
+  - 3
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 호보백 (brown hobo shoulder bag)
+  name: 호보 숄더백
+  product: zigzag:167878705
+  ref_photos:
+  - 0
+  - 4
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 로퍼 (brown suede loafers)
+  name: 스웨이드 로퍼
+  product: zigzag:165725019
+  ref_photos:
+  - 0
+  - 2
+looks: []
+reason: 브라운 스웨이드 자켓 안으로 하늘색 스트라이프 셔츠 깃과 소매를 빼 입어 브라운에 하늘색 한 방울. 아이보리 부클 베스트와 연청 데님으로
+  가볍게, 로퍼와 호보백으로 편하게 맞춤
+text:
+  hashtags:
+  - '#주말코디'
+  - '#나들이룩'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#스웨이드자켓'
+  - '#꾸안꾸'
+  intro: 흐리고 일교차 큰 주말엔 질감 다른 옷을 겹쳐 나들이 가요 🍂
+  points: []
+  title_lines:
+  - 스웨이드부터 새틴까지
+  - 질감 섞어 입은 가을 여섯 벌
+theme:
+  date: '2026-10-31'
+  mood: 흐리고 11~21도 일교차 큰 토요일, 질감과 두 색 조합으로 꾸민 듯 편한 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 스웨이드·레더·트위드 아우터
+  - category: 상의
+    desc: 셔츠를 베스트·니트 안에 받쳐 입는 레이어드
+  - category: 하의
+    desc: 체크·플리츠·새틴 스커트나 데님
+  - category: 가방
+    desc: 호보백·위빙백·스웨이드 숄더백
+  - category: 신발
+    desc: 메리제인·로퍼·슬링백
+  - category: 소품
+    desc: 쁘띠 스카프·볼캡·귀걸이
+  title_hint: 주말 나들이, 스웨이드·레더·새틴 질감 섞어 레이어드한 가을 코디
+  type: 상황
+  why: 토요일 흐림 최고 21도라 가벼운 아우터에 레이어드. 최근 출근·무채색 코디가 많아 주말 질감 믹스와 컬러 포인트로

@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "3번 바지는 원본이 와이드 스트레이트인데 그림에서는 앞 주름선이 있고 밑단이 좁아 보여서 핏이 조금 다름. 원본의 뒤 웰트 주머니 대신 앞 허리쪽에 주머니 선이 보임. 4번 가방이 1번 자켓 소매 끝과 바지 옆에 살짝 닿음.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c1 은 색, 개수(신발 2짝), 깃, 겹침 순서가 모두 맞고 이상한 물건도 없음. 바지 핏과 주머니 위치가 조금 다르고 가방이 소매에 살짝 닿아 8점."
+}

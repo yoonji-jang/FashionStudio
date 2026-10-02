@@ -1,0 +1,236 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/samples/women/check_bottoms/look1.jpg
+cover_has_title: false
+items:
+- comment: ''
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:157438223
+- comment: ''
+  name: 부클 니트 베스트
+  product: zigzag:150449770
+- comment: ''
+  name: 빈티지 와이드 데님
+  product: zigzag:171292012
+- comment: ''
+  name: 호보 숄더백
+  product: zigzag:167878705
+- comment: ''
+  name: 스웨이드 로퍼
+  product: zigzag:165725019
+- comment: ''
+  name: 레더 크롭 자켓
+  product: zigzag:119553614
+- comment: ''
+  name: 오프숄더 니트
+  product: zigzag:167280062
+- comment: ''
+  name: 체크 미디스커트
+  product: zigzag:168692378
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:169369601
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:108185036
+- comment: ''
+  name: 니삭스
+  product: zigzag:148867821
+- comment: ''
+  name: 트위드 자켓
+  product: zigzag:150918386
+- comment: ''
+  name: 레이스 블라우스
+  product: zigzag:169713161
+- comment: ''
+  name: 핀스트라이프 슬랙스
+  product: zigzag:166018788
+- comment: ''
+  name: 스웨이드 바질백
+  product: zigzag:172149893
+- comment: ''
+  name: 스웨이드 슬링백
+  product: zigzag:105600542
+- comment: ''
+  name: 하트 목걸이
+  product: zigzag:115960912
+- comment: ''
+  name: 라운드 트위드 자켓
+  product: zigzag:122319307
+- comment: ''
+  name: 자개 단추 블라우스
+  product: zigzag:161099295
+- comment: ''
+  name: 베이지 와이드 팬츠
+  product: zigzag:113058586
+- comment: ''
+  name: 블랙 스터드 미니토트
+  product: zigzag:170446634
+- comment: ''
+  name: 블랙 메리제인 슬링백
+  product: zigzag:160137199
+- comment: ''
+  name: 크롭 스웨이드 자켓
+  product: zigzag:165484531
+- comment: ''
+  name: 링클프리 블라우스
+  product: zigzag:171584015
+- comment: ''
+  name: 헨리넥 니트
+  product: zigzag:168185673
+- comment: ''
+  name: 롱 플리츠 스커트
+  product: zigzag:171318242
+- comment: ''
+  name: 위빙 호보백
+  product: zigzag:161978790
+- comment: ''
+  name: 스웨이드 니하이 부츠
+  product: zigzag:147005253
+- comment: ''
+  name: 볼드 링 귀걸이
+  product: zigzag:169325375
+- comment: ''
+  name: 오버핏 레더 블루종
+  product: zigzag:168701836
+- comment: ''
+  name: 와플 루즈핏 티셔츠
+  product: zigzag:168841655
+- comment: ''
+  name: 와이드 생지 데님
+  product: zigzag:149107295
+- comment: ''
+  name: 보스턴 숄더백
+  product: zigzag:133826914
+- comment: ''
+  name: 레트로 스니커즈
+  product: zigzag:160825244
+- comment: ''
+  name: 워시드 볼캡
+  product: zigzag:166003887
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/check_bottoms/look1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 자켓
+    product: zigzag:168776088
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:157438223
+  - comment: ''
+    name: 부클 니트 베스트
+    product: zigzag:150449770
+  - comment: ''
+    name: 빈티지 와이드 데님
+    product: zigzag:171292012
+  - comment: ''
+    name: 호보 숄더백
+    product: zigzag:167878705
+  - comment: ''
+    name: 스웨이드 로퍼
+    product: zigzag:165725019
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-31/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 크롭 자켓
+    product: zigzag:119553614
+  - comment: ''
+    name: 오프숄더 니트
+    product: zigzag:167280062
+  - comment: ''
+    name: 체크 미디스커트
+    product: zigzag:168692378
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:108185036
+  - comment: ''
+    name: 니삭스
+    product: zigzag:148867821
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/check_bottoms/look3.jpg
+  items:
+  - comment: ''
+    name: 트위드 자켓
+    product: zigzag:150918386
+  - comment: ''
+    name: 레이스 블라우스
+    product: zigzag:169713161
+  - comment: ''
+    name: 핀스트라이프 슬랙스
+    product: zigzag:166018788
+  - comment: ''
+    name: 스웨이드 바질백
+    product: zigzag:172149893
+  - comment: ''
+    name: 스웨이드 슬링백
+    product: zigzag:105600542
+  - comment: ''
+    name: 하트 목걸이
+    product: zigzag:115960912
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-31/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 라운드 트위드 자켓
+    product: zigzag:122319307
+  - comment: ''
+    name: 자개 단추 블라우스
+    product: zigzag:161099295
+  - comment: ''
+    name: 베이지 와이드 팬츠
+    product: zigzag:113058586
+  - comment: ''
+    name: 블랙 스터드 미니토트
+    product: zigzag:170446634
+  - comment: ''
+    name: 블랙 메리제인 슬링백
+    product: zigzag:160137199
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/check_bottoms/look5.jpg
+  items:
+  - comment: ''
+    name: 크롭 스웨이드 자켓
+    product: zigzag:165484531
+  - comment: ''
+    name: 링클프리 블라우스
+    product: zigzag:171584015
+  - comment: ''
+    name: 헨리넥 니트
+    product: zigzag:168185673
+  - comment: ''
+    name: 롱 플리츠 스커트
+    product: zigzag:171318242
+  - comment: ''
+    name: 위빙 호보백
+    product: zigzag:161978790
+  - comment: ''
+    name: 스웨이드 니하이 부츠
+    product: zigzag:147005253
+  - comment: ''
+    name: 볼드 링 귀걸이
+    product: zigzag:169325375
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/check_bottoms/look6.jpg
+  items:
+  - comment: ''
+    name: 오버핏 레더 블루종
+    product: zigzag:168701836
+  - comment: ''
+    name: 와플 루즈핏 티셔츠
+    product: zigzag:168841655
+  - comment: ''
+    name: 와이드 생지 데님
+    product: zigzag:149107295
+  - comment: ''
+    name: 보스턴 숄더백
+    product: zigzag:133826914
+  - comment: ''
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - comment: ''
+    name: 워시드 볼캡
+    product: zigzag:166003887
+title_lines:
+- 스웨이드부터 새틴까지
+- 질감 섞어 입은 가을 여섯 벌

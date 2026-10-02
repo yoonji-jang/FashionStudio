@@ -1,0 +1,91 @@
+account: women
+cover: samples/women/check_bottoms/look6.jpg
+date: '2026-10-31'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 오버핏 레더 블루종 자켓 (brown oversized leather bomber jacket, ribbed hem and cuffs)
+  name: 오버핏 레더 블루종
+  product: zigzag:168701836
+  ref_photos:
+  - 2
+  - 0
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 와플 루즈핏 티셔츠 (gray waffle-knit loose-fit long sleeve t-shirt)
+  name: 와플 루즈핏 티셔츠
+  product: zigzag:168841655
+  ref_photos:
+  - 0
+- color: 인디고
+  comment: ''
+  cutout_photo: 0
+  desc: 인디고 와이드 생지 데님 (indigo raw wide-leg denim jeans, straight, long to the shoes)
+  name: 와이드 생지 데님
+  product: zigzag:149107295
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 보스턴 나일론 숄더백 (black nylon boston shoulder bag)
+  name: 보스턴 숄더백
+  product: zigzag:133826914
+  ref_photos:
+  - 2
+  - 5
+  - 3
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 레트로 스티치 레이스업 스니커즈 (brown retro low-top lace-up sneakers with stitching)
+  name: 레트로 스니커즈
+  product: zigzag:160825244
+  ref_photos:
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 워시드 빈티지 볼캡 (black washed vintage baseball cap)
+  name: 워시드 볼캡
+  product: zigzag:166003887
+  ref_photos:
+  - 0
+looks: []
+reason: 브라운 레더 블루종에 그레이 와플 티셔츠와 인디고 와이드 데님으로 데님에 브라운 가죽 조합. 블랙 볼캡과 스니커즈로 스포티하게 풀어
+  줌
+text:
+  hashtags:
+  - '#주말코디'
+  - '#나들이룩'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#스웨이드자켓'
+  - '#꾸안꾸'
+  intro: 흐리고 일교차 큰 주말엔 질감 다른 옷을 겹쳐 나들이 가요 🍂
+  points: []
+  title_lines:
+  - 스웨이드부터 새틴까지
+  - 질감 섞어 입은 가을 여섯 벌
+theme:
+  date: '2026-10-31'
+  mood: 흐리고 11~21도 일교차 큰 토요일, 질감과 두 색 조합으로 꾸민 듯 편한 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 스웨이드·레더·트위드 아우터
+  - category: 상의
+    desc: 셔츠를 베스트·니트 안에 받쳐 입는 레이어드
+  - category: 하의
+    desc: 체크·플리츠·새틴 스커트나 데님
+  - category: 가방
+    desc: 호보백·위빙백·스웨이드 숄더백
+  - category: 신발
+    desc: 메리제인·로퍼·슬링백
+  - category: 소품
+    desc: 쁘띠 스카프·볼캡·귀걸이
+  title_hint: 주말 나들이, 스웨이드·레더·새틴 질감 섞어 레이어드한 가을 코디
+  type: 상황
+  why: 토요일 흐림 최고 21도라 가벼운 아우터에 레이어드. 최근 출근·무채색 코디가 많아 주말 질감 믹스와 컬러 포인트로
