@@ -25,9 +25,10 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from core.models import Category, Product
-from core.profile import REPO_ROOT, load_profile
+from core.profile import REPO_ROOT, ProductSourceConfig, Profile, load_profile
 from core.store import Store
 from sources import ProductSource, SearchFilters, get_source
+from sources.base import name_excluded, price_ok
 from tools import photo_pick, scout
 
 MAX_SCORED_IMAGES = 8  # 상품마다 점수를 매길 사진 수 (요청 수를 줄이려고)
@@ -43,6 +44,7 @@ class Report:
     refreshed: int = 0
     dropped: list[tuple[Product, str]] = field(default_factory=list)  # (상품, 이유)
     trimmed: int = 0
+    unfit: int = 0  # 가격대·제외어 기준에 맞지 않아 창고에서 뺀 수
     stopped: str | None = None  # 막혀서 중간에 멈춘 이유
     total: dict[str, int] = field(default_factory=dict)  # 카테고리 → 창고 상품 수
     thumbs: dict[str, bytes] = field(default_factory=dict)  # 상품 id → 대표 사진 (미리보기용)
@@ -50,10 +52,45 @@ class Report:
     photo_log: list[tuple[str, int, photo_pick.PhotoScore, bytes]] = field(default_factory=list)
 
 
-def quality(p: Product) -> float:
-    """창고에 남길 우선순위. 평점 × log(리뷰 수), 단독컷이 있으면 가산."""
-    base = (p.rating or 0) * math.log1p(p.review_count or 0)
-    return base * (1.15 if p.has_flat_shot else 1.0)
+def quality(p: Product, profile: Profile | None = None) -> float:
+    """창고에 남길 우선순위. 평점 × log(리뷰 수), 단독컷이 있으면 가산.
+
+    프로필이 있으면 리뷰 수는 review_cap 까지만 세고 (많이 팔린 기본템이 늘 앞서지 않게),
+    이름에 style.point_words 가 있는 상품을 앞으로 둔다 (21단계).
+    """
+    reviews = p.review_count or 0
+    if profile and profile.product_source.review_cap:
+        reviews = min(reviews, profile.product_source.review_cap)
+    base = (p.rating or 0) * math.log1p(reviews)
+    base *= 1.15 if p.has_flat_shot else 1.0
+    if profile and is_point(p, profile):
+        base *= 1.3
+    return base
+
+
+def is_point(p: Product, profile: Profile) -> bool:
+    """이름에 코디 포인트가 되는 말(style.point_words)이 있는 상품."""
+    return bool(profile.style.point_words) and name_excluded(p.name, profile.style.point_words)
+
+
+def fits(p: Product, cfg: ProductSourceConfig) -> bool:
+    """프로필의 가격대·제외어 기준에 맞는지 (창고에 이미 있던 상품도 같은 기준으로 거른다)."""
+    low, high = cfg.price_range.get(p.category, (0, 0))
+    return price_ok(p.price, low, high) and not name_excluded(p.name, cfg.exclude_words)
+
+
+def search_filters(
+    cfg: ProductSourceConfig, category: Category, per_query: int | None
+) -> SearchFilters:
+    low, high = cfg.price_range.get(category, (0, 0))
+    return SearchFilters(
+        min_rating=cfg.min_rating,
+        min_reviews=cfg.min_reviews,
+        max_results=per_query or cfg.per_query,
+        min_price=low,
+        max_price=high,
+        exclude_words=cfg.exclude_words,
+    )
 
 
 def needs_check(p: Product, today: date, recheck_days: int) -> bool:
@@ -107,11 +144,6 @@ def collect(
         http = scout.client()
         fetch = lambda url: scout.fetch_bytes(http, url)  # noqa: E731
     plan = plan if plan is not None else cfg.queries
-    filters = SearchFilters(
-        min_rating=cfg.min_rating,
-        min_reviews=cfg.min_reviews,
-        max_results=per_query or cfg.per_query,
-    )
 
     report = Report(account=account, today=today)
     stock: dict[str, Product] = {p.id: p for p in store.products()}
@@ -121,7 +153,7 @@ def collect(
         for category, queries in plan.items():
             if not queries:
                 continue
-            found = source.search(queries, category, filters)
+            found = source.search(queries, category, search_filters(cfg, category, per_query))
             for query, products in found.items():
                 report.searched[query] = len(products)
                 for cand in products:
@@ -181,10 +213,17 @@ def collect(
     except scout.Blocked as e:
         report.stopped = str(e)
 
+    # 기준이 바뀌면(가격대·제외어) 창고에 있던 상품도 같이 거른다
+    unfit = [p for p in stock.values() if not fits(p, cfg)]
+    for p in unfit:
+        stock.pop(p.id)
+    report.unfit = len(unfit)
     kept: list[Product] = []
     for category in dict.fromkeys(p.category for p in stock.values()):
         items = sorted(
-            (p for p in stock.values() if p.category == category), key=quality, reverse=True
+            (p for p in stock.values() if p.category == category),
+            key=lambda p: quality(p, profile),
+            reverse=True,
         )
         kept += items[: cfg.max_per_category]
         report.trimmed += max(0, len(items) - cfg.max_per_category)
@@ -209,6 +248,7 @@ def write_report(report: Report, out: Path, store: Store) -> None:
         f"- 다시 확인한 상품: {report.refreshed}개",
         f"- 뺀 상품 (판매 종료·품절): {len(report.dropped)}개",
         f"- 창고 한도로 뺀 상품: {report.trimmed}개",
+        f"- 가격대·제외어 기준으로 뺀 상품: {report.unfit}개",
         "- 창고: " + ", ".join(f"{k} {v}" for k, v in report.total.items()),
     ]
     if report.stopped:

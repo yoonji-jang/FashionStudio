@@ -150,9 +150,10 @@ def eligible(
         and (p.review_count or 0) >= src.min_reviews
         and p.id not in used
     ]
-    from tools.collect import quality
+    from tools.collect import fits, quality
 
-    ok.sort(key=quality, reverse=True)
+    ok = [p for p in ok if fits(p, src)]
+    ok.sort(key=lambda p: quality(p, profile), reverse=True)
     return ok, used
 
 
