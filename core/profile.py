@@ -8,11 +8,12 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+from datetime import date
 from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from core.models import Approval, Category, Monetize, ThemeType
 
@@ -286,6 +287,23 @@ class OutfitImage(BaseModel):
     )
 
 
+class ModelShot(BaseModel):
+    """모델컷 (16단계). 전날 게시물의 벌들을 옷을 입은 얼굴 없는 AI 인물 사진으로 다시 그린다
+    (tools.model_post, schedule.post_days 의 model 날). 얼굴은 자르지 않고 포즈·물건으로 가린다."""
+
+    prompt: str = "outfit_model"  # prompts/<이름>.md
+    # 인물·포즈 (영어). 벌마다 하나씩 돌려 쓴다 (날짜마다 시작 위치가 바뀜). 인물 묘사를 같게 써서
+    # 한 게시물이 한 사람의 코디 일기처럼 보이게 한다
+    poses: list[str] = Field(
+        default=[
+            "a slim young woman with long straight dark hair takes a full-body mirror selfie; "
+            "she holds her phone up in front of her face so the phone hides her whole face"
+        ],
+        min_length=1,
+    )
+    mood: str = "a calm, bright minimal space with soft natural daylight, Pinterest editorial"
+
+
 WEEKDAYS = "월화수목금토일"
 WEEKLY = r"^[월화수목금토일](,[월화수목금토일])* ([01]\d|2[0-3]):[0-5]\d$"
 
@@ -324,6 +342,26 @@ class Schedule(BaseModel):
     # 깨울 때 예비로 주요 칸(후보, 고르기 처음·마감, 게시 처음·마지막, 주간 작업)만 둬서
     # Actions 시간을 아낌
     github_cron: Literal["all", "backup"] = "all"
+    # 요일별 게시물 종류 (16단계, 게시 날짜 기준). flatlay: 펼친 코디컷 (후보 고르기부터),
+    # model: 전날 게시물 벌을 모델컷으로 (고르기 없이 후보 시각에 바로 만듦), 빠진 요일은 쉼.
+    # 없으면 매일 flatlay
+    post_days: dict[str, Literal["flatlay", "model"]] | None = None
+    # 이 게시 날짜부터 post_days 를 따른다. 그 전은 매일 flatlay (이미 준비된 게시물을 그대로)
+    post_days_from: date | None = None
+
+    @field_validator("post_days")
+    @classmethod
+    def _days(cls, v: dict[str, str] | None) -> dict[str, str] | None:
+        bad = [d for d in v or {} if d not in WEEKDAYS or len(d) != 1]
+        if bad:
+            raise ValueError(f"post_days 요일은 {'·'.join(WEEKDAYS)} 중 하나씩: {bad}")
+        return v
+
+    def post_kind(self, day: date) -> Literal["flatlay", "model"] | None:
+        """게시 날짜의 게시물 종류. None 이면 그날은 쉰다."""
+        if self.post_days is None or (self.post_days_from and day < self.post_days_from):
+            return "flatlay"
+        return self.post_days.get(WEEKDAYS[day.weekday()])
 
 
 class PickRules(BaseModel):
@@ -428,6 +466,7 @@ class Profile(BaseModel):
     review: ReviewRules = ReviewRules()
     looks: Looks = Looks()
     outfit_image: OutfitImage = OutfitImage()
+    model_shot: ModelShot = ModelShot()
     schedule: Schedule
     pick: PickRules = PickRules()
     feedback: FeedbackRules = FeedbackRules()

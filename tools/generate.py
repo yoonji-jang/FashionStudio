@@ -44,12 +44,15 @@ from tools.photoroom import render_prompt
 
 CONFIG_PATH = REPO_ROOT / "config" / "models.yaml"
 FONT_PATH = REPO_ROOT / "assets" / "fonts" / "Pretendard-Medium.otf"
-SHOTS = ("flatlay", "flatlay_guide", "person", "mannequin")
+SHOTS = ("flatlay", "flatlay_guide", "person", "mannequin", "model")
+# 장면별 지시문 (기본 prompts/gen_<장면>.md). model 은 16단계 모델컷 게시물과 같은 지시문을 쓴다
+PROMPTS = {"model": "outfit_model"}
 SHOT_KO = {
     "flatlay": "펼친 코디컷",
     "flatlay_guide": "가이드 배치",
     "person": "사람컷",
     "mannequin": "마네킹컷",
+    "model": "모델컷",
 }
 CATEGORY_EN = {
     "아우터": "outer",
@@ -103,12 +106,20 @@ def prepare_input(data: bytes, max_px: int) -> bytes:
     return buf.getvalue()
 
 
-def product_photos(product_id: str, indexes: list[int], account: str, cache: Path) -> list[bytes]:
-    """상품 창고의 쇼핑몰 사진 중 고른 번호만 받아, 모델 얼굴을 잘라 낸 JPEG 로 돌려준다."""
+def product_photos(
+    product_id: str,
+    indexes: list[int],
+    account: str,
+    cache: Path,
+    extra: dict | None = None,
+) -> list[bytes]:
+    """상품 창고의 쇼핑몰 사진 중 고른 번호만 받아, 모델 얼굴을 잘라 낸 JPEG 로 돌려준다.
+    창고에서 빠진 상품은 extra(지난 게시물 manifest 의 상품, products_from)에서 찾는다."""
     from core.store import Store
     from tools import faces, feed
 
-    product = next(p for p in Store(account).products() if p.id == product_id)
+    found = {p.id: p for p in Store(account).products()} | (extra or {})
+    product = found[product_id]
     out = []
     for i in indexes:
         dest = cache / f"{product_id.split(':')[-1]}_{i}.jpg"
@@ -159,7 +170,10 @@ def build_prompt(shot: str, spec: dict, repeat: int = 1) -> str:
             continue
         values[k] = str(v[(repeat - 1) % len(v)] if isinstance(v, list) else v)
     return render_prompt(
-        f"gen_{shot}", items=item_lines(spec["items"]), styling=spec.get("styling", ""), **values
+        PROMPTS.get(shot, f"gen_{shot}"),
+        items=item_lines(spec["items"]),
+        styling=spec.get("styling", ""),
+        **values,
     )
 
 
@@ -266,6 +280,14 @@ def make_sheet(rows: list[tuple[str, list[tuple[str, Path | None]]]], out: Path)
     sheet.save(out, "JPEG", quality=88)
 
 
+def manifest_products(ref: str) -> dict:
+    """지난 게시물 manifest.json ('브랜치:경로') 의 상품들. 창고에서 빠진 상품의 사진 주소."""
+    from core.models import Manifest
+
+    m = Manifest.model_validate_json(read_ref(ref))
+    return {p.id: p for p in m.plan.items}
+
+
 def run(
     spec_path: Path,
     out: Path,
@@ -281,10 +303,11 @@ def run(
 
     inputs = []
     account = spec.get("account", "women")
+    extra = manifest_products(spec["products_from"]) if spec.get("products_from") else None
     for i, it in enumerate(spec["items"], 1):
         shots_in = [read_ref(it["image"])] if it.get("image") else []
         if it.get("photos"):
-            shots_in += product_photos(it["product"], it["photos"], account, CACHE_DIR)
+            shots_in += product_photos(it["product"], it["photos"], account, CACHE_DIR, extra)
         jpeg = reference_panel(shots_in, cfg.get("panel_max_px", 1536))
         (out / "inputs" / f"{i:02d}_{CATEGORY_EN.get(it['category'], 'item')}.jpg").write_bytes(
             jpeg

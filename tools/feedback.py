@@ -370,6 +370,11 @@ def prepare(pick: dict, prev_root: Path, out: Path) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     manifest = notify.load_manifest(src)
     plan = load_plan(src / "plan.yaml")
+    if plan.shot == "model":
+        # 모델컷(16단계)은 창고에서 빠진 전날 상품을 쓸 수 있어 지난 manifest 에서 다시 넣는다
+        from tools import model_post
+
+        model_post.restore_products(manifest, Store(plan.account))
     cover = None
     if review_tool.review_path(src).exists():
         review = review_tool.load_review(src)

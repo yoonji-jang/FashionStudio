@@ -8,7 +8,9 @@ auto 는 "지금까지 해야 했는데 아직 안 한 칸"을 찾는다: 밀린
 daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약이 둘 다 깨워도 한 번만 한다.
 
 작업:
-  candidates  코디 후보 보내기 (daily 워크플로, mode=candidates. pick 을 끄면 mode=full)
+  candidates  코디 후보 보내기 (daily 워크플로, mode=candidates. pick 을 끄면 mode=full).
+              profile schedule.post_days 에서 게시 날짜가 model 이면 (16단계) 전날 게시한 결과로
+              daily(mode=model) 를 바로 부르고 (고르기 없음), 빠진 요일이면 후보·고르기·게시를 쉰다
   pick        고른 번호 확인 (tools.pick). 고르면 daily(mode=render), "다시"면 새 후보,
               마감이면 profile pick.on_timeout
   publish     게시 (publish 워크플로). 승인이 늦으면 publish_retry_every 마다 다시
@@ -607,6 +609,22 @@ def execute(
         tag = f"[{t.account}] {t.date}"
         if tg is not None and t.late > LATE_ALERT and t.task in ALERT_TASKS and t.first:
             tg.send(f"{tag} ⏰ {ALERT_TASKS[t.task]} 자동 실행이 {t.late}분 늦게 돌았어요")
+        kind = profile.schedule.post_kind(date.fromisoformat(t.date))
+        own = {
+            "flatlay": (),
+            "model": ("candidates", "pick"),
+            None: ("candidates", "pick", "publish"),
+        }
+        if t.task in own[kind]:
+            # 16단계 schedule.post_days: 모델컷 날은 고르기 없이 전날 게시물로 바로 만들고,
+            # 빠진 요일은 후보·고르기·게시를 쉰다
+            if kind is None:
+                print(f"{tag} 게시하지 않는 요일 (schedule.post_days): {t.task} 건너뜀")
+            elif t.task == "candidates":
+                send_model(t, results, tg, send, dry_run)
+            if ticks is not None and t.keys:
+                ticks.mark(t.keys, "done", now)
+            continue
         if t.task in ("candidates", "pick") and tg is not None:
             again = pick.themes_again(profile, Store(t.account), tg)
             if again is not None:
@@ -707,10 +725,30 @@ def execute(
     return log
 
 
+def send_model(t: Task, results: Path | None, tg, send, dry_run: bool) -> None:
+    """모델컷 날(16단계): 전날 게시한 결과로 daily(mode=model) 를 부른다. 없으면 쉬고 알린다."""
+    from tools import model_post
+
+    tag = f"[{t.account}] {t.date}"
+    if results is None:
+        raise ValueError("모델컷 작업에는 --results (daily-results 폴더)가 필요합니다")
+    src = model_post.source_run(results, t.account, date.fromisoformat(t.date))
+    if src is None:
+        text = f"{tag} 전날 게시물이 올라가지 않아 이 날 모델컷 게시물은 쉬어요"
+        print(text)
+        if tg is not None and not dry_run:
+            tg.send(text)
+        return
+    send("daily.yml", account=t.account, date=t.date, mode="model", pick=src.name, sandbox=False)
+
+
 def report_missed(missed: list[Task], tg) -> None:
     """놓친 주요 작업을 알린다 (고르기·링크 칸은 다음 칸이 이어받아 알리지 않음)."""
     for t in missed:
         print(f"[{t.account}] {t.date} 놓친 칸: {t.task} {t.at} ({t.late}분 지남)")
+        rest = load_profile(t.account).schedule.post_kind(date.fromisoformat(t.date)) is None
+        if rest and t.task in ("candidates", "publish"):
+            continue  # 게시하지 않는 요일 (schedule.post_days)
         if tg is not None and t.task in ALERT_TASKS and t.final:
             tg.send(
                 f"[{t.account}] {t.date} ⚠ {ALERT_TASKS[t.task]}({t.at}) 자동 실행을 놓쳤어요. "

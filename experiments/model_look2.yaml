@@ -1,0 +1,68 @@
+# 16단계 시안: 전날 게시물(10/2 run80) 벌을 모델컷으로 (tools.generate, shot model = prompts/outfit_model.md).
+# 실행: 커밋 메시지에 [gen-exp] [spec:experiments/model_look2.yaml] [models:nano_banana_pro] [shots:model]
+title: '16-1 시안: 10/2 LOOK 2 아이보리 트위드 + 블랙 롱스커트 (모델컷)'
+account: women
+products_from: daily-results:2026-10-02-run80/manifest.json
+items:
+- category: 아우터
+  product: zigzag:136566993
+  photos:
+  - 2
+  - 3
+  desc: ivory cream tweed round-neck jacket, collarless, cropped at the waist, 4 gold buttons, two chest
+    flap pockets, slightly boxy fit
+- category: 상의
+  product: zigzag:128235325
+  photos:
+  - 5
+  desc: navy fine-knit crew-neck sweater, slim fit, cropped length, ribbed hem and cuffs
+- category: 하의
+  product: zigzag:140288768
+  photos:
+  - 5
+  desc: black H-line long skirt with a side slit
+  size: long, ending at mid-calf
+- category: 가방
+  product: zigzag:165871135
+  photos:
+  - 3
+  - 4
+  desc: black low-slung shoulder bag with a pintuck
+- category: 신발
+  product: zigzag:165870982
+  photos:
+  - 3
+  - 5
+  - 1
+  desc: one pair (two shoes) of black Mary Jane pumps, round toe, 4 cm heel, one strap with button
+- category: 소품
+  product: zigzag:116318715
+  photos:
+  - 0
+  - 3
+  desc: exactly one pair (two earrings) of small silver cubic stud earrings
+  size: tiny, about 0.5 cm
+styling: The tweed jacket is worn buttoned closed over the navy knit, with the navy crew neck showing
+  at the collarless neckline and the navy cuffs peeking out slightly; the skirt sits at the natural waist;
+  the bag hangs on one shoulder; the earrings show under the hair on one side.
+shots:
+  model:
+    repeats: 3
+    pose:
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she sits on a low stone step in front of an old red-brick
+      building, feet on the pavement and both shoes in view, raising a paper takeaway coffee cup to her
+      lips with one hand, her eyes looking down and away from the camera; the bag rests beside her on
+      the step'
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she sits sideways on a simple folding chair at a small
+      outdoor cafe table on the pavement, legs crossed so both shoes show, smiling down at a cup of coffee
+      on the table, her face turned three-quarters away from the camera and partly behind her hair'
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she stands browsing a book cart on the pavement in
+      front of an old used bookshop, seen from behind at a three-quarter angle, her head bowed toward
+      the books in her hands so only a sliver of her cheek shows'
+    mood: a slow early autumn weekend afternoon, a candid 35mm film snapshot like the outfit photos people
+      save on Pinterest, taken by a friend on an ordinary street or in a real interior in Seoul, golden
+      late-afternoon sun or soft window light, warm muted film colors, soft contrast
+    season: early autumn

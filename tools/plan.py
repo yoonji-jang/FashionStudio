@@ -311,7 +311,9 @@ def check(
         warns.append(f"theme.date({plan.theme.date})와 date({plan.date})가 다릅니다")
 
     products = {p.id: p for p in store.products()}
-    used = store.used_since(plan.date, rules.reuse_cooldown_days)
+    # 모델컷 게시물(16단계)은 전날 올린 벌을 다시 그리므로 재사용 금지·같은 주제 검사를 하지 않는다
+    model = plan.shot == "model"
+    used = {} if model else store.used_since(plan.date, rules.reuse_cooldown_days)
     lk = profile.looks
     if plan.looks and not lk.enabled:
         errors.append("looks(여러 벌)는 profile looks.enabled 가 켜져 있을 때만 씁니다")
@@ -410,7 +412,9 @@ def check(
             errors.append(f"{label}: 상품 장 문구에는 이모지를 쓰지 않습니다")
         errors += text_problems(it.name + " " + it.comment, profile, label)
 
-    recent = store.recent_posts(plan.date, profile.themes.no_repeat_days)
+    recent = [] if model else store.recent_posts(plan.date, profile.themes.no_repeat_days)
+    if model and not plan.source_run:
+        warns.append("모델컷 기획인데 source_run(전날 결과 폴더)이 없습니다")
     if any(p.theme and p.theme == plan.theme.title_hint for p in recent):
         errors.append(f"최근 {profile.themes.no_repeat_days}일 안에 같은 주제가 있습니다")
 
@@ -470,8 +474,13 @@ def check(
     if oi.engine == "generate":
         if oi.model not in generate.load_config()["models"]:
             errors.append(f"outfit_image.model '{oi.model}' 이 config/models.yaml 에 없습니다")
-        if not (photoroom.PROMPTS_DIR / f"{oi.prompt}.md").exists():
-            errors.append(f"outfit_image.prompt '{oi.prompt}' 파일이 prompts/ 에 없습니다")
+        name, field = (
+            (profile.model_shot.prompt, "model_shot.prompt")
+            if model
+            else (oi.prompt, "outfit_image.prompt")
+        )
+        if not (photoroom.PROMPTS_DIR / f"{name}.md").exists():
+            errors.append(f"{field} '{name}' 파일이 prompts/ 에 없습니다")
     for cover in [plan.cover, *(lk.cover for lk in plan.looks)]:
         if cover and not (REPO_ROOT / cover).exists():
             errors.append(f"cover 파일이 없습니다: {cover}")

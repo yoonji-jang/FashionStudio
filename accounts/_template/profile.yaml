@@ -85,6 +85,8 @@ schedule:  # 매일 자동 실행 시간표. 바꾸면 python -m tools.schedule 
   collect_at: "월,목 04:17"
   token_refresh_at: "일 18:47"
   reels_at: null
+  # 요일별 게시물 (생략하면 매일 펼친 코디컷). model 은 전날 게시물 벌을 모델컷으로 (model_shot), 빠진 요일은 쉼
+  # post_days: {월: flatlay, 화: model, 수: flatlay, 목: model, 금: flatlay, 토: model}
 
 pick:  # 코디 후보를 텔레그램으로 보내고 고른 것만 만든다. 생략하면 기본값
   count: 5

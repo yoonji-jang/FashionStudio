@@ -17,6 +17,7 @@ FIXED_SCHEDULE = {
     "themes_at": "일 18:17",
     "collect_at": "월,목 04:17",
     "token_refresh_at": "일 18:47",
+    "post_days": None,  # 요일별 게시물(16단계)은 test_schedule 의 모델컷 테스트에서 따로 본다
 }
 
 

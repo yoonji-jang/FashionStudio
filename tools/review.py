@@ -46,7 +46,7 @@ from core.models import (
 )
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
-from tools import compare, feed, overlay
+from tools import compare, faces, feed, overlay
 
 EXIT_RETRY = 3
 EXIT_HUMAN = 4
@@ -120,6 +120,31 @@ def start(out: Path, made: list[Path]) -> Review:
     review.chosen = review.candidates[0].id if review.candidates else None
     save_review(out, review)
     return review
+
+
+def face_crops(out: Path, plan: DailyPlan, review: Review) -> dict[str, list[Path]]:
+    """모델컷(기획 shot: model, 16단계) 후보마다 얼굴 검출 도구(YuNet)가 찾은 자리를 크게 잘라
+    review/face_<후보>_<n>.jpg 로 저장한다. 펼친 코디컷이면 보지 않는다.
+    거울 셀카처럼 폰이 얼굴을 다 가려도 얼굴로 잡으므로(2026-10-02 시안 gen-23·24) 도구가
+    떨어뜨리지 않고, image-reviewer 가 잘라 낸 사진을 열어 정면 얼굴이 또렷한지 판단한다."""
+    if plan.shot != "model":
+        return {}
+    found: dict[str, list[Path]] = {}
+    for c in review.candidates:
+        path = cand_path(out, c)
+        if not path.exists():
+            continue
+        with Image.open(path) as img:
+            rgb = img.convert("RGB")
+            for n, (x0, y0, x1, y1) in enumerate(faces.find_faces(rgb), 1):
+                pad = (x1 - x0) * 0.6
+                box = (max(0, x0 - pad), max(0, y0 - pad), min(rgb.width, x1 + pad),
+                       min(rgb.height, y1 + pad))
+                dest = out / "review" / f"face_{c.id}_{n}.jpg"
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                rgb.crop(tuple(round(v) for v in box)).save(dest, quality=90)
+                found.setdefault(c.id, []).append(dest)
+    return found
 
 
 # ---------- prep ----------
@@ -254,6 +279,13 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         "점수 파일 형식과 기준은 `.claude/agents/image-reviewer.md` 를 따른다.",
         f"통과 기준: 합계 {profile.review.min_score}점 이상이고 0점 항목이 없을 것.",
         "",
+        "코디컷 종류: "
+        + (
+            "**모델컷** (옷을 입은 얼굴 없는 AI 인물. image-reviewer.md 의 모델컷 기준도 본다)"
+            if plan.shot == "model"
+            else "펼친 코디컷"
+        ),
+        "",
         "## 기획 상품 (covers.jpg 위 줄 번호)",
         "",
         "| # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |",
@@ -294,7 +326,15 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         # 15단계 /fix 로 사람이 지적한 것. 같은 문제가 다시 보이면 해당 항목 점수에 반영한다
         lines += ["", "## 최근 사람 피드백 (같은 문제가 보이면 감점)", ""] + fb
     lines += ["", "## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)", ""]
-    lines += [f"- {s.slide} [{s.kind}] {s.note}" for s in code_issues] or ["- 없음"]
+    todo_ids = {c.id for c in todo}
+    found = [
+        f"- {cid} [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: "
+        + ", ".join(f"`{_ref(out, f)}`" for f in crops)
+        + " (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)"
+        for cid, crops in face_crops(out, plan, review).items()
+        if cid in todo_ids
+    ]
+    lines += found + [f"- {s.slide} [{s.kind}] {s.note}" for s in code_issues] or ["- 없음"]
     dest = out / "review" / "input.md"
     dest.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return dest
