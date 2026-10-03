@@ -1,0 +1,106 @@
+account: women
+date: '2026-10-04'
+items:
+- color: 머스타드
+  comment: ''
+  cutout_photo: 2
+  desc: 머스타드 모헤어 가디건 (mustard yellow mohair cardigan, fuzzy texture, relaxed fit,
+    loose cardigan front)
+  name: 모헤어 가디건
+  product: zigzag:166342775
+  ref_photos:
+  - 2
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 링클프리 블라우스 (ivory blouse with a pointed shirt collar, long sleeves with
+    cuffs)
+  name: 링클프리 블라우스
+  product: zigzag:171584015
+  ref_photos:
+  - 2
+  - 3
+  - 4
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 핀스트라이프 슬랙스 (grey pinstripe slacks, straight leg, flat front, no pleats,
+    high waist, full length covering the ankles)
+  name: 핀스트라이프 슬랙스
+  product: zigzag:166018788
+  ref_photos:
+  - 2
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 퀼팅 체인 미니백 (black quilted mini chain bag with a gold chain strap)
+  name: 퀼팅 체인 미니백
+  product: zigzag:137453892
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 리본 발레리나 메리제인 플랫 (black ballerina Mary Jane flats with a small ribbon, round
+    toe)
+  name: 리본 메리제인 플랫
+  product: zigzag:158948889
+  ref_photos:
+  - 1
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 가죽 시계 (slim black leather strap wristwatch, worn on the left wrist)
+  name: 레더 시계
+  product: zigzag:127748170
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 뿔테 안경 (black square horn-rimmed glasses, worn on the face)
+  name: 뿔테 안경
+  product: zigzag:113382000
+  ref_photos:
+  - 0
+looks: []
+reason: 머스타드 모헤어 가디건 밑으로 아이보리 블라우스 깃을 빼 입고 그레이 핀스트라이프 슬랙스로 정리. 머스타드와 그레이의 두 색 조합에
+  보송한 모헤어와 매끈한 패턴이 소재 대비
+text:
+  hashtags:
+  - '#이슬비코디'
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#트렌치코트'
+  - '#레이어드룩'
+  - '#주말코디'
+  - '#가을데일리룩'
+  intro: 이슬비 오는 쌀쌀한 주말, 매트한 소재로 가볍게 꾸며 보세요 ☔
+  points: []
+  title_lines:
+  - 이슬비 내리는 가을날엔
+  - 트렌치부터 레더까지 모음
+theme:
+  date: '2026-10-04'
+  mood: 비 오는 주말에도 칙칙하지 않게, 레더·트위드·새틴 같은 매트한 소재와 두 색 조합으로 꾸민 가을 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 하프 트렌치코트
+  - category: 상의
+    desc: 스트라이프 셔츠에 니트 베스트 레이어드
+  - category: 하의
+    desc: 핀스트라이프 슬랙스
+  - category: 가방
+    desc: 나일론 보스턴
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 쁘띠 스카프
+  title_hint: 이슬비 오는 일요일, 매트한 소재와 두 색 조합으로 가을 나들이
+  type: 상황
+  why: 일요일, 서울 약한 이슬비에 14~23도 일교차. 물에 약한 스웨이드는 피하고 코트·트위드·레더 같은 겉옷과 어두운 하의로 실용 있게

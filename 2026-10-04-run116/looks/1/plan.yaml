@@ -1,0 +1,108 @@
+account: women
+date: '2026-10-04'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 하프 트렌치코트 (beige half-length trench coat, notched lapel, double-breasted,
+    hip-length, straight fit)
+  name: 하프 트렌치코트
+  product: zigzag:171067688
+  ref_photos:
+  - 0
+  - 1
+- color: 하늘색
+  comment: ''
+  cutout_photo: 5
+  desc: 하늘색 스트라이프 셔츠 (light sky-blue and white thin-striped button-up shirt, classic
+    shirt collar, long sleeves)
+  name: 스트라이프 셔츠
+  product: zigzag:120773723
+  ref_photos:
+  - 5
+  - 3
+  wear_with: 상의
+- color: 그레이
+  comment: ''
+  cutout_photo: 3
+  desc: 그레이 니트 베스트 (medium grey knit vest, plain pullover with no buttons, V-neck,
+    sleeveless, cropped to the waist)
+  name: 니트 베스트
+  product: zigzag:147747225
+  ref_photos:
+  - 3
+  - 2
+  - 4
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 와이드 슬랙스 (charcoal grey wide straight-leg trousers, plain with no pinstripe,
+    flat front, no pleats, full length covering the ankles, high waist)
+  name: 와이드 슬랙스
+  product: zigzag:159282735
+  ref_photos:
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 숄더백 (brown structured shoulder bag)
+  name: 노아르 숄더백
+  product: zigzag:164013796
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레이스업 로퍼 (black lace-up loafers, round toe, flat sole)
+  name: 레이스업 로퍼
+  product: zigzag:111145203
+  ref_photos:
+  - 0
+  - 3
+- color: 하늘색
+  comment: ''
+  cutout_photo: 4
+  desc: 하늘색 울 니트 쁘띠 스카프 (light sky-blue knit petite triangle scarf, tied loosely at
+    the neck)
+  name: 니트 쁘띠 스카프
+  product: zigzag:150290269
+  ref_photos:
+  - 4
+  - 3
+looks: []
+reason: 베이지 트렌치 안에서 그레이 니트 베스트 밖으로 하늘색 스트라이프 셔츠 깃과 소매를 빼고 하늘색 쁘띠 스카프로 이어 줌. 베이지와 하늘색의
+  두 색 조합에 차콜 슬랙스가 받쳐 이슬비 오는 날에도 단정함
+text:
+  hashtags:
+  - '#이슬비코디'
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#트렌치코트'
+  - '#레이어드룩'
+  - '#주말코디'
+  - '#가을데일리룩'
+  intro: 이슬비 오는 쌀쌀한 주말, 매트한 소재로 가볍게 꾸며 보세요 ☔
+  points: []
+  title_lines:
+  - 이슬비 내리는 가을날엔
+  - 트렌치부터 레더까지 모음
+theme:
+  date: '2026-10-04'
+  mood: 비 오는 주말에도 칙칙하지 않게, 레더·트위드·새틴 같은 매트한 소재와 두 색 조합으로 꾸민 가을 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 하프 트렌치코트
+  - category: 상의
+    desc: 스트라이프 셔츠에 니트 베스트 레이어드
+  - category: 하의
+    desc: 핀스트라이프 슬랙스
+  - category: 가방
+    desc: 나일론 보스턴
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 쁘띠 스카프
+  title_hint: 이슬비 오는 일요일, 매트한 소재와 두 색 조합으로 가을 나들이
+  type: 상황
+  why: 일요일, 서울 약한 이슬비에 14~23도 일교차. 물에 약한 스웨이드는 피하고 코트·트위드·레더 같은 겉옷과 어두운 하의로 실용 있게
