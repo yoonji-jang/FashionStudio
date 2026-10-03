@@ -1,6 +1,6 @@
 ---
 name: model-feed
-description: 전날 올린 코디 게시물의 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로 다시 그린 게시물을 만든다 (문구 → 검사 → 만들기 → 이미지 검수). GitHub Actions daily 워크플로의 mode=model 에서 쓴다 (16단계, profile schedule.post_days 의 model 날).
+description: 전날 올린 코디 게시물의 벌들을 옷을 입은 AI 모델컷(정면 얼굴 없이)으로 다시 그린 게시물을 만든다 (문구 → 검사 → 만들기 → 이미지 검수). GitHub Actions daily 워크플로의 mode=model 에서 쓴다 (16단계, profile schedule.post_days 의 model 날).
 ---
 
 # model-feed: 전날 코디를 모델컷으로 (16단계)

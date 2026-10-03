@@ -232,40 +232,49 @@ outfit_image:
 
 # 모델컷 게시물 (16단계, 2026-10-02 사용자): 화·목·토는 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
 # 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.
-# 얼굴은 자르지 않고 폰·책·꽃다발·뒤돌기로 가린다 (모자·선글라스 같은 없는 상품을 쓰지 않게)
 model_shot:
   prompt: outfit_model   # prompts/outfit_model.md
-  # 2026-10-03 사용자 핀터레스트 참고: 깨끗한 빈 실내·거리는 AI 같다 → 실제 생활 장소, 커피·책·꽃 같은 소품, 필름 느낌
+  # 2026-10-03 사용자 핀터레스트 저장 사진을 따라 한 장면 (벌마다 하나씩, 6벌이면 6장면).
+  # 얼굴은 일부 보여도 되지만(고개 숙임·돌림·머리카락·컵·폰), 정면 얼굴과 책으로 얼굴 전체를 가리는 어색한 포즈는 쓰지 않는다.
   poses:
     - >-
       the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she sits on a weathered wooden park bench
-      among fallen leaves, both shoes on the ground and legs crossed at the ankle, holding an open
-      paperback up in front of her face so the book hides her whole face; a paper takeaway coffee cup
-      stands on the bench beside her
+      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie next to
+      a wooden door frame in her small apartment; the photo is what the mirror reflects, there is no
+      second mirror; the phone held at eye level covers her eyes and nose, her lips and chin may show,
+      her other hand holds the bag strap
     - >-
       the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she walks past the window of a small old
-      neighborhood bookshop with books stacked outside, seen from behind at a three-quarter angle, a
-      paper takeaway coffee cup in one hand, her head turned away toward the shop window so only the
-      back of her hair shows
+      with long straight dark-brown hair past her shoulders; she walks along a narrow sidewalk beside an
+      old cream-colored wall in low late-afternoon sun with soft tree shadows on the wall, caught
+      mid-step slightly from the side, holding a small bouquet wrapped in paper against her chest, her
+      head tilted down toward the flowers so her hair falls over most of her face
     - >-
       the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she stands with her back half to the camera
-      against a sunlit, weathered stone wall with dappled tree shadows, holding a loose bouquet of
-      flowers wrapped in kraft paper up by her shoulder, her face turned toward the wall and bowed into
-      the flowers so the blooms and her hair hide her whole face, not even her profile shows
+      with long straight dark-brown hair past her shoulders; she sits on a low stone step in front of an
+      old red-brick building, feet on the pavement and both shoes in view, raising a paper takeaway coffee
+      cup to her lips with one hand, her eyes looking down and away from the camera; the bag rests
+      beside her on the step
     - >-
       the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie in a
-      lived-in bedroom with a worn wooden floor, a warm table lamp and a plant on the windowsill; the
-      photo is what the old wooden standing mirror reflects (the edge of its wooden frame shows at the
-      sides), and there is no second mirror in the room; she holds her phone up in front of her face so
-      the phone hides her whole face
+      with long straight dark-brown hair past her shoulders; she sits sideways on a simple folding chair
+      at a small outdoor cafe table on the pavement, legs crossed so both shoes show, smiling down at a
+      cup of coffee on the table, her face turned three-quarters away from the camera and partly behind
+      her hair
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she walks past the paned glass doors of an
+      old wooden cafe storefront, photographed from the side as she passes, a paper takeaway coffee cup
+      in one hand, her head turned slightly away from the camera toward the street ahead
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she stands browsing a book cart on the
+      pavement in front of an old used bookshop, seen from behind at a three-quarter angle, her head
+      bowed toward the books in her hands so only a sliver of her cheek shows
   mood: >-
-    a candid 35mm film snapshot like an outfit photo saved on Pinterest, in a real, lived-in corner
-    of Seoul (an old neighborhood cafe, a small bookshop, a park with fallen leaves, a sunlit old
-    wall, a cozy room), warm muted film colors, soft uneven natural light
+    a candid 35mm film snapshot like the outfit photos people save on Pinterest, taken by a friend
+    on an ordinary street or in a real interior in Seoul, golden late-afternoon sun or soft window
+    light, warm muted film colors, soft contrast
 
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.

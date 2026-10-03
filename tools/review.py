@@ -126,7 +126,7 @@ def face_crops(out: Path, plan: DailyPlan, review: Review) -> dict[str, list[Pat
     """모델컷(기획 shot: model, 16단계) 후보마다 얼굴 검출 도구(YuNet)가 찾은 자리를 크게 잘라
     review/face_<후보>_<n>.jpg 로 저장한다. 펼친 코디컷이면 보지 않는다.
     거울 셀카처럼 폰이 얼굴을 다 가려도 얼굴로 잡으므로(2026-10-02 시안 gen-23·24) 도구가
-    떨어뜨리지 않고, image-reviewer 가 잘라 낸 사진을 열어 눈·코·입이 보이는지 판단한다."""
+    떨어뜨리지 않고, image-reviewer 가 잘라 낸 사진을 열어 정면 얼굴이 또렷한지 판단한다."""
     if plan.shot != "model":
         return {}
     found: dict[str, list[Path]] = {}
@@ -330,7 +330,7 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     found = [
         f"- {cid} [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: "
         + ", ".join(f"`{_ref(out, f)}`" for f in crops)
-        + " (열어 보고 눈·코·입이 하나라도 보이면 clean 0, 폰·머리카락에 다 가려졌으면 괜찮음)"
+        + " (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)"
         for cid, crops in face_crops(out, plan, review).items()
         if cid in todo_ids
     ]
