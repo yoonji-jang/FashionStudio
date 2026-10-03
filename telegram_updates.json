@@ -1,27 +1,5 @@
 [
  {
-  "update_id": 428675754,
-  "message": {
-   "message_id": 215,
-   "date": 1790778272,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "4번"
-  }
- },
- {
-  "update_id": 428675755,
-  "message": {
-   "message_id": 227,
-   "date": 1790779948,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/ok"
-  }
- },
- {
   "update_id": 428675756,
   "message": {
    "message_id": 229,
