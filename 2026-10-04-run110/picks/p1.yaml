@@ -1,0 +1,427 @@
+account: women
+date: '2026-10-04'
+items: []
+looks:
+- items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 하프 트렌치코트 (beige half-length trench coat, notched lapel, double-breasted,
+      hip-length, straight fit)
+    name: 하프 트렌치코트
+    product: zigzag:171067688
+  - color: 하늘색
+    comment: ''
+    cutout_photo: 0
+    desc: 하늘색 스트라이프 셔츠 (light sky-blue and white thin-striped button-up shirt, classic
+      shirt collar, long sleeves)
+    name: 스트라이프 셔츠
+    product: zigzag:120773723
+    wear_with: 상의
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 니트 베스트 (brown knit vest, plain pullover with no buttons, V-neck, sleeveless,
+      cropped to the waist)
+    name: 니트 베스트
+    product: zigzag:134881165
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 핀스트라이프 와이드 슬랙스 (navy pinstripe wide straight-leg trousers, flat front,
+      no pleats, full length covering the ankles, high waist)
+    name: 핀스트라이프 슬랙스
+    product: zigzag:168694332
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 숄더백 (brown structured shoulder bag)
+    name: 노아르 숄더백
+    product: zigzag:164013796
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레이스업 로퍼 (brown lace-up loafers, round toe, flat sole)
+    name: 레이스업 로퍼
+    product: zigzag:134105153
+  - color: 하늘색
+    comment: ''
+    cutout_photo: 0
+    desc: 하늘색 울 니트 쁘띠 스카프 (light sky-blue knit petite triangle scarf, tied loosely
+      at the neck)
+    name: 니트 쁘띠 스카프
+    product: zigzag:150956611
+  point: ''
+  reason: 베이지 트렌치 안에서 니트 베스트 밖으로 하늘색 스트라이프 셔츠 깃과 소매를 빼고 하늘색 쁘띠 스카프로 이어 줌. 브라운 베스트와
+    하늘색의 두 색 조합에 베이지 트렌치라 이슬비 오는 날에도 단정함
+- items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 화이트 스트라이프 셔츠 (navy and white bold-striped button-up shirt, classic shirt
+      collar, long sleeves)
+    name: 스트라이프 셔츠
+    product: zigzag:171215298
+    wear_with: 상의
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하이넥 부클 니트 베스트 (ivory bouclé knit vest, plain pullover with no buttons,
+      high neck, sleeveless, cropped to the waist)
+    name: 부클 니트 베스트
+    product: zigzag:150449770
+  - color: 데님
+    comment: ''
+    cutout_photo: 0
+    desc: 딥 인디고 와이드 데님 팬츠 (dark indigo vintage wide-leg denim jeans, straight cut,
+      high waist, long length covering the shoe tops)
+    name: 빈티지 와이드 데님
+    product: zigzag:171292012
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 가죽 벨트 (bold brown leather belt, worn through the belt loops)
+    name: 볼드 가죽 벨트
+    product: zigzag:165791922
+    wear_with: 하의
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 호보백 (brown slouchy hobo shoulder bag)
+    name: 포그 호보백
+    product: zigzag:167878705
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 소가죽 메리제인 (brown leather Mary Jane shoes with a strap, round toe, low
+      mid heel)
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 워시드 볼캡 (black washed vintage baseball cap)
+    name: 워시드 볼캡
+    product: zigzag:166003887
+  point: ''
+  reason: 부클 니트 베스트 밑으로 네이비 스트라이프 셔츠 깃과 소매를 빼 입고 소가죽 벨트와 볼캡으로 캐주얼하게. 데님과 브라운 가죽 조합이라
+    비 오는 날 편함
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 라운드넥 트위드 자켓 (charcoal round-neck tweed jacket, collarless, cropped to
+      the waist, front buttons)
+    name: 라운드넥 트위드 자켓
+    product: zigzag:171067682
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 헨리넥 니트 (navy henley-neck knit top with a short button placket, oversized
+      round neckline, tucked in at the waist)
+    name: 헨리넥 니트
+    product: zigzag:171212289
+  - color: 올리브
+    comment: ''
+    cutout_photo: 0
+    desc: 올리브 새틴 미디 스커트 (olive green satin midi skirt, bias cut with a soft sheen,
+      high waist, hem below the calf)
+    name: 새틴 미디 스커트
+    product: zigzag:168869683
+  - color: 레드
+    comment: ''
+    cutout_photo: 0
+    desc: 레드 쁘띠 스카프 (red petite diamond-shaped scarf, tied at the neck)
+    name: 쁘띠 스카프
+    product: zigzag:147477007
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 발레리나 플랫 (black cotton ballerina flats, round toe)
+    name: 코튼 발레리나
+    product: zigzag:170609181
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven leather shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼드 물방울 링 귀걸이 (exactly one pair (two earrings) of silver bold teardrop
+      hoop earrings)
+    name: 볼드 링 귀걸이
+    product: zigzag:139297257
+  point: ''
+  reason: 차콜 트위드 자켓에 올리브 새틴 미디스커트로 매트한 소재와 윤기를 대비시키고 레드 쁘띠 스카프로 한 방울. 네이비 헨리넥이 두 색을
+    이어 줌
+- items:
+  - color: 퍼플
+    comment: ''
+    cutout_photo: 0
+    desc: 퍼플 모헤어 가디건 (lavender-purple mohair cardigan, fuzzy texture, relaxed fit,
+      V-neck, buttoned in the middle, hip-length)
+    name: 마레 모헤어 가디건
+    product: zigzag:167156692
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 링클프리 블라우스 (ivory blouse with a pointed shirt collar, long sleeves with
+      cuffs)
+    name: 링클프리 블라우스
+    product: zigzag:171584015
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 핀스트라이프 슬랙스 (grey pinstripe slacks, straight leg, flat front, no pleats,
+      high waist, full length covering the ankles)
+    name: 핀스트라이프 슬랙스
+    product: zigzag:166018788
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인 미니백 (black quilted mini chain bag with a gold chain strap)
+    name: 퀼팅 체인 미니백
+    product: zigzag:137453892
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 발레리나 메리제인 플랫 (black ballerina Mary Jane flats with a small ribbon,
+      round toe)
+    name: 리본 메리제인 플랫
+    product: zigzag:158948889
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 시계 (slim black leather strap wristwatch, worn on the left wrist)
+    name: 레더 시계
+    product: zigzag:127748170
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 뿔테 안경 (black square horn-rimmed glasses, worn on the face)
+    name: 뿔테 안경
+    product: zigzag:113382000
+  point: ''
+  reason: 퍼플 모헤어 가디건 밑으로 아이보리 블라우스 깃을 빼 입고 그레이 핀스트라이프 슬랙스로 정리. 보송한 모헤어와 매끈한 패턴이 소재
+    대비
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 하이넥 레더 재킷 (black faux-leather high-neck jacket, zipped to mid-chest,
+      cropped to the waist, slim straight fit)
+    name: 하이넥 레더 재킷
+    product: zigzag:171242582
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 텐셀 시어 셔츠 (ivory sheer tencel button-up shirt, classic shirt collar,
+      long sleeves)
+    name: 시어 셔츠
+    product: zigzag:164681223
+  - color: 버건디
+    comment: ''
+    cutout_photo: 0
+    desc: 버건디 체크 밴딩 미디 스커트 (burgundy plaid check midi skirt, high elastic waist, hem
+      at the mid-calf, no pleats)
+    name: 체크 미디 스커트
+    product: zigzag:168692378
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니삭스 (exactly one pair (two socks) of black knee-high socks, ending just
+      below the knee)
+    name: 니삭스
+    product: zigzag:161559034
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 (black leather Mary Jane shoes with a strap, round toe, flat)
+    name: 빅토리아 메리제인
+    product: zigzag:161729124
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 라운드백 (black shirred round shoulder bag with a ribbon)
+    name: 리본 라운드백
+    product: zigzag:169872677
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 하트 목걸이 (silver heart pendant necklace, one chain only)
+    name: 하트 목걸이
+    product: zigzag:115960912
+  point: ''
+  reason: 블랙 레더 재킷 안에 시스루 셔츠를 겹치고 체크 미디스커트와 니삭스로 소재와 패턴 대비를 줌. 블랙에 버건디 체크 한 방울이라 이슬비
+    오는 날에도 무겁지 않음
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 레이스 블라우스 (ivory lace blouse with a V-neck and a small lace collar,
+      long sleeves)
+    name: 레이스 블라우스
+    product: zigzag:169713161
+    wear_with: 상의
+  - color: 버건디
+    comment: ''
+    cutout_photo: 0
+    desc: 버건디 헤어리 뷔스티에 니트 (burgundy fuzzy wool knit bustier-style vest, sleeveless,
+      cropped to the waist, fitted)
+    name: 헤어리 뷔스티에
+    product: zigzag:165711719
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 투핀턱 와이드 슬랙스 (black wide-leg slacks with two front pleats, flowy, high
+      waist, full length covering the shoe tops)
+    name: 와이드 슬랙스
+    product: zigzag:135443091
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬림 골드 버클 벨트 (slim black belt with a gold buckle, worn through the belt
+      loops)
+    name: 슬림 골드 벨트
+    product: zigzag:158546103
+    wear_with: 하의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 빅 호보백 (black large hobo shoulder bag)
+    name: 오브리 빅 호보백
+    product: zigzag:168594319
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 크로스 스트랩 메리제인 로퍼 (black Mary Jane loafers with a crossed strap, round
+      toe, low heel)
+    name: 크로스 메리제인
+    product: zigzag:156848174
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 볼드 링 귀걸이 (exactly one pair (two earrings) of gold bold teardrop hoop
+      earrings)
+    name: 볼드 링 귀걸이
+    product: zigzag:142880069
+  point: ''
+  reason: 아이보리 레이스 블라우스 위에 버건디 헤어리 뷔스티에를 겹쳐 레이스 깃과 소매를 보이게 하고 골드 버클 벨트와 링 귀걸이로 마무리.
+    블랙 와이드 슬랙스가 받쳐 줌
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 오버핏 레더 블루종 자켓 (brown oversized faux-leather bomber blouson jacket, ribbed
+      cuffs and hem, zipped front, cropped length)
+    name: 오버핏 레더 블루종
+    product: zigzag:168701836
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 헨리넥 니트 (ivory henley-neck knit top with a short button placket and
+      long sleeves, tucked in at the waist)
+    name: 헨리넥 니트
+    product: zigzag:168185673
+  - color: 데님
+    comment: ''
+    cutout_photo: 0
+    desc: 딥 인디고 와이드 생지 데님 (dark raw-indigo wide-leg denim jeans, straight cut, high
+      waist, long length covering the shoe tops)
+    name: 와이드 생지 데님
+    product: zigzag:149107295
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레트로 스티치 스니커즈 (brown retro lace-up sneakers with contrast stitching,
+      low top)
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 숄더백 (brown compact shoulder bag)
+    name: 아비오 백
+    product: zigzag:170726447
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 가죽 시계 (slim brown leather strap wristwatch, worn on the left wrist)
+    name: 레더 시계
+    product: zigzag:130846670
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 스톤 워시드 볼캡 (ivory stone-washed vintage baseball cap)
+    name: 스톤 워시드 볼캡
+    product: zigzag:171308977
+  point: ''
+  reason: 브라운 레더 블루종에 와이드 데님을 입고 헨리넥 소매를 살짝 보이게 하고 스니커즈와 볼캡으로 스포티하게 믹스. 데님과 브라운 가죽이
+    이슬비 오는 날 편함
+- items:
+  - color: 버터옐로
+    comment: ''
+    cutout_photo: 0
+    desc: 버터옐로 오프숄더 셔츠카라 니트 (butter-yellow off-the-shoulder knit top with a folded
+      shirt collar, long sleeves, fitted, tucked in at the waist)
+    name: 오프숄더 셔츠카라 니트
+    product: zigzag:171067686
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 롱 플리츠 스커트 (grey long pleated skirt, fine knife pleats, high waist, hem
+      at the ankle)
+    name: 롱 플리츠 스커트
+    product: zigzag:171318242
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 삭스 앵클부츠 (black sock-style ankle boots, round toe, 5 cm heel)
+    name: 삭스 앵클부츠
+    product: zigzag:107677011
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 보스턴 나일론 숄더백 (black nylon boston shoulder bag)
+    name: 보스턴 숄더백
+    product: zigzag:133826914
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 하트 펜던트 롱 목걸이 (silver long chain necklace with a heart pendant, one chain
+      only)
+    name: 하트 롱 목걸이
+    product: zigzag:148600384
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 미니 볼드 물방울 귀걸이 (exactly one pair (two earrings) of gold mini bold teardrop
+      earrings)
+    name: 물방울 귀걸이
+    product: zigzag:169325375
+  point: ''
+  reason: 버터옐로 오프숄더 셔츠카라 니트에 그레이 롱 플리츠 스커트로 한 톤 눌러 주고 앵클부츠로 비 오는 날 실용성을 챙김. 하트 목걸이와
+    골드 귀걸이로 여성스럽게
+reason: 이슬비 오는 일요일에 쓰는 아우터와 하의는 매트한 소재와 어두운 톤으로, 벌마다 두 색 조합과 레이어링 포인트를 바꿔 여덟 가지로
+theme:
+  date: '2026-10-04'
+  mood: 비 오는 주말에도 칙칙하지 않게, 레더·트위드·새틴 같은 매트한 소재와 두 색 조합으로 꾸민 가을 나들이룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 하프 트렌치코트
+  - category: 상의
+    desc: 스트라이프 셔츠에 니트 베스트 레이어드
+  - category: 하의
+    desc: 핀스트라이프 슬랙스
+  - category: 가방
+    desc: 나일론 보스턴
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 쁘띠 스카프
+  title_hint: 이슬비 오는 일요일, 매트한 소재와 두 색 조합으로 가을 나들이
+  type: 상황
+  why: 일요일, 서울 약한 이슬비에 14~23도 일교차. 물에 약한 스웨이드는 피하고 코트·트위드·레더 같은 겉옷과 어두운 하의로 실용 있게
