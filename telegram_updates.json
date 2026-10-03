@@ -1,16 +1,5 @@
 [
  {
-  "update_id": 428675753,
-  "message": {
-   "message_id": 184,
-   "date": 1790762677,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/ok"
-  }
- },
- {
   "update_id": 428675754,
   "message": {
    "message_id": 215,
