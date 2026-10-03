@@ -168,6 +168,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/outfit-candidates/SKILL.md 의 순서를 그대로 따라 코디 후보를 만들어.
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} COLLECT=${{ env.COLLECT }}
@@ -198,6 +202,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/fix-feed/SKILL.md 의 순서를 그대로 따라 out/${{ env.DATE }} 게시물을 피드백대로 고쳐.
             피드백은 out/${{ env.DATE }}/fix.json 에 있어.
@@ -219,6 +227,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
             out/${{ env.DATE }}/plan.yaml 이 이미 있으면 사람이 고른 후보이니 "고른 후보로 시작" 절을 따라.
@@ -253,6 +265,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 10번(이미지 검수)만 out/${{ env.DATE }} 에 대해 해.
             plan.yaml 은 고치지 말고, 종료 코드 4 는 그대로 두고 끝내.
@@ -280,7 +296,8 @@ jobs:
       # Claude 가 도중에 멈춰도 단계는 성공으로 끝나서, 예전에는 아무 알림 없이 미리보기만 오지 않았다 (12단계)
       - name: 결과 확인
         id: result
-        if: env.MODE != 'candidates'
+        # Claude 단계가 오류로 끝나도(is_error) 원인을 남기도록 항상 돈다
+        if: always() && env.MODE != 'candidates'
         run: |
           [ -f "out/$DATE/manifest.json" ] && exit 0
           echo "::error::$MODE 인데 out/$DATE/manifest.json 이 없습니다 (Claude 가 도중에 멈춤)"
