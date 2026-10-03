@@ -28,6 +28,8 @@ description: 전날 올린 코디 게시물의 벌들을 옷을 입은 AI 모델
    - `mood`: 주제(`theme.title_hint`, `theme.mood`)의 상황에 맞게 한 문장으로 바꿔도 된다
      (예: 출근룩이면 "a quiet office street in Seoul on an early autumn morning"). 인물·장소는 실제 사람이나
      가게 이름을 쓰지 않는다. 비우면 profile `model_shot.mood`.
+     평범한 실제 장소만 쓴다 (2026-10-03 사용자: 인위적인 배경 금지). 깔린 낙엽·꽃잎, 늘어놓은 소품, 텅 빈 거리,
+     스튜디오·화보 같은 연출을 mood 에 넣지 않는다.
    - 벌 `styling`: 펼친 코디컷용 문장("laid", "flat")이 있으면 사람이 입은 모양으로 바꾼다
      (예: "The shirt is tucked into the front of the slacks; the cardigan is worn open").
    - `pose` 는 도구가 profile `model_shot.poses` 에서 돌려 넣은 것이다. 바꾸지 않는다.
