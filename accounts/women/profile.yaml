@@ -232,34 +232,39 @@ outfit_image:
 
 # 모델컷 게시물 (16단계, 2026-10-02 사용자): 화·목·토는 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
 # 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.
-# 얼굴은 자르지 않고 폰·뒤돌기·고개 돌림으로 가린다 (모자 같은 없는 상품을 쓰지 않게)
+# 얼굴은 자르지 않고 폰·책·꽃다발·뒤돌기로 가린다 (모자·선글라스 같은 없는 상품을 쓰지 않게)
 model_shot:
   prompt: outfit_model   # prompts/outfit_model.md
+  # 2026-10-03 사용자 핀터레스트 참고: 깨끗한 빈 실내·거리는 AI 같다 → 실제 생활 장소, 커피·책·꽃 같은 소품, 필름 느낌
   poses:
     - >-
       the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she sits on a weathered wooden park bench
+      among fallen leaves, both shoes on the ground and legs crossed at the ankle, holding an open
+      paperback up in front of her face so the book hides her whole face; a paper takeaway coffee cup
+      stands on the bench beside her
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she walks past the window of a small old
+      neighborhood bookshop with books stacked outside, seen from behind at a three-quarter angle, a
+      paper takeaway coffee cup in one hand, her head turned away toward the shop window so only the
+      back of her hair shows
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she stands with her back half to the camera
+      against a sunlit, weathered stone wall with dappled tree shadows, holding a loose bouquet of
+      flowers wrapped in kraft paper up by her shoulder, her face turned toward the wall and bowed into
+      the flowers so the blooms and her hair hide her whole face, not even her profile shows
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
       with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie in a
-      bright, tidy apartment entrance with a tall standing mirror, holding her phone up in front of
-      her face so the phone hides her whole face; relaxed stance with one knee slightly bent
-    - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she walks away from the camera on a quiet
-      street, seen from behind at a slight angle, full body, her head facing forward away from the
-      camera so only the back of her hair shows
-    - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she stands by a large bright window seen
-      from behind, her back to the camera and her face turned toward the window glass, so the camera
-      sees only the back of her head and her hair falling over her cheek; no ear, eye, nose or lips
-      are visible, not even the outline of her profile
-    - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie in a
-      minimal fitting-room style space with a large standing mirror, the phone in front of her face
-      hiding it completely, her other hand resting lightly on the bag strap
+      lived-in bedroom with a worn wooden floor, an old wooden standing mirror leaning on the wall, a
+      warm table lamp and a plant on the windowsill, holding her phone up in front of her face so the
+      phone hides her whole face
   mood: >-
-    a calm Pinterest editorial outfit photo in Seoul, either a quiet residential street or a bright
-    minimal interior with light walls and pale floors, soft natural daylight, clean true-to-life tones
+    a candid 35mm film snapshot like an outfit photo saved on Pinterest, in a real, lived-in corner
+    of Seoul (an old neighborhood cafe, a small bookshop, a park with fallen leaves, a sunlit old
+    wall, a cozy room), warm muted film colors, soft uneven natural light
 
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
