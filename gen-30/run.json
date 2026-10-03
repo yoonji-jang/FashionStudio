@@ -1,0 +1,34 @@
+{
+  "spec": "experiments/model_look1.yaml",
+  "started": "2026-10-03T02:09:00",
+  "results": [
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.14392,
+      "file": "nano_banana_pro/model_1.jpg",
+      "sec": 25.3
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 2,
+      "ok": true,
+      "cost": 0.146534,
+      "file": "nano_banana_pro/model_2.jpg",
+      "sec": 29.1
+    },
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 3,
+      "ok": true,
+      "cost": 0.145402,
+      "file": "nano_banana_pro/model_3.jpg",
+      "sec": 27.0
+    }
+  ],
+  "finished": "2026-10-03T02:10:22"
+}
