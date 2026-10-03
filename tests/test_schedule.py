@@ -363,6 +363,10 @@ def test_post_kind_by_weekday(monkeypatch):
     p = _post_days(monkeypatch)
     kinds = [p.schedule.post_kind(date(2026, 10, 5 + i)) for i in range(7)]  # 월~일
     assert kinds == ["flatlay", "model", "flatlay", "model", "flatlay", "model", None]
+    # post_days_from 전 날짜는 요일과 상관없이 펼친 코디컷 (이미 준비된 게시물)
+    start = p.schedule.model_copy(update={"post_days_from": date(2026, 10, 12)})
+    assert start.post_kind(date(2026, 10, 11)) == "flatlay"
+    assert start.post_kind(date(2026, 10, 13)) == "model"
     assert (
         load_profile("women")
         .schedule.model_copy(update={"post_days": None})

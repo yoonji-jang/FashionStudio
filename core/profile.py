@@ -346,6 +346,8 @@ class Schedule(BaseModel):
     # model: 전날 게시물 벌을 모델컷으로 (고르기 없이 후보 시각에 바로 만듦), 빠진 요일은 쉼.
     # 없으면 매일 flatlay
     post_days: dict[str, Literal["flatlay", "model"]] | None = None
+    # 이 게시 날짜부터 post_days 를 따른다. 그 전은 매일 flatlay (이미 준비된 게시물을 그대로)
+    post_days_from: date | None = None
 
     @field_validator("post_days")
     @classmethod
@@ -357,7 +359,7 @@ class Schedule(BaseModel):
 
     def post_kind(self, day: date) -> Literal["flatlay", "model"] | None:
         """게시 날짜의 게시물 종류. None 이면 그날은 쉰다."""
-        if self.post_days is None:
+        if self.post_days is None or (self.post_days_from and day < self.post_days_from):
             return "flatlay"
         return self.post_days.get(WEEKDAYS[day.weekday()])
 
