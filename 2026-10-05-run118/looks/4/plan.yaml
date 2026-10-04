@@ -1,0 +1,109 @@
+account: women
+date: '2026-10-05'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 4
+  desc: 베이지 스트라이프 셔츠 (cream beige pinstriped shirt with a shirt collar, long sleeves)
+  name: 넬로 스트라이프 셔츠
+  product: zigzag:120773723
+  ref_photos:
+  - 4
+  - 2
+  wear_with: 상의
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 그레이 브이넥 니트 베스트 (charcoal gray v-neck knit vest, sleeveless)
+  name: 브이넥 니트 베스트
+  product: zigzag:171826596
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 체크 밴딩 미디 스커트 (gray checked elastic-waist midi skirt, below the knee)
+  name: 체크 밴딩 미디 스커트
+  product: zigzag:168692378
+  ref_photos:
+  - 2
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 나일론 보스턴 숄더백 (black nylon boston shoulder bag)
+  name: 보스턴 나일론 숄더백
+  product: zigzag:133826914
+  ref_photos:
+  - 2
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 소가죽 메리제인 (black leather mary jane shoes with an ankle strap, round toe,
+    3cm mid heel)
+  name: 소가죽 메리제인
+  product: zigzag:166028838
+  ref_photos:
+  - 1
+  - 4
+  - 3
+- color: 그레이
+  comment: ''
+  cutout_photo: 4
+  desc: 그레이 니삭스 (one pair of gray knee-high socks, worn up to just below the knee)
+  name: 발레코어 니삭스
+  product: zigzag:161559034
+  ref_photos:
+  - 4
+- color: 아이보리
+  comment: ''
+  cutout_photo: 1
+  desc: 아이보리 울 니트 삼각 스카프 (a small ivory wool knit triangle scarf tied at the neck)
+  name: 울 니트 쁘띠 스카프
+  product: zigzag:150956611
+  ref_photos:
+  - 1
+  - 4
+looks: []
+reason: 차콜 니트 베스트 밖으로 베이지 스트라이프 셔츠 깃을 빼고 그레이 체크 미디스커트에 니삭스와 메리제인으로 포인트. 아이보리 쁘띠 스카프로
+  얼굴 주변을 밝게
+shot: flatlay
+text:
+  hashtags:
+  - '#출근룩'
+  - '#비오는날코디'
+  - '#셔츠레이어드'
+  - '#니트베스트'
+  - '#가을코디'
+  - '#오피스룩'
+  intro: 이슬비 오는 월요일 출근길엔 셔츠 깃 살린 레이어드로 단정하게 입어요 ☔
+  points: []
+  title_lines:
+  - 이슬비 내리는 출근길엔
+  - 셔츠 깃 살린 레이어드 모음
+theme:
+  date: '2026-10-05'
+  mood: 버건디·아이보리 차분하지만 포인트 있는 비 오는 날 오피스룩
+  search_terms:
+    상의:
+    - 버건디 니트 베스트
+    - 아이보리 셔츠
+    신발:
+    - 레더 로퍼
+    하의:
+    - 핀스트라이프 팬츠
+  slots:
+  - category: 아우터
+    desc: 짧은 기장 그레이 후드 없는 코튼 자켓
+  - category: 상의
+    desc: 버건디 니트 베스트
+  - category: 하의
+    desc: 다크 그레이 핀스트라이프 와이드 팬츠
+  - category: 가방
+    desc: 블랙 레더 숄더백
+  - category: 신발
+    desc: 블랙 레더 로퍼
+  - category: 소품
+    desc: 골드 볼드 귀걸이
+  title_hint: 이슬비 오는 출근길, 버건디 베스트에 아이보리 셔츠 깃 빼기
+  type: 상황
+  why: 월요일, 약한 이슬비에 14~17도라 어두운 하의와 가죽 신발로 실용을 챙기고 니트 베스트로 겹 수를 맞춤

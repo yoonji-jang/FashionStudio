@@ -1,0 +1,106 @@
+account: women
+date: '2026-10-05'
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 1
+  desc: 차콜브라운 아망 크롭 자켓 (charcoal brown cropped jacket, short boxy fit)
+  name: 아망 크롭 자켓
+  product: zigzag:165551665
+  ref_photos:
+  - 1
+  - 4
+- color: 화이트
+  comment: ''
+  cutout_photo: 1
+  desc: 화이트 옥스포드 셔츠 (white oxford shirt with a button-down collar, long sleeves)
+  name: 노튼 옥스포드 셔츠
+  product: zigzag:168584516
+  ref_photos:
+  - 1
+  - 5
+  wear_with: 상의
+- color: 버건디
+  comment: ''
+  cutout_photo: 5
+  desc: 버건디 헨리넥 니트 (dark burgundy plum henley-neck knit top with a short button placket,
+    long sleeves, slim fit)
+  name: 라이크 헨리넥 니트
+  product: zigzag:168185673
+  ref_photos:
+  - 5
+- color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 핀스트라이프 와이드 슬랙스 (gray pinstripe wide straight-leg trousers, full length)
+  name: 핀스트라이프 와이드 슬랙스
+  product: zigzag:168694332
+  ref_photos:
+  - 1
+  - 5
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 호보백 (small black glossy crinkled leather hobo shoulder bag with a short
+    strap and a small round metal logo)
+  name: 블랙 호보백
+  product: zigzag:147738628
+  ref_photos:
+  - 0
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 리본 발레리나 메리제인 플랫 (black ballerina mary jane flats with a small ribbon, round
+    toe)
+  name: 리본 메리제인 플랫
+  product: zigzag:158948889
+  ref_photos:
+  - 1
+  - 2
+looks: []
+reason: 차콜 크롭 자켓 안 버건디 헨리넥 니트 밖으로 화이트 옥스포드 셔츠 깃을 빼 산뜻하게. 그레이 핀스트라이프 팬츠와 발레리나 플랫, 블랙
+  호보백으로 꾸안꾸
+shot: flatlay
+text:
+  hashtags:
+  - '#출근룩'
+  - '#비오는날코디'
+  - '#셔츠레이어드'
+  - '#니트베스트'
+  - '#가을코디'
+  - '#오피스룩'
+  intro: 이슬비 오는 월요일 출근길엔 셔츠 깃 살린 레이어드로 단정하게 입어요 ☔
+  points: []
+  title_lines:
+  - 이슬비 내리는 출근길엔
+  - 셔츠 깃 살린 레이어드 모음
+theme:
+  date: '2026-10-05'
+  mood: 버건디·아이보리 차분하지만 포인트 있는 비 오는 날 오피스룩
+  search_terms:
+    상의:
+    - 버건디 니트 베스트
+    - 아이보리 셔츠
+    신발:
+    - 레더 로퍼
+    하의:
+    - 핀스트라이프 팬츠
+  slots:
+  - category: 아우터
+    desc: 짧은 기장 그레이 후드 없는 코튼 자켓
+  - category: 상의
+    desc: 버건디 니트 베스트
+  - category: 하의
+    desc: 다크 그레이 핀스트라이프 와이드 팬츠
+  - category: 가방
+    desc: 블랙 레더 숄더백
+  - category: 신발
+    desc: 블랙 레더 로퍼
+  - category: 소품
+    desc: 골드 볼드 귀걸이
+  title_hint: 이슬비 오는 출근길, 버건디 베스트에 아이보리 셔츠 깃 빼기
+  type: 상황
+  why: 월요일, 약한 이슬비에 14~17도라 어두운 하의와 가죽 신발로 실용을 챙기고 니트 베스트로 겹 수를 맞춤

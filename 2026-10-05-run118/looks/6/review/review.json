@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c1 은 7개 상품이 모두 원본과 같게 보인다. 레더 자켓 칼라와 단추 줄, 단추 없는 그레이 V넥 니트 베스트, 안에 입은 화이트 셔츠 칼라와 소매 끝, 새틴 롱스커트, 위빙 호보백, 블랙 앵클부츠 2짝, 블랙 벨트까지 맞다. 겹침 순서는 정상이고 글자나 없는 물건도 없다. 왼쪽 아래 제목 자리는 비어 있고 신발은 오른쪽 아래에 있다. 스커트 흰색이 원본 아이보리보다 아주 조금 밝지만 감점할 정도는 아니다."
+}

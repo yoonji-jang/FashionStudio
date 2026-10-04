@@ -1,0 +1,111 @@
+account: women
+date: '2026-10-05'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 싱글 레더 하프자켓 (black single-breasted faux leather half-length jacket, small
+    collar)
+  name: 싱글 레더 하프자켓
+  product: zigzag:165576378
+  ref_photos:
+  - 1
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 코튼 셔츠 (white cotton shirt with a classic collar, long sleeves)
+  name: 라이크 코튼 셔츠
+  product: zigzag:165543386
+  ref_photos:
+  - 5
+  - 1
+  wear_with: 상의
+- color: 그레이
+  comment: ''
+  cutout_photo: 3
+  desc: 그레이 탄탄 울 니트 베스트 (gray wool knit vest, v-neck, sleeveless, no buttons)
+  name: 탄탄 울 니트 베스트
+  product: zigzag:147747225
+  ref_photos:
+  - 3
+  - 2
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 새틴 롱스커트 (ivory satin long skirt, flared, ankle length)
+  name: 새틴 롱스커트
+  product: zigzag:165836528
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 위빙 호보백 (brown woven hobo shoulder bag)
+  name: 플로우 위빙 호보백
+  product: zigzag:161978790
+  ref_photos:
+  - 0
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 뒷지퍼 앵클부츠 (black ankle boots with a back zipper, round toe)
+  name: 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  ref_photos:
+  - 1
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 볼드 소가죽 벨트 (a bold black leather belt worn through the belt loops or over
+    the waist)
+  name: 볼드 소가죽 벨트
+  product: zigzag:165791922
+  ref_photos:
+  - 0
+  - 1
+  wear_with: 하의
+looks: []
+reason: 블랙 레더 하프자켓과 그레이 니트 베스트, 아이보리 새틴 롱스커트로 소재 대비를 주고 화이트 셔츠 깃을 빼 깔끔하게. 앵클부츠와 위빙
+  호보백, 블랙 벨트로 마무리
+shot: flatlay
+text:
+  hashtags:
+  - '#출근룩'
+  - '#비오는날코디'
+  - '#셔츠레이어드'
+  - '#니트베스트'
+  - '#가을코디'
+  - '#오피스룩'
+  intro: 이슬비 오는 월요일 출근길엔 셔츠 깃 살린 레이어드로 단정하게 입어요 ☔
+  points: []
+  title_lines:
+  - 이슬비 내리는 출근길엔
+  - 셔츠 깃 살린 레이어드 모음
+theme:
+  date: '2026-10-05'
+  mood: 버건디·아이보리 차분하지만 포인트 있는 비 오는 날 오피스룩
+  search_terms:
+    상의:
+    - 버건디 니트 베스트
+    - 아이보리 셔츠
+    신발:
+    - 레더 로퍼
+    하의:
+    - 핀스트라이프 팬츠
+  slots:
+  - category: 아우터
+    desc: 짧은 기장 그레이 후드 없는 코튼 자켓
+  - category: 상의
+    desc: 버건디 니트 베스트
+  - category: 하의
+    desc: 다크 그레이 핀스트라이프 와이드 팬츠
+  - category: 가방
+    desc: 블랙 레더 숄더백
+  - category: 신발
+    desc: 블랙 레더 로퍼
+  - category: 소품
+    desc: 골드 볼드 귀걸이
+  title_hint: 이슬비 오는 출근길, 버건디 베스트에 아이보리 셔츠 깃 빼기
+  type: 상황
+  why: 월요일, 약한 이슬비에 14~17도라 어두운 하의와 가죽 신발로 실용을 챙기고 니트 베스트로 겹 수를 맞춤

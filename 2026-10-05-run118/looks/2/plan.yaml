@@ -1,0 +1,111 @@
+account: women
+date: '2026-10-05'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 포켓 트위드 자켓 (black pocket tweed jacket, collarless or round neck, cropped
+    length)
+  name: 포켓 트위드 자켓
+  product: zigzag:145577226
+  ref_photos:
+  - 0
+- color: 올리브
+  comment: ''
+  cutout_photo: 2
+  desc: 카키 스트라이프 셔츠 (khaki striped shirt with a shirt collar, long sleeves)
+  name: 카키 스트라이프 셔츠
+  product: zigzag:171215298
+  ref_photos:
+  - 2
+  - 3
+  wear_with: 상의
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 브이넥 니트 베스트 (black v-neck knit vest, sleeveless, no buttons; ignore the
+    shirt and the logo text in the photo)
+  name: 탄탄 니트 베스트
+  product: zigzag:134881165
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 와이드 슬랙스 (black wide straight-leg trousers, full length)
+  name: 와이드 슬랙스
+  product: zigzag:171326924
+  ref_photos:
+  - 5
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 노아르 숄더백
+  product: zigzag:164013796
+  ref_photos:
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 플랫폼 페니로퍼 (black chunky platform penny loafers, round toe)
+  name: 플랫폼 페니로퍼
+  product: zigzag:130568193
+  ref_photos:
+  - 1
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 스트랩 시계 (a black leather strap wristwatch with a small square white dial
+    and roman numerals)
+  name: 레더 시계
+  product: zigzag:127748170
+  ref_photos:
+  - 0
+  - 1
+looks: []
+reason: 블랙 베스트 밖으로 카키 스트라이프 셔츠 깃을 빼고 블랙 트위드 자켓을 걸쳐 단정하게. 블랙 와이드 슬랙스와 플랫폼 페니로퍼, 가죽
+  시계로 마무리
+shot: flatlay
+text:
+  hashtags:
+  - '#출근룩'
+  - '#비오는날코디'
+  - '#셔츠레이어드'
+  - '#니트베스트'
+  - '#가을코디'
+  - '#오피스룩'
+  intro: 이슬비 오는 월요일 출근길엔 셔츠 깃 살린 레이어드로 단정하게 입어요 ☔
+  points: []
+  title_lines:
+  - 이슬비 내리는 출근길엔
+  - 셔츠 깃 살린 레이어드 모음
+theme:
+  date: '2026-10-05'
+  mood: 버건디·아이보리 차분하지만 포인트 있는 비 오는 날 오피스룩
+  search_terms:
+    상의:
+    - 버건디 니트 베스트
+    - 아이보리 셔츠
+    신발:
+    - 레더 로퍼
+    하의:
+    - 핀스트라이프 팬츠
+  slots:
+  - category: 아우터
+    desc: 짧은 기장 그레이 후드 없는 코튼 자켓
+  - category: 상의
+    desc: 버건디 니트 베스트
+  - category: 하의
+    desc: 다크 그레이 핀스트라이프 와이드 팬츠
+  - category: 가방
+    desc: 블랙 레더 숄더백
+  - category: 신발
+    desc: 블랙 레더 로퍼
+  - category: 소품
+    desc: 골드 볼드 귀걸이
+  title_hint: 이슬비 오는 출근길, 버건디 베스트에 아이보리 셔츠 깃 빼기
+  type: 상황
+  why: 월요일, 약한 이슬비에 14~17도라 어두운 하의와 가죽 신발로 실용을 챙기고 니트 베스트로 겹 수를 맞춤

@@ -1,0 +1,1354 @@
+{
+  "account": "women",
+  "date": "2026-10-05",
+  "plan": {
+    "theme": {
+      "date": "2026-10-05",
+      "title_hint": "이슬비 오는 출근길, 버건디 베스트에 아이보리 셔츠 깃 빼기",
+      "mood": "버건디·아이보리 차분하지만 포인트 있는 비 오는 날 오피스룩",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "짧은 기장 그레이 후드 없는 코튼 자켓"
+        },
+        {
+          "category": "상의",
+          "desc": "버건디 니트 베스트"
+        },
+        {
+          "category": "하의",
+          "desc": "다크 그레이 핀스트라이프 와이드 팬츠"
+        },
+        {
+          "category": "가방",
+          "desc": "블랙 레더 숄더백"
+        },
+        {
+          "category": "신발",
+          "desc": "블랙 레더 로퍼"
+        },
+        {
+          "category": "소품",
+          "desc": "골드 볼드 귀걸이"
+        }
+      ],
+      "type": "상황",
+      "why": "월요일, 약한 이슬비에 14~17도라 어두운 하의와 가죽 신발로 실용을 챙기고 니트 베스트로 겹 수를 맞춤",
+      "search_terms": {
+        "상의": [
+          "버건디 니트 베스트",
+          "아이보리 셔츠"
+        ],
+        "신발": [
+          "레더 로퍼"
+        ],
+        "하의": [
+          "핀스트라이프 팬츠"
+        ]
+      }
+    },
+    "items": [
+      {
+        "id": "zigzag:127784482",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/127784482",
+        "shop": "룩캐스트",
+        "name": "베이비 알파카 트위드 자켓 / BABY ALPACA TWEED JACKET_2colors",
+        "price": 187600,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/23/19533_202308231627210499_73205.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/23/19533_202308231627210497_64183.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/23/19533_202308231627210508_78236.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/23/19533_202308231627210498_63248.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/23/19533_202308231627210509_43731.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/8/23/19533_202308231627210495_84115.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 154,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "로맨틱",
+          "캐주얼"
+        ],
+        "query": "트위드 자켓",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:171584015",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171584015",
+        "shop": "미쏘",
+        "name": "[에센셜] 링클프리 블라우스_MIWBLG910A",
+        "price": 31920,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-a3bad4fb126323405a99/brands/rna37y57jeyj2ys1eg9f7jxm/w7b4ljeelfckglkxkp8yo2bs/MIWBLG910A_17_%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg",
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-5b71a0e49ea2fafdc5d8/brands/rna37y57jeyj2ys1eg9f7jxm/vyp5shgnzm26qv67r3581305/MIWBLG910A_19_1.jpg",
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-b126af64280225c0e04a/brands/rna37y57jeyj2ys1eg9f7jxm/yr9uzok2wu0dfwqjho0iet9p/MIWBLG910A_39_1.jpg",
+          "https://item-imghub.eland.co.kr/transformed/1080x1296/jpg/q95/product/v5/ai-704b5bfbaba8f5785517/brands/rna37y57jeyj2ys1eg9f7jxm/lze3pfz1tzh73ae772ztetwv/MIWBLG910A_99_1.jpg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/11864_202609021725491970_97082.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 246,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "오피스룩",
+          "캐주얼"
+        ],
+        "query": "블라우스",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:150449770",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/150449770",
+        "shop": "먼데이오프",
+        "name": "[3천장판매] 하이넥 부클 니트 베스트 [가을조끼 니트조끼 가을옷 간절기]",
+        "price": 26520,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://mondayoff.co.kr/web/product/extra/big/202410/311c6f0af24d6c1aad4fe90b0c8f6822.jpg",
+          "https://mondayoff.co.kr/web/product/big/202410/262e96dd0a0568988cfa37e7b98cdf37.jpg",
+          "https://mondayoff.co.kr/web/product/extra/big/202410/ce1043bc7d44ad5725cd2b96b4f808e2.jpg",
+          "https://mondayoff.co.kr/web/product/extra/big/202410/f7358e61682e91cd299318b2026d41b9.jpg",
+          "https://mondayoff.co.kr/web/product/extra/big/202410/d7014bfdace0cf3e25157069144ef98d.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 245,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "모던시크"
+        ],
+        "query": "니트 베스트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:166018788",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/166018788",
+        "shop": "슬로우앤드",
+        "name": "[오늘드림🚚] made. 핀스트라이프 커버핏 반밴딩 슬랙스 (+베이직/롱ver) - 4 size",
+        "price": 31840,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://slowand.com/web/product/extra/big/202509/c06cf1f0dbbcb315288b99e81de2bb6d.jpg",
+          "https://slowand.com/web/product/extra/big/202509/b69b0487d1b914b82f8f70f389e91ea6.jpg",
+          "https://slowand.com/web/product/extra/big/202509/744b39cb87b47e33433db595d4cf5d57.jpg",
+          "https://slowand.com/web/product/extra/big/202509/186aed7f300ac44144dfb7fe051225aa.jpg",
+          "https://slowand.com/web/product/extra/big/202509/0841f25a81bea2a9fe57642d199d9def.jpg",
+          "https://slowand.com/web/product/extra/big/202509/dfde0f2b45d2fde58ebad9bafa471c4d.jpg",
+          "https://slowand.com/web/product/extra/big/202509/b1ca956e32399780ca7e4b960f9ba8c6.jpg",
+          "https://slowand.com/web/product/extra/big/202509/463461598cfca4ad49e8ccb61e237846.jpg",
+          "https://slowand.com/web/product/extra/big/202509/5dacc4c976fbcf8427a17a47b70d3efa.jpg",
+          "https://slowand.com/web/product/extra/big/202509/23cfa0c98b75d256f7d61e61e6588699.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 71,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "핀스트라이프 팬츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:153923114",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/153923114",
+        "shop": "맥끌라니",
+        "name": "[윤경PICK] [하객룩] 607아로디 숄더앤 크로스백",
+        "price": 36260,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330421_18154.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330671_51943.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/6/9/11628_202506091033120828_15503.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330570_74195.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/16/11628_202609161441291979_62287.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330769_90971.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/11628_202606241322590665_63769.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/16/11628_202609161441289993_86908.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/22/11628_202410221702330917_93840.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 2876,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "퍼 숄더백",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:134105153",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/134105153",
+        "shop": "로제니크",
+        "name": "[40년 장인 수제화 로제니크] 엘리스 레이스업 로퍼 (3cm/3colors)",
+        "price": 42630,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438332165_76596.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438334601_74378.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438337016_73685.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438338829_91915.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438340503_16982.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438341867_29752.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/13326_202609151438326220_28532.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 233,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "스웨이드 로퍼",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:169325375",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/169325375",
+        "shop": "골드앤디어",
+        "name": "[직진배송] 골드앤디어 14KGF 미니 볼드 물방울 원터치 귀걸이",
+        "price": 18550,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160018_42363.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160285_65639.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160535_94561.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160859_41994.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/22/25520_202509221340150249_14552.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/22/25520_202509221340150498_99792.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946150459_81288.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946150700_63942.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946170005_72071.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 2304,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "귀걸이",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:145577226",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/145577226",
+        "shop": "로제프란츠",
+        "name": "Pocket Tweed Jacket [Black]",
+        "price": 72240,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://rosefrantz.com/web/product/big/202408/3c6f4d41d718b6968096fe704430842e.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 223,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "모던시크"
+        ],
+        "query": "트위드 자켓",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:171215298",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171215298",
+        "shop": "슬로우앤드",
+        "name": "[가을셔츠/무료배송] made. 톤톤 웰메이드 스트라이프 셔츠 - 3 color (오늘드림🚚)",
+        "price": 31840,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://slowand.com/web/product/extra/big/202608/d424b4d24c8930673f69a4eecba4b863.jpg",
+          "https://slowand.com/web/product/extra/big/202608/3f58a11af3471f560d4fcfd7740a5670.jpg",
+          "https://slowand.com/web/product/extra/big/202608/e233eb8f582a4b2e1b5c78102ec231e9.jpg",
+          "https://slowand.com/web/product/extra/big/202608/1c3c482049b73e1406b25e34eb63fa0a.jpg",
+          "https://slowand.com/web/product/extra/big/202608/fe1a60bdb2a562f4d531e851ef475a79.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 89,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "스트라이프 셔츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:134881165",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/134881165",
+        "shop": "코코블랑",
+        "name": "[🎉직잭팟][❣️레이어드][🎖️2천장] 미코 탄탄 니트 베스트 / 니트조끼 / 조끼 / 베스트 / 니트베스트 / 데일리룩 / 출근룩 / 오피스룩 / 하객룩",
+        "price": 27120,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/c/13/488/116/134881165-8674202116635523506.gif"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 510,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "니트 베스트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:171326924",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171326924",
+        "shop": "드무어",
+        "name": "[DEMOOR] 바셋 절개 커브드 슬랙스 (숏/롱)",
+        "price": 31230,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/extra/big/20260814/bafaeca888525706c5a6262b946cae52.jpg",
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/extra/big/20260814/2dde200ece1496acea8a0aad94485e51.jpg",
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/extra/big/20260814/77cf6d70eb7f0ac9dbe44e571be7bb71.jpg",
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/big/20260814/e9ade6151e490ad66702e4db2030575a.jpg",
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/extra/big/20260814/7bced2efef3c1db340c81f2912d770c7.jpg",
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/extra/big/20260814/75737477235a606022e535800f2045d4.jpg",
+          "https://ecimg.cafe24img.com/pg2010b29803441021/demoor/web/product/extra/big/20260814/ee50dd8ac81bc0869644414c16c7fa53.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 128,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "와이드 슬랙스",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:164013796",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/164013796",
+        "shop": "고세",
+        "name": "[퍼플코어💜] 노아르 숄더백 Noir Bag GM245K (11colors)",
+        "price": 46970,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212200200775_53695.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/8/3887_202605081640290104_87623.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/20/3887_202609202204509497_49194.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/8/3887_202605081640280341_77509.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/20/3887_202609202204512424_30478.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212225420307_65704.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/20/3887_202609202204507492_21188.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/3/3887_202607031448170368_33938.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/3/3887_202607031600460675_88076.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212225420747_14202.png"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 1837,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:130568193",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/130568193",
+        "shop": "로제니크",
+        "name": "[하객룩/40년 장인 수제화 로제니크] 데스티 몽글 플랫폼 페니로퍼 (5cm/3colors)",
+        "price": 44730,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952187133_51128.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952190351_53561.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952191962_23235.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952193601_28292.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952195076_66516.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952196606_74322.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/13326_202609031952198291_23650.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 3326,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "로퍼",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:127748170",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/127748170",
+        "shop": "세인트스코트주얼리",
+        "name": "브렌타 레더 시계 / ST5088SWBK",
+        "price": 32850,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/6/22/10960_202306221355510834_96386.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/10960_202601301129060932_25549.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/10960_202601301129070138_88531.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/30/10960_202601301129070284_12370.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 854,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "가죽 시계",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:165939128",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165939128",
+        "shop": "룩캐스트",
+        "name": "리앤 울 핸드메이드 하프 코트 / LEANNE WOOL HANDMADE HALF COAT_3colors",
+        "price": 208600,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "http://image.sellic.co.kr/images/product_img/005/039/357/original/LK2EFTOC001-BE_M01.jpg",
+          "http://image.sellic.co.kr/images/product_img/005/041/830/original/LK2EFTOC001-CH_M01.jpg",
+          "http://image.sellic.co.kr/images/product_img/005/041/831/original/LK2EFTOC001-BK_M01.jpg",
+          "http://image.sellic.co.kr/images/product_img/005/041/832/original/LK2EFTOC001-BE_01.jpg",
+          "http://image.sellic.co.kr/images/product_img/005/041/833/original/LK2EFTOC001-CH_01.jpg",
+          "http://image.sellic.co.kr/images/product_img/005/041/834/original/LK2EFTOC001-BK_01.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 91,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "로맨틱",
+          "캐주얼"
+        ],
+        "query": "울 코트",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:164681223",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/164681223",
+        "shop": "하네",
+        "name": "[30% 깜짝 쿠폰][무료배송][임마멜 PICK][스크런치 SET] 텐셀 글로우 시어셔츠 5Color",
+        "price": 44730,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/12/55213_202606122245460590_49267.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/55213_202606241146250658_27657.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/55213_202606241146250847_30484.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/55213_202606241146250955_75696.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/55213_202606241146260383_87739.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/24/55213_202606241146260540_25843.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 635,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "러블리"
+        ],
+        "query": "셔츠",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:165727743",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165727743",
+        "shop": "민지콩",
+        "name": "[가을/레이어드] 펌킨 루즈 니트 조끼 (2 color)",
+        "price": 27200,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/11/1836_202509111317120605_92615.gif?width=400&height=400&quality=80&format=webp"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 87,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "러블리"
+        ],
+        "query": "니트 베스트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:171292012",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171292012",
+        "shop": "슬로우앤드",
+        "name": "[💙기장선택] made. 아카이브 빈티지 와이드 데님팬츠 (숏/베이직/롱)",
+        "price": 33740,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146566759_65335.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146567946_83893.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146570336_45438.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146571506_56251.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146572504_57283.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146573552_67056.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146574580_17773.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/12/2833_202608121146575853_11007.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 162,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "데님 팬츠",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:168594319",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168594319",
+        "shop": "고세",
+        "name": "오브리 빅 호보백 GL256K (3colors)",
+        "price": 48930,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420143562_55591.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420144743_47190.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420141716_91688.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/3887_202609031420145838_32226.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 198,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "호보백",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:111145203",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/111145203",
+        "shop": "솔트앤초콜릿",
+        "name": "(흑 10/6 예약배송) [정소민 착용] 라운드 토 스티치 레이스업 로퍼 412215009 (4.5cm)",
+        "price": 55970,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/11/28/10403_202511281700110398_14034.jpeg",
+          "https://pic.sabangnet.co.kr/product_image/mw63102/100/jvQoO_100508_7.jpg",
+          "https://pic.sabangnet.co.kr/product_image/mw63102/100/c07k0_100508_8.jpg",
+          "https://pic.sabangnet.co.kr/product_image/mw63102/100/2PL2a_100508_9.jpg",
+          "https://pic.sabangnet.co.kr/product_image/mw63102/100/DAkqg_100508_11.jpg",
+          "https://pic.sabangnet.co.kr/product_image/mw63102/100/1wCNp_100508_13.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 2169,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼"
+        ],
+        "query": "로퍼",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:143131438",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/143131438",
+        "shop": "더노블",
+        "name": "[3colors/소가죽] 레더 골드버클 얇은 버클 왓츠 소가죽 슬림벨트",
+        "price": 11320,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/6/28/5896_202406281614140657_64454.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/6/28/5896_202406281614140653_79292.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/6/28/5896_202406281614140661_32931.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 335,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "벨트",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:120773723",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/120773723",
+        "shop": "가내스라",
+        "name": "[어텀🍂][ordinaire] 뉴 넬로 스트라이프 셔츠 (2color)",
+        "price": 31500,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://ganaesra.com/web/product/extra/big/202608/1f96844b92fdd50e5b6f8ac6869668c2.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/5ce57884abb8d05fa35a914d833d2912.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/10d9bc5347485b3e8be1a61ab17c9b15.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/636ffc6171e8de1efe42fd091f769489.jpg",
+          "https://ganaesra.com/web/product/big/202608/419669eb37902e89edfa7eaf6a96580b.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/b0faf57f14aa776bc70057c4e76eb50e.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/9d5176dea5059916d70ccd31dbf34dc0.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 1195,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "스트라이프 셔츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:171826596",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171826596",
+        "shop": "메리어라운드",
+        "name": "[🍁가을니트][레이어드][울50%] 하버 뷔스티에 니트 (vest)",
+        "price": 30400,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://merryaround.co.kr/web/product/big/202609/fb535a19979a2cb24c6a955eccb991b5.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 12,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "니트 베스트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:168692378",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168692378",
+        "shop": "트위",
+        "name": "[온라인단독][셀럽 pick] 머쉬 체크 밴딩 미디 스커트",
+        "price": 46480,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://twee.co.kr/web/product/extra/big/202602/948c43801264fc792b4f37d24320158f.png",
+          "https://twee.co.kr/web/product/extra/big/202602/613247886d869a17eccff03f75e894b1.jpg",
+          "https://twee.co.kr/web/product/extra/big/202608/236534f290b459280bbc47cd725484f2.jpg",
+          "https://twee.co.kr/web/product/extra/big/202602/8f49f153d3f3b4da7423098729fa3c2a.jpg",
+          "https://twee.co.kr/web/product/big/202608/b68866d119884e84d49c18ef94ff9eb1.jpg",
+          "https://twee.co.kr/web/product/extra/big/202608/876915c1e9af1beac34783c68ce49230.jpg",
+          "https://twee.co.kr/web/product/extra/big/202608/3f3760a5341e5f80812f8492d361777d.jpg",
+          "https://twee.co.kr/web/product/extra/big/202608/3b7dc7db5a6b7c3e064fdeb990ed8340.jpg",
+          "https://twee.co.kr/web/product/extra/big/202608/ae5bf7093ffe83121d6e5927999b879d.jpg",
+          "https://twee.co.kr/web/product/extra/big/202608/9e87e6912cff33721a94013b0ebc5e9d.jpg",
+          "https://twee.co.kr/web/product/extra/big/202602/62ad12a68a437db976b594e787c54aac.png"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 153,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "로맨틱",
+          "심플베이직"
+        ],
+        "query": "체크 미디스커트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:133826914",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/133826914",
+        "shop": "레더리",
+        "name": "[하객룩 가방] 보스턴 나일론 숄더백 [3COLOR]",
+        "price": 37120,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/7/23/16804_202407231637520138_92445.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260271_30042.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/16804_202410081622320926_35064.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/1/26/16804_202401261119390048_15536.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260281_91169.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260255_77230.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/3/14/16804_202403141742260271_65865.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/1/26/16804_202401261119390050_63771.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/7/23/16804_202407231637520145_25459.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 571,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "유니크"
+        ],
+        "query": "보스턴백",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:166028838",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/166028838",
+        "shop": "소보",
+        "name": "트리트 소가죽 메리제인 미들힐 3cm",
+        "price": 42290,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734410636_39377.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734420758_27532.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734420170_90823.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734400924_32385.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734410283_54256.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734410860_46550.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/29/528_202509291734400633_59763.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 673,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "메리제인",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:161559034",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/161559034",
+        "shop": "데일리나인",
+        "name": "[1+1할인🌼아일렛 시스루양말]발레코어 가을 니삭스 여름 삭스 양말  하이틴 반스타킹 종아리 장목 롱삭스 검정 회색 루즈 간절기(dz)",
+        "price": 10770,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021419590703_55423.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021420000543_91322.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021419590858_46897.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021420000374_35825.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/2/21277_202606021420000043_98161.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 214,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "데일리"
+        ],
+        "query": "니삭스",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:150956611",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/150956611",
+        "shop": "모노플로르",
+        "name": "울 니트 삼각 머플러 헤어 커치프 두건 쁘띠 스카프",
+        "price": 13000,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808130211_78628.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120440_72853.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120656_14986.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120353_27768.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120260_53910.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808120859_23755.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/30/19831_202410301808130291_91515.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 419,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "데일리"
+        ],
+        "query": "쁘띠 스카프",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:165551665",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165551665",
+        "shop": "가내스라",
+        "name": "[어텀🍂][ordinaire] 아망 크롭 자켓 (차콜브라운/단독주문시오늘출발)",
+        "price": 56250,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://ganaesra.com/web/product/extra/big/202609/c7d01a8a2163c58fd47779e167708d03.jpg",
+          "https://ganaesra.com/web/product/extra/big/202609/98e6f6151a2343fe50f9c60110a5c1b7.jpg",
+          "https://ganaesra.com/web/product/extra/big/202609/36505bd9adcdf212ec3800e34f1debc8.jpg",
+          "https://ganaesra.com/web/product/extra/big/202609/664e02e5d583098dbd2900509a701feb.jpg",
+          "https://ganaesra.com/web/product/big/202609/406b6645b70b1ee7dd182ce7f88378c7.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 258,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "레더자켓",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:168584516",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168584516",
+        "shop": "어텀",
+        "name": "[made]노튼옥스포드셔츠",
+        "price": 30400,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/7320_202602120903020517_29939.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/7320_202602120903020689_75052.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/7320_202602120903020345_44211.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/7320_202602120903030288_47054.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/7320_202602120903030086_97719.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/7320_202602120903020894_93698.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 128,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "레이어드 셔츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:168185673",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168185673",
+        "shop": "어텀",
+        "name": "[made]라이크헨리넥니트",
+        "price": 30400,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030759_66600.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030435_48437.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030571_27551.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030936_66624.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030019_87546.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030183_17412.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950030311_68818.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950020818_87883.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 264,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "헨리넥 니트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:168694332",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168694332",
+        "shop": "아더먼데이",
+        "name": "핀스트라이프 와이드 슬랙스(3col)",
+        "price": 36570,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://ardormonday.com/web/product/extra/big/202602/49b7c3af8936e50dd31fb0d75ce41542.jpg",
+          "https://ardormonday.com/web/product/extra/big/202602/b1d0adfe63764db35d8b6beda5d718d0.jpg",
+          "https://ardormonday.com/web/product/big/202602/7fbbb8394dcbe1cc44500390ffd6b525.jpg",
+          "https://ardormonday.com/web/product/extra/big/202602/945ff83441d71737d089a034397d208b.jpg",
+          "https://ardormonday.com/web/product/extra/big/202602/12a80abed11d963135214e1686e7bf4c.jpg",
+          "https://ardormonday.com/web/product/extra/big/202602/115f9e8cafff4d89d92f38284e9f664a.jpg",
+          "https://ardormonday.com/web/product/extra/big/202602/47eb73380b7b6549302b137e297a0895.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 52,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "핀스트라이프 팬츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:147738628",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/147738628",
+        "shop": "히어리",
+        "name": "테일 버클 호보백_블랙",
+        "price": 72400,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042047000191_47725.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/9/5/39799_202409051635080848_50675.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042046570982_96575.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 64,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼"
+        ],
+        "query": "호보백",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:158948889",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/158948889",
+        "shop": "로제니크",
+        "name": "[40년 장인 수제화 로제니크] 샤린느 발레리나 리본 메리제인 플랫 (2cm/5colors)",
+        "price": 48300,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623575126_91350.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623576515_90750.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623578343_91169.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623571578_71896.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623573321_52271.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/30/13326_202609301623568355_13841.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 90,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "발레리나 플랫",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:165576378",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165576378",
+        "shop": "무드인사이드우먼",
+        "name": "(woman) 싱글 레더 하프자켓_Black",
+        "price": 65620,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/20/55960_202602202003310259_55837.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/3/55960_202509030959380401_25931.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/20/55960_202602202003310438_13060.jpeg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 107,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "심플베이직"
+        ],
+        "query": "레더자켓",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:165543386",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165543386",
+        "shop": "드무어",
+        "name": "[DEMOOR] 라이크 코튼 데일리 셔츠",
+        "price": 29440,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911339825_37613.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911334053_64527.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911337004_20737.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911338876_36608.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/11/10/55404_202511100014510446_19179.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911334923_52655.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/11/10/55404_202511100014510679_11108.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911335829_65346.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/8/55404_202608081911341975_65970.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 56,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "레이어드 셔츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:147747225",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/147747225",
+        "shop": "슬로우앤드",
+        "name": "베니 탄탄울 니트베스트 - 5 color",
+        "price": 31120,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://slowand.com/web/product/extra/big/202409/ac59fbdca80f7b66d22d1a09478d01fb.jpg",
+          "https://slowand.com/web/product/extra/big/202409/43750a545ad9b937eba2a6c7c371c487.jpg",
+          "https://slowand.com/web/product/extra/big/202409/a36ca69518d83cc5c56a7e7972c312c6.jpg",
+          "https://slowand.com/web/product/extra/big/202409/981f93e071ebbdd11164ff5314216f4e.jpg",
+          "https://slowand.com/web/product/extra/big/202409/e1ad6882bb516c0220f59a2d4fe04957.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 133,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "니트 베스트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:165836528",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165836528",
+        "shop": "오디너리먼트",
+        "name": "셀로 새틴 롱스커트 3color!",
+        "price": 45600,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/18/7601_202509181500110097_26343.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 90,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "캐주얼"
+        ],
+        "query": "새틴 스커트",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:161978790",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/161978790",
+        "shop": "고세",
+        "name": "플로우위빙호보백 GM167K",
+        "price": 46830,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250453_41168.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126240907_86458.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250275_86203.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250600_37979.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126240772_44431.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126250091_14348.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/29/3887_202606291126240511_70784.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/3/5/3887_202603051317560552_13316.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 140,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "호보백",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-02"
+      },
+      {
+        "id": "zigzag:130586820",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/130586820",
+        "shop": "로제니크",
+        "name": "[40년 장인 수제화 로제니크] 바라스 뒷지퍼 앵클부츠 (2cm/2color)",
+        "price": 48860,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/19/13326_202410191950380365_99821.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/10/31/13326_202310312215200100_70866.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/10/31/13326_202310312215200094_48848.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/10/31/13326_202310312215200097_75588.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/10/31/13326_202310312215200093_77817.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/10/31/13326_202310312215200095_70677.png"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 242,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "앵클부츠",
+        "collected_at": "2026-09-26",
+        "checked_at": "2026-09-30"
+      },
+      {
+        "id": "zigzag:165791922",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/165791922",
+        "shop": "어텀",
+        "name": "[made]볼드소가죽벨트",
+        "price": 21400,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://autumnshop.kr/web/product/extra/big/202509/a2d6860bc927bb88ad684a21a66f1eda.jpg",
+          "https://autumnshop.kr/web/product/extra/big/202509/8d12eecf47c0189c8ccd2630ddc252b9.jpg",
+          "https://autumnshop.kr/web/product/extra/big/202509/5f94a259dcecb6050c9648432de5262c.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 442,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "벨트",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-09-30"
+      }
+    ],
+    "reason": "비 오는 월요일 출근길을 셔츠 깃을 빼 입는 레이어링 중심으로, 벌마다 색을 바꿔 여섯 가지로",
+    "looks": [
+      [
+        "zigzag:127784482",
+        "zigzag:171584015",
+        "zigzag:150449770",
+        "zigzag:166018788",
+        "zigzag:153923114",
+        "zigzag:134105153",
+        "zigzag:169325375"
+      ],
+      [
+        "zigzag:145577226",
+        "zigzag:171215298",
+        "zigzag:134881165",
+        "zigzag:171326924",
+        "zigzag:164013796",
+        "zigzag:130568193",
+        "zigzag:127748170"
+      ],
+      [
+        "zigzag:165939128",
+        "zigzag:164681223",
+        "zigzag:165727743",
+        "zigzag:171292012",
+        "zigzag:168594319",
+        "zigzag:111145203",
+        "zigzag:143131438"
+      ],
+      [
+        "zigzag:120773723",
+        "zigzag:171826596",
+        "zigzag:168692378",
+        "zigzag:133826914",
+        "zigzag:166028838",
+        "zigzag:161559034",
+        "zigzag:150956611"
+      ],
+      [
+        "zigzag:165551665",
+        "zigzag:168584516",
+        "zigzag:168185673",
+        "zigzag:168694332",
+        "zigzag:147738628",
+        "zigzag:158948889"
+      ],
+      [
+        "zigzag:165576378",
+        "zigzag:165543386",
+        "zigzag:147747225",
+        "zigzag:165836528",
+        "zigzag:161978790",
+        "zigzag:130586820",
+        "zigzag:165791922"
+      ]
+    ]
+  },
+  "images": [
+    "out/2026-10-05/slides/01_cover.jpg",
+    "out/2026-10-05/slides/02_look1.jpg",
+    "out/2026-10-05/slides/03_look2.jpg",
+    "out/2026-10-05/slides/04_look3.jpg",
+    "out/2026-10-05/slides/05_look4.jpg",
+    "out/2026-10-05/slides/06_look5.jpg",
+    "out/2026-10-05/slides/07_look6.jpg",
+    "out/2026-10-05/slides/08_comment.jpg"
+  ],
+  "review_score": 6.0,
+  "needs_human": true,
+  "review": {
+    "candidates": [],
+    "chosen": null,
+    "rounds": 2,
+    "passed": false,
+    "status": "failed",
+    "slide_issues": [],
+    "summary": "1번 c2 8점 (passed) / 2번 c1 7점 (failed) / 3번 c1 6점 (failed) / 4번 c1 8점 (passed) / 5번 c1 8점 (passed) / 6번 c1 10점 (passed)"
+  },
+  "title_lines": [
+    "이슬비 내리는 출근길엔",
+    "셔츠 깃 살린 레이어드 모음"
+  ],
+  "caption": "이슬비 오는 월요일 출근길엔 셔츠 깃 살린 레이어드로 단정하게 입어요 ☔\n\nLOOK 1  그레이 트위드 안 아이보리 부클 베스트, 블라우스 깃을 밖으로 빼요\nLOOK 2  블랙 레이어드에 카키 스트라이프 셔츠 깃으로 포인트를 줘요\nLOOK 3  베이지 코트와 브라운 조끼에 하늘색 셔츠 깃을 살짝 빼 입어요 🤎\nLOOK 4  차콜 조끼와 체크 스커트, 니삭스로 포근한 레이어드를 완성해요\nLOOK 5  버건디 헨리넥 위로 화이트 셔츠 깃을 빼 산뜻하게 입어요 🍷\nLOOK 6  블랙 레더 하프자켓에 아이보리 새틴 스커트로 소재 대비를 줘요\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#출근룩",
+    "#비오는날코디",
+    "#셔츠레이어드",
+    "#니트베스트",
+    "#가을코디",
+    "#오피스룩",
+    "#데일리룩",
+    "#오늘의코디",
+    "#코디추천",
+    "#여자코디",
+    "#패션"
+  ],
+  "monetize": "none",
+  "reels": null
+}
