@@ -1,0 +1,19 @@
+# 임시: 상세 본문 구조 확인 (커밋 메시지 [probe-detail]). 로그에 구조만 출력, 아무것도 저장하지 않음
+name: probe-detail
+on:
+  push:
+    branches: ["claude/**"]
+jobs:
+  probe:
+    if: contains(github.event.head_commit.message, '[probe-detail]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --group scout
+      - run: >
+          PYTHONPATH=. uv run python experiments/probe_detail.py
+          https://zigzag.kr/catalog/products/168776088
+          https://zigzag.kr/catalog/products/165618457
+          https://zigzag.kr/catalog/products/172016137
