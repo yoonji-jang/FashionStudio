@@ -147,16 +147,13 @@ def test_reels_at_posts_reel_later_with_same_ok(results, store, monkeypatch):  #
     monkeypatch.setattr(publish, "load_profile", reels_at("19:00"))
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 1 and not api.uploads
-    # 19:00 릴스: 영상 파일을 업로드 서버로 바로 보내고 게시
+    # 19:00 릴스: 영상을 사진 저장소에 잠시 올려 공개 주소(video_url)로 넘기고 게시
     assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 2
     reel = api.media[-1]
-    assert reel["media_type"] == "REELS" and reel["upload_type"] == "resumable"
+    assert reel["media_type"] == "REELS" and "upload_type" not in reel
+    assert reel["video_url"].endswith("reel.mp4") and not api.uploads
     assert reel["share_to_feed"] == "true" and "#" not in reel["caption"]  # 해시태그는 댓글로
-    up = api.uploads[0]
-    assert up["authorization"] == "OAuth IGTOKEN" and up["offset"] == "0"
-    assert int(up["file_size"]) == up["bytes"] == (run / "reels" / "reel.mp4").stat().st_size
-    assert any(c[1].endswith("/ig-api-upload/v23.0/" + reel_container(api)) for c in api.calls)
     done = PublishRecord.model_validate_json((run / "published.json").read_text())
     assert done.media_id == "m777" and done.reel_media_id == "r888"
     post = store.posts()[-1]
