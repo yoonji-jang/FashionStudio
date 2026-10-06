@@ -310,6 +310,9 @@ class Reels(BaseModel):
     music_dir: str | None = None
     music_volume: float = Field(default=0.8, ge=0, le=2)
     share_to_feed: bool = True  # 릴스를 프로필 피드 격자에도 보이게
+    # telegram: reels_at 에 영상과 캡션을 텔레그램으로 보냄 (사람이 인스타 앱에서 음악을 붙여 올림.
+    # 앱 음악은 게시 API 로 넣을 수 없다, 2026-10-06 사용자) / instagram: 자동 게시
+    delivery: Literal["telegram", "instagram"] = "telegram"
 
 
 class ModelShot(BaseModel):

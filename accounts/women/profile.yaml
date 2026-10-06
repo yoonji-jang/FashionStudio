@@ -294,7 +294,7 @@ schedule:
   collect_at: "월,목 04:00"  # 지그재그 새 상품 수집
   token_refresh_at: "일 19:00"  # 인스타 토큰 연장 (60일 만료 전에 매주)
   github_cron: backup       # 외부 스케줄러가 매시 깨우므로 GitHub 예약은 주요 칸만 (Actions 시간 절약)
-  reels_at: "19:00"         # 릴스 게시 (19단계). 아침 캐러셀과 같은 코디를 저녁에. null 이면 캐러셀 직후
+  reels_at: "19:00"         # 릴스 영상을 텔레그램으로 보냄 (19단계, reels.delivery). null 이면 캐러셀 직후
   # 요일별 게시물 (16단계, 게시 날짜 기준. 2026-10-02 사용자): 월·수·금 펼친 코디컷(전날 09:00 후보),
   # 화·목·토 전날 벌의 모델컷(전날 09:00 에 바로 만듦, 고르기 없음), 일요일 쉼
   post_days: {월: flatlay, 화: model, 수: flatlay, 목: model, 금: flatlay, 토: model}
@@ -347,7 +347,7 @@ link_page:
   share_days: 7            # monetize: manual_link 일 때 게시 알림 답장의 공유리워드 링크를 반영하는 기간 (일)
   send_links: true         # /ok 뒤 상품별 지그재그 링크를 텔레그램으로 (링크를 직접 만들 때 씀)
 
-# 릴스 (19단계, tools.reels). 그날 캐러셀 슬라이드를 세로 영상(1080×1920)으로 이어 붙여 schedule.reels_at 에 올린다.
+# 릴스 (19단계, tools.reels). 그날 캐러셀 슬라이드를 세로 영상(1080×1920)으로 이어 붙여 schedule.reels_at 에 텔레그램으로 보낸다(delivery).
 # 영상 AI 없이 코드로 만든다 (추가 비용 없음). 텔레그램 미리보기에 영상도 같이 오고, /ok 하나로 둘 다 승인
 reels:
   enabled: true
@@ -362,7 +362,10 @@ reels:
   # (인스타 앱의 음악은 API 로 넣을 수 없다)
   music_dir: accounts/women/music
   music_volume: 0.8
-  share_to_feed: true      # 프로필 격자에도 보이게
+  share_to_feed: true      # 프로필 격자에도 보이게 (delivery instagram 일 때)
+  # telegram: schedule.reels_at 에 영상과 캡션을 텔레그램으로 보냄. 인스타 앱에서 음악을 붙여 직접 올림
+  # instagram: 같은 시각에 자동 게시 (앱 음악 없이)
+  delivery: telegram
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)

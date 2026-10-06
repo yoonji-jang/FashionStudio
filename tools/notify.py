@@ -348,6 +348,9 @@ def reel_caption(profile: Profile, spec: ReelsSpec | None) -> str:
     sound = f"음원 {spec.audio}" if spec is not None and spec.audio else "소리 없음"
     sec = spec.duration_sec if spec is not None else None
     length = f"{sec:g}초 · " if sec else ""
+    if profile.reels.delivery == "telegram":
+        resend = f"{when} 에 영상을 다시 보내 드려요 (앱에서 음악 붙여 올리기)"
+        return f"[{profile.id}] 릴스 {length}{sound} · {resend}"
     return f"[{profile.id}] 릴스 {length}{sound} · {when} 게시 예정"
 
 

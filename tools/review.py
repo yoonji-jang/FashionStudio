@@ -138,8 +138,12 @@ def face_crops(out: Path, plan: DailyPlan, review: Review) -> dict[str, list[Pat
             rgb = img.convert("RGB")
             for n, (x0, y0, x1, y1) in enumerate(faces.find_faces(rgb), 1):
                 pad = (x1 - x0) * 0.6
-                box = (max(0, x0 - pad), max(0, y0 - pad), min(rgb.width, x1 + pad),
-                       min(rgb.height, y1 + pad))
+                box = (
+                    max(0, x0 - pad),
+                    max(0, y0 - pad),
+                    min(rgb.width, x1 + pad),
+                    min(rgb.height, y1 + pad),
+                )
                 dest = out / "review" / f"face_{c.id}_{n}.jpg"
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 rgb.crop(tuple(round(v) for v in box)).save(dest, quality=90)

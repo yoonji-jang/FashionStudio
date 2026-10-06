@@ -11,7 +11,9 @@ r"""하루 게시물을 인스타에 올리는 게시 job (8단계). Claude 는 
    사진을 공개 저장 위치에 올리고(tools.media_host) 인스타에 게시(tools.ig_publish), 사진 지우기
 5. 게시 기록(data/<계정>/posts.json)과 결과 폴더 published.json 을 쓰고 텔레그램으로 알림
 6. 릴스 (19단계, profile reels): schedule.reels_at 이 있으면 그 시각에 --reels 로 따로,
-   없으면 캐러셀 바로 뒤에 같은 캡션으로 올린다. 캐러셀 /ok 가 릴스 승인을 겸한다
+   없으면 캐러셀 바로 뒤에. 캐러셀을 올린 날에만 하고, 캐러셀 /ok 가 릴스 승인을 겸한다.
+   reels.delivery telegram 이면 영상과 캡션을 텔레그램으로 보내고(사람이 앱에서 음악을 붙여 올림),
+   instagram 이면 같은 캡션으로 자동 게시한다
 
 종료 코드: 0 게시·건너뜀·이미 게시됨, 3 아직 승인 없음(게시 안 함), 1 오류
 
@@ -319,10 +321,15 @@ def run(
     store.save_posts(sorted(posts, key=lambda p: p.date))
     print(f"{tag} 게시 완료: {link or media_id}")
     if profile.reels.enabled and profile.schedule.reels_at is None:
-        # 릴스 시각이 없으면 캐러셀 바로 뒤에 올린다. 실패해도 캐러셀은 올라갔으니 알림만
+        # 릴스 시각이 없으면 캐러셀 바로 뒤에 한다. 실패해도 캐러셀은 올라갔으니 알림만
         try:
-            _, reel, reel_tags = publish_reel(profile, manifest, out, ig, cfg, store, host)
-            tagged += f"\n릴스도 올렸어요: {reel or ''}{reel_tags}"
+            if profile.reels.delivery == "telegram":
+                if tg is None:
+                    raise RuntimeError("텔레그램 설정이 없어 릴스 영상을 보내지 못합니다")
+                send_reel(profile, manifest, out, tg)
+            else:
+                _, reel, reel_tags = publish_reel(profile, manifest, out, ig, cfg, store, host)
+                tagged += f"\n릴스도 올렸어요: {reel or ''}{reel_tags}"
         except (Blocked, IGError, RuntimeError, ValueError, httpx.HTTPError) as e:
             print(f"경고: 릴스를 올리지 못했습니다: {e}", file=sys.stderr)
             tagged += f"\n릴스를 올리지 못했어요: {e}"
@@ -441,6 +448,35 @@ def publish_reel(
     return media_id, link, tag_error
 
 
+def reel_text(profile: Profile, manifest: Manifest) -> str:
+    """텔레그램으로 보내는 릴스 캡션 (복사해 붙이기). 댓글 해시태그를 쓰면 따로 아래에 둔다."""
+    caption = post_caption(profile, manifest)
+    if profile.comment_tags.enabled:
+        tags = " ".join(comment_tag_list(profile, manifest))
+        if tags:
+            caption += f"\n\n(댓글에 달 해시태그)\n{tags}"
+    return caption
+
+
+def send_reel(profile: Profile, manifest: Manifest, out: Path, tg: notify.Telegram) -> None:
+    """릴스 영상과 캡션을 텔레그램으로 보낸다 (reels.delivery telegram). 인스타 게시는 사람이
+    앱에서 음악을 붙여 한다. published.json 에 보낸 때를 적어 두 번 보내지 않는다."""
+    from tools import reels
+
+    video = reels.video_path(manifest, out)
+    errors = reel_guard(manifest, video)
+    if errors:
+        raise Blocked("릴스 영상 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
+    assert video is not None
+    tag = f"[{profile.id}] {manifest.date}"
+    tg.send_video(video, f"{tag} 오늘 릴스 영상이에요. 인스타 앱에서 음악을 붙여 올려 주세요 🎵")
+    tg.send(reel_text(profile, manifest))
+    done = out / "published.json"
+    rec = PublishRecord.model_validate_json(done.read_text(encoding="utf-8"))
+    rec.reel_sent_at = int(time.time())
+    done.write_text(rec.model_dump_json(indent=2), encoding="utf-8")
+
+
 def run_reels(
     account: str,
     day: date,
@@ -452,8 +488,9 @@ def run_reels(
     ig: Instagram | None = None,
     host: GitHubHost | None = None,
 ) -> int:
-    """schedule.reels_at 에 릴스만 올린다. 그날 캐러셀을 게시한 결과 폴더의 영상을 쓴다
-    (캐러셀 /ok 가 릴스 승인을 겸한다). 캐러셀을 안 올린 날은 조용히 끝낸다."""
+    """schedule.reels_at 에 릴스만 올리거나 텔레그램으로 보낸다 (reels.delivery). 그날 캐러셀을
+    게시한 결과 폴더의 영상을 쓴다 (캐러셀 /ok 가 릴스 승인을 겸한다).
+    캐러셀을 안 올린 날은 조용히 끝낸다."""
     profile = load_profile(account)
     store = store or Store(account)
     tag = f"[{account}] {day}"
@@ -473,12 +510,24 @@ def run_reels(
     if rec.reel_media_id:
         print(f"{tag} 릴스를 이미 올렸습니다 ({rec.reel_permalink or rec.reel_media_id})")
         return 0
+    if rec.reel_sent_at:
+        print(f"{tag} 릴스 영상을 이미 텔레그램으로 보냈습니다")
+        return 0
     manifest = notify.load_manifest(out)
     from tools import reels
 
     errors = reel_guard(manifest, reels.video_path(manifest, out))
     if errors:
         raise Blocked("릴스 게시 전 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
+    if profile.reels.delivery == "telegram":
+        if dry_run:
+            print(f"(시험) {out.name} 릴스 영상을 텔레그램으로 보낼 예정")
+            return 0
+        if tg is None:
+            raise Blocked("텔레그램 설정이 없어 릴스 영상을 보내지 못합니다")
+        send_reel(profile, manifest, out, tg)
+        print(f"{tag} 릴스 영상을 텔레그램으로 보냈습니다")
+        return 0
     if dry_run:
         print(f"(시험) {out.name} 릴스 {manifest.reels.duration_sec:g}초를 게시할 예정")  # type: ignore[union-attr]
         return 0

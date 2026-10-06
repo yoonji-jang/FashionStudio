@@ -346,6 +346,7 @@ class PublishRecord(BaseModel):
     reel_media_id: str | None = None
     reel_permalink: str | None = None
     reel_published_at: int | None = None
+    reel_sent_at: int | None = None  # 릴스 영상을 텔레그램으로 보낸 때 (reels.delivery telegram)
 
 
 class ReelsSpec(BaseModel):

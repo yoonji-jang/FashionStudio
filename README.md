@@ -375,7 +375,8 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 | `background` | null | 남는 곳 색. `null` 이면 `feed.background` |
 | `music_dir` | accounts/women/music | 배경 음악 폴더. 상업 이용이 허락된 mp3·m4a 를 넣으면 날짜마다 돌려 씀. 비어 있으면 소리 없음 |
 | `music_volume` | 0.8 | 음악 크기 |
-| `share_to_feed` | true | 프로필 격자에도 릴스가 보이게 |
+| `share_to_feed` | true | 프로필 격자에도 릴스가 보이게 (`instagram` 일 때) |
+| `delivery` | telegram | `telegram`: `reels_at` 에 영상·캡션을 텔레그램으로 (앱에서 음악 붙여 직접 게시) / `instagram`: 자동 게시 |
 
 #### 수익·승인
 | 항목 | 예시 | 선택지 |
@@ -981,8 +982,10 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
    `reels/reel.mp4` 를 만듭니다. 그날 캐러셀 장을 순서대로 보여 주고, 장은 효과 없이 바로 바뀝니다 (확대·밀기 없음, 8장이면 약 14초).
    `/fix` 로 고친 미리보기도 릴스를 다시 만듭니다. 릴스 만들기가 실패해도 캐러셀은 그대로 갑니다.
 2. **미리보기**: 텔레그램 미리보기에 영상이 같이 옵니다. **`/ok` 하나로 캐러셀과 릴스를 같이 승인**합니다.
-3. **게시**: schedule 이 `schedule.reels_at` 에 publish 워크플로(`reels: true`)를 부릅니다.
-   그날 캐러셀을 게시했을 때만 같은 캡션으로 릴스를 올리고, 댓글 해시태그(`comment_tags`)도 답니다.
+3. **보내기·게시**: schedule 이 `schedule.reels_at` 에 publish 워크플로(`reels: true`)를 부릅니다.
+   그날 캐러셀을 게시했을 때만 합니다. `reels.delivery: telegram`(기본)이면 영상과 캡션(댓글 해시태그 포함)을
+   텔레그램으로 보내고, 인스타 앱에서 음악을 붙여 직접 올립니다 (앱 음악은 게시 API 로 넣을 수 없음).
+   `instagram` 이면 같은 캡션으로 자동 게시하고 댓글 해시태그(`comment_tags`)도 답니다.
    영상 파일은 인스타 업로드 서버로 바로 보냅니다 (`config/publish.yaml` `instagram.reels_upload: file`).
    안 되면 `url` 로 바꾸면 사진 저장소에 잠시 올려 공개 주소로 넘깁니다.
 4. **음악**: 인스타 앱의 음악은 게시 API 로 넣을 수 없습니다. `reels.music_dir` 폴더에 상업 이용이 허락된

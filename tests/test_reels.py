@@ -172,10 +172,11 @@ def reel_container(api: ReelApis) -> str:
     return list(api.statuses)[-1]
 
 
-def reels_at(at):
+def reels_at(at, delivery="instagram"):
     def load(account):
         p = notify.load_profile(account)
         p.schedule.reels_at = at
+        p.reels.delivery = delivery
         return p
 
     return load
@@ -211,6 +212,38 @@ def test_reel_failure_keeps_carousel(results, store, monkeypatch):  # noqa: F811
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 1 and store.posts()[-1].media_id == "m777"
     assert "릴스를 올리지 못했어요" in api.texts[-1]
+
+
+def test_reel_sent_to_telegram_instead_of_posting(results, store, monkeypatch):  # noqa: F811
+    api = ReelApis()
+    run = ok_published(results, store, api, monkeypatch)
+    tg, ig, host = clients(api)
+    monkeypatch.setattr(publish, "load_profile", reels_at("19:00", "telegram"))
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    before = len(api.calls)
+    # 19:00: 인스타에는 올리지 않고 영상과 캡션을 텔레그램으로
+    assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert api.published == 1 and not api.uploads
+    methods = [c[1].rsplit("/", 1)[-1] for c in api.calls[before:]]
+    assert methods == ["sendVideo", "sendMessage"]
+    m = notify.load_manifest(run)
+    assert publish.post_caption(publish.load_profile("women"), m) in api.texts[-1]
+    done = PublishRecord.model_validate_json((run / "published.json").read_text())
+    assert done.reel_sent_at and done.reel_media_id is None
+    # 다시 불려도 두 번 보내지 않는다
+    assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert len(api.calls) == before + 2
+
+
+def test_reel_telegram_right_after_carousel_when_no_time(results, store, monkeypatch):  # noqa: F811
+    api = ReelApis()
+    run = ok_published(results, store, api, monkeypatch)
+    monkeypatch.setattr(publish, "load_profile", reels_at(None, "telegram"))
+    tg, ig, host = clients(api)
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert api.published == 1
+    assert any(c[1].endswith("/sendVideo") for c in api.calls)
+    assert json.loads((run / "published.json").read_text())["reel_sent_at"]
 
 
 def test_reels_slot_and_dispatch(monkeypatch):

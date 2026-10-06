@@ -105,7 +105,8 @@ def test_publish_asks_for_links_then_schedule_applies_them(
     ask = post.share.message_ids[-1]
     api.replies.append((post.share.sent_at + 60, "1 https://s.zigzag.kr/one", ask))
     monkeypatch.setattr(share, "Store", lambda account: store)
-    now = datetime.fromtimestamp(post.share.sent_at + 120, UTC)
+    # 게시 날짜(DAY) 기준으로 확인한다 (실제 시각으로 하면 share_days 가 지나 날짜에 따라 깨짐)
+    now = datetime(DAY.year, DAY.month, DAY.day, 3, tzinfo=UTC)
     line = share.check("women", tg, now, host=host)
     assert "1개" in line
     post = store.posts()[-1]
