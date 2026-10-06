@@ -27,7 +27,8 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
 - 5. 상품 조합 (고르기 없이 처음부터 만들 때만): `outfit-candidates` 스킬의 "여러 벌" 절대로 `looks.count` 벌을 짠다.
 - 6. 사진 확인: 확인표가 벌마다 `photo_check_<n>.jpg` 로 나온다. `photo-checker` 에게 plan.yaml 과
   확인표들을 한 번에 넘기고, 돌려받은 `cutout_photo`·`ref_photos` 를 그 상품이 있는 벌마다 채운다
-  (상품 장이 없어 `photo` 는 안 써도 됨). 바꿀 상품은 같은 벌 안에서 같은 카테고리로 바꾼다.
+  (상품 장이 없어 `photo` 는 안 써도 됨). 이어서 6-1 실측도 한다 (`tools.plan measure` 가 같은 상품이 든 벌마다 적는다). 돌려받은 `fit` 으로 그 상품 `desc` 영어의 핏·기장·소재 말을 고친다
+  (사진이 이름보다 맞다. 기장 말이 바뀌면 `cm` 도 맞춘다: 오버핏 아우터 75, 미디스커트 75, 롱스커트 85). 바꿀 상품은 같은 벌 안에서 같은 카테고리로 바꾼다.
 - 7. 문구: `write-copy` 의 "여러 벌" 절 (제목, 도입, 벌마다 `point`, 상품 `name`).
 - 9. 만들기: 벌마다 `out/$DATE/looks/<n>/` 에 코디컷 후보(`looks.candidates` 장)가 생긴다.
 - 10. 검수: 벌 폴더마다 따로 한다. `python -m tools.review prep out/$DATE` 가 모든 벌을 prep 한다. 그다음
@@ -38,7 +39,7 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
   벌 하나만 계속 떨어지면 그 벌의 상품을 바꾸지 말고 사람 확인으로 둔다 (사람이 고른 구성).
 
 ## 에이전트 부르기
-`photo-checker`, `image-reviewer` 에이전트는 반드시 앞에서(`run_in_background: false`) 불러 결과를 받은 뒤
+`photo-checker`, `size-reader`, `image-reviewer` 에이전트는 반드시 앞에서(`run_in_background: false`) 불러 결과를 받은 뒤
 다음 단계로 간다. 백그라운드로 부르면 결과를 기다리는 동안 실행이 끝나 버려 게시물이 만들어지지 않는다.
 report.md 를 쓰기 전에는 끝내지 않는다.
 
@@ -56,7 +57,14 @@ report.md 를 쓰기 전에는 끝내지 않는다.
 6. **사진 확인**: `python -m tools.plan photos out/$DATE/plan.yaml` 로 사진 확인표(`photo_check.jpg`)를 만들고
    `photo-checker` 에이전트에게 plan.yaml 과 확인표를 넘긴다. 에이전트가 돌려준 번호로
    items 의 `photo`, `cutout_photo`, `ref_photos` 를 채운다. 맞는 색 사진이 없는 상품은 같은 카테고리 다른 상품으로 바꾸고
-   이 단계를 다시 한다.
+   이 단계를 다시 한다. 옷은 돌려받은 `fit` 으로 `desc` 영어의 핏·기장·소재 말을 고친다 (사진이 이름보다 맞다,
+   기장 말이 바뀌면 `cm` 도: 오버핏 아우터 75, 미디스커트 75, 롱스커트 85).
+6-1. **실측** (2026-10-06): `python -m tools.plan sizes out/$DATE/plan.yaml` 로 옷 상품의 상세 본문 이미지를
+   조각내고(`out/$DATE/src/sizes/`, 결과 브랜치에 올라가지 않음), `size-reader` 에이전트에게 `sizes.json` 을 넘긴다.
+   돌려받은 YAML 을 `out/$DATE/sizes.yaml` 로 저장하고 `python -m tools.plan measure out/$DATE/plan.yaml --file
+   out/$DATE/sizes.yaml` 로 옷마다 `cm`·`size`(총장·어깨·가슴·소매 cm, 영어)를 적는다. 실측이 `fit` 이나 `desc` 의
+   기장 말과 어긋나면 실측을 믿고 `desc` 를 고친다 (예: 총장 74cm 자켓인데 desc 가 cropped). 상품을 바꾸면 다시 한다.
+   실측표를 못 찾은 상품은 그대로 둔다 (이름의 기장 말·기본값으로 그림).
 7. **문구**: `write-copy` 스킬로 plan.yaml 의 `text` 와 items 의 `name`, `comment` 를 쓴다.
 8. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`.
    오류가 있으면 고치고 다시 검사한다 (최대 3번). 경고는 이유가 있으면 두어도 된다.
