@@ -7,9 +7,10 @@ instagram:
   wait_sec: 5          # 인스타가 사진을 받아 처리했는지 확인하는 간격
   wait_tries: 36       # 확인 횟수 (5초 × 36 = 3분)
   reels_wait_tries: 72 # 릴스 영상 처리 확인 횟수 (5초 × 72 = 6분)
-  # 릴스 영상을 넘기는 방법 (19단계). file: 인스타 업로드 서버로 파일을 바로 보냄 (공개 주소 필요 없음)
-  # url: 아래 사진 저장소에 잠시 올려 공개 주소로 넘김 (file 이 안 될 때)
-  reels_upload: file
+  # 릴스 영상을 넘기는 방법 (19단계). url: 아래 사진 저장소에 잠시 올려 공개 주소로 넘김
+  # file: 인스타 업로드 서버로 파일을 바로 보냄. Instagram Login API(graph.instagram.com)는
+  # 받지 않는다 ("The parameter video_url is required", 2026-10-06 실제 게시에서 확인)
+  reels_upload: url
   caption_max: 2200    # 인스타 캡션 최대 글자 수
   hashtags_max: 30     # 인스타 해시태그 최대 개수
 

@@ -413,7 +413,7 @@ def publish_reel(
     ig_cfg = cfg.get("instagram", {})
     caption = post_caption(profile, manifest)
     kw = dict(share_to_feed=profile.reels.share_to_feed, wait_tries=ig_cfg.get("reels_wait_tries"))
-    if ig_cfg.get("reels_upload", "file") == "url":
+    if ig_cfg.get("reels_upload", "url") == "url":
         host_cfg = cfg.get("image_host", {})
         host = host or GitHubHost.from_config(host_cfg)
         uploaded = host.upload([video], f"{profile.id}/{out.name}-reel")
