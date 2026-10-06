@@ -27,7 +27,8 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
 - 5. 상품 조합 (고르기 없이 처음부터 만들 때만): `outfit-candidates` 스킬의 "여러 벌" 절대로 `looks.count` 벌을 짠다.
 - 6. 사진 확인: 확인표가 벌마다 `photo_check_<n>.jpg` 로 나온다. `photo-checker` 에게 plan.yaml 과
   확인표들을 한 번에 넘기고, 돌려받은 `cutout_photo`·`ref_photos` 를 그 상품이 있는 벌마다 채운다
-  (상품 장이 없어 `photo` 는 안 써도 됨). 바꿀 상품은 같은 벌 안에서 같은 카테고리로 바꾼다.
+  (상품 장이 없어 `photo` 는 안 써도 됨). 돌려받은 `fit` 으로 그 상품 `desc` 영어의 핏·기장·소재 말을 고친다
+  (사진이 이름보다 맞다. 기장 말이 바뀌면 `cm` 도 맞춘다: 오버핏 아우터 75, 미디스커트 75, 롱스커트 85). 바꿀 상품은 같은 벌 안에서 같은 카테고리로 바꾼다.
 - 7. 문구: `write-copy` 의 "여러 벌" 절 (제목, 도입, 벌마다 `point`, 상품 `name`).
 - 9. 만들기: 벌마다 `out/$DATE/looks/<n>/` 에 코디컷 후보(`looks.candidates` 장)가 생긴다.
 - 10. 검수: 벌 폴더마다 따로 한다. `python -m tools.review prep out/$DATE` 가 모든 벌을 prep 한다. 그다음
@@ -56,7 +57,8 @@ report.md 를 쓰기 전에는 끝내지 않는다.
 6. **사진 확인**: `python -m tools.plan photos out/$DATE/plan.yaml` 로 사진 확인표(`photo_check.jpg`)를 만들고
    `photo-checker` 에이전트에게 plan.yaml 과 확인표를 넘긴다. 에이전트가 돌려준 번호로
    items 의 `photo`, `cutout_photo`, `ref_photos` 를 채운다. 맞는 색 사진이 없는 상품은 같은 카테고리 다른 상품으로 바꾸고
-   이 단계를 다시 한다.
+   이 단계를 다시 한다. 옷은 돌려받은 `fit` 으로 `desc` 영어의 핏·기장·소재 말을 고친다 (사진이 이름보다 맞다,
+   기장 말이 바뀌면 `cm` 도: 오버핏 아우터 75, 미디스커트 75, 롱스커트 85).
 7. **문구**: `write-copy` 스킬로 plan.yaml 의 `text` 와 items 의 `name`, `comment` 를 쓴다.
 8. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`.
    오류가 있으면 고치고 다시 검사한다 (최대 3번). 경고는 이유가 있으면 두어도 된다.

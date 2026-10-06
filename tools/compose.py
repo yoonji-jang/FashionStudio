@@ -11,6 +11,7 @@ r"""상품 누끼를 배치해 코디컷을 만든다 (AI 없음, Pillow).
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -39,9 +40,9 @@ def slot_rules(categories: list[str], layout: dict) -> dict[str, dict]:
 
 def real_length(category: str, text: str, layout: dict) -> float | None:
     """상품 이름·설명에 든 말(롱, 크롭 …)로 실제 기장(cm)을 정한다. 맞는 말이 없으면 None."""
-    low = text.lower()
+    low = re.sub(r"\s+", "", text.lower())  # "롱 스커트" 도 "롱스커트" 로 맞춘다
     for word, cm in (layout.get("lengths", {}).get(category) or {}).items():
-        if str(word).lower() in low:
+        if re.sub(r"\s+", "", str(word).lower()) in low:
             return float(cm)
     return None
 
