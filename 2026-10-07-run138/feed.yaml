@@ -1,0 +1,216 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/1/outfit_r2/results/G_1.jpg
+cover_has_title: false
+items:
+- comment: ''
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+- comment: ''
+  name: 립 헨리넥 니트
+  product: zigzag:171834839
+- comment: ''
+  name: 빈티지 와이드 데님
+  product: zigzag:171292012
+- comment: ''
+  name: 콘라드 숄더백
+  product: zigzag:130117567
+- comment: ''
+  name: 스웨이드 슬링백
+  product: zigzag:105600542
+- comment: ''
+  name: 미니 물방울 귀걸이
+  product: zigzag:169325375
+- comment: ''
+  name: 레더 시계
+  product: zigzag:130846670
+- comment: ''
+  name: 노카라 스웨이드 자켓
+  product: zigzag:165758501
+- comment: ''
+  name: 슬림핏 셔츠
+  product: zigzag:128321624
+- comment: ''
+  name: 커브드 슬랙스
+  product: zigzag:171326924
+- comment: ''
+  name: 노아르 숄더백
+  product: zigzag:164013796
+- comment: ''
+  name: 플랫폼 페니로퍼
+  product: zigzag:130568193
+- comment: ''
+  name: 골드버클 슬림벨트
+  product: zigzag:143131438
+- comment: ''
+  name: 하트 레이어드 목걸이
+  product: zigzag:135593307
+- comment: ''
+  name: 스웨이드 블루종
+  product: zigzag:168315470
+- comment: ''
+  name: 기본핏 셔츠
+  product: zigzag:171220393
+- comment: ''
+  name: 딥나이트 데님
+  product: zigzag:171322447
+- comment: ''
+  name: 마리백
+  product: zigzag:130366243
+- comment: ''
+  name: 라운드 페니로퍼
+  product: zigzag:114193909
+- comment: ''
+  name: 레더 시계
+  product: zigzag:127748170
+- comment: ''
+  name: 물방울 링 귀걸이
+  product: zigzag:139297257
+- comment: ''
+  name: 케이블 가디건
+  product: zigzag:145307180
+- comment: ''
+  name: 링클프리 셔츠
+  product: zigzag:168608209
+- comment: ''
+  name: 코튼 와이드 팬츠
+  product: zigzag:166121440
+- comment: ''
+  name: 아비오 백
+  product: zigzag:170726447
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:108185036
+- comment: ''
+  name: 슬림 가죽 벨트
+  product: zigzag:165791922
+- comment: ''
+  name: 헨리넥 오버핏 니트
+  product: zigzag:171212289
+- comment: ''
+  name: 베이직 홀터탑
+  product: zigzag:169324070
+- comment: ''
+  name: 연청 플레어 데님
+  product: zigzag:165483425
+- comment: ''
+  name: 포그 호보백
+  product: zigzag:169750197
+- comment: ''
+  name: 빈 롱 목걸이
+  product: zigzag:154156593
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 자켓
+    product: zigzag:168776088
+  - comment: ''
+    name: 립 헨리넥 니트
+    product: zigzag:171834839
+  - comment: ''
+    name: 빈티지 와이드 데님
+    product: zigzag:171292012
+  - comment: ''
+    name: 콘라드 숄더백
+    product: zigzag:130117567
+  - comment: ''
+    name: 스웨이드 슬링백
+    product: zigzag:105600542
+  - comment: ''
+    name: 미니 물방울 귀걸이
+    product: zigzag:169325375
+  - comment: ''
+    name: 레더 시계
+    product: zigzag:130846670
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 노카라 스웨이드 자켓
+    product: zigzag:165758501
+  - comment: ''
+    name: 슬림핏 셔츠
+    product: zigzag:128321624
+  - comment: ''
+    name: 커브드 슬랙스
+    product: zigzag:171326924
+  - comment: ''
+    name: 노아르 숄더백
+    product: zigzag:164013796
+  - comment: ''
+    name: 플랫폼 페니로퍼
+    product: zigzag:130568193
+  - comment: ''
+    name: 골드버클 슬림벨트
+    product: zigzag:143131438
+  - comment: ''
+    name: 하트 레이어드 목걸이
+    product: zigzag:135593307
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/3/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 블루종
+    product: zigzag:168315470
+  - comment: ''
+    name: 기본핏 셔츠
+    product: zigzag:171220393
+  - comment: ''
+    name: 딥나이트 데님
+    product: zigzag:171322447
+  - comment: ''
+    name: 마리백
+    product: zigzag:130366243
+  - comment: ''
+    name: 라운드 페니로퍼
+    product: zigzag:114193909
+  - comment: ''
+    name: 레더 시계
+    product: zigzag:127748170
+  - comment: ''
+    name: 물방울 링 귀걸이
+    product: zigzag:139297257
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 케이블 가디건
+    product: zigzag:145307180
+  - comment: ''
+    name: 링클프리 셔츠
+    product: zigzag:168608209
+  - comment: ''
+    name: 코튼 와이드 팬츠
+    product: zigzag:166121440
+  - comment: ''
+    name: 아비오 백
+    product: zigzag:170726447
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:108185036
+  - comment: ''
+    name: 슬림 가죽 벨트
+    product: zigzag:165791922
+  - comment: ''
+    name: 하트 레이어드 목걸이
+    product: zigzag:135593307
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 헨리넥 오버핏 니트
+    product: zigzag:171212289
+  - comment: ''
+    name: 베이직 홀터탑
+    product: zigzag:169324070
+  - comment: ''
+    name: 연청 플레어 데님
+    product: zigzag:165483425
+  - comment: ''
+    name: 포그 호보백
+    product: zigzag:169750197
+  - comment: ''
+    name: 라운드 페니로퍼
+    product: zigzag:114193909
+  - comment: ''
+    name: 빈 롱 목걸이
+    product: zigzag:154156593
+title_lines:
+- 한낮엔 따뜻하고 아침저녁엔 선선한
+- 스웨이드 자켓 가을 코디 모음

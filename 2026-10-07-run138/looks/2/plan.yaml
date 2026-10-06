@@ -1,0 +1,115 @@
+account: women
+cover: out/2026-10-07/looks/2/outfit/results/G_1.jpg
+date: '2026-10-07'
+items:
+- cm: 47.5
+  color: 베이지
+  comment: ''
+  cutout_photo: 2
+  desc: 베이지 스웨이드 노카라 크롭 자켓 (camel beige suede collarless boxy cropped jacket, cropped
+    at the waist, snap-button front, slightly dropped shoulders)
+  name: 노카라 스웨이드 자켓
+  product: zigzag:165758501
+  ref_photos:
+  - 2
+  - 3
+  size: about 47.5 cm long from shoulder to hem, 36 cm across the shoulders, 50 cm
+    across the chest laid flat, 59 cm long sleeves
+- color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 슬림핏 셔츠 (white slim-fit crisp cotton poplin shirt, hip length, classic
+    collar)
+  name: 슬림핏 셔츠
+  product: zigzag:128321624
+  ref_photos:
+  - 0
+- cm: 101.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 커브드 와이드 슬랙스 (black high-rise curved barrel wide-leg slacks, full length
+    to the floor, smooth slightly stiff wool-like fabric)
+  name: 커브드 슬랙스
+  product: zigzag:171326924
+  ref_photos:
+  - 0
+  - 2
+  - 4
+  size: about 101 cm long from waist to hem, 36 cm across the waist laid flat, 54.5
+    cm across the hips laid flat, 30 cm across the hem laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+  name: 노아르 숄더백
+  product: zigzag:164013796
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 페니로퍼 (black penny loafers)
+  name: 플랫폼 페니로퍼
+  product: zigzag:130568193
+  ref_photos:
+  - 1
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 골드 버클 슬림 벨트 (thin black leather belt with a small gold buckle)
+  name: 골드버클 슬림벨트
+  product: zigzag:143131438
+  ref_photos:
+  - 0
+  wear_with: 하의
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 체인볼 하트 레이어드 목걸이 (thin silver ball-chain necklace with a tiny silver heart
+    pendant)
+  name: 하트 레이어드 목걸이
+  product: zigzag:135593307
+  ref_photos:
+  - 0
+  slot: 목걸이
+looks: []
+reason: 샌드 스웨이드 크롭 자켓이 주인공, 화이트 셔츠와 블랙 슬랙스로 깔끔한 출근룩
+shot: flatlay
+text:
+  hashtags:
+  - '#스웨이드자켓'
+  - '#브라운코디'
+  - '#가을코디'
+  - '#일교차코디'
+  - '#출근룩'
+  - '#간절기코디'
+  intro: 12도에서 21도, 일교차 큰 가을엔 스웨이드 자켓 하나 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 한낮엔 따뜻하고 아침저녁엔 선선한
+  - 스웨이드 자켓 가을 코디 모음
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운 톤온톤에 아이보리·블랙만 더해 차분하게 정리한 가을 컬러
+  search_terms:
+    상의:
+    - 아이보리 니트
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓 (세 벌까지
+  - category: 상의
+    desc: 아이보리 니트 또는 화이트 셔츠 한 장
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  title_hint: 스웨이드 자켓과 가을 니트로 채우는 브라운 코디
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 가벼운 스웨이드 자켓 한 벌이 알맞음
