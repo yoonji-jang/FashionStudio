@@ -217,6 +217,7 @@ looks:
   label: "LOOK {n}"
   show_shop: true
   show_price: false  # 가격은 바뀔 수 있어 넣지 않음
+  credit: "이미지 출처 지그재그"  # 표지·벌 장마다 (2026-10-06 사용자)
 
 # 표지 코디컷 만드는 방식 (11단계, 2026-09-30 Photoroom 에서 바꿈). generate: 쇼핑몰 사진을 참고로
 # 생성형 AI 가 코디 전체를 한 장으로 그린다 (OpenRouter, Secret OPENROUTER_API_KEY). photoroom: 예전 누끼 배치

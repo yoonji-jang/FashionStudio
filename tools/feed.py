@@ -375,9 +375,24 @@ def fill_ratio(card: Card, layout: dict | None = None) -> float:
 
 def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: Path) -> Image.Image:
     img = ImageOps.fit(Image.open(root / spec.cover).convert("RGB"), size, Image.LANCZOS)
-    if spec.cover_has_title:
-        return img
-    return overlay.apply(img, spec.title_lines, profile.visual)
+    if not spec.cover_has_title:
+        img = overlay.apply(img, spec.title_lines, profile.visual)
+    if spec.looks and profile.looks.credit:
+        img = credit_overlay(img, profile)
+    return img
+
+
+def credit_overlay(img: Image.Image, profile: Profile) -> Image.Image:
+    """표지 오른쪽 아래에 이미지 출처 한 줄 (profile looks.credit)."""
+    lk = profile.looks
+    w, h = img.size
+    k = w / BASE
+    font = load_font(profile.feed.body_font, round(lk.credit_size * k))
+    margin = round(w * profile.feed.margin_x)
+    x = w - margin - font.getlength(drawable(lk.credit))
+    items = [((x, h - margin * 0.6), drawable(lk.credit), font, lk.sub_color)]
+    layer = overlay.text_layer(img.size, items, profile.visual.text_shadow, blur=6 * k)
+    return Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
 
 
 @dataclass
@@ -458,6 +473,10 @@ def look_slide(
         tail = f"  {drawable(' · '.join(extra))}" if extra else ""
         if tail and x + shop_font.getlength(tail) <= margin + width:
             items.append(((x, y), tail, shop_font, lk.sub_color))
+    if lk.credit:
+        # 이미지 출처: 상품 목록 아래 작게
+        credit_font = load_font(profile.feed.body_font, round(lk.credit_size * k))
+        items.append(((margin, last + step * 0.85), drawable(lk.credit), credit_font, lk.sub_color))
     label_y = None
     if lk.label:
         label_y = first - name_font.size * 1.25 - label_font.size * 0.4
