@@ -152,7 +152,7 @@ def test_reels_at_posts_reel_later_with_same_ok(results, store, monkeypatch):  #
     assert api.published == 2
     reel = api.media[-1]
     assert reel["media_type"] == "REELS" and "upload_type" not in reel
-    assert reel["video_url"].endswith("reel.mp4") and not api.uploads
+    assert reel["video_url"].endswith("-reel/01.mp4") and not api.uploads
     assert reel["share_to_feed"] == "true" and "#" not in reel["caption"]  # 해시태그는 댓글로
     done = PublishRecord.model_validate_json((run / "published.json").read_text())
     assert done.media_id == "m777" and done.reel_media_id == "r888"
