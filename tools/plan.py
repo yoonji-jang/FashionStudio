@@ -388,6 +388,7 @@ def check(
     if plan.looks:
         errors += looks_problems(plan, profile, products, draft)
         warns += same_kind_warnings(plan, profile, products)
+        warns += accessory_warnings(plan, profile, products)
 
     if plan.looks:
         per = {"looks": len(plan.looks) - (0 if lk.repeat_cover_look else 1)}
@@ -568,6 +569,21 @@ def same_kind_warnings(plan: DailyPlan, profile: Profile, products: dict) -> lis
         for (cat, word), k in count.items()
         if k > limit
     ]
+
+
+def accessory_warnings(plan: DailyPlan, profile: Profile, products: dict) -> list[str]:
+    """소품이 있는 벌이 너무 적은지 (profile looks.min_accessory_looks)."""
+    need = profile.looks.min_accessory_looks
+    if need is None:
+        return []
+    have = sum(
+        any(products[it.product].category == "소품" for it in look.items if it.product in products)
+        for look in plan.looks
+    )
+    need = min(need, len(plan.looks))
+    if have >= need:
+        return []
+    return [f"소품(주얼리·양말·모자 …)이 있는 벌이 {have}벌입니다 ({need}벌 이상, styling.md 6번)"]
 
 
 # ---------- caption ----------
