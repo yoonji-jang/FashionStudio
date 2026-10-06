@@ -9,6 +9,8 @@ r"""하루 게시물 기획을 돕는 도구 (6단계). Claude 스킬이 부르�
   python -m tools.plan themes --account women --file out/themes.yaml     주간 주제 검사·저장
   python -m tools.plan check out/2026-09-27/plan.yaml [--draft]  기획 검사 (오류면 종료 코드 1)
   python -m tools.plan photos out/2026-09-27/plan.yaml    상품 사진 확인표
+  python -m tools.plan sizes out/2026-09-27/plan.yaml     옷 상세 본문 이미지(실측표) 조각
+  python -m tools.plan measure out/2026-09-27/plan.yaml --file sizes.yaml  실측을 cm·size 로
   python -m tools.plan caption out/2026-09-27/plan.yaml   캡션 미리보기
   python -m tools.plan build out/2026-09-27/plan.yaml [--outfit auto|generate|photoroom|none]
                                                       [--fake]
@@ -865,10 +867,12 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("themes", help="주간 주제 검사·저장")
     s.add_argument("--account", **account)
     s.add_argument("--file", type=Path, required=True, help="Theme 목록 YAML")
-    for name in ("check", "photos", "caption", "build"):
+    for name in ("check", "photos", "sizes", "measure", "caption", "build"):
         s = sub.add_parser(name)
         s.add_argument("plan", type=Path)
-        if name in ("photos", "build"):
+        if name == "measure":
+            s.add_argument("--file", type=Path, required=True, help="size-reader 결과 YAML")
+        if name in ("photos", "sizes", "build"):
             s.add_argument("--out", type=Path, help="결과 폴더 (기본: 기획 파일 폴더)")
         if name == "check":
             s.add_argument("--draft", action="store_true", help="문구 없는 코디 후보 검사")
@@ -908,7 +912,29 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "caption":
             print(full_caption(plan, profile, store))
             return 0
-        out = args.out or args.plan.parent
+        out = getattr(args, "out", None) or args.plan.parent
+        if args.cmd == "sizes":
+            # 실측표: 옷 상세 본문 이미지를 조각으로 (size-reader 가 읽음, src/ 라 올리지 않음)
+            from tools import sizes
+
+            print(sizes.summary(sizes.prepare(plan, store, out)))
+            return 0
+        if args.cmd == "measure":
+            # size-reader 가 읽은 실측을 기획의 cm·size 로 (같은 상품이 여러 벌에 있으면 모두)
+            from tools import sizes
+
+            measures = yaml.safe_load(args.file.read_text(encoding="utf-8")) or []
+            plan, notes = sizes.apply_measures(plan, store, measures)
+            args.plan.write_text(
+                yaml.safe_dump(
+                    plan.model_dump(mode="json", exclude_none=True),
+                    allow_unicode=True,
+                    sort_keys=False,
+                ),
+                encoding="utf-8",
+            )
+            print("\n".join(notes) or "적은 실측 없음")
+            return 0
         if args.cmd == "photos":
             photos = fetch_candidates(plan, profile, store, out / "photos")
             (out / "photos.json").write_text(json.dumps(photos, ensure_ascii=False, indent=2))
