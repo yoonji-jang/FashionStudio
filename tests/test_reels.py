@@ -246,6 +246,22 @@ def test_reel_telegram_right_after_carousel_when_no_time(results, store, monkeyp
     assert json.loads((run / "published.json").read_text())["reel_sent_at"]
 
 
+def test_reel_skipped_quietly_without_video(results, store, monkeypatch):  # noqa: F811
+    api = ReelApis()
+    run = ok_published(results, store, api, monkeypatch)
+    tg, ig, host = clients(api)
+    monkeypatch.setattr(publish, "load_profile", reels_at("19:00", "telegram"))
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    # 릴스 기능 전에 만든 결과 (영상 없음): 실패하지 않고 알림만
+    m = notify.load_manifest(run)
+    m.reels = None
+    reels.write_manifest(run, m)
+    before = len(api.calls)
+    assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert "릴스 영상이 없어 건너뛰었어요" in api.texts[-1]
+    assert not any(c[1].endswith("/sendVideo") for c in api.calls[before:])
+
+
 def test_reels_slot_and_dispatch(monkeypatch):
     import core.profile
 

@@ -516,6 +516,13 @@ def run_reels(
     manifest = notify.load_manifest(out)
     from tools import reels
 
+    if reels.video_path(manifest, out) is None:
+        # 릴스 기능 전에 만든 결과이거나 daily 의 릴스 만들기가 실패한 날. 실패로 끝내지 않고 알림만
+        note = f"{tag} 이 날 결과에는 릴스 영상이 없어 건너뛰었어요 ({out.name})"
+        print(note)
+        if tg is not None and not dry_run:
+            tg.send(note)
+        return 0
     errors = reel_guard(manifest, reels.video_path(manifest, out))
     if errors:
         raise Blocked("릴스 게시 전 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
