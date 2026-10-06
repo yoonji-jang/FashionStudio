@@ -114,6 +114,21 @@ def test_same_kind_warning(store):
     ]
 
 
+def test_accessory_warning(store):
+    # 2026-10-06 "잡화가 하나도 없네": 소품 있는 벌이 네 벌보다 적으면 경고
+    profile = load_profile("women")
+    p = looks_plan()
+    products = {x.id: x for x in store.products()}
+    assert plan.accessory_warnings(p, profile, products) == [
+        "소품(주얼리·양말·모자 …)이 있는 벌이 0벌입니다 (4벌 이상, styling.md 6번)"
+    ]
+    acc = product(500, "소품")
+    products[acc.id] = acc
+    for look in p.looks[:4]:
+        look.items.append(look.items[0].model_copy(update={"product": acc.id}))
+    assert plan.accessory_warnings(p, profile, products) == []
+
+
 def test_single_plan_rejected_when_looks_enabled(store):
     from tests.test_plan import daily
 

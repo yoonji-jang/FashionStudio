@@ -29,7 +29,7 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
    가방·신발은 옷과 같은 색일 필요가 없다. 옷 색에 맞추거나 색·소재 포인트로 쓴다.
    상품명에 색이 없거나 여러 색(2color, 7color)이면 `color` 에 쓰려는 색을 적고, 사진 확인에서 확인한다.
 4. **덜어 내기**: 아우터는 필수가 아니다. 겹쳐 입기는 세 겹까지(`style.max_layers`)이고 세 겹이면 맨 안쪽은 얇은
-   무지 티·나시·얇은 터틀넥. 무늬 있는 상품은 한 벌에 하나(`style.max_patterns`), 소품은 0~2개(`style.max_accessories`).
+   무지 티·나시·얇은 터틀넥. 무늬 있는 상품은 한 벌에 하나(`style.max_patterns`), 소품은 벌마다 1~2개(`style.max_accessories` 까지, 여섯 벌 중 네 벌 이상은 소품이 있게).
    넘으면 `tools.plan check` 가 경고하니 빼고 다시 고른다.
    여성스러운 것과 스포티한 것을 섞는 꾸안꾸 믹스는 괜찮다. 코스튬 느낌·과한 로고는 피한다.
 5. **레이어드**: 상의 두 개를 겹치면 안에 입는 상의에 `wear_with: 상의` (아래 "생성형 코디컷").

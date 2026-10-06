@@ -231,6 +231,8 @@ class Looks(BaseModel):
     # 옷(아우터·상의·하의)의 같은 포인트 말(style.point_words, 예: 스웨이드)이 이 벌 수보다
     # 많으면 경고. 한 아이템이 여섯 벌을 다 차지하지 않게 (2026-10-06). None 이면 보지 않음
     max_same_kind: int | None = None
+    # 소품(주얼리·양말·모자·벨트·시계)이 있는 벌이 이보다 적으면 경고 (2026-10-06)
+    min_accessory_looks: int | None = None
     candidates: int = Field(
         default=1, ge=1, le=3
     )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)
