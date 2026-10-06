@@ -38,8 +38,22 @@ for url in sys.argv[1:]:
         print(" query", json.dumps(q.get("queryKey"), ensure_ascii=False)[:120])
     data = zigzag._page_data(html)
     print(" product keys", sorted(data["product"].keys()))
+    prod = data["product"]
+    for k in ("description", "extra_description_list", "product_info_map", "essentials",
+              "crema_fit_url_list", "description_top_banner", "purchase_notice"):
+        v = prod.get(k)
+        info = type(v).__name__
+        if isinstance(v, dict):
+            info += f" keys={list(v.keys())[:30]}"
+        elif isinstance(v, list):
+            info += f" len={len(v)}"
+            if v and isinstance(v[0], dict):
+                info += f" item keys={list(v[0].keys())}"
+        elif isinstance(v, str):
+            info += f" len={len(v)} img_tags={v.count('<img')} has_실측={'실측' in v} has_총장={'총장' in v}"
+        print(f" {k}: {info}")
     found = {}
-    walk(nd, "", found)
+    walk(prod, "product", found)
     for key, urls in found.items():
         uniq = list(dict.fromkeys(urls))
         print(f" {key}: {len(uniq)} images, e.g. {uniq[:3]}")
