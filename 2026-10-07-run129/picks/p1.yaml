@@ -1,0 +1,311 @@
+account: women
+date: '2026-10-07'
+items: []
+looks:
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 테일러드 재킷 (brown suede tailored jacket)
+    name: 스웨이드 테일러드 재킷
+    product: zigzag:171592183
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 딥 브이넥 니트 (ivory deep V-neck knit)
+    name: 딥 브이넥 니트
+    product: zigzag:171474132
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 빈티지 와이드 데님팬츠 (ivory vintage wide-leg denim pants)
+    name: 빈티지 와이드 데님
+    product: zigzag:171292012
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 보부상 숄더백 (brown suede large hobo shoulder bag)
+    name: 스웨이드 보부상백
+    product: zigzag:150024149
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 슬링백 힐 (brown suede slingback heels)
+    name: 스웨이드 슬링백
+    product: zigzag:105600542
+  point: ''
+  reason: 브라운 스웨이드 재킷이 주인공, 아이보리 니트와 아이보리 데님으로 톤온톤 정리. 가방과 슬링백도 브라운 스웨이드로 맞춘 가장 안전한
+    조합
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 리버시블 스웨이드 무스탕 (brown reversible suede shearling mustang jacket)
+    name: 리버시블 스웨이드 무스탕
+    product: zigzag:148726979
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 헨리넥 오버핏 니트 (ivory oversized henley-neck knit)
+    name: 헨리넥 오버핏 니트
+    product: zigzag:171212289
+  - color: 생지
+    comment: ''
+    cutout_photo: 0
+    desc: 진청 생지 와이드 데님 (dark raw indigo wide-leg denim, flat front)
+    name: 생지 와이드 데님
+    product: zigzag:149107295
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 호보백 (brown hobo shoulder bag)
+    name: 포그 호보백
+    product: zigzag:167878705
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 페니로퍼 (brown suede penny loafers)
+    name: 스웨이드 페니로퍼
+    product: zigzag:100425954
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 볼드 소가죽 벨트 (brown bold leather belt)
+    name: 볼드 소가죽 벨트
+    product: zigzag:165791922
+  point: ''
+  reason: 브라운 스웨이드 무스탕이 주인공, 아이보리 헨리넥 니트와 생지 데님에 가죽 벨트로 허리선을 살림. 브라운 + 데님 조합
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 오버핏 스웨이드 자켓 (brown oversized suede jacket)
+    name: 오버핏 스웨이드 자켓
+    product: zigzag:148357772
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 블라우스 (white blouse)
+    name: 링클프리 블라우스
+    product: zigzag:171584015
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 투핀턱 와이드 슬랙스 (black two-pleat wide-leg slacks)
+    name: 투핀턱 와이드 슬랙스
+    product: zigzag:135443091
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 멜다 숄더백
+    product: zigzag:159313221
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers)
+    name: 레이스업 로퍼
+    product: zigzag:147841380
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 시계 (black leather strap watch)
+    name: 레더 시계
+    product: zigzag:127748170
+  point: ''
+  reason: 브라운 오버핏 스웨이드 자켓이 주인공, 화이트 블라우스와 블랙 슬랙스로 깔끔한 브라운 + 블랙 출근룩
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 크롭 스웨이드 자켓 (brown cropped suede jacket)
+    name: 크롭 스웨이드 자켓
+    product: zigzag:165484531
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 와플 루즈핏 티셔츠 (black loose-fit waffle tee)
+    name: 와플 루즈핏 티
+    product: zigzag:168841655
+  - color: 진청
+    comment: ''
+    cutout_photo: 0
+    desc: 진청 세미와이드 생지 청바지 (dark indigo semi-wide raw denim jeans)
+    name: 세미와이드 청바지
+    product: zigzag:168288083
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 쇼퍼 숄더백 (brown suede shopper shoulder bag)
+    name: 스웨이드 쇼퍼백
+    product: zigzag:164580854
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스티치 레이스업 로퍼 (black round-toe stitched lace-up loafers)
+    name: 스티치 로퍼
+    product: zigzag:111145203
+  point: ''
+  reason: 브라운 스웨이드 크롭 자켓이 주인공, 블랙 와플 티와 진청 청바지로 허리선이 살아나는 캐주얼한 조합
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 바이커 스웨이드 자켓 (brown suede biker jacket)
+    name: 바이커 스웨이드 자켓
+    product: zigzag:129547886
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 시어 셔츠 (ivory sheer shirt)
+    name: 글로우 시어셔츠
+    product: zigzag:164681223
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 플리츠 롱 스커트 (beige long pleated skirt, soft unpressed pleats)
+    name: 플리츠 롱 스커트
+    product: zigzag:149546302
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 빅 호보백 (brown large hobo bag)
+    name: 빅 호보백
+    product: zigzag:168594319
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 소가죽 메리제인 미들힐 (brown leather mid-heel Mary Jane shoes)
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  point: ''
+  reason: 브라운 바이커 스웨이드 자켓이 주인공, 아이보리 시어 셔츠와 플리츠 롱스커트로 부드럽게 풀어낸 브라운 톤온톤
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 카라 하프 자켓 (brown suede collared half-length jacket)
+    name: 스웨이드 카라 하프 자켓
+    product: zigzag:149263773
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 스트라이프 셔츠 (white striped shirt)
+    name: 넬로 스트라이프 셔츠
+    product: zigzag:120773723
+  - color: 카키
+    comment: ''
+    cutout_photo: 0
+    desc: 카키 유틸리티 와이드 팬츠 (khaki utility wide-leg pants)
+    name: 유틸리티 와이드 팬츠
+    product: zigzag:169176780
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 엘론 숄더백
+    product: zigzag:150848794
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레이스업 로퍼 (brown lace-up loafers)
+    name: 엘리스 로퍼
+    product: zigzag:134105153
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레더 슬림 벨트 (brown slim leather belt with gold buckle)
+    name: 슬림 레더 벨트
+    product: zigzag:143131438
+  point: ''
+  reason: 브라운 스웨이드 카라 하프 자켓이 주인공, 화이트 스트라이프 셔츠와 카키 와이드 팬츠로 브라운 + 카키의 가까운 두 색 조합
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 헨리넥 니트 (brown henley-neck knit)
+    name: 라이크 헨리넥 니트
+    product: zigzag:168185673
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 롱 플리츠 스커트 (ivory long pleated skirt, soft unpressed pleats)
+    name: 롱 플리츠 스커트
+    product: zigzag:171318242
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 위빙 숄더백 (brown woven shoulder bag)
+    name: 아렌 위빙백
+    product: zigzag:169369601
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스퀘어토 슬링백 힐 (brown square-toe slingback heels)
+    name: 스퀘어 슬링백
+    product: zigzag:151111416
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레더 시계 (brown leather strap watch)
+    name: 레더 시계
+    product: zigzag:127748170
+  point: ''
+  reason: 자켓 없이 브라운 헨리넥 니트 한 장이 주인공, 아이보리 플리츠 롱스커트와 위빙백으로 가볍게 입는 낮 코디 (예비)
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 커브드 스웨이드 크롭 집업 자켓 (brown curved-hem cropped suede zip-up jacket)
+    name: 스웨이드 크롭 집업
+    product: zigzag:156289798
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 헨리넥 니트 (ivory henley-neck knit)
+    name: 헨리넥 니트
+    product: zigzag:170544684
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 새틴 미디 스커트 (brown satin midi skirt)
+    name: 새틴 미디 스커트
+    product: zigzag:168869683
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 보부상 숄더백 (brown suede large hobo shoulder bag)
+    name: 스웨이드 보부상백
+    product: zigzag:150024149
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 슬링백 힐 (brown suede slingback heels)
+    name: 스웨이드 슬링백
+    product: zigzag:105600542
+  point: ''
+  reason: 브라운 스웨이드 크롭 집업이 주인공, 아이보리 헨리넥 니트와 브라운 새틴 미디스커트로 맞춘 톤온톤 (예비)
+reason: 브라운 스웨이드 자켓을 주인공으로 아이보리·블랙·데님을 바꿔 가며 여덟 가지로 (앞 여섯 벌이 기본, 뒤 두 벌은 예비)
+shot: flatlay
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운 톤온톤에 아이보리·블랙만 더해 차분하게 정리한 가을 컬러
+  search_terms:
+    상의:
+    - 아이보리 니트
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 아이보리 니트 또는 화이트 셔츠 한 장
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  title_hint: 스웨이드 자켓 하나로 끝내는 가을 브라운 코디
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 가벼운 스웨이드 자켓 한 벌이 알맞음
