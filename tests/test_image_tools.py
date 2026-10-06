@@ -396,6 +396,9 @@ def test_real_length_from_name():
     assert compose.real_length("아우터", "크롭 트위드 자켓", layout) == 48
     assert compose.real_length("아우터", "울 자켓", layout) is None
     assert compose.real_length("하의", "플리츠 롱스커트", layout) == 85
+    assert compose.real_length("하의", "올벤 새틴 스트링 롱 스커트", layout) == 85  # 띄어 써도
+    assert compose.real_length("하의", "brown satin midi skirt", layout) == 75
+    assert compose.real_length("아우터", "suede jacket (oversized, hip length)", layout) == 75
 
 
 def test_long_outer_keeps_shoulder_and_bottom_keeps_waist():

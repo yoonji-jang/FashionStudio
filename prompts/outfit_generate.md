@@ -11,6 +11,10 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 다리에 볼륨과 살짝 벌어진·휜 선, 밑단에 천이 접히는 주름 → '곧고 평행, 밑단 20cm' 문장을 빼고 비율·연출 문장으로.
 같은 날: 오프숄더 니트의 넓은 깃이 가죽자켓 어깨 위로 덮임, 니트가 자켓 어깨 위로 올라옴(10/3 /fix)
 → 안에 입은 옷은 겉옷 위로 올라오지 않는다는 겹침 순서 문장.
+2026-10-06 피드백(10/7 게시물, 스레드 "이미지 피드백"): 오버핏 자켓·가디건이 크롭처럼 짧고 작게, 흘러내리는
+오버핏 셔츠가 빳빳하게, 플리츠 치마의 재질·주름이 다르게, 미디스커트가 발목 기장으로 그려짐, 스카프를 옷 위 목에 묶음
+→ '상의·아우터는 작고 compact 하게' 문장을 빼고 상품의 핏·기장·천의 느낌을 지키는 문장, 치마 재질·주름·미디 기장 문장,
+스카프 같은 목 소품은 옷에 두르지 않고 목 높이 옆 빈자리에 따로 두는 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -56,9 +60,16 @@ the worn photos (never change straight or wide legs into flared, bootcut or skin
 them wider), but give the fabric real body and drape. The two trouser legs are not two rigid
 parallel tubes: they open slightly apart from the hips, one leg is gently curved or turned inward,
 pressed creases run down the front, and at the hem the fabric breaks into a few soft folds as if
-resting on the foot. Skirts spread with soft natural folds and a slightly swaying hem. Tops and
-outers look relaxed and compact: sleeves slightly bent, pushed up or folded at the cuff, never
-spread out stiffly, so the bottoms read as the long, elegant line of the outfit.
+resting on the foot. A skirt keeps the exact fabric and pleats of its photos: the same material and
+sheen (matte wool, glossy satin, sheer chiffon, crisp cotton), the same pleat type, pleat width and
+pleat count (soft unpressed gathers stay soft, sharp knife or accordion pleats stay sharp, a skirt
+without pleats gets none); it spreads with soft natural folds and a slightly swaying hem. A midi skirt
+ends at mid-calf and is never drawn as an ankle-length maxi skirt.
+Tops and outers keep the true fit, length and fabric of their worn photos. An oversized or loose
+jacket, cardigan or shirt stays big and roomy: dropped shoulders, a wide body, long sleeves that
+reach the knuckles and a hem at the hips; never shrink it into a cropped, short or fitted piece.
+Soft drapey fabrics (thin cotton or rayon shirts, knits, satin) fall in soft folds and natural
+creases, never crisp, stiff or freshly pressed. Sleeves relax slightly bent, never spread out stiffly.
 
 Composition like a professional outfit flat lay account: the clothes form one continuous figure from
 the collar near the top edge to the trouser hem near the bottom edge, filling about 95 percent of the
@@ -67,7 +78,10 @@ lies close to the left side of the clothes at waist height, slightly overlapping
 clothes, and never lower than the knees. The shoes sit as a pair at an angle in the lower right,
 beside the trouser hem, not overlapping the trousers. Only if jewelry or small accessories are in
 the numbered list above, they sit in a neat vertical column on the right side at chest height; if
-the list has none, draw no jewelry, watch, rings, earrings or any other accessory at all. Keep the lower left area of the frame (the bottom third, left of
+the list has none, draw no jewelry, watch, rings, earrings or any other accessory at all. A scarf,
+bandana or other neck accessory is never worn, tied or draped on the clothes: it lies on its own
+like an accessory, flat or loosely folded in the shape of its product photos, in the empty floor
+beside the top at neck height, not touching the clothes. Keep the lower left area of the frame (the bottom third, left of
 the trouser legs) empty floor with no shoes, bag or accessories, because a title is placed there later.
 
 Scene: $scene.

@@ -25,7 +25,13 @@ tools: Read, Glob
    모양(기장, 깃, 앞코, 주머니, 버클)이 잘 보이는 사진을 고른다. 펼친 단독컷을 먼저, 모양이 다르게 보이는
    각도(정면 + 착용컷, 디테일컷)를 섞으면 정확해진다. 다른 색이 함께 찍힌 사진은 넣지 않는다.
    얼굴은 도구가 잘라 내니 얼굴이 있어도 괜찮지만, 얼굴을 자르면 상품이 잘리는 사진(목걸이·귀걸이 착용컷)은 피한다.
-6. 맞는 사진이 하나도 없으면 그 상품은 "교체 필요"로 표시한다.
+6. **핏·기장·소재 (fit, 옷만)**: 착용컷과 단독컷을 보고 실제 핏을 영어로 짧게 적는다. 기획 `desc` 는 사진을 보기 전에
+   이름만 보고 쓴 것이라 틀릴 수 있다 (2026-10-06: 엉덩이를 덮는 오버핏 자켓을 "slightly cropped" 로, 미디스커트를
+   "ankle length" 로 적어 코디컷이 제품과 달라짐). 적을 것: 핏(oversized, loose, boxy, fitted, slim), 어깨(dropped shoulders),
+   기장(cropped at the waist, hip length, mid-thigh, knee length, mid-calf midi, ankle length), 천의 느낌(soft drapey cotton,
+   crisp cotton, glossy satin, chunky knit, fuzzy mohair), 치마·바지 주름(soft unpressed pleats, sharp knife pleats, no pleats).
+   착용컷 기장은 모델 몸에서 끝나는 곳으로 본다. 기획 `desc` 와 다르면 `note` 에 무엇이 다른지 쓴다.
+7. 맞는 사진이 하나도 없으면 그 상품은 "교체 필요"로 표시한다.
 
 돌려줄 형식 (YAML 만):
 ```yaml
@@ -34,7 +40,8 @@ tools: Read, Glob
   cutout_photo: 0
   ref_photos: [0, 3]
   color_ok: true
-  note: 0번은 두 색이 함께 있어 상품 장은 2번
+  fit: oversized, dropped shoulders, hip length, soft drapey cotton   # 옷만
+  note: 0번은 두 색이 함께 있어 상품 장은 2번. desc 는 cropped 인데 사진은 엉덩이 기장 오버핏
 - product: zigzag:136581318
   replace: true
   note: 화이트 옵션 사진이 없음 (블루만 있음)

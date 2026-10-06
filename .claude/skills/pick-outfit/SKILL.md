@@ -51,13 +51,16 @@ AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참�
 (2026-09-30 실험: 귀걸이를 두 쌍으로, 셔츠 칼라를 테일러드 깃으로, 스퀘어토 로퍼를 페니 로퍼로 그림).
 - `desc` 영어: 색, 소재, 핏·기장, **깃·목선 모양**(shirt collar, notched lapel, crew neck …),
   **신발 앞코·종류**(square-toe slip-on loafers …), 바지 주름 유무(flat front, no pleats), 벨트·단추.
+  핏·기장은 사진에서 본 대로 (오버핏이면 oversized, hip length). 이름만 보고 cropped·ankle length 를 짐작하지 않는다
+  (2026-10-06: 오버핏 자켓을 slightly cropped 로 적어 크롭처럼 그려짐). 치마는 소재와 주름 모양(soft unpressed pleats,
+  knife pleats)까지. 스카프는 옷에 두르지 않고 옆에 따로 놓이므로 입는 방법 없이 모양만 적는다.
   개수가 헷갈리는 소품은 개수까지: "exactly one pair (two earrings) of ...", "one pair (two shoes) of ...".
   사진에 다른 색·다른 상품이 함께 있으면 "the photos also show a gold pair, ignore it" 처럼 적는다.
 - `size` (선택, 영어): 실제 크기. 없으면 도구가 옷은 cm(아래 기장 규칙), 가방·신발·주얼리는
   config/models.yaml `default_sizes` 로 쓴다. 쇼핑몰 실측을 알면 "about 110 cm long from shoulder to hem".
 - **상의 레이어드** (21단계): 셔츠를 니트·베스트·뷔스티에 안에 입히면 안쪽 상의에 `wear_with: 상의`.
   도구가 profile `outfit_image.layer_styling`(깃은 목선에, 소매 끝 3cm, 밑단 살짝)으로 입힌다.
-  셔츠 위 튜브톱, 어깨에 니트 두르기, 목에 스카프 묶기처럼 다르게 입힐 때는 `styling` 에 영어로 직접 쓴다
+  셔츠 위 튜브톱, 어깨에 니트 두르기처럼 다르게 입힐 때는 `styling` 에 영어로 직접 쓴다
   ("The striped knit is draped over the shoulders with its sleeves loosely tied at the chest.").
   여러 벌 게시물은 벌마다 `styling`.
 - plan.yaml 맨 위 `styling` (선택, 영어): 한 벌을 어떻게 입혀 펼칠지. 없으면 아우터가 있는 날은
