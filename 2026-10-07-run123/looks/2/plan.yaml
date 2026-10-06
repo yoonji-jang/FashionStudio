@@ -1,0 +1,109 @@
+account: women
+cover: out/2026-10-07/looks/2/outfit/results/G_1.jpg
+date: '2026-10-07'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 크롭 레더 자켓 (black cropped leather jacket, collared, boxy fit, worn open)
+  name: 블랙 크롭 레더 자켓
+  product: zigzag:119435641
+  ref_photos:
+  - 3
+  - 1
+- color: 하늘색
+  comment: ''
+  cutout_photo: 2
+  desc: 하늘색 스트라이프 셔츠 (sky blue striped shirt, shirt collar, long sleeves)
+  name: 스트라이프 셔츠
+  product: zigzag:163851432
+  ref_photos:
+  - 2
+  wear_with: 상의
+- color: 그레이
+  comment: ''
+  cutout_photo: 3
+  desc: 그레이 니트 베스트 (gray knit vest, V-neck, waist length, fitted)
+  name: 탄탄울 니트 베스트
+  product: zigzag:147747225
+  ref_photos:
+  - 3
+  - 2
+- color: 아이보리
+  comment: ''
+  cutout_photo: 3
+  desc: 아이보리 롱 플리츠 스커트 (ivory long pleated skirt, high waist, ankle length)
+  name: 롱 플리츠 스커트
+  product: zigzag:159558897
+  ref_photos:
+  - 3
+  - 1
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+  name: 스웨이드 숄더백
+  product: zigzag:130117567
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레이스업 로퍼 (black lace-up loafers, round toe, one pair (two shoes))
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+  ref_photos:
+  - 0
+  - 1
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 골드 미니 물방울 귀걸이 (exactly one pair (two earrings) of small gold drop hoop earrings)
+  name: 미니 볼드 귀걸이
+  product: zigzag:169325375
+  ref_photos:
+  - 5
+looks: []
+reason: 그레이 니트 베스트 아래로 하늘색 셔츠 깃과 소매를 빼 입고 블랙 크롭 레더 자켓을 걸치는 소재 대비 레이어링으로. 아이보리 플리츠
+  롱스커트로 실루엣을 길게, 브라운 숄더백으로 주제 색을 이어 줌 (코듀로이 자켓·브라운 베스트·브라운 로퍼는 맞는 색 사진이 없어 바꿈)
+shot: flatlay
+text:
+  hashtags:
+  - '#가을코디'
+  - '#컬러조합'
+  - '#브라운코디'
+  - '#하늘색코디'
+  - '#스웨이드자켓'
+  - '#셔츠레이어드'
+  - '#꾸안꾸'
+  intro: 맑지만 아침저녁은 선선한 요즘, 브라운에 하늘색 한 방울 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 브라운에 하늘색 한 방울 얹은
+  - 일교차 큰 날 가을 코디 모음
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운에 하늘색을 포인트로 올린 산뜻한 가을 컬러 매치
+  search_terms:
+    상의:
+    - 하늘색 스트라이프 셔츠
+    소품:
+    - 하늘색 쁘띠 스카프
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 하늘색 스트라이프 셔츠
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  - category: 소품
+    desc: 하늘색 쁘띠 스카프
+  title_hint: 브라운에 하늘색 한 방울, 가을 컬러 조합
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 얇은 니트와 셔츠 레이어드가 알맞음

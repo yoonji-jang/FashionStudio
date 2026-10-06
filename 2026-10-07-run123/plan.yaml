@@ -1,0 +1,350 @@
+account: women
+date: '2026-10-07'
+theme:
+  date: '2026-10-07'
+  title_hint: 브라운에 하늘색 한 방울, 가을 컬러 조합
+  mood: 초콜릿 브라운에 하늘색을 포인트로 올린 산뜻한 가을 컬러 매치
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 하늘색 스트라이프 셔츠
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  - category: 소품
+    desc: 하늘색 쁘띠 스카프
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 얇은 니트와 셔츠 레이어드가 알맞음
+  search_terms:
+    상의:
+    - 하늘색 스트라이프 셔츠
+    소품:
+    - 하늘색 쁘띠 스카프
+    아우터:
+    - 스웨이드 자켓
+items: []
+looks:
+- items:
+  - product: zigzag:168776088
+    color: 브라운
+    desc: 브라운 오버핏 스웨이드 자켓 (brown oversized suede jacket, hip length covering the hips,
+      boxy relaxed oversized fit with roomy body and shoulders, notched collar, buttoned
+      or zipped nearly closed)
+    name: 스웨이드 자켓
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+    - 0
+    size: about 75 cm long from shoulder to hem, hip length, oversized and roomy,
+      not cropped
+    cm: 75.0
+  - product: zigzag:157438223
+    color: 하늘색
+    desc: 하늘색 스트라이프 셔츠 (sky blue and white thin-striped shirt, regular spread shirt
+      collar, tucked in)
+    name: 스트라이프 셔츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+  - product: zigzag:135443091
+    color: 아이보리
+    desc: 아이보리 와이드 슬랙스 (ivory wide-leg trousers, two front pleats, high waist, straight
+      long leg, full length)
+    name: 아이보리 와이드 슬랙스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:150024149
+    color: 브라운
+    desc: 브라운 스웨이드 호보백 (brown suede hobo shoulder bag)
+    name: 스웨이드 호보백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 1
+    - 5
+  - product: zigzag:136665746
+    color: 다크 브라운
+    desc: 다크 브라운 슬링백 (dark brown slingback heels, pointed toe, open heel strap, one
+      pair (two shoes))
+    name: 브라운 슬링백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  reason: 브라운 스웨이드 자켓 안으로 하늘색 스트라이프 셔츠를 한 방울 얹어 정석으로. 아이보리 와이드 슬랙스로 가볍게 받치고
+    브라운 호보백과 슬링백으로 색을 이어 줌
+  point: 브라운 스웨이드에 하늘색 셔츠로 한 방울 포인트를 줘요 🧥
+  styling: The jacket keeps its oversized, roomy, hip-covering shape and is not drawn
+    cropped. Every product is drawn as identical to its product photo as possible.
+- items:
+  - product: zigzag:119435641
+    color: 블랙
+    desc: 블랙 크롭 레더 자켓 (black cropped leather jacket, collared, boxy fit, worn open)
+    name: 블랙 크롭 레더 자켓
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 1
+  - product: zigzag:163851432
+    color: 하늘색
+    desc: 하늘색 스트라이프 셔츠 (sky blue striped shirt, shirt collar, long sleeves)
+    name: 스트라이프 셔츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    wear_with: 상의
+  - product: zigzag:147747225
+    color: 그레이
+    desc: 그레이 니트 베스트 (gray knit vest, V-neck, waist length, fitted)
+    name: 탄탄울 니트 베스트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+  - product: zigzag:159558897
+    color: 아이보리
+    desc: 아이보리 롱 플리츠 스커트 (ivory long pleated skirt, high waist, ankle length)
+    name: 롱 플리츠 스커트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 1
+  - product: zigzag:130117567
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:134105153
+    color: 블랙
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers, round toe, one pair (two shoes))
+    name: 레이스업 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:169325375
+    color: 골드
+    desc: 골드 미니 물방울 귀걸이 (exactly one pair (two earrings) of small gold drop hoop earrings)
+    name: 미니 볼드 귀걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 5
+  reason: 그레이 니트 베스트 아래로 하늘색 셔츠 깃과 소매를 빼 입고 블랙 크롭 레더 자켓을 걸치는 소재 대비 레이어링으로. 아이보리 플리츠
+    롱스커트로 실루엣을 길게, 브라운 숄더백으로 주제 색을 이어 줌 (코듀로이 자켓·브라운 베스트·브라운 로퍼는 맞는 색 사진이 없어 바꿈)
+  point: 그레이 니트 베스트 아래로 하늘색 셔츠 깃과 소매를 빼 입어요
+  cover: out/2026-10-07/looks/2/outfit/results/G_1.jpg
+- items:
+  - product: zigzag:166342775
+    color: 네이비
+    desc: 네이비 모헤어 가디건 (navy fuzzy mohair cardigan, loose fit, hip length, buttoned
+      only at the top)
+    name: 모헤어 가디건
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:171713101
+    color: 하늘색
+    desc: 하늘색 스트라이프 오버핏 셔츠 (sky blue striped oversized shirt, shirt collar, collar
+      and cuffs peeking out of the cardigan)
+    name: 스트라이프 셔츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    wear_with: 아우터
+  - product: zigzag:171327469
+    color: 연청
+    desc: 연청 빈티지 워싱 와이드 데님 (light blue vintage-washed wide-leg denim pants, high waist,
+      straight long leg)
+    name: 워싱 와이드 데님
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  - product: zigzag:169369601
+    color: 브라운
+    desc: 브라운 위빙 숄더백 (brown woven leather shoulder bag)
+    name: 위빙 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 3
+  - product: zigzag:166028838
+    color: 브라운
+    desc: 브라운 메리제인 (cognac brown round-toe Mary Jane shoes with a single strap, low
+      heel, one pair (two shoes))
+    name: 메리제인
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:166003887
+    color: 블랙
+    desc: 블랙 워시드 볼캡 (black washed vintage baseball cap, plain, no logo; the photo
+      shows a small embroidered logo, ignore it)
+    name: 워시드 볼캡
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: 포슬포슬한 네이비 모헤어 가디건 속에 하늘색 스트라이프 셔츠 깃을 내고 볼캡으로 스포티하게 꾸안꾸로. 연청 와이드 데님에 브라운
+    위빙백과 메리제인으로 브라운을 이어 줌 (브라운 가디건·브라운 볼캡은 맞는 색 사진이 없어 네이비 가디건·블랙 볼캡으로 바꿈)
+  point: 네이비 가디건 속 하늘색 셔츠 깃을 내고 볼캡으로 편안하게 마무리해요 🤎
+  cover: out/2026-10-07/looks/3/outfit/results/G_1.jpg
+- items:
+  - product: zigzag:168315470
+    color: 브라운
+    desc: 브라운 오버핏 스웨이드 블루종 자켓 (brown oversized suede bomber blouson jacket, ribbed
+      hem, zipped nearly closed)
+    name: 스웨이드 블루종
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+    - 4
+  - product: zigzag:170544684
+    color: 아이보리
+    desc: 아이보리 헨리넥 니트 (cream ivory henley neck knit, slim fit, tucked in)
+    name: 헨리넥 니트
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+  - product: zigzag:168694332
+    color: 그레이
+    desc: 그레이 핀스트라이프 와이드 슬랙스 (gray pinstripe wide-leg trousers, flat front, no pleats,
+      high waist, long full length)
+    name: 핀스트라이프 슬랙스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 5
+    - 2
+  - product: zigzag:148980176
+    color: 브라운
+    desc: 브라운 와이드 스퀘어 버클 레더 벨트 (brown leather belt with a square buckle, threaded
+      through the belt loops)
+    name: 스퀘어 버클 벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 5
+    wear_with: 하의
+  - product: zigzag:165406385
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 사라백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 5
+    - 4
+  - product: zigzag:114193909
+    color: 블랙
+    desc: 블랙 페니 로퍼 (black penny loafers, round toe, one pair (two shoes))
+    name: 페니 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  reason: 오버핏 브라운 스웨이드 블루종에 아이보리 헨리넥 니트, 그레이 핀스트라이프 슬랙스로 캐주얼과 클래식을 섞음. 가죽 벨트로 허리선을
+    살림 (하늘색 헨리넥은 맞는 색 사진이 없어 아이보리로 바꿈)
+  point: 브라운 스웨이드 블루종에 핀스트라이프 슬랙스로 캐주얼과 클래식을 섞어요
+  cover: out/2026-10-07/looks/4/outfit/results/G_1.jpg
+- items:
+  - product: zigzag:172016137
+    color: 브라운
+    desc: 브라운과 하늘색 스트라이프 니트 가디건 (brown and sky blue striped knit cardigan, irregular
+      hem, hip length, buttoned only at the top)
+    name: 스트라이프 니트 가디건
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:171834839
+    color: 아이보리
+    desc: 아이보리 립 헨리넥 니트 (ivory ribbed henley neck knit, slim fit, tucked in)
+    name: 립 헨리넥 니트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    wear_with: 아우터
+  - product: zigzag:165618457
+    color: 브라운
+    desc: 브라운 새틴 롱 스커트 (brown satin long skirt, high waist, A-line, long ankle length
+      reaching down to the ankles)
+    name: 새틴 롱 스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 85 cm long from waist to hem, long skirt reaching the ankles
+    cm: 85.0
+  - product: zigzag:159313221
+    color: 브라운
+    desc: 브라운 숄더백 (brown shoulder bag)
+    name: 멜다 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:133601050
+    color: 블랙
+    desc: 블랙 슬링백 (black slingback heels, pointed toe, one pair (two shoes))
+    name: 블랙 슬링백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  reason: 브라운과 하늘색이 함께 든 스트라이프 가디건을 걸치고 브라운 새틴 롱 스커트로 소재 대비를 줌
+  point: 스트라이프 가디건에 새틴 롱 스커트로 소재 대비를 줘요
+  styling: The skirt is a long skirt reaching the ankles, exactly as in the product
+    photo (85 cm). The cardigan stripes and the bag are drawn exactly as in the product
+    photos. Every product is drawn as identical to its product photo as possible.
+reason: 브라운에 하늘색 한 방울을 얹는 가을 컬러 매치를 아우터와 소재, 레이어링을 바꿔 다섯 가지로
+text:
+  title_lines:
+  - 브라운에 하늘색 한 방울 얹은
+  - 일교차 큰 날 가을 코디 모음
+  intro: 맑지만 아침저녁은 선선한 요즘, 브라운에 하늘색 한 방울 얹어 보세요 🍂
+  points: []
+  hashtags:
+  - '#가을코디'
+  - '#컬러조합'
+  - '#브라운코디'
+  - '#하늘색코디'
+  - '#스웨이드자켓'
+  - '#셔츠레이어드'
+  - '#꾸안꾸'
+shot: flatlay

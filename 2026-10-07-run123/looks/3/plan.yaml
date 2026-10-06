@@ -1,0 +1,104 @@
+account: women
+cover: out/2026-10-07/looks/3/outfit/results/G_1.jpg
+date: '2026-10-07'
+items:
+- color: 네이비
+  comment: ''
+  cutout_photo: 1
+  desc: 네이비 모헤어 가디건 (navy fuzzy mohair cardigan, loose fit, hip length, buttoned only
+    at the top)
+  name: 모헤어 가디건
+  product: zigzag:166342775
+  ref_photos:
+  - 1
+- color: 하늘색
+  comment: ''
+  cutout_photo: 2
+  desc: 하늘색 스트라이프 오버핏 셔츠 (sky blue striped oversized shirt, shirt collar, collar and
+    cuffs peeking out of the cardigan)
+  name: 스트라이프 셔츠
+  product: zigzag:171713101
+  ref_photos:
+  - 2
+  wear_with: 아우터
+- color: 연청
+  comment: ''
+  cutout_photo: 0
+  desc: 연청 빈티지 워싱 와이드 데님 (light blue vintage-washed wide-leg denim pants, high waist,
+    straight long leg)
+  name: 워싱 와이드 데님
+  product: zigzag:171327469
+  ref_photos:
+  - 0
+  - 1
+  - 2
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 위빙 숄더백 (brown woven leather shoulder bag)
+  name: 위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 3
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 메리제인 (cognac brown round-toe Mary Jane shoes with a single strap, low
+    heel, one pair (two shoes))
+  name: 메리제인
+  product: zigzag:166028838
+  ref_photos:
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 워시드 볼캡 (black washed vintage baseball cap, plain, no logo; the photo shows
+    a small embroidered logo, ignore it)
+  name: 워시드 볼캡
+  product: zigzag:166003887
+  ref_photos:
+  - 0
+looks: []
+reason: 포슬포슬한 네이비 모헤어 가디건 속에 하늘색 스트라이프 셔츠 깃을 내고 볼캡으로 스포티하게 꾸안꾸로. 연청 와이드 데님에 브라운 위빙백과
+  메리제인으로 브라운을 이어 줌 (브라운 가디건·브라운 볼캡은 맞는 색 사진이 없어 네이비 가디건·블랙 볼캡으로 바꿈)
+shot: flatlay
+text:
+  hashtags:
+  - '#가을코디'
+  - '#컬러조합'
+  - '#브라운코디'
+  - '#하늘색코디'
+  - '#스웨이드자켓'
+  - '#셔츠레이어드'
+  - '#꾸안꾸'
+  intro: 맑지만 아침저녁은 선선한 요즘, 브라운에 하늘색 한 방울 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 브라운에 하늘색 한 방울 얹은
+  - 일교차 큰 날 가을 코디 모음
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운에 하늘색을 포인트로 올린 산뜻한 가을 컬러 매치
+  search_terms:
+    상의:
+    - 하늘색 스트라이프 셔츠
+    소품:
+    - 하늘색 쁘띠 스카프
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 하늘색 스트라이프 셔츠
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  - category: 소품
+    desc: 하늘색 쁘띠 스카프
+  title_hint: 브라운에 하늘색 한 방울, 가을 컬러 조합
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 얇은 니트와 셔츠 레이어드가 알맞음
