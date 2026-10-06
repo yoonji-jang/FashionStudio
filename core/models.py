@@ -108,6 +108,8 @@ class Look(BaseModel):
     # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 이 벌은 새로 만들지 않음)
+    # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
+    pose: str | None = None
 
 
 class DailyPlan(BaseModel):
@@ -124,6 +126,12 @@ class DailyPlan(BaseModel):
     # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 코디컷을 새로 만들지 않음)
+    # 16단계: flatlay = 펼친 코디컷, model = 옷을 입은 얼굴 없는 AI 모델컷
+    # (전날 게시물 벌을 다시 그림, tools.model_post)
+    shot: Literal["flatlay", "model"] = "flatlay"
+    source_run: str | None = None  # 모델컷이면 벌을 가져온 전날 결과 폴더 (예 2026-10-05-run90)
+    mood: str | None = None  # 모델컷 장소·분위기 (영어). 없으면 profile model_shot.mood
+    pose: str | None = None  # 한 벌 기획의 모델컷 인물·포즈 (여러 벌이면 looks[].pose)
 
     @model_validator(mode="after")
     def _items_or_looks(self) -> DailyPlan:
@@ -151,6 +159,7 @@ class DailyPlan(BaseModel):
                 "reason": look.reason or self.reason,
                 "styling": look.styling,
                 "cover": look.cover,
+                "pose": look.pose,
             }
         )
 

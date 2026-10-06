@@ -65,7 +65,7 @@ def looks_plan(count: int = 6, **kw) -> DailyPlan:
         "looks": [look(n) for n in range(1, count + 1)],
         "reason": "같은 주제로 색과 아우터를 다르게",
         "text": {
-            "title_lines": ["출근룩 고민될 때", "가을 코디 여섯 벌"],
+            "title_lines": ["출근룩 고민될 때", "가을 코디 모음"],
             "intro": "출근룩 고민될 때 하나씩 골라 입어 보세요 🍂",
             "hashtags": ["#출근룩", "#가을코디", "#오피스룩", "#직장인코디", "#데일리코디"],
         },
@@ -329,3 +329,69 @@ def test_pick_prefers_candidate_that_follows_fix():
     r.candidates[1].score.feedback_ok = None  # 요청이 없으면 점수대로
     r.candidates[0].score.feedback_ok = None
     assert review.pick(r, prof).id == "c1"
+
+
+def test_title_must_not_count_looks(store):
+    prof = load_profile("women")
+    assert prof.looks.title_count is False
+    p = looks_plan()
+    for title, bad in [
+        (["출근룩 고민될 때", "가을 코디 여섯 벌"], True),
+        (["출근룩 고민될 때", "6가지 룩 모음"], True),
+        (["일교차 큰 날 출근룩부터", "약속룩까지 가을 코디 모음"], False),
+    ]:
+        q = p.model_copy(update={"text": p.text.model_copy(update={"title_lines": title})})
+        errs = plan.looks_problems(q, prof, {pr.id: pr for pr in store.products()}, False)
+        assert any("벌 수" in e for e in errs) is bad, title
+
+
+def test_model_post_redraws_yesterday_looks_as_model_shots(tmp_path, store, monkeypatch):
+    """16단계: 전날 게시한 벌을 같은 상품으로 모델컷 기획으로. 빠진 상품은 창고에 다시 넣는다."""
+    from core.models import PostRecord
+    from tools import faces, model_post
+
+    out, m = build(tmp_path, store)
+    (out / "published.json").write_text("{}")
+    results = tmp_path / "results"
+    results.mkdir()
+    out.rename(results / f"{DAY}-run90")
+    monkeypatch.setattr(model_post, "Store", lambda account: store)
+    ids = [it.product for look in looks_plan().looks for it in look.items]
+    store.save_posts([PostRecord(date=DAY, title="어제", theme="가을 출근룩 6가지", products=ids)])
+    store.save_products([p for p in store.products() if p.id != "zigzag:10"])  # 수집 때 정리됨
+
+    nxt = date(2026, 10, 3)
+    assert model_post.source_run(results, "women", nxt) == results / f"{DAY}-run90"
+    assert model_post.source_run(results, "women", date(2026, 10, 4)) is None
+    out2 = tmp_path / "out2"
+    p = model_post.prepare(f"{DAY}-run90", results, nxt, out2)
+    assert "zigzag:10" in {x.id for x in store.products()}
+    profile = load_profile("women")
+    assert p.shot == "model" and p.source_run == f"{DAY}-run90" and p.date == nxt
+    assert p.text is None and all(not lk.point and not lk.cover for lk in p.looks)
+    assert [lk.items for lk in p.looks] == [lk.items for lk in looks_plan().looks]
+    poses = [lk.pose for lk in p.looks]
+    assert len(set(poses[:4])) == min(4, len(profile.model_shot.poses))
+    assert (out2 / "before" / "caption.txt").exists()
+
+    p = p.model_copy(update={"text": looks_plan().text})
+    p.looks = [lk.model_copy(update={"point": f"{n}번 입은 모습"}) for n, lk in enumerate(p.looks)]
+    errors, _ = plan.check(p, profile, store)
+    assert errors == []  # 어제 쓴 상품·같은 주제여도 모델컷은 괜찮음
+    errors, _ = plan.check(p.model_copy(update={"shot": "flatlay"}), profile, store)
+    assert any("재사용 금지" in e for e in errors)
+
+    (out2 / "plan.yaml").write_text(yaml.safe_dump(p.model_dump(mode="json", exclude_none=True)))
+    plan.build(p, out2, profile, store, fake=True)
+    prompt = (out2 / "looks" / "1" / "outfit" / "prompt.txt").read_text()
+    assert "wearing this exact outfit" in prompt and poses[0].split(";")[0] in prompt
+    assert "flat lay" not in prompt and "$" not in prompt
+
+    # 얼굴 검출 도구가 찾은 자리는 잘라 두고 검수가 판단한다 (폰에 가린 얼굴도 잡으므로)
+    d = out2 / "looks" / "1"
+    monkeypatch.setattr(faces, "find_faces", lambda img: [(20, 20, 60, 70)])
+    text = review.prep(d).read_text()
+    assert "모델컷" in text and "c1 [얼굴 확인]" in text and "review/face_c1_1.jpg" in text
+    assert (d / "review" / "face_c1_1.jpg").exists()
+    r, _ = review.apply(d, review.Scores.model_validate({"covers": [score("c1", 10)]}))
+    assert r.candidates[0].score.clean == 2

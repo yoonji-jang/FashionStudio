@@ -205,6 +205,7 @@ looks:
   max_share: 2
   candidates: 1      # 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 한 장 더 (review.max_rounds)
   repeat_cover_look: true  # 표지 다음 장에 1번 벌을 상품 정보와 함께 다시 보여 줌
+  title_count: false  # 표지 제목에 "여섯 벌" 같은 벌 수를 쓰지 않음 (2026-10-01 사용자)
   label: "LOOK {n}"
   show_shop: true
   show_price: false  # 가격은 바뀔 수 있어 넣지 않음
@@ -220,12 +221,60 @@ outfit_image:
     smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
     flagship store; soft even daylight from the upper left, cool neutral tone with no warm cast
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
+  # 상의는 기본으로 넣어 입어 허리선을 높게 (2026-10-02 사용자: 바지·치마가 짧고 작아 보임)
   outer_styling: >-
     The outer is unbuttoned but almost closed: its two front edges lie close together with only a
     narrow gap of about a hand's width down the middle, where the top shows at the neckline and a
     little at the waist; any belt hangs loose at the sides. The top's sleeves are inside the outer
     sleeves, with the top's cuffs peeking out slightly at the outer cuffs. The top's hem sits over
-    the waistband of the bottoms.
+    the waistband of the bottoms only if the styling says to wear it out; otherwise it is tucked in
+    so the waistband shows and the waist looks high.
+
+# 모델컷 게시물 (16단계, 2026-10-02 사용자): 화·목·토는 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
+# 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.
+model_shot:
+  prompt: outfit_model   # prompts/outfit_model.md
+  # 2026-10-03 사용자 핀터레스트 저장 사진을 따라 한 장면 (벌마다 하나씩, 6벌이면 6장면).
+  # 얼굴은 일부 보여도 되지만(고개 숙임·돌림·머리카락·컵·폰), 정면 얼굴과 책으로 얼굴 전체를 가리는 어색한 포즈는 쓰지 않는다.
+  poses:
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie next to
+      a wooden door frame in her small apartment; the photo is what the mirror reflects, there is no
+      second mirror; the phone held at eye level covers her eyes and nose, her lips and chin may show,
+      her other hand holds the bag strap
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she walks along a narrow sidewalk beside an
+      old cream-colored wall in low late-afternoon sun with soft tree shadows on the wall, caught
+      mid-step slightly from the side, holding a small bouquet wrapped in paper against her chest, her
+      head tilted down toward the flowers so her hair falls over most of her face
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she sits on a low stone step in front of an
+      old red-brick building, feet on the pavement and both shoes in view, raising a paper takeaway coffee
+      cup to her lips with one hand, her eyes looking down and away from the camera; the bag rests
+      beside her on the step
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she sits sideways on a simple folding chair
+      at a small outdoor cafe table on the pavement, legs crossed so both shoes show, smiling down at a
+      cup of coffee on the table, her face turned three-quarters away from the camera and partly behind
+      her hair
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she walks past the paned glass doors of an
+      old wooden cafe storefront, photographed from the side as she passes, a paper takeaway coffee cup
+      in one hand, her head turned slightly away from the camera toward the street ahead
+    - >-
+      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
+      with long straight dark-brown hair past her shoulders; she stands browsing a book cart on the
+      pavement in front of an old used bookshop, seen from behind at a three-quarter angle, her head
+      bowed toward the books in her hands so only a sliver of her cheek shows
+  mood: >-
+    a candid 35mm film snapshot like the outfit photos people save on Pinterest, taken by a friend
+    on an ordinary street or in a real interior in Seoul, golden late-afternoon sun or soft window
+    light, warm muted film colors, soft contrast
 
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
@@ -246,6 +295,10 @@ schedule:
   token_refresh_at: "일 19:00"  # 인스타 토큰 연장 (60일 만료 전에 매주)
   github_cron: backup       # 외부 스케줄러가 매시 깨우므로 GitHub 예약은 주요 칸만 (Actions 시간 절약)
   reels_at: "19:00"         # 릴스 게시 (19단계). 아침 캐러셀과 같은 코디를 저녁에. null 이면 캐러셀 직후
+  # 요일별 게시물 (16단계, 게시 날짜 기준. 2026-10-02 사용자): 월·수·금 펼친 코디컷(전날 09:00 후보),
+  # 화·목·토 전날 벌의 모델컷(전날 09:00 에 바로 만듦, 고르기 없음), 일요일 쉼
+  post_days: {월: flatlay, 화: model, 수: flatlay, 목: model, 금: flatlay, 토: model}
+  post_days_from: 2026-10-05  # 10/4(일) 게시물은 이미 후보가 나와 있어 그대로 올림 (2026-10-03 사용자)
 
 # 코디 고르기 (9단계). 후보를 쇼핑몰 원본 사진으로 보내고, 고른 코디만 Photoroom 으로 만든다
 pick:

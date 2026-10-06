@@ -1,0 +1,63 @@
+# 16단계 시안: 전날 게시물(10/2 run80) 벌을 모델컷으로 (tools.generate, shot model = prompts/outfit_model.md).
+# 실행: 커밋 메시지에 [gen-exp] [spec:experiments/model_look1.yaml] [models:nano_banana_pro] [shots:model]
+title: '16-1 시안: 10/2 LOOK 1 차콜 롱코트 + 버건디 니트 (모델컷)'
+account: women
+products_from: daily-results:2026-10-02-run80/manifest.json
+items:
+- category: 아우터
+  product: zigzag:171900729
+  photos:
+  - 5
+  - 0
+  desc: charcoal wool-blend tailored long coat, notched lapel, long length
+  size: about 110 cm long from shoulder to hem, below the knee
+- category: 상의
+  product: zigzag:147921597
+  photos:
+  - 3
+  - 2
+  desc: burgundy fine-knit crew neck sweater, regular fit
+- category: 하의
+  product: zigzag:119143697
+  photos:
+  - 1
+  - 0
+  desc: black wide straight-leg trousers, flat front, no pleats, full length
+  size: full length, the hem covers the top of the foot
+- category: 가방
+  product: zigzag:159408342
+  photos:
+  - 2
+  - 1
+  - 4
+  desc: black structured shoulder bag
+- category: 신발
+  product: zigzag:129223675
+  photos:
+  - 1
+  - 4
+  desc: one pair (two shoes) of black round-toe penny loafers
+styling: The coat is worn open over the burgundy knit, hanging straight; the knit is tucked loosely into
+  the front of the trousers so the waistline shows; the bag hangs on one shoulder.
+shots:
+  model:
+    repeats: 3
+    pose:
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she takes a full-body mirror selfie next to a wooden
+      door frame in her small apartment; the photo is what the mirror reflects, there is no second mirror;
+      the phone held at eye level covers her eyes and nose, her lips and chin may show, her other hand
+      holds the bag strap'
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she walks along a narrow sidewalk beside an old cream-colored
+      wall in low late-afternoon sun with soft tree shadows on the wall, caught mid-step slightly from
+      the side, holding a small bouquet wrapped in paper against her chest, her head tilted down toward
+      the flowers so her hair falls over most of her face'
+    - 'the same fictional woman as in the whole series: a slim Korean woman in her twenties with long
+      straight dark-brown hair past her shoulders; she walks past the paned glass doors of an old wooden
+      cafe storefront, photographed from the side as she passes, a paper takeaway coffee cup in one hand,
+      her head turned slightly away from the camera toward the street ahead'
+    mood: an early autumn evening after work, a candid 35mm film snapshot like the outfit photos people
+      save on Pinterest, taken by a friend on an ordinary street or in a real interior in Seoul, golden
+      late-afternoon sun or soft window light, warm muted film colors, soft contrast
+    season: early autumn

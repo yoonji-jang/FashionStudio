@@ -841,6 +841,25 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 **Allow GitHub Actions to create and approve pull requests** 를 켜야 워크플로가 PR 을 만들 수 있습니다.
 직접 돌리려면 Actions 탭 → feedback-rules → Run workflow.
 
+## 모델컷 게시물 (16단계)
+
+요일마다 게시물 종류를 정합니다 (`schedule.post_days`, 게시 날짜 기준). women 은 월·수·금 펼친 코디컷,
+화·목·토 **전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로 다시 그린 게시물**, 일요일은 쉽니다.
+`post_days` 를 지우면 예전처럼 매일 펼친 코디컷입니다. `post_days_from` (날짜)을 두면 그 게시 날짜 전까지는 요일과 상관없이 펼친 코디컷입니다.
+
+- 모델컷 날은 후보·고르기가 없습니다. 전날 게시물이 올라간 뒤 후보 시각(09:00)에 schedule 이 daily 를
+  `mode=model` 로 부르고, 미리보기가 오면 평소처럼 `/ok`·`/fix` 하면 됩니다. 상품 링크·댓글 DM 도 같은 상품입니다.
+- 전날 게시물이 올라가지 않았으면 그날 모델컷은 쉬고 텔레그램으로 알려 드려요.
+- 흐름: `tools.model_post prepare` (전날 기획을 `shot: model` 로, 벌마다 포즈) → Claude `model-feed` 스킬
+  (제목·캡션 새로 쓰기, 장소 분위기) → `tools.plan build` (지시문 `prompts/outfit_model.md`) → 검수 → 미리보기.
+- 인물·포즈·장소는 `model_shot` (`poses` 를 벌마다 돌려 씀, 인물 묘사를 같게 써서 한 사람처럼). 장면은 사용자가 고른
+  핀터레스트 사진처럼 실제 거리·실내에서 친구가 찍어 준 필름 사진 느낌. 얼굴은 고개 숙임·돌림·머리카락·컵·폰으로
+  일부만 보이고 정면 얼굴은 그리지 않습니다. 얼굴 검출 도구가 얼굴로 본 자리는 잘라 두고, 검수가 열어 정면 얼굴이
+  또렷하면 떨어뜨립니다.
+- 비용은 펼친 코디컷과 같습니다 (벌마다 한 장, 떨어진 벌만 한 장 더).
+- 상품 창고가 수집 때 정리되어 전날 상품이 빠져 있어도, 전날 결과의 manifest 에 남은 상품 정보로 다시 넣어 씁니다.
+- 시험: `experiments/model_look*.yaml` 을 `gen-experiment` 워크플로로 (`[gen-exp] [spec:…] [shots:model]`).
+
 ---
 
 ## 댓글 → DM 코디 링크 (10단계)

@@ -23,6 +23,9 @@ name: daily
 # 15단계: fix: 미리보기에 온 /fix 피드백대로 고친다 (schedule 이 tools.feedback 으로 요청).
 #   pick 은 {"run": 지난 결과 폴더, "round": 몇 번째, "fixes": [...]} JSON. Claude(fix-feed)가 같은 기획을
 #   고쳐 다시 만들고 검수해서 새 미리보기를 보낸다. 표지를 고칠 일이 없으면 지난 코디컷을 그대로 쓴다
+# 16단계: model: 전날 게시한 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로 (profile schedule.post_days 의 model 날).
+#   pick 은 전날 결과 폴더 (예 2026-10-05-run90). tools.model_post 가 기획을 만들고 Claude(model-feed)가
+#   제목·캡션을 새로 쓴 뒤 만들기·검수·미리보기는 평소와 같다
 on:
   workflow_dispatch:
     inputs:
@@ -30,10 +33,10 @@ on:
         description: 계정
         default: women
       mode:
-        description: full(한 벌 바로) / candidates(후보 보내기) / render(고른 후보 만들기) / fix(피드백대로 고치기)
+        description: full(한 벌 바로) / candidates(후보 보내기) / render(고른 후보 만들기) / fix(피드백대로 고치기) / model(전날 게시물을 모델컷으로)
         default: full
       pick:
-        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더, fix 면 피드백 JSON
+        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더, fix 면 피드백 JSON, model 이면 전날 게시한 결과 폴더
         default: ""
       date:
         description: 게시 날짜 YYYY-MM-DD (빈칸이면 내일)
@@ -122,6 +125,11 @@ jobs:
             git fetch origin daily-results
             git worktree add /tmp/prev origin/daily-results
             uv run python -m tools.feedback prepare "$PICK" --prev /tmp/prev --out "out/$DATE"
+          elif [ "$MODE" = model ]; then
+            # 전날 게시한 결과에서 같은 벌로 모델컷 기획을 만든다 (창고에서 빠진 상품도 다시 넣음)
+            git fetch origin daily-results
+            git worktree add /tmp/prev origin/daily-results
+            uv run python -m tools.model_post prepare "$PICK" --prev /tmp/prev --date "$DATE" --out "out/$DATE"
           elif [ -n "$PICK" ]; then
             # 후보가 있는 결과 폴더를 가져온다 (render: 고른 후보, candidates: "다시" 누른 지난 후보)
             git fetch origin daily-results
@@ -169,6 +177,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/outfit-candidates/SKILL.md 의 순서를 그대로 따라 코디 후보를 만들어.
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} COLLECT=${{ env.COLLECT }}
@@ -199,6 +211,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/fix-feed/SKILL.md 의 순서를 그대로 따라 out/${{ env.DATE }} 게시물을 피드백대로 고쳐.
             피드백은 out/${{ env.DATE }}/fix.json 에 있어.
@@ -206,18 +222,48 @@ jobs:
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/fix_result.yaml 과 report.md 를 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
+            Bash 명령도 백그라운드로 돌리지 말고, 파이프·cd·&& 없이 `python -m tools...` 한 줄로 불러 (허용 목록에 걸려 막힌다).
+            fix_result.yaml 과 manifest.json 이 생기기 전에는 끝내지 마.
           claude_args: >-
             --max-turns 180
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
-      - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
-        if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'fix'
+      - name: Claude 모델컷 게시물 (model-feed 스킬)
+        if: env.MODE == 'model'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 모델컷 만들기도 2분을 넘으므로 다른 Claude 단계처럼 백그라운드를 끄고 제한 시간을 늘린다 (#47)
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
+          prompt: |
+            .claude/skills/model-feed/SKILL.md 의 순서를 그대로 따라 out/${{ env.DATE }} 모델컷 게시물을 만들어.
+            기획은 out/${{ env.DATE }}/plan.yaml (전날 ${{ env.PICK }} 게시물의 벌 그대로)에 있어.
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }}
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
+            에이전트(image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
+            Bash 명령도 백그라운드로 돌리지 말고, 파이프·cd·&& 없이 `python -m tools...` 한 줄로 불러 (허용 목록에 걸려 막힌다).
+            out/${{ env.DATE }}/manifest.json 이 생기기 전에는 끝내지 마.
+          claude_args: >-
+            --max-turns 200
+            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+
+      - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
+        if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'fix' && env.MODE != 'model'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
             out/${{ env.DATE }}/plan.yaml 이 이미 있으면 사람이 고른 후보이니 "고른 후보로 시작" 절을 따라.
@@ -226,6 +272,8 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
             백그라운드로 부르면 기다리는 동안 실행이 끝나 버린다.
+            Bash 명령도 백그라운드로 돌리지 말고, 파이프·cd·&& 없이 `python -m tools...` 한 줄로 불러 (허용 목록에 걸려 막힌다).
+            out/${{ env.DATE }}/manifest.json 이 생기기 전에는 끝내지 마.
           # 여러 벌 게시물(20단계)은 벌마다 검수해서 턴이 많이 든다
           claude_args: >-
             --max-turns 250
@@ -250,6 +298,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
+          # 오래 걸리는 명령(사진 받기, 코디컷 만들기)이 2분을 넘으면 Claude Code 가 백그라운드로 돌리고
+          # Claude 가 기다리다 턴을 끝내 실행이 결과 없이 끝났다 (10/3 run 104). 백그라운드를 끄고 제한 시간을 늘린다.
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 10번(이미지 검수)만 out/${{ env.DATE }} 에 대해 해.
             plan.yaml 은 고치지 말고, 종료 코드 4 는 그대로 두고 끝내.
@@ -286,12 +338,22 @@ jobs:
       # Claude 가 도중에 멈춰도 단계는 성공으로 끝나서, 예전에는 아무 알림 없이 미리보기만 오지 않았다 (12단계)
       - name: 결과 확인
         id: result
-        if: env.MODE != 'candidates'
+        # Claude 단계가 오류로 끝나도(is_error) 원인을 남기도록 항상 돈다
+        if: always() && env.MODE != 'candidates'
         run: |
           [ -f "out/$DATE/manifest.json" ] && exit 0
           echo "::error::$MODE 인데 out/$DATE/manifest.json 이 없습니다 (Claude 가 도중에 멈춤)"
           f=/home/runner/work/_temp/claude-execution-output.json
-          [ -f "$f" ] && { mkdir -p /tmp/claude-log; cp "$f" /tmp/claude-log/; }
+          [ -f "$f" ] || exit 1
+          mkdir -p /tmp/claude-log; cp "$f" /tmp/claude-log/
+          # 원인을 바로 볼 수 있게 막힌 도구, 실행한 명령, 마지막 말을 로그에 남긴다
+          echo "--- 막힌 도구"
+          jq -c '.[] | select(.type=="result") | .permission_denials[]? | {tool_name, tool_input}' "$f" | cut -c1-600 || true
+          echo "--- 실행한 명령 (마지막 25개)"
+          jq -r '.[] | select(.type=="assistant") | .message.content[]? | select(.type=="tool_use")
+            | "\(.name) \(.input.command // .input.file_path // .input.description // "" | tostring)"' "$f" | tail -25 | cut -c1-300 || true
+          echo "--- Claude 마지막 말"
+          jq -r '[.[] | select(.type=="assistant") | .message.content[]? | select(.type=="text") | .text] | .[-3:][]' "$f" | cut -c1-800 || true
           exit 1
 
       - name: Claude 실행 기록 (결과가 없을 때 원인 확인용, 저장소에는 올리지 않음)
