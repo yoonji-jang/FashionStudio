@@ -9,6 +9,7 @@
 
 from __future__ import annotations
 
+import html
 import json
 import re
 from dataclasses import dataclass
@@ -210,6 +211,43 @@ def parse_page(status_code: int, page_html: str) -> PageInfo:
         shop=(data.get("shop") or {}).get("name"),
         price=page_price(product),
     )
+
+
+_IMG_SRC = re.compile(r"""<img[^>]+?(?:data-src|ec-data-src|src)\s*=\s*["']([^"']+)["']""", re.I)
+_SIZE_WORDS = re.compile(
+    r"총장|기장|어깨|가슴|소매|암홀|허리|엉덩이|힙|밑위|허벅지|밑단|화장|단면|실측"
+)
+
+
+def description_images(page_html: str) -> list[str]:
+    """상세 본문(설명 HTML)의 이미지 주소, 위에서부터. 실측표가 이미지로 들어 있는 경우가 많다.
+    본문 원본은 돌려주지 않는다 (판매자 정보가 섞일 수 있음). gif 는 뺀다."""
+    data = _page_data(page_html)
+    desc = str(((data or {}).get("product") or {}).get("description") or "")
+    urls: list[str] = []
+    for src in _IMG_SRC.findall(desc):
+        src = html.unescape(src.strip())
+        if src.startswith("//"):
+            src = "https:" + src
+        if not src.startswith("http") or src.split("?")[0].lower().endswith(".gif"):
+            continue
+        if src not in urls:
+            urls.append(src)
+    return urls
+
+
+def size_lines(page_html: str, limit: int = 30) -> list[str]:
+    """상세 본문 글 가운데 실측 줄만 (총장·어깨 같은 말과 숫자가 함께 있는 줄). 다른 글은 버린다."""
+    data = _page_data(page_html)
+    desc = str(((data or {}).get("product") or {}).get("description") or "")
+    text = html.unescape(re.sub(r"<br\s*/?>|</(?:p|div|li|tr)>", "\n", desc, flags=re.I))
+    text = re.sub(r"<[^>]+>", " ", text)
+    lines = []
+    for line in text.splitlines():
+        line = re.sub(r"\s+", " ", line).strip()
+        if _SIZE_WORDS.search(line) and re.search(r"\d", line) and len(line) <= 160:
+            lines.append(line)
+    return lines[:limit]
 
 
 class Source(ProductSource):

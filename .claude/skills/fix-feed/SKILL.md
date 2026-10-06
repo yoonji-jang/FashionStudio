@@ -41,13 +41,15 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      사진 확인표를 만들고 `photo-checker` 에이전트에게 그 상품만 다시 골라 달라고 해 `photo` 를 바꾼다.
      이름·코멘트가 문제면 `name`, `comment` 를 `write-copy` 기준으로 고친다.
      상품 자체를 바꿔 달라는 요청이면 같은 카테고리 상품을 `python -m tools.plan candidates` 에서 골라
-     바꾸고, 사진 확인(`photo-checker`)과 이름·코멘트를 새로 한 뒤 `cover:` 를 지운다 (표지에도 보이므로).
+     바꾸고, 사진 확인(`photo-checker`), 옷이면 실측(`daily-feed` 6-1), 이름·코멘트를 새로 한 뒤 `cover:` 를 지운다
+     (표지에도 보이므로).
    - **요약 장**: 상품 이름이 문제면 그 상품의 `name` 을 고친다. 레이아웃 같은 코드 문제면 고치지 않고 적는다.
    - **댓글 안내 장**: 문구·모양은 profile 설정이라 고치지 않고 `fix_result.yaml` 에 적는다.
    - **캡션**: `text.intro`, `text.points`, `text.hashtags` 를 `write-copy` 기준으로 고친다.
      고지 문구와 제품 목록은 도구가 붙이므로 손대지 않는다.
    - **코디 장** (`kind: look`, 여러 벌 게시물, `look` = 벌 번호): plan.yaml `looks[look-1]` 만 고친다.
-     코디컷(옷 모양·배치) 문제면 그 벌의 `cover:` 를 지우고 그 벌의 `styling`·상품 `desc`·`size` 를 위 "표지
+     코디컷(옷 모양·배치) 문제면 그 벌의 `cover:` 를 지우고 (기장·크기 문제인데 옷에 `size` 실측이 없으면 `daily-feed` 6-1
+     실측을 먼저 하고) 그 벌의 `styling`·상품 `desc`·`size` 를 위 "표지
      코디컷" 방식으로 고친다 (다른 벌은 `cover:` 를 두어 다시 그리지 않음). 상품 이름 글자면 `name`.
      지난 지시문은 `before/prompt_<벌 번호>.txt`. 1장 표지는 1번 벌 코디컷이라 표지 코디컷 피드백은 1번 벌을 고친다.
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.
