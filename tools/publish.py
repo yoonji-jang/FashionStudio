@@ -490,12 +490,13 @@ def run_reels(
     ig: Instagram | None = None,
     host: GitHubHost | None = None,
     again: bool = False,
+    rebuild: bool = False,
 ) -> int:
     """schedule.reels_at 에 릴스만 올리거나 텔레그램으로 보낸다 (reels.delivery). 그날 캐러셀을
     게시한 결과 폴더의 영상을 쓴다 (캐러셀 /ok 가 릴스 승인을 겸한다).
     캐러셀을 안 올린 날은 조용히 끝낸다.
     again: 이미 올린 날도 한 번 더 올린다 (음악을 넣어 다시 만든 영상 등).
-    앞 릴스는 앱에서 지운다."""
+    앞 릴스는 앱에서 지운다. rebuild: 지금 설정(음악 등)으로 영상을 다시 만들어 올린다."""
     profile = load_profile(account)
     store = store or Store(account)
     tag = f"[{account}] {day}"
@@ -518,9 +519,13 @@ def run_reels(
     if rec.reel_sent_at and not again:
         print(f"{tag} 릴스 영상을 이미 텔레그램으로 보냈습니다")
         return 0
-    manifest = notify.load_manifest(out)
     from tools import reels
 
+    if rebuild and not dry_run:
+        spec = reels.build(out, profile)
+        song = spec.audio or "없음"
+        print(f"{tag} 릴스 영상을 다시 만들었습니다 ({spec.duration_sec:g}초, 음원 {song})")
+    manifest = notify.load_manifest(out)
     if reels.video_path(manifest, out) is None:
         # 릴스 기능 전에 만든 결과이거나 daily 의 릴스 만들기가 실패한 날. 실패로 끝내지 않고 알림만
         note = f"{tag} 이 날 결과에는 릴스 영상이 없어 건너뛰었어요 ({out.name})"
@@ -607,7 +612,9 @@ def main(argv: list[str] | None = None) -> int:
         "--reels", action="store_true", help="릴스만 올림 (그날 캐러셀을 게시한 결과의 영상)"
     )
     ap.add_argument(
-        "--reel-again", action="store_true", help="--reels 와 같이: 이미 올린 날도 다시 올림"
+        "--reel-again",
+        action="store_true",
+        help="--reels 와 같이: 영상을 다시 만들어 이미 올린 날도 다시 올림",
     )
     args = ap.parse_args(argv)
 
@@ -628,6 +635,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.dry_run,
                 tg=tg,
                 again=args.reel_again,
+                rebuild=args.reel_again,
             )
         return run(
             args.account,
