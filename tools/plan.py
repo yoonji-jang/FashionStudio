@@ -312,6 +312,11 @@ def busy_warnings(where: str, cats: list[str], items: list[Product], profile: Pr
         if k > st.max_patterns:
             limit = f"최대 {st.max_patterns}개, styling.md"
             out.append(f"{where}무늬 있는 상품이 {k}개입니다 ({limit})")
+    tops = [p for p in items if p.category == "상의"]
+    if st.inner_words and len(tops) == 1 and name_excluded(tops[0].name, st.inner_words):
+        out.append(
+            f"{where}목선이 파인 상의라 안에 얇은 이너(티·나시)를 받쳐 입히세요 (styling.md)"
+        )
     acc = cats.count("소품")
     if st.max_accessories is not None and acc > st.max_accessories:
         out.append(f"{where}소품이 {acc}개입니다 (최대 {st.max_accessories}개, styling.md)")
@@ -382,6 +387,7 @@ def check(
                 )
     if plan.looks:
         errors += looks_problems(plan, profile, products, draft)
+        warns += same_kind_warnings(plan, profile, products)
 
     if plan.looks:
         per = {"looks": len(plan.looks) - (0 if lk.repeat_cover_look else 1)}
@@ -540,6 +546,28 @@ def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: boo
         elif len(where) > lk.max_share:
             errors.append(f"{pid} ({cat}): {nums}번 벌에 들어 있습니다 (최대 {lk.max_share}벌)")
     return errors
+
+
+def same_kind_warnings(plan: DailyPlan, profile: Profile, products: dict) -> list[str]:
+    """같은 포인트 옷(스웨이드 자켓 등)이 여러 벌을 다 차지하는지 (profile looks.max_same_kind)."""
+    limit = profile.looks.max_same_kind
+    if limit is None:
+        return []
+    count: dict[tuple[str, str], int] = {}
+    for look in plan.looks:
+        kinds = set()
+        for it in look.items:
+            p = products.get(it.product)
+            if p is None or p.category not in ("아우터", "상의", "하의"):
+                continue
+            kinds |= {(p.category, w) for w in profile.style.point_words if w in p.name}
+        for k in kinds:
+            count[k] = count.get(k, 0) + 1
+    return [
+        f"{cat} '{word}' 이(가) {k}벌에 들어 있습니다 (최대 {limit}벌, 벌마다 다른 아이템으로)"
+        for (cat, word), k in count.items()
+        if k > limit
+    ]
 
 
 # ---------- caption ----------

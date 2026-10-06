@@ -100,6 +100,20 @@ def test_check_looks_rules(store):
     assert "최대 2벌" in text
 
 
+def test_same_kind_warning(store):
+    # 2026-10-06: 여섯 벌 모두 스웨이드 자켓이 되지 않게 (profile looks.max_same_kind 3)
+    profile = load_profile("women")
+    p = looks_plan()
+    products = {x.id: x for x in store.products()}
+    for n in range(1, 5):
+        pid = f"zigzag:{n * 10}"
+        products[pid] = products[pid].model_copy(update={"name": f"스웨이드 자켓 {n}"})
+    warns = plan.same_kind_warnings(p, profile, products)
+    assert warns == [
+        "아우터 '스웨이드' 이(가) 4벌에 들어 있습니다 (최대 3벌, 벌마다 다른 아이템으로)"
+    ]
+
+
 def test_single_plan_rejected_when_looks_enabled(store):
     from tests.test_plan import daily
 

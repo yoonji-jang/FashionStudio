@@ -18,13 +18,14 @@ style:
     스카프, 볼캡, 니삭스, 메리제인, 슬링백, 호보, 위빙, 퀼팅, 볼드, 하트]
   # 벌마다 넘으면 tools.plan check 가 경고 (2026-10-06 "색 조합이 어색하고 꾸역꾸역 레이어드해서 답답하다")
   pattern_words: [체크, 스트라이프, 핀스트라이프, 도트, 플로럴, 레오파드, 호피, 아가일, 깅엄, 하운드투스, 페이즐리]
-  max_layers: 2       # 아우터와 상의를 합친 겹 수
+  max_layers: 3       # 아우터와 상의를 합친 겹 수 (세 겹은 안에 얇은 이너일 때)
+  inner_words: [딥브이, 딥 브이, 딥V, 딥 V, 딥넥, 오프숄더, 홀터, 시스루, 시어, 스퀘어넥, 유넥, U넥]
   max_patterns: 1     # 이름에 pattern_words 가 있는 상품 수
   max_accessories: 2  # 소품 개수
 
 outfit:
   items_min: 5
-  items_max: 7   # 겹쳐 입기 두 겹 + 소품 두 개까지 (2026-10-06, 21단계 8에서 줄임)
+  items_max: 8   # 아우터 + 상의 + 이너 세 겹 + 소품 두 개까지 (2026-10-06)
   slots:
     - {category: 아우터, required: false}  # 계절에 따라 생략
     - {category: 상의}
@@ -208,6 +209,7 @@ looks:
   spare: 2           # 예비로 더 보내는 벌 수 (이미지 비용 없음, 고른 벌만 그림)
   share_categories: [가방, 신발, 소품]  # 이 카테고리는 같은 상품을 max_share 벌까지 같이 써도 됨
   max_share: 2
+  max_same_kind: 3  # 스웨이드 자켓처럼 같은 포인트 옷은 세 벌까지 (2026-10-06)
   candidates: 1      # 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 한 장 더 (review.max_rounds)
   repeat_cover_look: true  # 표지 다음 장에 1번 벌을 상품 정보와 함께 다시 보여 줌
   title_count: false  # 표지 제목에 "여섯 벌" 같은 벌 수를 쓰지 않음 (2026-10-01 사용자)

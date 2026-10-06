@@ -111,21 +111,34 @@ def test_check_passes(store):
 
 
 def test_busy_warnings():
-    # 2026-10-06 "꾸역꾸역 레이어드해서 답답하다": 세 겹, 무늬 둘, 소품 셋이면 경고
+    # 2026-10-06 "꾸역꾸역 레이어드해서 답답하다": 네 겹, 무늬 둘, 소품 셋이면 경고
     profile = load_profile("women")
-    names = ["레더 자켓", "니트 베스트", "스트라이프 셔츠", "체크 스커트", "숄더백", "로퍼"]
-    cats = ["아우터", "상의", "상의", "하의", "가방", "신발", "소품", "소품", "소품"]
+    names = ["레더 자켓", "니트 베스트", "스트라이프 셔츠", "나시", "체크 스커트", "숄더백", "로퍼"]
+    cats = ["아우터", "상의", "상의", "상의", "하의", "가방", "신발", "소품", "소품", "소품"]
     items = [
         product(i, c).model_copy(update={"name": n})
         for i, (c, n) in enumerate(zip(cats, names, strict=False), 1)
     ]
     warns = plan.busy_warnings("1번 벌: ", cats, items, profile)
     assert [w.split(" (")[0] for w in warns] == [
-        "1번 벌: 아우터·상의가 3겹입니다",
+        "1번 벌: 아우터·상의가 4겹입니다",
         "1번 벌: 무늬 있는 상품이 2개입니다",
         "1번 벌: 소품이 3개입니다",
     ]
-    assert plan.busy_warnings("", cats[1:6], items[1:2] + items[3:], profile) == []
+    # 세 겹(안에 얇은 이너)까지는 괜찮다
+    assert plan.busy_warnings("", cats[:3], items[:2] + items[3:4], profile) == []
+
+
+def test_inner_warning_for_deep_neck():
+    # 딥 브이넥 상의 한 장이면 안에 티·나시를 받쳐 입히라고 경고
+    profile = load_profile("women")
+    deep = product(1, "상의").model_copy(update={"name": "딥 브이넥 니트"})
+    tank = product(2, "상의").model_copy(update={"name": "골지 나시"})
+    warns = plan.busy_warnings("", ["상의", "하의"], [deep, product(3, "하의")], profile)
+    assert [w.split(" (")[0] for w in warns] == [
+        "목선이 파인 상의라 안에 얇은 이너(티·나시)를 받쳐 입히세요"
+    ]
+    assert plan.busy_warnings("", ["상의", "상의", "하의"], [deep, tank], profile) == []
 
 
 def test_check_catches_rule_breaks(store):
