@@ -43,6 +43,8 @@ MAX_TEXT = 4096
 MAX_PHOTO_CAPTION = 1024
 SEND_METHODS = {"sendMessage", "sendPhoto", "sendMediaGroup", "sendVideo"}
 APPROVAL = "approval.json"  # 결과 폴더에 남기는 /ok·/skip 기록 (텔레그램은 답장을 24시간만 보관)
+NOW = "now.json"  # /now (지금 게시) 를 처리한 기록
+NOW_WORDS = ("지금 올려", "지금 올려줘", "바로 올려", "바로 올려줘", "지금 게시", "바로 게시")
 
 
 def publish_config() -> dict:
@@ -329,6 +331,10 @@ def control_text(
             lines.append("/ok 를 확인하면 공유리워드 링크를 만들 상품 링크를 보내 드려요")
         elif share.sends_list(profile):
             lines.append("/ok 를 확인하면 상품 링크를 보내 드려요")
+        lines.append(
+            f"/ok 뒤 /now 를 보내면 {profile.schedule.publish_at} 을 기다리지 않고 "
+            "다음 매시 확인 때 바로 게시해요"
+        )
     else:
         lines.append(
             f"/skip {label} 을 보내지 않으면 {profile.schedule.publish_at} 에 자동 게시해요"
@@ -442,6 +448,8 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
         return Command("drop", re.findall(r"\d+", m.group(1)), False)
     if plain in ("다시", "다시 보내줘"):
         return Command("again", [], False)
+    if plain in NOW_WORDS:
+        return Command("now", [], False)
     m = CMD.match(plain)
     if not m:
         return None
@@ -522,6 +530,24 @@ def find_decision(
         if not cmd.args
     ]
     return found[-1].name if found else None  # type: ignore[return-value]
+
+
+def find_now(
+    updates: list[dict], record: PreviewRecord, chat_id: str, until: int | None = None
+) -> int | None:
+    """미리보기 뒤 온 마지막 /now ("지금 올려") 의 update_id."""
+    found = commands(
+        updates,
+        chat_id,
+        record.sent_at,
+        record.account,
+        record.date,
+        {"now"},
+        record.message_ids,
+        until,
+    )
+    found = [(uid, cmd) for uid, cmd in found if not cmd.args]
+    return found[-1][0] if found else None
 
 
 def ok_deadline(profile: Profile, day: date) -> datetime | None:
