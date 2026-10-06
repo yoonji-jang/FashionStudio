@@ -240,3 +240,24 @@ def test_pick_photo_falls_back_to_page_image(monkeypatch, tmp_path):
     monkeypatch.setattr(scout, "fetch_product_image", og)
     monkeypatch.setattr(faces, "find_faces", lambda img: [])
     assert pick_photo(_product(2), tmp_path, load_profile("women").feed).name == "1_og.jpg"
+
+
+def test_look_credit_line(tmp_path):
+    """profile looks.credit 이 있으면 벌 장 목록 아래와 표지에 출처 한 줄을 넣는다."""
+    from PIL import Image
+
+    from core.profile import load_profile
+    from tools.feed import LookLine, canvas_size, credit_overlay, look_slide
+
+    profile = load_profile("women")
+    size = canvas_size(profile)
+    base = tmp_path / "look.jpg"
+    Image.new("RGB", size, "#808080").save(base)
+    lines = [LookLine("상의", "니트", "스토어", None)]
+    plain = profile.model_copy(update={"looks": profile.looks.model_copy(update={"credit": ""})})
+    with_credit = look_slide(base, lines, 1, profile, size)
+    without = look_slide(base, lines, 1, plain, size)
+    assert profile.looks.credit
+    assert with_credit.tobytes() != without.tobytes()
+    cover = credit_overlay(Image.new("RGB", size, "#808080"), profile)
+    assert cover.size == size
