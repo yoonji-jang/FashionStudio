@@ -99,6 +99,62 @@ def ensure(label: AiLabel, images: list[Path]) -> list[str]:
     return done
 
 
+# MP4 안의 XMP 는 이 UUID 를 단 맨 위 uuid 상자에 둔다 (Adobe XMP 규격 3부)
+MP4_XMP_UUID = bytes.fromhex("BE7ACFCB97A942E89C71999491E3AFAC")
+
+
+def mp4_boxes(data: bytes) -> list[tuple[int, int, bytes]]:
+    """맨 위 상자 목록 (시작, 끝, 종류)."""
+    boxes, pos = [], 0
+    while pos + 8 <= len(data):
+        size = int.from_bytes(data[pos : pos + 4], "big")
+        kind = data[pos + 4 : pos + 8]
+        if size == 1:
+            size = int.from_bytes(data[pos + 8 : pos + 16], "big")
+        elif size == 0:
+            size = len(data) - pos
+        if size < 8 or pos + size > len(data):
+            raise ValueError("MP4 상자 구조를 읽지 못했습니다")
+        boxes.append((pos, pos + size, kind))
+        pos += size
+    return boxes
+
+
+def _is_xmp_box(data: bytes, start: int, kind: bytes) -> bool:
+    return kind == b"uuid" and data[start + 8 : start + 24] == MP4_XMP_UUID
+
+
+def read_video(path: Path) -> str | None:
+    """MP4 에 든 DigitalSourceType 값. 없으면 None."""
+    data = path.read_bytes()
+    for start, end, kind in mp4_boxes(data):
+        if _is_xmp_box(data, start, kind):
+            m = _TYPE_RE.search(data[start:end])
+            return m.group(1).decode().removeprefix(IPTC_CV) if m else None
+    return None
+
+
+def insert_mp4_xmp(data: bytes, packet: bytes) -> bytes:
+    """MP4 맨 끝에 XMP uuid 상자를 붙인다 (원래 XMP 상자는 뺀다). 영상·소리는 건드리지 않는다.
+    상자 위치(오프셋)를 가리키는 moov 안의 값이 바뀌지 않도록 앞쪽 상자는 그대로 둔다."""
+    boxes = mp4_boxes(data)
+    if not boxes or boxes[0][2] != b"ftyp":
+        raise ValueError("MP4 가 아닙니다")
+    if boxes[-1][2] == b"uuid" and _is_xmp_box(data, boxes[-1][0], boxes[-1][2]):
+        data = data[: boxes[-1][0]]  # 앞서 붙인 표시 (맨 끝) 만 바꾼다
+    body = MP4_XMP_UUID + packet
+    return data + (len(body) + 8).to_bytes(4, "big") + b"uuid" + body
+
+
+def ensure_video(label: AiLabel, video: Path) -> bool:
+    """릴스 영상에 AI 표시가 없으면 넣는다. 릴스에 AI 가 그린 장(표지·벌 장)이 들어가므로
+    ai_label 이 켜져 있으면 영상 전체에 표시한다. 넣었으면 True."""
+    if label.mode != "metadata" or read_video(video) == SOURCE_TYPES[label.source_type]:
+        return False
+    video.write_bytes(insert_mp4_xmp(video.read_bytes(), xmp_packet(label.source_type)))
+    return True
+
+
 def insert_xmp(jpeg: bytes, packet: bytes) -> bytes:
     """JPEG 바이트에 XMP(APP1) 조각을 넣는다. 원래 XMP 조각은 빼고, 픽셀은 건드리지 않는다."""
     if jpeg[:2] != b"\xff\xd8":

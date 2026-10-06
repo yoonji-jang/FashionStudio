@@ -11,7 +11,7 @@ from core.models import PublishRecord, ReelsSpec
 from core.profile import Reels, load_profile
 from tests.test_publish import CHAT, FakeApis, clients, results, sent  # noqa: F401 - fixture
 from tests.test_review import fake_photos, store  # noqa: F401 - pytest fixture
-from tools import notify, publish, reels, schedule
+from tools import ai_label, notify, publish, reels, schedule
 
 pytestmark = pytest.mark.usefixtures("fixed_times")
 
@@ -79,12 +79,15 @@ def test_build_writes_video_and_manifest(results):  # noqa: F811
     assert 3 <= spec.duration_sec <= 90
     assert (run / spec.video).stat().st_size > 1000 and (run / spec.cover).exists()
     assert notify.load_manifest(run).reels == spec
+    assert ai_label.read_video(run / spec.video) == "trainedAlgorithmicMedia"
 
 
 def with_reel(run, seconds: float = 12.5):
     """ffmpeg 없이 게시 흐름을 보려고 가짜 영상을 manifest 에 붙인다."""
     (run / "reels").mkdir(exist_ok=True)
-    (run / "reels" / "reel.mp4").write_bytes(b"\0\0\0\x18ftypmp42" + b"0" * 2000)
+    ftyp = b"\0\0\0\x18ftypmp42" + b"\0" * 12
+    mdat = (8 + 2000).to_bytes(4, "big") + b"mdat" + b"0" * 2000
+    (run / "reels" / "reel.mp4").write_bytes(ftyp + mdat)
     m = notify.load_manifest(run)
     m.reels = ReelsSpec(video="reels/reel.mp4", cover=None, duration_sec=seconds)
     reels.write_manifest(run, m)
@@ -153,7 +156,10 @@ def test_reels_at_posts_reel_later_with_same_ok(results, store, monkeypatch):  #
     reel = api.media[-1]
     assert reel["media_type"] == "REELS" and "upload_type" not in reel
     assert reel["video_url"].endswith("-reel/01.mp4") and not api.uploads
-    assert reel["share_to_feed"] == "true" and "#" not in reel["caption"]  # 해시태그는 댓글로
+    # women 은 그리드에서 빼고 릴스 탭에만
+    assert reel["share_to_feed"] == "false" and "#" not in reel["caption"]  # 해시태그는 댓글로
+    # 게시 API 에 AI 레이블 값이 없어 영상 안에 IPTC 표시를 넣는다
+    assert ai_label.read_video(run / "reels" / "reel.mp4") == "trainedAlgorithmicMedia"
     done = PublishRecord.model_validate_json((run / "published.json").read_text())
     assert done.media_id == "m777" and done.reel_media_id == "r888"
     post = store.posts()[-1]
@@ -162,6 +168,10 @@ def test_reels_at_posts_reel_later_with_same_ok(results, store, monkeypatch):  #
     # 다시 불려도 두 번 올리지 않는다
     assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 2
+    # again: 음악을 넣어 다시 만든 영상처럼 한 번 더 올린다
+    kw = dict(store=store, tg=tg, ig=ig, host=host, again=True)
+    assert publish.run_reels("women", DAY, results, **kw) == 0
+    assert api.published == 3
 
 
 def reel_container(api: ReelApis) -> str:

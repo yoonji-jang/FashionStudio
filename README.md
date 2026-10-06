@@ -990,6 +990,9 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
    영상은 사진 저장소에 잠시 올려 공개 주소로 넘기고, 게시가 끝나면 지웁니다
    (`config/publish.yaml` `instagram.reels_upload: url`). 인스타 로그인 방식 API 는 파일을 바로 받는
    `file` 방식을 받지 않습니다.
+   `reels.share_to_feed: false` 면 프로필 그리드에서 빼고 릴스 탭에만 보입니다 (women).
+   게시 API 에 AI 레이블 값이 없어서, `ai_label` 이 켜져 있으면 영상 안에 IPTC AI 합성 표시(XMP)를 넣습니다.
+   같은 날 릴스를 다시 올리려면 publish 워크플로를 `reels` 와 `reel_again` 을 켜고 돌립니다 (앞 릴스는 앱에서 지움).
 4. **음악**: 인스타 앱의 음악은 게시 API 로 넣을 수 없습니다. `reels.music_dir` 폴더에 상업 이용이 허락된
    음원을 넣으면 영상에 직접 넣습니다 (`accounts/women/music/README.md`). 비어 있으면 소리 없는 릴스입니다.
 5. **ManyChat**: 마지막 장이 "댓글을 남기면 DM" 안내라서, ManyChat 댓글 규칙이 릴스에도 걸리게(모든 게시물·릴스) 해 두세요.
