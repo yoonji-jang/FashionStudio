@@ -1,0 +1,201 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/1/outfit_r2/results/G_1.jpg
+cover_has_title: false
+items:
+- comment: ''
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:157438223
+- comment: ''
+  name: 아이보리 와이드 슬랙스
+  product: zigzag:135443091
+- comment: ''
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+- comment: ''
+  name: 브라운 슬링백
+  product: zigzag:136665746
+- comment: ''
+  name: 하늘색 쁘띠 스카프
+  product: zigzag:150290269
+- comment: ''
+  name: 블랙 크롭 레더 자켓
+  product: zigzag:119435641
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:163851432
+- comment: ''
+  name: 탄탄울 니트 베스트
+  product: zigzag:147747225
+- comment: ''
+  name: 롱 플리츠 스커트
+  product: zigzag:159558897
+- comment: ''
+  name: 스웨이드 숄더백
+  product: zigzag:130117567
+- comment: ''
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+- comment: ''
+  name: 미니 볼드 귀걸이
+  product: zigzag:169325375
+- comment: ''
+  name: 모헤어 가디건
+  product: zigzag:166342775
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:171713101
+- comment: ''
+  name: 워싱 와이드 데님
+  product: zigzag:171327469
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:169369601
+- comment: ''
+  name: 메리제인
+  product: zigzag:166028838
+- comment: ''
+  name: 워시드 볼캡
+  product: zigzag:166003887
+- comment: ''
+  name: 스웨이드 블루종
+  product: zigzag:168315470
+- comment: ''
+  name: 헨리넥 니트
+  product: zigzag:170544684
+- comment: ''
+  name: 핀스트라이프 슬랙스
+  product: zigzag:168694332
+- comment: ''
+  name: 스퀘어 버클 벨트
+  product: zigzag:148980176
+- comment: ''
+  name: 스웨이드 사라백
+  product: zigzag:165406385
+- comment: ''
+  name: 페니 로퍼
+  product: zigzag:114193909
+- comment: ''
+  name: 스트라이프 니트 가디건
+  product: zigzag:172016137
+- comment: ''
+  name: 립 헨리넥 니트
+  product: zigzag:171834839
+- comment: ''
+  name: 새틴 미디 스커트
+  product: zigzag:165618457
+- comment: ''
+  name: 멜다 숄더백
+  product: zigzag:159313221
+- comment: ''
+  name: 블랙 슬링백
+  product: zigzag:133601050
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 자켓
+    product: zigzag:168776088
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:157438223
+  - comment: ''
+    name: 아이보리 와이드 슬랙스
+    product: zigzag:135443091
+  - comment: ''
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  - comment: ''
+    name: 브라운 슬링백
+    product: zigzag:136665746
+  - comment: ''
+    name: 하늘색 쁘띠 스카프
+    product: zigzag:150290269
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 블랙 크롭 레더 자켓
+    product: zigzag:119435641
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:163851432
+  - comment: ''
+    name: 탄탄울 니트 베스트
+    product: zigzag:147747225
+  - comment: ''
+    name: 롱 플리츠 스커트
+    product: zigzag:159558897
+  - comment: ''
+    name: 스웨이드 숄더백
+    product: zigzag:130117567
+  - comment: ''
+    name: 레이스업 로퍼
+    product: zigzag:134105153
+  - comment: ''
+    name: 미니 볼드 귀걸이
+    product: zigzag:169325375
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 모헤어 가디건
+    product: zigzag:166342775
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:171713101
+  - comment: ''
+    name: 워싱 와이드 데님
+    product: zigzag:171327469
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - comment: ''
+    name: 메리제인
+    product: zigzag:166028838
+  - comment: ''
+    name: 워시드 볼캡
+    product: zigzag:166003887
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 블루종
+    product: zigzag:168315470
+  - comment: ''
+    name: 헨리넥 니트
+    product: zigzag:170544684
+  - comment: ''
+    name: 핀스트라이프 슬랙스
+    product: zigzag:168694332
+  - comment: ''
+    name: 스퀘어 버클 벨트
+    product: zigzag:148980176
+  - comment: ''
+    name: 스웨이드 사라백
+    product: zigzag:165406385
+  - comment: ''
+    name: 페니 로퍼
+    product: zigzag:114193909
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-07/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스트라이프 니트 가디건
+    product: zigzag:172016137
+  - comment: ''
+    name: 립 헨리넥 니트
+    product: zigzag:171834839
+  - comment: ''
+    name: 새틴 미디 스커트
+    product: zigzag:165618457
+  - comment: ''
+    name: 하늘색 쁘띠 스카프
+    product: zigzag:150290269
+  - comment: ''
+    name: 멜다 숄더백
+    product: zigzag:159313221
+  - comment: ''
+    name: 블랙 슬링백
+    product: zigzag:133601050
+title_lines:
+- 브라운에 하늘색 한 방울 얹은
+- 일교차 큰 날 가을 코디 모음

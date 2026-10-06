@@ -1,0 +1,63 @@
+{
+  "run": "2026-10-07-run120",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 2,
+      "kind": "look",
+      "look": 1,
+      "product": null,
+      "text": "자켓은 오버핏인데 크롭자켓처럼 그려졌어. 사진 속 기장(엉덩이 덮는 기장)과 오버핏 품을 살려서 그려. 스카프는 옷 위에 묶지 말고 목 높이 옆 빈자리에 악세서리처럼 따로 놓아."
+    },
+    {
+      "slide": 6,
+      "kind": "look",
+      "look": 5,
+      "product": null,
+      "text": "치마는 미디스커트인데 기장이 너무 길게 그려졌어. 종아리 중간 기장으로. 스카프는 옷 위에 묶지 말고 목 높이 옆 빈자리에 악세서리처럼 따로 놓아."
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 4,
+      "file": "04_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 5,
+      "file": "05_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 6,
+      "file": "06_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ]
+}
