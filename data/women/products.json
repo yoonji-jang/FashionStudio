@@ -4107,6 +4107,36 @@
     "checked_at": "2026-10-04"
   },
   {
+    "id": "zigzag:169324070",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169324070",
+    "shop": "컴포트랩",
+    "name": "[화사PICK/직진] 에르고핏 베이직 홀터탑",
+    "price": 32060,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/10/4557_202604101711020625_71094.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/10/4557_202604101711020753_17778.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/10/4557_202604101711030154_19677.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/10/4557_202604101711020496_25150.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/24/4557_202604241458570741_42010.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/24/4557_202604241458570953_88586.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/4/24/4557_202604241458580098_33085.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 1985,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "편안한"
+    ],
+    "query": "홀터넥 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:171584015",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171584015",
@@ -4134,6 +4164,37 @@
     "query": "블라우스",
     "collected_at": "2026-09-30",
     "checked_at": "2026-10-04"
+  },
+  {
+    "id": "zigzag:168300943",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168300943",
+    "shop": "조이조이",
+    "name": "[레이어드/분리가능✌🏻] 디아르 홀터넥 나시 밑단 버튼 오프숄더 원숄더 캐주얼 꾸안꾸 와플 맨투맨 세트",
+    "price": 25650,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543570179_57347.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543570005_41799.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543560846_89951.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543570446_54721.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543560719_64646.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543570337_37882.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/1/29/9501_202601291543560537_18675.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 136,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "심플베이직"
+    ],
+    "query": "홀터 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
   },
   {
     "id": "zigzag:147747225",
@@ -4555,6 +4616,35 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:171067803",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171067803",
+    "shop": "미쏘",
+    "name": "홀터 레이어드 긴팔 티셔츠_MIWLWG911A",
+    "price": 25410,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/11864_202608251412493478_79334.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/11864_202608251412480774_47430.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/11864_202608251412491220_24756.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/11864_202608251412489180_55303.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/25/11864_202608251412486788_31896.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 144,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "오피스룩",
+      "캐주얼"
+    ],
+    "query": "얇은 홀터넥",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:128321624",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/128321624",
@@ -4821,6 +4911,66 @@
       "심플베이직"
     ],
     "query": "골지 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:153225273",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/153225273",
+    "shop": "베이직블룸",
+    "name": "[여리핏/💞쫀쫀] 롱슬리브 홀터넥 레이어드 나시 탑 슬림 티 긴팔 티셔츠 (페이크 나시, 슬림핏, 유넥, 블랙)",
+    "price": 26010,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/5/8/39603_202505081728380818_74103.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/9/26/39603_202509261558480257_94315.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/5/8/39603_202505081728380485_82792.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 255,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "얇은 홀터넥",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:169527291",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169527291",
+    "shop": "벨라포유",
+    "name": "인기 재진행🔥[캡내장]퓨테 홀터넥 단추 트임 부유방커버 골지나시(4color)",
+    "price": 25110,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208280017_52521.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208280270_35896.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208280502_17412.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208270443_54811.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208270587_48889.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208270819_30062.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208270246_10581.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208280131_10945.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/7/23/25875_202507230208280740_16960.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.6,
+    "review_count": 151,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱",
+      "캐주얼"
+    ],
+    "query": "얇은 홀터넥",
     "collected_at": "2026-10-06",
     "checked_at": "2026-10-06"
   },
@@ -5163,6 +5313,40 @@
     "checked_at": "2026-10-04"
   },
   {
+    "id": "zigzag:171592547",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171592547",
+    "shop": "스파오",
+    "name": "홀터넥 레이어드 스트라이프 긴팔티_SPLSG49G05",
+    "price": 35900,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/25938_202609141403487156_88177.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/25938_202608311352318889_82577.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/25938_202609031617553954_36958.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/25938_202609031617572227_70522.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/3/25938_202609031617559223_96569.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/25938_202609141403455275_62308.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/25938_202609141403467078_90368.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/25938_202609141403478102_43940.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/25938_202608311352321429_82696.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/25938_202608311352314891_63160.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 27,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "유니섹스"
+    ],
+    "query": "홀터 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:171437567",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171437567",
@@ -5248,6 +5432,36 @@
     ],
     "query": "레이스 캐미솔",
     "collected_at": "2026-10-02",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:168779822",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168779822",
+    "shop": "크렘므",
+    "name": "[CRÈME ARCHIVE] 브리튼 가디건",
+    "price": 25520,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/27/6298_202602271604010569_37222.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/27/6298_202602271604010143_77861.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/27/6298_202602271604010429_74338.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/27/6298_202602271604010301_42657.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/27/6298_202602271604010758_14721.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/27/6298_202602271604000906_82334.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 123,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "모던시크"
+    ],
+    "query": "홀터 나시",
+    "collected_at": "2026-10-06",
     "checked_at": "2026-10-06"
   },
   {
@@ -5513,6 +5727,35 @@
     "query": "스트라이프 셔츠",
     "collected_at": "2026-10-04",
     "checked_at": "2026-10-04"
+  },
+  {
+    "id": "zigzag:165491980",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165491980",
+    "shop": "스테디",
+    "name": "[레이어드/세트] 투아 홀터나시 홀터넥 뷔스티에 긴팔 티셔츠 (4colors)",
+    "price": 30240,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://ecimg.cafe24img.com/pg42b67130197093/steady9999/web/product/extra/big/20250925/fad1cc4c39eef10d417ce06c1808359b.jpg",
+      "https://ecimg.cafe24img.com/pg42b67130197093/steady9999/web/product/extra/big/20250829/c2bc0667371978f0d121ab1bee41791b.jpg",
+      "https://ecimg.cafe24img.com/pg42b67130197093/steady9999/web/product/extra/big/20250829/0a62a1d9c707850d670e734118985d82.jpg",
+      "https://ecimg.cafe24img.com/pg42b67130197093/steady9999/web/product/extra/big/20250829/f4f53e920854bc799dd3383495017759.jpg",
+      "https://ecimg.cafe24img.com/pg42b67130197093/steady9999/web/product/extra/big/20250829/fe3d46ba39d7aeee69afef2c578f153d.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 16,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "얇은 홀터넥",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
   },
   {
     "id": "zigzag:168620810",
@@ -6013,6 +6256,35 @@
     "checked_at": "2026-10-04"
   },
   {
+    "id": "zigzag:168361600",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168361600",
+    "shop": "프렌치오브",
+    "name": "[set]텐션 홀터넥 나시 세트 브이넥 니트 가디건 (5color)",
+    "price": 28400,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://frenchaube.com/web/product/extra/big/202602/82307eaa4d65e2716df5eb40e514caa3.jpg",
+      "https://frenchaube.com/web/product/extra/big/202602/21b87b8fda2a2419709f63ce2df5c316.jpg",
+      "https://frenchaube.com/web/product/extra/big/202602/bd3d228f0bf0bfb69d0fc98e636cd59c.jpg",
+      "https://frenchaube.com/web/product/extra/big/202602/18a091564fc8ef4c08c882d6f6eca71b.jpg",
+      "https://frenchaube.com/web/product/extra/big/202602/f9a8c7e7ea4a1c44e2ee0fe6f966308b.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 45,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "러블리"
+    ],
+    "query": "홀터넥 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:171713101",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171713101",
@@ -6065,6 +6337,40 @@
       "러블리"
     ],
     "query": "레이어드 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:169160222",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169160222",
+    "shop": "어텀",
+    "name": "[made]홀터뷔스티에티셔츠",
+    "price": 26380,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://autumnshop.kr/web/product/extra/big/202603/a6691f49796cefdd069446a04ee03525.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/01212af2bb4cd09a7386ab398bd65b77.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/aa88466912518e043655ac8b4eafa642.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/f8bb9ebc5f063e5d4377175403eb2900.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/95268f1e472f7feed992779f39384795.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/dc9db53b437921f652a2104468d1820e.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/5113c03d854020faf6e74fc8b6b971a4.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/22809ca0aacf1a7e6cfff459732df48f.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/fa204619d740ff33c9a7bdf3225288a2.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202603/4c8476c44fc53926b7003b722fff869f.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 12,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "얇은 홀터넥",
     "collected_at": "2026-10-06",
     "checked_at": "2026-10-06"
   },
@@ -6392,6 +6698,31 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:171880167",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171880167",
+    "shop": "아틀리에나인",
+    "name": "(Z-BL-4404)N HALTER SLEEVELESS LAYERED BLOUSE",
+    "price": 111750,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/251_202609080857106363_11538.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 29,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "클래식"
+    ],
+    "query": "홀터 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:171486457",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171486457",
@@ -6419,6 +6750,31 @@
       "빈티지"
     ],
     "query": "레이어드 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:170590071",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170590071",
+    "shop": "모렌트",
+    "name": "[무료배송] 노베르 레이어드 메쉬 셔링 홀터넥 슬리브리스",
+    "price": 32900,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/6/55187_202607060955580073_74484.gif?width=400&height=400&quality=80&format=webp"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 33,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱",
+      "모던시크"
+    ],
+    "query": "홀터넥 나시",
     "collected_at": "2026-10-06",
     "checked_at": "2026-10-06"
   },
@@ -6676,6 +7032,31 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:167893169",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167893169",
+    "shop": "언더비",
+    "name": "렌토 홀터넥 니트 뷔스티에 (4 color), 울 100%",
+    "price": 29820,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/16/789/316/167893169-1278430810034573585.gif?width=720&height=720&quality=80&format=jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 10,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캠퍼스룩",
+      "심플베이직"
+    ],
+    "query": "홀터 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:152716960",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/152716960",
@@ -6773,6 +7154,39 @@
     ],
     "query": "레이스 캐미솔",
     "collected_at": "2026-10-02",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:169606501",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169606501",
+    "shop": "하이원스",
+    "name": "여름 플라워 린넨 홀터 나시 버튼 탑",
+    "price": 36800,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://hiwons.co.kr/web/product/extra/big/20260420/599b74dc050b27e5455aef2527032e4e.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/a179939897e1ac78877435ef92f6df4f.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/a3e85c0e432c2170e195ed3f76b402b6.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/0594d375f3ed826387fc2baff15aee69.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/73a041f0c0bca4d4521ca360ff9191aa.jpg",
+      "https://hiwons.co.kr/web/product/big/202604/87e4ad1bd303385a526ce291104ce0ad.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/ae8dbed6d5e8c4b346128149803389d3.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/5a310e83b377e142a0ee48330ab0f33e.jpg",
+      "https://hiwons.co.kr/web/product/extra/big/20260420/691413358558b6ca6ddaba90a08df1d8.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.5,
+    "review_count": 26,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "클래식",
+      "유니크"
+    ],
+    "query": "홀터넥 나시",
+    "collected_at": "2026-10-06",
     "checked_at": "2026-10-06"
   },
   {
@@ -6917,6 +7331,67 @@
     "checked_at": "2026-10-04"
   },
   {
+    "id": "zigzag:145265241",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/145265241",
+    "shop": "베리빈",
+    "name": "[당일출고/*말라핏보장]슬림 기본레이어드 스퀘어유넥 롱슬리브 긴팔굴림티셔츠(브이 세미크롭 얇은긴소매 홀터넥 키작녀 간절기 빅사이즈 쫄티이너티 오버핏루즈니트 가을겨울옷 긱시크 개강)",
+    "price": 27900,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/31/45862_202407311813440690_93326.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/31/45862_202407311813440693_93156.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/31/45862_202407311813440691_94761.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/7/31/45862_202407311813440688_65110.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 20,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "유니크",
+      "모던시크"
+    ],
+    "query": "얇은 홀터넥",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:168182834",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168182834",
+    "shop": "슬로우리스트",
+    "name": "[가을🍂][MADE]헤도 레이어드 홀터넥 가디건 세트 일체형[4color]",
+    "price": 27920,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://slowlist.co.kr/web/product/extra/big/20260120/958c00868a8123c2a886673a39ece8e7.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/61b8aa499d218c9b6e59bab0ad8288e7.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/964e5747638872ae075d14cf9fbc06b8.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/9fd1422898bc3e9ddc58fabe379335c5.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/78e5f5765da116e6dcc7f3e57b92bee0.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/f9196c3543593efd76a0595966455b02.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/54dcafe53ef9c604fb8b8feb547878b4.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/11351351208fa1d10d2eb7e6826d8f69.jpg",
+      "https://slowlist.co.kr/web/product/extra/big/20260120/34d9f468c379bf05dbfb7db149ef8582.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 16,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "오피스룩",
+      "심플베이직"
+    ],
+    "query": "홀터 나시",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:171849760",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171849760",
@@ -7008,6 +7483,30 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:170807280",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/170807280",
+    "shop": "베리시",
+    "name": "에센셜핏 홀터 브라렛&팬티 set",
+    "price": 42410,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/7/16/11638_202607161121096372_16276.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.5,
+    "review_count": 16,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직"
+    ],
+    "query": "얇은 홀터넥",
+    "collected_at": "2026-10-06",
+    "checked_at": "2026-10-06"
+  },
+  {
     "id": "zigzag:172009228",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/172009228",
@@ -7095,219 +7594,33 @@
     "checked_at": "2026-10-06"
   },
   {
-    "id": "zigzag:165354189",
+    "id": "zigzag:169108215",
     "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/165354189",
-    "shop": "하이클래식",
-    "name": "꽁드 꼬임 슬림핏 세로골지 나시+오픈형 롱슬리브 니트 가디건 세트",
-    "price": 27200,
+    "url": "https://zigzag.kr/catalog/products/169108215",
+    "shop": "라룸",
+    "name": "[라룸] [by LAROOM｜오늘출발] 모어홀터탑",
+    "price": 28800,
     "category": "상의",
     "colors": [],
     "image_urls": [
-      "https://highclassic.co.kr/web/product/extra/big/202508/e449df4d3a88f3ef816a69fd5af25517.jpeg",
-      "https://highclassic.co.kr/web/product/extra/big/202508/0b094644b6ff4d719709d5c2bb4ad5d4.jpeg",
-      "https://highclassic.co.kr/web/product/extra/big/202508/bcae409d9849b7537155dd1d2a5641c5.jpeg"
-    ],
-    "has_flat_shot": false,
-    "rating": 4.8,
-    "review_count": 12,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "오피스룩",
-      "심플베이직"
-    ],
-    "query": "골지 나시",
-    "collected_at": "2026-10-06",
-    "checked_at": "2026-10-06"
-  },
-  {
-    "id": "zigzag:171618581",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/171618581",
-    "shop": "텐가트",
-    "name": "[가을신상15%🍂][SET/탄탄여리핏] made 리엔 나시 가디건 세트 TS215",
-    "price": 31940,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://10gtt.kr/web/product/extra/big/202608/30295d0861ee72df2ce370a75e9389f4.jpg",
-      "https://10gtt.kr/web/product/extra/big/202608/f1c637e5f4658a6316481b03c02fbbdb.jpg",
-      "https://10gtt.kr/web/product/extra/big/202608/e2d5a352241598ec43249518da5341b3.jpg",
-      "https://10gtt.kr/web/product/extra/big/202608/3076a8abefd392f0880a5e2d9c0e8a4f.jpg",
-      "https://10gtt.kr/web/product/extra/big/202608/229cc57c5680bf67784addb1a4ffa5f6.jpg",
-      "https://10gtt.kr/web/product/extra/big/202608/a2e2984af1d5a926abed8a33f2ca9f0d.jpg"
+      "https://la-room.kr/web/product/big/202603/1e414c159687637dc1313c324c94717f.jpg",
+      "https://la-room.kr/web/product/extra/big/202603/7e521a29644b3c6a00c3e7361a9e8ab6.jpg",
+      "https://la-room.kr/web/product/extra/big/202603/5b37abd01e90c2579e62c1daf7217906.jpg",
+      "https://la-room.kr/web/product/extra/big/202603/a97e92d532d360f5f2f9da5bfc19b526.jpg",
+      "https://la-room.kr/web/product/extra/big/202603/2596aa7c5c94fd64449466fd76e34b11.jpg",
+      "https://la-room.kr/web/product/extra/big/202603/a0ce916aaaea63b4c82b6a476e5c7b81.jpg"
     ],
     "has_flat_shot": false,
     "rating": 4.7,
-    "review_count": 11,
+    "review_count": 13,
     "last_used": null,
     "status": "on_sale",
     "style_tags": [
-      "심플베이직",
-      "캐주얼"
-    ],
-    "query": "골지 나시",
-    "collected_at": "2026-10-06",
-    "checked_at": "2026-10-06"
-  },
-  {
-    "id": "zigzag:171900889",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/171900889",
-    "shop": "히프나틱",
-    "name": "[MADE:자체제작]나시 가디건 세트[모달38%]",
-    "price": 27920,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://cf.product-image.s.zigzag.kr/original/c/17/190/088/171900889-4596673800765659667.gif"
-    ],
-    "has_flat_shot": false,
-    "rating": 4.7,
-    "review_count": 10,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "유니크",
+      "모던시크",
       "심플베이직"
     ],
-    "query": "골지 나시",
+    "query": "홀터 나시",
     "collected_at": "2026-10-06",
-    "checked_at": "2026-10-06"
-  },
-  {
-    "id": "zigzag:168224962",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/168224962",
-    "shop": "퍼빗",
-    "name": "[wool70/레이어드] 미엘 뷔스티에 니트 베스트 - 4color",
-    "price": 31200,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://cf.product-image.s.zigzag.kr/original/c/16/822/496/168224962-6258941276108514292.gif?width=720&height=720&quality=80&format=jpeg"
-    ],
-    "has_flat_shot": false,
-    "rating": 4.6,
-    "review_count": 5,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "심플베이직",
-      "오피스룩"
-    ],
-    "query": "니트 베스트",
-    "collected_at": "2026-10-02",
-    "checked_at": "2026-10-06"
-  },
-  {
-    "id": "zigzag:172105238",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/172105238",
-    "shop": "더롯",
-    "name": "[NWEOL] 뉴올 에드 홀터넥 레이어드 블라우스 (3color) 가을신상/가을신상품",
-    "price": 42980,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://img.agentesoft.com/agente/thelot/NWO/NWO00006/thumb/NWO00006_thumb_05_v01.jpg",
-      "https://img.agentesoft.com/agente/thelot/NWO/NWO00006/thumb/NWO00006_thumb_04_v01.jpg",
-      "https://img.agentesoft.com/agente/thelot/NWO/NWO00006/thumb/NWO00006_thumb_02_v01.jpg",
-      "https://img.agentesoft.com/agente/thelot/NWO/NWO00006/thumb/NWO00006_thumb_03_v01.jpg",
-      "https://img.agentesoft.com/agente/thelot/NWO/NWO00006/thumb/NWO00006_thumb_01_v01.jpg"
-    ],
-    "has_flat_shot": false,
-    "rating": 5.0,
-    "review_count": 6,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "로맨틱",
-      "모던시크"
-    ],
-    "query": "레이어드 셔츠",
-    "collected_at": "2026-10-04",
-    "checked_at": "2026-10-04"
-  },
-  {
-    "id": "zigzag:167722670",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/167722670",
-    "shop": "젬마",
-    "name": "홀가먼트 라쿤울 니트숄",
-    "price": 41000,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://cf.product-image.s.zigzag.kr/original/c/16/772/267/167722670-2819602512565503609.gif?width=400&height=400&quality=80&format=webp"
-    ],
-    "has_flat_shot": false,
-    "rating": 5.0,
-    "review_count": 5,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "심플베이직",
-      "러블리"
-    ],
-    "query": "케이프 니트",
-    "collected_at": "2026-10-02",
-    "checked_at": "2026-10-06"
-  },
-  {
-    "id": "zigzag:171988281",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/171988281",
-    "shop": "미케네",
-    "name": "[44-120] 시온 레터스 엣지 레이어드 티 (가을-봄-데일리룩-데이트룩-출근룩-이지웨어-캐주얼-페미닌-베이직-레이어드-긴팔티셔츠-나시-티셔츠-슬림핏-골지티셔츠-물결-자체제작)",
-    "price": 54600,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/30577_202609151028135833_93442.gif"
-    ],
-    "has_flat_shot": false,
-    "rating": 5.0,
-    "review_count": 5,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "심플베이직",
-      "러블리"
-    ],
-    "query": "골지 나시",
-    "collected_at": "2026-10-06",
-    "checked_at": "2026-10-06"
-  },
-  {
-    "id": "zigzag:171894062",
-    "source": "zigzag",
-    "url": "https://zigzag.kr/catalog/products/171894062",
-    "shop": "유이니",
-    "name": "[오늘출발/Autumn🤎/레이어드] Us lace cami (3color)",
-    "price": 26000,
-    "category": "상의",
-    "colors": [],
-    "image_urls": [
-      "https://yuini.co.kr/web/product/extra/big/202609/b4a0df54a3446622bb6201b44dcdd448.jpg",
-      "https://yuini.co.kr/web/product/extra/big/202609/9b45605ed94cfa55d4bd2915d03f9923.jpg",
-      "https://yuini.co.kr/web/product/extra/big/202609/0a8f07bdcff004d9ab796b7d951dfeb9.jpg",
-      "https://yuini.co.kr/web/product/extra/big/202609/3c78f6795b76085d127860b84c351616.jpg",
-      "https://yuini.co.kr/web/product/extra/big/202609/d650ac8b08fc967f3ab1c5baa48ae15b.jpg",
-      "https://yuini.co.kr/web/product/extra/big/202609/f91f701198076fd1be7db61cbbe0c95e.jpg"
-    ],
-    "has_flat_shot": false,
-    "rating": 4.6,
-    "review_count": 5,
-    "last_used": null,
-    "status": "on_sale",
-    "style_tags": [
-      "캐주얼",
-      "심플베이직"
-    ],
-    "query": "레이스 캐미솔",
-    "collected_at": "2026-10-02",
     "checked_at": "2026-10-06"
   },
   {
