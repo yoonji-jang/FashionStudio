@@ -1,4 +1,5 @@
-"""인스타그램 API (8단계 게시, 10단계 댓글·DM). 캐러셀(2~10장) 또는 사진 한 장과 캡션을 올린다.
+"""인스타그램 API (8단계 게시, 10단계 댓글·DM, 19단계 릴스).
+캐러셀(2~10장) 또는 사진 한 장과 캡션을 올린다. 릴스는 영상 파일을 인스타 업로드 서버로 바로 보낸다.
 
 순서: 사진마다 캐러셀 항목 만들기 → 캐러셀 묶기(캡션) → 처리 끝날 때까지 기다리기
 → 게시 → 게시물 주소.
@@ -11,8 +12,11 @@ from __future__ import annotations
 import json
 import time
 from collections.abc import Callable
+from pathlib import Path
 
 import httpx
+
+RUPLOAD = "https://rupload.facebook.com/ig-api-upload"  # 영상 직접 올리기 (resumable upload)
 
 
 class IGError(RuntimeError):
@@ -84,7 +88,7 @@ class Instagram:
                 return
             if status in ("ERROR", "EXPIRED"):
                 detail = self._call("GET", container, fields="status").get("status", "")
-                raise IGError(f"인스타가 사진을 처리하지 못했습니다 ({status}) {detail}")
+                raise IGError(f"인스타가 사진·영상을 처리하지 못했습니다 ({status}) {detail}")
             self.sleep(self.wait_sec)
         raise IGError("인스타 처리가 너무 오래 걸립니다 (잠시 뒤 다시 실행하세요)")
 
@@ -102,6 +106,53 @@ class Instagram:
                 media_type="CAROUSEL", children=",".join(children), caption=caption
             )
         self.wait(container)
+        return self._call("POST", f"{self.user_id}/media_publish", creation_id=container)["id"]
+
+    def publish_reel(
+        self,
+        caption: str,
+        video: Path | None = None,
+        video_url: str | None = None,
+        share_to_feed: bool = True,
+        wait_tries: int | None = None,
+    ) -> str:
+        """릴스를 게시하고 게시물 id 를 돌려준다 (19단계).
+        video: 파일을 인스타 업로드 서버로 바로 보낸다 (resumable upload, 공개 주소가 필요 없음).
+        video_url: 공개 주소를 넘긴다. 커버는 영상 첫 화면 (thumb_offset 0)."""
+        params = {
+            "media_type": "REELS",
+            "caption": caption,
+            "share_to_feed": "true" if share_to_feed else "false",
+            "thumb_offset": "0",
+        }
+        if video_url:
+            container = self._container(video_url=video_url, **params)
+        elif video is not None:
+            made = self._call("POST", f"{self.user_id}/media", upload_type="resumable", **params)
+            container = made["id"]
+            uri = made.get("uri") or f"{RUPLOAD}/{self.base.rsplit('/', 1)[-1]}/{container}"
+            data = video.read_bytes()
+            r = self.client.post(
+                uri,
+                content=data,
+                headers={
+                    "Authorization": f"OAuth {self.token}",
+                    "offset": "0",
+                    "file_size": str(len(data)),
+                },
+                timeout=300,
+            )
+            if r.status_code >= 300:
+                raise IGError(f"인스타 영상 올리기 실패 ({r.status_code}): {r.text[:200]}")
+        else:
+            raise ValueError("영상 파일이나 주소가 필요합니다")
+        tries = self.wait_tries
+        if wait_tries:
+            self.wait_tries = wait_tries  # 영상은 처리가 오래 걸린다
+        try:
+            self.wait(container)
+        finally:
+            self.wait_tries = tries
         return self._call("POST", f"{self.user_id}/media_publish", creation_id=container)["id"]
 
     def permalink(self, media_id: str) -> str | None:

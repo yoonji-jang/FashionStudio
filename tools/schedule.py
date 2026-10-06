@@ -14,6 +14,8 @@ daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약�
   pick        고른 번호 확인 (tools.pick). 고르면 daily(mode=render), "다시"면 새 후보,
               마감이면 profile pick.on_timeout
   publish     게시 (publish 워크플로). 승인이 늦으면 publish_retry_every 마다 다시
+  reels       릴스 게시 (publish 워크플로 reels, 19단계). profile schedule.reels_at 에 한 번.
+              그날 캐러셀을 게시했을 때만 올린다 (reels_at 이 없으면 캐러셀 바로 뒤에 같이)
   themes      다음 주 주제 (themes 워크플로)
   collect     지그재그 상품 수집 (collect 워크플로, 창고 커밋)
   token       인스타 토큰 연장 (token 워크플로)
@@ -128,6 +130,8 @@ def slots(profile: Profile) -> list[Slot]:
         Slot(a, "publish", s.publish_at, i * s.publish_retry_every, first=i == 0, final=i == n)
         for i in range(n + 1)
     ]
+    if profile.reels.enabled and s.reels_at:
+        out.append(Slot(a, "reels", s.reels_at))
     for task, value in (
         ("themes", s.themes_at),
         ("collect", s.collect_at),
@@ -329,7 +333,12 @@ def due(cron: str, now: datetime | None = None, accounts: list[str] | None = Non
 # ---------- auto: 지금까지 해야 했는데 아직 안 한 일 (12단계) ----------
 
 LATE_ALERT = 30  # 분. 이보다 늦게 돈 주요 작업은 텔레그램으로 알린다
-ALERT_TASKS = {"candidates": "코디 후보 보내기", "publish": "게시", "themes": "다음 주 주제"}
+ALERT_TASKS = {
+    "candidates": "코디 후보 보내기",
+    "publish": "게시",
+    "reels": "릴스 게시",
+    "themes": "다음 주 주제",
+}
 KEEP_DAYS = 14  # ticks.json 에 남기는 기간
 AUTO_EARLY = 3  # 분. 외부 스케줄러 시계가 이만큼 빨라도 그 칸으로 본다
 
@@ -355,7 +364,7 @@ def last_chance(profile: Profile, sl: Slot, at: datetime) -> datetime:
         # 마지막 재시도 칸 + 간격까지 (앞 칸을 놓쳐도 뒤 칸이 이어받는다)
         last = (s.publish_retries + 1) * s.publish_retry_every
         return at - timedelta(minutes=sl.offset) + timedelta(minutes=last)
-    if sl.task == "comments":
+    if sl.task in ("comments", "reels"):
         return at + timedelta(hours=3)
     return at + timedelta(hours=12)  # themes, collect, token
 
@@ -670,6 +679,15 @@ def execute(
                 dry_run=False,
                 scheduled=True,
                 notify_wait=t.first or t.final,
+            )
+        elif t.task == "reels":
+            send(
+                "publish.yml",
+                account=t.account,
+                date=t.date,
+                dry_run=False,
+                scheduled=True,
+                reels=True,
             )
         elif t.task == "themes":
             send("themes.yml", account=t.account, date=t.date)

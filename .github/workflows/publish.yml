@@ -5,6 +5,8 @@ name: publish
 # 사진을 공개 사진 저장소에 잠시 올리고 인스타 캐러셀 게시 → 게시 기록(data/<계정>/posts.json) 커밋 → 텔레그램 알림.
 # 9단계: schedule 워크플로가 profile schedule.publish_at 에 부른다 (scheduled). 승인이 늦으면
 # publish_retry_every 마다 다시 불리고, 대기 알림은 처음과 마지막에만 보낸다. Actions 탭에서 직접 돌려도 된다.
+# 19단계: reels 를 켜면 그날 캐러셀을 게시한 결과의 릴스 영상만 올리거나(reels.delivery instagram)
+# 텔레그램으로 보낸다(telegram, 사람이 앱에서 음악을 붙여 올림). schedule 이 schedule.reels_at 에 부름.
 # 필요한 Secrets: 프로필 instagram 의 두 이름(예: IG_WOMEN_TOKEN, IG_WOMEN_USER_ID), MEDIA_REPO_TOKEN,
 # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 on:
@@ -35,6 +37,10 @@ on:
         description: 승인이 없을 때 텔레그램으로 알림
         type: boolean
         default: true
+      reels:
+        description: 릴스만 올리기 (그날 캐러셀을 게시한 결과의 영상, 19단계)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -89,6 +95,7 @@ jobs:
           ${{ inputs.force && 'args+=(--force)' || '' }}
           ${{ inputs.scheduled && 'args+=(--scheduled)' || '' }}
           ${{ !inputs.notify_wait && 'args+=(--quiet-wait)' || '' }}
+          ${{ inputs.reels && 'args+=(--reels)' || '' }}
           set +e
           uv run python -m tools.publish "${args[@]}"
           code=$?
