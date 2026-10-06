@@ -45,6 +45,7 @@ from pydantic import TypeAdapter, ValidationError
 from core.models import DailyPlan, FeedItem, FeedSpec, Manifest, OutfitPlan, Product, Theme
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
+from sources.base import name_excluded
 from tools import feed, generate, photoroom
 from tools.compose import load_layout, real_length
 from tools.overlay import load_font
@@ -299,6 +300,24 @@ def text_problems(text: str, profile: Profile, where: str) -> list[str]:
     return [f"{where}: 금지 표현 '{w}'" for w in profile.copy_rules.banned if w in text]
 
 
+def busy_warnings(where: str, cats: list[str], items: list[Product], profile: Profile) -> list[str]:
+    """겹 수·무늬·소품이 많아 답답해 보이는 벌 (profile style.max_*, 2026-10-06)."""
+    st = profile.style
+    out = []
+    layers = cats.count("아우터") + cats.count("상의")
+    if st.max_layers is not None and layers > st.max_layers:
+        out.append(f"{where}아우터·상의가 {layers}겹입니다 (최대 {st.max_layers}겹, styling.md)")
+    if st.max_patterns is not None and st.pattern_words:
+        k = sum(name_excluded(p.name, st.pattern_words) for p in items)
+        if k > st.max_patterns:
+            limit = f"최대 {st.max_patterns}개, styling.md"
+            out.append(f"{where}무늬 있는 상품이 {k}개입니다 ({limit})")
+    acc = cats.count("소품")
+    if st.max_accessories is not None and acc > st.max_accessories:
+        out.append(f"{where}소품이 {acc}개입니다 (최대 {st.max_accessories}개, styling.md)")
+    return out
+
+
 def check(
     plan: DailyPlan, profile: Profile, store: Store, draft: bool = False
 ) -> tuple[list[str], list[str]]:
@@ -346,6 +365,8 @@ def check(
                 is_point(products[it.product], profile) for it in group if it.product in products
             ):
                 warns.append(f"{where}포인트 아이템(profile style.point_words)이 없습니다")
+        picked = [products[it.product] for it in group if it.product in products]
+        warns += busy_warnings(where, cats, picked, profile)
         for rule in rules.slots:
             if rule.required and rule.category not in cats:
                 errors.append(f"{where}필수 카테고리 {rule.category} 상품이 없습니다")

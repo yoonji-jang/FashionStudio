@@ -35,6 +35,11 @@ class Style(BaseModel):
     avoid: list[str] = []
     # 상품 이름에 이 말이 있으면 코디 포인트가 되는 상품으로 보고 창고·후보 순서에서 앞으로 (21단계)
     point_words: list[str] = []
+    # 벌마다 넘으면 tools.plan check 가 경고 (2026-10-06). None 이면 보지 않음
+    pattern_words: list[str] = []  # 이름에 이 말이 있으면 무늬 있는 상품
+    max_layers: int | None = None  # 아우터 + 상의 개수
+    max_patterns: int | None = None
+    max_accessories: int | None = None
 
 
 class SlotRule(BaseModel):

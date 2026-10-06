@@ -110,6 +110,24 @@ def test_check_passes(store):
     assert plan.check(daily(), load_profile("women"), store) == ([], [])
 
 
+def test_busy_warnings():
+    # 2026-10-06 "꾸역꾸역 레이어드해서 답답하다": 세 겹, 무늬 둘, 소품 셋이면 경고
+    profile = load_profile("women")
+    names = ["레더 자켓", "니트 베스트", "스트라이프 셔츠", "체크 스커트", "숄더백", "로퍼"]
+    cats = ["아우터", "상의", "상의", "하의", "가방", "신발", "소품", "소품", "소품"]
+    items = [
+        product(i, c).model_copy(update={"name": n})
+        for i, (c, n) in enumerate(zip(cats, names, strict=False), 1)
+    ]
+    warns = plan.busy_warnings("1번 벌: ", cats, items, profile)
+    assert [w.split(" (")[0] for w in warns] == [
+        "1번 벌: 아우터·상의가 3겹입니다",
+        "1번 벌: 무늬 있는 상품이 2개입니다",
+        "1번 벌: 소품이 3개입니다",
+    ]
+    assert plan.busy_warnings("", cats[1:6], items[1:2] + items[3:], profile) == []
+
+
 def test_check_catches_rule_breaks(store):
     profile = load_profile("women")
     profile.monetize = "none"
