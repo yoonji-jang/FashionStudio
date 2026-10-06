@@ -410,6 +410,8 @@ def publish_reel(
     if errors:
         raise Blocked("릴스 게시 전 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
     assert video is not None
+    if ai_label.ensure_video(profile.ai_label, video):
+        print(f"릴스 영상에 AI 합성 표시를 넣었습니다 ({video.name})")
     ig_cfg = cfg.get("instagram", {})
     caption = post_caption(profile, manifest)
     kw = dict(share_to_feed=profile.reels.share_to_feed, wait_tries=ig_cfg.get("reels_wait_tries"))
@@ -487,10 +489,13 @@ def run_reels(
     tg: notify.Telegram | None = None,
     ig: Instagram | None = None,
     host: GitHubHost | None = None,
+    again: bool = False,
 ) -> int:
     """schedule.reels_at 에 릴스만 올리거나 텔레그램으로 보낸다 (reels.delivery). 그날 캐러셀을
     게시한 결과 폴더의 영상을 쓴다 (캐러셀 /ok 가 릴스 승인을 겸한다).
-    캐러셀을 안 올린 날은 조용히 끝낸다."""
+    캐러셀을 안 올린 날은 조용히 끝낸다.
+    again: 이미 올린 날도 한 번 더 올린다 (음악을 넣어 다시 만든 영상 등).
+    앞 릴스는 앱에서 지운다."""
     profile = load_profile(account)
     store = store or Store(account)
     tag = f"[{account}] {day}"
@@ -507,10 +512,10 @@ def run_reels(
         print(f"{tag} 캐러셀을 게시하지 않은 날이라 릴스도 올리지 않습니다 ({out.name})")
         return 0
     rec = PublishRecord.model_validate_json(done.read_text(encoding="utf-8"))
-    if rec.reel_media_id:
+    if rec.reel_media_id and not again:
         print(f"{tag} 릴스를 이미 올렸습니다 ({rec.reel_permalink or rec.reel_media_id})")
         return 0
-    if rec.reel_sent_at:
+    if rec.reel_sent_at and not again:
         print(f"{tag} 릴스 영상을 이미 텔레그램으로 보냈습니다")
         return 0
     manifest = notify.load_manifest(out)
@@ -601,6 +606,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument(
         "--reels", action="store_true", help="릴스만 올림 (그날 캐러셀을 게시한 결과의 영상)"
     )
+    ap.add_argument(
+        "--reel-again", action="store_true", help="--reels 와 같이: 이미 올린 날도 다시 올림"
+    )
     args = ap.parse_args(argv)
 
     profile = load_profile(args.account)
@@ -612,7 +620,15 @@ def main(argv: list[str] | None = None) -> int:
         print("텔레그램 설정이 없어 승인·알림 없이 진행합니다", file=sys.stderr)
     try:
         if args.reels:
-            return run_reels(args.account, day, args.results, args.run, args.dry_run, tg=tg)
+            return run_reels(
+                args.account,
+                day,
+                args.results,
+                args.run,
+                args.dry_run,
+                tg=tg,
+                again=args.reel_again,
+            )
         return run(
             args.account,
             day,

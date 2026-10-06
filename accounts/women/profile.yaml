@@ -371,7 +371,7 @@ reels:
   # (인스타 앱의 음악은 API 로 넣을 수 없다)
   music_dir: accounts/women/music
   music_volume: 0.8
-  share_to_feed: true      # 프로필 격자에도 보이게 (delivery instagram 일 때)
+  share_to_feed: false     # 프로필 그리드에서 빼고 릴스 탭에만 (사용자 요청 2026-10-06)
   # instagram: 자동 게시 (피드와 같은 캡션, 🤍 댓글·해시태그 답글도 같게, 음악 없음. 2026-10-06 사용자)
   # telegram: schedule.reels_at 에 영상과 캡션을 텔레그램으로 보내고 인스타 앱에서 음악을 붙여 직접 올림
   delivery: instagram

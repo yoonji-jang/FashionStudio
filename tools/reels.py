@@ -202,6 +202,7 @@ def build(
     bg = cfg.background or profile.feed.background
     song = pick_music(cfg, manifest.date, root) if music else None
     seconds = render(clips, out / VIDEO, cfg, bg, song, size)
+    ai_label.ensure_video(profile.ai_label, out / VIDEO)
     Frames(clips, cfg, bg, size).at(0).save(out / COVER, "JPEG", quality=90)
     spec = ReelsSpec(
         video=VIDEO, cover=COVER, audio=song.name if song else None, duration_sec=round(seconds, 2)

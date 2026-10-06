@@ -41,6 +41,10 @@ on:
         description: 릴스만 올리기 (그날 캐러셀을 게시한 결과의 영상, 19단계)
         type: boolean
         default: false
+      reel_again:
+        description: reels 와 같이 켜면 이미 릴스를 올린 날도 다시 올림 (앞 릴스는 앱에서 지우기)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -96,6 +100,7 @@ jobs:
           ${{ inputs.scheduled && 'args+=(--scheduled)' || '' }}
           ${{ !inputs.notify_wait && 'args+=(--quiet-wait)' || '' }}
           ${{ inputs.reels && 'args+=(--reels)' || '' }}
+          ${{ inputs.reel_again && 'args+=(--reel-again)' || '' }}
           set +e
           uv run python -m tools.publish "${args[@]}"
           code=$?
