@@ -1,0 +1,108 @@
+account: women
+date: '2026-10-07'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 1
+  desc: 브라운 스웨이드 자켓 (brown suede jacket, slightly cropped, notched collar, buttoned
+    or zipped nearly closed)
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+  ref_photos:
+  - 1
+  - 3
+  - 0
+- color: 하늘색
+  comment: ''
+  cutout_photo: 1
+  desc: 하늘색 스트라이프 셔츠 (sky blue and white thin-striped shirt, regular spread shirt
+    collar, tucked in)
+  name: 스트라이프 셔츠
+  product: zigzag:157438223
+  ref_photos:
+  - 1
+  - 3
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 와이드 슬랙스 (ivory wide-leg trousers, two front pleats, high waist, straight
+    long leg, full length)
+  name: 아이보리 와이드 슬랙스
+  product: zigzag:135443091
+  ref_photos:
+  - 0
+  - 2
+- color: 브라운
+  comment: ''
+  cutout_photo: 4
+  desc: 브라운 스웨이드 호보백 (brown suede hobo shoulder bag)
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+  ref_photos:
+  - 4
+  - 1
+  - 5
+- color: 다크 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 다크 브라운 슬링백 (dark brown slingback heels, pointed toe, open heel strap, one
+    pair (two shoes))
+  name: 브라운 슬링백
+  product: zigzag:136665746
+  ref_photos:
+  - 0
+  - 1
+- color: 하늘색
+  comment: ''
+  cutout_photo: 4
+  desc: 하늘색 쁘띠 스카프 (sky blue small triangle scarf, knotted at the neck above the shirt
+    collar)
+  name: 하늘색 쁘띠 스카프
+  product: zigzag:150290269
+  ref_photos:
+  - 4
+  - 3
+looks: []
+reason: 브라운 스웨이드 자켓 안으로 하늘색 스트라이프 셔츠와 쁘띠 스카프를 한 방울 얹어 정석으로. 아이보리 와이드 슬랙스로 가볍게 받치고
+  브라운 호보백과 슬링백으로 색을 이어 줌
+shot: flatlay
+text:
+  hashtags:
+  - '#가을코디'
+  - '#컬러조합'
+  - '#브라운코디'
+  - '#하늘색코디'
+  - '#스웨이드자켓'
+  - '#셔츠레이어드'
+  - '#꾸안꾸'
+  intro: 맑지만 아침저녁은 선선한 요즘, 브라운에 하늘색 한 방울 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 브라운에 하늘색 한 방울 얹은
+  - 일교차 큰 날 가을 코디 모음
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운에 하늘색을 포인트로 올린 산뜻한 가을 컬러 매치
+  search_terms:
+    상의:
+    - 하늘색 스트라이프 셔츠
+    소품:
+    - 하늘색 쁘띠 스카프
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 하늘색 스트라이프 셔츠
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  - category: 소품
+    desc: 하늘색 쁘띠 스카프
+  title_hint: 브라운에 하늘색 한 방울, 가을 컬러 조합
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 얇은 니트와 셔츠 레이어드가 알맞음

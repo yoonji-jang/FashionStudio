@@ -1,0 +1,100 @@
+account: women
+date: '2026-10-07'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 1
+  desc: 브라운과 하늘색 스트라이프 니트 가디건 (brown and sky blue striped knit cardigan, irregular
+    hem, hip length, buttoned only at the top)
+  name: 스트라이프 니트 가디건
+  product: zigzag:172016137
+  ref_photos:
+  - 1
+- color: 아이보리
+  comment: ''
+  cutout_photo: 3
+  desc: 아이보리 립 헨리넥 니트 (ivory ribbed henley neck knit, slim fit, tucked in)
+  name: 립 헨리넥 니트
+  product: zigzag:171834839
+  ref_photos:
+  - 3
+  wear_with: 아우터
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 새틴 롱 스커트 (brown satin long skirt, high waist, A-line, ankle length)
+  name: 새틴 롱 스커트
+  product: zigzag:165618457
+  ref_photos:
+  - 2
+  - 3
+- color: 하늘색
+  comment: ''
+  cutout_photo: 4
+  desc: 하늘색 쁘띠 스카프 (sky blue small triangle scarf, knotted at the neck above the shirt
+    collar)
+  name: 하늘색 쁘띠 스카프
+  product: zigzag:150290269
+  ref_photos:
+  - 4
+  - 3
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 숄더백 (brown shoulder bag)
+  name: 멜다 숄더백
+  product: zigzag:159313221
+  ref_photos:
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬링백 (black slingback heels, pointed toe, one pair (two shoes))
+  name: 블랙 슬링백
+  product: zigzag:133601050
+  ref_photos:
+  - 0
+  - 3
+looks: []
+reason: 브라운과 하늘색이 함께 든 스트라이프 가디건을 걸치고 브라운 새틴 스커트로 소재 대비를 줌. 하늘색 쁘띠 스카프로 한 방울 더
+shot: flatlay
+text:
+  hashtags:
+  - '#가을코디'
+  - '#컬러조합'
+  - '#브라운코디'
+  - '#하늘색코디'
+  - '#스웨이드자켓'
+  - '#셔츠레이어드'
+  - '#꾸안꾸'
+  intro: 맑지만 아침저녁은 선선한 요즘, 브라운에 하늘색 한 방울 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 브라운에 하늘색 한 방울 얹은
+  - 일교차 큰 날 가을 코디 모음
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운에 하늘색을 포인트로 올린 산뜻한 가을 컬러 매치
+  search_terms:
+    상의:
+    - 하늘색 스트라이프 셔츠
+    소품:
+    - 하늘색 쁘띠 스카프
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 하늘색 스트라이프 셔츠
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  - category: 소품
+    desc: 하늘색 쁘띠 스카프
+  title_hint: 브라운에 하늘색 한 방울, 가을 컬러 조합
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 얇은 니트와 셔츠 레이어드가 알맞음

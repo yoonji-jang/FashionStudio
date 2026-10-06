@@ -1,0 +1,105 @@
+account: women
+date: '2026-10-07'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 오버핏 스웨이드 블루종 자켓 (brown oversized suede bomber blouson jacket, ribbed hem,
+    zipped nearly closed)
+  name: 스웨이드 블루종
+  product: zigzag:168315470
+  ref_photos:
+  - 0
+  - 5
+  - 4
+- color: 아이보리
+  comment: ''
+  cutout_photo: 5
+  desc: 아이보리 헨리넥 니트 (cream ivory henley neck knit, slim fit, tucked in)
+  name: 헨리넥 니트
+  product: zigzag:170544684
+  ref_photos:
+  - 5
+- color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 핀스트라이프 와이드 슬랙스 (gray pinstripe wide-leg trousers, flat front, no pleats,
+    high waist, long full length)
+  name: 핀스트라이프 슬랙스
+  product: zigzag:168694332
+  ref_photos:
+  - 1
+  - 5
+  - 2
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 와이드 스퀘어 버클 레더 벨트 (brown leather belt with a square buckle, threaded through
+    the belt loops)
+  name: 스퀘어 버클 벨트
+  product: zigzag:148980176
+  ref_photos:
+  - 5
+  wear_with: 하의
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+  name: 스웨이드 사라백
+  product: zigzag:165406385
+  ref_photos:
+  - 5
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 페니 로퍼 (black penny loafers, round toe, one pair (two shoes))
+  name: 페니 로퍼
+  product: zigzag:114193909
+  ref_photos:
+  - 0
+  - 1
+looks: []
+reason: 오버핏 브라운 스웨이드 블루종에 아이보리 헨리넥 니트, 그레이 핀스트라이프 슬랙스로 캐주얼과 클래식을 섞음. 가죽 벨트로 허리선을 살림
+  (하늘색 헨리넥은 맞는 색 사진이 없어 아이보리로 바꿈)
+shot: flatlay
+text:
+  hashtags:
+  - '#가을코디'
+  - '#컬러조합'
+  - '#브라운코디'
+  - '#하늘색코디'
+  - '#스웨이드자켓'
+  - '#셔츠레이어드'
+  - '#꾸안꾸'
+  intro: 맑지만 아침저녁은 선선한 요즘, 브라운에 하늘색 한 방울 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 브라운에 하늘색 한 방울 얹은
+  - 일교차 큰 날 가을 코디 모음
+theme:
+  date: '2026-10-07'
+  mood: 초콜릿 브라운에 하늘색을 포인트로 올린 산뜻한 가을 컬러 매치
+  search_terms:
+    상의:
+    - 하늘색 스트라이프 셔츠
+    소품:
+    - 하늘색 쁘띠 스카프
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓
+  - category: 상의
+    desc: 하늘색 스트라이프 셔츠
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  - category: 소품
+    desc: 하늘색 쁘띠 스카프
+  title_hint: 브라운에 하늘색 한 방울, 가을 컬러 조합
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 얇은 니트와 셔츠 레이어드가 알맞음

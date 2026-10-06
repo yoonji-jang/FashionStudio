@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "1번 가디건은 위쪽 단추만 잠근 모양인데 앞 단추가 밑단까지 4개 줄지어 있음. 3번 연청 와이드 데님은 핏과 색이 좋음. 4번 숄더백이 바지 오른쪽 허리·허벅지에 살짝 걸침.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c1 은 색, 신발 2짝, 로고 없는 볼캡, 셔츠 칼라·소매 끝 위치가 모두 맞음. 가디건 단추가 원본 설명보다 많고 가방이 바지에 살짝 겹치는 정도라 8점으로 통과 기준을 넘김."
+}
