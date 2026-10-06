@@ -31,7 +31,10 @@ tools: Read, Glob
    기장(cropped at the waist, hip length, mid-thigh, knee length, mid-calf midi, ankle length), 천의 느낌(soft drapey cotton,
    crisp cotton, glossy satin, chunky knit, fuzzy mohair), 치마·바지 주름(soft unpressed pleats, sharp knife pleats, no pleats).
    착용컷 기장은 모델 몸에서 끝나는 곳으로 본다. 기획 `desc` 와 다르면 `note` 에 무엇이 다른지 쓴다.
-7. 맞는 사진이 하나도 없으면 그 상품은 "교체 필요"로 표시한다.
+7. **쇼핑몰 코디 (styled_with, 옷만)**: 착용컷에서 모델이 이 상품을 무엇과 입었는지 짧게 적는다.
+   특히 안에 받쳐 입은 이너(white crew-neck tee, black sleeveless tank, thin turtleneck)가 보이면 꼭 적는다.
+   목선이 깊게 파인 상의(딥 브이넥, 오프숄더, 홀터)인데 착용컷에 이너가 없어도 "needs a plain inner" 로 적는다.
+8. 맞는 사진이 하나도 없으면 그 상품은 "교체 필요"로 표시한다.
 
 돌려줄 형식 (YAML 만):
 ```yaml
@@ -41,6 +44,7 @@ tools: Read, Glob
   ref_photos: [0, 3]
   color_ok: true
   fit: oversized, dropped shoulders, hip length, soft drapey cotton   # 옷만
+  styled_with: white crew-neck tee inside, tucked into wide denim   # 옷만, 착용컷에서 본 코디
   note: 0번은 두 색이 함께 있어 상품 장은 2번. desc 는 cropped 인데 사진은 엉덩이 기장 오버핏
 - product: zigzag:136581318
   replace: true

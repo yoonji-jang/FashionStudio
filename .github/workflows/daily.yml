@@ -187,8 +187,8 @@ jobs:
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             코디컷 만들기(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
-            --max-turns 120
-            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan check:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.collect:*),Read,Write,Edit,Glob,Grep"
+            --max-turns 150
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.collect:*),Read,Write,Edit,Glob,Grep"
 
       - name: 후보 검사·텔레그램으로 보내기
         if: env.MODE == 'candidates'

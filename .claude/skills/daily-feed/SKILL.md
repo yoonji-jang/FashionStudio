@@ -59,6 +59,9 @@ report.md 를 쓰기 전에는 끝내지 않는다.
    items 의 `photo`, `cutout_photo`, `ref_photos` 를 채운다. 맞는 색 사진이 없는 상품은 같은 카테고리 다른 상품으로 바꾸고
    이 단계를 다시 한다. 옷은 돌려받은 `fit` 으로 `desc` 영어의 핏·기장·소재 말을 고친다 (사진이 이름보다 맞다,
    기장 말이 바뀌면 `cm` 도: 오버핏 아우터 75, 미디스커트 75, 롱스커트 85).
+   돌려받은 `styled_with` 에 이너(티·나시·얇은 터틀넥)가 있거나 "needs a plain inner" 인데 그 벌에 이너가 없으면
+   `tools.plan candidates --category 상의 --query "나시"` 등으로 베이직 이너를 찾아 넣는다 (`wear_with: 상의`,
+   styling.md 3번). 사람이 고른 구성이어도 이너 추가는 된다. 보고에 적는다.
 6-1. **실측** (2026-10-06): `python -m tools.plan sizes out/$DATE/plan.yaml` 로 옷 상품의 상세 본문 이미지를
    조각내고(`out/$DATE/src/sizes/`, 결과 브랜치에 올라가지 않음), `size-reader` 에이전트에게 `sizes.json` 을 넘긴다.
    돌려받은 YAML 을 `out/$DATE/sizes.yaml` 로 저장하고 `python -m tools.plan measure out/$DATE/plan.yaml --file

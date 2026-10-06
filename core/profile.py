@@ -38,6 +38,8 @@ class Style(BaseModel):
     # 벌마다 넘으면 tools.plan check 가 경고 (2026-10-06). None 이면 보지 않음
     pattern_words: list[str] = []  # 이름에 이 말이 있으면 무늬 있는 상품
     max_layers: int | None = None  # 아우터 + 상의 개수
+    # 이름에 이 말이 있는 상의는 안에 얇은 이너(티·나시)를 받쳐 입는다 (2026-10-06, 딥 브이넥 등)
+    inner_words: list[str] = []
     max_patterns: int | None = None
     max_accessories: int | None = None
 
@@ -226,6 +228,9 @@ class Looks(BaseModel):
     # 같은 게시물 안에서 다시 써도 되는 카테고리와 횟수 (가방·신발은 두 벌까지 같이 써도 자연스러움)
     share_categories: list[Category] = ["가방", "신발", "소품"]
     max_share: int = Field(default=2, ge=1, le=4)
+    # 옷(아우터·상의·하의)의 같은 포인트 말(style.point_words, 예: 스웨이드)이 이 벌 수보다
+    # 많으면 경고. 한 아이템이 여섯 벌을 다 차지하지 않게 (2026-10-06). None 이면 보지 않음
+    max_same_kind: int | None = None
     candidates: int = Field(
         default=1, ge=1, le=3
     )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)
