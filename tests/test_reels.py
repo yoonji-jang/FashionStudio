@@ -267,8 +267,12 @@ def test_reels_slot_and_dispatch(monkeypatch):
 
     monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     p = core.profile.load_profile("women")
+    # women 은 캐러셀 게시 직후 같이 올려 따로 깨어나는 칸이 없다
+    assert p.schedule.reels_at is None
+    assert not [sl for sl in schedule.slots(p) if sl.task == "reels"]
+    p.schedule.reels_at = "19:00"
     got = [sl for sl in schedule.slots(p) if sl.task == "reels"]
-    assert [sl.local() for sl in got] == [p.schedule.reels_at]
+    assert [sl.local() for sl in got] == ["19:00"]
     p.reels.enabled = False
     assert not [sl for sl in schedule.slots(p) if sl.task == "reels"]
     gh = schedule.DryRun()
