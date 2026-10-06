@@ -230,3 +230,58 @@ def test_links_list_without_monetize_and_comment_hashtags(
     assert (kind, heart, kind2) == ("comment", "🤍", "reply")
     words = tags.split()
     assert len(words) <= profile.comment_tags.max and words[-1] == "#소통" and "#맞팔" in words
+
+
+def test_now_after_ok_posts_once(results, store, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(schedule, "Store", lambda account: store)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)
+    tg, _, _ = clients(api)
+    day = str(DAY)
+    assert notify.parse("지금 올려", "women", DAY) == notify.Command("now", [], False)
+    assert not schedule.post_now("women", day, results, tg)  # /now 없음
+
+    # /ok 없이 /now: 한 번만 알리고 게시하지 않는다
+    api.replies = [(rec.sent_at + 5, "/now", None)]
+    assert not schedule.post_now("women", day, results, tg)
+    assert "/ok 를 먼저" in api.texts[-1]
+    n = len(api.texts)
+    assert not schedule.post_now("women", day, results, tg)
+    assert len(api.texts) == n
+
+    # 그 뒤 /ok 가 오면 게시 요청, 같은 /now 는 다시 보내지 않는다
+    api.replies.append((rec.sent_at + 9, "/ok", None))
+    assert not schedule.post_now("women", day, results, tg, dry_run=True)
+    assert schedule.post_now("women", day, results, tg)
+    assert "지금 게시" in api.texts[-1]
+    assert not schedule.post_now("women", day, results, tg)
+
+    class GH:
+        def __init__(self):
+            self.calls = []
+
+        def dispatch(self, workflow, inputs):
+            self.calls.append((workflow, inputs))
+
+    # 새 /now 는 schedule links 작업에서 force 게시로 이어진다
+    api.replies.append((rec.sent_at + 12, "바로 올려", None))
+    gh = GH()
+    task = schedule.Task("women", "links", day, True, True, 0)
+    schedule.execute([task], results, gh, tg, NOW)
+    assert (
+        "publish.yml",
+        {"account": "women", "date": day, "dry_run": False, "force": True, "scheduled": True},
+    ) in gh.calls
+
+
+def test_now_skip_and_posted(results, store, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(schedule, "Store", lambda account: store)
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    rec = sent(api, run)
+    tg, _, _ = clients(api)
+    api.replies = [(rec.sent_at + 5, "/skip", None), (rec.sent_at + 6, "/now", None)]
+    assert not schedule.post_now("women", str(DAY), results, tg)
+    assert not (run / notify.NOW).exists()
+    assert "/now" in notify.control_text(notify.load_manifest(run), load_profile("women"), False)

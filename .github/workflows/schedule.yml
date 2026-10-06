@@ -112,6 +112,7 @@ jobs:
           commit /tmp/results daily-results "코디 고르기 기록" ':(glob)*/picks/**'
           commit /tmp/results daily-results "상품 링크 보낸 기록" ':(glob)*/links.json'
           commit /tmp/results daily-results "승인 기록" ':(glob)*/approval.json'
+          commit /tmp/results daily-results "바로 게시 기록" ':(glob)*/now.json'
           commit . "${{ github.ref_name }}" "주제 다시 정하기 요청" ':(glob)data/*/themes_review.json'
           commit . "${{ github.ref_name }}" "댓글 DM 기록" ':(glob)data/*/dm.json'
           commit . "${{ github.ref_name }}" "공유리워드 링크" ':(glob)data/*/posts.json'

@@ -24,6 +24,7 @@ daily-results 의 ticks.json 에 기록해 외부 스케줄러와 GitHub 예약�
               다른 작업으로 깨어날 때도 같이 한다 (Actions 시간을 거의 더 쓰지 않음)
   links       미리보기의 /ok·/skip 을 결과 폴더에 남기고, /ok 면 상품별 지그재그 링크 보내기
               (tools.share, 링크는 manual_link 나 link_page.send_links 일 때).
+              /ok 뒤 /now ("지금 올려") 가 오면 게시 시각을 기다리지 않고 바로 게시 (post_now).
               후보를 보낸 뒤~승인 마감(schedule.ok_deadline, 없으면 게시) 사이
               schedule.ok_check_every 마다, 다른 작업 때도 같이
   remind      schedule.ok_remind_at 까지 /ok·/skip 이 없으면 승인 마감을 한 번 알림
@@ -707,6 +708,20 @@ def execute(
                 print(share.send_after_ok(t.account, t.date, results, tg, dry_run))
             except (RuntimeError, ValueError, httpx.HTTPError) as e:
                 print(f"{tag} 상품 링크 보내기 실패: {e}", file=sys.stderr)
+            try:
+                go = post_now(t.account, t.date, results, tg, dry_run)
+            except (RuntimeError, ValueError, httpx.HTTPError) as e:
+                print(f"{tag} 바로 게시 확인 실패: {e}", file=sys.stderr)
+                go = False
+            if go:
+                send(
+                    "publish.yml",
+                    account=t.account,
+                    date=t.date,
+                    dry_run=False,
+                    force=True,
+                    scheduled=True,
+                )
         elif t.task == "remind":
             try:
                 print(remind(t.account, t.date, results, tg, t.final, dry_run))
@@ -741,6 +756,58 @@ def execute(
         if ticks is not None and t.keys:
             ticks.mark(t.keys, "done", now)
     return log
+
+
+def post_now(account: str, day: str, results: Path | None, tg, dry_run: bool = False) -> bool:
+    """/ok 뒤 /now ("지금 올려") 가 왔으면 게시 시각을 기다리지 않고 지금 게시할지.
+    같은 /now 는 한 번만 처리하고 결과 폴더 now.json 에 남긴다. /ok 없이 온 /now 는
+    한 번 알리고, 나중에 /ok 가 오면 그때 게시한다.
+    /ok 는 여기서 확인했으므로 publish 는 force 로 부른다 (텔레그램 기록 커밋과 엇갈리지 않게)."""
+    from tools import feedback, notify, publish
+
+    tag = f"[{account}] {day}"
+    if tg is None or results is None:
+        return False
+    d = date.fromisoformat(day)
+    try:
+        out = publish.find_run(results, account, d)
+    except FileNotFoundError:
+        return False
+    record = notify.load_record(out)
+    if record is None or record.sandbox:
+        return False
+    if any(p.date == d for p in Store(account).posts()) or (out / "published.json").exists():
+        return False
+    profile = load_profile(account)
+    updates = tg.updates()
+    dl = notify.ok_deadline(profile, d)
+    asked = notify.find_now(updates, record, tg.chat_id, int(dl.timestamp()) if dl else None)
+    if asked is None:
+        return False
+    path = out / notify.NOW
+    done = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    if done.get("update_id") == asked and done.get("status") == "sent":
+        return False
+    decided = notify.approval_now(out, record, profile, updates, tg.chat_id)
+    how, _ = publish.approval(profile, notify.load_manifest(out), record, decided)
+    if how == "skip":
+        return False
+    status = "sent" if how in ("ok", "auto") else "need_ok"
+    if status == "sent" and feedback.waiting(
+        updates, record, tg.chat_id, out, profile, Store(account)
+    ):
+        return False  # /fix 로 고치는 중: 고친 미리보기에 /ok 가 오면 그때
+    if status == "need_ok" and done.get("update_id") == asked:
+        return False  # 이미 알림
+    print(f"{tag} /now: {status}")
+    if dry_run:
+        return False
+    path.write_text(json.dumps({"update_id": asked, "status": status}), encoding="utf-8")
+    if status == "sent":
+        tg.send(f"{tag} /now 확인했어요. 지금 게시할게요")
+        return True
+    tg.send(f"{tag} /now 를 받았어요. /ok 를 먼저 보내 주시면 다음 매시 확인 때 게시해요")
+    return False
 
 
 def send_model(t: Task, results: Path | None, tg, send, dry_run: bool) -> None:
