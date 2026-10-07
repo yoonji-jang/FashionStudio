@@ -1,0 +1,117 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 66.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 V넥 루즈핏 맨투맨 (gray loose V-neck sweatshirt, oversized, dropped shoulders,
+    boxy, ends around the upper hip)
+  name: V넥 루즈핏 맨투맨
+  product: zigzag:160291322
+  ref_photos:
+  - 2
+  - 4
+  size: about 66 cm long from shoulder to hem, 61 cm across the shoulders, 65 cm across
+    the chest laid flat, 57 cm long sleeves
+- cm: 29.0
+  color: 올리브
+  comment: ''
+  cutout_photo: 1
+  desc: 올리브 무지 홀터넥 니트 나시 (plain mustard-olive thin knit halter-neck tank top, slim
+    fit, cropped at the waist, sleeveless, no details)
+  name: 홀터 니트 나시
+  product: zigzag:165703582
+  ref_photos:
+  - 1
+  - 0
+  size: about 29 cm long from shoulder to hem, 17 cm across the shoulders, 35 cm across
+    the chest laid flat
+  wear_with: 상의
+- cm: 55.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 버뮤다 쇼츠 (black Bermuda shorts, hem at the knee, wide straight fit, crisp
+    cotton twill, patch pockets)
+  name: 도쿄 버뮤다 쇼츠
+  product: zigzag:170484579
+  ref_photos:
+  - 4
+  - 5
+  size: about 55 cm long from waist to hem, 37.5 cm across the waist laid flat, 50
+    cm across the hips laid flat, 33 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더 크로스백 (black small round-flap bag with a short shoulder strap)
+  name: 아로디 크로스백
+  product: zigzag:153923114
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스퀘어 스니커즈 로퍼 (black chunky platform sneaker loafers with lace-up hooks)
+  name: 스퀘어 스니커즈 로퍼
+  product: zigzag:147059381
+  ref_photos:
+  - 1
+  - 2
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 4
+  desc: 화이트 골지 롱 니삭스 (white thin slouchy knee socks, exactly one pair, soft and loosely
+    wrinkled)
+  name: 골지 롱 니삭스
+  product: zigzag:136839704
+  ref_photos:
+  - 4
+  - 3
+  wear_with: 신발
+looks: []
+reason: 그레이 V넥 맨투맨이 주인공, 올리브 나시를 받쳐 밑단을 내고 블랙 쇼츠에 흰 삭스로 큰 상의와 짧은 하의 대비. 그레이·블랙의 캐주얼
+  (참고 21) [점수 9]
+shot: flatlay
+styling: The plain olive halter tank top hem shows about 5 cm below the sweatshirt
+  hem and its straps show at the V-neckline.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#니트코디'
+  - '#셔츠코디'
+  - '#일교차코디'
+  - '#레더자켓'
+  intro: 맑지만 일교차 큰 목요일, 이너 한 장으로 레이어드에 힘줘 봐요 🍂
+  points: []
+  title_lines:
+  - 이너 하나 바꿔 완성하는
+  - 가을 레이어드 공식
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적

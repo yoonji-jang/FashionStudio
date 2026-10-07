@@ -1,0 +1,108 @@
+account: women
+date: '2026-10-08'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 오버핏 울 보트넥 니트 (gray oversized fuzzy brushed wool boat-neck knit, dropped
+    shoulders, wide boat neckline, hip length)
+  name: 오버핏 보트넥 니트
+  product: zigzag:166033034
+  ref_photos:
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 레이스 테두리 나시 (white thin camisole tank top with a thin lace trim at the
+    neckline and hem, slim fit, sleeveless)
+  name: 레이스 레이어드 나시
+  product: zigzag:169196108
+  ref_photos:
+  - 5
+  - 3
+  wear_with: 상의
+- cm: 89.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 맥시 울 스커트 (charcoal wool maxi skirt, slim straight column, high waist, ankle
+    length, soft thick knit-like wool)
+  name: 맥시 울 스커트
+  product: zigzag:167460286
+  ref_photos:
+  - 0
+  - 3
+  size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 44.5
+    cm across the hips laid flat, 48.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 스웨이드 쇼퍼 드롭 숄더백 (black suede soft hobo shoulder bag with two shoulder straps)
+  name: 쇼퍼 드롭 숄더백
+  product: zigzag:164580854
+  ref_photos:
+  - 4
+  - 5
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 레이스업 로퍼 (black matte leather lace-up loafers, round toe)
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+  ref_photos:
+  - 1
+  - 2
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 잔골지 니삭스 (light gray soft slouchy knee socks, exactly one pair)
+  name: 잔골지 니삭스
+  product: zigzag:148867821
+  ref_photos:
+  - 2
+  wear_with: 신발
+looks: []
+reason: 그레이 보트넥 니트가 주인공, 흰 레이스 나시 끈을 보이게 하고 차콜 맥시 울스커트에 로퍼와 그레이 삭스로. 그레이 톤온톤의 단정한
+  분위기 (참고 31) [점수 9]
+shot: flatlay
+styling: The white lace-trimmed camisole strap shows at the wide boat neckline and
+  its hem is tucked in at the waist.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#니트코디'
+  - '#셔츠코디'
+  - '#일교차코디'
+  - '#레더자켓'
+  intro: 맑지만 일교차 큰 목요일, 이너 한 장으로 레이어드에 힘줘 봐요 🍂
+  points: []
+  title_lines:
+  - 이너 하나 바꿔 완성하는
+  - 가을 레이어드 공식
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적

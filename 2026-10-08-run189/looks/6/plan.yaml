@@ -1,0 +1,103 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 76.0
+  color: 크림
+  comment: ''
+  cutout_photo: 0
+  desc: 크림 울 하프코트 (cream soft brushed wool half coat, relaxed boxy fit, raglan sleeves,
+    flat spread collar, large buttons, mid-thigh length)
+  name: 레글런 울 하프코트
+  product: zigzag:171990522
+  ref_photos:
+  - 0
+  size: about 76 cm long from shoulder to hem, 59 cm across the chest laid flat, 71
+    cm long sleeves
+- cm: 58.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 4
+  desc: 그레이 헨리넥 니트 (gray slim fine ribbed henley knit, scoop neckline with a button
+    placket, long sleeves, waist to high-hip length)
+  name: 라이크 헨리넥 니트
+  product: zigzag:168185673
+  ref_photos:
+  - 4
+  size: about 58 cm long from shoulder to hem, 33 cm across the shoulders, 39.5 cm
+    across the chest laid flat, 62 cm long sleeves
+- cm: 106.0
+  color: 중청
+  comment: ''
+  cutout_photo: 0
+  desc: 중청 빈티지 워싱 와이드 데님 (faded mid-blue baggy wide-leg vintage stonewashed denim
+    jeans, mid rise, full length with the hem on the shoes)
+  name: 빈티지워싱 와이드 데님
+  product: zigzag:169433167
+  ref_photos:
+  - 0
+  - 5
+  - 3
+  size: about 106 cm long from waist to hem, 38 cm across the waist laid flat, 54
+    cm across the hips laid flat, 26 cm across the hem laid flat
+- color: 아이보리
+  comment: ''
+  cutout_photo: 3
+  desc: 아이보리 위빙 숄더백 (ivory small woven bucket shoulder bag)
+  name: 아렌 위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 3
+- color: 베이지
+  comment: ''
+  cutout_photo: 4
+  desc: 베이지 메리제인 스니커즈 (taupe-beige suede Mary Jane sneakers with a white-laced velcro
+    strap, gum sole)
+  name: 메리제인 스니커즈
+  product: zigzag:168228826
+  ref_photos:
+  - 4
+  - 0
+looks: []
+reason: 크림 하프코트가 주인공, 그레이 헨리넥 니트에 워싱 데님과 베이지 스니커즈로. 크림·그레이·데님의 부드러운 캐주얼 (참고 39) [점수
+  8]
+shot: flatlay
+styling: The coat is worn open with the gray henley knit showing, its buttons open
+  at the neck.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#니트코디'
+  - '#셔츠코디'
+  - '#일교차코디'
+  - '#레더자켓'
+  intro: 맑지만 일교차 큰 목요일, 이너 한 장으로 레이어드에 힘줘 봐요 🍂
+  points: []
+  title_lines:
+  - 이너 하나 바꿔 완성하는
+  - 가을 레이어드 공식
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적

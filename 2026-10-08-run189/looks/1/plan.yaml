@@ -1,0 +1,114 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 50.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 크롭 레더 자켓 (black cropped faux leather jacket, waist length, slightly boxy,
+    soft glossy, zip front, pointed collar)
+  name: 베스터 크롭 레더 자켓
+  product: zigzag:119435641
+  ref_photos:
+  - 4
+  - 5
+  size: about 50 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm across
+    the chest laid flat, 58 cm long sleeves
+- cm: 56.0
+  color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 골지 캡소매 반목 니트 (beige ribbed cap-sleeve mock-neck knit, slim fit, waist
+    length)
+  name: 골지 캡소매 니트
+  product: zigzag:113835947
+  ref_photos:
+  - 0
+  size: about 56 cm long from shoulder to hem, 32 cm across the chest laid flat
+- cm: 106.0
+  color: 중청
+  comment: ''
+  cutout_photo: 4
+  desc: 중청 로우 플레어 진 (faded dark-wash blue low-rise flared jeans, slim through the
+    thigh, flared from the knee, full length covering the shoes)
+  name: 로우 플레어 진
+  product: zigzag:167434804
+  ref_photos:
+  - 4
+  - 1
+  size: about 106 cm long from waist to hem, 37 cm across the waist laid flat, 51
+    cm across the hips laid flat, 26 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 소피 토트백 (black small soft shoulder bag with a top handle and a long strap,
+    top zip)
+  name: 소피 토트백
+  product: zigzag:167741389
+  ref_photos:
+  - 3
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black sock-style ankle boots, block heel, near-square toe)
+  name: 삭스 앵클부츠
+  product: zigzag:107677011
+  ref_photos:
+  - 0
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 4
+  desc: 실버 청키 링 롱 목걸이 (long silver necklace, thin chain with a small ball pendant,
+    hangs below the chest)
+  name: 청키링 롱 목걸이
+  product: zigzag:165613618
+  ref_photos:
+  - 4
+  - 0
+  slot: 목걸이
+looks: []
+reason: 블랙 크롭 레더 자켓이 주인공, 베이지 골지 니트와 연청 플레어 진으로 허리선을 높임. 블랙·베이지·데님의 시크한 캐주얼 (참고 51)
+  [점수 9]
+shot: flatlay
+styling: The cropped jacket is worn open with the beige ribbed knit showing and the
+  waistband of the jeans visible; the long silver necklace hangs over the knit.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#니트코디'
+  - '#셔츠코디'
+  - '#일교차코디'
+  - '#레더자켓'
+  intro: 맑지만 일교차 큰 목요일, 이너 한 장으로 레이어드에 힘줘 봐요 🍂
+  points: []
+  title_lines:
+  - 이너 하나 바꿔 완성하는
+  - 가을 레이어드 공식
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적

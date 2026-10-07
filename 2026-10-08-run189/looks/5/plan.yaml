@@ -1,0 +1,103 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 57.5
+  color: 아이보리
+  comment: ''
+  cutout_photo: 1
+  desc: 아이보리 오프숄더 보트넥 울 니트 (ivory slim ribbed wool knit, wide square boat neckline
+    covering most of the shoulders, long ribbed sleeves, side-slit hem, waist to high-hip
+    length)
+  name: 오프숄더 울 니트
+  product: zigzag:167280062
+  ref_photos:
+  - 0
+  - 1
+  size: about 57.5 cm long from shoulder to hem, 33.5 cm across the shoulders, 36
+    cm across the chest laid flat, 64 cm long sleeves
+- cm: 43.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 미니스커트 (black A-line mini skirt)
+  name: 브르노 미니 스커트
+  product: zigzag:167951642
+  ref_photos:
+  - 0
+  size: about 43 cm long from waist to hem, 36 cm across the waist laid flat, 49 cm
+    across the hips laid flat, 58 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 소피 토트백 (black small soft shoulder bag with a top handle and a long strap,
+    top zip)
+  name: 소피 토트백
+  product: zigzag:167741389
+  ref_photos:
+  - 3
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오픈 미디 부츠 (black flat mid-calf boots, round toe, wide soft shaft with a
+    fold-over cuff, matte leather)
+  name: 오픈 미디 부츠
+  product: zigzag:128444991
+  ref_photos:
+  - 0
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 롱 체인 목걸이 (long silver chain necklace with a water-drop pendant, hangs
+    from below the chest to above the belly)
+  name: 물방울 롱 목걸이
+  product: zigzag:159990191
+  ref_photos:
+  - 0
+  - 2
+  - 1
+  slot: 목걸이
+looks: []
+reason: 아이보리 오프숄더 니트가 주인공, 어깨를 드러내고 블랙 미니스커트에 롱부츠로. 아이보리·블랙의 깔끔한 분위기 (참고 10) [점수 8]
+shot: flatlay
+styling: The ivory knit is worn alone with its wide boat neckline, and the knit hem
+  is worn untucked over the skirt waistband.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#니트코디'
+  - '#셔츠코디'
+  - '#일교차코디'
+  - '#레더자켓'
+  intro: 맑지만 일교차 큰 목요일, 이너 한 장으로 레이어드에 힘줘 봐요 🍂
+  points: []
+  title_lines:
+  - 이너 하나 바꿔 완성하는
+  - 가을 레이어드 공식
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적
