@@ -11,6 +11,10 @@ r"""코디 고르기 (9단계). 외부로 보내는 도구라 Claude 허용 목�
 - 여러 벌 게시물(20단계, profile looks): 후보는 p1.yaml 하나에 벌 여러 개(looks.count + spare).
   벌마다 시트를 보내고, 그대로 두면 앞의 looks.count 벌로 만든다. "1 2 3 5 6 7" 로 쓸 벌을 고르거나
   "4번 빼고"(/drop 4)로 그 벌만 빼면 뒤의 남는 벌이 채운다. 고른 기획은 picks/chosen.yaml
+- 후보 고치기: 여러 벌 후보에 "/fix 1 이너를 나시로" 가 오면 check 가 그 벌만 고치라고
+  (daily mode=edit) 요청한다.
+  prepare-edit 이 지난 후보를 가져오고, Claude(outfit-candidates "후보 고치기")가 그 벌만 바꾼 뒤
+  send-edit 이 고친 벌 시트만 다시 보낸다. 고르기는 그대로 이어진다 (고치기 전에 보낸 번호도 읽음)
 - themes: 주간 주제를 보낸다 (review_before_use 면 "/themes again" 버튼)
 
 봇 서버 없이 동작한다. 답장은 schedule job 이 돌 때 getUpdates 로 읽는다.
@@ -18,16 +22,21 @@ r"""코디 고르기 (9단계). 외부로 보내는 도구라 Claude 허용 목�
 사용법 (환경 변수 TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID):
   python -m tools.pick validate out/2026-09-28
   python -m tools.pick send out/2026-09-28 --run 2026-09-28-run31 [--round 2]
+  python -m tools.pick prepare-edit '{"run": "...", "fixes": [...]}' --prev <결과 브랜치> \
+      --out out/<날짜>
+  python -m tools.pick send-edit out/2026-09-28 --run 2026-09-28-run33
   python -m tools.pick themes --account women --first 2026-09-29
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import re
+import shutil
 import sys
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
 
@@ -41,7 +50,9 @@ from core.store import Store
 from tools import feed, notify
 from tools.overlay import load_font
 
-AGAIN_MIN_LEFT = 60  # 마감까지 이만큼(분) 남아야 "다시"를 받는다 (새 후보 만드는 시간)
+AGAIN_MIN_LEFT = 60  # 마감까지 이만큼(분) 남아야 "다시"·후보 고치기를 받는다 (새 후보 만드는 시간)
+EDIT_WAIT = 120  # 후보 고치기 실행이 이만큼(분) 지나도 끝나지 않으면 기다리지 않고 고르기를 받는다
+EDITS = "edits.json"  # 고치라고 요청한 /fix (결과 폴더 picks/, 고친 후보가 올 때까지 고르기를 미룸)
 WEEKDAYS = "월화수목금토일"
 
 
@@ -221,6 +232,7 @@ def looks_text(plan: DailyPlan, profile: Profile, day: date, round_: int) -> str
         '• 직접 고르려면 "1 2 3 5 6 7" 처럼 번호를 보내요'
         + (f" ({lk.min}~{lk.count}벌)" if lk.min != lk.count else ""),
     ]
+    lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
     if round_ <= rules.max_again:
         lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
     lines += [
@@ -293,6 +305,7 @@ def send(
         text = control_text(plans, profile, day, round_)
         markup = keyboard(profile, day, len(plans), can_again)
     ids = tg.send_photos(sheets, f"[{profile.id}] {day} 코디 후보")
+    sheet_ids = {mid: n for n, mid in enumerate(ids, 1)} if looks else {}
     ids.append(tg.send(text, reply_markup=markup))
     record = PickRecord(
         account=profile.id,
@@ -304,8 +317,158 @@ def send(
         looks_min=min(profile.looks.min, len(looks)) if looks else 0,
         sent_at=int(time.time()),
         message_ids=ids,
+        sheets=sheet_ids,
     )
     (picks_dir(out) / "pick.json").write_text(record.model_dump_json(indent=2), encoding="utf-8")
+    return record
+
+
+# ---------- 후보 고치기 (/fix N 내용) ----------
+
+
+def find_edits(updates: list[dict], record: PickRecord, chat_id: str) -> list[dict]:
+    """후보를 보낸 뒤 온 /fix (update_id 순): {update_id, looks: [벌 번호], text}.
+    "/fix 1 이너를 나시로", "/fix 1,3 …", 벌 시트에 답장한 "/fix 이너를 나시로" 를 읽는다.
+    번호를 못 읽으면 looks 가 비어 있다. 계정·날짜 없이 봇의 다른 메시지에 답장한 글은 뺀다."""
+    found = []
+    for u in sorted(updates, key=lambda u: u["update_id"]):
+        msg = u.get("message") or {}
+        if str((msg.get("chat") or {}).get("id")) != str(chat_id):
+            continue
+        if msg.get("date", 0) < record.sent_at:
+            continue
+        reply_to = (msg.get("reply_to_message") or {}).get("message_id")
+        # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다
+        for part in re.split(r"\n(?=\s*/fix\b)", msg.get("text") or ""):
+            cmd = notify.parse(part, record.account, record.date)
+            if cmd is None or cmd.name != "fix":
+                continue
+            if not cmd.labeled and reply_to and reply_to not in record.message_ids:
+                continue
+            words, nums = list(cmd.args), []
+            while words and re.fullmatch(r"\d{1,2}(?:,\d{1,2})*,?(?:번|번은|번에서)?,?", words[0]):
+                nums += [int(x) for x in re.findall(r"\d+", words.pop(0))]
+            if not nums and reply_to in record.sheets:
+                nums = [record.sheets[reply_to]]
+            text = " ".join(words).strip()
+            if text:
+                found.append(
+                    {"update_id": u["update_id"], "looks": list(dict.fromkeys(nums)), "text": text}
+                )
+    return found
+
+
+def load_edits(run_dir: Path) -> dict:
+    f = run_dir / "picks" / EDITS
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+
+
+def edit_request(
+    run_dir: Path,
+    record: PickRecord,
+    updates: list[dict],
+    chat_id: str,
+    refused: set[int],
+    final: bool,
+    minutes_left: int,
+    now: int,
+) -> tuple[list[dict], list[dict], bool]:
+    """(고칠 /fix, 받지 않은 /fix(+이유 why), 고치는 중이라 고르기를 미룰지)."""
+    if not record.looks:
+        return [], [], False
+    pending = load_edits(run_dir)
+    busy = bool(pending) and now - pending.get("at", 0) < EDIT_WAIT * 60 and not final
+    seen = set(record.edits) | refused | set(pending.get("update_ids", []))
+    new = [e for e in find_edits(updates, record, chat_id) if e["update_id"] not in seen]
+    good, bad = [], []
+    for e in new:
+        wrong = [n for n in e["looks"] if not 1 <= n <= record.count]
+        if not e["looks"]:
+            bad.append(e | {"why": '고칠 벌 번호를 같이 보내 주세요 (예: "/fix 1 이너를 나시로").'})
+        elif wrong:
+            nums = ", ".join(map(str, wrong))
+            bad.append(e | {"why": f"{nums}번 벌은 없어요 (1~{record.count}번)."})
+        elif final or minutes_left < AGAIN_MIN_LEFT:
+            why = "마감이 가까워 후보를 고칠 시간이 없어요. 지금 후보 중에서 골라 주세요."
+            bad.append(e | {"why": why})
+        else:
+            good.append(e)
+    if busy:
+        return [], bad, True  # 앞서 요청한 고치기가 끝나면 그 후보에서 이어서 고친다
+    return good, bad, False
+
+
+def prepare_edit(spec: dict, prev: Path, out: Path) -> Path:
+    """daily mode=edit 준비: 지난 후보(p1.yaml, pick.json)를 out/<날짜>/picks/ 로 가져오고
+    고칠 점을 picks/edit.json 에 둔다. Claude 는 picks/p1.yaml 의 그 벌만 고친다."""
+    src, dst = prev / spec["run"] / "picks", picks_dir(out)
+    dst.mkdir(parents=True, exist_ok=True)
+    shutil.copy(src / "p1.yaml", dst / "p1.yaml")
+    shutil.copy(src / "p1.yaml", dst / "before.yaml")
+    shutil.copy(src / "pick.json", dst / "prev_pick.json")
+    if (src / "refused.txt").exists():
+        shutil.copy(src / "refused.txt", dst / "refused.txt")
+    (dst / "edit.json").write_text(json.dumps(spec, ensure_ascii=False, indent=2), encoding="utf-8")
+    return dst / "edit.json"
+
+
+def send_edit(
+    out: Path, run: str, tg: notify.Telegram, profile: Profile, store: Store
+) -> PickRecord:
+    """고친 벌 시트만 다시 보내고 picks/pick.json 을 남긴다.
+    고쳐 달라지 않은 벌은 지난 후보대로 되돌려 번호와 차례가 바뀌지 않게 한다."""
+    d = picks_dir(out)
+    spec = json.loads((d / "edit.json").read_text(encoding="utf-8"))
+    prev = PickRecord.model_validate_json((d / "prev_pick.json").read_text(encoding="utf-8"))
+    before = DailyPlan.model_validate(
+        yaml.safe_load((d / "before.yaml").read_text(encoding="utf-8"))
+    )
+    edited = load_candidates(out)[0]
+    asked = sorted({n for f in spec["fixes"] for n in f["looks"] if 1 <= n <= len(before.looks)})
+    looks = list(before.looks)
+    for n in asked:
+        if n <= len(edited.looks):
+            looks[n - 1] = edited.looks[n - 1]
+    plan = before.model_copy(update={"looks": looks})
+    (d / "p1.yaml").write_text(
+        yaml.safe_dump(plan.model_dump(mode="json", exclude_none=True), allow_unicode=True),
+        encoding="utf-8",
+    )
+    day = plan.date
+    changed = [n for n in asked if looks[n - 1] != before.looks[n - 1]]
+    lines = [f"[{profile.id}] {day:%m-%d}({WEEKDAYS[day.weekday()]}) 코디 후보 고침"]
+    for f in spec["fixes"]:
+        lines.append(f"• {', '.join(map(str, f['looks']))}번: {f['text']}")
+    lines.append("")
+    for n in asked:
+        look = looks[n - 1]
+        if n in changed:
+            lines.append(f"{n}. " + (look.reason.split(". ")[0] if look.reason else "").rstrip("."))
+            lines.append("   " + " · ".join(short(it.desc) for it in look.items))
+        else:
+            lines.append(f"{n}. 바꿀 상품을 찾지 못해 그대로예요")
+    lines += [
+        "",
+        "고르는 방법은 그대로예요. 그대로 두거나 번호를 보내면 고친 벌로 만들어요.",
+        f"더 고치려면 /fix 를 또 보내요. 마감은 {profile.schedule.pick_deadline}.",
+    ]
+    sheets = [
+        sheet(plan.look_plan(n - 1), n, store, out, title=looks[n - 1].reason.split(". ")[0])
+        for n in changed
+    ]
+    ids = tg.send_photos(sheets, f"[{profile.id}] {day} 코디 후보 고침") if sheets else []
+    new_sheets = dict(prev.sheets) | dict(zip(ids, changed, strict=True))
+    ids.append(tg.send("\n".join(lines)))
+    record = prev.model_copy(
+        update={
+            "run": run,
+            "count": len(looks),
+            "message_ids": prev.message_ids + ids,
+            "sheets": new_sheets,
+            "edits": prev.edits + [f["update_id"] for f in spec["fixes"]],
+        }
+    )
+    (d / "pick.json").write_text(record.model_dump_json(indent=2), encoding="utf-8")
     return record
 
 
@@ -314,10 +477,13 @@ def send(
 
 @dataclass
 class Action:
-    action: str  # render(만들기) again(새 후보) skip wait(아직) done(이미 정함) none(후보 없음)
+    # render(만들기) again(새 후보) edit(후보 고치기) skip wait(아직) done(이미 정함)
+    # none(후보 없음)
+    action: str
     run: str = ""
     choice: int | str = 0  # 고른 후보 번호. 여러 벌이면 "chosen" (picks/chosen.yaml)
     detail: str = ""
+    fixes: list[dict] = field(default_factory=list)  # edit: 고칠 /fix [{update_id, looks, text}]
 
 
 def latest(results: Path, account: str, day: date) -> tuple[Path, PickRecord] | None:
@@ -462,6 +628,27 @@ def check(
         refused = {int(x) for x in refused_file.read_text().split() if x.strip()}
     updates = tg.updates() if tg is not None else []
     chat = tg.chat_id if tg is not None else ""
+    edits, refused_edits, busy = edit_request(
+        run_dir, record, updates, chat, refused, final, minutes_left, ts
+    )
+    if refused_edits:
+        refused |= {e["update_id"] for e in refused_edits}
+        refused_file.write_text(" ".join(map(str, sorted(refused))))
+        if tg is not None:
+            tg.send(f"{tag} " + " ".join(dict.fromkeys(e["why"] for e in refused_edits)))
+    if edits:
+        (run_dir / "picks" / EDITS).write_text(
+            json.dumps({"update_ids": [e["update_id"] for e in edits], "at": ts}), encoding="utf-8"
+        )
+        if tg is not None:
+            todo = ", ".join(dict.fromkeys(str(n) for e in edits for n in e["looks"]))
+            tg.send(
+                f"{tag} {todo}번 벌을 고치고 있어요. 다 되면 그 벌만 다시 보낼게요. "
+                "고른 번호가 있으면 고친 뒤에 반영해요."
+            )
+        return Action("edit", run_dir.name, detail="후보 고치기", fixes=edits)
+    if busy:
+        return Action("wait", run_dir.name, detail="후보를 고치는 중")
     decision, note, refused_id = decide(
         updates, record, chat, profile, final, minutes_left, ts, refused
     )
@@ -561,6 +748,13 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("out", type=Path)
     s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
     s.add_argument("--round", type=int, default=1)
+    s = sub.add_parser("prepare-edit", help="후보 고치기 준비 (daily mode=edit)")
+    s.add_argument("spec", help='{"run": 지난 결과 폴더, "fixes": [{update_id, looks, text}]} JSON')
+    s.add_argument("--prev", type=Path, required=True, help="daily-results 브랜치 폴더")
+    s.add_argument("--out", type=Path, required=True)
+    s = sub.add_parser("send-edit", help="고친 벌 시트만 다시 보내기")
+    s.add_argument("out", type=Path)
+    s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
     s = sub.add_parser(
         "status", help="보낸 후보에 온 답장을 읽어 어떻게 정할지 보여 줌 (기록 안 함)"
     )
@@ -572,6 +766,10 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--first", required=True, help="첫 주제 날짜")
     args = ap.parse_args(argv)
     try:
+        if args.cmd == "prepare-edit":
+            f = prepare_edit(json.loads(args.spec), args.prev, args.out)
+            print(f"후보 고치기 준비 → {f}")
+            return 0
         if args.cmd == "status":
             f = args.run_dir / "picks" / "pick.json"
             record = PickRecord.model_validate_json(f.read_text(encoding="utf-8"))
@@ -599,10 +797,14 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"뺀 후보: {n}")
             print(f"후보 {len(candidate_paths(args.out))}개")
             return 0
+        if args.cmd == "send-edit":
+            rec = send_edit(args.out, args.run, notify.Telegram.from_env(), profile, store)
+            print(f"고친 후보 보냄 → {picks_dir(args.out) / 'pick.json'}")
+            return 0
         rec = send(args.out, args.run, notify.Telegram.from_env(), profile, store, args.round)
         print(f"후보 {rec.count}개 보냄 → {picks_dir(args.out) / 'pick.json'}")
         return 0
-    except (ValueError, FileNotFoundError, RuntimeError, httpx.HTTPError) as e:
+    except (ValueError, FileNotFoundError, RuntimeError, KeyError, httpx.HTTPError) as e:
         print(f"오류: {e}", file=sys.stderr)
         return 1
 

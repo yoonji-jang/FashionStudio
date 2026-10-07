@@ -310,6 +310,11 @@ class PickRecord(BaseModel):
     looks_min: int = 0  # 고르기에서 빼더라도 남아야 하는 벌 수
     sent_at: int  # 보낸 시각 (유닉스 초). 이보다 뒤에 온 답장만 본다
     message_ids: list[int] = []
+    # 여러 벌 후보의 벌 시트 메시지 id → 벌 번호 (시트에 답장한 /fix 가 어느 벌인지)
+    sheets: dict[int, int] = {}
+    # 이미 받은 후보 고치기 /fix 의 update_id. 고친 후보(mode=edit)는 지난 후보의 sent_at 을
+    # 그대로 두고 메시지 id 를 이어 붙여서, 고치기 전에 보낸 번호도 그대로 읽는다
+    edits: list[int] = []
 
 
 class PickDecision(BaseModel):
