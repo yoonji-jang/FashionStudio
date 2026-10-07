@@ -1,0 +1,133 @@
+account: women
+cover: out/2026-10-08/looks/1/outfit_r2/results/G_1.jpg
+date: '2026-10-08'
+items:
+- cm: 63.5
+  color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 자켓 (brown suede oversized blazer-style jacket with notch lapels,
+    slightly dropped shoulders, ending just below the waist at the high hip, soft
+    matte suede)
+  name: 스웨이드 자켓
+  product: zigzag:168776088
+  ref_photos:
+  - 0
+  - 4
+  - 1
+  size: about 63.5 cm long from shoulder to hem, 42 cm across the shoulders, 53 cm
+    across the chest laid flat, 56 cm long sleeves
+- cm: 53.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 헨리넥 니트 (white fitted slim henley-neck ribbed knit, waist-to-high-hip length,
+    thin soft rib, shallow V placket with small buttons)
+  name: 립 헨리넥 니트
+  product: zigzag:171834839
+  ref_photos:
+  - 0
+  - 2
+  - 1
+  size: about 53 cm long from shoulder to hem, 33 cm across the shoulders, 37 cm across
+    the chest laid flat, 59 cm long sleeves
+- cm: 96.0
+  color: 연청
+  comment: ''
+  cutout_photo: 2
+  desc: 연청 빈티지 와이드 데님 (light vintage-wash blue wide-leg denim, relaxed mid rise, full
+    length reaching the floor with a slight flare at the hem)
+  name: 빈티지 와이드 데님
+  product: zigzag:171292012
+  ref_photos:
+  - 2
+  - 4
+  - 0
+  size: about 96 cm long from waist to hem, 36.5 cm across the waist laid flat, 51
+    cm across the hips laid flat, 27 cm across the hem laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+  name: 콘라드 숄더백
+  product: zigzag:130117567
+  ref_photos:
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 3
+  desc: 브라운 스웨이드 슬링백 힐 (brown suede slingback heels)
+  name: 스웨이드 슬링백
+  product: zigzag:105600542
+  ref_photos:
+  - 3
+- color: 골드
+  comment: ''
+  cutout_photo: 5
+  desc: 골드 미니 물방울 원터치 귀걸이 (exactly one pair (two earrings) of small chunky gold teardrop
+    hoop earrings)
+  name: 미니 물방울 귀걸이
+  product: zigzag:169325375
+  ref_photos:
+  - 5
+  slot: 귀걸이
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 가죽 시계 (small round gold-tone watch with a brown leather strap)
+  name: 레더 시계
+  product: zigzag:130846670
+  ref_photos:
+  - 0
+  - 1
+  - 2
+  slot: 팔찌
+looks: []
+mood: a candid everyday snapshot like the hip outfit photos people save on Pinterest,
+  taken with a phone or a point-and-shoot film camera by a friend on an ordinary street
+  or in a real interior in Seoul, light exactly as the pose describes, natural slightly
+  muted colors
+pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+  in her twenties with long straight dark-brown hair past her shoulders; she walks
+  along a narrow sidewalk beside an old cream-colored wall in low late-afternoon sun
+  with soft tree shadows on the wall, caught mid-step slightly from the side, holding
+  a small bouquet wrapped in paper against her chest, her head tilted down toward
+  the flowers so her hair falls over most of her face'
+reason: 브라운 스웨이드 자켓이 주인공, 화이트 니트와 연청 와이드 데님, 브라운 백과 슬링백으로 정리한 가장 안전한 조합
+shot: model
+source_run: 2026-10-07-run138
+text:
+  hashtags:
+  - '#스웨이드자켓'
+  - '#브라운코디'
+  - '#가을코디'
+  - '#모델컷'
+  - '#간절기코디'
+  - '#일교차코디'
+  intro: 어제 올린 코디, 직접 입으면 이런 느낌이에요 🍂
+  points: []
+  title_lines:
+  - 브라운 스웨이드로 채운
+  - 가을 데일리룩 모음
+theme:
+  date: '2026-10-08'
+  mood: 초콜릿 브라운 톤온톤에 아이보리·블랙만 더해 차분하게 정리한 가을 컬러
+  search_terms:
+    상의:
+    - 아이보리 니트
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓 (세 벌까지
+  - category: 상의
+    desc: 아이보리 니트 또는 화이트 셔츠 한 장
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  title_hint: 스웨이드 자켓과 가을 니트로 채우는 브라운 코디
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 가벼운 스웨이드 자켓 한 벌이 알맞음

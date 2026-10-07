@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-08-run145",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-08-run142\", \"round\": 1, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"표지 코디컷(LOOK 1 사진)은 그대로 두고 제목만 고친다. '어제 그 코디, 입으면 이런 느낌'처럼 전날 게시물이나 입은 사진을 말하지 말고 그냥 코디 모음 제목으로 (voice.md 모델컷 게시물 표지)\"}, {\"slide\": 2, \"kind\": \"look\", \"look\": 1, \"text\": \"LOOK 1 사진은 괜찮다. 다시 그리지 않는다\"}, {\"slide\": 3, \"kind\": \"look\", \"look\": 2, \"text\": \"배경과 포즈가 어색하다. 새 장면(profile model_shot.poses)으로 다시 그린다. 핀터레스트처럼 힙하고 자연스럽게, 헤어도 장면대로\"}, {\"slide\": 4, \"kind\": \"look\", \"look\": 3, \"text\": \"배경과 포즈가 어색하다. 새 장면(profile model_shot.poses)으로 다시 그린다. 핀터레스트처럼 힙하고 자연스럽게, 헤어도 장면대로\"}, {\"slide\": 5, \"kind\": \"look\", \"look\": 4, \"text\": \"배경과 포즈가 어색하고 바지 기장이 짧아 보인다. 새 장면(profile model_shot.poses)으로 다시 그리고, 와이드 팬츠는 실측 기장대로 신발을 덮을 만큼 길게\"}, {\"slide\": 6, \"kind\": \"look\", \"look\": 5, \"text\": \"배경과 포즈가 어색하다. 새 장면(profile model_shot.poses)으로 다시 그린다. 핀터레스트처럼 힙하고 자연스럽게, 헤어도 장면대로\"}]}"
+}
