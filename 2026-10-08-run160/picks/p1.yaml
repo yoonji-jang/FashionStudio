@@ -1,0 +1,367 @@
+account: women
+date: '2026-10-08'
+items: []
+looks:
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 탄탄 니트 베스트 (black fine-knit vest, v-neck, hip length)
+    name: 탄탄 니트 베스트
+    product: zigzag:134881165
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 스트라이프 셔츠 (ivory shirt with thin stripes, shirt collar, relaxed fit)
+    name: 스트라이프 셔츠
+    product: zigzag:120773723
+    wear_with: 상의
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 벌룬 조거 팬츠 (beige balloon jogger pants, elastic waist, ankle length)
+    name: 벌룬 조거 팬츠
+    product: zigzag:171376382
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더 크로스백 (black small shoulder crossbody bag)
+    name: 숄더 크로스백
+    product: zigzag:153923114
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 발레리나 플랫 (black ribbon ballerina flats)
+    name: 리본 발레리나
+    product: zigzag:128978822
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 미니 링 귀걸이 (exactly one pair (two earrings) of small gold hoop earrings)
+    name: 골드 링귀걸이
+    product: zigzag:169324851
+    slot: 귀걸이
+  point: ''
+  reason: 블랙 니트 베스트가 주인공, 아이보리 스트라이프 셔츠 깃을 빼고 베이지 조거로 편하게
+  styling: The shirt collar is pulled out over the neckline of the knit vest and the
+    shirt hem shows about 4 cm below the vest hem.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 울 딥브이 헨리넥 니트 (gray wool deep V henley knit, slim fit, hip length)
+    name: 딥브이 헨리넥 니트
+    product: zigzag:171724793
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 다크브라운 레이스 레이어드 나시 (dark brown lace-trimmed camisole tank)
+    name: 레이스 나시
+    product: zigzag:169196108
+    wear_with: 상의
+  - color: 연청
+    comment: ''
+    cutout_photo: 0
+    desc: 연청 부츠컷 데님 (light blue bootcut jeans, long length)
+    name: 부츠컷 데님
+    product: zigzag:171122435
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 빅 호보백 (brown large hobo shoulder bag)
+    name: 빅 호보백
+    product: zigzag:168594319
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 워커부츠 (black chunky lace-up walker boots, round toe)
+    name: 레이스업 워커부츠
+    product: zigzag:130583785
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 드롭 목걸이 (long silver drop pendant necklace)
+    name: 롱 드롭 목걸이
+    product: zigzag:159636703
+    slot: 목걸이
+  point: ''
+  reason: 그레이 딥브이 헨리넥 니트가 주인공, 안에 브라운 레이스 나시를 대비색으로 보이게 하고 연청 부츠컷으로 길게
+  styling: The dark brown lace layering tank shows at the deep V neckline and its
+    hem peeks about 4 cm below the knit hem.
+- items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 벌룬 브이넥 맨투맨 (navy oversized balloon-sleeve V-neck sweatshirt, hip length)
+    name: 벌룬 브이넥 맨투맨
+    product: zigzag:157537909
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 스트라이프 박시 긴팔티 (ivory boxy long-sleeve tee with thin dark stripes)
+    name: 박시 스트라이프 티
+    product: zigzag:149976612
+    wear_with: 상의
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 미니 스커트 (dark brown faux suede mini skirt, straight cut)
+    name: 스웨이드 미니 스커트
+    product: zigzag:171592186
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트백 (black structured tote bag)
+    name: 셀루나 토트백
+    product: zigzag:161886716
+  - color: 다크브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 다크브라운 스웨이드 니하이 롱부츠 (dark brown suede knee-high boots, round toe)
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 뿔테 안경 (black square horn-rimmed glasses)
+    name: 블랙 뿔테 안경
+    product: zigzag:113382000
+  point: ''
+  reason: 네이비 V넥 맨투맨이 주인공, 스트라이프 티 밑단을 내고 브라운 스웨이드 미니에 롱부츠로 부피 대비
+  styling: The striped tee hem shows about 5 cm below the sweatshirt hem and its cuffs
+    peek out at the sleeves; the glasses hang at the neckline.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 스트라이프 배색 나그랑 긴팔티 (gray raglan long-sleeve tee with thin contrast stripes
+      and navy sleeves, slim fit)
+    name: 나그랑 스트라이프 티
+    product: zigzag:172082959
+  - color: 버건디
+    comment: ''
+    cutout_photo: 0
+    desc: 버건디 브이넥 골지 니트 가디건 (burgundy ribbed V-neck knit cardigan, slim fit)
+    name: 골지 니트 가디건
+    product: zigzag:171599468
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 새틴 롱스커트 (ivory satin long skirt, flowing, ankle length)
+    name: 새틴 롱스커트
+    product: zigzag:165836528
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 메쉬 버킷 토트백 (black woven mesh bucket tote shoulder bag)
+    name: 위빙 버킷 토트백
+    product: zigzag:162619421
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 소가죽 메리제인 스니커즈 (black leather lace-up mary jane sneakers, round toe)
+    name: 메리제인 스니커즈
+    product: zigzag:168228826
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 잔골지 니삭스 (gray thin-ribbed knee socks, exactly one pair)
+    name: 잔골지 니삭스
+    product: zigzag:148867821
+  point: ''
+  reason: 스트라이프 긴팔티가 주인공, 버건디 골지 가디건을 어깨에 두르고 새틴 롱스커트에 니삭스로
+  styling: The burgundy cardigan is draped over the shoulders with its sleeves loosely
+    tied at the chest, over the striped long-sleeve tee.
+- items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 오프숄더 셔츠카라 니트 (navy off-shoulder knit with a built-in light blue shirt
+      collar, slim fit, hip length)
+    name: 오프숄더 셔츠카라 니트
+    product: zigzag:171067686
+  - color: 진청
+    comment: ''
+    cutout_photo: 0
+    desc: 진청 세미와이드 생지 청바지 (dark indigo semi-wide raw denim jeans, full length)
+    name: 세미와이드 생지 청바지
+    product: zigzag:168288083
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 보스턴 숄더 토트백 (black boston shoulder tote bag)
+    name: 보스턴 토트백
+    product: zigzag:129584739
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 페니로퍼 (black suede penny loafers, round toe)
+    name: 스웨이드 페니로퍼
+    product: zigzag:100425954
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 큐빅 목걸이 (thin silver necklace with a small cubic pendant)
+    name: 큐빅 목걸이
+    product: zigzag:168750112
+    slot: 목걸이
+  point: ''
+  reason: 네이비 오프숄더 셔츠카라 니트가 주인공, 깃이 목에 겹쳐 보이게 하고 진청 세미와이드 데님으로
+  styling: The light blue shirt collar sits at the neckline above the off-shoulder
+    knit; the knit is tucked at the waist.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 매트 레더 블루종 자켓 (brown matte faux leather bomber jacket, ribbed hem, hip
+      length)
+    name: 매트레더 블루종
+    product: zigzag:171316698
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 보이 래글런 티셔츠 (gray raglan long-sleeve tee with dark sleeves, crew neck)
+    name: 보이 래글런 티
+    product: zigzag:168184543
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핀스트라이프 와이드 슬랙스 (charcoal pinstripe wide-leg trousers, flat front, full
+      length)
+    name: 핀스트라이프 슬랙스
+    product: zigzag:168694332
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 보부상 호보백 (brown suede large hobo shoulder bag)
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  - color: 모카
+    comment: ''
+    cutout_photo: 0
+    desc: 모카 스웨이드 로퍼 (mocha taupe suede loafers with crepe sole, round toe)
+    name: 스웨이드 로퍼
+    product: zigzag:165725019
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 볼드 레더 벨트 (black bold leather belt with a silver buckle)
+    name: 볼드업 벨트
+    product: zigzag:157821589
+    wear_with: 하의
+  point: ''
+  reason: 브라운 레더 블루종이 주인공, 래글런 티와 차콜 핀스트라이프 슬랙스에 벨트로 정리
+  styling: The blouson is zipped halfway so the raglan tee crew neck shows, and the
+    tee sleeves peek about 3 cm out of the blouson cuffs.
+- items:
+  - color: 블루
+    comment: ''
+    cutout_photo: 0
+    desc: 스틸 블루 골지 헨리넥 나시 가디건 세트 (steel blue ribbed henley cardigan with matching
+      tank, slim fit, hip length)
+    name: 골지 헨리넥 가디건 세트
+    product: zigzag:171437567
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 헨리넥 레이어드 긴팔티 (gray henley long-sleeve tee, slim fit)
+    name: 헨리넥 긴팔티
+    product: zigzag:171262648
+    wear_with: 상의
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 케이블 니트 쇼츠 (gray cable knit shorts, mid-thigh length)
+    name: 케이블 스웨터 쇼츠
+    product: zigzag:149438704
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 셔링 더플백 (black shirred duffle shoulder bag)
+    name: 셔링 더플백
+    product: zigzag:138364376
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스퀘어 롱부츠 (black square-toe knee-high boots)
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 와플 비니 (cream waffle knit beanie)
+    name: 와플 비니
+    product: zigzag:115846981
+  point: ''
+  reason: 스틸 블루 골지 가디건 세트가 주인공, 그레이 케이블 니트 쇼츠로 톤을 맞추고 비니와 롱부츠로 마무리
+  styling: The gray henley tee hem shows about 4 cm below the cardigan hem and its
+    cuffs peek out at the sleeves.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 하이넥 레더 재킷 (black faux leather high-neck jacket, zip front, hip length)
+    name: 하이넥 레더 재킷
+    product: zigzag:171242582
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱슬리브 홀터넥 레이어드 탑 (black slim long-sleeve halter-neck layering top)
+    name: 홀터넥 레이어드 탑
+    product: zigzag:153225273
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 스커트 (black A-line mini skirt)
+    name: 브르노 미니 스커트
+    product: zigzag:167951642
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 소피 토트백 (black small structured tote bag)
+    name: 소피 토트백
+    product: zigzag:167741389
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 플랫슈즈 (black ribbon ballet flats, round toe)
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 롱 목걸이 (long silver drop pendant necklace)
+    name: 물방울 롱 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  point: ''
+  reason: 블랙 레더 재킷이 주인공, 홀터 나시와 미니스커트까지 올블랙에 롱 목걸이로 결만 다르게
+  styling: The jacket is worn open with the black halter tank visible, and the long
+    pendant necklace hangs over the tank.
+reason: 셔츠 깃을 니트 밖으로 빼는 레이어링을 블랙 베스트부터 그레이 헨리넥, 스틸 블루 가디건, 올블랙까지 색과 실루엣을 바꿔 여덟 가지로
+shot: flatlay
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적
