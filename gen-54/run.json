@@ -1,0 +1,16 @@
+{
+  "spec": "experiments/aspect_916_look1.yaml",
+  "started": "2026-10-07T04:52:17",
+  "results": [
+    {
+      "model": "nano_banana_pro",
+      "shot": "flatlay",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.148308,
+      "file": "nano_banana_pro/flatlay_1.jpg",
+      "sec": 27.6
+    }
+  ],
+  "finished": "2026-10-07T04:52:45"
+}
