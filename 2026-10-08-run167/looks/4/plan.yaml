@@ -1,0 +1,104 @@
+account: women
+date: '2026-10-08'
+items:
+- color: 블루
+  comment: ''
+  cutout_photo: 2
+  desc: 스틸 블루 골지 헨리넥 나시 가디건 세트 (steel blue ribbed henley cardigan cropped near the
+    waist with matching tank, slim fit)
+  name: 골지 헨리넥 가디건 세트
+  product: zigzag:171437567
+  ref_photos:
+  - 2
+  - 3
+- color: 그레이
+  comment: ''
+  cutout_photo: 5
+  desc: 그레이 헨리넥 레이어드 긴팔티 (gray-brown henley long-sleeve tee with a light gray layered
+    hem, slim fit)
+  name: 헨리넥 긴팔티
+  product: zigzag:168270393
+  ref_photos:
+  - 5
+  - 0
+  wear_with: 상의
+- cm: 36.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 케이블 니트 쇼츠 (gray cable knit shorts, fitted, above mid-thigh)
+  name: 케이블 스웨터 쇼츠
+  product: zigzag:149438704
+  ref_photos:
+  - 2
+  size: about 36 cm long from waist to hem, 32 cm across the waist laid flat, 52 cm
+    across the hips laid flat, 30 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 셔링 더플백 (black shirred duffle shoulder bag)
+  name: 셔링 더플백
+  product: zigzag:138364376
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 스퀘어 롱부츠 (black square-toe knee-high boots, low block heel)
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+  ref_photos:
+  - 3
+  - 5
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 코튼 비니 (navy slub cotton beanie)
+  name: 네이비 코튼 비니
+  product: zigzag:164745883
+  ref_photos:
+  - 0
+looks: []
+reason: 스틸 블루 골지 가디건 세트가 주인공, 그레이 케이블 니트 쇼츠로 톤을 맞추고 네이비 비니와 롱부츠로 마무리
+shot: flatlay
+styling: The gray henley tee hem shows about 4 cm below the cardigan hem and its cuffs
+  peek out at the sleeves.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#일교차코디'
+  - '#가을데일리룩'
+  - '#간절기코디'
+  - '#캐주얼시크'
+  - '#스웨이드'
+  intro: 아침저녁으로 쌀쌀한 요즘, 밑단과 소매 끝을 겹쳐 입어 멋을 내 보세요 ☕
+  points: []
+  title_lines:
+  - 일교차 큰 날 겹쳐 입는
+  - 밑단 한 끗 레이어드 코디
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적

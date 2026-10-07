@@ -1,0 +1,198 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-08/looks/1/outfit/results/G_1.jpg
+cover_has_title: false
+items:
+- comment: ''
+  name: 벌룬 브이넥 맨투맨
+  product: zigzag:157537909
+- comment: ''
+  name: 박시 스트라이프 티
+  product: zigzag:149976612
+- comment: ''
+  name: 스웨이드 미니 스커트
+  product: zigzag:171592186
+- comment: ''
+  name: 셀루나 토트백
+  product: zigzag:161886716
+- comment: ''
+  name: 스웨이드 롱부츠
+  product: zigzag:147005253
+- comment: ''
+  name: 블랙 뿔테 안경
+  product: zigzag:113382000
+- comment: ''
+  name: 나그랑 스트라이프 티
+  product: zigzag:172082959
+- comment: ''
+  name: 골지 니트 가디건
+  product: zigzag:171599468
+- comment: ''
+  name: 새틴 롱스커트
+  product: zigzag:165836528
+- comment: ''
+  name: 위빙 버킷 토트백
+  product: zigzag:162619421
+- comment: ''
+  name: 메리제인 스니커즈
+  product: zigzag:168228826
+- comment: ''
+  name: 잔골지 니삭스
+  product: zigzag:148867821
+- comment: ''
+  name: 매트레더 블루종
+  product: zigzag:171316698
+- comment: ''
+  name: 보이 래글런 티
+  product: zigzag:168184543
+- comment: ''
+  name: 핀스트라이프 슬랙스
+  product: zigzag:168694332
+- comment: ''
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+- comment: ''
+  name: 스웨이드 모카신
+  product: zigzag:165725019
+- comment: ''
+  name: 블랙 레더 벨트
+  product: zigzag:157821589
+- comment: ''
+  name: 골지 헨리넥 가디건 세트
+  product: zigzag:171437567
+- comment: ''
+  name: 헨리넥 긴팔티
+  product: zigzag:168270393
+- comment: ''
+  name: 케이블 스웨터 쇼츠
+  product: zigzag:149438704
+- comment: ''
+  name: 셔링 더플백
+  product: zigzag:138364376
+- comment: ''
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+- comment: ''
+  name: 네이비 코튼 비니
+  product: zigzag:164745883
+- comment: ''
+  name: 하이넥 레더 재킷
+  product: zigzag:171242582
+- comment: ''
+  name: 홀터넥 레이어드 탑
+  product: zigzag:153225273
+- comment: ''
+  name: 브르노 미니 스커트
+  product: zigzag:167951642
+- comment: ''
+  name: 소피 숄더백
+  product: zigzag:167741389
+- comment: ''
+  name: 리본 플랫슈즈
+  product: zigzag:171742629
+- comment: ''
+  name: 물방울 롱 목걸이
+  product: zigzag:162967207
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-08/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 벌룬 브이넥 맨투맨
+    product: zigzag:157537909
+  - comment: ''
+    name: 박시 스트라이프 티
+    product: zigzag:149976612
+  - comment: ''
+    name: 스웨이드 미니 스커트
+    product: zigzag:171592186
+  - comment: ''
+    name: 셀루나 토트백
+    product: zigzag:161886716
+  - comment: ''
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  - comment: ''
+    name: 블랙 뿔테 안경
+    product: zigzag:113382000
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-08/looks/2/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 나그랑 스트라이프 티
+    product: zigzag:172082959
+  - comment: ''
+    name: 골지 니트 가디건
+    product: zigzag:171599468
+  - comment: ''
+    name: 새틴 롱스커트
+    product: zigzag:165836528
+  - comment: ''
+    name: 위빙 버킷 토트백
+    product: zigzag:162619421
+  - comment: ''
+    name: 메리제인 스니커즈
+    product: zigzag:168228826
+  - comment: ''
+    name: 잔골지 니삭스
+    product: zigzag:148867821
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-08/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 매트레더 블루종
+    product: zigzag:171316698
+  - comment: ''
+    name: 보이 래글런 티
+    product: zigzag:168184543
+  - comment: ''
+    name: 핀스트라이프 슬랙스
+    product: zigzag:168694332
+  - comment: ''
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  - comment: ''
+    name: 스웨이드 모카신
+    product: zigzag:165725019
+  - comment: ''
+    name: 블랙 레더 벨트
+    product: zigzag:157821589
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-08/looks/4/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 골지 헨리넥 가디건 세트
+    product: zigzag:171437567
+  - comment: ''
+    name: 헨리넥 긴팔티
+    product: zigzag:168270393
+  - comment: ''
+    name: 케이블 스웨터 쇼츠
+    product: zigzag:149438704
+  - comment: ''
+    name: 셔링 더플백
+    product: zigzag:138364376
+  - comment: ''
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - comment: ''
+    name: 네이비 코튼 비니
+    product: zigzag:164745883
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-08/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 레더 재킷
+    product: zigzag:171242582
+  - comment: ''
+    name: 홀터넥 레이어드 탑
+    product: zigzag:153225273
+  - comment: ''
+    name: 브르노 미니 스커트
+    product: zigzag:167951642
+  - comment: ''
+    name: 소피 숄더백
+    product: zigzag:167741389
+  - comment: ''
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  - comment: ''
+    name: 물방울 롱 목걸이
+    product: zigzag:162967207
+title_lines:
+- 일교차 큰 날 겹쳐 입는
+- 밑단 한 끗 레이어드 코디

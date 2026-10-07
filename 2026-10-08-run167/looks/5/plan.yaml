@@ -1,0 +1,115 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 65.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 하이넥 레더 재킷 (black faux leather oversized high-neck jacket, dropped shoulders,
+    zip front, banded hem, hip length)
+  name: 하이넥 레더 재킷
+  product: zigzag:171242582
+  ref_photos:
+  - 0
+  - 1
+  - 2
+  size: about 65.5 cm long from shoulder to hem, 60.5 cm across the chest laid flat,
+    83.7 cm long sleeves
+- cm: 60.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 홀터넥 레이어드 탑 (black slim long-sleeve ribbed knit top, fake two-piece with
+    a buttoned cardigan front over a halter-neck tank, hip length)
+  name: 홀터넥 레이어드 탑
+  product: zigzag:153225273
+  ref_photos:
+  - 0
+  - 2
+  size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8 cm
+    long sleeves
+- cm: 43.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 미니 스커트 (black high-waist A-line mini skirt, upper-thigh length, matte twill)
+  name: 브르노 미니 스커트
+  product: zigzag:167951642
+  ref_photos:
+  - 5
+  - 0
+  size: about 43 cm long from waist to hem, 36 cm across the waist laid flat, 49 cm
+    across the hips laid flat, 58 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 소피 숄더백 (black small structured shoulder bag with a top handle and a long
+    crossbody strap)
+  name: 소피 숄더백
+  product: zigzag:167741389
+  ref_photos:
+  - 3
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 리본 플랫슈즈 (black ribbon ballet flats, round toe)
+  name: 리본 플랫슈즈
+  product: zigzag:171742629
+  ref_photos:
+  - 0
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 롱 목걸이 (long silver drop pendant necklace)
+  name: 물방울 롱 목걸이
+  product: zigzag:162967207
+  ref_photos:
+  - 0
+  - 1
+  slot: 목걸이
+looks: []
+reason: 블랙 레더 재킷이 주인공, 홀터 나시와 미니스커트까지 올블랙에 롱 목걸이로 결만 다르게
+shot: flatlay
+styling: The jacket is worn open with the black halter tank visible, and the long
+  pendant necklace hangs over the tank.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#일교차코디'
+  - '#가을데일리룩'
+  - '#간절기코디'
+  - '#캐주얼시크'
+  - '#스웨이드'
+  intro: 아침저녁으로 쌀쌀한 요즘, 밑단과 소매 끝을 겹쳐 입어 멋을 내 보세요 ☕
+  points: []
+  title_lines:
+  - 일교차 큰 날 겹쳐 입는
+  - 밑단 한 끗 레이어드 코디
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적

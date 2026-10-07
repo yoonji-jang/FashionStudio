@@ -1,0 +1,108 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 74.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 스트라이프 배색 나그랑 긴팔티 (gray raglan long-sleeve tee with thin contrast stripes
+    and navy sleeves, slim to regular fit, hip length)
+  name: 나그랑 스트라이프 티
+  product: zigzag:172082959
+  ref_photos:
+  - 0
+  - 1
+  size: about 74 cm long from shoulder to hem, 60 cm across the chest laid flat, 75
+    cm long sleeves
+- color: 버건디
+  comment: ''
+  cutout_photo: 1
+  desc: 버건디 브이넥 골지 니트 가디건 (burgundy ribbed V-neck knit cardigan, slim fit, cropped
+    at the waist with a slit hem, button front)
+  name: 골지 니트 가디건
+  product: zigzag:171599468
+  ref_photos:
+  - 1
+  - 3
+- cm: 84.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 새틴 롱스커트 (ivory glossy satin long skirt, flowing A-line, ankle length,
+    elastic waist)
+  name: 새틴 롱스커트
+  product: zigzag:165836528
+  ref_photos:
+  - 0
+  size: about 84 cm long from waist to hem, 37 cm across the waist laid flat, 49 cm
+    across the hips laid flat, 80 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 메쉬 버킷 토트백 (black woven mesh bucket tote shoulder bag)
+  name: 위빙 버킷 토트백
+  product: zigzag:162619421
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스웨이드 메리제인 스니커즈 (black suede and leather mary jane sneakers with a velcro
+    strap, chunky sole, round toe)
+  name: 메리제인 스니커즈
+  product: zigzag:168228826
+  ref_photos:
+  - 2
+  - 3
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 잔골지 니삭스 (gray thin-ribbed knee socks, exactly one pair)
+  name: 잔골지 니삭스
+  product: zigzag:148867821
+  ref_photos:
+  - 2
+looks: []
+reason: 스트라이프 긴팔티가 주인공, 버건디 골지 가디건을 어깨에 두르고 새틴 롱스커트에 니삭스로
+shot: flatlay
+styling: The burgundy cardigan is draped over the shoulders with its sleeves loosely
+  tied at the chest, over the striped long-sleeve tee.
+text:
+  hashtags:
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#일교차코디'
+  - '#가을데일리룩'
+  - '#간절기코디'
+  - '#캐주얼시크'
+  - '#스웨이드'
+  intro: 아침저녁으로 쌀쌀한 요즘, 밑단과 소매 끝을 겹쳐 입어 멋을 내 보세요 ☕
+  points: []
+  title_lines:
+  - 일교차 큰 날 겹쳐 입는
+  - 밑단 한 끗 레이어드 코디
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적
