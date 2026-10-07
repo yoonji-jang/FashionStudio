@@ -195,6 +195,8 @@ class FeedSpec(BaseModel):
     title_lines: list[str] = Field(min_length=1)
     cover: str | None = None  # 제목 없는 코디컷 경로 (없으면 표지 장을 건너뜀)
     cover_has_title: bool = False  # 이미 제목을 얹은 이미지면 true
+    # 표지를 벌 전부의 콜라주로 (profile looks.cover_collage, 벌 코디컷은 looks[].image)
+    cover_collage: bool = False
     items: list[FeedItem] = Field(min_length=1)
     looks: list[FeedLook] = []  # 여러 벌 게시물이면 벌마다 (feed.slides 의 looks)
 

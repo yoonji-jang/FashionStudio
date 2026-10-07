@@ -31,7 +31,7 @@ from pydantic import ValidationError
 from core.models import FeedItem, FeedLook, FeedSpec, Product
 from core.profile import REPO_ROOT, Feed, Profile, account_dir, load_profile
 from core.store import Store
-from tools import ai_label, overlay
+from tools import ai_label, cover_collage, overlay
 from tools.compose import load_layout
 from tools.overlay import load_font
 from tools.photoroom import trim_alpha
@@ -381,6 +381,13 @@ def fill_ratio(card: Card, layout: dict | None = None) -> float:
 def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: Path) -> Image.Image:
     """표지. size 가 9:16 이면 코디컷 위아래 바닥을 늘린 릴스용 판."""
     tall = size == TALL_SIZE
+    if spec.cover_collage:
+        images = [root / lk.image for lk in spec.looks if lk.image]
+        top = profile.reels.top * size[1] if tall else 0.0
+        try:
+            return cover_collage.render(images, spec.title_lines, profile, size, top)
+        except (ValueError, FileNotFoundError) as e:  # 오려 내기 실패면 예전 표지로
+            print(f"경고: 콜라주 표지를 만들지 못해 1번 벌 표지로 만듭니다: {e}", file=sys.stderr)
     img = open_outfit(root / spec.cover, tall)
     img = ImageOps.fit(img, size, Image.LANCZOS)
     if tall:
