@@ -25,7 +25,7 @@ permissions:
 jobs:
   themes:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     concurrency:
       group: themes-${{ inputs.account }}
       cancel-in-progress: false
@@ -71,10 +71,11 @@ jobs:
             .claude/skills/plan-themes/SKILL.md 의 "주간" 방법으로 ${{ env.FIRST }} 부터 주제를 정해 저장해.
             ACCOUNT=${{ env.ACCOUNT }}
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            profile themes.ref_search 가 있으면 스킬의 "참고 코디 모으기"도 해서 accounts/${{ env.ACCOUNT }}/ref_looks.md 에 더해.
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
-            --max-turns 60
-            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Read,Write,Edit,Glob,Grep"
+            --max-turns 90
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
       - name: 텔레그램으로 보내기
         env:
@@ -86,7 +87,7 @@ jobs:
 
       - name: 주제 커밋
         run: |
-          git add "data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" 2>/dev/null || true
+          git add "data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" "accounts/$ACCOUNT/ref_looks.md" 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git -c user.name="github-actions[bot]" \
             -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \

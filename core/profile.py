@@ -81,6 +81,16 @@ class Place(BaseModel):
     lon: float = Field(ge=-180, le=180)
 
 
+class RefSearch(BaseModel):
+    """주간 주제 때 공개 코디 페이지를 웹 검색해 ref_looks.md 에 글로 더하는 기준 (2026-10-07)."""
+
+    per_week: int = Field(default=8, ge=1, le=30)  # 한 주에 더할 참고 코디 수
+    keep_weeks: int = Field(default=4, ge=1)  # 자동으로 더한 참고 코디를 남겨 둘 주 수
+    queries: list[str] = []  # 웹 검색어 (계절·날씨에 맞는 말을 Claude 가 더한다)
+    sources: list[str] = []  # 찾아볼 공개 페이지 종류 (매거진, 브랜드 룩북 …)
+    avoid_sites: list[str] = []  # 로그인이 필요하거나 약관상 자동으로 읽으면 안 되는 곳
+
+
 class ThemeRules(BaseModel):
     """주간 주제를 정하는 기준. plan-themes 스킬(5단계)이 읽는다."""
 
@@ -92,6 +102,7 @@ class ThemeRules(BaseModel):
     avoid: list[str] = []  # 다루지 않을 주제
     review_before_use: bool = True  # 주간 주제를 사람이 보고 확정할지
     weather: Place | None = None  # 날씨 예보를 볼 곳 (없으면 날씨를 보지 않음)
+    ref_search: RefSearch | None = None  # 참고 코디 웹 검색 (없으면 하지 않음)
 
 
 class Copy(BaseModel):

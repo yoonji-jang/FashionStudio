@@ -8,7 +8,7 @@ AI가 상품을 새로 그리므로 원본과 같은지 image-reviewer 검수를
 예전 방식(Photoroom 누끼를 코드로 배치)은 profile `outfit_image.engine: photoroom` 으로 남아 있다.
 
 ## 반드시 지킬 것
-- 모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `accounts/$ACCOUNT/voice.md`, 코디 고르기는 `accounts/$ACCOUNT/styling.md` 도 따른다.
+- 모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `accounts/$ACCOUNT/voice.md`, 코디 고르기는 `accounts/$ACCOUNT/styling.md` 도 따른다 (`ref_looks.md` 참고 코디는 참고만).
   계정마다 다른 값(스타일, 슬롯, 배경, 폰트, 시간, 수익 방식)을 코드나 스킬에 직접 쓰지 않는다.
 - 게시·삭제·외부 전송 같은 공개 작업은 하지 않는다. 게시는 Claude가 없는 별도 워크플로가 한다
   (`tools.publish`, `tools.ig_publish`, `tools.notify`, `tools.media_host`, `tools.pick`, `tools.ig_token`,

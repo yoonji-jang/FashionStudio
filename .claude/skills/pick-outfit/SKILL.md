@@ -5,7 +5,7 @@ description: 주제에 맞춰 상품 창고에서 코디 한 벌(아우터·상�
 
 # pick-outfit: 상품 조합
 
-기준: `accounts/$ACCOUNT/styling.md` (코디 기준, 있으면 가장 먼저), profile `outfit` (items_min, items_max,
+기준: `accounts/$ACCOUNT/styling.md` (코디 기준, 있으면 가장 먼저), `accounts/$ACCOUNT/ref_looks.md` (참고 코디, 있으면 참고만), profile `outfit` (items_min, items_max,
 slots, reuse_cooldown_days, max_per_shop), `style`, `product_source` (min_rating, min_reviews, prefer_flat_shot).
 
 ## 후보 보기
