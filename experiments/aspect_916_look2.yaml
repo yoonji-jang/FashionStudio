@@ -1,0 +1,47 @@
+# 2026-10-07 사용자: 피드를 릴스 화각(9:16)으로 만들고 피드는 가운데 4:5 를 잘라 쓰는 안 시험
+title: 10/7 LOOK 2 9:16 시험 (릴스 화각)
+account: women
+products_from: daily-results:2026-10-07-run138/manifest.json
+compare_with: daily-results:2026-10-07-run138/looks/2/outfit/results/G_1.jpg
+aspect_ratio: '9:16'
+canvas:
+- 1080
+- 1920
+prompt_text: experiments/aspect_916_look2.txt
+items:
+- category: 아우터
+  product: zigzag:165758501
+  photos:
+  - 2
+  - 3
+- category: 상의
+  product: zigzag:128321624
+  photos:
+  - 0
+- category: 하의
+  product: zigzag:171326924
+  photos:
+  - 0
+  - 2
+  - 4
+- category: 가방
+  product: zigzag:164013796
+  photos:
+  - 0
+  - 1
+- category: 신발
+  product: zigzag:130568193
+  photos:
+  - 1
+  - 2
+- category: 소품
+  product: zigzag:143131438
+  photos:
+  - 0
+- category: 소품
+  product: zigzag:135593307
+  photos:
+  - 0
+shots:
+  flatlay:
+    repeats: 1

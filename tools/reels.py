@@ -4,6 +4,8 @@ r"""하루 게시물로 릴스 영상 만들기 (19단계). Claude·영상 AI �
 - 장마다 시간·넘기는 효과는 profile.yaml `reels` 에서 읽는다.
 - 슬라이드(4:5)는 위쪽에 두고(reels.top) 남는 곳은 상품 장 배경색(feed.background)으로 채운다.
   아래쪽은 인스타 캡션·버튼이 덮는 자리라 비워 둔다.
+- reels.fill 이면 펼친컷 날 표지·벌 장은 슬라이드 폴더의 tall/ 판(tools.feed 가 코디컷 위아래
+  바닥을 늘려 만든 9:16, 글자는 같은 화면 자리)으로 화면을 꽉 채운다.
 - 장 사이는 효과 없이 바로 바뀐다 (transition cut, slide·fade 도 됨). 확대 효과는 없다.
 - 장은 그날 캐러셀 순서 그대로 (reels.slides 가 null 이면 전부). 펼친컷 날·모델컷 날 모두 같은 방식.
 - 배경 음악: reels.music_dir 의 음원 하나를 날짜마다 돌려 쓴다 (상업 이용이 허락된 파일만).
@@ -31,7 +33,7 @@ from PIL import Image
 
 from core.models import Manifest, ReelsSpec
 from core.profile import REPO_ROOT, Profile, Reels, load_profile
-from tools import ai_label, notify
+from tools import ai_label, feed, notify
 
 SIZE = (1080, 1920)
 MUSIC_EXT = {".mp3", ".m4a", ".aac", ".wav", ".ogg"}
@@ -112,14 +114,19 @@ class Frames:
         self.starts = starts(clips, self.overlap)
         self.base = Image.new("RGB", size, bg)
         self.cards: list[Image.Image] = []
+        full: list[bool] = []
         for c in clips:
-            with Image.open(c.path) as im:
+            tall = c.path.parent / feed.TALL_DIR / c.path.name
+            full.append(tall.exists())
+            with Image.open(tall if full[-1] else c.path) as im:
                 im = im.convert("RGB")
                 ch = round(w * im.height / im.width)
                 self.cards.append(im.resize((w, ch), Image.Resampling.LANCZOS))
-        tallest = max(c.height for c in self.cards)
+        tallest = max((c.height for c, f in zip(self.cards, full, strict=True) if not f), default=0)
         # 슬라이드가 아래로 넘치지 않게 (1:1 피드 등)
         self.top = min(round(cfg.top * h), max(0, h - tallest))
+        # 장마다 위쪽 끝. 9:16 판은 화면을 꽉 채운다
+        self.tops = [0 if f else self.top for f in full]
 
     def at(self, t: float) -> Image.Image:
         n = len(self.clips)
@@ -132,14 +139,14 @@ class Frames:
             prev = self.cards[i - 1]
             if self.cfg.transition == "fade":
                 a, b = frame.copy(), frame.copy()
-                a.paste(prev, (0, self.top))
-                b.paste(cur, (0, self.top))
+                a.paste(prev, (0, self.tops[i - 1]))
+                b.paste(cur, (0, self.tops[i]))
                 return Image.blend(a, b, p)
             w = self.size[0]
-            frame.paste(prev, (round(-p * w), self.top))
-            frame.paste(cur, (round((1 - p) * w), self.top))
+            frame.paste(prev, (round(-p * w), self.tops[i - 1]))
+            frame.paste(cur, (round((1 - p) * w), self.tops[i]))
             return frame
-        frame.paste(cur, (0, self.top))
+        frame.paste(cur, (0, self.tops[i]))
         return frame
 
 

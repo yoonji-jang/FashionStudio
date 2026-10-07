@@ -261,3 +261,29 @@ def test_look_credit_line(tmp_path):
     assert with_credit.tobytes() != without.tobytes()
     cover = credit_overlay(Image.new("RGB", size, "#808080"), profile)
     assert cover.size == size
+
+
+def test_reel_version_extends_floor(tmp_path):
+    """reels.fill: 4:5 코디컷 위아래에 바닥을 이어 붙인 9:16 판. 피드 장은 그대로 4:5, 글자는
+    4:5 장을 릴스에 올렸을 때와 같은 화면 자리."""
+    from PIL import Image
+
+    from core.profile import load_profile
+    from tools import feed
+
+    profile = load_profile("women")
+    src = tmp_path / "look.jpg"
+    Image.new("RGB", (1080, 1350), (150, 160, 170)).save(src, quality=100)
+    big = feed.extend_floor(Image.open(src).convert("RGB"))
+    assert big.size == feed.TALL_SIZE
+    for y in (5, 1915):  # 늘린 곳도 같은 바닥색
+        assert all(
+            abs(a - b) <= 3 for a, b in zip(big.getpixel((540, y)), (150, 160, 170), strict=True)
+        )
+    lines = [feed.LookLine("상의", "니트", "스토어", None)]
+    assert feed.look_slide(src, lines, 1, profile, (1080, 1350)).size == (1080, 1350)
+    assert feed.look_slide(src, lines, 1, profile, feed.TALL_SIZE).size == feed.TALL_SIZE
+    tp = feed.tall_profile(profile)
+    want = profile.reels.top * 1920 + 1350 - 1350 * profile.looks.bottom
+    assert 1920 * (1 - tp.looks.bottom) == pytest.approx(want)
+    assert tp.looks.bottom > 0.2  # 인스타 캡션이 덮는 아래쪽보다 위

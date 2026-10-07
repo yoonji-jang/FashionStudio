@@ -59,6 +59,19 @@ def test_frames_slide_like_carousel(tmp_path):
     assert fr.at(fr.starts[1] + 0.5).getpixel((10, 100)) == right
 
 
+def test_tall_slides_fill_the_screen(tmp_path):
+    """9:16 코디컷 날: 슬라이드 폴더 tall/ 판이 있는 장은 화면을 꽉 채우고, 없는 장은 위쪽에."""
+    paths = slides(tmp_path, ("01_cover", "02_look1", "03_comment"))
+    (tmp_path / "tall").mkdir()
+    for p in paths[:2]:
+        Image.new("RGB", (1080, 1920), (10, 200, 10)).save(tmp_path / "tall" / p.name, quality=100)
+    cfg = Reels(top=0.1)
+    fr = reels.Frames(reels.timeline(paths, cfg), cfg, "#E7E9EB", size=(108, 192))
+    assert fr.tops == [0, 0, fr.top] and fr.top > 0
+    assert fr.at(0).getpixel((5, 2))[1] > 190  # 위쪽 띠 없이 9:16 판
+    assert fr.at(fr.starts[2]).getpixel((5, 2)) == (231, 233, 235)  # 댓글 장은 그대로
+
+
 def test_music_rotates_by_date(tmp_path):
     folder = tmp_path / "music"
     folder.mkdir()

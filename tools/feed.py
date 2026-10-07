@@ -17,11 +17,13 @@ from __future__ import annotations
 
 import argparse
 import re
+import shutil
 import sys
 from dataclasses import dataclass
 from pathlib import Path
 
 import httpx
+import numpy as np
 import yaml
 from PIL import Image, ImageDraw, ImageFilter, ImageOps
 from pydantic import ValidationError
@@ -35,6 +37,9 @@ from tools.overlay import load_font
 from tools.photoroom import trim_alpha
 
 MAX_SLIDES = 10  # 인스타 캐러셀 한도
+# 표지·벌 장의 릴스용 9:16 판 (슬라이드 폴더 안, profile reels.fill). 코디컷 위아래 바닥을 늘린다
+TALL_DIR = "tall"
+TALL_SIZE = (1080, 1920)
 BASE = overlay.BASE_WIDTH
 
 
@@ -374,23 +379,87 @@ def fill_ratio(card: Card, layout: dict | None = None) -> float:
 
 
 def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: Path) -> Image.Image:
-    img = ImageOps.fit(Image.open(root / spec.cover).convert("RGB"), size, Image.LANCZOS)
+    """표지. size 가 9:16 이면 코디컷 위아래 바닥을 늘린 릴스용 판."""
+    tall = size == TALL_SIZE
+    img = open_outfit(root / spec.cover, tall)
+    img = ImageOps.fit(img, size, Image.LANCZOS)
+    if tall:
+        profile = tall_profile(profile)
     if not spec.cover_has_title:
         img = overlay.apply(img, spec.title_lines, profile.visual)
     if spec.looks and profile.looks.credit:
-        img = credit_overlay(img, profile)
+        img = credit_overlay(img, profile, slide_bottom(profile) if tall else None)
     return img
 
 
-def credit_overlay(img: Image.Image, profile: Profile) -> Image.Image:
-    """표지 오른쪽 아래에 이미지 출처 한 줄 (profile looks.credit)."""
+def open_outfit(path: Path, tall: bool = False) -> Image.Image:
+    """코디컷. tall 이면 위아래 바닥을 늘려 9:16 으로."""
+    img = Image.open(path).convert("RGB")
+    return extend_floor(img) if tall and img.height / img.width < 1.6 else img
+
+
+def extend_floor(img: Image.Image, size: tuple[int, int] = TALL_SIZE) -> Image.Image:
+    """4:5 코디컷의 위아래에 바닥을 이어 붙여 9:16 으로 (AI 없이, 2026-10-07 사용자).
+    가장자리 줄의 열마다 중간값 색을 부드럽게 이어 칠하고, 가장자리를 뒤집어 흐린 결을
+    약하게 얹어 바닥 질감이 끊기지 않게 한다. 코디컷 지시문이 가장자리를 바닥으로 비워 둔다."""
+    w, h = size
+    fh = round(w * img.height / img.width)
+    im = img.resize((w, fh), Image.Resampling.LANCZOS)
+    pad_top = (h - fh) // 2
+    pad_bot = h - fh - pad_top
+    a = np.asarray(im).astype(np.float32)
+    edge = max(8, round(fh * 0.06))
+
+    def strip(band: np.ndarray, pad: int) -> np.ndarray:
+        col = np.median(band, axis=0)[None].astype(np.uint8)
+        tone = Image.fromarray(col).filter(ImageFilter.GaussianBlur(40))
+        tone_a = np.asarray(tone).astype(np.float32)
+        tex = ImageOps.flip(Image.fromarray(band.astype(np.uint8))).resize((w, pad))
+        tex_a = np.asarray(tex.filter(ImageFilter.GaussianBlur(6))).astype(np.float32)
+        return tone_a + (tex_a - tex_a.mean(axis=0, keepdims=True)) * 0.6
+
+    out = np.empty((h, w, 3), np.float32)
+    out[pad_top : pad_top + fh] = a
+    if pad_top:
+        out[:pad_top] = strip(a[:edge], pad_top)
+    if pad_bot:
+        out[pad_top + fh :] = strip(a[fh - edge :], pad_bot)
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+
+
+def slide_bottom(profile: Profile) -> float:
+    """릴스 화면(9:16)에 4:5 장을 reels.top 에 올렸을 때 장의 아래 끝 (픽셀)."""
+    w, h = TALL_SIZE
+    return profile.reels.top * h + w * 5 / 4
+
+
+def tall_profile(profile: Profile) -> Profile:
+    """릴스용 9:16 판: 글자(제목·계정·상품 정보)를 4:5 장을 릴스에 올렸을 때와 같은 화면
+    자리에 둔다. 아래쪽은 인스타 캡션·버튼이 덮어서 글자를 내리지 않는다."""
+    h = TALL_SIZE[1]
+    bottom = slide_bottom(profile)
+    p = profile.model_copy(deep=True)
+
+    def move(b: float) -> float:
+        return 1 - (bottom - TALL_SIZE[0] * 5 / 4 * b) / h
+
+    p.looks.bottom = move(p.looks.bottom)
+    p.visual.title_bottom = move(p.visual.title_bottom)
+    p.visual.logo_bottom = move(p.visual.logo_bottom)
+    return p
+
+
+def credit_overlay(img: Image.Image, profile: Profile, bottom: float | None = None) -> Image.Image:
+    """표지 오른쪽 아래에 이미지 출처 한 줄 (profile looks.credit). bottom 은 글자를 둘 아래 끝
+    (픽셀, 없으면 이미지 아래 끝)."""
     lk = profile.looks
     w, h = img.size
     k = w / BASE
     font = load_font(profile.feed.body_font, round(lk.credit_size * k))
     margin = round(w * profile.feed.margin_x)
     x = w - margin - font.getlength(drawable(lk.credit))
-    items = [((x, h - margin * 0.6), drawable(lk.credit), font, lk.sub_color)]
+    y = (h if bottom is None else bottom) - margin * 0.6
+    items = [((x, y), drawable(lk.credit), font, lk.sub_color)]
     layer = overlay.text_layer(img.size, items, profile.visual.text_shadow, blur=6 * k)
     return Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
 
@@ -439,9 +508,13 @@ def look_slide(
     profile: Profile,
     size: tuple[int, int],
 ) -> Image.Image:
-    """벌 장: 코디컷 위 왼쪽 아래(표지 제목 자리, 코디컷 지시문이 비워 둠)에 상품 정보 몇 줄."""
+    """벌 장: 코디컷 위 왼쪽 아래(표지 제목 자리, 코디컷 지시문이 비워 둠)에 상품 정보 몇 줄.
+    size 가 9:16 이면 코디컷 위아래 바닥을 늘린 릴스용 판."""
+    tall = size == TALL_SIZE
+    if tall:
+        profile = tall_profile(profile)
     lk, v = profile.looks, profile.visual
-    img = ImageOps.fit(Image.open(image).convert("RGB"), size, Image.LANCZOS).convert("RGBA")
+    img = ImageOps.fit(open_outfit(image, tall), size, Image.LANCZOS).convert("RGBA")
     w, h = size
     k = w / BASE
     img = Image.alpha_composite(
@@ -786,9 +859,10 @@ def render(
     profile: Profile | None = None,
     store: Store | None = None,
     photo_dir: Path | None = None,
+    tall: bool = False,
 ) -> list[Path]:
     """슬라이드를 out/01_cover.jpg, 02_아우터.jpg (벌 장은 02_look1.jpg) … 로 저장하고
-    순서대로 경로를 돌려준다."""
+    순서대로 경로를 돌려준다. tall 이면 표지·벌 장의 릴스용 9:16 판을 out/tall/ 에 같은 이름으로."""
     profile = profile or load_profile(spec.account)
     size = canvas_size(profile)
     kinds = [k for k in profile.feed.slides if k != "cover" or spec.cover]
@@ -804,16 +878,21 @@ def render(
     if count > MAX_SLIDES:
         raise ValueError(f"슬라이드가 {count}장입니다 (최대 {MAX_SLIDES}장). 상품 수를 줄이세요")
     out.mkdir(parents=True, exist_ok=True)
+    shutil.rmtree(out / TALL_DIR, ignore_errors=True)
     paths: list[Path] = []
 
-    def save(img: Image.Image, name: str) -> None:
+    def save(img: Image.Image, name: str, tall: Image.Image | None = None) -> None:
         path = out / f"{len(paths) + 1:02d}_{name}.jpg"
         save_slide(img, path, profile)
         paths.append(path)
+        if tall is not None:  # 릴스는 9:16 판을 쓴다 (tools.reels)
+            (out / TALL_DIR).mkdir(exist_ok=True)
+            save_slide(tall, out / TALL_DIR / path.name, profile)
 
     for kind in kinds:
         if kind == "cover":
-            save(cover_slide(spec, profile, size, root), "cover")
+            big = cover_slide(spec, profile, TALL_SIZE, root) if tall else None
+            save(cover_slide(spec, profile, size, root), "cover", big)
         elif kind == "products":
             for i, card in enumerate(cards, 1):
                 save(product_slide(card, i, profile, size), card.category)
@@ -821,7 +900,9 @@ def render(
             products = {p.id: p for p in (store or Store(spec.account)).products()}
             for n, look in shown:
                 lines = look_lines(look, spec.account, products=products)
-                save(look_slide(root / look.image, lines, n, profile, size), f"look{n}")
+                image = root / look.image
+                big = look_slide(image, lines, n, profile, TALL_SIZE) if tall else None
+                save(look_slide(image, lines, n, profile, size), f"look{n}", big)
         elif kind == "comment":
             save(comment_slide(profile, size), "comment")
         else:
