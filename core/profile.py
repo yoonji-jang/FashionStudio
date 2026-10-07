@@ -233,6 +233,9 @@ class Looks(BaseModel):
     max_same_kind: int | None = None
     # 소품(주얼리·양말·모자·벨트·시계)이 있는 벌이 이보다 적으면 경고 (2026-10-06)
     min_accessory_looks: int | None = None
+    # 상의·아우터 종류별 최대 벌 수. 이름에 그 말이 든 상의·아우터가 있는 벌을 센다
+    # (2026-10-07 "전부 셔츠고 너무 무난한 기본템"). 예: {셔츠: 2, 베스트: 2}
+    type_limits: dict[str, int] = {}
     candidates: int = Field(
         default=1, ge=1, le=3
     )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)

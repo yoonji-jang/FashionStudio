@@ -129,6 +129,23 @@ def test_accessory_warning(store):
     assert plan.accessory_warnings(p, profile, products) == []
 
 
+def test_type_warning(store):
+    # 2026-10-07 "전부 셔츠고 너무 무난한 기본템": 셔츠 상의가 든 벌은 두 벌까지
+    profile = load_profile("women")
+    assert profile.looks.type_limits.get("셔츠") == 2
+    p = looks_plan()
+    products = {x.id: x for x in store.products()}
+    assert plan.type_warnings(p, profile, products) == []
+    for look in p.looks[:3]:
+        top = next(
+            products[it.product] for it in look.items if products[it.product].category == "상의"
+        )
+        products[top.id] = top.model_copy(update={"name": top.name + " 오버핏 셔츠"})
+    assert plan.type_warnings(p, profile, products) == [
+        "'셔츠' 상의가 3벌에 들어 있습니다 (최대 2벌, 맨투맨·헨리넥·니트 등으로 섞기)"
+    ]
+
+
 def test_single_plan_rejected_when_looks_enabled(store):
     from tests.test_plan import daily
 
