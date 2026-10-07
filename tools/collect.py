@@ -66,7 +66,9 @@ def quality(p: Product, profile: Profile | None = None) -> float:
     if profile and is_point(p, profile):
         base *= 1.3
     if profile and name_excluded(p.name, profile.style.basic_words):
-        base *= 0.6
+        cats = profile.style.basic_penalty_categories
+        if not cats or p.category in cats:
+            base *= 0.6
     return base
 
 

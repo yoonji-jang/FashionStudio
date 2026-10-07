@@ -44,6 +44,17 @@ class Style(BaseModel):
     inner_words: list[str] = []
     max_patterns: int | None = None
     max_accessories: int | None = None
+    # basic_words 감점을 이 카테고리에만 (비면 전부). 무지 하의·신발·가방은 바탕이라 남긴다
+    basic_penalty_categories: list[str] = []
+    # 한 벌로 묶기 (2026-10-07 "상의 하의가 따로 놀고 색감·재질 조합이 이상하다")
+    # 이름에 이 말이 있는 상의는 맨 바깥에만 (위에 아우터·다른 상의를 입히지 않음, 래글런 등)
+    outer_only_words: list[str] = []
+    # 한 벌에 두 쪽 말이 같이 있으면 재질 분위기가 섞인 것 (스웨트·래글런 + 새틴·핀스트라이프)
+    casual_words: list[str] = []
+    dressy_words: list[str] = []
+    # 색 계열 → 색 옵션에 나오는 말. 한 벌(소품 빼고)의 계열 수가 max_colors 를 넘으면 경고
+    color_families: dict[str, list[str]] = {}
+    max_colors: int | None = None
 
 
 class SlotRule(BaseModel):

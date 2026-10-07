@@ -300,6 +300,53 @@ def text_problems(text: str, profile: Profile, where: str) -> list[str]:
     return [f"{where}: 금지 표현 '{w}'" for w in profile.copy_rules.banned if w in text]
 
 
+def color_families(text: str, families: dict[str, list[str]]) -> set[str]:
+    """색 옵션·설명 글에 나오는 색 계열 (profile style.color_families)."""
+    return {fam for fam, words in families.items() if any(w in text for w in words)}
+
+
+def unity_warnings(where: str, group: list, products: dict, profile: Profile) -> list[str]:
+    """한 벌로 묶이는지: 색 계열 수, 재질 분위기, 맨 바깥에만 입는 상의 (2026-10-07)."""
+    st = profile.style
+    out = []
+    pairs = [(it, products[it.product]) for it in group if it.product in products]
+    if st.color_families and st.max_colors is not None:
+        fams: set[str] = set()
+        for it, p in pairs:
+            # 색 옵션을 고른 상품만 센다 (설명 글은 "블루종"처럼 색이 아닌 말이 섞임)
+            if p.category == "소품" or not it.color:
+                continue
+            fams |= color_families(it.color, st.color_families)
+        if len(fams) > st.max_colors:
+            out.append(
+                f"{where}색 계열이 {len(fams)}개입니다 ({'·'.join(sorted(fams))}, "
+                f"가방·신발까지 최대 {st.max_colors}개, styling.md 한 벌로 묶기)"
+            )
+    names = [p.name for _, p in pairs]
+    if st.casual_words and st.dressy_words:
+        casual = [n for n in names if name_excluded(n, st.casual_words)]
+        dressy = [n for n in names if name_excluded(n, st.dressy_words)]
+        if casual and dressy:
+            out.append(
+                f"{where}재질 분위기가 섞였습니다"
+                f" ({casual[0]} + {dressy[0]}, styling.md 한 벌로 묶기)"
+            )
+    if st.outer_only_words:
+        has_outer = any(p.category == "아우터" for _, p in pairs)
+        for it, p in pairs:
+            if p.category == "상의" and name_excluded(p.name, st.outer_only_words):
+                # 다른 상의가 이 상의 안에 받친 이너(wear_with)가 아니면 그 상의가 위에 겹친 것
+                over = any(
+                    q.category == "상의" and q is not p and not o.wear_with for o, q in pairs
+                )
+                if has_outer or it.wear_with or over:
+                    out.append(
+                        f"{where}{p.name}: 맨 바깥 상의로만 입힙니다"
+                        " (위에 아우터·다른 상의 금지, styling.md)"
+                    )
+    return out
+
+
 def busy_warnings(where: str, cats: list[str], items: list[Product], profile: Profile) -> list[str]:
     """겹 수·무늬·소품이 많아 답답해 보이는 벌 (profile style.max_*, 2026-10-06)."""
     st = profile.style
@@ -372,6 +419,7 @@ def check(
                 warns.append(f"{where}포인트 아이템(profile style.point_words)이 없습니다")
         picked = [products[it.product] for it in group if it.product in products]
         warns += busy_warnings(where, cats, picked, profile)
+        warns += unity_warnings(where, group, products, profile)
         for rule in rules.slots:
             if rule.required and rule.category not in cats:
                 errors.append(f"{where}필수 카테고리 {rule.category} 상품이 없습니다")
