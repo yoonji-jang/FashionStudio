@@ -389,6 +389,7 @@ def check(
         errors += looks_problems(plan, profile, products, draft)
         warns += same_kind_warnings(plan, profile, products)
         warns += accessory_warnings(plan, profile, products)
+        warns += type_warnings(plan, profile, products)
 
     if plan.looks:
         per = {"looks": len(plan.looks) - (0 if lk.repeat_cover_look else 1)}
@@ -569,6 +570,27 @@ def same_kind_warnings(plan: DailyPlan, profile: Profile, products: dict) -> lis
         for (cat, word), k in count.items()
         if k > limit
     ]
+
+
+def type_warnings(plan: DailyPlan, profile: Profile, products: dict) -> list[str]:
+    """셔츠·베스트처럼 같은 종류 상의가 여러 벌을 차지하는지 (profile looks.type_limits)."""
+    out = []
+    for word, limit in profile.looks.type_limits.items():
+        n = sum(
+            any(
+                (p := products.get(it.product)) is not None
+                and p.category in ("아우터", "상의")
+                and word in p.name
+                for it in look.items
+            )
+            for look in plan.looks
+        )
+        if n > limit:
+            out.append(
+                f"'{word}' 상의가 {n}벌에 들어 있습니다"
+                f" (최대 {limit}벌, 맨투맨·헨리넥·니트 등으로 섞기)"
+            )
+    return out
 
 
 def accessory_warnings(plan: DailyPlan, profile: Profile, products: dict) -> list[str]:
