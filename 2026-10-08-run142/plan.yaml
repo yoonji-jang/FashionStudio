@@ -1,0 +1,464 @@
+account: women
+date: '2026-10-08'
+theme:
+  date: '2026-10-08'
+  title_hint: 스웨이드 자켓과 가을 니트로 채우는 브라운 코디
+  mood: 초콜릿 브라운 톤온톤에 아이보리·블랙만 더해 차분하게 정리한 가을 컬러
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓 (세 벌까지
+  - category: 상의
+    desc: 아이보리 니트 또는 화이트 셔츠 한 장
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 가벼운 스웨이드 자켓 한 벌이 알맞음
+  search_terms:
+    상의:
+    - 아이보리 니트
+    아우터:
+    - 스웨이드 자켓
+items: []
+looks:
+- items:
+  - product: zigzag:168776088
+    color: 브라운
+    desc: 브라운 스웨이드 자켓 (brown suede oversized blazer-style jacket with notch lapels,
+      slightly dropped shoulders, ending just below the waist at the high hip, soft
+      matte suede)
+    name: 스웨이드 자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 4
+    - 1
+    size: about 63.5 cm long from shoulder to hem, 42 cm across the shoulders, 53
+      cm across the chest laid flat, 56 cm long sleeves
+    cm: 63.5
+  - product: zigzag:171834839
+    color: 화이트
+    desc: 화이트 헨리넥 니트 (white fitted slim henley-neck ribbed knit, waist-to-high-hip
+      length, thin soft rib, shallow V placket with small buttons)
+    name: 립 헨리넥 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 1
+    size: about 53 cm long from shoulder to hem, 33 cm across the shoulders, 37 cm
+      across the chest laid flat, 59 cm long sleeves
+    cm: 53.0
+  - product: zigzag:171292012
+    color: 연청
+    desc: 연청 빈티지 와이드 데님 (light vintage-wash blue wide-leg denim, relaxed mid rise,
+      full length reaching the floor with a slight flare at the hem)
+    name: 빈티지 와이드 데님
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 4
+    - 0
+    size: about 96 cm long from waist to hem, 36.5 cm across the waist laid flat,
+      51 cm across the hips laid flat, 27 cm across the hem laid flat
+    cm: 96.0
+  - product: zigzag:130117567
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 콘라드 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:105600542
+    color: 브라운
+    desc: 브라운 스웨이드 슬링백 힐 (brown suede slingback heels)
+    name: 스웨이드 슬링백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  - product: zigzag:169325375
+    color: 골드
+    desc: 골드 미니 물방울 원터치 귀걸이 (exactly one pair (two earrings) of small chunky gold
+      teardrop hoop earrings)
+    name: 미니 물방울 귀걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    slot: 귀걸이
+  - product: zigzag:130846670
+    color: 브라운
+    desc: 브라운 가죽 시계 (small round gold-tone watch with a brown leather strap)
+    name: 레더 시계
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+    slot: 팔찌
+  reason: 브라운 스웨이드 자켓이 주인공, 화이트 니트와 연청 와이드 데님, 브라운 백과 슬링백으로 정리한 가장 안전한 조합
+  point: 브라운 자켓 안에 화이트 니트를 받쳐 입으니 한결 가벼워 보여요 🤎
+  pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+    in her twenties with long straight dark-brown hair past her shoulders; she walks
+    along a narrow sidewalk beside an old cream-colored wall in low late-afternoon
+    sun with soft tree shadows on the wall, caught mid-step slightly from the side,
+    holding a small bouquet wrapped in paper against her chest, her head tilted down
+    toward the flowers so her hair falls over most of her face'
+- items:
+  - product: zigzag:165758501
+    color: 베이지
+    desc: 베이지 스웨이드 노카라 크롭 자켓 (camel beige suede collarless boxy cropped jacket, cropped
+      at the waist, snap-button front, slightly dropped shoulders)
+    name: 노카라 스웨이드 자켓
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 47.5 cm long from shoulder to hem, 36 cm across the shoulders, 50
+      cm across the chest laid flat, 59 cm long sleeves
+    cm: 47.5
+  - product: zigzag:128321624
+    color: 화이트
+    desc: 화이트 슬림핏 셔츠 (white slim-fit crisp cotton poplin shirt, hip length, classic
+      collar)
+    name: 슬림핏 셔츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:171326924
+    color: 블랙
+    desc: 블랙 커브드 와이드 슬랙스 (black high-rise curved barrel wide-leg slacks, full length
+      to the floor, smooth slightly stiff wool-like fabric)
+    name: 커브드 슬랙스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 4
+    size: about 101 cm long from waist to hem, 36 cm across the waist laid flat, 54.5
+      cm across the hips laid flat, 30 cm across the hem laid flat
+    cm: 101.0
+  - product: zigzag:164013796
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 노아르 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:130568193
+    color: 블랙
+    desc: 블랙 페니로퍼 (black penny loafers)
+    name: 플랫폼 페니로퍼
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 1
+    - 2
+  - product: zigzag:143131438
+    color: 블랙
+    desc: 블랙 골드 버클 슬림 벨트 (thin black leather belt with a small gold buckle)
+    name: 골드버클 슬림벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 하의
+  - product: zigzag:135593307
+    color: 실버
+    desc: 실버 체인볼 하트 레이어드 목걸이 (thin silver ball-chain necklace with a tiny silver heart
+      pendant)
+    name: 하트 레이어드 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 샌드 스웨이드 크롭 자켓이 주인공, 화이트 셔츠와 블랙 슬랙스로 깔끔한 출근룩
+  point: 크롭 기장 자켓이라 블랙 슬랙스와 비율이 좋아요
+  pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+    in her twenties with long straight dark-brown hair past her shoulders; she sits
+    on a low stone step in front of an old red-brick building, feet on the pavement
+    and both shoes in view, raising a paper takeaway coffee cup to her lips with one
+    hand, her eyes looking down and away from the camera; the bag rests beside her
+    on the step'
+- items:
+  - product: zigzag:168315470
+    color: 블랙
+    desc: 블랙 스웨이드 블루종 (black oversized boxy suede blouson, dropped shoulders, zip
+      front with a flat collar, ribbed elastic hem, hip length)
+    name: 스웨이드 블루종
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 3
+    - 1
+    size: about 61 cm long from shoulder to hem, 54.5 cm across the shoulders, 68
+      cm across the chest laid flat, 60 cm long sleeves
+    cm: 61.0
+  - product: zigzag:171220393
+    color: 화이트
+    desc: 화이트 기본핏 셔츠 (white regular relaxed-fit shirt, hip length, smooth lightweight
+      poplin with a faint sheen)
+    name: 기본핏 셔츠
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 4
+    - 2
+    size: about 63 cm long from shoulder to hem, 39 cm across the shoulders, 51.5
+      cm across the chest laid flat
+    cm: 63.0
+  - product: zigzag:171322447
+    color: 진청
+    desc: 진청 와이드 데님 (dark indigo wide straight-leg denim, relaxed mid-low rise, full
+      length stacking slightly at the floor)
+    name: 딥나이트 데님
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 2
+    - 1
+    - 0
+    size: about 106 cm long from waist to hem, 39 cm across the waist laid flat, 52
+      cm across the hips laid flat, 26.5 cm across the hem laid flat
+    cm: 106.0
+  - product: zigzag:130366243
+    color: 브라운
+    desc: 브라운 스웨이드 호보 숄더백 (brown suede shoulder bag)
+    name: 마리백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:114193909
+    color: 블랙
+    desc: 블랙 라운드 페니로퍼 (black round-toe penny loafers)
+    name: 라운드 페니로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  - product: zigzag:127748170
+    color: 블랙
+    desc: 블랙 가죽 시계 (small round silver-tone watch with a black leather strap)
+    name: 레더 시계
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    slot: 팔찌
+  - product: zigzag:139297257
+    color: 실버
+    desc: 실버 물방울 링 귀걸이 (exactly one pair (two earrings) of small chunky silver teardrop
+      hoop earrings)
+    name: 물방울 링 귀걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 0
+    slot: 귀걸이
+  reason: 블랙 스웨이드 블루종이 주인공, 화이트 셔츠와 진청 데님에 브라운 백으로 포인트
+  point: 넉넉한 블루종에 진청 데님을 맞추고 브라운 백으로 포인트 🖤
+  pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+    in her twenties with long straight dark-brown hair past her shoulders; she sits
+    sideways on a simple folding chair at a small outdoor cafe table on the pavement,
+    legs crossed so both shoes show, smiling down at a cup of coffee on the table,
+    her face turned three-quarters away from the camera and partly behind her hair'
+- items:
+  - product: zigzag:145307180
+    color: 올리브
+    desc: 올리브 케이블 니트 가디건 (olive green fitted cable-knit cardigan, cropped at the waist,
+      round neck, button front, ribbed hem)
+    name: 케이블 가디건
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:168608209
+    color: 화이트
+    desc: 화이트 셔츠 (white fitted slim stretch-cotton shirt, high-hip length with a curved
+      shirt-tail hem, classic collar)
+    name: 링클프리 셔츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    - 0
+    size: about 56 cm long from shoulder to hem, 41 cm across the shoulders, 47.5
+      cm across the chest laid flat, 60.5 cm long sleeves
+    cm: 56.0
+  - product: zigzag:166121440
+    color: 브라운
+    desc: 브라운 벌룬 와이드 팬츠 (brown high-rise balloon wide-leg pants, tapered and gathered
+      at the ankle, ankle length, soft cotton)
+    name: 코튼 와이드 팬츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 98 cm long from waist to hem, 32.5 cm across the waist laid flat,
+      68 cm across the hips laid flat, 33 cm across the hem laid flat
+    cm: 98.0
+  - product: zigzag:170726447
+    color: 블랙
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 아비오 백
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 1
+    - 0
+  - product: zigzag:108185036
+    color: 블랙
+    desc: 블랙 벨벳 메리제인 플랫 (black velvet Mary Jane flats)
+    name: 메리제인 플랫
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:165791922
+    color: 블랙
+    desc: 블랙 슬림 가죽 벨트 (black leather belt with a thin silver pin buckle)
+    name: 슬림 가죽 벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 하의
+  - product: zigzag:135593307
+    color: 실버
+    desc: 실버 체인볼 하트 레이어드 목걸이 (thin silver ball-chain necklace with a tiny silver heart
+      pendant)
+    name: 하트 레이어드 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 올리브 케이블 가디건이 주인공, 화이트 셔츠와 브라운 벌룬 팬츠로 가까운 색끼리 단정하게
+  point: 올리브 가디건 속 셔츠 깃이 살짝 보여 단정해요
+  pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+    in her twenties with long straight dark-brown hair past her shoulders; she walks
+    past the paned glass doors of an old wooden cafe storefront, photographed from
+    the side as she passes, a paper takeaway coffee cup in one hand, her head turned
+    slightly away from the camera toward the street ahead'
+- items:
+  - product: zigzag:171212289
+    color: 에스프레소 브라운
+    desc: 에스프레소 브라운 헨리넥 오버핏 니트 (dark espresso brown oversized henley-neck knit, dropped
+      shoulders, long sleeves gathered at the cuffs, hem at the high hip, wide open
+      deep neckline with a short 2-3 button placket and a flat folded collar, soft
+      thin brushed jersey knit)
+    name: 헨리넥 오버핏 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 60.5 cm long from shoulder to hem, 52 cm across the shoulders, 58.5
+      cm across the chest laid flat, 58.5 cm long sleeves
+    cm: 60.5
+  - product: zigzag:169324070
+    color: 화이트
+    desc: 화이트 홀터탑 (thin plain white halter-neck tank top, fitted, waist length, smooth
+      soft jersey)
+    name: 베이직 홀터탑
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 상의
+  - product: zigzag:165483425
+    color: 연청
+    desc: 연청 플레어 데님 (light blue high-rise flared denim, slim through the thigh and
+      flaring from the knee, full length covering the ankle, faded light wash)
+    name: 연청 플레어 데님
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+    - 1
+    size: about 99 cm long from waist to hem, 34 cm across the waist laid flat, 44
+      cm across the hips laid flat, 28 cm across the hem laid flat
+    cm: 99.0
+  - product: zigzag:169750197
+    color: 브라운
+    desc: 브라운 위빙 호보백 (brown woven hobo bag)
+    name: 포그 호보백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+  - product: zigzag:114193909
+    color: 블랙
+    desc: 블랙 라운드 페니로퍼 (black round-toe penny loafers)
+    name: 라운드 페니로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  - product: zigzag:154156593
+    color: 실버
+    desc: 실버 빈 펜던트 롱 목걸이 (long silver chain necklace with a small bean pendant)
+    name: 빈 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 에스프레소 브라운 헨리넥 니트가 주인공, 안에 얇은 화이트 홀터탑을 레이어드하고 연청 플레어 데님, 블랙 로퍼로 마무리
+  point: 깊게 파인 니트 사이로 화이트 홀터탑이 보여 가볍게 풀어 줘요
+  styling: No jacket is worn. A thin plain white halter-neck tank is layered inside
+    the dark brown henley knit, and its halter neckline and top edge show at the wide
+    open deep neckline of the knit. The knit is tucked in at the front so the waistband
+    shows.
+  pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+    in her twenties with long straight dark-brown hair past her shoulders; she stands
+    browsing a book cart on the pavement in front of an old used bookshop, seen from
+    behind at a three-quarter angle, her head bowed toward the books in her hands
+    so only a sliver of her cheek shows'
+reason: 브라운 스웨이드를 주인공으로 하되 아우터와 색 조합을 바꿔 여덟 가지로 (앞 여섯 벌이 기본, 뒤 두 벌은 예비)
+text:
+  title_lines:
+  - 어제 그 코디, 입으면 이런 느낌
+  - 스웨이드와 니트 가을 코디 모음
+  intro: 어제 올린 코디, 직접 입으면 이런 느낌이에요 🍂
+  points: []
+  hashtags:
+  - '#스웨이드자켓'
+  - '#브라운코디'
+  - '#가을코디'
+  - '#모델컷'
+  - '#간절기코디'
+  - '#일교차코디'
+shot: model
+source_run: 2026-10-07-run138
+mood: a candid 35mm film snapshot like the outfit photos people save on Pinterest,
+  taken by a friend on an ordinary street or in a real interior in Seoul, golden late-afternoon
+  sun or soft window light, warm muted film colors, soft contrast

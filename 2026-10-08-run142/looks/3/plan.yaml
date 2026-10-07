@@ -1,0 +1,131 @@
+account: women
+date: '2026-10-08'
+items:
+- cm: 61.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스웨이드 블루종 (black oversized boxy suede blouson, dropped shoulders, zip front
+    with a flat collar, ribbed elastic hem, hip length)
+  name: 스웨이드 블루종
+  product: zigzag:168315470
+  ref_photos:
+  - 3
+  - 1
+  size: about 61 cm long from shoulder to hem, 54.5 cm across the shoulders, 68 cm
+    across the chest laid flat, 60 cm long sleeves
+- cm: 63.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 기본핏 셔츠 (white regular relaxed-fit shirt, hip length, smooth lightweight
+    poplin with a faint sheen)
+  name: 기본핏 셔츠
+  product: zigzag:171220393
+  ref_photos:
+  - 5
+  - 4
+  - 2
+  size: about 63 cm long from shoulder to hem, 39 cm across the shoulders, 51.5 cm
+    across the chest laid flat
+- cm: 106.0
+  color: 진청
+  comment: ''
+  cutout_photo: 1
+  desc: 진청 와이드 데님 (dark indigo wide straight-leg denim, relaxed mid-low rise, full
+    length stacking slightly at the floor)
+  name: 딥나이트 데님
+  product: zigzag:171322447
+  ref_photos:
+  - 2
+  - 1
+  - 0
+  size: about 106 cm long from waist to hem, 39 cm across the waist laid flat, 52
+    cm across the hips laid flat, 26.5 cm across the hem laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 1
+  desc: 브라운 스웨이드 호보 숄더백 (brown suede shoulder bag)
+  name: 마리백
+  product: zigzag:130366243
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 라운드 페니로퍼 (black round-toe penny loafers)
+  name: 라운드 페니로퍼
+  product: zigzag:114193909
+  ref_photos:
+  - 0
+  - 1
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 가죽 시계 (small round silver-tone watch with a black leather strap)
+  name: 레더 시계
+  product: zigzag:127748170
+  ref_photos:
+  - 0
+  - 1
+  slot: 팔찌
+- color: 실버
+  comment: ''
+  cutout_photo: 5
+  desc: 실버 물방울 링 귀걸이 (exactly one pair (two earrings) of small chunky silver teardrop
+    hoop earrings)
+  name: 물방울 링 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 5
+  - 0
+  slot: 귀걸이
+looks: []
+mood: a candid 35mm film snapshot like the outfit photos people save on Pinterest,
+  taken by a friend on an ordinary street or in a real interior in Seoul, golden late-afternoon
+  sun or soft window light, warm muted film colors, soft contrast
+pose: 'the same fictional woman in every photo of the series: a slim Korean woman
+  in her twenties with long straight dark-brown hair past her shoulders; she sits
+  sideways on a simple folding chair at a small outdoor cafe table on the pavement,
+  legs crossed so both shoes show, smiling down at a cup of coffee on the table, her
+  face turned three-quarters away from the camera and partly behind her hair'
+reason: 블랙 스웨이드 블루종이 주인공, 화이트 셔츠와 진청 데님에 브라운 백으로 포인트
+shot: model
+source_run: 2026-10-07-run138
+text:
+  hashtags:
+  - '#스웨이드자켓'
+  - '#브라운코디'
+  - '#가을코디'
+  - '#모델컷'
+  - '#간절기코디'
+  - '#일교차코디'
+  intro: 어제 올린 코디, 직접 입으면 이런 느낌이에요 🍂
+  points: []
+  title_lines:
+  - 어제 그 코디, 입으면 이런 느낌
+  - 스웨이드와 니트 가을 코디 모음
+theme:
+  date: '2026-10-08'
+  mood: 초콜릿 브라운 톤온톤에 아이보리·블랙만 더해 차분하게 정리한 가을 컬러
+  search_terms:
+    상의:
+    - 아이보리 니트
+    아우터:
+    - 스웨이드 자켓
+  slots:
+  - category: 아우터
+    desc: 브라운 스웨이드 자켓 (세 벌까지
+  - category: 상의
+    desc: 아이보리 니트 또는 화이트 셔츠 한 장
+  - category: 하의
+    desc: 아이보리 와이드 데님
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 브라운 슬링백
+  title_hint: 스웨이드 자켓과 가을 니트로 채우는 브라운 코디
+  type: 컬러무드
+  why: 수요일, 한낮엔 따뜻하고 아침저녁은 선선해 가벼운 스웨이드 자켓 한 벌이 알맞음
