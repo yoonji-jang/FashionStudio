@@ -60,8 +60,9 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
     queries: [가을 데일리룩 코디, 여자 캐주얼 시크 코디, 레이어드 코디 추천, 꾸안꾸 코디 매거진, 룩북 가을 여성]
     sources: [패션 매거진 코디 기사, 브랜드 룩북, 무신사·29CM·W컨셉 코디·스냅 페이지, 패션 블로그]
     avoid_sites: [instagram.com, pinterest.com, threads.net, facebook.com, tiktok.com]
-    # 29CM 은 robots.txt 가 일반 봇을 허용 (무신사는 막고, W컨셉은 robots.txt 부터 403 이라 글 검색만, 2026-10-07)
-    scout_sites: [29cm.co.kr]
+    # 사진만 있는 쇼핑몰 코디 페이지를 tools.scout refs 로 볼 사이트. 비움 (2026-10-07):
+    # 29CM 은 robots.txt 는 허용이지만 GitHub Actions 요청을 서버가 거절해서 뺐다. 무신사·29CM 은 웹 검색 글로만 참고
+    scout_sites: []
 
 product_source:
   name: zigzag
