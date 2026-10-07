@@ -16,6 +16,10 @@ on:
       then_candidates:
         description: 주제를 정한 뒤 이 게시 날짜의 코디 후보를 보냄 (schedule 이 씀)
         default: ""
+      refs_only:
+        description: 주제는 그대로 두고 참고 코디(ref_looks.md)만 더함 (웹 검색, 29CM 사진)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -63,6 +67,7 @@ jobs:
           echo "FIRST=$FIRST" >> "$GITHUB_ENV"
 
       - name: Claude 주간 주제 (plan-themes 스킬)
+        if: ${{ !inputs.refs_only }}
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -79,7 +84,24 @@ jobs:
             --max-turns 90
             --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
+      - name: Claude 참고 코디만 (plan-themes "참고 코디 모으기")
+        if: ${{ inputs.refs_only }}
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          allowed_bots: "github-actions"
+          prompt: |
+            .claude/skills/plan-themes/SKILL.md 의 "참고 코디 모으기"만 해. 주제는 정하지도 저장하지도 마.
+            ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
+            ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Bash(python -m tools.scout refs:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+
       - name: 텔레그램으로 보내기
+        if: ${{ !inputs.refs_only }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -93,7 +115,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git -c user.name="github-actions[bot]" \
             -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
-            commit -m "주간 주제 $ACCOUNT $FIRST"
+            commit -m "${{ inputs.refs_only && '참고 코디' || '주간 주제' }} $ACCOUNT $FIRST"
           for i in 1 2 3; do
             git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
             sleep $((i * 5))
@@ -101,7 +123,7 @@ jobs:
           exit 1
 
       - name: 코디 후보 보내기 요청
-        if: inputs.then_candidates != ''
+        if: inputs.then_candidates != '' && !inputs.refs_only
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
