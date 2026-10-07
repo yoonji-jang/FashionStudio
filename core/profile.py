@@ -371,6 +371,11 @@ class Reels(BaseModel):
     # 여러 곡이면 날짜마다 돌려 쓴다. 비어 있거나 없으면 소리 없는 영상
     music_dir: str | None = None
     music_volume: float = Field(default=0.8, ge=0, le=2)
+    # 이 날 수마다 새 곡을 코드로 만들어 music_dir 에 넣는다 (tools.music_gen, music 워크플로).
+    # null: 안 함
+    music_refresh_days: int | None = Field(default=None, ge=1)
+    music_refresh_count: int = Field(default=3, ge=1, le=10)  # 한 번에 만드는 곡 수
+    music_keep: int = Field(default=9, ge=1, le=60)  # 자동으로 만든 곡(gen_)은 최근 이만큼만 남김
     share_to_feed: bool = True  # 릴스를 프로필 그리드에도 보이게 (false: 릴스 탭에만)
     # telegram: reels_at 에 영상과 캡션을 텔레그램으로 보냄 (사람이 인스타 앱에서 음악을 붙여 올림.
     # 앱 음악은 게시 API 로 넣을 수 없다, 2026-10-06 사용자) / instagram: 자동 게시
