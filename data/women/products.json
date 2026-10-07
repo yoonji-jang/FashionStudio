@@ -131,6 +131,34 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:168232706",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168232706",
+    "shop": "어텀",
+    "name": "[made]헤링턴워싱점퍼",
+    "price": 62400,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://autumnshop.kr/web/product/extra/big/202601/42f1b46cf5c2e7ab3c29d5e2da035c6e.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202601/2448f4df9ce2001f082d4ac0ad36a890.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202601/ea0b103fb95c58c254fa40543f87e605.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202601/bcd78bc019ecebc1ae0f7b24070db7af.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 381,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:156289798",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/156289798",
@@ -682,6 +710,31 @@
     "checked_at": "2026-10-07"
   },
   {
+    "id": "zigzag:147514695",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147514695",
+    "shop": "로제프란츠",
+    "name": "Sketch Ribbon Hood Zip-up [Charcoal]",
+    "price": 58800,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://rosefrantz.com/web/product/big/202409/b7bf0334d878061c2cb279a4d0c4838f.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 184,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "모던시크"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:167553534",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/167553534",
@@ -1087,6 +1140,31 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:139890460",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/139890460",
+    "shop": "로빈유",
+    "name": "[HONEST, YOU] 스토리 블루종 점퍼 - jp(3color) [카라아우터 밴딩]",
+    "price": 70560,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.image-farm.s.zigzag.kr/original/ad/2026/4/6/202604061900400484_12349.png?width=720&height=720&quality=80&format=jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 204,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:159139237",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/159139237",
@@ -1110,6 +1188,39 @@
     "query": "스웨이드 자켓",
     "collected_at": "2026-10-02",
     "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:171988904",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171988904",
+    "shop": "스파오",
+    "name": "MIDDLEBURY 피그먼트 후드집업_SPMZG49GY0",
+    "price": 59900,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/25938_202609151525549319_63615.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/25938_202609151525553584_24206.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/25938_202609281419415223_39500.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/25938_202609281419403981_51535.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/25938_202609281419424939_76191.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/25938_202609281419409286_12824.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/16/25938_202609161028210393_21984.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/16/25938_202609161028218425_43426.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/25938_202609151525555801_51694.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 36,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "유니섹스"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
   },
   {
     "id": "zigzag:151171109",
@@ -1229,6 +1340,33 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:171318155",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171318155",
+    "shop": "미쏘",
+    "name": "[직잭단독🎀]오버핏 패치 후드집업_MIWJMG938C",
+    "price": 55920,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/11864_202608271505382158_77650.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/11864_202608271505375477_86110.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/11864_202608271505400234_40348.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.7,
+    "review_count": 91,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "오피스룩",
+      "캐주얼"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:171067691",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171067691",
@@ -1262,6 +1400,31 @@
     "checked_at": "2026-10-07"
   },
   {
+    "id": "zigzag:147514651",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/147514651",
+    "shop": "로제프란츠",
+    "name": "[10/16 예약발송] Sketch Ribbon Hood Zip-up [Black]",
+    "price": 58800,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://rosefrantz.com/web/product/big/202409/ef2c9fedce16fd675c3ea305dae5123b.jpg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.8,
+    "review_count": 65,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "모던시크"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:150918386",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/150918386",
@@ -1292,6 +1455,34 @@
     ],
     "query": "트위드 자켓",
     "collected_at": "2026-09-30",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:168498420",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168498420",
+    "shop": "어반드레스",
+    "name": "[SET] 티니 도트 트랙 후드 집업 + 티니 도트 트랙 팬츠",
+    "price": 81290,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/19/9035_202602190946260103_34218.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/19/9035_202602190946260457_86690.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/20/9035_202602201508190172_20629.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/2/20/9035_202602201508180983_80034.jpeg"
+    ],
+    "has_flat_shot": true,
+    "rating": 4.9,
+    "review_count": 22,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "컨템포러리"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
     "checked_at": "2026-10-07"
   },
   {
@@ -1387,6 +1578,35 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:148474230",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/148474230",
+    "shop": "로제프란츠",
+    "name": "Sketch Ribbon Hood Zip-up [5color]",
+    "price": 58800,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/20/11356_202409201154020822_68619.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/20/11356_202409201154020449_61429.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/20/11356_202409201154020690_30984.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/20/11356_202409201154030079_32944.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/9/20/11356_202409201154020952_89000.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 93,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "모던시크"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:168762309",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/168762309",
@@ -1409,6 +1629,34 @@
     ],
     "query": "크롭 레더자켓",
     "collected_at": "2026-10-04",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:167523946",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167523946",
+    "shop": "어텀",
+    "name": "[made]노튼코듀로이누빔점퍼",
+    "price": 65600,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://autumnshop.kr/web/product/extra/big/202512/c634e220e1d01d5dbc6bb54a88a459f4.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202512/109eccc1b5dde45268cee0fce035d274.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202512/3e867dca4f5ca14b167dfd35cc9d8ecf.jpg",
+      "https://autumnshop.kr/web/product/extra/big/202512/9798787d4558e0ea370cf9a2ebea03b6.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 32,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
     "checked_at": "2026-10-07"
   },
   {
@@ -1534,6 +1782,67 @@
     "checked_at": "2026-10-07"
   },
   {
+    "id": "zigzag:172088896",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/172088896",
+    "shop": "갭",
+    "name": "[🚚직진배송][🏆아우터랭킹] 갭 GAP 후드집업  로고 포인트 오버핏 기모 남녀공용",
+    "price": 72800,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/4/16965_202610041935445014_56787.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/4/16965_202610041935444039_50895.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/4/16965_202610041935441954_55749.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/4/16965_202610041935443116_52882.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/4/16965_202610041935437898_65967.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/10/6/16965_202610062157517262_22485.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 71,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "심플베이직"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:141735688",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/141735688",
+    "shop": "드로우핏우먼",
+    "name": "울 레글런 크롭 블루종",
+    "price": 89040,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/9/43886_202504091751350351_13304.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/9/43886_202504091751350166_73724.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/28/43886_202405281453200612_53745.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/9/43886_202504091751350503_76666.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2025/4/9/43886_202504091751340921_41454.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/21/43886_202608211141528731_18952.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2024/5/28/43886_202405281453200615_63588.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 51,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "컨템포러리",
+      "캐주얼"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:148609400",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/148609400",
@@ -1592,6 +1901,41 @@
     ],
     "query": "무스탕 자켓",
     "collected_at": "2026-10-04",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:169959567",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169959567",
+    "shop": "로빌",
+    "name": "[26FW 뉴컬러] RV 워싱 후드집업",
+    "price": 64740,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933530213_13351.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933520361_53371.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/56028_202609181330140384_18965.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/56028_202609181330134314_24920.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933520823_36188.png",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/56028_202609181330138013_59298.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933530489_63782.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/9/18/56028_202609181330142772_23396.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933530850_34574.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933540159_42608.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/56028_202603111933540275_18578.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 20,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "로맨틱"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
     "checked_at": "2026-10-07"
   },
   {
@@ -2061,6 +2405,65 @@
     "checked_at": "2026-10-07"
   },
   {
+    "id": "zigzag:168701777",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/168701777",
+    "shop": "메이빈스",
+    "name": "[가을🍂/MADE]리유 블루종 점퍼(자체제작 제작상품 점퍼 블루종 블루종점퍼 아우터 여름점퍼 여름 가을아우터 가을점퍼 간절기 봄)",
+    "price": 55840,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922020993_57495.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922010989_72682.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922030142_46131.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922010624_95844.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922010777_56632.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922010890_26271.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922020130_25772.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922020876_64526.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922030246_68286.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/3/23/701_202603231922030336_91757.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 28,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "러블리"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:158199116",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/158199116",
+    "shop": "에프터먼데이",
+    "name": "check shirring hood zip-up (3c)",
+    "price": 71200,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "http://www.aftermonday.com/shopimages/afterm283/0340040010962.jpg?1740030441"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.6,
+    "review_count": 30,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:167659362",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/167659362",
@@ -2286,6 +2689,32 @@
     "query": "트렌치코트",
     "collected_at": "2026-10-02",
     "checked_at": "2026-10-06"
+  },
+  {
+    "id": "zigzag:165893351",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/165893351",
+    "shop": "유인어스",
+    "name": "다로 여성 가을 출근룩 오피스룩 라운드 레이어드 부클 루즈핏 오버핏 가디건",
+    "price": 85500,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://image.onesell.kr/files/653a7fd31cdfbc2b5f4778c4/202509/cmfscs4y206586b2didmh2mpm.jpg",
+      "https://image.onesell.kr/files/653a7fd31cdfbc2b5f4778c4/202509/cmfscs4ie06576b2d16gd00t8.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.8,
+    "review_count": 21,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "부클 가디건",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
   },
   {
     "id": "zigzag:165426797",
@@ -2566,6 +2995,31 @@
     "checked_at": "2026-10-07"
   },
   {
+    "id": "zigzag:110151043",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/110151043",
+    "shop": "하우유",
+    "name": "미스트 크롭 카라 블루종 점퍼",
+    "price": 59250,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/11/015/104/110151043-423786327875840570.gif"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.5,
+    "review_count": 19,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "모던시크"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:167670121",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/167670121",
@@ -2828,6 +3282,40 @@
     "checked_at": "2026-10-07"
   },
   {
+    "id": "zigzag:171227250",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171227250",
+    "shop": "로제프란츠",
+    "name": "로즈 엠브로더리 후드 집업 [5컬러]",
+    "price": 69300,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109518573_26424.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109520039_71541.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109521557_60975.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109514864_47281.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/5/11356_202608051259339778_93905.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109517139_58113.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109523050_67154.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109524493_39143.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109526160_83926.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/6/11356_202608061109528006_67630.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 9,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "모던시크"
+    ],
+    "query": "후드 집업",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:151191211",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/151191211",
@@ -2909,6 +3397,34 @@
     "checked_at": "2026-10-06"
   },
   {
+    "id": "zigzag:169094822",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/169094822",
+    "shop": "아보니",
+    "name": "[어텀🍂/퀄리티보장] 세린 코튼 세미크롭 블루종 점퍼 / 간절기/자켓/가을자켓/가을신상",
+    "price": 85360,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://ecimg.cafe24img.com/pg2475b02573232008/avony/web/product/extra/big/20260825/20b0c5e541419e98bb762094688867a2.png",
+      "https://ecimg.cafe24img.com/pg2475b02573232008/avony/web/product/extra/big/20260825/bca572decb5eada402a6b22fdcb0b62e.png",
+      "https://ecimg.cafe24img.com/pg2475b02573232008/avony/web/product/extra/big/20260825/3522e0604d36154201e3966d30a38aa2.png",
+      "https://ecimg.cafe24img.com/pg2475b02573232008/avony/web/product/extra/big/20260825/c50316e5ddf4fe116d4c421aae654cd5.png"
+    ],
+    "has_flat_shot": false,
+    "rating": 5.0,
+    "review_count": 6,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "심플베이직",
+      "캐주얼"
+    ],
+    "query": "크롭 블루종",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
+  },
+  {
     "id": "zigzag:171217772",
     "source": "zigzag",
     "url": "https://zigzag.kr/catalog/products/171217772",
@@ -2933,6 +3449,33 @@
     ],
     "query": "트렌치코트",
     "collected_at": "2026-10-04",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:167432491",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/167432491",
+    "shop": "쎄무아듀",
+    "name": "Cest_Bow cable doll collar cardigan",
+    "price": 82600,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "http://image.sellic.co.kr/images/product_img/006/969/714/original/08_1.JPG",
+      "http://image.sellic.co.kr/images/product_img/006/969/710/original/08.jpg",
+      "http://image.sellic.co.kr/images/product_img/006/969/715/original/08_2.JPG"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.7,
+    "review_count": 6,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "로맨틱",
+      "러블리"
+    ],
+    "query": "케이블 카라 가디건",
+    "collected_at": "2026-10-07",
     "checked_at": "2026-10-07"
   },
   {
