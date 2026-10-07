@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "/home/runner/work/FashionStudio/FashionStudio/samples/women/model_2026-10-08_look4.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 1,
+        "clean": 1,
+        "layout": 1,
+        "notes": "3번 하의가 기획과 다름. 기획은 밑단이 모인 벌룬 와이드에 바닥까지 닿아 신발을 덮는 풀렝스인데, 사진은 밑단이 모이지 않은 앞주름 와이드 슬랙스이고 발목 위로 올라와 블랙 메리제인이 그대로 보임. 1번 가디건 가슴에 기획에 없는 보라색 작은 로고 자수가 있음. 7번 목걸이는 하트 펜던트가 작아 알아보기 어려움. 얼굴은 옆모습이라 괜찮음. 배경은 실제 거리처럼 보이지만 바닥에 낙엽이 고르게 흩어져 있고 피부가 매끈해 조금 연출된 느낌. 원본 사진이 없어 설명문 기준으로 대조함.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "retry",
+  "slide_issues": [],
+  "summary": "c1 은 색과 아이템 구성은 맞고 얼굴도 옆모습이라 문제없음. 다만 하의가 벌룬 풀렝스가 아니라 신발이 보이는 앞주름 와이드 슬랙스라 shape 0 이고, 통과 기준(0점 항목 없음)을 못 채움."
+}
