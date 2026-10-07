@@ -15,6 +15,7 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 오버핏 셔츠가 빳빳하게, 플리츠 치마의 재질·주름이 다르게, 미디스커트가 발목 기장으로 그려짐, 스카프를 옷 위 목에 묶음
 → '상의·아우터는 작고 compact 하게' 문장을 빼고 상품의 핏·기장·천의 느낌을 지키는 문장, 치마 재질·주름·미디 기장 문장,
 스카프 같은 목 소품은 옷에 두르지 않고 목 높이 옆 빈자리에 따로 두는 문장.
+2026-10-07 사용자: 펼친 옷이 납작해 보임 → 과하지 않게 실제 옷을 펼친 것처럼 살짝 볼륨(천의 두께, 안쪽 공기, 부드러운 그림자).
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -70,6 +71,11 @@ jacket, cardigan or shirt stays big and roomy: dropped shoulders, a wide body, l
 reach the knuckles and a hem at the hips; never shrink it into a cropped, short or fitted piece.
 Soft drapey fabrics (thin cotton or rayon shirts, knits, satin) fall in soft folds and natural
 creases, never crisp, stiff or freshly pressed. Sleeves relax slightly bent, never spread out stiffly.
+Every garment has a little natural volume, like real clothes just laid down on the floor, not a
+flattened cutout or a pressed paper shape: the fabric keeps its own thickness, there is a little air
+inside the body and sleeves so they rise gently off the floor, collars and lapels roll softly, knits
+look plump, and soft folds cast faint shadows inside the garment. Keep it subtle: no stuffed, puffy
+or inflated look, and the outline and size of each item stay the same.
 
 Composition like a professional outfit flat lay account: the clothes form one continuous figure from
 the collar near the top edge to the trouser hem near the bottom edge, filling about 95 percent of the
