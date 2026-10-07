@@ -16,6 +16,11 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 → '상의·아우터는 작고 compact 하게' 문장을 빼고 상품의 핏·기장·천의 느낌을 지키는 문장, 치마 재질·주름·미디 기장 문장,
 스카프 같은 목 소품은 옷에 두르지 않고 목 높이 옆 빈자리에 따로 두는 문장.
 2026-10-07 사용자: 펼친 옷이 납작해 보임 → 과하지 않게 실제 옷을 펼친 것처럼 살짝 볼륨(천의 두께, 안쪽 공기, 부드러운 그림자).
+같은 날 10/8 게시물(run167): 여전히 납작함 → 'Keep it subtle' 이 볼륨 문장을 약하게 만들고, 고른 빛이라 그림자가 없음.
+부위별 볼륨(팔꿈치 들림, 가슴 품, 밑단 말림, 니트 두께, 하의 둥근 주름)과 옆빛 그림자로 보이게 하는 문장으로.
+어깨에 두른 가디건이 상의 가슴을 망토처럼 덮음 → 두른 니트는 몸판을 상의 뒤로 숨기고 소매만 앞으로 묶는 문장.
+같은 날 사용자: 하의, 특히 치마가 납작함(새틴 롱스커트·미니스커트가 주름 없는 판), 코디가 너무 위에 붙음
+→ 치마는 깊은 주름과 물결치는 밑단·광택 명암 문장, 깃은 위 끝에서 8% 아래, 짧은 코디는 아래로 내려 위아래 여백을 맞춤.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -64,22 +69,41 @@ pressed creases run down the front, and at the hem the fabric breaks into a few 
 resting on the foot. A skirt keeps the exact fabric and pleats of its photos: the same material and
 sheen (matte wool, glossy satin, sheer chiffon, crisp cotton), the same pleat type, pleat width and
 pleat count (soft unpressed gathers stay soft, sharp knife or accordion pleats stay sharp, a skirt
-without pleats gets none); it spreads with soft natural folds and a slightly swaying hem. A midi skirt
-ends at mid-calf and is never drawn as an ankle-length maxi skirt.
+without pleats gets none). A skirt is never a flat smooth panel or trapezoid: it is laid as if just
+taken off a body, with the waistband slightly rounded, the fabric gathering into several deep soft
+folds that run from the hips down and open into a rippling, wavy hem that lifts off the floor in
+places; an A-line or flared skirt fans out with rolling waves along the hem, a mini skirt still has a
+few soft folds and a slightly flipped hem, and satin or other glossy fabric shows bright highlights
+on the raised folds and soft shadows between them. A midi skirt ends at mid-calf and is never drawn
+as an ankle-length maxi skirt.
 Tops and outers keep the true fit, length and fabric of their worn photos. An oversized or loose
 jacket, cardigan or shirt stays big and roomy: dropped shoulders, a wide body, long sleeves that
 reach the knuckles and a hem at the hips; never shrink it into a cropped, short or fitted piece.
 Soft drapey fabrics (thin cotton or rayon shirts, knits, satin) fall in soft folds and natural
 creases, never crisp, stiff or freshly pressed. Sleeves relax slightly bent, never spread out stiffly.
-Every garment has a little natural volume, like real clothes just laid down on the floor, not a
-flattened cutout or a pressed paper shape: the fabric keeps its own thickness, there is a little air
-inside the body and sleeves so they rise gently off the floor, collars and lapels roll softly, knits
-look plump, and soft folds cast faint shadows inside the garment. Keep it subtle: no stuffed, puffy
-or inflated look, and the outline and size of each item stay the same.
+Every garment has natural volume, like real clothes just laid down on the floor, never a flattened
+cutout or a pressed paper shape: the fabric keeps its own thickness and there is a little air inside
+the body and sleeves so they rise off the floor. Show it in each part: sleeves lie gently bent with
+the elbow slightly lifted and a soft hollow at the cuff opening; the body of tops and outers is
+slightly rounded at the chest with soft wrinkles at the waist; hems and cuffs curl or flip a little;
+collars and lapels roll and stand slightly; knits look plump with visible thickness at their edges;
+skirts and trousers keep soft rounded folds instead of being pressed flat. The side light makes this
+visible: every garment casts a soft shadow along its edges on the floor and its folds have light and
+shade. Keep it natural: no stuffed, puffy or inflated look, and the outline and size of each item
+stay the same.
+A knit or cardigan draped over the shoulders is laid the way a stylist does it: its body lies
+hidden under the top, behind the shoulders, with only a narrow band of it showing above the top's
+shoulders like a collar; its two sleeves come forward over the shoulders, cross on the upper chest
+and tie in one loose knot, with the sleeve ends hanging a little. The top's front stays fully
+visible below the knot; the draped knit's front opening, buttons and hem are never laid on top of
+the top like a cape or a bib.
 
 Composition like a professional outfit flat lay account: the clothes form one continuous figure from
-the collar near the top edge to the trouser hem near the bottom edge, filling about 95 percent of the
-frame height, centered horizontally, with only small even margins and no large empty areas. The bag
+the collar about 8 percent below the top edge to the trouser hem near the bottom edge, filling about
+90 percent of the frame height, centered horizontally, with small even margins and no large empty
+areas. The outfit never hugs the top edge: with a short skirt, shorts or a short outfit, the whole
+figure (clothes and shoes together) moves down so the empty floor above the collar and below the
+lowest item is about equal. The bag
 lies close to the left side of the clothes at waist height, slightly overlapping the edge of the
 clothes, and never lower than the knees. The shoes sit as a pair at an angle in the lower right,
 beside the trouser hem, not overlapping the trousers. Only if jewelry or small accessories are in
