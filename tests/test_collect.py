@@ -414,5 +414,8 @@ def test_quality_caps_reviews_and_prefers_point_items():
     )
     assert quality(point, profile) > quality(seller, profile)
     assert quality(seller) > quality(point)  # 프로필 없이는 예전처럼 리뷰 수 순
+    plain = seller.model_copy(update={"name": "라운드 니트", "review_count": cap})
+    basic = seller.model_copy(update={"review_count": cap})
+    assert quality(basic, profile) < quality(plain, profile)  # 이름에 '베이직' → 뒤로
     cheap = Product(id="zigzag:3", name="모헤어 니트", price=9000, review_count=100, **base)
     assert fits(point, profile.product_source) and not fits(cheap, profile.product_source)
