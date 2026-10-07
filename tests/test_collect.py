@@ -417,5 +417,9 @@ def test_quality_caps_reviews_and_prefers_point_items():
     plain = seller.model_copy(update={"name": "라운드 니트", "review_count": cap})
     basic = seller.model_copy(update={"review_count": cap})
     assert quality(basic, profile) < quality(plain, profile)  # 이름에 '베이직' → 뒤로
+    # 기본템 감점은 상의·아우터에만: 무지 하의는 바탕이라 그대로 (2026-10-07)
+    skirt = basic.model_copy(update={"category": "하의", "name": "베이직 미니 스커트"})
+    plain_skirt = skirt.model_copy(update={"name": "미니 스커트"})
+    assert quality(skirt, profile) == quality(plain_skirt, profile)
     cheap = Product(id="zigzag:3", name="모헤어 니트", price=9000, review_count=100, **base)
     assert fits(point, profile.product_source) and not fits(cheap, profile.product_source)
