@@ -828,7 +828,14 @@ def send_model(t: Task, results: Path | None, tg, send, dry_run: bool) -> None:
     send("daily.yml", account=t.account, date=t.date, mode="model", pick=src.name, sandbox=False)
 
 
-LIMIT = "limit.json"  # daily 워크플로가 Claude 사용량 한도로 멈췄을 때 결과 폴더에 남기는 기록
+LIMITS = (
+    "limits"  # Claude 사용량 한도로 멈춘 워크플로 기록 (daily-results, .github/scripts/limit.sh)
+)
+LIMIT_NAMES = {
+    "daily.yml": "게시물 만들기",
+    "themes.yml": "주제 정하기",
+    "feedback-rules.yml": "피드백 규칙 반영",
+}
 LIMIT_DAYS = 2  # 이보다 오래된 한도 기록은 다시 시작하지 않는다
 LIMIT_MARGIN = timedelta(minutes=5)  # 한도가 풀리는 시각에서 조금 더 기다린다
 LIMIT_FALLBACK = timedelta(hours=5)  # 풀리는 시각을 못 읽으면 (Claude 사용량 창)
@@ -861,63 +868,75 @@ def limit_resets(message: str, at: datetime) -> datetime:
 
 
 def retry_limited(results: Path | None, gh, tg, now: datetime, dry_run: bool = False) -> list[str]:
-    """Claude 사용량 한도로 멈춘 daily 실행을 한도가 풀린 뒤 같은 입력으로 한 번 다시 돌린다.
-    같은 날짜를 더 나중에 다시 돌렸거나 이미 게시한 날은 다시 하지 않는다. 기록은 limit.json 에."""
+    """Claude 사용량 한도로 멈춘 워크플로(daily·themes·feedback-rules)를
+    한도가 풀린 뒤 같은 입력으로 한 번 다시 부른다.
+    기록은 워크플로가 daily-results 의 limits/*.json 에 남긴다 (.github/scripts/limit.sh).
+    같은 일(key)은 가장 나중 기록만 다시 하고,
+    daily 는 그 날짜를 더 나중에 다시 만들었거나 이미 게시했으면 건너뛴다."""
     log: list[str] = []
-    if results is None or not results.exists():
+    folder = results / LIMITS if results is not None else None
+    if folder is None or not folder.is_dir():
         return log
-    runs: dict[str, list[tuple[int, Path]]] = {}
-    for d in results.iterdir():
-        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})-run(\d+)", d.name)
-        if m:
-            runs.setdefault(m.group(1), []).append((int(m.group(2)), d))
-    for day, found in sorted(runs.items()):
-        for num, d in sorted(found):
-            path = d / LIMIT
-            if not path.exists():
+    recs = []
+    for path in sorted(folder.glob("*.json")):
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        recs.append((int(rec.get("at", 0)), path, rec))
+    latest = {}
+    for at, path, rec in recs:
+        key = rec.get("key") or rec.get("workflow")
+        if at >= latest.get(key, (0, None))[0]:
+            latest[key] = (at, path)
+    for at_ts, path, rec in sorted(recs, key=lambda x: x[0]):
+        if rec.get("retried") or rec.get("skipped"):
+            continue
+        at = datetime.fromtimestamp(at_ts, UTC)
+        workflow, inputs = rec.get("workflow"), dict(rec.get("inputs") or {})
+        key = rec.get("key") or workflow
+        why = ""
+        if now - at > timedelta(days=LIMIT_DAYS):
+            why = "오래됨"
+        elif not workflow:
+            why = "워크플로 모름"
+        elif latest[key][1] != path:
+            why = "같은 일의 더 나중 기록이 있음"
+        elif workflow == "daily.yml":
+            why = _daily_superseded(results, inputs, rec.get("run", ""))
+        if why:
+            rec["skipped"] = why
+        else:
+            if now < limit_resets(rec.get("message", ""), at) + LIMIT_MARGIN:
                 continue
-            rec = json.loads(path.read_text(encoding="utf-8"))
-            if rec.get("retried") or rec.get("skipped"):
+            if dry_run:
+                log.append(f"(시험) {workflow} {inputs}")
                 continue
-            at = datetime.fromtimestamp(int(rec.get("at", 0)), UTC)
-            made = (
-                json.loads((d / "run.json").read_text(encoding="utf-8"))
-                if (d / "run.json").exists()
-                else {}
-            )
-            account, mode = made.get("account"), made.get("mode")
-            why = ""
-            if now - at > timedelta(days=LIMIT_DAYS):
-                why = "오래됨"
-            elif not account or not mode:
-                why = "run.json 없음"
-            elif any(n > num for n, _ in found):
-                why = "더 나중 실행이 있음"
-            elif any(p.date.isoformat() == day for p in Store(account).posts()):
-                why = "이미 게시함"
-            if why:
-                rec["skipped"] = why
-            else:
-                resets = limit_resets(rec.get("message", ""), at)
-                if now < resets + LIMIT_MARGIN:
-                    continue
-                inputs = dict(account=account, date=day, mode=mode, sandbox=False)
-                if made.get("pick"):
-                    inputs["pick"] = made["pick"]
-                if dry_run:
-                    log.append(f"(시험) daily.yml {inputs}")
-                    continue
-                gh.dispatch("daily.yml", inputs)
-                log.append(f"daily.yml {inputs}")
-                rec["retried"] = int(now.timestamp())
-                if tg is not None:
-                    tg.send(
-                        f"[{account}] {day} Claude 사용량 한도가 풀려 멈췄던 {mode} 작업을 "
-                        f"다시 시작해요 ({d.name})"
-                    )
-            if not dry_run:
-                path.write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
+            gh.dispatch(workflow, inputs)
+            log.append(f"{workflow} {inputs}")
+            rec["retried"] = int(now.timestamp())
+            if tg is not None:
+                what = LIMIT_NAMES.get(workflow, workflow)
+                day = f" {inputs['date']}" if inputs.get("date") else ""
+                tg.send(
+                    f"[{inputs.get('account', '')}]{day} Claude 사용량 한도가 풀려 멈췄던 "
+                    f"{what}을(를) 다시 시작해요"
+                )
+        if not dry_run:
+            path.write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
     return log
+
+
+def _daily_superseded(results: Path, inputs: dict, run: str) -> str:
+    """daily 다시 실행을 건너뛸 이유 (그 날짜를 더 나중에 만들었거나 이미 게시함).
+    없으면 빈 문자열."""
+    day, account = inputs.get("date", ""), inputs.get("account", "")
+    m = re.fullmatch(r".*-run(\d+)", run or "")
+    if day and m:
+        for d in results.glob(f"{day}-run*"):
+            n = re.fullmatch(rf"{re.escape(day)}-run(\d+)", d.name)
+            if n and int(n.group(1)) > int(m.group(1)):
+                return "더 나중 실행이 있음"
+    if day and account and any(p.date.isoformat() == day for p in Store(account).posts()):
+        return "이미 게시함"
+    return ""
 
 
 def report_missed(missed: list[Task], tg) -> None:

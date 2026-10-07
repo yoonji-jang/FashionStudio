@@ -470,44 +470,57 @@ def test_retry_limited_redispatches_once_after_reset(tmp_path, monkeypatch):
             return 1
 
     at = datetime(2026, 10, 7, 8, 20, tzinfo=UTC)
+    (tmp_path / "limits").mkdir()
 
-    def stopped(name, mode, pick):
-        d = tmp_path / name
-        d.mkdir()
-        run = {"run": name, "account": "women", "sandbox": False, "mode": mode, "pick": pick}
-        (d / "run.json").write_text(json.dumps(run))
-        limit = {"message": "You've hit your session limit · resets 9am (UTC)"}
-        (d / "limit.json").write_text(json.dumps({**limit, "at": int(at.timestamp())}))
-        return d
+    def stopped(name, workflow, inputs, key, run="", ago=0):
+        rec = {
+            "workflow": workflow,
+            "inputs": inputs,
+            "key": key,
+            "run": run,
+            "message": "You've hit your session limit · resets 9am (UTC)",
+            "at": int(at.timestamp()) - ago,
+        }
+        path = tmp_path / "limits" / f"{name}.json"
+        path.write_text(json.dumps(rec))
+        return path
 
-    d = stopped("2026-10-08-run166", "render", "2026-10-08-run160/chosen")
-    old = stopped("2026-10-07-run150", "fix", "{}")
-    stopped("2026-10-07-run151", "render", "x")  # 같은 날 더 나중 실행이 있어 run150 은 건너뜀
-    (tmp_path / "2026-10-07-run151" / "limit.json").unlink()
+    render = {"account": "women", "date": "2026-10-08", "mode": "render", "pick": "r160/chosen"}
+    daily = stopped(
+        "daily.yml-1", "daily.yml", render, "daily:women:2026-10-08", "2026-10-08-run166"
+    )
+    themes = stopped("themes.yml-2", "themes.yml", {"account": "women"}, "themes:women")
+    older = stopped("themes.yml-1", "themes.yml", {"account": "women"}, "themes:women", ago=60)
+    (tmp_path / "2026-10-07-run151").mkdir()  # 같은 날짜를 나중에 다시 만든 daily 는 건너뜀
+    redone = stopped(
+        "daily.yml-0",
+        "daily.yml",
+        {**render, "date": "2026-10-07"},
+        "daily:women:2026-10-07",
+        "2026-10-07-run150",
+    )
     gh, tg = GH(), TG()
 
     # 한도가 풀리기 전에는 기다린다
     assert schedule.retry_limited(tmp_path, gh, tg, at + schedule.timedelta(minutes=20)) == []
     assert gh.calls == []
-    assert json.loads((old / "limit.json").read_text())["skipped"] == "더 나중 실행이 있음"
+    assert json.loads(older.read_text())["skipped"] == "같은 일의 더 나중 기록이 있음"
+    assert json.loads(redone.read_text())["skipped"] == "더 나중 실행이 있음"
 
     after = datetime(2026, 10, 7, 9, 10, tzinfo=UTC)
     assert schedule.retry_limited(tmp_path, gh, tg, after, dry_run=True)[0].startswith("(시험)")
     assert gh.calls == []
     schedule.retry_limited(tmp_path, gh, tg, after)
-    assert gh.calls == [
-        (
-            "daily.yml",
-            {
-                "account": "women",
-                "date": "2026-10-08",
-                "mode": "render",
-                "sandbox": False,
-                "pick": "2026-10-08-run160/chosen",
-            },
-        )
-    ]
-    assert "다시 시작" in tg.texts[-1]
-    assert json.loads((d / "limit.json").read_text())["retried"]
+    assert sorted(gh.calls) == [("daily.yml", render), ("themes.yml", {"account": "women"})]
+    assert any("게시물 만들기" in t for t in tg.texts) and any("주제 정하기" in t for t in tg.texts)
+    assert json.loads(daily.read_text())["retried"] and json.loads(themes.read_text())["retried"]
     schedule.retry_limited(tmp_path, gh, tg, after)  # 한 번만
-    assert len(gh.calls) == 1
+    assert len(gh.calls) == 2
+
+
+def test_claude_workflows_record_usage_limit():
+    from pathlib import Path
+
+    for wf in ("daily.yml", "themes.yml", "feedback-rules.yml"):
+        text = (Path(".github/workflows") / wf).read_text(encoding="utf-8")
+        assert ".github/scripts/limit.sh" in text and "LIMITED" in text, wf
