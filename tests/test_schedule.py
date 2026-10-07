@@ -430,3 +430,84 @@ def test_rest_day_skips_candidates_pick_and_publish(tmp_path, monkeypatch):
     gh = schedule.DryRun()
     schedule.execute(tasks, tmp_path, gh, ticks=ticks)
     assert gh.sent == [] and "women candidates x" in ticks
+
+
+def test_limit_resets_parses_claude_message():
+    at = datetime(2026, 10, 7, 8, 20, tzinfo=UTC)
+    msg = "You've hit your session limit · resets 9am (UTC)"
+    assert schedule.limit_resets(msg, at) == datetime(2026, 10, 7, 9, 0, tzinfo=UTC)
+    late = datetime(2026, 10, 7, 9, 30, tzinfo=UTC)  # 지난 시각이면 다음 날
+    assert schedule.limit_resets(msg, late) == datetime(2026, 10, 8, 9, 0, tzinfo=UTC)
+    seoul = schedule.limit_resets("limit · resets 3:30pm (Asia/Seoul)", at)
+    assert seoul == datetime(2026, 10, 7, 6, 30, tzinfo=UTC) + schedule.timedelta(days=1)
+    weekly = schedule.limit_resets("weekly limit · resets Oct 9, 5am (UTC)", at)
+    assert weekly == datetime(2026, 10, 9, 5, 0, tzinfo=UTC)
+    assert schedule.limit_resets("모르는 말", at) == at + schedule.LIMIT_FALLBACK
+
+
+def test_retry_limited_redispatches_once_after_reset(tmp_path, monkeypatch):
+    import json
+
+    class Posts:
+        def posts(self):
+            return []
+
+    monkeypatch.setattr(schedule, "Store", lambda account: Posts())
+
+    class GH:
+        def __init__(self):
+            self.calls = []
+
+        def dispatch(self, workflow, inputs):
+            self.calls.append((workflow, inputs))
+
+    class TG:
+        def __init__(self):
+            self.texts = []
+
+        def send(self, text, **kw):
+            self.texts.append(text)
+            return 1
+
+    at = datetime(2026, 10, 7, 8, 20, tzinfo=UTC)
+
+    def stopped(name, mode, pick):
+        d = tmp_path / name
+        d.mkdir()
+        run = {"run": name, "account": "women", "sandbox": False, "mode": mode, "pick": pick}
+        (d / "run.json").write_text(json.dumps(run))
+        limit = {"message": "You've hit your session limit · resets 9am (UTC)"}
+        (d / "limit.json").write_text(json.dumps({**limit, "at": int(at.timestamp())}))
+        return d
+
+    d = stopped("2026-10-08-run166", "render", "2026-10-08-run160/chosen")
+    old = stopped("2026-10-07-run150", "fix", "{}")
+    stopped("2026-10-07-run151", "render", "x")  # 같은 날 더 나중 실행이 있어 run150 은 건너뜀
+    (tmp_path / "2026-10-07-run151" / "limit.json").unlink()
+    gh, tg = GH(), TG()
+
+    # 한도가 풀리기 전에는 기다린다
+    assert schedule.retry_limited(tmp_path, gh, tg, at + schedule.timedelta(minutes=20)) == []
+    assert gh.calls == []
+    assert json.loads((old / "limit.json").read_text())["skipped"] == "더 나중 실행이 있음"
+
+    after = datetime(2026, 10, 7, 9, 10, tzinfo=UTC)
+    assert schedule.retry_limited(tmp_path, gh, tg, after, dry_run=True)[0].startswith("(시험)")
+    assert gh.calls == []
+    schedule.retry_limited(tmp_path, gh, tg, after)
+    assert gh.calls == [
+        (
+            "daily.yml",
+            {
+                "account": "women",
+                "date": "2026-10-08",
+                "mode": "render",
+                "sandbox": False,
+                "pick": "2026-10-08-run160/chosen",
+            },
+        )
+    ]
+    assert "다시 시작" in tg.texts[-1]
+    assert json.loads((d / "limit.json").read_text())["retried"]
+    schedule.retry_limited(tmp_path, gh, tg, after)  # 한 번만
+    assert len(gh.calls) == 1

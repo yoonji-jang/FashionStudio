@@ -372,6 +372,19 @@ jobs:
           f="out/$DATE/caption.txt"; [ -f "$f" ] && { echo; echo '```'; cat "$f"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           true
 
+      - name: 사용량 한도 기록 (한도가 풀리면 schedule 이 같은 입력으로 다시 돌림)
+        if: failure()
+        run: |
+          f=/home/runner/work/_temp/claude-execution-output.json
+          [ -f "$f" ] || exit 0
+          msg=$(jq -r '.[] | (select(.type=="result") | .result // empty),
+            (select(.type=="assistant") | .message.content[]? | select(.type=="text") | .text)' "$f" 2>/dev/null \
+            | grep -iE "hit your .*limit" | tail -1 || true)
+          [ -n "$msg" ] || exit 0
+          mkdir -p "out/$DATE"
+          jq -n --arg message "$msg" --argjson at "$(date +%s)" '{message: $message, at: $at}' > "out/$DATE/limit.json"
+          echo "Claude 사용량 한도: $msg"
+
       - name: 올릴 파일 고르기 (쇼핑몰 원본 사진 제외)
         if: always()
         run: |
@@ -422,4 +435,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEXT: "[${{ env.ACCOUNT }}] ${{ env.DATE }} 게시물 만들기(${{ env.MODE }}) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        run: .github/scripts/alert.sh
+        run: |
+          [ -f "out/$DATE/limit.json" ] && TEXT="$TEXT
+          Claude 사용량 한도로 멈췄어요. 한도가 풀리면 자동으로 다시 시작해요"
+          .github/scripts/alert.sh
