@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-08-run180",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-08-run167\", \"round\": 1, \"fixes\": [{\"slide\": 2, \"kind\": \"look\", \"look\": 1, \"text\": \"3 이너 나시를 얇고 심플한 베이직 템으로 바꿔줘\"}, {\"slide\": 5, \"kind\": \"look\", \"look\": 4, \"text\": \"이너나시 제거해줘\"}]}"
+}

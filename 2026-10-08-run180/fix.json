@@ -1,0 +1,61 @@
+{
+  "run": "2026-10-08-run167",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 2,
+      "kind": "look",
+      "look": 1,
+      "text": "3 이너 나시를 얇고 심플한 베이직 템으로 바꿔줘"
+    },
+    {
+      "slide": 5,
+      "kind": "look",
+      "look": 4,
+      "text": "이너나시 제거해줘"
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 4,
+      "file": "04_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 5,
+      "file": "05_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 6,
+      "file": "06_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ]
+}

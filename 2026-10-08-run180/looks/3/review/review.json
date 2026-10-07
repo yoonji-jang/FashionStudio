@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "4번 호보백이 오른쪽 가장자리에서 살짝 잘리고 자켓 밑단과 바지 허리 위에 겹쳐 있음. 나머지 상품은 원본과 같음.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c1 은 원본 상품과 거의 같고 큰 문제가 없음. 감점은 가방이 가장자리에서 잘리고 자켓과 바지에 걸친 것뿐임"
+}
