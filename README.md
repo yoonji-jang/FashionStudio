@@ -33,6 +33,7 @@ uv run pytest
 | 매주 1회 | 다음 주 주제 목록 확인 (마음에 안 들면 `/themes again`) | 텔레그램 | `themes.review_before_use: false` |
 | 매일 오전 | 코디 후보 5개 중 하나 고르기 (버튼 또는 "3번", 새 후보 "다시", 건너뛰기 `/skip`) | 텔레그램 | `pick.enabled: false` (마감까지 안 고르면 `pick.on_timeout`) |
 | 매일 오후 | 고른 코디로 만든 미리보기에 `/ok` (게시) 또는 `/skip` (건너뛰기) | 텔레그램 | `approval: optional` 이면 `/skip` 만 필요 |
+| 빨리 올리고 싶을 때 | `/ok` 뒤에 `/now` (또는 "지금 올려") → 게시 시각을 기다리지 않고 다음 매시 확인 때 바로 게시 | 텔레그램 | 보내지 않으면 원래 시각에 게시 |
 | 고칠 점이 있을 때 | 미리보기에 `/fix 1 신발 더 크게` (1 = 사진 순서), `/fix 캡션 더 짧게` → 고친 미리보기가 다시 옴 | 텔레그램 | `feedback.enabled: false` |
 | 문제가 생겼을 때 | 이미지 검수 2회 실패, 토큰 만료 등 알림 확인 | 텔레그램 | - |
 | 제휴 링크를 쓸 때만 | 게시 후 받은 상품 목록에 공유리워드 링크 붙여 답장 (댓글 DM 에 씀) | 텔레그램 | `comments.link_mode: zigzag` 이면 없음 |
@@ -986,8 +987,12 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
    그날 캐러셀을 게시했을 때만 합니다. `reels.delivery: telegram`(기본)이면 영상과 캡션(댓글 해시태그 포함)을
    텔레그램으로 보내고, 인스타 앱에서 음악을 붙여 직접 올립니다 (앱 음악은 게시 API 로 넣을 수 없음).
    `instagram` 이면 같은 캡션으로 자동 게시하고 댓글 해시태그(`comment_tags`)도 답니다.
-   영상 파일은 인스타 업로드 서버로 바로 보냅니다 (`config/publish.yaml` `instagram.reels_upload: file`).
-   안 되면 `url` 로 바꾸면 사진 저장소에 잠시 올려 공개 주소로 넘깁니다.
+   영상은 사진 저장소에 잠시 올려 공개 주소로 넘기고, 게시가 끝나면 지웁니다
+   (`config/publish.yaml` `instagram.reels_upload: url`). 인스타 로그인 방식 API 는 파일을 바로 받는
+   `file` 방식을 받지 않습니다.
+   `reels.share_to_feed: false` 면 프로필 그리드에서 빼고 릴스 탭에만 보입니다 (women).
+   게시 API 에 AI 레이블 값이 없어서, `ai_label` 이 켜져 있으면 영상 안에 IPTC AI 합성 표시(XMP)를 넣습니다.
+   같은 날 릴스를 다시 올리려면 publish 워크플로를 `reels` 와 `reel_again` 을 켜고 돌립니다 (앞 릴스는 앱에서 지움).
 4. **음악**: 인스타 앱의 음악은 게시 API 로 넣을 수 없습니다. `reels.music_dir` 폴더에 상업 이용이 허락된
    음원을 넣으면 영상에 직접 넣습니다 (`accounts/women/music/README.md`). 비어 있으면 소리 없는 릴스입니다.
 5. **ManyChat**: 마지막 장이 "댓글을 남기면 DM" 안내라서, ManyChat 댓글 규칙이 릴스에도 걸리게(모든 게시물·릴스) 해 두세요.

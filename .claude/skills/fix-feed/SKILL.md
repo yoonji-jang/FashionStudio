@@ -52,6 +52,10 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      실측을 먼저 하고) 그 벌의 `styling`·상품 `desc`·`size` 를 위 "표지
      코디컷" 방식으로 고친다 (다른 벌은 `cover:` 를 두어 다시 그리지 않음). 상품 이름 글자면 `name`.
      지난 지시문은 `before/prompt_<벌 번호>.txt`. 1장 표지는 1번 벌 코디컷이라 표지 코디컷 피드백은 1번 벌을 고친다.
+     모델컷 게시물(plan `shot: model`)에서 배경·포즈·헤어·분위기가 어색하다는 피드백이면 그 벌 `pose` 를
+     지금 profile `model_shot.poses` 의 장면으로 바꾼다 (지난 장면이 옛 목록일 수 있음). 벌 n 에는 목록의 n번째 장면
+     (목록보다 많으면 처음부터 다시)을 쓰고, 고치지 않는 벌의 장면과 같으면 다음 장면을 쓴다. plan `mood` 가 빛을 정해 두었으면
+     (골든아워 등) profile `model_shot.mood` 로 되돌린다. 인물 문장은 바꾸지 않는다.
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.
 3. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`. 오류는 고치고 다시 (최대 3번).
 4. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`

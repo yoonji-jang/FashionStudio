@@ -11,7 +11,7 @@ from core.models import PublishRecord, ReelsSpec
 from core.profile import Reels, load_profile
 from tests.test_publish import CHAT, FakeApis, clients, results, sent  # noqa: F401 - fixture
 from tests.test_review import fake_photos, store  # noqa: F401 - pytest fixture
-from tools import notify, publish, reels, schedule
+from tools import ai_label, notify, publish, reels, schedule
 
 pytestmark = pytest.mark.usefixtures("fixed_times")
 
@@ -79,12 +79,15 @@ def test_build_writes_video_and_manifest(results):  # noqa: F811
     assert 3 <= spec.duration_sec <= 90
     assert (run / spec.video).stat().st_size > 1000 and (run / spec.cover).exists()
     assert notify.load_manifest(run).reels == spec
+    assert ai_label.read_video(run / spec.video) == "trainedAlgorithmicMedia"
 
 
 def with_reel(run, seconds: float = 12.5):
     """ffmpeg 없이 게시 흐름을 보려고 가짜 영상을 manifest 에 붙인다."""
     (run / "reels").mkdir(exist_ok=True)
-    (run / "reels" / "reel.mp4").write_bytes(b"\0\0\0\x18ftypmp42" + b"0" * 2000)
+    ftyp = b"\0\0\0\x18ftypmp42" + b"\0" * 12
+    mdat = (8 + 2000).to_bytes(4, "big") + b"mdat" + b"0" * 2000
+    (run / "reels" / "reel.mp4").write_bytes(ftyp + mdat)
     m = notify.load_manifest(run)
     m.reels = ReelsSpec(video="reels/reel.mp4", cover=None, duration_sec=seconds)
     reels.write_manifest(run, m)
@@ -147,16 +150,16 @@ def test_reels_at_posts_reel_later_with_same_ok(results, store, monkeypatch):  #
     monkeypatch.setattr(publish, "load_profile", reels_at("19:00"))
     assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 1 and not api.uploads
-    # 19:00 릴스: 영상 파일을 업로드 서버로 바로 보내고 게시
+    # 19:00 릴스: 영상을 사진 저장소에 잠시 올려 공개 주소(video_url)로 넘기고 게시
     assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 2
     reel = api.media[-1]
-    assert reel["media_type"] == "REELS" and reel["upload_type"] == "resumable"
-    assert reel["share_to_feed"] == "true" and "#" not in reel["caption"]  # 해시태그는 댓글로
-    up = api.uploads[0]
-    assert up["authorization"] == "OAuth IGTOKEN" and up["offset"] == "0"
-    assert int(up["file_size"]) == up["bytes"] == (run / "reels" / "reel.mp4").stat().st_size
-    assert any(c[1].endswith("/ig-api-upload/v23.0/" + reel_container(api)) for c in api.calls)
+    assert reel["media_type"] == "REELS" and "upload_type" not in reel
+    assert reel["video_url"].endswith("-reel/01.mp4") and not api.uploads
+    # women 은 그리드에서 빼고 릴스 탭에만
+    assert reel["share_to_feed"] == "false" and "#" not in reel["caption"]  # 해시태그는 댓글로
+    # 게시 API 에 AI 레이블 값이 없어 영상 안에 IPTC 표시를 넣는다
+    assert ai_label.read_video(run / "reels" / "reel.mp4") == "trainedAlgorithmicMedia"
     done = PublishRecord.model_validate_json((run / "published.json").read_text())
     assert done.media_id == "m777" and done.reel_media_id == "r888"
     post = store.posts()[-1]
@@ -165,6 +168,10 @@ def test_reels_at_posts_reel_later_with_same_ok(results, store, monkeypatch):  #
     # 다시 불려도 두 번 올리지 않는다
     assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 2
+    # again: 음악을 넣어 다시 만든 영상처럼 한 번 더 올린다
+    kw = dict(store=store, tg=tg, ig=ig, host=host, again=True)
+    assert publish.run_reels("women", DAY, results, **kw) == 0
+    assert api.published == 3
 
 
 def reel_container(api: ReelApis) -> str:
@@ -246,13 +253,33 @@ def test_reel_telegram_right_after_carousel_when_no_time(results, store, monkeyp
     assert json.loads((run / "published.json").read_text())["reel_sent_at"]
 
 
+def test_reel_skipped_quietly_without_video(results, store, monkeypatch):  # noqa: F811
+    api = ReelApis()
+    run = ok_published(results, store, api, monkeypatch)
+    tg, ig, host = clients(api)
+    monkeypatch.setattr(publish, "load_profile", reels_at("19:00", "telegram"))
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    # 릴스 기능 전에 만든 결과 (영상 없음): 실패하지 않고 알림만
+    m = notify.load_manifest(run)
+    m.reels = None
+    reels.write_manifest(run, m)
+    before = len(api.calls)
+    assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert "릴스 영상이 없어 건너뛰었어요" in api.texts[-1]
+    assert not any(c[1].endswith("/sendVideo") for c in api.calls[before:])
+
+
 def test_reels_slot_and_dispatch(monkeypatch):
     import core.profile
 
     monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     p = core.profile.load_profile("women")
+    # women 은 캐러셀 게시 직후 같이 올려 따로 깨어나는 칸이 없다
+    assert p.schedule.reels_at is None
+    assert not [sl for sl in schedule.slots(p) if sl.task == "reels"]
+    p.schedule.reels_at = "19:00"
     got = [sl for sl in schedule.slots(p) if sl.task == "reels"]
-    assert [sl.local() for sl in got] == [p.schedule.reels_at]
+    assert [sl.local() for sl in got] == ["19:00"]
     p.reels.enabled = False
     assert not [sl for sl in schedule.slots(p) if sl.task == "reels"]
     gh = schedule.DryRun()
