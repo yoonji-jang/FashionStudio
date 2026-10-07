@@ -5,7 +5,7 @@ import httpx
 import pytest
 import yaml
 
-from core.models import CoverScore, FeedbackEntry, PostRecord
+from core.models import CoverScore, FeedbackEntry, PickRecord, PostRecord
 from core.profile import load_profile
 from tests.test_publish import CHAT, DAY, FakeApis, clients, record, results, sent  # noqa: F401
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
@@ -108,6 +108,47 @@ def test_check_rerenders_once_then_busy_and_limit(results, store):  # noqa: F811
     later = datetime.fromtimestamp(rec.sent_at + 3 * 3600, UTC)  # busy 기준(120분)이 지난 뒤
     assert feedback.check("women", DAY, results, tg, later, store=store) is None
     assert store.feedback()[-1].result == "limit" and "/ok women 09-27" in api.texts[-1]
+
+
+def test_find_fixes_splits_several_slide_numbers(results):  # noqa: F811
+    slides = slides_of(results)
+    rec = record(message_ids=[11, 12])
+    upd = [update(1, 1200, "/fix 2 3 이너를 베이직으로"), update(2, 1300, "/fix 2,4번 밝게")]
+    found = feedback.find_fixes(upd, rec, CHAT, slides)
+    assert [(f["slide"], f["text"]) for f in found] == [
+        (2, "이너를 베이직으로"),
+        (3, "이너를 베이직으로"),
+        (2, "밝게"),
+        (4, "밝게"),
+    ]
+
+
+def test_check_leaves_old_preview_after_new_candidates(results, store):  # noqa: F811
+    api = FakeApis()
+    rec = sent(api, results / RUN)
+    tg, _, _ = clients(api)
+    # 미리보기 뒤에 같은 날 후보를 새로 보냈다 (다시 받은 후보)
+    picks = results / "2026-09-27-run7" / "picks"
+    picks.mkdir(parents=True)
+    cand = PickRecord(
+        account="women", date=DAY, run="2026-09-27-run7", count=8, sent_at=rec.sent_at + 100
+    )
+    (picks / "pick.json").write_text(cand.model_dump_json())
+    api.replies = [
+        (rec.sent_at + 5, "/fix 1 신발 더 크게", None),  # 미리보기에 한 말
+        (rec.sent_at + 200, "/fix 5 이너나시 제거해줘", None),  # 새 후보에 한 말
+    ]
+    fix = feedback.check("women", DAY, results, tg, EARLY, store=store)
+    assert [f["text"] for f in fix["fixes"]] == ["신발 더 크게"]
+    assert [(e.result, e.run) for e in store.feedback()] == [
+        ("candidates", "2026-09-27-run7"),
+        ("rerender", RUN),
+    ]
+    assert any("새 후보를 보낸 뒤" in t for t in api.texts)
+    # 새 후보에 한 말만 오면 다시 그리지 않는다
+    api.replies.append((rec.sent_at + 300, "/fix 2 이너 베이직으로", None))
+    assert feedback.check("women", DAY, results, tg, EARLY, store=store) is None
+    assert store.feedback()[-1].result == "candidates"
 
 
 def entry(**kw) -> FeedbackEntry:

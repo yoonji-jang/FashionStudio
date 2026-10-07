@@ -150,10 +150,16 @@ def find_fixes(
                 continue
             if not cmd.labeled and reply_to and reply_to not in record.message_ids:
                 continue
-            fix = target(cmd.args, reply_to, record, slides)
-            if not fix["text"]:
-                continue  # 고칠 내용이 없는 /fix
-            found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
+            # "/fix 2 3 …", "/fix 2,3 …" 처럼 장 번호를 여러 개 적으면 장마다 같은 내용으로 나눈다
+            words, nums = list(cmd.args), []
+            while words and re.fullmatch(r"\d{1,2}(?:,\d{1,2})*,?(?:장|번)?,?", words[0]):
+                nums += [int(x) for x in re.findall(r"\d+", words.pop(0))]
+            asks = [[str(n), *words] for n in dict.fromkeys(nums)] if len(nums) > 1 else [cmd.args]
+            for args in asks:
+                fix = target(args, reply_to, record, slides)
+                if not fix["text"]:
+                    continue  # 고칠 내용이 없는 /fix
+                found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
     return found
 
 
@@ -227,6 +233,10 @@ MESSAGES = {
     ),
     "after_post": "이미 게시해서 다시 만들지 않았어요. " + LATER,
     "sandbox": "시험 미리보기라 다시 만들지 않았어요 (피드백은 기록했어요).",
+    "candidates": (
+        "새 후보를 보낸 뒤에 온 /fix 라 지난 미리보기는 다시 만들지 않았어요. "
+        "후보 고치기는 고르기 마감 전에만 돼요 (피드백은 기록했어요)."
+    ),
 }
 
 
@@ -270,6 +280,36 @@ def check(
             head = (msg.get("text") or "(글 아님)").replace("\n", " ")[:20]
             print(f"  - {u['update_id']} {when} {chat} {after}: {head}")
         return None
+    # 미리보기 뒤에 같은 날 후보를 새로 보냈으면 그 뒤에 온 /fix 는 새 후보에 한 말이다.
+    # 지난 미리보기를 다시 그리지 않고 기록만 한다 (후보 고치기는 tools.pick 이 맡는다, 2026-10-07)
+    from tools import pick
+
+    cand = pick.latest(results, account, day)
+    if cand is not None and cand[1].sent_at > record.sent_at:
+        newer = [f for f in fixes if f["at"] >= cand[1].sent_at]
+        fixes = [f for f in fixes if f["at"] < cand[1].sent_at]
+        if newer:
+            if not dry_run:
+                store.add_feedback(
+                    [
+                        FeedbackEntry(
+                            account=account,
+                            date=day,
+                            run=cand[0].name,
+                            slide=None,
+                            kind="all",
+                            text=f["text"],
+                            at=f["at"],
+                            update_id=f["update_id"],
+                            result="candidates",
+                            round=0,
+                        )
+                        for f in newer
+                    ]
+                )
+            tg.send(f"[{account}] {day} " + MESSAGES["candidates"])
+        if not fixes:
+            return None
     result = decide(profile, store, run_dir, record, now, known)
     rnd = rounds_used(store, day) + 1 if result == "rerender" else 0
     entries = [

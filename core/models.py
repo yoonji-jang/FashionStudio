@@ -274,7 +274,9 @@ Decision = Literal["ok", "skip"]
 # 피드백 처리 결과. rerender: 고친 게시물을 다시 만듦 / limit: 하루 횟수를 넘음 / late: 게시 마감이
 # 가까움 / busy: 앞의 피드백으로 다시 만드는 중 / after_post: 이미 게시함 / sandbox: 시험 미리보기
 # / no_preview: 미리보기를 보내기 전
-FeedbackResult = Literal["rerender", "limit", "late", "busy", "after_post", "sandbox", "no_preview"]
+FeedbackResult = Literal[
+    "rerender", "limit", "late", "busy", "after_post", "sandbox", "no_preview", "candidates"
+]
 
 
 class FeedbackEntry(BaseModel):
