@@ -89,6 +89,8 @@ class RefSearch(BaseModel):
     queries: list[str] = []  # 웹 검색어 (계절·날씨에 맞는 말을 Claude 가 더한다)
     sources: list[str] = []  # 찾아볼 공개 페이지 종류 (매거진, 브랜드 룩북 …)
     avoid_sites: list[str] = []  # 로그인이 필요하거나 약관상 자동으로 읽으면 안 되는 곳
+    # 사진만 있는 쇼핑몰 코디 페이지: `tools.scout refs` 로 확인표를 만들어 보고 글로 옮긴다
+    scout_sites: list[str] = []
 
 
 class ThemeRules(BaseModel):

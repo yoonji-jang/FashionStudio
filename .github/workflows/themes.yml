@@ -34,7 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
-      - run: uv sync
+      # 참고 코디: 사진만 있는 쇼핑몰 코디 페이지를 tools.scout refs 로 본다 (profile ref_search.scout_sites)
+      - run: uv sync --group scout
+      - run: uv run playwright install --with-deps chromium
 
       - name: 준비 (날짜, 다시 정하는 주제)
         env:
@@ -75,7 +77,7 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 90
-            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
       - name: 텔레그램으로 보내기
         env:
