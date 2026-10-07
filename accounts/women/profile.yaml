@@ -245,7 +245,11 @@ outfit_image:
   # 모던한 명품샵 느낌의 쿨그레이 콘크리트 (2026-09-30 사용자가 4안 선택. 아이보리·베이지는 흔함)
   scene: >-
     smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
-    flagship store; soft even daylight from the upper left, cool neutral tone with no warm cast
+    flagship store; soft directional daylight from a large window at the upper left, a little
+    low, so every garment casts a soft shadow along its lower right edge on the floor and its folds
+    show gentle light and shade; cool neutral tone with no warm cast
+  # 2026-10-07 사용자: 여전히 납작함 → 고르게 퍼진 빛(even daylight)은 그림자가 없어 볼륨이 안 보여서
+  # 옆에서 낮게 드는 창빛으로 옷 가장자리 그림자와 주름 명암을 만든다 (바닥은 그대로)
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
   # 상의는 기본으로 넣어 입어 허리선을 높게 (2026-10-02 사용자: 바지·치마가 짧고 작아 보임)
   outer_styling: >-

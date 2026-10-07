@@ -74,7 +74,9 @@ AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참�
 - **상의 레이어드** (21단계): 셔츠를 니트·베스트·뷔스티에 안에 입히면 안쪽 상의에 `wear_with: 상의`.
   도구가 profile `outfit_image.layer_styling`(깃은 목선에, 소매 끝 3cm, 밑단 살짝)으로 입힌다.
   셔츠 위 튜브톱, 어깨에 니트 두르기처럼 다르게 입힐 때는 `styling` 에 영어로 직접 쓴다
-  ("The striped knit is draped over the shoulders with its sleeves loosely tied at the chest.").
+  ("The striped knit is draped over the shoulders with its sleeves loosely tied at the chest."
+  어깨에 두를 때는 "its body lies behind the top, only a band shows above the shoulders, the top front stays
+  visible" 를 함께 써서 몸판이 상의 앞을 덮지 않게 한다).
   여러 벌 게시물은 벌마다 `styling`.
 - plan.yaml 맨 위 `styling` (선택, 영어): 한 벌을 어떻게 입혀 펼칠지. 없으면 아우터가 있는 날은
   profile `outfit_image.outer_styling`(거의 닫고 가운데만 살짝 벌림)을 쓴다. 아우터를 활짝 열지 않는다.
