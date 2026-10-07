@@ -251,6 +251,8 @@ class Looks(BaseModel):
     # 상의·아우터 종류별 최대 벌 수. 이름에 그 말이 든 상의·아우터가 있는 벌을 센다
     # (2026-10-07 "전부 셔츠고 너무 무난한 기본템"). 예: {셔츠: 2, 베스트: 2}
     type_limits: dict[str, int] = {}
+    # type_limits 를 셀 때 이름에서 먼저 지우는 말 (예: "티셔츠"가 셔츠로 세지지 않게)
+    type_ignore: list[str] = []
     candidates: int = Field(
         default=1, ge=1, le=3
     )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)
