@@ -443,6 +443,9 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
     nums = r"\d{1,2}(?:\s*[,\s]\s*\d{1,2})*"
     if re.fullmatch(r"\d{1,2}(?:\s*[,\s]\s*\d{1,2})+\s*번?", plain):
         return Command("pick", re.findall(r"\d+", plain), False)
+    # 붙여 친 "34678" 도 벌 번호들로 읽는다 (후보가 10벌을 넘지 않으므로 세 자리 이상은 한 자리씩)
+    if re.fullmatch(r"[1-9]{3,}\s*번?", plain):
+        return Command("pick", re.findall(r"\d", plain), False)
     m = re.fullmatch(rf"({nums})\s*번?\s*(?:은|는)?\s*빼(?:고|줘|주세요|기)?.*", plain)
     if m:
         return Command("drop", re.findall(r"\d+", m.group(1)), False)
