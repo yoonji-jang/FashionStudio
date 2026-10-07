@@ -56,7 +56,7 @@ def quality(p: Product, profile: Profile | None = None) -> float:
     """창고에 남길 우선순위. 평점 × log(리뷰 수), 단독컷이 있으면 가산.
 
     프로필이 있으면 리뷰 수는 review_cap 까지만 세고 (많이 팔린 기본템이 늘 앞서지 않게),
-    이름에 style.point_words 가 있는 상품을 앞으로 둔다 (21단계).
+    이름에 style.point_words 가 있는 상품을 앞으로 (21단계), style.basic_words 가 있으면 뒤로.
     """
     reviews = p.review_count or 0
     if profile and profile.product_source.review_cap:
@@ -65,6 +65,8 @@ def quality(p: Product, profile: Profile | None = None) -> float:
     base *= 1.15 if p.has_flat_shot else 1.0
     if profile and is_point(p, profile):
         base *= 1.3
+    if profile and name_excluded(p.name, profile.style.basic_words):
+        base *= 0.6
     return base
 
 
