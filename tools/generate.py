@@ -297,6 +297,12 @@ def run(
     shots: list[str] | None = None,
 ) -> dict:
     spec = yaml.safe_load(spec_path.read_text(encoding="utf-8"))
+    # 화면비 시험 (예: 9:16 릴스 화각). spec 의 aspect_ratio·canvas 가 config 를 덮는다
+    if spec.get("aspect_ratio"):
+        cfg = {**cfg, "aspect_ratio": spec["aspect_ratio"]}
+        if hasattr(client, "cfg"):
+            client.cfg = cfg
+    canvas = tuple(spec.get("canvas") or CANVAS)
     out.mkdir(parents=True, exist_ok=True)
     (out / "inputs").mkdir(exist_ok=True)
     max_px = cfg.get("input_max_px", 1024)
@@ -332,14 +338,18 @@ def run(
             model = cfg["models"][key]
             (out / key).mkdir(exist_ok=True)
             for n in range(1, repeats + 1):
-                prompt = build_prompt(shot, spec, n)
+                prompt = (
+                    (REPO_ROOT / spec["prompt_text"]).read_text(encoding="utf-8")
+                    if spec.get("prompt_text")  # 하루 코디컷 지시문을 그대로 고쳐 쓴 시험
+                    else build_prompt(shot, spec, n)
+                )
                 (out / f"prompt_{shot}_{n}.txt").write_text(prompt, encoding="utf-8")
                 t0 = time.time()
                 entry = {"model": key, "shot": shot, "repeat": n}
                 try:
                     data, cost = client.generate(model, prompt, images)
                     path = out / key / f"{shot}_{n}.jpg"
-                    fit_canvas(data).save(path, "JPEG", quality=92)
+                    fit_canvas(data, canvas).save(path, "JPEG", quality=92)
                     entry.update(ok=True, cost=cost, file=str(path.relative_to(out)))
                 except Exception as e:  # 한 모델이 실패해도 나머지는 계속
                     entry.update(ok=False, error=str(e)[:300])
