@@ -103,11 +103,24 @@ def build(
             d.mkdir(parents=True, exist_ok=True)
         kept = review_tool.load_review(d) if made and review_tool.review_path(d).exists() else None
         review = review_tool.start(d, made)
-        if kept and review.chosen == kept.chosen:
+        if kept and review.chosen == kept.chosen and _same_chosen(d, kept, review):
             # 지난 코디컷을 그대로 쓰는 벌 (/fix 로 안 고친 벌): 벌 장에는 상품 장 검사가 없어서
             # 지난 검수 결과를 그대로 둔다 (다시 검수하지 않아도 되게)
             review_tool.save_review(d, kept)
     return finish(out, profile, store, warns or [], notes)
+
+
+def _same_chosen(d: Path, a: Review, b: Review) -> bool:
+    """두 검수가 같은 코디컷 파일을 골랐는지. 후보 번호(c1)만 같고 파일이 다르면
+    (/fix 로 cover 를 다른 사진으로 바꿈, 2026-10-07 10/8 LOOK 4) 지난 검수를 남기면
+    지난 사진이 다시 쓰인다."""
+    from tools import review as review_tool
+
+    def path(r: Review) -> Path | None:
+        c = next((c for c in r.candidates if c.id == r.chosen), None)
+        return review_tool.cand_path(d, c).resolve() if c else None
+
+    return path(a) == path(b)
 
 
 def chosen_image(d: Path) -> Path | None:

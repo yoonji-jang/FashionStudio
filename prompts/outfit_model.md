@@ -71,6 +71,6 @@ the shape, length and color of every item unchanged. Natural skin texture, littl
 flyaways. The pose is relaxed and a little imperfect, never a model pose. The ground is plain pavement
 or floor: no carpet of fallen leaves, no props arranged for the photo. No glossy perfect surfaces, no
 empty symmetrical corridors, no spotless streets, no HDR or over-sharpened look, no sharp people near
-the person. Colors of the listed items stay true to their product photos. Vertical 4:5, no text,
+the person. Colors of the listed items stay true to their product photos. Vertical 4:5 full-bleed photo filling the whole canvas with no white border, frame or margin, no text,
 no numbers, no labels, no signs with writing, no watermark. Draw exactly the number of pieces stated
 for each item (a pair of earrings is two earrings, a pair of shoes is two shoes).
