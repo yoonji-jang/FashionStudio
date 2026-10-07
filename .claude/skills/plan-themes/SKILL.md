@@ -63,7 +63,7 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
    `ref_search.scout_sites`(29CM 처럼 코디가 글 없이 사진으로만 있는 쇼핑몰)는 이렇게 본다
    (2026-10-07 사용자: 무신사·29CM·W컨셉 코디도 참고):
    - WebSearch 에 `allowed_domains` 로 그 사이트를 주고 코디·스냅·룩북 글 주소를 찾는다 (검색어 예: "29CM 가을 코디").
-   - `python -m tools.scout refs --account $ACCOUNT --url <주소> [--url <주소> …] --out out/refs` 로 사진 확인표를 만든다.
+   - `python -m tools.scout refs --account women --url <주소> [--url <주소> …] --out out/refs` 처럼 계정 이름을 그대로 넣어 사진 확인표를 만든다 ($변수·uv run·cd·파이프를 붙이면 허용 목록에 안 맞아 막힌다).
      한 번에 주소 3~5개까지. 이 도구는 scout_sites 와 robots.txt 가 허용한 주소만 열고, 사진 원본은 남기지 않는다.
    - `out/refs/sheet_N.jpg` 를 Read 로 보고, 코디가 보이는 것만 글로 옮긴다. 출처는 "쇼핑몰 코디 (29CM)" 처럼 적는다.
      확인표가 안 만들어졌으면(막힘·사진 없음) 그 사이트는 이번 주 건너뛴다.
