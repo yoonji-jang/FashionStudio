@@ -411,9 +411,14 @@ def rerender_cover(out: Path, cover: Path, profile: Profile) -> None:
         encoding="utf-8",
     )
     size = feed.canvas_size(profile)
+    slides = out / "slides"
     feed.save_slide(
-        feed.cover_slide(spec, profile, size, REPO_ROOT), out / "slides" / "01_cover.jpg", profile
+        feed.cover_slide(spec, profile, size, REPO_ROOT), slides / "01_cover.jpg", profile
     )
+    tall = slides / feed.TALL_DIR / "01_cover.jpg"
+    if tall.parent.is_dir():  # 릴스용 9:16 판도 (reels.fill)
+        img = feed.cover_slide(spec, profile, feed.TALL_SIZE, REPO_ROOT)
+        feed.save_slide(img, tall, profile)
 
 
 def apply(out: Path, scores: Scores, profile: Profile | None = None) -> tuple[Review, int]:

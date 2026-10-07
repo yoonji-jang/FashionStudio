@@ -373,6 +373,7 @@ cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 �
 | `transition` | cut | 장 사이 효과: `cut`(바로 다음 장으로) / `slide`(캐러셀 넘기듯) / `fade` |
 | `transition_sec` | 0.35 | 넘기는 시간 (초, `cut` 이면 안 씀) |
 | `top` | 0.105 | 슬라이드 위쪽 끝 위치 (세로 대비). 아래쪽은 인스타 캡션·버튼이 덮는 자리라 비움 |
+| `fill` | true | 펼친컷 날 표지·벌 장은 코디컷 위아래 바닥을 코드로 늘려 화면을 꽉 채움 (위아래 띠 없음, AI 비용 없음). 글자는 `top` 에 4:5 장을 올렸을 때와 같은 자리. 모델컷 날·댓글 안내 장은 그대로 |
 | `background` | null | 남는 곳 색. `null` 이면 `feed.background` |
 | `music_dir` | accounts/women/music | 배경 음악 폴더. 상업 이용이 허락된 mp3·m4a 를 넣으면 날짜마다 돌려 씀. 비어 있으면 소리 없음 |
 | `music_volume` | 0.8 | 음악 크기 |

@@ -223,7 +223,9 @@ def finish(
     slides_dir = out / "slides"
     for old in slides_dir.glob("*.jpg"):
         old.unlink()  # 벌 수가 바뀌면 지난 장이 남지 않게
-    slides = feed.render(spec, slides_dir, root=REPO_ROOT, profile=profile, store=store)
+    # 펼친컷 날은 릴스용 9:16 판도 (reels.fill). 모델컷은 바닥이 아니라 늘리지 않는다
+    tall = profile.reels.enabled and profile.reels.fill and plan.shot != "model"
+    slides = feed.render(spec, slides_dir, root=REPO_ROOT, profile=profile, store=store, tall=tall)
     plan_tool.preview(slides, out / "preview.jpg")
 
     issues = title_issues(plan, profile)

@@ -187,6 +187,10 @@ def test_build_makes_look_folders_and_slides(tmp_path, store):
     # AI 표시는 표지와 벌 장에만
     kinds = {Path(x).name: ai_label.read(out / "slides" / Path(x).name) for x in m.images}
     assert kinds["02_look1.jpg"] and kinds["01_cover.jpg"] and not kinds["08_comment.jpg"]
+    # 릴스용 9:16 판은 표지·벌 장만 (reels.fill)
+    tall = sorted(p.name for p in (out / "slides" / "tall").glob("*.jpg"))
+    assert tall == names[:-1]
+    assert Image.open(out / "slides" / "tall" / "02_look1.jpg").size == (1080, 1920)
     assert "LOOK 1" in (out / "caption.txt").read_text()
     assert "코디 6벌" in (out / "report.md").read_text()
 
