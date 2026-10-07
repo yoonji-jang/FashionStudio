@@ -32,9 +32,12 @@ description: 전날 올린 코디 게시물의 벌들을 옷을 입은 AI 모델
      스튜디오·화보 같은 연출을 mood 에 넣지 않는다.
    - 벌 `styling`: 펼친 코디컷용 문장("laid", "flat")이 있으면 사람이 입은 모양으로 바꾼다
      (예: "The shirt is tucked into the front of the slacks; the cardigan is worn open").
-   - `pose` 는 도구가 profile `model_shot.poses` 에서 돌려 넣은 것이다. 바꾸지 않는다.
+   - `pose` 는 도구가 profile `model_shot.poses` 에서 돌려 넣은 것이다. 바꾸지 않는다 (장면마다 컷 종류·빛·헤어가
+     달라 게시물 전체가 한 화보처럼 보이지 않게 짜 둠, 2026-10-07 사용자).
+   - `mood` 를 바꿀 때 빛(골든아워 등)을 정하지 않는다. 빛은 포즈마다 다르다.
 3. **문구**: `write-copy` 스킬의 "여러 벌" 절로 `text`(제목·도입·해시태그)와 벌마다 `point` 를 새로 쓴다.
-   전날 게시물과 같은 옷을 사람이 입은 모습이라는 점을 살린다 (예: 도입 "어제 코디, 입으면 이런 느낌이에요").
+   표지 제목은 그냥 코디 모음 제목으로 쓴다 (voice.md "모델컷 게시물 표지", 2026-10-07 사용자):
+   "어제 그 코디", "입으면 이런 느낌", "모델컷" 처럼 전날 게시물이나 입은 사진이라는 걸 말하지 않는다.
    전날 제목·도입·point 문장을 그대로 다시 쓰지 않는다. 제목 규칙(요일 금지 등)은 그대로 지킨다.
 4. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`. 오류를 고치고 다시 검사한다 (최대 3번).
 5. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`. 벌마다

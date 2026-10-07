@@ -424,3 +424,27 @@ def test_model_post_redraws_yesterday_looks_as_model_shots(tmp_path, store, monk
     assert (d / "review" / "face_c1_1.jpg").exists()
     r, _ = review.apply(d, review.Scores.model_validate({"covers": [score("c1", 10)]}))
     assert r.candidates[0].score.clean == 2
+
+
+def test_fix_cover_swapped_to_other_image_drops_old_review(tmp_path, store):
+    """/fix 로 벌 cover 를 다른 사진으로 바꾸면 지난 검수의 후보(c1)를 남기지 않는다
+    (2026-10-07 10/8 LOOK 4)."""
+    out, _ = build(tmp_path, store)
+    for n in range(1, 7):
+        review.apply(
+            out / "looks" / str(n), review.Scores.model_validate({"covers": [score("c1", 10)]})
+        )
+    prev = tmp_path / "prev"
+    prev.mkdir()
+    (prev / "run1").symlink_to(out)
+    new = tmp_path / "new"
+    feedback.prepare({"run": "run1", "fixes": []}, prev, new)
+    other = tmp_path / "other.jpg"
+    other.write_bytes((out / "looks" / "2" / "outfit" / "results" / "G_1.jpg").read_bytes())
+    p = plan.load_plan(new / "plan.yaml")
+    looks_ = [lk.model_copy(update={"cover": str(Path(lk.cover).resolve())}) for lk in p.looks]
+    looks_[3] = looks_[3].model_copy(update={"cover": str(other)})
+    plan.build(p.model_copy(update={"looks": looks_}), new, load_profile("women"), store, fake=True)
+    assert looks.chosen_image(new / "looks" / "4").resolve() == other.resolve()
+    assert review.load_review(new / "looks" / "4").status == "not_reviewed"
+    assert review.load_review(new / "looks" / "1").status == "passed"
