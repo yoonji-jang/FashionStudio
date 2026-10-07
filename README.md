@@ -733,6 +733,10 @@ D+1 07:00  schedule → publish: 마감 전 /ok 가 있으면 게시. 실패하�
   모두 기준 미달이면 한 묶음 더 만듭니다 (`max_rounds`).
 - **실패 알림**: daily·themes·collect·schedule 이 실패하면 텔레그램으로 실행 주소를 보냅니다. 게시 실패와
   토큰 문제는 publish·token 이 직접 알립니다. 검수를 통과하지 못한 날은 미리보기에 "사람 확인 필요"로 옵니다.
+- **Claude 사용량 한도**: Claude 를 쓰는 워크플로(daily·themes·feedback-rules)가 구독 사용량 한도로 멈추면
+  daily-results 의 `limits/` 에 입력을 남기고(`.github/scripts/limit.sh`), 실패 알림에 다시 시작한다고 적습니다.
+  한도가 풀린 뒤 첫 schedule 실행이 같은 입력으로 한 번 다시 돌립니다. 같은 일은 가장 나중 것만, daily 는 그 날짜를
+  이미 다시 만들었거나 게시했으면 하지 않습니다.
 - **인스타 토큰 연장**: 토큰은 발급 24시간 뒤부터 연장할 수 있고, 연장하면 다시 60일이 됩니다.
   연장 결과로 토큰 값이 바뀌면 Secret 을 바꿔야 하는데, `SECRETS_TOKEN` 이 있으면 자동으로 바꿉니다.
   만드는 법: GitHub → Settings → Developer settings → Fine-grained tokens → 이 저장소만 선택 →

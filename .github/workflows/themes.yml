@@ -136,10 +136,22 @@ jobs:
           gh workflow run daily.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
             -f date="${{ inputs.then_candidates }}" -f mode=candidates -f sandbox=false
 
+      - name: 사용량 한도 기록 (한도가 풀리면 schedule 이 같은 입력으로 다시 돌림)
+        if: failure()
+        env:
+          WORKFLOW: themes.yml
+          INPUTS: ${{ toJSON(inputs) }}
+        run: |
+          INPUTS=$(jq -c --arg date "$FIRST" '. + {date: $date}' <<< "$INPUTS") \
+            KEY="themes:$ACCOUNT" .github/scripts/limit.sh
+
       - name: 실패 알림
         if: failure()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEXT: "[${{ inputs.account }}] 주간 주제 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        run: .github/scripts/alert.sh
+        run: |
+          [ -n "$LIMITED" ] && TEXT="$TEXT
+          Claude 사용량 한도로 멈췄어요. 한도가 풀리면 자동으로 다시 시작해요"
+          .github/scripts/alert.sh

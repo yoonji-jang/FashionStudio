@@ -54,6 +54,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, date, datetime, time, timedelta
@@ -827,6 +828,117 @@ def send_model(t: Task, results: Path | None, tg, send, dry_run: bool) -> None:
     send("daily.yml", account=t.account, date=t.date, mode="model", pick=src.name, sandbox=False)
 
 
+LIMITS = (
+    "limits"  # Claude 사용량 한도로 멈춘 워크플로 기록 (daily-results, .github/scripts/limit.sh)
+)
+LIMIT_NAMES = {
+    "daily.yml": "게시물 만들기",
+    "themes.yml": "주제 정하기",
+    "feedback-rules.yml": "피드백 규칙 반영",
+}
+LIMIT_DAYS = 2  # 이보다 오래된 한도 기록은 다시 시작하지 않는다
+LIMIT_MARGIN = timedelta(minutes=5)  # 한도가 풀리는 시각에서 조금 더 기다린다
+LIMIT_FALLBACK = timedelta(hours=5)  # 풀리는 시각을 못 읽으면 (Claude 사용량 창)
+RESETS = re.compile(
+    r"resets\s+(?:([A-Z][a-z]{2})\s+(\d{1,2}),?\s+)?(\d{1,2})(?::(\d{2}))?\s*(am|pm)"
+    r"(?:\s*\(([^)]+)\))?",
+    re.IGNORECASE,
+)
+MONTHS = "jan feb mar apr may jun jul aug sep oct nov dec".split()
+
+
+def limit_resets(message: str, at: datetime) -> datetime:
+    """ "You've hit your session limit · resets 9am (UTC)" 에서 한도가 풀리는 시각.
+    날짜가 없으면 멈춘 뒤 처음 오는 그 시각, 못 읽으면 멈춘 뒤 LIMIT_FALLBACK."""
+    m = RESETS.search(message)
+    if not m:
+        return at + LIMIT_FALLBACK
+    mon, day, hour, minute, ampm, tz = m.groups()
+    try:
+        zone = ZoneInfo(tz.strip()) if tz else UTC
+    except (KeyError, ValueError):
+        zone = UTC
+    h = int(hour) % 12 + (12 if ampm.lower() == "pm" else 0)
+    local = at.astimezone(zone)
+    if mon and mon.lower()[:3] in MONTHS:
+        d = date(local.year, MONTHS.index(mon.lower()[:3]) + 1, int(day))
+        return datetime.combine(d, time(h, int(minute or 0)), zone)
+    reset = datetime.combine(local.date(), time(h, int(minute or 0)), zone)
+    return reset if reset > local else reset + timedelta(days=1)
+
+
+def retry_limited(results: Path | None, gh, tg, now: datetime, dry_run: bool = False) -> list[str]:
+    """Claude 사용량 한도로 멈춘 워크플로(daily·themes·feedback-rules)를
+    한도가 풀린 뒤 같은 입력으로 한 번 다시 부른다.
+    기록은 워크플로가 daily-results 의 limits/*.json 에 남긴다 (.github/scripts/limit.sh).
+    같은 일(key)은 가장 나중 기록만 다시 하고,
+    daily 는 그 날짜를 더 나중에 다시 만들었거나 이미 게시했으면 건너뛴다."""
+    log: list[str] = []
+    folder = results / LIMITS if results is not None else None
+    if folder is None or not folder.is_dir():
+        return log
+    recs = []
+    for path in sorted(folder.glob("*.json")):
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        recs.append((int(rec.get("at", 0)), path, rec))
+    latest = {}
+    for at, path, rec in recs:
+        key = rec.get("key") or rec.get("workflow")
+        if at >= latest.get(key, (0, None))[0]:
+            latest[key] = (at, path)
+    for at_ts, path, rec in sorted(recs, key=lambda x: x[0]):
+        if rec.get("retried") or rec.get("skipped"):
+            continue
+        at = datetime.fromtimestamp(at_ts, UTC)
+        workflow, inputs = rec.get("workflow"), dict(rec.get("inputs") or {})
+        key = rec.get("key") or workflow
+        why = ""
+        if now - at > timedelta(days=LIMIT_DAYS):
+            why = "오래됨"
+        elif not workflow:
+            why = "워크플로 모름"
+        elif latest[key][1] != path:
+            why = "같은 일의 더 나중 기록이 있음"
+        elif workflow == "daily.yml":
+            why = _daily_superseded(results, inputs, rec.get("run", ""))
+        if why:
+            rec["skipped"] = why
+        else:
+            if now < limit_resets(rec.get("message", ""), at) + LIMIT_MARGIN:
+                continue
+            if dry_run:
+                log.append(f"(시험) {workflow} {inputs}")
+                continue
+            gh.dispatch(workflow, inputs)
+            log.append(f"{workflow} {inputs}")
+            rec["retried"] = int(now.timestamp())
+            if tg is not None:
+                what = LIMIT_NAMES.get(workflow, workflow)
+                day = f" {inputs['date']}" if inputs.get("date") else ""
+                tg.send(
+                    f"[{inputs.get('account', '')}]{day} Claude 사용량 한도가 풀려 멈췄던 "
+                    f"{what}을(를) 다시 시작해요"
+                )
+        if not dry_run:
+            path.write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
+    return log
+
+
+def _daily_superseded(results: Path, inputs: dict, run: str) -> str:
+    """daily 다시 실행을 건너뛸 이유 (그 날짜를 더 나중에 만들었거나 이미 게시함).
+    없으면 빈 문자열."""
+    day, account = inputs.get("date", ""), inputs.get("account", "")
+    m = re.fullmatch(r".*-run(\d+)", run or "")
+    if day and m:
+        for d in results.glob(f"{day}-run*"):
+            n = re.fullmatch(rf"{re.escape(day)}-run(\d+)", d.name)
+            if n and int(n.group(1)) > int(m.group(1)):
+                return "더 나중 실행이 있음"
+    if day and account and any(p.date.isoformat() == day for p in Store(account).posts()):
+        return "이미 게시함"
+    return ""
+
+
 def report_missed(missed: list[Task], tg) -> None:
     """놓친 주요 작업을 알린다 (고르기·링크 칸은 다음 칸이 이어받아 알리지 않음)."""
     for t in missed:
@@ -907,6 +1019,11 @@ def main(argv: list[str] | None = None) -> int:
         if args.dry_run and tg is not None:
             tg = QuietTelegram(tg)
         report_missed(missed, tg)
+        try:
+            for line in retry_limited(results, gh, tg, now, args.dry_run):
+                print(f"사용량 한도 뒤 다시 실행: {line}")
+        except (RuntimeError, ValueError, OSError, httpx.HTTPError) as e:
+            print(f"사용량 한도 다시 실행 확인 실패: {e}", file=sys.stderr)
         if not tasks:
             print(f"cron '{args.cron}' 에 지금 할 작업이 없습니다")
         try:

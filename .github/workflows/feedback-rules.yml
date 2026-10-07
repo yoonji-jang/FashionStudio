@@ -141,10 +141,20 @@ jobs:
           uv run python -m tools.notify send "[$ACCOUNT] 📝 피드백을 규칙에 반영한 PR 을 만들었어요. 확인하고 괜찮으면 합쳐 주세요 (검사: $TESTS)
           $URL"
 
+      - name: 사용량 한도 기록 (한도가 풀리면 schedule 이 같은 입력으로 다시 돌림)
+        if: failure()
+        env:
+          WORKFLOW: feedback-rules.yml
+          INPUTS: ${{ toJSON(inputs) }}
+        run: KEY="feedback-rules:$ACCOUNT" .github/scripts/limit.sh
+
       - name: 실패 알림
         if: failure()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEXT: "[${{ env.ACCOUNT }}] 피드백 규칙 PR 만들기 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        run: .github/scripts/alert.sh
+        run: |
+          [ -n "$LIMITED" ] && TEXT="$TEXT
+          Claude 사용량 한도로 멈췄어요. 한도가 풀리면 자동으로 다시 시작해요"
+          .github/scripts/alert.sh
