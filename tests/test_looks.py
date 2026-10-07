@@ -1,7 +1,8 @@
 """코디 여러 벌 게시물 (20단계, profile looks)."""
 
 import json
-from datetime import date
+import shutil
+from datetime import date, datetime
 from pathlib import Path
 
 import pytest
@@ -479,3 +480,112 @@ def test_fix_cover_swapped_to_other_image_drops_old_review(tmp_path, store):
     assert looks.chosen_image(new / "looks" / "4").resolve() == other.resolve()
     assert review.load_review(new / "looks" / "4").status == "not_reviewed"
     assert review.load_review(new / "looks" / "1").status == "passed"
+
+
+def test_find_edits_reads_look_number_or_replied_sheet():
+    r = rec(count=8, looks=6, looks_min=5, message_ids=[21, 22, 30], sheets={21: 1, 22: 2})
+    ups = [
+        upd(1, "/fix 1 이너를 나그랑티가 아닌 나시로 변경"),
+        upd(2, "/fix 1,3 더 밝은 색으로"),
+        upd(3, "/fix 2번 신발을 로퍼로"),
+        upd(4, "/fix 가방을 숄더백으로", to=22),  # 2번 벌 시트에 답장
+        upd(5, "/fix 이너를 나시로"),  # 번호 없음
+        upd(6, "/fix 1"),  # 내용 없음
+        upd(7, "/fix 1 이너를 나시로", to=999),  # 봇의 다른 메시지에 답장
+    ]
+    found = pick.find_edits(ups, r, CHAT)
+    assert [(e["update_id"], e["looks"], e["text"]) for e in found] == [
+        (1, [1], "이너를 나그랑티가 아닌 나시로 변경"),
+        (2, [1, 3], "더 밝은 색으로"),
+        (3, [2], "신발을 로퍼로"),
+        (4, [2], "가방을 숄더백으로"),
+        (5, [], "이너를 나시로"),
+    ]
+
+
+class EditTg:
+    chat_id = CHAT
+
+    def __init__(self, texts):
+        self.ups = [upd(i, t, at=1100 + i) for i, t in enumerate(texts, 1)]
+        self.sent = []
+
+    def updates(self):
+        return self.ups
+
+    def send(self, text, **kw):
+        self.sent.append(text)
+        return 100 + len(self.sent)
+
+
+def sent_candidates(results, store):
+    run = results / "2026-10-02-run5"
+    write_candidates(run, [looks_plan(8, text=None)])
+    record = rec(run=run.name, count=8, looks=6, looks_min=5, message_ids=[21, 30], sheets={21: 1})
+    (run / "picks" / "pick.json").write_text(record.model_dump_json())
+    return run
+
+
+def test_candidate_fix_edits_one_look_then_pick_continues(tmp_path, store):
+    profile = load_profile("women")
+    results = tmp_path / "results"
+    run = sent_candidates(results, store)
+    # 번호를 먼저 보냈어도 /fix 가 있으면 고친 뒤에 반영한다
+    tg = EditTg(["1 3 5 7 8", "/fix 1 이너를 나그랑티가 아닌 나시로"])
+    act = pick.check(profile, DAY, results, tg, False, 200, datetime.fromtimestamp(2000))
+    assert act.action == "edit" and act.run == run.name
+    assert act.fixes == [{"update_id": 2, "looks": [1], "text": "이너를 나그랑티가 아닌 나시로"}]
+    assert "1번 벌을 고치고 있어요" in tg.sent[-1]
+    assert not (run / "picks" / "picked.json").exists()
+    # 고치는 중에는 고르기를 미룬다
+    wait = pick.check(profile, DAY, results, tg, False, 140, datetime.fromtimestamp(5000))
+    assert wait.action == "wait" and "고치는 중" in wait.detail
+
+    # daily mode=edit: 지난 후보를 가져와 Claude 가 1번 벌을 고친다 (2번은 실수로 바꿈)
+    out = tmp_path / "out"
+    store.save_products([*store.products(), product(500, "상의")])
+    pick.prepare_edit({"run": run.name, "fixes": act.fixes}, results, out)
+    data = yaml.safe_load((out / "picks" / "p1.yaml").read_text())
+    data["looks"][0]["items"][1] = {
+        "product": "zigzag:500",
+        "desc": "블랙 골지 나시 (black ribbed tank)",
+        "name": "골지 나시",
+    }
+    data["looks"][0]["reason"] = "블랙 나시로 산뜻하게. 메모"
+    data["looks"][1]["reason"] = "바꾸면 안 되는 벌"
+    (out / "picks" / "p1.yaml").write_text(yaml.safe_dump(data, allow_unicode=True))
+    api = FakeApis()
+    new = pick.send_edit(out, "2026-10-02-run6", tg_of(api), profile, store)
+    edited = pick.load_candidates(out)[0]
+    assert edited.looks[0].items[1].product == "zigzag:500"
+    assert edited.looks[1].reason.startswith("2번 벌")  # 적히지 않은 벌은 되돌림
+    assert new.sent_at == 1000 and new.edits == [2] and new.run == "2026-10-02-run6"
+    assert len(new.message_ids) == 4 and len(new.sheets) == 2  # 고친 1번 시트만 더 보냄
+    text = api.texts[-1]
+    assert "1번: 이너를 나그랑티가 아닌 나시로" in text and "1. 블랙 나시로 산뜻하게" in text
+
+    # 고친 후보가 결과 폴더에 올라가면 고치기 전에 보낸 번호로 고친 벌을 만든다
+    shutil.copytree(out, results / "2026-10-02-run6")
+    act = pick.check(profile, DAY, results, tg, False, 80, datetime.fromtimestamp(6000))
+    assert act.action == "render" and act.run == "2026-10-02-run6"
+    chosen = plan.load_plan(results / "2026-10-02-run6" / "picks" / "chosen.yaml")
+    assert chosen.looks[0].items[1].product == "zigzag:500"
+    assert [lk.reason[:2] for lk in chosen.looks[1:]] == ["3번", "5번", "7번", "8번"]
+
+
+def test_candidate_fix_refused_without_number_or_near_deadline(tmp_path, store):
+    profile = load_profile("women")
+    results = tmp_path / "results"
+    run = sent_candidates(results, store)
+    tg = EditTg(["/fix 이너를 나시로", "/fix 9 신발 바꿔"])
+    act = pick.check(profile, DAY, results, tg, False, 200, datetime.fromtimestamp(2000))
+    assert act.action == "wait"
+    assert "벌 번호를 같이" in tg.sent[0] and "9번 벌은 없어요" in tg.sent[0]
+    n = len(tg.sent)
+    pick.check(profile, DAY, results, tg, False, 200, datetime.fromtimestamp(3000))
+    assert len(tg.sent) == n  # 한 번만 알린다
+    # 마감이 가까우면 고치지 않고 고르기만 받는다
+    tg.ups.append(upd(9, "/fix 1 이너를 나시로", at=1200))
+    act = pick.check(profile, DAY, results, tg, True, 0, datetime.fromtimestamp(4000))
+    assert act.action == "render" and "고칠 시간이 없어요" in tg.sent[n]
+    assert not (run / "picks" / pick.EDITS).exists()

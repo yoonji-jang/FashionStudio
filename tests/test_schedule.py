@@ -1,3 +1,4 @@
+import json
 from datetime import UTC, date, datetime
 from zoneinfo import ZoneInfo
 
@@ -135,6 +136,15 @@ def test_execute_dispatches_workflows(tmp_path, monkeypatch):
     gh = schedule.DryRun()
     schedule.execute([T("women", "pick", "2026-09-28", False, False, 100)], tmp_path, gh)
     assert gh.sent[0][1]["mode"] == "render" and gh.sent[0][1]["pick"] == "2026-09-28-run3/2"
+
+    # 후보 한 벌 고치기 (/fix 1 …) 는 mode=edit 로, 고칠 점을 JSON 으로 넘긴다
+    fix = {"update_id": 7, "looks": [1], "text": "이너를 나시로"}
+    act = pick.Action("edit", "2026-09-28-run3", fixes=[fix])
+    gh = schedule.DryRun()
+    schedule.execute([T("women", "pick", "2026-09-28", False, False, 100)], tmp_path, gh)
+    sent = gh.sent[0][1]
+    assert sent["mode"] == "edit"
+    assert json.loads(sent["pick"]) == {"run": "2026-09-28-run3", "fixes": [fix]}
 
 
 def test_claude_steps_accept_bot_dispatch():
