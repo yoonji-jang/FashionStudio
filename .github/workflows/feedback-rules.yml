@@ -89,7 +89,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add -A -- . ':!out' ':!data'
+          # out/ 은 .gitignore 라 pathspec 에 적으면 git add 가 실패한다
+          git add -A -- . ':!data'
           git commit -qm "피드백 규칙 반영: $ACCOUNT $DAY"
           git push -f origin "$branch"
           body=out/feedback_rules/pr_body_full.md
