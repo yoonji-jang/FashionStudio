@@ -14,7 +14,8 @@ $season: 게시 날짜의 계절 (영어).
 2026-10-07 사용자 3차 (10/8 모델컷이 화보 같음, 핀터레스트 저장 사진과 비교): 5장이 같은 거리 전신·같은 긴 생머리·
 같은 골든아워 필름 톤·다림질한 옷·모델 포즈·사람 없는 예쁜 골목이라 인위적 → 컷 종류·빛·헤어를 포즈마다 다르게,
 신발·가방이 잘려도 됨, 글자 자리(왼쪽 아래) 비우기 없앰(글자 뒤 그라데이션이 받침), 입던 옷처럼 자연스러운 구김,
-흐릿한 행인·생활 물건 허용, 힙한 핀터레스트 느낌. 바지는 실제 기장보다 짧게 그리지 않는다 (LOOK 4 와이드 팬츠가 짧아 보임).
+흐릿한 행인·생활 물건 허용, 힙한 핀터레스트 느낌.
+2026-10-07 사용자 4차: 모델 다리가 조금 더 길면 좋겠다, 특히 앉은 사진 → 다리 비율 문장, 앉은 장면은 다리를 뻗게, 위에서 내려찍지 않게. 바지는 실제 기장보다 짧게 그리지 않는다 (LOOK 4 와이드 팬츠가 짧아 보임).
 이 주석은 전송되지 않는다.
 -->
 Create one candid, effortlessly cool everyday photo of a person wearing this exact outfit, the kind of
@@ -43,6 +44,9 @@ listed items.
 
 Styling: $styling
 Person and pose: $pose
+Her legs are long for her height (legs about half her height or a little more): standing, sitting or
+squatting, the thighs and shins stay long and are never shortened, folded small or foreshortened by the
+camera angle; when she sits, her legs stretch out or cross long in front of her.
 The face may be partly visible the way it is in a candid photo (looking down, turned away, half
 behind her hair, the cup or the phone), but she never looks at the camera and her full face is never
 shown clearly from the front. Nothing is held up unnaturally just to hide the face. The person is
