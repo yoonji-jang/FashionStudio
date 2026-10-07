@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-08-run148",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-08-run145\", \"round\": 2, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"표지 코디컷은 그대로 두고 제목만 고친다. 브라운 스웨이드는 일부 벌뿐이라 맞지 않는다. 일교차 큰 가을 날씨에 입기 좋은 코디 모음 느낌으로 (예: 일교차 큰 가을날 / 레이어드 코디 모음)\"}, {\"slide\": 3, \"kind\": \"look\", \"look\": 2, \"text\": \"앉은 사진에서 모델 다리가 짧아 보인다. 다리를 조금 더 길게. profile model_shot.poses 2번째 장면(길가에 앉아 다리를 뻗음, 새로 고침)으로 pose 를 바꿔 다시 그린다\"}, {\"slide\": 4, \"kind\": \"look\", \"look\": 3, \"text\": \"앉은 사진에서 모델 다리가 짧아 보인다. 다리를 조금 더 길게. profile model_shot.poses 3번째 장면(벤치에서 다리를 뻗고 눈높이에서 찍음, 새로 고침)으로 pose 를 바꿔 다시 그린다\"}, {\"slide\": 5, \"kind\": \"look\", \"look\": 4, \"text\": \"다시 그린 LOOK 4는 가디건 밑으로 셔츠가 과하게 빠져나왔다. 처음 사진(2026-10-08-run142 의 LOOK 4)을 쓴다: plan looks[3].cover 를 samples/women/model_2026-10-08_look4.jpg 로 바꾸고 build 전에 out/$DATE/looks/4/review/review.json 을 지운 다음, 이 벌은 새로 그리지 말고 image-reviewer 로 검수만 한다\"}]}"
+}
