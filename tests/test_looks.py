@@ -266,6 +266,9 @@ def test_decide_looks():
     assert choice("4번 빼고")[0] == [1, 2, 3, 5, 6, 7]  # 예비 7번이 채움
     assert choice("/drop 2 3")[0] == [1, 4, 5, 6, 7, 8]
     assert choice("1 3 5 7 8")[0] == [1, 3, 5, 7, 8]  # 5벌도 됨
+    assert choice("34678")[0] == [3, 4, 6, 7, 8]  # 붙여 쳐도 됨
+    assert choice("3,4,6,7,8")[0] == [3, 4, 6, 7, 8]
+    assert choice("3, 4, 6, 7, 8번")[0] == [3, 4, 6, 7, 8]
     assert "5~6벌을 골라" in choice("2번")[1]  # 한 벌만은 안 됨
     assert "9번 벌은 없어요" in choice("1 2 3 4 9")[1]
     assert choice("다시")[0] == "again"
