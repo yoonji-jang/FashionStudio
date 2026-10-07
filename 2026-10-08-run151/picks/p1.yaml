@@ -1,0 +1,341 @@
+account: women
+date: '2026-10-08'
+items: []
+looks:
+- items:
+  - color: 올리브
+    comment: ''
+    cutout_photo: 0
+    desc: 올리브 그린 니트 가디건 (olive green knit cardigan, buttoned, relaxed fit)
+    name: 브리튼 가디건
+    product: zigzag:168779822
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 워싱 셔츠 (white washed cotton shirt, oversized)
+    name: 워싱 셔츠
+    product: zigzag:127356723
+    wear_with: 상의
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 투핀턱 와이드 슬랙스 (beige wide-leg pleated trousers)
+    name: 와이드 슬랙스
+    product: zigzag:135443091
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+    name: 퀼팅 체인백
+    product: zigzag:105424126
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 코튼 메리제인 플랫 (cream canvas mary jane flats with black piping)
+    name: 코튼 발레리나
+    product: zigzag:170609181
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 벨트 (black leather belt with silver square buckle)
+    name: 레더 벨트
+    product: zigzag:148980176
+    wear_with: 하의
+  point: ''
+  reason: 올리브 가디건이 주인공, 화이트 셔츠 깃을 빼고 베이지 팬츠로 톤을 맞춤
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하이넥 부클 니트 베스트 (ivory high-neck fluffy boucle knit vest)
+    name: 부클 니트 베스트
+    product: zigzag:150449770
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 라이트블루 스트라이프 셔츠 (white shirt with thin light-blue stripes)
+    name: 스트라이프 셔츠
+    product: zigzag:157438223
+    wear_with: 상의
+  - color: 인디고
+    comment: ''
+    cutout_photo: 0
+    desc: 인디고 와이드 생지 데님 (dark indigo wide-leg raw denim)
+    name: 와이드 생지데님
+    product: zigzag:149107295
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 숄더백
+    product: zigzag:166194366
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers)
+    name: 레이스업 로퍼
+    product: zigzag:134105153
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 미니 원터치 귀걸이 (exactly one pair (two earrings) of small gold earrings)
+    name: 골드 귀걸이
+    product: zigzag:138377436
+    slot: 귀걸이
+  point: ''
+  reason: 아이보리 부클 베스트가 주인공, 스트라이프 셔츠 깃을 빼고 인디고 데님으로 단정하게
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 울 니트 베스트 (gray wool knit vest)
+    name: 울 니트 베스트
+    product: zigzag:147747225
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 라인 셔츠 (white shirt)
+    name: 라인 셔츠
+    product: zigzag:136083756
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 그레이 롱 플리츠 스커트 (charcoal gray long pleated skirt, knife pleats)
+    name: 롱 플리츠 스커트
+    product: zigzag:171318242
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 멜다 숄더백
+    product: zigzag:159313221
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers)
+    name: 레이스업 로퍼
+    product: zigzag:147841380
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼체인 목걸이 (thin silver ball chain necklace)
+    name: 실버 목걸이
+    product: zigzag:113341770
+    slot: 목걸이
+  point: ''
+  reason: 그레이 톤온톤 울 베스트가 주인공, 화이트 셔츠와 차콜 플리츠 롱스커트에 실버 목걸이로
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 유넥 버튼 니트 베스트 (brown u-neck button knit vest)
+    name: 유넥 니트 베스트
+    product: zigzag:171906010
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 스트라이프 셔츠 (ivory striped shirt)
+    name: 스트라이프 셔츠
+    product: zigzag:171215298
+    wear_with: 상의
+  - color: 워싱 블루
+    comment: ''
+    cutout_photo: 0
+    desc: 워싱 블루 와이드 데님 (faded washed blue wide-leg denim)
+    name: 와이드 데님
+    product: zigzag:169433167
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 쇼퍼 숄더백 (brown suede shopper shoulder bag)
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 청키 레이스업 더비 슈즈 (black chunky lace-up derby shoes)
+    name: 레이스업 슈즈
+    product: zigzag:111145203
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 골지 니삭스 (ivory ribbed knee socks)
+    name: 골지 니삭스
+    product: zigzag:136839704
+  point: ''
+  reason: 브라운 유넥 베스트가 주인공, 아이보리 스트라이프 셔츠와 워싱 데님, 니삭스로 캐주얼하게
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 브이넥 니트 베스트 (black v-neck knit vest)
+    name: 브이넥 베스트
+    product: zigzag:147472695
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 스트라이프 오버핏 셔츠 (white striped oversized shirt)
+    name: 스트라이프 셔츠
+    product: zigzag:168678110
+    wear_with: 상의
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 유틸리티 와이드 팬츠 (navy wide-leg utility pants with knee pockets)
+    name: 유틸리티 팬츠
+    product: zigzag:169176780
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 나일론 보스턴 숄더백 (black nylon boston shoulder bag)
+    name: 보스턴 숄더백
+    product: zigzag:133826914
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 메리제인 (black suede mary jane flats)
+    name: 메리제인
+    product: zigzag:161729124
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 워시드 볼캡 (navy washed ball cap)
+    name: 워시드 볼캡
+    product: zigzag:171308973
+  point: ''
+  reason: 블랙 브이넥 베스트가 주인공, 화이트 셔츠 깃을 빼고 네이비 팬츠에 볼캡으로 캐주얼하게
+- items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 체크 셔츠 (navy checked shirt, relaxed fit)
+    name: 체크 셔츠
+    product: zigzag:147208744
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 플리츠 롱 스커트 (charcoal long pleated skirt)
+    name: 플리츠 롱 스커트
+    product: zigzag:149546302
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 메리제인 (black platform mary jane)
+    name: 플랫폼 메리제인
+    product: zigzag:136028010
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 미니 후프 귀걸이 (exactly one pair (two earrings) of small silver hoop earrings)
+    name: 실버 귀걸이
+    product: zigzag:127812392
+    slot: 귀걸이
+  point: ''
+  reason: 네이비 체크 셔츠가 주인공, 한 장으로 차콜 플리츠 스커트에 실버 귀걸이로 차분하게
+- items:
+  - color: 다크브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 다크브라운 헨리넥 골지 니트 (dark brown henley neck ribbed knit, slim fit)
+    name: 헨리넥 골지 니트
+    product: zigzag:171413342
+  - color: 인디고
+    comment: ''
+    cutout_photo: 0
+    desc: 인디고 부츠컷 데님 (indigo bootcut denim)
+    name: 부츠컷 데님
+    product: zigzag:171122253
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 호보백 (brown suede hobo bag)
+    name: 포그 호보백
+    product: zigzag:167878705
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 메리제인 (brown leather mary jane flats)
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 아이보리 쁘띠 스카프 (small black and ivory silk scarf)
+    name: 쁘띠 스카프
+    product: zigzag:147477007
+  point: ''
+  reason: 다크브라운 헨리넥 니트가 주인공, 한 장으로 인디고 부츠컷 데님과 브라운 가방·슈즈로
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오버핏 레더 블루종 (black oversized leather bomber jacket)
+    name: 레더 블루종
+    product: zigzag:168701836
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 튜브탑 셔링 티셔츠 (black ruched long-sleeve top)
+    name: 셔링 탑
+    product: zigzag:165320484
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 새틴 미디 스커트 (black satin midi skirt)
+    name: 새틴 미디 스커트
+    product: zigzag:168869683
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+    name: 퀼팅 체인백
+    product: zigzag:135922060
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 발레리나 (black ribbon ballerina flats)
+    name: 리본 발레리나
+    product: zigzag:158948889
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 체인 목걸이 (silver chain necklace)
+    name: 실버 목걸이
+    product: zigzag:110794612
+    slot: 목걸이
+  point: ''
+  reason: 블랙 레더 블루종이 주인공, 블랙 탑과 새틴 스커트로 올블랙 믹스
+reason: 셔츠 깃을 니트 밖으로 빼 입는 레이어링을 올리브·아이보리부터 그레이·브라운·블랙까지 색을 바꿔 여덟 가지로
+shot: flatlay
+theme:
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
+  search_terms:
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
+  slots:
+  - category: 상의
+    desc: 올리브 니트 베스트
+  - category: 하의
+    desc: 베이지 와이드 코튼 팬츠
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 발레리나 플랫
+  - category: 소품
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적
