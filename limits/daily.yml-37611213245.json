@@ -1,18 +1,1 @@
-{
-  "workflow": "daily.yml",
-  "inputs": {
-    "account": "women",
-    "mode": "fix",
-    "pick": "{\"run\": \"2026-10-08-run167\", \"round\": 1, \"fixes\": [{\"slide\": 2, \"kind\": \"look\", \"look\": 1, \"text\": \"3 이너 나시를 얇고 심플한 베이직 템으로 바꿔줘\"}, {\"slide\": 5, \"kind\": \"look\", \"look\": 4, \"text\": \"이너나시 제거해줘\"}]}",
-    "date": "2026-10-08",
-    "outfit": "auto",
-    "sandbox": false,
-    "collect": false,
-    "review": true,
-    "preview": true
-  },
-  "key": "daily:women:2026-10-08",
-  "run": "2026-10-08-run180",
-  "message": "You've hit your session limit · resets 2pm (UTC)",
-  "at": 1791370919
-}
+{"workflow": "daily.yml", "inputs": {"account": "women", "mode": "fix", "pick": "{\"run\": \"2026-10-08-run167\", \"round\": 1, \"fixes\": [{\"slide\": 2, \"kind\": \"look\", \"look\": 1, \"text\": \"3 이너 나시를 얇고 심플한 베이직 템으로 바꿔줘\"}, {\"slide\": 5, \"kind\": \"look\", \"look\": 4, \"text\": \"이너나시 제거해줘\"}]}", "date": "2026-10-08", "outfit": "auto", "sandbox": false, "collect": false, "review": true, "preview": true}, "key": "daily:women:2026-10-08", "run": "2026-10-08-run180", "message": "You've hit your session limit · resets 2pm (UTC)", "at": 1791370919, "skipped": "더 나중 실행이 있음"}
