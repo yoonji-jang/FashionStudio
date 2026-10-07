@@ -144,6 +144,13 @@ def test_type_warning(store):
     assert plan.type_warnings(p, profile, products) == [
         "'셔츠' 상의가 3벌에 들어 있습니다 (최대 2벌, 맨투맨·헨리넥·니트 등으로 섞기)"
     ]
+    # 티셔츠는 셔츠로 세지 않는다 (profile looks.type_ignore)
+    for look in p.looks[:3]:
+        top = next(
+            products[it.product] for it in look.items if products[it.product].category == "상의"
+        )
+        products[top.id] = top.model_copy(update={"name": top.name.replace("셔츠", "티셔츠")})
+    assert plan.type_warnings(p, profile, products) == []
 
 
 def test_single_plan_rejected_when_looks_enabled(store):

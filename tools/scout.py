@@ -10,6 +10,7 @@
 사용법:
   python -m tools.scout image --url https://zigzag.kr/catalog/products/123 --out a.jpg
   python -m tools.scout search --keyword 레더자켓 --out out/scout/leather.json
+  python -m tools.scout refs --account women --url https://www.29cm.co.kr/... --out out/refs
 """
 
 from __future__ import annotations
@@ -202,6 +203,150 @@ def _count_cards(responses: list[dict]) -> int:
     return sum(json.dumps(r).count('"catalog_product_id"') for r in responses)
 
 
+def robots_allows(c: httpx.Client, url: str) -> bool:
+    """robots.txt 가 일반 봇(*)에게 이 주소를 허용하는지. 못 읽으면 막힌 것으로 본다."""
+    parts = urlsplit(url)
+    try:
+        status, text = fetch_page(c, f"{parts.scheme}://{parts.netloc}/robots.txt")
+    except (Blocked, httpx.HTTPError):
+        return False
+    if status != 200:
+        return status == 404
+    path = parts.path or "/"
+    if parts.query:
+        path += "?" + parts.query
+    return robots_rules_allow(text, path)
+
+
+def robots_rules_allow(text: str, path: str) -> bool:
+    """User-agent: * 묶음에서 가장 길게 맞는 규칙을 따른다 (Google 방식, 같으면 허용)."""
+    rules: list[tuple[str, bool]] = []
+    agents: list[str] = []
+    in_rules = False
+    for raw in text.splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if ":" not in line:
+            continue
+        key, val = (x.strip() for x in line.split(":", 1))
+        key = key.lower()
+        if key == "user-agent":
+            if in_rules:
+                agents, in_rules = [], False
+            agents.append(val)
+        elif key in ("allow", "disallow"):
+            in_rules = True
+            if "*" in agents and val:
+                rules.append((val, key == "allow"))
+    best: tuple[int, bool] = (-1, True)
+    for rule, allow in rules:
+        pattern = re.escape(rule).replace(r"\*", ".*")
+        if pattern.endswith(r"\$"):
+            pattern = pattern[:-2] + "$"
+        if re.match(pattern, path) and (len(rule), allow) > best:
+            best = (len(rule), allow)
+    return best[1]
+
+
+def host_allowed(url: str, sites: list[str]) -> bool:
+    host = urlsplit(url).hostname or ""
+    return any(host == s or host.endswith("." + s) for s in sites)
+
+
+def page_image_urls(
+    urls: list[str], min_width: int = 400, max_scrolls: int = 4
+) -> dict[str, list[str]]:
+    """공개 코디 페이지를 브라우저로 열고 스크롤해, 화면에 그려진 큰 사진 주소를 모은다."""
+    from playwright.sync_api import sync_playwright
+
+    out: dict[str, list[str]] = {}
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(
+            user_agent=USER_AGENT, locale="ko-KR", viewport={"width": 1280, "height": 900}
+        )
+        for url in urls:
+            _wait_turn(url)
+            try:
+                page.goto(url, wait_until="networkidle", timeout=60000)
+                for _ in range(max_scrolls):
+                    page.mouse.wheel(0, 4000)
+                    page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
+                found = page.evaluate(
+                    "(w) => [...document.images].filter(i => i.naturalWidth >= w)"
+                    ".map(i => i.currentSrc || i.src)",
+                    min_width,
+                )
+            except Exception as e:  # noqa: BLE001 - 한 페이지 실패로 전체를 멈추지 않음
+                print(f"페이지 실패 ({url}): {e}", file=sys.stderr)
+                found = []
+            out[url] = list(dict.fromkeys(u for u in found if u.startswith("http")))
+        browser.close()
+    return out
+
+
+def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360):
+    """사진 여러 장을 한 장의 확인표로 (원본은 저장하지 않는다)."""
+    from io import BytesIO
+
+    from PIL import Image
+
+    tiles = []
+    for data in images:
+        try:
+            im = Image.open(BytesIO(data)).convert("RGB")
+        except Exception:  # noqa: BLE001 - 깨진 사진은 건너뜀
+            continue
+        im.thumbnail((thumb, int(thumb * 1.5)))
+        tiles.append(im)
+    if not tiles:
+        return None
+    rows = (len(tiles) + cols - 1) // cols
+    cell_h = max(t.height for t in tiles)
+    sheet = Image.new("RGB", (cols * thumb, rows * cell_h), "white")
+    for i, t in enumerate(tiles):
+        sheet.paste(t, ((i % cols) * thumb, (i // cols) * cell_h))
+    return sheet
+
+
+def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 12) -> list[dict]:
+    """참고 코디용: 허용한 사이트의 공개 코디 페이지 사진을 확인표로 만든다 (2026-10-07).
+
+    profile themes.ref_search.scout_sites 에 있는 사이트만, robots.txt 가 허용한 주소만 연다.
+    사진 원본·페이지 원본은 저장하지 않고 확인표(out/…/sheet_N.jpg)만 남긴다.
+    """
+    out.mkdir(parents=True, exist_ok=True)
+    report: list[dict] = []
+    with client() as c:
+        ok = []
+        for url in urls:
+            if not host_allowed(url, sites):
+                report.append({"url": url, "skipped": "허용한 사이트가 아님"})
+            elif not robots_allows(c, url):
+                report.append({"url": url, "skipped": "robots.txt 가 허용하지 않음"})
+            else:
+                ok.append(url)
+        found = page_image_urls(ok) if ok else {}
+        for n, url in enumerate(ok, 1):
+            imgs = [u for u in found.get(url, []) if host_allowed(u, sites)][:max_images]
+            data = []
+            for u in imgs:
+                try:
+                    data.append(fetch_bytes(c, u))
+                except (ImageUnavailable, httpx.HTTPError):
+                    continue
+            sheet = contact_sheet(data)
+            if sheet is None:
+                report.append({"url": url, "skipped": "사진 없음"})
+                continue
+            path = out / f"sheet_{n}.jpg"
+            sheet.save(path, quality=80)
+            report.append({"url": url, "sheet": str(path), "images": len(data)})
+    (out / "refs.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8"
+    )
+    return report
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -211,8 +356,24 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("search", help="검색 결과 원본 JSON 저장 (구조 확인용)")
     s.add_argument("--keyword", required=True)
     s.add_argument("--out", type=Path, required=True)
+    r = sub.add_parser("refs", help="참고 코디: 공개 코디 페이지 사진을 확인표로 (원본 저장 안 함)")
+    r.add_argument("--url", action="append", required=True)
+    r.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
+    r.add_argument("--out", type=Path, required=True)
+    r.add_argument("--max-images", type=int, default=12)
     args = ap.parse_args(argv)
 
+    if args.cmd == "refs":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        sites = rs.scout_sites if rs else []
+        if not sites:
+            print("profile themes.ref_search.scout_sites 가 비어 있다", file=sys.stderr)
+            return 1
+        for row in ref_sheets(args.url, sites, args.out, args.max_images):
+            print("\t".join(str(v) for v in row.values()))
+        return 0
     if args.cmd == "image":
         path, img_url = fetch_product_image(args.url, args.out)
         print(f"{path}\t{img_url}")

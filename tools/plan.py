@@ -575,12 +575,19 @@ def same_kind_warnings(plan: DailyPlan, profile: Profile, products: dict) -> lis
 def type_warnings(plan: DailyPlan, profile: Profile, products: dict) -> list[str]:
     """셔츠·베스트처럼 같은 종류 상의가 여러 벌을 차지하는지 (profile looks.type_limits)."""
     out = []
+
+    def name_of(p) -> str:
+        name = p.name
+        for w in profile.looks.type_ignore:
+            name = name.replace(w, " ")
+        return name
+
     for word, limit in profile.looks.type_limits.items():
         n = sum(
             any(
                 (p := products.get(it.product)) is not None
                 and p.category in ("아우터", "상의")
-                and word in p.name
+                and word in name_of(p)
                 for it in look.items
             )
             for look in plan.looks
