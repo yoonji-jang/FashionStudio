@@ -19,6 +19,8 @@ name: daily
 # - render: 사람이 고른 후보(pick = <결과 폴더>/<번호>)로 사진 확인 → 문구 → 코디컷 → 검수 → 미리보기
 #   (여러 벌 게시물(20단계)은 <결과 폴더>/chosen: 고른 벌만 담은 picks/chosen.yaml)
 # - full: 예전처럼 한 번에 한 벌 (profile pick.enabled 가 false 일 때)
+# - edit: 후보에 온 "/fix 1 이너를 나시로" 대로 그 벌만 고쳐 그 벌 시트만 다시 보낸다 (이미지 AI 없음).
+#   pick 은 {"run": 후보 결과 폴더, "fixes": [{update_id, looks, text}]} JSON (tools.pick check 가 만듦)
 # 19단계: 캐러셀을 다 만들면 같은 슬라이드로 릴스 영상(tools.reels, ffmpeg)을 만들어 미리보기에 같이 보낸다.
 # 15단계: fix: 미리보기에 온 /fix 피드백대로 고친다 (schedule 이 tools.feedback 으로 요청).
 #   pick 은 {"run": 지난 결과 폴더, "round": 몇 번째, "fixes": [...]} JSON. Claude(fix-feed)가 같은 기획을
@@ -33,10 +35,10 @@ on:
         description: 계정
         default: women
       mode:
-        description: full(한 벌 바로) / candidates(후보 보내기) / render(고른 후보 만들기) / fix(피드백대로 고치기) / model(전날 게시물을 모델컷으로)
+        description: full(한 벌 바로) / candidates(후보 보내기) / edit(후보 한 벌 고치기) / render(고른 후보 만들기) / fix(피드백대로 고치기) / model(전날 게시물을 모델컷으로)
         default: full
       pick:
-        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더, fix 면 피드백 JSON, model 이면 전날 게시한 결과 폴더
+        description: render 면 <결과 폴더>/<번호> (예 2026-09-28-run31/3), candidates 면 "다시" 누른 결과 폴더, edit·fix 면 고칠 점 JSON, model 이면 전날 게시한 결과 폴더
         default: ""
       date:
         description: 게시 날짜 YYYY-MM-DD (빈칸이면 내일)
@@ -125,6 +127,11 @@ jobs:
             git fetch origin daily-results
             git worktree add /tmp/prev origin/daily-results
             uv run python -m tools.feedback prepare "$PICK" --prev /tmp/prev --out "out/$DATE"
+          elif [ "$MODE" = edit ]; then
+            # 후보 한 벌 고치기: 지난 후보(p1.yaml, pick.json)를 가져오고 고칠 점을 picks/edit.json 에 둔다
+            git fetch origin daily-results
+            git worktree add /tmp/prev origin/daily-results
+            uv run python -m tools.pick prepare-edit "$PICK" --prev /tmp/prev --out "out/$DATE"
           elif [ "$MODE" = model ]; then
             # 전날 게시한 결과에서 같은 벌로 모델컷 기획을 만든다 (창고에서 빠진 상품도 다시 넣음)
             git fetch origin daily-results
@@ -203,6 +210,39 @@ jobs:
             echo "::warning::텔레그램 설정이 없어 후보를 보내지 않았습니다"
           fi
 
+      - name: Claude 후보 고치기 (outfit-candidates 스킬 "후보 고치기")
+        if: env.MODE == 'edit'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
+          allowed_bots: "github-actions"
+          settings: |
+            {"env": {"CLAUDE_CODE_DISABLE_BACKGROUND_TASKS": "1", "BASH_DEFAULT_TIMEOUT_MS": "2400000", "BASH_MAX_TIMEOUT_MS": "3600000"}}
+          prompt: |
+            .claude/skills/outfit-candidates/SKILL.md 의 "후보 고치기" 절을 따라
+            out/${{ env.DATE }}/picks/p1.yaml 에서 out/${{ env.DATE }}/picks/edit.json 에 적힌 벌만 고쳐.
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }}
+            python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
+            코디컷 만들기(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 80
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Read,Write,Edit,Glob,Grep"
+
+      - name: 고친 후보 텔레그램으로 보내기
+        if: env.MODE == 'edit'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -m tools.plan check "out/$DATE/picks/p1.yaml" --draft
+          if [ "$HAS_TELEGRAM" = true ]; then
+            python -m tools.pick send-edit "out/$DATE" --run "$DATE-run$RUN"
+          else
+            echo "::warning::텔레그램 설정이 없어 고친 후보를 보내지 않았습니다"
+          fi
+
       - name: Claude 피드백 반영 (fix-feed 스킬)
         if: env.MODE == 'fix'
         uses: anthropics/claude-code-action@v1
@@ -253,7 +293,7 @@ jobs:
             --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
-        if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'fix' && env.MODE != 'model'
+        if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'edit' && env.MODE != 'fix' && env.MODE != 'model'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -313,7 +353,7 @@ jobs:
             --allowedTools "Bash(python -m tools.review:*),Read,Write,Glob,Task,Agent"
 
       - name: 릴스 만들기 (19단계, profile reels)
-        if: env.MODE != 'candidates'
+        if: env.MODE != 'candidates' && env.MODE != 'edit'
         # 실패해도 캐러셀 미리보기·게시는 그대로 (릴스만 빠짐)
         continue-on-error: true
         run: |
@@ -339,7 +379,7 @@ jobs:
       - name: 결과 확인
         id: result
         # Claude 단계가 오류로 끝나도(is_error) 원인을 남기도록 항상 돈다
-        if: always() && env.MODE != 'candidates'
+        if: always() && env.MODE != 'candidates' && env.MODE != 'edit'
         run: |
           [ -f "out/$DATE/manifest.json" ] && exit 0
           echo "::error::$MODE 인데 out/$DATE/manifest.json 이 없습니다 (Claude 가 도중에 멈춤)"

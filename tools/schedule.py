@@ -673,6 +673,17 @@ def execute(
                     pick=act.run,
                     sandbox=False,
                 )
+            elif act.action == "edit":
+                # 후보 한 벌만 고치기 (/fix N 내용): 고친 벌 시트를 다시 보내고 고르기는 이어진다
+                spec = {"run": act.run, "fixes": act.fixes}
+                send(
+                    "daily.yml",
+                    account=t.account,
+                    date=t.date,
+                    mode="edit",
+                    pick=json.dumps(spec, ensure_ascii=False),
+                    sandbox=False,
+                )
         elif t.task == "publish":
             send(
                 "publish.yml",

@@ -98,6 +98,22 @@ looks:
 - 벌 장에는 상품 이름이 한 줄씩 들어가므로 `name` 은 짧게 (12자 안팎).
 - 창고 재고가 모자라면 `looks.min` 벌 이상만 채운다 (예비 없이).
 
+## 후보 고치기 (daily mode=edit)
+사람이 후보를 보고 "/fix 1 이너를 나그랑티가 아닌 나시로" 처럼 한 벌의 일부만 바꿔 달라고 하면 이 절만 한다.
+`out/$DATE/picks/p1.yaml` 이 지난 후보 그대로 있고, `out/$DATE/picks/edit.json` 의 `fixes` 에
+`looks`(벌 번호)와 `text`(사람이 쓴 말)가 있다.
+
+1. `accounts/$ACCOUNT/profile.yaml`, `styling.md` 를 읽고 p1.yaml 과 edit.json 을 읽는다.
+2. 적힌 벌만 **말한 부분만** 바꾼다. 나머지 아이템, 다른 벌, 벌 순서, `theme`, 전체 `reason` 은 그대로 둔다
+   (도구가 적히지 않은 벌을 지난 후보로 되돌린다).
+   - 바꿀 상품은 `python -m tools.plan candidates --category 상의 --query "나시"` 처럼 창고에서 찾는다.
+     다른 벌에 이미 쓴 옷은 쓰지 않는다 (옷은 한 게시물에서 한 벌에만).
+   - 색·핏을 말했으면 그대로 따르고, 바뀐 아이템과 어울리게 `styling`(영어 한 끗)과 `reason` 첫 문장을 고친다.
+   - 맞는 상품이 창고에 없으면 그 벌을 그대로 두고 `out/$DATE/report.md` 에 이유를 쓴다 (텔레그램에 "그대로" 로 알려짐).
+3. 바꾼 상의·아우터가 있으면 4번(상세페이지 코디 참고)처럼 그 벌 착용컷만 확인한다 (`tools.plan photos`).
+4. `python -m tools.plan check out/$DATE/picks/p1.yaml --draft` 로 검사하고 오류를 고친다.
+5. `out/$DATE/report.md` 에 벌마다 무엇을 무엇으로 바꿨는지 한 줄씩 쓴다.
+
 ## 지키는 것
 - 상품 창고에 없는 상품은 쓰지 않는다 (id 는 `tools.plan candidates` 결과에서만 복사).
 - `data/` 는 주제 저장(`tools.plan themes`)과 수집(`tools.collect`) 외에는 고치지 않는다.
