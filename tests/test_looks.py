@@ -482,6 +482,54 @@ def test_fix_cover_swapped_to_other_image_drops_old_review(tmp_path, store):
     assert review.load_review(new / "looks" / "1").status == "passed"
 
 
+def test_unity_warnings():
+    # 2026-10-07 "상의 하의가 따로 논다", "나그랑·줄무늬가 아우터와 안 어울린다"
+    from core.models import PlanItem, Product
+
+    profile = load_profile("women")
+    base = dict(
+        source="zigzag",
+        url="https://zigzag.kr/catalog/products/1",
+        shop="s",
+        rating=4.8,
+        image_urls=["https://img.example/a.jpg"],
+        price=39000,
+    )
+    prods = {
+        f"zigzag:{i}": Product(id=f"zigzag:{i}", name=n, category=c, **base)
+        for i, (n, c) in enumerate(
+            [
+                ("벌룬 맨투맨", "상의"),
+                ("나그랑 스트라이프 티", "상의"),
+                ("새틴 롱스커트", "하의"),
+                ("레더 토트백", "가방"),
+                ("스웨이드 롱부츠", "신발"),
+                ("레더 블루종", "아우터"),
+            ]
+        )
+    }
+
+    def item(i, color, **kw):
+        return PlanItem(product=f"zigzag:{i}", color=color, desc="x (x)", name="x", **kw)
+
+    busy = [
+        item(0, "네이비"),
+        item(1, "아이보리", wear_with="상의"),
+        item(2, "아이보리"),
+        item(3, "블랙"),
+        item(4, "다크브라운"),
+    ]
+    warns = plan.unity_warnings("1번 벌: ", busy, prods, profile)
+    assert any("색 계열이 4개" in w for w in warns)
+    assert any("재질 분위기" in w for w in warns)
+    assert any("맨 바깥 상의" in w for w in warns)
+    calm = [item(1, "그레이"), item(2, "그레이"), item(3, "블랙"), item(4, "블랙")]
+    assert [w for w in plan.unity_warnings("", calm, prods, profile) if "재질" not in w] == []
+    # 래글런 위에 아우터
+    outer = [item(5, "블랙"), item(1, "그레이")]
+    assert any("맨 바깥" in w for w in plan.unity_warnings("", outer, prods, profile))
+
+
 def test_find_edits_reads_look_number_or_replied_sheet():
     r = rec(count=8, looks=6, looks_min=5, message_ids=[21, 22, 30], sheets={21: 1, 22: 2})
     ups = [

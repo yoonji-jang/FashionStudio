@@ -20,6 +20,10 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
 각 줄: `id | 카테고리 | 짧은 이름 | 쇼핑몰 | 가격 | 평점(리뷰) | 단독컷/모델컷 | 스타일 | 검색어 | 원문`.
 
 ## 고르는 기준 (순서대로)
+먼저 **한 벌로 묶기** (styling.md "한 벌로 묶기", 2026-10-07): 칸마다 포인트 상품을 따로 고르지 않는다. 가방·신발까지 색 세 계열 안,
+상의 색 하나가 하의·신발·가방에 다시, 재질 분위기 하나, 래글런은 맨 바깥에만, 줄무늬는 코디에 있는 두 색일 때만.
+`tools.plan check` 의 "한 벌로 묶기" 경고는 고친다. 아래 기준은 모두 이 안에서.
+
 1. **주제 slots 을 채운다**. 필수 카테고리(`required: true`)는 반드시, 선택 카테고리는 주제와 계절에 맞으면.
 2. **주인공 하나** (styling.md "벌마다 지키는 것"): 레더·스웨이드 자켓, 컬러 니트, 플레어 데님처럼 눈에 띄는
    상품 하나를 정하고 나머지는 받쳐 주는 조용한 옷으로. 포인트를 두세 개 채우려고 무늬·소재·소품을 몰아넣지 않는다.
@@ -74,7 +78,9 @@ AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참�
 - **상의 레이어드** (21단계): 셔츠를 니트·베스트·뷔스티에 안에 입히면 안쪽 상의에 `wear_with: 상의`.
   도구가 profile `outfit_image.layer_styling`(깃은 목선에, 소매 끝 3cm, 밑단 살짝)으로 입힌다.
   셔츠 위 튜브톱, 어깨에 니트 두르기처럼 다르게 입힐 때는 `styling` 에 영어로 직접 쓴다
-  ("The striped knit is draped over the shoulders with its sleeves loosely tied at the chest.").
+  ("The striped knit is draped over the shoulders with its sleeves loosely tied at the chest."
+  어깨에 두를 때는 "its body lies behind the top, only a band shows above the shoulders, the top front stays
+  visible" 를 함께 써서 몸판이 상의 앞을 덮지 않게 한다).
   여러 벌 게시물은 벌마다 `styling`.
 - plan.yaml 맨 위 `styling` (선택, 영어): 한 벌을 어떻게 입혀 펼칠지. 없으면 아우터가 있는 날은
   profile `outfit_image.outer_styling`(거의 닫고 가운데만 살짝 벌림)을 쓴다. 아우터를 활짝 열지 않는다.

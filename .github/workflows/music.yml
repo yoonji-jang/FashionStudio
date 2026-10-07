@@ -1,0 +1,52 @@
+name: music
+
+# 19단계 릴스 배경 음악 새로 만들기. 매주 깨어나 계정마다 profile reels.music_refresh_days 가 지났으면
+# 새 곡을 코드로 작곡·합성해(tools.music_gen, 외부 음원 없음, AI 비용 없음) reels.music_dir 에 넣고 커밋한다.
+# 자동으로 만든 곡(gen_)은 reels.music_keep 개만 남기고, 사람이 넣은 곡은 건드리지 않는다.
+# Actions 탭에서 force 를 켜고 돌리면 때가 안 됐어도 바로 만든다.
+on:
+  schedule:
+    - cron: "0 18 * * 0"  # 월 03:00 (한국 시각)
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정 (빈칸이면 accounts/index.yaml 의 모든 계정)
+        default: ""
+      force:
+        description: 때가 안 됐어도 바로 새 곡을 만듦
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  music:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: ffmpeg 준비
+        run: command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+      - name: 새 곡 만들기
+        env:
+          ACCOUNT: ${{ inputs.account }}
+        run: |
+          args=()
+          [ -n "$ACCOUNT" ] && args+=("$ACCOUNT")
+          ${{ inputs.force && 'args+=(--force)' || '' }}
+          TZ=Asia/Seoul uv run python -m tools.music_gen "${args[@]}"
+      - name: 커밋
+        run: |
+          git add -A accounts/*/music
+          git diff --cached --quiet && { echo "새 곡 없음"; exit 0; }
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
+            commit -m "릴스 배경 음악 새로 만들기 (run ${{ github.run_number }})"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

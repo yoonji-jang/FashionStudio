@@ -44,6 +44,17 @@ class Style(BaseModel):
     inner_words: list[str] = []
     max_patterns: int | None = None
     max_accessories: int | None = None
+    # basic_words 감점을 이 카테고리에만 (비면 전부). 무지 하의·신발·가방은 바탕이라 남긴다
+    basic_penalty_categories: list[str] = []
+    # 한 벌로 묶기 (2026-10-07 "상의 하의가 따로 놀고 색감·재질 조합이 이상하다")
+    # 이름에 이 말이 있는 상의는 맨 바깥에만 (위에 아우터·다른 상의를 입히지 않음, 래글런 등)
+    outer_only_words: list[str] = []
+    # 한 벌에 두 쪽 말이 같이 있으면 재질 분위기가 섞인 것 (스웨트·래글런 + 새틴·핀스트라이프)
+    casual_words: list[str] = []
+    dressy_words: list[str] = []
+    # 색 계열 → 색 옵션에 나오는 말. 한 벌(소품 빼고)의 계열 수가 max_colors 를 넘으면 경고
+    color_families: dict[str, list[str]] = {}
+    max_colors: int | None = None
 
 
 class SlotRule(BaseModel):
@@ -302,14 +313,20 @@ class Looks(BaseModel):
     sub_color: str = Field(default="#E3E3E3", pattern=COLOR)
     gradient_height: float = Field(default=0.42, ge=0, le=1)
     gradient_opacity: float = Field(default=0.55, ge=0, le=1)
-    # 벌 코디컷 지시문 끝에 붙이는 배치 (영어). 상품 정보 글자 자리(왼쪽 아래)를 비운다
+    # 벌 코디컷 지시문 끝에 붙이는 배치 (영어). 옷은 가운데, 상품 정보 글자 자리(왼쪽 아래)에는
+    # 가방·신발·소품을 두지 않는다. 2026-10-07 사용자: 옷이 오른쪽으로 치우침
+    # → '오른쪽으로 옮기기'와 가방·신발·소품을 모두 오른쪽에 두던 문장을 빼고,
+    # 가방은 왼쪽 허리 높이로 (하의 왼쪽 다리에 글자가 조금 걸치는 것은 그라데이션으로 읽힌다)
     composition: str = (
-        "Layout for this image, overriding the composition above: product names are written later"
-        " in the lower left, so keep the whole lower-left area (the left 45 percent of the width,"
-        " the bottom 35 percent of the height) completely empty floor with no clothing, bag, shoes"
-        " or accessories. To make room, shift the clothes slightly to the right of center, put the"
-        " bag on the right side next to the top at waist height, and put the shoes in the lower"
-        " right beside the trouser hem."
+        "Layout for this image, overriding the composition above: the clothes are exactly centered"
+        " horizontally, with the collar, the front opening of the top and the gap between the two"
+        " trouser legs (or the middle of the skirt) on the vertical center line of the frame, and"
+        " equal empty floor on the left and right of the clothes; never shift the outfit toward"
+        " either side. Product names are written later over the lower left, so put no bag, shoes or"
+        " accessories in the lower-left area (the left 40 percent of the width, the bottom 35"
+        " percent of the height). Balance the items around the centered clothes: the bag lies on"
+        " the left side beside the top at waist height, the shoes sit in the lower right beside"
+        " the hem, and jewelry or small accessories sit on the right at chest height."
     )
 
 
@@ -371,6 +388,11 @@ class Reels(BaseModel):
     # 여러 곡이면 날짜마다 돌려 쓴다. 비어 있거나 없으면 소리 없는 영상
     music_dir: str | None = None
     music_volume: float = Field(default=0.8, ge=0, le=2)
+    # 이 날 수마다 새 곡을 코드로 만들어 music_dir 에 넣는다 (tools.music_gen, music 워크플로).
+    # null: 안 함
+    music_refresh_days: int | None = Field(default=None, ge=1)
+    music_refresh_count: int = Field(default=3, ge=1, le=10)  # 한 번에 만드는 곡 수
+    music_keep: int = Field(default=9, ge=1, le=60)  # 자동으로 만든 곡(gen_)은 최근 이만큼만 남김
     share_to_feed: bool = True  # 릴스를 프로필 그리드에도 보이게 (false: 릴스 탭에만)
     # telegram: reels_at 에 영상과 캡션을 텔레그램으로 보냄 (사람이 인스타 앱에서 음악을 붙여 올림.
     # 앱 음악은 게시 API 로 넣을 수 없다, 2026-10-06 사용자) / instagram: 자동 게시
