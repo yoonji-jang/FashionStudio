@@ -167,7 +167,7 @@ copy:
   max_exclaim: 1             # 캡션 전체 느낌표
   banned: [뚱뚱해 보이는, 하체 비만, 무조건, 인생템, 역대급, 최저가]
   # 표지 제목에만 쓰지 않는 말. 요일은 넣지 않는다 (2026-10-01 사용자). 캡션 도입에는 써도 됨
-  title_banned: [월요일, 화요일, 수요일, 목요일, 금요일, 토요일, 일요일]
+  title_banned: [월요일, 화요일, 수요일, 목요일, 금요일, 토요일, 일요일, 어제 그, 입으면 이런, 모델컷, 착용샷]  # 뒤 넷: 모델컷 게시물도 코디 모음 제목으로 (2026-10-07)
   ad_notice: "(광고)"  # monetize: manual_link 일 때 첫 줄 (공정위 지침: 맨 앞에 잘 보이게, 빼지 않는다)
   ad_hashtag: "#광고"        # monetize: manual_link 일 때 첫 해시태그
   product_line: "{shop} · {name}"
@@ -245,45 +245,55 @@ model_shot:
   prompt: outfit_model   # prompts/outfit_model.md
   # 2026-10-03 사용자 핀터레스트 저장 사진을 따라 한 장면 (벌마다 하나씩, 6벌이면 6장면).
   # 얼굴은 일부 보여도 되지만(고개 숙임·돌림·머리카락·컵·폰), 정면 얼굴과 책으로 얼굴 전체를 가리는 어색한 포즈는 쓰지 않는다.
+  # 2026-10-07 사용자: 10/8 모델컷이 화보 같음 → 핀터레스트처럼 힙하게. 장면마다 컷 종류(셀카·위에서·낮은 각도·멀리서·
+  # 테이블 너머), 빛(흐림·한낮·밤 플래시·실내 조명), 헤어를 모두 다르게. 같은 사람은 얼굴·체형만 같게.
+  # 신발·가방이 잘려도 됨. 포즈마다 맨 앞 인물 문장은 같게 둔다.
   poses:
     - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she takes a full-body mirror selfie next to
-      a wooden door frame in her small apartment; the photo is what the mirror reflects, there is no
-      second mirror; the phone held at eye level covers her eyes and nose, her lips and chin may show,
-      her other hand holds the bag strap
+      the same fictional woman in every photo of the series (same face and slim build): a Korean woman
+      in her twenties, today with her long dark hair twisted up in a messy high bun held by a plain claw
+      clip, loose strands at the neck; she takes a mirror selfie with the phone flash on in the narrow
+      entrance of her lived-in apartment, shoes and a tote on the floor behind her, one knee bent and her
+      weight on one hip; the photo is what the mirror reflects, there is no second mirror; the phone covers
+      her eyes and nose, the flash glare shows in the mirror, the frame is slightly tilted
     - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she walks along a narrow sidewalk beside an
-      old cream-colored wall in low late-afternoon sun with soft tree shadows on the wall, caught
-      mid-step slightly from the side, holding a small bouquet wrapped in paper against her chest, her
-      head tilted down toward the flowers so her hair falls over most of her face
+      the same fictional woman in every photo of the series (same face and slim build): a Korean woman
+      in her twenties, today with her long dark hair in a low loose ponytail with flyaways; she squats on
+      the edge of the curb of a city sidewalk at night, shot by a friend with direct on-camera flash so the
+      background of shop lights and parked cars falls into dark blur, a paper takeaway coffee cup in one
+      hand and the other arm resting on her knee, her head turned away toward the street; harsh flash light,
+      hard shadow behind her, the frame cuts off just below her feet
     - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she sits on a low stone step in front of an
-      old red-brick building, feet on the pavement and both shoes in view, raising a paper takeaway coffee
-      cup to her lips with one hand, her eyes looking down and away from the camera; the bag rests
-      beside her on the step
+      the same fictional woman in every photo of the series (same face and slim build): a Korean woman
+      in her twenties, today with her long dark hair half up in a small knot, the rest falling down her
+      back; she sits on a weathered park bench on a grey overcast afternoon, one leg stretched out and the
+      other pulled up on the bench, reading a paperback held low in her lap, her head bowed so her hair
+      hides most of her face; shot by a friend standing over her from slightly above, flat soft daylight,
+      muted colors, the bag lying beside her on the bench
     - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she sits sideways on a simple folding chair
-      at a small outdoor cafe table on the pavement, legs crossed so both shoes show, smiling down at a
-      cup of coffee on the table, her face turned three-quarters away from the camera and partly behind
-      her hair
+      the same fictional woman in every photo of the series (same face and slim build): a Korean woman
+      in her twenties, today with her long dark hair loose and blown by the wind across her face; she
+      crosses a wide crosswalk in harsh midday sun with hard black shadows on the asphalt, caught
+      mid-stride from a low angle by a friend a few steps ahead, a couple of pedestrians blurred far in
+      the background, her face turned down and half hidden by her hair, slight motion blur on her hands
     - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she walks past the paned glass doors of an
-      old wooden cafe storefront, photographed from the side as she passes, a paper takeaway coffee cup
-      in one hand, her head turned slightly away from the camera toward the street ahead
+      the same fictional woman in every photo of the series (same face and slim build): a Korean woman
+      in her twenties, today with her long dark hair sleek with a middle part, tucked behind her ears;
+      she leans back against the front of a small neighborhood corner shop in the early evening, lit by
+      the warm light spilling from its window, one hand in her pocket and her eyes down on the phone in
+      her other hand, seen from a little distance across the narrow street so she fills about two thirds
+      of the frame, a bike and a stack of crates beside her
     - >-
-      the same fictional woman in every photo of the series: a slim Korean woman in her twenties
-      with long straight dark-brown hair past her shoulders; she stands browsing a book cart on the
-      pavement in front of an old used bookshop, seen from behind at a three-quarter angle, her head
-      bowed toward the books in her hands so only a sliver of her cheek shows
+      the same fictional woman in every photo of the series (same face and slim build): a Korean woman
+      in her twenties, today with her long dark hair in one loose side braid over her shoulder; she sits
+      sideways on a chair at a small cluttered cafe table by a window, one knee pulled up, holding a cup
+      near her chin and looking out the window so her face is turned away; shot across the table from a
+      seat opposite, with cups, a plate and a phone blurred in the foreground and soft window light, her
+      shoes and lower legs partly cut off by the frame
   mood: >-
-    a candid 35mm film snapshot like the outfit photos people save on Pinterest, taken by a friend
-    on an ordinary street or in a real interior in Seoul, golden late-afternoon sun or soft window
-    light, warm muted film colors, soft contrast
+    a candid everyday snapshot like the hip outfit photos people save on Pinterest, taken with a phone
+    or a point-and-shoot film camera by a friend on an ordinary street or in a real interior in Seoul,
+    light exactly as the pose describes, natural slightly muted colors
 
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
