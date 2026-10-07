@@ -53,6 +53,13 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
   avoid: [노출이 과한 코디, 특정 체형 비하, 정치·사회 이슈]
   review_before_use: true  # 텔레그램으로 주제 7개를 먼저 보고 확정
   weather: {name: 서울, lat: 37.57, lon: 126.98}  # 날씨 예보를 볼 곳 (null 이면 안 봄)
+  # 주간 주제 때 공개 코디 페이지를 웹 검색해 accounts/women/ref_looks.md 에 글로 더한다 (2026-10-07 사용자)
+  ref_search:
+    per_week: 8
+    keep_weeks: 4
+    queries: [가을 데일리룩 코디, 여자 캐주얼 시크 코디, 레이어드 코디 추천, 꾸안꾸 코디 매거진, 룩북 가을 여성]
+    sources: [패션 매거진 코디 기사, 브랜드 룩북, 무신사·29CM·W컨셉 코디·스냅 페이지, 패션 블로그]
+    avoid_sites: [instagram.com, pinterest.com, threads.net, facebook.com, tiktok.com]
 
 product_source:
   name: zigzag
