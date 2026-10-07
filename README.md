@@ -1020,6 +1020,10 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
    같은 날 릴스를 다시 올리려면 publish 워크플로를 `reels` 와 `reel_again` 을 켜고 돌립니다 (앞 릴스는 앱에서 지움).
 4. **음악**: 인스타 앱의 음악은 게시 API 로 넣을 수 없습니다. `reels.music_dir` 폴더에 상업 이용이 허락된
    음원을 넣으면 영상에 직접 넣습니다 (`accounts/women/music/README.md`). 비어 있으면 소리 없는 릴스입니다.
+   music 워크플로가 매주 깨어나 `reels.music_refresh_days`(women 14일)가 지났으면 새 곡 `music_refresh_count`(3)개를
+   코드로 작곡·합성해 `gen_<날짜>_<분위기>.m4a` 로 넣고 커밋합니다 (`tools.music_gen`, 외부 음원·AI 비용 없음).
+   자동으로 만든 곡은 최근 `music_keep`(9)개만 남기고, 사람이 넣은 곡은 그대로 둡니다.
+
 5. **ManyChat**: 마지막 장이 "댓글을 남기면 DM" 안내라서, ManyChat 댓글 규칙이 릴스에도 걸리게(모든 게시물·릴스) 해 두세요.
 
 손으로 만들어 보기: `uv run python -m tools.reels build out/2026-10-01 --force` (ffmpeg 필요).
