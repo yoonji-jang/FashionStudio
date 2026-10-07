@@ -169,7 +169,8 @@ feed:
 
 # 제목·문구·캡션 규칙 (write-copy 스킬이 따르고 tools.plan check 가 검사). 말투·예시는 voice.md
 copy:
-  title_chars: [8, 18]       # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고)
+  # 제목 한 줄 글자 수 (공백 포함, 벗어나면 경고). 짧아야 그리드에서도 크게 읽힘 (2026-10-07 후킹 제목)
+  title_chars: [6, 15]
   name_max_chars: 18         # 상품 장 짧은 이름
   comment_max_chars: 60      # 상품 장 코멘트
   intro: true                # 캡션 맨 앞 도입 한 줄 (피드에서 먼저 보이는 줄)
@@ -234,7 +235,18 @@ looks:
   label: "LOOK {n}"
   show_shop: true
   show_price: false  # 가격은 바뀔 수 있어 넣지 않음
-  credit: "이미지 출처 지그재그"  # 표지·벌 장마다 (2026-10-06 사용자)
+  credit: "이미지 출처 지그재그"  # 벌 장마다 (2026-10-06 사용자). 콜라주 표지에는 넣지 않음 (10-07)
+  # 표지 = 여섯 벌을 코드로 오려 콘크리트 그레이 한 배경에 위 세 벌·아래 세 벌, 가운데 박스 없는
+  # 흰 제목 (2026-10-07 사용자 "3번 색에서 글자만 중간"). AI 비용 없음. 모델컷 날은 예전 표지
+  cover_collage:
+    enabled: true
+    top_color: "#969694"
+    bottom_color: "#767675"
+    texture: 7
+    rows: [0.222, 0.781]
+    look_height: 0.344
+    title_size: 80
+    title_top: 0.483
 
 # 표지 코디컷 만드는 방식 (11단계, 2026-09-30 Photoroom 에서 바꿈). generate: 쇼핑몰 사진을 참고로
 # 생성형 AI 가 코디 전체를 한 장으로 그린다 (OpenRouter, Secret OPENROUTER_API_KEY). photoroom: 예전 누끼 배치

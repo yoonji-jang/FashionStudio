@@ -209,12 +209,15 @@ def finish(
         for img, look in zip(images, plan.looks, strict=True)
     ]
     cover = images[0]
+    # 펼친컷 날은 표지를 벌 전부의 콜라주로 (모델컷은 바닥이 고르지 않아 오려 내지 않는다)
+    collage = profile.looks.cover_collage.enabled and plan.shot != "model" and all(images)
     spec = FeedSpec(
         account=plan.account,
         title_lines=plan.text.title_lines,
         cover=str(cover.resolve()) if cover else None,
         items=[FeedItem(product=it.product, name=it.name) for it in plan.all_items()],
         looks=looks,
+        cover_collage=collage,
     )
     (out / "feed.yaml").write_text(
         yaml.safe_dump(spec.model_dump(mode="json", exclude_none=True), allow_unicode=True),

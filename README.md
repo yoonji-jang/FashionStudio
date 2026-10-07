@@ -206,7 +206,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 
 | 항목 | 예시 | 의미 |
 |---|---|---|
-| `title_chars` | `[8, 16]` | 표지 제목 한 줄 글자 수 (공백 포함). 벗어나면 경고 |
+| `title_chars` | `[6, 15]` | 표지 제목 한 줄 글자 수 (공백 포함). 벗어나면 경고. 짧을수록 그리드에서 크게 읽힘 |
 | `name_max_chars` | 18 | 상품 장 짧은 이름 최대 글자 수 (넘으면 경고) |
 | `comment_max_chars` | 60 | 상품 장 코멘트 최대 글자 수 (넘으면 경고) |
 | `points` | `[3, 3]` | 캡션 코디 포인트 줄 수 |
@@ -253,7 +253,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `check_slides` | true | 상품 장 사진 색·모델 얼굴·글자 잘림도 확인 |
 
 #### `looks` : 코디 여러 벌 게시물 (20단계)
-켜면 하루 게시물이 같은 주제의 코디 여러 벌이 됩니다. 1장 표지(1번 벌 코디컷 + 제목) → 벌마다 한 장
+켜면 하루 게시물이 같은 주제의 코디 여러 벌이 됩니다. 1장 표지(`cover_collage` 면 벌 전부의 콜라주 + 제목) → 벌마다 한 장
 (코디컷 + 왼쪽 아래 상품 정보 몇 줄, "LOOK 2 / 아우터 울 하프 코트 스토어") → 댓글 안내 장.
 상품 장·요약 장은 없고, 상품 링크는 댓글 DM 과 텔레그램 상품 링크 목록(벌별로 묶음)으로 받습니다.
 켤 때 `feed.slides` 를 `[cover, looks, comment]` 로, 끄면 `[cover, products, summary, comment]` 로 둡니다.
@@ -269,6 +269,25 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `repeat_cover_look` | true | 표지 다음 장에 1번 벌을 상품 정보와 함께 다시 보여 줌 |
 | `label`, `show_shop`, `show_price` | "LOOK {n}", true, false | 벌 장 글자 (가격은 바뀔 수 있어 기본으로 뺌) |
 | `composition` | (영어) | 벌 코디컷 지시문 끝에 붙여 글자 자리(왼쪽 아래)를 비움 |
+| `credit` | 이미지 출처 지그재그 | 벌 장 상품 목록 아래 출처 한 줄 (콜라주 표지에는 넣지 않음) |
+| `cover_collage` | (아래) | 표지를 벌 전부의 콜라주로 |
+
+`looks.cover_collage` (`tools.cover_collage`): 벌마다 고른 코디컷에서 바닥을 걷어 옷만 코드로 오려 내고
+(OpenCV, AI 비용 없음) 결이 고운 한 배경 위에 위 줄·아래 줄로 놓습니다(6벌이면 3·3, 5벌이면 3·2).
+두 줄 사이 가운데에 박스 없는 제목(`visual.font`, 포인트 세로선 `visual.accent_color`), 왼쪽 아래 계정 이름.
+모델컷 날이나 오려 내기에 실패하면 예전 표지(1번 벌 + 제목)로 만듭니다.
+
+| 항목 | 예시 | 의미 |
+|---|---|---|
+| `enabled` | true | false 면 예전 표지 |
+| `top_color`, `bottom_color`, `texture` | "#969694", "#767675", 7 | 배경 위·아래 색과 결 세기 (0 이면 매끈) |
+| `rows`, `look_height`, `max_width` | [0.222, 0.781], 0.344, 0.31 | 위·아래 줄 가운데 높이, 벌 한 개 높이·최대 폭 (4:5 장 대비) |
+| `shadow` | 0.45 | 옷 아래 그림자 진하기 |
+| `title_size`, `title_line_spacing`, `title_top` | 80, 1.25, 0.483 | 제목 크기(폭 1080px 기준, 길면 줄어듦), 줄 간격, 첫 줄 기준선 높이 |
+| `title_color`, `title_shadow` | "#FFFFFF", 0.6 | 제목 색과 글자 그림자 |
+| `logo_size`, `logo_bottom`, `logo_color` | 26, 0.019, "#EBEBEB" | 계정 이름 (`visual.logo_text`) |
+
+시안 확인: `uv run python -m tools.cover_collage --account women --title "첫 줄" "둘째 줄" --out cover.jpg look1.jpg … look6.jpg`
 
 비용: 코디컷 1장 약 $0.15. 6벌 × 1장 + 떨어진 벌 다시 그리기로 하루 약 $1.0~1.3 (월 $30~40).
 상품을 하루 30개 넘게 쓰므로 `outfit.reuse_cooldown_days` 를 줄이고(7) `product_source.max_per_category` 를 늘렸습니다(150).

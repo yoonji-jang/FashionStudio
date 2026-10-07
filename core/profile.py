@@ -232,6 +232,29 @@ class Feed(BaseModel):
     source_names: dict[str, str] = {"zigzag": "지그재그"}  # 상품 소스 이름 → 보이는 이름
 
 
+class CoverCollage(BaseModel):
+    """여러 벌 게시물 표지를 벌 전부의 콜라주로 (tools.cover_collage, 2026-10-07 사용자).
+    벌마다 코디컷에서 옷만 코드로 오려(AI 없음) 한 배경 위에 위아래 두 줄로 놓고,
+    두 줄 사이 가운데에 박스 없는 제목. 위치·크기는 4:5 장 기준 비율, 글자는 폭 1080px 기준."""
+
+    enabled: bool = False  # false 면 예전처럼 1번 벌 코디컷 + 제목
+    top_color: str = Field(default="#969694", pattern=COLOR)  # 배경 위쪽 색
+    bottom_color: str = Field(default="#767675", pattern=COLOR)  # 배경 아래쪽 색
+    texture: float = Field(default=7, ge=0, le=20)  # 배경 결 세기 (0 이면 매끈한 단색)
+    rows: tuple[float, float] = (0.222, 0.781)  # 위·아래 줄 벌들의 가운데 높이
+    look_height: float = Field(default=0.344, gt=0.1, le=0.5)  # 벌 한 개 높이
+    max_width: float = Field(default=0.31, gt=0.1, le=0.5)  # 벌 한 개 최대 폭 (옆 벌과 안 겹치게)
+    shadow: float = Field(default=0.45, ge=0, le=1)  # 옷 아래 그림자 진하기
+    title_size: int = Field(default=80, gt=0)  # 긴 줄은 자동으로 줄어듦
+    title_line_spacing: float = Field(default=1.25, gt=0)
+    title_top: float = Field(default=0.483, gt=0, lt=1)  # 제목 첫 줄 기준선 높이
+    title_color: str = Field(default="#FFFFFF", pattern=COLOR)
+    title_shadow: float = Field(default=0.6, ge=0, le=1)
+    logo_size: int = Field(default=26, gt=0)  # 계정 이름 (visual.logo_text, 글꼴 visual.logo_font)
+    logo_bottom: float = Field(default=0.019, ge=0, le=0.2)  # 이미지 아래에서 계정 이름까지
+    logo_color: str = Field(default="#EBEBEB", pattern=COLOR)
+
+
 class Looks(BaseModel):
     """코디 여러 벌 게시물 (20단계). 같은 주제로 코디 여러 벌을 한 게시물에 담고, 벌마다
     코디컷 한 장 위에 상품 정보 몇 줄을 얹는다. 켜면 feed.slides 에 looks 를 넣는다."""
@@ -272,6 +295,7 @@ class Looks(BaseModel):
     # 이미지 출처 한 줄. 벌 장은 상품 목록 아래, 표지는 오른쪽 아래. 빈 문자열이면 생략
     credit: str = ""
     credit_size: int = Field(default=18, gt=0)
+    cover_collage: CoverCollage = CoverCollage()  # 표지를 벌 전부의 콜라주로 (모델컷 날 제외)
     line_spacing: float = Field(default=1.55, ge=1.0)
     bottom: float = Field(default=0.07, ge=0, le=0.4)  # 이미지 아래에서 마지막 줄까지
     text_color: str = Field(default="#FFFFFF", pattern=COLOR)
