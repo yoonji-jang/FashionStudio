@@ -1,0 +1,61 @@
+{
+  "run": "2026-10-09-run194",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 4,
+      "kind": "look",
+      "look": 3,
+      "text": "브이넥 안 이너를 하얀색 단품 나시로 바꿔줘. 목쪽에만 보이게 (밑단은 안 보임). 새로 수집한 zigzag:157994590 마틸다 레이스 나시 또는 zigzag:168593268 누엘 브이넥 레이스 나시 중 사진에 흰색이 있는 것 (얇은 레이스는 괜찮음). 둘 다 흰색이 없으면 지금 그대로 두고 보고서에 적어줘"
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 4,
+      "file": "04_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 5,
+      "file": "05_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 6,
+      "file": "06_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 7,
+      "file": "07_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 8,
+      "file": "08_comment.jpg",
+      "kind": "comment"
+    }
+  ]
+}
