@@ -1,0 +1,120 @@
+account: women
+date: '2026-10-09'
+items:
+- cm: 60.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 홀터넥 레이어드 슬림 티 (black fitted slim long-sleeve rib knit top that hugs the
+    body, a row of buttons down the front with the lower few buttons undone so the
+    hem opens slightly, fake two-piece with an inner tank layered under a square neckline
+    and a halter strap hanging at the neck, hip length)
+  name: 홀터넥 슬림 티
+  product: zigzag:153225273
+  ref_photos:
+  - 0
+  - 2
+  size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8 cm
+    long sleeves
+- cm: 105.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 유틸리티 와이드 팬츠 (washed black loose wide-leg cargo-style pants, flat front,
+    no pleats, full length reaching the ankle bones and breaking over the shoes, wide
+    straight leg that stays wide down to the hem with a wide ankle opening, cargo
+    flap pockets on both sides, dark washed black not light grey)
+  name: 유틸리티 와이드 팬츠
+  product: zigzag:169176780
+  ref_photos:
+  - 2
+  - 1
+  size: about 105 cm long from waist to hem, 42 cm across the waist laid flat, 55.5
+    cm across the hips laid flat, 40 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 뒷지퍼 앵클부츠 (one pair (two boots) of black round-toe leather ankle boots,
+    low heel)
+  name: 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 숄더백 (black glossy crinkled leather rectangular tote-shaped shoulder bag
+    with two thin long handles that fit over the shoulder, a horizontal pocket line
+    on the front)
+  name: 멜다 숄더백
+  product: zigzag:159313221
+  ref_photos:
+  - 1
+  - 0
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 링 귀걸이 (exactly one pair (two earrings) of small silver thick teardrop
+    hoop earrings)
+  name: 물방울 귀걸이
+  product: zigzag:143617362
+  ref_photos:
+  - 0
+  slot: 귀걸이
+looks: []
+reason: 블랙 홀터넥 슬림 티가 주인공, 블랙 와이드 팬츠와 앵클부츠로 올블랙의 슬림한 실루엣
+shot: flatlay
+styling: There is no outer in this outfit. The black fake two-piece halter layered
+  slim top is the outermost top, worn like on the model in a slim fit that hugs the
+  body, a black long-sleeve ribbed top with a row of buttons down the front and the
+  lower few buttons undone so the hem opens slightly, the inner tank layered under
+  a square neckline with the halter strap hanging at the neck. The wide pants are
+  placed a little lower so the top hem does not cover the pants waistband, and they
+  are drawn much longer, full length from the waist to the floor, covering the ankle
+  bones and breaking over the shoes in a few soft folds, wide and straight all the
+  way down to the hem with a wide ankle opening, never short, cropped or tapered.
+  The ankle boots are one neat pair side by side, parallel, pointing the same direction
+  and close together. The wide pants are the washed black of the product photos, a
+  dark charcoal-black, never a lighter grey, with the cargo flap pockets on the sides
+  drawn as on the product, and the wide leg does not narrow toward the ankle. The
+  halter slim top and the ankle boots stay as they are. The product designs are kept
+  unchanged.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#새틴스커트'
+  - '#레더자켓'
+  - '#버건디'
+  intro: 맑고 선선한 금요일, 퇴근하고 바로 만나는 약속엔 새틴으로 분위기를 바꿔 보세요 🌙
+  points: []
+  title_lines:
+  - 퇴근하고 바로 약속일 때
+  - 블랙에 버건디 한 방울 공식
+theme:
+  date: '2026-10-09'
+  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  search_terms:
+    소품:
+    - 하트 목걸이
+    아우터:
+    - 크롭 레더자켓
+    하의:
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 크롭 레더자켓
+  - category: 상의
+    desc: 블랙 슬림 니트
+  - category: 하의
+    desc: 버건디 새틴 롱스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백
+  - category: 신발
+    desc: 블랙 슬링백
+  - category: 소품
+    desc: 실버 하트 목걸이
+  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
+  type: 상황
+  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출
