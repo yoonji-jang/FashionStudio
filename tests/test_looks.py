@@ -528,6 +528,15 @@ def test_unity_warnings():
     # 래글런 위에 아우터
     outer = [item(5, "블랙"), item(1, "그레이")]
     assert any("맨 바깥" in w for w in plan.unity_warnings("", outer, prods, profile))
+    # 이너는 베이직 단품만: 세트·장식 있는 나시는 이너로 쓰지 않는다
+    prods["zigzag:9"] = Product(
+        id="zigzag:9", name="[set]홀터넥 나시 세트 니트 가디건", category="상의", **base
+    )
+    prods["zigzag:10"] = Product(id="zigzag:10", name="베이직 골지 나시", category="상의", **base)
+    inner = [item(0, "그레이"), item(9, "블랙", wear_with="상의"), item(3, "블랙")]
+    assert any("이너는 베이직 단품" in w for w in plan.unity_warnings("", inner, prods, profile))
+    plain = [item(0, "그레이"), item(10, "블랙", wear_with="상의"), item(3, "블랙")]
+    assert not any("이너는" in w for w in plan.unity_warnings("", plain, prods, profile))
 
 
 def test_find_edits_reads_look_number_or_replied_sheet():

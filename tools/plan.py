@@ -344,6 +344,14 @@ def unity_warnings(where: str, group: list, products: dict, profile: Profile) ->
                         f"{where}{p.name}: 맨 바깥 상의로만 입힙니다"
                         " (위에 아우터·다른 상의 금지, styling.md)"
                     )
+    if st.inner_avoid_words:
+        for it, p in pairs:
+            plain = not name_excluded(p.name, st.inner_avoid_words)
+            if p.category == "상의" and it.wear_with and not plain:
+                out.append(
+                    f"{where}{p.name}: 이너는 베이직 단품만 씁니다"
+                    " (세트·장식 있는 티·나시 금지, styling.md 이너는 베이직만)"
+                )
     return out
 
 
