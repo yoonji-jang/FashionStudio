@@ -1,0 +1,127 @@
+account: women
+cover: out/2026-10-09/looks/3/outfit/results/G_1.jpg
+date: '2026-10-09'
+items:
+- cm: 61.5
+  color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 벌룬 브이넥 맨투맨 (grey oversized balloon-sleeve V-neck sweatshirt, hip length,
+    relaxed fit)
+  name: 벌룬 브이 맨투맨
+  product: zigzag:157537909
+  ref_photos:
+  - 1
+  size: about 61.5 cm long from shoulder to hem, 60 cm across the chest laid flat,
+    76.5 cm long sleeves
+- color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 레이스 나시 (plain white thin fitted camisole tank top with thin straps, wide
+    scoop neckline and a delicate scalloped white lace trim at the neckline; a single
+    white piece, not grey)
+  name: 마틸다 레이스 나시
+  product: zigzag:157994590
+  ref_photos:
+  - 3
+  - 0
+  - 5
+  wear_with: 상의
+- cm: 40.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 미니 스커트 쇼츠 (grey mini skort, low rise, layered skirt over shorts, thigh
+    length)
+  name: 미니 스커트 쇼츠
+  product: zigzag:166064055
+  ref_photos:
+  - 0
+  size: about 40 cm long from waist to hem, 39 cm across the waist laid flat, 54 cm
+    across the hips laid flat, 34 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 스퀘어토 롱부츠 (one pair (two boots) of black square-toe knee-high boots, block
+    heel)
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+  ref_photos:
+  - 3
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black medium woven leather slouchy hobo shoulder bag with a short
+    shoulder strap)
+  name: 리브 숄더백
+  product: zigzag:169612789
+  ref_photos:
+  - 2
+  - 0
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 드롭 목걸이 (exactly one long thin silver chain necklace with a drop pendant,
+    drawn a little larger than life size so it reads clearly)
+  name: 롱 드롭 목걸이
+  product: zigzag:159636703
+  ref_photos:
+  - 0
+  slot: 목걸이
+looks: []
+reason: 그레이 벌룬 맨투맨이 주인공, 그레이 미니 스커트 쇼츠와 블랙 롱부츠로 다리를 길게. 그레이·블랙 톤의 캐주얼 분위기 V넥 안에 흰
+  레이스 나시를 받쳐 목선에만 보이게.
+shot: flatlay
+styling: The oversized V-neck sweatshirt is worn with its sleeves slightly pushed
+  up, and the mini skirt-shorts are placed lower, clearly below the sweatshirt hem,
+  so the whole waistband design of the skort stays visible and is never covered by
+  the sweatshirt. The boots are placed below the skort, centered under it in the empty
+  floor, not beside it. The necklace is drawn slightly larger so it is clearly visible.
+  The thin white lace-trimmed camisole is layered underneath and shows only inside
+  the V-neckline; its hem stays hidden under the sweatshirt. The inner camisole is
+  a separate plain white piece with white lace at the neckline. The skort is placed
+  even lower, with a clear gap between the sweatshirt hem and the skort waistband
+  so the whole waist design of the skort is visible and the sweatshirt hem never covers
+  it. The boots are moved lower too, one neat pair laid side by side, parallel, pointing
+  the same direction and close together, centered under the skort near the bottom
+  of the figure.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#새틴스커트'
+  - '#레더자켓'
+  - '#무채색코디'
+  intro: 맑고 선선한 금요일, 블랙과 그레이로 차분하게 입어도 소재와 실루엣으로 분위기를 바꿔 보세요 🌙
+  points: []
+  title_lines:
+  - 무채색 코디 지루하지 않게
+  - 블랙·그레이 코디 모음
+theme:
+  date: '2026-10-09'
+  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  search_terms:
+    소품:
+    - 하트 목걸이
+    아우터:
+    - 크롭 레더자켓
+    하의:
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 크롭 레더자켓
+  - category: 상의
+    desc: 블랙 슬림 니트
+  - category: 하의
+    desc: 버건디 새틴 롱스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백
+  - category: 신발
+    desc: 블랙 슬링백
+  - category: 소품
+    desc: 실버 하트 목걸이
+  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
+  type: 상황
+  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출
