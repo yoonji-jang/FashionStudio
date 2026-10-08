@@ -23,6 +23,8 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 → 치마는 깊은 주름과 물결치는 밑단·광택 명암 문장, 깃은 위 끝에서 8% 아래, 짧은 코디는 아래로 내려 위아래 여백을 맞춤.
 2026-10-02·03 피드백: 단추가 상세페이지는 3개인데 2개로, 귀걸이 디자인이 다름, 단추 없는 니트 조끼에 단추가 생김
 → 단추 개수·위치와 주얼리 디자인을 사진 그대로 지키는 문장.
+2026-10-09 피드백(10/9 게시물 /fix 5건): 크롭 자켓이 길게, 와이드 바지 기장·밑단이 좁고 짧게, 단추를 다 잠금, 가디건이 이너를 가림,
+목걸이가 작고 오른쪽에 치우침 → 모델이 입은 모양(크롭 기장, 푼 단추, 열린 가디건) 문장, 와이드 밑단 문장, 목걸이는 크게 가운데.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -93,7 +95,11 @@ Every item keeps its exact product design: neckline, ties and straps, button cou
 pleats and hem shape are copied from its photos and never redesigned. Fitted tops look the way they
 fit on the model: slim and close to the body, with their point details (off-shoulder neckline,
 halter tie, layered inner) clearly shown.
-Tops and outers keep the true fit, length and fabric of their worn photos. An oversized or loose
+Tops and outers keep the true fit, length and fabric of their worn photos. A cropped jacket stays
+cropped (ending at the waist, not the hips). Buttons are fastened or left open exactly as on the
+model: a shirt or cardigan worn with the upper buttons open is drawn that way, and a cardigan worn
+open over a layered inner top hangs open wide enough to show the inner top's neckline and body.
+Wide-leg trousers keep a wide, straight hem that reaches the instep, never narrowed or shortened. An oversized or loose
 jacket, cardigan or shirt stays big and roomy: dropped shoulders, a wide body, long sleeves that
 reach the knuckles and a hem at the hips; never shrink it into a cropped, short or fitted piece.
 Soft drapey fabrics (thin cotton or rayon shirts, knits, satin) fall in soft folds and natural
@@ -127,7 +133,8 @@ parallel and pointing the same way, never splayed in a V, crossed or overlapping
 full-length trousers or a long skirt they sit in the lower right beside the hem, not overlapping it;
 with a short or knee-length skirt, shorts or any bottom that ends above the ankle they sit centered
 on the empty floor directly below the hem. Only if jewelry or small accessories are in
-the numbered list above, they sit in a neat vertical column on the right side at chest height; if
+the numbered list above, they sit in a neat vertical column on the right side at chest height (except a necklace, which is
+drawn clearly visible, a little larger than the other jewelry, centered below the collar); if
 the list has none, draw no jewelry, watch, rings, earrings or any other accessory at all. A scarf,
 bandana or other neck accessory is never worn, tied or draped on the clothes: it lies on its own
 like an accessory, flat or loosely folded in the shape of its product photos, in the empty floor
