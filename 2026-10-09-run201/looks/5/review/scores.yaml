@@ -1,0 +1,10 @@
+covers:
+  - id: c2
+    color: 2
+    shape: 1
+    complete: 2
+    clean: 0
+    layout: 1
+    notes: 3번 메리제인 안쪽에 브랜드 글자(vidoro 같은 문자)가 그려져 있음. 요청한 글자 금지에 어긋나 clean 0. 2번 스커트는 허리에서 1자로 떨어지지만 밑단이 살짝 퍼지고, 볼륨과 세로 주름은 이전보다 나아졌음. 4번 가방 손잡이가 1번 니트 왼쪽 소매 끝에 살짝 닿음.
+    feedback_ok: false
+summary: c2 는 스커트 볼륨과 오프숄더 홀터 니트, 메리제인 나란한 배치까지 요청대로 고쳐졌지만, 신발에 글자가 그려져 요청한 글자 금지를 어겼으므로 feedback_ok 는 false 이고 clean 0 이라 통과 기준 미달
