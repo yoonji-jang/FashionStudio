@@ -1,0 +1,6 @@
+status: blocked
+changes:
+  - "만들지 못함: plan.yaml 의 zigzag:157994590(3번 벌 마틸다 레이스 나시), zigzag:171599468(6번 벌 버건디 가디건)이 상품 창고(data/women/products.json)에 없어 tools.plan check 가 막음"
+  - "plan.yaml 에는 표지(1번 벌)·2·3·4·6번 벌의 styling·desc 수정을 적고 그 벌들의 cover: 줄을 지웠음. check 가 통과하지 못해 build·이미지 검수·manifest 는 하지 않음"
+interpretation:
+  - "fix.json 의 장 번호·look 값이 미리보기와 한 칸씩 어긋남: 내용으로 맞춤 (1장=1번 벌 표지, '2장 look 1'=2번 벌 버건디 홀터, '3장 look 2'=3번 벌 맨투맨+쇼츠, '4장 look 3'=4번 벌 모헤어 가디건, '6장 look 5'=6번 벌 아이보리 니트+미니 스커트)"
