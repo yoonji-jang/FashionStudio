@@ -23060,5 +23060,39 @@
     "query": "뿔테 안경",
     "collected_at": "2026-10-07",
     "checked_at": "2026-10-07"
+  },
+  {
+    "id": "zigzag:171599468",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/171599468",
+    "shop": "포네크",
+    "name": "[made]메이터 브이넥 골지 니트 가디건 (슬림핏/딥브이넥/레이어드)",
+    "price": 27200,
+    "category": "상의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457330003_66442.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457323297_28610.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457327483_31804.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457322391_39867.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457328313_30727.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457326622_55836.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457324769_36549.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457329180_81422.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457330913_79282.jpeg",
+      "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/58775_202608311457331904_32643.jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": 4.9,
+    "review_count": 42,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "모던시크",
+      "심플베이직"
+    ],
+    "query": "브이넥 골지 티",
+    "collected_at": "2026-10-07",
+    "checked_at": "2026-10-07"
   }
 ]
