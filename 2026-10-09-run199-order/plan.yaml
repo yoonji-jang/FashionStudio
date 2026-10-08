@@ -1,0 +1,520 @@
+account: women
+date: '2026-10-09'
+theme:
+  date: '2026-10-09'
+  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
+  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  slots:
+  - category: 아우터
+    desc: 블랙 크롭 레더자켓
+  - category: 상의
+    desc: 블랙 슬림 니트
+  - category: 하의
+    desc: 버건디 새틴 롱스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백
+  - category: 신발
+    desc: 블랙 슬링백
+  - category: 소품
+    desc: 실버 하트 목걸이
+  type: 상황
+  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출
+  search_terms:
+    소품:
+    - 하트 목걸이
+    아우터:
+    - 크롭 레더자켓
+    하의:
+    - 새틴 스커트
+items: []
+looks:
+- items:
+  - product: zigzag:166033034
+    color: 그레이
+    desc: 그레이 오버핏 울 보트넥 니트 (gray oversized fuzzy brushed wool boat-neck knit, dropped
+      shoulders, wide boat neckline, hip length)
+    name: 오버핏 보트넥 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:169196108
+    color: 화이트
+    desc: 화이트 레이스 테두리 나시 (white thin camisole tank top with a thin lace trim at the
+      neckline and hem, slim fit, sleeveless)
+    name: 레이스 레이어드 나시
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 3
+    wear_with: 상의
+  - product: zigzag:167460286
+    color: 차콜
+    desc: 차콜 맥시 울 스커트 (charcoal wool maxi skirt, slim straight column, high waist,
+      ankle length, soft thick knit-like wool)
+    name: 맥시 울 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 44.5
+      cm across the hips laid flat, 48.5 cm across the hem laid flat
+    cm: 89.0
+  - product: zigzag:164580854
+    color: 블랙
+    desc: 블랙 스웨이드 쇼퍼 드롭 숄더백 (black suede soft hobo shoulder bag with two shoulder
+      straps)
+    name: 쇼퍼 드롭 숄더백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    - 2
+  - product: zigzag:134105153
+    color: 블랙
+    desc: 블랙 레이스업 로퍼 (black matte leather lace-up loafers, round toe)
+    name: 레이스업 로퍼
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+  - product: zigzag:148867821
+    color: 그레이
+    desc: 그레이 잔골지 니삭스 (light gray soft slouchy knee socks, exactly one pair)
+    name: 잔골지 니삭스
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    wear_with: 신발
+  reason: 그레이 보트넥 니트가 주인공, 흰 레이스 나시 끈을 보이게 하고 차콜 맥시 울스커트에 로퍼와 그레이 삭스로. 그레이 톤온톤의 단정한
+    분위기 (참고 31) [점수 9]
+  point: 보트넥 사이로 레이스 나시 끈이 살짝 보여요
+  styling: The white lace-trimmed camisole strap shows at the wide boat neckline and
+    its hem is tucked in at the waist.
+  cover: out/2026-10-09/looks/1/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:167280062
+    color: 아이보리
+    desc: 아이보리 오프숄더 보트넥 울 니트 (ivory slim ribbed wool knit, wide square boat neckline
+      covering most of the shoulders, long ribbed sleeves, side-slit hem, waist to
+      high-hip length)
+    name: 오프숄더 울 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 0
+    - 1
+    size: about 57.5 cm long from shoulder to hem, 33.5 cm across the shoulders, 36
+      cm across the chest laid flat, 64 cm long sleeves
+    cm: 57.5
+  - product: zigzag:171599468
+    color: 버건디
+    desc: 버건디 브이넥 골지 니트 가디건 (burgundy thin fine-ribbed V-neck knit cardigan, slim
+      fit, front buttons, long sleeves)
+    name: 브이넥 골지 가디건
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+  - product: zigzag:167951642
+    color: 블랙
+    desc: 블랙 미니스커트 (black A-line mini skirt)
+    name: 브르노 미니 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 43 cm long from waist to hem, 36 cm across the waist laid flat, 49
+      cm across the hips laid flat, 58 cm across the hem laid flat
+    cm: 43.0
+  - product: zigzag:167741389
+    color: 블랙
+    desc: 블랙 소피 토트백 (black small soft shoulder bag with a top handle and a long strap,
+      top zip)
+    name: 소피 토트백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 0
+  - product: zigzag:128444991
+    color: 블랙
+    desc: 블랙 오픈 미디 부츠 (black flat mid-calf boots, round toe, wide soft shaft with
+      a fold-over cuff, matte leather)
+    name: 오픈 미디 부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  - product: zigzag:159990191
+    color: 실버
+    desc: 실버 물방울 롱 체인 목걸이 (long silver chain necklace with a water-drop pendant, drawn
+      clearly larger than life size with a slightly thicker chain and a big pendant,
+      hangs from below the chest to above the belly)
+    name: 물방울 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 1
+    slot: 목걸이
+  reason: 아이보리 오프숄더 니트가 주인공, 버건디 가디건을 어깨에 두르고 블랙 미니스커트에 롱부츠로. 아이보리·블랙에 버건디 한 방울의 깔끔한
+    분위기 (참고 10) [점수 8]
+  point: 아이보리 니트에 블랙 미니스커트로 깔끔하게 대비를 줘요
+  styling: The ivory knit keeps the product's point neckline, an asymmetric angular
+    wide boat neckline with a folded edge that slips off the shoulders, never a round
+    plain neckline, with the slim ribbed fit and the side-slit hem. The front hem
+    of the knit is tucked a little into the skirt waistband, so the whole waistband
+    of the skirt stays visible above the knit hem and is never covered by the knit
+    or the cardigan. The burgundy cardigan lies behind the knit, hidden, and only
+    a narrow band of it shows above the knit's shoulders; its two sleeves come forward
+    over the shoulders and tie in one small loose knot on the upper chest, the sleeve
+    ends hanging a little; the cardigan body, buttons and front edges never lie over
+    the front of the knit like a cape or vest. The skirt is placed a little lower
+    than before and is drawn with the exact design of its product photos. The boots
+    are placed below the mini skirt hem, centered in the empty floor under it, not
+    beside it. The necklace is drawn a little larger and hangs in the center of the
+    chest, on the vertical center line, not on the right. The thin burgundy cardigan
+    is draped over the shoulders with its body hanging behind the knit and its sleeves
+    tied loosely in front of the chest.
+- items:
+  - product: zigzag:157537909
+    color: 그레이
+    desc: 그레이 벌룬 브이넥 맨투맨 (grey oversized balloon-sleeve V-neck sweatshirt, hip length,
+      relaxed fit)
+    name: 벌룬 브이 맨투맨
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    size: about 61.5 cm long from shoulder to hem, 60 cm across the chest laid flat,
+      76.5 cm long sleeves
+    cm: 61.5
+  - product: zigzag:157994590
+    color: 화이트
+    desc: 화이트 레이스 나시 (plain white thin fitted camisole tank top with thin straps,
+      wide scoop neckline and a delicate scalloped white lace trim at the neckline;
+      a single white piece, not grey)
+    name: 마틸다 레이스 나시
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 0
+    - 5
+    wear_with: 상의
+  - product: zigzag:166064055
+    color: 그레이
+    desc: 그레이 미니 스커트 쇼츠 (grey mini skort, low rise, layered skirt over shorts, thigh
+      length)
+    name: 미니 스커트 쇼츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 40 cm long from waist to hem, 39 cm across the waist laid flat, 54
+      cm across the hips laid flat, 34 cm across the hem laid flat
+    cm: 40.0
+  - product: zigzag:108156951
+    color: 블랙
+    desc: 블랙 스퀘어토 롱부츠 (one pair (two boots) of black square-toe knee-high boots, block
+      heel)
+    name: 스퀘어 롱부츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+  - product: zigzag:169612789
+    color: 블랙
+    desc: 블랙 숄더백 (black medium woven leather slouchy hobo shoulder bag with a short
+      shoulder strap)
+    name: 리브 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    - 3
+  - product: zigzag:159636703
+    color: 실버
+    desc: 실버 롱 드롭 목걸이 (exactly one long thin silver chain necklace with a drop pendant,
+      drawn a little larger than life size so it reads clearly)
+    name: 롱 드롭 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 그레이 벌룬 맨투맨이 주인공, 그레이 미니 스커트 쇼츠와 블랙 롱부츠로 다리를 길게. 그레이·블랙 톤의 캐주얼 분위기 V넥 안에
+    흰 레이스 나시를 받쳐 목선에만 보이게.
+  point: 맨투맨 브이넥 안으로 흰 레이스 나시가 살짝 보여요
+  styling: The oversized V-neck sweatshirt is worn with its sleeves slightly pushed
+    up, and the mini skirt-shorts are placed lower, clearly below the sweatshirt hem,
+    so the whole waistband design of the skort stays visible and is never covered
+    by the sweatshirt. The boots are placed below the skort, centered under it in
+    the empty floor, not beside it. The necklace is drawn slightly larger so it is
+    clearly visible. The thin white lace-trimmed camisole is layered underneath and
+    shows only inside the V-neckline; its hem stays hidden under the sweatshirt. The
+    inner camisole is a separate plain white piece with white lace at the neckline.
+  cover: out/2026-10-09/looks/3/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:119553614
+    color: 블랙
+    desc: 블랙 페이크 레더 크롭 자켓 (black glossy faux leather boxy cropped jacket, waist length,
+      wide pointed spread collar, front zip, ribbed hem)
+    name: 크롭 레더 자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 50 cm long from shoulder to hem, 42 cm across the shoulders, 54 cm
+      across the chest laid flat, 58.5 cm long sleeves
+    cm: 50.0
+  - product: zigzag:171413342
+    color: 블랙
+    desc: 블랙 헨리넥 골지 니트 (black fine ribbed henley-neck knit, slim fit, three buttons
+      at the placket)
+    name: 헨리넥 골지 니트
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    wear_with: 아우터
+  - product: zigzag:168869683
+    color: 블랙
+    desc: 블랙 새틴 미디 스커트 (black glossy satin slim bias-cut skirt, high waist, straight
+      H-line column, knee length, only the hem loosens slightly, not A-line, no pleats)
+    name: 새틴 미디 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 48 cm long from waist to hem, 36 cm across the waist laid flat, 43
+      cm across the hips laid flat, 60 cm across the hem laid flat
+    cm: 48.0
+  - product: zigzag:133601050
+    color: 블랙
+    desc: 블랙 에나멜 슬링백 (black patent pointed-toe slingback pumps with a slim heel)
+    name: 에나멜 슬링백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:150848794
+    color: 버건디
+    desc: 버건디 숄더백 (burgundy glossy leather shoulder bag with gathered body and two
+      thin long handles)
+    name: 엘론 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    - 0
+  - product: zigzag:148600384
+    color: 실버
+    desc: 실버 하트 펜던트 롱 목걸이 (exactly one long silver chain necklace with a small heart
+      pendant)
+    name: 하트 롱 목걸이
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    - 0
+    slot: 목걸이
+  reason: 블랙 크롭 레더자켓이 주인공, 블랙 새틴 미디 스커트에 버건디 백으로 퇴근 후 저녁 분위기. 블랙에 버건디 한 방울을 더한 단정한
+    분위기
+  point: 블랙 레더 크롭에 새틴 스커트, 버건디 백으로 포인트 줘요
+  styling: The jacket is a true cropped jacket that ends at the waist, clearly short
+    and boxy, its hem sitting well above the skirt waistband and never lengthened.
+    It is worn open at the front with the zip pulled down so the black henley knit
+    shows. The henley placket is not fully buttoned, the top buttons are left undone.
+    The knit is only lightly tucked into the skirt, and its hem never covers the skirt
+    waistband, so the whole waistband design of the skirt stays visible. The skirt
+    is placed a little lower than before. The satin skirt is a straight narrow H-line
+    column that ends at the knee, never mid-calf and never A-line or fanned out; only
+    the very hem loosens slightly. It has real volume like a skirt just taken off
+    a body, with soft rounded folds and air inside, never flat or stuck to the floor,
+    exactly as the model wears it. The short skirt leaves floor space under it, so
+    the slingback shoes are placed as a pair below the skirt hem, centered under the
+    skirt, not beside it.
+  cover: out/2026-10-09/looks/4/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:147211427
+    color: 버건디
+    desc: 버건디 타이 홀터넥 슬림 니트 (deep wine-burgundy fitted fine-knit top with a halter
+      tie and thin straps over a wide off-the-shoulder scoop neckline, long sleeves,
+      waist length; the same deep wine-burgundy as the product photos)
+    name: 타이 홀터넥 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 2
+    - 1
+    size: about 54 cm long from shoulder to hem, 35 cm across the chest laid flat,
+      61 cm long sleeves
+    cm: 54.0
+  - product: zigzag:169413555
+    color: 블랙
+    desc: 블랙 새틴 맥시 플레어 스커트 (black satin maxi skirt, high waist, straight narrow column
+      that falls straight down in a 1-line, not flared, ankle length, no pleats)
+    name: 새틴 맥시 스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 4
+    size: about 87 cm long from waist to hem, 48 cm across the waist laid flat, 49
+      cm across the hips laid flat, 58 cm across the hem laid flat
+    cm: 87.0
+  - product: zigzag:161729124
+    color: 블랙
+    desc: 블랙 메리제인 (one pair (two shoes) of black matte round-toe Mary Jane flats with
+      an instep strap)
+    name: 메리제인
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:147738628
+    color: 블랙
+    desc: 블랙 호보백 (black small crescent-shaped crinkled leather shoulder bag with a
+      short top handle and a small round metal logo)
+    name: 버클 호보백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:162967207
+    color: 실버
+    desc: 실버 물방울 드롭 롱 목걸이 (exactly one long silver chain necklace with a teardrop
+      pendant)
+    name: 물방울 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    slot: 목걸이
+  reason: 버건디 홀터 슬림 니트가 주인공, 블랙 새틴 맥시 스커트와 메리제인으로 어깨를 드러낸 저녁 약속. 버건디·블랙 톤의 단정한 분위기
+  point: 버건디 니트로 어깨선을 살리고 새틴 맥시로 마무리해요 🍷
+  styling: The slim knit is worn off the shoulder with its thin halter straps and
+    tie neckline exactly like the product photos and the model, shoulders bare, no
+    outer. It is only lightly tucked into the satin skirt, and its hem never covers
+    the skirt waistband, so the waistband stays visible. The skirt is placed a little
+    lower than before. The satin skirt falls straight down in a 1-line column, the
+    hem only a hand wider than the hips and never flared, fanned or A-line, exactly
+    as the model wears it. The knit has a front halter tie at the neck as well as
+    the thin straps. The shoes sit below the skirt hem without touching it, the bag
+    does not overlap the sleeve. The skirt has real volume, with soft deep rounded
+    folds and air inside the fabric, never flat or stuck to the floor. The knit keeps
+    the exact deep wine-burgundy of the product page.
+- items:
+  - product: zigzag:166342775
+    color: 네이비
+    desc: 네이비 모헤어 가디건 (dark navy fuzzy brushed mohair wool cardigan, loose relaxed
+      fit, dropped shoulders, balloon sleeves with ribbed cuffs, round neck, waist
+      to high-hip length, buttons closed down to the chest; soft fuzzy brushed mohair
+      with a long hairy pile, like the product page)
+    name: 모헤어 가디건
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    cm: 60.0
+  - product: zigzag:153225273
+    color: 블랙
+    desc: 블랙 홀터넥 레이어드 슬림 티 (black fitted long-sleeve rib knit top, fake two-piece
+      with an inner tank and a halter strap at the neck, hip length)
+    name: 홀터넥 슬림 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8
+      cm long sleeves
+    cm: 60.0
+    wear_with: 아우터
+  - product: zigzag:169176780
+    color: 블랙
+    desc: 블랙 유틸리티 와이드 팬츠 (washed black loose wide-leg cargo-style pants, flat front,
+      no pleats, full length reaching the ankle bones and breaking over the shoes,
+      wide straight leg that stays wide down to the hem with a wide ankle opening)
+    name: 유틸리티 와이드 팬츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    size: about 105 cm long from waist to hem, 42 cm across the waist laid flat, 55.5
+      cm across the hips laid flat, 40 cm across the hem laid flat
+    cm: 105.0
+  - product: zigzag:130586820
+    color: 블랙
+    desc: 블랙 뒷지퍼 앵클부츠 (one pair (two boots) of black round-toe leather ankle boots,
+      low heel)
+    name: 뒷지퍼 앵클부츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:159313221
+    color: 블랙
+    desc: 블랙 숄더백 (black glossy crinkled leather rectangular tote-shaped shoulder bag
+      with two thin long handles that fit over the shoulder, a horizontal pocket line
+      on the front)
+    name: 멜다 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:143617362
+    color: 실버
+    desc: 실버 물방울 링 귀걸이 (exactly one pair (two earrings) of small silver thick teardrop
+      hoop earrings)
+    name: 물방울 귀걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 귀걸이
+  reason: 네이비 모헤어 가디건이 주인공, 블랙 홀터 이너와 블랙 와이드 팬츠로 포근하게. 네이비·블랙 톤의 단정한 분위기
+  point: 네이비 모헤어에 블랙을 맞춰 포근하고 단정해요
+  styling: The mohair cardigan is buttoned only at the top button and worn more open
+    than before, its front edges falling wide apart and straight, so the black fake
+    two-piece halter layered slim top shows clearly in the wide opening. The fuzzy
+    brushed mohair texture matches the product page. The wide pants are placed a little
+    lower so the cardigan hem does not cover the pants waistband, and they are drawn
+    full length, long and wide all the way to the hem with a wide ankle opening, never
+    short, cropped or tapered, in a graceful relaxed fit like on the model.
+  cover: out/2026-10-09/looks/6/outfit_r2/results/G_1.jpg
+reason: 퇴근 후 약속룩을 버건디 새틴과 블랙 레더, 차콜 톤온톤, 데님 캐주얼까지 색과 실루엣을 바꿔 여섯 가지로
+text:
+  title_lines:
+  - 퇴근하고 바로 약속일 때
+  - 블랙에 버건디 한 방울 공식
+  intro: 맑고 선선한 금요일, 퇴근하고 바로 만나는 약속엔 새틴으로 분위기를 바꿔 보세요 🌙
+  points: []
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#새틴스커트'
+  - '#레더자켓'
+  - '#버건디'
+shot: flatlay
