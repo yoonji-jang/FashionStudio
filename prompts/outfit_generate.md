@@ -62,7 +62,9 @@ cropped or ankle-length unless the product itself is cropped.
 Proportions like a tall model with long legs: the waistline sits high, at about 40 percent of the
 figure height from the collar, and stays visible (unless the styling says otherwise, the top is tucked in or ends at the
 waist and any belt shows; an outer may fall over the hips but the waistband of the bottoms still shows in its
-opening). Below it the bottoms are the biggest and longest part of the figure, about 60 percent of
+opening). The top's hem never covers the waistband design of the bottoms (waistband, belt, belt
+loops, buttons): the top is only lightly tucked in at the front or ends just above it, and the
+bottoms sit a little lower so their whole waistband shows. Below it the bottoms are the biggest and longest part of the figure, about 60 percent of
 its height: full-length trousers run from that waistline all the way down near the bottom edge of
 the frame, clearly longer than any jacket or top (an item stated as 100 cm is about 1.6 times as
 long as one stated as 62 cm), and midi or long skirts flow well below where the knees would be.
@@ -79,8 +81,18 @@ taken off a body, with the waistband slightly rounded, the fabric gathering into
 folds that run from the hips down and open into a rippling, wavy hem that lifts off the floor in
 places; an A-line or flared skirt fans out with rolling waves along the hem, a mini skirt still has a
 few soft folds and a slightly flipped hem, and satin or other glossy fabric shows bright highlights
-on the raised folds and soft shadows between them. A midi skirt ends at mid-calf and is never drawn
-as an ankle-length maxi skirt.
+on the raised folds and soft shadows between them. A skirt never looks pressed or stuck flat to the
+floor: the hip area stays gently rounded as if a body had just stepped out of it, the front panel
+curves with depth, and at the hem the inside back layer shows a little where the front lifts, so
+the skirt clearly has a front and a back with air between them. A skirt ends exactly where its stated cm and worn
+photos show: a midi skirt ends at mid-calf unless its stated length and worn photos put it at the
+knee (then it stays at the knee), and it is never drawn as an ankle-length maxi skirt. A straight
+H-line, pencil or bias-cut satin skirt stays narrow and falls straight like on the model, only its
+very hem loosening a little; it is never fanned out into an A-line or flare.
+Every item keeps its exact product design: neckline, ties and straps, button count, pockets, belt,
+pleats and hem shape are copied from its photos and never redesigned. Fitted tops look the way they
+fit on the model: slim and close to the body, with their point details (off-shoulder neckline,
+halter tie, layered inner) clearly shown.
 Tops and outers keep the true fit, length and fabric of their worn photos. An oversized or loose
 jacket, cardigan or shirt stays big and roomy: dropped shoulders, a wide body, long sleeves that
 reach the knuckles and a hem at the hips; never shrink it into a cropped, short or fitted piece.
@@ -110,8 +122,11 @@ areas. The outfit never hugs the top edge: with a short skirt, shorts or a short
 figure (clothes and shoes together) moves down so the empty floor above the collar and below the
 lowest item is about equal. The bag
 lies close to the left side of the clothes at waist height, slightly overlapping the edge of the
-clothes, and never lower than the knees. The shoes sit as a pair at an angle in the lower right,
-beside the trouser hem, not overlapping the trousers. Only if jewelry or small accessories are in
+clothes, and never lower than the knees. The shoes are one neat pair laid side by side,
+parallel and pointing the same way, never splayed in a V, crossed or overlapping each other. With
+full-length trousers or a long skirt they sit in the lower right beside the hem, not overlapping it;
+with a short or knee-length skirt, shorts or any bottom that ends above the ankle they sit centered
+on the empty floor directly below the hem. Only if jewelry or small accessories are in
 the numbered list above, they sit in a neat vertical column on the right side at chest height; if
 the list has none, draw no jewelry, watch, rings, earrings or any other accessory at all. A scarf,
 bandana or other neck accessory is never worn, tied or draped on the clothes: it lies on its own
