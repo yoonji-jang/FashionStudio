@@ -21,6 +21,8 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 어깨에 두른 가디건이 상의 가슴을 망토처럼 덮음 → 두른 니트는 몸판을 상의 뒤로 숨기고 소매만 앞으로 묶는 문장.
 같은 날 사용자: 하의, 특히 치마가 납작함(새틴 롱스커트·미니스커트가 주름 없는 판), 코디가 너무 위에 붙음
 → 치마는 깊은 주름과 물결치는 밑단·광택 명암 문장, 깃은 위 끝에서 8% 아래, 짧은 코디는 아래로 내려 위아래 여백을 맞춤.
+2026-10-02·03 피드백: 단추가 상세페이지는 3개인데 2개로, 귀걸이 디자인이 다름, 단추 없는 니트 조끼에 단추가 생김
+→ 단추 개수·위치와 주얼리 디자인을 사진 그대로 지키는 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -35,7 +37,10 @@ $items
 Keep every item identical to its product photos: same color, fabric texture, pattern, cut, length,
 fit, collar or lapel type, neckline, buttons, pockets, hardware, toe shape and proportions. Do not
 change a collar into a different collar type, do not change the style of the shoes, do not add,
-remove or redesign any detail, do not add logos or text. Use every item exactly once and add no
+remove or redesign any detail, do not add logos or text. Count the buttons in the product photos and
+draw exactly that many in the same places (a three-button jacket never gets two; a vest without
+buttons gets none); draw earrings and other jewelry with the exact design, shape and size of their
+product photos, never a similar-looking one. Use every item exactly once and add no
 other clothing or objects.
 
 Styling: $styling
