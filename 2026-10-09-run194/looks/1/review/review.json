@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 0,
+        "layout": 1,
+        "notes": "2번 헨리넥 니트의 단추가 원본은 3개인데 그림은 5개쯤 됨 (10-02 단추 개수 피드백과 같은 문제). 2번 니트 목선과 4번 슬링백 스트랩에 작은 글자 라벨이 그려져 있음. 3번 스커트는 원본의 무릎 기장 슬림 바이어스컷보다 길고 밑단이 퍼진 A라인이라 기장과 핏이 달라짐. 5번 가방이 자켓 소매 밑단과 스커트에 걸쳐 닿음.",
+        "feedback_ok": null
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "2번 헨리넥 니트 단추가 5~6개로 많이 그려짐(원본은 3개, 10-02 사람 피드백과 같은 문제). 5번 가방이 왼쪽 아래 제목 자리(왼쪽 45%, 아래 35%)에 걸치고 손잡이가 자켓 왼쪽 소매 끝에 닿음",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "색·자켓·스커트·슬링백(2짝)·목걸이(1개)는 원본과 같고 군더더기도 없다. 다만 니트 단추 개수가 원본(3개)과 크게 달라 shape 0이므로 합계 7점으로 통과 기준(8점 이상, 0점 없음)에 못 미친다."
+}
