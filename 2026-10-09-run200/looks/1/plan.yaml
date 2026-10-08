@@ -1,0 +1,109 @@
+account: women
+cover: out/2026-10-09/looks/1/outfit_r2/results/G_1.jpg
+date: '2026-10-09'
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 오버핏 울 보트넥 니트 (gray oversized fuzzy brushed wool boat-neck knit, dropped
+    shoulders, wide boat neckline, hip length)
+  name: 오버핏 보트넥 니트
+  product: zigzag:166033034
+  ref_photos:
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 레이스 테두리 나시 (white thin camisole tank top with a thin lace trim at the
+    neckline and hem, slim fit, sleeveless)
+  name: 레이스 레이어드 나시
+  product: zigzag:169196108
+  ref_photos:
+  - 5
+  - 3
+  wear_with: 상의
+- cm: 89.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 맥시 울 스커트 (charcoal wool maxi skirt, slim straight column, high waist, ankle
+    length, soft thick knit-like wool)
+  name: 맥시 울 스커트
+  product: zigzag:167460286
+  ref_photos:
+  - 0
+  - 3
+  size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 44.5
+    cm across the hips laid flat, 48.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 스웨이드 쇼퍼 드롭 숄더백 (black suede soft hobo shoulder bag with two shoulder straps)
+  name: 쇼퍼 드롭 숄더백
+  product: zigzag:164580854
+  ref_photos:
+  - 4
+  - 5
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 레이스업 로퍼 (black matte leather lace-up loafers, round toe)
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+  ref_photos:
+  - 1
+  - 2
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 잔골지 니삭스 (light gray soft slouchy knee socks, exactly one pair)
+  name: 잔골지 니삭스
+  product: zigzag:148867821
+  ref_photos:
+  - 2
+  wear_with: 신발
+looks: []
+reason: 그레이 보트넥 니트가 주인공, 흰 레이스 나시 끈을 보이게 하고 차콜 맥시 울스커트에 로퍼와 그레이 삭스로. 그레이 톤온톤의 단정한
+  분위기 (참고 31) [점수 9]
+shot: flatlay
+styling: The white lace-trimmed camisole strap shows at the wide boat neckline and
+  its hem is tucked in at the waist.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#새틴스커트'
+  - '#레더자켓'
+  - '#버건디'
+  intro: 맑고 선선한 금요일, 퇴근하고 바로 만나는 약속엔 새틴으로 분위기를 바꿔 보세요 🌙
+  points: []
+  title_lines:
+  - 퇴근하고 바로 약속일 때
+  - 블랙에 버건디 한 방울 공식
+theme:
+  date: '2026-10-09'
+  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  search_terms:
+    소품:
+    - 하트 목걸이
+    아우터:
+    - 크롭 레더자켓
+    하의:
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 크롭 레더자켓
+  - category: 상의
+    desc: 블랙 슬림 니트
+  - category: 하의
+    desc: 버건디 새틴 롱스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백
+  - category: 신발
+    desc: 블랙 슬링백
+  - category: 소품
+    desc: 실버 하트 목걸이
+  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
+  type: 상황
+  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출

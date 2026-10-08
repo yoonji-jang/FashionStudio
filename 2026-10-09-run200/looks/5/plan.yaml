@@ -1,0 +1,121 @@
+account: women
+date: '2026-10-09'
+items:
+- cm: 54.0
+  color: 버건디
+  comment: ''
+  cutout_photo: 1
+  desc: 버건디 타이 홀터넥 슬림 니트 (deep wine-burgundy fitted fine-knit top with a halter tie
+    and thin straps over a wide off-the-shoulder scoop neckline, long sleeves, waist
+    length, a very wide off-the-shoulder neckline that slips down past the shoulders
+    so the shoulders are bare, a thin halter tie strap around the back of the neck;
+    the same deep wine-burgundy as the product photos)
+  name: 타이 홀터넥 니트
+  product: zigzag:147211427
+  ref_photos:
+  - 2
+  - 1
+  size: about 54 cm long from shoulder to hem, 35 cm across the chest laid flat, 61
+    cm long sleeves
+- cm: 87.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 새틴 맥시 플레어 스커트 (black satin maxi skirt, high waist, straight narrow column
+    that falls straight down in a 1-line, not flared, ankle length, no pleats)
+  name: 새틴 맥시 스커트
+  product: zigzag:169413555
+  ref_photos:
+  - 2
+  - 4
+  size: about 87 cm long from waist to hem, 48 cm across the waist laid flat, 49 cm
+    across the hips laid flat, 50 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 (one pair (two shoes) of black matte round-toe Mary Jane flats with
+    an instep strap)
+  name: 메리제인
+  product: zigzag:161729124
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 호보백 (black small crescent-shaped crinkled leather shoulder bag with a short
+    top handle and a small round metal logo)
+  name: 버클 호보백
+  product: zigzag:147738628
+  ref_photos:
+  - 0
+  - 2
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 드롭 롱 목걸이 (exactly one long silver chain necklace with a teardrop pendant)
+  name: 물방울 롱 목걸이
+  product: zigzag:162967207
+  ref_photos:
+  - 0
+  - 2
+  slot: 목걸이
+looks: []
+reason: 버건디 홀터 슬림 니트가 주인공, 블랙 새틴 맥시 스커트와 메리제인으로 어깨를 드러낸 저녁 약속. 버건디·블랙 톤의 단정한 분위기
+shot: flatlay
+styling: The slim knit is worn off the shoulder with its thin halter straps and tie
+  neckline exactly like the product photos and the model, shoulders bare, no outer.
+  It is only lightly tucked into the satin skirt, and its hem never covers the skirt
+  waistband, so the waistband stays visible. The skirt is placed a little lower than
+  before. The satin skirt falls straight down in a 1-line column, the hem only a hand
+  wider than the hips and never flared, fanned or A-line, exactly as the model wears
+  it. The knit has a front halter tie at the neck as well as the thin straps. The
+  shoes sit below the skirt hem without touching it, the bag does not overlap the
+  sleeve. The skirt has real volume, with soft deep rounded folds and air inside the
+  fabric, never flat or stuck to the floor. The knit keeps the exact deep wine-burgundy
+  of the product page. It looks worn by a model, the knit's wide off-the-shoulder
+  neckline slides outside the shoulders so the shoulders are bare, with the thin halter
+  tie strap hanging at the neck, and the knit clings slim to the body. The maxi satin
+  skirt is a narrow straight 1-line column from the waist to the ankle, never flared
+  or fanned. It has round volume and air at the hips, soft vertical flowing folds
+  and bright satin highlights, like a garment just taken off a body, never flat or
+  pressed to the floor. The mary janes are one neat pair side by side, parallel, pointing
+  the same direction and close together.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#새틴스커트'
+  - '#레더자켓'
+  - '#버건디'
+  intro: 맑고 선선한 금요일, 퇴근하고 바로 만나는 약속엔 새틴으로 분위기를 바꿔 보세요 🌙
+  points: []
+  title_lines:
+  - 퇴근하고 바로 약속일 때
+  - 블랙에 버건디 한 방울 공식
+theme:
+  date: '2026-10-09'
+  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  search_terms:
+    소품:
+    - 하트 목걸이
+    아우터:
+    - 크롭 레더자켓
+    하의:
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 크롭 레더자켓
+  - category: 상의
+    desc: 블랙 슬림 니트
+  - category: 하의
+    desc: 버건디 새틴 롱스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백
+  - category: 신발
+    desc: 블랙 슬링백
+  - category: 소품
+    desc: 실버 하트 목걸이
+  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
+  type: 상황
+  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출

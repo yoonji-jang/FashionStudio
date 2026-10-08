@@ -1,0 +1,127 @@
+account: women
+date: '2026-10-09'
+items:
+- cm: 50.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 페이크 레더 크롭 자켓 (black glossy faux leather boxy cropped jacket, waist length,
+    wide pointed spread collar, front zip, ribbed hem)
+  name: 크롭 레더 자켓
+  product: zigzag:119553614
+  ref_photos:
+  - 0
+  size: about 50 cm long from shoulder to hem, 42 cm across the shoulders, 54 cm across
+    the chest laid flat, 58.5 cm long sleeves
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 헨리넥 골지 니트 (black fine ribbed henley-neck knit, slim fit, three buttons
+    at the placket)
+  name: 헨리넥 골지 니트
+  product: zigzag:171413342
+  ref_photos:
+  - 5
+  wear_with: 아우터
+- cm: 48.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 새틴 미디 스커트 (black glossy satin slim bias-cut skirt, high waist, straight
+    H-line column, knee length, only the hem loosens slightly, not A-line, no pleats)
+  name: 새틴 미디 스커트
+  product: zigzag:168869683
+  ref_photos:
+  - 0
+  size: about 48 cm long from waist to hem, 36 cm across the waist laid flat, 43 cm
+    across the hips laid flat, 60 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 에나멜 슬링백 (black patent pointed-toe slingback pumps with a slim heel)
+  name: 에나멜 슬링백
+  product: zigzag:133601050
+  ref_photos:
+  - 0
+  - 2
+- color: 버건디
+  comment: ''
+  cutout_photo: 2
+  desc: 버건디 숄더백 (burgundy glossy leather shoulder bag with gathered body and two thin
+    long handles)
+  name: 엘론 숄더백
+  product: zigzag:150848794
+  ref_photos:
+  - 2
+  - 3
+  - 0
+- color: 실버
+  comment: ''
+  cutout_photo: 4
+  desc: 실버 하트 펜던트 롱 목걸이 (exactly one long silver chain necklace with a small heart
+    pendant)
+  name: 하트 롱 목걸이
+  product: zigzag:148600384
+  ref_photos:
+  - 4
+  - 5
+  - 0
+  slot: 목걸이
+looks: []
+reason: 블랙 크롭 레더자켓이 주인공, 블랙 새틴 미디 스커트에 버건디 백으로 퇴근 후 저녁 분위기. 블랙에 버건디 한 방울을 더한 단정한 분위기
+shot: flatlay
+styling: The jacket is a true cropped jacket that ends at the waist, clearly short
+  and boxy, its hem sitting well above the skirt waistband and never lengthened. It
+  is worn open at the front with the zip pulled down so the black henley knit shows.
+  The henley placket is not fully buttoned, the top buttons are left undone. The knit
+  is only lightly tucked into the skirt, and its hem never covers the skirt waistband,
+  so the whole waistband design of the skirt stays visible. The skirt is placed a
+  little lower than before. The satin skirt is a straight narrow H-line column that
+  ends at the knee, never mid-calf and never A-line or fanned out; only the very hem
+  loosens slightly. It has real volume like a skirt just taken off a body, with soft
+  rounded folds and air inside, never flat or stuck to the floor, exactly as the model
+  wears it. The short skirt leaves floor space under it, so the slingback shoes are
+  placed as a pair below the skirt hem, centered under the skirt, not beside it. The
+  slingbacks are one neat pair side by side, parallel, pointing the same direction
+  and close together, never splayed in a V. The skirt looks as if worn on a body and
+  just set down, a slim bias-cut satin knee-length H-line with round volume and air
+  at the hips and thighs, soft vertical folds, bright satin highlights along the folds,
+  and only the hem loosening slightly, never flat, pressed or paper-like.
+text:
+  hashtags:
+  - '#퇴근룩'
+  - '#약속룩'
+  - '#새틴스커트'
+  - '#레더자켓'
+  - '#버건디'
+  intro: 맑고 선선한 금요일, 퇴근하고 바로 만나는 약속엔 새틴으로 분위기를 바꿔 보세요 🌙
+  points: []
+  title_lines:
+  - 퇴근하고 바로 약속일 때
+  - 블랙에 버건디 한 방울 공식
+theme:
+  date: '2026-10-09'
+  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  search_terms:
+    소품:
+    - 하트 목걸이
+    아우터:
+    - 크롭 레더자켓
+    하의:
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 크롭 레더자켓
+  - category: 상의
+    desc: 블랙 슬림 니트
+  - category: 하의
+    desc: 버건디 새틴 롱스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백
+  - category: 신발
+    desc: 블랙 슬링백
+  - category: 소품
+    desc: 실버 하트 목걸이
+  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
+  type: 상황
+  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출
