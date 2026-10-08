@@ -81,7 +81,10 @@ taken off a body, with the waistband slightly rounded, the fabric gathering into
 folds that run from the hips down and open into a rippling, wavy hem that lifts off the floor in
 places; an A-line or flared skirt fans out with rolling waves along the hem, a mini skirt still has a
 few soft folds and a slightly flipped hem, and satin or other glossy fabric shows bright highlights
-on the raised folds and soft shadows between them. A skirt ends exactly where its stated cm and worn
+on the raised folds and soft shadows between them. A skirt never looks pressed or stuck flat to the
+floor: the hip area stays gently rounded as if a body had just stepped out of it, the front panel
+curves with depth, and at the hem the inside back layer shows a little where the front lifts, so
+the skirt clearly has a front and a back with air between them. A skirt ends exactly where its stated cm and worn
 photos show: a midi skirt ends at mid-calf unless its stated length and worn photos put it at the
 knee (then it stays at the knee), and it is never drawn as an ankle-length maxi skirt. A straight
 H-line, pencil or bias-cut satin skirt stays narrow and falls straight like on the model, only its
