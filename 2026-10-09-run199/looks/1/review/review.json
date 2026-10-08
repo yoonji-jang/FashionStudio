@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "3번 스커트가 허리는 좁고 밑단이 크게 퍼진 사다리꼴 A라인이라 원본의 슬림한 H라인(끝만 살짝 풀림)과 다름. 2번 헨리넥 단추가 5개쯤 그려져 원본의 3개와 다름. 3번 스커트 길이가 자켓의 약 1.4배로, 실제 크기(스커트 48cm, 자켓 50cm)보다 길어 보임. 자켓 밑단이 스커트 허리 위를 덮음.",
+        "feedback_ok": false
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "2번 헨리넥 단추가 5~6개로 그려짐 (원본은 3개), 가방 손잡이 윗부분이 자켓 소매에 살짝 닿고 가방이 왼쪽 아래 제목 자리 가장자리에 조금 걸침",
+        "feedback_ok": true
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 는 요청한 수정이 모두 보인다. 자켓은 크롭 기장에 골지 밑단이고, 치마는 무릎 기장의 H라인에 새틴 볼륨이 있다. 신발은 치마 밑에 있고, 단추가 풀려 있으며, 치마 허리선이 상의 밑단에 가려지지 않는다. 감점은 단추 개수와 가방 위치뿐이다."
+}
