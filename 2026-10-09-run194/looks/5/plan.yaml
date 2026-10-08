@@ -1,5 +1,5 @@
 account: women
-date: '2026-10-09'
+date: '2026-10-08'
 items:
 - color: 그레이
   comment: ''
@@ -70,39 +70,39 @@ styling: The white lace-trimmed camisole strap shows at the wide boat neckline a
   its hem is tucked in at the waist.
 text:
   hashtags:
-  - '#퇴근룩'
-  - '#약속룩'
-  - '#새틴스커트'
+  - '#레이어드룩'
+  - '#가을코디'
+  - '#니트코디'
+  - '#셔츠코디'
+  - '#일교차코디'
   - '#레더자켓'
-  - '#버건디'
-  intro: 맑고 선선한 금요일, 퇴근하고 바로 만나는 약속엔 새틴으로 분위기를 바꿔 보세요 🌙
+  intro: 맑지만 일교차 큰 목요일, 이너 한 장으로 레이어드에 힘줘 봐요 🍂
   points: []
   title_lines:
-  - 퇴근하고 바로 약속일 때
-  - 블랙에 버건디 한 방울 공식
+  - 이너 하나 바꿔 완성하는
+  - 가을 레이어드 공식
 theme:
-  date: '2026-10-09'
-  mood: 버건디와 블랙으로 분위기를 낸 퇴근 후 저녁 약속룩
+  date: '2026-10-08'
+  mood: 올리브와 아이보리로 정리한 레이어링 공식 정리
   search_terms:
-    소품:
-    - 하트 목걸이
-    아우터:
-    - 크롭 레더자켓
-    하의:
-    - 새틴 스커트
+    가방:
+    - 퀼팅 체인백
+    상의:
+    - 올리브 니트 베스트
+    - 레이어드 셔츠
+    신발:
+    - 발레리나 플랫
   slots:
-  - category: 아우터
-    desc: 블랙 크롭 레더자켓
   - category: 상의
-    desc: 블랙 슬림 니트
+    desc: 올리브 니트 베스트
   - category: 하의
-    desc: 버건디 새틴 롱스커트
+    desc: 베이지 와이드 코튼 팬츠
   - category: 가방
-    desc: 블랙 미니 숄더백
+    desc: 블랙 퀼팅 체인백
   - category: 신발
-    desc: 블랙 슬링백
+    desc: 블랙 발레리나 플랫
   - category: 소품
-    desc: 실버 하트 목걸이
-  title_hint: 퇴근 후 약속엔 새틴 스커트에 레더 한 방울
-  type: 상황
-  why: 금요일 퇴근 후 약속이라 새틴 소재와 가죽 아우터로 낮과 다른 분위기를 연출
+    desc: 가죽 벨트
+  title_hint: 셔츠 깃 빼 입는 니트 레이어드 TIP
+  type: 팁
+  why: 목요일, 13~24도 일교차가 커서 입고 벗기 쉬운 니트와 셔츠 레이어드가 실용적
