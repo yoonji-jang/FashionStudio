@@ -1259,5 +1259,329 @@
     "share": null,
     "reel_media_id": "18155233915468341",
     "reel_permalink": "https://www.instagram.com/reel/DeOrJ2omrFs/"
+  },
+  {
+    "date": "2026-10-10",
+    "title": "무심한듯 비율 좋아보이는 코디 모음",
+    "theme": "키 작은 분들 허리선 높여 주는 크롭 코디",
+    "products": [
+      "zigzag:171988904",
+      "zigzag:170645994",
+      "zigzag:170484579",
+      "zigzag:160825244",
+      "zigzag:138364409",
+      "zigzag:166003897",
+      "zigzag:130667768",
+      "zigzag:171122253",
+      "zigzag:150431530",
+      "zigzag:153923114",
+      "zigzag:168339163",
+      "zigzag:168759450",
+      "zigzag:168593268",
+      "zigzag:135443091",
+      "zigzag:147841380",
+      "zigzag:167878705",
+      "zigzag:127812392",
+      "zigzag:168925294",
+      "zigzag:169002628",
+      "zigzag:138364434",
+      "zigzag:146968386",
+      "zigzag:171067682",
+      "zigzag:171584015",
+      "zigzag:133521354",
+      "zigzag:136028010",
+      "zigzag:136839704",
+      "zigzag:169369601",
+      "zigzag:168185673",
+      "zigzag:171144272",
+      "zigzag:130583785",
+      "zigzag:133826914"
+    ],
+    "permalink": "https://www.instagram.com/p/DeSjgPqD2kX/",
+    "media_id": "18134817961635561",
+    "links": [
+      {
+        "product": "zigzag:171988904",
+        "category": "아우터",
+        "shop": "스파오",
+        "name": "MIDDLEBURY 피그먼트 후드집업",
+        "url": "https://zigzag.kr/catalog/products/171988904",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/25938_202609151525549319_63615.jpeg",
+        "look": 1
+      },
+      {
+        "product": "zigzag:170645994",
+        "category": "상의",
+        "shop": "후아유",
+        "name": "레이어드 헨리넥 긴팔 티셔츠",
+        "url": "https://zigzag.kr/catalog/products/170645994",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/7/29/40027_202607291316381021_12149.jpeg",
+        "look": 1
+      },
+      {
+        "product": "zigzag:170484579",
+        "category": "하의",
+        "shop": "라룸",
+        "name": "도쿄버뮤다쇼츠",
+        "url": "https://zigzag.kr/catalog/products/170484579",
+        "image": "https://la-room.kr/web/product/big/202607/6a32e87a78415f28ab420d2d7766b0ef.jpg",
+        "look": 1
+      },
+      {
+        "product": "zigzag:160825244",
+        "category": "신발",
+        "shop": "플로리다스튜디오",
+        "name": "에브리데이 베르그 레트로 스티치 레이스업 스니커즈",
+        "url": "https://zigzag.kr/catalog/products/160825244",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2025/9/16/9770_202509161212480391_32758.png",
+        "look": 1
+      },
+      {
+        "product": "zigzag:138364409",
+        "category": "가방",
+        "shop": "히어리",
+        "name": "오로라 셔링 더플백 네이비",
+        "url": "https://zigzag.kr/catalog/products/138364409",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2024/4/3/39799_202404031432510534_31066.jpeg",
+        "look": 1
+      },
+      {
+        "product": "zigzag:166003897",
+        "category": "소품",
+        "shop": "휴먼앤캣",
+        "name": "파운드 워시드 플랫 브림 캡",
+        "url": "https://zigzag.kr/catalog/products/166003897",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2025/4/14/52246_202504142234300516_44716.jpeg",
+        "look": 1
+      },
+      {
+        "product": "zigzag:130667768",
+        "category": "상의",
+        "shop": "라룸",
+        "name": "레이어골지니트",
+        "url": "https://zigzag.kr/catalog/products/130667768",
+        "image": "https://la-room.kr/web/product/extra/big/202609/713aaac460428537b2f0825dd77e5dbd.jpg",
+        "look": 2
+      },
+      {
+        "product": "zigzag:171122253",
+        "category": "하의",
+        "shop": "미쏘",
+        "name": "핏업데님 릴렉스 부츠컷 Short/Long MIWTJG936J/MIWTJG946J",
+        "url": "https://zigzag.kr/catalog/products/171122253",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/19/11864_202608190824542812_79732.jpeg",
+        "look": 2
+      },
+      {
+        "product": "zigzag:150431530",
+        "category": "신발",
+        "shop": "엘리자베스스튜어트",
+        "name": "바이커 부츠 2종",
+        "url": "https://zigzag.kr/catalog/products/150431530",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/10/11418_202609101253192703_43784.jpeg",
+        "look": 2
+      },
+      {
+        "product": "zigzag:153923114",
+        "category": "가방",
+        "shop": "맥끌라니",
+        "name": "607아로디 숄더앤 크로스백",
+        "url": "https://zigzag.kr/catalog/products/153923114",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2025/6/9/11628_202506091033120828_15503.jpeg",
+        "look": 2
+      },
+      {
+        "product": "zigzag:168339163",
+        "category": "소품",
+        "shop": "프롤로그이어링",
+        "name": "모리 앤틱크 빈티지 원석 가죽끈 롱 목걸이",
+        "url": "https://zigzag.kr/catalog/products/168339163",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/6/17/5774_202606171130270489_54625.gif",
+        "look": 2
+      },
+      {
+        "product": "zigzag:168759450",
+        "category": "상의",
+        "shop": "스테디",
+        "name": "프밍 딥브이넥 브이넥니트 니트 직진",
+        "url": "https://zigzag.kr/catalog/products/168759450",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/14/15589_202609141151410386_91652.png",
+        "look": 3
+      },
+      {
+        "product": "zigzag:168593268",
+        "category": "상의",
+        "shop": "에드모어",
+        "name": "누엘 브이넥 레이스 나시",
+        "url": "https://zigzag.kr/catalog/products/168593268",
+        "image": "https://cf.product-image.s.zigzag.kr/original/c/16/859/326/168593268-1412464691064379633.gif?width=400&height=400&quality=80&format=webp",
+        "look": 3
+      },
+      {
+        "product": "zigzag:135443091",
+        "category": "하의",
+        "shop": "슬로우리스트",
+        "name": "자체제작 헤르 투핀턱 와이드 찰랑 슬랙스 바지",
+        "url": "https://zigzag.kr/catalog/products/135443091",
+        "image": "https://slowlist.co.kr/web/product/extra/big/202503/fffe5bf1503309355c66a60c51bdd0e0.jpg",
+        "look": 3
+      },
+      {
+        "product": "zigzag:147841380",
+        "category": "신발",
+        "shop": "로제니크",
+        "name": "슬론 레이스업 로퍼",
+        "url": "https://zigzag.kr/catalog/products/147841380",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/13326_202609082045400581_56323.jpeg",
+        "look": 3
+      },
+      {
+        "product": "zigzag:167878705",
+        "category": "가방",
+        "shop": "무르",
+        "name": "포그 호보백",
+        "url": "https://zigzag.kr/catalog/products/167878705",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/1/8/8106_202601081151070507_25650.jpeg",
+        "look": 3
+      },
+      {
+        "product": "zigzag:127812392",
+        "category": "소품",
+        "shop": "마뚜아",
+        "name": "Pale earring",
+        "url": "https://zigzag.kr/catalog/products/127812392",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2023/8/17/8771_202308172128080586_29956.jpeg",
+        "look": 3
+      },
+      {
+        "product": "zigzag:168925294",
+        "category": "상의",
+        "shop": "미리내로",
+        "name": "니즈 레이어드 홀터넥나시 세트",
+        "url": "https://zigzag.kr/catalog/products/168925294",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/31179_202603111713520178_33737.jpeg",
+        "look": 4
+      },
+      {
+        "product": "zigzag:169002628",
+        "category": "하의",
+        "shop": "미케네",
+        "name": "아벨 데님 미니 스커트 쇼츠",
+        "url": "https://zigzag.kr/catalog/products/169002628",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/3/13/30577_202603131101490820_55394.gif",
+        "look": 4
+      },
+      {
+        "product": "zigzag:138364434",
+        "category": "가방",
+        "shop": "히어리",
+        "name": "오로라 셔링 더플백 아이보리",
+        "url": "https://zigzag.kr/catalog/products/138364434",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2024/4/3/39799_202404031433590280_62216.jpeg",
+        "look": 4
+      },
+      {
+        "product": "zigzag:146968386",
+        "category": "소품",
+        "shop": "리끌로우",
+        "name": "GIGA 5컬러 안경",
+        "url": "https://zigzag.kr/catalog/products/146968386",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/13/3837_202608131141050098_87885.jpeg",
+        "look": 4
+      },
+      {
+        "product": "zigzag:171067682",
+        "category": "아우터",
+        "shop": "미쏘",
+        "name": "라운드넥 울트위드 자켓",
+        "url": "https://zigzag.kr/catalog/products/171067682",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/31/11864_202608311305468635_93243.jpeg",
+        "look": 5
+      },
+      {
+        "product": "zigzag:171584015",
+        "category": "상의",
+        "shop": "미쏘",
+        "name": "링클프리 블라우스",
+        "url": "https://zigzag.kr/catalog/products/171584015",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/11864_202609021725491970_97082.jpeg",
+        "look": 5
+      },
+      {
+        "product": "zigzag:133521354",
+        "category": "하의",
+        "shop": "슬로우앤드",
+        "name": "모던 블랙벨트 미니스커트",
+        "url": "https://zigzag.kr/catalog/products/133521354",
+        "image": "https://cf.product-image.s.zigzag.kr/original/c/13/352/135/133521354-7746694185765528393.gif?width=400&height=400&quality=80&format=webp",
+        "look": 5
+      },
+      {
+        "product": "zigzag:136028010",
+        "category": "신발",
+        "shop": "로제니크",
+        "name": "케이트 플랫폼 메리제인 플랫",
+        "url": "https://zigzag.kr/catalog/products/136028010",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/13326_202609081303115402_85696.jpeg",
+        "look": 5
+      },
+      {
+        "product": "zigzag:136839704",
+        "category": "소품",
+        "shop": "모어라운드",
+        "name": "스쿨버스 골지 롱 니삭스",
+        "url": "https://zigzag.kr/catalog/products/136839704",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/4/13/6309_202604131627130065_66326.jpeg",
+        "look": 5
+      },
+      {
+        "product": "zigzag:169369601",
+        "category": "가방",
+        "shop": "고세",
+        "name": "아렌위빙 숄더백",
+        "url": "https://zigzag.kr/catalog/products/169369601",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/3887_202608271916203024_58442.png",
+        "look": 5
+      },
+      {
+        "product": "zigzag:168185673",
+        "category": "상의",
+        "shop": "어텀",
+        "name": "라이크헨리넥니트",
+        "url": "https://zigzag.kr/catalog/products/168185673",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/1/20/7320_202601201950020818_87883.jpeg",
+        "look": 6
+      },
+      {
+        "product": "zigzag:171144272",
+        "category": "하의",
+        "shop": "미쏘",
+        "name": "랩 미니 스커트 팬츠",
+        "url": "https://zigzag.kr/catalog/products/171144272",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/8/18/11864_202608181436246183_97732.jpeg",
+        "look": 6
+      },
+      {
+        "product": "zigzag:130583785",
+        "category": "신발",
+        "shop": "로제니크",
+        "name": "브리엘 몽글 레이스업 워커부츠",
+        "url": "https://zigzag.kr/catalog/products/130583785",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/8/13326_202609081405519883_20627.jpeg",
+        "look": 6
+      },
+      {
+        "product": "zigzag:133826914",
+        "category": "가방",
+        "shop": "레더리",
+        "name": "보스턴 나일론 숄더백",
+        "url": "https://zigzag.kr/catalog/products/133826914",
+        "image": "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/16804_202410081622320926_35064.jpeg",
+        "look": 6
+      }
+    ],
+    "share": null,
+    "reel_media_id": "18358590733219758",
+    "reel_permalink": "https://www.instagram.com/reel/DeSjnG9DwDi/"
   }
 ]
