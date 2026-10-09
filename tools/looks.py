@@ -211,6 +211,8 @@ def finish(
     cover = images[0]
     # 펼친컷 날은 표지를 벌 전부의 콜라주로 (모델컷은 바닥이 고르지 않아 오려 내지 않는다)
     collage = profile.looks.cover_collage.enabled and plan.shot != "model" and all(images)
+    if plan.cover_collage is not None:
+        collage = plan.cover_collage and plan.shot != "model" and all(images)  # 이 게시물만 정함
     spec = FeedSpec(
         account=plan.account,
         title_lines=plan.text.title_lines,

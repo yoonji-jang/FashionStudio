@@ -129,6 +129,10 @@ class DailyPlan(BaseModel):
     # 16단계: flatlay = 펼친 코디컷, model = 옷을 입은 얼굴 없는 AI 모델컷
     # (전날 게시물 벌을 다시 그림, tools.model_post)
     shot: Literal["flatlay", "model"] = "flatlay"
+    # 여러 벌 게시물 표지: None 이면 profile looks.cover_collage,
+    # false 면 이 게시물만 1번 벌 코디컷 표지
+    # (2026-10-09 사용자 /fix "첫 장은 콜라주 말고 첫 코디 이미지로")
+    cover_collage: bool | None = None
     source_run: str | None = None  # 모델컷이면 벌을 가져온 전날 결과 폴더 (예 2026-10-05-run90)
     mood: str | None = None  # 모델컷 장소·분위기 (영어). 없으면 profile model_shot.mood
     pose: str | None = None  # 한 벌 기획의 모델컷 인물·포즈 (여러 벌이면 looks[].pose)
