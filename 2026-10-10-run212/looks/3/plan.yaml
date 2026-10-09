@@ -1,0 +1,118 @@
+account: women
+cover: out/2026-10-10/looks/3/outfit/results/G_1.jpg
+cover_collage: false
+date: '2026-10-10'
+items:
+- cm: 56.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 딥브이넥 니트 (black thin deep v-neck knit top, oversized relaxed fit with dropped
+    shoulders, short length with the hem at the waist, long sleeves, fine drapey knit)
+  name: 딥브이넥 니트
+  product: zigzag:168759450
+  ref_photos:
+  - 4
+  - 1
+  size: about 56.5 cm long from shoulder to hem, 61 cm across the shoulders, 59 cm
+    across the chest laid flat, 49 cm long sleeves
+- color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 브이넥 레이스 나시 (white v-neck tank with thin straps and thin lace trim, slim)
+  name: 브이넥 레이스 나시
+  product: zigzag:168593268
+  ref_photos:
+  - 0
+  wear_with: 상의
+- cm: 98.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 투핀턱 와이드 슬랙스 (ivory high-waist wide straight-leg slacks with two soft
+    front pleats, full length)
+  name: 핀턱 와이드 슬랙스
+  product: zigzag:135443091
+  ref_photos:
+  - 0
+  - 1
+  - 2
+  size: about 98 cm long from waist to hem, 35.5 cm across the waist laid flat, 49
+    cm across the hips laid flat, 30 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 레이스업 로퍼 (one pair (two shoes) of black leather flat lace-up loafers, square
+    toe)
+  name: 레이스업 로퍼
+  product: zigzag:147841380
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 호보백 (black soft suede hobo shoulder bag with a thick strap and a folded
+    top)
+  name: 포그 호보백
+  product: zigzag:167878705
+  ref_photos:
+  - 1
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 1
+  desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small silver huggie hoop earrings)
+  name: 페일 귀걸이
+  product: zigzag:127812392
+  ref_photos:
+  - 1
+  - 4
+  slot: 귀걸이
+looks: []
+reason: 블랙 딥브이넥 니트가 주인공, 레이스 나시를 받쳐 입고 아이보리 와이드 슬랙스로 정리. 블랙·아이보리 톤의 단정한 분위기 [점수 8]
+shot: flatlay
+styling: The black deep v-neck knit is worn loose over the white lace-trimmed v-neck
+  tank, whose lace edge shows in the v opening; the knit hem is tucked in at the front
+  only so the waistband shows. No numbers, digits or characters are drawn anywhere
+  in the image.
+text:
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  title_lines:
+  - 무심한듯 비율 좋아보이는
+  - 코디 모음
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게

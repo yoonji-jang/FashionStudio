@@ -1,0 +1,118 @@
+account: women
+cover: out/2026-10-10/looks/1/outfit_r2/results/G_1.jpg
+cover_collage: false
+date: '2026-10-10'
+items:
+- cm: 54.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 피그먼트 후드 집업 (dark charcoal pigment-dyed hooded zip-up, waist length, boxy
+    fit with dropped shoulders, ribbed hem and cuffs, tone-on-tone embossed lettering
+    on the chest, hood lying flat at the back)
+  name: 피그먼트 후드집업
+  product: zigzag:171988904
+  ref_photos:
+  - 0
+  size: about 54 cm long from shoulder to hem, 61.5 cm across the shoulders, 60.5
+    cm across the chest laid flat, 52 cm long sleeves
+- cm: 52.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 레이어드 헨리넥 긴팔티 (charcoal henley long-sleeve tee layered over a pale grey-white
+    under-layer, slim fit, hip length, scoop neckline with a short button placket,
+    the pale under-layer shows at the hem and cuffs like the shop model)
+  name: 레이어드 헨리넥
+  product: zigzag:170645994
+  ref_photos:
+  - 0
+  size: about 52 cm long from shoulder to hem, 37.5 cm across the shoulders, 40.5
+    cm across the chest laid flat, 60 cm long sleeves
+- cm: 55.0
+  color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 하이웨이스트 버뮤다 쇼츠 (navy high-waist bermuda shorts, long bermuda length reaching
+    the knee cap, wide leg, flat front, large patch pockets, crisp cotton twill)
+  name: 도쿄 버뮤다
+  product: zigzag:170484579
+  ref_photos:
+  - 0
+  size: about 55 cm long from waist to hem, 37.5 cm across the waist laid flat, 50
+    cm across the hips laid flat, 33 cm across the hem laid flat
+- color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 레트로 스티치 스니커즈 (one pair (two shoes) of white retro low-top lace-up sneakers
+    with grey side lines and stitching, angular toe)
+  name: 레트로 스니커즈
+  product: zigzag:160825244
+  ref_photos:
+  - 0
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 셔링 더플백 (navy shirred duffle bag with two short top handles)
+  name: 셔링 더플백
+  product: zigzag:138364409
+  ref_photos:
+  - 0
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 워시드 플랫 브림 캡 (navy washed cotton six-panel cap with a flat brim and a small
+    embroidered oval logo patch on the front, exactly one cap)
+  name: 워시드 플랫 브림 캡
+  product: zigzag:166003897
+  ref_photos:
+  - 0
+looks: []
+reason: 차콜 후드 집업이 주인공, 화이트 티를 겹친 차콜 헨리넥과 네이비 버뮤다로 허리선을 올림. 네이비·그레이 톤의 편한 캐주얼 분위기 [점수
+  9]
+shot: flatlay
+styling: The charcoal henley's pale under-layer shows at the hem 4 cm below the zip-up
+  hem and at the cuffs, and the henley is tucked at the front only so the high waist
+  shows. The hoodie is dark charcoal, clearly darker than the pale grey-white under-layer.
+  The navy bermuda shorts are drawn at their true length of 55 cm from waist to hem,
+  reaching down to the knee, clearly longer than before, and never mid-thigh.
+text:
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  title_lines:
+  - 무심한듯 비율 좋아보이는
+  - 코디 모음
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게

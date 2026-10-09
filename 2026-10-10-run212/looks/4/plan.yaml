@@ -1,0 +1,106 @@
+account: women
+cover: out/2026-10-10/looks/4/outfit/results/G_1.jpg
+cover_collage: false
+date: '2026-10-10'
+items:
+- cm: 59.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 4
+  desc: 화이트 레이어드 홀터넥 상의 (white layered halter-neck top with a white long-sleeve layer
+    under it, slim fit, hip length, hem layer line visible)
+  name: 레이어드 홀터넥
+  product: zigzag:168925294
+  ref_photos:
+  - 4
+  - 5
+  size: about 59 cm long from shoulder to hem, 37 cm across the shoulders, 35 cm across
+    the chest laid flat, 67 cm long sleeves
+- cm: 38.0
+  color: 데님
+  comment: ''
+  cutout_photo: 0
+  desc: 워싱 데님 미니 스커트 (light washed blue denim mid-high-waist straight mini skirt,
+    mid-thigh length, frayed hem; the FRONT is plain without patch pockets, with a
+    flat front panel, a center zip fly and a waist button, layered raw hem; the large
+    frayed patch pockets belong to the back and are not drawn)
+  name: 데님 미니 스커트
+  product: zigzag:169002628
+  ref_photos:
+  - 0
+  size: about 38 cm long from waist to hem, 39 cm across the waist laid flat, 53.5
+    cm across the hips laid flat, 34.5 cm across the hem laid flat
+- color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 레트로 스티치 스니커즈 (one pair (two shoes) of white retro low-top lace-up sneakers
+    with grey side lines and stitching, angular toe)
+  name: 레트로 스니커즈
+  product: zigzag:160825244
+  ref_photos:
+  - 0
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 셔링 더플백 (ivory shirred duffle bag with two short top handles)
+  name: 셔링 더플백
+  product: zigzag:138364434
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 뿔테 안경 (exactly one pair of black round-oval horn-rimmed glasses)
+  name: 뿔테 안경
+  product: zigzag:146968386
+  ref_photos:
+  - 5
+looks: []
+reason: 화이트 레이어드 홀터 상의가 주인공, 데님 미니 스커트로 몸에 붙는 상의에 짧은 하의 대비. 화이트·데님 톤의 캐주얼 분위기 [점수
+  8]
+shot: flatlay
+styling: The halter top's layered hem line shows over the denim waistband, tucked
+  in at the front only; the glasses hang from the neckline. The denim skirt is laid
+  with its front side up, a plain flat front with a zip fly and button and no patch
+  pockets (the pockets are only on the back, which is hidden). No numbers, digits
+  or characters are drawn anywhere in the image.
+text:
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  title_lines:
+  - 무심한듯 비율 좋아보이는
+  - 코디 모음
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게
