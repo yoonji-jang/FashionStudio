@@ -1,0 +1,274 @@
+account: women
+date: '2026-10-10'
+items: []
+looks:
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 피그먼트 후드 집업 (grey pigment-dyed hooded zip-up, waist length, boxy fit,
+      hood lying flat at the back)
+    name: 피그먼트 후드집업
+    product: zigzag:171988904
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 레이어드 헨리넥 긴팔티 (charcoal henley long-sleeve tee layered over a white tee,
+      slim fit, short button placket, the white tee shows at the neckline, hem and
+      cuffs like the shop model)
+    name: 레이어드 헨리넥
+    product: zigzag:170645994
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 하이웨이스트 버뮤다 쇼츠 (navy high-waist bermuda shorts, just above the knee,
+      wide leg, flat front, patch pockets)
+    name: 도쿄 버뮤다
+    product: zigzag:170484579
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레트로 스티치 스니커즈 (white retro low-top lace-up sneakers with stitching)
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 셔링 더플백 (navy shirred duffle bag with short top handles)
+    name: 셔링 더플백
+    product: zigzag:138364409
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 워시드 볼캡 (navy washed baseball cap, curved brim, exactly one cap)
+    name: 워시드 볼캡
+    product: zigzag:167562963
+  point: ''
+  reason: 그레이 후드 집업이 주인공, 화이트 티를 겹친 차콜 헨리넥과 네이비 버뮤다로 허리선을 올림. 네이비·그레이 톤의 편한 캐주얼 분위기
+    [점수 9]
+  styling: The charcoal henley's white under-layer shows at the hem 4 cm below the
+    zip-up hem and at the cuffs, and the henley is tucked at the front only so the
+    high waist shows.
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 레이어 골지 니트 (ivory ribbed fitted knit top, slim, boat neckline)
+    name: 레이어 골지 니트
+    product: zigzag:130667768
+  - color: 데님
+    comment: ''
+    cutout_photo: 0
+    desc: 중청 릴렉스 부츠컷 데님 (mid-blue washed high-waist bootcut denim, full length)
+    name: 릴렉스 부츠컷 데님
+    product: zigzag:171122253
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 바이커 부츠 (black mid-calf biker boots with side buckle straps)
+    name: 바이커 부츠
+    product: zigzag:150431530
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black small flap shoulder bag with a thin strap)
+    name: 아로디 숄더백
+    product: zigzag:153923114
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 가죽끈 롱 목걸이 (exactly one long black leather cord pendant necklace)
+    name: 가죽끈 롱 목걸이
+    product: zigzag:168339163
+    slot: 목걸이
+  point: ''
+  reason: 아이보리 골지 니트가 주인공, 몸에 붙는 상의에 중청 부츠컷 데님으로 다리를 길게. 아이보리·데님 톤의 시크한 분위기 [점수 9]
+  styling: The slim ribbed knit is tucked into the waistband; the long leather cord
+    pendant hangs at the center of the chest.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 딥브이넥 니트 (black thin deep v-neck knit top, relaxed fit, long sleeves)
+    name: 딥브이넥 니트
+    product: zigzag:168759450
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 브이넥 레이스 나시 (white v-neck tank with thin lace trim, slim)
+    name: 브이넥 레이스 나시
+    product: zigzag:168593268
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 투핀턱 와이드 슬랙스 (ivory high-waist two-pleat wide-leg slacks, full length)
+    name: 핀턱 와이드 슬랙스
+    product: zigzag:135443091
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black flat lace-up loafers, square toe)
+    name: 레이스업 로퍼
+    product: zigzag:147841380
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보백 (black suede hobo shoulder bag)
+    name: 포그 호보백
+    product: zigzag:167878705
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small silver huggie hoop earrings)
+    name: 페일 귀걸이
+    product: zigzag:127812392
+    slot: 귀걸이
+  point: ''
+  reason: 블랙 딥브이넥 니트가 주인공, 레이스 나시를 받쳐 입고 아이보리 와이드 슬랙스로 정리. 블랙·아이보리 톤의 단정한 분위기 [점수
+    8]
+  styling: The black deep v-neck knit is worn loose over the white lace-trimmed v-neck
+    tank, whose lace edge shows in the v opening; the knit hem is tucked in at the
+    front only so the waistband shows.
+- items:
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레이어드 홀터넥 상의 (white layered halter-neck top with a white long-sleeve
+      layer under it, slim fit, hem layer line visible)
+    name: 레이어드 홀터넥
+    product: zigzag:168925294
+  - color: 데님
+    comment: ''
+    cutout_photo: 0
+    desc: 워싱 데님 미니 스커트 (washed blue denim high-waist mini skirt)
+    name: 데님 미니 스커트
+    product: zigzag:169002628
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레트로 스티치 스니커즈 (white retro low-top lace-up sneakers with stitching)
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 셔링 더플백 (ivory shirred duffle bag with short top handles)
+    name: 셔링 더플백
+    product: zigzag:138364434
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 뿔테 안경 (exactly one pair of black oval horn-rimmed glasses)
+    name: 뿔테 안경
+    product: zigzag:146968386
+  point: ''
+  reason: 화이트 레이어드 홀터 상의가 주인공, 데님 미니 스커트로 몸에 붙는 상의에 짧은 하의 대비. 화이트·데님 톤의 캐주얼 분위기 [점수
+    8]
+  styling: The halter top's layered hem line shows over the denim waistband, tucked
+    in at the front only; the glasses hang from the neckline.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드넥 울 트위드 자켓 (black round-neck wool tweed jacket with pearl buttons,
+      cropped boxy fit)
+    name: 울트위드 자켓
+    product: zigzag:171067682
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 오픈 칼라 블라우스 (plain white collared blouse, relaxed fit)
+    name: 링클프리 블라우스
+    product: zigzag:171584015
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하이웨이스트 미니 스커트 (ivory high-waist mini skirt with a belt at the waist,
+      flat front)
+    name: 블랙벨트 미니
+    product: zigzag:133521354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 메리제인 (black chunky platform mary janes with a buckle strap)
+    name: 플랫폼 메리제인
+    product: zigzag:136028010
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 골지 롱 니삭스 (exactly one pair of white ribbed long knee socks)
+    name: 골지 롱 니삭스
+    product: zigzag:136839704
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven bucket shoulder bag)
+    name: 아렌위빙 숄더백
+    product: zigzag:169369601
+  point: ''
+  reason: 블랙 트위드 자켓이 주인공, 화이트 블라우스와 미니 스커트로 단정하게. 블랙·화이트 톤의 단정한 분위기 [점수 8]
+  styling: The jacket is worn open; the white blouse collar sits flat at the neckline
+    and the blouse hem is tucked in; white knee socks above the mary janes.
+- items:
+  - color: 플럼
+    comment: ''
+    cutout_photo: 0
+    desc: 플럼 헨리넥 리브 니트 (plum ribbed henley knit top, slim fit, buttons at the placket)
+    name: 라이크 헨리넥 니트
+    product: zigzag:168185673
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 랩 미니 스커트 팬츠 (charcoal wrap mini skort, flat front)
+    name: 랩 미니 스커트 팬츠
+    product: zigzag:171144272
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 워커 부츠 (black lace-up chunky combat boots, round toe)
+    name: 레이스업 워커부츠
+    product: zigzag:130583785
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 보스턴 나일론 숄더백 (black nylon boston shoulder bag)
+    name: 보스턴 나일론 백
+    product: zigzag:133826914
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니삭스 (exactly one pair of black knee-high socks)
+    name: 장목 니삭스
+    product: zigzag:161559034
+  point: ''
+  reason: 플럼 헨리넥이 주인공, 차콜 랩 미니와 블랙 워커부츠로 짧은 하의에 부츠 대비. 플럼·블랙 톤의 시크한 분위기 [점수 8]
+  styling: The slim henley is tucked in at the front only so the skort waistband shows;
+    black socks slouch above the boots.
+reason: 허리선을 높여 다리가 길어 보이게, 짧은 상의와 높은 하의 비율을 여러 무드로
+shot: flatlay
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게
