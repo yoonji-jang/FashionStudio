@@ -1,0 +1,106 @@
+account: women
+date: '2026-10-10'
+items:
+- cm: 55.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 1
+  desc: 아이보리 레이어 골지 니트 (ivory ribbed fitted knit top, slim, hip length, boat neckline,
+    long sleeves with extra long cuffs)
+  name: 레이어 골지 니트
+  product: zigzag:130667768
+  ref_photos:
+  - 1
+  - 3
+  size: about 55 cm long from shoulder to hem, 38 cm across the shoulders, 36 cm across
+    the chest laid flat, 73.5 cm long sleeves
+- cm: 104.6
+  color: 데님
+  comment: ''
+  cutout_photo: 2
+  desc: 중청 릴렉스 부츠컷 데님 (mid-blue washed high-waist denim, slim through the thigh and
+    flared bootcut at the hem, full length)
+  name: 릴렉스 부츠컷 데님
+  product: zigzag:171122253
+  ref_photos:
+  - 2
+  - 4
+  size: about 104.6 cm long from waist to hem, 36.25 cm across the waist laid flat,
+    51.25 cm across the hips laid flat, 28.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 바이커 부츠 (one pair (two boots) of black mid-calf biker boots with two side
+    buckle straps and a chunky sole)
+  name: 바이커 부츠
+  product: zigzag:150431530
+  ref_photos:
+  - 3
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black small flap shoulder bag with a thin long strap)
+  name: 아로디 숄더백
+  product: zigzag:153923114
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 가죽끈 롱 목걸이 (exactly one long black leather cord necklace with a small reddish-brown
+    drop pendant)
+  name: 가죽끈 롱 목걸이
+  product: zigzag:168339163
+  ref_photos:
+  - 0
+  slot: 목걸이
+looks: []
+reason: 아이보리 골지 니트가 주인공, 몸에 붙는 상의에 중청 부츠컷 데님으로 다리를 길게. 아이보리·데님 톤의 시크한 분위기 [점수 9]
+shot: flatlay
+styling: The slim ribbed knit is tucked into the waistband; the long leather cord
+  pendant hangs at the center of the chest. The jeans sit lower on the hips, with
+  the whole waistband visible about 3 cm lower than before, and the waist is shaped
+  into a gently defined waistline, the knit following the curve in at the waist and
+  out at the hips for a pretty hourglass silhouette.
+text:
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  title_lines:
+  - 키 작아도 다리 길어 보이는
+  - 허리선 높이는 공식
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게

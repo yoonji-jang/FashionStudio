@@ -1,0 +1,120 @@
+account: women
+date: '2026-10-10'
+items:
+- cm: 48.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 라운드넥 울 트위드 자켓 (black collarless round-neck wool tweed jacket with pearl
+    buttons and frayed trim, cropped boxy fit, hem at the waist, worn open)
+  name: 울트위드 자켓
+  product: zigzag:171067682
+  ref_photos:
+  - 0
+  - 1
+  - 5
+  size: about 48 cm long from shoulder to hem, 42 cm across the shoulders, 51.5 cm
+    across the chest laid flat, 61.5 cm long sleeves
+- cm: 65.5
+  color: 화이트
+  comment: ''
+  cutout_photo: 2
+  desc: 화이트 칼라 블라우스 (plain white blouse with a regular spread collar, relaxed fit,
+    hip length, smooth lightly drapey fabric)
+  name: 링클프리 블라우스
+  product: zigzag:171584015
+  ref_photos:
+  - 2
+  - 0
+  size: about 65.5 cm long from shoulder to hem, 39 cm across the shoulders, 53 cm
+    across the chest laid flat, 60.5 cm long sleeves
+- cm: 41.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 하이웨이스트 미니 스커트 (ivory high-waist firm structured slightly A-line mini
+    skirt, mid-thigh, flat front, thick sturdy woven fabric that holds its shape,
+    hem only slightly wider than the hips, not flared)
+  name: 블랙벨트 미니
+  product: zigzag:133521354
+  ref_photos:
+  - 0
+  size: about 41 cm long from waist to hem, 34.5 cm across the waist laid flat, 46.5
+    cm across the hips laid flat, 51.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 플랫폼 메리제인 (one pair (two shoes) of matte black chunky platform mary janes
+    with a buckle strap)
+  name: 플랫폼 메리제인
+  product: zigzag:136028010
+  ref_photos:
+  - 2
+  - 1
+- color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 골지 롱 니삭스 (exactly one pair (two socks) of white ribbed long knee socks,
+    loosely wrinkled)
+  name: 골지 롱 니삭스
+  product: zigzag:136839704
+  ref_photos:
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 숄더백 (black woven teardrop-shaped bucket shoulder bag with a thin single
+    strap)
+  name: 아렌위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 1
+  - 0
+looks: []
+reason: 블랙 트위드 자켓이 주인공, 화이트 블라우스와 미니 스커트로 단정하게. 블랙·화이트 톤의 단정한 분위기 [점수 8]
+shot: flatlay
+styling: The jacket is worn open; the white blouse collar sits flat at the neckline
+  and the blouse hem is tucked in; white knee socks above the mary janes. The ivory
+  skirt is a sturdy, firm, slightly A-line skirt, NOT a flared skirt, with straight
+  smooth lines from hip to hem with the hem only slightly wider than the hips (51.5
+  cm vs 46.5 cm), no rolling waves, no circle flare, no ruffled hem.
+text:
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  title_lines:
+  - 키 작아도 다리 길어 보이는
+  - 허리선 높이는 공식
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게

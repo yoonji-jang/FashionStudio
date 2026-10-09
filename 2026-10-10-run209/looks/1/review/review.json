@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "3번 버뮤다 기장이 후드집업 몸판보다 약간 짧아(약 0.9배) 요청한 55cm 무릎 기장 느낌이 약함. 1번 후드집업 가슴 글자가 MIDOL EOURY 로 깨져 원본과 다름. 6번 캡 글자도 원본과 조금 다름. 후드집업 차콜이 요청한 진한 차콜보다 약간 밝음. 5번 가방이 왼쪽 아래 제목 자리에 걸치고 버뮤다 왼쪽 밑단과 겹침.",
+        "feedback_ok": false
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "1번 가슴 글자가 MIDDL EBURY 로 일부 깨짐(원본은 MIDDLEBURY). 6번 캡이 후드집업 오른쪽 어깨와 소매 위에 겹쳐 놓임. 5번 가방이 왼쪽 아래 제목 자리에 걸치고 버뮤다 왼쪽 밑단에 살짝 닿음. 신발 두 짝이 버뮤다 밑단 오른쪽에 살짝 닿음.",
+        "feedback_ok": true
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 가 요청을 반영함. 후드집업은 진한 차콜이고, 버뮤다는 몸판보다 길어져 무릎 기장으로 보임. 가슴 글자 일부가 깨졌고 캡·가방이 다른 옷에 겹치거나 제목 자리에 걸치는 점은 감점. c1 은 버뮤다가 여전히 짧고 후드집업 색도 덜 진해서 요청이 반영되지 않았음."
+}
