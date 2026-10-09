@@ -23,6 +23,8 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 → 치마는 깊은 주름과 물결치는 밑단·광택 명암 문장, 깃은 위 끝에서 8% 아래, 짧은 코디는 아래로 내려 위아래 여백을 맞춤.
 2026-10-02·03 피드백: 단추가 상세페이지는 3개인데 2개로, 귀걸이 디자인이 다름, 단추 없는 니트 조끼에 단추가 생김
 → 단추 개수·위치와 주얼리 디자인을 사진 그대로 지키는 문장.
+2026-10-10 피드백(10/10 게시물 /fix 6건): 그림 안에 숫자가 그려짐, 치마 앞뒤가 바뀜(주머니 있는 뒷면), 넣어 입은 허리를 인위적으로 말아 넣음,
+목걸이가 작아 안 보임 → 숫자(치수) 금지 강화, 치마는 앞면, 자연스럽게 살짝 넣은 허리, 주얼리 크기 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
@@ -56,7 +58,8 @@ below the top, garments overlap naturally, sleeves and
 trouser legs relax with soft real fabric folds and a slight natural bend, never stiff or symmetric.
 Every item is drawn at its real size given above, all at one common scale, so the size ratios
 between items are exactly true to life (shoes are about a quarter of the length of full-length
-trousers, jewelry is tiny). Lengths must follow the stated cm exactly and are never shortened,
+trousers, jewelry is small but always clearly visible: draw a necklace chain and pendant a little larger than
+true scale rather than hair-thin). Lengths must follow the stated cm exactly and are never shortened,
 cropped or ankle-length unless the product itself is cropped.
 
 Proportions like a tall model with long legs: the waistline sits high, at about 40 percent of the
@@ -89,6 +92,10 @@ photos show: a midi skirt ends at mid-calf unless its stated length and worn pho
 knee (then it stays at the knee), and it is never drawn as an ankle-length maxi skirt. A straight
 H-line, pencil or bias-cut satin skirt stays narrow and falls straight like on the model, only its
 very hem loosening a little; it is never fanned out into an A-line or flare.
+A skirt is drawn from its front, the side that faces out when worn: if the photos show the front and
+back (for example a pocketed back and a plain front), copy the front design and never the back.
+A top tucked into a skirt or trousers is only slightly tucked in at the front edge, in a natural
+soft line like a real person tucking it in; never rolled, folded or twisted into the waistband.
 Every item keeps its exact product design: neckline, ties and straps, button count, pockets, belt,
 pleats and hem shape are copied from its photos and never redesigned. Fitted tops look the way they
 fit on the model: slim and close to the body, with their point details (off-shoulder neckline,
@@ -136,6 +143,7 @@ the trouser legs) empty floor with no shoes, bag or accessories, because a title
 
 Scene: $scene.
 Every item casts a soft contact shadow on the floor, one consistent light direction for everything.
-Vertical 4:5 image, high detail, no people, no mannequin, no hanger, no text, no numbers, no labels,
+Vertical 4:5 image, high detail, no people, no mannequin, no hanger, no text, no numbers, no digits, no size or cm labels (the cm values above are only for sizing and
+are never drawn), no labels,
 no watermark. Draw exactly the number of pieces stated for each item (a pair of earrings is two
 earrings, a pair of shoes is two shoes), never an extra pair.
