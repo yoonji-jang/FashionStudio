@@ -1,0 +1,103 @@
+account: women
+date: '2026-10-10'
+items:
+- cm: 58.0
+  color: 플럼
+  comment: ''
+  cutout_photo: 2
+  desc: 플럼 헨리넥 리브 니트 (deep plum-wine fine ribbed henley knit top, slim fit, hip length,
+    buttons at the placket)
+  name: 라이크 헨리넥 니트
+  product: zigzag:168185673
+  ref_photos:
+  - 3
+  - 2
+  size: about 58 cm long from shoulder to hem, 33 cm across the shoulders, 39.5 cm
+    across the chest laid flat, 62 cm long sleeves
+- cm: 33.2
+  color: 차콜
+  comment: ''
+  cutout_photo: 1
+  desc: 차콜 랩 미니 스커트 팬츠 (charcoal pinstripe wrap-front mini skort with an asymmetric
+    overlap and a thin belt strap with a D-ring)
+  name: 랩 미니 스커트 팬츠
+  product: zigzag:171144272
+  ref_photos:
+  - 1
+  size: about 33.2 cm long from waist to hem, 38.25 cm across the waist laid flat,
+    50.5 cm across the hips laid flat, 33.95 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레이스업 워커 부츠 (one pair (two boots) of matte black lace-up chunky combat ankle
+    boots, round toe, thick platform sole)
+  name: 레이스업 워커부츠
+  product: zigzag:130583785
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 보스턴 나일론 백 (black nylon boston bag with two short top handles, a zipper
+    and a small triangle logo on the front)
+  name: 보스턴 나일론 백
+  product: zigzag:133826914
+  ref_photos:
+  - 0
+  - 5
+- color: 실버
+  comment: ''
+  cutout_photo: 1
+  desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small silver huggie hoop earrings)
+  name: 페일 귀걸이
+  product: zigzag:127812392
+  ref_photos:
+  - 1
+  - 4
+  slot: 귀걸이
+looks: []
+reason: 플럼 헨리넥이 주인공, 차콜 랩 미니와 블랙 워커부츠로 짧은 하의에 부츠 대비. 플럼·블랙 톤의 시크한 분위기 [점수 8]
+shot: flatlay
+styling: The slim henley is tucked in at the front only so the skort waistband shows;
+  the plum henley's placket buttons show at the chest.
+text:
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  title_lines:
+  - 키 작아도 다리 길어 보이는
+  - 허리선 높이는 공식
+theme:
+  date: '2026-10-10'
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게

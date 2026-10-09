@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "더플백이 각진 토트로 바뀌고 캡 챙·로고가 다르며 신발 회색 라인이 없다. 후드 가슴 엠보 글씨가 깨진 글자다. 헨리넥 밑단이 쇼츠 허리를 덮는다.",
+        "feedback_ok": null
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "더플백 손잡이가 후드 소매 쪽에 걸치고 가방 아래쪽이 쇼츠에 살짝 닿는다. 신발이 쇼츠 밑단 아래 빈 바닥이 아니라 밑단 오른쪽 옆에 있다. 흰 이너 밑단이 쇼츠 허리 위를 조금 덮지만 허리 단추와 벨트고리는 보인다.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 가 가장 원본에 가깝다. 감점은 layout 1점뿐이라 합계 9점이고 0점 항목이 없다. c1 은 더플백, 캡, 후드 글자, 신발 디테일이 원본과 달라 shape 0점이다."
+}
