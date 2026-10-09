@@ -236,7 +236,15 @@ def test_review_per_look_then_finish(tmp_path, store):
     assert m.review.passed and not m.needs_human and m.review_score == 10
     feed = yaml.safe_load((out / "feed.yaml").read_text())
     assert feed["looks"][1]["image"].endswith("looks/2/outfit_r2/results/G_1.jpg")
+    assert feed["cover_collage"] is True  # profile looks.cover_collage
     assert review.main(["finish", str(out)]) == 0
+    # /fix "첫 장은 콜라주 말고 첫 코디로": 이 게시물만 1번 벌 코디컷 표지
+    data = yaml.safe_load((out / "plan.yaml").read_text())
+    (out / "plan.yaml").write_text(yaml.safe_dump(data | {"cover_collage": False}))
+    looks.finish(out)
+    feed = yaml.safe_load((out / "feed.yaml").read_text())
+    assert feed["cover_collage"] is False
+    assert feed["cover"].endswith("looks/1/outfit/results/G_1.jpg")
 
 
 def test_pick_sends_look_sheets(tmp_path, store):
