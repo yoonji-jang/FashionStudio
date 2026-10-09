@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-10-run210",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-10-run209\", \"round\": 2, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"첫장은 첫 코디이미지로 해줘. 제목은 ‘무심한듯 비율 좋아보이는 코디 모음’ 으로 변경해줘.\"}]}"
+}

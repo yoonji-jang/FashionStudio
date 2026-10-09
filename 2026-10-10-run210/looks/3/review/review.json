@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 0,
+        "layout": 1,
+        "notes": "6번 귀걸이가 두 쌍(4개)으로 그려짐. 3번 슬랙스가 와이드 일자보다 밑단이 좁아지는 테이퍼 핏처럼 보임. 2번 나시 밑단이 니트 아래로 나와 하의 허리 디자인을 가림. 그림 안에 숫자·글자는 없음.",
+        "feedback_ok": true
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "요청은 이미지 속 숫자·글자를 지우는 것이다. c1 은 글자가 없어 요청이 반영됐지만 귀걸이가 4개라 clean 0 이다. c2 는 귀걸이가 2개로 맞지만 신발에 R 로고가 그려져 있어 요청이 반영되지 않았고 clean 0 이다. 두 후보 모두 0점 항목이 있어 통과하지 못한다. 요청을 반영한 c1 이 먼저 선택되지만, 귀걸이를 2개로 고쳐 다시 그리는 것이 좋다."
+}

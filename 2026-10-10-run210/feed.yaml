@@ -1,0 +1,213 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/1/outfit_r2/results/G_1.jpg
+cover_collage: true
+cover_has_title: false
+items:
+- comment: ''
+  name: 피그먼트 후드집업
+  product: zigzag:171988904
+- comment: ''
+  name: 레이어드 헨리넥
+  product: zigzag:170645994
+- comment: ''
+  name: 도쿄 버뮤다
+  product: zigzag:170484579
+- comment: ''
+  name: 레트로 스니커즈
+  product: zigzag:160825244
+- comment: ''
+  name: 셔링 더플백
+  product: zigzag:138364409
+- comment: ''
+  name: 워시드 플랫 브림 캡
+  product: zigzag:166003897
+- comment: ''
+  name: 레이어 골지 니트
+  product: zigzag:130667768
+- comment: ''
+  name: 릴렉스 부츠컷 데님
+  product: zigzag:171122253
+- comment: ''
+  name: 바이커 부츠
+  product: zigzag:150431530
+- comment: ''
+  name: 아로디 숄더백
+  product: zigzag:153923114
+- comment: ''
+  name: 가죽끈 롱 목걸이
+  product: zigzag:168339163
+- comment: ''
+  name: 딥브이넥 니트
+  product: zigzag:168759450
+- comment: ''
+  name: 브이넥 레이스 나시
+  product: zigzag:168593268
+- comment: ''
+  name: 핀턱 와이드 슬랙스
+  product: zigzag:135443091
+- comment: ''
+  name: 레이스업 로퍼
+  product: zigzag:147841380
+- comment: ''
+  name: 포그 호보백
+  product: zigzag:167878705
+- comment: ''
+  name: 페일 귀걸이
+  product: zigzag:127812392
+- comment: ''
+  name: 레이어드 홀터넥
+  product: zigzag:168925294
+- comment: ''
+  name: 데님 미니 스커트
+  product: zigzag:169002628
+- comment: ''
+  name: 셔링 더플백
+  product: zigzag:138364434
+- comment: ''
+  name: 뿔테 안경
+  product: zigzag:146968386
+- comment: ''
+  name: 울트위드 자켓
+  product: zigzag:171067682
+- comment: ''
+  name: 링클프리 블라우스
+  product: zigzag:171584015
+- comment: ''
+  name: 블랙벨트 미니
+  product: zigzag:133521354
+- comment: ''
+  name: 플랫폼 메리제인
+  product: zigzag:136028010
+- comment: ''
+  name: 골지 롱 니삭스
+  product: zigzag:136839704
+- comment: ''
+  name: 아렌위빙 숄더백
+  product: zigzag:169369601
+- comment: ''
+  name: 라이크 헨리넥 니트
+  product: zigzag:168185673
+- comment: ''
+  name: 랩 미니 스커트 팬츠
+  product: zigzag:171144272
+- comment: ''
+  name: 레이스업 워커부츠
+  product: zigzag:130583785
+- comment: ''
+  name: 보스턴 나일론 백
+  product: zigzag:133826914
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 피그먼트 후드집업
+    product: zigzag:171988904
+  - comment: ''
+    name: 레이어드 헨리넥
+    product: zigzag:170645994
+  - comment: ''
+    name: 도쿄 버뮤다
+    product: zigzag:170484579
+  - comment: ''
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - comment: ''
+    name: 셔링 더플백
+    product: zigzag:138364409
+  - comment: ''
+    name: 워시드 플랫 브림 캡
+    product: zigzag:166003897
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/2/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레이어 골지 니트
+    product: zigzag:130667768
+  - comment: ''
+    name: 릴렉스 부츠컷 데님
+    product: zigzag:171122253
+  - comment: ''
+    name: 바이커 부츠
+    product: zigzag:150431530
+  - comment: ''
+    name: 아로디 숄더백
+    product: zigzag:153923114
+  - comment: ''
+    name: 가죽끈 롱 목걸이
+    product: zigzag:168339163
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 딥브이넥 니트
+    product: zigzag:168759450
+  - comment: ''
+    name: 브이넥 레이스 나시
+    product: zigzag:168593268
+  - comment: ''
+    name: 핀턱 와이드 슬랙스
+    product: zigzag:135443091
+  - comment: ''
+    name: 레이스업 로퍼
+    product: zigzag:147841380
+  - comment: ''
+    name: 포그 호보백
+    product: zigzag:167878705
+  - comment: ''
+    name: 페일 귀걸이
+    product: zigzag:127812392
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레이어드 홀터넥
+    product: zigzag:168925294
+  - comment: ''
+    name: 데님 미니 스커트
+    product: zigzag:169002628
+  - comment: ''
+    name: 레트로 스니커즈
+    product: zigzag:160825244
+  - comment: ''
+    name: 셔링 더플백
+    product: zigzag:138364434
+  - comment: ''
+    name: 뿔테 안경
+    product: zigzag:146968386
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울트위드 자켓
+    product: zigzag:171067682
+  - comment: ''
+    name: 링클프리 블라우스
+    product: zigzag:171584015
+  - comment: ''
+    name: 블랙벨트 미니
+    product: zigzag:133521354
+  - comment: ''
+    name: 플랫폼 메리제인
+    product: zigzag:136028010
+  - comment: ''
+    name: 골지 롱 니삭스
+    product: zigzag:136839704
+  - comment: ''
+    name: 아렌위빙 숄더백
+    product: zigzag:169369601
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-10/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 라이크 헨리넥 니트
+    product: zigzag:168185673
+  - comment: ''
+    name: 랩 미니 스커트 팬츠
+    product: zigzag:171144272
+  - comment: ''
+    name: 레이스업 워커부츠
+    product: zigzag:130583785
+  - comment: ''
+    name: 보스턴 나일론 백
+    product: zigzag:133826914
+  - comment: ''
+    name: 페일 귀걸이
+    product: zigzag:127812392
+title_lines:
+- 무심한듯 비율 좋아보이는
+- 코디 모음

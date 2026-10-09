@@ -1,0 +1,466 @@
+account: women
+date: '2026-10-10'
+theme:
+  date: '2026-10-10'
+  title_hint: 키 작은 분들 허리선 높여 주는 크롭 코디
+  mood: 네이비와 그레이로 다리가 길어 보이는 주말 나들이룩
+  slots:
+  - category: 아우터
+    desc: 네이비 크롭 니트 집업
+  - category: 상의
+    desc: 화이트 레이스 캐미솔
+  - category: 하의
+    desc: 그레이 하이웨이스트 버뮤다 팬츠
+  - category: 가방
+    desc: 네이비 미니 호보백
+  - category: 신발
+    desc: 화이트 레트로 스니커즈
+  - category: 소품
+    desc: 볼캡
+  type: 타깃
+  why: 토요일 나들이, 크롭 기장과 하이웨이스트로 하의 비율을 살려 키가 작아도 비율 좋아 보이게
+  search_terms:
+    상의:
+    - 레이스 캐미솔
+    아우터:
+    - 크롭 니트 집업
+    하의:
+    - 하이웨이스트 버뮤다 팬츠
+items: []
+looks:
+- items:
+  - product: zigzag:171988904
+    color: 차콜
+    desc: 차콜 피그먼트 후드 집업 (dark charcoal pigment-dyed hooded zip-up, waist length, boxy
+      fit with dropped shoulders, ribbed hem and cuffs, tone-on-tone embossed lettering
+      on the chest, hood lying flat at the back)
+    name: 피그먼트 후드집업
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 54 cm long from shoulder to hem, 61.5 cm across the shoulders, 60.5
+      cm across the chest laid flat, 52 cm long sleeves
+    cm: 54.0
+  - product: zigzag:170645994
+    color: 차콜
+    desc: 차콜 레이어드 헨리넥 긴팔티 (charcoal henley long-sleeve tee layered over a pale grey-white
+      under-layer, slim fit, hip length, scoop neckline with a short button placket,
+      the pale under-layer shows at the hem and cuffs like the shop model)
+    name: 레이어드 헨리넥
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 52 cm long from shoulder to hem, 37.5 cm across the shoulders, 40.5
+      cm across the chest laid flat, 60 cm long sleeves
+    cm: 52.0
+  - product: zigzag:170484579
+    color: 네이비
+    desc: 네이비 하이웨이스트 버뮤다 쇼츠 (navy high-waist bermuda shorts, long bermuda length reaching
+      the knee cap, wide leg, flat front, large patch pockets, crisp cotton twill)
+    name: 도쿄 버뮤다
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 55 cm long from waist to hem, 37.5 cm across the waist laid flat,
+      50 cm across the hips laid flat, 33 cm across the hem laid flat
+    cm: 55.0
+  - product: zigzag:160825244
+    color: 화이트
+    desc: 화이트 레트로 스티치 스니커즈 (one pair (two shoes) of white retro low-top lace-up sneakers
+      with grey side lines and stitching, angular toe)
+    name: 레트로 스니커즈
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:138364409
+    color: 네이비
+    desc: 네이비 셔링 더플백 (navy shirred duffle bag with two short top handles)
+    name: 셔링 더플백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:166003897
+    color: 네이비
+    desc: 네이비 워시드 플랫 브림 캡 (navy washed cotton six-panel cap with a flat brim and a
+      small embroidered oval logo patch on the front, exactly one cap)
+    name: 워시드 플랫 브림 캡
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: 차콜 후드 집업이 주인공, 화이트 티를 겹친 차콜 헨리넥과 네이비 버뮤다로 허리선을 올림. 네이비·그레이 톤의 편한 캐주얼 분위기
+    [점수 9]
+  point: 크롭 후드 집업에 네이비 버뮤다로 허리선을 높여요 🩶
+  styling: The charcoal henley's pale under-layer shows at the hem 4 cm below the
+    zip-up hem and at the cuffs, and the henley is tucked at the front only so the
+    high waist shows. The hoodie is dark charcoal, clearly darker than the pale grey-white
+    under-layer. The navy bermuda shorts are drawn at their true length of 55 cm from
+    waist to hem, reaching down to the knee, clearly longer than before, and never
+    mid-thigh.
+  cover: out/2026-10-10/looks/1/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:130667768
+    color: 아이보리
+    desc: 아이보리 레이어 골지 니트 (ivory ribbed fitted knit top, slim, hip length, boat neckline,
+      long sleeves with extra long cuffs)
+    name: 레이어 골지 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+    size: about 55 cm long from shoulder to hem, 38 cm across the shoulders, 36 cm
+      across the chest laid flat, 73.5 cm long sleeves
+    cm: 55.0
+  - product: zigzag:171122253
+    color: 데님
+    desc: 중청 릴렉스 부츠컷 데님 (mid-blue washed high-waist denim, slim through the thigh
+      and flared bootcut at the hem, full length)
+    name: 릴렉스 부츠컷 데님
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 4
+    size: about 104.6 cm long from waist to hem, 36.25 cm across the waist laid flat,
+      51.25 cm across the hips laid flat, 28.5 cm across the hem laid flat
+    cm: 104.6
+  - product: zigzag:150431530
+    color: 블랙
+    desc: 블랙 바이커 부츠 (one pair (two boots) of black mid-calf biker boots with two side
+      buckle straps and a chunky sole)
+    name: 바이커 부츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 1
+  - product: zigzag:153923114
+    color: 블랙
+    desc: 블랙 숄더백 (black small flap shoulder bag with a thin long strap)
+    name: 아로디 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:168339163
+    color: 블랙
+    desc: 가죽끈 롱 목걸이 (exactly one long black leather cord necklace with a small reddish-brown
+      drop pendant)
+    name: 가죽끈 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 아이보리 골지 니트가 주인공, 몸에 붙는 상의에 중청 부츠컷 데님으로 다리를 길게. 아이보리·데님 톤의 시크한 분위기 [점수 9]
+  point: 골지 니트를 넣어 입고 부츠컷으로 다리를 길게 빼요
+  styling: The slim ribbed knit is tucked into the waistband; the long leather cord
+    pendant hangs at the center of the chest. The jeans sit lower on the hips, with
+    the whole waistband visible about 3 cm lower than before, and the waist is shaped
+    into a gently defined waistline, the knit following the curve in at the waist
+    and out at the hips for a pretty hourglass silhouette.
+  cover: out/2026-10-10/looks/2/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:168759450
+    color: 블랙
+    desc: 블랙 딥브이넥 니트 (black thin deep v-neck knit top, oversized relaxed fit with
+      dropped shoulders, short length with the hem at the waist, long sleeves, fine
+      drapey knit)
+    name: 딥브이넥 니트
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 1
+    size: about 56.5 cm long from shoulder to hem, 61 cm across the shoulders, 59
+      cm across the chest laid flat, 49 cm long sleeves
+    cm: 56.5
+  - product: zigzag:168593268
+    color: 화이트
+    desc: 화이트 브이넥 레이스 나시 (white v-neck tank with thin straps and thin lace trim, slim)
+    name: 브이넥 레이스 나시
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 상의
+  - product: zigzag:135443091
+    color: 아이보리
+    desc: 아이보리 투핀턱 와이드 슬랙스 (ivory high-waist wide straight-leg slacks with two soft
+      front pleats, full length)
+    name: 핀턱 와이드 슬랙스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+    size: about 98 cm long from waist to hem, 35.5 cm across the waist laid flat,
+      49 cm across the hips laid flat, 30 cm across the hem laid flat
+    cm: 98.0
+  - product: zigzag:147841380
+    color: 블랙
+    desc: 블랙 레이스업 로퍼 (one pair (two shoes) of black leather flat lace-up loafers,
+      square toe)
+    name: 레이스업 로퍼
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:167878705
+    color: 블랙
+    desc: 블랙 호보백 (black soft suede hobo shoulder bag with a thick strap and a folded
+      top)
+    name: 포그 호보백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+  - product: zigzag:127812392
+    color: 실버
+    desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small silver huggie hoop earrings)
+    name: 페일 귀걸이
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 4
+    slot: 귀걸이
+  reason: 블랙 딥브이넥 니트가 주인공, 레이스 나시를 받쳐 입고 아이보리 와이드 슬랙스로 정리. 블랙·아이보리 톤의 단정한 분위기 [점수
+    8]
+  point: 레이스 나시가 브이 라인 사이로 살짝 보여요 🖤
+  styling: The black deep v-neck knit is worn loose over the white lace-trimmed v-neck
+    tank, whose lace edge shows in the v opening; the knit hem is tucked in at the
+    front only so the waistband shows. No numbers, digits or characters are drawn
+    anywhere in the image.
+  cover: out/2026-10-10/looks/3/outfit/results/G_1.jpg
+- items:
+  - product: zigzag:168925294
+    color: 화이트
+    desc: 화이트 레이어드 홀터넥 상의 (white layered halter-neck top with a white long-sleeve
+      layer under it, slim fit, hip length, hem layer line visible)
+    name: 레이어드 홀터넥
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    size: about 59 cm long from shoulder to hem, 37 cm across the shoulders, 35 cm
+      across the chest laid flat, 67 cm long sleeves
+    cm: 59.0
+  - product: zigzag:169002628
+    color: 데님
+    desc: 워싱 데님 미니 스커트 (light washed blue denim mid-high-waist straight mini skirt,
+      mid-thigh length, frayed hem; the FRONT is plain without patch pockets, with
+      a flat front panel, a center zip fly and a waist button, layered raw hem; the
+      large frayed patch pockets belong to the back and are not drawn)
+    name: 데님 미니 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 38 cm long from waist to hem, 39 cm across the waist laid flat, 53.5
+      cm across the hips laid flat, 34.5 cm across the hem laid flat
+    cm: 38.0
+  - product: zigzag:160825244
+    color: 화이트
+    desc: 화이트 레트로 스티치 스니커즈 (one pair (two shoes) of white retro low-top lace-up sneakers
+      with grey side lines and stitching, angular toe)
+    name: 레트로 스니커즈
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:138364434
+    color: 아이보리
+    desc: 아이보리 셔링 더플백 (ivory shirred duffle bag with two short top handles)
+    name: 셔링 더플백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:146968386
+    color: 블랙
+    desc: 블랙 뿔테 안경 (exactly one pair of black round-oval horn-rimmed glasses)
+    name: 뿔테 안경
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+  reason: 화이트 레이어드 홀터 상의가 주인공, 데님 미니 스커트로 몸에 붙는 상의에 짧은 하의 대비. 화이트·데님 톤의 캐주얼 분위기 [점수
+    8]
+  point: 홀터 상의에 데님 미니로 짧고 가볍게 입어요
+  styling: The halter top's layered hem line shows over the denim waistband, tucked
+    in at the front only; the glasses hang from the neckline. The denim skirt is laid
+    with its front side up, a plain flat front with a zip fly and button and no patch
+    pockets (the pockets are only on the back, which is hidden). No numbers, digits
+    or characters are drawn anywhere in the image.
+  cover: out/2026-10-10/looks/4/outfit/results/G_1.jpg
+- items:
+  - product: zigzag:171067682
+    color: 블랙
+    desc: 블랙 라운드넥 울 트위드 자켓 (black collarless round-neck wool tweed jacket with pearl
+      buttons and frayed trim, cropped boxy fit, hem at the waist, worn open)
+    name: 울트위드 자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 5
+    size: about 48 cm long from shoulder to hem, 42 cm across the shoulders, 51.5
+      cm across the chest laid flat, 61.5 cm long sleeves
+    cm: 48.0
+  - product: zigzag:171584015
+    color: 화이트
+    desc: 화이트 칼라 블라우스 (plain white blouse with a regular spread collar, relaxed fit,
+      hip length, smooth lightly drapey fabric)
+    name: 링클프리 블라우스
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    size: about 65.5 cm long from shoulder to hem, 39 cm across the shoulders, 53
+      cm across the chest laid flat, 60.5 cm long sleeves
+    cm: 65.5
+  - product: zigzag:133521354
+    color: 아이보리
+    desc: 아이보리 하이웨이스트 미니 스커트 (ivory high-waist firm structured slightly A-line mini
+      skirt, mid-thigh, flat front, thick sturdy woven fabric that holds its shape,
+      hem only slightly wider than the hips, not flared)
+    name: 블랙벨트 미니
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 41 cm long from waist to hem, 34.5 cm across the waist laid flat,
+      46.5 cm across the hips laid flat, 51.5 cm across the hem laid flat
+    cm: 41.0
+  - product: zigzag:136028010
+    color: 블랙
+    desc: 블랙 플랫폼 메리제인 (one pair (two shoes) of matte black chunky platform mary janes
+      with a buckle strap)
+    name: 플랫폼 메리제인
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:136839704
+    color: 화이트
+    desc: 화이트 골지 롱 니삭스 (exactly one pair (two socks) of white ribbed long knee socks,
+      loosely wrinkled)
+    name: 골지 롱 니삭스
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  - product: zigzag:169369601
+    color: 블랙
+    desc: 블랙 위빙 숄더백 (black woven teardrop-shaped bucket shoulder bag with a thin single
+      strap)
+    name: 아렌위빙 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  reason: 블랙 트위드 자켓이 주인공, 화이트 블라우스와 미니 스커트로 단정하게. 블랙·화이트 톤의 단정한 분위기 [점수 8]
+  point: 크롭 트위드에 화이트 니삭스로 단정하게 완성해요
+  styling: The jacket is worn open; the white blouse collar sits flat at the neckline
+    and the blouse hem is tucked in; white knee socks above the mary janes. The ivory
+    skirt is a sturdy, firm, slightly A-line skirt, NOT a flared skirt, with straight
+    smooth lines from hip to hem with the hem only slightly wider than the hips (51.5
+    cm vs 46.5 cm), no rolling waves, no circle flare, no ruffled hem.
+  cover: out/2026-10-10/looks/5/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:168185673
+    color: 플럼
+    desc: 플럼 헨리넥 리브 니트 (deep plum-wine fine ribbed henley knit top, slim fit, hip
+      length, buttons at the placket)
+    name: 라이크 헨리넥 니트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 3
+    - 2
+    size: about 58 cm long from shoulder to hem, 33 cm across the shoulders, 39.5
+      cm across the chest laid flat, 62 cm long sleeves
+    cm: 58.0
+  - product: zigzag:171144272
+    color: 차콜
+    desc: 차콜 랩 미니 스커트 팬츠 (charcoal pinstripe wrap-front mini skort with an asymmetric
+      overlap and a thin belt strap with a D-ring)
+    name: 랩 미니 스커트 팬츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    size: about 33.2 cm long from waist to hem, 38.25 cm across the waist laid flat,
+      50.5 cm across the hips laid flat, 33.95 cm across the hem laid flat
+    cm: 33.2
+  - product: zigzag:130583785
+    color: 블랙
+    desc: 블랙 레이스업 워커 부츠 (one pair (two boots) of matte black lace-up chunky combat
+      ankle boots, round toe, thick platform sole)
+    name: 레이스업 워커부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:133826914
+    color: 블랙
+    desc: 블랙 보스턴 나일론 백 (black nylon boston bag with two short top handles, a zipper
+      and a small triangle logo on the front)
+    name: 보스턴 나일론 백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+  - product: zigzag:127812392
+    color: 실버
+    desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small silver huggie hoop earrings)
+    name: 페일 귀걸이
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 4
+    slot: 귀걸이
+  reason: 플럼 헨리넥이 주인공, 차콜 랩 미니와 블랙 워커부츠로 짧은 하의에 부츠 대비. 플럼·블랙 톤의 시크한 분위기 [점수 8]
+  point: 플럼 헨리넥에 워커부츠로 짧은 하의에 힘을 줘요
+  styling: The slim henley is tucked in at the front only so the skort waistband shows;
+    the plum henley's placket buttons show at the chest. The henley is not rolled
+    or folded inward at the waist, it simply falls naturally over the skort waistband
+    with only the front hem lightly tucked in, like a real person wearing it. The
+    boots are one neat parallel pair side by side pointing the same direction. No
+    numbers, digits or characters are drawn anywhere in the image.
+  cover: out/2026-10-10/looks/6/outfit/results/G_1.jpg
+reason: 허리선을 높여 다리가 길어 보이게, 짧은 상의와 높은 하의 비율을 여러 무드로
+text:
+  title_lines:
+  - 무심한듯 비율 좋아보이는
+  - 코디 모음
+  intro: 맑고 선선한 주말 나들이엔 허리선 높인 코디로 가볍게 나가요 ☀️
+  points: []
+  hashtags:
+  - '#키작녀코디'
+  - '#크롭코디'
+  - '#하이웨이스트'
+  - '#주말코디'
+  - '#가을코디'
+  - '#나들이룩'
+  - '#캐주얼시크'
+shot: flatlay
