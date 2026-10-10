@@ -1,0 +1,333 @@
+account: women
+date: '2026-10-11'
+items: []
+looks:
+- items:
+  - color: 버터옐로
+    comment: ''
+    cutout_photo: 0
+    desc: 버터옐로 헨리넥 니트 (pale butter yellow oversized henley knit with a white inner
+      layer visible at the neckline)
+    name: 헨리넥 니트
+    product: zigzag:170544684
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 롱 플리츠 스커트 (gray wool-look long pleated skirt with soft pleats and calf
+      to ankle length)
+    name: 롱 플리츠 스커트
+    product: zigzag:171318242
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 (black leather mary jane shoes with a low block heel and a strap)
+    name: 메리제인
+    product: zigzag:166028838
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보백 (large black leather hobo shoulder bag)
+    name: 빅 호보백
+    product: zigzag:168594319
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 뿔테 안경 (one pair of black round horn-rimmed glasses)
+    name: 뿔테 안경
+    product: zigzag:113382000
+  point: ''
+  reason: 버터옐로 헨리넥 니트가 주인공, 그레이 플리츠 롱스커트와 블랙 메리제인으로 브런치룩. 버터옐로·그레이 톤의 단정한 분위기
+  styling: The knit sleeves are pushed up slightly and the knit is tucked loosely
+    at the front of the skirt waist.
+- items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 하프 트렌치코트 (beige half-length trench coat in a loose fit and hip to thigh
+      length)
+    name: 하프 트렌치코트
+    product: zigzag:172092884
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 헨리넥 레이어드 긴팔티 (black fitted henley long-sleeve tee with a gray layered
+      hem)
+    name: 헨리넥 레이어드 티
+    product: zigzag:171262648
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 핀스트라이프 슬랙스 (black pinstripe wide slacks and full length)
+    name: 핀스트라이프 슬랙스
+    product: zigzag:159282735
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 플랫 (black round-toe mary jane flats)
+    name: 메리제인 플랫
+    product: zigzag:137014509
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 쇼퍼백 (cream-white rectangular leather shoulder shopper bag with two
+      handles)
+    name: 스퀘어 쇼퍼백
+    product: zigzag:117733398
+  point: ''
+  reason: 베이지 하프 트렌치가 주인공, 블랙 레이어드 티와 핀스트라이프 슬랙스로 단정하게. 베이지·블랙 톤의 단정한 분위기
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 테일러드 재킷 (dark brown suede tailored jacket in a relaxed fit and
+      hip length)
+    name: 스웨이드 재킷
+    product: zigzag:171592183
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 보트넥 루즈핏 니트 (ivory loose boat-neck knit)
+    name: 보트넥 니트
+    product: zigzag:171121984
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 플리츠 롱 스커트 (charcoal pleated long skirt at calf length)
+    name: 플리츠 롱 스커트
+    product: zigzag:149546302
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 페니로퍼 (dark brown suede penny loafers)
+    name: 페니로퍼
+    product: zigzag:100425954
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 호보백 (brown suede hobo shoulder bag with a zipper)
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  point: ''
+  reason: 스웨이드 테일러드 재킷이 주인공, 아이보리 보트넥 니트와 차콜 플리츠 스커트로 차분하게. 브라운·아이보리 톤의 단정한 분위기
+  styling: The jacket is draped over the shoulders behind the knit and only a band
+    shows above the shoulders while the knit front stays visible.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 하프자켓 (black faux leather half jacket with a shirt collar and an oversized
+      hip length fit)
+    name: 레더 하프자켓
+    product: zigzag:165576378
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 골지 니트 (gray-blue fitted ribbed knit with a v neckline)
+    name: 골지 니트
+    product: zigzag:135105388
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 부츠컷 팬츠 (black slim bootcut pants at full length)
+    name: 부츠컷 팬츠
+    product: zigzag:171122435
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 삭스 앵클부츠 (black sock-fit ankle boots with a block heel)
+    name: 삭스 앵클부츠
+    product: zigzag:107677011
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 더플백 (black nylon shirred duffle shoulder bag)
+    name: 셔링 더플백
+    product: zigzag:138364376
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 가죽 시계 (small rectangular gold watch with a dark brown leather strap
+      worn on the wrist)
+    name: 레더 시계
+    product: zigzag:120794025
+    slot: 팔찌
+  point: ''
+  reason: 블랙 레더 하프자켓이 주인공, 그레이 골지 니트와 블랙 부츠컷으로 올블랙에 그레이. 블랙·그레이 톤의 단정한 분위기
+  styling: The jacket is worn open so the ribbed knit shows.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오프숄더 셔츠카라 니트 (black off-shoulder knit with a white shirt collar attached
+      underneath)
+    name: 오프숄더 니트
+    product: zigzag:171067686
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 새틴 롱스커트 (brown satin long skirt with a drawstring waist at ankle length)
+    name: 새틴 롱스커트
+    product: zigzag:165618457
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 (black leather mary jane shoes with a low block heel and a strap)
+    name: 메리제인
+    product: zigzag:166028838
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레더 호보백 (dark brown soft leather hobo bag)
+    name: 레더 호보백
+    product: zigzag:168780987
+  - color: 로즈골드
+    comment: ''
+    cutout_photo: 0
+    desc: 로즈골드 미니 하트 목걸이 (thin rose gold chain necklace with a small heart pendant)
+    name: 하트 목걸이
+    product: zigzag:116318618
+    slot: 목걸이
+  point: ''
+  reason: 블랙 오프숄더 니트가 주인공, 브라운 새틴 롱스커트로 여성스럽게. 블랙·브라운 톤의 단정한 분위기
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니트 베스트 (black v-neck knit vest)
+    name: 니트 베스트
+    product: zigzag:134881165
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 워싱 셔츠 (white washed cotton shirt with a regular collar in a relaxed
+      fit)
+    name: 워싱 셔츠
+    product: zigzag:127356723
+    wear_with: 상의
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 핀스트라이프 와이드 슬랙스 (gray pinstripe wide-leg slacks with pleats at full length)
+    name: 와이드 슬랙스
+    product: zigzag:168694332
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 청키 레이스업 슈즈 (black chunky lace-up derby shoes with white stitching)
+    name: 레이스업 슈즈
+    product: zigzag:111145203
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보백 (large black leather hobo shoulder bag)
+    name: 빅 호보백
+    product: zigzag:168594319
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 벨트 (black leather belt with a square silver buckle)
+    name: 레더 벨트
+    product: zigzag:148980176
+    wear_with: 하의
+  point: ''
+  reason: 블랙 니트 베스트가 주인공, 화이트 셔츠와 그레이 슬랙스로 단정하게. 블랙·그레이 톤의 단정한 분위기
+  styling: The shirt sleeves are rolled to the elbow and the shirt hem shows 4 cm
+    below the vest.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 오버핏 코튼 딥브이 맨투맨 (gray oversized cotton deep v-neck sweatshirt)
+    name: 딥브이 맨투맨
+    product: zigzag:168315295
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 골지 반팔 니트 (beige fitted short-sleeve ribbed mock-neck knit top)
+    name: 골지 반팔 니트
+    product: zigzag:113835947
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플리츠 랩스커트 (black pleated wrap skirt at knee length with a tie at the side)
+    name: 플리츠 랩스커트
+    product: zigzag:159574062
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬라우치 롱부츠 (black leather slouchy knee-high boots with buckles)
+    name: 슬라우치 롱부츠
+    product: zigzag:166288289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스트랩 숄더백 (black shoulder bag with a wide strap)
+    name: 스트랩 숄더백
+    product: zigzag:170446631
+  point: ''
+  reason: 그레이 오버핏 맨투맨이 주인공, 블랙 플리츠 랩스커트와 롱부츠로 부피 대비. 그레이·블랙 톤의 캐주얼
+  styling: The sweatshirt is worn oversized with a short skirt below its hem and tucked
+    loosely at the front only.
+- items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 하프집업 케이블 니트 (navy cable knit half-zip sweater with a collar and a small
+      embroidered logo)
+    name: 하프집업 니트
+    product: zigzag:131177018
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 U헨리넥 긴팔티 (white fitted long-sleeve henley tee)
+    name: U헨리넥 티
+    product: zigzag:165972153
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 워싱 슬림 부츠컷 팬츠 (black washed slim bootcut pants at full length)
+    name: 블랙 부츠컷 팬츠
+    product: zigzag:145122986
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 스니커즈 (black mary jane sneakers with white stripes and a gum sole)
+    name: 삼바 메리제인
+    product: zigzag:163730443
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 토트백 (small black mini tote bag with a zipper)
+    name: 미니 토트백
+    product: zigzag:170446634
+  point: ''
+  reason: 네이비 하프집업 니트가 주인공, 화이트 티와 블랙 워싱 부츠컷으로 캐주얼하게. 네이비·블랙 톤의 캐주얼
+reason: 일요일 브런치룩을 버터옐로와 그레이, 니트 베스트와 가벼운 겹쳐 입기로 여러 가지
+shot: flatlay
+theme:
+  date: '2026-10-11'
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임

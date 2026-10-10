@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-11-run215",
+  "account": "women",
+  "sandbox": false,
+  "mode": "edit",
+  "pick": "{\"run\": \"2026-10-11-run213\", \"fixes\": [{\"update_id\": 0, \"looks\": [7], \"text\": \"상의 이너를 반팔말고 나시나 홀터넥 등 목선 보이는 아이템으로 변경해줘\"}]}"
+}
