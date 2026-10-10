@@ -1,0 +1,18 @@
+{
+  "workflow": "daily.yml",
+  "inputs": {
+    "account": "women",
+    "mode": "fix",
+    "pick": "{\"run\": \"2026-10-11-run216\", \"round\": 1, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"코디 모음이 아닌 look5 코디에 제목 넣어줘\"}, {\"slide\": 2, \"kind\": \"look\", \"look\": 1, \"text\": \"바지기장 더 길게 해줘\"}, {\"slide\": 4, \"kind\": \"look\", \"look\": 3, \"text\": \"하프자켓 기장이 좀더 길고 핏도 모델핏이랑 다른데 제품 상세 이미지, 모델이 입은 이미지랑 동일하게 그려줘. 재질과 옷 실루엣도 너무 다르게 그려졌어. 바지기장 더 길게해줘\"}, {\"slide\": 5, \"kind\": \"look\", \"look\": 4, \"text\": \"셔츠 소매 접지 말고, 카라도 빳빳하지 않게 그려줘. 제품 상세 이미지와 모델컷과 동일하게 그려줘. 그리고 바지 와이드 핏인데 지금은 너무 짧고 일자야. 모델이 입은 핏과 동일하게, 기장 더 길게 그려줘.\"}, {\"slide\": 7, \"kind\": \"look\", \"look\": 6, \"text\": \"바지 접지말고 기장 길게 그려줘. 부츠컷 포인트가 잘 보이게 모델이 입은것과 동일한 핏으로 그려줘.\"}]}",
+    "date": "2026-10-11",
+    "outfit": "auto",
+    "sandbox": false,
+    "collect": false,
+    "review": true,
+    "preview": true
+  },
+  "key": "daily:women:2026-10-11",
+  "run": "2026-10-11-run217",
+  "message": "You've hit your weekly limit · resets Oct 12, 12am (UTC)",
+  "at": 1791640944
+}
