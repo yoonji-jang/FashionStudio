@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 1,
+        "notes": "4번 신발 앞코와 뒤쪽에 \"adidas\" 글자가 읽히게 그려져 있고, 1번 니트 안쪽 목 라벨에도 글자가 보임. 원본 신발 사진에는 이 글자 배치가 없으므로 글자가 그려진 것으로 봄. 5번 가방이 니트 소매와 바지 허리 옆에 살짝 닿음. 두 바지 다리의 벌어진 정도가 조금 다름. 개수, 신발 방향(나란함), 속옷 겹침 순서, 바지 기장은 문제 없음.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "c2 는 색과 상품 구성이 원본과 맞고, 이전 라운드(c1)에 있던 체크 칼라와 다른 가방 문제도 없어졌음. 다만 바지 밑단 퍼짐이 약하고 가방이 소매에 살짝 닿음."
+}
