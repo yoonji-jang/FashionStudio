@@ -1,0 +1,10 @@
+{
+  "workflow": "feedback-rules.yml",
+  "inputs": {
+    "account": "women"
+  },
+  "key": "feedback-rules:women",
+  "run": "",
+  "message": "You've hit your weekly limit · resets Oct 12, 12am (UTC)",
+  "at": 1791673328
+}
