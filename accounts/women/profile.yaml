@@ -379,6 +379,7 @@ schedule:
   # (전날 09:00 후보), 일요일 쉼. 모델컷 날을 다시 넣으려면 그 요일을 model 로 (전날 벌로 바로 만듦, 고르기 없음)
   post_days: {월: flatlay, 화: flatlay, 수: flatlay, 목: flatlay, 금: flatlay, 토: flatlay}
   post_days_from: 2026-10-05  # 10/4(일) 게시물은 이미 후보가 나와 있어 그대로 올림 (2026-10-03 사용자)
+  post_dates: {2026-10-11: flatlay}  # 요일과 상관없이 이 날만 올림 (10/11 일요일 한 번, 2026-10-10 사용자)
 
 # 코디 고르기 (9단계). 후보를 쇼핑몰 원본 사진으로 보내고, 고른 코디만 Photoroom 으로 만든다
 pick:

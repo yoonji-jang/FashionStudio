@@ -353,7 +353,8 @@ def _post_days(monkeypatch):
 
     def with_days(account, *a, **k):
         p = load(account, *a, **k)
-        p.schedule = p.schedule.model_copy(update={"post_days": days})
+        # 계정의 한 번만 올리는 날(post_dates)은 빼고 요일 규칙만 본다
+        p.schedule = p.schedule.model_copy(update={"post_days": days, "post_dates": {}})
         return p
 
     monkeypatch.setattr(schedule, "load_profile", with_days)
@@ -377,6 +378,11 @@ def test_post_kind_by_weekday(monkeypatch):
     start = p.schedule.model_copy(update={"post_days_from": date(2026, 10, 12)})
     assert start.post_kind(date(2026, 10, 11)) == "flatlay"
     assert start.post_kind(date(2026, 10, 13)) == "model"
+    # post_dates: 쉬는 일요일에 한 번만 올리기
+    once = p.schedule.model_copy(update={"post_dates": {date(2026, 10, 18): "flatlay"}})
+    assert once.post_kind(date(2026, 10, 18)) == "flatlay"
+    assert once.post_kind(date(2026, 10, 25)) is None
+    assert load_profile("women").schedule.post_kind(date(2026, 10, 11)) == "flatlay"
     assert (
         load_profile("women")
         .schedule.model_copy(update={"post_days": None})
