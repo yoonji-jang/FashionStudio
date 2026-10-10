@@ -1,0 +1,111 @@
+account: women
+date: '2026-10-11'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 레더 하프자켓 (black faux leather half jacket with a shirt collar and an oversized
+    boxy hip to upper-thigh length fit, glossy with soft creases)
+  name: 레더 하프자켓
+  product: zigzag:165576378
+  ref_photos:
+  - 1
+  - 0
+- cm: 52.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 3
+  desc: 그레이 골지 니트 (gray-blue fitted slim thin ribbed knit with a v neckline and a
+    small notched collar, hem at the waist)
+  name: 골지 니트
+  product: zigzag:135105388
+  ref_photos:
+  - 1
+  - 3
+  size: about 52 cm long from shoulder to hem, 33 cm across the shoulders, 32 cm across
+    the chest laid flat, 60 cm long sleeves
+- cm: 104.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 워싱 부츠컷 데님 (faded washed black denim pants fitted through the hips and thighs
+    and flared from the knee at full length)
+  name: 블랙 부츠컷 데님
+  product: zigzag:166063974
+  ref_photos:
+  - 2
+  - 0
+  - 1
+  size: about 104 cm long from waist to hem, 35 cm across the waist laid flat, 47
+    cm across the hips laid flat, 29 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 삭스 앵클부츠 (black sock-fit ankle boots with a block heel)
+  name: 삭스 앵클부츠
+  product: zigzag:107677011
+  ref_photos:
+  - 0
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 더플백 (black nylon shirred duffle shoulder bag)
+  name: 셔링 더플백
+  product: zigzag:138364376
+  ref_photos:
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 가죽 시계 (small rectangular gold watch with a dark brown leather strap worn
+    on the wrist)
+  name: 레더 시계
+  product: zigzag:120794025
+  ref_photos:
+  - 0
+  - 2
+  slot: 팔찌
+looks: []
+reason: 블랙 레더 하프자켓이 주인공, 그레이 골지 니트와 블랙 워싱 부츠컷으로 올블랙에 그레이. 블랙·그레이 톤의 단정한 분위기
+shot: flatlay
+styling: The jacket is worn open so the ribbed knit shows.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#레이어드코디'
+  - '#트렌치코트'
+  - '#스웨이드재킷'
+  - '#니트베스트'
+  - '#일교차코디'
+  - '#꾸안꾸'
+  intro: 낮엔 선선하고 밤엔 쌀쌀한 요즘, 가볍게 겹쳐 입는 코디를 모아 봤어요 🍂
+  points: []
+  title_lines:
+  - 아침저녁 쌀쌀한 날
+  - 겹쳐 입는 조합 정리
+theme:
+  date: '2026-10-11'
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임

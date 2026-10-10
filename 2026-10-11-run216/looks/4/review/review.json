@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "4번 신발 안쪽 깔창에 작은 글자(로고 라벨)가 그려져 있음. 3번 바지는 원본보다 밑단이 살짝 좁아지는 테이퍼드 느낌이고, 두 다리 모양이 어색하게 꺾여 있음.",
+        "feedback_ok": null
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "2번 셔츠 밑단이 원본처럼 허벅지까지 길게 내려오지 않고 조끼 아래로 짧게만 보임, 오버핏 느낌이 약함. 3번 바지 두 다리가 꽤 곧고 평행함.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 는 여섯 상품이 모두 보이고 색도 원본과 같다. 벨트가 허리 위에 보이고, 구도는 가운데 맞고 신발은 두 짝이 나란하다. 글자나 없는 물건도 없다. 다만 셔츠 밑단 길이가 원본과 달라 shape 1 을 줬다."
+}

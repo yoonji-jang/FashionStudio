@@ -1,0 +1,95 @@
+account: women
+date: '2026-10-11'
+items:
+- cm: 51.0
+  color: 네이비
+  comment: ''
+  cutout_photo: 1
+  desc: 네이비 하프집업 케이블 니트 (navy chunky cable knit half-zip sweater slightly cropped
+    at waist to hip, with a stand collar and a small embroidered logo)
+  name: 하프집업 니트
+  product: zigzag:131177018
+  ref_photos:
+  - 1
+  size: about 51 cm long from shoulder to hem, 33 cm across the shoulders, 40 cm across
+    the chest laid flat, 51 cm long sleeves
+- cm: 49.5
+  color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 U헨리넥 긴팔티 (white fitted slim cropped long-sleeve U-neck henley tee)
+  name: U헨리넥 티
+  product: zigzag:165972153
+  ref_photos:
+  - 3
+  size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37 cm
+    across the chest laid flat, 68 cm long sleeves
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 워싱 슬림 부츠컷 팬츠 (faded black washed slim bootcut denim pants fitted through
+    the thighs at full length)
+  name: 블랙 부츠컷 팬츠
+  product: zigzag:145122986
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 메리제인 스니커즈 (black mary jane sneakers with white stripes and a gum sole)
+  name: 삼바 메리제인
+  product: zigzag:163730443
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 미니 토트백 (small black mini tote bag with a zipper)
+  name: 미니 토트백
+  product: zigzag:170446634
+  ref_photos:
+  - 4
+  - 1
+looks: []
+reason: 네이비 하프집업 니트가 주인공, 화이트 티와 블랙 워싱 부츠컷으로 캐주얼하게. 네이비·블랙 톤의 캐주얼
+shot: flatlay
+text:
+  hashtags:
+  - '#가을코디'
+  - '#레이어드코디'
+  - '#트렌치코트'
+  - '#스웨이드재킷'
+  - '#니트베스트'
+  - '#일교차코디'
+  - '#꾸안꾸'
+  intro: 낮엔 선선하고 밤엔 쌀쌀한 요즘, 가볍게 겹쳐 입는 코디를 모아 봤어요 🍂
+  points: []
+  title_lines:
+  - 아침저녁 쌀쌀한 날
+  - 겹쳐 입는 조합 정리
+theme:
+  date: '2026-10-11'
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임
