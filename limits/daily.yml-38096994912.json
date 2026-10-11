@@ -1,0 +1,17 @@
+{
+  "workflow": "daily.yml",
+  "inputs": {
+    "account": "women",
+    "mode": "candidates",
+    "date": "2026-10-12",
+    "outfit": "auto",
+    "sandbox": false,
+    "collect": false,
+    "review": true,
+    "preview": true
+  },
+  "key": "daily:women:2026-10-12",
+  "run": "2026-10-12-run218",
+  "message": "You've hit your weekly limit · resets 12am (UTC)",
+  "at": 1791676916
+}
