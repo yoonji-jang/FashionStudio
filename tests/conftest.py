@@ -75,3 +75,18 @@ def single_outfit(monkeypatch, request):
         return original(cls, data, *args, **kwargs)
 
     monkeypatch.setattr(core.profile.Profile, "model_validate", classmethod(validate))
+
+
+@pytest.fixture(autouse=True)
+def fast_collage_cutout(monkeypatch, request):
+    """표지 콜라주의 grabCut 누끼는 느리다 (벌마다 약 1초). 콜라주 자체를 보는
+    test_cover_collage 밖에서는 이미지를 그대로 쓰는 빠른 누끼로 바꿔 ci 시간을 줄인다."""
+    if request.module.__name__.endswith("test_cover_collage"):
+        return
+    from PIL import Image
+
+    import tools.cover_collage
+
+    monkeypatch.setattr(
+        tools.cover_collage, "cutout", lambda path: Image.open(path).convert("RGBA")
+    )

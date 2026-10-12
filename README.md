@@ -325,7 +325,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `collect_at` | "월,목 04:17" | 지그재그 새 상품 수집 |
 | `token_refresh_at` | "일 18:47" | 인스타 토큰 연장 (60일 만료라 매주) |
 | `reels_at` | null | 릴스 게시 (19단계, `reels.enabled` 일 때). 그날 캐러셀을 게시했을 때만. `null` 이면 캐러셀 바로 뒤에. 바꾸면 `tools.schedule sync` |
-| `github_cron` | all | GitHub 예약 줄. 외부 스케줄러를 설정했으면 `backup` (주요 칸만 예비로 남겨 Actions 시간 절약) |
+| `github_cron` | all | GitHub 예약 줄. 외부 스케줄러를 설정했으면 `backup` (주요 칸만 예비로 남겨 Actions 시간 절약), 더 아끼려면 `minimal` (첫 게시 칸 하루 한 줄만, 외부 스케줄러가 멈추면 하루 한 번만 밀린 칸을 따라잡음) |
 
 **시간을 바꾼 뒤에는** `uv run python -m tools.schedule sync` 를 돌려 `.github/workflows/schedule.yml` 의
 cron 줄을 맞추고 함께 커밋하세요 (맞지 않으면 CI 테스트가 실패합니다). `uv run python -m tools.schedule list` 로
@@ -827,6 +827,7 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 **3) GitHub 예약 줄이기** (선택): 외부 스케줄러가 잘 도는 것을 확인했으면 profile `schedule.github_cron: backup`
 으로 바꾸고 `uv run python -m tools.schedule sync` → 커밋. GitHub 예약이 주요 칸 몇 개만 남아 Actions 시간이
 두 배로 들지 않습니다 (빠진 칸은 auto 가 따라잡음).
+더 아끼려면 `minimal`: GitHub 예약은 첫 게시 칸 하루 한 줄만 남습니다. 외부 스케줄러가 멈추면 그 시각에만 깨어나 밀린 칸을 따라잡습니다.
 
 ---
 

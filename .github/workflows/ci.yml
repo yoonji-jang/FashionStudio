@@ -19,4 +19,5 @@ jobs:
       - run: uv sync
       - run: uv run ruff check .
       - run: uv run python -m core.profile
-      - run: uv run pytest
+      # 느린 이미지 테스트가 있어 두 프로세스로 나눠 돌린다 (pytest-xdist)
+      - run: uv run pytest -n auto
