@@ -186,11 +186,19 @@ def backup_slot(sl: Slot) -> bool:
     return sl.task not in ("links", "comments", "fix")
 
 
+def minimal_slot(sl: Slot) -> bool:
+    """github_cron: minimal 에서 남기는 칸: 첫 게시 칸 하나 (나머지는 auto 가 따라잡는다)."""
+    return sl.task == "publish" and sl.first
+
+
 def cron_lines(items: list[tuple[Profile, Slot]], ref: date) -> dict[str, list[str]]:
     """cron 줄 → 설명 목록 (같은 줄에 여러 작업이 겹칠 수 있다)."""
     lines: dict[str, list[str]] = {}
     for profile, sl in items:
-        if profile.schedule.github_cron == "backup" and not backup_slot(sl):
+        mode = profile.schedule.github_cron
+        if mode == "backup" and not backup_slot(sl):
+            continue
+        if mode == "minimal" and not minimal_slot(sl):
             continue
         lines.setdefault(sl.cron(profile.schedule.timezone, ref), []).append(
             f"{sl.account} {sl.task} {sl.local()}"
