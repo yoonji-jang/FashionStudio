@@ -143,8 +143,10 @@ def find_fixes(
         if msg.get("date", 0) < record.sent_at:
             continue
         reply_to = (msg.get("reply_to_message") or {}).get("message_id")
-        # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다
-        for part in re.split(r"\n(?=\s*/fix\b)", msg.get("text") or ""):
+        # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다.
+        # 줄을 바꿔 쓴 표지 벌 고르기("/cover 3", "/ok 3", "표지 3번")는 고칠 내용에 넣지 않는다
+        parts = re.split(r"\n(?=\s*(?:/(?:fix|cover|ok)\b|표지\s*\d))", msg.get("text") or "")
+        for part in parts:
             cmd = notify.parse(part, record.account, record.date)
             if cmd is None or cmd.name != "fix":
                 continue
@@ -458,6 +460,7 @@ def prepare(pick: dict, prev_root: Path, out: Path) -> dict:
         "cover": cover,
         "fixes": pick["fixes"],
         "slides": slide_map(manifest),
+        "cover_look": plan.cover_look,  # 지난 표지 벌 (tools.cover_look 이 /fix 가 바꿨는지 봄)
     }
     (out / "fix.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return data

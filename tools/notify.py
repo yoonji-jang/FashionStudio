@@ -296,7 +296,9 @@ def control_text(
     sandbox: bool,
     fix: dict | None = None,
     changes: list[str] | None = None,
+    cover: int | None = None,
 ) -> str:
+    """미리보기 마지막 안내 글. cover 는 표지로 쓴 벌 번호 (tools.cover_look)."""
     day = manifest.date
     lines = [f"[{profile.id}] {day} {profile.schedule.publish_at} 게시 예정"]
     lines.append("제목: " + " / ".join(manifest.title_lines))
@@ -308,6 +310,8 @@ def control_text(
         lines += [f"- {c}" for c in changes or []] or [
             f"- {label(f)}: {f['text']}" for f in fix.get("fixes", [])
         ]
+    if cover is not None:
+        lines.append(f"표지: LOOK {cover}")
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
     if manifest.needs_human:
@@ -325,6 +329,12 @@ def control_text(
         if dl is not None:
             lines.append(f"승인 마감 {dl:%m/%d %H:%M}. 그때까지 /ok 가 없으면 게시하지 않아요")
         lines.append("(아래 버튼을 누르거나 이 메시지에 /ok 로 답장해도 돼요)")
+        if cover is not None:
+            other = 2 if cover == 1 else 1
+            lines.append(
+                f"표지를 다른 벌로 하려면 /ok {other} 처럼 LOOK 번호를 붙여 승인하거나, "
+                f"표지만 먼저 보려면 /cover {other}"
+            )
         from tools import share
 
         if share.enabled(profile):
@@ -389,7 +399,10 @@ def preview(
             "resize_keyboard": True,
             "one_time_keyboard": True,
         }
-    text = control_text(manifest, profile, sandbox, fix, feedback.fix_changes(out))
+    from tools import cover_look
+
+    cover = cover_look.current(out, profile)
+    text = control_text(manifest, profile, sandbox, fix, feedback.fix_changes(out), cover)
     ids.append(tg.send(text, reply_markup=markup))
     record = PreviewRecord(
         account=manifest.account,
@@ -449,6 +462,10 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
     m = re.fullmatch(rf"({nums})\s*번?\s*(?:은|는)?\s*빼(?:고|줘|주세요|기)?.*", plain)
     if m:
         return Command("drop", re.findall(r"\d+", m.group(1)), False)
+    # 표지 벌 바꾸기 (tools.cover_look): "표지 3번", "표지3"
+    m = re.fullmatch(r"표지\s*(\d{1,2})\s*번?(?:\s*(?:으로|로))?", plain)
+    if m:
+        return Command("cover", [m.group(1)], False)
     if plain in ("다시", "다시 보내줘"):
         return Command("again", [], False)
     if plain in NOW_WORDS:
@@ -506,10 +523,23 @@ def commands(
     return sorted(found, key=lambda x: x[0])
 
 
+def cover_number(args: list[str]) -> int | None:
+    """/ok·/cover 뒤 표지 벌 번호 ("3", "3번", "표지 3", "표지3"). 아니면 None."""
+    m = re.fullmatch(r"(?:표지)?(\d{1,2})번?", "".join(args))
+    return int(m.group(1)) if m and int(m.group(1)) > 0 else None
+
+
+def is_decision(cmd: Command) -> bool:
+    """/ok·/skip 승인 글인지. /ok 뒤에는 표지 벌 번호만 붙을 수 있다 (/ok 3)."""
+    if cmd.name not in ("ok", "skip"):
+        return False
+    return not cmd.args or (cmd.name == "ok" and cover_number(cmd.args) is not None)
+
+
 def parse_command(text: str, record: PreviewRecord) -> Decision | None:
-    """미리보기에 대한 /ok 또는 /skip (다른 글이 붙어 있으면 None)."""
+    """미리보기에 대한 /ok 또는 /skip (다른 글이 붙어 있으면 None, /ok 3 은 ok)."""
     cmd = parse(text, record.account, record.date)
-    if cmd and cmd.name in ("ok", "skip") and not cmd.args:
+    if cmd and is_decision(cmd):
         return cmd.name  # type: ignore[return-value]
     return None
 
@@ -530,9 +560,47 @@ def find_decision(
             record.message_ids,
             until,
         )
-        if not cmd.args
+        if is_decision(cmd)
     ]
     return found[-1].name if found else None  # type: ignore[return-value]
+
+
+def split_lines(updates: list[dict]) -> list[dict]:
+    """한 메시지에 여러 줄로 적은 명령("/fix 2 신발 크게" 다음 줄 "/cover 3")을 줄마다 따로 읽게
+    나눈다 (같은 update_id)."""
+    out = []
+    for u in updates:
+        msg = u.get("message") or {}
+        lines = [x for x in (msg.get("text") or "").split("\n") if x.strip()] or [""]
+        out += [u | {"message": msg | {"text": line}} for line in lines]
+    return out
+
+
+def find_cover(
+    updates: list[dict],
+    record: PreviewRecord,
+    chat_id: str,
+    until: int | None = None,
+    since: int | None = None,
+) -> tuple[int, int] | None:
+    """미리보기(since 가 있으면 그때) 뒤 온 마지막 표지 벌 고르기 (update_id, 벌 번호).
+    "/ok 3", "/ok 표지 3", "/cover 3", "표지 3번" 을 읽는다.
+    /fix 와 한 메시지에 줄을 바꿔 써도 된다."""
+    found = [
+        (uid, n)
+        for uid, cmd in commands(
+            split_lines(updates),
+            chat_id,
+            record.sent_at if since is None else since,
+            record.account,
+            record.date,
+            {"ok", "cover"},
+            record.message_ids,
+            until,
+        )
+        if (n := cover_number(cmd.args)) is not None
+    ]
+    return found[-1] if found else None
 
 
 def find_now(

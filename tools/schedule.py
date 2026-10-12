@@ -725,6 +725,11 @@ def execute(
             print(comments.check(t.account, tg, now, dry_run))
         elif t.task == "links":
             try:
+                # 표지 벌 바꾸기 (/ok 3, /cover 3): 링크·게시보다 먼저 (tools.cover_look)
+                print(cover_change(t.account, t.date, results, tg, dry_run))
+            except (RuntimeError, ValueError, FileNotFoundError, httpx.HTTPError) as e:
+                print(f"{tag} 표지 바꾸기 확인 실패: {e}", file=sys.stderr)
+            try:
                 print(share.send_after_ok(t.account, t.date, results, tg, dry_run))
             except (RuntimeError, ValueError, httpx.HTTPError) as e:
                 print(f"{tag} 상품 링크 보내기 실패: {e}", file=sys.stderr)
@@ -776,6 +781,19 @@ def execute(
         if ticks is not None and t.keys:
             ticks.mark(t.keys, "done", now)
     return log
+
+
+def cover_change(account: str, day: str, results: Path | None, tg, dry_run: bool = False) -> str:
+    """미리보기에 표지 벌 고르기(/ok 3, /cover 3)가 왔으면 표지를 다시 만든다 (tools.cover_look)."""
+    from tools import cover_look, publish
+
+    if tg is None or results is None:
+        return ""
+    try:
+        out = publish.find_run(results, account, date.fromisoformat(day))
+    except FileNotFoundError:
+        return ""
+    return cover_look.check(out, tg, dry_run=dry_run)
 
 
 def post_now(account: str, day: str, results: Path | None, tg, dry_run: bool = False) -> bool:

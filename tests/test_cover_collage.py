@@ -46,7 +46,6 @@ def test_row_counts():
 @pytest.mark.looks
 def test_collage_cover_slide_and_tall(tmp_path):
     profile = load_profile("women")
-    assert profile.looks.cover_collage.enabled
     colors = [(120, 70, 40), (30, 40, 60), (90, 30, 40), (40, 70, 50), (60, 60, 64), (140, 110, 60)]
     images = [flatlay(tmp_path / f"{i}.jpg", c) for i, c in enumerate(colors)]
     looks = [FeedLook(image=str(p), items=[FeedItem(name="니트")]) for p in images]

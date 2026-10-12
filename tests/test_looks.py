@@ -9,13 +9,21 @@ import pytest
 import yaml
 from PIL import Image
 
-from core.models import Candidate, CoverScore, DailyPlan, Manifest, PickRecord, Review
+from core.models import (
+    Candidate,
+    CoverScore,
+    DailyPlan,
+    Manifest,
+    PickRecord,
+    PreviewRecord,
+    Review,
+)
 from core.profile import load_profile
 from core.store import Store
 from tests.test_pick import rec, tg_of, upd, write_candidates
 from tests.test_plan import fake_photos, product  # noqa: F401 - fixture
 from tests.test_publish import CHAT, FakeApis
-from tools import ai_label, feedback, looks, pick, plan, publish, review, share
+from tools import ai_label, cover_look, feedback, looks, notify, pick, plan, publish, review, share
 
 pytestmark = pytest.mark.looks
 DAY = date(2026, 10, 2)
@@ -236,15 +244,24 @@ def test_review_per_look_then_finish(tmp_path, store):
     assert m.review.passed and not m.needs_human and m.review_score == 10
     feed = yaml.safe_load((out / "feed.yaml").read_text())
     assert feed["looks"][1]["image"].endswith("looks/2/outfit_r2/results/G_1.jpg")
-    assert feed["cover_collage"] is True  # profile looks.cover_collage
+    # profile looks.cover_collage 가 꺼져 있으면 한 벌 표지 (cover_look 이 없으면 1번 벌)
+    assert feed["cover_collage"] is False
+    assert feed["cover"].endswith("looks/1/outfit/results/G_1.jpg")
     assert review.main(["finish", str(out)]) == 0
-    # /fix "첫 장은 콜라주 말고 첫 코디로": 이 게시물만 1번 벌 코디컷 표지
     data = yaml.safe_load((out / "plan.yaml").read_text())
-    (out / "plan.yaml").write_text(yaml.safe_dump(data | {"cover_collage": False}))
+    # 이 게시물만 콜라주
+    (out / "plan.yaml").write_text(yaml.safe_dump(data | {"cover_collage": True}))
+    looks.finish(out)
+    assert yaml.safe_load((out / "feed.yaml").read_text())["cover_collage"] is True
+    # daily-feed 가 고른 표지 벌 (2026-10-12)
+    (out / "plan.yaml").write_text(yaml.safe_dump(data | {"cover_look": 2}))
     looks.finish(out)
     feed = yaml.safe_load((out / "feed.yaml").read_text())
     assert feed["cover_collage"] is False
-    assert feed["cover"].endswith("looks/1/outfit/results/G_1.jpg")
+    assert feed["cover"].endswith("looks/2/outfit_r2/results/G_1.jpg")
+    # 벌 장은 그대로 LOOK 1부터 (표지 벌도 다시 보여 줌)
+    names = [Path(p).name for p in notify.load_manifest(out).images]
+    assert names[:3] == ["01_cover.jpg", "02_look1.jpg", "03_look2.jpg"]
 
 
 def test_pick_sends_look_sheets(tmp_path, store):
@@ -654,3 +671,103 @@ def test_candidate_fix_refused_without_number_or_near_deadline(tmp_path, store):
     act = pick.check(profile, DAY, results, tg, True, 0, datetime.fromtimestamp(4000))
     assert act.action == "render" and "고칠 시간이 없어요" in tg.sent[n]
     assert not (run / "picks" / pick.EDITS).exists()
+
+
+def test_notify_reads_cover_choice():
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    assert notify.parse_command("/ok 3", r) == "ok"
+    assert notify.parse_command("/ok 표지 3", r) == "ok"
+    assert notify.parse_command("/ok women 10-02 표지3", r) == "ok"
+    assert notify.parse_command("/ok 아니 잠깐", r) is None
+    assert notify.parse_command("/skip 3", r) is None
+    ups = [upd(1, "/ok"), upd(2, "/cover 4"), upd(3, "표지 5번"), upd(4, "/ok women 10-03 2")]
+    assert notify.find_decision(ups, r, CHAT) == "ok"
+    assert notify.find_cover(ups, r, CHAT) == (3, 5)  # 다른 날짜 글은 뺌
+    assert notify.find_cover([upd(1, "/ok 2"), upd(2, "/ok")], r, CHAT) == (1, 2)
+    assert notify.find_cover([upd(1, "/ok")], r, CHAT) is None
+    assert notify.find_cover([upd(1, "/cover 3", at=900)], r, CHAT) is None  # 미리보기 전
+
+
+def test_cover_look_change_from_telegram(tmp_path, store):
+    out, _ = build(tmp_path, store)
+    profile = load_profile("women")
+    record = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    (out / "telegram.json").write_text(record.model_dump_json())
+    assert cover_look.current(out, profile) == 1
+    # 가짜 코디컷은 벌마다 같아서 3번 벌만 색을 바꿔 둔다
+    img3 = looks.chosen_image(looks.look_dir(out, 3))
+    Image.new("RGB", Image.open(img3).size, (40, 90, 160)).save(img3)
+    before = (out / "slides" / "01_cover.jpg").read_bytes()
+    tall_before = (out / "slides" / "tall" / "01_cover.jpg").read_bytes()
+    text = notify.control_text(notify.load_manifest(out), profile, False, cover=1)
+    assert "표지: LOOK 1" in text and "/ok 2" in text and "/cover 2" in text
+
+    api = FakeApis(replies=[(1100, "/ok 3", None)])
+    line = cover_look.check(out, tg_of(api))
+    assert "LOOK 3" in line
+    assert cover_look.current(out, profile) == 3
+    assert yaml.safe_load((out / "feed.yaml").read_text())["cover"].endswith(
+        "looks/3/outfit/results/G_1.jpg"
+    )
+    assert (out / "slides" / "01_cover.jpg").read_bytes() != before
+    assert (out / "slides" / "tall" / "01_cover.jpg").read_bytes() != tall_before
+    assert ai_label.read(out / "slides" / "01_cover.jpg")
+    assert any(m.endswith("/sendPhoto") for _, m in api.calls)
+    assert notify.find_decision(tg_of(api).updates(), record, CHAT) == "ok"
+    # 같은 글은 한 번만
+    n = len(api.calls)
+    assert cover_look.check(out, tg_of(api)) == ""
+    assert not any(m.endswith("/sendPhoto") for _, m in api.calls[n:])
+    # /fix 로 다시 만들어도 고른 표지 벌을 그대로 쓴다 (plan.yaml)
+    looks.finish(out)
+    assert yaml.safe_load((out / "feed.yaml").read_text())["cover"].endswith(
+        "looks/3/outfit/results/G_1.jpg"
+    )
+    # 없는 벌 번호는 알리고 그대로
+    api2 = FakeApis(replies=[(1100, "/ok 3", None), (1200, "/cover 9", None)])
+    assert "실패" in cover_look.check(out, tg_of(api2))
+    assert any("LOOK 9" in t for t in api2.texts)
+    assert cover_look.current(out, profile) == 3
+
+
+def test_cover_with_fix_in_one_message():
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    text = "/fix 2 신발 더 크게\n/cover 3"
+    assert notify.find_cover([upd(1, text)], r, CHAT) == (1, 3)
+    slides = [{"slide": i, "kind": "look", "look": i - 1} for i in range(1, 9)]
+    fixes = feedback.find_fixes([upd(1, text)], r, CHAT, slides)
+    assert len(fixes) == 1 and fixes[0]["text"] == "신발 더 크게"
+    fixes = feedback.find_fixes([upd(1, "/cover 3\n/fix 2 신발 더 크게")], r, CHAT, slides)
+    assert len(fixes) == 1 and fixes[0]["text"] == "신발 더 크게"
+    assert notify.find_cover([upd(1, "/cover 3\n/fix 2 신발")], r, CHAT) == (1, 3)
+
+
+def test_cover_carries_to_fixed_preview(tmp_path, store):
+    """/fix 로 다시 만든 미리보기도 그 전에 고른 표지 벌을 쓴다 (같이 보내도)."""
+    a, _ = build(tmp_path, store)
+    rec_a = PreviewRecord(account="women", date=DAY, run="a", sent_at=1000, message_ids=[11])
+    (a / "telegram.json").write_text(rec_a.model_dump_json())
+    # 고친 결과 b: 표지 고르기를 지난 결과에 반영하기 전에 /fix 가 기획을 가져감
+    b = tmp_path / "b"
+    shutil.copytree(a, b)
+    (b / "fix.json").write_text(json.dumps({"run": "out", "cover_look": None, "fixes": []}))
+    rec_b = rec_a.model_copy(update={"run": "b", "sent_at": 2000, "message_ids": [21]})
+    (b / "telegram.json").write_text(rec_b.model_dump_json())
+    api = FakeApis(replies=[(1100, "/fix 2 신발 더 크게\n/cover 3", None)])
+    assert "LOOK 3" in cover_look.check(a, tg_of(api))
+    assert "LOOK 3" in cover_look.check(b, tg_of(api))  # 고친 미리보기 뒤 글이 아니어도
+    assert cover_look.current(b, load_profile("women")) == 3
+    # 이어받은 표지는 다시 알리지 않는다
+    c = tmp_path / "c"
+    shutil.copytree(b, c)
+    (c / "cover.json").unlink()
+    (c / "fix.json").write_text(json.dumps({"run": "b", "cover_look": 3, "fixes": []}))
+    n = len(api.calls)
+    assert "그대로" in cover_look.check(c, tg_of(api))
+    assert not any("send" in m for _, m in api.calls[n:])
+    # /fix 가 표지를 5번으로 바꿨으면 /fix 를 따른다
+    data = yaml.safe_load((c / "plan.yaml").read_text()) | {"cover_look": 5}
+    (c / "plan.yaml").write_text(yaml.safe_dump(data))
+    (c / "cover.json").unlink()
+    assert "그대로" in cover_look.check(c, tg_of(api))
+    assert cover_look.current(c, load_profile("women")) == 5

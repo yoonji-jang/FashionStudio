@@ -879,7 +879,10 @@ def render(
     looks = [lk for lk in spec.looks if lk.image]
     shown = list(enumerate(looks, 1))
     if spec.cover and "cover" in kinds and not profile.looks.repeat_cover_look:
-        shown = shown[1:]  # 1번 벌은 표지로만
+        # 표지로 쓴 벌은 표지로만 (콜라주면 1번 벌)
+        same = [i for i, (_, lk) in enumerate(shown) if lk.image == spec.cover]
+        if shown:
+            del shown[same[0] if same and not spec.cover_collage else 0]
     counts = {"products": len(cards), "looks": len(shown)}
     count = sum(counts.get(k, 1) for k in kinds)
     if count > MAX_SLIDES:
