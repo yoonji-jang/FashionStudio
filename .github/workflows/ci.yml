@@ -1,8 +1,7 @@
 name: ci
 
+# main 머지 때는 다시 돌리지 않는다 (PR 에서 이미 검사함, Actions 사용 시간 절약)
 on:
-  push:
-    branches: [main]
   pull_request:
   # 봇이 GITHUB_TOKEN 으로 만든 PR(feedback-rules)은 pull_request 로 돌지 않아 직접 부른다
   workflow_dispatch:
