@@ -1,0 +1,216 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/1/outfit_r2/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 코듀로이칼라 워크 재킷
+  product: zigzag:172086863
+- comment: ''
+  name: 골지 헨리넥 니트
+  product: zigzag:168837265
+- comment: ''
+  name: 워싱 와이드 데님
+  product: zigzag:119842018
+- comment: ''
+  name: 로젤 숄더백
+  product: zigzag:165216354
+- comment: ''
+  name: 삭스 앵클부츠
+  product: zigzag:107677011
+- comment: ''
+  name: 스웨이드 재킷
+  product: zigzag:171592183
+- comment: ''
+  name: 부클 니트
+  product: zigzag:171405395
+- comment: ''
+  name: 플리츠 롱 스커트
+  product: zigzag:148007785
+- comment: ''
+  name: 애니 숄더백
+  product: zigzag:170305230
+- comment: ''
+  name: 소가죽 메리제인
+  product: zigzag:166028838
+- comment: ''
+  name: 라운드 귀걸이
+  product: zigzag:133580915
+- comment: ''
+  name: 브이넥 맨투맨
+  product: zigzag:160291322
+- comment: ''
+  name: 미니 스커트 팬츠
+  product: zigzag:171584018
+- comment: ''
+  name: 빅 호보백
+  product: zigzag:168594319
+- comment: ''
+  name: 폴딩 롱부츠
+  product: zigzag:144708955
+- comment: ''
+  name: 체인 토글 목걸이
+  product: zigzag:110794612
+- comment: ''
+  name: 매트레더 블루종
+  product: zigzag:171316698
+- comment: ''
+  name: 헨리넥 니트
+  product: zigzag:171708918
+- comment: ''
+  name: 슬림 부츠컷 데님
+  product: zigzag:145122986
+- comment: ''
+  name: 나일론 호보백
+  product: zigzag:166150526
+- comment: ''
+  name: 왈라비 스웨이드 로퍼
+  product: zigzag:153677725
+- comment: ''
+  name: 레더 시계
+  product: zigzag:123161642
+- comment: ''
+  name: 브리튼 가디건
+  product: zigzag:168779822
+- comment: ''
+  name: 골지 반목 니트
+  product: zigzag:113835947
+- comment: ''
+  name: 플리츠 스커트 슬랙스
+  product: zigzag:166228084
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:110158856
+- comment: ''
+  name: 볼 체인 목걸이
+  product: zigzag:113341770
+- comment: ''
+  name: 딥브이 맨투맨
+  product: zigzag:168315295
+- comment: ''
+  name: 골지 버튼 나시
+  product: zigzag:169527291
+- comment: ''
+  name: 플리츠 랩스커트
+  product: zigzag:159574062
+- comment: ''
+  name: 슬라우치 롱부츠
+  product: zigzag:166288289
+- comment: ''
+  name: 호보 숄더백
+  product: zigzag:170446631
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 코듀로이칼라 워크 재킷
+    product: zigzag:172086863
+  - comment: ''
+    name: 골지 헨리넥 니트
+    product: zigzag:168837265
+  - comment: ''
+    name: 워싱 와이드 데님
+    product: zigzag:119842018
+  - comment: ''
+    name: 로젤 숄더백
+    product: zigzag:165216354
+  - comment: ''
+    name: 삭스 앵클부츠
+    product: zigzag:107677011
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 재킷
+    product: zigzag:171592183
+  - comment: ''
+    name: 부클 니트
+    product: zigzag:171405395
+  - comment: ''
+    name: 플리츠 롱 스커트
+    product: zigzag:148007785
+  - comment: ''
+    name: 애니 숄더백
+    product: zigzag:170305230
+  - comment: ''
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  - comment: ''
+    name: 라운드 귀걸이
+    product: zigzag:133580915
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브이넥 맨투맨
+    product: zigzag:160291322
+  - comment: ''
+    name: 미니 스커트 팬츠
+    product: zigzag:171584018
+  - comment: ''
+    name: 빅 호보백
+    product: zigzag:168594319
+  - comment: ''
+    name: 폴딩 롱부츠
+    product: zigzag:144708955
+  - comment: ''
+    name: 체인 토글 목걸이
+    product: zigzag:110794612
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 매트레더 블루종
+    product: zigzag:171316698
+  - comment: ''
+    name: 헨리넥 니트
+    product: zigzag:171708918
+  - comment: ''
+    name: 슬림 부츠컷 데님
+    product: zigzag:145122986
+  - comment: ''
+    name: 나일론 호보백
+    product: zigzag:166150526
+  - comment: ''
+    name: 왈라비 스웨이드 로퍼
+    product: zigzag:153677725
+  - comment: ''
+    name: 레더 시계
+    product: zigzag:123161642
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브리튼 가디건
+    product: zigzag:168779822
+  - comment: ''
+    name: 골지 반목 니트
+    product: zigzag:113835947
+  - comment: ''
+    name: 플리츠 스커트 슬랙스
+    product: zigzag:166228084
+  - comment: ''
+    name: 로젤 숄더백
+    product: zigzag:165216354
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:110158856
+  - comment: ''
+    name: 볼 체인 목걸이
+    product: zigzag:113341770
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-13/looks/6/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 딥브이 맨투맨
+    product: zigzag:168315295
+  - comment: ''
+    name: 골지 버튼 나시
+    product: zigzag:169527291
+  - comment: ''
+    name: 플리츠 랩스커트
+    product: zigzag:159574062
+  - comment: ''
+    name: 슬라우치 롱부츠
+    product: zigzag:166288289
+  - comment: ''
+    name: 호보 숄더백
+    product: zigzag:170446631
+title_lines:
+- 가을 겉옷 고민이라면
+- 질감 섞는 코디 정리

@@ -1,0 +1,106 @@
+account: women
+cover: out/2026-10-11/looks/2/outfit_r2/results/G_1.jpg
+cover_collage: false
+date: '2026-10-11'
+items:
+- cm: 71.0
+  color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 테일러드 재킷 (dark brown suede tailored jacket in a relaxed oversized
+    fit with padded shoulders and hip to upper-thigh length, matte suede)
+  name: 스웨이드 재킷
+  product: zigzag:171592183
+  ref_photos:
+  - 0
+  - 1
+  size: about 71 cm long from shoulder to hem, 45.5 cm across the shoulders, 59.5
+    cm across the chest laid flat, 60.5 cm long sleeves
+- cm: 61.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 보트넥 루즈핏 니트 (ivory loose wide boat-neck knit with dropped shoulders at
+    hip length, soft fuzzy light knit)
+  name: 보트넥 니트
+  product: zigzag:171121984
+  ref_photos:
+  - 1
+  - 2
+  - 4
+  size: about 61 cm long from shoulder to hem, 64 cm across the shoulders, 63 cm across
+    the chest laid flat, 54 cm long sleeves
+- cm: 81.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 3
+  desc: 차콜 플리츠 롱 스커트 (charcoal A-line pleated long skirt with wide soft box pleats
+    at mid-calf to ankle length)
+  name: 플리츠 롱 스커트
+  product: zigzag:149546302
+  ref_photos:
+  - 3
+  - 0
+  size: about 81 cm long from waist to hem, 34 cm across the waist laid flat, 44 cm
+    across the hips laid flat, 70 cm across the hem laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 페니로퍼 (tan-brown suede penny loafers with round toes and low heels)
+  name: 페니로퍼
+  product: zigzag:119116040
+  ref_photos:
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 4
+  desc: 브라운 스웨이드 호보백 (brown suede hobo shoulder bag with a zipper)
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+  ref_photos:
+  - 4
+  - 3
+looks: []
+reason: 스웨이드 테일러드 재킷이 주인공, 아이보리 보트넥 니트와 차콜 플리츠 스커트로 차분하게. 브라운·아이보리 톤의 단정한 분위기
+shot: flatlay
+styling: The jacket is draped over the shoulders behind the knit and only a band shows
+  above the shoulders while the knit front stays visible.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#레이어드코디'
+  - '#트렌치코트'
+  - '#스웨이드재킷'
+  - '#니트베스트'
+  - '#일교차코디'
+  - '#꾸안꾸'
+  intro: 낮엔 선선하고 밤엔 쌀쌀한 요즘, 가볍게 겹쳐 입는 코디를 모아 봤어요 🍂
+  points: []
+  title_lines:
+  - 아침저녁 쌀쌀한 날
+  - 겹쳐 입는 조합 정리
+theme:
+  date: '2026-10-11'
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임
