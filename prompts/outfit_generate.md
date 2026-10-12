@@ -28,15 +28,16 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 2026-10-12 피드백(10/11 게시물, 스레드 "코디컷 이미지 피드백"): 바지가 배바지처럼 위로 올라옴, 신발이 가지런하지 않음,
 셔츠 밑단이 바지 밖으로 삐져나옴, 셔츠 위 니트 조끼가 입은 느낌 없이 옷만 위에 올린 것 같음, 전체가 모델이 입은 핏을
 그대로 바닥에 내려놓은 느낌이 아님 → '허리선은 위에서 40%' 문장(10/2)이 원인이라 실제 몸 비율(깃에서 허리 40~45cm,
-긴바지면 위쪽 30% 안팎)로 바꿈, 맨 앞에 '모델이 벗어 둔 그대로' 원칙, 셔츠 밑단 전체를 넣어 입기, 조끼 겹쳐 입기,
+긴바지면 위쪽 30% 안팎)로 바꿈, 맨 앞에 '모델이 입은 핏과 같게' 원칙(사용자: '벗어 둔' 은 구겨 벗어 놓은 옷으로 읽혀 애매함), 셔츠 밑단 전체를 넣어 입기, 조끼 겹쳐 입기,
 신발 두 짝 같은 각도·같은 높이 문장.
 같은 날 사용자: 모델핏과 비슷하게 그리는 걸 최우선으로 → 아래 핏·비율·겹침 문장과 어긋나면 착용컷을 따른다는 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
 the real clothes on the floor and photographed them from directly above with a camera.
-The most important goal: the outfit looks exactly as the model wears it in the worn product photos,
-as if she had just slipped out of it and it settled onto the floor keeping its worn shape. Copy from
+The most important goal: every item has the same fit as on the model in the worn product photos.
+The outfit is neatly laid out by a stylist, never crumpled or dropped, and each garment is arranged
+in the same silhouette, volume, length and drape it shows on the model's body. Copy from
 the worn photos how the top and bottoms meet (where the waistband sits, how the top is tucked), the
 length of the top compared with the bottoms, how the layers sit on each other, and the drape and
 fit of every piece. It must never look like separate garments laid next to or on top of each other.
