@@ -25,10 +25,24 @@ run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문
 → 단추 개수·위치와 주얼리 디자인을 사진 그대로 지키는 문장.
 2026-10-10 피드백(10/10 게시물 /fix 6건): 그림 안에 숫자가 그려짐, 치마 앞뒤가 바뀜(주머니 있는 뒷면), 넣어 입은 허리를 인위적으로 말아 넣음,
 목걸이가 작아 안 보임 → 숫자(치수) 금지 강화, 치마는 앞면, 자연스럽게 살짝 넣은 허리, 주얼리 크기 문장.
+2026-10-12 피드백(10/11 게시물, 스레드 "코디컷 이미지 피드백"): 바지가 배바지처럼 위로 올라옴, 신발이 가지런하지 않음,
+셔츠 밑단이 바지 밖으로 삐져나옴, 셔츠 위 니트 조끼가 입은 느낌 없이 옷만 위에 올린 것 같음, 전체가 모델이 입은 핏을
+그대로 바닥에 내려놓은 느낌이 아님 → '허리선은 위에서 40%' 문장(10/2)이 원인이라 실제 몸 비율(깃에서 허리 40~45cm,
+긴바지면 위쪽 30% 안팎)로 바꿈, 맨 앞에 '모델이 입은 핏과 같게' 원칙(사용자: '벗어 둔' 은 구겨 벗어 놓은 옷으로 읽혀 애매함), 셔츠 밑단 전체를 넣어 입기, 조끼 겹쳐 입기,
+신발 두 짝 같은 각도·같은 높이 문장.
+같은 날 사용자: 모델핏과 비슷하게 그리는 걸 최우선으로 → 아래 핏·비율·겹침 문장과 어긋나면 착용컷을 따른다는 문장.
 이 주석은 전송되지 않는다.
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
 the real clothes on the floor and photographed them from directly above with a camera.
+The most important goal: every item has the same fit as on the model in the worn product photos.
+The outfit is neatly laid out by a stylist, never crumpled or dropped, and each garment is arranged
+in the same silhouette, volume, length and drape it shows on the model's body. Copy from
+the worn photos how the top and bottoms meet (where the waistband sits, how the top is tucked), the
+length of the top compared with the bottoms, how the layers sit on each other, and the drape and
+fit of every piece. It must never look like separate garments laid next to or on top of each other.
+This comes first: wherever a rule below about fit, length, proportions, tucking or layering would
+make the outfit look different from how the model wears it, follow the worn photos.
 
 The attached images are reference sheets of the exact items to use, in this order. Each sheet shows
 one or more shop photos of the same single item (sometimes flat, sometimes worn by a model); use
@@ -62,13 +76,19 @@ trousers, jewelry is small but always clearly visible: draw a necklace chain and
 true scale rather than hair-thin). Lengths must follow the stated cm exactly and are never shortened,
 cropped or ankle-length unless the product itself is cropped.
 
-Proportions like a tall model with long legs: the waistline sits high, at about 40 percent of the
-figure height from the collar, and stays visible (unless the styling says otherwise, the top is tucked in or ends at the
+Proportions of a real tall woman wearing the outfit, never pulled up: the waistband of the bottoms
+sits where it sits on the model in the worn photos, at her natural waist or a little below it, about
+40 to 45 cm below the collar at the common scale (with full-length trousers that is roughly 30 percent
+of the figure height from the collar, never 40 percent or higher). The top keeps its real length
+above the waistband, so the chest and torso of the top are clearly visible and only the part of the
+top that would really be tucked disappears behind the waistband; the bottoms never ride up to the
+chest or the ribs like high-waisted pants pulled up too far, and the top is never squashed into a
+short band above them. The waistline stays visible (unless the styling says otherwise, the top is tucked in or ends at the
 waist and any belt shows; an outer may fall over the hips but the waistband of the bottoms still shows in its
 opening). The top's hem never covers the waistband design of the bottoms (waistband, belt, belt
-loops, buttons): the top is only lightly tucked in at the front or ends just above it, and the
-bottoms sit a little lower so their whole waistband shows. Below it the bottoms are the biggest and longest part of the figure, about 60 percent of
-its height: full-length trousers run from that waistline all the way down near the bottom edge of
+loops, buttons): the top is tucked in with only a soft blouse of fabric above the waistband, or ends just above it, and the
+bottoms sit a little lower so their whole waistband shows. Below it the bottoms are the biggest and longest part of the figure, about two thirds
+of its height with full-length trousers: full-length trousers run from that waistline all the way down near the bottom edge of
 the frame, clearly longer than any jacket or top (an item stated as 100 cm is about 1.6 times as
 long as one stated as 62 cm), and midi or long skirts flow well below where the knees would be.
 Style the bottoms like a fashion stylist, not like a stiff product shot: keep the exact cut seen in
@@ -94,8 +114,18 @@ H-line, pencil or bias-cut satin skirt stays narrow and falls straight like on t
 very hem loosening a little; it is never fanned out into an A-line or flare.
 A skirt is drawn from its front, the side that faces out when worn: if the photos show the front and
 back (for example a pocketed back and a plain front), copy the front design and never the back.
-A top tucked into a skirt or trousers is only slightly tucked in at the front edge, in a natural
-soft line like a real person tucking it in; never rolled, folded or twisted into the waistband.
+A top tucked into a skirt or trousers is tucked in all the way around, the way the model wears it:
+its whole hem, including the front, sides and the long shirt tails, is hidden inside the bottoms, and
+no hem, tail or corner of it hangs out below or beside the waistband. Just above the waistband the
+fabric blouses out a little in a soft natural line like a real person tucking it in; it is never
+rolled, folded or twisted into the waistband, and never pulled tight and flat.
+A vest or knit vest worn over a shirt or tee is drawn as truly worn over it, the two pieces sharing
+one body: the shirt's body is fully inside the vest and slightly fills it out, the shirt's collar
+comes up out of the vest's neckline and lies over its edge (or stands above a high neck), the shirt's
+shoulders are hidden under the vest's shoulders, its sleeves come out from under the vest's
+armholes with the armhole edge lying over the sleeve tops, and below the vest only a little of the
+shirt shows before it is tucked into the bottoms. The vest is never laid on top of a shirt that is
+spread out flat underneath like a separate garment.
 Every item keeps its exact product design: neckline, ties and straps, button count, pockets, belt,
 pleats and hem shape are copied from its photos and never redesigned. Fitted tops look the way they
 fit on the model: slim and close to the body, with their point details (off-shoulder neckline,
@@ -129,8 +159,10 @@ areas. The outfit never hugs the top edge: with a short skirt, shorts or a short
 figure (clothes and shoes together) moves down so the empty floor above the collar and below the
 lowest item is about equal. The bag
 lies close to the left side of the clothes at waist height, slightly overlapping the edge of the
-clothes, and never lower than the knees. The shoes are one neat pair laid side by side,
-parallel and pointing the same way, never splayed in a V, crossed or overlapping each other. With
+clothes, and never lower than the knees. The shoes are one neat pair laid side by side
+the way a shop displays them: exactly parallel at the same angle, both toes pointing the same way,
+toe tips level at the same height, with a small even gap between them, never splayed in a V, one
+turned more than the other, staggered, crossed, overlapping each other or touching the clothes. With
 full-length trousers or a long skirt they sit in the lower right beside the hem, not overlapping it;
 with a short or knee-length skirt, shorts or any bottom that ends above the ankle they sit centered
 on the empty floor directly below the hem. Only if jewelry or small accessories are in
