@@ -280,6 +280,9 @@ class Looks(BaseModel):
     # 같은 게시물 안에서 다시 써도 되는 카테고리와 횟수 (가방·신발은 두 벌까지 같이 써도 자연스러움)
     share_categories: list[Category] = ["가방", "신발", "소품"]
     max_share: int = Field(default=2, ge=1, le=4)
+    # 옷(아우터·상의·하의)도 max_share 벌까지 같이 쓸 수 있는 상품 수. 0 이면 옷은 한 벌에만
+    # (2026-10-12 women 사용자: "한 게시물에 같은 옷 1~2개 정도는 겹쳐도 돼")
+    max_shared_clothes: int = Field(default=0, ge=0, le=6)
     # 옷(아우터·상의·하의)의 같은 포인트 말(style.point_words, 예: 스웨이드)이 이 벌 수보다
     # 많으면 경고. 한 아이템이 여섯 벌을 다 차지하지 않게 (2026-10-06). None 이면 보지 않음
     max_same_kind: int | None = None

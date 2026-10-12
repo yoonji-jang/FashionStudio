@@ -266,7 +266,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `count` | 6 | 게시물에 넣는 벌 수 (표지·댓글 안내 포함 10장 안) |
 | `min` | 5 | 텔레그램에서 직접 고를 때 최소 벌 수 |
 | `spare` | 2 | 후보로 더 보내는 예비 벌 수 ("4번 빼고" 하면 채움, 이미지 비용 없음) |
-| `share_categories`, `max_share` | [가방, 신발, 소품], 2 | 이 카테고리는 같은 상품을 두 벌까지 같이 써도 됨 (옷은 한 벌에만) |
+| `share_categories`, `max_share` | [가방, 신발, 소품], 2 | 이 카테고리는 같은 상품을 두 벌까지 같이 써도 됨 |
 | `candidates` | 1 | 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 `review.max_rounds` 까지 다시 |
 | `repeat_cover_look` | true | 표지로 쓴 벌도 벌 장에 상품 정보와 함께 다시 보여 줌 (false 면 표지로만, 텔레그램 표지 바꾸기는 안 됨) |
 | `label`, `show_shop`, `show_price` | "LOOK {n}", true, false | 벌 장 글자 (가격은 바뀔 수 있어 기본으로 뺌) |
