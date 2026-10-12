@@ -594,14 +594,21 @@ def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: boo
             errors.append(
                 f"제목에 벌 수를 쓰지 않습니다: '{m.group(0)}' (profile looks.title_count)"
             )
+    shared_clothes = 0
     for pid, where in seen.items():
         if len(where) < 2:
             continue
         cat = products[pid].category if pid in products else "?"
         nums = ", ".join(map(str, where))
         if cat not in lk.share_categories:
-            errors.append(f"{pid} ({cat}): 여러 벌({nums}번)에 들어 있습니다 (옷은 한 벌에만)")
-        elif len(where) > lk.max_share:
+            shared_clothes += 1
+            if shared_clothes > lk.max_shared_clothes:
+                errors.append(
+                    f"{pid} ({cat}): 여러 벌({nums}번)에 들어 있습니다 "
+                    f"(겹치는 옷은 {lk.max_shared_clothes}개까지, profile looks.max_shared_clothes)"
+                )
+                continue
+        if len(where) > lk.max_share:
             errors.append(f"{pid} ({cat}): {nums}번 벌에 들어 있습니다 (최대 {lk.max_share}벌)")
     return errors
 

@@ -104,7 +104,13 @@ def test_check_looks_rules(store):
     p.looks[2].point = ""
     p.looks[3].items[3].product = "zigzag:200"  # 가방을 세 벌에
     text = "\n".join(plan.check(p, profile, store)[0])
-    assert "옷은 한 벌에만" in text
+    assert "겹치는 옷은" not in text  # women 은 옷 2개까지 겹쳐도 됨
+    p.looks[2].items[0].product = "zigzag:10"  # 같은 아우터를 세 벌에
+    assert "최대 2벌" in "\n".join(plan.check(p, profile, store)[0])
+    p.looks[2].items[0].product = looks_plan().looks[2].items[0].product
+    strict = profile.model_copy(deep=True)
+    strict.looks.max_shared_clothes = 0
+    assert "겹치는 옷은 0개까지" in "\n".join(plan.check(p, strict, store)[0])
     assert "3번 벌 캡션 한 줄(point)이 없습니다" in text
     assert "최대 2벌" in text
 
