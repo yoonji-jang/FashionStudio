@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "5번 가방은 앞에 버클 벨트 장식이 그려졌지만 원본은 지퍼에 펜던트가 달린 모양이라 디테일이 다름. 맨투맨 밑단이 3번 치마 허리 윗부분을 덮어 허리 디자인이 일부 가려짐. 5번 가방이 왼쪽 아래 제목 자리에 조금 걸침.",
+        "feedback_ok": null
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 는 색, 상품 구성, 치마 볼륨, 신발 배치(하의 밑에 두 짝이 나란히)가 좋다. 감점은 가방 디테일 차이와 허리 가림, 제목 자리 걸침이다. 합계 8점이고 0점 항목이 없어 통과 기준에는 해당한다."
+}

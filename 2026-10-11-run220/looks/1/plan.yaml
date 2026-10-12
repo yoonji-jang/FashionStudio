@@ -1,0 +1,106 @@
+account: women
+cover_collage: false
+date: '2026-10-11'
+items:
+- cm: 77.0
+  color: 베이지
+  comment: ''
+  cutout_photo: 3
+  desc: 베이지 하프 트렌치코트 (beige half-length trench coat in a loose A-line fit with dropped
+    shoulders and hip to upper-thigh length, matte cotton twill)
+  name: 하프 트렌치코트
+  product: zigzag:172092884
+  ref_photos:
+  - 3
+  size: about 77 cm long from shoulder to hem, 60.5 cm across the chest laid flat
+- cm: 57.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 헨리넥 레이어드 긴팔티 (black fitted slim scoop-neck henley long-sleeve tee with
+    a gray layered hem at the hip)
+  name: 헨리넥 레이어드 티
+  product: zigzag:171262648
+  ref_photos:
+  - 1
+  - 4
+  size: about 57 cm long from shoulder to hem, 37.5 cm across the shoulders, 42.5
+    cm across the chest laid flat, 62 cm long sleeves
+- cm: 107.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 핀스트라이프 슬랙스 (black pinstripe relaxed wide straight-leg slacks with a flat
+    front at full length)
+  name: 핀스트라이프 슬랙스
+  product: zigzag:166018788
+  ref_photos:
+  - 2
+  - 3
+  size: about 107 cm long from waist to hem, 35 cm across the waist laid flat, 47
+    cm across the hips laid flat, 29 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 메리제인 플랫 (black round-toe mary jane flats)
+  name: 메리제인 플랫
+  product: zigzag:137014509
+  ref_photos:
+  - 1
+  - 0
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 쇼퍼백 (cream-white rectangular leather shoulder shopper bag with two handles)
+  name: 스퀘어 쇼퍼백
+  product: zigzag:117733398
+  ref_photos:
+  - 2
+  - 0
+looks: []
+reason: 베이지 하프 트렌치가 주인공, 블랙 레이어드 티와 핀스트라이프 슬랙스로 단정하게. 베이지·블랙 톤의 단정한 분위기
+shot: flatlay
+styling: The beige coat keeps its cream-beige color and its half length. The black
+  pinstripe slacks are plain flat-front trousers with no pleats, drawn at their full
+  107 cm, about 1.4 times as long as the coat, running from the waist to within a
+  few percent of the bottom edge of the frame. The two wide straight legs hang parallel
+  and separate, never crossed or twisted, with the hems resting over the shoes.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#레이어드코디'
+  - '#트렌치코트'
+  - '#스웨이드재킷'
+  - '#니트베스트'
+  - '#일교차코디'
+  - '#꾸안꾸'
+  intro: 낮엔 선선하고 밤엔 쌀쌀한 요즘, 가볍게 겹쳐 입는 코디를 모아 봤어요 🍂
+  points: []
+  title_lines:
+  - 아침저녁 쌀쌀한 날
+  - 겹쳐 입는 조합 정리
+theme:
+  date: '2026-10-11'
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임

@@ -1,0 +1,126 @@
+account: women
+cover_collage: false
+date: '2026-10-11'
+items:
+- cm: 59.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 캡슬리브 하프넥 니트 베스트 (black boxy relaxed cap-sleeve mock-neck knit vest with
+    dropped shoulders, cropped at the waist with a wide ribbed hem band, soft fine-gauge
+    wool knit)
+  name: 캡 슬리브 베스트
+  product: zigzag:171471244
+  ref_photos:
+  - 0
+  - 2
+  size: about 59 cm long from shoulder to hem, 61 cm across the shoulders, 57 cm across
+    the chest laid flat
+- cm: 72.5
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 워싱 셔츠 (white washed cotton shirt with a soft relaxed collar that lies
+    slightly collapsed, in a relaxed oversized fit with long unrolled sleeves and
+    a long shirt-tail hem to the upper thigh)
+  name: 워싱 셔츠
+  product: zigzag:127356723
+  ref_photos:
+  - 0
+  size: about 72.5 cm long from shoulder to hem, 48.5 cm across the shoulders, 67
+    cm across the chest laid flat, 63 cm long sleeves
+  wear_with: 상의
+- cm: 104.5
+  color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 핀스트라이프 와이드 슬랙스 (gray pinstripe high-rise wide-leg slacks with a soft front
+    pleat at full length, the legs widening gently from the hips to a wide hem that
+    falls long to the ankle bone and over the shoes)
+  name: 와이드 슬랙스
+  product: zigzag:168694332
+  ref_photos:
+  - 1
+  - 4
+  size: about 104.5 cm long from waist to hem, 36 cm across the waist laid flat, 51
+    cm across the hips laid flat, 27 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 청키 레이스업 슈즈 (black chunky lace-up derby shoes with white stitching)
+  name: 레이스업 슈즈
+  product: zigzag:111145203
+  ref_photos:
+  - 3
+  - 5
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 호보백 (large black leather hobo shoulder bag)
+  name: 빅 호보백
+  product: zigzag:168594319
+  ref_photos:
+  - 3
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 레더 벨트 (black leather belt with a square silver buckle)
+  name: 레더 벨트
+  product: zigzag:148980176
+  ref_photos:
+  - 2
+  wear_with: 하의
+looks: []
+reason: 블랙 니트 베스트가 주인공, 화이트 셔츠와 그레이 슬랙스로 단정하게. 블랙·그레이 톤의 단정한 분위기
+shot: flatlay
+styling: The shirt sleeves are not rolled or folded, they hang down at full length
+  with the cuffs closed at the wrists. The shirt collar is soft and relaxed, slightly
+  collapsed with natural creases, never crisp or stiff. The shirt hem shows 4 cm below
+  the vest and the waistband stays visible. The black belt is threaded through the
+  slacks' belt loops, not around the vest. The cap-sleeve mock-neck vest has short
+  cap sleeves over the shoulder tips and a low funnel neck, with the shirt collar
+  soft inside it. The wide-leg slacks are drawn at their full 104.5 cm length, about
+  1.4 times as long as the shirt, widening from the hips to a wide hem that covers
+  the ankle bones and reaches near the bottom of the frame, never cropped, not short
+  and not a narrow straight tube.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#레이어드코디'
+  - '#트렌치코트'
+  - '#스웨이드재킷'
+  - '#니트베스트'
+  - '#일교차코디'
+  - '#꾸안꾸'
+  intro: 낮엔 선선하고 밤엔 쌀쌀한 요즘, 가볍게 겹쳐 입는 코디를 모아 봤어요 🍂
+  points: []
+  title_lines:
+  - 아침저녁 쌀쌀한 날
+  - 겹쳐 입는 조합 정리
+theme:
+  date: '2026-10-11'
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임

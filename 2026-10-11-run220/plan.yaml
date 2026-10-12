@@ -1,0 +1,456 @@
+account: women
+date: '2026-10-11'
+theme:
+  date: '2026-10-11'
+  title_hint: 낮엔 덥고 밤엔 쌀쌀, 스트라이프 니트 베스트
+  mood: 버터옐로와 그레이로 가볍게 겹쳐 입는 일요일 브런치룩
+  slots:
+  - category: 상의
+    desc: 버터옐로 니트 베스트
+  - category: 하의
+    desc: 그레이 플리츠 롱스커트
+  - category: 가방
+    desc: 화이트 위빙백
+  - category: 신발
+    desc: 블랙 메리제인
+  - category: 소품
+    desc: 뿔테 안경
+  type: 아이템
+  why: 일요일, 15~28도로 낮에 더워 반팔 셔츠에 니트 베스트 한 장으로 겹 수를 줄임
+  search_terms:
+    상의:
+    - 버터옐로 니트 베스트
+    - 스트라이프 셔츠
+    소품:
+    - 뿔테 안경
+    하의:
+    - 플리츠 롱스커트
+items: []
+looks:
+- items:
+  - product: zigzag:172092884
+    color: 베이지
+    desc: 베이지 하프 트렌치코트 (beige half-length trench coat in a loose A-line fit with dropped
+      shoulders and hip to upper-thigh length, matte cotton twill)
+    name: 하프 트렌치코트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 77 cm long from shoulder to hem, 60.5 cm across the chest laid flat
+    cm: 77.0
+  - product: zigzag:171262648
+    color: 블랙
+    desc: 블랙 헨리넥 레이어드 긴팔티 (black fitted slim scoop-neck henley long-sleeve tee with
+      a gray layered hem at the hip)
+    name: 헨리넥 레이어드 티
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 4
+    size: about 57 cm long from shoulder to hem, 37.5 cm across the shoulders, 42.5
+      cm across the chest laid flat, 62 cm long sleeves
+    cm: 57.0
+  - product: zigzag:166018788
+    color: 블랙
+    desc: 블랙 핀스트라이프 슬랙스 (black pinstripe relaxed wide straight-leg slacks with a flat
+      front at full length)
+    name: 핀스트라이프 슬랙스
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 107 cm long from waist to hem, 35 cm across the waist laid flat, 47
+      cm across the hips laid flat, 29 cm across the hem laid flat
+    cm: 107.0
+  - product: zigzag:137014509
+    color: 블랙
+    desc: 블랙 메리제인 플랫 (black round-toe mary jane flats)
+    name: 메리제인 플랫
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:117733398
+    color: 아이보리
+    desc: 아이보리 쇼퍼백 (cream-white rectangular leather shoulder shopper bag with two
+      handles)
+    name: 스퀘어 쇼퍼백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+  reason: 베이지 하프 트렌치가 주인공, 블랙 레이어드 티와 핀스트라이프 슬랙스로 단정하게. 베이지·블랙 톤의 단정한 분위기
+  point: 베이지 트렌치에 블랙 슬랙스로 톤을 나눠 단정하게 입어요
+  styling: The beige coat keeps its cream-beige color and its half length. The black
+    pinstripe slacks are plain flat-front trousers with no pleats, drawn at their full
+    107 cm, about 1.4 times as long as the coat, running from the waist to within a
+    few percent of the bottom edge of the frame. The two wide straight legs hang
+    parallel and separate, never crossed or twisted, with the hems resting over the
+    shoes.
+- items:
+  - product: zigzag:171592183
+    color: 브라운
+    desc: 브라운 스웨이드 테일러드 재킷 (dark brown suede tailored jacket in a relaxed oversized
+      fit with padded shoulders and hip to upper-thigh length, matte suede)
+    name: 스웨이드 재킷
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 71 cm long from shoulder to hem, 45.5 cm across the shoulders, 59.5
+      cm across the chest laid flat, 60.5 cm long sleeves
+    cm: 71.0
+  - product: zigzag:171121984
+    color: 아이보리
+    desc: 아이보리 보트넥 루즈핏 니트 (ivory loose wide boat-neck knit with dropped shoulders
+      at hip length, soft fuzzy light knit)
+    name: 보트넥 니트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 1
+    - 2
+    - 4
+    size: about 61 cm long from shoulder to hem, 64 cm across the shoulders, 63 cm
+      across the chest laid flat, 54 cm long sleeves
+    cm: 61.0
+  - product: zigzag:149546302
+    color: 차콜
+    desc: 차콜 플리츠 롱 스커트 (charcoal A-line pleated long skirt with wide soft box pleats
+      at mid-calf to ankle length)
+    name: 플리츠 롱 스커트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 0
+    size: about 81 cm long from waist to hem, 34 cm across the waist laid flat, 44
+      cm across the hips laid flat, 70 cm across the hem laid flat
+    cm: 81.0
+  - product: zigzag:119116040
+    color: 브라운
+    desc: 브라운 스웨이드 페니로퍼 (tan-brown suede penny loafers with round toes and low heels)
+    name: 페니로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:150024149
+    color: 브라운
+    desc: 브라운 스웨이드 호보백 (brown suede hobo shoulder bag with a zipper)
+    name: 스웨이드 호보백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 3
+  reason: 스웨이드 테일러드 재킷이 주인공, 아이보리 보트넥 니트와 차콜 플리츠 스커트로 차분하게. 브라운·아이보리 톤의 단정한 분위기
+  point: 스웨이드 재킷을 어깨에 걸쳐 아이보리 니트를 살려요 🤎
+  styling: The jacket is draped over the shoulders behind the knit and only a band
+    shows above the shoulders while the knit front stays visible.
+  cover: out/2026-10-11/looks/2/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:165576378
+    color: 블랙
+    desc: 블랙 레더 하프자켓 (black soft thin faux leather half jacket with a shirt collar,
+      long boxy oversized fit with dropped shoulders and long sleeves, hem falling to
+      the upper thigh, soft supple drape with a subtle sheen and fine creases, not stiff
+      or shiny)
+    name: 레더 하프자켓
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    - 2
+    size: about 75 cm long from shoulder to hem
+    cm: 75.0
+  - product: zigzag:135105388
+    color: 그레이
+    desc: 그레이 골지 니트 (gray-blue fitted slim thin ribbed knit with a v neckline and
+      a small notched collar, hem at the waist)
+    name: 골지 니트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 1
+    - 3
+    size: about 52 cm long from shoulder to hem, 33 cm across the shoulders, 32 cm
+      across the chest laid flat, 60 cm long sleeves
+    cm: 52.0
+  - product: zigzag:166063974
+    color: 블랙
+    desc: 블랙 워싱 부츠컷 데님 (faded washed black denim pants fitted through the hips and
+      thighs and flared from the knee at full length)
+    name: 블랙 부츠컷 데님
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    - 1
+    size: about 104 cm long from waist to hem, 35 cm across the waist laid flat, 47
+      cm across the hips laid flat, 29 cm across the hem laid flat
+    cm: 104.0
+  - product: zigzag:107677011
+    color: 블랙
+    desc: 블랙 삭스 앵클부츠 (black sock-fit ankle boots with a block heel)
+    name: 삭스 앵클부츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 0
+    - 3
+  - product: zigzag:138364376
+    color: 블랙
+    desc: 블랙 더플백 (black nylon shirred duffle shoulder bag)
+    name: 셔링 더플백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:120794025
+    color: 브라운
+    desc: 브라운 가죽 시계 (small rectangular gold watch with a dark brown leather strap
+      worn on the wrist)
+    name: 레더 시계
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    slot: 팔찌
+  reason: 블랙 레더 하프자켓이 주인공, 그레이 골지 니트와 블랙 워싱 부츠컷으로 올블랙에 그레이. 블랙·그레이 톤의 단정한 분위기
+  point: 올블랙에 그레이 골지 니트로 은은한 포인트를 줘요 🖤
+  styling: The jacket is worn open so the ribbed knit shows; it is drawn exactly like
+    the product photos, longer, boxy and roomy with the same shirt collar, soft leather
+    material and silhouette. The bootcut jeans are drawn at their full 104 cm length,
+    clearly longer than before, running from the waist almost to the bottom of the
+    frame with the hems flaring wide.
+  cover: out/2026-10-11/looks/3/outfit/results/G_1.jpg
+- items:
+  - product: zigzag:171471244
+    color: 블랙
+    desc: 블랙 캡슬리브 하프넥 니트 베스트 (black boxy relaxed cap-sleeve mock-neck knit vest with dropped
+      shoulders, cropped at the waist with a wide ribbed hem band, soft fine-gauge wool knit)
+    name: 캡 슬리브 베스트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    size: about 59 cm long from shoulder to hem, 61 cm across the shoulders, 57 cm
+      across the chest laid flat
+    cm: 59.0
+  - product: zigzag:127356723
+    color: 화이트
+    desc: 화이트 워싱 셔츠 (white washed cotton shirt with a soft relaxed collar that
+      lies slightly collapsed, in a relaxed oversized fit with long unrolled sleeves
+      and a long shirt-tail hem to the upper thigh)
+    name: 워싱 셔츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 72.5 cm long from shoulder to hem, 48.5 cm across the shoulders, 67
+      cm across the chest laid flat, 63 cm long sleeves
+    cm: 72.5
+    wear_with: 상의
+  - product: zigzag:168694332
+    color: 그레이
+    desc: 그레이 핀스트라이프 와이드 슬랙스 (gray pinstripe high-rise wide-leg slacks with a soft
+      front pleat at full length, the legs widening gently from the hips to a wide hem
+      that falls long to the ankle bone and over the shoes)
+    name: 와이드 슬랙스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 4
+    size: about 104.5 cm long from waist to hem, 36 cm across the waist laid flat,
+      51 cm across the hips laid flat, 27 cm across the hem laid flat
+    cm: 104.5
+  - product: zigzag:111145203
+    color: 블랙
+    desc: 블랙 청키 레이스업 슈즈 (black chunky lace-up derby shoes with white stitching)
+    name: 레이스업 슈즈
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+    - 0
+  - product: zigzag:168594319
+    color: 블랙
+    desc: 블랙 호보백 (large black leather hobo shoulder bag)
+    name: 빅 호보백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+  - product: zigzag:148980176
+    color: 블랙
+    desc: 블랙 레더 벨트 (black leather belt with a square silver buckle)
+    name: 레더 벨트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    wear_with: 하의
+  reason: 블랙 니트 베스트가 주인공, 화이트 셔츠와 그레이 슬랙스로 단정하게. 블랙·그레이 톤의 단정한 분위기
+  point: 니트 베스트 아래로 셔츠 밑단을 살짝 보이게 입어요
+  styling: The shirt sleeves are not rolled or folded, they hang down at full length
+    with the cuffs closed at the wrists. The shirt collar is soft and relaxed, slightly
+    collapsed with natural creases, never crisp or stiff. The shirt hem shows 4 cm
+    below the vest and the waistband stays visible. The black belt is threaded through
+    the slacks' belt loops, not around the vest. The cap-sleeve mock-neck vest has
+    short cap sleeves over the shoulder tips and a low funnel neck, with the shirt
+    collar soft inside it. The wide-leg slacks are drawn at their full 104.5 cm length,
+    about 1.4 times as long as the shirt, widening from the hips to a wide hem that
+    covers the ankle bones and reaches near the bottom of the frame, never cropped,
+    not short and not a narrow straight tube.
+- items:
+  - product: zigzag:168315295
+    color: 그레이
+    desc: 그레이 오버핏 코튼 딥브이 맨투맨 (gray oversized thick cotton deep v-neck sweatshirt with
+      dropped shoulders, gathered cuffs and hip length)
+    name: 딥브이 맨투맨
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 63.5 cm long from shoulder to hem, 61 cm across the shoulders, 65
+      cm across the chest laid flat, 55 cm long sleeves
+    cm: 63.5
+  - product: zigzag:169527291
+    color: 그레이
+    desc: 그레이 골지 나시 (gray fitted slim ribbed tank top with a deep scoop neckline and
+      a button placket down the front, hem at the waist)
+    name: 골지 버튼 나시
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 5
+    size: about 54 cm long from shoulder to hem, 34 cm across the chest laid flat
+    cm: 54.0
+    wear_with: 상의
+  - product: zigzag:159574062
+    color: 블랙
+    desc: 블랙 플리츠 랩스커트 (black asymmetric low-rise wrap skirt with sharp knife pleats
+      and side ribbon ties, hem at mid-thigh to above the knee)
+    name: 플리츠 랩스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 55 cm long from waist to hem, 34 cm across the waist laid flat, 52
+      cm across the hips laid flat, 69 cm across the hem laid flat
+    cm: 55.0
+  - product: zigzag:166288289
+    color: 블랙
+    desc: 블랙 슬라우치 롱부츠 (black leather slouchy knee-high boots with buckles)
+    name: 슬라우치 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:170446631
+    color: 블랙
+    desc: 블랙 호보 숄더백 (black hobo shoulder bag with a thin round strap)
+    name: 호보 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  reason: 그레이 오버핏 맨투맨이 주인공, 블랙 플리츠 랩스커트와 롱부츠로 부피 대비. 그레이·블랙 톤의 캐주얼
+  point: 큰 맨투맨에 짧은 랩스커트로 부피 대비를 줘요
+  styling: The sweatshirt is worn oversized with a short skirt below its hem and tucked
+    loosely at the front only.
+  cover: out/2026-10-11/looks/5/outfit_r2/results/G_1.jpg
+- items:
+  - product: zigzag:131177018
+    color: 네이비
+    desc: 네이비 하프집업 케이블 니트 (navy chunky cable knit half-zip sweater slightly cropped
+      at waist to hip, with a stand collar and a small embroidered logo)
+    name: 하프집업 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    size: about 51 cm long from shoulder to hem, 33 cm across the shoulders, 40 cm
+      across the chest laid flat, 51 cm long sleeves
+    cm: 51.0
+  - product: zigzag:165972153
+    color: 화이트
+    desc: 화이트 U헨리넥 긴팔티 (white fitted slim cropped long-sleeve U-neck henley tee)
+    name: U헨리넥 티
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37
+      cm across the chest laid flat, 68 cm long sleeves
+    cm: 49.5
+    wear_with: 아우터
+  - product: zigzag:145122986
+    color: 블랙
+    desc: 블랙 워싱 슬림 부츠컷 팬츠 (faded black washed slim bootcut denim pants fitted through
+      the thighs and flaring clearly from the knee into a wide bootcut hem, at full length
+      with unrolled uncuffed hems)
+    name: 블랙 부츠컷 팬츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 105 cm long from waist to hem
+    cm: 105.0
+  - product: zigzag:163730443
+    color: 블랙
+    desc: 블랙 메리제인 스니커즈 (black mary jane sneakers with white stripes and a gum sole)
+    name: 삼바 메리제인
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:170446634
+    color: 블랙
+    desc: 블랙 미니 토트백 (small black mini tote bag with a zipper)
+    name: 미니 토트백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 1
+  reason: 네이비 하프집업 니트가 주인공, 화이트 티와 블랙 워싱 부츠컷으로 캐주얼하게. 네이비·블랙 톤의 캐주얼
+  point: 네이비 니트 안에 흰 티 깃을 살짝 보여 캐주얼하게 입어요
+  styling: The jeans are laid flat at full length with the hems not rolled, folded
+    or cuffed, running long to near the bottom of the frame like the model's fit, the
+    bootcut flare opening wide from the knee so the bootcut point clearly shows.
+  cover: out/2026-10-11/looks/6/outfit/results/G_1.jpg
+reason: 일요일 브런치룩을 버터옐로와 그레이, 니트 베스트와 가벼운 겹쳐 입기로 여러 가지
+text:
+  title_lines:
+  - 아침저녁 쌀쌀한 날
+  - 겹쳐 입는 조합 정리
+  intro: 낮엔 선선하고 밤엔 쌀쌀한 요즘, 가볍게 겹쳐 입는 코디를 모아 봤어요 🍂
+  points: []
+  hashtags:
+  - '#가을코디'
+  - '#레이어드코디'
+  - '#트렌치코트'
+  - '#스웨이드재킷'
+  - '#니트베스트'
+  - '#일교차코디'
+  - '#꾸안꾸'
+cover_collage: false
+shot: flatlay

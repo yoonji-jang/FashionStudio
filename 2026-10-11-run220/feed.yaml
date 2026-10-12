@@ -1,0 +1,213 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 하프 트렌치코트
+  product: zigzag:172092884
+- comment: ''
+  name: 헨리넥 레이어드 티
+  product: zigzag:171262648
+- comment: ''
+  name: 핀스트라이프 슬랙스
+  product: zigzag:166018788
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:137014509
+- comment: ''
+  name: 스퀘어 쇼퍼백
+  product: zigzag:117733398
+- comment: ''
+  name: 스웨이드 재킷
+  product: zigzag:171592183
+- comment: ''
+  name: 보트넥 니트
+  product: zigzag:171121984
+- comment: ''
+  name: 플리츠 롱 스커트
+  product: zigzag:149546302
+- comment: ''
+  name: 페니로퍼
+  product: zigzag:119116040
+- comment: ''
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+- comment: ''
+  name: 레더 하프자켓
+  product: zigzag:165576378
+- comment: ''
+  name: 골지 니트
+  product: zigzag:135105388
+- comment: ''
+  name: 블랙 부츠컷 데님
+  product: zigzag:166063974
+- comment: ''
+  name: 삭스 앵클부츠
+  product: zigzag:107677011
+- comment: ''
+  name: 셔링 더플백
+  product: zigzag:138364376
+- comment: ''
+  name: 레더 시계
+  product: zigzag:120794025
+- comment: ''
+  name: 캡 슬리브 베스트
+  product: zigzag:171471244
+- comment: ''
+  name: 워싱 셔츠
+  product: zigzag:127356723
+- comment: ''
+  name: 와이드 슬랙스
+  product: zigzag:168694332
+- comment: ''
+  name: 레이스업 슈즈
+  product: zigzag:111145203
+- comment: ''
+  name: 빅 호보백
+  product: zigzag:168594319
+- comment: ''
+  name: 레더 벨트
+  product: zigzag:148980176
+- comment: ''
+  name: 딥브이 맨투맨
+  product: zigzag:168315295
+- comment: ''
+  name: 골지 버튼 나시
+  product: zigzag:169527291
+- comment: ''
+  name: 플리츠 랩스커트
+  product: zigzag:159574062
+- comment: ''
+  name: 슬라우치 롱부츠
+  product: zigzag:166288289
+- comment: ''
+  name: 호보 숄더백
+  product: zigzag:170446631
+- comment: ''
+  name: 하프집업 니트
+  product: zigzag:131177018
+- comment: ''
+  name: U헨리넥 티
+  product: zigzag:165972153
+- comment: ''
+  name: 블랙 부츠컷 팬츠
+  product: zigzag:145122986
+- comment: ''
+  name: 삼바 메리제인
+  product: zigzag:163730443
+- comment: ''
+  name: 미니 토트백
+  product: zigzag:170446634
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하프 트렌치코트
+    product: zigzag:172092884
+  - comment: ''
+    name: 헨리넥 레이어드 티
+    product: zigzag:171262648
+  - comment: ''
+    name: 핀스트라이프 슬랙스
+    product: zigzag:166018788
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:137014509
+  - comment: ''
+    name: 스퀘어 쇼퍼백
+    product: zigzag:117733398
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/2/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스웨이드 재킷
+    product: zigzag:171592183
+  - comment: ''
+    name: 보트넥 니트
+    product: zigzag:171121984
+  - comment: ''
+    name: 플리츠 롱 스커트
+    product: zigzag:149546302
+  - comment: ''
+    name: 페니로퍼
+    product: zigzag:119116040
+  - comment: ''
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 하프자켓
+    product: zigzag:165576378
+  - comment: ''
+    name: 골지 니트
+    product: zigzag:135105388
+  - comment: ''
+    name: 블랙 부츠컷 데님
+    product: zigzag:166063974
+  - comment: ''
+    name: 삭스 앵클부츠
+    product: zigzag:107677011
+  - comment: ''
+    name: 셔링 더플백
+    product: zigzag:138364376
+  - comment: ''
+    name: 레더 시계
+    product: zigzag:120794025
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 캡 슬리브 베스트
+    product: zigzag:171471244
+  - comment: ''
+    name: 워싱 셔츠
+    product: zigzag:127356723
+  - comment: ''
+    name: 와이드 슬랙스
+    product: zigzag:168694332
+  - comment: ''
+    name: 레이스업 슈즈
+    product: zigzag:111145203
+  - comment: ''
+    name: 빅 호보백
+    product: zigzag:168594319
+  - comment: ''
+    name: 레더 벨트
+    product: zigzag:148980176
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 딥브이 맨투맨
+    product: zigzag:168315295
+  - comment: ''
+    name: 골지 버튼 나시
+    product: zigzag:169527291
+  - comment: ''
+    name: 플리츠 랩스커트
+    product: zigzag:159574062
+  - comment: ''
+    name: 슬라우치 롱부츠
+    product: zigzag:166288289
+  - comment: ''
+    name: 호보 숄더백
+    product: zigzag:170446631
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-11/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하프집업 니트
+    product: zigzag:131177018
+  - comment: ''
+    name: U헨리넥 티
+    product: zigzag:165972153
+  - comment: ''
+    name: 블랙 부츠컷 팬츠
+    product: zigzag:145122986
+  - comment: ''
+    name: 삼바 메리제인
+    product: zigzag:163730443
+  - comment: ''
+    name: 미니 토트백
+    product: zigzag:170446634
+title_lines:
+- 아침저녁 쌀쌀한 날
+- 겹쳐 입는 조합 정리
