@@ -771,3 +771,20 @@ def test_cover_carries_to_fixed_preview(tmp_path, store):
     (c / "cover.json").unlink()
     assert "그대로" in cover_look.check(c, tg_of(api))
     assert cover_look.current(c, load_profile("women")) == 5
+
+
+def test_fault_fails_review_whatever_the_score():
+    # 2026-10-12 사용자: 짧은 바지·벌어진 신발을 검수가 찾고도 1점만 깎아 통과시킴
+    prof = load_profile("women")
+    bad = CoverScore(**score("c1", 10), faults=["hem_short"])
+    ok = CoverScore(**score("c2", 10))
+    assert not review.passes(bad, prof) and review.passes(ok, prof)
+    r = Review(
+        candidates=[
+            Candidate(id="c1", file="a.jpg", score=bad),
+            Candidate(id="c2", file="b.jpg", score=ok),
+        ]
+    )
+    assert review.pick(r, prof).id == "c2"
+    r.candidates[1].score = CoverScore(**score("c2", 10), faults=["shoes_not_neat", "tuck_messy"])
+    assert review.pick(r, prof).id == "c1"  # 둘 다 불합격이면 결함이 적은 쪽
