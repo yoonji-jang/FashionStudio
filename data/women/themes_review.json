@@ -1,10 +1,10 @@
 {
   "account": "women",
-  "first": "2026-10-05",
-  "last": "2026-10-11",
-  "sent_at": 1791018132,
+  "first": "2026-10-12",
+  "last": "2026-10-18",
+  "sent_at": 1791770623,
   "message_ids": [
-    381
+    812
   ],
   "handled": false
 }
