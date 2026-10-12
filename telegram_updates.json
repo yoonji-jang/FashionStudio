@@ -1,27 +1,5 @@
 [
  {
-  "update_id": 428675773,
-  "message": {
-   "message_id": 680,
-   "date": 1791451755,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/now"
-  }
- },
- {
-  "update_id": 428675774,
-  "message": {
-   "message_id": 693,
-   "date": 1791509941,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "다시"
-  }
- },
- {
   "update_id": 428675775,
   "message": {
    "message_id": 704,
