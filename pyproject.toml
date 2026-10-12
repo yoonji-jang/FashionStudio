@@ -16,6 +16,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=8",
+    "pytest-xdist>=3.8.0",
     "ruff>=0.6",
 ]
 # 상품 수집(검색 페이지 읽기)에만 필요. Actions: uv sync --group scout && uv run playwright install chromium

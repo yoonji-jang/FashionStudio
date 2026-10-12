@@ -306,6 +306,14 @@ def test_backup_cron_keeps_only_key_slots():
     assert not [k for k in kinds if k.startswith("links")]
 
 
+def test_minimal_cron_keeps_only_first_publish():
+    p = load_profile("women")
+    p.schedule.github_cron = "minimal"
+    lines = schedule.cron_lines([(p, sl) for sl in schedule.slots(p)], REF)
+    kinds = [d.split()[1] + " " + d.split()[-1] for ds in lines.values() for d in ds]
+    assert kinds == ["publish 20:03"]
+
+
 def test_women_profile_is_hourly(monkeypatch):
     """women 은 외부 스케줄러가 매시 정각에 깨운다 (cron-job.org Every 1 hour)."""
     import core.profile

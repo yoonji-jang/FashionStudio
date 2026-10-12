@@ -457,8 +457,9 @@ class Schedule(BaseModel):
     reels_at: str | None = Field(default=None, pattern=HHMM)
     # GitHub 예약(cron) 줄 (12단계). all: 모든 칸. backup: 외부 스케줄러(cron-job.org)가 정시에
     # 깨울 때 예비로 주요 칸(후보, 고르기 처음·마감, 게시 처음·마지막, 주간 작업)만 둬서
-    # Actions 시간을 아낌
-    github_cron: Literal["all", "backup"] = "all"
+    # Actions 시간을 아낌. minimal: 첫 게시 칸 하루 한 줄만 (외부 스케줄러가 멈춰도 하루 한 번은
+    # 깨어나 밀린 칸을 따라잡음)
+    github_cron: Literal["all", "backup", "minimal"] = "all"
     # 요일별 게시물 종류 (16단계, 게시 날짜 기준). flatlay: 펼친 코디컷 (후보 고르기부터),
     # model: 전날 게시물 벌을 모델컷으로 (고르기 없이 후보 시각에 바로 만듦), 빠진 요일은 쉼.
     # 없으면 매일 flatlay
