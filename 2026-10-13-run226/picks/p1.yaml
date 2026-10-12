@@ -1,0 +1,367 @@
+account: women
+date: '2026-10-13'
+items: []
+looks:
+- items:
+  - color: 카키
+    comment: ''
+    cutout_photo: 0
+    desc: 카키 코듀로이 칼라 워크 재킷 (khaki cotton work jacket with a brown corduroy collar,
+      button front, hip length, relaxed fit)
+    name: 코듀로이칼라 워크 재킷
+    product: zigzag:172086863
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 골지 헨리넥 니트 (black fitted ribbed henley knit)
+    name: 골지 헨리넥 니트
+    product: zigzag:168837265
+  - color: 중청
+    comment: ''
+    cutout_photo: 0
+    desc: 중청 빈티지 워싱 와이드 데님 (mid-blue vintage-washed wide straight-leg denim, full
+      length)
+    name: 워싱 와이드 데님
+    product: zigzag:119842018
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 호보 숄더백 (black leather hobo shoulder bag)
+    name: 로젤 숄더백
+    product: zigzag:165216354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 삭스 앵클부츠 (black sock ankle boots, block heel)
+    name: 삭스 앵클부츠
+    product: zigzag:107677011
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 워시드 볼캡 (washed black baseball cap)
+    name: 워시드 볼캡
+    product: zigzag:171308941
+    wear_with: 상의
+  point: ''
+  reason: 카키 코듀로이 워크 재킷이 주인공, 블랙 골지 헨리넥과 워싱 와이드 데님으로 쿨하게. 카키·블랙·데님의 캐주얼 시크. [점수 9]
+  styling: The jacket is worn open with the sleeves slightly pushed up; the black
+    henley buttons are partly undone.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 다크브라운 코듀로이 칼라 워크 재킷 (dark brown cotton work jacket with a corduroy collar,
+      button front, hip length, relaxed fit)
+    name: 코듀로이칼라 워크 재킷
+    product: zigzag:172086847
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 보트넥 루즈핏 니트 (ivory loose-fit boat-neck knit)
+    name: 보트넥 니트
+    product: zigzag:171121984
+  - color: 중청
+    comment: ''
+    cutout_photo: 0
+    desc: 중청 부츠컷 데님 (mid-blue bootcut denim, full length)
+    name: 부츠컷 데님
+    product: zigzag:171122435
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 호보 숄더백 (brown suede hobo shoulder bag with a side zip and tassel)
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 다크브라운 스웨이드 페니 로퍼 (dark brown suede penny loafers)
+    name: 스웨이드 로퍼
+    product: zigzag:100425954
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼 체인 목걸이 (thin silver ball chain necklace)
+    name: 볼 체인 목걸이
+    product: zigzag:113341770
+    slot: 목걸이
+  point: ''
+  reason: 브라운 코듀로이 워크 재킷이 주인공, 아이보리 보트넥 니트와 부츠컷 데님으로 포근하게. 브라운·아이보리·데님의 캐주얼. [점수 8]
+  styling: The jacket is worn open; the ivory knit's wide boat neckline sits slightly
+    off one shoulder.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 코듀로이 트러커 자켓 (black corduroy trucker jacket, collar, button front, cropped,
+      boxy fit)
+    name: 코듀로이 트러커 자켓
+    product: zigzag:165516259
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 헨리넥 레이어드 긴팔티 (brown fitted henley-neck long-sleeve tee)
+    name: 헨리넥 긴팔티
+    product: zigzag:171262648
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 플리츠 롱 스커트 (charcoal pleated long skirt, ankle length)
+    name: 플리츠 롱 스커트
+    product: zigzag:149546302
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 위빙 호보백 (dark brown woven leather hobo bag)
+    name: 위빙 호보백
+    product: zigzag:161978790
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 소가죽 슬라우치 롱부츠 (brown leather slouchy mid-calf boots with buckle straps)
+    name: 슬라우치 롱부츠
+    product: zigzag:166288289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 스트랩 사각 시계 (square silver watch with a black leather strap)
+    name: 레더 시계
+    product: zigzag:123161642
+    slot: 팔찌
+  point: ''
+  reason: 블랙 코듀로이 트러커 자켓이 주인공, 브라운 헨리넥 티와 차콜 플리츠 롱스커트로 비율 좋게. 브라운·블랙의 단정한 캐주얼. [점수
+    8]
+  styling: The cropped trucker jacket is worn open and the henley tee hem is tucked
+    into the pleated skirt waist.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 다크브라운 스웨이드 테일러드 재킷 (dark brown suede tailored blazer, notched lapel, hip
+      length, relaxed fit)
+    name: 스웨이드 재킷
+    product: zigzag:171592183
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 라운드넥 루즈핏 니트 (ivory loose sheer-knit sweater, round neck)
+    name: 부클 니트
+    product: zigzag:171405395
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 플리츠 롱 스커트 (charcoal pleated long skirt, ankle length)
+    name: 플리츠 롱 스커트
+    product: zigzag:148007785
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 숄더백 (ivory soft shoulder bag)
+    name: 애니 숄더백
+    product: zigzag:170305230
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 소가죽 메리제인 (tan brown leather mary jane shoes, 3 cm block heel)
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 라운드 스퀘어 귀걸이 (exactly one pair (two earrings) of silver round square earrings)
+    name: 라운드 귀걸이
+    product: zigzag:133580915
+    slot: 귀걸이
+  point: ''
+  reason: 다크브라운 스웨이드 테일러드 재킷이 주인공, 아이보리 니트와 차콜 플리츠 롱스커트로 단정하게. 브라운·아이보리·차콜의 단정한 분위기.
+    [점수 8]
+  styling: The suede jacket is left open; the knit hem is tucked slightly into the
+    skirt waist.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 브이넥 루즈핏 맨투맨 (gray loose-fit shallow V-neck sweatshirt)
+    name: 브이넥 맨투맨
+    product: zigzag:160291322
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 미니 스커트 팬츠 (brown suede-look mini skort with front pockets)
+    name: 미니 스커트 팬츠
+    product: zigzag:171584018
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레더 빅 호보백 (large brown leather hobo bag)
+    name: 빅 호보백
+    product: zigzag:168594319
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 폴딩 롱부츠 (brown fold-over knee-high boots, flat heel)
+    name: 폴딩 롱부츠
+    product: zigzag:144708955
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 두줄 체인 토글 목걸이 (silver double chain toggle necklace)
+    name: 체인 토글 목걸이
+    product: zigzag:110794612
+    slot: 목걸이
+  point: ''
+  reason: 그레이 브이넥 맨투맨이 주인공, 스웨이드 미니 스커트팬츠와 폴딩 롱부츠로 큰 상의에 짧은 하의 비율을 살림. 그레이·브라운의 캐주얼.
+    [점수 8]
+  styling: The oversized sweatshirt hangs loosely over the skort waistband with its
+    sleeves pushed up; the fold-over boots reach the knee.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 매트 스웨이드룩 블루종 (brown matte suede-look blouson, stand collar, flap pockets,
+      hip length, oversized)
+    name: 매트레더 블루종
+    product: zigzag:171316698
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 헨리넥 오버핏 니트 (gray henley round-neck knit, relaxed fit)
+    name: 헨리넥 니트
+    product: zigzag:171278973
+  - color: 중청
+    comment: ''
+    cutout_photo: 0
+    desc: 중청 슬림 부츠컷 데님 (mid-blue slim bootcut denim, full length)
+    name: 슬림 부츠컷 데님
+    product: zigzag:145122986
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 나일론 호보백 (charcoal nylon hobo shoulder bag)
+    name: 나일론 호보백
+    product: zigzag:166150526
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 폴딩 롱부츠 (brown fold-over boots, flat heel, hidden under the long hem)
+    name: 폴딩 롱부츠
+    product: zigzag:144708955
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 스트랩 사각 시계 (square silver watch with a black leather strap)
+    name: 레더 시계
+    product: zigzag:120794025
+    slot: 팔찌
+  point: ''
+  reason: 브라운 매트레더 블루종이 주인공, 그레이 헨리넥 니트와 슬림 부츠컷 데님으로 시크하게. 브라운·그레이·데님의 캐주얼 시크. [점수
+    8]
+  styling: The blouson is zipped halfway with the stand collar up; the gray knit hem
+    shows below the blouson hem.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 고스트그레이 레글런 피그먼트 맨투맨 (ghost gray raglan pigment sweatshirt, loose fit)
+    name: 레글런 맨투맨
+    product: zigzag:165919403
+  - color: 중청
+    comment: ''
+    cutout_photo: 0
+    desc: 중청 빈티지 워싱 와이드 데님 (mid-blue vintage-washed wide straight denim, full length)
+    name: 워싱 와이드 데님
+    product: zigzag:168835699
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 나일론 호보백 (charcoal nylon hobo shoulder bag)
+    name: 나일론 호보백
+    product: zigzag:166150526
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 메리제인 스니커즈 (black lace-up mary jane sneakers)
+    name: 레이스업 메리제인
+    product: zigzag:168228826
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 볼캡 (black baseball cap)
+    name: 시그니처 볼캡
+    product: zigzag:154421938
+    wear_with: 상의
+  point: ''
+  reason: 그레이 레글런 맨투맨이 주인공, 워싱 와이드 데님과 볼캡으로 편하게. 그레이·데님의 캐주얼. [점수 8]
+  styling: The sweatshirt hangs loosely, the cap sits slightly back and the sleeves
+    are pushed up.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니트 가디건 (black relaxed knit cardigan, button front)
+    name: 브리튼 가디건
+    product: zigzag:168779822
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 반목 골지 캡소매 니트 (plain beige ribbed mock-neck cap-sleeve knit)
+    name: 골지 반목 니트
+    product: zigzag:113835947
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플리츠 랩 스커트 (black pleated wrap midi skirt)
+    name: 플리츠 랩스커트
+    product: zigzag:159574062
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 호보 숄더백 (black leather hobo shoulder bag)
+    name: 로젤 숄더백
+    product: zigzag:165216354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 벨벳 메리제인 플랫슈즈 (black velvet mary jane flats)
+    name: 메리제인 플랫
+    product: zigzag:110158856
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼 체인 목걸이 (thin silver ball chain necklace)
+    name: 볼 체인 목걸이
+    product: zigzag:113341770
+    slot: 목걸이
+  point: ''
+  reason: 블랙 모헤어 가디건이 주인공, 베이지 반목 골지 티를 받쳐 플리츠 랩스커트로 부드럽게. 블랙·베이지의 단정한 분위기. [점수 8]
+  styling: The cardigan is worn loosely open over the beige mock-neck knit.
+reason: 코듀로이 자켓을 브라운·카키·블랙 가을 톤으로, 맨투맨·스웨이드·블루종까지 섞어 입은 후보
+shot: flatlay
+theme:
+  date: '2026-10-13'
+  mood: 브라운·카키·베이지의 포근한 가을 톤
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 코듀로이 자켓
+    하의:
+    - 부츠컷 데님
+    - 플리츠 롱스커트
+  slots:
+  - category: 아우터
+    desc: 브라운이나 카키 코듀로이 자켓
+  - category: 상의
+    desc: 아이보리 보트넥 니트나 헨리넥 티
+  - category: 하의
+    desc: 부츠컷 데님이나 플리츠 롱스커트
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 니하이 부츠나 스웨이드 로퍼
+  - category: 소품
+    desc: 가죽끈 목걸이
+  title_hint: 코듀로이 자켓에 가을 니트와 롱부츠, 질감으로 멋 내기
+  type: 아이템
+  why: 비 오는 화요일, 15~20도에 가볍게 걸치는 코듀로이 아우터
