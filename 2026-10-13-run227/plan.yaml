@@ -1,0 +1,445 @@
+account: women
+date: '2026-10-13'
+theme:
+  date: '2026-10-13'
+  title_hint: 코듀로이 자켓에 가을 니트와 롱부츠, 질감으로 멋 내기
+  mood: 브라운·카키·베이지의 포근한 가을 톤
+  slots:
+  - category: 아우터
+    desc: 브라운이나 카키 코듀로이 자켓
+  - category: 상의
+    desc: 아이보리 보트넥 니트나 헨리넥 티
+  - category: 하의
+    desc: 부츠컷 데님이나 플리츠 롱스커트
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 니하이 부츠나 스웨이드 로퍼
+  - category: 소품
+    desc: 가죽끈 목걸이
+  type: 아이템
+  why: 비 오는 화요일, 15~20도에 가볍게 걸치는 코듀로이 아우터
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 코듀로이 자켓
+    하의:
+    - 부츠컷 데님
+    - 플리츠 롱스커트
+items: []
+looks:
+- items:
+  - product: zigzag:172086863
+    color: 카키
+    desc: 카키 코듀로이 칼라 워크 재킷 (khaki cotton twill work jacket with a brown corduroy collar,
+      zip front with a snap placket, chest flap pockets, hip length, relaxed boxy
+      fit with dropped shoulders)
+    name: 코듀로이칼라 워크 재킷
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  - product: zigzag:168837265
+    color: 블랙
+    desc: 블랙 골지 헨리넥 니트 (black fitted slim ribbed henley knit, long sleeves, a few
+      buttons, hem at the high hip)
+    name: 골지 헨리넥 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  - product: zigzag:119842018
+    color: 중청
+    desc: 중청 빈티지 워싱 와이드 데님 (mid-blue vintage-washed wide straight-leg denim, mid-to-high
+      rise, full length breaking over the shoes)
+    name: 워싱 와이드 데님
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    - 0
+    size: about 108 cm long from waist to hem, 34 cm across the waist laid flat, 51
+      cm across the hips laid flat
+    cm: 108.0
+  - product: zigzag:165216354
+    color: 블랙
+    desc: 블랙 레더 호보 숄더백 (black soft slouchy leather hobo shoulder bag)
+    name: 로젤 숄더백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 1
+  - product: zigzag:107677011
+    color: 블랙
+    desc: 블랙 삭스 앵클부츠 (black sock ankle boots, shaft just above the ankle, block heel
+      about 5 cm)
+    name: 삭스 앵클부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  reason: 카키 코듀로이 워크 재킷이 주인공, 블랙 골지 헨리넥과 워싱 와이드 데님으로 쿨하게. 카키·블랙·데님의 캐주얼 시크. (볼캡은 맞는
+    색 사진이 없어 뺌) [점수 9]
+  point: 카키 재킷의 코듀로이 깃이 포인트, 데님으로 가볍게 풀어요
+  styling: The jacket is worn open with the sleeves slightly pushed up; the black
+    henley buttons are partly undone.
+- items:
+  - product: zigzag:171592183
+    color: 브라운
+    desc: 다크브라운 스웨이드 테일러드 재킷 (dark brown suede tailored blazer, notched lapel, hip
+      to upper-thigh length, relaxed oversized fit with dropped soft shoulders)
+    name: 스웨이드 재킷
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 71 cm long from shoulder to hem, 45.5 cm across the shoulders, 59.5
+      cm across the chest laid flat, 60.5 cm long sleeves
+    cm: 71.0
+  - product: zigzag:171405395
+    color: 아이보리
+    desc: 아이보리 라운드넥 루즈핏 니트 (ivory loose sheer open-weave slubby raglan-sleeve knit,
+      crew neck, hip length)
+    name: 부클 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:148007785
+    color: 차콜
+    desc: 차콜 플리츠 미디 스커트 (charcoal A-line pleated skirt with wide soft box pleats,
+      long midi length, hem between the calf and the ankle)
+    name: 플리츠 롱 스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    size: about 87 cm long from waist to hem, 36 cm across the waist laid flat
+    cm: 87.0
+  - product: zigzag:170305230
+    color: 아이보리
+    desc: 아이보리 숄더백 (cream soft slouchy shoulder bag with two thin rolled handles and
+      a drawstring-gathered top)
+    name: 애니 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 3
+  - product: zigzag:166028838
+    color: 브라운
+    desc: 브라운 소가죽 메리제인 (tan brown leather round-toe mary janes with a thin ankle strap,
+      low heel)
+    name: 소가죽 메리제인
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:133580915
+    color: 실버
+    desc: 실버 라운드 스퀘어 귀걸이 (exactly one pair (two earrings) of chunky glossy puffed
+      silver square-round studs)
+    name: 라운드 귀걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 귀걸이
+  reason: 다크브라운 스웨이드 테일러드 재킷이 주인공, 아이보리 니트와 차콜 플리츠 스커트로 단정하게. 브라운·아이보리·차콜의 단정한 분위기.
+    [점수 8]
+  point: 스웨이드 재킷에 플리츠 스커트로 단정하게 풀어요 🤎
+  styling: The suede jacket is left open; the knit hem is tucked slightly into the
+    skirt waist.
+- items:
+  - product: zigzag:160291322
+    color: 그레이
+    desc: 그레이 브이넥 루즈핏 맨투맨 (gray oversized shallow V-neck sweatshirt, dropped shoulders,
+      very wide voluminous sleeves with gathered cuffs, hip length, soft thick cotton)
+    name: 브이넥 맨투맨
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 66 cm long from shoulder to hem, 61 cm across the shoulders, 65 cm
+      across the chest laid flat, 57 cm long sleeves
+    cm: 66.0
+  - product: zigzag:171584018
+    color: 브라운
+    desc: 브라운 스웨이드 미니 스커트 팬츠 (brown brushed suede-look mini skort, mid-thigh length,
+      low-to-mid rise, two front patch pockets)
+    name: 미니 스커트 팬츠
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 0
+    - 4
+    size: about 37.1 cm long from waist to hem, 36.5 cm across the waist laid flat,
+      48.75 cm across the hips laid flat
+    cm: 37.1
+  - product: zigzag:168594319
+    color: 브라운
+    desc: 브라운 레더 빅 호보백 (large brown slouchy leather hobo bag with a wide opening and
+      a thin shoulder strap)
+    name: 빅 호보백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:144708955
+    color: 브라운
+    desc: 브라운 폴딩 롱부츠 (brown matte suede-look fold-over knee-high boots, flat heel,
+      wide fold-over shaft)
+    name: 폴딩 롱부츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    - 3
+  - product: zigzag:110794612
+    color: 실버
+    desc: 실버 두줄 체인 토글 목걸이 (silver double-layer chain necklace with a toggle clasp)
+    name: 체인 토글 목걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 0
+    slot: 목걸이
+  reason: 그레이 브이넥 맨투맨이 주인공, 스웨이드 미니 스커트팬츠와 폴딩 롱부츠로 큰 상의에 짧은 하의 비율을 살림. 그레이·브라운의 캐주얼.
+    [점수 8]
+  point: 큰 맨투맨에 짧은 스커트 팬츠로 비율을 살려요
+  styling: The oversized sweatshirt hangs loosely over the skort waistband with its
+    sleeves pushed up; the fold-over boots reach the knee.
+- items:
+  - product: zigzag:171316698
+    color: 브라운
+    desc: 브라운 매트 스웨이드룩 블루종 (brown matte suede-look blouson, stand collar worn up,
+      snap and zip front, large flap pockets, elastic drawcord hem, hip length, oversized
+      with dropped shoulders)
+    name: 매트레더 블루종
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+    - 1
+    size: about 71 cm long from shoulder to hem, 62.5 cm across the shoulders, 70
+      cm across the chest laid flat, 54.5 cm long sleeves
+    cm: 71.0
+  - product: zigzag:171708918
+    color: 그레이
+    desc: 그레이 슬림 헨리넥 골지 니트 (gray fitted slim ribbed henley knit, shallow V placket
+      with small buttons, long sleeves, hem at the waist to high hip)
+    name: 헨리넥 니트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 5
+    size: about 53 cm long from shoulder to hem, 33 cm across the shoulders, 37 cm
+      across the chest laid flat, 59 cm long sleeves
+    cm: 53.0
+  - product: zigzag:145122986
+    color: 중청
+    desc: 중청 슬림 부츠컷 데님 (mid-blue slim bootcut denim, slim through the thigh and flared
+      from the knee, mid-to-high rise, full length)
+    name: 슬림 부츠컷 데님
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 0
+    - 4
+  - product: zigzag:166150526
+    color: 차콜
+    desc: 차콜 나일론 호보백 (charcoal soft slouchy nylon hobo shoulder bag with drawcord
+      sides)
+    name: 나일론 호보백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+  - product: zigzag:153677725
+    color: 블랙
+    desc: 블랙 스웨이드 왈라비 로퍼 (black suede moccasin-toe low-cut lace-up shoes with a thick
+      crepe sole)
+    name: 왈라비 스웨이드 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:123161642
+    color: 블랙
+    desc: 블랙 레더 스트랩 사각 시계 (square silver watch with a black leather strap)
+    name: 레더 시계
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    slot: 팔찌
+  reason: '브라운 매트레더 블루종이 주인공, 그레이 헨리넥 니트와 슬림 부츠컷 데님으로 시크하게. 브라운·그레이·데님의 캐주얼 시크. (신발:
+    목 짧은 블랙 스웨이드 로퍼로, /fix 6) (니트·시계는 색 맞는 사진이 없어 같은 종류로 교체) [점수 8]'
+  point: 오버핏 블루종 아래 슬림 니트와 부츠컷으로 균형을 맞춰요 🍂
+  styling: The blouson is zipped halfway with the stand collar up; the gray knit hem
+    shows below the blouson hem.
+- items:
+  - product: zigzag:168779822
+    color: 블랙
+    desc: 블랙 니트 가디건 (black relaxed thin soft knit cardigan, open front, hip length)
+    name: 브리튼 가디건
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 50.5 cm long from shoulder to hem, 37 cm across the shoulders, 47
+      cm across the chest laid flat, 60 cm long sleeves
+    cm: 50.5
+  - product: zigzag:113835947
+    color: 베이지
+    desc: 베이지 반목 골지 캡소매 니트 (plain beige fitted ribbed mock-neck cap-sleeve knit, waist
+      length)
+    name: 골지 반목 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 56 cm long from shoulder to hem, 56 cm across the shoulders, 32 cm
+      across the chest laid flat
+    cm: 56.0
+    wear_with: 상의
+  - product: zigzag:166228084
+    color: 블랙
+    desc: 블랙 플리츠 스커트 슬랙스 (black two-piece look, a pleated mini skirt with a wide folded waistband and
+      wide box pleats ending mid-thigh, layered over slim flared bootcut trousers that run full length to the shoes,
+      crisp matte wool-blend suiting, high rise)
+    name: 플리츠 스커트 슬랙스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    - 2
+  - product: zigzag:165216354
+    color: 블랙
+    desc: 블랙 레더 호보 숄더백 (black soft slouchy leather hobo shoulder bag)
+    name: 로젤 숄더백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 1
+  - product: zigzag:110158856
+    color: 블랙
+    desc: 블랙 벨벳 메리제인 플랫슈즈 (black velvet round-toe mary jane flats with a thin ankle
+      strap)
+    name: 메리제인 플랫
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:113341770
+    color: 실버
+    desc: 실버 볼 체인 목걸이 (very thin silver ball chain necklace)
+    name: 볼 체인 목걸이
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    slot: 목걸이
+  reason: 블랙 니트 가디건이 주인공, 베이지 반목 골지 티를 받쳐 플리츠 스커트 슬랙스로 부드럽게. 블랙·베이지의 단정한 분위기. (랩스커트가 6번 벌과 겹쳐 플리츠 스커트 슬랙스로 교체, 가디건은 모헤어가 아닌 얇은 니트) [점수 8]
+  point: 블랙 가디건 안에 베이지 골지로 부드러운 대비를 줘요
+  styling: The cardigan is worn loosely open over the beige mock-neck knit.
+- items:
+  - product: zigzag:168315295
+    color: 그레이
+    desc: 그레이 오버핏 코튼 딥브이 맨투맨 (gray oversized thick cotton deep v-neck sweatshirt with
+      dropped shoulders, gathered cuffs and hip length)
+    name: 딥브이 맨투맨
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    size: about 63.5 cm long from shoulder to hem, 61 cm across the shoulders, 65
+      cm across the chest laid flat, 55 cm long sleeves
+    cm: 63.5
+  - product: zigzag:169527291
+    color: 그레이
+    desc: 그레이 골지 나시 (gray fitted slim ribbed tank top with a deep scoop neckline and
+      a button placket down the front, hem at the waist)
+    name: 골지 버튼 나시
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 54 cm long from shoulder to hem, 34 cm across the chest laid flat
+    cm: 54.0
+    wear_with: 상의
+  - product: zigzag:159574062
+    color: 블랙
+    desc: 블랙 플리츠 랩스커트 (black asymmetric low-rise wrap skirt with sharp knife pleats
+      and side ribbon ties, hem at mid-thigh to above the knee)
+    name: 플리츠 랩스커트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 55 cm long from waist to hem, 34 cm across the waist laid flat, 52
+      cm across the hips laid flat, 69 cm across the hem laid flat
+    cm: 55.0
+  - product: zigzag:166288289
+    color: 블랙
+    desc: 블랙 슬라우치 롱부츠 (black leather slouchy knee-high boots with buckles)
+    name: 슬라우치 롱부츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:170446631
+    color: 블랙
+    desc: 블랙 호보 숄더백 (black hobo shoulder bag with a thin round strap)
+    name: 호보 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  reason: 그레이 오버핏 맨투맨이 주인공, 블랙 플리츠 랩스커트와 롱부츠로 부피 대비. 그레이·블랙 톤의 캐주얼
+  point: 큰 맨투맨에 짧은 랩스커트로 부피 대비를 줘요
+  styling: The sweatshirt is worn oversized with a short skirt below its hem and tucked
+    loosely at the front only.
+text:
+  title_lines:
+  - 가을 겉옷 고민이라면
+  - 질감 섞는 코디 정리
+  intro: 일교차 큰 가을, 코듀로이부터 스웨이드까지 질감으로 멋 내 보세요 🍁
+  points: []
+  hashtags:
+  - '#가을코디'
+  - '#코듀로이자켓'
+  - '#스웨이드재킷'
+  - '#블루종'
+  - '#맨투맨코디'
+  - '#가을아우터'
+  - '#질감코디'
+reason: 코듀로이 자켓을 브라운·카키·블랙 가을 톤으로, 맨투맨·스웨이드·블루종까지 섞어 입은 후보
+cover_look: 1
+shot: flatlay
