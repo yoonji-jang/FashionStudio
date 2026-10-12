@@ -565,17 +565,33 @@ def find_decision(
     return found[-1].name if found else None  # type: ignore[return-value]
 
 
+def split_lines(updates: list[dict]) -> list[dict]:
+    """한 메시지에 여러 줄로 적은 명령("/fix 2 신발 크게" 다음 줄 "/cover 3")을 줄마다 따로 읽게
+    나눈다 (같은 update_id)."""
+    out = []
+    for u in updates:
+        msg = u.get("message") or {}
+        lines = [x for x in (msg.get("text") or "").split("\n") if x.strip()] or [""]
+        out += [u | {"message": msg | {"text": line}} for line in lines]
+    return out
+
+
 def find_cover(
-    updates: list[dict], record: PreviewRecord, chat_id: str, until: int | None = None
+    updates: list[dict],
+    record: PreviewRecord,
+    chat_id: str,
+    until: int | None = None,
+    since: int | None = None,
 ) -> tuple[int, int] | None:
-    """미리보기 뒤 온 마지막 표지 벌 고르기 (update_id, 벌 번호).
-    "/ok 3", "/ok 표지 3", "/cover 3", "표지 3번" 을 읽는다."""
+    """미리보기(since 가 있으면 그때) 뒤 온 마지막 표지 벌 고르기 (update_id, 벌 번호).
+    "/ok 3", "/ok 표지 3", "/cover 3", "표지 3번" 을 읽는다.
+    /fix 와 한 메시지에 줄을 바꿔 써도 된다."""
     found = [
         (uid, n)
         for uid, cmd in commands(
-            updates,
+            split_lines(updates),
             chat_id,
-            record.sent_at,
+            record.sent_at if since is None else since,
             record.account,
             record.date,
             {"ok", "cover"},

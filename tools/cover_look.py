@@ -116,12 +116,42 @@ def apply(out: Path, n: int, profile: Profile | None = None) -> list[Path]:
     return made
 
 
+def chain(out: Path) -> list[Path]:
+    """/fix 로 다시 만든 결과면 지난 결과 폴더들 (fix.json 의 run, 가까운 것부터)."""
+    from tools import feedback
+
+    runs: list[Path] = []
+    cur = out
+    while (fix := feedback.load_fix(cur)) and fix.get("run"):
+        prev = out.parent / fix["run"]
+        if not prev.is_dir() or prev in runs or prev == out:
+            break
+        runs.append(prev)
+        cur = prev
+    return runs
+
+
+def fix_changed_cover(out: Path) -> bool:
+    """/fix 로 다시 만든 결과에서 표지 벌이 지난 기획과 달라졌는지 ("표지를 5번 벌로" 같은 /fix)."""
+    from tools import feedback
+    from tools import plan as plan_tool
+
+    fix = feedback.load_fix(out)
+    if not fix or "cover_look" not in fix or not (out / "plan.yaml").exists():
+        return False
+    return plan_tool.load_plan(out / "plan.yaml").cover_look != fix["cover_look"]
+
+
 def requested(
     out: Path, record: PreviewRecord, profile: Profile, updates: list[dict], chat_id: str
 ) -> tuple[int, int] | None:
-    """승인 마감까지 온 마지막 표지 벌 고르기 (update_id, 벌 번호)."""
+    """승인 마감까지 온 마지막 표지 벌 고르기 (update_id, 벌 번호).
+    /fix 로 다시 만든 미리보기면 처음 미리보기 뒤에 온 글부터 본다: /fix 와 같이 보낸 표지 번호가
+    고친 미리보기에 빠지지 않게."""
     dl = notify.ok_deadline(profile, record.date)
-    return notify.find_cover(updates, record, chat_id, int(dl.timestamp()) if dl else None)
+    sent = [r.sent_at for p in chain(out) if (r := notify.load_record(p))]
+    since = min([record.sent_at, *sent])
+    return notify.find_cover(updates, record, chat_id, int(dl.timestamp()) if dl else None, since)
 
 
 def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = False) -> str:
@@ -145,7 +175,14 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
         return f"{tag} 표지를 LOOK {n} 으로 바꿀 예정 (시험)"
     approved = notify.approval_now(out, record, profile, updates, tg.chat_id) == "ok"
     stale = bool(done.get("reel_stale"))
-    if current(out, profile) == n:
+    seen = any(load_record(p).get("update_id") == uid for p in chain(out))
+    if seen and (current(out, profile) == n or fix_changed_cover(out)):
+        # 지난 미리보기에서 이미 처리한 글: 고친 미리보기가 그 표지를 이어받았거나,
+        # /fix 가 표지를 따로 바꿨으면 /fix 를 따른다
+        note = (
+            f"{tag} 표지 LOOK {current(out, profile)} 그대로 (지난 미리보기에서 고른 표지 처리함)"
+        )
+    elif current(out, profile) == n:
         note = f"{tag} 표지는 이미 LOOK {n} 이에요"
         tg.send(note + (". 이대로 게시해요" if approved else ". /ok 를 보내 주시면 게시해요"))
     else:
