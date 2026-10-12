@@ -36,6 +36,7 @@ from pydantic import BaseModel, ValidationError
 
 from core.models import (
     REVIEW_CHECKS,
+    REVIEW_FAULTS,
     Candidate,
     CoverScore,
     DailyPlan,
@@ -281,7 +282,7 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         f"# 이미지 검수 재료 ({plan.date} {plan.theme.title_hint})",
         "",
         "점수 파일 형식과 기준은 `.claude/agents/image-reviewer.md` 를 따른다.",
-        f"통과 기준: 합계 {profile.review.min_score}점 이상이고 0점 항목이 없을 것.",
+        f"통과 기준: 합계 {profile.review.min_score}점 이상, 0점 항목 없음, 결함(faults) 없음.",
         "",
         "코디컷 종류: "
         + (
@@ -302,6 +303,10 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
             f"| {i} | {cats[i - 1]} | {it.desc} | {it.color or '-'} | {how} | {sizes[i - 1]} | "
             f"{_ref(out, ref) if ref else '없음'} |"
         )
+    if plan.shot != "model":
+        # 점수와 따로 묻는 결함 (하나라도 있으면 불합격). 후보마다 faults 에 해당하는 키만 적는다
+        lines += ["", "## 결함 확인 (후보마다 하나씩 보고, 있으면 `faults` 에 키를 적는다)", ""]
+        lines += [f"- `{k}`: {v}" for k, v in REVIEW_FAULTS.items()]
     lines += ["", "## 점수를 매길 코디컷 후보", ""]
     if todo:
         lines += [f"- {c.id}: `{_ref(out, cand_path(out, c))}`" for c in todo]
@@ -382,7 +387,7 @@ def _manifest(out: Path) -> Manifest | None:
 
 
 def passes(score: CoverScore, profile: Profile) -> bool:
-    return score.total >= profile.review.min_score and not score.zeros
+    return score.total >= profile.review.min_score and not score.zeros and not score.faults
 
 
 def pick(review: Review, profile: Profile) -> Candidate | None:
@@ -395,6 +400,7 @@ def pick(review: Review, profile: Profile) -> Candidate | None:
         key=lambda c: (
             c.score.feedback_ok is not False,
             passes(c.score, profile),
+            -len(c.score.faults),
             c.score.total,
             -review.candidates.index(c),
         ),
@@ -485,6 +491,8 @@ def _append_report(out: Path, review: Review, profile: Profile) -> None:
         if c.score:
             mark = " ← 표지" if c.id == review.chosen and review.status != "retry" else ""
             detail = ", ".join(f"{k} {getattr(c.score, k)}" for k in REVIEW_CHECKS)
+            if c.score.faults:
+                detail += ", 결함 " + "·".join(c.score.faults)
             lines.append(f"- {c.id}: {c.score.total}/10 ({detail}){mark} {c.score.notes}".rstrip())
     lines += [f"- 캐러셀 {s.slide} [{s.kind}] {s.note}" for s in review.slide_issues]
     if review.summary:

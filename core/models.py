@@ -383,6 +383,15 @@ REVIEW_CHECKS: dict[str, str] = {
     "layout": "상품끼리 겹치거나 화면 밖으로 잘리지 않았는지",
 }
 
+# 사용자가 여러 번 지적한 결함 (2026-10-12). 검수가 찾아도 1점만 깎으면 통과해서, 점수와 따로
+# 있다/없다로 받아 하나라도 있으면 불합격으로 다시 그린다 (tools.review.passes)
+REVIEW_FAULTS: dict[str, str] = {
+    "hem_short": "긴바지·롱스커트 밑단이 발목 위에서 끝나 신발 위까지 닿지 않음",
+    "fit_differs": "하의 핏이 착용컷과 다름 (와이드·스트레이트가 테이퍼드·스키니로 좁아짐 등)",
+    "shoes_not_neat": "신발 두 짝이 나란하지 않음 (V자로 벌어짐, 각도·앞코 높이 어긋남, 엇갈림)",
+    "tuck_messy": "넣어 입은 허리가 우글우글 뭉치거나 부풀었고, 또는 밑단·자락이 밖으로 나옴",
+}
+
 
 class CoverScore(BaseModel):
     """검수 에이전트가 코디컷 후보 한 장에 매긴 점수. 항목마다 0(불합격)~2(좋음), 합계 10점."""
@@ -396,6 +405,9 @@ class CoverScore(BaseModel):
     notes: str = ""  # 문제가 있으면 어느 상품의 무엇이 문제인지
     # /fix 로 다시 그린 후보: 사람이 요청한 수정이 그려졌는지 (모르면 None). 점수 합계와 따로 본다
     feedback_ok: bool | None = None
+    # 점수와 따로 보는 결함 (REVIEW_FAULTS, 2026-10-12 사용자: 여러 번 지적해도 1점만 깎여 통과됨).
+    # 하나라도 있으면 합계와 상관없이 불합격이라 다시 그린다
+    faults: list[str] = Field(default_factory=list)  # REVIEW_FAULTS 키 (모르는 값도 결함으로 본다)
 
     @property
     def total(self) -> int:
