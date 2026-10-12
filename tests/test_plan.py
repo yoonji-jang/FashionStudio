@@ -371,6 +371,54 @@ def test_layered_tops_get_layer_styling(store):
     assert "layered under" not in outfit_gen.styling_text(p, products, load_profile("women"))
 
 
+def test_prompt_parts_only_for_items_in_the_look(store):
+    """코디컷 지시문 조각 (2026-10-12): 그 벌의 하의·신발·소품에 맞는 조각만 붙는다."""
+    from tools import outfit_gen
+
+    p = daily()
+    products = {x.id: x for x in store.products()}
+    p.items[2].desc = "블랙 와이드 슬랙스 (black wide slacks)"
+    p.items[4].desc = "블랙 로퍼 (black loafers)"
+    p.items[5].desc = "실버 목걸이 (silver necklace)"
+    names = [t.split(".")[0] for t in outfit_gen.prompt_parts(p, products, "")]
+    text = " ".join(outfit_gen.prompt_parts(p, products, ""))
+    assert "The trousers keep" in text and "seen from directly above" in text
+    assert "skirt" not in text and "boots lie" not in text and "vest" not in text
+    assert "Jewelry and watches" in text and len(names) == 3
+
+    p.items[2].desc = "차콜 플리츠 롱스커트 (charcoal pleated long skirt)"
+    p.items[4].desc = "블랙 롱부츠 (black long boots)"
+    text = " ".join(outfit_gen.prompt_parts(p, products, "draped over the shoulders"))
+    assert "The skirt keeps" in text and "The trousers" not in text
+    assert "The boots lie on their side" in text and "seen from directly above" not in text
+    assert "knit draped over the shoulders" in text
+
+
+def test_outfit_prompt_stays_short(store):
+    """지시문이 길면 이미지 AI 가 지시를 놓친다 (2026-10-12, 2,500단어였음).
+    본문과 모든 조각을 한꺼번에 합쳐도(실제 한 벌은 일부만) 1,000단어를 넘지 않고,
+    고정 구도가 들어가며 $ 자리가 남지 않는다."""
+    from tools import outfit_gen
+    from tools.photoroom import render_prompt
+
+    p = daily()
+    products = {x.id: x for x in store.products()}
+    prof = load_profile("women")
+    prompt = outfit_gen.build_prompt(p, products, prof, {})
+    assert "$" not in prompt and "lower right beside the lower part of the bottoms" in prompt
+    rules = yaml.safe_load((outfit_gen.PARTS_DIR / "parts.yaml").read_text(encoding="utf-8"))
+    every_part = " ".join(render_prompt(n, outfit_gen.PARTS_DIR) for n in rules)
+    base = render_prompt(
+        prof.outfit_image.prompt,
+        items="",
+        styling="",
+        parts=every_part,
+        layout=prof.looks.composition,
+        scene=prof.outfit_image.scene,
+    )
+    assert len(base.split()) <= 1000
+
+
 def test_check_ref_photos_index(store):
     p = daily()
     p.items[0].ref_photos = [0, 5]

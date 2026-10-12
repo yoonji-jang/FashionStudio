@@ -1,0 +1,25 @@
+# 코디컷 지시문 조각 고르기 (tools.outfit_gen.prompt_parts). 조각마다 prompts/outfit/<이름>.md.
+# category: 상품 카테고리, words: 상품 이름·설명에 있으면(대소문자 무시), not_words: 있으면 빼기,
+# with_category: 이 카테고리 상품이 하나 더 있을 때만, styling_words: 입는 방법 문장에 있으면.
+# 조건을 여럿 쓰면 모두 맞아야 한다. 위에서부터 순서대로 붙는다. (2026-10-12)
+skirt:
+  category: 하의
+  words: [스커트, 치마, skirt]
+trousers:
+  category: 하의
+  not_words: [스커트, 치마, skirt]
+vest_layer:
+  category: 상의
+  words: [베스트, 조끼, vest]
+  with_category: 상의
+draped:
+  styling_words: [draped over the shoulder, over the shoulders]
+boots:
+  category: 신발
+  words: [부츠, 워커, boot]
+shoes:
+  category: 신발
+  not_words: [부츠, 워커, boot]
+jewelry:
+  category: 소품
+  words: [목걸이, 귀걸이, 이어링, 반지, 팔찌, 시계, 브로치, necklace, earring, " ring", bracelet, watch, brooch]

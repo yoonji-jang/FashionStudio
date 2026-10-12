@@ -25,14 +25,16 @@ import sys
 import time
 from pathlib import Path
 
+import yaml
 from PIL import Image
 
 from core.models import DailyPlan, PlanItem, Product
 from core.profile import Profile
 from core.store import Store
 from tools import faces, feed, generate
-from tools.photoroom import render_prompt
+from tools.photoroom import PROMPTS_DIR, render_prompt
 
+PARTS_DIR = PROMPTS_DIR / "outfit"  # 그 벌에 해당할 때만 붙이는 지시문 조각 (2026-10-12)
 CLOTHES_FROM_SHOULDER = ("아우터", "상의", "원피스")
 
 
@@ -143,16 +145,51 @@ def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile
             mood=plan.mood or ms.mood,
             season=season_en(plan.date),
         )
-    prompt = render_prompt(
+    styling = styling_text(plan, products, profile)
+    return render_prompt(
         oi.prompt,
         items=item_lines(plan, products, cfg),
-        styling=styling_text(plan, products, profile),
+        styling=styling,
+        parts=" ".join(prompt_parts(plan, products, styling)),
+        layout=profile.looks.composition,
         scene=oi.scene,
     )
-    if profile.looks.enabled and profile.looks.composition:
-        # 여러 벌 게시물(20단계): 벌 장 상품 정보 자리를 비운다
-        prompt += " " + " ".join(profile.looks.composition.split())
-    return prompt
+
+
+def prompt_parts(
+    plan: DailyPlan, products: dict[str, Product], styling: str, parts_dir: Path = PARTS_DIR
+) -> list[str]:
+    """그 벌에 해당하는 지시문 조각 (prompts/outfit/parts.yaml 의 조건).
+    2026-10-12: 모든 규칙을 한 지시문에 넣으면 길어져 이미지 AI 가 지시를 놓쳐서,
+    하의·신발·겹쳐 입기 규칙은 해당할 때만 붙인다."""
+    rules = yaml.safe_load((parts_dir / "parts.yaml").read_text(encoding="utf-8")) or {}
+    items = [
+        (products[it.product], f"{it.name} {products[it.product].name} {it.desc}".lower())
+        for it in plan.items
+    ]
+    cats = [p.category for p, _ in items]
+    texts = []
+    for name, rule in rules.items():
+        if rule.get("styling_words") and not any(
+            w.lower() in styling.lower() for w in rule["styling_words"]
+        ):
+            continue
+        cat = rule.get("category")
+        if cat:
+            hit = [
+                text
+                for p, text in items
+                if p.category == cat
+                and (not rule.get("words") or any(w.lower() in text for w in rule["words"]))
+                and not any(w.lower() in text for w in rule.get("not_words", []))
+            ]
+            if not hit:
+                continue
+            with_cat = rule.get("with_category")
+            if with_cat and cats.count(with_cat) < (2 if with_cat == cat else 1):
+                continue
+        texts.append(render_prompt(name, parts_dir))
+    return texts
 
 
 def reference_panels(
