@@ -1,0 +1,111 @@
+account: women
+cover_look: 1
+date: '2026-10-13'
+items:
+- color: 카키
+  comment: ''
+  cutout_photo: 0
+  desc: 카키 코듀로이 칼라 워크 재킷 (khaki cotton twill work jacket with a brown corduroy collar,
+    zip front with a snap placket, chest flap pockets, hip length, relaxed boxy fit
+    with dropped shoulders)
+  name: 코듀로이칼라 워크 재킷
+  product: zigzag:172086863
+  ref_photos:
+  - 0
+  - 1
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 골지 헨리넥 니트 (black fitted slim ribbed henley knit, long sleeves, a few buttons,
+    hem at the high hip)
+  name: 골지 헨리넥 니트
+  product: zigzag:168837265
+  ref_photos:
+  - 0
+  - 3
+- cm: 108.0
+  color: 중청
+  comment: ''
+  cutout_photo: 2
+  desc: 중청 빈티지 워싱 와이드 데님 (mid-blue vintage-washed wide straight-leg denim, mid-to-high
+    rise, full length breaking over the shoes, the legs stay equally wide from the
+    knee to the hem, never tapered)
+  name: 워싱 와이드 데님
+  product: zigzag:119842018
+  ref_photos:
+  - 2
+  - 3
+  - 0
+  size: about 108 cm long from waist to hem, 34 cm across the waist laid flat, 51
+    cm across the hips laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 레더 호보 숄더백 (black soft slouchy leather hobo shoulder bag)
+  name: 로젤 숄더백
+  product: zigzag:165216354
+  ref_photos:
+  - 4
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black sock ankle boots, shaft just above the ankle, block heel
+    about 5 cm)
+  name: 삭스 앵클부츠
+  product: zigzag:107677011
+  ref_photos:
+  - 0
+  - 3
+looks: []
+reason: 카키 코듀로이 워크 재킷이 주인공, 블랙 골지 헨리넥과 워싱 와이드 데님으로 쿨하게. 카키·블랙·데님의 캐주얼 시크. (볼캡은 맞는
+  색 사진이 없어 뺌) [점수 9]
+shot: flatlay
+styling: The jacket is worn open with the sleeves slightly pushed up; the black henley
+  buttons are partly undone. The two ankle boots are laid as one neat pair, side by
+  side at exactly the same angle with the toe tips level, never splayed in a V. The
+  denim keeps the wide straight fit it has on the model in its product photos, the
+  legs staying wide down to the hem and never tapering toward the ankle, and they
+  run full length so the hem reaches down onto the boots, never ending above the ankle.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#코듀로이자켓'
+  - '#스웨이드재킷'
+  - '#블루종'
+  - '#맨투맨코디'
+  - '#가을아우터'
+  - '#질감코디'
+  intro: 일교차 큰 가을, 코듀로이부터 스웨이드까지 질감으로 멋 내 보세요 🍁
+  points: []
+  title_lines:
+  - 가을 겉옷 고민이라면
+  - 질감 섞는 코디 정리
+theme:
+  date: '2026-10-13'
+  mood: 브라운·카키·베이지의 포근한 가을 톤
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 코듀로이 자켓
+    하의:
+    - 부츠컷 데님
+    - 플리츠 롱스커트
+  slots:
+  - category: 아우터
+    desc: 브라운이나 카키 코듀로이 자켓
+  - category: 상의
+    desc: 아이보리 보트넥 니트나 헨리넥 티
+  - category: 하의
+    desc: 부츠컷 데님이나 플리츠 롱스커트
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 니하이 부츠나 스웨이드 로퍼
+  - category: 소품
+    desc: 가죽끈 목걸이
+  title_hint: 코듀로이 자켓에 가을 니트와 롱부츠, 질감으로 멋 내기
+  type: 아이템
+  why: 비 오는 화요일, 15~20도에 가볍게 걸치는 코듀로이 아우터

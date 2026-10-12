@@ -1,0 +1,113 @@
+account: women
+cover_look: 1
+date: '2026-10-13'
+items:
+- cm: 66.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 브이넥 루즈핏 맨투맨 (gray oversized shallow V-neck sweatshirt, dropped shoulders,
+    very wide voluminous sleeves with gathered cuffs, hip length, soft thick cotton)
+  name: 브이넥 맨투맨
+  product: zigzag:160291322
+  ref_photos:
+  - 1
+  - 0
+  size: about 66 cm long from shoulder to hem, 61 cm across the shoulders, 65 cm across
+    the chest laid flat, 57 cm long sleeves
+- cm: 37.1
+  color: 브라운
+  comment: ''
+  cutout_photo: 5
+  desc: 브라운 스웨이드 미니 스커트 팬츠 (brown brushed suede-look mini skort, mid-thigh length,
+    low-to-mid rise, two front patch pockets)
+  name: 미니 스커트 팬츠
+  product: zigzag:171584018
+  ref_photos:
+  - 5
+  - 0
+  - 4
+  size: about 37.1 cm long from waist to hem, 36.5 cm across the waist laid flat,
+    48.75 cm across the hips laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 레더 빅 호보백 (large brown slouchy leather hobo bag with a wide opening and
+    a thin shoulder strap)
+  name: 빅 호보백
+  product: zigzag:168594319
+  ref_photos:
+  - 0
+  - 1
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 폴딩 롱부츠 (brown matte suede-look fold-over knee-high boots, flat heel, wide
+    fold-over shaft)
+  name: 폴딩 롱부츠
+  product: zigzag:144708955
+  ref_photos:
+  - 2
+  - 1
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 5
+  desc: 실버 두줄 체인 토글 목걸이 (silver double-layer chain necklace with a toggle clasp)
+  name: 체인 토글 목걸이
+  product: zigzag:110794612
+  ref_photos:
+  - 5
+  - 0
+  slot: 목걸이
+looks: []
+reason: 그레이 브이넥 맨투맨이 주인공, 스웨이드 미니 스커트팬츠와 폴딩 롱부츠로 큰 상의에 짧은 하의 비율을 살림. 그레이·브라운의 캐주얼.
+  [점수 8]
+shot: flatlay
+styling: The oversized sweatshirt hangs loosely over the skort waistband with its
+  sleeves pushed up; the fold-over boots reach the knee. The waist area is smooth
+  and natural like a real tuck, with a slight soft blouse of fabric and no bunched
+  wrinkles, clumps or puffiness where the sweatshirt meets the skort. The two boots
+  are laid as one neat pair, side by side at exactly the same angle with the toe tips
+  level, never splayed in a V.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#코듀로이자켓'
+  - '#스웨이드재킷'
+  - '#블루종'
+  - '#맨투맨코디'
+  - '#가을아우터'
+  - '#질감코디'
+  intro: 일교차 큰 가을, 코듀로이부터 스웨이드까지 질감으로 멋 내 보세요 🍁
+  points: []
+  title_lines:
+  - 가을 겉옷 고민이라면
+  - 질감 섞는 코디 정리
+theme:
+  date: '2026-10-13'
+  mood: 브라운·카키·베이지의 포근한 가을 톤
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 코듀로이 자켓
+    하의:
+    - 부츠컷 데님
+    - 플리츠 롱스커트
+  slots:
+  - category: 아우터
+    desc: 브라운이나 카키 코듀로이 자켓
+  - category: 상의
+    desc: 아이보리 보트넥 니트나 헨리넥 티
+  - category: 하의
+    desc: 부츠컷 데님이나 플리츠 롱스커트
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 니하이 부츠나 스웨이드 로퍼
+  - category: 소품
+    desc: 가죽끈 목걸이
+  title_hint: 코듀로이 자켓에 가을 니트와 롱부츠, 질감으로 멋 내기
+  type: 아이템
+  why: 비 오는 화요일, 15~20도에 가볍게 걸치는 코듀로이 아우터
