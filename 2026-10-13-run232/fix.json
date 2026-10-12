@@ -1,0 +1,62 @@
+{
+  "run": "2026-10-13-run228-mix",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 6,
+      "kind": "look",
+      "look": 5,
+      "text": "5번 벌은 사용자 요청으로 이미 10/11 LOOK 2 코디컷과 상품으로 바꿔 두었다. 코디컷을 새로 그리지 말고(cover 그대로) 이 벌 장과 캡션 상품 목록만 바뀐 상품으로 다시 만든다. 다른 벌은 그대로. 2번 벌과 스웨이드 재킷이 겹치는 것은 사용자가 승인했고 규칙(looks.max_shared_clothes)도 허용한다."
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 4,
+      "file": "04_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 5,
+      "file": "05_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 6,
+      "file": "06_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 7,
+      "file": "07_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 8,
+      "file": "08_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 1
+}
