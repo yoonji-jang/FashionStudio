@@ -34,7 +34,12 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
 - 10. 검수: 벌 폴더마다 따로 한다. `python -m tools.review prep out/$DATE` 가 모든 벌을 prep 한다. 그다음
   벌마다(`out/$DATE/looks/<n>`) `image-reviewer` → `scores.yaml` → `tools.review apply out/$DATE/looks/<n>`,
   종료 코드 3이면 그 벌만 `tools.review more out/$DATE/looks/<n>` 하고 그 벌만 다시 검수한다.
-  모든 벌이 끝나면 `python -m tools.review finish out/$DATE` 로 고른 코디컷으로 슬라이드·manifest 를
+  모든 벌이 끝나면 **표지 벌을 고른다** (profile `looks.cover_collage.enabled` 가 false 일 때, 2026-10-12 사용자):
+  벌마다 고른 코디컷(`looks/<n>/review/covers.jpg`)을 보고, 피드 첫 화면에서 가장 눈에 띄고 제목과 가장 잘
+  맞는 한 벌을 plan.yaml `cover_look: <n>` (1부터)에 쓴다. 기준: 검수 통과·높은 점수, 제목이 말하는
+  아이템·색이 보이는 벌, 아래 왼쪽 제목 자리(흰 글자)를 옷이 크게 가리지 않는 벌, 밝기·색이 단조롭지 않은 벌.
+  최근 며칠 표지와 같은 아이템 종류(예: 매일 트렌치)만 이어지지 않게 한다. 사람이 텔레그램 "/ok 3" 으로 바꿀 수 있다.
+  그다음 `python -m tools.review finish out/$DATE` 로 고른 코디컷으로 슬라이드·manifest 를
   다시 만든다 (종료 코드 4 = 통과 못 한 벌이 있어 사람 확인, 그대로 11로).
   벌 하나만 계속 떨어지면 그 벌의 상품을 바꾸지 말고 사람 확인으로 둔다 (사람이 고른 구성).
 

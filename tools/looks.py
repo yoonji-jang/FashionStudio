@@ -7,8 +7,9 @@ r"""코디 여러 벌 게시물 만들기 (20단계, profile looks). tools.plan 
   out/looks/<n>/outfit/            코디컷 후보 (profile looks.candidates 장, 떨어지면 more 로 더)
   out/looks/<n>/review/review.json 이 벌의 후보·점수·고른 코디컷
 
-슬라이드: 표지(1번 벌 코디컷 + 제목) → 벌 장(코디컷 + 상품 정보 몇 줄) → 댓글 안내 장
-(profile feed.slides). 검수로 고른 코디컷이 바뀌면 finish 가 슬라이드·manifest 를 다시 만든다.
+슬라이드: 표지(plan.cover_look 번 벌 코디컷 + 제목, 또는 콜라주) → 벌 장(코디컷 + 상품 정보 몇 줄)
+→ 댓글 안내 장 (profile feed.slides). 검수로 고른 코디컷이 바뀌면 finish 가 슬라이드·manifest 를
+다시 만든다.
 
 사용법:
   python -m tools.plan build out/2026-10-02/plan.yaml        (looks 가 있으면 여기로 옴)
@@ -183,6 +184,15 @@ def min_score(out: Path) -> float:
     return float(min(scores or [0]))
 
 
+def cover_index(plan: DailyPlan) -> int:
+    """표지로 쓸 벌 (0부터). plan.cover_look 이 없거나 벌 수를 넘으면 1번 벌."""
+    n = plan.cover_look or 1
+    if not 1 <= n <= len(plan.looks):
+        print(f"경고: 표지 벌 {n}번이 없어 1번 벌로 표지를 만듭니다", file=sys.stderr)
+        n = 1
+    return n - 1
+
+
 def finish(
     out: Path,
     profile: Profile | None = None,
@@ -208,7 +218,7 @@ def finish(
         )
         for img, look in zip(images, plan.looks, strict=True)
     ]
-    cover = images[0]
+    cover = images[cover_index(plan)]
     # 펼친컷 날은 표지를 벌 전부의 콜라주로 (모델컷은 바닥이 고르지 않아 오려 내지 않는다)
     collage = profile.looks.cover_collage.enabled and plan.shot != "model" and all(images)
     if plan.cover_collage is not None:

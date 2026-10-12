@@ -255,16 +255,17 @@ looks:
   type_limits: {셔츠: 2, 베스트: 2}
   type_ignore: [티셔츠, 셔츠카라, 셔츠 카라]  # 티셔츠·셔츠카라 니트는 셔츠로 세지 않음 (10/8 후보)
   candidates: 1      # 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 한 장 더 (review.max_rounds)
-  repeat_cover_look: true  # 표지 다음 장에 1번 벌을 상품 정보와 함께 다시 보여 줌
+  repeat_cover_look: true  # 벌 장은 LOOK 1부터 다 보여 줌 (표지로 쓴 벌도 상품 정보와 함께 한 번 더)
   title_count: false  # 표지 제목에 "여섯 벌" 같은 벌 수를 쓰지 않음 (2026-10-01 사용자)
   label: "LOOK {n}"
   show_shop: true
   show_price: false  # 가격은 바뀔 수 있어 넣지 않음
   credit: "이미지 출처 지그재그"  # 벌 장마다 (2026-10-06 사용자). 콜라주 표지에는 넣지 않음 (10-07)
-  # 표지 = 여섯 벌을 코드로 오려 콘크리트 그레이 한 배경에 위 세 벌·아래 세 벌, 가운데 박스 없는
-  # 흰 제목 (2026-10-07 사용자 "3번 색에서 글자만 중간"). AI 비용 없음. 모델컷 날은 예전 표지
+  # 표지 = 그날 벌 중 한 벌 코디컷 + 제목 (2026-10-12 사용자 "6벌 콜라주가 아닌 코디 중 하나로").
+  # 어느 벌로 할지는 daily-feed 가 고르고(plan.yaml cover_look), 텔레그램 "/ok 3"·"/cover 3" 으로
+  # 바꾼다 (tools.cover_look). 아래 콜라주(여섯 벌을 코드로 오려 한 배경에, 2026-10-07)는 꺼 둠
   cover_collage:
-    enabled: true
+    enabled: false
     top_color: "#969694"
     bottom_color: "#767675"
     texture: 7

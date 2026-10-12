@@ -133,6 +133,9 @@ class DailyPlan(BaseModel):
     # false 면 이 게시물만 1번 벌 코디컷 표지
     # (2026-10-09 사용자 /fix "첫 장은 콜라주 말고 첫 코디 이미지로")
     cover_collage: bool | None = None
+    # 콜라주가 아닐 때 표지로 쓰는 벌 번호 (1부터). None 이면 1번 벌.
+    # daily-feed 가 고르고, 텔레그램 "/ok 3"·"/cover 3" 으로 바꾼다 (tools.cover_look, 2026-10-12)
+    cover_look: int | None = Field(default=None, ge=1)
     source_run: str | None = None  # 모델컷이면 벌을 가져온 전날 결과 폴더 (예 2026-10-05-run90)
     mood: str | None = None  # 모델컷 장소·분위기 (영어). 없으면 profile model_shot.mood
     pose: str | None = None  # 한 벌 기획의 모델컷 인물·포즈 (여러 벌이면 looks[].pose)

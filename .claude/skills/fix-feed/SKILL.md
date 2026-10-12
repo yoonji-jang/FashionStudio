@@ -38,7 +38,9 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      `styling` 에 "The shoes are drawn at their true size, clearly larger than before." 를 더한다.
    - **표지 제목**: `text.title_lines` 를 `write-copy` 스킬 기준으로 고친다.
    - **표지 모양** (여러 벌 게시물): "콜라주 말고 첫 코디로" 면 plan.yaml 에 `cover_collage: false`, 다시 콜라주로면
-     `cover_collage: true` 를 쓴다. 이 게시물만 바뀌고 코디컷은 다시 그리지 않는다 (`cover:` 는 그대로).
+     `cover_collage: true` 를 쓴다. "표지를 3번 벌로" 면 `cover_look: 3` 과 `cover_collage: false`.
+     이 게시물만 바뀌고 코디컷은 다시 그리지 않는다 (`cover:` 는 그대로).
+     (표지 벌만 바꾸는 건 /fix 없이 텔레그램 "/cover 3"·"/ok 3" 으로도 된다, tools.cover_look)
    - **상품 장**: 사진이 문제면(색이 다름, 잘림, 얼굴) `python -m tools.plan photos out/$DATE/plan.yaml` 로
      사진 확인표를 만들고 `photo-checker` 에이전트에게 그 상품만 다시 골라 달라고 해 `photo` 를 바꾼다.
      이름·코멘트가 문제면 `name`, `comment` 를 `write-copy` 기준으로 고친다.

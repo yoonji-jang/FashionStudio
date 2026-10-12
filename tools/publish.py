@@ -141,6 +141,20 @@ def approval(
     return "wait", f"{why} /ok 를 기다립니다"
 
 
+def cover_change(out: Path, tg: notify.Telegram | None) -> None:
+    """매시 확인이 아직 처리하지 않은 표지 벌 고르기(/ok 3, /cover 3)를 게시 전에 반영한다.
+    실패해도 게시는 지금 표지로 한다 (tools.cover_look)."""
+    from tools import cover_look
+
+    try:
+        line = cover_look.check(out, tg or notify.Telegram.from_env())
+    except (RuntimeError, ValueError, FileNotFoundError, httpx.HTTPError) as e:
+        print(f"경고: 표지 바꾸기를 확인하지 못했습니다: {e}", file=sys.stderr)
+        return
+    if line:
+        print(line)
+
+
 def post_links(manifest: Manifest) -> list[PostLink]:
     """게시물 상품 링크 (댓글 DM 용). 짧은 이름은 캡션 제품 목록과 같은 규칙으로 다듬는다."""
     from tools.feed import clean_name
@@ -198,6 +212,8 @@ def run(
     if (out / "published.json").exists():
         print(f"{tag} 이미 게시했습니다 ({out.name}/published.json)")
         return 0
+    if not dry_run:
+        cover_change(out, tg)
     manifest = notify.load_manifest(out)
     if manifest.date != day:
         raise Blocked(f"결과 날짜가 다릅니다 ({manifest.date})")
@@ -519,8 +535,10 @@ def run_reels(
     if rec.reel_sent_at and not again:
         print(f"{tag} 릴스 영상을 이미 텔레그램으로 보냈습니다")
         return 0
-    from tools import reels
+    from tools import cover_look, reels
 
+    # 표지 벌을 바꾼 날은 영상 첫 장도 바뀌어야 해서 다시 만든다
+    rebuild = rebuild or cover_look.reel_stale(out)
     if rebuild and not dry_run:
         spec = reels.build(out, profile)
         song = spec.audio or "없음"
