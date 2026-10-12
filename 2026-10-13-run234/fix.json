@@ -1,0 +1,61 @@
+{
+  "run": "2026-10-13-run232",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "표지 제목만 정확히 이 두 줄로 바꾼다: 1줄 '가을 코디 밋밋하지 않게', 2줄 '질감 하나 더하는 법'. 코디컷은 다시 그리지 않고(cover 그대로), 다른 장과 캡션은 그대로."
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 4,
+      "file": "04_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 5,
+      "file": "05_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 6,
+      "file": "06_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 7,
+      "file": "07_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 8,
+      "file": "08_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 2
+}

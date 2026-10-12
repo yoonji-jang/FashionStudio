@@ -1,0 +1,26 @@
+{
+  "candidates": [
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "가방 위쪽이 재킷 왼쪽 소매 끝에 살짝 걸침. 부츠가 바지 밑단 오른쪽에 거의 붙어 있고 바지 밑단과 부츠가 겹치지 않음. 바지는 와이드 스트레이트로 밑단까지 폭이 유지되고 기장도 바닥 가까이까지 길어서 모델컷과 비슷함. 재킷은 지퍼·플랩 포켓·탭 커프가 원본과 같음.",
+        "feedback_ok": true,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 가 피드백을 반영했고 원본에도 가장 가까움 (신발 두 짝 나란히, 와이드 핏 유지, 긴 기장). c1 은 바지가 테이퍼드로 좁아져 요청과 어긋남. c2 는 신발이 바지 밑단에 붙고 가방이 소매에 닿아 layout 만 1점."
+}

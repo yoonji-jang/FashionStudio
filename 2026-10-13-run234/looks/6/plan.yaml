@@ -1,0 +1,105 @@
+account: women
+cover: out/2026-10-13/looks/6/outfit_r2/results/G_1.jpg
+cover_look: 2
+date: '2026-10-13'
+items:
+- cm: 63.5
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 오버핏 코튼 딥브이 맨투맨 (gray oversized thick cotton deep v-neck sweatshirt with
+    dropped shoulders, gathered cuffs and hip length)
+  name: 딥브이 맨투맨
+  product: zigzag:168315295
+  ref_photos:
+  - 0
+  size: about 63.5 cm long from shoulder to hem, 61 cm across the shoulders, 65 cm
+    across the chest laid flat, 55 cm long sleeves
+- cm: 54.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 골지 나시 (gray fitted slim ribbed tank top with a deep scoop neckline and
+    a button placket down the front, hem at the waist)
+  name: 골지 버튼 나시
+  product: zigzag:169527291
+  ref_photos:
+  - 1
+  - 5
+  size: about 54 cm long from shoulder to hem, 34 cm across the chest laid flat
+  wear_with: 상의
+- cm: 55.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 플리츠 랩스커트 (black asymmetric low-rise wrap skirt with sharp knife pleats
+    and side ribbon ties, hem at mid-thigh to above the knee)
+  name: 플리츠 랩스커트
+  product: zigzag:159574062
+  ref_photos:
+  - 0
+  - 1
+  size: about 55 cm long from waist to hem, 34 cm across the waist laid flat, 52 cm
+    across the hips laid flat, 69 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬라우치 롱부츠 (black leather slouchy knee-high boots with buckles)
+  name: 슬라우치 롱부츠
+  product: zigzag:166288289
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 호보 숄더백 (black hobo shoulder bag with a thin round strap)
+  name: 호보 숄더백
+  product: zigzag:170446631
+  ref_photos:
+  - 3
+looks: []
+reason: 그레이 오버핏 맨투맨이 주인공, 블랙 플리츠 랩스커트와 롱부츠로 부피 대비. 그레이·블랙 톤의 캐주얼
+shot: flatlay
+styling: The sweatshirt is worn oversized with a short skirt below its hem and tucked
+  loosely at the front only.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#코듀로이자켓'
+  - '#스웨이드재킷'
+  - '#블루종'
+  - '#맨투맨코디'
+  - '#가을아우터'
+  - '#질감코디'
+  intro: 일교차 큰 가을, 코듀로이부터 스웨이드까지 질감으로 멋 내 보세요 🍁
+  points: []
+  title_lines:
+  - 가을 코디 밋밋하지 않게
+  - 질감 하나 더하는 법
+theme:
+  date: '2026-10-13'
+  mood: 브라운·카키·베이지의 포근한 가을 톤
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 코듀로이 자켓
+    하의:
+    - 부츠컷 데님
+    - 플리츠 롱스커트
+  slots:
+  - category: 아우터
+    desc: 브라운이나 카키 코듀로이 자켓
+  - category: 상의
+    desc: 아이보리 보트넥 니트나 헨리넥 티
+  - category: 하의
+    desc: 부츠컷 데님이나 플리츠 롱스커트
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 니하이 부츠나 스웨이드 로퍼
+  - category: 소품
+    desc: 가죽끈 목걸이
+  title_hint: 코듀로이 자켓에 가을 니트와 롱부츠, 질감으로 멋 내기
+  type: 아이템
+  why: 비 오는 화요일, 15~20도에 가볍게 걸치는 코듀로이 아우터

@@ -1,0 +1,118 @@
+account: women
+cover: out/2026-10-13/looks/2/outfit/results/G_1.jpg
+cover_look: 2
+date: '2026-10-13'
+items:
+- cm: 71.0
+  color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 다크브라운 스웨이드 테일러드 재킷 (dark brown suede tailored blazer, notched lapel, hip to
+    upper-thigh length, relaxed oversized fit with dropped soft shoulders)
+  name: 스웨이드 재킷
+  product: zigzag:171592183
+  ref_photos:
+  - 0
+  - 3
+  size: about 71 cm long from shoulder to hem, 45.5 cm across the shoulders, 59.5
+    cm across the chest laid flat, 60.5 cm long sleeves
+- color: 아이보리
+  comment: ''
+  cutout_photo: 1
+  desc: 아이보리 라운드넥 루즈핏 니트 (ivory loose sheer open-weave slubby raglan-sleeve knit,
+    crew neck, hip length)
+  name: 부클 니트
+  product: zigzag:171405395
+  ref_photos:
+  - 1
+- cm: 87.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 2
+  desc: 차콜 플리츠 미디 스커트 (charcoal A-line pleated skirt with wide soft box pleats, long
+    midi length, hem between the calf and the ankle)
+  name: 플리츠 롱 스커트
+  product: zigzag:148007785
+  ref_photos:
+  - 2
+  - 1
+  size: about 87 cm long from waist to hem, 36 cm across the waist laid flat
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 숄더백 (cream soft slouchy shoulder bag with two thin rolled handles and
+    a drawstring-gathered top)
+  name: 애니 숄더백
+  product: zigzag:170305230
+  ref_photos:
+  - 0
+  - 1
+  - 3
+- color: 브라운
+  comment: ''
+  cutout_photo: 2
+  desc: 브라운 소가죽 메리제인 (tan brown leather round-toe mary janes with a thin ankle strap,
+    low heel)
+  name: 소가죽 메리제인
+  product: zigzag:166028838
+  ref_photos:
+  - 2
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 라운드 스퀘어 귀걸이 (exactly one pair (two earrings) of chunky glossy puffed silver
+    square-round studs)
+  name: 라운드 귀걸이
+  product: zigzag:133580915
+  ref_photos:
+  - 0
+  slot: 귀걸이
+looks: []
+reason: 다크브라운 스웨이드 테일러드 재킷이 주인공, 아이보리 니트와 차콜 플리츠 스커트로 단정하게. 브라운·아이보리·차콜의 단정한 분위기.
+  [점수 8]
+shot: flatlay
+styling: The suede jacket is left open; the knit hem is tucked slightly into the skirt
+  waist. The tucked part is smooth and natural like a real tuck at the waist, only
+  a slight soft blouse of fabric above the waistband, with no bunched wrinkles, clumps
+  or puffiness.
+text:
+  hashtags:
+  - '#가을코디'
+  - '#코듀로이자켓'
+  - '#스웨이드재킷'
+  - '#블루종'
+  - '#맨투맨코디'
+  - '#가을아우터'
+  - '#질감코디'
+  intro: 일교차 큰 가을, 코듀로이부터 스웨이드까지 질감으로 멋 내 보세요 🍁
+  points: []
+  title_lines:
+  - 가을 코디 밋밋하지 않게
+  - 질감 하나 더하는 법
+theme:
+  date: '2026-10-13'
+  mood: 브라운·카키·베이지의 포근한 가을 톤
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 코듀로이 자켓
+    하의:
+    - 부츠컷 데님
+    - 플리츠 롱스커트
+  slots:
+  - category: 아우터
+    desc: 브라운이나 카키 코듀로이 자켓
+  - category: 상의
+    desc: 아이보리 보트넥 니트나 헨리넥 티
+  - category: 하의
+    desc: 부츠컷 데님이나 플리츠 롱스커트
+  - category: 가방
+    desc: 브라운 스웨이드 숄더백
+  - category: 신발
+    desc: 니하이 부츠나 스웨이드 로퍼
+  - category: 소품
+    desc: 가죽끈 목걸이
+  title_hint: 코듀로이 자켓에 가을 니트와 롱부츠, 질감으로 멋 내기
+  type: 아이템
+  why: 비 오는 화요일, 15~20도에 가볍게 걸치는 코듀로이 아우터
