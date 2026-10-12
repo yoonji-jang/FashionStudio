@@ -23,7 +23,7 @@ description: 텔레그램 /fix 로 쌓인 새 피드백을 읽고, 되풀이될 
 ## 어디에 반영하나
 | 피드백 종류 | 파일 |
 |---|---|
-| 코디컷 모양·크기·배치·입은 모양 (표지 1장) | `prompts/<profile outfit_image.prompt>.md` 지시문, 기획 기준은 `.claude/skills/pick-outfit/SKILL.md` "코디컷 배치", 크기 기본값은 `config/layout.yaml` |
+| 코디컷 모양·크기·입은 모양 (표지 1장) | 모든 벌에 해당하면 `prompts/<profile outfit_image.prompt>.md` 짧은 본문, 하의·신발·겹쳐 입기·주얼리처럼 일부 벌만이면 `prompts/outfit/<조각>.md` (붙는 조건은 `prompts/outfit/parts.yaml`). 배치(구도)는 profile `looks.composition` 하나로 고정. 지시문은 길면 이미지 AI 가 놓치므로 문장을 덧붙이지 말고 있는 문장을 고친다 (모든 조각 합쳐 1,000단어 이하, 테스트가 봄). 기획 기준은 `.claude/skills/pick-outfit/SKILL.md` "코디컷 배치", 크기 기본값은 `config/layout.yaml` |
 | 검수가 놓친 문제 (같은 문제가 통과됨) | `.claude/agents/image-reviewer.md` 의 생성형 코디컷 확인 목록·점수표 |
 | 상품 장 사진 고르기 (색 다름, 얼굴, 잘림) | `.claude/agents/photo-checker.md` |
 | 제목·상품 이름·코멘트·캡션 말투 | `accounts/$ACCOUNT/voice.md`, 규칙이면 `.claude/skills/write-copy/SKILL.md` |

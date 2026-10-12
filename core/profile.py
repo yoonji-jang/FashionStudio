@@ -319,20 +319,22 @@ class Looks(BaseModel):
     sub_color: str = Field(default="#E3E3E3", pattern=COLOR)
     gradient_height: float = Field(default=0.42, ge=0, le=1)
     gradient_opacity: float = Field(default=0.55, ge=0, le=1)
-    # 벌 코디컷 지시문 끝에 붙이는 배치 (영어). 옷은 가운데, 상품 정보 글자 자리(왼쪽 아래)에는
-    # 가방·신발·소품을 두지 않는다. 2026-10-07 사용자: 옷이 오른쪽으로 치우침
-    # → '오른쪽으로 옮기기'와 가방·신발·소품을 모두 오른쪽에 두던 문장을 빼고,
-    # 가방은 왼쪽 허리 높이로 (하의 왼쪽 다리에 글자가 조금 걸치는 것은 그라데이션으로 읽힌다)
+    # 코디컷 고정 구도 (영어, 지시문 $layout). 모든 벌이 같은 구도다.
+    # 상품 이름 글자 자리(왼쪽 아래)는 비운다.
+    # 2026-10-07 사용자: 옷이 오른쪽으로 치우침 → 옷은 가운데, 가방은 왼쪽 허리 높이.
+    # 2026-10-12 사용자 참고 코디컷: 소품은 오른쪽 위 가슴 높이,
+    # 신발은 오른쪽 아래 하의 옆으로 하나로 고정
+    # (짧은 하의일 때의 예외 자리와 '위 구도를 덮어쓴다' 문장은 뺐다)
     composition: str = (
-        "Layout for this image, overriding the composition above: the clothes are exactly centered"
-        " horizontally, with the collar, the front opening of the top and the gap between the two"
-        " trouser legs (or the middle of the skirt) on the vertical center line of the frame, and"
-        " equal empty floor on the left and right of the clothes; never shift the outfit toward"
-        " either side. Product names are written later over the lower left, so put no bag, shoes or"
-        " accessories in the lower-left area (the left 40 percent of the width, the bottom 35"
-        " percent of the height). Balance the items around the centered clothes: the bag lies on"
-        " the left side beside the top at waist height, the shoes sit in the lower right beside"
-        " the hem, and jewelry or small accessories sit on the right at chest height."
+        "the clothes form one figure centered horizontally, from the collar near the top edge to"
+        " the hem near the bottom edge; with short bottoms the whole outfit moves down so the empty"
+        " floor above and below is about equal. Jewelry, a watch or other small accessories, only"
+        " if listed, sit in a neat vertical column on the right at chest height. The bag lies on"
+        " the left beside the top at waist height, slightly overlapping the edge of the clothes."
+        " The shoes sit in the lower right beside the lower part of the bottoms, not touching"
+        " them. The lower-left area of the frame (the left 40 percent of the width, the bottom 35"
+        " percent of the height) stays empty floor, because product names are written there"
+        " later."
     )
 
 

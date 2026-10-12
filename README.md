@@ -62,7 +62,7 @@ uv run pytest
 | `config/models.yaml` | 이미지 AI(생성형 모델, Photoroom) 설정 | 거의 안 바꿈 |
 | `config/publish.yaml` | 인스타 게시 API 주소, 게시용 사진 저장소 | 거의 안 바꿈 |
 | `config/layout.yaml` | 코디컷에서 상품별 위치·크기 | 배치를 바꾸고 싶을 때 |
-| `prompts/` | 이미지 AI 지시문 (`outfit_generate.md` 하루 코디컷, 나머지는 실험·예전 방식) | 이미지 품질을 다듬을 때 |
+| `prompts/` | 이미지 AI 지시문 (`outfit_generate.md` 하루 코디컷 본문, `outfit/` 해당할 때만 붙는 조각, 나머지는 실험·예전 방식) | 이미지 품질을 다듬을 때 |
 | `assets/fonts/` | 제목 폰트 파일 (Pretendard 기본 포함) | 폰트를 바꿀 때 |
 
 사용자가 고치지 않는 곳: `core/`, `sources/`, `tools/`, `tests/`, `CLAUDE.md`, `.claude/settings.json`
@@ -270,7 +270,7 @@ Claude(write-copy 스킬)가 따르고 `tools.plan check` 가 자동으로 검�
 | `candidates` | 1 | 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 `review.max_rounds` 까지 다시 |
 | `repeat_cover_look` | true | 표지로 쓴 벌도 벌 장에 상품 정보와 함께 다시 보여 줌 (false 면 표지로만, 텔레그램 표지 바꾸기는 안 됨) |
 | `label`, `show_shop`, `show_price` | "LOOK {n}", true, false | 벌 장 글자 (가격은 바뀔 수 있어 기본으로 뺌) |
-| `composition` | (영어) | 벌 코디컷 지시문 끝에 붙여 글자 자리(왼쪽 아래)를 비움 |
+| `composition` | (영어) | 코디컷 고정 구도 (옷 가운데, 소품 오른쪽 위, 가방 왼쪽, 신발 오른쪽 아래, 글자 자리 왼쪽 아래 비움) |
 | `credit` | 이미지 출처 지그재그 | 벌 장 상품 목록 아래 출처 한 줄 (콜라주 표지에는 넣지 않음) |
 | `cover_collage` | (아래) | 표지를 벌 전부의 콜라주로 |
 
@@ -555,7 +555,9 @@ accounts:
 
 ### 6. `prompts/` : 이미지 AI 지시문
 
-하루 코디컷은 `outfit_generate.md` 하나를 씁니다 (상품 설명·실제 크기·입는 방법·바닥이 채워짐).
+하루 코디컷은 `outfit_generate.md` 짧은 본문에 (상품 설명·실제 크기·입는 방법·구도·바닥이 채워짐)
+그 벌에 해당하는 `outfit/<조각>.md` (바지·치마·부츠·신발·조끼 겹치기·어깨에 두르기·주얼리)만 붙여 씁니다.
+어떤 조각을 붙일지는 `outfit/parts.yaml` 에 있습니다.
 `gen_*.md` 는 모델 비교 실험(`tools.generate`), 아래 표는 예전 Photoroom 방식의 지시문입니다.
 
 | 파일 | 역할 |

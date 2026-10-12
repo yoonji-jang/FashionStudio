@@ -1,181 +1,48 @@
 <!--
-하루 표지 코디컷 지시문 (tools.outfit_gen, profile outfit_image.prompt). 상품 참고판을 번호 순서로 함께 보낸다.
-$items: 번호별 상품 설명과 실제 크기, $styling: 입는 방법, $scene: 바닥·빛 (profile outfit_image.scene).
-2026-09-30 실험(gen-3, gen-4)에서 나온 실수를 막는 문장을 넣었다: 귀걸이 두 쌍, 깃·신발 모양 바뀜, 글자·숫자.
-2026-09-30 첫 게시(run40) 피드백: 바지가 자켓에 비해 짧게 그려짐, 왼쪽 아래 신발이 표지 제목에 가려짐
-→ 기장 비율 문장, 신발은 오른쪽 아래, 왼쪽 아래(제목 자리)는 비우기.
-다시 만든 run44 피드백: 바지가 여전히 짧고 펼친 핏이 펑퍼짐함 → 착용컷 핏(슬림 스트레이트, 발등 덮는 기장) 문장.
-run46: 소품이 없는 날에도 '소품은 오른쪽 세로 줄' 문장 때문에 반지·시계를 그려 넣음 → 목록에 있을 때만.
-2026-10-02 피드백(/fix 5건 + 스레드 "이미지 검토"): 바지·치마가 짧고 작고, 핏이 자로 잰 통짜처럼 정직함.
-참고 계정(finleu.archive, lcod.kr)과 비교: 허리선이 높고(상의는 짧게·넣어 입고 벨트가 보임) 하의가 그림의 60%,
-다리에 볼륨과 살짝 벌어진·휜 선, 밑단에 천이 접히는 주름 → '곧고 평행, 밑단 20cm' 문장을 빼고 비율·연출 문장으로.
-같은 날: 오프숄더 니트의 넓은 깃이 가죽자켓 어깨 위로 덮임, 니트가 자켓 어깨 위로 올라옴(10/3 /fix)
-→ 안에 입은 옷은 겉옷 위로 올라오지 않는다는 겹침 순서 문장.
-2026-10-06 피드백(10/7 게시물, 스레드 "이미지 피드백"): 오버핏 자켓·가디건이 크롭처럼 짧고 작게, 흘러내리는
-오버핏 셔츠가 빳빳하게, 플리츠 치마의 재질·주름이 다르게, 미디스커트가 발목 기장으로 그려짐, 스카프를 옷 위 목에 묶음
-→ '상의·아우터는 작고 compact 하게' 문장을 빼고 상품의 핏·기장·천의 느낌을 지키는 문장, 치마 재질·주름·미디 기장 문장,
-스카프 같은 목 소품은 옷에 두르지 않고 목 높이 옆 빈자리에 따로 두는 문장.
-2026-10-07 사용자: 펼친 옷이 납작해 보임 → 과하지 않게 실제 옷을 펼친 것처럼 살짝 볼륨(천의 두께, 안쪽 공기, 부드러운 그림자).
-같은 날 10/8 게시물(run167): 여전히 납작함 → 'Keep it subtle' 이 볼륨 문장을 약하게 만들고, 고른 빛이라 그림자가 없음.
-부위별 볼륨(팔꿈치 들림, 가슴 품, 밑단 말림, 니트 두께, 하의 둥근 주름)과 옆빛 그림자로 보이게 하는 문장으로.
-어깨에 두른 가디건이 상의 가슴을 망토처럼 덮음 → 두른 니트는 몸판을 상의 뒤로 숨기고 소매만 앞으로 묶는 문장.
-같은 날 사용자: 하의, 특히 치마가 납작함(새틴 롱스커트·미니스커트가 주름 없는 판), 코디가 너무 위에 붙음
-→ 치마는 깊은 주름과 물결치는 밑단·광택 명암 문장, 깃은 위 끝에서 8% 아래, 짧은 코디는 아래로 내려 위아래 여백을 맞춤.
-2026-10-02·03 피드백: 단추가 상세페이지는 3개인데 2개로, 귀걸이 디자인이 다름, 단추 없는 니트 조끼에 단추가 생김
-→ 단추 개수·위치와 주얼리 디자인을 사진 그대로 지키는 문장.
-2026-10-10 피드백(10/10 게시물 /fix 6건): 그림 안에 숫자가 그려짐, 치마 앞뒤가 바뀜(주머니 있는 뒷면), 넣어 입은 허리를 인위적으로 말아 넣음,
-목걸이가 작아 안 보임 → 숫자(치수) 금지 강화, 치마는 앞면, 자연스럽게 살짝 넣은 허리, 주얼리 크기 문장.
-2026-10-12 피드백(10/11 게시물, 스레드 "코디컷 이미지 피드백"): 바지가 배바지처럼 위로 올라옴, 신발이 가지런하지 않음,
-셔츠 밑단이 바지 밖으로 삐져나옴, 셔츠 위 니트 조끼가 입은 느낌 없이 옷만 위에 올린 것 같음, 전체가 모델이 입은 핏을
-그대로 바닥에 내려놓은 느낌이 아님 → '허리선은 위에서 40%' 문장(10/2)이 원인이라 실제 몸 비율(깃에서 허리 40~45cm,
-긴바지면 위쪽 30% 안팎)로 바꿈, 맨 앞에 '모델이 입은 핏과 같게' 원칙(사용자: '벗어 둔' 은 구겨 벗어 놓은 옷으로 읽혀 애매함), 셔츠 밑단 전체를 넣어 입기, 조끼 겹쳐 입기,
-신발 두 짝 같은 각도·같은 높이 문장.
-같은 날 사용자: 모델핏과 비슷하게 그리는 걸 최우선으로 → 아래 핏·비율·겹침 문장과 어긋나면 착용컷을 따른다는 문장.
+하루 코디컷 지시문의 짧은 본문 (tools.outfit_gen, profile outfit_image.prompt). 상품 참고판을 번호 순서로 함께 보낸다.
+$items 번호별 상품 설명과 실제 크기, $styling 입는 방법, $parts 그 벌에 해당하는 조각(prompts/outfit/, 고르는 기준은
+prompts/outfit/parts.yaml), $layout 고정 구도(profile looks.composition), $scene 바닥·빛(profile outfit_image.scene).
+2026-10-12 정리(스레드 "코디컷 이미지 피드백"): 2,500단어까지 길어져 이미지 AI 가 지시를 놓치고, 그 벌에 없는 치마·스카프
+문장까지 매번 가고, 구도 문장이 서로 부딪혔다 → 본문은 짧게, 하의·신발·겹쳐 입기 같은 규칙은 해당할 때만 조각으로.
+사용자 참고 코디컷(/mnt/project-files/image-feedback/참고_구도_1012/)처럼 반듯하고 단정하게: 다리 벌리기·휘기, 밑단 말림,
+부위별 볼륨, 치마 밑단 들림 문장과 숫자 비율(허리 30%, 바지 1.6배, 여백 %)은 뺐다. 착용컷과 cm 가 비율을 정한다.
+그동안의 규칙(9/30~10/12)은 git 기록과 /mnt/project-files/image-feedback/피드백_정리.md 에 있다.
+사용자: 바지 기장을 길게, 모델컷과 비슷한 핏을 가장 중요하게 → 'Most important' 두 가지.
+새 규칙은 덧붙이기보다 해당 조각의 문장을 고친다. 본문과 조각을 합친 지시문은 모든 조각을 합쳐도 1,000단어를 넘지 않는다(테스트가 본다).
 이 주석은 전송되지 않는다.
 -->
-Create one photorealistic top-down flat lay photograph of a complete outfit, as if a stylist laid
-the real clothes on the floor and photographed them from directly above with a camera.
-The most important goal: every item has the same fit as on the model in the worn product photos.
-The outfit is neatly laid out by a stylist, never crumpled or dropped, and each garment is arranged
-in the same silhouette, volume, length and drape it shows on the model's body. Copy from
-the worn photos how the top and bottoms meet (where the waistband sits, how the top is tucked), the
-length of the top compared with the bottoms, how the layers sit on each other, and the drape and
-fit of every piece. It must never look like separate garments laid next to or on top of each other.
-This comes first: wherever a rule below about fit, length, proportions, tucking or layering would
-make the outfit look different from how the model wears it, follow the worn photos.
+Create one photorealistic top-down flat lay photograph of a complete outfit, laid out neatly on the
+floor by a stylist and photographed from directly above.
 
-The attached images are reference sheets of the exact items to use, in this order. Each sheet shows
-one or more shop photos of the same single item (sometimes flat, sometimes worn by a model); use
-them together to get its true details, and draw the item only once. Shop photos may show other
-clothes or props worn with the item: ignore everything except the named item:
+The attached images are reference sheets of the exact items, in this order. Each sheet shows shop
+photos of one item, flat or worn by a model; draw each item once and ignore any other clothes or
+props in the photos:
 $items
 
-Keep every item identical to its product photos: same color, fabric texture, pattern, cut, length,
-fit, collar or lapel type, neckline, buttons, pockets, hardware, toe shape and proportions. Do not
-change a collar into a different collar type, do not change the style of the shoes, do not add,
-remove or redesign any detail, do not add logos or text. Count the buttons in the product photos and
-draw exactly that many in the same places (a three-button jacket never gets two; a vest without
-buttons gets none); draw earrings and other jewelry with the exact design, shape and size of their
-product photos, never a similar-looking one. Use every item exactly once and add no
-other clothing or objects.
+Most important, two things: (1) every item has the same fit as on the model in the worn photos: the
+same silhouette, length, width, volume and drape, and the top meets the bottoms at the same place as
+on the model. (2) Long trousers and long skirts are long: exactly as long as on the model, covering
+the ankles, they are the longest part of the outfit, clearly longer than any top or jacket, with the
+hem near the bottom edge of the frame; never cropped or shortened. Keep every item identical to its photos: color, fabric, pattern, cut, collar, neckline,
+number and position of buttons, pockets, hardware and shoe style; never redesign a detail. Draw
+every item at its real size given above, all at one common scale, so the bottoms keep their full
+length and are never shortened.
 
-Styling: $styling
-Layering order is physical, exactly as on a real body: an item worn inside lies under the item
-worn over it everywhere they overlap. An inner top never lies on top of an outer's shoulders,
-collar, lapels, front panels or sleeves; it shows only where it really would: at the neckline inside
-the outer's front opening, a little at the cuffs and at the hem. A wide neckline, off-shoulder
-neckline, big collar or puffy sleeve of an inner top is hidden under the outer and only shows inside
-the front opening, folded or tucked under the outer's edges; never copy its shape from the shop
-photo over the outer.
-Lay the outfit out like a person wearing it: the top sits at the shoulders, the bottoms continue
-below the top, garments overlap naturally, sleeves and
-trouser legs relax with soft real fabric folds and a slight natural bend, never stiff or symmetric.
-Every item is drawn at its real size given above, all at one common scale, so the size ratios
-between items are exactly true to life (shoes are about a quarter of the length of full-length
-trousers, jewelry is small but always clearly visible: draw a necklace chain and pendant a little larger than
-true scale rather than hair-thin). Lengths must follow the stated cm exactly and are never shortened,
-cropped or ankle-length unless the product itself is cropped.
+How the outfit is worn: $styling
+Layering is physical: an inner piece lies under the piece worn over it and shows only at the
+neckline, the cuffs and the hem. The waistband of the bottoms sits at the natural waist, where it
+sits on the model, never pulled up to the chest. A top worn tucked in has its whole hem hidden inside
+the waistband, with only a soft blouse of fabric above it and nothing hanging out at the sides.
+$parts
 
-Proportions of a real tall woman wearing the outfit, never pulled up: the waistband of the bottoms
-sits where it sits on the model in the worn photos, at her natural waist or a little below it, about
-40 to 45 cm below the collar at the common scale (with full-length trousers that is roughly 30 percent
-of the figure height from the collar, never 40 percent or higher). The top keeps its real length
-above the waistband, so the chest and torso of the top are clearly visible and only the part of the
-top that would really be tucked disappears behind the waistband; the bottoms never ride up to the
-chest or the ribs like high-waisted pants pulled up too far, and the top is never squashed into a
-short band above them. The waistline stays visible (unless the styling says otherwise, the top is tucked in or ends at the
-waist and any belt shows; an outer may fall over the hips but the waistband of the bottoms still shows in its
-opening). The top's hem never covers the waistband design of the bottoms (waistband, belt, belt
-loops, buttons): the top is tucked in with only a soft blouse of fabric above the waistband, or ends just above it, and the
-bottoms sit a little lower so their whole waistband shows. Below it the bottoms are the biggest and longest part of the figure, about two thirds
-of its height with full-length trousers: full-length trousers run from that waistline all the way down near the bottom edge of
-the frame, clearly longer than any jacket or top (an item stated as 100 cm is about 1.6 times as
-long as one stated as 62 cm), and midi or long skirts flow well below where the knees would be.
-Style the bottoms like a fashion stylist, not like a stiff product shot: keep the exact cut seen in
-the worn photos (never change straight or wide legs into flared, bootcut or skinny, and never make
-them wider), but give the fabric real body and drape. The two trouser legs are not two rigid
-parallel tubes: they open slightly apart from the hips, one leg is gently curved or turned inward,
-pressed creases run down the front, and at the hem the fabric breaks into a few soft folds as if
-resting on the foot. A skirt keeps the exact fabric and pleats of its photos: the same material and
-sheen (matte wool, glossy satin, sheer chiffon, crisp cotton), the same pleat type, pleat width and
-pleat count (soft unpressed gathers stay soft, sharp knife or accordion pleats stay sharp, a skirt
-without pleats gets none). A skirt is never a flat smooth panel or trapezoid: it is laid as if just
-taken off a body, with the waistband slightly rounded, the fabric gathering into several deep soft
-folds that run from the hips down and open into a rippling, wavy hem that lifts off the floor in
-places; an A-line or flared skirt fans out with rolling waves along the hem, a mini skirt still has a
-few soft folds and a slightly flipped hem, and satin or other glossy fabric shows bright highlights
-on the raised folds and soft shadows between them. A skirt never looks pressed or stuck flat to the
-floor: the hip area stays gently rounded as if a body had just stepped out of it, the front panel
-curves with depth, and at the hem the inside back layer shows a little where the front lifts, so
-the skirt clearly has a front and a back with air between them. A skirt ends exactly where its stated cm and worn
-photos show: a midi skirt ends at mid-calf unless its stated length and worn photos put it at the
-knee (then it stays at the knee), and it is never drawn as an ankle-length maxi skirt. A straight
-H-line, pencil or bias-cut satin skirt stays narrow and falls straight like on the model, only its
-very hem loosening a little; it is never fanned out into an A-line or flare.
-A skirt is drawn from its front, the side that faces out when worn: if the photos show the front and
-back (for example a pocketed back and a plain front), copy the front design and never the back.
-A top tucked into a skirt or trousers is tucked in all the way around, the way the model wears it:
-its whole hem, including the front, sides and the long shirt tails, is hidden inside the bottoms, and
-no hem, tail or corner of it hangs out below or beside the waistband. Just above the waistband the
-fabric blouses out a little in a soft natural line like a real person tucking it in; it is never
-rolled, folded or twisted into the waistband, and never pulled tight and flat.
-A vest or knit vest worn over a shirt or tee is drawn as truly worn over it, the two pieces sharing
-one body: the shirt's body is fully inside the vest and slightly fills it out, the shirt's collar
-comes up out of the vest's neckline and lies over its edge (or stands above a high neck), the shirt's
-shoulders are hidden under the vest's shoulders, its sleeves come out from under the vest's
-armholes with the armhole edge lying over the sleeve tops, and below the vest only a little of the
-shirt shows before it is tucked into the bottoms. The vest is never laid on top of a shirt that is
-spread out flat underneath like a separate garment.
-Every item keeps its exact product design: neckline, ties and straps, button count, pockets, belt,
-pleats and hem shape are copied from its photos and never redesigned. Fitted tops look the way they
-fit on the model: slim and close to the body, with their point details (off-shoulder neckline,
-halter tie, layered inner) clearly shown.
-Tops and outers keep the true fit, length and fabric of their worn photos. An oversized or loose
-jacket, cardigan or shirt stays big and roomy: dropped shoulders, a wide body, long sleeves that
-reach the knuckles and a hem at the hips; never shrink it into a cropped, short or fitted piece.
-Soft drapey fabrics (thin cotton or rayon shirts, knits, satin) fall in soft folds and natural
-creases, never crisp, stiff or freshly pressed. Sleeves relax slightly bent, never spread out stiffly.
-Every garment has natural volume, like real clothes just laid down on the floor, never a flattened
-cutout or a pressed paper shape: the fabric keeps its own thickness and there is a little air inside
-the body and sleeves so they rise off the floor. Show it in each part: sleeves lie gently bent with
-the elbow slightly lifted and a soft hollow at the cuff opening; the body of tops and outers is
-slightly rounded at the chest with soft wrinkles at the waist; hems and cuffs curl or flip a little;
-collars and lapels roll and stand slightly; knits look plump with visible thickness at their edges;
-skirts and trousers keep soft rounded folds instead of being pressed flat. The side light makes this
-visible: every garment casts a soft shadow along its edges on the floor and its folds have light and
-shade. Keep it natural: no stuffed, puffy or inflated look, and the outline and size of each item
-stay the same.
-A knit or cardigan draped over the shoulders is laid the way a stylist does it: its body lies
-hidden under the top, behind the shoulders, with only a narrow band of it showing above the top's
-shoulders like a collar; its two sleeves come forward over the shoulders, cross on the upper chest
-and tie in one loose knot, with the sleeve ends hanging a little. The top's front stays fully
-visible below the knot; the draped knit's front opening, buttons and hem are never laid on top of
-the top like a cape or a bib.
+Lay it out like a clean product flat lay: the garments lie straight and nearly symmetric, sleeves
+relaxed along the sides, with soft natural folds, real fabric thickness and soft shadows at the
+edges; never crumpled, twisted, puffed up or paper-flat.
 
-Composition like a professional outfit flat lay account: the clothes form one continuous figure from
-the collar about 8 percent below the top edge to the trouser hem near the bottom edge, filling about
-90 percent of the frame height, centered horizontally, with small even margins and no large empty
-areas. The outfit never hugs the top edge: with a short skirt, shorts or a short outfit, the whole
-figure (clothes and shoes together) moves down so the empty floor above the collar and below the
-lowest item is about equal. The bag
-lies close to the left side of the clothes at waist height, slightly overlapping the edge of the
-clothes, and never lower than the knees. The shoes are one neat pair laid side by side
-the way a shop displays them: exactly parallel at the same angle, both toes pointing the same way,
-toe tips level at the same height, with a small even gap between them, never splayed in a V, one
-turned more than the other, staggered, crossed, overlapping each other or touching the clothes. With
-full-length trousers or a long skirt they sit in the lower right beside the hem, not overlapping it;
-with a short or knee-length skirt, shorts or any bottom that ends above the ankle they sit centered
-on the empty floor directly below the hem. Only if jewelry or small accessories are in
-the numbered list above, they sit in a neat vertical column on the right side at chest height; if
-the list has none, draw no jewelry, watch, rings, earrings or any other accessory at all. A scarf,
-bandana or other neck accessory is never worn, tied or draped on the clothes: it lies on its own
-like an accessory, flat or loosely folded in the shape of its product photos, in the empty floor
-beside the top at neck height, not touching the clothes. Keep the lower left area of the frame (the bottom third, left of
-the trouser legs) empty floor with no shoes, bag or accessories, because a title is placed there later.
+Layout, the same for every image: $layout
 
-Scene: $scene.
-Every item casts a soft contact shadow on the floor, one consistent light direction for everything.
-Vertical 4:5 image, high detail, no people, no mannequin, no hanger, no text, no numbers, no digits, no size or cm labels (the cm values above are only for sizing and
-are never drawn), no labels,
-no watermark. Draw exactly the number of pieces stated for each item (a pair of earrings is two
-earrings, a pair of shoes is two shoes), never an extra pair.
+Scene: $scene. One light direction for everything; every item casts a soft contact shadow.
+Vertical 4:5 image, high detail. No people, mannequin or hanger. Never add text, letters, numbers,
+labels or logos that are not on the product itself (the cm values are never drawn). Use only the
+listed items, each exactly once: a pair of shoes is two shoes, a pair of earrings is two earrings,
+and if no jewelry or accessory is listed, draw none.
