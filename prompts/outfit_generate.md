@@ -2,6 +2,7 @@
 하루 코디컷 지시문의 짧은 본문 (tools.outfit_gen, profile outfit_image.prompt). 상품 참고판을 번호 순서로 함께 보낸다.
 $items 번호별 상품 설명과 실제 크기, $styling 입는 방법, $parts 그 벌에 해당하는 조각(prompts/outfit/, 고르는 기준은
 prompts/outfit/parts.yaml), $layout 고정 구도(profile looks.composition), $scene 바닥·빛(profile outfit_image.scene).
+2026-10-12 피드백 반영: 소매·바지 밑단 접지 않기, 와이드·부츠컷 밑단 유지, 허리 말지 않기, 신발은 짧은 하의 밑에.
 2026-10-12 정리(스레드 "코디컷 이미지 피드백"): 2,500단어까지 길어져 이미지 AI 가 지시를 놓치고, 그 벌에 없는 치마·스카프
 문장까지 매번 가고, 구도 문장이 서로 부딪혔다 → 본문은 짧게, 하의·신발·겹쳐 입기 같은 규칙은 해당할 때만 조각으로.
 사용자 참고 코디컷(/mnt/project-files/image-feedback/참고_구도_1012/)처럼 반듯하고 단정하게: 다리 벌리기·휘기, 밑단 말림,
@@ -29,10 +30,11 @@ every item at its real size given above, all at one common scale, so the bottoms
 length and are never shortened.
 
 How the outfit is worn: $styling
+Sleeves and collars hang as soft as in the photos: sleeves are never rolled or folded up, a collar is never stiff.
 Layering is physical: an inner piece lies under the piece worn over it and shows only at the
 neckline, the cuffs and the hem. The waistband of the bottoms sits at the natural waist, where it
 sits on the model, never pulled up to the chest. A top worn tucked in has its whole hem hidden inside
-the waistband, with only a soft blouse of fabric above it and nothing hanging out at the sides.
+the waistband, with only a soft blouse of fabric above it and nothing hanging out at the sides; the waist is never rolled.
 $parts
 
 Lay it out like a clean product flat lay: the garments lie straight and nearly symmetric, sleeves
