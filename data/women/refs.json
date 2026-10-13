@@ -1,175 +1,1182 @@
 [
-  {"n": 101, "name": "블랙 니트 베스트 + 크림 셔츠 + 그레이 스커트팬츠 + 롱부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg", "added": "2026-10-13",
-   "tags": ["출근룩", "톤온톤", "올블랙"], "note": "셔츠 소매와 밑단이 베스트 밖으로 / 짧은 하의에 롱부츠",
-   "slots": [
-     {"category": "상의", "color": "블랙", "desc": "블랙 캡소매 니트 베스트", "query": "캡소매 니트 베스트"},
-     {"category": "상의", "color": "크림", "desc": "크림 구김 셔츠 (안에, 소매·밑단 밖으로)", "query": "구김 셔츠"},
-     {"category": "하의", "color": "그레이", "desc": "그레이 랩 스커트팬츠", "query": "랩 스커트팬츠"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"}]},
-  {"n": 102, "name": "크림 구김 셔츠 + 블랙 스커트팬츠 + 롱부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/ddecb293e16bf11b1ae88b5fd425de1d.jpg", "added": "2026-10-13",
-   "tags": ["데이트룩", "주말"], "note": "셔츠 앞섶을 열어 가볍게 / 블랙 하의와 대비",
-   "slots": [
-     {"category": "상의", "color": "크림", "desc": "크림 구김 셔츠, 앞섶 오픈", "query": "구김 셔츠"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 스커트팬츠", "query": "스커트 팬츠"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠 (일부만 보임)", "query": "롱부츠"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 가방 (손에 든)", "query": "숄더백"}]},
-  {"n": 103, "name": "라이트그레이 랩 가디건 + 다크 탱크 + 네이비 랩스커트", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/1d1db6bb2e82fd3d0a69babfca51ea10.jpg", "added": "2026-10-13",
-   "tags": ["톤온톤", "데이트룩"], "note": "랩 가디건을 허리에 감아 / 긴 목걸이",
-   "slots": [
-     {"category": "아우터", "color": "그레이", "desc": "라이트그레이 랩 가디건", "query": "랩 가디건"},
-     {"category": "상의", "color": "차콜", "desc": "차콜 슬림 탱크 (안에)", "query": "슬림 탱크탑"},
-     {"category": "하의", "color": "네이비", "desc": "네이비 랩 롱스커트", "query": "랩 롱스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 미니 토트백", "query": "미니 토트백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 플랫슈즈 (안 보임)", "query": "플랫슈즈"}]},
-  {"n": 104, "name": "차콜 모크넥 니트 베스트 + 흰 셔츠 + 차콜 미디스커트", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/f666d17c703c5eab28617574a4a77665.jpg", "added": "2026-10-13",
-   "tags": ["출근룩", "톤온톤", "하객룩"], "note": "셔츠 소매·밑단이 베스트 밖으로 / 미디 실루엣",
-   "slots": [
-     {"category": "상의", "color": "차콜", "desc": "차콜 울 모크넥 니트 베스트", "query": "모크넥 니트 베스트"},
-     {"category": "상의", "color": "화이트", "desc": "흰 코튼 셔츠 (안에)", "query": "코튼 셔츠"},
-     {"category": "하의", "color": "차콜", "desc": "차콜 울 A라인 미디스커트", "query": "A라인 미디스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 숄더백", "query": "숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 로퍼 (안 보임)", "query": "로퍼"}]},
-  {"n": 105, "name": "화이트 스카프 티 + 차콜 울 스커트 + 블랙 스타킹", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/c442e02d8485aa0a53a0ce5e556e5ca7.jpg", "added": "2026-10-13",
-   "tags": ["출근룩", "데이트룩"], "note": "스카프가 달린 티 / 벨트로 허리 포인트",
-   "slots": [
-     {"category": "상의", "color": "화이트", "desc": "화이트 스카프 롱슬리브 티", "query": "스카프 티셔츠"},
-     {"category": "하의", "color": "차콜", "desc": "차콜 울 미니스커트, 가죽 벨트", "query": "울 미니스커트"},
-     {"category": "소품", "color": "블랙", "desc": "블랙 스타킹", "query": "스타킹"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 로퍼 (안 보임)", "query": "로퍼"}]},
-  {"n": 106, "name": "블랙 벨트 트렌치 자켓 + 블랙 쇼츠 + 롱부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/7ba53aff117a19c65f1145ef738636ae.jpg", "added": "2026-10-13",
-   "tags": ["올블랙", "주말"], "note": "큰 가방과 롱부츠로 올블랙 / 벨트로 허리를 묶음",
-   "slots": [
-     {"category": "아우터", "color": "블랙", "desc": "블랙 벨트 하이넥 트렌치 자켓", "query": "벨트 트렌치 자켓"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 반바지 (자켓에 가려짐)", "query": "버뮤다 쇼츠"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 오버사이즈 가죽 가방", "query": "가죽 숄더백"}]},
-  {"n": 107, "name": "차콜 오버핏 블레이저 + 그레이 스카프 탑 + 핀스트라이프 스커트", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202610/cd55aed48447a2623229e70770e5c638.jpg", "added": "2026-10-13",
-   "tags": ["출근룩", "톤온톤"], "note": "스카프 탑을 블레이저 안에 / 블랙 스타킹과 롱부츠",
-   "slots": [
-     {"category": "아우터", "color": "차콜", "desc": "차콜 오버핏 싱글 블레이저", "query": "오버핏 블레이저"},
-     {"category": "상의", "color": "그레이", "desc": "그레이 스카프 넥 탑", "query": "스카프 탑"},
-     {"category": "하의", "color": "차콜", "desc": "차콜 핀스트라이프 랩 미니스커트", "query": "핀스트라이프 스커트"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 미니 토트백", "query": "미니 토트백"},
-     {"category": "소품", "color": "블랙", "desc": "블랙 스타킹", "query": "스타킹"}]},
-  {"n": 108, "name": "블랙 블레이저 + 체크 셔츠 + 와이드 데님", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/6f474423cd33ad14ebd4aa29afe49914.jpg", "added": "2026-10-13",
-   "tags": ["출근룩", "주말"], "note": "체크 셔츠를 블레이저 안에 / 벨트 포인트, 큰 가방",
-   "slots": [
-     {"category": "아우터", "color": "블랙", "desc": "블랙 오버핏 블레이저", "query": "오버핏 블레이저"},
-     {"category": "상의", "color": "차콜", "desc": "차콜 체크 셔츠 (안에)", "query": "체크 셔츠"},
-     {"category": "하의", "color": "블루", "desc": "미드블루 와이드 데님", "query": "와이드 데님"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 가죽 토트백", "query": "가죽 토트백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 로퍼 (안 보임)", "query": "로퍼"}]},
-  {"n": 109, "name": "블랙 가죽 자켓 + 크림 스카프 셔츠 + 블랙 크롭 팬츠 + 스트랩 힐", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/599dceeadea6302eb2d77758519b6071.jpg", "added": "2026-10-13",
-   "tags": ["가죽자켓", "데이트룩", "올블랙"], "note": "가죽 자켓 안에 크림 셔츠와 스카프를 풀어 연출 / 앵클 스트랩 힐",
-   "slots": [
-     {"category": "아우터", "color": "블랙", "desc": "블랙 노카라 가죽 자켓", "query": "노카라 가죽 자켓"},
-     {"category": "상의", "color": "크림", "desc": "크림 구김 셔츠 (안에)", "query": "구김 셔츠"},
-     {"category": "소품", "color": "크림", "desc": "크림 얇은 스카프", "query": "쁘띠 스카프"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 슬릿 크롭 팬츠", "query": "슬릿 크롭 팬츠"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 앵클 스트랩 힐", "query": "스트랩 힐"}]},
-  {"n": 110, "name": "올리브 자켓 + 화이트 탱크 + 블랙 쇼츠 + 롱부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/db3c9d317ea3cba24de4871ace6a50c5.jpg", "added": "2026-10-13",
-   "tags": ["주말", "데이트룩"], "note": "하이넥 자켓에 이어폰 / 쇼츠와 와이드 롱부츠",
-   "slots": [
-     {"category": "아우터", "color": "올리브", "desc": "올리브 하이넥 코튼 자켓", "query": "하이넥 코튼 자켓"},
-     {"category": "상의", "color": "화이트", "desc": "화이트 슬림 탱크", "query": "슬림 탱크탑"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 턱 와이드 쇼츠, 벨트", "query": "와이드 쇼츠"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 와이드 롱부츠", "query": "롱부츠"}]},
-  {"n": 111, "name": "블랙 스탠드칼라 자켓 + 화이트 롱스커트", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/big/202609/718185c851a3ddc00bfceda04178324d.jpg", "added": "2026-10-13",
-   "tags": ["롱스커트", "주말"], "note": "벨트로 허리를 묶고 화이트 롱스커트로 대비",
-   "slots": [
-     {"category": "아우터", "color": "블랙", "desc": "블랙 스탠드칼라 벨트 자켓", "query": "스탠드칼라 자켓"},
-     {"category": "하의", "color": "화이트", "desc": "화이트 코튼 롱스커트", "query": "코튼 롱스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 숄더백", "query": "숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 플랫슈즈 (안 보임)", "query": "플랫슈즈"}]},
-  {"n": 112, "name": "그레이 V넥 니트 + 블랙 랩 롱스커트 + 부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/tiny/202609/76d3eba89ccd6ff05c44f14f51ab12e6.jpg", "added": "2026-10-13",
-   "tags": ["롱스커트", "출근룩", "톤온톤"], "note": "안에 탱크를 겹쳐 / 드레이프 랩 롱스커트",
-   "slots": [
-     {"category": "상의", "color": "차콜", "desc": "차콜 슬림 V넥 니트", "query": "슬림 V넥 니트"},
-     {"category": "상의", "color": "차콜", "desc": "차콜 홀터 탱크 (안에)", "query": "홀터넥 나시"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 드레이프 랩 롱스커트", "query": "랩 롱스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 숄더백", "query": "숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"}]},
-  {"n": 113, "name": "블랙 셔츠 + 탄 스웨이드 미니스커트 + 롱부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/tiny/202609/4070d77f9366117a247abe0b4a02b268.jpg", "added": "2026-10-13",
-   "tags": ["데이트룩", "주말"], "note": "블랙 셔츠에 선글라스를 걸고 / 탄 스웨이드 스커트가 포인트",
-   "slots": [
-     {"category": "상의", "color": "블랙", "desc": "블랙 오버핏 셔츠", "query": "오버핏 셔츠"},
-     {"category": "상의", "color": "그레이", "desc": "그레이 탱크 (안에)", "query": "슬림 탱크탑"},
-     {"category": "하의", "color": "탄", "desc": "탄 스웨이드 미니스커트", "query": "스웨이드 미니스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 토트백", "query": "토트백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"}]},
-  {"n": 114, "name": "플럼 셔츠 + 블랙 코듀로이 미니스커트 + 롱부츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/tiny/202609/8299b7982ddcefbbba88565b71f19bae.jpg", "added": "2026-10-13",
-   "tags": ["데이트룩", "주말"], "note": "오버핏 셔츠를 풀어 입고 블랙 스커트·부츠로 정리",
-   "slots": [
-     {"category": "상의", "color": "플럼", "desc": "플럼 브라운 오버핏 셔츠", "query": "오버핏 셔츠"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 코듀로이 미니스커트", "query": "코듀로이 미니스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 숄더백", "query": "숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"}]},
-  {"n": 115, "name": "브라운 노카라 자켓 + 화이트 이너 + 블랙 와이드 팬츠", "source": "쇼핑몰 코디 (우난)",
-   "photo": "https://woonan.co.kr/web/product/tiny/202609/24564d84d3d9dd222db73927d86179ef.jpg", "added": "2026-10-13",
-   "tags": ["출근룩"], "note": "화이트 이너를 자켓 밑단 밖으로 / 위빙 가방",
-   "slots": [
-     {"category": "아우터", "color": "브라운", "desc": "브라운 노카라 싱글 자켓", "query": "노카라 자켓"},
-     {"category": "상의", "color": "화이트", "desc": "화이트 이너 (밑단만 보임)", "query": "코튼 셔츠"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 와이드 슬랙스", "query": "와이드 슬랙스"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 위빙 가방", "query": "위빙백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 로퍼 (안 보임)", "query": "로퍼"}]},
-  {"n": 116, "name": "브라운 스웨이드 자켓 + 화이트 톱 + 블랙 쇼츠 + 가방", "source": "쇼핑몰 코디 (더우르)",
-   "photo": "https://u-ur.kr/web/product/medium/202610/c0592f49e7cdfcffd539ef37d7f563bd.jpg", "added": "2026-10-13",
-   "tags": ["스웨이드", "주말", "데이트룩"], "note": "스웨이드 자켓에 화이트 톱을 살짝 / 블랙 하의와 작은 가방",
-   "slots": [
-     {"category": "아우터", "color": "브라운", "desc": "다크브라운 스웨이드 숏 자켓", "query": "스웨이드 자켓"},
-     {"category": "상의", "color": "화이트", "desc": "화이트 슬림 탱크 (안에)", "query": "슬림 탱크탑"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 쇼츠", "query": "쇼츠"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 미니 숄더백", "query": "미니 숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 플랫슈즈 (안 보임)", "query": "플랫슈즈"}]},
-  {"n": 117, "name": "블랙 롱코트 + 블랙 롱스커트 올블랙", "source": "쇼핑몰 코디 (더우르)",
-   "photo": "https://u-ur.kr/web/product/medium/202609/ae810eaff896efea7654623495dca3a9.jpg", "added": "2026-10-13",
-   "tags": ["올블랙", "롱스커트", "출근룩"], "note": "롱코트를 열어 길게 떨어지는 실루엣 / 작은 숄더백",
-   "slots": [
-     {"category": "아우터", "color": "블랙", "desc": "블랙 울 롱코트, 벨트", "query": "울 롱코트"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 롱스커트", "query": "롱스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 숄더백", "query": "숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 플랫슈즈 (안 보임)", "query": "플랫슈즈"}]},
-  {"n": 118, "name": "블랙 가디건 + 이너 + 차콜 니트 롱스커트", "source": "쇼핑몰 코디 (더우르)",
-   "photo": "https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg", "added": "2026-10-13",
-   "tags": ["롱스커트", "톤온톤", "올블랙"], "note": "짧은 가디건에 하이웨스트 니트 롱스커트",
-   "slots": [
-     {"category": "아우터", "color": "차콜", "desc": "차콜 크롭 가디건", "query": "크롭 가디건"},
-     {"category": "상의", "color": "차콜", "desc": "차콜 슬림 긴팔티 (안에)", "query": "슬림 긴팔티"},
-     {"category": "하의", "color": "차콜", "desc": "차콜 니트 롱스커트", "query": "니트 롱스커트"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 가방", "query": "숄더백"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 플랫슈즈 (안 보임)", "query": "플랫슈즈"}]},
-  {"n": 119, "name": "베이지 트렌치 + 화이트 이너 + 블랙 미니 + 롱부츠", "source": "쇼핑몰 코디 (더우르)",
-   "photo": "https://u-ur.kr/web/product/medium/202609/e732e7220c0425e5862dcfe5f77ec1a7.jpg", "added": "2026-10-13",
-   "tags": ["트렌치코트", "데이트룩", "주말"], "note": "트렌치를 걸치고 블랙 스타킹·롱부츠로 마무리",
-   "slots": [
-     {"category": "아우터", "color": "베이지", "desc": "라이트베이지 오버핏 트렌치코트", "query": "트렌치코트"},
-     {"category": "상의", "color": "화이트", "desc": "화이트 캐미솔 (안에)", "query": "캐미솔"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 미니스커트", "query": "미니스커트"},
-     {"category": "소품", "color": "블랙", "desc": "블랙 스타킹", "query": "스타킹"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 롱부츠", "query": "롱부츠"}]},
-  {"n": 120, "name": "블랙 하프넥 니트 + 블랙 플레어 롱스커트 + 포인티드 플랫", "source": "쇼핑몰 코디 (더우르)",
-   "photo": "https://u-ur.kr/web/product/medium/202609/504af7ac5f696e9e97717e958e0b1070.jpg", "added": "2026-10-13",
-   "tags": ["올블랙", "롱스커트", "하객룩"], "note": "반소매 니트에 볼륨 플레어 스커트 / 블랙 스타킹",
-   "slots": [
-     {"category": "상의", "color": "블랙", "desc": "블랙 하프넥 반소매 니트", "query": "반소매 니트"},
-     {"category": "하의", "color": "블랙", "desc": "블랙 플레어 롱스커트", "query": "플레어 롱스커트"},
-     {"category": "소품", "color": "블랙", "desc": "블랙 스타킹", "query": "스타킹"},
-     {"category": "신발", "color": "블랙", "desc": "블랙 포인티드 플랫", "query": "포인티드 플랫"},
-     {"category": "가방", "color": "블랙", "desc": "블랙 숄더백", "query": "숄더백"}]}
+ {
+  "n": 101,
+  "name": "블랙 니트 베스트 + 크림 셔츠 + 그레이 스커트팬츠 + 롱부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩",
+   "톤온톤",
+   "올블랙"
+  ],
+  "note": "셔츠 소매와 밑단이 베스트 밖으로 / 짧은 하의에 롱부츠",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 캡소매 니트 베스트",
+    "query": "캡소매 니트 베스트"
+   },
+   {
+    "category": "상의",
+    "color": "크림",
+    "desc": "크림 구김 셔츠 (안에, 소매·밑단 밖으로)",
+    "query": "구김 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 랩 스커트팬츠",
+    "query": "랩 스커트팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:168200317"
+   ],
+   "3": [
+    "zigzag:116422044"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 102,
+  "name": "크림 구김 셔츠 + 블랙 스커트팬츠 + 롱부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/ddecb293e16bf11b1ae88b5fd425de1d.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "데이트룩",
+   "주말"
+  ],
+  "note": "셔츠 앞섶을 열어 가볍게 / 블랙 하의와 대비",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "크림",
+    "desc": "크림 구김 셔츠, 앞섶 오픈",
+    "query": "구김 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 스커트팬츠",
+    "query": "스커트 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠 (일부만 보임)",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가방 (손에 든)",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:150110018",
+    "zigzag:170339897",
+    "zigzag:158913245",
+    "zigzag:133521354",
+    "zigzag:167951642"
+   ],
+   "2": [
+    "zigzag:116422044"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 103,
+  "name": "라이트그레이 랩 가디건 + 다크 탱크 + 네이비 랩스커트",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/1d1db6bb2e82fd3d0a69babfca51ea10.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "톤온톤",
+   "데이트룩"
+  ],
+  "note": "랩 가디건을 허리에 감아 / 긴 목걸이",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "그레이",
+    "desc": "라이트그레이 랩 가디건",
+    "query": "랩 가디건"
+   },
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 슬림 탱크 (안에)",
+    "query": "슬림 탱크탑"
+   },
+   {
+    "category": "하의",
+    "color": "네이비",
+    "desc": "네이비 랩 롱스커트",
+    "query": "랩 롱스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 토트백",
+    "query": "미니 토트백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 플랫슈즈 (안 보임)",
+    "query": "플랫슈즈"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:155290768",
+    "zigzag:131379280"
+   ],
+   "4": [
+    "zigzag:171742629"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 104,
+  "name": "차콜 모크넥 니트 베스트 + 흰 셔츠 + 차콜 미디스커트",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/f666d17c703c5eab28617574a4a77665.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩",
+   "톤온톤",
+   "하객룩"
+  ],
+  "note": "셔츠 소매·밑단이 베스트 밖으로 / 미디 실루엣",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 울 모크넥 니트 베스트",
+    "query": "모크넥 니트 베스트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 코튼 셔츠 (안에)",
+    "query": "코튼 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 울 A라인 미디스커트",
+    "query": "A라인 미디스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임)",
+    "query": "로퍼"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:165320483",
+    "zigzag:141830331"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "4": [
+    "zigzag:153677725"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 105,
+  "name": "화이트 스카프 티 + 차콜 울 스커트 + 블랙 스타킹",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/c442e02d8485aa0a53a0ce5e556e5ca7.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩",
+   "데이트룩"
+  ],
+  "note": "스카프가 달린 티 / 벨트로 허리 포인트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 스카프 롱슬리브 티",
+    "query": "스카프 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 울 미니스커트, 가죽 벨트",
+    "query": "울 미니스커트"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임)",
+    "query": "로퍼"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:162235874",
+    "zigzag:165320483"
+   ],
+   "1": [
+    "zigzag:150110018"
+   ],
+   "2": [
+    "zigzag:161559034"
+   ],
+   "3": [
+    "zigzag:153677725"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 106,
+  "name": "블랙 벨트 트렌치 자켓 + 블랙 쇼츠 + 롱부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/7ba53aff117a19c65f1145ef738636ae.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "올블랙",
+   "주말"
+  ],
+  "note": "큰 가방과 롱부츠로 올블랙 / 벨트로 허리를 묶음",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 벨트 하이넥 트렌치 자켓",
+    "query": "벨트 트렌치 자켓"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 반바지 (자켓에 가려짐)",
+    "query": "버뮤다 쇼츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 오버사이즈 가죽 가방",
+    "query": "가죽 숄더백"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:119715317",
+    "zigzag:110627490"
+   ],
+   "1": [
+    "zigzag:170339897",
+    "zigzag:166183665",
+    "zigzag:131272324"
+   ],
+   "2": [
+    "zigzag:116422044"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 107,
+  "name": "차콜 오버핏 블레이저 + 그레이 스카프 탑 + 핀스트라이프 스커트",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202610/cd55aed48447a2623229e70770e5c638.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩",
+   "톤온톤"
+  ],
+  "note": "스카프 탑을 블레이저 안에 / 블랙 스타킹과 롱부츠",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "차콜",
+    "desc": "차콜 오버핏 싱글 블레이저",
+    "query": "오버핏 블레이저"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 스카프 넥 탑",
+    "query": "스카프 탑"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 핀스트라이프 랩 미니스커트",
+    "query": "핀스트라이프 스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 토트백",
+    "query": "미니 토트백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:145565598",
+    "zigzag:165561309",
+    "zigzag:120727778"
+   ],
+   "2": [
+    "zigzag:150110018"
+   ],
+   "3": [
+    "zigzag:116422044"
+   ],
+   "5": [
+    "zigzag:161559034"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 108,
+  "name": "블랙 블레이저 + 체크 셔츠 + 와이드 데님",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/6f474423cd33ad14ebd4aa29afe49914.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩",
+   "주말"
+  ],
+  "note": "체크 셔츠를 블레이저 안에 / 벨트 포인트, 큰 가방",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 오버핏 블레이저",
+    "query": "오버핏 블레이저"
+   },
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 체크 셔츠 (안에)",
+    "query": "체크 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블루",
+    "desc": "미드블루 와이드 데님",
+    "query": "와이드 데님"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 토트백",
+    "query": "가죽 토트백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임)",
+    "query": "로퍼"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:136113416",
+    "zigzag:135251295",
+    "zigzag:120727778"
+   ],
+   "1": [
+    "zigzag:165963458",
+    "zigzag:155290768",
+    "zigzag:171493251"
+   ],
+   "2": [
+    "zigzag:165966105",
+    "zigzag:136402065"
+   ],
+   "4": [
+    "zigzag:153677725"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 109,
+  "name": "블랙 가죽 자켓 + 크림 스카프 셔츠 + 블랙 크롭 팬츠 + 스트랩 힐",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/599dceeadea6302eb2d77758519b6071.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "가죽자켓",
+   "데이트룩",
+   "올블랙"
+  ],
+  "note": "가죽 자켓 안에 크림 셔츠와 스카프를 풀어 연출 / 앵클 스트랩 힐",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 노카라 가죽 자켓",
+    "query": "노카라 가죽 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "크림",
+    "desc": "크림 구김 셔츠 (안에)",
+    "query": "구김 셔츠"
+   },
+   {
+    "category": "소품",
+    "color": "크림",
+    "desc": "크림 얇은 스카프",
+    "query": "쁘띠 스카프"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 슬릿 크롭 팬츠",
+    "query": "슬릿 크롭 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 스트랩 힐",
+    "query": "스트랩 힐"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:135251295"
+   ],
+   "4": [
+    "zigzag:171742629"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 110,
+  "name": "올리브 자켓 + 화이트 탱크 + 블랙 쇼츠 + 롱부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/db3c9d317ea3cba24de4871ace6a50c5.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "주말",
+   "데이트룩"
+  ],
+  "note": "하이넥 자켓에 이어폰 / 쇼츠와 와이드 롱부츠",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "올리브",
+    "desc": "올리브 하이넥 코튼 자켓",
+    "query": "하이넥 코튼 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 슬림 탱크",
+    "query": "슬림 탱크탑"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 턱 와이드 쇼츠, 벨트",
+    "query": "와이드 쇼츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 와이드 롱부츠",
+    "query": "롱부츠"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:166183665",
+    "zigzag:148726754",
+    "zigzag:138601633",
+    "zigzag:131272324",
+    "zigzag:129830192"
+   ],
+   "3": [
+    "zigzag:116422044"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 111,
+  "name": "블랙 스탠드칼라 자켓 + 화이트 롱스커트",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/718185c851a3ddc00bfceda04178324d.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "롱스커트",
+   "주말"
+  ],
+  "note": "벨트로 허리를 묶고 화이트 롱스커트로 대비",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 스탠드칼라 벨트 자켓",
+    "query": "스탠드칼라 자켓"
+   },
+   {
+    "category": "하의",
+    "color": "화이트",
+    "desc": "화이트 코튼 롱스커트",
+    "query": "코튼 롱스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 플랫슈즈 (안 보임)",
+    "query": "플랫슈즈"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:136113416",
+    "zigzag:135251295",
+    "zigzag:165576378",
+    "zigzag:119715317",
+    "zigzag:110627490"
+   ],
+   "1": [
+    "zigzag:168778375"
+   ],
+   "2": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "3": [
+    "zigzag:171742629"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 112,
+  "name": "그레이 V넥 니트 + 블랙 랩 롱스커트 + 부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/tiny/202609/76d3eba89ccd6ff05c44f14f51ab12e6.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "롱스커트",
+   "출근룩",
+   "톤온톤"
+  ],
+  "note": "안에 탱크를 겹쳐 / 드레이프 랩 롱스커트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 슬림 V넥 니트",
+    "query": "슬림 V넥 니트"
+   },
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 홀터 탱크 (안에)",
+    "query": "홀터넥 나시"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 드레이프 랩 롱스커트",
+    "query": "랩 롱스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:131379280"
+   ],
+   "2": [
+    "zigzag:168778375",
+    "zigzag:168200317"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "4": [
+    "zigzag:116422044"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 113,
+  "name": "블랙 셔츠 + 탄 스웨이드 미니스커트 + 롱부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/tiny/202609/4070d77f9366117a247abe0b4a02b268.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "데이트룩",
+   "주말"
+  ],
+  "note": "블랙 셔츠에 선글라스를 걸고 / 탄 스웨이드 스커트가 포인트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 오버핏 셔츠",
+    "query": "오버핏 셔츠"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 탱크 (안에)",
+    "query": "슬림 탱크탑"
+   },
+   {
+    "category": "하의",
+    "color": "탄",
+    "desc": "탄 스웨이드 미니스커트",
+    "query": "스웨이드 미니스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 토트백",
+    "query": "토트백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:165966082",
+    "zigzag:153225273",
+    "zigzag:147241599",
+    "zigzag:168641684",
+    "zigzag:165320484"
+   ],
+   "1": [
+    "zigzag:131379280"
+   ],
+   "4": [
+    "zigzag:116422044"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 114,
+  "name": "플럼 셔츠 + 블랙 코듀로이 미니스커트 + 롱부츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/tiny/202609/8299b7982ddcefbbba88565b71f19bae.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "데이트룩",
+   "주말"
+  ],
+  "note": "오버핏 셔츠를 풀어 입고 블랙 스커트·부츠로 정리",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "플럼",
+    "desc": "플럼 브라운 오버핏 셔츠",
+    "query": "오버핏 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 코듀로이 미니스커트",
+    "query": "코듀로이 미니스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:172026704"
+   ],
+   "1": [
+    "zigzag:150110018",
+    "zigzag:133521354",
+    "zigzag:167951642"
+   ],
+   "2": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "3": [
+    "zigzag:116422044"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 115,
+  "name": "브라운 노카라 자켓 + 화이트 이너 + 블랙 와이드 팬츠",
+  "source": "쇼핑몰 코디 (우난)",
+  "photo": "https://woonan.co.kr/web/product/tiny/202609/24564d84d3d9dd222db73927d86179ef.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩"
+  ],
+  "note": "화이트 이너를 자켓 밑단 밖으로 / 위빙 가방",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "브라운",
+    "desc": "브라운 노카라 싱글 자켓",
+    "query": "노카라 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 이너 (밑단만 보임)",
+    "query": "코튼 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 와이드 슬랙스",
+    "query": "와이드 슬랙스"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 위빙 가방",
+    "query": "위빙백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임)",
+    "query": "로퍼"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:149107186",
+    "zigzag:165551823",
+    "zigzag:165551665"
+   ],
+   "1": [
+    "zigzag:165320483",
+    "zigzag:141830331"
+   ],
+   "2": [
+    "zigzag:148726754",
+    "zigzag:129830192",
+    "zigzag:129082539",
+    "zigzag:138601633",
+    "zigzag:168200317"
+   ],
+   "4": [
+    "zigzag:153677725"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 116,
+  "name": "브라운 스웨이드 자켓 + 화이트 톱 + 블랙 쇼츠 + 가방",
+  "source": "쇼핑몰 코디 (더우르)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/c0592f49e7cdfcffd539ef37d7f563bd.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "스웨이드",
+   "주말",
+   "데이트룩"
+  ],
+  "note": "스웨이드 자켓에 화이트 톱을 살짝 / 블랙 하의와 작은 가방",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "브라운",
+    "desc": "다크브라운 스웨이드 숏 자켓",
+    "query": "스웨이드 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 슬림 탱크 (안에)",
+    "query": "슬림 탱크탑"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 쇼츠",
+    "query": "쇼츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 숄더백",
+    "query": "미니 숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 플랫슈즈 (안 보임)",
+    "query": "플랫슈즈"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:149107186",
+    "zigzag:165551823",
+    "zigzag:165551665",
+    "zigzag:148726979"
+   ],
+   "2": [
+    "zigzag:166183665",
+    "zigzag:131272324"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "4": [
+    "zigzag:171742629"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 117,
+  "name": "블랙 롱코트 + 블랙 롱스커트 올블랙",
+  "source": "쇼핑몰 코디 (더우르)",
+  "photo": "https://u-ur.kr/web/product/medium/202609/ae810eaff896efea7654623495dca3a9.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "올블랙",
+   "롱스커트",
+   "출근룩"
+  ],
+  "note": "롱코트를 열어 길게 떨어지는 실루엣 / 작은 숄더백",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 울 롱코트, 벨트",
+    "query": "울 롱코트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 롱스커트",
+    "query": "롱스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 플랫슈즈 (안 보임)",
+    "query": "플랫슈즈"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:155109007",
+    "zigzag:100196322",
+    "zigzag:100430428"
+   ],
+   "1": [
+    "zigzag:168778375"
+   ],
+   "2": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "3": [
+    "zigzag:171742629"
+   ]
+  },
+  "ready": true
+ },
+ {
+  "n": 118,
+  "name": "블랙 가디건 + 이너 + 차콜 니트 롱스커트",
+  "source": "쇼핑몰 코디 (더우르)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "롱스커트",
+   "톤온톤",
+   "올블랙"
+  ],
+  "note": "짧은 가디건에 하이웨스트 니트 롱스커트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "차콜",
+    "desc": "차콜 크롭 가디건",
+    "query": "크롭 가디건"
+   },
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 슬림 긴팔티 (안에)",
+    "query": "슬림 긴팔티"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 니트 롱스커트",
+    "query": "니트 롱스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가방",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 플랫슈즈 (안 보임)",
+    "query": "플랫슈즈"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:165551823",
+    "zigzag:165551665"
+   ],
+   "1": [
+    "zigzag:155290768",
+    "zigzag:131379280"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ],
+   "4": [
+    "zigzag:171742629"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 119,
+  "name": "베이지 트렌치 + 화이트 이너 + 블랙 미니 + 롱부츠",
+  "source": "쇼핑몰 코디 (더우르)",
+  "photo": "https://u-ur.kr/web/product/medium/202609/e732e7220c0425e5862dcfe5f77ec1a7.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "트렌치코트",
+   "데이트룩",
+   "주말"
+  ],
+  "note": "트렌치를 걸치고 블랙 스타킹·롱부츠로 마무리",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "베이지",
+    "desc": "라이트베이지 오버핏 트렌치코트",
+    "query": "트렌치코트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 캐미솔 (안에)",
+    "query": "캐미솔"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 미니스커트",
+    "query": "미니스커트"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:171521437",
+    "zigzag:119715317",
+    "zigzag:110627490"
+   ],
+   "2": [
+    "zigzag:167951642",
+    "zigzag:150110018",
+    "zigzag:133521354"
+   ],
+   "3": [
+    "zigzag:161559034"
+   ],
+   "4": [
+    "zigzag:116422044"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 120,
+  "name": "블랙 하프넥 니트 + 블랙 플레어 롱스커트 + 포인티드 플랫",
+  "source": "쇼핑몰 코디 (더우르)",
+  "photo": "https://u-ur.kr/web/product/medium/202609/504af7ac5f696e9e97717e958e0b1070.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "올블랙",
+   "롱스커트",
+   "하객룩"
+  ],
+  "note": "반소매 니트에 볼륨 플레어 스커트 / 블랙 스타킹",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 하프넥 반소매 니트",
+    "query": "반소매 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 플레어 롱스커트",
+    "query": "플레어 롱스커트"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 포인티드 플랫",
+    "query": "포인티드 플랫"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {
+   "0": [
+    "zigzag:168059454",
+    "zigzag:131379280",
+    "zigzag:168641684"
+   ],
+   "1": [
+    "zigzag:168778375"
+   ],
+   "2": [
+    "zigzag:161559034"
+   ],
+   "3": [
+    "zigzag:172014189",
+    "zigzag:171742629"
+   ],
+   "4": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": true
+ }
 ]
