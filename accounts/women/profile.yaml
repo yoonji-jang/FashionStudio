@@ -33,9 +33,8 @@ style:
   outer_only_words: [래글런, 나그랑]   # 위에 아우터·가디건을 입히지 않는 상의
   # 이너(wear_with: 상의)로 쓰지 않는 말. 세트 상품은 사진에 가디건·티가 같이 나와 그림에도 섞임 (2026-10-07)
   inner_avoid_words: [세트, set, 셔링, 리본, 프릴, 배색, 스트라이프, 단가라, 도트, 프린팅, 레터링, 자수]
-  casual_words: [맨투맨, 스웨트, 래글런, 나그랑, 조거, 후드, 트레이닝, 볼캡]
-  dressy_words: [새틴, 실크, 핀스트라이프, 트위드, 정장]
-  max_colors: 3        # 한 벌(소품 빼고, 가방·신발 포함)의 색 계열 수
+  # 색 계열 수(max_colors)·재질 분위기(casual_words/dressy_words) 경고는 뺐다 (2026-10-13 사용자: 색·재질 제한 없이,
+  # 어두운 옷만 입는 날도 있게. 대신 styling.md 추천 색 조합을 참고). color_families 는 색 읽기에만 남김
   color_families:
     블랙: [블랙, 검정]
     화이트: [화이트, 아이보리, 크림, 오프화이트, 흰]
@@ -81,16 +80,16 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
   weather: {name: 서울, lat: 37.57, lon: 126.98}  # 날씨 예보를 볼 곳 (null 이면 안 봄)
   # 주간 주제 때 공개 코디 페이지를 웹 검색해 accounts/women/ref_looks.md 에 글로 더한다 (2026-10-07 사용자)
   ref_search:
-    per_week: 8
+    per_week: 24      # 따라 입기 기준 코디로 쓰니 넉넉히 (2026-10-13, 8 → 24)
     keep_weeks: 4
     queries: [가을 데일리룩 코디, 여자 캐주얼 시크 코디, 레이어드 코디 추천, 꾸안꾸 코디 매거진, 룩북 가을 여성]
     sources: [패션 매거진 코디 기사, 브랜드 룩북, 무신사·29CM·W컨셉 코디·스냅 페이지, 패션 블로그]
     avoid_sites: [instagram.com, pinterest.com, threads.net, facebook.com, tiktok.com]
     # 사진만 있는 쇼핑몰 코디 페이지를 tools.scout refs 로 볼 사이트. 비움 (2026-10-07):
     # 29CM 은 robots.txt 는 허용이지만 GitHub Actions 요청을 서버가 거절해서 뺐다. 무신사·29CM 은 웹 검색 글로만 참고.
-    # 2026-10-13 사용자가 고른 쇼핑몰 + 후보를 Actions 로 시험해 코디 사진이 잡힌 곳만 (themes run 8).
-    # 사진이 안 잡힘: 스탠스트·시엔느·마시모두띠·유니클로, 상품 사진뿐: 아이셀, robots.txt 막힘: COS·에잇세컨즈·W컨셉
-    scout_sites: [u-ur.kr, vivnluv.co.kr, lowclassic.com, kolonmall.com, woonan.co.kr]
+    # 2026-10-13 사용자가 고른 쇼핑몰 + 후보. 첫 화면만이 아니라 메뉴·상품 페이지까지 본다 (tools.scout links).
+    # robots.txt 막힘(COS·에잇세컨즈·W컨셉)은 뺐다
+    scout_sites: [woonan.co.kr, u-ur.kr, vivnluv.co.kr, stanst.kr, aisel.me, lowclassic.com, sienne.co.kr, kolonmall.com]
 
 product_source:
   name: zigzag

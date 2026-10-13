@@ -267,7 +267,10 @@ def page_image_urls(
         for url in urls:
             _wait_turn(url)
             try:
-                page.goto(url, wait_until="networkidle", timeout=60000)
+                # networkidle 은 분석 스크립트가 계속 통신하는 쇼핑몰에서 60초를 다 기다리고
+                # 실패한다 (2026-10-13 스탠스트·시엔느 "사진 없음"). 본문이 뜨면 바로 스크롤한다
+                page.goto(url, wait_until="domcontentloaded", timeout=45000)
+                page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
                 for _ in range(max_scrolls):
                     page.mouse.wheel(0, 4000)
                     page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
@@ -282,6 +285,43 @@ def page_image_urls(
             out[url] = list(dict.fromkeys(u for u in found if u.startswith("http")))
         browser.close()
     return out
+
+
+def page_links(url: str, sites: list[str], limit: int = 200) -> list[tuple[str, str]]:
+    """참고 코디용: 쇼핑몰 페이지의 같은 사이트 링크(메뉴 이름, 주소)를 모은다 (2026-10-13 사용자:
+    첫 화면 한 장이 아니라 베스트·카테고리 메뉴와 상품 페이지까지 들어가 쇼핑몰이 입힌 코디를 보라).
+    페이지 원본은 저장하지 않고 링크 글자와 주소만 돌려준다.
+    이 페이지를 robots.txt 가 막으면 빈 목록."""
+    from playwright.sync_api import sync_playwright
+
+    if not host_allowed(url, sites):
+        return []
+    with client() as c:
+        if not robots_allows(c, url):
+            return []
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(
+            user_agent=USER_AGENT, locale="ko-KR", viewport={"width": 1280, "height": 900}
+        )
+        _wait_turn(url)
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=45000)
+            page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
+            found = page.evaluate(
+                "() => [...document.querySelectorAll('a[href]')].map(a => ["
+                "(a.innerText || a.title || '').trim().replace(/\\s+/g, ' ').slice(0, 40), a.href])"
+            )
+        except Exception as e:  # noqa: BLE001 - 실패하면 빈 목록
+            print(f"페이지 실패 ({url}): {e}", file=sys.stderr)
+            found = []
+        browser.close()
+    out: dict[str, str] = {}
+    for text, href in found:
+        href = href.split("#", 1)[0]
+        if href.startswith("http") and host_allowed(href, sites) and href not in out:
+            out[href] = text
+    return [(t, h) for h, t in out.items()][:limit]
 
 
 def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360):
@@ -361,8 +401,18 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
     r.add_argument("--out", type=Path, required=True)
     r.add_argument("--max-images", type=int, default=12)
+    k = sub.add_parser("links", help="참고 코디: 쇼핑몰 페이지의 메뉴·상품 링크 (원본 저장 안 함)")
+    k.add_argument("--url", required=True)
+    k.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
     args = ap.parse_args(argv)
 
+    if args.cmd == "links":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        for text, href in page_links(args.url, rs.scout_sites if rs else []):
+            print(f"{text}\t{href}")
+        return 0
     if args.cmd == "refs":
         from core.profile import load_profile
 

@@ -85,7 +85,7 @@ jobs:
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 90
-            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
       - name: Claude 참고 코디만 (plan-themes "참고 코디 모으기")
         if: ${{ inputs.refs_only }}
@@ -103,8 +103,8 @@ jobs:
             ${{ inputs.ref_test && format('이번엔 쇼핑몰 접속 시험도 해: {0}. 쇼핑몰마다 공식 주소를 찾고(WebSearch), 룩북·코디·베스트 페이지로 확인표를 만들어 봐. out/refs_report.md 에 쇼핑몰 | 시험한 주소 | 결과(열림/막힘/사진 없음/주소 못 찾음) | 사진 수 | 이유 표를 써. 막힌 곳은 우회하지 마.', inputs.ref_test) || '' }}
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
-            --max-turns 60
-            --allowedTools "Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+            --max-turns 150
+            --allowedTools "Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
       - name: 참고 코디 사진 확인 결과 (scout_sites 쇼핑몰)
         if: always()
@@ -119,7 +119,7 @@ jobs:
         with:
           name: refs-${{ inputs.account }}
           path: |
-            out/refs/*.jpg
+            out/refs/**/*.jpg
             out/refs/refs.json
             out/refs_report.md
           retention-days: 3

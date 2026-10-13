@@ -554,9 +554,16 @@ def test_unity_warnings():
         item(4, "다크브라운"),
     ]
     warns = plan.unity_warnings("1번 벌: ", busy, prods, profile)
+    # 2026-10-13 사용자: 색 개수·재질 제한 없이 (women 은 max_colors·casual/dressy 를 비움)
+    assert not any("색 계열이" in w or "재질 분위기" in w for w in warns)
+    assert any("맨 바깥 상의" in w for w in warns)
+    strict = profile.model_copy(deep=True)
+    strict.style.max_colors = 3
+    strict.style.casual_words = ["맨투맨"]
+    strict.style.dressy_words = ["새틴"]
+    warns = plan.unity_warnings("1번 벌: ", busy, prods, strict)
     assert any("색 계열이 4개" in w for w in warns)
     assert any("재질 분위기" in w for w in warns)
-    assert any("맨 바깥 상의" in w for w in warns)
     calm = [item(1, "그레이"), item(2, "그레이"), item(3, "블랙"), item(4, "블랙")]
     assert [w for w in plan.unity_warnings("", calm, prods, profile) if "재질" not in w] == []
     # 래글런 위에 아우터
