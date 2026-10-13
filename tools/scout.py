@@ -279,6 +279,12 @@ def page_image_urls(
                     ".map(i => i.currentSrc || i.src)",
                     min_width,
                 )
+                # 아직 안 불린 사진 (cafe24 ec-data-src 등, 2026-10-13 스탠스트·시엔느 "사진 없음")
+                found += page.evaluate(
+                    "() => [...document.images].map(i => i.getAttribute('ec-data-src')"
+                    " || i.getAttribute('data-src') || i.getAttribute('data-original'))"
+                    ".filter(Boolean).map(s => new URL(s, location.href).href)"
+                )
             except Exception as e:  # noqa: BLE001 - 한 페이지 실패로 전체를 멈추지 않음
                 print(f"페이지 실패 ({url}): {e}", file=sys.stderr)
                 found = []
