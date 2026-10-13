@@ -571,6 +571,9 @@ def check(
     for cover in [plan.cover, *(lk.cover for lk in plan.looks)]:
         if cover and not (REPO_ROOT / cover).exists():
             errors.append(f"cover 파일이 없습니다: {cover}")
+    for edit in [plan.edit_from, *(lk.edit_from for lk in plan.looks)]:
+        if edit and not (REPO_ROOT / edit).exists():
+            errors.append(f"edit_from 파일이 없습니다 (고쳐 그릴 지난 코디컷): {edit}")
     return errors, warns
 
 

@@ -31,7 +31,14 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
 1. **읽기**: `fix.json`, `plan.yaml`, `before/report.md`, profile, voice.md 를 읽고, 피드백이 가리키는 장을
    `before/slides/` 에서 본다. 표지 피드백이면 `before/prompt.txt` 도 본다.
 2. **고칠 곳 정하기** (피드백마다):
-   - **표지 코디컷** (옷 모양·크기·배치·색·입은 모양): `cover:` 줄을 지운다. 피드백을 영어로 바꿔
+   - **코디컷은 고쳐 그린다** (2026-10-13 사용자: /fix 는 새로 그리지 말고 지난 그림을 고쳐 그리기):
+     표지·벌 코디컷 피드백이면 `cover:` 를 지우기 전에 그 값을 같은 자리의 `edit_from:` 에 옮기고,
+     `edit_request:` 에 고칠 점을 영어 한두 문장으로 쓴다 (무엇을 어디서 어떻게, 예: "Make the shoes neatly
+     paired side by side to the right of the trouser hems, toes pointing up."). 그러면 도구가 지난 그림을
+     첫 그림으로 보내 고칠 곳만 바꾸고 괜찮던 부분은 그대로 둔다. 상품을 바꾼 벌(다른 상품으로 교체·추가·빼기)은
+     지난 그림에 없는 옷이라 `edit_from` 없이 처음부터 다시 그린다. 아래 `styling`·`desc`·`size` 고치기는
+     그대로 해 둔다 (다음에 새로 그릴 때 쓰인다).
+   - **표지 코디컷** (옷 모양·크기·배치·색·입은 모양): `cover:` 줄을 지운다 (위 "고쳐 그린다" 대로 `edit_from` 으로 옮김). 피드백을 영어로 바꿔
      plan.yaml 의 `styling` 에 한 문장씩 덧붙이고(있던 문장과 어긋나면 그 문장을 고친다), 특정 상품의
      크기·기장·핏이면 그 상품의 `desc` 영어 부분, `size`, `cm` 을 고친다. 배치 기준은 `pick-outfit`
      스킬의 "코디컷 배치"를 따른다. 예: "신발 더 크게" → 신발 `size` 를 실제 치수로 분명히 적고
@@ -52,8 +59,8 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
    - **캡션**: `text.intro`, `text.points`, `text.hashtags` 를 `write-copy` 기준으로 고친다.
      고지 문구와 제품 목록은 도구가 붙이므로 손대지 않는다.
    - **코디 장** (`kind: look`, 여러 벌 게시물, `look` = 벌 번호): plan.yaml `looks[look-1]` 만 고친다.
-     코디컷(옷 모양·배치) 문제면 그 벌의 `cover:` 를 지우고 (기장·크기 문제인데 옷에 `size` 실측이 없으면 `daily-feed` 6-1
-     실측을 먼저 하고) 그 벌의 `styling`·상품 `desc`·`size` 를 위 "표지
+     코디컷(옷 모양·배치) 문제면 그 벌의 `cover:` 를 `edit_from:` 으로 옮기고 `edit_request:` 를 쓴다
+     (위 "고쳐 그린다"). 기장·크기 문제인데 옷에 `size` 실측이 없으면 `daily-feed` 6-1 실측을 먼저 하고, 그 벌의 `styling`·상품 `desc`·`size` 를 위 "표지
      코디컷" 방식으로 고친다 (다른 벌은 `cover:` 를 두어 다시 그리지 않음). 상품 이름 글자면 `name`.
      지난 지시문은 `before/prompt_<벌 번호>.txt`. 1장 표지는 1번 벌 코디컷이라 표지 코디컷 피드백은 1번 벌을 고친다.
      모델컷 게시물(plan `shot: model`)에서 배경·포즈·헤어·분위기가 어색하다는 피드백이면 그 벌 `pose` 를

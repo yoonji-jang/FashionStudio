@@ -29,7 +29,7 @@ import yaml
 from PIL import Image
 
 from core.models import DailyPlan, PlanItem, Product
-from core.profile import Profile
+from core.profile import REPO_ROOT, Profile
 from core.store import Store
 from tools import faces, feed, generate
 from tools.photoroom import PROMPTS_DIR, render_prompt
@@ -115,9 +115,9 @@ def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Prof
     ]
 
 
-def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:
+def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1) -> str:
     lines = []
-    for i, it in enumerate(plan.items, 1):
+    for i, it in enumerate(plan.items, start):
         p = products[it.product]
         cat = generate.CATEGORY_EN.get(p.category, "item")
         size = item_size(it, p, cfg)
@@ -153,6 +153,15 @@ def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile
         parts=" ".join(prompt_parts(plan, products, styling)),
         layout=profile.looks.composition,
         scene=oi.scene,
+    )
+
+
+def edit_prompt(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:
+    """지난 코디컷(첫 그림)에서 고칠 곳만 바꾸는 지시문 (prompts/outfit_edit.md)."""
+    return render_prompt(
+        "outfit_edit",
+        request=plan.edit_request or "Fix only what is wrong compared with the product photos.",
+        items=item_lines(plan, products, cfg, start=2),
     )
 
 
@@ -250,7 +259,13 @@ def make_candidates(
     products = {p.id: p for p in store.products()}
     work.mkdir(parents=True, exist_ok=True)
     panels = reference_panels(plan, products, work, cfg, generate.CACHE_DIR / plan.account)
-    prompt = build_prompt(plan, products, profile, cfg)
+    if plan.edit_from and plan.shot != "model":
+        # /fix 고쳐 그리기: 지난 코디컷을 첫 그림으로 보내고 고칠 곳만 바꾸게 한다
+        base = (REPO_ROOT / plan.edit_from).read_bytes()
+        panels = [base, *panels]
+        prompt = edit_prompt(plan, products, cfg)
+    else:
+        prompt = build_prompt(plan, products, profile, cfg)
     (work / "prompt.txt").write_text(prompt, encoding="utf-8")
     client = client or client_for(cfg, fake)
 
