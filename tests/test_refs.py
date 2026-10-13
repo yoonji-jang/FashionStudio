@@ -105,3 +105,18 @@ def test_zigzag_pages_rotates_categories_and_shops():
     used = ref(photo=str(ps[2].image_urls[1]))  # 3번 상품 사진은 이미 참고로 씀
     picked = refs.zigzag_pages(ps, [used], count=3)
     assert [p.id for p in picked] == ["zigzag:1", "zigzag:4", "zigzag:2"]
+
+
+def test_add_numbers_new_refs_after_existing(tmp_path, monkeypatch):
+    import json
+
+    from core.store import Store
+
+    store = Store("women", root=tmp_path)
+    store.save_refs([ref(n=131)])
+    monkeypatch.setattr(refs, "Store", lambda acc: store)
+    item = ref().model_dump(mode="json", exclude={"n", "matches", "ready"})
+    new = tmp_path / "new.json"
+    new.write_text(json.dumps([item, item]), encoding="utf-8")
+    assert refs.main(["add", "--account", "women", "--new", str(new)]) == 0
+    assert [r.n for r in store.refs()] == [131, 132, 133]

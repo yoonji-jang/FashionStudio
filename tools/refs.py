@@ -253,8 +253,10 @@ def zigzag_sheets(products: list[Product], out: Path, max_images: int = 12) -> l
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("cmd", choices=["check", "queries", "match", "list", "send", "merge", "zigzag"])
-    ap.add_argument("--new", type=Path, help="merge: 이 파일에만 있는 참고를 refs.json 에 더함")
+    ap.add_argument(
+        "cmd", choices=["check", "queries", "match", "list", "send", "merge", "zigzag", "add"]
+    )
+    ap.add_argument("--new", type=Path, help="merge·add: 이 파일의 참고를 refs.json 에 더함")
     ap.add_argument("--out", type=Path, default=Path("out/refs_album"), help="send: 묶음 사진 폴더")
     ap.add_argument("--since", type=date.fromisoformat, help="send: 이 날짜 이후에 더한 것만")
     ap.add_argument("--count", type=int, default=40, help="zigzag: 착용컷을 볼 창고 상품 수")
@@ -269,6 +271,21 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "zigzag":
         rows = zigzag_sheets(zigzag_pages(store.products(), refs, args.count), args.out)
         print(f"창고 상품 착용컷 확인표 {len(rows)}장")
+        return 0
+    if args.cmd == "add":
+        # Claude 가 새 참고를 out/ 의 JSON 목록으로 쓰고 이 명령으로 더한다 (번호는 이어서)
+        import json
+
+        from core.models import RefLook as Ref
+
+        raw = json.loads(args.new.read_text(encoding="utf-8"))
+        start = max((r.n for r in refs), default=100) + 1
+        new = [Ref.model_validate({**item, "n": start + i}) for i, item in enumerate(raw)]
+        store.save_refs(refs + new)
+        print(
+            f"참고 코디 {len(new)}벌 더함 ({start}~{start + len(new) - 1}번), "
+            f"모두 {len(refs) + len(new)}벌"
+        )
         return 0
     if args.cmd == "merge":
         from core.store import _refs
