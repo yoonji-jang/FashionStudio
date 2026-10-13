@@ -1,3 +1,4 @@
+import io
 import json
 from datetime import date
 from pathlib import Path
@@ -457,3 +458,40 @@ def test_cli_check_exit_code(tmp_path, monkeypatch, capsys):
     path.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
     assert plan.main(["check", str(path)]) == 1
     assert "오류" in capsys.readouterr().out
+
+
+def test_fix_edits_previous_outfit_image(store, tmp_path, monkeypatch):
+    """/fix 고쳐 그리기 (2026-10-13): edit_from 이 있으면 지난 코디컷을 첫 그림으로 보내고
+    고칠 점만 적은 지시문을 쓴다. 상품 참고판 번호는 2번부터."""
+    from tools import outfit_gen
+
+    base = tmp_path / "prev.jpg"
+    Image.new("RGB", (40, 50), "#888888").save(base)
+    monkeypatch.setattr(outfit_gen, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(outfit_gen, "reference_panels", lambda *a, **k: [b"p1", b"p2"])
+
+    class Recorder:
+        def generate(self, model, prompt, images):
+            self.prompt, self.images = prompt, images
+            buf = io.BytesIO()
+            Image.new("RGB", (1080, 1350)).save(buf, "PNG")
+            return buf.getvalue(), 0.0
+
+    rec = Recorder()
+    p = daily(edit_from="prev.jpg", edit_request="Pair the shoes neatly.")
+    made = outfit_gen.make_candidates(
+        p, store, tmp_path / "w", load_profile("women"), 1, client=rec
+    )
+    assert len(made) == 1
+    assert rec.images == [base.read_bytes(), b"p1", b"p2"]
+    assert "Pair the shoes neatly." in rec.prompt and "$" not in rec.prompt
+    assert "Image 2: the" in rec.prompt and "Image 1: the" not in rec.prompt
+
+    p = daily()
+    outfit_gen.make_candidates(p, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
+    assert rec.images == [b"p1", b"p2"] and "Pair the shoes" not in rec.prompt
+
+
+def test_check_catches_missing_edit_from(store):
+    errors, _ = plan.check(daily(edit_from="out/없는/G_1.jpg"), load_profile("women"), store)
+    assert any("edit_from 파일이 없습니다" in e for e in errors)

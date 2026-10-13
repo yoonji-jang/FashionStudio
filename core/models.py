@@ -108,6 +108,10 @@ class Look(BaseModel):
     # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 이 벌은 새로 만들지 않음)
+    # /fix 로 고쳐 그리기 (2026-10-13 사용자: 새로 그리지 말고 고쳐 그리기): 지난 코디컷 경로와
+    # 고칠 점(영어). edit_from 이 있으면 처음부터 그리지 않고 이 그림에서 고칠 곳만 바꾼다
+    edit_from: str | None = None
+    edit_request: str | None = None
     # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
     pose: str | None = None
 
@@ -126,6 +130,8 @@ class DailyPlan(BaseModel):
     # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 코디컷을 새로 만들지 않음)
+    edit_from: str | None = None  # /fix 로 고쳐 그릴 지난 코디컷 (Look.edit_from 과 같음)
+    edit_request: str | None = None
     # 16단계: flatlay = 펼친 코디컷, model = 옷을 입은 얼굴 없는 AI 모델컷
     # (전날 게시물 벌을 다시 그림, tools.model_post)
     shot: Literal["flatlay", "model"] = "flatlay"
@@ -166,6 +172,8 @@ class DailyPlan(BaseModel):
                 "reason": look.reason or self.reason,
                 "styling": look.styling,
                 "cover": look.cover,
+                "edit_from": look.edit_from,
+                "edit_request": look.edit_request,
                 "pose": look.pose,
             }
         )
