@@ -127,6 +127,9 @@ def test_same_kind_warning(store):
     assert warns == [
         "아우터 '스웨이드' 이(가) 4벌에 들어 있습니다 (최대 3벌, 벌마다 다른 아이템으로)"
     ]
+    # 2026-10-13: 아이템 주제 날은 여섯 벌 모두 그 아이템이어도 된다
+    p.theme.type = "아이템"
+    assert plan.same_kind_warnings(p, profile, products) == []
 
 
 def test_accessory_warning(store):
