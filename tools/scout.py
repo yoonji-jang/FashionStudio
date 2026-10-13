@@ -377,9 +377,11 @@ def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 1
             data = []
             for u in imgs:
                 try:
-                    data.append(fetch_bytes(c, u))
+                    b = fetch_bytes(c, u)
                 except (ImageUnavailable, httpx.HTTPError):
                     continue
+                if len(b) >= 15000:  # 아이콘·로고처럼 작은 사진은 뺀다
+                    data.append(b)
             sheet = contact_sheet(data)
             if sheet is None:
                 report.append({"url": url, "skipped": "사진 없음"})
