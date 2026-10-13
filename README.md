@@ -685,7 +685,7 @@ items:
 ```
 코디컷 후보 N장 (build) → 검수표 (tools.review prep) → image-reviewer 점수 → tools.review apply
    통과: 가장 좋은 후보를 표지로, manifest 에 점수
-   모두 미달: tools.review more 로 후보 한 묶음 더 (max_rounds 까지) → 다시 검수
+   모두 미달: tools.review more 로 후보 한 묶음 더 (max_rounds 까지, 가장 나은 후보를 검수 결함대로 고쳐 그림) → 다시 검수
    그래도 미달, 또는 상품 장 문제: 가장 나은 후보를 표지로 두고 needs_human (8단계 미리보기에서 사람이 판단)
 ```
 

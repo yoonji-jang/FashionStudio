@@ -504,6 +504,32 @@ def _append_report(out: Path, review: Review, profile: Profile) -> None:
 
 # ---------- more ----------
 
+FIXES_FILE = REPO_ROOT / "prompts" / "outfit_fixes.yaml"
+
+
+def fix_request(score: CoverScore, before: str | None = None) -> str:
+    """검수 결함·메모를 고쳐 그리기 지시로 (prompts/outfit_fixes.yaml).
+    before 는 /fix 로 받은 고칠 점."""
+    fixes = yaml.safe_load(FIXES_FILE.read_text(encoding="utf-8"))
+    lines = [before] if before else []
+    lines += [fixes[f] for f in score.faults if f in fixes]
+    if score.notes:
+        lines.append(f"Reviewer notes on what differs from the product photos: {score.notes}")
+    return " ".join(lines) or "Fix only what differs from the product photos."
+
+
+def edit_plan(plan: DailyPlan, review: Review, profile: Profile, out: Path) -> DailyPlan:
+    """다시 그리기를 고쳐 그리기로 (2026-10-13 사용자): 지난 회차의 가장 나은 후보를
+    첫 그림으로 보내 검수가 찾은 곳만 고치게 한다. 0점 항목(색이 다름, 상품이 빠짐 등)이 있으면
+    바탕이 틀려 처음부터 그린다. 모델컷은 지금처럼 새로 그린다."""
+    best = pick(review, profile)
+    if plan.shot == "model" or best is None or best.score is None or best.score.zeros:
+        return plan
+    request = fix_request(best.score, plan.edit_request)
+    return plan.model_copy(
+        update={"edit_from": str(cand_path(out, best).resolve()), "edit_request": request}
+    )
+
 
 def more(out: Path, fake: bool = False) -> list[Candidate]:
     """코디컷 후보를 한 묶음(profile review.candidates 장) 더 만든다."""
@@ -524,6 +550,8 @@ def more(out: Path, fake: bool = False) -> list[Candidate]:
         if engine_file.exists()
         else profile.outfit_image.engine
     )
+    if engine == "generate":
+        plan = edit_plan(plan, review, profile, out)
     made = plan_tool.make_outfit(
         plan,
         Store(plan.account),

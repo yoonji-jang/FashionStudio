@@ -1,0 +1,15 @@
+# 검수 결함(core.models.REVIEW_FAULTS)마다 고쳐 그리기 지시 한 문장 (영어, tools.review.fix_request).
+# 검수 불합격으로 다시 그릴 때 가장 나은 후보를 첫 그림으로 보내고 이 문장들로 그 부분만 고치게 한다
+# (2026-10-13 사용자: 검수 불합격 때도 새로 그리지 말고 고쳐 그리기). 키는 REVIEW_FAULTS 와 같아야 한다(테스트가 본다).
+hem_short: >-
+  Make the long trousers or long skirt full length, as on the model in the product photos: the hem
+  reaches the top of the shoes, not above the ankle.
+fit_differs: >-
+  Redraw the bottoms with the same fit as worn by the model in the product photos (keep wide or
+  straight legs wide or straight, do not narrow them).
+shoes_not_neat: >-
+  Lay the shoes neatly as one pair: low shoes seen from directly above, side by side and parallel,
+  toes level; boots in side profile, both facing the same way.
+tuck_messy: >-
+  Tuck the top neatly into the waistband all the way round with only a soft, even blouse above it;
+  no bunching, puffing or hanging tails.
