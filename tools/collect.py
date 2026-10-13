@@ -222,7 +222,7 @@ def collect(
     for p in unfit:
         stock.pop(p.id)
     report.unfit = len(unfit)
-    # 참고 코디 칸의 검색어로 모은 상품과 칸에 맞춰진 상품은 창고 한도와 상관없이 남긴다 (2026-10-13, tools.refs)
+    # 참고 코디 칸의 검색어로 모았거나 칸에 맞춰진 상품은 창고 한도와 상관없이 남긴다 (2026-10-13)
     from tools import refs as refs_tool
 
     pinned = refs_tool.ref_queries(store.refs())

@@ -469,9 +469,7 @@ def test_collect_keeps_products_matched_to_ref_looks(tmp_path: Path, monkeypatch
     collect.collect("women", plan={"아우터": ["다른 검색어"]}, **run)
     kept = {p.id for p in store.products()}
     dropped = sorted({f"zigzag:{i}" for i in range(1, 6)} - kept)[0]
-    ref = RefLook(
-        n=101, name="t", source="s", added=TODAY, slots=slots, matches={"0": [dropped]}
-    )
+    ref = RefLook(n=101, name="t", source="s", added=TODAY, slots=slots, matches={"0": [dropped]})
     store.save_refs([ref])
     collect.collect("women", plan={"아우터": ["다른 검색어"]}, **run)
     assert dropped in {p.id for p in store.products()}
