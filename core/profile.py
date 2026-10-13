@@ -276,7 +276,7 @@ class Looks(BaseModel):
     enabled: bool = False  # false 면 예전처럼 한 벌 + 상품 장
     count: int = Field(default=6, ge=2, le=8)  # 게시물에 넣는 벌 수
     min: int = Field(default=5, ge=2, le=8)  # 고르기에서 빼더라도 이만큼은 남아야 함
-    spare: int = Field(default=2, ge=0, le=3)  # 후보로 더 보내는 벌 수 (고르기에서 바꿔 넣기)
+    spare: int = Field(default=2, ge=0, le=6)  # 후보로 더 보내는 벌 수 (고르기에서 바꿔 넣기)
     # 같은 게시물 안에서 다시 써도 되는 카테고리와 횟수 (가방·신발은 두 벌까지 같이 써도 자연스러움)
     share_categories: list[Category] = ["가방", "신발", "소품"]
     max_share: int = Field(default=2, ge=1, le=4)
