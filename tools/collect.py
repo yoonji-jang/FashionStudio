@@ -222,10 +222,12 @@ def collect(
     for p in unfit:
         stock.pop(p.id)
     report.unfit = len(unfit)
-    # 참고 코디 칸의 검색어로 모은 상품은 창고 한도와 상관없이 남긴다 (2026-10-13, tools.refs)
+    # 참고 코디 칸의 검색어로 모은 상품과 칸에 맞춰진 상품은 창고 한도와 상관없이 남긴다 (2026-10-13, tools.refs)
     from tools import refs as refs_tool
 
     pinned = refs_tool.ref_queries(store.refs())
+    # 이미 참고 코디 칸에 맞춰진 상품도 남긴다 (다른 검색어로 모였어도)
+    matched = {pid for r in store.refs() for ids in r.matches.values() for pid in ids}
     kept: list[Product] = []
     for category in dict.fromkeys(p.category for p in stock.values()):
         items = sorted(
@@ -233,8 +235,9 @@ def collect(
             key=lambda p: quality(p, profile),
             reverse=True,
         )
-        keep = [p for p in items if p.query in pinned]
-        rest = [p for p in items if p.query not in pinned]
+        keep = [p for p in items if p.query in pinned or p.id in matched]
+        keep_ids = {p.id for p in keep}
+        rest = [p for p in items if p.id not in keep_ids]
         keep += rest[: max(0, cfg.max_per_category - len(keep))]
         kept += keep
         report.trimmed += len(items) - len(keep)
