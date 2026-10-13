@@ -362,7 +362,7 @@ model_shot:
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
 schedule:
-  enabled: true             # false 면 자동 실행 안 함 (Actions 버튼으로만)
+  enabled: false            # false 면 자동 실행 안 함 (Actions 버튼으로만). 2026-10-13 사용자: 코디 개선 마칠 때까지 끄고 수동으로
   timezone: Asia/Seoul
   candidates_at: "09:00"    # 코디 후보를 텔레그램으로 보냄. 게시는 다음 날 아침 (Photoroom 안 씀)
   pick_check_every: 60      # 고른 번호를 확인하는 간격 (분). 외부 스케줄러가 매시 정각에 깨움
