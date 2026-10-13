@@ -327,6 +327,8 @@ def test_women_overnight_schedule_dates(monkeypatch, tmp_path):
     """09시 후보 → 18시 고르기 마감 → 05시 승인 마감 → 다음 날 07시 게시 (2026-10-01 부터)."""
     monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     p = core.profile.load_profile("women")
+    p.schedule.enabled = True  # 프로필에서 잠시 꺼도 시간 계산은 시험
+    monkeypatch.setattr(schedule, "load_profile", lambda *a, **k: p)
     got = {}
     for sl in schedule.slots(p):
         got.setdefault(sl.task, []).append(sl.local())

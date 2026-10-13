@@ -5,6 +5,7 @@ import core.profile
 # 시간표 로직 테스트는 이 고정 시간표로 본다. 계정 profile.yaml 의 실제 시각을 바꿔도
 # (예: 외부 스케줄러에 맞춰 정각으로) 시간 계산 테스트를 다시 쓰지 않아도 되게.
 FIXED_SCHEDULE = {
+    "enabled": True,  # 프로필에서 잠시 꺼도 시간표 시험은 켠 상태로
     "candidates_at": "10:17",
     "pick_check_every": 30,
     "pick_deadline": "15:17",
