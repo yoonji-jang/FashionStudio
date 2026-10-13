@@ -157,3 +157,38 @@ def test_failed_outfit_needs_human(store, tmp_path):
     review.start(out, [])  # 후보가 하나도 없는 상태
     r, code = review.apply(out, review.Scores())
     assert code == review.EXIT_HUMAN and not r.passed
+
+
+def test_more_edits_best_candidate_by_review_faults(store, tmp_path, monkeypatch):
+    """검수 불합격 다시 그리기 = 고쳐 그리기 (2026-10-13): 가장 나은 후보를 첫 그림으로,
+    결함·메모를 고칠 점으로. 0점 항목이 있으면 처음부터 다시 그린다."""
+    out = built(store, tmp_path)
+    (tmp_path / "o2").mkdir()
+    out2 = built(store, tmp_path / "o2")
+    for d in (out, out2):
+        (d / "outfit").mkdir(exist_ok=True)
+        (d / "outfit" / "engine.txt").write_text("generate")
+    seen = []
+    monkeypatch.setattr(plan, "make_outfit", lambda p, *a, **k: seen.append(p) or [])
+    bad = review.Scores(
+        covers=[
+            score("c1", faults=["shoes_not_neat"], notes="신발 두 짝이 벌어짐"),
+            score("c2", faults=["hem_short", "tuck_messy"]),
+        ]
+    )
+    review.apply(out, bad)
+    review.more(out, fake=True)
+    p = seen[-1]
+    assert p.edit_from == str((out / review.load_review(out).candidates[0].file).resolve())
+    assert "side by side and parallel" in p.edit_request and "신발 두 짝이 벌어짐" in p.edit_request
+
+    review.apply(out2, review.Scores(covers=[score("c1", color=0), score("c2", complete=0)]))
+    review.more(out2, fake=True)
+    assert seen[-1].edit_from is None  # 바탕이 틀려 처음부터
+
+
+def test_every_review_fault_has_a_fix_sentence():
+    from core.models import REVIEW_FAULTS
+
+    fixes = yaml.safe_load(review.FIXES_FILE.read_text(encoding="utf-8"))
+    assert set(fixes) == set(REVIEW_FAULTS)

@@ -88,6 +88,8 @@ report.md 를 쓰기 전에는 끝내지 않는다.
     3. `python -m tools.review apply out/$DATE --scores out/$DATE/review/scores.yaml`
        - 종료 코드 0: 통과. 가장 좋은 후보가 표지가 되고 manifest 에 점수가 남는다. 11로.
        - 3: 표지 후보가 모두 기준 미달. `python -m tools.review more out/$DATE` 로 후보를 더 만들고 1부터.
+         (생성형 코디컷은 가장 나은 후보를 검수 결함·메모대로 고쳐 그린다. 0점 항목이 있으면 처음부터 다시 그린다.
+         그래서 `notes` 에 어느 상품의 무엇이 틀렸는지 분명히 적어야 한다.)
          (`more` 가 2면 이미지 서비스 한도, 3이면 최대 회차: 그대로 11로)
        - 4: 사람 확인 필요. 캐러셀 장 문제가 이유면 한 번만 고쳐 본다: plan.yaml 의 `photo` 번호를
          다른 사진으로 바꾸거나 이름·코멘트를 줄이고, `cover:` 에 `review/review.json` 의 표지(chosen) 파일
