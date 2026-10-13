@@ -43,3 +43,37 @@ def test_check_reports_problems_and_drops_old():
     kept, errors = refs.check([ref(), bad, old], keep_weeks=4, today=DAY)
     assert [r.n for r in kept] == [101, 101]
     assert any("번호가 겹침" in e for e in errors) and any("사진 주소" in e for e in errors)
+
+
+def test_crawl_visits_menus_then_product_pages(tmp_path, monkeypatch):
+    from tools import scout
+
+    home = "https://woonan.co.kr/"
+    pages = {
+        home: [
+            ("로그인", home + "member/login.html"),
+            ("BEST 30", home + "category/best/42/"),
+            ("OUTER", home + "category/outer/24/"),
+            ("공지", home + "board/notice/1/"),
+        ],
+        home + "category/best/42/": [
+            ("a", home + "product/coat/101/category/42/"),
+            ("a", home + "product/coat/101/"),
+            ("b", home + "product/knit/102/"),
+        ],
+        home + "category/outer/24/": [("c", home + "product/jacket/103/category/24/")],
+    }
+    monkeypatch.setattr(
+        scout, "page_links", lambda url, sites, limit=200, scrolls=0: pages.get(url, [])
+    )
+    got = {}
+    monkeypatch.setattr(
+        scout, "ref_sheets", lambda urls, sites, out, n: got.setdefault("urls", urls) and []
+    )
+    scout.crawl(home, ["woonan.co.kr"], tmp_path, menus=5, products=10)
+    # 로그인·공지는 건너뛰고, 메뉴를 번갈아, 같은 상품(101)은 한 번만
+    assert got["urls"] == [
+        home + "product/coat/101/category/42/",
+        home + "product/jacket/103/category/24/",
+        home + "product/knit/102/",
+    ]

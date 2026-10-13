@@ -293,7 +293,9 @@ def page_image_urls(
     return out
 
 
-def page_links(url: str, sites: list[str], limit: int = 200) -> list[tuple[str, str]]:
+def page_links(
+    url: str, sites: list[str], limit: int = 200, scrolls: int = 0
+) -> list[tuple[str, str]]:
     """참고 코디용: 쇼핑몰 페이지의 같은 사이트 링크(메뉴 이름, 주소)를 모은다 (2026-10-13 사용자:
     첫 화면 한 장이 아니라 베스트·카테고리 메뉴와 상품 페이지까지 들어가 쇼핑몰이 입힌 코디를 보라).
     페이지 원본은 저장하지 않고 링크 글자와 주소만 돌려준다.
@@ -314,6 +316,9 @@ def page_links(url: str, sites: list[str], limit: int = 200) -> list[tuple[str, 
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=45000)
             page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
+            for _ in range(scrolls):  # 상품 목록이 스크롤해야 더 불리는 쇼핑몰
+                page.mouse.wheel(0, 4000)
+                page.wait_for_timeout(1500)
             found = page.evaluate(
                 "() => [...document.querySelectorAll('a[href]')].map(a => ["
                 "(a.innerText || a.title || '').trim().replace(/\\s+/g, ' ').slice(0, 40), a.href])"
@@ -328,6 +333,66 @@ def page_links(url: str, sites: list[str], limit: int = 200) -> list[tuple[str, 
         if href.startswith("http") and host_allowed(href, sites) and href not in out:
             out[href] = text
     return [(t, h) for h, t in out.items()][:limit]
+
+
+MENU_WORDS = re.compile(
+    r"best|베스트|new|신상|outer|아우터|top|상의|bottom|하의|skirt|스커트|pants|팬츠|knit|니트|"
+    r"dress|원피스|코디|look|룩|most|인기|weekly",
+    re.IGNORECASE,
+)
+SKIP_WORDS = re.compile(
+    r"login|join|member|cart|order|mypage|board|notice|review|event|faq|qna|privacy|agreement|"
+    r"로그인|회원|장바구니|주문|공지|리뷰|후기|이벤트|문의|약관|개인정보",
+    re.IGNORECASE,
+)
+PRODUCT_LINK = re.compile(r"/product/|detail|goods|product_no=", re.IGNORECASE)
+
+
+def product_key(href: str) -> str:
+    """같은 상품의 다른 주소(카테고리 경로가 붙은 cafe24 주소 등)를 하나로."""
+    m = re.search(r"/product/[^/]*/(\d+)|product_no=(\d+)|/goods/(\d+)", href)
+    return next((g for g in m.groups() if g), href) if m else href.split("?", 1)[0]
+
+
+def crawl(
+    home: str, sites: list[str], out: Path, menus: int = 5, products: int = 15, max_images: int = 16
+) -> list[dict]:
+    """쇼핑몰 하나를 메뉴 → 상품 페이지 순서로 돌며 상품 페이지마다 번호 붙인 확인표를 만든다.
+
+    2026-10-13 사용자: 참고 코디를 한 주 100벌쯤 모으기. Claude 가 메뉴를 하나씩 누르는 대신
+    코드가 돌고, Claude 는 확인표만 본다. robots.txt·허용 사이트는 page_links·ref_sheets 가 지킨다.
+    페이지·사진 원본은 저장하지 않는다."""
+    picked: list[str] = []
+    for text, href in page_links(home, sites):
+        if len(picked) >= menus:
+            break
+        if (
+            SKIP_WORDS.search(text + href)
+            or PRODUCT_LINK.search(href)
+            or href.rstrip("/") == home.rstrip("/")
+        ):
+            continue
+        if MENU_WORDS.search(text) or MENU_WORDS.search(href):
+            picked.append(href)
+    lists = [
+        [h for _, h in page_links(m, sites, limit=400, scrolls=3) if PRODUCT_LINK.search(h)]
+        for m in picked
+    ]
+    seen: set[str] = set()
+    pages: list[str] = []
+    width = max(map(len, lists), default=0)
+    for row in zip(*[lst + [""] * (width - len(lst)) for lst in lists], strict=True):
+        for href in row:  # 메뉴마다 번갈아 (한 메뉴 상품만 몰리지 않게)
+            if href and product_key(href) not in seen and len(pages) < products:
+                seen.add(product_key(href))
+                pages.append(href)
+    report = ref_sheets(pages, sites, out, max_images) if pages else []
+    (out / "crawl.json").parent.mkdir(parents=True, exist_ok=True)
+    (out / "crawl.json").write_text(
+        json.dumps({"home": home, "menus": picked, "pages": pages}, ensure_ascii=False, indent=1),
+        encoding="utf-8",
+    )
+    return report
 
 
 def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360, numbered: bool = False):
@@ -440,8 +505,25 @@ def main(argv: list[str] | None = None) -> int:
     f.add_argument("--url", required=True)
     f.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
     f.add_argument("--out", type=Path, required=True)
+    w = sub.add_parser(
+        "crawl", help="참고 코디: 쇼핑몰 메뉴 → 상품 페이지마다 확인표 (원본 저장 안 함)"
+    )
+    w.add_argument("--site", required=True, help="profile scout_sites 의 쇼핑몰 (예 woonan.co.kr)")
+    w.add_argument("--account", required=True)
+    w.add_argument("--out", type=Path, required=True)
+    w.add_argument("--menus", type=int, default=5)
+    w.add_argument("--products", type=int, default=15)
     args = ap.parse_args(argv)
 
+    if args.cmd == "crawl":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        sites = rs.scout_sites if rs else []
+        rows = crawl(f"https://{args.site}/", sites, args.out, args.menus, args.products)
+        made = [r for r in rows if r.get("sheet")]
+        print(f"{args.site}: 상품 페이지 {len(rows)}곳, 확인표 {len(made)}장")
+        return 0
     if args.cmd == "refphoto":
         from core.profile import load_profile
 

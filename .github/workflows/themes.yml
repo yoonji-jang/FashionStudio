@@ -86,6 +86,15 @@ jobs:
             --max-turns 90
             --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
+      # 쇼핑몰마다 메뉴 → 상품 페이지를 코드가 돌며 확인표를 만든다 (Claude 는 확인표만 본다, 2026-10-13)
+      - name: 쇼핑몰 착용컷 확인표 만들기 (tools.scout crawl)
+        run: |
+          sites=$(uv run python -c "from core.profile import load_profile; rs = load_profile('$ACCOUNT').themes.ref_search; print(' '.join(rs.scout_sites if rs else []))")
+          for site in $sites; do
+            timeout 20m uv run python -m tools.scout crawl --account "$ACCOUNT" --site "$site" \
+              --out "out/refs/${site%%.*}" --menus 5 --products 15 || echo "$site 실패"
+          done
+
       # 참고 코디 100벌쯤을 칸별로 data/<계정>/refs.json 에 모은다 (2026-10-13 사용자). 주간 주제 다음에도 돈다
       - name: Claude 참고 코디 모으기 (plan-themes "참고 코디 모으기")
         uses: anthropics/claude-code-action@v1
@@ -97,6 +106,8 @@ jobs:
             .claude/skills/plan-themes/SKILL.md 의 "참고 코디 모으기"만 해. 주제는 정하지도 저장하지도 마.
             ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
             참고 코디는 data/${{ env.ACCOUNT }}/refs.json 에 쓰고 `python -m tools.refs check --account ${{ env.ACCOUNT }}` 로 검사해.
+            쇼핑몰마다 상품 페이지 확인표가 이미 out/refs/<쇼핑몰>/sheet_N.jpg 에 있어 (같은 폴더 refs.json 에 칸 번호 순 사진 주소 images 와 상품 페이지 url).
+            먼저 이 확인표를 모두 Read 로 보고 전신 코디를 옮겨. 모자라면 그때 links/refs 로 더 찾아.
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.scout refs --account ${{ env.ACCOUNT }} --url … --out out/refs` 처럼
             그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites 의 쇼핑몰마다 코디·룩북 페이지를 찾아 확인표를 꼭 만들어 보고, 쇼핑몰별로 열렸는지·막혔는지(이유)를 out/refs_report.md 에 적어.

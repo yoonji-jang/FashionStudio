@@ -62,6 +62,10 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
 `data/$ACCOUNT/refs.json` 에 칸별로 쓴다 (2026-10-13 사용자: 한 주 참고 코디를 100개쯤 한꺼번에 모으고, 그 옷을 창고에 한꺼번에 수집).
 다음 단계(collect 워크플로)가 칸의 검색어로 지그재그에서 옷을 모으고, 참고마다 창고로 맞출 수 있는지(`ready`) 표시하고,
 번호 붙인 참고 사진 묶음을 텔레그램으로 보낸다. 매일 후보는 `ready` 인 참고만 따라 한다.
+0. themes 워크플로가 먼저 쇼핑몰마다 `python -m tools.scout crawl` 로 메뉴 → 상품 페이지 15곳의 확인표를
+   `out/refs/<쇼핑몰>/sheet_N.jpg` 로 만들어 둔다 (같은 폴더 `refs.json` 에 확인표마다 상품 페이지 `url` 과 칸 번호 순 `images`).
+   이 확인표부터 모두 본다. 상품 페이지 한 곳에 색만 다른 코디가 여러 벌 있으면 색 조합이 다른 것은 따로 넣어도 된다.
+   모자라면 아래 1번 방법으로 더 찾는다.
 1. 쇼핑몰은 `ref_search.scout_sites`. **첫 화면 한 장이 아니라 메뉴와 상품 페이지까지 들어간다**
    (2026-10-13 사용자: "메뉴 여러 개 눌러 보면서 상품 페이지에서 한 코디들을 참고하라"). 쇼핑몰마다 이 순서로, 한 번에 주소 하나씩.
    - `python -m tools.scout links --account $ACCOUNT --url https://<쇼핑몰>/` 로 메뉴 링크(글자, 주소)를 본다.
