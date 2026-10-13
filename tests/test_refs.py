@@ -77,3 +77,18 @@ def test_crawl_visits_menus_then_product_pages(tmp_path, monkeypatch):
         home + "product/jacket/103/category/24/",
         home + "product/knit/102/",
     ]
+
+
+def test_match_trusts_products_found_by_the_slot_query():
+    vest = product(5, "상의").model_copy(
+        update={"name": "터틀넥 니트 조끼", "query": "차콜 모크넥 니트베스트"}
+    )
+    skirt = product(6, "하의", colors=["블랙"]).model_copy(update={"name": "미디 스커트"})
+    [r] = refs.match([ref()], [vest, skirt])
+    assert r.ready and r.matches["0"] == ["zigzag:5"]
+
+
+def test_merge_keeps_remote_matches_and_adds_new():
+    remote = refs.match([ref(n=101)], [])
+    merged = refs.merge(remote, [ref(n=101), ref(n=130)])
+    assert [r.n for r in merged] == [101, 130] and merged[0] is remote[0]

@@ -84,10 +84,12 @@ def match_slot(slot: RefSlot, products: list[Product]) -> list[str]:
     for p in products:
         if p.category != slot.category or p.status != "on_sale":
             continue
+        # 이 칸의 검색어로 모은 상품은 검색 결과를 믿는다 (상품 이름이 "니트 조끼"처럼 달라도)
+        searched = p.query == f"{slot.color} {slot.query}".strip()
         k = kind_score(p, slot)
-        if k < 0.5 or not has_color(p, slot.color):
+        if not searched and (k < 0.5 or not has_color(p, slot.color)):
             continue
-        scored.append((k, p.query == slot.query, p.rating or 0, p.id))
+        scored.append((searched, k, p.rating or 0, p.id))
     scored.sort(reverse=True)
     return [s[-1] for s in scored[:MAX_MATCHES]]
 
@@ -119,6 +121,12 @@ def missing_queries(refs: list[RefLook]) -> dict[Category, list[str]]:
 def ref_queries(refs: list[RefLook]) -> set[str]:
     """참고 코디 칸에서 나온 검색어 전부. 창고를 줄일 때 이 검색어로 모은 상품은 남긴다."""
     return {f"{s.color} {s.query}".strip() for r in refs for s in r.slots}
+
+
+def merge(base: list[RefLook], new: list[RefLook]) -> list[RefLook]:
+    """동시에 바뀐 refs.json 합치기: base(원격, 칸 맞추기 결과)에 new 에만 있는 번호를 더한다."""
+    have = {r.n for r in base}
+    return base + [r for r in new if r.n not in have]
 
 
 def check(refs: list[RefLook], keep_weeks: int, today: date) -> tuple[list[RefLook], list[str]]:
@@ -180,7 +188,8 @@ def album(refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12)
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("cmd", choices=["check", "queries", "match", "list", "send"])
+    ap.add_argument("cmd", choices=["check", "queries", "match", "list", "send", "merge"])
+    ap.add_argument("--new", type=Path, help="merge: 이 파일에만 있는 참고를 refs.json 에 더함")
     ap.add_argument("--out", type=Path, default=Path("out/refs_album"), help="send: 묶음 사진 폴더")
     ap.add_argument("--since", type=date.fromisoformat, help="send: 이 날짜 이후에 더한 것만")
     ap.add_argument("--account", required=True)
@@ -191,6 +200,14 @@ def main(argv: list[str] | None = None) -> int:
     store = Store(args.account)
     refs = store.refs()
 
+    if args.cmd == "merge":
+        from core.store import _refs
+
+        new = _refs.validate_json(args.new.read_bytes())
+        merged = merge(refs, new)
+        store.save_refs(merged)
+        print(f"참고 코디 {len(refs)} → {len(merged)}벌")
+        return 0
     if args.cmd == "check":
         rs = profile.themes.ref_search
         kept, errors = check(refs, rs.keep_weeks if rs else 4, date.today())

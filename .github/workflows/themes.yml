@@ -145,15 +145,31 @@ jobs:
           [ -n "$TELEGRAM_BOT_TOKEN" ] || { echo "텔레그램 설정 없음"; exit 0; }
           python -m tools.pick themes --account "$ACCOUNT" --first "$FIRST"
 
+      # 수집(collect)이 같은 브랜치의 refs.json 을 동시에 고칠 수 있어, 원격 최신본 위에 다시 얹어 커밋한다
+      # (2026-10-13: rebase 충돌로 참고 코디 한 번을 잃음). refs.json 은 번호로 합친다
       - name: 주제 커밋
         run: |
-          git add "data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" "accounts/$ACCOUNT/ref_looks.md" "data/$ACCOUNT/refs.json" 2>/dev/null || true
-          git diff --cached --quiet && exit 0
-          git -c user.name="github-actions[bot]" \
-            -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
-            commit -m "${{ inputs.refs_only && '참고 코디' || '주간 주제' }} $ACCOUNT $FIRST"
+          files=("data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" "accounts/$ACCOUNT/ref_looks.md")
+          mkdir -p /tmp/keep
+          for f in "${files[@]}"; do [ -f "$f" ] && mkdir -p "/tmp/keep/$(dirname "$f")" && cp "$f" "/tmp/keep/$f"; done
+          [ -f "data/$ACCOUNT/refs.json" ] && cp "data/$ACCOUNT/refs.json" /tmp/refs_new.json
           for i in 1 2 3; do
-            git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            git fetch origin "${{ github.ref_name }}"
+            git reset -q --hard "origin/${{ github.ref_name }}"
+            for f in "${files[@]}"; do [ -f "/tmp/keep/$f" ] && cp "/tmp/keep/$f" "$f"; done
+            if [ -f /tmp/refs_new.json ]; then
+              if [ -f "data/$ACCOUNT/refs.json" ]; then
+                python -m tools.refs merge --account "$ACCOUNT" --new /tmp/refs_new.json
+              else
+                cp /tmp/refs_new.json "data/$ACCOUNT/refs.json"
+              fi
+            fi
+            git add "${files[@]}" "data/$ACCOUNT/refs.json" 2>/dev/null || true
+            git diff --cached --quiet && exit 0
+            git -c user.name="github-actions[bot]" \
+              -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "${{ inputs.refs_only && '참고 코디' || '주간 주제' }} $ACCOUNT $FIRST"
+            git push origin "HEAD:${{ github.ref_name }}" && exit 0
             sleep $((i * 5))
           done
           exit 1

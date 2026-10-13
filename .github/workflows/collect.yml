@@ -91,16 +91,29 @@ jobs:
           path: ${{ env.OUT }}
           if-no-files-found: ignore
 
+      # 주간 주제(themes)가 같은 브랜치의 refs.json 에 참고 코디를 동시에 더할 수 있어, 원격 최신본 위에
+      # 다시 얹어 커밋한다. refs.json 은 이 실행의 칸 맞추기 결과에 원격에만 있는 번호를 더한다
       - name: 상품 창고 커밋
         if: inputs.commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
-          git add "data/$ACCOUNT/products.json" "data/$ACCOUNT/refs.json" 2>/dev/null || true
-          git diff --cached --quiet && exit 0
-          git commit -m "상품 창고 갱신 ($ACCOUNT, run ${{ github.run_number }})"
+          P="data/$ACCOUNT/products.json"; R="data/$ACCOUNT/refs.json"
+          cp "$P" /tmp/products.json
+          [ -f "$R" ] && cp "$R" /tmp/refs_ours.json
           for i in 1 2 3; do
-            git pull --rebase --autostash origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            git fetch origin "${{ github.ref_name }}"
+            git reset -q --hard "origin/${{ github.ref_name }}"
+            cp /tmp/products.json "$P"
+            if [ -f /tmp/refs_ours.json ]; then
+              [ -f "$R" ] && cp "$R" /tmp/refs_remote.json || echo "[]" > /tmp/refs_remote.json
+              cp /tmp/refs_ours.json "$R"
+              uv run python -m tools.refs merge --account "$ACCOUNT" --new /tmp/refs_remote.json
+            fi
+            git add "$P" "$R" 2>/dev/null || true
+            git diff --cached --quiet && exit 0
+            git commit -q -m "상품 창고 갱신 ($ACCOUNT, run ${{ github.run_number }})"
+            git push origin "HEAD:${{ github.ref_name }}" && exit 0
             sleep $((i * 5))
           done
           exit 1
