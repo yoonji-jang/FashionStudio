@@ -114,14 +114,23 @@ def missing_queries(refs: list[RefLook]) -> dict[Category, list[str]]:
             if s.category not in REQUIRED or r.matches.get(str(i)):
                 continue
             q = f"{s.color} {s.query}".strip()
-            if q not in plan.setdefault(s.category, []):
-                plan[s.category].append(q)
+            # 자세한 검색어로 못 찾을 때를 대비해 색 + 마지막 낱말(베스트, 미니스커트)로도 찾는다
+            broad = f"{s.color} {s.query.split()[-1]}".strip() if s.query.split() else q
+            for x in (q, broad):
+                if x not in plan.setdefault(s.category, []):
+                    plan[s.category].append(x)
     return plan
 
 
 def ref_queries(refs: list[RefLook]) -> set[str]:
     """참고 코디 칸에서 나온 검색어 전부. 창고를 줄일 때 이 검색어로 모은 상품은 남긴다."""
-    return {f"{s.color} {s.query}".strip() for r in refs for s in r.slots}
+    out = set()
+    for r in refs:
+        for s in r.slots:
+            out.add(f"{s.color} {s.query}".strip())
+            if s.query.split():
+                out.add(f"{s.color} {s.query.split()[-1]}".strip())
+    return out
 
 
 def merge(base: list[RefLook], new: list[RefLook]) -> list[RefLook]:

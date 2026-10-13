@@ -388,7 +388,7 @@ def main(argv: list[str] | None = None) -> int:
         plan = refs_tool.missing_queries(store.refs())
         print(f"참고 코디에서 찾을 검색어 {sum(map(len, plan.values()))}개")
         if args.per_query is None:
-            args.per_query = 3  # 검색어가 많아 하나마다 앞의 몇 개만 본다
+            args.per_query = 8  # 칸마다 고를 거리가 넉넉하도록 (사용자 2026-10-13 "넉넉하게")
     elif args.category:
         plan = {args.category: args.query or plan.get(args.category, [])}
     elif args.query:

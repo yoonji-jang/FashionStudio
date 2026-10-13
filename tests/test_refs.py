@@ -30,7 +30,7 @@ def test_match_needs_kind_and_color_for_required_slots():
     [r] = refs.match([ref()], [vest, skirt_navy])
     assert r.matches == {"0": ["zigzag:1"]}  # 차콜 = 챠콜, 띄어쓰기 달라도 맞음
     assert not r.ready  # 블랙 스커트가 없음 (가방은 없어도 됨)
-    assert refs.missing_queries([r]) == {"하의": ["블랙 미디 스커트"]}
+    assert refs.missing_queries([r]) == {"하의": ["블랙 미디 스커트", "블랙 스커트"]}
 
     skirt = product(3, "하의", colors=["블랙"]).model_copy(update={"name": "A라인 미디 스커트"})
     [r] = refs.match([ref()], [vest, skirt])
