@@ -96,13 +96,13 @@ jobs:
             ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.scout refs --account ${{ env.ACCOUNT }} --url … --out out/refs` 처럼
-            그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites(29CM) 확인표도 꼭 만들어 봐.
+            그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites 의 쇼핑몰마다 코디·룩북 페이지를 찾아 확인표를 꼭 만들어 보고, 쇼핑몰별로 열렸는지·막혔는지(이유)를 out/refs_report.md 에 적어.
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 60
             --allowedTools "Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
-      - name: 참고 코디 사진 확인 결과 (29CM 등)
+      - name: 참고 코디 사진 확인 결과 (scout_sites 쇼핑몰)
         if: always()
         run: cat out/refs/refs.json 2>/dev/null || echo "확인표를 만들지 않음"
 
