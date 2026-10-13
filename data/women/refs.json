@@ -2002,5 +2002,426 @@
    ]
   },
   "ready": true
+ },
+ {
+  "n": 132,
+  "name": "버건디 티 + 블랙 미니 + 롱부츠",
+  "source": "쇼핑몰 코디 (비브앤러브)",
+  "photo": "https://vivnluv.co.kr/web/upload/category/56ed15de453e120b116632750e734216.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "가을",
+   "포인트컬러"
+  ],
+  "note": "깊은 한 색 / 짧은 하의 + 롱부츠",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "버건디",
+    "desc": "버건디 반팔 니트 티",
+    "query": "반팔 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 미니스커트",
+    "query": "미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 니하이 플랫 롱부츠",
+    "query": "니하이 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더 미니백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:150110018",
+    "zigzag:133521354"
+   ],
+   "2": [
+    "zigzag:116422044"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 133,
+  "name": "블랙 레이스 캐미 + 카고 부츠컷",
+  "source": "쇼핑몰 코디 (비브앤러브)",
+  "photo": "https://vivnluv.co.kr/web/product/big/202610/384e51b7596462d7092d084de37dd8a4.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "올블랙",
+   "데이트룩"
+  ],
+  "note": "레이스 / 짧은 상의 + 부츠컷",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 레이스 캐미",
+    "query": "레이스 캐미솔"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 로우라이즈 카고 부츠컷 팬츠 (밴딩 허리)",
+    "query": "카고 부츠컷 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 포인티드 슈즈",
+    "query": "포인티드 플랫"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:172014189",
+    "zigzag:171742629"
+   ],
+   "3": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 134,
+  "name": "버건디 포켓 셔츠 + 블랙 와이드",
+  "source": "쇼핑몰 코디 (비브앤러브)",
+  "photo": "https://vivnluv.co.kr/web/upload/NNEditor/20260924/bd36c811e4b1bb972be71013c513c862.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "출근룩",
+   "포인트컬러"
+  ],
+  "note": "깊은 한 색, 벨트 / 헐렁한 위아래 (신발 안 보임)",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "버건디",
+    "desc": "버건디 오픈칼라 포켓 셔츠",
+    "query": "오픈카라 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 와이드 슬랙스",
+    "query": "와이드 슬랙스"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:148726754",
+    "zigzag:129830192",
+    "zigzag:129082539",
+    "zigzag:138601633",
+    "zigzag:168200317"
+   ],
+   "2": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 135,
+  "name": "네이비 폴로 니트 + 그레이 쇼츠",
+  "source": "쇼핑몰 코디 (비브앤러브)",
+  "photo": "https://vivnluv.co.kr/web/upload/NNEditor/20261008/0793eac509726185af708e7de95172f2.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "캐주얼"
+  ],
+  "note": "단추 푼 큰 상의 + 짧은 하의 (신발 안 보임)",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "네이비",
+    "desc": "네이비 오버핏 폴로 카라 니트",
+    "query": "카라 니트"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 스웨트 쇼츠",
+    "query": "스웨트 쇼츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 박스 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:168564549",
+    "zigzag:168305853"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 136,
+  "name": "와인 블루종 + 블랙 쇼츠 + 슬라우치 부츠",
+  "source": "쇼핑몰 코디 (더오어)",
+  "photo": "https://the-ore.kr/web/product/medium/202610/4462ae561853a5cedf9d1477c021103d.webp",
+  "added": "2026-10-13",
+  "tags": [
+   "가을",
+   "포인트컬러"
+  ],
+  "note": "깊은 한 색, 부츠 주름 / 짧은 아우터 + 맨다리",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "버건디",
+    "desc": "와인 스탠드칼라 드로스트링 블루종",
+    "query": "블루종"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 쇼츠",
+    "query": "쇼츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 슬라우치 앵클부츠",
+    "query": "슬라우치 부츠"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:166183665",
+    "zigzag:131272324",
+    "zigzag:158913245"
+   ],
+   "2": [
+    "zigzag:165705028",
+    "zigzag:165832097",
+    "zigzag:171985452",
+    "zigzag:149181846",
+    "zigzag:116422044"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 137,
+  "name": "퍼플 가디건 + 흰 이너 + 블랙 와이드",
+  "source": "쇼핑몰 코디 (더오어)",
+  "photo": "https://the-ore.kr/web/product/medium/202610/c0f3a6fc61065275088d29a3f746be37.webp",
+  "added": "2026-10-13",
+  "tags": [
+   "포인트컬러"
+  ],
+  "note": "흰 이너 밑단 / 큰 상의 + 와이드 (신발 안 보임)",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "퍼플",
+    "desc": "퍼플 라운드 니트 가디건",
+    "query": "라운드 가디건"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 이너 티 (밑단 보이게)",
+    "query": "이너 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 와이드 팬츠",
+    "query": "와이드 팬츠"
+   }
+  ],
+  "matches": {
+   "1": [
+    "zigzag:165320483"
+   ],
+   "2": [
+    "zigzag:168724076",
+    "zigzag:170339897",
+    "zigzag:158913245",
+    "zigzag:148726754",
+    "zigzag:138601633"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 138,
+  "name": "카키 유틸리티 자켓 + 그레이 후드 집업 + 연청 와이드",
+  "source": "쇼핑몰 코디 (로우클래식)",
+  "photo": "https://lowclassic.com/web/product/extra/small/202609/bedee9da287652342267b576364890f5.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "캐주얼",
+   "레이어드"
+  ],
+  "note": "겹쳐 입기 / 큰 아우터 + 와이드",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "카키",
+    "desc": "카키 오버핏 유틸리티 자켓",
+    "query": "유틸리티 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 후드 집업",
+    "query": "후드 집업"
+   },
+   {
+    "category": "하의",
+    "color": "연청",
+    "desc": "연청 와이드 데님",
+    "query": "와이드 데님"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 슈즈",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "베이지",
+    "desc": "베이지 토트백",
+    "query": "토트백"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:169433167",
+    "zigzag:168835699",
+    "zigzag:168570688",
+    "zigzag:171292012",
+    "zigzag:171122681"
+   ],
+   "3": [
+    "zigzag:153677725"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 139,
+  "name": "그레이 하프집업 + 브라운 플레어 스커트",
+  "source": "쇼핑몰 코디 (코오롱몰)",
+  "photo": "https://images3.kolonmall.com/upload/content/c572460a-644b-44e3-be6c-a04f3425182d/24c7d8c1-9d17-48d5-8abc-888a9cbf7f3d.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "가을",
+   "소재믹스"
+  ],
+  "note": "소재 대비 / 큰 상의 + 퍼지는 미디 (신발 안 보임)",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 하프집업 풀오버",
+    "query": "하프집업"
+   },
+   {
+    "category": "상의",
+    "color": "크림",
+    "desc": "크림 터틀넥 (안에)",
+    "query": "터틀넥"
+   },
+   {
+    "category": "하의",
+    "color": "브라운",
+    "desc": "브라운 코듀로이 플레어 미디스커트",
+    "query": "코듀로이 스커트"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:167025790",
+    "zigzag:131390735"
+   ]
+  },
+  "ready": false
+ },
+ {
+  "n": 140,
+  "name": "크림 케이블 가디건 + 블랙 롱스커트",
+  "source": "쇼핑몰 코디 (코오롱몰)",
+  "photo": "https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg",
+  "added": "2026-10-13",
+  "tags": [
+   "가을",
+   "출근룩"
+  ],
+  "note": "크림 + 블랙 대비 / 큰 아우터 + 롱 실루엣",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "크림",
+    "desc": "크림 굵은 케이블 가디건",
+    "query": "케이블 가디건"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 프릴 블라우스",
+    "query": "프릴 블라우스"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 롱스커트",
+    "query": "롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 부츠",
+    "query": "앵클부츠"
+   }
+  ],
+  "matches": {
+   "2": [
+    "zigzag:168778375"
+   ],
+   "3": [
+    "zigzag:149181846",
+    "zigzag:165832097",
+    "zigzag:148873148"
+   ]
+  },
+  "ready": false
  }
 ]
