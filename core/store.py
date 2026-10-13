@@ -16,7 +16,7 @@ from pathlib import Path
 
 from pydantic import TypeAdapter
 
-from core.models import DmState, FeedbackEntry, PostRecord, Product, Theme
+from core.models import DmState, FeedbackEntry, PostRecord, Product, RefLook, Theme
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
@@ -24,6 +24,7 @@ DATA_DIR = REPO_ROOT / "data"
 _products = TypeAdapter(list[Product])
 _themes = TypeAdapter(list[Theme])
 _posts = TypeAdapter(list[PostRecord])
+_refs = TypeAdapter(list[RefLook])
 
 
 class Store:
@@ -52,6 +53,13 @@ class Store:
 
     def save_products(self, products: list[Product]) -> None:
         self._write("products.json", _products.dump_json(products, indent=2))
+
+    def refs(self) -> list[RefLook]:
+        """참고 코디 (refs.json, 2026-10-13)."""
+        return _refs.validate_python(self._read("refs.json"))
+
+    def save_refs(self, refs: list[RefLook]) -> None:
+        self._write("refs.json", _refs.dump_json(refs, indent=1))
 
     def themes(self) -> list[Theme]:
         return _themes.validate_python(self._read("themes.json"))

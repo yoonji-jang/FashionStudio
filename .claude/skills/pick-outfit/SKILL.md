@@ -21,7 +21,8 @@ python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상�
 
 ## 고르는 기준 (순서대로)
 먼저 **따라 입기** (styling.md "따라 입기", 2026-10-13): 칸마다 상품을 따로 고르지 않는다.
-`ref_looks.md` 에서 ` 사진:` 이 있는 기준 코디 하나를 정해 칸마다 글로 적고, 창고에서 칸마다 같은 종류·같은 색 계열 상품을 찾는다.
+`data/$ACCOUNT/refs.json` 에서 `ready` 인 기준 코디 하나를 정해(`python -m tools.refs list --account $ACCOUNT --ready`),
+그 `slots` 대로 창고에서 칸마다 같은 종류·같은 색 계열 상품을 찾는다 (`matches` 에 칸마다 후보 상품이 있다).
 상의·하의·신발·아우터 중 하나라도 못 맞추면 다른 기준 코디로 바꾼다. 래글런은 맨 바깥에만, 줄무늬는 겉에 한 장으로.
 아래 기준은 모두 이 안에서.
 

@@ -32,7 +32,7 @@ permissions:
 jobs:
   themes:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 180
     concurrency:
       group: themes-${{ inputs.account }}
       cancel-in-progress: false
@@ -81,14 +81,13 @@ jobs:
             .claude/skills/plan-themes/SKILL.md 의 "주간" 방법으로 ${{ env.FIRST }} 부터 주제를 정해 저장해.
             ACCOUNT=${{ env.ACCOUNT }}
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
-            profile themes.ref_search 가 있으면 스킬의 "참고 코디 모으기"도 해서 accounts/${{ env.ACCOUNT }}/ref_looks.md 에 더해.
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 90
             --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
-      - name: Claude 참고 코디만 (plan-themes "참고 코디 모으기")
-        if: ${{ inputs.refs_only }}
+      # 참고 코디 100벌쯤을 칸별로 data/<계정>/refs.json 에 모은다 (2026-10-13 사용자). 주간 주제 다음에도 돈다
+      - name: Claude 참고 코디 모으기 (plan-themes "참고 코디 모으기")
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -97,14 +96,15 @@ jobs:
           prompt: |
             .claude/skills/plan-themes/SKILL.md 의 "참고 코디 모으기"만 해. 주제는 정하지도 저장하지도 마.
             ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
+            참고 코디는 data/${{ env.ACCOUNT }}/refs.json 에 쓰고 `python -m tools.refs check --account ${{ env.ACCOUNT }}` 로 검사해.
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.scout refs --account ${{ env.ACCOUNT }} --url … --out out/refs` 처럼
             그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites 의 쇼핑몰마다 코디·룩북 페이지를 찾아 확인표를 꼭 만들어 보고, 쇼핑몰별로 열렸는지·막혔는지(이유)를 out/refs_report.md 에 적어.
             ${{ inputs.ref_test && format('이번엔 쇼핑몰 접속 시험도 해: {0}. 쇼핑몰마다 공식 주소를 찾고(WebSearch), 룩북·코디·베스트 페이지로 확인표를 만들어 봐. out/refs_report.md 에 쇼핑몰 | 시험한 주소 | 결과(열림/막힘/사진 없음/주소 못 찾음) | 사진 수 | 이유 표를 써. 막힌 곳은 우회하지 마.', inputs.ref_test) || '' }}
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
-            --max-turns 150
-            --allowedTools "Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+            --max-turns 400
+            --allowedTools "Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Bash(python -m tools.refs check:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
       - name: 참고 코디 사진 확인 결과 (scout_sites 쇼핑몰)
         if: always()
@@ -114,7 +114,7 @@ jobs:
 
       # 참고 코디 확인표(사진 묶음)와 보고만 3일 동안 남긴다. 페이지·사진 원본은 저장하지 않는다
       - name: 참고 코디 확인표 남기기
-        if: always() && inputs.refs_only
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: refs-${{ inputs.account }}
@@ -136,7 +136,7 @@ jobs:
 
       - name: 주제 커밋
         run: |
-          git add "data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" "accounts/$ACCOUNT/ref_looks.md" 2>/dev/null || true
+          git add "data/$ACCOUNT/themes.json" "data/$ACCOUNT/themes_review.json" "accounts/$ACCOUNT/ref_looks.md" "data/$ACCOUNT/refs.json" 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git -c user.name="github-actions[bot]" \
             -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
@@ -147,11 +147,23 @@ jobs:
           done
           exit 1
 
-      - name: 코디 후보 보내기 요청
+      # 참고 코디의 옷을 창고에 한꺼번에 모으고(collect.yml from_refs) 참고 사진 묶음을 텔레그램으로 보낸다.
+      # 코디 후보는 수집이 끝난 뒤 collect.yml 이 요청한다
+      - name: 참고 코디 옷 수집 요청
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -s "data/$ACCOUNT/refs.json" ] || exit 0
+          gh workflow run collect.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
+            -f from_refs=true -f commit=true -f since="$FIRST" \
+            -f then_candidates="${{ !inputs.refs_only && inputs.then_candidates || '' }}"
+
+      - name: 코디 후보 보내기 요청 (참고 코디가 없을 때)
         if: inputs.then_candidates != '' && !inputs.refs_only
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          [ -s "data/$ACCOUNT/refs.json" ] && exit 0
           gh workflow run daily.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
             -f date="${{ inputs.then_candidates }}" -f mode=candidates -f sandbox=false
 

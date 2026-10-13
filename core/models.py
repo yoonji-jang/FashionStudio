@@ -40,6 +40,31 @@ class Product(BaseModel):
     checked_at: date | None = None  # 판매 상태를 마지막으로 확인한 날
 
 
+class RefSlot(BaseModel):
+    """참고 코디 한 칸 (2026-10-13 사용자: 참고 코디를 모은 뒤 그 옷을 창고에 한꺼번에 수집)."""
+
+    category: Category
+    color: str  # "차콜"
+    desc: str  # "차콜 울 모크넥 니트 베스트, 짧은 기장"
+    query: str  # 지그재그 검색어 "모크넥 니트베스트" (색은 빼고 종류만)
+
+
+class RefLook(BaseModel):
+    """참고 코디 한 벌. data/<계정>/refs.json. 쇼핑몰 착용컷을 칸별로 옮긴 것 (사진은 주소만)."""
+
+    n: int = Field(ge=1)
+    name: str
+    source: str  # "쇼핑몰 코디 (우난)"
+    photo: str | None = None  # 착용컷 사진 주소 (profile ref_search.scout_sites 만)
+    added: date
+    tags: list[str] = []  # 어울리는 주제 (출근룩, 데이트룩, 하객룩, 롱스커트, 올블랙 …)
+    note: str = ""  # 한 끗·실루엣·입는 방식
+    slots: list[RefSlot] = Field(min_length=2)
+    # tools.refs match 가 채움: 칸 번호(0부터, 문자열) → 창고에서 맞을 만한 상품 id (좋은 순)
+    matches: dict[str, list[str]] = {}
+    ready: bool = False  # 꼭 맞춰야 하는 칸(아우터·상의·하의·원피스·신발)이 모두 창고에 있음
+
+
 class Slot(BaseModel):
     category: Category
     desc: str  # "블랙 크롭 레더자켓"
@@ -115,7 +140,7 @@ class Look(BaseModel):
     # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
     pose: str | None = None
     # 따라 한 기준 코디 (2026-10-13 사용자: 참고한 코디 사진도 같이 보내 줘).
-    # ref 는 ref_looks.md 번호, ref_photo 는 그 코디 사진 주소 (ref_search.scout_sites 만).
+    # ref 는 refs.json 번호, ref_photo 는 그 코디 사진 주소 (ref_search.scout_sites 만).
     # 후보 시트에 나란히 붙인다
     ref: str | None = None
     ref_photo: str | None = None

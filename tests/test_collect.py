@@ -423,3 +423,29 @@ def test_quality_caps_reviews_and_prefers_point_items():
     assert quality(skirt, profile) == quality(plain_skirt, profile)
     cheap = Product(id="zigzag:3", name="모헤어 니트", price=9000, review_count=100, **base)
     assert fits(point, profile.product_source) and not fits(cheap, profile.product_source)
+
+
+def test_collect_keeps_products_for_ref_looks(tmp_path: Path, monkeypatch):
+    """참고 코디 칸의 검색어로 모은 상품은 창고 한도와 상관없이 남긴다 (2026-10-13)."""
+    from core.models import RefLook
+
+    store = Store("women", root=tmp_path)
+    slots = [
+        {"category": "아우터", "color": "블랙", "desc": "블랙 자켓", "query": "q"},
+        {"category": "하의", "color": "블랙", "desc": "블랙 스커트", "query": "스커트"},
+    ]
+    store.save_refs([RefLook(n=101, name="t", source="s", added=TODAY, slots=slots)])
+    cards = [card(i, display_review_count=str(20 + i)) for i in range(1, 6)]
+    source = FakeSource(cards={"블랙 q": cards}, pages={})
+    profile = collect.load_profile("women")
+    profile.product_source.max_per_category = 3
+    monkeypatch.setattr(collect, "load_profile", lambda _: profile)
+    collect.collect(
+        "women",
+        plan={"아우터": ["블랙 q"]},
+        source=source,
+        store=store,
+        fetch=fake_fetch,
+        today=TODAY,
+    )
+    assert len(store.products()) == 5

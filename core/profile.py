@@ -96,9 +96,9 @@ class Place(BaseModel):
 
 
 class RefSearch(BaseModel):
-    """주간 주제 때 공개 코디 페이지를 웹 검색해 ref_looks.md 에 글로 더하는 기준 (2026-10-07)."""
+    """주간 주제 때 쇼핑몰 코디를 모아 data/<계정>/refs.json 에 칸별로 더하는 기준."""
 
-    per_week: int = Field(default=8, ge=1, le=30)  # 한 주에 더할 참고 코디 수
+    per_week: int = Field(default=8, ge=1, le=150)  # 한 주에 더할 참고 코디 수
     keep_weeks: int = Field(default=4, ge=1)  # 자동으로 더한 참고 코디를 남겨 둘 주 수
     queries: list[str] = []  # 웹 검색어 (계절·날씨에 맞는 말을 Claude 가 더한다)
     sources: list[str] = []  # 찾아볼 공개 페이지 종류 (매거진, 브랜드 룩북 …)

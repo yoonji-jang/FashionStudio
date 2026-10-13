@@ -24,12 +24,23 @@ on:
         description: 상품 창고(data/)를 이 브랜치에 커밋
         type: boolean
         default: false
+      from_refs:
+        description: 참고 코디(refs.json)에서 창고에 없는 칸의 옷을 모으고 참고 사진 묶음을 텔레그램으로 (2026-10-13)
+        type: boolean
+        default: false
+      since:
+        description: from_refs 때 이 날짜 이후에 더한 참고 코디만 텔레그램으로 보냄
+        default: ""
+      then_candidates:
+        description: 수집 뒤 이 게시 날짜의 코디 후보를 보냄 (주간 주제가 씀)
+        default: ""
   push:
     branches: ["claude/**"]
     paths: ["sources/**", "tools/scout.py", "tools/collect.py", "tools/photo_pick.py", "accounts/**", ".github/workflows/collect.yml"]
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: zigzag
@@ -39,7 +50,7 @@ jobs:
   collect:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[collect')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     env:
       ACCOUNT: ${{ inputs.account || 'women' }}
       OUT: out/collect/run-${{ github.run_number }}
@@ -54,12 +65,14 @@ jobs:
           CATEGORY: ${{ inputs.category }}
           QUERIES: ${{ inputs.queries }}
           MAX_QUERIES: ${{ inputs.max_queries }}
+          FROM_REFS: ${{ inputs.from_refs && '1' || '' }}
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           args=(--account "$ACCOUNT" --report "$OUT")
           re='\[collect:([0-9]+)\]'
           [[ "$COMMIT_MSG" =~ $re ]] && MAX_QUERIES="${BASH_REMATCH[1]}"
           [ -n "$MAX_QUERIES" ] && args+=(--max-queries "$MAX_QUERIES")
+          [ -n "$FROM_REFS" ] && args+=(--from-refs --no-recheck)
           if [ -n "$CATEGORY" ]; then
             args+=(--category "$CATEGORY")
             IFS=',' read -ra qs <<< "$QUERIES"
@@ -83,7 +96,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
-          git add "data/$ACCOUNT/products.json"
+          git add "data/$ACCOUNT/products.json" "data/$ACCOUNT/refs.json" 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "상품 창고 갱신 ($ACCOUNT, run ${{ github.run_number }})"
           for i in 1 2 3; do
@@ -91,6 +104,26 @@ jobs:
             sleep $((i * 5))
           done
           exit 1
+
+      - name: 참고 코디 사진 묶음 텔레그램으로
+        if: inputs.from_refs
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SINCE: ${{ inputs.since }}
+        run: |
+          [ -n "$TELEGRAM_BOT_TOKEN" ] || { echo "텔레그램 설정 없음"; exit 0; }
+          args=(send --account "$ACCOUNT" --out out/refs_album)
+          [ -n "$SINCE" ] && args+=(--since "$SINCE")
+          uv run python -m tools.refs "${args[@]}"
+
+      - name: 코디 후보 보내기 요청
+        if: inputs.then_candidates != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run daily.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
+            -f date="${{ inputs.then_candidates }}" -f mode=candidates -f sandbox=false
 
       - name: scout-results 브랜치에 보고서 커밋
         if: always()
