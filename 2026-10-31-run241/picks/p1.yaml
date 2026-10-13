@@ -1,0 +1,264 @@
+account: women
+date: '2026-10-31'
+items: []
+looks:
+- items:
+  - color: 그레이쥬
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이쥬 더블 숏 트렌치 코트 (greige double-breasted short trench coat, hip length)
+    name: 더블 숏 트렌치
+    product: zigzag:171123960
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 헨리넥 긴팔 티셔츠 (white henley long sleeve tee)
+    name: 헨리넥 티셔츠
+    product: zigzag:170645994
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 A라인 미니 스커트 (black A-line mini skirt)
+    name: A 미니 스커트
+    product: zigzag:167951642
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 니하이 롱부츠 (black leather knee-high boots, square toe)
+    name: 니하이 롱부츠
+    product: zigzag:107929702
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 숄더백
+    product: zigzag:164013796
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 펜던트 목걸이 (silver long pendant necklace, exactly one necklace)
+    name: 롱 펜던트 목걸이
+    product: zigzag:159990191
+    slot: 목걸이
+  point: ''
+  reason: 그레이쥬 숏 트렌치를 걸치고 블랙 미니에 롱부츠로 다리를 길게. 참고 그레이쥬 숏 트렌치/흰 탑/블랙 미니/블랙 스타킹/블랙 롱부츠
+    → 맞춘 것 그레이쥬 더블 숏 트렌치/흰 헨리넥 티/블랙 A라인 미니/블랙 니하이 롱부츠 (스타킹은 창고에 없어 뺌) (따라 함 참고 75)
+    [점수 8]
+  ref: '75'
+  ref_photo: https://u-ur.kr/web/product/medium/202609/e732e7220c0425e5862dcfe5f77ec1a7.jpg
+  styling: The trench coat is draped open over the shoulders, the white henley shows
+    underneath.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 캡 슬리브 하프넥 니트 베스트 (black cap-sleeve half-neck knit vest, fitted, waist
+      length)
+    name: 캡슬리브 니트 베스트
+    product: zigzag:171471244
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 코튼 셔츠 (cream cotton shirt, regular collar, relaxed fit)
+    name: 코튼 셔츠
+    product: zigzag:140069145
+    wear_with: 상의
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 다크 그레이 랩 미니 스커트 팬츠 (dark grey wrap mini skirt-shorts, flat front)
+    name: 랩 미니 스커트
+    product: zigzag:171144272
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 니하이 롱부츠 (black leather knee-high boots, square toe)
+    name: 니하이 롱부츠
+    product: zigzag:107929702
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 숄더백
+    product: zigzag:164013796
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 펜던트 목걸이 (silver long drop pendant necklace, exactly one necklace)
+    name: 롱 펜던트 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  point: ''
+  reason: 블랙 니트 베스트가 주인공, 크림 셔츠 밑단과 랩 미니에 롱부츠로 짧고 길게. 참고 블랙 캡슬리브 베스트/크림 셔츠/다크 그레이
+    랩 미니/블랙 니하이 롱부츠/롱 펜던트/블랙 숄더백 → 맞춘 것 블랙 캡슬리브 베스트/크림 코튼 셔츠/그레이 랩 미니/블랙 가죽 롱부츠/실버
+    롱 펜던트/블랙 숄더백 (따라 함 참고 63) [점수 8]
+  ref: '63'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/c04ac5f7e09bcb9d0e31987d972cf3f5.jpg
+  styling: The shirt hem and cuffs show below and beyond the vest, the vest is worn
+    over the shirt.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 크롭 자켓 (brown suede cropped zip jacket, shirt collar, hip-skimming
+      length)
+    name: 스웨이드 크롭 자켓
+    product: zigzag:165484531
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 헨리넥 긴팔 티셔츠 (white henley long sleeve tee, hem visible below the jacket)
+    name: 헨리넥 티셔츠
+    product: zigzag:170645994
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 코튼 치마바지 (black cotton mini skirt-shorts)
+    name: 코튼 치마바지
+    product: zigzag:159355522
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 페니로퍼 (black penny loafers)
+    name: 페니로퍼
+    product: zigzag:130568193
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 숄더백
+    product: zigzag:159313221
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 펜던트 목걸이 (silver long pendant necklace, exactly one necklace)
+    name: 롱 펜던트 목걸이
+    product: zigzag:159210341
+    slot: 목걸이
+  point: ''
+  reason: 브라운 스웨이드 크롭 자켓이 주인공, 흰 탑과 블랙 쇼츠로 짧게. 참고 올리브 브라운 스웨이드 크롭 자켓/흰 탑/블랙 쇼츠/블랙
+    숄더백 → 맞춘 것 브라운 스웨이드 크롭 자켓/흰 헨리넥 티/블랙 치마바지/블랙 숄더백 (따라 함 참고 74) [점수 8]
+  ref: '74'
+  ref_photo: https://u-ur.kr/web/product/medium/202610/c0592f49e7cdfcffd539ef37d7f563bd.jpg
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 니트 베스트 (charcoal wool knit vest, V-neck, hip length)
+    name: 탄탄울 니트베스트
+    product: zigzag:147747225
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 코튼 셔츠 (white cotton shirt, regular collar)
+    name: 워싱 셔츠
+    product: zigzag:127356723
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플리츠 A라인 롱 스커트 (black pleated A-line midi skirt, elastic waist)
+    name: 플리츠 A라인 스커트
+    product: zigzag:159558897
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 페니로퍼 (black penny loafers)
+    name: 페니로퍼
+    product: zigzag:130568193
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트 숄더백 (black tote shoulder bag)
+    name: 토트 백
+    product: zigzag:161700662
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 드롭 목걸이 (silver long drop necklace, exactly one necklace)
+    name: 롱 드롭 목걸이
+    product: zigzag:159636703
+    slot: 목걸이
+  point: ''
+  reason: 차콜 니트 베스트에 흰 셔츠 밑단, 블랙 A라인 미디로 단정하게. 참고 차콜 모크넥 베스트/흰 셔츠/차콜 A라인 미디/롱 펜던트/블랙
+    토트 → 맞춘 것 차콜 브이넥 베스트/흰 셔츠/블랙 플리츠 A라인 스커트(차콜 색이 없어 블랙)/롱 드롭 목걸이/블랙 토트 (따라 함 참고
+    64) [점수 7]
+  ref: '64'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/f666d17c703c5eab28617574a4a77665.jpg
+  styling: The white shirt hem and cuffs show below the vest.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 모헤어 울 가디건 (charcoal mohair wool cardigan, round neck, loose fit, buttons
+      undone)
+    name: 모헤어 가디건
+    product: zigzag:166342775
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 골지 캡소매 나시 이너 (charcoal plain ribbed cap-sleeve knit tank inner)
+    name: 골지 나시
+    product: zigzag:113835947
+    wear_with: 아우터
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 플리츠 롱 스커트 (charcoal pleated long skirt)
+    name: 플리츠 롱 스커트
+    product: zigzag:149546302
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 발레리나 플랫슈즈 (black suede ballerina flats)
+    name: 발레리나 플랫
+    product: zigzag:130877289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 숄더백
+    product: zigzag:169612789
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 목걸이 (silver long necklace, exactly one necklace)
+    name: 롱 목걸이
+    product: zigzag:168701931
+    slot: 목걸이
+  point: ''
+  reason: 차콜 모헤어 가디건을 단추 풀어 입고 차콜 롱스커트까지 톤온톤. 참고 차콜 가디건/차콜 이너 탑/차콜 롱스커트/블랙 플랫/블랙 백
+    → 맞춘 것 차콜 모헤어 가디건/차콜 홀터 나시/차콜 플리츠 롱스커트/블랙 발레리나 플랫/블랙 숄더백 (가디건 차콜 색상 사진 확인 필요)
+    (따라 함 참고 77) [점수 7]
+  ref: '77'
+  ref_photo: https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg
+reason: 쇼핑몰이 보여 준 차콜·블랙 코디를 칸마다 따라 입은 다크 가을 코디 모음
+shot: flatlay
+theme:
+  date: '2026-10-31'
+  mood: 차콜·블랙·그레이 바탕에 짧은 하의와 롱부츠, 니트 베스트 밑으로 셔츠 밑단
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 모헤어 가디건
+    신발:
+    - 니하이 롱부츠
+    하의:
+    - 랩 스커트
+    - 미니스커트
+    - 플리츠 롱스커트
+  slots:
+  - category: 상의
+    desc: 블랙·차콜 니트 베스트에 셔츠 밑단
+  - category: 하의
+    desc: 블랙 미니 또는 롱스커트
+  - category: 신발
+    desc: 블랙 롱부츠
+  - category: 가방
+    desc: 블랙 숄더백
+  title_hint: 할로윈 앞둔 토요일, 차콜·블랙 깊은 가을 다크 코디
+  type: 컬러무드
+  why: 10월 마지막 토요일, 할로윈 분위기의 어두운 톤이지만 코스튬 없이 입을 수 있는 다크 룩. 쇼핑몰이 이번 주 보여 준 차콜·블랙 코디를
+    따라 입기

@@ -1,0 +1,67 @@
+account: women
+date: 2026-10-31
+theme:
+  date: 2026-10-31
+  title_hint: 확인용
+  mood: 확인용
+  slots:
+    - {category: 상의, desc: x}
+reason: 확인용
+looks:
+  - ref: "69"
+    reason: 확인
+    items:
+      - product: zigzag:169196108
+        color: 블랙
+        desc: 블랙 레이스 레이어드 나시 (black lace layered camisole)
+        name: 레이스 나시
+      - product: zigzag:145122986
+        color: 블랙
+        desc: 블랙 부츠컷 팬츠 (black bootcut pants)
+        name: 부츠컷 팬츠
+      - product: zigzag:110635258
+        color: 블랙
+        desc: 블랙 앵클부츠 (black pointed ankle boots)
+        name: 앵클부츠
+      - product: zigzag:164013796
+        color: 블랙
+        desc: 블랙 숄더백 (black shoulder bag)
+        name: 숄더백
+      - product: zigzag:154156593
+        color: 실버
+        desc: 롱 목걸이 (long necklace)
+        name: 롱목걸이
+  - ref: "65"
+    reason: 확인
+    items:
+      - product: zigzag:166342775
+        color: 그레이
+        desc: 라이트 그레이 모헤어 가디건 (light grey mohair cardigan)
+        name: 모헤어 가디건
+      - product: zigzag:171405634
+        color: 네이비
+        desc: 네이비 랩 롱 스커트 (navy wrap style long skirt)
+        name: 랩 롱 스커트
+      - product: zigzag:168445846
+        color: 차콜
+        desc: 차콜 홀터넥 나시 (charcoal halter tank)
+        name: 홀터넥 나시
+      - product: zigzag:151166447
+        color: 블랙
+        desc: 블랙 버킷 숄더백 (black bucket shoulder bag)
+        name: 숄더백
+  - ref: "72"
+    reason: 확인
+    items:
+      - product: zigzag:139890460
+        color: 와인
+        desc: 와인 블루종 (wine blouson)
+        name: 블루종
+      - product: zigzag:159355522
+        color: 블랙
+        desc: 블랙 치마바지 (black skirt shorts)
+        name: 치마바지
+      - product: zigzag:171260251
+        color: 블랙
+        desc: 블랙 슬라우치 부츠 (black slouch boots)
+        name: 슬라우치 부츠
