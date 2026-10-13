@@ -1,0 +1,110 @@
+account: women
+cover_look: 6
+date: '2026-10-14'
+edit_from: out/2026-10-14/looks/6/outfit_r2/results/G_1.jpg
+edit_request: Make the grey henley tee look slightly tucked into the black skort,
+  its hem hidden inside the waistband with only a soft blouse of fabric above it,
+  and the skort waist sitting at the tee's lower edge. Keep everything else unchanged.
+items:
+- cm: 50.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 크롭 레더 자켓 (black cropped zip-up leather jacket with a pointed collar, waist
+    length, boxy fit)
+  name: 크롭 레더 자켓
+  product: zigzag:119435641
+  ref_photos:
+  - 4
+  - 5
+  size: about 50 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm across
+    the chest laid flat, 58 cm long sleeves
+- cm: 49.5
+  color: 그레이
+  comment: ''
+  cutout_photo: 4
+  desc: 그레이 U헨리넥 티 (fitted slim grey ribbed U-neck henley long sleeve tee with a three-button
+    half placket, cropped at the waist)
+  name: U헨리넥 티
+  product: zigzag:165972153
+  ref_photos:
+  - 4
+  - 3
+  size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37 cm
+    across the chest laid flat, 68 cm long sleeves
+- cm: 40.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 랩 스커트 팬츠 (black low-rise wrap mini skort with one small side button, flat
+    front)
+  name: 랩 스커트 팬츠
+  product: zigzag:171231032
+  ref_photos:
+  - 2
+  - 1
+  - 3
+  size: about 40.5 cm long from waist to hem, 37.5 cm across the waist laid flat,
+    52.5 cm across the hips laid flat, 35 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 니하이 롱부츠 (black smooth leather knee-high boots, square toe, low block heel)
+  name: 니하이 롱부츠
+  product: zigzag:107929702
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black leather hobo shoulder bag with one curved strap)
+  name: 포코 숄더백
+  photo: 2
+  product: zigzag:166194366
+  ref_photos:
+  - 2
+  - 1
+looks: []
+reason: 블랙 크롭 레더 자켓 안에 그레이 헨리넥을 보이고 랩 스커트 팬츠와 롱부츠로 짧고 길게. 블랙·그레이 [점수 8]
+shot: flatlay
+styling: The cropped jacket is worn zipped about half way so the grey henley's U-neck
+  and buttons show at the chest. The grey henley tee is worn slightly tucked into
+  the skort, its hem going inside the waistband.
+text:
+  hashtags:
+  - '#컬러포인트'
+  - '#블랙코디'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#플럼컬러'
+  - '#캐주얼시크'
+  - '#꾸안꾸'
+  intro: 맑고 선선한 수요일, 블랙 코디에 컬러 한 방울만 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 블랙 코디 심심할 땐
+  - 컬러 한 방울 공식
+theme:
+  date: '2026-10-14'
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용

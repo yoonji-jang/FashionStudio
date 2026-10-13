@@ -1,0 +1,46 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "숫자·글자는 보이지 않음. 치마 허리밴드와 벨트고리가 니트 밑단 아래로 보여서 요청대로 반영됨. 5번 가방이 니트 소매 위에 조금 걸치고 4번 부츠 끝이 치마 밑단에 닿아 layout 1. 4번 롱부츠 두 짝이 앞코가 왼쪽 아래를 향하고 비스듬히 서 있음. 앞코가 오른쪽을 향해 눕힌 옆모습이 아니라서 신발 규칙 위반.",
+        "feedback_ok": true,
+        "faults": [
+          "shoes_not_neat"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 1,
+        "notes": "기획에 없는 앵클부츠 한 켤레가 치마 위에 새로 그려져 신발이 롱부츠 2짝과 합쳐 4짝이 됨. 이 앵클부츠 뒤축 쪽에 작은 글자 라벨이 보여 숫자·글자 없애기 요청도 어김. 앵클부츠가 치마 가운데를 덮고 롱부츠는 치마 옆에 겹침. 치마 허리밴드는 니트 밑단 아래로 보임. 롱부츠는 앞코가 오른쪽이지만 세워 둔 두 짝이 서로 어긋남.",
+        "feedback_ok": false,
+        "faults": [
+          "shoes_not_neat"
+        ]
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "c1 은 숫자가 없고 치마 허리 디자인이 보여 요청을 반영했지만 부츠가 앞코 왼쪽으로 비스듬히 놓여 신발 결함이 있음. c2 는 없는 앵클부츠와 글자가 생겨 clean 0 이고 요청을 어김. 둘 다 불합격이며 c1 을 고쳐 다시 그리는 편이 낫다. 롱부츠를 앞코 오른쪽 옆모습으로 눕혀 겹치게 그리도록 지시한다."
+}

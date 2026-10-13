@@ -1,0 +1,110 @@
+account: women
+cover: out/2026-10-14/looks/2/outfit/results/G_1.jpg
+cover_look: 6
+date: '2026-10-14'
+items:
+- cm: 65.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 하이넥 레더 재킷 (black high-neck oversized boxy faux leather jacket with a diagonal
+    front zip, hip length)
+  name: 하이넥 레더 재킷
+  product: zigzag:171242582
+  ref_photos:
+  - 0
+  - 1
+  - 2
+  size: about 65.5 cm long from shoulder to hem, 60.5 cm across the chest laid flat,
+    83.7 cm long sleeves
+- color: 퍼플
+  comment: ''
+  cutout_photo: 2
+  desc: 퍼플 골지 헨리넥 티 (dark purple ribbed oversized henley tee with a three-button placket)
+  name: 골지 헨리넥 티
+  product: zigzag:168703286
+  ref_photos:
+  - 3
+  - 2
+- cm: 104.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 와이드 팬츠 (black wide-leg elastic-waist pants, full length)
+  name: 포어스 밴딩 팬츠
+  product: zigzag:165684183
+  ref_photos:
+  - 3
+  - 0
+  size: about 104 cm long from waist to hem, 35 cm across the waist laid flat, 54
+    cm across the hips laid flat, 23 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 워커 부츠 (black lace-up combat boots, mid-calf, chunky sole)
+  name: 경량 워커 부츠
+  product: zigzag:111696369
+  ref_photos:
+  - 0
+  - 4
+  - 1
+- color: 그레이
+  comment: ''
+  cutout_photo: 5
+  desc: 그레이 니트 스카프 (small grey knit triangle scarf tied loosely at the neck)
+  name: 니트 쁘띠 스카프
+  product: zigzag:150956611
+  ref_photos:
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 위빙 호보백 (black woven leather hobo shoulder bag)
+  name: 위빙 호보백
+  product: zigzag:161978790
+  ref_photos:
+  - 5
+  - 1
+looks: []
+reason: 블랙 레더 재킷 안에 퍼플 헨리넥을 보이고 블랙 와이드 팬츠로 길게. 블랙·퍼플·그레이 [점수 8]
+shot: flatlay
+styling: The leather jacket is worn open with its zip undone so the purple henley
+  with its buttons shows; the grey scarf is tied at the neck.
+text:
+  hashtags:
+  - '#컬러포인트'
+  - '#블랙코디'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#플럼컬러'
+  - '#캐주얼시크'
+  - '#꾸안꾸'
+  intro: 맑고 선선한 수요일, 블랙 코디에 컬러 한 방울만 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 블랙 코디 심심할 땐
+  - 컬러 한 방울 공식
+theme:
+  date: '2026-10-14'
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용

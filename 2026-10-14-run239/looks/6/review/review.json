@@ -1,0 +1,46 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "4번 부츠 앞코가 왼쪽·아래쪽을 향하고 두 짝 방향이 달라 옆모습으로 눕힌 기준(앞코 오른쪽)과 다르다. 2번 티 목 위쪽에 원본에 없는 흰 띠(라벨 모양)가 생겼다. 티 밑단이 치마 허리 위에 일직선으로 얹혀 있어 허리 안에 살짝 넣어 입은 모양이 아니다. 가방이 자켓 소매 끝에 닿는다.",
+        "feedback_ok": false,
+        "faults": [
+          "shoes_not_neat"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "4번 부츠가 세워진 채 앞코가 왼쪽·아래쪽을 향하고 두 짝 방향이 달라, 앞코가 오른쪽인 옆모습 기준과 다르다. 2번 티 목 위쪽에 원본에 없는 흰 띠(라벨 모양)가 있다. 5번 가방이 자켓 소매 끝에 닿는다. 티 밑단은 치마 허리밴드 안으로 들어가 허리 위로 자연스럽게 이어지고, 허리밴드와 단추가 가려지지 않아 요청한 수정은 반영됐다. 헨리넥 단추 3개와 치마 모양은 원본과 같다.",
+        "feedback_ok": true,
+        "faults": [
+          "shoes_not_neat"
+        ]
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "c2 는 티를 치마에 살짝 넣어 입은 모양이 반영돼 c1 보다 낫다. 하지만 부츠 방향이 기준과 달라 둘 다 불합격이다."
+}

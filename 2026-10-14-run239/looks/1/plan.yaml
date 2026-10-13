@@ -1,0 +1,121 @@
+account: women
+cover_look: 6
+date: '2026-10-14'
+edit_from: out/2026-10-14/looks/1/outfit_r2/results/G_1.jpg
+edit_request: Remove every small number (0 to 5) drawn on the floor around the items;
+  the floor must have no digits or text at all. Also move the black skort a little
+  lower, so the waistband and the waist design of the skort are visible below the
+  hem of the knit. Keep everything else unchanged.
+items:
+- cm: 59.5
+  color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 딥브이 니트 (navy soft deep V-neck knit, relaxed fit, hem at the hip bone)
+  name: 딥브이 니트
+  product: zigzag:171474132
+  ref_photos:
+  - 0
+  - 1
+  size: about 59.5 cm long from shoulder to hem, 47.5 cm across the shoulders, 58.5
+    cm across the chest laid flat, 55 cm long sleeves
+- cm: 53.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 레이스 브이넥 나시 (plain heather grey V-neck camisole tank with a thin white
+    lace trim at the neckline)
+  name: 레이스 나시
+  product: zigzag:168688824
+  ref_photos:
+  - 0
+  - 1
+  - 4
+  size: about 53 cm long from shoulder to hem, 34.5 cm across the chest laid flat
+  wear_with: 상의
+- cm: 29.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 치마바지 (black low-rise mini skort, flat front, no pleats)
+  name: 코튼 치마바지
+  product: zigzag:159355522
+  ref_photos:
+  - 0
+  size: about 29 cm long from waist to hem, 41 cm across the waist laid flat, 49 cm
+    across the hips laid flat, 53 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 니하이 롱부츠 (black smooth leather knee-high boots, square toe, low block heel)
+  name: 니하이 롱부츠
+  product: zigzag:107929702
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black glossy leather shoulder bag)
+  name: 클리프 숄더백
+  product: zigzag:151166447
+  ref_photos:
+  - 1
+  - 5
+  - 4
+- color: 실버
+  comment: ''
+  cutout_photo: 1
+  desc: 실버 두줄 귀걸이 (exactly one pair (two earrings) of chunky matte silver double-line
+    huggie hoop earrings)
+  name: 실버 두줄 귀걸이
+  product: zigzag:168924754
+  ref_photos:
+  - 1
+  - 0
+  slot: 귀걸이
+looks: []
+reason: 네이비 딥브이 니트가 주인공 (퍼플 사진이 없어 네이비로 바꿈), 안에 그레이 레이스 나시를 받쳐 입고 블랙 미니와 롱부츠로. 네이비·그레이·블랙
+  [점수 9]
+shot: flatlay
+styling: The grey lace camisole shows at the deep V of the navy knit, its lace edge
+  visible. The knit hem falls over the skort waistband, and the skort is placed a
+  little lower so its waistband and waist design are clearly visible below the knit
+  hem.
+text:
+  hashtags:
+  - '#컬러포인트'
+  - '#블랙코디'
+  - '#가을코디'
+  - '#레이어드룩'
+  - '#플럼컬러'
+  - '#캐주얼시크'
+  - '#꾸안꾸'
+  intro: 맑고 선선한 수요일, 블랙 코디에 컬러 한 방울만 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 블랙 코디 심심할 땐
+  - 컬러 한 방울 공식
+theme:
+  date: '2026-10-14'
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용
