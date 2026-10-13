@@ -13,6 +13,7 @@ r"""참고 코디 목록(data/<계정>/refs.json) 도구.
   python -m tools.refs match --account women       # 칸마다 맞을 만한 상품 찾기, ready 표시
   python -m tools.refs list --account women [--ready] [--tag 출근룩]
   python -m tools.refs send --account women    # 참고 사진 묶음을 텔레그램으로 (워크플로만)
+  python -m tools.refs zigzag --account women --out out/refs/zigzag  # 창고 상품 착용컷 확인표
 """
 
 from __future__ import annotations
@@ -186,12 +187,77 @@ def album(refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12)
     return sheets
 
 
+def zigzag_pages(products: list[Product], refs: list[RefLook], count: int = 40) -> list[Product]:
+    """착용컷을 볼 창고 상품 고르기: 한 벌의 중심이 되는 옷(아우터·원피스·상의·하의)을 쇼핑몰이
+    겹치지 않게 번갈아, 이미 참고로 쓴 사진이 있는 상품은 빼고 (2026-10-13)."""
+    used = {r.photo for r in refs}
+    order: list[Category] = ["아우터", "원피스", "상의", "하의"]
+    pools = {
+        c: sorted(
+            (
+                p
+                for p in products
+                if p.category == c
+                and p.status == "on_sale"
+                and not used.intersection(map(str, p.image_urls))
+            ),
+            key=lambda p: (p.rating or 0) * (p.review_count or 0),
+            reverse=True,
+        )
+        for c in order
+    }
+    picked: list[Product] = []
+    shops: set[str] = set()
+    while len(picked) < count and any(pools.values()):
+        for c in order:
+            pool = pools[c]
+            while pool:
+                p = pool.pop(0)
+                if p.shop not in shops or not any(q.shop not in shops for q in pool):
+                    picked.append(p)
+                    shops.add(p.shop)
+                    break
+            if len(picked) >= count:
+                break
+    return picked
+
+
+def zigzag_sheets(products: list[Product], out: Path, max_images: int = 12) -> list[dict]:
+    """창고 상품마다 지그재그 상세 사진을 번호 붙인 확인표로 (쇼핑몰 MD 가 입힌 전신 코디 찾기).
+    확인표 형식은 tools.scout refs 와 같다 (refs.json 의 images 가 칸 번호 순 사진 주소)."""
+    import json
+
+    from tools import scout
+
+    out.mkdir(parents=True, exist_ok=True)
+    report = []
+    with scout.client() as c:
+        for n, p in enumerate(products, 1):
+            data, kept = [], []
+            for u in map(str, p.image_urls[:max_images]):
+                try:
+                    b = scout.fetch_bytes(c, scout.normalize_image_url(u))
+                except Exception:  # noqa: BLE001 - 한 장 실패해도 계속
+                    continue
+                data.append(b)
+                kept.append(u)
+            sheet = scout.contact_sheet(data, numbered=True)
+            if sheet is None:
+                continue
+            path = out / f"sheet_{n}.jpg"
+            sheet.save(path, quality=80)
+            report.append({"url": str(p.url), "product": p.id, "sheet": str(path), "images": kept})
+    (out / "refs.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), "utf-8")
+    return report
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("cmd", choices=["check", "queries", "match", "list", "send", "merge"])
+    ap.add_argument("cmd", choices=["check", "queries", "match", "list", "send", "merge", "zigzag"])
     ap.add_argument("--new", type=Path, help="merge: 이 파일에만 있는 참고를 refs.json 에 더함")
     ap.add_argument("--out", type=Path, default=Path("out/refs_album"), help="send: 묶음 사진 폴더")
     ap.add_argument("--since", type=date.fromisoformat, help="send: 이 날짜 이후에 더한 것만")
+    ap.add_argument("--count", type=int, default=40, help="zigzag: 착용컷을 볼 창고 상품 수")
     ap.add_argument("--account", required=True)
     ap.add_argument("--ready", action="store_true", help="list: 창고로 맞출 수 있는 것만")
     ap.add_argument("--tag", help="list: 이 주제 태그가 있는 것만")
@@ -200,6 +266,10 @@ def main(argv: list[str] | None = None) -> int:
     store = Store(args.account)
     refs = store.refs()
 
+    if args.cmd == "zigzag":
+        rows = zigzag_sheets(zigzag_pages(store.products(), refs, args.count), args.out)
+        print(f"창고 상품 착용컷 확인표 {len(rows)}장")
+        return 0
     if args.cmd == "merge":
         from core.store import _refs
 

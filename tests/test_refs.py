@@ -92,3 +92,16 @@ def test_merge_keeps_remote_matches_and_adds_new():
     remote = refs.match([ref(n=101)], [])
     merged = refs.merge(remote, [ref(n=101), ref(n=130)])
     assert [r.n for r in merged] == [101, 130] and merged[0] is remote[0]
+
+
+def test_zigzag_pages_rotates_categories_and_shops():
+    ps = [
+        product(1, "아우터", shop="A"),
+        product(2, "아우터", shop="A"),
+        product(3, "아우터", shop="B"),
+        product(4, "상의", shop="A"),
+        product(5, "가방", shop="C"),
+    ]
+    used = ref(photo=str(ps[2].image_urls[1]))  # 3번 상품 사진은 이미 참고로 씀
+    picked = refs.zigzag_pages(ps, [used], count=3)
+    assert [p.id for p in picked] == ["zigzag:1", "zigzag:4", "zigzag:2"]

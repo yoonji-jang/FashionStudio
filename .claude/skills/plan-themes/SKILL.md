@@ -64,6 +64,8 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
 번호 붙인 참고 사진 묶음을 텔레그램으로 보낸다. 매일 후보는 `ready` 인 참고만 따라 한다.
 0. themes 워크플로가 먼저 쇼핑몰마다 `python -m tools.scout crawl` 로 메뉴 → 상품 페이지 15곳의 확인표를
    `out/refs/<쇼핑몰>/sheet_N.jpg` 로 만들어 둔다 (같은 폴더 `refs.json` 에 확인표마다 상품 페이지 `url` 과 칸 번호 순 `images`).
+   창고 상품의 지그재그 상세 사진 확인표도 `out/refs/zigzag/` 에 만들어 둔다 (`python -m tools.refs zigzag`, 상품 60개,
+   2026-10-13: 쇼핑몰 룩북만으로는 한 주 31벌). 쇼핑몰 MD 가 그 상품에 맞춰 입힌 전신 코디라 출처를 "지그재그 착용컷" 으로 적는다.
    이 확인표부터 모두 본다. 상품 페이지 한 곳에 색만 다른 코디가 여러 벌 있으면 색 조합이 다른 것은 따로 넣어도 된다.
    모자라면 아래 1번 방법으로 더 찾는다.
 1. 쇼핑몰은 `ref_search.scout_sites`. **첫 화면 한 장이 아니라 메뉴와 상품 페이지까지 들어간다**

@@ -472,13 +472,15 @@ def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 1
 def ref_photo(url: str, sites: list[str], dest: Path) -> Path:
     """참고 코디 사진 한 장 받기 (후보 시트 옆에 붙임). 허용한 사이트·robots.txt 가 허용한 주소만.
     dest 는 out/ 아래 (저장소·결과 브랜치에 올리지 않는 곳)."""
-    if not host_allowed(url, sites):
+    # 지그재그 상품 사진(창고 상품의 착용컷)은 상품 창고 사진과 같은 방법으로 받는다
+    zigzag = host_allowed(url, ["zigzag.kr"])
+    if not (zigzag or host_allowed(url, sites)):
         raise ImageUnavailable(f"허용한 사이트가 아님: {url}")
     if not dest.exists():
         with client() as c:
-            if not robots_allows(c, url):
+            if not zigzag and not robots_allows(c, url):
                 raise ImageUnavailable(f"robots.txt 가 허용하지 않음: {url}")
-            data = fetch_bytes(c, url)
+            data = fetch_bytes(c, normalize_image_url(url) if zigzag else url)
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(data)
     return dest

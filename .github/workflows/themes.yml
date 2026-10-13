@@ -95,6 +95,10 @@ jobs:
               --out "out/refs/${site%%.*}" --menus 5 --products 15 || echo "$site 실패"
           done
 
+      # 창고 상품의 지그재그 상세 착용컷도 참고 코디 출처로 (2026-10-13, 쇼핑몰 룩북만으로는 31벌)
+      - name: 창고 상품 착용컷 확인표 만들기 (tools.refs zigzag)
+        run: timeout 30m uv run python -m tools.refs zigzag --account "$ACCOUNT" --out out/refs/zigzag --count 60 || echo "착용컷 확인표 실패"
+
       # 참고 코디 100벌쯤을 칸별로 data/<계정>/refs.json 에 모은다 (2026-10-13 사용자). 주간 주제 다음에도 돈다
       - name: Claude 참고 코디 모으기 (plan-themes "참고 코디 모으기")
         uses: anthropics/claude-code-action@v1
@@ -106,6 +110,7 @@ jobs:
             .claude/skills/plan-themes/SKILL.md 의 "참고 코디 모으기"만 해. 주제는 정하지도 저장하지도 마.
             ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
             참고 코디는 data/${{ env.ACCOUNT }}/refs.json 에 쓰고 `python -m tools.refs check --account ${{ env.ACCOUNT }}` 로 검사해.
+            out/refs/zigzag/ 에는 창고 상품의 지그재그 상세 사진 확인표가 있어 (출처는 "지그재그 착용컷"). 모델이 위아래·신발까지 입은 전신 사진만 옮겨.
             쇼핑몰마다 상품 페이지 확인표가 이미 out/refs/<쇼핑몰>/sheet_N.jpg 에 있어 (같은 폴더 refs.json 에 칸 번호 순 사진 주소 images 와 상품 페이지 url).
             먼저 이 확인표를 하나도 빼지 말고 모두 Read 로 보고 전신 코디를 옮겨 (겹쳐 보일 것 같아도 열어 봐). 모자라면 그때 links/refs 로 더 찾아.
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
