@@ -330,11 +330,12 @@ def page_links(url: str, sites: list[str], limit: int = 200) -> list[tuple[str, 
     return [(t, h) for h, t in out.items()][:limit]
 
 
-def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360):
-    """사진 여러 장을 한 장의 확인표로 (원본은 저장하지 않는다)."""
+def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360, numbered: bool = False):
+    """사진 여러 장을 한 장의 확인표로 (원본은 저장하지 않는다).
+    numbered 면 칸마다 왼쪽 위에 1부터 번호를 적는다 (refs.json 의 images 순서와 같음)."""
     from io import BytesIO
 
-    from PIL import Image
+    from PIL import Image, ImageDraw
 
     tiles = []
     for data in images:
@@ -349,8 +350,13 @@ def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360):
     rows = (len(tiles) + cols - 1) // cols
     cell_h = max(t.height for t in tiles)
     sheet = Image.new("RGB", (cols * thumb, rows * cell_h), "white")
+    draw = ImageDraw.Draw(sheet)
     for i, t in enumerate(tiles):
-        sheet.paste(t, ((i % cols) * thumb, (i // cols) * cell_h))
+        x, y = (i % cols) * thumb, (i // cols) * cell_h
+        sheet.paste(t, (x, y))
+        if numbered:
+            draw.rectangle((x, y, x + 44, y + 30), fill="black")
+            draw.text((x + 8, y + 6), str(i + 1), fill="white", font_size=20)
     return sheet
 
 
@@ -374,7 +380,7 @@ def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 1
         found = page_image_urls(ok) if ok else {}
         for n, url in enumerate(ok, 1):
             imgs = [u for u in found.get(url, []) if host_allowed(u, sites)][:max_images]
-            data = []
+            data, kept = [], []
             for u in imgs:
                 try:
                     b = fetch_bytes(c, u)
@@ -382,17 +388,35 @@ def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 1
                     continue
                 if len(b) >= 15000:  # 아이콘·로고처럼 작은 사진은 뺀다
                     data.append(b)
-            sheet = contact_sheet(data)
+                    kept.append(u)
+            sheet = contact_sheet(data, numbered=True)
             if sheet is None:
                 report.append({"url": url, "skipped": "사진 없음"})
                 continue
             path = out / f"sheet_{n}.jpg"
             sheet.save(path, quality=80)
-            report.append({"url": url, "sheet": str(path), "images": len(data)})
+            # 확인표 칸 번호(1부터) 순서의 사진 주소.
+            # 참고 코디에 사진 주소만 남길 때 쓴다 (사진은 저장 안 함)
+            report.append({"url": url, "sheet": str(path), "images": kept})
     (out / "refs.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     return report
+
+
+def ref_photo(url: str, sites: list[str], dest: Path) -> Path:
+    """참고 코디 사진 한 장 받기 (후보 시트 옆에 붙임). 허용한 사이트·robots.txt 가 허용한 주소만.
+    dest 는 out/ 아래 (저장소·결과 브랜치에 올리지 않는 곳)."""
+    if not host_allowed(url, sites):
+        raise ImageUnavailable(f"허용한 사이트가 아님: {url}")
+    if not dest.exists():
+        with client() as c:
+            if not robots_allows(c, url):
+                raise ImageUnavailable(f"robots.txt 가 허용하지 않음: {url}")
+            data = fetch_bytes(c, url)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+    return dest
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -412,8 +436,18 @@ def main(argv: list[str] | None = None) -> int:
     k = sub.add_parser("links", help="참고 코디: 쇼핑몰 페이지의 메뉴·상품 링크 (원본 저장 안 함)")
     k.add_argument("--url", required=True)
     k.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
+    f = sub.add_parser("refphoto", help="참고 코디 사진 한 장 (out/ 에만)")
+    f.add_argument("--url", required=True)
+    f.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
+    f.add_argument("--out", type=Path, required=True)
     args = ap.parse_args(argv)
 
+    if args.cmd == "refphoto":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        print(ref_photo(args.url, rs.scout_sites if rs else [], args.out))
+        return 0
     if args.cmd == "links":
         from core.profile import load_profile
 

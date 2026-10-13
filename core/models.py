@@ -114,6 +114,11 @@ class Look(BaseModel):
     edit_request: str | None = None
     # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
     pose: str | None = None
+    # 따라 한 기준 코디 (2026-10-13 사용자: 참고한 코디 사진도 같이 보내 줘).
+    # ref 는 ref_looks.md 번호, ref_photo 는 그 코디 사진 주소 (ref_search.scout_sites 만).
+    # 후보 시트에 나란히 붙인다
+    ref: str | None = None
+    ref_photo: str | None = None
 
 
 class DailyPlan(BaseModel):
