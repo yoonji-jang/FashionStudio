@@ -88,7 +88,8 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
     # 사진만 있는 쇼핑몰 코디 페이지를 tools.scout refs 로 볼 사이트. 비움 (2026-10-07):
     # 29CM 은 robots.txt 는 허용이지만 GitHub Actions 요청을 서버가 거절해서 뺐다. 무신사·29CM 은 웹 검색 글로만 참고.
     # 2026-10-13 사용자가 고른 브랜드 쇼핑몰 (코디를 따라 하며 배우기). 막힌 곳은 우회하지 않고 그 주는 건너뛴다
-    scout_sites: [stanst.kr, aisel.me, u-ur.kr, vivnluv.co.kr, woonan.co.kr]
+    scout_sites: [stanst.kr, aisel.me, u-ur.kr, vivnluv.co.kr, woonan.co.kr, massimodutti.com, cos.com, uniqlo.com,
+      lowclassic.com, sienne.co.kr, nothingwritten.kr, kolonmall.com, 8seconds.co.kr, wconcept.co.kr]
 
 product_source:
   name: zigzag

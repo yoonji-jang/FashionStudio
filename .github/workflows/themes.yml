@@ -20,6 +20,9 @@ on:
         description: 주제는 그대로 두고 참고 코디(ref_looks.md)만 더함 (웹 검색, 29CM 사진)
         type: boolean
         default: false
+      ref_test:
+        description: refs_only 때 접속 시험할 쇼핑몰 주소·이름 (빈칸이면 평소대로)
+        default: ""
 
 permissions:
   contents: write
@@ -97,6 +100,7 @@ jobs:
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.scout refs --account ${{ env.ACCOUNT }} --url … --out out/refs` 처럼
             그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites 의 쇼핑몰마다 코디·룩북 페이지를 찾아 확인표를 꼭 만들어 보고, 쇼핑몰별로 열렸는지·막혔는지(이유)를 out/refs_report.md 에 적어.
+            ${{ inputs.ref_test && format('이번엔 쇼핑몰 접속 시험도 해: {0}. 쇼핑몰마다 공식 주소를 찾고(WebSearch), 룩북·코디·베스트 페이지로 확인표를 만들어 봐. out/refs_report.md 에 쇼핑몰 | 시험한 주소 | 결과(열림/막힘/사진 없음/주소 못 찾음) | 사진 수 | 이유 표를 써. 막힌 곳은 우회하지 마.', inputs.ref_test) || '' }}
             git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 60
@@ -104,7 +108,9 @@ jobs:
 
       - name: 참고 코디 사진 확인 결과 (scout_sites 쇼핑몰)
         if: always()
-        run: cat out/refs/refs.json 2>/dev/null || echo "확인표를 만들지 않음"
+        run: |
+          cat out/refs/refs.json 2>/dev/null || echo "확인표를 만들지 않음"
+          cat out/refs_report.md 2>/dev/null || true
 
       # 참고 코디 확인표(사진 묶음)와 보고만 3일 동안 남긴다. 페이지·사진 원본은 저장하지 않는다
       - name: 참고 코디 확인표 남기기
