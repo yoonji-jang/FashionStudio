@@ -106,6 +106,19 @@ jobs:
         if: always()
         run: cat out/refs/refs.json 2>/dev/null || echo "확인표를 만들지 않음"
 
+      # 참고 코디 확인표(사진 묶음)와 보고만 3일 동안 남긴다. 페이지·사진 원본은 저장하지 않는다
+      - name: 참고 코디 확인표 남기기
+        if: always() && inputs.refs_only
+        uses: actions/upload-artifact@v4
+        with:
+          name: refs-${{ inputs.account }}
+          path: |
+            out/refs/*.jpg
+            out/refs/refs.json
+            out/refs_report.md
+          retention-days: 3
+          if-no-files-found: ignore
+
       - name: 텔레그램으로 보내기
         if: ${{ !inputs.refs_only }}
         env:
