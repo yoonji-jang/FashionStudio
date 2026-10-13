@@ -107,7 +107,7 @@ jobs:
             ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
             참고 코디는 data/${{ env.ACCOUNT }}/refs.json 에 쓰고 `python -m tools.refs check --account ${{ env.ACCOUNT }}` 로 검사해.
             쇼핑몰마다 상품 페이지 확인표가 이미 out/refs/<쇼핑몰>/sheet_N.jpg 에 있어 (같은 폴더 refs.json 에 칸 번호 순 사진 주소 images 와 상품 페이지 url).
-            먼저 이 확인표를 모두 Read 로 보고 전신 코디를 옮겨. 모자라면 그때 links/refs 로 더 찾아.
+            먼저 이 확인표를 하나도 빼지 말고 모두 Read 로 보고 전신 코디를 옮겨 (겹쳐 보일 것 같아도 열어 봐). 모자라면 그때 links/refs 로 더 찾아.
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.scout refs --account ${{ env.ACCOUNT }} --url … --out out/refs` 처럼
             그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites 의 쇼핑몰마다 코디·룩북 페이지를 찾아 확인표를 꼭 만들어 보고, 쇼핑몰별로 열렸는지·막혔는지(이유)를 out/refs_report.md 에 적어.
@@ -182,7 +182,7 @@ jobs:
         run: |
           [ -s "data/$ACCOUNT/refs.json" ] || exit 0
           gh workflow run collect.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
-            -f from_refs=true -f commit=true -f since="$FIRST" \
+            -f from_refs=true -f commit=true -f since="$(date -u -d '-1 day' +%F)" \
             -f then_candidates="${{ !inputs.refs_only && inputs.then_candidates || '' }}"
 
       - name: 코디 후보 보내기 요청 (참고 코디가 없을 때)

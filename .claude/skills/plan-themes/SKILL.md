@@ -79,7 +79,7 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
 3. 전신 코디 한 벌마다 refs.json 에 하나를 더한다. 형식 (core.models.RefLook):
    ```json
    {"n": 101, "name": "차콜 모크넥 베스트 + 흰 셔츠 + 미디", "source": "쇼핑몰 코디 (우난)",
-    "photo": "<확인표 refs.json 의 images[칸 번호-1]>", "added": "<첫날>", "tags": ["출근룩", "톤온톤"],
+    "photo": "<확인표 refs.json 의 images[칸 번호-1]>", "added": "<오늘 날짜>", "tags": ["출근룩", "톤온톤"],
     "note": "셔츠 소매·밑단이 베스트 밖으로 / 롱 실루엣",
     "slots": [
       {"category": "상의", "color": "차콜", "desc": "차콜 울 모크넥 니트 베스트", "query": "모크넥 니트베스트"},
