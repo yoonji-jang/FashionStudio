@@ -1,0 +1,435 @@
+account: women
+date: '2026-10-14'
+theme:
+  date: '2026-10-14'
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+items: []
+looks:
+- items:
+  - product: zigzag:171474132
+    color: 네이비
+    desc: 네이비 딥브이 니트 (navy soft deep V-neck knit, relaxed fit, hem at the hip bone)
+    name: 딥브이 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 59.5 cm long from shoulder to hem, 47.5 cm across the shoulders, 58.5
+      cm across the chest laid flat, 55 cm long sleeves
+    cm: 59.5
+  - product: zigzag:168688824
+    color: 그레이
+    desc: 그레이 레이스 브이넥 나시 (plain heather grey V-neck camisole tank with a thin white
+      lace trim at the neckline)
+    name: 레이스 나시
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 4
+    size: about 53 cm long from shoulder to hem, 34.5 cm across the chest laid flat
+    cm: 53.0
+    wear_with: 상의
+  - product: zigzag:159355522
+    color: 블랙
+    desc: 블랙 치마바지 (black low-rise mini skort, flat front, no pleats)
+    name: 코튼 치마바지
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 29 cm long from waist to hem, 41 cm across the waist laid flat, 49
+      cm across the hips laid flat, 53 cm across the hem laid flat
+    cm: 29.0
+  - product: zigzag:107929702
+    color: 블랙
+    desc: 블랙 니하이 롱부츠 (black smooth leather knee-high boots, square toe, low block
+      heel)
+    name: 니하이 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:151166447
+    color: 블랙
+    desc: 블랙 숄더백 (black glossy leather shoulder bag)
+    name: 클리프 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 1
+    - 5
+    - 4
+  - product: zigzag:168924754
+    color: 실버
+    desc: 실버 두줄 귀걸이 (exactly one pair (two earrings) of chunky matte silver double-line
+      huggie hoop earrings)
+    name: 실버 두줄 귀걸이
+    slot: 귀걸이
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  reason: 네이비 딥브이 니트가 주인공 (퍼플 사진이 없어 네이비로 바꿈), 안에 그레이 레이스 나시를 받쳐 입고 블랙 미니와 롱부츠로. 네이비·그레이·블랙
+    [점수 9]
+  point: 네이비 딥브이 사이로 그레이 레이스 나시가 살짝 보여요 🖤
+  styling: The grey lace camisole shows at the deep V of the navy knit, its lace edge
+    visible. The knit hem falls over the skort waistband.
+- items:
+  - product: zigzag:171242582
+    color: 블랙
+    desc: 블랙 하이넥 레더 재킷 (black high-neck oversized boxy faux leather jacket with a
+      diagonal front zip, hip length)
+    name: 하이넥 레더 재킷
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+    size: about 65.5 cm long from shoulder to hem, 60.5 cm across the chest laid flat,
+      83.7 cm long sleeves
+    cm: 65.5
+  - product: zigzag:168703286
+    color: 퍼플
+    desc: 퍼플 골지 헨리넥 티 (dark purple ribbed oversized henley tee with a three-button
+      placket)
+    name: 골지 헨리넥 티
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 3
+    - 2
+  - product: zigzag:165684183
+    color: 블랙
+    desc: 블랙 와이드 팬츠 (black wide-leg elastic-waist pants, full length)
+    name: 포어스 밴딩 팬츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 0
+    size: about 104 cm long from waist to hem, 35 cm across the waist laid flat, 54
+      cm across the hips laid flat, 23 cm across the hem laid flat
+    cm: 104.0
+  - product: zigzag:111696369
+    color: 블랙
+    desc: 블랙 워커 부츠 (black lace-up combat boots, mid-calf, chunky sole)
+    name: 경량 워커 부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 4
+    - 1
+  - product: zigzag:150956611
+    color: 그레이
+    desc: 그레이 니트 스카프 (small grey knit triangle scarf tied loosely at the neck)
+    name: 니트 쁘띠 스카프
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+  - product: zigzag:161978790
+    color: 블랙
+    desc: 블랙 위빙 호보백 (black woven leather hobo shoulder bag)
+    name: 위빙 호보백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 5
+    - 1
+  reason: 블랙 레더 재킷 안에 퍼플 헨리넥을 보이고 블랙 와이드 팬츠로 길게. 블랙·퍼플·그레이 [점수 8]
+  point: 레더 재킷을 열어 퍼플 헨리넥 단추를 보여 줘요
+  styling: The leather jacket is worn open with its zip undone so the purple henley
+    with its buttons shows; the grey scarf is tied at the neck.
+- items:
+  - product: zigzag:171900742
+    color: 블랙
+    desc: 블랙 울 하프코트 (black wool half coat, collar, single breasted, hip to thigh length,
+      relaxed fit)
+    name: 울 하프코트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+    - 2
+    size: about 81 cm long from shoulder to hem, 57 cm across the chest laid flat,
+      83 cm long sleeves
+    cm: 81.0
+  - product: zigzag:135105388
+    color: 그레이
+    desc: 그레이 쇄골트임 골지 니트 (muted grey ribbed fitted knit top with a slight mauve tint,
+      slim fit, wide V-shaped collarbone neckline, long sleeves, waist to hip length)
+    name: 쇄골트임 골지니트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 4
+    size: about 52 cm long from shoulder to hem, 33 cm across the shoulders, 32 cm
+      across the chest laid flat, 60 cm long sleeves
+    cm: 52.0
+  - product: zigzag:171122435
+    color: 블랙
+    desc: 블랙 핏업 부츠컷 데님 (washed charcoal-black semi bootcut jeans, full length covering
+      the ankles)
+    name: 핏업 부츠컷 데님
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    size: about 106.2 cm long from waist to hem, 32.5 cm across the waist laid flat,
+      42.5 cm across the hips laid flat, 24 cm across the hem laid flat
+    cm: 106.2
+  - product: zigzag:110158856
+    color: 블랙
+    desc: 블랙 벨벳 메리제인 플랫 (black velvet round-toe mary jane flats with a thin buckle
+      strap)
+    name: 벨벳 메리제인 플랫
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:168564549
+    color: 블랙
+    desc: 블랙 숄더백 (small black rectangular shoulder bag)
+    name: 니치 숄더백
+    comment: ''
+    photo: 1
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:136289400
+    color: 블랙
+    desc: 블랙 레더 벨트 (thin black leather belt with a small silver buckle)
+    name: 레더 벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: 블랙 울 하프코트 안에 그레이 골지니트를 보이고 부츠컷으로 길게 떨어지는 블랙·그레이 단정한 톤. 블랙·그레이 [점수 8]
+  point: 블랙 코트에 그레이 골지 니트로 쇄골선만 살려요
+- items:
+  - product: zigzag:132219535
+    color: 플럼
+    desc: 플럼 와이드넥 니트 (plum wine-purple chunky knit with a wide round scoop neck and
+      raglan sleeves, hip length)
+    name: 와이드넥 니트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    - 4
+    size: about 55 cm long from shoulder to hem, 49 cm across the chest laid flat
+    cm: 55.0
+  - product: zigzag:171749548
+    color: 블랙
+    desc: 블랙 맥시 플리츠 스커트 (black floor-skimming maxi skirt with a fitted hip yoke and
+      flared pleats below, matte twill-like fabric)
+    name: 맥시 플리츠 스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 90 cm long from waist to hem, 37.5 cm across the waist laid flat,
+      49.5 cm across the hips laid flat, 125 cm across the hem laid flat
+    cm: 90.0
+  - product: zigzag:137014509
+    color: 블랙
+    desc: 블랙 메리제인 플랫 (black almond-round-toe mary jane flats with a thin strap)
+    name: 메리제인 플랫
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:113341770
+    color: 실버
+    desc: 실버 볼체인 목걸이 (thin silver ball-chain necklace, short length at the collarbone)
+    name: 실버 볼체인 목걸이
+    slot: 목걸이
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+    - 0
+  - product: zigzag:167878880
+    color: 블랙
+    desc: 블랙 숄더백 (small black leather shoulder bag with a short strap)
+    name: 루비백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 3
+    - 1
+  reason: 플럼 니트에 블랙 플리츠 맥시스커트, 메리제인 플랫과 실버 목걸이로 버건디 대신 플럼 한 방울. 플럼·블랙 [점수 8]
+  point: 플럼 니트 한 장이 블랙 스커트에 컬러 포인트가 돼요 🍷
+- items:
+  - product: zigzag:171203247
+    color: 차콜
+    desc: 차콜 헨리넥 티 (dark charcoal slate relaxed henley long sleeve tee with a short
+      button placket)
+    name: 러프 헨리넥 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 65 cm long from shoulder to hem, 44 cm across the shoulders, 47 cm
+      across the chest laid flat, 60 cm long sleeves
+    cm: 65.0
+  - product: zigzag:170339897
+    color: 블랙
+    desc: 블랙 버뮤다 팬츠 (black cotton bermuda shorts, wide, knee length, flat front)
+    name: 블랙 버뮤다 팬츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    - 1
+    size: about 62 cm long from waist to hem, 35 cm across the waist laid flat, 56
+      cm across the hips laid flat, 32.5 cm across the hem laid flat
+    cm: 62.0
+  - product: zigzag:168228826
+    color: 블랙
+    desc: 블랙 벨크로 스니커즈 (black low leather sneakers with a hook-and-loop strap and white-dashed
+      laces, round toe)
+    name: 벨크로 스니커즈
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+  - product: zigzag:100673075
+    color: 블랙
+    desc: 블랙 오버 니삭스 (exactly one pair (two socks) of plain black over-the-knee slouch
+      socks)
+    name: 오버 니삭스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:168564549
+    color: 블랙
+    desc: 블랙 숄더백 (small black rectangular shoulder bag)
+    name: 니치 숄더백
+    comment: ''
+    photo: 1
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  reason: 차콜 헨리넥에 블랙 버뮤다, 벨크로 스니커즈와 니삭스로 캐주얼하게. 차콜·블랙 [점수 8]
+  point: 차콜 헨리넥과 블랙 버뮤다에 니삭스로 비율을 잡아요
+- items:
+  - product: zigzag:119435641
+    color: 블랙
+    desc: 블랙 크롭 레더 자켓 (black cropped zip-up leather jacket with a pointed collar,
+      waist length, boxy fit)
+    name: 크롭 레더 자켓
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    size: about 50 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm
+      across the chest laid flat, 58 cm long sleeves
+    cm: 50.0
+  - product: zigzag:165972153
+    color: 그레이
+    desc: 그레이 U헨리넥 티 (fitted slim grey ribbed U-neck henley long sleeve tee with a
+      three-button half placket, cropped at the waist)
+    name: U헨리넥 티
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 3
+    size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37
+      cm across the chest laid flat, 68 cm long sleeves
+    cm: 49.5
+  - product: zigzag:171231032
+    color: 블랙
+    desc: 블랙 랩 스커트 팬츠 (black low-rise wrap mini skort with one small side button,
+      flat front)
+    name: 랩 스커트 팬츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    - 3
+    size: about 40.5 cm long from waist to hem, 37.5 cm across the waist laid flat,
+      52.5 cm across the hips laid flat, 35 cm across the hem laid flat
+    cm: 40.5
+  - product: zigzag:107929702
+    color: 블랙
+    desc: 블랙 니하이 롱부츠 (black smooth leather knee-high boots, square toe, low block
+      heel)
+    name: 니하이 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:166194366
+    color: 블랙
+    desc: 블랙 숄더백 (black leather hobo shoulder bag with one curved strap)
+    name: 포코 숄더백
+    comment: ''
+    photo: 2
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  reason: 블랙 크롭 레더 자켓 안에 그레이 헨리넥을 보이고 랩 스커트 팬츠와 롱부츠로 짧고 길게. 블랙·그레이 [점수 8]
+  point: 크롭 레더 자켓을 반쯤 열어 그레이 이너를 보여 줘요
+  styling: The cropped jacket is worn zipped about half way so the grey henley's U-neck
+    and buttons show at the chest.
+reason: 블랙 바탕 코디에 니트·이너·가방으로 버건디·플럼·퍼플 한 방울을 얹은 벌들
+shot: flatlay
+cover_look: 6
+text:
+  title_lines:
+  - 블랙 코디 심심할 땐
+  - 컬러 한 방울 공식
+  intro: 맑고 선선한 수요일, 블랙 코디에 컬러 한 방울만 얹어 보세요 🍂
+  points: []
+  hashtags:
+  - "#컬러포인트"
+  - "#블랙코디"
+  - "#가을코디"
+  - "#레이어드룩"
+  - "#플럼컬러"
+  - "#캐주얼시크"
+  - "#꾸안꾸"
