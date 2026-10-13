@@ -23,7 +23,6 @@ name: schedule
 on:
   schedule:
     # >>> tools.schedule sync (직접 고치지 말고 profile.yaml schedule 을 바꾼 뒤 sync)
-    - cron: "0 22 * * *"  # women publish 07:00
     # <<< tools.schedule sync
   workflow_dispatch:
     inputs:
