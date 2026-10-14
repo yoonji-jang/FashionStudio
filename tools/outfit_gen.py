@@ -246,8 +246,8 @@ def reference_panels(
 # (스카프 늘어뜨림, 셔츠 윗단추 풂). 따라 한 기준 코디 사진을 마지막 그림으로 보내
 # 입는 모양만 따르게 한다 (배경·포즈·다른 옷은 따르지 않음)
 # 2026-10-14 사용자: "코디 이미지에 옷만 지그재그 옷으로 대체하는 느낌으로" →
+# 기준 코디 사진을 그대로 다시 만들되 옷만 상품 장의 것으로 바꾼다.
 # 넣어 입은 정도·삐져나온 정도까지, 위 일반 규칙보다 사진이 앞선다.
-# 옷만 상품 장의 것으로 바꾼다. 넣어 입은 정도·삐져나온 정도까지, 위 일반 규칙보다 사진이 앞선다.
 WORN_REF = (
     "The last attached image is the reference outfit photo. Recreate that exact outfit as"
     " this flat lay, with each piece swapped for the matching item from the sheets, as if"
