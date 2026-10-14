@@ -303,6 +303,9 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
             f"| {i} | {cats[i - 1]} | {it.desc} | {it.color or '-'} | {how} | {sizes[i - 1]} | "
             f"{_ref(out, ref) if ref else '없음'} |"
         )
+    worn = out / "outfit" / "originals" / "worn_ref.jpg"
+    if worn.exists():
+        lines += ["", f"기준 코디 사진 (입는 모양을 이대로 따라야 함): {_ref(out, worn)}"]
     if plan.shot != "model":
         # 점수와 따로 묻는 결함 (하나라도 있으면 불합격). 후보마다 faults 에 해당하는 키만 적는다
         lines += ["", "## 결함 확인 (후보마다 하나씩 보고, 있으면 `faults` 에 키를 적는다)", ""]

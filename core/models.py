@@ -161,6 +161,8 @@ class DailyPlan(BaseModel):
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 코디컷을 새로 만들지 않음)
     edit_from: str | None = None  # /fix 로 고쳐 그릴 지난 코디컷 (Look.edit_from 과 같음)
+    # 따라 한 기준 코디 사진 주소 (Look.ref_photo). 코디컷을 그릴 때 입는 모양 참고로 같이 보낸다
+    ref_photo: str | None = None
     edit_request: str | None = None
     # 16단계: flatlay = 펼친 코디컷, model = 옷을 입은 얼굴 없는 AI 모델컷
     # (전날 게시물 벌을 다시 그림, tools.model_post)
@@ -205,6 +207,7 @@ class DailyPlan(BaseModel):
                 "edit_from": look.edit_from,
                 "edit_request": look.edit_request,
                 "pose": look.pose,
+                "ref_photo": look.ref_photo,
             }
         )
 

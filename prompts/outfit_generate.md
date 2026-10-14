@@ -46,7 +46,7 @@ whole hem hidden inside the waistband with a soft blouse of fabric above it; a k
 tucked in has only the front tucked, relaxed and slightly bloused.
 $parts
 
-The garments lie neat and nearly symmetric, never crumpled or twisted, never paper-flat.
+The garments lie neatly, never crumpled or twisted, never paper-flat.
 
 Layout, the same for every image: $layout
 

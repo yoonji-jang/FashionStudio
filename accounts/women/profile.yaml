@@ -285,12 +285,13 @@ outfit_image:
   prompt: outfit_generate    # prompts/outfit_generate.md
   # 모던한 명품샵 느낌의 쿨그레이 콘크리트 (2026-09-30 사용자가 4안 선택. 아이보리·베이지는 흔함)
   scene: >-
-    a warm greige low-pile carpet with a band of warm medium-brown wood floor across the lower-left
-    corner and a little sheer white curtain at the upper-left edge; soft, even, diffuse daylight
-    like a bright overcast day, no sunbeams or hard window shadows; warm neutral tone
+    a softly wrinkled warm ivory linen cloth spread smoothly over the whole floor, its fine woven
+    texture visible; soft, even, diffuse daylight like a bright overcast day, no sunbeams or hard
+    window shadows; warm, clean, airy tone
   # 2026-10-07 사용자: 여전히 납작함 → 옆에서 낮게 드는 창빛을 썼으나, 2026-10-14 사용자 참고(wyeun_)처럼
   # 따뜻한 회갈색 카펫 + 나무 바닥, 고르게 퍼진 부드러운 빛으로 바꿈 (창빛 줄기가 생활 사진처럼 보이고 검정 옷이 칙칙함).
   # 입체감은 빛이 아니라 지시문의 '입은 모양 그대로 눕힌' 문장이 맡는다.
+  # 2026-10-14 사용자: 예시 배경을 그대로 따라 하지 말고 나만의 배경 → 아이보리 리넨 천 (카펫·나무·커튼 뺌)
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
   # 상의는 기본으로 넣어 입어 허리선을 높게 (2026-10-02 사용자: 바지·치마가 짧고 작아 보임)
   # 넣어 입는 높이는 모델 착용컷의 실제 허리 (2026-10-12 사용자: 너무 올리면 배바지처럼 보임)

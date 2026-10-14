@@ -238,6 +238,42 @@ def reference_panels(
     return panels
 
 
+# 2026-10-14 사용자: "모델이 입은 이미지 핏 그대로 바닥에 펼쳐지면 좋겠어"
+# (스카프 늘어뜨림, 셔츠 윗단추 풂). 따라 한 기준 코디 사진을 마지막 그림으로 보내
+# 입는 모양만 따르게 한다 (배경·포즈·다른 옷은 따르지 않음)
+WORN_REF = (
+    "The last attached image is a photo of this outfit worn by a model. Lay every item out"
+    " exactly as it is worn there: how far a shirt or cardigan is unbuttoned and how its"
+    " collar and front fall open, how a scarf hangs or is knotted, what is tucked in or left"
+    " out, how sleeves, hems and layers sit, and how open an outer is. Follow only the way"
+    " the clothes are worn; take colors and details from the item sheets, and never copy"
+    " that photo's background, pose or any item not listed."
+)
+
+
+def worn_ref_panel(plan: DailyPlan, profile: Profile, cache: Path) -> bytes | None:
+    """기준 코디 사진 (얼굴은 가림). 받지 못하면 없이 그린다."""
+    if not plan.ref_photo or plan.shot == "model":
+        return None
+    from tools import scout
+
+    rs = profile.themes.ref_search
+    name = re.sub(r"[^0-9A-Za-z]+", "_", plan.ref_photo)[-80:]
+    try:
+        path = scout.ref_photo(plan.ref_photo, rs.scout_sites if rs else [], cache / f"ref_{name}")
+        img, ok = faces.hide_faces(Image.open(path).convert("RGB"))
+    except Exception as e:  # noqa: BLE001 - 참고 사진 없이도 그릴 수 있다
+        print(f"기준 코디 사진을 받지 못함: {plan.ref_photo} ({e})", file=sys.stderr)
+        return None
+    if not ok:
+        print("기준 코디 사진의 얼굴을 가릴 수 없어 뺌", file=sys.stderr)
+        return None
+    img.thumbnail((1536, 1536))
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=92)
+    return buf.getvalue()
+
+
 def client_for(cfg: dict, fake: bool) -> generate.Client:
     if fake:
         return generate.FakeClient()
@@ -275,6 +311,12 @@ def make_candidates(
         prompt = edit_prompt(plan, products, cfg)
     else:
         prompt = build_prompt(plan, products, profile, cfg)
+        worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)
+        if worn:
+            (work / "originals").mkdir(parents=True, exist_ok=True)
+            (work / "originals" / "worn_ref.jpg").write_bytes(worn)
+            panels = [*panels, worn]
+            prompt = f"{prompt.rstrip()}\n{WORN_REF}\n"
     (work / "prompt.txt").write_text(prompt, encoding="utf-8")
     client = client or client_for(cfg, fake)
 

@@ -495,3 +495,36 @@ def test_fix_edits_previous_outfit_image(store, tmp_path, monkeypatch):
 def test_check_catches_missing_edit_from(store):
     errors, _ = plan.check(daily(edit_from="out/없는/G_1.jpg"), load_profile("women"), store)
     assert any("edit_from 파일이 없습니다" in e for e in errors)
+
+
+def test_worn_ref_photo_goes_last(store, tmp_path, monkeypatch):
+    """기준 코디 사진(ref_photo)이 있으면 마지막 그림으로 보내 입는 모양을 따르게 한다 (2026-10-14).
+    받지 못하면 없이 그린다."""
+    from tools import outfit_gen, scout
+
+    photo = tmp_path / "ref.jpg"
+    Image.new("RGB", (60, 90), "#777777").save(photo)
+    monkeypatch.setattr(outfit_gen, "reference_panels", lambda *a, **k: [b"p1"])
+    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest: photo)
+    monkeypatch.setattr(outfit_gen.faces, "hide_faces", lambda img: (img, True))
+
+    class Recorder:
+        def generate(self, model, prompt, images):
+            self.prompt, self.images = prompt, images
+            buf = io.BytesIO()
+            Image.new("RGB", (1080, 1350)).save(buf, "PNG")
+            return buf.getvalue(), 0.0
+
+    rec = Recorder()
+    p = daily(ref_photo="https://woonan.co.kr/a.jpg")
+    outfit_gen.make_candidates(p, store, tmp_path / "w", load_profile("women"), 1, client=rec)
+    assert len(rec.images) == 2 and rec.images[0] == b"p1"
+    assert "The last attached image" in rec.prompt
+    assert (tmp_path / "w/originals/worn_ref.jpg").exists()
+
+    def fail(*a):
+        raise scout.ImageUnavailable("x")
+
+    monkeypatch.setattr(scout, "ref_photo", fail)
+    outfit_gen.make_candidates(p, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
+    assert rec.images == [b"p1"] and "The last attached image" not in rec.prompt

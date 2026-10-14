@@ -68,7 +68,7 @@ AI 가 쇼핑몰 사진(`ref_photos`, 사진 확인 단계에서 채움)을 참�
   **신발 앞코·종류**(square-toe slip-on loafers …), 바지 주름 유무(flat front, no pleats), 벨트·단추.
   핏·기장은 사진에서 본 대로 (오버핏이면 oversized, hip length). 이름만 보고 cropped·ankle length 를 짐작하지 않는다
   (2026-10-06: 오버핏 자켓을 slightly cropped 로 적어 크롭처럼 그려짐). 치마는 소재와 주름 모양(soft unpressed pleats,
-  knife pleats)까지. 스카프는 옷에 두르지 않고 옆에 따로 놓이므로 입는 방법 없이 모양만 적는다.
+  knife pleats)까지. 스카프는 기준 코디 사진처럼 목에 늘어뜨리거나 묶는다 (2026-10-14 사용자; 입는 모양은 `styling` 에).
   개수가 헷갈리는 소품은 개수까지: "exactly one pair (two earrings) of ...", "one pair (two shoes) of ...".
   사진에 다른 색·다른 상품이 함께 있으면 "the photos also show a gold pair, ignore it" 처럼 적는다.
 - `size` (선택, 영어): 실제 크기. 없으면 도구가 옷은 cm(아래 기장 규칙), 가방·신발·주얼리는
