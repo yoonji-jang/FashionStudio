@@ -1,0 +1,16 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "/home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK4.jpg",
+      "round": 1,
+      "score": null
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "not_reviewed",
+  "slide_issues": [],
+  "summary": ""
+}
