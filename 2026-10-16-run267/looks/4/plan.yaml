@@ -1,0 +1,122 @@
+account: women
+date: '2026-10-16'
+items:
+- cm: 72.5
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 워싱 셔츠 (white washed cotton shirt, relaxed loose fit, dropped shoulders,
+    hip-length curved hem, worn untucked, crisp but not stiff)
+  name: 워싱 셔츠
+  product: zigzag:127356723
+  ref_photos:
+  - 0
+  size: about 72.5 cm long from shoulder to hem, 48.5 cm across the shoulders, 67
+    cm across the chest laid flat, 63 cm long sleeves
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 플레어 트라우저 (black high-waisted trousers, slim through the thigh with a flared
+    leg and a sharp center crease, full length covering the shoes, crisp crepe)
+  name: 릴렉스드 트라우저
+  product: zigzag:165972831
+  ref_photos:
+  - 4
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 메리제인 플랫슈즈 (black strap Mary Jane flats with slightly angular toes)
+  name: 메리제인 플랫
+  product: zigzag:137014509
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 숄더백 (black matte nylon-like tote-shaped shoulder bag with a round logo
+    medallion and two rounded handles)
+  name: 클리프 숄더백
+  product: zigzag:151166447
+  ref_photos:
+  - 4
+- color: 실버
+  comment: ''
+  cutout_photo: 1
+  desc: 실버 볼 체인 목걸이 (thin silver ball chain necklace)
+  name: 볼체인 목걸이
+  product: zigzag:113341770
+  ref_photos:
+  - 1
+  - 0
+  segment: necklace
+  slot: 목걸이
+looks: []
+mood: a candid phone snapshot taken by a friend at a quiet minimal gallery or showroom
+  event space in Seoul, pale sage-green walls and a cream speckled terrazzo floor,
+  a white-clothed table with water bottles and a sculptural metal railing in the background,
+  soft even warm indoor ceiling light with muted cool-neutral colors, the whole figure
+  in frame at a little distance, slightly dark and moody grain; every woman wears
+  her hair in a sleek low bun with a middle part and a few loose strands at the temple,
+  as the sender asked (slick bun)
+pose: sitting sideways on a low bench in the hall with legs crossed at the ankles,
+  looking down into the bag on her lap so her face is hidden, full body with the flats
+  visible
+reason: 흰 셔츠에 블랙 트라우저로 깔끔하게. 참고 흰 구김 셔츠/블랙 와이드 슬랙스/포인티드 슈즈/숄더백 → 맞춘 것 워싱 셔츠/릴렉스드 트라우저/메리제인
+  플랫/숄더백 (따라 함 참고 124)
+ref_photo: https://woonan.co.kr/web/product/big/202610/4e97c6ba047bbf03e60b3da1c7cdeeca.jpg
+scene_image: out/2026-10-16/src/scene.jpg
+shot: model
+styling: The shirt is worn untucked over the trousers.
+text:
+  hashtags:
+  - '#하객룩'
+  - '#가을하객룩'
+  - '#결혼식하객룩'
+  - '#하객룩추천'
+  - '#차콜코디'
+  - '#올블랙코디'
+  - '#가을코디'
+  intro: 비 소식 있는 금요일, 결혼식 가는 날엔 차콜과 블랙으로 단정하게 입어요 ☔
+  points: []
+  title_lines:
+  - 하객룩 뭐 입지 고민이면
+  - 차콜·블랙 단정한 조합
+theme:
+  date: '2026-10-16'
+  mood: 깊은 가을 톤의 단정하고 품위 있는 하객룩 (흰색·아이보리 올화이트는 피함)
+  search_terms:
+    가방:
+    - 미니 숄더백
+    - 퀼팅 체인백
+    상의:
+    - 새틴 블라우스
+    - 보트넥 니트
+    소품:
+    - 진주 귀걸이
+    신발:
+    - 메리제인
+    - 발레리나 플랫
+    아우터:
+    - 트위드 자켓
+    - 크롭 가디건
+    하의:
+    - 플리츠 롱스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 단정한 라운드넥 트위드 자켓이나 크롭 니트 가디건
+  - category: 상의
+    desc: 새틴 블라우스나 보트넥 니트처럼 광택·질감이 있는 상의
+  - category: 하의
+    desc: 플리츠 롱스커트나 새틴 스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백이나 퀼팅 체인백
+  - category: 신발
+    desc: 메리제인이나 발레리나 플랫
+  - category: 소품
+    desc: 진주 귀걸이나 얇은 목걸이
+  title_hint: 가을 결혼식 하객룩, 단정한데 지루하지 않게
+  type: 상황
+  why: 금요일, 최고 23도에 흐리고 비 예보 86%라 가벼운 아우터와 젖어도 부담 없는 어두운 하의, 가을 결혼식 시즌
