@@ -47,7 +47,12 @@ def _plans(results: Path) -> list[tuple[int, DailyPlan]]:
 
 
 def build(
-    results: Path, account: str, out: Path, only: int | None = None, start: int = 1
+    results: Path,
+    account: str,
+    out: Path,
+    only: int | None = None,
+    start: int = 1,
+    allow_faces: bool = False,
 ) -> list[tuple[int, list[Path], Path]]:
     """벌마다 (번호, 참고판 파일들, 지시문 파일). only 면 그 벌만, 번호는 start 부터 다시 매긴다."""
     profile = load_profile(account)
@@ -63,7 +68,9 @@ def build(
         work = out / f"look{n}"
         work.mkdir(parents=True, exist_ok=True)
         try:
-            panels = outfit_gen.reference_panels(plan, products, work, cfg, cache)
+            panels = outfit_gen.reference_panels(
+                plan, products, work, cfg, cache, allow_faces=allow_faces
+            )
         except Exception as e:  # noqa: BLE001 - 한 벌이 안 돼도 나머지는 보낸다
             print(f"LOOK {src_n}: 참고판을 만들지 못함 ({e})", file=sys.stderr)
             continue
@@ -95,6 +102,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--root", type=Path, default=Path("."), help="결과 폴더들이 있는 곳")
     ap.add_argument("--out", type=Path, default=Path("out/prompt_share"))
     ap.add_argument("--send", action="store_true", help="텔레그램으로 보냄 (워크플로만)")
+    ap.add_argument(
+        "--allow-faces",
+        action="store_true",
+        help="얼굴 없는 사진이 없으면 얼굴 사진도 씀",
+    )
     args = ap.parse_args(argv)
     made: list[tuple[int, list[Path], Path]] = []
     for part in args.results.split("+"):
@@ -105,6 +117,7 @@ def main(argv: list[str] | None = None) -> int:
             args.out,
             only=int(look) if look else None,
             start=len(made) + 1,
+            allow_faces=args.allow_faces,
         )
     print(f"{len(made)}벌 준비")
     if not args.send:

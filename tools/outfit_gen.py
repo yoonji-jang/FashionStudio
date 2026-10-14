@@ -215,9 +215,15 @@ def prompt_parts(
 
 
 def reference_panels(
-    plan: DailyPlan, products: dict[str, Product], work: Path, cfg: dict, cache: Path
+    plan: DailyPlan,
+    products: dict[str, Product],
+    work: Path,
+    cfg: dict,
+    cache: Path,
+    allow_faces: bool = False,
 ) -> list[bytes]:
-    """상품마다 참고판 한 장. 쇼핑몰 사진은 cache(결과 폴더 밖)에 받고, 모델 얼굴은 잘라 낸다."""
+    """상품마다 참고판 한 장. 쇼핑몰 사진은 cache(결과 폴더 밖)에 받고, 모델 얼굴은 잘라 낸다.
+    allow_faces 면 얼굴을 못 잘라 낸 사진도 그대로 쓴다 (지시문 공유에서만)."""
     panels = []
     (work / "originals").mkdir(parents=True, exist_ok=True)
     for i, it in enumerate(plan.items, 1):
@@ -227,7 +233,9 @@ def reference_panels(
         for k in ref_indexes(it):
             path = feed.fetch_photo(str(p.image_urls[k]), cache / f"{pid}_{k}.jpg")
             img, ok = faces.hide_faces(Image.open(path).convert("RGB"))
-            if not ok:
+            if not ok and allow_faces:
+                img = Image.open(path).convert("RGB")
+            elif not ok:
                 print(f"{it.product} #{k}: 얼굴을 잘라 낼 수 없어 뺌", file=sys.stderr)
                 continue
             buf = io.BytesIO()

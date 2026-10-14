@@ -41,4 +41,4 @@ jobs:
           [[ "$RESULTS" =~ ^[0-9A-Za-z._+/-]+$ && "$RESULTS" != *..* ]] || { echo "결과 폴더 이름이 이상함"; exit 1; }
           git fetch --depth 1 origin daily-results
           git worktree add /tmp/results FETCH_HEAD
-          uv run python -m tools.prompt_share --account "$ACCOUNT" --root /tmp/results --results "$RESULTS" --send
+          uv run python -m tools.prompt_share --account "$ACCOUNT" --root /tmp/results --results "$RESULTS" --allow-faces --send
