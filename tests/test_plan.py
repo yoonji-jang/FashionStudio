@@ -317,7 +317,7 @@ def test_build_with_generated_outfit(store, tmp_path):
     assert len(list((out / "outfit" / "results").glob("G_*.jpg"))) == profile.review.candidates
     assert len(list((out / "outfit" / "originals").glob("*.jpg"))) == len(CATS)
     prompt = (out / "outfit" / "prompt.txt").read_text()
-    assert "Image 1: the outer, item 1." in prompt
+    assert "The first sheet: the outer, item 1." in prompt
     assert "exactly one pair (two earrings)" in prompt  # 귀걸이 개수
     assert "almost closed" in prompt  # 아우터 기본 입히기 (profile outer_styling)
     assert "$" not in prompt
@@ -367,7 +367,7 @@ def test_layered_tops_get_layer_styling(store):
     )
     products = {x.id: x for x in store.products()}
     text = outfit_gen.styling_text(p, products, load_profile("women"))
-    assert "The top in image 3 is layered under the top in image 2" in text
+    assert "The top in the third sheet is layered under the top in the second sheet" in text
     p.items[2].wear_with = None
     assert "layered under" not in outfit_gen.styling_text(p, products, load_profile("women"))
 
@@ -391,7 +391,7 @@ def test_prompt_parts_only_for_items_in_the_look(store):
     p.items[4].desc = "블랙 롱부츠 (black long boots)"
     text = " ".join(outfit_gen.prompt_parts(p, products, "draped over the shoulders"))
     assert "The skirt keeps" in text and "The trousers" not in text
-    assert "The boots lie on their side" in text and "seen from directly above" not in text
+    assert "Both boots lie on their side" in text and "seen from directly above" not in text
     assert "knit draped over the shoulders" in text
 
 
@@ -406,7 +406,7 @@ def test_outfit_prompt_stays_short(store):
     products = {x.id: x for x in store.products()}
     prof = load_profile("women")
     prompt = outfit_gen.build_prompt(p, products, prof, {})
-    assert "$" not in prompt and "lower right beside the lower part of the bottoms" in prompt
+    assert "$" not in prompt and "never touching or overlapping the hem" in prompt
     rules = yaml.safe_load((outfit_gen.PARTS_DIR / "parts.yaml").read_text(encoding="utf-8"))
     every_part = " ".join(render_prompt(n, outfit_gen.PARTS_DIR) for n in rules)
     base = render_prompt(
@@ -485,7 +485,7 @@ def test_fix_edits_previous_outfit_image(store, tmp_path, monkeypatch):
     assert len(made) == 1
     assert rec.images == [base.read_bytes(), b"p1", b"p2"]
     assert "Pair the shoes neatly." in rec.prompt and "$" not in rec.prompt
-    assert "Image 2: the" in rec.prompt and "Image 1: the" not in rec.prompt
+    assert "The second sheet: the" in rec.prompt and "The first sheet: the" not in rec.prompt
 
     p = daily()
     outfit_gen.make_candidates(p, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
@@ -495,3 +495,46 @@ def test_fix_edits_previous_outfit_image(store, tmp_path, monkeypatch):
 def test_check_catches_missing_edit_from(store):
     errors, _ = plan.check(daily(edit_from="out/없는/G_1.jpg"), load_profile("women"), store)
     assert any("edit_from 파일이 없습니다" in e for e in errors)
+
+
+def test_worn_ref_photo_goes_last(store, tmp_path, monkeypatch):
+    """기준 코디 사진(ref_photo)이 있으면 마지막 그림으로 보내 입는 모양을 따르게 한다 (2026-10-14).
+    받지 못하면 없이 그린다."""
+    from tools import outfit_gen, scout
+
+    photo = tmp_path / "ref.jpg"
+    Image.new("RGB", (60, 90), "#777777").save(photo)
+    monkeypatch.setattr(outfit_gen, "reference_panels", lambda *a, **k: [b"p1"])
+    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest: photo)
+    monkeypatch.setattr(outfit_gen.faces, "hide_faces", lambda img: (img, True))
+
+    class Recorder:
+        def generate(self, model, prompt, images):
+            self.prompt, self.images = prompt, images
+            buf = io.BytesIO()
+            Image.new("RGB", (1080, 1350)).save(buf, "PNG")
+            return buf.getvalue(), 0.0
+
+    rec = Recorder()
+    p = daily(ref_photo="https://woonan.co.kr/a.jpg")
+    outfit_gen.make_candidates(p, store, tmp_path / "w", load_profile("women"), 1, client=rec)
+    assert len(rec.images) == 2 and rec.images[0] == b"p1"
+    assert "The last attached image" in rec.prompt
+    assert (tmp_path / "w/originals/worn_ref.jpg").exists()
+
+    def fail(*a):
+        raise scout.ImageUnavailable("x")
+
+    monkeypatch.setattr(scout, "ref_photo", fail)
+    outfit_gen.make_candidates(p, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
+    assert rec.images == [b"p1"] and "The last attached image" not in rec.prompt
+
+
+def test_scarf_gets_scarf_size_even_in_necklace_slot(store):
+    from tools import outfit_gen
+
+    p = daily()
+    products = {x.id: x for x in store.products()}
+    it = p.items[5].model_copy(update={"desc": "burgundy knit scarf", "slot": "목걸이"})
+    cfg = {"default_sizes": {"목걸이": "one necklace", "스카프": "one scarf"}}
+    assert outfit_gen.item_size(it, products[it.product], cfg) == "one scarf"

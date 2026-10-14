@@ -1,0 +1,73 @@
+name: prompt-share
+
+# 코디컷 지시문과 참고판(상품 사진 참고판 + 기준 코디 사진)을 텔레그램으로 보낸다 (2026-10-14 사용자:
+# 제미나이에서 따로 돌려 보기). 그림은 새로 그리지 않는다. 쇼핑몰 사진은 결과 브랜치에 올리지 않는다.
+# 작업 브랜치에서는 커밋 메시지에 [prompt-share:<결과 폴더>] 를 넣어 푸시하면 돈다
+# (workflow_dispatch 는 main 에 있는 워크플로만 부를 수 있어서).
+on:
+  push:
+    branches: ["claude/**"]
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      results:
+        description: daily-results 의 결과 폴더, 여러 개는 + 로, 한 벌만이면 /<번호> (예 2026-10-15-run249+2026-10-14-run247/5)
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  share:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[prompt-share:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: 지시문·참고판 보내기
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ACCOUNT: ${{ inputs.account }}
+          RESULTS: ${{ inputs.results }}
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          [ -n "$RESULTS" ] || RESULTS=$(grep -oP '\[prompt-share:\K[\w.+/-]+(?=\])' <<<"$MSG" || true)
+          ACCOUNT="${ACCOUNT:-women}"
+          [[ "$RESULTS" =~ ^[0-9A-Za-z._+/-]+$ && "$RESULTS" != *..* ]] || { echo "결과 폴더 이름이 이상함"; exit 1; }
+          git fetch --depth 1 origin daily-results
+          git worktree add /tmp/results FETCH_HEAD
+          uv run python -m tools.prompt_share --account "$ACCOUNT" --root /tmp/results --results "$RESULTS" --allow-faces --send
+
+  # [photo-sheet:<결과 폴더>]: 그 폴더 picks/p1.yaml 의 상품 사진 확인표(photo_check_<n>.jpg)만 만들어
+  # 결과 브랜치의 같은 폴더에 올린다 (Claude 없이, 사진 고르기용. 쇼핑몰 원본 photos/ 는 올리지 않음)
+  sheet:
+    if: contains(github.event.head_commit.message, '[photo-sheet:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: 사진 확인표 만들어 올리기
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          DIR=$(grep -oP '\[photo-sheet:\K[\w.-]+(?=\])' <<<"$MSG" || true)
+          [[ "$DIR" =~ ^[0-9A-Za-z._-]+$ && "$DIR" != *..* ]] || { echo "결과 폴더 이름이 이상함"; exit 1; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          git fetch origin daily-results
+          git worktree add /tmp/results origin/daily-results
+          git -C /tmp/results checkout -B daily-results
+          uv run python -m tools.plan photos "/tmp/results/$DIR/picks/p1.yaml" --out /tmp/sheet
+          cp /tmp/sheet/photo_check_*.jpg "/tmp/results/$DIR/"
+          git -C /tmp/results add "$DIR"/photo_check_*.jpg
+          git -C /tmp/results commit -m "사진 확인표 $DIR"
+          git -C /tmp/results push origin daily-results

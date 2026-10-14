@@ -131,6 +131,13 @@ def product_photos(
         buf = io.BytesIO()
         img.save(buf, "JPEG", quality=92)
         out.append(buf.getvalue())
+    if not out and indexes:
+        # 고른 사진이 모두 얼굴을 못 잘라 내면 첫 사진 원본을 쓴다 (10-14 사용자: 얼굴 사진 괜찮음)
+        print(f"{product_id} #{indexes[0]}: 얼굴 없는 사진이 없어 원본을 씀", file=sys.stderr)
+        buf = io.BytesIO()
+        img = Image.open(cache / f"{product_id.split(':')[-1]}_{indexes[0]}.jpg")
+        img.convert("RGB").save(buf, "JPEG", quality=92)
+        out.append(buf.getvalue())
     return out
 
 

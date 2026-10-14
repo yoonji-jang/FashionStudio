@@ -127,6 +127,9 @@ def test_same_kind_warning(store):
     assert warns == [
         "아우터 '스웨이드' 이(가) 4벌에 들어 있습니다 (최대 3벌, 벌마다 다른 아이템으로)"
     ]
+    # 2026-10-13: 아이템 주제 날은 여섯 벌 모두 그 아이템이어도 된다
+    p.theme.type = "아이템"
+    assert plan.same_kind_warnings(p, profile, products) == []
 
 
 def test_accessory_warning(store):
@@ -281,6 +284,31 @@ def test_pick_sends_look_sheets(tmp_path, store):
     text = pick.looks_text(pick.load_candidates(out)[0], profile, DAY, 1)
     assert "7. 7번 벌은 톤온톤으로 (예비)" in text
     assert "4번 빼고" in text and "1~6번으로 만들어요" in text
+
+
+def test_look_sheet_shows_ref_photo(tmp_path, store, monkeypatch):
+    """따라 한 기준 코디 사진을 후보 시트 왼쪽에 붙인다 (2026-10-13 사용자)."""
+    from tools import scout
+
+    profile = load_profile("women")
+    out = tmp_path / "out"
+    plan_ = looks_plan(3, text=None)
+    plan_.looks[0].ref, plan_.looks[0].ref_photo = "68", "https://woonan.co.kr/web/a.jpg"
+    plan_.looks[1].ref = "32"  # 사진 주소 없는 참고: 칸만 두고 "참고 사진 없음"
+    write_candidates(out, [plan_])
+    asked = []
+
+    def fake(url, sites, dest):
+        asked.append((url, "woonan.co.kr" in sites))
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        Image.new("RGB", (300, 450), "gray").save(dest, "JPEG")
+        return dest
+
+    monkeypatch.setattr(scout, "ref_photo", fake)
+    plan_ = pick.load_candidates(out)[0]
+    widths = [Image.open(pick.look_sheet(plan_, n, store, out, profile)).width for n in (1, 2, 3)]
+    assert asked == [("https://woonan.co.kr/web/a.jpg", True)]
+    assert widths[0] == widths[1] > widths[2]
 
 
 def test_decide_looks():
@@ -551,9 +579,16 @@ def test_unity_warnings():
         item(4, "다크브라운"),
     ]
     warns = plan.unity_warnings("1번 벌: ", busy, prods, profile)
+    # 2026-10-13 사용자: 색 개수·재질 제한 없이 (women 은 max_colors·casual/dressy 를 비움)
+    assert not any("색 계열이" in w or "재질 분위기" in w for w in warns)
+    assert any("맨 바깥 상의" in w for w in warns)
+    strict = profile.model_copy(deep=True)
+    strict.style.max_colors = 3
+    strict.style.casual_words = ["맨투맨"]
+    strict.style.dressy_words = ["새틴"]
+    warns = plan.unity_warnings("1번 벌: ", busy, prods, strict)
     assert any("색 계열이 4개" in w for w in warns)
     assert any("재질 분위기" in w for w in warns)
-    assert any("맨 바깥 상의" in w for w in warns)
     calm = [item(1, "그레이"), item(2, "그레이"), item(3, "블랙"), item(4, "블랙")]
     assert [w for w in plan.unity_warnings("", calm, prods, profile) if "재질" not in w] == []
     # 래글런 위에 아우터

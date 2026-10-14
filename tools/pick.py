@@ -182,6 +182,56 @@ def sheet(
     return dest
 
 
+def with_ref(path: Path, look, profile: Profile, out: Path, panel: int = 640) -> Path:
+    """후보 시트 왼쪽에 따라 한 기준 코디 사진을 붙인다 (2026-10-13 사용자: 참고 코디도 보내 줘).
+    사진을 못 받으면 "참고 사진 없음" 을 적는다.
+    받은 사진은 picks/photos/ 에 둔다 (결과 브랜치에 올리지 않음)."""
+    from tools import scout
+
+    if not (look.ref or look.ref_photo):
+        return path
+    base = Image.open(path).convert("RGB")
+    img = Image.new("RGB", (panel + base.width, base.height), "#F4F2EE")
+    img.paste(base, (panel, 0))
+    draw = ImageDraw.Draw(img)
+    pad = 24
+    draw.text(
+        (pad, 34),
+        f"참고 {look.ref or ''}".strip(),
+        font=load_font("Pretendard-Bold.otf", 34),
+        fill="#7A2E34",
+    )
+    box_w, box_h = panel - pad * 2, base.height - 120 - pad
+    try:
+        if not look.ref_photo:
+            raise OSError("사진 주소 없음")
+        sites = profile.themes.ref_search.scout_sites if profile.themes.ref_search else []
+        name = re.sub(r"[^0-9A-Za-z]+", "_", look.ref_photo)[-80:]
+        ph = Image.open(
+            scout.ref_photo(look.ref_photo, sites, picks_dir(out) / "photos" / f"ref_{name}")
+        )
+        ph = ph.convert("RGB")
+        ph.thumbnail((box_w, box_h))
+        img.paste(ph, (pad + (box_w - ph.width) // 2, 120))
+    except Exception as e:  # noqa: BLE001 - 참고 사진이 없어도 시트는 보낸다
+        print(f"참고 사진을 받지 못함: {look.ref_photo} ({e})", file=sys.stderr)
+        draw.text(
+            (pad, 140),
+            "참고 사진 없음",
+            font=load_font("Pretendard-Medium.otf", 26),
+            fill="#8C867E",
+        )
+    img.save(path, quality=88)
+    return path
+
+
+def look_sheet(plan: DailyPlan, n: int, store: Store, out: Path, profile: Profile) -> Path:
+    """여러 벌 후보의 n 번째(1부터) 벌 시트: 상품 사진 격자 + 왼쪽에 기준 코디 사진."""
+    look = plan.looks[n - 1]
+    path = sheet(plan.look_plan(n - 1), n, store, out, title=look.reason.split(". ")[0] or None)
+    return with_ref(path, look, profile, out)
+
+
 # ---------- 보내기 ----------
 
 
@@ -294,10 +344,7 @@ def send(
     if looks:
         # 여러 벌: 후보 기획 하나(p1) 안의 벌마다 시트 한 장
         plan = plans[0]
-        sheets = [
-            sheet(plan.look_plan(n - 1), n, store, out, title=look.reason.split(". ")[0] or None)
-            for n, look in enumerate(looks, 1)
-        ]
+        sheets = [look_sheet(plan, n, store, out, profile) for n in range(1, len(looks) + 1)]
         text = looks_text(plan, profile, day, round_)
         markup = looks_keyboard(profile, day, can_again)
     else:
@@ -452,10 +499,7 @@ def send_edit(
         "고르는 방법은 그대로예요. 그대로 두거나 번호를 보내면 고친 벌로 만들어요.",
         f"더 고치려면 /fix 를 또 보내요. 마감은 {profile.schedule.pick_deadline}.",
     ]
-    sheets = [
-        sheet(plan.look_plan(n - 1), n, store, out, title=looks[n - 1].reason.split(". ")[0])
-        for n in changed
-    ]
+    sheets = [look_sheet(plan, n, store, out, profile) for n in changed]
     ids = tg.send_photos(sheets, f"[{profile.id}] {day} 코디 후보 고침") if sheets else []
     new_sheets = dict(prev.sheets) | dict(zip(ids, changed, strict=True))
     ids.append(tg.send("\n".join(lines)))

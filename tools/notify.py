@@ -41,7 +41,7 @@ CONFIG_PATH = REPO_ROOT / "config" / "publish.yaml"
 API = "https://api.telegram.org"
 MAX_TEXT = 4096
 MAX_PHOTO_CAPTION = 1024
-SEND_METHODS = {"sendMessage", "sendPhoto", "sendMediaGroup", "sendVideo"}
+SEND_METHODS = {"sendMessage", "sendPhoto", "sendMediaGroup", "sendVideo", "sendDocument"}
 APPROVAL = "approval.json"  # 결과 폴더에 남기는 /ok·/skip 기록 (텔레그램은 답장을 24시간만 보관)
 NOW = "now.json"  # /now (지금 게시) 를 처리한 기록
 NOW_WORDS = ("지금 올려", "지금 올려줘", "바로 올려", "바로 올려줘", "지금 게시", "바로 게시")
@@ -189,6 +189,17 @@ class Telegram:
                     h.close()
             ids += [m["message_id"] for m in msgs]
         return ids
+
+    def send_document(self, path: Path, caption: str = "") -> int:
+        """파일 한 개 (지시문 텍스트 등)."""
+        with path.open("rb") as f:
+            msg = self.call(
+                "sendDocument",
+                files={"document": (path.name, f)},
+                chat_id=self.chat_id,
+                caption=caption[:MAX_PHOTO_CAPTION],
+            )
+        return msg["message_id"]
 
     def send_video(
         self, path: Path, caption: str = "", width: int = 1080, height: int = 1920

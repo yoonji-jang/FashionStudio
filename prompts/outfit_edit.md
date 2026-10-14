@@ -6,9 +6,10 @@
 Edit the first attached image, a photorealistic top-down flat lay photograph of an outfit.
 Change only this: $request
 
-Keep everything else exactly as it is: the same items, their colors, patterns, details and positions,
-the layout and spacing, the floor, the light and shadows, the camera angle and the framing.
-Do not add, remove or move any other item.
+Make the change fully and clearly, even if it means moving or redrawing whole items: a change to the
+layout or proportions really moves the items to their new places. Keep everything the change does not
+touch exactly as it is: every item's color, pattern, fabric and details, the floor, the light and
+shadows and the camera angle. Do not add or remove any item unless the change asks for it.
 
 The other attached images are reference sheets of the exact items, in this order. Use them only to keep
 each item true to the real product while making the change:

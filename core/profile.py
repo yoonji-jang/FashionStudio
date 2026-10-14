@@ -96,9 +96,9 @@ class Place(BaseModel):
 
 
 class RefSearch(BaseModel):
-    """주간 주제 때 공개 코디 페이지를 웹 검색해 ref_looks.md 에 글로 더하는 기준 (2026-10-07)."""
+    """주간 주제 때 쇼핑몰 코디를 모아 data/<계정>/refs.json 에 칸별로 더하는 기준."""
 
-    per_week: int = Field(default=8, ge=1, le=30)  # 한 주에 더할 참고 코디 수
+    per_week: int = Field(default=8, ge=1, le=150)  # 한 주에 더할 참고 코디 수
     keep_weeks: int = Field(default=4, ge=1)  # 자동으로 더한 참고 코디를 남겨 둘 주 수
     queries: list[str] = []  # 웹 검색어 (계절·날씨에 맞는 말을 Claude 가 더한다)
     sources: list[str] = []  # 찾아볼 공개 페이지 종류 (매거진, 브랜드 룩북 …)
@@ -276,7 +276,7 @@ class Looks(BaseModel):
     enabled: bool = False  # false 면 예전처럼 한 벌 + 상품 장
     count: int = Field(default=6, ge=2, le=8)  # 게시물에 넣는 벌 수
     min: int = Field(default=5, ge=2, le=8)  # 고르기에서 빼더라도 이만큼은 남아야 함
-    spare: int = Field(default=2, ge=0, le=3)  # 후보로 더 보내는 벌 수 (고르기에서 바꿔 넣기)
+    spare: int = Field(default=2, ge=0, le=6)  # 후보로 더 보내는 벌 수 (고르기에서 바꿔 넣기)
     # 같은 게시물 안에서 다시 써도 되는 카테고리와 횟수 (가방·신발은 두 벌까지 같이 써도 자연스러움)
     share_categories: list[Category] = ["가방", "신발", "소품"]
     max_share: int = Field(default=2, ge=1, le=4)
@@ -320,21 +320,28 @@ class Looks(BaseModel):
     gradient_height: float = Field(default=0.42, ge=0, le=1)
     gradient_opacity: float = Field(default=0.55, ge=0, le=1)
     # 코디컷 고정 구도 (영어, 지시문 $layout). 모든 벌이 같은 구도다.
-    # 상품 이름 글자 자리(왼쪽 아래)는 비운다.
     # 2026-10-07 사용자: 옷이 오른쪽으로 치우침 → 옷은 가운데, 가방은 왼쪽 허리 높이.
     # 2026-10-12 사용자 참고 코디컷: 소품은 오른쪽 위 가슴 높이,
     # 신발은 오른쪽 아래 하의 옆으로 하나로 고정
     # (짧은 하의일 때의 예외 자리와 '위 구도를 덮어쓴다' 문장은 뺐다)
+    # 2026-10-14 사용자 참고(wyeun_): 옷이 작고 바닥이 많이 보임
+    # → 왼쪽 아래 40%x35% 빈자리 규칙을 빼고 옷이 화면을 크게 채운다.
+    # 상품 글자는 그라데이션 위에 쓰고, 가방·신발만 왼쪽 아래를 피한다.
+    # 2026-10-14 사용자: 보이지 않는 사람이 옷을 입고 누운 것처럼,
+    # 위는 상의·아래는 하의를 실제 몸 비율로. 같은 날 오후: 비율·구도는 wyeun_ 참고
+    # (/mnt/project-files/image-feedback/참고_1014_구도/)처럼. 1·2(예전 게시물,
+    # 10/10 지시문 구도)와 3 모두 좋음 → 긴 하의는 신발 오른쪽 아래 밑단 옆,
+    # 서 있는 전신 비율 (10-14 사용자: 미니 밑단은 가운데, 부츠는 다리 자리), 가방 왼쪽 허리.
     composition: str = (
-        "the clothes form one figure centered horizontally, from the collar near the top edge to"
-        " the hem near the bottom edge; with short bottoms the whole outfit moves down so the empty"
-        " floor above and below is about equal. Jewelry, a watch or other small accessories, only"
-        " if listed, sit in a neat vertical column on the right at chest height. The bag lies on"
-        " the left beside the top at waist height, slightly overlapping the edge of the clothes."
-        " The shoes sit in the lower right beside the lower part of the bottoms, not touching"
-        " them. The lower-left area of the frame (the left 40 percent of the width, the bottom 35"
-        " percent of the height) stays empty floor, because product names are written there"
-        " later."
+        "one large figure, as if an invisible woman stood upright wearing the outfit, the "
+        "same body in every image, centered, in real standing proportions: collar about 8 "
+        "percent below the top edge, waist at about a third of the frame height, knees at "
+        "about two thirds, so a mini skirt ends near the middle. With full-length bottoms "
+        "the shoes sit in the lower right beside the hem, not touching it; with shorter "
+        "bottoms they sit where her lower legs and feet would be, never touching or "
+        "overlapping the hem. Jewelry or a watch (only if listed) sit in a neat column on "
+        "the right at chest height; socks or tights beside the shoes. The bag lies close to"
+        " the left side of the clothes at waist height, slightly overlapping them."
     )
 
 

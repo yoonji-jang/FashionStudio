@@ -1,0 +1,15 @@
+Create one realistic candid street-style photo, like a snapshot people save on Pinterest.
+
+The attached images are, in order, reference sheets of the exact items (each sheet shows shop photos of one item; draw each item once and ignore other clothes or people in those photos):
+The first sheet: gray-brown high-neck tie blouse with a long scarf tie.
+The second sheet: charcoal wool slim mini skirt, flat front.
+The third sheet: exactly one pair of black sheer knee socks.
+The fourth sheet: black knee-high boots.
+The fifth sheet: black woven shoulder bag.
+The last attached image is the scene reference, a photo of a different person.
+
+Recreate the scene reference as a new photo: the same background and place, the same camera angle, framing and crop, the same light and color tone, the same pose, gesture and body position, any held prop (coffee cup, newspaper, phone), and the same kind of hairstyle. But the person is a different, fictional young Korean woman: never copy the reference person's face or identity. Keep her face hidden or turned away at least as much as in the reference (head turned, looking down or away, a cap brim, hair, a hand or a cup in front), so her face is barely visible.
+
+Replace all of her clothes, shoes and bag with exactly the listed items. How they are worn: Worn naturally, as on the model in the product photos. She may wear a plain hat or cap like the one in the scene reference (or another simple one) to help hide her face; apart from that she wears nothing that is not listed: no scarf, sunglasses, socks, jewelry or other bag unless listed. Keep every item identical to its product photos: color, fabric texture, pattern, cut, length, fit, collar, buttons, hardware and shoe style; a mini skirt stays a mini skirt and long boots reach just below the knee. Where the reference crops the body, the items may be cut off by the frame in the same way.
+
+Real camera photo quality, natural skin and fabric. No text, watermark, captions or logos that are not on the products. Vertical 4:5.

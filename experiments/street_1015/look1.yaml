@@ -1,0 +1,38 @@
+# 2026-10-14 사용자 참고 장면 1번 (검정 코트), 모자 허용 지시문으로 처음부터
+title: 10/15 스트리트 모델컷 LOOK1 (참고 1번 장면)
+account: women
+items:
+- category: ''
+  product: zigzag:172026704
+  photos:
+  - 0
+  desc: 플럼 체크 오버핏 셔츠 (plum small-check oversized shirt, classic shirt collar)
+- category: ''
+  product: zigzag:150110018
+  photos:
+  - 0
+  desc: 블랙 울 미니스커트 (black wool slim mini skirt, flat front)
+- category: ''
+  product: zigzag:147005253
+  photos:
+  - 1
+  desc: 블랙 니하이 부츠 (black knee-high boots)
+- category: ''
+  product: zigzag:168564549
+  photos:
+  - 1
+  - 0
+  desc: 블랙 숄더백 (black shoulder bag)
+- category: ''
+  product: zigzag:116318618
+  photos:
+  - 1
+  - 0
+  desc: 미니 하트 목걸이 (thin short necklace with one small heart pendant)
+- category: 장면
+  image: daily-results:2026-10-15-street/scene1.jpg
+  desc: scene reference
+prompt_text: experiments/street_1015/look1.txt
+shots:
+  model:
+    repeats: 1

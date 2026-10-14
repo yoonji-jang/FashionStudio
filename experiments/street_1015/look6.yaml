@@ -1,0 +1,43 @@
+title: 10/15 스트리트 모델컷 LOOK6 (참고 7번 장면)
+account: women
+items:
+- category: ''
+  product: zigzag:149409694
+  photos:
+  - 2
+  - 0
+  desc: 차콜 숏 크롭 울 코트 자켓 (charcoal short cropped wool jacket with small collar)
+- category: ''
+  product: zigzag:167444137
+  photos:
+  - 0
+  - 1
+  desc: 크림 폴라 티셔츠 (cream fitted polo-neck tee)
+- category: ''
+  product: zigzag:149438922
+  photos:
+  - 0
+  desc: 차콜 울 에이라인 미니스커트 (charcoal wool slim A-line mini skirt, flat front)
+- category: ''
+  product: zigzag:141916298
+  photos:
+  - 5
+  desc: 블랙 니삭스 (black ribbed knee socks)
+- category: ''
+  product: zigzag:171985452
+  photos:
+  - 0
+  - 1
+  desc: 블랙 롱 부츠 (black long soft boots)
+- category: ''
+  product: zigzag:164013796
+  photos:
+  - 5
+  desc: 블랙 숄더백 (black shoulder bag)
+- category: 장면
+  image: daily-results:2026-10-15-street/scene7.jpg
+  desc: scene reference
+prompt_text: experiments/street_1015/look6.txt
+shots:
+  model:
+    repeats: 1

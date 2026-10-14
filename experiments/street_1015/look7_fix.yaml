@@ -1,0 +1,36 @@
+title: 10/15 스트리트 모델컷 LOOK7 고치기 (사용자 10/14 19:12)
+account: women
+items:
+- category: 이전
+  image: poc-results:gen-82/look7/nano_banana_pro/model_1.jpg
+  desc: previous photo
+- category: ''
+  product: zigzag:166152644
+  photos:
+  - 1
+  desc: 브라운 타이 블라우스 (gray-brown high-neck tie blouse with a long scarf tie)
+- category: ''
+  product: zigzag:150110018
+  photos:
+  - 0
+  desc: 차콜 울 미니스커트 (charcoal wool slim mini skirt, flat front)
+- category: ''
+  product: zigzag:161559034
+  photos:
+  - 4
+  desc: 블랙 시스루 니삭스 (exactly one pair of black sheer knee socks)
+- category: ''
+  product: zigzag:147005253
+  photos:
+  - 1
+  desc: 블랙 니하이 부츠 (black knee-high boots)
+- category: ''
+  product: zigzag:168305853
+  photos:
+  - 0
+  - 1
+  desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+prompt_text: experiments/street_1015/look7_fix.txt
+shots:
+  model:
+    repeats: 1

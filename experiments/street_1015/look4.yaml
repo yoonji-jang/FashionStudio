@@ -1,0 +1,38 @@
+title: 10/15 스트리트 모델컷 LOOK4 (참고 5번 장면)
+account: women
+items:
+- category: ''
+  product: zigzag:129154792
+  photos:
+  - 3
+  - 1
+  desc: 블랙 니트 베스트 (black knit vest, v-neck)
+- category: ''
+  product: zigzag:168757496
+  photos:
+  - 1
+  - 2
+  desc: 크림 셔츠 (cream soft cotton shirt, round neck, puff sleeves)
+- category: ''
+  product: zigzag:171935783
+  photos:
+  - 0
+  desc: 그레이 슬릿 스커트팬츠 (grey wrap skort, mini length)
+- category: ''
+  product: zigzag:116422044
+  photos:
+  - 3
+  - 2
+  desc: 블랙 롱부츠 (black knee-high boots)
+- category: ''
+  product: zigzag:169872677
+  photos:
+  - 0
+  desc: 블랙 라운드 숄더백 (black small round shoulder bag with ribbon shirring)
+- category: 장면
+  image: daily-results:2026-10-15-street/scene5.jpg
+  desc: scene reference
+prompt_text: experiments/street_1015/look4.txt
+shots:
+  model:
+    repeats: 1

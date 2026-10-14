@@ -1,2 +1,2 @@
-The boots lie on their side, seen in side profile, both toes pointing to the right, the second boot a
-little above and behind the first so they overlap slightly; shafts straight and at their real height.
+Both boots lie on their side in side profile, toes pointing right, as a parallel pair at the same
+angle, overlapping slightly, never crossed; shafts straight and at their real height.

@@ -617,9 +617,12 @@ def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: boo
 
 
 def same_kind_warnings(plan: DailyPlan, profile: Profile, products: dict) -> list[str]:
-    """같은 포인트 옷(스웨이드 자켓 등)이 여러 벌을 다 차지하는지 (profile looks.max_same_kind)."""
+    """같은 포인트 옷(스웨이드 자켓 등)이 여러 벌을 다 차지하는지 (profile looks.max_same_kind).
+
+    아이템 주제 날("롱스커트 코디")은 여섯 벌 모두 그 아이템이어도 된다 (2026-10-13 사용자).
+    """
     limit = profile.looks.max_same_kind
-    if limit is None:
+    if limit is None or plan.theme.type == "아이템":
         return []
     count: dict[tuple[str, str], int] = {}
     for look in plan.looks:

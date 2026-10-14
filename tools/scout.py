@@ -267,7 +267,10 @@ def page_image_urls(
         for url in urls:
             _wait_turn(url)
             try:
-                page.goto(url, wait_until="networkidle", timeout=60000)
+                # networkidle 은 분석 스크립트가 계속 통신하는 쇼핑몰에서 60초를 다 기다리고
+                # 실패한다 (2026-10-13 스탠스트·시엔느 "사진 없음"). 본문이 뜨면 바로 스크롤한다
+                page.goto(url, wait_until="domcontentloaded", timeout=45000)
+                page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
                 for _ in range(max_scrolls):
                     page.mouse.wheel(0, 4000)
                     page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
@@ -275,6 +278,12 @@ def page_image_urls(
                     "(w) => [...document.images].filter(i => i.naturalWidth >= w)"
                     ".map(i => i.currentSrc || i.src)",
                     min_width,
+                )
+                # 아직 안 불린 사진 (cafe24 ec-data-src 등, 2026-10-13 스탠스트·시엔느 "사진 없음")
+                found += page.evaluate(
+                    "() => [...document.images].map(i => i.getAttribute('ec-data-src')"
+                    " || i.getAttribute('data-src') || i.getAttribute('data-original'))"
+                    ".filter(Boolean).map(s => new URL(s, location.href).href)"
                 )
             except Exception as e:  # noqa: BLE001 - 한 페이지 실패로 전체를 멈추지 않음
                 print(f"페이지 실패 ({url}): {e}", file=sys.stderr)
@@ -284,11 +293,114 @@ def page_image_urls(
     return out
 
 
-def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360):
-    """사진 여러 장을 한 장의 확인표로 (원본은 저장하지 않는다)."""
+def page_links(
+    url: str, sites: list[str], limit: int = 200, scrolls: int = 0
+) -> list[tuple[str, str]]:
+    """참고 코디용: 쇼핑몰 페이지의 같은 사이트 링크(메뉴 이름, 주소)를 모은다 (2026-10-13 사용자:
+    첫 화면 한 장이 아니라 베스트·카테고리 메뉴와 상품 페이지까지 들어가 쇼핑몰이 입힌 코디를 보라).
+    페이지 원본은 저장하지 않고 링크 글자와 주소만 돌려준다.
+    이 페이지를 robots.txt 가 막으면 빈 목록."""
+    from playwright.sync_api import sync_playwright
+
+    if not host_allowed(url, sites):
+        return []
+    with client() as c:
+        if not robots_allows(c, url):
+            return []
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(
+            user_agent=USER_AGENT, locale="ko-KR", viewport={"width": 1280, "height": 900}
+        )
+        _wait_turn(url)
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=45000)
+            page.wait_for_timeout(int(MIN_INTERVAL_SEC * 1000))
+            for _ in range(scrolls):  # 상품 목록이 스크롤해야 더 불리는 쇼핑몰
+                page.mouse.wheel(0, 4000)
+                page.wait_for_timeout(1500)
+            found = page.evaluate(
+                "() => [...document.querySelectorAll('a[href]')].map(a => ["
+                "(a.innerText || a.title || '').trim().replace(/\\s+/g, ' ').slice(0, 40), a.href])"
+            )
+        except Exception as e:  # noqa: BLE001 - 실패하면 빈 목록
+            print(f"페이지 실패 ({url}): {e}", file=sys.stderr)
+            found = []
+        browser.close()
+    out: dict[str, str] = {}
+    for text, href in found:
+        href = href.split("#", 1)[0]
+        if href.startswith("http") and host_allowed(href, sites) and href not in out:
+            out[href] = text
+    return [(t, h) for h, t in out.items()][:limit]
+
+
+MENU_WORDS = re.compile(
+    r"best|베스트|new|신상|outer|아우터|top|상의|bottom|하의|skirt|스커트|pants|팬츠|knit|니트|"
+    r"dress|원피스|코디|look|룩|most|인기|weekly",
+    re.IGNORECASE,
+)
+SKIP_WORDS = re.compile(
+    r"login|join|member|cart|order|mypage|board|notice|review|event|faq|qna|privacy|agreement|"
+    r"로그인|회원|장바구니|주문|공지|리뷰|후기|이벤트|문의|약관|개인정보",
+    re.IGNORECASE,
+)
+PRODUCT_LINK = re.compile(r"/product/|detail|goods|product_no=", re.IGNORECASE)
+
+
+def product_key(href: str) -> str:
+    """같은 상품의 다른 주소(카테고리 경로가 붙은 cafe24 주소 등)를 하나로."""
+    m = re.search(r"/product/[^/]*/(\d+)|product_no=(\d+)|/goods/(\d+)", href)
+    return next((g for g in m.groups() if g), href) if m else href.split("?", 1)[0]
+
+
+def crawl(
+    home: str, sites: list[str], out: Path, menus: int = 5, products: int = 15, max_images: int = 16
+) -> list[dict]:
+    """쇼핑몰 하나를 메뉴 → 상품 페이지 순서로 돌며 상품 페이지마다 번호 붙인 확인표를 만든다.
+
+    2026-10-13 사용자: 참고 코디를 한 주 100벌쯤 모으기. Claude 가 메뉴를 하나씩 누르는 대신
+    코드가 돌고, Claude 는 확인표만 본다. robots.txt·허용 사이트는 page_links·ref_sheets 가 지킨다.
+    페이지·사진 원본은 저장하지 않는다."""
+    picked: list[str] = []
+    for text, href in page_links(home, sites):
+        if len(picked) >= menus:
+            break
+        if (
+            SKIP_WORDS.search(text + href)
+            or PRODUCT_LINK.search(href)
+            or href.rstrip("/") == home.rstrip("/")
+        ):
+            continue
+        if MENU_WORDS.search(text) or MENU_WORDS.search(href):
+            picked.append(href)
+    lists = [
+        [h for _, h in page_links(m, sites, limit=400, scrolls=3) if PRODUCT_LINK.search(h)]
+        for m in picked
+    ]
+    seen: set[str] = set()
+    pages: list[str] = []
+    width = max(map(len, lists), default=0)
+    for row in zip(*[lst + [""] * (width - len(lst)) for lst in lists], strict=True):
+        for href in row:  # 메뉴마다 번갈아 (한 메뉴 상품만 몰리지 않게)
+            if href and product_key(href) not in seen and len(pages) < products:
+                seen.add(product_key(href))
+                pages.append(href)
+    report = ref_sheets(pages, sites, out, max_images) if pages else []
+    (out / "crawl.json").parent.mkdir(parents=True, exist_ok=True)
+    (out / "crawl.json").write_text(
+        json.dumps({"home": home, "menus": picked, "pages": pages}, ensure_ascii=False, indent=1),
+        encoding="utf-8",
+    )
+    return report
+
+
+def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360, numbered: bool = False):
+    """사진 여러 장을 한 장의 확인표로 (원본은 저장하지 않는다).
+    numbered 면 칸마다 왼쪽 위에 1부터 번호를 적는다 (refs.json 의 images 순서와 같음)."""
     from io import BytesIO
 
-    from PIL import Image
+    from PIL import Image, ImageDraw
 
     tiles = []
     for data in images:
@@ -303,8 +415,13 @@ def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360):
     rows = (len(tiles) + cols - 1) // cols
     cell_h = max(t.height for t in tiles)
     sheet = Image.new("RGB", (cols * thumb, rows * cell_h), "white")
+    draw = ImageDraw.Draw(sheet)
     for i, t in enumerate(tiles):
-        sheet.paste(t, ((i % cols) * thumb, (i // cols) * cell_h))
+        x, y = (i % cols) * thumb, (i // cols) * cell_h
+        sheet.paste(t, (x, y))
+        if numbered:
+            draw.rectangle((x, y, x + 44, y + 30), fill="black")
+            draw.text((x + 8, y + 6), str(i + 1), fill="white", font_size=20)
     return sheet
 
 
@@ -328,23 +445,45 @@ def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 1
         found = page_image_urls(ok) if ok else {}
         for n, url in enumerate(ok, 1):
             imgs = [u for u in found.get(url, []) if host_allowed(u, sites)][:max_images]
-            data = []
+            data, kept = [], []
             for u in imgs:
                 try:
-                    data.append(fetch_bytes(c, u))
+                    b = fetch_bytes(c, u)
                 except (ImageUnavailable, httpx.HTTPError):
                     continue
-            sheet = contact_sheet(data)
+                if len(b) >= 15000:  # 아이콘·로고처럼 작은 사진은 뺀다
+                    data.append(b)
+                    kept.append(u)
+            sheet = contact_sheet(data, numbered=True)
             if sheet is None:
                 report.append({"url": url, "skipped": "사진 없음"})
                 continue
             path = out / f"sheet_{n}.jpg"
             sheet.save(path, quality=80)
-            report.append({"url": url, "sheet": str(path), "images": len(data)})
+            # 확인표 칸 번호(1부터) 순서의 사진 주소.
+            # 참고 코디에 사진 주소만 남길 때 쓴다 (사진은 저장 안 함)
+            report.append({"url": url, "sheet": str(path), "images": kept})
     (out / "refs.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     return report
+
+
+def ref_photo(url: str, sites: list[str], dest: Path) -> Path:
+    """참고 코디 사진 한 장 받기 (후보 시트 옆에 붙임). 허용한 사이트·robots.txt 가 허용한 주소만.
+    dest 는 out/ 아래 (저장소·결과 브랜치에 올리지 않는 곳)."""
+    # 지그재그 상품 사진(창고 상품의 착용컷)은 상품 창고 사진과 같은 방법으로 받는다
+    zigzag = host_allowed(url, ["zigzag.kr"])
+    if not (zigzag or host_allowed(url, sites)):
+        raise ImageUnavailable(f"허용한 사이트가 아님: {url}")
+    if not dest.exists():
+        with client() as c:
+            if not zigzag and not robots_allows(c, url):
+                raise ImageUnavailable(f"robots.txt 가 허용하지 않음: {url}")
+            data = fetch_bytes(c, normalize_image_url(url) if zigzag else url)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+    return dest
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -361,8 +500,45 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
     r.add_argument("--out", type=Path, required=True)
     r.add_argument("--max-images", type=int, default=12)
+    k = sub.add_parser("links", help="참고 코디: 쇼핑몰 페이지의 메뉴·상품 링크 (원본 저장 안 함)")
+    k.add_argument("--url", required=True)
+    k.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
+    f = sub.add_parser("refphoto", help="참고 코디 사진 한 장 (out/ 에만)")
+    f.add_argument("--url", required=True)
+    f.add_argument("--account", required=True, help="profile themes.ref_search.scout_sites 만 연다")
+    f.add_argument("--out", type=Path, required=True)
+    w = sub.add_parser(
+        "crawl", help="참고 코디: 쇼핑몰 메뉴 → 상품 페이지마다 확인표 (원본 저장 안 함)"
+    )
+    w.add_argument("--site", required=True, help="profile scout_sites 의 쇼핑몰 (예 woonan.co.kr)")
+    w.add_argument("--account", required=True)
+    w.add_argument("--out", type=Path, required=True)
+    w.add_argument("--menus", type=int, default=5)
+    w.add_argument("--products", type=int, default=15)
     args = ap.parse_args(argv)
 
+    if args.cmd == "crawl":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        sites = rs.scout_sites if rs else []
+        rows = crawl(f"https://{args.site}/", sites, args.out, args.menus, args.products)
+        made = [r for r in rows if r.get("sheet")]
+        print(f"{args.site}: 상품 페이지 {len(rows)}곳, 확인표 {len(made)}장")
+        return 0
+    if args.cmd == "refphoto":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        print(ref_photo(args.url, rs.scout_sites if rs else [], args.out))
+        return 0
+    if args.cmd == "links":
+        from core.profile import load_profile
+
+        rs = load_profile(args.account).themes.ref_search
+        for text, href in page_links(args.url, rs.scout_sites if rs else []):
+            print(f"{text}\t{href}")
+        return 0
     if args.cmd == "refs":
         from core.profile import load_profile
 

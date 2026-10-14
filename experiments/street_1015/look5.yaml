@@ -1,0 +1,46 @@
+title: 10/15 스트리트 모델컷 LOOK5 (참고 6번 장면)
+account: women
+items:
+- category: ''
+  product: zigzag:171701046
+  photos:
+  - 0
+  desc: 블랙 오버핏 브이넥 울 니트 (black oversized relaxed V-neck wool knit, dropped shoulders,
+    roomy enough to layer a shirt underneath)
+- category: ''
+  product: zigzag:171827820
+  photos:
+  - 1
+  - 3
+  desc: 블랙 핀스트라이프 셔츠 (black pinstripe shirt)
+- category: ''
+  product: zigzag:137890667
+  photos:
+  - 0
+  - 4
+  desc: 블랙 쉬폰 슬릿 미니스커트 (black slit mini skirt with sheer chiffon underlayer hem)
+- category: ''
+  product: zigzag:114193909
+  photos:
+  - 5
+  - 0
+  desc: 블랙 라운드토 페니로퍼 (black round-toe penny loafers)
+- category: ''
+  product: zigzag:168305853
+  photos:
+  - 0
+  - 1
+  desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+- category: ''
+  product: zigzag:169325375
+  photos:
+  - 5
+  - 1
+  desc: 작은 물방울 귀걸이 (exactly one pair (two earrings) of small drop earrings)
+- category: 장면
+  image: daily-results:2026-10-15-street/scene6.jpg
+  desc: scene reference
+prompt_text: experiments/street_1015/look5.txt
+shots:
+  model:
+    repeats: 1

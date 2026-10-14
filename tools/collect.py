@@ -222,6 +222,12 @@ def collect(
     for p in unfit:
         stock.pop(p.id)
     report.unfit = len(unfit)
+    # 참고 코디 칸의 검색어로 모았거나 칸에 맞춰진 상품은 창고 한도와 상관없이 남긴다 (2026-10-13)
+    from tools import refs as refs_tool
+
+    pinned = refs_tool.ref_queries(store.refs())
+    # 이미 참고 코디 칸에 맞춰진 상품도 남긴다 (다른 검색어로 모였어도)
+    matched = {pid for r in store.refs() for ids in r.matches.values() for pid in ids}
     kept: list[Product] = []
     for category in dict.fromkeys(p.category for p in stock.values()):
         items = sorted(
@@ -229,9 +235,13 @@ def collect(
             key=lambda p: quality(p, profile),
             reverse=True,
         )
-        kept += items[: cfg.max_per_category]
-        report.trimmed += max(0, len(items) - cfg.max_per_category)
-        report.total[category] = min(len(items), cfg.max_per_category)
+        keep = [p for p in items if p.query in pinned or p.id in matched]
+        keep_ids = {p.id for p in keep}
+        rest = [p for p in items if p.id not in keep_ids]
+        keep += rest[: max(0, cfg.max_per_category - len(keep))]
+        kept += keep
+        report.trimmed += len(items) - len(keep)
+        report.total[category] = len(keep)
     kept_ids = {p.id for p in kept}
     report.added = [p for p in report.added if p.id in kept_ids]
     store.save_products(kept)
@@ -364,21 +374,38 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--per-query", type=int, help="검색어마다 확인할 상품 수 (프로필 값 대신)")
     ap.add_argument("--no-recheck", action="store_true", help="창고 상품 다시 확인 안 함")
     ap.add_argument("--report", type=Path, help="보고서 폴더")
+    ap.add_argument(
+        "--from-refs",
+        action="store_true",
+        help="참고 코디(refs.json)에서 창고에 없는 칸의 검색어로 모으고 칸 맞추기를 다시 함",
+    )
     args = ap.parse_args(argv)
 
+    from tools import refs as refs_tool
+
     profile = load_profile(args.account)
+    store = Store(args.account)
     plan: dict = dict(profile.product_source.queries)
-    if args.category:
+    if args.from_refs:
+        store.save_refs(refs_tool.match(store.refs(), store.products()))
+        plan = refs_tool.missing_queries(store.refs())
+        print(f"참고 코디에서 찾을 검색어 {sum(map(len, plan.values()))}개")
+        if args.per_query is None:
+            args.per_query = 8  # 칸마다 고를 거리가 넉넉하도록 (사용자 2026-10-13 "넉넉하게")
+    elif args.category:
         plan = {args.category: args.query or plan.get(args.category, [])}
     elif args.query:
         ap.error("--query 는 --category 와 함께 써 주세요")
     if args.max_queries:
         plan = {k: v[: args.max_queries] for k, v in plan.items()}
 
-    store = Store(args.account)
     report = collect(
         args.account, plan, per_query=args.per_query, recheck=not args.no_recheck, store=store
     )
+    if args.from_refs:
+        refs = refs_tool.match(store.refs(), store.products())
+        store.save_refs(refs)
+        print(f"창고로 맞출 수 있는 참고 코디 {sum(r.ready for r in refs)}/{len(refs)}벌")
     print(
         f"새 상품 {len(report.added)}, 다시 확인 {report.refreshed}, "
         f"뺀 상품 {len(report.dropped)}, 창고 {sum(report.total.values())}"

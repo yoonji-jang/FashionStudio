@@ -40,6 +40,31 @@ class Product(BaseModel):
     checked_at: date | None = None  # 판매 상태를 마지막으로 확인한 날
 
 
+class RefSlot(BaseModel):
+    """참고 코디 한 칸 (2026-10-13 사용자: 참고 코디를 모은 뒤 그 옷을 창고에 한꺼번에 수집)."""
+
+    category: Category
+    color: str  # "차콜"
+    desc: str  # "차콜 울 모크넥 니트 베스트, 짧은 기장"
+    query: str  # 지그재그 검색어 "모크넥 니트베스트" (색은 빼고 종류만)
+
+
+class RefLook(BaseModel):
+    """참고 코디 한 벌. data/<계정>/refs.json. 쇼핑몰 착용컷을 칸별로 옮긴 것 (사진은 주소만)."""
+
+    n: int = Field(ge=1)
+    name: str
+    source: str  # "쇼핑몰 코디 (우난)"
+    photo: str | None = None  # 착용컷 사진 주소 (profile ref_search.scout_sites 만)
+    added: date
+    tags: list[str] = []  # 어울리는 주제 (출근룩, 데이트룩, 하객룩, 롱스커트, 올블랙 …)
+    note: str = ""  # 한 끗·실루엣·입는 방식
+    slots: list[RefSlot] = Field(min_length=2)
+    # tools.refs match 가 채움: 칸 번호(0부터, 문자열) → 창고에서 맞을 만한 상품 id (좋은 순)
+    matches: dict[str, list[str]] = {}
+    ready: bool = False  # 꼭 맞춰야 하는 칸(아우터·상의·하의·원피스·신발)이 모두 창고에 있음
+
+
 class Slot(BaseModel):
     category: Category
     desc: str  # "블랙 크롭 레더자켓"
@@ -114,6 +139,11 @@ class Look(BaseModel):
     edit_request: str | None = None
     # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
     pose: str | None = None
+    # 따라 한 기준 코디 (2026-10-13 사용자: 참고한 코디 사진도 같이 보내 줘).
+    # ref 는 refs.json 번호, ref_photo 는 그 코디 사진 주소 (ref_search.scout_sites 만).
+    # 후보 시트에 나란히 붙인다
+    ref: str | None = None
+    ref_photo: str | None = None
 
 
 class DailyPlan(BaseModel):
@@ -131,6 +161,8 @@ class DailyPlan(BaseModel):
     styling: str | None = None
     cover: str | None = None  # 이미 만든 코디컷 (있으면 코디컷을 새로 만들지 않음)
     edit_from: str | None = None  # /fix 로 고쳐 그릴 지난 코디컷 (Look.edit_from 과 같음)
+    # 따라 한 기준 코디 사진 주소 (Look.ref_photo). 코디컷을 그릴 때 입는 모양 참고로 같이 보낸다
+    ref_photo: str | None = None
     edit_request: str | None = None
     # 16단계: flatlay = 펼친 코디컷, model = 옷을 입은 얼굴 없는 AI 모델컷
     # (전날 게시물 벌을 다시 그림, tools.model_post)
@@ -175,6 +207,7 @@ class DailyPlan(BaseModel):
                 "edit_from": look.edit_from,
                 "edit_request": look.edit_request,
                 "pose": look.pose,
+                "ref_photo": look.ref_photo,
             }
         )
 
@@ -401,6 +434,17 @@ REVIEW_FAULTS: dict[str, str] = {
         "부츠: 옆모습 같은 방향이 아님)"
     ),
     "tuck_messy": "넣어 입은 허리가 우글우글 뭉치거나 부풀었고, 또는 밑단·자락이 밖으로 나옴",
+    # 2026-10-13~14 사용자 (참고 wyeun_ 비교, /fix):
+    # 배바지, 치마가 너무 내려감, 재질 다름, 숫자 그림, 납작함
+    "waist_off": (
+        "하의 허리 높이가 착용컷과 다름 (배바지처럼 가슴 쪽으로 올라감, 또는 너무 내려감). "
+        "상의 몸통이 폭보다 짧게 눌린 것도 해당"
+    ),
+    "material_differs": (
+        "소재·결이 원본과 다름 (니트가 면처럼, 가죽 윤기 없음, 울이 매끈한 천처럼 등)"
+    ),
+    "text_drawn": "상품에 없는 글자·숫자가 그림 안에 있음",
+    "paper_flat": "옷이 종이처럼 납작함 (소매·바지 통·몸판에 두께와 입체감이 없음)",
 }
 
 

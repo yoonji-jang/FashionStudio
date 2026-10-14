@@ -70,6 +70,10 @@ def item_size(it: PlanItem, product: Product, cfg: dict) -> str:
         cm = plan_tool.item_length(it, product, layout) or layout["slots"][cat]["cm"]
         where = "from waist to hem" if cat == "하의" else "from shoulder to hem"
         return f"about {cm:g} cm long {where}"
+    # 스카프를 목걸이 칸에 넣으면 목걸이 크기가 붙어 체인처럼 그려질 수 있다 (2026-10-14 run246)
+    text = f"{product.name} {it.desc}".lower()
+    if "스카프" in text or "scarf" in text:
+        return sizes.get("스카프", "")
     return sizes.get(it.slot or "", "") or sizes.get(cat, "")
 
 
@@ -102,7 +106,7 @@ def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Prof
 
     def label(i: int) -> str:
         cat = generate.CATEGORY_EN.get(products[plan.items[i].product].category, "item")
-        return f"{cat} in image {i + 1}"
+        return f"{cat} in the {sheet_name(i + 1)}"
 
     tops = [i for i, it in enumerate(plan.items) if products[it.product].category == "상의"]
     inner = [i for i in tops if plan.items[i].wear_with == "상의"]
@@ -115,13 +119,22 @@ def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Prof
     ]
 
 
+ORDINALS = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+
+
+def sheet_name(i: int) -> str:
+    """참고판 이름. 2026-10-13: "Image 1" 처럼 숫자로 부르면 이미지 AI 가 그림에 숫자를 그려 넣어서
+    낱말(first sheet)로 부른다."""
+    return f"{ORDINALS[i - 1]} sheet" if 0 < i <= len(ORDINALS) else f"sheet {i}"
+
+
 def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1) -> str:
     lines = []
     for i, it in enumerate(plan.items, start):
         p = products[it.product]
         cat = generate.CATEGORY_EN.get(p.category, "item")
         size = item_size(it, p, cfg)
-        line = f"Image {i}: the {cat}, {english(it.desc)}."
+        line = f"The {sheet_name(i)}: the {cat}, {english(it.desc)}."
         lines.append(line + (f" Real size: {size}." if size else ""))
     return "\n".join(lines)
 
@@ -202,9 +215,15 @@ def prompt_parts(
 
 
 def reference_panels(
-    plan: DailyPlan, products: dict[str, Product], work: Path, cfg: dict, cache: Path
+    plan: DailyPlan,
+    products: dict[str, Product],
+    work: Path,
+    cfg: dict,
+    cache: Path,
+    allow_faces: bool = False,
 ) -> list[bytes]:
-    """상품마다 참고판 한 장. 쇼핑몰 사진은 cache(결과 폴더 밖)에 받고, 모델 얼굴은 잘라 낸다."""
+    """상품마다 참고판 한 장. 쇼핑몰 사진은 cache(결과 폴더 밖)에 받고, 모델 얼굴은 잘라 낸다.
+    allow_faces 면 얼굴을 못 잘라 낸 사진도 그대로 쓴다 (지시문 공유에서만)."""
     panels = []
     (work / "originals").mkdir(parents=True, exist_ok=True)
     for i, it in enumerate(plan.items, 1):
@@ -214,19 +233,70 @@ def reference_panels(
         for k in ref_indexes(it):
             path = feed.fetch_photo(str(p.image_urls[k]), cache / f"{pid}_{k}.jpg")
             img, ok = faces.hide_faces(Image.open(path).convert("RGB"))
-            if not ok:
+            if not ok and allow_faces:
+                img = Image.open(path).convert("RGB")
+            elif not ok:
                 print(f"{it.product} #{k}: 얼굴을 잘라 낼 수 없어 뺌", file=sys.stderr)
                 continue
             buf = io.BytesIO()
             img.save(buf, "JPEG", quality=92)
             shots.append(buf.getvalue())
         if not shots:
-            raise ValueError(f"{it.product} ({it.name}): 얼굴 없이 참고로 쓸 사진이 없습니다")
+            # 고른 사진이 모두 얼굴을 못 잘라 내면 원본을 쓴다 (10-14 사용자: 얼굴 사진 괜찮음)
+            k = ref_indexes(it)[0]
+            print(f"{it.product} #{k}: 얼굴 없는 사진이 없어 원본을 씀", file=sys.stderr)
+            buf = io.BytesIO()
+            Image.open(cache / f"{pid}_{k}.jpg").convert("RGB").save(buf, "JPEG", quality=92)
+            shots.append(buf.getvalue())
         panel = generate.reference_panel(shots, cfg.get("panel_max_px", 1536))
         cat = generate.CATEGORY_EN.get(p.category, "item")
         (work / "originals" / f"{i:02d}_{cat}.jpg").write_bytes(panel)
         panels.append(panel)
     return panels
+
+
+# 2026-10-14 사용자: "모델이 입은 이미지 핏 그대로 바닥에 펼쳐지면 좋겠어"
+# (스카프 늘어뜨림, 셔츠 윗단추 풂). 따라 한 기준 코디 사진을 마지막 그림으로 보내
+# 입는 모양만 따르게 한다 (배경·포즈·다른 옷은 따르지 않음)
+# 2026-10-14 사용자: "코디 이미지에 옷만 지그재그 옷으로 대체하는 느낌으로" →
+# 기준 코디 사진을 그대로 다시 만들되 옷만 상품 장의 것으로 바꾼다.
+# 넣어 입은 정도·삐져나온 정도까지, 위 일반 규칙보다 사진이 앞선다.
+WORN_REF = (
+    "The last attached image is the reference outfit photo. Recreate that exact outfit as"
+    " this flat lay, with each piece swapped for the matching item from the sheets, as if"
+    " the model's clothes were replaced one by one: keep exactly how each piece is worn"
+    " there, how much of a top is tucked in and how much hangs out, which shirt tails,"
+    " hems, cuffs and collars peek out from under other layers and by how much, how far a"
+    " shirt or cardigan is unbuttoned and how its collar falls open, how the sleeves sit,"
+    " how open an outer is, how a scarf hangs (never knotted unless knotted there), and"
+    " the shape every top and bottom has on her body. Where this photo differs from the"
+    " general wearing rules above, follow the photo. Take colors and details only from the"
+    " item sheets, and never copy that photo's background or pose. Draw nothing that is"
+    " not in the item sheets, even if the model wears it (tights, socks, jewelry, belts)."
+)
+
+
+def worn_ref_panel(plan: DailyPlan, profile: Profile, cache: Path) -> bytes | None:
+    """기준 코디 사진 (얼굴은 가림). 받지 못하면 없이 그린다."""
+    if not plan.ref_photo or plan.shot == "model":
+        return None
+    from tools import scout
+
+    rs = profile.themes.ref_search
+    name = re.sub(r"[^0-9A-Za-z]+", "_", plan.ref_photo)[-80:]
+    try:
+        path = scout.ref_photo(plan.ref_photo, rs.scout_sites if rs else [], cache / f"ref_{name}")
+        img, ok = faces.hide_faces(Image.open(path).convert("RGB"))
+    except Exception as e:  # noqa: BLE001 - 참고 사진 없이도 그릴 수 있다
+        print(f"기준 코디 사진을 받지 못함: {plan.ref_photo} ({e})", file=sys.stderr)
+        return None
+    if not ok:
+        print("기준 코디 사진의 얼굴을 가릴 수 없어 뺌", file=sys.stderr)
+        return None
+    img.thumbnail((1536, 1536))
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=92)
+    return buf.getvalue()
 
 
 def client_for(cfg: dict, fake: bool) -> generate.Client:
@@ -266,6 +336,12 @@ def make_candidates(
         prompt = edit_prompt(plan, products, cfg)
     else:
         prompt = build_prompt(plan, products, profile, cfg)
+        worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)
+        if worn:
+            (work / "originals").mkdir(parents=True, exist_ok=True)
+            (work / "originals" / "worn_ref.jpg").write_bytes(worn)
+            panels = [*panels, worn]
+            prompt = f"{prompt.rstrip()}\n{WORN_REF}\n"
     (work / "prompt.txt").write_text(prompt, encoding="utf-8")
     client = client or client_for(cfg, fake)
 

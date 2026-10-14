@@ -6,10 +6,11 @@ language: ko
 audience:
   gender: women
   age_range: [20, 34]
-  description: 출근과 주말을 오가는 20~30대 여성. 기본템만 입기는 심심해서 핀터레스트·패션 인플루언서처럼 센스 있게 꾸민 듯한 데일리룩(꾸안꾸)을 찾음
+  description: 출근, 주말, 데이트, 결혼식 하객까지 상황마다 입을 옷을 찾는 20~30대 여성. 기본템만 입기는 심심해서 쇼핑몰 룩북·패션 인플루언서처럼 잘 어울리게 맞춘 코디(꾸안꾸 데일리부터 포인트 있는 코디까지)를 저장해 따라 입음
 
 style:
-  keywords: [꾸안꾸 데일리룩, 캐주얼 시크, 레이어드, 실루엣 대비, 컬러 포인트, 소재 믹스]  # 코디 기준: styling.md (21단계)
+  # 2026-10-13 사용자: 꾸안꾸 데일리는 여러 주제 중 하나. 상황·아이템 주제도 쓴다. 코디 기준: styling.md
+  keywords: [꾸안꾸 데일리룩, 출근룩, 데이트룩, 하객룩, 주말 나들이룩, 아이템 코디(롱스커트·가죽자켓 등), 캐주얼 시크, 레이어드, 실루엣 대비]
   palette: [블랙, 차콜, 그레이 멜란지, 아이보리, 베이지, 네이비, 버건디, 플럼, 브라운, 카키, 올리브, 포레스트 그린, 버터옐로, 더스티 핑크, 애쉬 블루, 하늘색, 퍼플, 레드]
   avoid: [과한 로고, 형광색, 코스튬 느낌]
   # 이름에 있으면 코디 포인트 상품으로 보고 앞으로 (소재·패턴·디테일·소품)
@@ -32,9 +33,8 @@ style:
   outer_only_words: [래글런, 나그랑]   # 위에 아우터·가디건을 입히지 않는 상의
   # 이너(wear_with: 상의)로 쓰지 않는 말. 세트 상품은 사진에 가디건·티가 같이 나와 그림에도 섞임 (2026-10-07)
   inner_avoid_words: [세트, set, 셔링, 리본, 프릴, 배색, 스트라이프, 단가라, 도트, 프린팅, 레터링, 자수]
-  casual_words: [맨투맨, 스웨트, 래글런, 나그랑, 조거, 후드, 트레이닝, 볼캡]
-  dressy_words: [새틴, 실크, 핀스트라이프, 트위드, 정장]
-  max_colors: 3        # 한 벌(소품 빼고, 가방·신발 포함)의 색 계열 수
+  # 색 계열 수(max_colors)·재질 분위기(casual_words/dressy_words) 경고는 뺐다 (2026-10-13 사용자: 색·재질 제한 없이,
+  # 어두운 옷만 입는 날도 있게. 대신 styling.md 추천 색 조합을 참고). color_families 는 색 읽기에만 남김
   color_families:
     블랙: [블랙, 검정]
     화이트: [화이트, 아이보리, 크림, 오프화이트, 흰]
@@ -80,14 +80,16 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
   weather: {name: 서울, lat: 37.57, lon: 126.98}  # 날씨 예보를 볼 곳 (null 이면 안 봄)
   # 주간 주제 때 공개 코디 페이지를 웹 검색해 accounts/women/ref_looks.md 에 글로 더한다 (2026-10-07 사용자)
   ref_search:
-    per_week: 8
+    per_week: 100     # 따라 입기 기준 코디로 쓰니 넉넉히 (2026-10-13 사용자: 한 주 100벌쯤, 그 옷을 창고에 함께 수집)
     keep_weeks: 4
     queries: [가을 데일리룩 코디, 여자 캐주얼 시크 코디, 레이어드 코디 추천, 꾸안꾸 코디 매거진, 룩북 가을 여성]
     sources: [패션 매거진 코디 기사, 브랜드 룩북, 무신사·29CM·W컨셉 코디·스냅 페이지, 패션 블로그]
     avoid_sites: [instagram.com, pinterest.com, threads.net, facebook.com, tiktok.com]
     # 사진만 있는 쇼핑몰 코디 페이지를 tools.scout refs 로 볼 사이트. 비움 (2026-10-07):
-    # 29CM 은 robots.txt 는 허용이지만 GitHub Actions 요청을 서버가 거절해서 뺐다. 무신사·29CM 은 웹 검색 글로만 참고
-    scout_sites: []
+    # 29CM 은 robots.txt 는 허용이지만 GitHub Actions 요청을 서버가 거절해서 뺐다. 무신사·29CM 은 웹 검색 글로만 참고.
+    # 2026-10-13 사용자가 고른 쇼핑몰 + 후보. 첫 화면만이 아니라 메뉴·상품 페이지까지 본다 (tools.scout links).
+    # robots.txt 막힘(COS·에잇세컨즈·W컨셉)은 뺐다
+    scout_sites: [woonan.co.kr, the-ore.kr, u-ur.kr, vivnluv.co.kr, stanst.kr, aisel.me, lowclassic.com, sienne.co.kr, kolonmall.com]
 
 product_source:
   name: zigzag
@@ -244,7 +246,7 @@ review:
 # 후보는 count + spare 벌을 텔레그램으로 보내고, 그대로 두면 앞의 count 벌, "4번 빼고" 면 예비 벌이 채움
 looks:
   enabled: true
-  count: 6           # 게시물에 넣는 벌 수 (표지 1 + 벌 6 + 댓글 안내 1 = 8장)
+  count: 6           # 표지 1 + 벌 6 + 댓글 안내 1 = 8장
   min: 5             # 직접 고를 때 최소 벌 수
   spare: 2           # 예비로 더 보내는 벌 수 (이미지 비용 없음, 고른 벌만 그림)
   share_categories: [가방, 신발, 소품]  # 이 카테고리는 같은 상품을 max_share 벌까지 같이 써도 됨
@@ -283,12 +285,16 @@ outfit_image:
   prompt: outfit_generate    # prompts/outfit_generate.md
   # 모던한 명품샵 느낌의 쿨그레이 콘크리트 (2026-09-30 사용자가 4안 선택. 아이보리·베이지는 흔함)
   scene: >-
-    smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
-    flagship store; soft directional daylight from a large window at the upper left, a little
-    low, so every garment casts a soft shadow along its lower right edge on the floor and its folds
-    show gentle light and shade; cool neutral tone with no warm cast
-  # 2026-10-07 사용자: 여전히 납작함 → 고르게 퍼진 빛(even daylight)은 그림자가 없어 볼륨이 안 보여서
-  # 옆에서 낮게 드는 창빛으로 옷 가장자리 그림자와 주름 명암을 만든다 (바닥은 그대로)
+    smooth pale cool-grey polished concrete floor with subtle mottling; soft directional daylight
+    from a large window at the upper left, so each garment casts a soft shadow at its lower right
+    and its folds show gentle shading; cool neutral tone with no warm cast.
+    It looks like a real photo from a minimal fashion styling account: crisp and sharp, true-to-life
+    fabrics, clean neat shapes and calm empty floor
+  # 2026-10-14 오후 사용자: 배경은 예전 게시물(회색 콘크리트)로 통일 → 2026-09-30 장면으로 되돌림, 리넨은 뺌.
+  # 2026-10-07 사용자: 여전히 납작함 → 옆에서 낮게 드는 창빛을 썼으나, 2026-10-14 사용자 참고(wyeun_)처럼
+  # 따뜻한 회갈색 카펫 + 나무 바닥, 고르게 퍼진 부드러운 빛으로 바꿈 (창빛 줄기가 생활 사진처럼 보이고 검정 옷이 칙칙함).
+  # 입체감은 빛이 아니라 지시문의 '입은 모양 그대로 눕힌' 문장이 맡는다.
+  # 2026-10-14 사용자: 예시 배경을 그대로 따라 하지 말고 나만의 배경 → 아이보리 리넨 천 (카펫·나무·커튼 뺌)
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
   # 상의는 기본으로 넣어 입어 허리선을 높게 (2026-10-02 사용자: 바지·치마가 짧고 작아 보임)
   # 넣어 입는 높이는 모델 착용컷의 실제 허리 (2026-10-12 사용자: 너무 올리면 배바지처럼 보임)
@@ -298,7 +304,7 @@ outfit_image:
     little at the waist; any belt hangs loose at the sides. The top's sleeves are inside the outer
     sleeves, with the top's cuffs peeking out slightly at the outer cuffs. The top's hem sits over
     the waistband of the bottoms only if the styling says to wear it out; otherwise it is tucked in
-    all the way around so the waistband shows at the natural waist, as on the model.
+    all the way around so the waistband shows at the height where it sits on the model.
 
 # 모델컷 게시물 (16단계, 2026-10-02 사용자. 2026-10-07 부터 쉬는 중: schedule.post_days 에 model 날이 없음): model 날은 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
 # 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.
