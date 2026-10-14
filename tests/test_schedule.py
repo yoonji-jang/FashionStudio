@@ -547,6 +547,7 @@ def test_claude_workflows_record_usage_limit():
 
 
 def test_empty_schedule_keeps_workflow_valid():
-    """자동 일정을 모두 끄면 schedule: 아래가 비어 워크플로가 깨진다 (2026-10-14) → 돌지 않는 줄 하나."""
+    """자동 일정을 모두 끄면 schedule: 아래가 비어 워크플로가 깨진다 (2026-10-14).
+    돌지 않는 줄을 하나 둔다."""
     block = schedule.render_block({})
     assert f'- cron: "{schedule.NEVER}"' in block
