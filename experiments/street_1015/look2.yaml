@@ -1,0 +1,40 @@
+title: 10/15 스트리트 모델컷 LOOK2 (참고 2번 장면)
+account: women
+items:
+- category: ''
+  product: zigzag:149398662
+  photos:
+  - 1
+  - 3
+  desc: 아이보리 노카라 숏 울 자켓 (ivory collarless round-neck short wool jacket)
+- category: ''
+  product: zigzag:120773723
+  photos:
+  - 0
+  - 2
+  desc: 아이보리 스트라이프 셔츠 (ivory and beige fine-striped shirt)
+- category: ''
+  product: zigzag:167025790
+  photos:
+  - 0
+  - 1
+  desc: 브라운 스웨이드 미니스커트 (brown suede mini skirt)
+- category: ''
+  product: zigzag:116422044
+  photos:
+  - 3
+  - 2
+  desc: 블랙 롱부츠 (black knee-high boots)
+- category: ''
+  product: zigzag:168564549
+  photos:
+  - 1
+  - 0
+  desc: 블랙 숄더백 (black shoulder bag)
+- category: 장면
+  image: daily-results:2026-10-15-street/scene2.jpg
+  desc: scene reference
+prompt_text: experiments/street_1015/look2.txt
+shots:
+  model:
+    repeats: 1

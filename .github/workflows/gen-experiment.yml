@@ -54,10 +54,15 @@ jobs:
           [[ "$COMMIT_MSG" =~ $re_p ]] && SPEC="${BASH_REMATCH[1]}"
           [[ "$COMMIT_MSG" =~ $re_m ]] && MODELS="${BASH_REMATCH[1]}"
           [[ "$COMMIT_MSG" =~ $re_s ]] && SHOTS="${BASH_REMATCH[1]}"
-          args=(--spec "$SPEC" --out "$OUT")
-          [ -n "$MODELS" ] && args+=(--models $MODELS)
-          [ -n "$SHOTS" ] && args+=(--shots $SHOTS)
-          uv run python -m tools.generate "${args[@]}"
+          # [spec:a.yaml b.yaml] 처럼 여러 개면 차례로 돌려 OUT/<이름>/ 에 둔다 (2026-10-14)
+          read -ra specs <<<"$SPEC"
+          for s in "${specs[@]}"; do
+            out="$OUT"; [ "${#specs[@]}" -gt 1 ] && out="$OUT/$(basename "$s" .yaml)"
+            args=(--spec "$s" --out "$out")
+            [ -n "$MODELS" ] && args+=(--models $MODELS)
+            [ -n "$SHOTS" ] && args+=(--shots $SHOTS)
+            uv run python -m tools.generate "${args[@]}"
+          done
 
       - name: 요약 표시
         if: always()
