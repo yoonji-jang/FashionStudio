@@ -25,25 +25,47 @@ from core.store import Store
 from tools import generate, outfit_gen
 
 
-def build(results: Path, account: str, out: Path) -> list[tuple[int, list[Path], Path]]:
-    """벌마다 (번호, 참고판 파일들, 지시문 파일)."""
+def _plans(results: Path) -> list[tuple[int, DailyPlan]]:
+    """결과 폴더의 벌 기획들.
+
+    그린 회차면 looks/<번호>/plan.yaml, 후보만 있는 회차면 picks/p1.yaml 의 벌들.
+    """
+    paths = sorted((results / "looks").glob("*/plan.yaml"), key=lambda p: int(p.parent.name))
+    if paths:
+        return [
+            (
+                int(p.parent.name),
+                DailyPlan.model_validate(yaml.safe_load(p.read_text(encoding="utf-8"))),
+            )
+            for p in paths
+        ]
+    picks = results / "picks" / "p1.yaml"
+    if not picks.exists():
+        return []
+    plan = DailyPlan.model_validate(yaml.safe_load(picks.read_text(encoding="utf-8")))
+    return [(i + 1, plan.look_plan(i)) for i in range(len(plan.looks))]
+
+
+def build(
+    results: Path, account: str, out: Path, only: int | None = None, start: int = 1
+) -> list[tuple[int, list[Path], Path]]:
+    """벌마다 (번호, 참고판 파일들, 지시문 파일). only 면 그 벌만, 번호는 start 부터 다시 매긴다."""
     profile = load_profile(account)
     store = Store(account)
     products = {p.id: p for p in store.products()}
     cfg = generate.load_config()
     cache = generate.CACHE_DIR / account
     made = []
-    for plan_path in sorted(
-        (results / "looks").glob("*/plan.yaml"), key=lambda p: int(p.parent.name)
-    ):
-        n = int(plan_path.parent.name)
-        plan = DailyPlan.model_validate(yaml.safe_load(plan_path.read_text(encoding="utf-8")))
+    n = start
+    for src_n, plan in _plans(results):
+        if only is not None and src_n != only:
+            continue
         work = out / f"look{n}"
         work.mkdir(parents=True, exist_ok=True)
         try:
             panels = outfit_gen.reference_panels(plan, products, work, cfg, cache)
         except Exception as e:  # noqa: BLE001 - 한 벌이 안 돼도 나머지는 보낸다
-            print(f"LOOK {n}: 참고판을 만들지 못함 ({e})", file=sys.stderr)
+            print(f"LOOK {src_n}: 참고판을 만들지 못함 ({e})", file=sys.stderr)
             continue
         worn = outfit_gen.worn_ref_panel(plan, profile, cache)
         text = outfit_gen.build_prompt(plan, products, profile, cfg)
@@ -57,6 +79,7 @@ def build(results: Path, account: str, out: Path) -> list[tuple[int, list[Path],
         prompt = work / f"LOOK{n}_prompt.txt"
         prompt.write_text(text, encoding="utf-8")
         made.append((n, files, prompt))
+        n += 1
     return made
 
 
@@ -64,12 +87,25 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--account", required=True)
     ap.add_argument(
-        "--results", type=Path, required=True, help="결과 폴더 (looks/<번호>/plan.yaml)"
+        "--results",
+        required=True,
+        help="결과 폴더 (looks/<번호>/plan.yaml 또는 picks/p1.yaml). 여러 개는 + 로 잇고,"
+        " 한 벌만이면 <폴더>/<번호> (예 2026-10-15-run249+2026-10-14-run247/5)",
     )
+    ap.add_argument("--root", type=Path, default=Path("."), help="결과 폴더들이 있는 곳")
     ap.add_argument("--out", type=Path, default=Path("out/prompt_share"))
     ap.add_argument("--send", action="store_true", help="텔레그램으로 보냄 (워크플로만)")
     args = ap.parse_args(argv)
-    made = build(args.results, args.account, args.out)
+    made: list[tuple[int, list[Path], Path]] = []
+    for part in args.results.split("+"):
+        name, _, look = part.partition("/")
+        made += build(
+            args.root / name,
+            args.account,
+            args.out,
+            only=int(look) if look else None,
+            start=len(made) + 1,
+        )
     print(f"{len(made)}벌 준비")
     if not args.send:
         return 0
