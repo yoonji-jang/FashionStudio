@@ -1,0 +1,56 @@
+account: women
+date: '2026-10-15'
+items: []
+looks:
+- items:
+  - product: zigzag:168193209
+    name: '[어텀🍂][ordinaire] 스너그'
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:168588081
+    name: '[5 Color][숄 SET]하모니 '
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:165542109
+    name: '[유튜버 pick!][DEMOOR] '
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:171457529
+    name: '[44-120] 티오빈 베이직 컬러 '
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  reason: probe
+- items:
+  - product: zigzag:131379280
+    name: '[🎉직잭팟][🤎드뮤어룩][🎖️1천장]'
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:167340937
+    name: '[직진배송🚀] [임마멜,가연 PICK'
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:171121984
+    name: 보트넥 루즈핏 니트_MIWKAG926
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:171701046
+    name: '[FREE&L2사이즈🍂빅사이즈/브이넥'
+    color: 블랙
+    desc: black knit
+    comment: ''
+    cutout_photo: 0
+  reason: probe
