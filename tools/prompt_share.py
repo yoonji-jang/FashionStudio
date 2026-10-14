@@ -1,11 +1,13 @@
 """코디컷 지시문과 참고판을 텔레그램으로 보내기 (2026-10-14 사용자: 제미나이에서 따로 돌려 보려고).
 
 결과 폴더(daily-results 의 <날짜>-run<번호>)의 벌마다 그림 AI 에 보낸 것과 같은 것을 보낸다.
-- 참고판: 상품마다 한 장(쇼핑몰 사진, 얼굴 가림) + 기준 코디 사진이 있으면 마지막 한 장. 다시 만들고 out/ 에만 둔다.
+- 참고판: 상품마다 한 장(쇼핑몰 사진, 얼굴 가림) + 기준 코디 사진이 있으면 마지막 한 장.
+  다시 만들고 out/ 에만 둔다.
 - 지시문: 그 벌의 outfit/prompt.txt (마지막 회차가 아닌 첫 그림 지시문).
 그림은 새로 그리지 않아 이미지 비용이 없다. 텔레그램 보내기는 워크플로(prompt-share)만 한다.
 
-  python -m tools.prompt_share --account women --results /tmp/results/2026-10-14-run246 --out out/prompt_share
+  python -m tools.prompt_share --account women \
+      --results /tmp/results/2026-10-14-run246 --out out/prompt_share
 """
 
 from __future__ import annotations
