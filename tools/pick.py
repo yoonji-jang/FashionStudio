@@ -259,10 +259,14 @@ def looks_keyboard(profile: Profile, day: date, can_again: bool) -> dict:
     return {"keyboard": rows, "resize_keyboard": True, "one_time_keyboard": True}
 
 
-def looks_text(plan: DailyPlan, profile: Profile, day: date, round_: int) -> str:
-    """여러 벌 후보 안내 (20단계). 앞의 looks.count 벌이 기본, 나머지는 바꿔 넣을 예비."""
+def looks_text(
+    plan: DailyPlan, profile: Profile, day: date, round_: int, count: int | None = None
+) -> str:
+    """여러 벌 후보 안내 (20단계). 앞의 looks.count 벌(count 가 있으면 그 수)이 기본,
+    나머지는 바꿔 넣을 예비."""
     s, rules, lk = profile.schedule, profile.pick, profile.looks
-    use = min(lk.count, len(plan.looks))
+    want = count or lk.count
+    use = min(want, len(plan.looks))
     head = f"[{profile.id}] {day:%m-%d}({WEEKDAYS[day.weekday()]}) 코디 {len(plan.looks)}벌 후보"
     if round_ > 1:
         head += f" · 다시 {round_ - 1}번째"
@@ -286,7 +290,7 @@ def looks_text(plan: DailyPlan, profile: Profile, day: date, round_: int) -> str
     lines += [
         '• 빼고 싶은 벌이 있으면 "4번 빼고" → 예비 벌이 그 자리를 채워요',
         '• 직접 고르려면 "1 2 3 5 6 7" 처럼 번호를 보내요'
-        + (f" ({lk.min}~{lk.count}벌)" if lk.min != lk.count else ""),
+        + (f" ({lk.min}~{want}벌)" if lk.min != want else ""),
     ]
     lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
     if round_ <= rules.max_again:
@@ -346,6 +350,15 @@ def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: in
     return "\n".join(lines)
 
 
+def _wanted(out: Path, profile: Profile) -> int:
+    """기본으로 쓸 벌 수.
+    사용자가 벌 수를 정해 다시 짜게 했으면 (picks_request.json count) 그 수."""
+    path = out / "picks_request.json"
+    if path.exists():
+        return int(json.loads(path.read_text(encoding="utf-8")).get("count") or profile.looks.count)
+    return profile.looks.count
+
+
 def send(
     out: Path,
     run: str,
@@ -364,12 +377,13 @@ def send(
         # 여러 벌: 후보 기획 하나(p1) 안의 벌마다 시트 한 장
         plan = plans[0]
         sheets = [look_sheet(plan, n, store, out, profile) for n in range(1, len(looks) + 1)]
-        text = looks_text(plan, profile, day, round_)
+        text = looks_text(plan, profile, day, round_, _wanted(out, profile))
         markup = looks_keyboard(profile, day, can_again)
     else:
         sheets = [sheet(p, n, store, out) for n, p in enumerate(plans, 1)]
         text = control_text(plans, profile, day, round_)
         markup = keyboard(profile, day, len(plans), can_again)
+    want = _wanted(out, profile)
     ids = tg.send_photos(sheets, f"[{profile.id}] {day} 코디 후보")
     sheet_ids = {mid: n for n, mid in enumerate(ids, 1)} if looks else {}
     ids.append(tg.send(text, reply_markup=markup))
@@ -379,7 +393,7 @@ def send(
         run=run,
         round=round_,
         count=len(looks) if looks else len(plans),
-        looks=min(profile.looks.count, len(looks)) if looks else 0,
+        looks=min(want, len(looks)) if looks else 0,
         looks_min=min(profile.looks.min, len(looks)) if looks else 0,
         sent_at=int(time.time()),
         message_ids=ids,

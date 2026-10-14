@@ -57,6 +57,19 @@ daily-feed 의 "고른 후보로 시작" 절부터 이어진다.
    재고가 모자라 N개를 다 못 채우면 채운 만큼만 둔다 (최소 2개).
 6. **보고**: `out/$DATE/report.md` 에 주제와 이유, 후보마다 한 줄(주인공 상품, 색), 남은 경고를 쓴다.
 
+## 다시 짜기 요청 (`out/$DATE/picks_request.json`, 차례 흐름, 2026-10-14 사용자)
+사용자가 지난 후보 중 일부만 남기고 나머지를 새로 짜 달라고 한 것이다. 형식:
+`{"again": "<지난 결과 폴더>", "keep": [4], "count": 8, "note": "…"}` (지난 후보는 `out/$DATE/previous/p1.yaml`).
+- `keep` 의 벌(1부터, previous p1.yaml `looks` 번호)은 상품·styling·ref 를 그대로 복사해 **맨 앞**에 둔다. 다시 매기지 않는다.
+- 나머지는 새로 짜서 모두 `count` 벌을 채운다 (`looks.spare` 는 더하지 않음: 사용자가 `count` 벌을 다 쓰려는 것).
+  previous 의 남기지 않은 벌과 같은 기준 코디·주인공 상품은 쓰지 않는다.
+- 기준 코디가 모자라지 않게 **넉넉히** 잡는다 (2026-10-14 사용자: "참고 코디 후보를 넉넉히 잡으면 되잖아"):
+  `ready` 인 참고가 주제에 맞는 것으로 모자라면 `python -m tools.refs list --account $ACCOUNT` 의 ready 가 아닌 참고도 쓴다.
+  그 참고의 빠진 칸은 `python -m tools.collect --account $ACCOUNT --category <칸> --query <칸 query> --report out/$DATE/collect`
+  로 창고에 모은 뒤 맞춘다. 주제(하객룩 등)에 맞는 쇼핑몰 착용컷을 따라 한 벌을 새로 짜도 된다 (`reason` 에 출처).
+  4-1 점수는 8점 이상 대신 7점 이상이면 넣는다. 그래도 `count` 에 모자라면 7점에 가장 가까운 벌로 채운다 (빈 자리 없이).
+- `note` 가 있으면 사용자의 말이니 따른다. 보고에 남긴 벌·새로 짠 벌·쓴 참고 번호를 적는다.
+
 ## 여러 벌 (profile `looks.enabled`)
 사람은 텔레그램에서 벌마다 시트를 보고, 그대로 두면 앞의 `looks.count` 벌로, "4번 빼고" 면 뒤의 예비 벌로
 채워서 만든다. 그래서 순서가 중요하다: **앞쪽이 가장 자신 있는 벌**, 마지막 `looks.spare` 벌은 예비.

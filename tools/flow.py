@@ -452,6 +452,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     s.add_argument("--account", default="women")
     s.add_argument("--json", required=True, help='{"theme": {...}}')
+    s.add_argument(
+        "--out", type=Path, help="다시 짜기 요청(keep·count·note)을 picks_request.json 으로"
+    )
     s = sub.add_parser("options")
     s.add_argument("--account", default="women")
     s.add_argument("--date", required=True)
@@ -465,9 +468,17 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "status":
             print(status(args.results, args.account))
         elif args.cmd == "use-theme":
-            theme = Theme.model_validate(json.loads(args.json)["theme"])
-            choose_theme(Store(args.account), theme)
-            print(f"{theme.date} 주제: {theme.title_hint}")
+            req = json.loads(args.json)
+            if req.get("theme"):
+                theme = Theme.model_validate(req["theme"])
+                choose_theme(Store(args.account), theme)
+                print(f"{theme.date} 주제: {theme.title_hint}")
+            ask = {k: req[k] for k in ("again", "keep", "count", "note") if req.get(k)}
+            if ask and args.out:
+                args.out.mkdir(parents=True, exist_ok=True)
+                path = args.out / "picks_request.json"
+                path.write_text(json.dumps(ask, ensure_ascii=False, indent=2), encoding="utf-8")
+                print(f"다시 짜기 요청: {ask}")
         elif args.cmd == "reset":
             save_state(args.results, FlowState(account=args.account))
             print(f"[{args.account}] 차례 흐름을 처음(주제)부터 다시 해요")
