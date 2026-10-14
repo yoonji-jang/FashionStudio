@@ -1,0 +1,433 @@
+# 2026-10-15 미니스커트 7벌 (share7). 서 있는 전신 비율 지시문으로 새로 그리기
+account: women
+date: '2026-10-15'
+items: []
+looks:
+- items:
+  - color: 플럼
+    comment: ''
+    cutout_photo: 0
+    desc: 플럼 체크 오버핏 셔츠 (plum small-check oversized shirt, classic shirt collar)
+    name: 플럼 체크 셔츠
+    product: zigzag:172026704
+    ref_photos:
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 미니스커트 (black wool slim mini skirt, flat front)
+    name: 울 미니 스커트
+    product: zigzag:150110018
+    ref_photos:
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    desc: 블랙 니하이 부츠 (black knee-high boots)
+    name: 니하이 롱부츠
+    product: zigzag:147005253
+    ref_photos:
+    - 1
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 블랙 숄더백
+    product: zigzag:168564549
+    ref_photos:
+    - 1
+    - 0
+  - color: 실버
+    comment: ''
+    cutout_photo: 1
+    desc: 미니 하트 목걸이 (thin short necklace with one small heart pendant)
+    name: 미니 하트 목걸이
+    product: zigzag:116318618
+    slot: 목걸이
+    ref_photos:
+    - 1
+    - 0
+  point: 플럼 체크 셔츠를 툭 걸치고 블랙 미니에 니하이 부츠로 마무리해요
+  reason: 플럼 체크 셔츠가 주인공, 블랙 미니스커트와 롱부츠로 정리. 참고 플럼 오버핏 셔츠/블랙 코듀로이 미니/블랙 숄더백/블랙 롱부츠
+    → 맞춘 것 - 플럼 체크 셔츠/블랙 울 미니/블랙 숄더백/블랙 롱 부츠 (코듀로이 대신 울). (따라 함 - 참고 114) [점수 8]
+  ref: '114'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/8299b7982ddcefbbba88565b71f19bae.jpg
+  styling: The oversized plum check shirt is worn loose and open over the skirt, hem
+    falling over the mini skirt waist, sleeves lightly pushed up.
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 1
+    desc: 아이보리 노카라 숏 울 자켓 (ivory collarless round-neck short wool jacket)
+    name: 노카라 숏 자켓
+    product: zigzag:149398662
+    ref_photos:
+    - 1
+    - 3
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 스트라이프 셔츠 (ivory and beige fine-striped shirt)
+    name: 스트라이프 셔츠
+    product: zigzag:120773723
+    ref_photos:
+    - 0
+    - 2
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 미니스커트 (brown suede mini skirt)
+    name: 스웨이드 미니
+    product: zigzag:167025790
+    ref_photos:
+    - 0
+    - 1
+  - color: 블랙
+    comment: ''
+    cutout_photo: 3
+    desc: 블랙 롱부츠 (black knee-high boots)
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+    ref_photos:
+    - 3
+    - 2
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 블랙 숄더백
+    product: zigzag:168564549
+    ref_photos:
+    - 1
+    - 0
+  point: 아이보리 숏 자켓에 스트라이프 셔츠, 브라운 스웨이드 미니로 부드럽게
+  reason: 브라운 스웨이드 미니스커트가 주인공, 아이보리 숏 자켓과 스트라이프 셔츠로 톤온톤. 참고 크림 니트 카라 자켓/아이보리 스트라이프
+    셔츠/브라운 스웨이드 미니/블랙 롱부츠/블랙 숄더백 → 맞춘 것 - 아이보리 노카라 숏 자켓/아이보리 스트라이프 셔츠/브라운 스웨이드 미니/블랙
+    롱부츠/블랙 숄더백. (따라 함 - 참고 123) [점수 8]
+  ref: '123'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/f78905a6dbc18288c5f6da21ce06d054.jpg
+  styling: The ivory short jacket is buttoned at the top only; the striped shirt collar
+    shows at the neckline.
+- items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 4
+    desc: 베이지 하프 트렌치코트 (beige half-length trench coat)
+    name: 하프 트렌치코트
+    product: zigzag:171521437
+    ref_photos:
+    - 4
+    - 1
+  - color: 화이트
+    comment: ''
+    cutout_photo: 5
+    desc: 화이트 나시 크롭탑 (plain white camisole)
+    name: 나시 크롭탑
+    product: zigzag:151689759
+    ref_photos:
+    - 5
+    - 3
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 쉬폰 슬릿 미니스커트 (black slit mini skirt with sheer chiffon underlayer hem)
+    name: 슬릿 미니스커트
+    product: zigzag:137890667
+    ref_photos:
+    - 0
+    - 4
+  - color: 블랙
+    comment: ''
+    cutout_photo: 5
+    desc: 블랙 니삭스 (black ribbed knee socks)
+    name: 골지 니삭스
+    product: zigzag:141916298
+    ref_photos:
+    - 5
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱 부츠 (black long soft boots)
+    name: 롱 버클 부츠
+    product: zigzag:171985452
+    ref_photos:
+    - 0
+    - 1
+  - color: 블랙
+    comment: ''
+    cutout_photo: 5
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 노아르 숄더백
+    product: zigzag:164013796
+    ref_photos:
+    - 5
+  point: 베이지 트렌치를 열어 입고 블랙 미니와 롱부츠로 가을 데이트룩
+  reason: 베이지 하프 트렌치가 주인공, 화이트 나시와 블랙 미니스커트, 롱부츠로 데이트룩. 참고 라이트베이지 트렌치/화이트 캐미솔/블랙 미니/블랙
+    스타킹/블랙 롱부츠 → 맞춘 것 - 베이지 하프 트렌치/화이트 나시/블랙 슬릿 미니/블랙 니삭스/블랙 롱 부츠. (따라 함 - 참고 119)
+    [점수 8]
+  ref: '119'
+  ref_photo: https://u-ur.kr/web/product/medium/202609/e732e7220c0425e5862dcfe5f77ec1a7.jpg
+  styling: The beige trench is fully unbuttoned and worn open, as in the reference
+    photo; the item photos show it buttoned and belted, but here no button is fastened
+    and the belt is not tied, so the front edges fall slightly apart and the white
+    camisole shows between them.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 3
+    desc: 블랙 니트 베스트 (black knit vest, v-neck)
+    name: 니트 베스트
+    product: zigzag:129154792
+    ref_photos:
+    - 3
+    - 1
+  - color: 크림
+    comment: ''
+    cutout_photo: 1
+    desc: 크림 셔츠 (cream soft cotton shirt, round neck, puff sleeves)
+    name: 크림 셔츠
+    product: zigzag:168757496
+    wear_with: 상의
+    ref_photos:
+    - 1
+    - 2
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 슬릿 스커트팬츠 (grey wrap skort, mini length)
+    name: 슬릿 스커트팬츠
+    product: zigzag:171935783
+    ref_photos:
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 3
+    desc: 블랙 롱부츠 (black knee-high boots)
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+    ref_photos:
+    - 3
+    - 2
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드 숄더백 (black small round shoulder bag with ribbon shirring)
+    name: 셔링 라운드백
+    product: zigzag:169872677
+    ref_photos:
+    - 0
+  point: 크림 셔츠 위 블랙 니트 베스트로 단정하게, 롱부츠로 다리는 길게
+  reason: 블랙 니트 베스트가 주인공, 화이트 셔츠와 그레이 스커트팬츠, 롱부츠. 참고 블랙 캡소매 니트 베스트/크림 구김 셔츠/그레이 랩
+    스커트팬츠/블랙 롱부츠 → 맞춘 것 - 블랙 니트 베스트/크림 셔츠/그레이 슬릿 스커트팬츠/블랙 롱부츠 (셔츠는 구김 대신 부드러운 블라우스).
+    (따라 함 - 참고 101) [점수 8]
+  ref: '101'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg
+  styling: The cream shirt sleeves and hem show outside the black knit vest.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오버핏 브이넥 울 니트 (black oversized relaxed V-neck wool knit, dropped shoulders,
+      roomy enough to layer a shirt underneath)
+    name: 코지울 브이넥 니트
+    product: zigzag:171701046
+    ref_photos:
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    desc: 블랙 핀스트라이프 셔츠 (black pinstripe shirt)
+    name: 스트라이프 셔츠
+    product: zigzag:171827820
+    wear_with: 상의
+    ref_photos:
+    - 1
+    - 3
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 쉬폰 슬릿 미니스커트 (black slit mini skirt with sheer chiffon underlayer hem)
+    name: 슬릿 미니스커트
+    product: zigzag:137890667
+    ref_photos:
+    - 0
+    - 4
+  - color: 블랙
+    comment: ''
+    cutout_photo: 5
+    desc: 블랙 라운드토 페니로퍼 (black round-toe penny loafers)
+    name: 페니로퍼
+    product: zigzag:114193909
+    ref_photos:
+    - 5
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:168305853
+    ref_photos:
+    - 0
+    - 1
+  - color: 골드
+    comment: ''
+    cutout_photo: 5
+    desc: 작은 물방울 귀걸이 (exactly one pair (two earrings) of small drop earrings)
+    name: 물방울 귀걸이
+    product: zigzag:169325375
+    slot: 귀걸이
+    ref_photos:
+    - 5
+    - 1
+  point: 블랙 니트 아래 스트라이프 셔츠를 살짝 보여 줘서 올블랙도 답답하지 않게
+  reason: 블랙 니트에 줄무늬 셔츠 레이어드가 주인공, 블랙 슬릿 미니스커트로 올블랙. 참고 블랙 라운드 니트/네이비 핀스트라이프 셔츠/블랙
+    슬릿 미니/블랙 스타킹/블랙 로퍼/블랙 토트 → 맞춘 것 - 블랙 헨리넥 니트/블랙 핀스트라이프 셔츠/블랙 슬릿 미니/블랙 페니로퍼/블랙 숄더백
+    (스타킹 없음). (따라 함 - 참고 129) [점수 8]
+  ref: '129'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
+  styling: The striped shirt collar and hem show under the black knit.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 2
+    desc: 차콜 숏 크롭 울 코트 자켓 (charcoal short cropped wool jacket with small collar)
+    name: 숏 울 자켓
+    product: zigzag:149409694
+    ref_photos:
+    - 2
+    - 0
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 폴라 티셔츠 (cream fitted polo-neck tee)
+    name: 폴라 티셔츠
+    product: zigzag:167444137
+    ref_photos:
+    - 0
+    - 1
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 에이라인 미니스커트 (charcoal wool slim A-line mini skirt, flat front)
+    name: 울 미니 스커트
+    product: zigzag:149438922
+    ref_photos:
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 5
+    desc: 블랙 니삭스 (black ribbed knee socks)
+    name: 골지 니삭스
+    product: zigzag:141916298
+    ref_photos:
+    - 5
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱 부츠 (black long soft boots)
+    name: 롱 버클 부츠
+    product: zigzag:171985452
+    ref_photos:
+    - 0
+    - 1
+  - color: 블랙
+    comment: ''
+    cutout_photo: 5
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 노아르 숄더백
+    product: zigzag:164013796
+    ref_photos:
+    - 5
+  point: 차콜 울 자켓과 미니를 맞추고 크림 폴라로 얼굴은 화사하게
+  reason: 차콜 숏 울 자켓에 차콜 울 미니스커트로 한 톤을 맞춤. 참고 차콜 헤어리 울 숏 자켓/화이트 이너/핀스트라이프 미니/블랙 스타킹/롱부츠/호보백
+    → 맞춘 것 - 차콜 숏 울 자켓/크림 폴라/차콜 울 미니(핀스트라이프 없음)/블랙 니삭스/블랙 롱 부츠/블랙 숄더백. (따라 함 - 참고
+    122) [점수 8]
+  ref: '122'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/43e1d42d57505d1f52ecdb7ecc57b1a8.jpg
+  styling: Only the hem of the cream inner tee shows below the short jacket.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 1
+    desc: 브라운 타이 블라우스 (gray-brown high-neck tie blouse with a long scarf tie)
+    name: 타이 블라우스
+    product: zigzag:166152644
+    ref_photos:
+    - 1
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 미니스커트 (charcoal wool slim mini skirt, flat front)
+    name: 울 미니 스커트
+    product: zigzag:150110018
+    ref_photos:
+    - 0
+  - color: 블랙
+    comment: ''
+    cutout_photo: 4
+    desc: 블랙 시스루 니삭스 (exactly one pair of black sheer knee socks)
+    name: 시스루 니삭스
+    product: zigzag:161559034
+    ref_photos:
+    - 4
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    desc: 블랙 니하이 부츠 (black knee-high boots)
+    name: 니하이 롱부츠
+    product: zigzag:147005253
+    ref_photos:
+    - 1
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:168305853
+    ref_photos:
+    - 0
+    - 1
+  point: 브라운 타이 블라우스에 차콜 미니, 시스루 니삭스로 여성스럽게
+  reason: 스카프 타이 블라우스가 주인공, 울 미니스커트와 롱부츠로 출근룩. 참고 그레이브라운 스카프 블라우스/차콜 핀스트라이프 벨트 랩 미니/블랙
+    스타킹/롱부츠/토트 → 맞춘 것 - 브라운 타이 블라우스/울 미니(핀스트라이프·벨트 없음)/니삭스/롱부츠/숄더백. (따라 함 - 참고 125)
+    [점수 7, 예비]
+  ref: '125'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/d66ca534e3007c31fc6afffc7fc5e475.jpg
+reason: 쇼핑몰 참고 코디의 미니스커트 벌을 따라 입은 가을 미니스커트 코디 (차콜·블랙·브라운·크림)
+shot: flatlay
+theme:
+  date: '2026-10-15'
+  mood: 블랙·차콜·브라운·크림 중심의 가을 톤, 미니스커트(스커트 팬츠 포함)가 주인공
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 숏 자켓·트렌치·블레이저 중 어울릴 때만
+  - category: 상의
+    desc: 니트·셔츠·스카프 블라우스
+  - category: 하의
+    desc: 미니스커트나 스커트 팬츠 (랩·핀스트라이프·코듀로이·스웨이드)
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠·로퍼·플랫 중 어울리는 것
+  - category: 소품
+    desc: 스타킹이나 니삭스는 어울릴 때만
+  title_hint: 가을 미니스커트 코디, 다리 가볍게 입는 공식
+  type: 아이템
+  why: 사용자 선택(2026-10-14). 모든 벌의 하의가 미니스커트나 스커트 팬츠. 롱부츠·스타킹은 어울릴 때 넣되 강제하지 않는다. 참고
+    코디(refs)의 미니스커트 벌을 우선 쓴다.
+text:
+  title_lines:
+  - 가을 미니스커트
+  - 이렇게 입어요
+  intro: 선선한 가을엔 미니스커트에 니트와 자켓을 더해 보세요 🍂
+  points:
+  - 짧은 스커트에는 넉넉한 상의와 긴 부츠로 균형을 맞춰요
+  - 톤을 맞춘 아우터 하나로 가을 분위기가 완성돼요 🤎
+  hashtags:
+  - '#미니스커트코디'
+  - '#가을코디'
+  - '#데일리룩'
+  - '#롱부츠코디'
+  - '#스커트코디'

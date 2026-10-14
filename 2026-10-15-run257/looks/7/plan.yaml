@@ -1,0 +1,85 @@
+account: women
+date: '2026-10-15'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 1
+  desc: 브라운 타이 블라우스 (gray-brown high-neck tie blouse with a long scarf tie)
+  name: 타이 블라우스
+  product: zigzag:166152644
+  ref_photos:
+  - 1
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 울 미니스커트 (charcoal wool slim mini skirt, flat front)
+  name: 울 미니 스커트
+  product: zigzag:150110018
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 시스루 니삭스 (exactly one pair of black sheer knee socks)
+  name: 시스루 니삭스
+  product: zigzag:161559034
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 니하이 부츠 (black knee-high boots)
+  name: 니하이 롱부츠
+  product: zigzag:147005253
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+  name: 위빙 숄더백
+  product: zigzag:168305853
+  ref_photos:
+  - 0
+  - 1
+looks: []
+reason: 스카프 타이 블라우스가 주인공, 울 미니스커트와 롱부츠로 출근룩. 참고 그레이브라운 스카프 블라우스/차콜 핀스트라이프 벨트 랩 미니/블랙
+  스타킹/롱부츠/토트 → 맞춘 것 - 브라운 타이 블라우스/울 미니(핀스트라이프·벨트 없음)/니삭스/롱부츠/숄더백. (따라 함 - 참고 125)
+  [점수 7, 예비]
+ref_photo: https://woonan.co.kr/web/product/tiny/202609/d66ca534e3007c31fc6afffc7fc5e475.jpg
+shot: flatlay
+text:
+  hashtags:
+  - '#미니스커트코디'
+  - '#가을코디'
+  - '#데일리룩'
+  - '#롱부츠코디'
+  - '#스커트코디'
+  intro: 선선한 가을엔 미니스커트에 니트와 자켓을 더해 보세요 🍂
+  points:
+  - 짧은 스커트에는 넉넉한 상의와 긴 부츠로 균형을 맞춰요
+  - 톤을 맞춘 아우터 하나로 가을 분위기가 완성돼요 🤎
+  title_lines:
+  - 가을 미니스커트
+  - 이렇게 입어요
+theme:
+  date: '2026-10-15'
+  mood: 블랙·차콜·브라운·크림 중심의 가을 톤, 미니스커트(스커트 팬츠 포함)가 주인공
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 숏 자켓·트렌치·블레이저 중 어울릴 때만
+  - category: 상의
+    desc: 니트·셔츠·스카프 블라우스
+  - category: 하의
+    desc: 미니스커트나 스커트 팬츠 (랩·핀스트라이프·코듀로이·스웨이드)
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠·로퍼·플랫 중 어울리는 것
+  - category: 소품
+    desc: 스타킹이나 니삭스는 어울릴 때만
+  title_hint: 가을 미니스커트 코디, 다리 가볍게 입는 공식
+  type: 아이템
+  why: 사용자 선택(2026-10-14). 모든 벌의 하의가 미니스커트나 스커트 팬츠. 롱부츠·스타킹은 어울릴 때 넣되 강제하지 않는다. 참고
+    코디(refs)의 미니스커트 벌을 우선 쓴다.
