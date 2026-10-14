@@ -245,15 +245,20 @@ def reference_panels(
 # 2026-10-14 사용자: "모델이 입은 이미지 핏 그대로 바닥에 펼쳐지면 좋겠어"
 # (스카프 늘어뜨림, 셔츠 윗단추 풂). 따라 한 기준 코디 사진을 마지막 그림으로 보내
 # 입는 모양만 따르게 한다 (배경·포즈·다른 옷은 따르지 않음)
+# 2026-10-14 사용자: "코디 이미지에 옷만 지그재그 옷으로 대체하는 느낌으로" →
+# 넣어 입은 정도·삐져나온 정도까지, 위 일반 규칙보다 사진이 앞선다.
+# 옷만 상품 장의 것으로 바꾼다. 넣어 입은 정도·삐져나온 정도까지, 위 일반 규칙보다 사진이 앞선다.
 WORN_REF = (
-    "The last attached image is a photo of this outfit worn by a model. Lay every item out"
-    " exactly as it is worn there: every top and bottom keeps the shape it has on her body"
-    " (its drape, how each leg or skirt falls and creases), how far a shirt or cardigan is"
-    " unbuttoned and how its collar falls open, what is tucked in, how layers sit and how"
-    " open an outer is. A scarf hangs loose and long from the neck as there, never knotted"
-    " unless it is knotted there. Follow only the way the clothes are worn; take colors"
-    " and details from the item sheets, and never copy that photo's background, pose or"
-    " any item not listed."
+    "The last attached image is the reference outfit photo. Recreate that exact outfit as"
+    " this flat lay, with each piece swapped for the matching item from the sheets, as if"
+    " the model's clothes were replaced one by one: keep exactly how each piece is worn"
+    " there, how much of a top is tucked in and how much hangs out, which shirt tails,"
+    " hems, cuffs and collars peek out from under other layers and by how much, how far a"
+    " shirt or cardigan is unbuttoned and how its collar falls open, how the sleeves sit,"
+    " how open an outer is, how a scarf hangs (never knotted unless knotted there), and"
+    " the shape every top and bottom has on her body. Where this photo differs from the"
+    " general wearing rules above, follow the photo. Take colors and details only from the"
+    " item sheets, and never copy that photo's background, pose or any item not listed."
 )
 
 
