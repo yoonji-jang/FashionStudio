@@ -54,3 +54,26 @@ looks:
     comment: ''
     cutout_photo: 0
   reason: probe
+reason: 쇼핑몰 참고 코디의 미니스커트 벌을 따라 입은 가을 미니스커트 코디 (차콜·블랙·브라운·크림)
+shot: flatlay
+theme:
+  date: '2026-10-15'
+  mood: 블랙·차콜·브라운·크림 중심의 가을 톤, 미니스커트(스커트 팬츠 포함)가 주인공
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 숏 자켓·트렌치·블레이저 중 어울릴 때만
+  - category: 상의
+    desc: 니트·셔츠·스카프 블라우스
+  - category: 하의
+    desc: 미니스커트나 스커트 팬츠 (랩·핀스트라이프·코듀로이·스웨이드)
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠·로퍼·플랫 중 어울리는 것
+  - category: 소품
+    desc: 스타킹이나 니삭스는 어울릴 때만
+  title_hint: 가을 미니스커트 코디, 다리 가볍게 입는 공식
+  type: 아이템
+  why: 사용자 선택(2026-10-14). 모든 벌의 하의가 미니스커트나 스커트 팬츠. 롱부츠·스타킹은 어울릴 때 넣되 강제하지 않는다. 참고
+    코디(refs)의 미니스커트 벌을 우선 쓴다.
