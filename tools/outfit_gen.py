@@ -247,11 +247,13 @@ def reference_panels(
 # 입는 모양만 따르게 한다 (배경·포즈·다른 옷은 따르지 않음)
 WORN_REF = (
     "The last attached image is a photo of this outfit worn by a model. Lay every item out"
-    " exactly as it is worn there: how far a shirt or cardigan is unbuttoned and how its"
-    " collar and front fall open, how a scarf hangs or is knotted, what is tucked in or left"
-    " out, how sleeves, hems and layers sit, and how open an outer is. Follow only the way"
-    " the clothes are worn; take colors and details from the item sheets, and never copy"
-    " that photo's background, pose or any item not listed."
+    " exactly as it is worn there: every top and bottom keeps the shape it has on her body"
+    " (its drape, how each leg or skirt falls and creases), how far a shirt or cardigan is"
+    " unbuttoned and how its collar falls open, what is tucked in, how layers sit and how"
+    " open an outer is. A scarf hangs loose and long from the neck as there, never knotted"
+    " unless it is knotted there. Follow only the way the clothes are worn; take colors"
+    " and details from the item sheets, and never copy that photo's background, pose or"
+    " any item not listed."
 )
 
 

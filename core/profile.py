@@ -327,14 +327,18 @@ class Looks(BaseModel):
     # 2026-10-14 사용자 참고(wyeun_): 옷이 작고 바닥이 많이 보임
     # → 왼쪽 아래 40%x35% 빈자리 규칙을 빼고 옷이 화면을 크게 채운다.
     # 상품 글자는 그라데이션 위에 쓰고, 가방·신발만 왼쪽 아래를 피한다.
+    # 2026-10-14 사용자: 보이지 않는 사람이 옷을 입고 누운 것처럼,
+    # 위는 상의·아래는 하의를 실제 몸 비율로.
+    # 모든 벌이 같은 몸. 신발은 발 자리(밑단 아래), 하의를 많이 덮을 때만 옆. 가방 자리는 상관없음.
     composition: str = (
-        "the outfit is large and fills the frame: the clothes form one figure centered"
-        " horizontally, the collar near the top edge and the hem near the bottom edge"
-        " (short bottoms: the figure moves down a little). Jewelry or a watch, only if"
-        " listed, sit neatly on the right at chest height. The bag lies on the left beside"
-        " the top at waist height, slightly overlapping the clothes. The shoes sit in the"
-        " lower right beside the bottoms, not touching them. Keep the bag and shoes out of"
-        " the lower-left corner; the clothes may reach it."
+        "lay the outfit out as if an invisible woman lay on the floor wearing it, the"
+        " same body in every image, centered: the top covers her upper body (shoulders to"
+        " waist), the bottoms her lower body (waist to ankles), in real body proportions."
+        " The collar is near the top edge, the shoes near the bottom edge. The shoes sit"
+        " where the feet would be, just below the hems; only if they would cover much of"
+        " the bottoms, beside the hems on the lower right. A necklace lies around the"
+        " neckline, other jewelry or a watch (only if listed) at the wrist. The bag:"
+        " anywhere but the lower-left corner."
     )
 
 

@@ -11,6 +11,8 @@ prompts/outfit/parts.yaml), $layout 고정 구도(profile looks.composition), $s
 사용자: 바지 기장을 길게, 모델컷과 비슷한 핏을 가장 중요하게 → 'Most important' 두 가지.
 새 규칙은 덧붙이기보다 해당 조각의 문장을 고친다. 본문과 조각을 합친 지시문은 모든 조각을 합쳐도 1,000단어를 넘지 않는다(테스트가 본다).
 이 주석은 전송되지 않는다.
+2026-10-14 사용자: 사람이 입은 자리처럼(위 상의·아래 하의, 실제 몸 비율), 상의·하의 모두 착용 모양, 신발은 발 자리,
+스카프는 묶지 않고 길게 → 구도는 profile looks.composition, 착용 모양·스카프는 tools.outfit_gen WORN_REF.
 2026-10-14 사용자 참고(/mnt/project-files/image-feedback/참고_1013/, wyeun_ AI 플랫레이): "자연스럽고 부피감 있게, 구도도"
 → 입은 모양 그대로 눕힌 입체감(never puffed up 뺌), 옷이 화면을 크게 채우기(왼쪽 아래 빈자리 규칙 뺌), 재질 결,
 허리는 착용컷 높이(natural waist 는 패션 용어로 높은 허리라 뺌), 상품을 숫자 대신 "first sheet" 로 불러 숫자 그림 방지.
@@ -25,9 +27,8 @@ props in the photos:
 $items
 
 Most important, three things: (1) every item has the same fit as on the model in the worn photos:
-the same silhouette, length, width, volume and drape. (2) Long trousers and long skirts are long:
-exactly as long as on the model, covering the ankles, clearly the longest part of the outfit, with
-the hem near the bottom edge of the frame; never cropped or shortened. (3) The clothes look full and
+the same silhouette, length, width, volume and drape, tops and bottoms alike. (2) Long trousers and skirts are exactly
+as long as on the model, covering the ankles, clearly the longest part of the outfit; never cropped. (3) The clothes look full and
 three-dimensional, as if a person had just been wearing them and they were laid down in that worn
 shape: a rounded chest and shoulders, sleeves filled with air and falling softly with a slight bend,
 trouser legs and skirts with real depth, thickness and soft vertical folds, knits thick and soft.
