@@ -1,15 +1,16 @@
 {
   "account": "women",
-  "stage": "theme_wait",
+  "stage": "pick_wait",
   "date": "2026-10-16",
-  "asked_at": 1791979502,
+  "asked_at": 1791980657,
   "hint": "",
-  "theme_at": 0,
+  "theme_at": 1791980657,
   "pick": "",
   "scene": "",
   "scene_update": 0,
   "alerted": false,
   "log": [
-    "10-14 12:05 주제 제안 요청 (2026-10-16)"
+    "10-14 12:05 주제 제안 요청 (2026-10-16)",
+    "10-14 12:24 주제 정함: 가을 결혼식 하객룩, 단정한데 지루하지 않게"
   ]
 }
