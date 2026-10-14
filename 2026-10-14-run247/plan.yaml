@@ -1,0 +1,356 @@
+account: women
+date: '2026-10-14'
+theme:
+  date: '2026-10-14'
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+items: []
+looks:
+- items:
+  - product: zigzag:171293642
+    color: 블랙
+    desc: 블랙 뮤트 레더 블레이저 (black matte soft faux-leather blazer, collarless, relaxed
+      slightly oversized fit, hip length)
+    name: 뮤트 레더 블레이저
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:127356723
+    color: 베이지
+    desc: 베이지 워싱 셔츠 (light beige washed cotton shirt, small pointed collar, loose
+      relaxed fit, hip length)
+    name: 워싱 셔츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 72.5 cm long from shoulder to hem, 48.5 cm across the shoulders, 67
+      cm across the chest laid flat, 63 cm long sleeves
+    cm: 72.5
+    wear_with: 아우터
+  - product: zigzag:148705129
+    color: 블랙
+    desc: 블랙 카프리 크롭 팬츠 (black slim fitted capri pants with small side hem slit, cropped
+      at mid-calf)
+    name: 카프리 팬츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 4
+    - 3
+    size: about 73 cm long from waist to hem, 39 cm across the waist laid flat, 44
+      cm across the hips laid flat, 18.5 cm across the hem laid flat
+    cm: 73.0
+  - product: zigzag:150577244
+    color: 버건디
+    desc: 버건디 울 삼각 쁘띠 스카프 (burgundy fuzzy wool triangle petite scarf)
+    name: 울 쁘띠 스카프
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    slot: 목걸이
+  - product: zigzag:171742629
+    color: 블랙
+    desc: 블랙 발레리나 플랫 (black ballerina flats with small bow, 3.5 cm heel)
+    name: 리본 플랫슈즈
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 3
+  - product: zigzag:166400700
+    color: 블랙
+    desc: 블랙 숄더백 (black large tote-shaped shoulder bag with eyelet details)
+    name: 오닉 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    - 5
+  reason: '블랙 레더 블레이저가 주인공, 베이지 셔츠와 블랙 크롭 팬츠로 단정하게. 참고: 블랙 노카라 가죽 자켓/크림 셔츠/크림 스카프/블랙
+    슬릿 크롭 팬츠/스트랩 힐 → 맞춘 것: 블랙 레더 블레이저/베이지 워싱 셔츠(크림 사진이 없어 베이지)/버건디 울 스카프/블랙 카프리 팬츠/블랙
+    발레리나 플랫 (스카프 색과 신발은 바꿈). (따라 함: 참고 109) [점수 7]'
+  point: 블랙 블레이저에 버건디 스카프를 느슨하게 둘러 포인트를 줘요 🍷
+  styling: The beige shirt is worn open inside the blazer with its collar showing;
+    the scarf is loosely knotted at the neck.
+  ref: '109'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/599dceeadea6302eb2d77758519b6071.jpg
+- items:
+  - product: zigzag:147510620
+    color: 플럼
+    desc: 플럼 브이넥 크롭 반팔 니트 (deep plum short-sleeve slightly cropped V-neck knit top
+      with puff sleeves, soft fine knit, relaxed)
+    name: 플럼 브이넥 니트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 58 cm long from shoulder to hem, 55 cm across the shoulders, 53 cm
+      across the chest laid flat, 20 cm long sleeves
+    cm: 58.0
+  - product: zigzag:150110018
+    color: 블랙
+    desc: 블랙 울 미니스커트 (black wool mini skirt, slim A-line, flat front)
+    name: 울 미니스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 38.5 cm long from waist to hem, 35.5 cm across the waist laid flat
+    cm: 38.5
+  - product: zigzag:116422044
+    color: 블랙
+    desc: 블랙 롱부츠 (black flat knee-high riding boots, round toe)
+    name: 블랙 롱부츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 4
+    - 0
+  - product: zigzag:168564549
+    color: 블랙
+    desc: 블랙 숄더백 (black structured cylinder shoulder bag)
+    name: 블랙 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:113341770
+    color: 실버
+    desc: 실버 볼체인 목걸이 (thin silver ball-chain necklace, exactly one necklace)
+    name: 실버 볼체인 목걸이
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+    slot: 목걸이
+  reason: '플럼 반팔 니트가 주인공, 블랙 미니와 롱부츠로 깊은 한 색만. 참고: 버건디 반팔 니트/블랙 미니/블랙 니하이 롱부츠/블랙 숄더백
+    → 맞춘 것: 플럼 브이넥 반팔 니트(참고보다 보랏빛)/블랙 울 미니/블랙 롱부츠/블랙 숄더백. (따라 함: 참고 132) [점수 6]'
+  point: 플럼 니트 하나만 얹고 나머지는 블랙으로 깊게 맞췄어요
+  ref: '132'
+  ref_photo: https://vivnluv.co.kr/web/upload/category/56ed15de453e120b116632750e734216.jpg
+- items:
+  - product: zigzag:168722628
+    color: 버건디
+    desc: 버건디 카라 긴팔 가디건 (burgundy slim-fit knit cardigan with a small polo-style collar,
+      fully buttoned, slightly cropped at the hip, curved scalloped hem)
+    name: 카라 가디건
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 50 cm long from shoulder to hem, 49 cm across the shoulders, 48 cm
+      across the chest laid flat, 60 cm long sleeves
+    cm: 50.0
+  - product: zigzag:129830192
+    color: 블랙
+    desc: 블랙 원턱 와이드 슬랙스 (black one-tuck wide-leg slacks, high waist, full length reaching
+      the shoes)
+    name: 원턱 와이드 슬랙스
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    - 0
+    size: about 106 cm long from waist to hem, 34.5 cm across the waist laid flat,
+      55 cm across the hips laid flat, 26.5 cm across the hem laid flat
+    cm: 106.0
+  - product: zigzag:171742629
+    color: 블랙
+    desc: 블랙 발레리나 플랫 (black ballerina flats with small bow, 3.5 cm heel)
+    name: 리본 플랫슈즈
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 3
+  - product: zigzag:168305853
+    color: 블랙
+    desc: 블랙 위빙 숄더백 (black glossy woven hobo shoulder bag)
+    name: 위빙 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  - product: zigzag:128507670
+    color: 실버
+    desc: 실버 하트 펜던트 목걸이 (thin silver curb-chain necklace with a small matte heart
+      pendant, exactly one necklace)
+    name: 하트 실버 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    slot: 목걸이
+  reason: '버건디 카라 가디건이 주인공, 블랙 와이드 슬랙스로 단정하게. 참고: 버건디 오픈칼라 셔츠/블랙 와이드 슬랙스/블랙 숄더백 →
+    맞춘 것: 버건디 카라 가디건(셔츠 버건디 사진이 없어 같은 색 가디건으로)/블랙 슬랙스/블랙 플랫/위빙 백. (따라 함: 참고 134) [점수
+    6]'
+  point: 버건디 가디건을 단정히 잠가 입고 블랙 슬랙스로 길게 이어요
+  ref: '134'
+  ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20260924/bd36c811e4b1bb972be71013c513c862.jpg
+- items:
+  - product: zigzag:146856799
+    color: 와인
+    desc: 와인 버건디 라운드넥 버튼 가디건 (wine burgundy round-neck cropped boxy button cardigan,
+      ribbed hem at the waist, soft fine knit)
+    name: 라운드 가디건
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 53 cm long from shoulder to hem, 35.5 cm across the shoulders, 46.5
+      cm across the chest laid flat, 66.5 cm long sleeves
+    cm: 53.0
+  - product: zigzag:156428546
+    color: 화이트
+    desc: 화이트 크롭 나시 (plain white fitted cropped cami with thin straps, hem peeking
+      below the cardigan)
+    name: 화이트 나시
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    size: about 42 cm long from shoulder to hem, 36 cm across the chest laid flat
+    cm: 42.0
+    wear_with: 상의
+  - product: zigzag:129082539
+    color: 블랙
+    desc: 블랙 와이드 롱 슬랙스 (black high-waist wide straight-leg long slacks with a slight
+      flare, full length to the floor)
+    name: 와이드 롱 슬랙스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+    size: about 104 cm long from waist to hem, 35 cm across the waist laid flat, 44
+      cm across the hips laid flat, 26 cm across the hem laid flat
+    cm: 104.0
+  - product: zigzag:172014189
+    color: 블랙
+    desc: 블랙 플랫폼 메리제인 (black thick platform Mary Jane shoes with X straps and buckle)
+    name: 플랫폼 메리제인
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    - 5
+  - product: zigzag:166194366
+    color: 블랙
+    desc: 블랙 숄더백 (black small hobo-shaped shoulder bag)
+    name: 블랙 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  reason: '와인 라운드 가디건이 주인공, 흰 이너 밑단과 블랙 와이드 팬츠로. 참고: 퍼플 라운드 가디건/흰 이너 티/블랙 와이드 팬츠 →
+    맞춘 것: 와인 가디건(참고보다 붉음)/화이트 나시/블랙 와이드 슬랙스. (따라 함: 참고 137) [점수 6]'
+  point: 와인 가디건 밑단으로 흰 나시를 살짝 보여 줘요 🤍
+  ref: '137'
+  ref_photo: https://the-ore.kr/web/product/medium/202610/c0f3a6fc61065275088d29a3f746be37.webp
+- items:
+  - product: zigzag:168059454
+    color: 블랙
+    desc: 블랙 헨리넥 니트 (black slim fitted long-sleeve Henley-neck thin ribbed knit top
+      with button placket and white contrast layer at neckline and hem)
+    name: 헨리넥 니트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 4
+    size: about 56.1 cm long from shoulder to hem, 37 cm across the shoulders, 40.5
+      cm across the chest laid flat, 62.6 cm long sleeves
+    cm: 56.1
+  - product: zigzag:171231032
+    color: 블랙
+    desc: 블랙 랩 스커트 팬츠 (black mini wrap skort, A-line flare, hem above mid-thigh)
+    name: 랩 스커트 팬츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    - 1
+    size: about 40.5 cm long from waist to hem, 37.5 cm across the waist laid flat,
+      52.5 cm across the hips laid flat, 35 cm across the hem laid flat
+    cm: 40.5
+  - product: zigzag:100673075
+    color: 블랙
+    desc: 블랙 오버 니삭스 (black chunky-ribbed slouchy knee-high socks, soft off-black,
+      slightly wrinkled below the knee; copy only the socks, not the boots in the
+      photo)
+    name: 블랙 오버 니삭스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 신발
+  - product: zigzag:119684251
+    color: 블랙
+    desc: 블랙 플랫폼 로퍼 (black chunky platform penny loafers)
+    name: 플랫폼 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:151166447
+    color: 블랙
+    desc: 블랙 숄더백 (black shoulder bag with a round emblem)
+    name: 클리프 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 4
+  reason: '블랙 헨리넥 니트가 주인공, 블랙 랩 스커트 팬츠와 니삭스, 플랫폼 로퍼로. 참고: 블랙 라운드 니트/네이비 핀스트라이프 셔츠/블랙
+    슬릿 미니/블랙 스타킹/로퍼 → 맞춘 것: 블랙 헨리넥 니트(안쪽 흰 단 포함)/블랙 랩 스커트 팬츠/블랙 오버 니삭스/플랫폼 로퍼 (셔츠
+    칸은 셔츠 3벌 제한 때문에 뺌). (따라 함: 참고 129) [점수 5]'
+  point: 올블랙에 니삭스와 플랫폼 로퍼로 발끝까지 힘을 줬어요
+  ref: '129'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
+reason: 블랙 바탕에 와인·플럼 한 색만 얹은 다섯 벌
+shot: flatlay
+cover_look: 2
+text:
+  title_lines: [블랙만 입기 지루할 때, 컬러 한 방울 얹는 법]
+  intro: 선선한 가을 수요일, 블랙 코디에 버건디와 플럼을 한 방울만 얹어 보세요 🍂
+  points: []
+  hashtags: ["#블랙코디", "#버건디", "#플럼", "#가을코디", "#포인트컬러", "#올블랙", "#가을룩"]

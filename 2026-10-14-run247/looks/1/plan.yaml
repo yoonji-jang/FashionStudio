@@ -1,0 +1,114 @@
+account: women
+date: '2026-10-14'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 뮤트 레더 블레이저 (black matte soft faux-leather blazer, collarless, relaxed slightly
+    oversized fit, hip length)
+  name: 뮤트 레더 블레이저
+  product: zigzag:171293642
+  ref_photos:
+  - 0
+- cm: 72.5
+  color: 베이지
+  comment: ''
+  cutout_photo: 3
+  desc: 베이지 워싱 셔츠 (light beige washed cotton shirt, small pointed collar, loose relaxed
+    fit, hip length)
+  name: 워싱 셔츠
+  product: zigzag:127356723
+  ref_photos:
+  - 3
+  size: about 72.5 cm long from shoulder to hem, 48.5 cm across the shoulders, 67
+    cm across the chest laid flat, 63 cm long sleeves
+  wear_with: 아우터
+- cm: 73.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 카프리 크롭 팬츠 (black slim fitted capri pants with small side hem slit, cropped
+    at mid-calf)
+  name: 카프리 팬츠
+  product: zigzag:148705129
+  ref_photos:
+  - 1
+  - 4
+  - 3
+  size: about 73 cm long from waist to hem, 39 cm across the waist laid flat, 44 cm
+    across the hips laid flat, 18.5 cm across the hem laid flat
+- color: 버건디
+  comment: ''
+  cutout_photo: 2
+  desc: 버건디 울 삼각 쁘띠 스카프 (burgundy fuzzy wool triangle petite scarf)
+  name: 울 쁘띠 스카프
+  product: zigzag:150577244
+  ref_photos:
+  - 2
+  slot: 목걸이
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 발레리나 플랫 (black ballerina flats with small bow, 3.5 cm heel)
+  name: 리본 플랫슈즈
+  product: zigzag:171742629
+  ref_photos:
+  - 0
+  - 1
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black large tote-shaped shoulder bag with eyelet details)
+  name: 오닉 숄더백
+  product: zigzag:166400700
+  ref_photos:
+  - 0
+  - 3
+  - 5
+looks: []
+reason: '블랙 레더 블레이저가 주인공, 베이지 셔츠와 블랙 크롭 팬츠로 단정하게. 참고: 블랙 노카라 가죽 자켓/크림 셔츠/크림 스카프/블랙
+  슬릿 크롭 팬츠/스트랩 힐 → 맞춘 것: 블랙 레더 블레이저/베이지 워싱 셔츠(크림 사진이 없어 베이지)/버건디 울 스카프/블랙 카프리 팬츠/블랙
+  발레리나 플랫 (스카프 색과 신발은 바꿈). (따라 함: 참고 109) [점수 7]'
+ref_photo: https://woonan.co.kr/web/product/big/202609/599dceeadea6302eb2d77758519b6071.jpg
+shot: flatlay
+styling: The beige shirt is worn open inside the blazer with its collar showing; the
+  scarf is loosely knotted at the neck.
+text:
+  hashtags:
+  - '#블랙코디'
+  - '#버건디'
+  - '#플럼'
+  - '#가을코디'
+  - '#포인트컬러'
+  - '#올블랙'
+  - '#가을룩'
+  intro: 선선한 가을 수요일, 블랙 코디에 버건디와 플럼을 한 방울만 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 블랙만 입기 지루할 때
+  - 컬러 한 방울 얹는 법
+theme:
+  date: '2026-10-14'
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용
