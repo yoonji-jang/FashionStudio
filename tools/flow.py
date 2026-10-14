@@ -19,6 +19,7 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
   publishing    게시 기록이 생기면 theme 으로 (다음 주제)
 
 상태는 daily-results 의 flow/<계정>/state.json, 장면 사진은 flow/<계정>/<날짜>/scene.jpg
+(사진에 붙인 말은 같은 폴더 scene.txt: 모든 벌에 반영할 요청, 예 "슬릭번")
 (커밋은 schedule 워크플로가 한다).
 제안 주제는 data/<계정>/theme_options.json (theme-options 워크플로가 커밋).
 
@@ -171,7 +172,7 @@ def choose_theme(store: Store, theme: Theme) -> None:
 
 
 def scene_photo(updates: list[dict], chat_id: str, since: int, after_update: int) -> tuple | None:
-    """since 뒤 등록된 채팅에서 온 마지막 사진 (update_id, file_id).
+    """since 뒤 등록된 채팅에서 온 마지막 사진 (update_id, file_id, 사진에 붙인 말).
     after_update 이하는 이미 받은 것."""
     from tools import notify
 
@@ -184,7 +185,7 @@ def scene_photo(updates: list[dict], chat_id: str, since: int, after_update: int
             continue
         fid = notify.photo_file_id(msg)
         if fid:
-            found = (u["update_id"], fid)
+            found = (u["update_id"], fid, (msg.get("caption") or "").strip())
     return found
 
 
@@ -317,10 +318,16 @@ def _step(
         if tg is not None:
             got = scene_photo(tg.updates(), tg.chat_id, st.theme_at, st.scene_update)
             if got is not None:
-                uid, fid = got
+                uid, fid, note = got
                 rel = f"flow/{acc}/{day}/scene.jpg"
                 if not dry_run:
                     tg.download(fid, results / rel)
+                    # 사진에 붙인 말(예: "슬릭번")은 모든 벌에 반영할 요청 (daily-feed 가 읽음)
+                    note_path = results / rel.replace(".jpg", ".txt")
+                    if note:
+                        note_path.write_text(note + "\n", encoding="utf-8")
+                    else:
+                        note_path.unlink(missing_ok=True)
                 st.scene, st.scene_update = rel, uid
                 more = "바로 만들게요" if st.pick else "코디를 골라 주시면 만들게요"
                 tg.send(f"{tag} 장면 사진을 받았어요. {more}")

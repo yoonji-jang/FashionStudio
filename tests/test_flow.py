@@ -39,10 +39,13 @@ class FakeTg:
             {"update_id": uid, "message": {"date": at, "chat": {"id": 42}, "text": text}}
         )
 
-    def photo(self, uid, file_id, at):
+    def photo(self, uid, file_id, at, caption=""):
         sizes = [{"file_id": "small", "width": 90}, {"file_id": file_id, "width": 1280}]
         self.ups.append(
-            {"update_id": uid, "message": {"date": at, "chat": {"id": 42}, "photo": sizes}}
+            {
+                "update_id": uid,
+                "message": {"date": at, "chat": {"id": 42}, "photo": sizes, "caption": caption},
+            }
         )
 
 
@@ -98,11 +101,12 @@ def test_theme_pick_scene_render(env):
     assert '"title_hint": "주제 2"' in inputs["pick"]
     assert "장면 사진 1장" in tg.sent[-1]
     # 장면 사진 먼저
-    tg.photo(2, "BIG", st.theme_at + 50)
+    tg.photo(2, "BIG", st.theme_at + 50, caption="슬릭번")
     tick(env, tg, st.theme_at + 100)
     st = flow.load_state(results, "women")
     assert st.scene == "flow/women/2026-10-15/scene.jpg" and tg.got == ["BIG"]
     assert (results / st.scene).exists() and st.stage == "pick_wait"
+    assert (results / "flow/women/2026-10-15/scene.txt").read_text(encoding="utf-8") == "슬릭번\n"
     # 후보가 오고 고르면 만들기 요청 (지난 주제 때 후보는 보지 않음)
     old = results / "2026-10-15-run1"
     (old / "picks").mkdir(parents=True)

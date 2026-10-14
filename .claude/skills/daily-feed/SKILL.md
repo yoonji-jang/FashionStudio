@@ -48,6 +48,8 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
 (스트리트, 스튜디오 촬영컷, 거울 셀카 등). 여섯 벌 모두 이 사진의 무드로, 벌마다 자리·포즈만 다르게 그린다.
 코디컷은 `prompts/outfit_scene.md` 지시문으로 그린다. 순서는 위와 같고 아래만 다르다.
 - 1번 다음에 `SCENE` 사진을 Read 로 본다. 사진은 무드 참고일 뿐: 그 사람의 얼굴·신원·옷은 따르지 않는다.
+  `out/$DATE/src/scene.txt` 가 있으면 사용자가 장면 사진에 붙인 요청이다 (예: "슬릭번" = 모든 벌 머리를 낮게 묶은
+  슬릭번으로). 여섯 벌 모두의 `pose`(또는 `mood`)에 영어로 분명히 넣는다. 보고에 어떻게 넣었는지 적는다.
 - 8번(검사) 전에 plan.yaml 에 쓴다 (모두 영어).
   - `shot: model`, `scene_image: <SCENE 값>`.
   - `mood`: 장면 사진에서 읽은 무드 한 문장. 촬영 종류(street snapshot, studio lookbook shoot, mirror selfie …),
