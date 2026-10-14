@@ -1,0 +1,97 @@
+account: women
+date: '2026-10-15'
+edit_from: samples/women/edit_1015/LOOK4.jpg
+edit_request: 'move the whole outfit up so it has a standing woman''s full-body proportions:
+  the collar about 8 percent below the top edge and the skirt hem at about half the
+  image height. Then move the long boots down into the lower half, where her lower
+  legs and feet would be, below the skirt and not touching or overlapping it, soles
+  near the bottom edge. Lay the two boots as a parallel pair at exactly the same angle,
+  both toes pointing the same way, one just beside the other and overlapping slightly,
+  never crossed. '
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 니트 베스트 (black knit vest, v-neck)
+  name: 니트 베스트
+  product: zigzag:129154792
+  ref_photos:
+  - 3
+  - 1
+- color: 크림
+  comment: ''
+  cutout_photo: 1
+  desc: 크림 셔츠 (cream soft cotton shirt, round neck, puff sleeves)
+  name: 크림 셔츠
+  product: zigzag:168757496
+  ref_photos:
+  - 1
+  - 2
+  wear_with: 상의
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 슬릿 스커트팬츠 (grey wrap skort, mini length)
+  name: 슬릿 스커트팬츠
+  product: zigzag:171935783
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 롱부츠 (black knee-high boots)
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+  ref_photos:
+  - 3
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 라운드 숄더백 (black small round shoulder bag with ribbon shirring)
+  name: 셔링 라운드백
+  product: zigzag:169872677
+  ref_photos:
+  - 0
+looks: []
+reason: 블랙 니트 베스트가 주인공, 화이트 셔츠와 그레이 스커트팬츠, 롱부츠. 참고 블랙 캡소매 니트 베스트/크림 구김 셔츠/그레이 랩 스커트팬츠/블랙
+  롱부츠 → 맞춘 것 - 블랙 니트 베스트/크림 셔츠/그레이 슬릿 스커트팬츠/블랙 롱부츠 (셔츠는 구김 대신 부드러운 블라우스). (따라 함 -
+  참고 101) [점수 8]
+ref_photo: https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg
+shot: flatlay
+styling: The cream shirt sleeves and hem show outside the black knit vest.
+text:
+  hashtags:
+  - '#미니스커트코디'
+  - '#가을코디'
+  - '#데일리룩'
+  - '#롱부츠코디'
+  - '#스커트코디'
+  intro: 선선한 가을엔 미니스커트에 니트와 자켓을 더해 보세요 🍂
+  points:
+  - 짧은 스커트에는 넉넉한 상의와 긴 부츠로 균형을 맞춰요
+  - 톤을 맞춘 아우터 하나로 가을 분위기가 완성돼요 🤎
+  title_lines:
+  - 가을 미니스커트
+  - 이렇게 입어요
+theme:
+  date: '2026-10-15'
+  mood: 블랙·차콜·브라운·크림 중심의 가을 톤, 미니스커트(스커트 팬츠 포함)가 주인공
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 숏 자켓·트렌치·블레이저 중 어울릴 때만
+  - category: 상의
+    desc: 니트·셔츠·스카프 블라우스
+  - category: 하의
+    desc: 미니스커트나 스커트 팬츠 (랩·핀스트라이프·코듀로이·스웨이드)
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠·로퍼·플랫 중 어울리는 것
+  - category: 소품
+    desc: 스타킹이나 니삭스는 어울릴 때만
+  title_hint: 가을 미니스커트 코디, 다리 가볍게 입는 공식
+  type: 아이템
+  why: 사용자 선택(2026-10-14). 모든 벌의 하의가 미니스커트나 스커트 팬츠. 롱부츠·스타킹은 어울릴 때 넣되 강제하지 않는다. 참고
+    코디(refs)의 미니스커트 벌을 우선 쓴다.
