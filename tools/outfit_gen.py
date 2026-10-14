@@ -242,7 +242,12 @@ def reference_panels(
             img.save(buf, "JPEG", quality=92)
             shots.append(buf.getvalue())
         if not shots:
-            raise ValueError(f"{it.product} ({it.name}): 얼굴 없이 참고로 쓸 사진이 없습니다")
+            # 고른 사진이 모두 얼굴을 못 잘라 내면 원본을 쓴다 (10-14 사용자: 얼굴 사진 괜찮음)
+            k = ref_indexes(it)[0]
+            print(f"{it.product} #{k}: 얼굴 없는 사진이 없어 원본을 씀", file=sys.stderr)
+            buf = io.BytesIO()
+            Image.open(cache / f"{pid}_{k}.jpg").convert("RGB").save(buf, "JPEG", quality=92)
+            shots.append(buf.getvalue())
         panel = generate.reference_panel(shots, cfg.get("panel_max_px", 1536))
         cat = generate.CATEGORY_EN.get(p.category, "item")
         (work / "originals" / f"{i:02d}_{cat}.jpg").write_bytes(panel)
