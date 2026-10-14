@@ -99,5 +99,29 @@
    },
    "text": "이런 느낌의 스튜디오 배경에서 슬릭번이나 머리묶은느낌으러 해줘"
   }
+ },
+ {
+  "update_id": 428675791,
+  "message": {
+   "message_id": 1411,
+   "date": 1791987762,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIFg2rPkDJcftaieUOWEZRQokpSjbBFAAJyEmsb-f2AVjZNZDCtwd_LAQADAgADeQADPQQ",
+   "caption": "헤어는 슬릭번"
+  }
+ },
+ {
+  "update_id": 428675792,
+  "message": {
+   "message_id": 1412,
+   "date": 1791987870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "1,2,3,4,5,7"
+  }
  }
 ]
