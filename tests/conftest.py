@@ -91,3 +91,17 @@ def fast_collage_cutout(monkeypatch, request):
     monkeypatch.setattr(
         tools.cover_collage, "cutout", lambda path: Image.open(path).convert("RGBA")
     )
+
+
+@pytest.fixture(autouse=True)
+def timed_flow(monkeypatch):
+    """계정 profile 에서 차례 흐름(flow)을 켜도 시각표·승인 마감 테스트는 꺼진 상태로 본다
+    (tools.flow 테스트는 흐름 함수를 바로 부르므로 이 값과 상관없다)."""
+    original = core.profile.Profile.model_validate.__func__
+
+    def validate(cls, data, *args, **kwargs):
+        if isinstance(data, dict) and "flow" in data:
+            data = {**data, "flow": {**(data.get("flow") or {}), "enabled": False}}
+        return original(cls, data, *args, **kwargs)
+
+    monkeypatch.setattr(core.profile.Profile, "model_validate", classmethod(validate))

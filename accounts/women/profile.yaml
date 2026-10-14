@@ -369,7 +369,7 @@ model_shot:
 # 주제 제안(텔레그램, 허락) → 코디 후보 고르기 + 장면 사진 1장 → 장면 모델컷 6벌 → 미리보기 /ok → 바로 게시 → 다음 주제.
 # 사람의 답은 끝까지 기다린다. schedule 워크플로가 매시 깨어날 때 확인한다 (schedule.enabled 와 따로).
 flow:
-  enabled: false            # 사용자가 켜라고 할 때 true
+  enabled: true             # 2026-10-14 사용자 "지금 켜기"
   theme_options: 3          # 한 번에 제안하는 주제 수
   scene_prompt: outfit_scene
   publish_alert_minutes: 120
