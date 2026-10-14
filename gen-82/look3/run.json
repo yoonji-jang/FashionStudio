@@ -1,0 +1,16 @@
+{
+  "spec": "experiments/street_1015/look3.yaml",
+  "started": "2026-10-14T10:03:00",
+  "results": [
+    {
+      "model": "nano_banana_pro",
+      "shot": "model",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.146274,
+      "file": "nano_banana_pro/model_1.jpg",
+      "sec": 26.7
+    }
+  ],
+  "finished": "2026-10-14T10:03:27"
+}
