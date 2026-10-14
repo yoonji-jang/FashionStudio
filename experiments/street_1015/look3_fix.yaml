@@ -1,0 +1,44 @@
+title: 10/15 스트리트 모델컷 LOOK3 고치기 (사용자 10/14 19:12)
+account: women
+items:
+- category: 이전
+  image: poc-results:gen-82/look3/nano_banana_pro/model_1.jpg
+  desc: previous photo
+- category: ''
+  product: zigzag:171521437
+  photos:
+  - 4
+  - 1
+  desc: 베이지 하프 트렌치코트 (beige half-length trench coat)
+- category: ''
+  product: zigzag:151689759
+  photos:
+  - 5
+  - 3
+  desc: 화이트 나시 크롭탑 (plain white camisole)
+- category: ''
+  product: zigzag:137890667
+  photos:
+  - 0
+  - 4
+  desc: 블랙 쉬폰 슬릿 미니스커트 (black slit mini skirt with sheer chiffon underlayer hem)
+- category: ''
+  product: zigzag:141916298
+  photos:
+  - 5
+  desc: 블랙 니삭스 (black ribbed knee socks)
+- category: ''
+  product: zigzag:171985452
+  photos:
+  - 0
+  - 1
+  desc: 블랙 롱 부츠 (black long soft boots)
+- category: ''
+  product: zigzag:164013796
+  photos:
+  - 5
+  desc: 블랙 숄더백 (black shoulder bag)
+prompt_text: experiments/street_1015/look3_fix.txt
+shots:
+  model:
+    repeats: 1
