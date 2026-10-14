@@ -1,0 +1,93 @@
+- product: zigzag:171293642
+  found: false
+  note: 본문 조각을 열어 봤으나 실측표가 없음 (모델·무드 사진, 원단 설명, 저작권 안내뿐). 이름과 사진으로 기장을 짐작하지 않음. 상품 페이지 옵션란에 실측이 있을 수 있음
+- product: zigzag:127356723
+  found: true
+  size: 미표기
+  length: 72.5
+  shoulder: 48.5
+  chest: 67
+  sleeve: 63
+  where: text
+  note: 글 줄에 사이즈 표기 없이 일반핏(총장 65, 어깨 46.5, 가슴 66, 소매 55.5)과 (오버핏)(총장 72.5, 어깨 48.5, 가슴 67, 소매 63) 두 줄이 있음. 기장 옵션이 여럿이라 가장 긴 오버핏 줄을 씀. 어느 핏이 이 상품인지는 확인 필요
+- product: zigzag:148705129
+  found: true
+  size: M
+  length: 73
+  waist: 39
+  hip: 44
+  hem: 18.5
+  where: 29-1
+  note: 카프리 팬츠. 같은 M 이 표 두 개에 있음 (총장 68 / 허리 38 / 힙 43.5, 총장 73 / 허리 39 / 힙 44). 표 제목이 둘 다 SIZE 라 구분되지 않아 가장 긴 73 쪽을 씀. 밑위 25, 허벅지 27. 발목 위 7부 기장 이미지이므로 73 이 긴 쪽
+- product: zigzag:147510620
+  found: true
+  size: 미표기
+  length: 58
+  shoulder: 55
+  chest: 53
+  sleeve: 20
+  where: text
+  note: 반소매 니트. 밑단 단면 48, 암홀 19. 글 줄에 사이즈 이름이 없음. 어깨가 넓은 편이라는 안내 있음
+- product: zigzag:150110018
+  found: true
+  size: M
+  length: 38.5
+  waist: 35.5
+  where: text
+  note: 울 미니스커트. S 는 허리 33, 총장 38. 엉덩이와 밑단은 글에 없어 비움. 본문 이미지 없음
+- product: zigzag:171413181
+  found: false
+  note: 본문 조각은 모델 사진, POINT 설명, 색상별 제품 컷뿐이고 실측표가 없음. 안내된 사이즈 숫자도 없음
+- product: zigzag:129830192
+  found: true
+  size: M
+  length: 106
+  waist: 34.5
+  hip: 55
+  hem: 26.5
+  where: 15-0
+  note: 원턱 와이드 슬랙스, M[27-28]. 총장은 기본 101, 롱 106 두 가지라 가장 긴 롱 106 을 씀. 밑위 33, 허벅지 31.5. 표에 단면 표기
+- product: zigzag:146856799
+  found: true
+  size: FREE
+  length: 53
+  shoulder: 35.5
+  chest: 46.5
+  sleeve: 66.5
+  where: 105-0
+  note: 라운드 가디건 (크롭 기장, 소매 길게 내려옴). 암홀 19.5, 소매통 15.5, 소매끝 7.5
+- product: zigzag:156428546
+  found: true
+  size: XL
+  length: 42
+  chest: 36
+  hem: 36
+  where: 25-0
+  note: 나시, 사이즈 F/L, XL, XXL 중 가운데 XL. 표에 번호만 있고 ①=가슴단면, ②=밑단단면, ③=끈 길이(9.5), ④=총장(42) 로 그림 기준 해석. 어깨 너비는 없음(끈 9.5 는 shoulder 에 넣지 않음). 참고로 F/L 은 총장 39
+- product: zigzag:129082539
+  found: true
+  size: M
+  length: 104
+  waist: 35
+  hip: 44
+  hem: 26
+  where: 02_4
+  note: 와이드 롱 슬랙스(부츠컷 체크). M(28) 총장 104 와 M 기장 -6CM(총장 98) 두 옵션이 있어 긴 104 를 씀. 밑위 32, 허벅지 33. 모델 키 171cm. 조각 파일 02_4 (라벨 2-4)
+- product: zigzag:168059454
+  found: true
+  size: 66
+  length: 56.1
+  shoulder: 37
+  chest: 40.5
+  sleeve: 62.6
+  where: 7-2
+  note: 사이즈가 55/66 둘뿐이라 66 을 씀. 가슴 둘레 81 을 2로 나눠 단면 40.5 (밑단 둘레 85, 단면 42.5). 이 이름의 상품이 긴소매(블랙·올리브, 7-2)인지 반소매(네이비·올리브, 8-2) 인지 본문만으로 구분되지 않음. 반소매라면 66 은 총장 55.6, 어깨 37, 소매 21.6 이고 가슴 단면은 같음. 이 값은 긴소매 기준이므로 확인 필요
+- product: zigzag:171231032
+  found: true
+  size: M
+  length: 40.5
+  waist: 37.5
+  hip: 52.5
+  hem: 35
+  where: 28-0
+  note: 랩 스커트 팬츠, M(66), 단면 표기. 총기장은 바지/랩스커트 길이를 각각 적은 값이라 랩스커트 쪽(겉으로 보이는 기장) 40.5 를 씀. 바지 쪽은 36.5. 표가 소재별 두 개이고 본문에서 어느 쪽인지 알 수 없어 긴 쪽인 스웨이드 표를 씀. 폰폰 표 M 은 총기장 35.5/39.5, 허리 37, 엉덩이 52, 밑단 34, 밑위 31.8, 허벅지 35

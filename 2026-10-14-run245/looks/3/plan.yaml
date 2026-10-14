@@ -1,0 +1,105 @@
+account: women
+date: '2026-10-14'
+items:
+- cm: 70.0
+  color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 루즈핏 셔츠 (burgundy oversized cotton poplin shirt, soft shirt collar, dropped
+    shoulders, hip length, chest pocket, sleeves not rolled)
+  name: 버건디 루즈핏 셔츠
+  photo: 0
+  product: zigzag:171413181
+  ref_photos:
+  - 0
+  - 3
+  - 1
+- cm: 106.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 원턱 와이드 슬랙스 (black high-waist one-tuck wide-leg slacks, straight wide leg,
+    full length reaching the shoe, crisp wool blend)
+  name: 원턱 와이드 슬랙스
+  photo: 2
+  product: zigzag:129830192
+  ref_photos:
+  - 2
+  - 1
+  - 0
+  size: about 106 cm long from waist to hem, 34.5 cm across the waist laid flat, 55
+    cm across the hips laid flat, 26.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 발레리나 플랫 (black ballerina flats with small bow, 3.5 cm heel)
+  name: 리본 플랫슈즈
+  photo: 0
+  product: zigzag:171742629
+  ref_photos:
+  - 0
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 숄더백 (black woven hobo shoulder bag, glossy black)
+  name: 위빙 숄더백
+  photo: 0
+  product: zigzag:168305853
+  ref_photos:
+  - 0
+  - 1
+- color: 실버
+  comment: ''
+  cutout_photo: 4
+  desc: 실버 롱 목걸이 (long silver necklace with a thin chain and one small smooth ring-shaped
+    bead pendant, hangs below the chest, exactly one necklace)
+  name: 링 펜던트 롱 목걸이
+  photo: 0
+  product: zigzag:165613618
+  ref_photos:
+  - 0
+  - 4
+  slot: 목걸이
+looks: []
+reason: '버건디 셔츠가 주인공, 블랙 와이드 슬랙스로 단정하게 두고 실버 롱 목걸이로 마무리. 참고: 버건디 오픈칼라 셔츠/블랙 와이드 슬랙스/블랙
+  숄더백 → 맞춘 것: 버건디 루즈핏 셔츠(오픈카라 상품은 버건디 사진이 없어 바꿈)/블랙 원턱 와이드 슬랙스/블랙 위빙 숄더백. (따라 함: 참고
+  134) [점수 6]'
+shot: flatlay
+text:
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#버건디'
+  - '#플럼'
+  - '#가을코디'
+  - '#포인트코디'
+  intro: 일교차 큰 수요일, 올블랙에 버건디 한 방울만 더해 보세요 🍂
+  points: []
+  title_lines:
+  - 블랙만 입으면 심심할 때
+  - 컬러 한 방울 공식
+theme:
+  date: '2026-10-14'
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용
