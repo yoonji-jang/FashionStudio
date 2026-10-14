@@ -167,6 +167,9 @@ jobs:
             done
             if [ -s /tmp/scene.jpg ]; then
               mkdir -p "out/$DATE/src" && mv /tmp/scene.jpg "out/$DATE/src/scene.jpg"
+              # 사진에 붙인 말 (모든 벌에 반영할 요청, 예 "슬릭번")
+              git show "origin/daily-results:${scene%.jpg}.txt" > "out/$DATE/src/scene.txt" 2>/dev/null \
+                || rm -f "out/$DATE/src/scene.txt"
               echo "SCENE=out/$DATE/src/scene.jpg" >> "$GITHUB_ENV"
             else
               echo "::warning::장면 사진($scene)이 없어 장면 없이 만듭니다"
