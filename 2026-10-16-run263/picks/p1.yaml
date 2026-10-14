@@ -1,0 +1,267 @@
+account: women
+date: '2026-10-16'
+items: []
+looks:
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 라운드넥 울 니트 가디건 (charcoal round-neck wool knit cardigan, short boxy fit
+      ending near the waist)
+    name: 울 니트 가디건
+    product: zigzag:166394650
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 슬림 긴팔티 (charcoal slim long-sleeve warmer tee, plain crew neck)
+    name: 울 슬림 워머 티
+    product: zigzag:155290768
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 도톰 니트 맥시 롱스커트 (charcoal thick knit maxi skirt, straight A-line, ankle
+      length)
+    name: 니트 맥시 스커트
+    product: zigzag:172049603
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니멀 레더 숄더백 (black small minimal leather shoulder bag)
+    name: 미니멀 레더백
+    product: zigzag:165200845
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 플랫슈즈 (black ballet flats with a small bow)
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:169315401
+  point: ''
+  reason: 짧은 울 가디건에 니트 롱스커트로 차콜 톤온톤. 참고 차콜 크롭 가디건/차콜 슬림 긴팔티/차콜 니트 롱스커트/블랙 숄더백/플랫 →
+    맞춘 것 라운드 울 니트 가디건/울 슬림 워머 티/니트 맥시 스커트/니치 숄더백/리본 플랫 (따라 함 참고 118) [점수 8]
+  ref: '118'
+  ref_photo: https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg
+  styling: The cardigan is worn open; the slim tee is tucked into the skirt waistband.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 울 브이넥 니트 (gray wool V-neck knit sweater, slim fit, hip length)
+    name: 그로운 브이넥 니트
+    product: zigzag:131379280
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 스카프 타이 블라우스 (white chiffon blouse with a long scarf tie)
+    name: 스카프 타이 블라우스
+    product: zigzag:171062149
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핀스트라이프 맥시 롱스커트 (charcoal gray pinstripe maxi skirt, straight H-line,
+      back slit)
+    name: 핀스트라이프 맥시
+    product: zigzag:168541212
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 앵클부츠 (black suede square-toe sock ankle boots)
+    name: 스웨이드 앵클부츠
+    product: zigzag:149181846
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 토트백 (black small structured tote bag with a top handle)
+    name: 지퍼 미니 토트백
+    product: zigzag:170446634
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:109060154
+  point: ''
+  reason: 그레이 브이넥 니트에 핀스트라이프 롱스커트로 단정하게. 참고 그레이 브이넥 니트/흰 스카프 블라우스/핀스트라이프 롱스커트/앵클부츠
+    → 맞춘 것 그로운 브이넥 니트/스카프 타이 블라우스/핀스트라이프 맥시/스웨이드 앵클부츠 (따라 함 참고 121) [점수 7]
+  ref: '121'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/f724697ecc0ca93cefa27b40d1a11bf7.jpg
+  styling: The blouse's scarf ties hang out over the front of the knit.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 브이넥 니트 (charcoal wool V-neck knit sweater, slim fit, hip length)
+    name: 그로운 브이넥 니트
+    product: zigzag:131379280
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 크롭 나시 (plain black cropped camisole tank)
+    name: 크롭 나시
+    product: zigzag:156428546
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스트레치 롱스커트 (black stretch long skirt, straight, ankle length)
+    name: 스트레치 롱스커트
+    product: zigzag:169010137
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스퀘어토 롱부츠 (black square-toe flat knee-high boots)
+    name: 스퀘어토 롱부츠
+    product: zigzag:130130894
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 호보백 (black woven leather hobo shoulder bag)
+    name: 위빙 호보백
+    product: zigzag:161978790
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 얇은 볼체인 목걸이 (exactly one thin silver ball-chain necklace)
+    name: 볼체인 목걸이
+    product: zigzag:113341770
+  point: ''
+  reason: 브이넥 니트에 블랙 롱스커트로 길게 떨어지게. 참고 차콜 슬림 브이넥 니트/차콜 홀터 탱크/블랙 랩 롱스커트/숄더백/롱부츠 → 맞춘
+    것 브이넥 니트/블랙 크롭 나시/스트레치 롱스커트/위빙 숄더백/롱부츠 (따라 함 참고 112) [점수 7]
+  ref: '112'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/76d3eba89ccd6ff05c44f14f51ab12e6.jpg
+  styling: The camisole shows a little inside the V-neck.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 오버사이즈 울 블레이저 (charcoal oversized wool blazer, single-breasted, hip length)
+    name: 오버사이즈 울 블레이저
+    product: zigzag:165561309
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 스카프 레이어링 니트 (beige short-sleeve knit top with an attached scarf)
+    name: 스카프 레이어링 니트
+    product: zigzag:172225710
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핀스트라이프 롱스커트 (charcoal pinstripe long straight skirt with a side slit)
+    name: 핀ST 스커트
+    product: zigzag:159994030
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 사각코 롱부츠 (black square-toe flat knee-high boots)
+    name: 사각코 롱부츠
+    product: zigzag:146926302
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 호보백 (black leather hobo shoulder bag)
+    name: 플로우 레더 호보백
+    product: zigzag:168780987
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:166492501
+  point: ''
+  reason: 차콜 블레이저에 스카프 니트와 핀스트라이프 스커트로 톤온톤. 참고 차콜 오버핏 블레이저/그레이 스카프 탑/차콜 핀스트라이프 스커트/롱부츠
+    → 맞춘 것 오버사이즈 울 블레이저/스카프 레이어링 니트/핀ST 스커트/롱부츠 (따라 함 참고 107) [점수 6]
+  ref: '107'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/cd55aed48447a2623229e70770e5c638.jpg
+  styling: The blazer is worn open; the knit's scarf hangs down the front.
+- items:
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 버터 크림 알파카 케이블 니트 (butter cream fuzzy cable-knit pullover sweater with a
+      round neck, relaxed fit)
+    name: 알파카 케이블 니트
+    product: zigzag:171373869
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 크롭 나시 (plain black cropped camisole tank, only the neckline shows under
+      the sweater)
+    name: 크롭 나시
+    product: zigzag:156428546
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 새틴 롱스커트 (black satin slip long skirt with a lace hem, ankle length)
+    name: 새틴 롱스커트
+    product: zigzag:168778375
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 앵클부츠 (black suede square-toe sock ankle boots)
+    name: 스웨이드 앵클부츠
+    product: zigzag:149181846
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 체인 크로스백 (black small leather crossbody bag with a chain strap)
+    name: 체인 크로스 숄더백
+    product: zigzag:138075877
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:112191869
+  point: ''
+  reason: 크림 케이블 니트에 블랙 새틴 롱스커트로 대비를 살려. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙 부츠 →
+    맞춘 것 알파카 케이블 니트/린나 프릴 블라우스/새틴 롱스커트/스웨이드 앵클부츠 (따라 함 참고 140) [점수 6]
+  ref: '140'
+  ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+  styling: The sweater is worn untucked at hip length over the skirt, with a relaxed
+    fit.
+reason: 하객룩을 차콜·블랙 톤의 단정한 쇼핑몰 코디를 따라 다섯 가지로
+shot: flatlay
+theme:
+  date: '2026-10-16'
+  mood: 깊은 가을 톤의 단정하고 품위 있는 하객룩 (흰색·아이보리 올화이트는 피함)
+  search_terms:
+    가방:
+    - 미니 숄더백
+    - 퀼팅 체인백
+    상의:
+    - 새틴 블라우스
+    - 보트넥 니트
+    소품:
+    - 진주 귀걸이
+    신발:
+    - 메리제인
+    - 발레리나 플랫
+    아우터:
+    - 트위드 자켓
+    - 크롭 가디건
+    하의:
+    - 플리츠 롱스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 단정한 라운드넥 트위드 자켓이나 크롭 니트 가디건
+  - category: 상의
+    desc: 새틴 블라우스나 보트넥 니트처럼 광택·질감이 있는 상의
+  - category: 하의
+    desc: 플리츠 롱스커트나 새틴 스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백이나 퀼팅 체인백
+  - category: 신발
+    desc: 메리제인이나 발레리나 플랫
+  - category: 소품
+    desc: 진주 귀걸이나 얇은 목걸이
+  title_hint: 가을 결혼식 하객룩, 단정한데 지루하지 않게
+  type: 상황
+  why: 금요일, 최고 23도에 흐리고 비 예보 86%라 가벼운 아우터와 젖어도 부담 없는 어두운 하의, 가을 결혼식 시즌
