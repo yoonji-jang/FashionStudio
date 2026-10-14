@@ -140,7 +140,17 @@ jobs:
           elif [ "$MODE" = candidates ] && [ "${PICK:0:1}" = "{" ]; then
             # 차례 흐름(tools.flow): 사용자가 고른 주제를 그날 주제로 넣는다. schedule 이 주제를 커밋하기 전에
             # 이 실행이 꺼낸 커밋이 정해져서, 주제는 pick 으로 넘겨받는다 ({"theme": {...}})
-            uv run python -m tools.flow use-theme --account "$ACCOUNT" --json "$PICK"
+            # 다시 짜기 요청도 같은 JSON 으로 받는다 ({"again": 지난 결과 폴더, "keep": [4], "count": 8, "note": "…"}):
+            # 남길 벌·벌 수·요청은 out/<날짜>/picks_request.json 에 두고 outfit-candidates 가 읽는다
+            uv run python -m tools.flow use-theme --account "$ACCOUNT" --json "$PICK" --out "out/$DATE"
+            again=$(jq -r '.again // empty' <<< "$PICK")
+            if [ -n "$again" ]; then
+              git fetch origin daily-results
+              git worktree add /tmp/prev origin/daily-results
+              mkdir -p "out/$DATE/previous"
+              cp "/tmp/prev/$again/picks"/p*.yaml "out/$DATE/previous/"
+              ROUND=$(( $(jq -r .round "/tmp/prev/$again/picks/pick.json") + 1 ))
+            fi
           elif [ -n "$PICK" ]; then
             # 후보가 있는 결과 폴더를 가져온다 (render: 고른 후보, candidates: "다시" 누른 지난 후보)
             git fetch origin daily-results
@@ -213,6 +223,7 @@ jobs:
           prompt: |
             .claude/skills/outfit-candidates/SKILL.md 의 순서를 그대로 따라 코디 후보를 만들어.
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} COLLECT=${{ env.COLLECT }}
+            out/${{ env.DATE }}/picks_request.json 이 있으면 사용자의 다시 짜기 요청이니 그 절을 따라.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             코디컷 만들기(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-

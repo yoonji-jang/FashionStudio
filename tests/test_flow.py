@@ -268,3 +268,15 @@ def test_preview_ok_publishes_now(env, monkeypatch, tmp_path):
     assert wf == "publish.yml" and inputs["run"] == out.name and inputs["force"] is True
     assert flow.load_state(results, "women").stage == "publishing"
     assert "지금 게시" in tg.sent[-1]
+
+
+def test_redo_request(tmp_path):
+    from tools import pick
+
+    js = '{"again": "2026-10-16-run263", "keep": [4], "count": 8, "note": "더 채워"}'
+    assert flow.main(["use-theme", "--json", js, "--out", str(tmp_path)]) == 0
+    req = (tmp_path / "picks_request.json").read_text(encoding="utf-8")
+    assert '"keep": [\n    4\n  ]' in req and '"count": 8' in req
+    profile = flow.load_profile("women")
+    assert pick._wanted(tmp_path, profile) == 8
+    assert pick._wanted(tmp_path / "none", profile) == profile.looks.count
