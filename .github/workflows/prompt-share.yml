@@ -2,7 +2,11 @@ name: prompt-share
 
 # 코디컷 지시문과 참고판(상품 사진 참고판 + 기준 코디 사진)을 텔레그램으로 보낸다 (2026-10-14 사용자:
 # 제미나이에서 따로 돌려 보기). 그림은 새로 그리지 않는다. 쇼핑몰 사진은 결과 브랜치에 올리지 않는다.
+# 작업 브랜치에서는 커밋 메시지에 [prompt-share:<결과 폴더>] 를 넣어 푸시하면 돈다
+# (workflow_dispatch 는 main 에 있는 워크플로만 부를 수 있어서).
 on:
+  push:
+    branches: ["claude/**"]
   workflow_dispatch:
     inputs:
       account:
@@ -17,6 +21,7 @@ permissions:
 
 jobs:
   share:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[prompt-share:')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -29,7 +34,10 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ACCOUNT: ${{ inputs.account }}
           RESULTS: ${{ inputs.results }}
+          MSG: ${{ github.event.head_commit.message }}
         run: |
+          [ -n "$RESULTS" ] || RESULTS=$(grep -oP '\[prompt-share:\K[\w.-]+(?=\])' <<<"$MSG" || true)
+          ACCOUNT="${ACCOUNT:-women}"
           [[ "$RESULTS" =~ ^[0-9A-Za-z._-]+$ ]] || { echo "결과 폴더 이름이 이상함"; exit 1; }
           git fetch --depth 1 origin daily-results
           git worktree add /tmp/results FETCH_HEAD

@@ -70,6 +70,10 @@ def item_size(it: PlanItem, product: Product, cfg: dict) -> str:
         cm = plan_tool.item_length(it, product, layout) or layout["slots"][cat]["cm"]
         where = "from waist to hem" if cat == "하의" else "from shoulder to hem"
         return f"about {cm:g} cm long {where}"
+    # 스카프를 목걸이 칸에 넣으면 목걸이 크기가 붙어 체인처럼 그려질 수 있다 (2026-10-14 run246)
+    text = f"{product.name} {it.desc}".lower()
+    if "스카프" in text or "scarf" in text:
+        return sizes.get("스카프", "")
     return sizes.get(it.slot or "", "") or sizes.get(cat, "")
 
 

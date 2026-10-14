@@ -528,3 +528,13 @@ def test_worn_ref_photo_goes_last(store, tmp_path, monkeypatch):
     monkeypatch.setattr(scout, "ref_photo", fail)
     outfit_gen.make_candidates(p, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
     assert rec.images == [b"p1"] and "The last attached image" not in rec.prompt
+
+
+def test_scarf_gets_scarf_size_even_in_necklace_slot(store):
+    from tools import outfit_gen
+
+    p = daily()
+    products = {x.id: x for x in store.products()}
+    it = p.items[5].model_copy(update={"desc": "burgundy knit scarf", "slot": "목걸이"})
+    cfg = {"default_sizes": {"목걸이": "one necklace", "스카프": "one scarf"}}
+    assert outfit_gen.item_size(it, products[it.product], cfg) == "one scarf"
