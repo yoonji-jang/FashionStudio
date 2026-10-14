@@ -1,0 +1,201 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK4.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 플럼 체크 셔츠
+  product: zigzag:172026704
+- comment: ''
+  name: 울 미니 스커트
+  product: zigzag:150110018
+- comment: ''
+  name: 니하이 롱부츠
+  product: zigzag:147005253
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:168564549
+- comment: ''
+  name: 미니 하트 목걸이
+  product: zigzag:116318618
+- comment: ''
+  name: 노카라 숏 자켓
+  product: zigzag:149398662
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:120773723
+- comment: ''
+  name: 스웨이드 미니
+  product: zigzag:167025790
+- comment: ''
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+- comment: ''
+  name: 하프 트렌치코트
+  product: zigzag:171521437
+- comment: ''
+  name: 나시 크롭탑
+  product: zigzag:151689759
+- comment: ''
+  name: 슬릿 미니스커트
+  product: zigzag:137890667
+- comment: ''
+  name: 골지 니삭스
+  product: zigzag:141916298
+- comment: ''
+  name: 롱 버클 부츠
+  product: zigzag:171985452
+- comment: ''
+  name: 노아르 숄더백
+  product: zigzag:164013796
+- comment: ''
+  name: 니트 베스트
+  product: zigzag:129154792
+- comment: ''
+  name: 크림 셔츠
+  product: zigzag:168757496
+- comment: ''
+  name: 슬릿 스커트팬츠
+  product: zigzag:171935783
+- comment: ''
+  name: 셔링 라운드백
+  product: zigzag:169872677
+- comment: ''
+  name: 코지울 브이넥 니트
+  product: zigzag:171701046
+- comment: ''
+  name: 스트라이프 셔츠
+  product: zigzag:171827820
+- comment: ''
+  name: 페니로퍼
+  product: zigzag:114193909
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:168305853
+- comment: ''
+  name: 물방울 귀걸이
+  product: zigzag:169325375
+- comment: ''
+  name: 숏 울 자켓
+  product: zigzag:149409694
+- comment: ''
+  name: 폴라 티셔츠
+  product: zigzag:167444137
+- comment: ''
+  name: 울 미니 스커트
+  product: zigzag:149438922
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK1.jpg
+  items:
+  - comment: ''
+    name: 플럼 체크 셔츠
+    product: zigzag:172026704
+  - comment: ''
+    name: 울 미니 스커트
+    product: zigzag:150110018
+  - comment: ''
+    name: 니하이 롱부츠
+    product: zigzag:147005253
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168564549
+  - comment: ''
+    name: 미니 하트 목걸이
+    product: zigzag:116318618
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK2.jpg
+  items:
+  - comment: ''
+    name: 노카라 숏 자켓
+    product: zigzag:149398662
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:120773723
+  - comment: ''
+    name: 스웨이드 미니
+    product: zigzag:167025790
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168564549
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK3.jpg
+  items:
+  - comment: ''
+    name: 하프 트렌치코트
+    product: zigzag:171521437
+  - comment: ''
+    name: 나시 크롭탑
+    product: zigzag:151689759
+  - comment: ''
+    name: 슬릿 미니스커트
+    product: zigzag:137890667
+  - comment: ''
+    name: 골지 니삭스
+    product: zigzag:141916298
+  - comment: ''
+    name: 롱 버클 부츠
+    product: zigzag:171985452
+  - comment: ''
+    name: 노아르 숄더백
+    product: zigzag:164013796
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK4.jpg
+  items:
+  - comment: ''
+    name: 니트 베스트
+    product: zigzag:129154792
+  - comment: ''
+    name: 크림 셔츠
+    product: zigzag:168757496
+  - comment: ''
+    name: 슬릿 스커트팬츠
+    product: zigzag:171935783
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - comment: ''
+    name: 셔링 라운드백
+    product: zigzag:169872677
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK5.jpg
+  items:
+  - comment: ''
+    name: 코지울 브이넥 니트
+    product: zigzag:171701046
+  - comment: ''
+    name: 스트라이프 셔츠
+    product: zigzag:171827820
+  - comment: ''
+    name: 슬릿 미니스커트
+    product: zigzag:137890667
+  - comment: ''
+    name: 페니로퍼
+    product: zigzag:114193909
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:168305853
+  - comment: ''
+    name: 물방울 귀걸이
+    product: zigzag:169325375
+- image: /home/runner/work/FashionStudio/FashionStudio/samples/women/street_1015/LOOK6.jpg
+  items:
+  - comment: ''
+    name: 숏 울 자켓
+    product: zigzag:149409694
+  - comment: ''
+    name: 폴라 티셔츠
+    product: zigzag:167444137
+  - comment: ''
+    name: 울 미니 스커트
+    product: zigzag:149438922
+  - comment: ''
+    name: 골지 니삭스
+    product: zigzag:141916298
+  - comment: ''
+    name: 롱 버클 부츠
+    product: zigzag:171985452
+  - comment: ''
+    name: 노아르 숄더백
+    product: zigzag:164013796
+title_lines:
+- 지금 꺼내 입기 좋은
+- 가을 미니스커트 코디
