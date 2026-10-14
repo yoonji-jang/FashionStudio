@@ -102,7 +102,7 @@ def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Prof
 
     def label(i: int) -> str:
         cat = generate.CATEGORY_EN.get(products[plan.items[i].product].category, "item")
-        return f"{cat} in image {i + 1}"
+        return f"{cat} in the {sheet_name(i + 1)}"
 
     tops = [i for i, it in enumerate(plan.items) if products[it.product].category == "상의"]
     inner = [i for i in tops if plan.items[i].wear_with == "상의"]
@@ -115,13 +115,22 @@ def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Prof
     ]
 
 
+ORDINALS = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+
+
+def sheet_name(i: int) -> str:
+    """참고판 이름. 2026-10-13: "Image 1" 처럼 숫자로 부르면 이미지 AI 가 그림에 숫자를 그려 넣어서
+    낱말(first sheet)로 부른다."""
+    return f"{ORDINALS[i - 1]} sheet" if 0 < i <= len(ORDINALS) else f"sheet {i}"
+
+
 def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1) -> str:
     lines = []
     for i, it in enumerate(plan.items, start):
         p = products[it.product]
         cat = generate.CATEGORY_EN.get(p.category, "item")
         size = item_size(it, p, cfg)
-        line = f"Image {i}: the {cat}, {english(it.desc)}."
+        line = f"The {sheet_name(i)}: the {cat}, {english(it.desc)}."
         lines.append(line + (f" Real size: {size}." if size else ""))
     return "\n".join(lines)
 

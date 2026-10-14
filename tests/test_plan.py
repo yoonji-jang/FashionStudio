@@ -317,7 +317,7 @@ def test_build_with_generated_outfit(store, tmp_path):
     assert len(list((out / "outfit" / "results").glob("G_*.jpg"))) == profile.review.candidates
     assert len(list((out / "outfit" / "originals").glob("*.jpg"))) == len(CATS)
     prompt = (out / "outfit" / "prompt.txt").read_text()
-    assert "Image 1: the outer, item 1." in prompt
+    assert "The first sheet: the outer, item 1." in prompt
     assert "exactly one pair (two earrings)" in prompt  # 귀걸이 개수
     assert "almost closed" in prompt  # 아우터 기본 입히기 (profile outer_styling)
     assert "$" not in prompt
@@ -367,7 +367,7 @@ def test_layered_tops_get_layer_styling(store):
     )
     products = {x.id: x for x in store.products()}
     text = outfit_gen.styling_text(p, products, load_profile("women"))
-    assert "The top in image 3 is layered under the top in image 2" in text
+    assert "The top in the third sheet is layered under the top in the second sheet" in text
     p.items[2].wear_with = None
     assert "layered under" not in outfit_gen.styling_text(p, products, load_profile("women"))
 
@@ -406,7 +406,7 @@ def test_outfit_prompt_stays_short(store):
     products = {x.id: x for x in store.products()}
     prof = load_profile("women")
     prompt = outfit_gen.build_prompt(p, products, prof, {})
-    assert "$" not in prompt and "lower right beside the lower part of the bottoms" in prompt
+    assert "$" not in prompt and "lower right beside the bottoms" in prompt
     rules = yaml.safe_load((outfit_gen.PARTS_DIR / "parts.yaml").read_text(encoding="utf-8"))
     every_part = " ".join(render_prompt(n, outfit_gen.PARTS_DIR) for n in rules)
     base = render_prompt(
@@ -485,7 +485,7 @@ def test_fix_edits_previous_outfit_image(store, tmp_path, monkeypatch):
     assert len(made) == 1
     assert rec.images == [base.read_bytes(), b"p1", b"p2"]
     assert "Pair the shoes neatly." in rec.prompt and "$" not in rec.prompt
-    assert "Image 2: the" in rec.prompt and "Image 1: the" not in rec.prompt
+    assert "The second sheet: the" in rec.prompt and "The first sheet: the" not in rec.prompt
 
     p = daily()
     outfit_gen.make_candidates(p, store, tmp_path / "w2", load_profile("women"), 1, client=rec)

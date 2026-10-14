@@ -285,12 +285,12 @@ outfit_image:
   prompt: outfit_generate    # prompts/outfit_generate.md
   # 모던한 명품샵 느낌의 쿨그레이 콘크리트 (2026-09-30 사용자가 4안 선택. 아이보리·베이지는 흔함)
   scene: >-
-    smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
-    flagship store; soft directional daylight from a large window at the upper left, a little
-    low, so every garment casts a soft shadow along its lower right edge on the floor and its folds
-    show gentle light and shade; cool neutral tone with no warm cast
-  # 2026-10-07 사용자: 여전히 납작함 → 고르게 퍼진 빛(even daylight)은 그림자가 없어 볼륨이 안 보여서
-  # 옆에서 낮게 드는 창빛으로 옷 가장자리 그림자와 주름 명암을 만든다 (바닥은 그대로)
+    a warm greige low-pile carpet with a band of warm medium-brown wood floor across the lower-left
+    corner and a little sheer white curtain at the upper-left edge; soft, even, diffuse daylight
+    like a bright overcast day, no sunbeams or hard window shadows; warm neutral tone
+  # 2026-10-07 사용자: 여전히 납작함 → 옆에서 낮게 드는 창빛을 썼으나, 2026-10-14 사용자 참고(wyeun_)처럼
+  # 따뜻한 회갈색 카펫 + 나무 바닥, 고르게 퍼진 부드러운 빛으로 바꿈 (창빛 줄기가 생활 사진처럼 보이고 검정 옷이 칙칙함).
+  # 입체감은 빛이 아니라 지시문의 '입은 모양 그대로 눕힌' 문장이 맡는다.
   # 아우터가 있는 날 기본 입히기 (기획의 styling 이 있으면 그것을 씀). 활짝 열지 않는다 (2026-09-30 사용자)
   # 상의는 기본으로 넣어 입어 허리선을 높게 (2026-10-02 사용자: 바지·치마가 짧고 작아 보임)
   # 넣어 입는 높이는 모델 착용컷의 실제 허리 (2026-10-12 사용자: 너무 올리면 배바지처럼 보임)
@@ -300,7 +300,7 @@ outfit_image:
     little at the waist; any belt hangs loose at the sides. The top's sleeves are inside the outer
     sleeves, with the top's cuffs peeking out slightly at the outer cuffs. The top's hem sits over
     the waistband of the bottoms only if the styling says to wear it out; otherwise it is tucked in
-    all the way around so the waistband shows at the natural waist, as on the model.
+    all the way around so the waistband shows at the height where it sits on the model.
 
 # 모델컷 게시물 (16단계, 2026-10-02 사용자. 2026-10-07 부터 쉬는 중: schedule.post_days 에 model 날이 없음): model 날은 전날 올린 벌들을 옷을 입은 얼굴 없는 AI 모델컷으로
 # 다시 그려 올린다 (schedule.post_days). 같은 사람처럼 보이게 인물 묘사는 모든 포즈에 똑같이 쓴다.

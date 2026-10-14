@@ -320,21 +320,21 @@ class Looks(BaseModel):
     gradient_height: float = Field(default=0.42, ge=0, le=1)
     gradient_opacity: float = Field(default=0.55, ge=0, le=1)
     # 코디컷 고정 구도 (영어, 지시문 $layout). 모든 벌이 같은 구도다.
-    # 상품 이름 글자 자리(왼쪽 아래)는 비운다.
     # 2026-10-07 사용자: 옷이 오른쪽으로 치우침 → 옷은 가운데, 가방은 왼쪽 허리 높이.
     # 2026-10-12 사용자 참고 코디컷: 소품은 오른쪽 위 가슴 높이,
     # 신발은 오른쪽 아래 하의 옆으로 하나로 고정
     # (짧은 하의일 때의 예외 자리와 '위 구도를 덮어쓴다' 문장은 뺐다)
+    # 2026-10-14 사용자 참고(wyeun_): 옷이 작고 바닥이 많이 보임
+    # → 왼쪽 아래 40%x35% 빈자리 규칙을 빼고 옷이 화면을 크게 채운다.
+    # 상품 글자는 그라데이션 위에 쓰고, 가방·신발만 왼쪽 아래를 피한다.
     composition: str = (
-        "the clothes form one figure centered horizontally, from the collar near the top edge to"
-        " the hem near the bottom edge; with short bottoms the whole outfit moves down so the empty"
-        " floor above and below is about equal. Jewelry, a watch or other small accessories, only"
-        " if listed, sit in a neat vertical column on the right at chest height. The bag lies on"
-        " the left beside the top at waist height, slightly overlapping the edge of the clothes."
-        " The shoes sit in the lower right beside the lower part of the bottoms, not touching"
-        " them. The lower-left area of the frame (the left 40 percent of the width, the bottom 35"
-        " percent of the height) stays empty floor, because product names are written there"
-        " later."
+        "the outfit is large and fills the frame: the clothes form one figure centered"
+        " horizontally, the collar near the top edge and the hem near the bottom edge"
+        " (short bottoms: the figure moves down a little). Jewelry or a watch, only if"
+        " listed, sit neatly on the right at chest height. The bag lies on the left beside"
+        " the top at waist height, slightly overlapping the clothes. The shoes sit in the"
+        " lower right beside the bottoms, not touching them. Keep the bag and shoes out of"
+        " the lower-left corner; the clothes may reach it."
     )
 
 
