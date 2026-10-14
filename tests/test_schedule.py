@@ -544,3 +544,10 @@ def test_claude_workflows_record_usage_limit():
     for wf in ("daily.yml", "themes.yml", "feedback-rules.yml"):
         text = (Path(".github/workflows") / wf).read_text(encoding="utf-8")
         assert ".github/scripts/limit.sh" in text and "LIMITED" in text, wf
+
+
+def test_empty_schedule_keeps_workflow_valid():
+    """자동 일정을 모두 끄면 schedule: 아래가 비어 워크플로가 깨진다 (2026-10-14).
+    돌지 않는 줄을 하나 둔다."""
+    block = schedule.render_block({})
+    assert f'- cron: "{schedule.NEVER}"' in block

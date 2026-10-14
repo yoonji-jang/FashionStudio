@@ -70,6 +70,7 @@ from tools import share
 WORKFLOW = REPO_ROOT / ".github" / "workflows" / "schedule.yml"
 BEGIN = "    # >>> tools.schedule sync"
 END = "    # <<< tools.schedule sync"
+NEVER = "0 0 31 2 *"
 
 
 @dataclass(frozen=True)
@@ -215,6 +216,10 @@ def render_block(lines: dict[str, list[str]]) -> str:
     rows = [BEGIN + " (직접 고치지 말고 profile.yaml schedule 을 바꾼 뒤 sync)"]
     for cron in sorted(lines, key=_cron_key):
         rows.append(f'    - cron: "{cron}"  # {", ".join(lines[cron])}')
+    if not lines:
+        # schedule: 아래가 비면 워크플로 파일이 깨져 workflow_dispatch(외부 스케줄러)까지 실패한다
+        # (2026-10-14, 자동 일정을 모두 껐을 때). 돌지 않는 날짜(2월 31일)를 한 줄 둔다
+        rows.append(f'    - cron: "{NEVER}"  # 자동 일정이 모두 꺼짐 (돌지 않는 날짜)')
     rows.append(END)
     return "\n".join(rows)
 
