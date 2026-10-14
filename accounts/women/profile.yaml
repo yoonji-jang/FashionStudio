@@ -285,11 +285,11 @@ outfit_image:
   prompt: outfit_generate    # prompts/outfit_generate.md
   # 모던한 명품샵 느낌의 쿨그레이 콘크리트 (2026-09-30 사용자가 4안 선택. 아이보리·베이지는 흔함)
   scene: >-
-    smooth pale cool-grey polished concrete floor with subtle mottling, like a minimal modern
-    flagship store; soft directional daylight from a large window at the upper left, a little
-    low, so every garment casts a soft shadow along its lower right edge on the floor and its folds
-    show gentle light and shade; cool neutral tone with no warm cast; crisp, sharp, high-end
-    catalog quality
+    smooth pale cool-grey polished concrete floor with subtle mottling; soft directional daylight
+    from a large window at the upper left, so each garment casts a soft shadow at its lower right
+    and its folds show gentle shading; cool neutral tone with no warm cast.
+    It looks like a real photo from a minimal fashion styling account: crisp and sharp, true-to-life
+    fabrics, clean neat shapes and calm empty floor
   # 2026-10-14 오후 사용자: 배경은 예전 게시물(회색 콘크리트)로 통일 → 2026-09-30 장면으로 되돌림, 리넨은 뺌.
   # 2026-10-07 사용자: 여전히 납작함 → 옆에서 낮게 드는 창빛을 썼으나, 2026-10-14 사용자 참고(wyeun_)처럼
   # 따뜻한 회갈색 카펫 + 나무 바닥, 고르게 퍼진 부드러운 빛으로 바꿈 (창빛 줄기가 생활 사진처럼 보이고 검정 옷이 칙칙함).
