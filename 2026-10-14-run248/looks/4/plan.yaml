@@ -1,0 +1,105 @@
+account: women
+date: '2026-10-14'
+items:
+- cm: 53.0
+  color: 와인
+  comment: ''
+  cutout_photo: 2
+  desc: 와인 버건디 라운드넥 버튼 가디건 (wine burgundy round-neck cropped boxy button cardigan,
+    pearl-white buttons, hem at the waist, smooth fine-gauge knit)
+  name: 라운드 가디건
+  product: zigzag:146856799
+  ref_photos:
+  - 2
+  - 3
+  size: about 53 cm long from shoulder to hem, 35.5 cm across the shoulders, 46.5
+    cm across the chest laid flat, 66.5 cm long sleeves
+- cm: 42.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 2
+  desc: 화이트 크롭 나시 (plain white fitted cropped ribbed camisole with thin straps, hem
+    peeking below the cardigan)
+  name: 화이트 나시
+  product: zigzag:156428546
+  ref_photos:
+  - 2
+  - 0
+  - 4
+  size: about 42 cm long from shoulder to hem, 36 cm across the chest laid flat
+  wear_with: 상의
+- cm: 104.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 와이드 롱 슬랙스 (black high-waist straight-leg long slacks with a slight flare
+    at the hem, full length over the heels, matte crisp fabric)
+  name: 와이드 롱 슬랙스
+  product: zigzag:129082539
+  ref_photos:
+  - 0
+  - 2
+  size: about 104 cm long from waist to hem, 35 cm across the waist laid flat, 44
+    cm across the hips laid flat, 26 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 플랫폼 메리제인 (black platform Mary Jane shoes, thick platform sole, double strap
+    with buckle)
+  name: 플랫폼 메리제인
+  product: zigzag:172014189
+  ref_photos:
+  - 0
+  - 3
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black small hobo shoulder bag with a single shoulder strap)
+  name: 블랙 숄더백
+  product: zigzag:166194366
+  ref_photos:
+  - 2
+  - 1
+looks: []
+reason: '와인 라운드 가디건이 주인공, 흰 이너 밑단과 블랙 와이드 팬츠로. 참고: 퍼플 라운드 가디건/흰 이너 티/블랙 와이드 팬츠 → 맞춘
+  것: 와인 가디건(참고보다 붉음)/화이트 나시/블랙 슬랙스. (따라 함: 참고 137) [점수 6]'
+ref_photo: https://the-ore.kr/web/product/medium/202610/c0f3a6fc61065275088d29a3f746be37.webp
+shot: flatlay
+text:
+  hashtags:
+  - '#버건디코디'
+  - '#블랙코디'
+  - '#올블랙'
+  - '#가을코디'
+  - '#포인트컬러'
+  - '#출근룩'
+  intro: 일교차 큰 가을, 블랙 코디에 버건디 한 방울만 얹어 보세요 🍂
+  points: []
+  title_lines:
+  - 블랙 코디 심심할 땐
+  - 컬러 한 방울 공식
+theme:
+  date: '2026-10-14'
+  mood: 무채색 바탕에 버건디·플럼·애쉬 블루 중 한 색
+  search_terms:
+    상의:
+    - 딥브이 골지 티
+    - 홀터넥 나시
+    소품:
+    - 쁘띠 스카프
+    - 슬라우치 삭스
+  slots:
+  - category: 상의
+    desc: 블랙이나 차콜 딥브이 골지 티
+  - category: 하의
+    desc: 블랙 와이드 팬츠나 그레이 니트 쇼츠
+  - category: 가방
+    desc: 버건디나 블랙 숄더백
+  - category: 신발
+    desc: 블랙 메리제인이나 롱부츠
+  - category: 소품
+    desc: 버건디 스카프나 플럼 계열 양말
+  title_hint: 블랙 코디에 컬러 한 방울 얹는 법, 이너와 소품으로 포인트 TIP
+  type: 팁
+  why: 수요일, 무난한 무채색을 지루하지 않게 하는 방법을 몇 벌에만 적용
