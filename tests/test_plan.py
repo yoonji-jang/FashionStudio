@@ -391,7 +391,7 @@ def test_prompt_parts_only_for_items_in_the_look(store):
     p.items[4].desc = "블랙 롱부츠 (black long boots)"
     text = " ".join(outfit_gen.prompt_parts(p, products, "draped over the shoulders"))
     assert "The skirt keeps" in text and "The trousers" not in text
-    assert "The boots lie on their side" in text and "seen from directly above" not in text
+    assert "Both boots lie on their side" in text and "seen from directly above" not in text
     assert "knit draped over the shoulders" in text
 
 
@@ -406,7 +406,7 @@ def test_outfit_prompt_stays_short(store):
     products = {x.id: x for x in store.products()}
     prof = load_profile("women")
     prompt = outfit_gen.build_prompt(p, products, prof, {})
-    assert "$" not in prompt and "lower right beside the hem" in prompt
+    assert "$" not in prompt and "never touching or overlapping the hem" in prompt
     rules = yaml.safe_load((outfit_gen.PARTS_DIR / "parts.yaml").read_text(encoding="utf-8"))
     every_part = " ".join(render_prompt(n, outfit_gen.PARTS_DIR) for n in rules)
     base = render_prompt(

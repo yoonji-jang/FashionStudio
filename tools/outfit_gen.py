@@ -271,7 +271,8 @@ WORN_REF = (
     " how open an outer is, how a scarf hangs (never knotted unless knotted there), and"
     " the shape every top and bottom has on her body. Where this photo differs from the"
     " general wearing rules above, follow the photo. Take colors and details only from the"
-    " item sheets, and never copy that photo's background, pose or any item not listed."
+    " item sheets, and never copy that photo's background or pose. Draw nothing that is"
+    " not in the item sheets, even if the model wears it (tights, socks, jewelry, belts)."
 )
 
 

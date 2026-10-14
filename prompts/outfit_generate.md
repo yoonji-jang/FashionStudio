@@ -36,7 +36,8 @@ leather sheen, denim twill), pattern, cut, collar, neckline, number and position
 pockets, hardware and shoe style; never redesign a detail.
 
 How the outfit is worn: $styling
-Sleeves are never rolled or folded up.
+Sleeves are rolled only as in the reference photo. A loose top over short bottoms is lightly
+front-tucked to show the waist.
 Layering is physical: an inner piece lies under the piece worn over it and shows only at the
 neckline, the cuffs and the hem. The waistband of the bottoms sits exactly at the height where it
 sits on the model in the worn photos, never higher and never lower; the top keeps its full body

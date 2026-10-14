@@ -331,19 +331,17 @@ class Looks(BaseModel):
     # 위는 상의·아래는 하의를 실제 몸 비율로. 같은 날 오후: 비율·구도는 wyeun_ 참고
     # (/mnt/project-files/image-feedback/참고_1014_구도/)처럼. 1·2(예전 게시물,
     # 10/10 지시문 구도)와 3 모두 좋음 → 긴 하의는 신발 오른쪽 아래 밑단 옆,
-    # 짧은 하의는 밑단 바로 아래 가운데, 가방은 왼쪽 허리, 소품은 오른쪽 가슴.
+    # 서 있는 전신 비율 (10-14 사용자: 미니 밑단은 가운데, 부츠는 다리 자리), 가방 왼쪽 허리.
     composition: str = (
-        "one large figure, as if an invisible woman lay on the floor wearing the outfit,"
-        " the same body in every image, centered: the top covers her upper body (shoulders"
-        " to waist), the bottoms her lower body (waist down), in real body proportions."
-        " The collar is about 8 percent below the top edge and the figure fills about 90"
-        " percent of the frame height, with small even margins. With full-length bottoms"
-        " the shoes sit in the lower right beside the hem, not touching it; with shorter"
-        " bottoms they sit centered directly below the hem, and the whole figure moves down"
-        " so the floor above the collar and below the shoes is about equal. Jewelry or a"
-        " watch (only if listed) sit in a neat column on the right at chest height; socks"
-        " or tights on the right beside the bottoms. The bag lies close to the left side"
-        " of the clothes at waist height, slightly overlapping them."
+        "one large figure, as if an invisible woman stood upright wearing the outfit, the "
+        "same body in every image, centered, in real standing proportions: collar about 8 "
+        "percent below the top edge, waist at about a third of the frame height, knees at "
+        "about two thirds, so a mini skirt ends near the middle. With full-length bottoms "
+        "the shoes sit in the lower right beside the hem, not touching it; with shorter "
+        "bottoms they sit where her lower legs and feet would be, never touching or "
+        "overlapping the hem. Jewelry or a watch (only if listed) sit in a neat column on "
+        "the right at chest height; socks or tights beside the shoes. The bag lies close to"
+        " the left side of the clothes at waist height, slightly overlapping them."
     )
 
 
