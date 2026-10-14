@@ -1,0 +1,275 @@
+account: women
+date: '2026-10-16'
+items: []
+looks:
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 오버사이즈 울 블레이저 (charcoal oversized wool blazer, single-breasted, hip length)
+    name: 오버사이즈 울 블레이저
+    product: zigzag:165561309
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 스카프 레이어링 니트 (beige short-sleeve knit top with an attached scarf)
+    name: 스카프 레이어링 니트
+    product: zigzag:172225710
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핀스트라이프 롱스커트 (charcoal pinstripe long straight skirt with a side slit)
+    name: 핀ST 스커트
+    product: zigzag:159994030
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 사각코 롱부츠 (black square-toe flat knee-high boots)
+    name: 사각코 롱부츠
+    product: zigzag:146926302
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 호보백 (black leather hobo shoulder bag)
+    name: 플로우 레더 호보백
+    product: zigzag:168780987
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:166492501
+  point: ''
+  reason: 차콜 블레이저에 스카프 니트와 핀스트라이프 스커트로 톤온톤. 참고 차콜 오버핏 블레이저/그레이 스카프 탑/차콜 핀스트라이프 스커트/롱부츠
+    → 맞춘 것 오버사이즈 울 블레이저/스카프 레이어링 니트/핀ST 스커트/롱부츠 (따라 함 참고 107) [점수 6]
+  ref: '107'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/cd55aed48447a2623229e70770e5c638.jpg
+  styling: The blazer is worn open; the knit's scarf hangs down the front.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 파인울 니트 베스트 (charcoal fine wool knit vest)
+    name: 울 니트 베스트
+    product: zigzag:165993167
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 워싱 셔츠 (white washed cotton shirt, relaxed collar)
+    name: 워싱 셔츠
+    product: zigzag:127356723
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 플리츠 미디스커트 (charcoal pleated A-line midi skirt, calf length)
+    name: 플리츠 미디스커트
+    product: zigzag:171911973
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 페니로퍼 (black suede penny loafers)
+    name: 페니로퍼
+    product: zigzag:100425954
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 숄더백 (black leather shoulder bag)
+    name: 클리프 숄더백
+    product: zigzag:151166447
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:109060154
+  point: ''
+  reason: 차콜 니트 베스트에 A라인 미디스커트로 단정하게. 참고 차콜 니트 베스트/흰 셔츠/차콜 미디스커트/블랙 숄더백/로퍼 (따라 함 참고
+    104)
+  ref: '104'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/f666d17c703c5eab28617574a4a77665.jpg
+  styling: ''
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 헨리넥 니트 (black henley-neck short-sleeve knit)
+    name: 헨리넥 니트
+    product: zigzag:168059454
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플레어 롱스커트 (black flared long skirt)
+    name: 플레어 롱스커트
+    product: zigzag:167277805
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 플랫슈즈 (black ballet flats with a small bow)
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인 미니백 (black quilted mini chain bag)
+    name: 체인 미니백
+    product: zigzag:137453892
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:169315401
+  point: ''
+  reason: 블랙 니트에 플레어 롱스커트로 올블랙 하객룩. (따라 함 참고 120)
+  ref: '120'
+  ref_photo: https://u-ur.kr/web/product/medium/202609/504af7ac5f696e9e97717e958e0b1070.jpg
+  styling: ''
+- items:
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 워싱 셔츠 (white washed cotton shirt, relaxed collar, untucked)
+    name: 워싱 셔츠
+    product: zigzag:127356723
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 릴렉스드 플레어 트라우저 (black relaxed flared trousers, full length)
+    name: 릴렉스드 트라우저
+    product: zigzag:165972831
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 플랫슈즈 (black Mary Jane flats)
+    name: 메리제인 플랫
+    product: zigzag:137014509
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 숄더백 (black leather shoulder bag)
+    name: 클리프 숄더백
+    product: zigzag:151166447
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼 체인 목걸이 (thin silver ball chain necklace)
+    name: 볼체인 목걸이
+    product: zigzag:113341770
+  point: ''
+  reason: 흰 셔츠에 블랙 트라우저로 깔끔하게. 참고 흰 구김 셔츠/블랙 와이드 슬랙스/포인티드 슈즈/숄더백 → 맞춘 것 워싱 셔츠/릴렉스드
+    트라우저/메리제인 플랫/숄더백 (따라 함 참고 124)
+  ref: '124'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/4e97c6ba047bbf03e60b3da1c7cdeeca.jpg
+  styling: ''
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 롱코트 (charcoal wool long coat)
+    name: 울 롱코트
+    product: zigzag:171900729
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 슬림 워머 티 (brown slim long-sleeve warmer tee)
+    name: 슬림 워머 티
+    product: zigzag:155290768
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핀스트라이프 와이드 슬랙스 (charcoal pinstripe wide slacks)
+    name: 핀스트라이프 슬랙스
+    product: zigzag:166018788
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 포인티드 힐 (black pointed-toe heels)
+    name: 포인티드 힐
+    product: zigzag:136665746
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 숄더백 (black soft leather shoulder bag)
+    name: 소부 숄더백
+    product: zigzag:157688262
+  point: ''
+  reason: 차콜 롱코트에 핀스트라이프 와이드 팬츠로. (따라 함 참고 126)
+  ref: '126'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/2640dcee48de36cd632e86761d32d730.jpg
+  styling: ''
+- items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 랩 셔츠 블라우스 (beige wrap-style shirt blouse with a back ribbon)
+    name: 랩 블라우스
+    product: zigzag:149121102
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 와이드 롱 슬랙스 (black wide long slacks)
+    name: 와이드 슬랙스
+    product: zigzag:129082539
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 페니로퍼 (black suede penny loafers)
+    name: 페니로퍼
+    product: zigzag:100425954
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 호보백 (black woven hobo bag)
+    name: 위빙 호보백
+    product: zigzag:161978790
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 진주 귀걸이 (exactly one pair (two earrings) of small pearl studs)
+    name: 진주 귀걸이
+    product: zigzag:169315401
+  point: ''
+  reason: 베이지 랩 블라우스에 블랙 와이드 슬랙스로. (따라 함 참고 127)
+  ref: '127'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/f9131b22df91f5de6e7d76a704534da8.jpg
+  styling: ''
+reason: 하객룩을 차콜·블랙 톤의 단정한 쇼핑몰 코디를 따라 여덟 가지로
+shot: flatlay
+theme:
+  date: '2026-10-16'
+  mood: 깊은 가을 톤의 단정하고 품위 있는 하객룩 (흰색·아이보리 올화이트는 피함)
+  search_terms:
+    가방:
+    - 미니 숄더백
+    - 퀼팅 체인백
+    상의:
+    - 새틴 블라우스
+    - 보트넥 니트
+    소품:
+    - 진주 귀걸이
+    신발:
+    - 메리제인
+    - 발레리나 플랫
+    아우터:
+    - 트위드 자켓
+    - 크롭 가디건
+    하의:
+    - 플리츠 롱스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 단정한 라운드넥 트위드 자켓이나 크롭 니트 가디건
+  - category: 상의
+    desc: 새틴 블라우스나 보트넥 니트처럼 광택·질감이 있는 상의
+  - category: 하의
+    desc: 플리츠 롱스커트나 새틴 스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백이나 퀼팅 체인백
+  - category: 신발
+    desc: 메리제인이나 발레리나 플랫
+  - category: 소품
+    desc: 진주 귀걸이나 얇은 목걸이
+  title_hint: 가을 결혼식 하객룩, 단정한데 지루하지 않게
+  type: 상황
+  why: 금요일, 최고 23도에 흐리고 비 예보 86%라 가벼운 아우터와 젖어도 부담 없는 어두운 하의, 가을 결혼식 시즌
