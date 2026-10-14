@@ -1,0 +1,102 @@
+account: women
+cover: samples/women/street_1015/LOOK3.jpg
+cover_look: 4
+date: '2026-10-15'
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 4
+  desc: 베이지 하프 트렌치코트 (beige half-length trench coat)
+  name: 하프 트렌치코트
+  product: zigzag:171521437
+  ref_photos:
+  - 4
+  - 1
+- color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 나시 크롭탑 (plain white camisole)
+  name: 나시 크롭탑
+  product: zigzag:151689759
+  ref_photos:
+  - 5
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 쉬폰 슬릿 미니스커트 (black slit mini skirt with sheer chiffon underlayer hem)
+  name: 슬릿 미니스커트
+  product: zigzag:137890667
+  ref_photos:
+  - 0
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 니삭스 (black ribbed knee socks)
+  name: 골지 니삭스
+  product: zigzag:141916298
+  ref_photos:
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 롱 부츠 (black long soft boots)
+  name: 롱 버클 부츠
+  product: zigzag:171985452
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 노아르 숄더백
+  product: zigzag:164013796
+  ref_photos:
+  - 5
+looks: []
+reason: 베이지 하프 트렌치가 주인공, 화이트 나시와 블랙 미니스커트, 롱부츠로 데이트룩. 참고 라이트베이지 트렌치/화이트 캐미솔/블랙 미니/블랙
+  스타킹/블랙 롱부츠 → 맞춘 것 - 베이지 하프 트렌치/화이트 나시/블랙 슬릿 미니/블랙 니삭스/블랙 롱 부츠. (따라 함 - 참고 119) [점수
+  8]
+ref_photo: https://u-ur.kr/web/product/medium/202609/e732e7220c0425e5862dcfe5f77ec1a7.jpg
+shot: model
+styling: The beige trench is fully unbuttoned and worn open, as in the reference photo;
+  the item photos show it buttoned and belted, but here no button is fastened and
+  the belt is not tied, so the front edges fall slightly apart and the white camisole
+  shows between them.
+text:
+  hashtags:
+  - '#미니스커트코디'
+  - '#가을코디'
+  - '#데일리룩'
+  - '#롱부츠코디'
+  - '#스커트코디'
+  intro: 선선한 가을, 미니스커트에 롱부츠 하나면 다리 라인이 확 살아나요 🍂
+  points:
+  - 짧은 스커트에는 넉넉한 상의와 긴 부츠로 균형을 맞춰요
+  - 톤을 맞춘 아우터 하나로 가을 분위기가 완성돼요 🤎
+  title_lines:
+  - 지금 꺼내 입기 좋은
+  - 가을 미니스커트 코디
+theme:
+  date: '2026-10-15'
+  mood: 블랙·차콜·브라운·크림 중심의 가을 톤, 미니스커트(스커트 팬츠 포함)가 주인공
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 숏 자켓·트렌치·블레이저 중 어울릴 때만
+  - category: 상의
+    desc: 니트·셔츠·스카프 블라우스
+  - category: 하의
+    desc: 미니스커트나 스커트 팬츠 (랩·핀스트라이프·코듀로이·스웨이드)
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠·로퍼·플랫 중 어울리는 것
+  - category: 소품
+    desc: 스타킹이나 니삭스는 어울릴 때만
+  title_hint: 가을 미니스커트 코디, 다리 가볍게 입는 공식
+  type: 아이템
+  why: 사용자 선택(2026-10-14). 모든 벌의 하의가 미니스커트나 스커트 팬츠. 롱부츠·스타킹은 어울릴 때 넣되 강제하지 않는다. 참고
+    코디(refs)의 미니스커트 벌을 우선 쓴다.

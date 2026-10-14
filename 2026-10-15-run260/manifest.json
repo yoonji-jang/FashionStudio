@@ -1,0 +1,909 @@
+{
+  "account": "women",
+  "date": "2026-10-15",
+  "plan": {
+    "theme": {
+      "date": "2026-10-15",
+      "title_hint": "가을 미니스커트 코디, 다리 가볍게 입는 공식",
+      "mood": "블랙·차콜·브라운·크림 중심의 가을 톤, 미니스커트(스커트 팬츠 포함)가 주인공",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "숏 자켓·트렌치·블레이저 중 어울릴 때만"
+        },
+        {
+          "category": "상의",
+          "desc": "니트·셔츠·스카프 블라우스"
+        },
+        {
+          "category": "하의",
+          "desc": "미니스커트나 스커트 팬츠 (랩·핀스트라이프·코듀로이·스웨이드)"
+        },
+        {
+          "category": "가방",
+          "desc": "숄더백이나 토트백"
+        },
+        {
+          "category": "신발",
+          "desc": "롱부츠·로퍼·플랫 중 어울리는 것"
+        },
+        {
+          "category": "소품",
+          "desc": "스타킹이나 니삭스는 어울릴 때만"
+        }
+      ],
+      "type": "아이템",
+      "why": "사용자 선택(2026-10-14). 모든 벌의 하의가 미니스커트나 스커트 팬츠. 롱부츠·스타킹은 어울릴 때 넣되 강제하지 않는다. 참고 코디(refs)의 미니스커트 벌을 우선 쓴다.",
+      "search_terms": {}
+    },
+    "items": [
+      {
+        "id": "zigzag:172026704",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/172026704",
+        "shop": "피터앤웬디",
+        "name": "[🍇퍼플코어/웬디강추💟] #MADE 플럼 체크 셔츠",
+        "price": 49500,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/c/17/202/670/172026704-7028060697903299257.gif?width=400&height=400&quality=80&format=webp"
+        ],
+        "has_flat_shot": false,
+        "rating": 5.0,
+        "review_count": 7,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "러블리",
+          "심플베이직"
+        ],
+        "query": "플럼 오버핏 셔츠",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:150110018",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/150110018",
+        "shop": "헤브봄",
+        "name": "[블랙 M/ 차콜 S 바로배송] 미엘 캐린 스커트/ 울 미니 스커트 (3 col)",
+        "price": 49800,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://havebom.cafe24.com/web/product/big/202410/a9cb098c78b600cf4d94e19a2f535c28.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 5.0,
+        "review_count": 5,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "로맨틱"
+        ],
+        "query": "차콜 울 미니스커트",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:147005253",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/147005253",
+        "shop": "마리공주",
+        "name": "베어리 일자핏 통넓은부츠 둥근코 스웨이드 니하이 롱부츠 (2.5cm)",
+        "price": 51900,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/9/26/1826_202409261728510320_15062.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390054_20842.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390154_58037.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390334_44585.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/1/19/1826_202601191456390585_73159.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 301,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "니하이 부츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:168564549",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168564549",
+        "shop": "반원아틀리에",
+        "name": "B3021 니치 숄더백_Black",
+        "price": 51760,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "http://image.sellic.co.kr/images/product_img/007/431/709/original/B3021_BK_15X18.jpg",
+          "http://image.sellic.co.kr/images/product_img/007/431/710/original/B3021_BK_15X18_2.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.8,
+        "review_count": 79,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "클래식"
+        ],
+        "query": "퍼 숄더백",
+        "collected_at": "2026-10-07",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:116318618",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/116318618",
+        "shop": "누누핑거스",
+        "name": "로지 미니 하트 네크리스💘/ 천연자개세팅 / 로즈골드",
+        "price": 16240,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/9/1/7635_202309011533130015_10719.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2023/9/1/7635_202309011533130017_91466.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 250,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "로맨틱"
+        ],
+        "query": "하트 목걸이",
+        "collected_at": "2026-10-04",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:149398662",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/149398662",
+        "shop": "에이치다",
+        "name": "[숏코트] 모네 노카라 숏 핸드메이드 코트 자켓 2color  (울자켓/핸드메이드숏코트/겨울코트/ 차콜/아이보리/겨울하객룩/ 출근룩/ 면접룩)",
+        "price": 62840,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/15489_202410081157580852_51855.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/15489_202410081157580075_38648.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/15489_202410081157580605_67527.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2024/10/8/15489_202410081157580295_65000.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 31,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "캐주얼"
+        ],
+        "query": "차콜 울 숏 자켓",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:120773723",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/120773723",
+        "shop": "가내스라",
+        "name": "[어텀🍂][ordinaire] 뉴 넬로 스트라이프 셔츠 (2color)",
+        "price": 31500,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://ganaesra.com/web/product/big/202608/419669eb37902e89edfa7eaf6a96580b.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/10d9bc5347485b3e8be1a61ab17c9b15.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/9d5176dea5059916d70ccd31dbf34dc0.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/1f96844b92fdd50e5b6f8ac6869668c2.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/b0faf57f14aa776bc70057c4e76eb50e.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/5ce57884abb8d05fa35a914d833d2912.jpg",
+          "https://ganaesra.com/web/product/extra/big/202608/636ffc6171e8de1efe42fd091f769489.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 1195,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "스트라이프 셔츠",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:167025790",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/167025790",
+        "shop": "제로스트릿",
+        "name": "엠버 스웨이드 미니 스커트 / 브라운",
+        "price": 38500,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/11/13886_202509111145070119_76295.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/11/13886_202509111145080144_71297.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/11/13886_202509111145080589_57920.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 10,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "로맨틱",
+          "러블리"
+        ],
+        "query": "브라운 스웨이드 미니스커트",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:116422044",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/116422044",
+        "shop": "라룸",
+        "name": "블랙롱부츠",
+        "price": 50400,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://la-room.kr/web/product/extra/big/202211/328e2f3ee4113b5d6c8050f02e3056d2.jpg",
+          "https://la-room.kr/web/product/extra/big/202211/0f24d28b38b74fc129c39793e54b12b6.jpg",
+          "https://la-room.kr/web/product/extra/big/202211/189af1abde6143e84fd727ba6f231bc6.jpg",
+          "https://la-room.kr/web/product/extra/big/202211/e208e2b305f05d96da6ffe7567ec55b5.jpg",
+          "https://la-room.kr/web/product/big/202211/3b8a38212de83e75fb2abf732bbbd388.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 82,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "블랙 롱부츠",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:171521437",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171521437",
+        "shop": "원로그",
+        "name": "[+베이지 컬러추가] WONT 베이 하프 트렌치 코트",
+        "price": 68400,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/830_202608281239557749_76486.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/830_202608281239563687_23247.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/830_202608281239558950_55396.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/830_202608281239561026_52521.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/830_202608281239562108_34851.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/28/830_202608281239555982_87916.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 81,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "베이지 트렌치코트",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:151689759",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/151689759",
+        "shop": "아나콘다이너웨어",
+        "name": " [미네Pick🌿] 슬림업 나시 크롭탑 (캡내장/끈조절/A-E컵) / 몸매보정 캡내장나시 끈나시 캡나시 군살정리 나시크롭탑 여름나시 레이어드 이너 U넥 V넥 아나콘다이너웨어",
+        "price": 35800,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/36262_202606221108200983_44561.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/36262_202606221108210619_38980.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/36262_202606221108200657_94550.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/36262_202606221108200350_82138.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/36262_202606221108210328_62523.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/22/36262_202606221108190980_32174.png"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 312,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "편안한"
+        ],
+        "query": "화이트 캐미솔",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:137890667",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/137890667",
+        "shop": "아뜨랑스",
+        "name": "(국내제작)(스판혼방/스커트추천♥) 벨라 쉬폰 트임 미니 가을스커트 하객룩 치마 출근룩 a라인스커트 직장인룩 여친룩 슬릿스커트 오피스룩 미니스커트 가을하객룩 단정  sk6887",
+        "price": 34440,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add02d22d.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add0def94.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add1789a6.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add21fa75.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add29a4b7.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add31922c.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/159956/69c7add37f754.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 82,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "오피스룩",
+          "러블리"
+        ],
+        "query": "슬릿 미니스커트",
+        "collected_at": "2026-10-07",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:141916298",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/141916298",
+        "shop": "마이싹",
+        "name": "당일출고📦 자체제작 2켤레 슬림 라인 잔골지 니삭스 반스타킹 양말",
+        "price": 10710,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://pic.sabangnet.co.kr/product_image/mw118423/100/v4kc3_100276_11.jpg",
+          "https://pic.sabangnet.co.kr/product_image/mw118423/100/f2B8q_100276_13.jpg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411051727_19879.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411068536_11161.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411061534_91551.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411056722_58152.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411058954_56281.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411060574_79984.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411063574_84829.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/30/34661_202607301411065828_60892.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 175,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "니삭스",
+        "collected_at": "2026-10-07",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:171985452",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171985452",
+        "shop": "에잇세컨즈",
+        "name": "롱 버클 소프트 부츠  블랙 (3569K2AM15)",
+        "price": 74920,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038207256_19608.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038208101_17515.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038211367_70792.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038212599_52157.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038213393_27195.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038214356_31324.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038205941_10082.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/15/14875_202609150038216164_98186.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 5,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "캐주얼"
+        ],
+        "query": "블랙 롱부츠",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:164013796",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/164013796",
+        "shop": "고세",
+        "name": "[퍼플코어💜] 노아르 숄더백 Noir Bag GM245K (11colors)",
+        "price": 46970,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/10/1/3887_202610011635471162_16249.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/20/3887_202609202204512424_30478.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/20/3887_202609202204509497_49194.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/20/3887_202609202204507492_21188.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212225420307_65704.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/3/3887_202607031448170368_33938.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/8/3887_202605081640290104_87623.png",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212200200775_53695.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/7/3/3887_202607031600460675_88076.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/6/21/3887_202606212225420747_14202.png"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 1905,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:129154792",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/129154792",
+        "shop": "아뜨랑스",
+        "name": "(국내제작)페리아 V넥 니트 베스트 크롭 니트나시 캡소매 프레피룩 워셔블 니트티 캠퍼스룩 v넥 레이어드니트 간절기 개강룩 나시티 나시탑 단가라 니트탑 출근룩 니트베스트 니트조끼 꾸안꾸  vs366",
+        "price": 25600,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856def1575.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856def0162.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856df01592.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856def2b4a.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856df005eb.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856deee5b9.jpg",
+          "https://atimg.sonyunara.com/files/attrangs/goods/155792/64f856def3824.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 126,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "오피스룩",
+          "러블리"
+        ],
+        "query": "블랙 캡소매 니트 베스트",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:168757496",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168757496",
+        "shop": "메리어라운드",
+        "name": "[l.m.w] 베이비 플레어 블라우스 (bl)",
+        "price": 38000,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/786_202608271154528406_56026.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/786_202609281334279834_54934.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/8/27/786_202608271154527171_39726.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/28/786_202609281334273536_38602.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 315,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "크림 구김 셔츠",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:171935783",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171935783",
+        "shop": "베니토",
+        "name": "[실루엣보장] 플로우 슬릿 스커트팬츠 (봄/여름/가을/신상/데일리/데일리룩/출근룩/데이트룩/하의/팬츠/바지/치마/스커트/미니스커트/숏팬츠/쇼츠/치마바지/스커트팬츠/레이어드)",
+        "price": 31680,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/c/17/193/578/171935783-1949494550449410139.gif?width=400&height=400&quality=80&format=webp"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 5,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "오피스룩"
+        ],
+        "query": "그레이 랩 스커트팬츠",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:169872677",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/169872677",
+        "shop": "마뗑킴",
+        "name": "HALF SHIRRING RIBBON ROUND BAG IN BLACK",
+        "price": 110300,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://matinkim.speedgabia.com/matinkim/960x1280/MK2411BG002MBB_1.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.9,
+        "review_count": 440,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼",
+          "빈티지"
+        ],
+        "query": "숄더백",
+        "collected_at": "2026-09-30",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:171701046",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171701046",
+        "shop": "니썸",
+        "name": "[FREE&L2사이즈🍂빅사이즈/브이넥니트/울니트/오버핏니트/레이어드/레이어드니트]코지울브이넥니트 - 6color",
+        "price": 26640,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/5875_202609021129100650_59901.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/5875_202609021129102480_32920.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/5875_202609041219443921_46501.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/5875_202609021129101702_71716.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/5875_202609041219442979_94729.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/10/5875_202609101031427174_89333.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/5875_202609021129099861_72112.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/4/5875_202609041219444822_72142.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/9/2/5875_202609021129103377_46214.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 155,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "빈티지"
+        ],
+        "query": "버건디 니트",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:171827820",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/171827820",
+        "shop": "슬로우앤드",
+        "name": "[셋업가능/무료배송] made. 에비뉴 스트라이프 셔츠 - 5 color (오늘드림🚚 )",
+        "price": 26820,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://slowand.com/web/product/extra/big/202609/cb77f3fb87653fb08f8fb428066118df.jpg",
+          "https://slowand.com/web/product/extra/big/202609/ac5e1e402b08fe2b5eb7f03f861d2c70.jpg",
+          "https://slowand.com/web/product/extra/big/202609/c5559fd92ee7f9e1e1d92d28eb1e926e.jpg",
+          "https://slowand.com/web/product/extra/big/202609/b057d2c90559b4e4b913fb87766ad326.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.9,
+        "review_count": 20,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "모던시크"
+        ],
+        "query": "버건디 셔츠",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:114193909",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/114193909",
+        "shop": "사뿐",
+        "name": "라크네 라운드 페니로퍼 (3cm)",
+        "price": 40250,
+        "category": "신발",
+        "colors": [],
+        "image_urls": [
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_01.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_02.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_03.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_04.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_05.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_06.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_07.jpg",
+          "https://sappun.img13.kr/2023/08/sa0861/sa0861_960_08.jpg"
+        ],
+        "has_flat_shot": true,
+        "rating": 4.7,
+        "review_count": 284,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "스웨이드 로퍼",
+        "collected_at": "2026-10-04",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:168305853",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/168305853",
+        "shop": "히어리",
+        "name": "아이비 위빙 숄더백_블랙",
+        "price": 83300,
+        "category": "가방",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042047550348_45201.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/5/4/39799_202605042047560895_44625.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2026/2/12/39799_202602121729280777_73757.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 5,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "캐주얼"
+        ],
+        "query": "위빙백",
+        "collected_at": "2026-10-02",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:169325375",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/169325375",
+        "shop": "골드앤디어",
+        "name": "[직진배송] 골드앤디어 14KGF 미니 볼드 물방울 원터치 귀걸이",
+        "price": 18550,
+        "category": "소품",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160018_42363.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160285_65639.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160535_94561.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946160859_41994.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/22/25520_202509221340150249_14552.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/9/22/25520_202509221340150498_99792.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946150459_81288.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946150700_63942.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/5/23/25520_202505230946170005_72071.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.7,
+        "review_count": 2332,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직"
+        ],
+        "query": "귀걸이",
+        "collected_at": "2026-09-27",
+        "checked_at": "2026-10-11"
+      },
+      {
+        "id": "zigzag:149409694",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/149409694",
+        "shop": "에이치다",
+        "name": "[숏코트] 다이얼 핸드메이드 숏 크롭 코트 자켓 4color(울자켓/핸드메이드숏코트/겨울코트/ 차콜/아이보리/ 오트밀/ 겨울하객룩/ 출근룩/ 면접룩)",
+        "price": 62840,
+        "category": "아우터",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/15489_202510221550270157_88228.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/15489_202510221550260540_91582.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/15489_202510221550270043_67744.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/15489_202510221550260835_13794.jpeg",
+          "https://cf.product-image.s.zigzag.kr/original/d/2025/10/22/15489_202510221550260364_57665.jpeg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 115,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "캐주얼"
+        ],
+        "query": "차콜 울 숏 자켓",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:167444137",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/167444137",
+        "shop": "라룸",
+        "name": "[라룸] [by LAROOM] 크림폴라티셔츠",
+        "price": 26100,
+        "category": "상의",
+        "colors": [],
+        "image_urls": [
+          "https://la-room.kr/web/product/extra/big/202512/f1ddce4ae06004f03c254601230c2d2b.jpg",
+          "https://la-room.kr/web/product/extra/big/202512/4196520b3bd7c2dcbdeb62a5e2a002d3.jpg",
+          "https://la-room.kr/web/product/extra/big/202512/d3af8f58001c16016ef523e942a7983f.jpg",
+          "https://la-room.kr/web/product/extra/big/202512/cb4fb5f7d96fabdc1c1fb1bb393919b2.jpg",
+          "https://la-room.kr/web/product/extra/big/202512/b92057721917169ee33d0eed837d7e33.jpg",
+          "https://la-room.kr/web/product/big/202512/3bb306441c34a0fe8548d7e6dfce49d0.jpg"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.6,
+        "review_count": 13,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "모던시크",
+          "심플베이직"
+        ],
+        "query": "크림 터틀넥",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      },
+      {
+        "id": "zigzag:149438922",
+        "source": "zigzag",
+        "url": "https://zigzag.kr/catalog/products/149438922",
+        "shop": "퍼빗",
+        "name": "로잔 슬림에이라인 울 미니 스커트 - 4color",
+        "price": 30240,
+        "category": "하의",
+        "colors": [],
+        "image_urls": [
+          "https://cf.product-image.s.zigzag.kr/original/c/14/943/892/149438922-3532842082040673344.gif?width=400&height=400&quality=80&format=webp"
+        ],
+        "has_flat_shot": false,
+        "rating": 4.8,
+        "review_count": 180,
+        "last_used": null,
+        "status": "on_sale",
+        "style_tags": [
+          "심플베이직",
+          "오피스룩"
+        ],
+        "query": "차콜 울 미니스커트",
+        "collected_at": "2026-10-13",
+        "checked_at": "2026-10-13"
+      }
+    ],
+    "reason": "쇼핑몰 참고 코디의 미니스커트 벌을 따라 입은 가을 미니스커트 코디 (차콜·블랙·브라운·크림)",
+    "looks": [
+      [
+        "zigzag:172026704",
+        "zigzag:150110018",
+        "zigzag:147005253",
+        "zigzag:168564549",
+        "zigzag:116318618"
+      ],
+      [
+        "zigzag:149398662",
+        "zigzag:120773723",
+        "zigzag:167025790",
+        "zigzag:116422044",
+        "zigzag:168564549"
+      ],
+      [
+        "zigzag:171521437",
+        "zigzag:151689759",
+        "zigzag:137890667",
+        "zigzag:141916298",
+        "zigzag:171985452",
+        "zigzag:164013796"
+      ],
+      [
+        "zigzag:129154792",
+        "zigzag:168757496",
+        "zigzag:171935783",
+        "zigzag:116422044",
+        "zigzag:169872677"
+      ],
+      [
+        "zigzag:171701046",
+        "zigzag:171827820",
+        "zigzag:137890667",
+        "zigzag:114193909",
+        "zigzag:168305853",
+        "zigzag:169325375"
+      ],
+      [
+        "zigzag:149409694",
+        "zigzag:167444137",
+        "zigzag:149438922",
+        "zigzag:141916298",
+        "zigzag:171985452",
+        "zigzag:164013796"
+      ]
+    ]
+  },
+  "images": [
+    "out/2026-10-15/slides/01_cover.jpg",
+    "out/2026-10-15/slides/02_look1.jpg",
+    "out/2026-10-15/slides/03_look2.jpg",
+    "out/2026-10-15/slides/04_look3.jpg",
+    "out/2026-10-15/slides/05_look4.jpg",
+    "out/2026-10-15/slides/06_look5.jpg",
+    "out/2026-10-15/slides/07_look6.jpg",
+    "out/2026-10-15/slides/08_comment.jpg"
+  ],
+  "review_score": 0.0,
+  "needs_human": true,
+  "review": {
+    "candidates": [],
+    "chosen": null,
+    "rounds": 1,
+    "passed": false,
+    "status": "not_reviewed",
+    "slide_issues": [],
+    "summary": "1번 c1 점수 없음 (not_reviewed) / 2번 c1 점수 없음 (not_reviewed) / 3번 c1 점수 없음 (not_reviewed) / 4번 c1 점수 없음 (not_reviewed) / 5번 c1 점수 없음 (not_reviewed) / 6번 c1 점수 없음 (not_reviewed)"
+  },
+  "title_lines": [
+    "지금 꺼내 입기 좋은",
+    "가을 미니스커트 코디"
+  ],
+  "caption": "선선한 가을, 미니스커트에 롱부츠 하나면 다리 라인이 확 살아나요 🍂\n\n짧은 스커트에는 넉넉한 상의와 긴 부츠로 균형을 맞춰요\n톤을 맞춘 아우터 하나로 가을 분위기가 완성돼요 🤎\n\nLOOK 1  플럼 체크 셔츠를 툭 걸치고 블랙 미니에 니하이 부츠로 마무리해요\nLOOK 2  아이보리 숏 자켓에 스트라이프 셔츠, 브라운 스웨이드 미니로 부드럽게\nLOOK 3  베이지 트렌치를 열어 입고 블랙 미니와 롱부츠로 가을 데이트룩\nLOOK 4  크림 셔츠 위 블랙 니트 베스트로 단정하게, 롱부츠로 다리는 길게\nLOOK 5  블랙 니트 아래 스트라이프 셔츠를 살짝 보여 줘서 올블랙도 답답하지 않게\nLOOK 6  차콜 울 자켓과 미니를 맞추고 크림 폴라로 얼굴은 화사하게\n\n코디 정보가 궁금하면 댓글을 남겨 주세요. DM으로 상품 링크를 보내 드려요 💌\n\n이미지는 AI로 합성했으며 실제 색감·디테일과 다를 수 있어요",
+  "hashtags": [
+    "#미니스커트코디",
+    "#가을코디",
+    "#데일리룩",
+    "#롱부츠코디",
+    "#스커트코디",
+    "#오늘의코디",
+    "#코디추천",
+    "#여자코디",
+    "#패션"
+  ],
+  "monetize": "none",
+  "reels": {
+    "video": "reels/reel.mp4",
+    "cover": "reels/cover.jpg",
+    "audio": "chill_house.m4a",
+    "duration_sec": 14.1
+  }
+}
