@@ -183,7 +183,9 @@ def latest_preview(results: Path, account: str, day: date) -> Path | None:
 
 def deadline(profile: Profile, day: date) -> datetime:
     """다시 만들기를 받는 마지막 시각: 승인 마감(없으면 게시 마지막 확인 시각) - render_minutes.
-    고친 미리보기에 승인 마감 전에 /ok 할 수 있어야 해서."""
+    고친 미리보기에 승인 마감 전에 /ok 할 수 있어야 해서. 차례 흐름(profile flow)은 마감이 없다."""
+    if profile.flow.enabled:
+        return datetime.max.replace(tzinfo=UTC)
     ok_by = notify.ok_deadline(profile, day)
     if ok_by is not None:
         return ok_by - timedelta(minutes=profile.feedback.render_minutes)

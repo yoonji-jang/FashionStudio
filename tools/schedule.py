@@ -595,6 +595,10 @@ class QuietTelegram:
         print(f"(시험) 텔레그램: {text}")
         return 0
 
+    def download(self, file_id: str, dest: Path) -> Path:
+        print(f"(시험) 텔레그램 사진 받기: {dest}")
+        return dest
+
 
 class DryRun:
     """--dry-run: 실행 요청을 보내지 않고 기록만 한다."""
@@ -995,6 +999,28 @@ def report_missed(missed: list[Task], tg) -> None:
             )
 
 
+def run_flows(results: Path, gh, tg, now: datetime, dry_run: bool = False) -> list[str]:
+    """profile flow.enabled 인 계정의 차례 흐름을 한 번씩 본다 (tools.flow, 2026-10-14).
+    시각표(schedule.enabled)와 따로 돈다. 한 계정이 실패해도 다른 계정은 본다."""
+    from tools import flow
+
+    log: list[str] = []
+    for account in load_index().accounts:
+        if not load_profile(account).flow.enabled:
+            continue
+
+        def send(workflow: str, **inputs) -> None:
+            gh.dispatch(workflow, inputs)
+
+        try:
+            log += [f"[{account}] {x}" for x in flow.tick(account, results, tg, send, now, dry_run)]
+        except (RuntimeError, ValueError, OSError, httpx.HTTPError) as e:
+            print(f"[{account}] 차례 흐름 실패: {e}", file=sys.stderr)
+            if tg is not None and not dry_run:
+                tg.send(f"[{account}] 차례 흐름 확인 실패: {e}")
+    return log
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1074,6 +1100,9 @@ def main(argv: list[str] | None = None) -> int:
         finally:
             if not args.dry_run:
                 ticks.save(now)  # 커밋은 워크플로가 한다
+        if results is not None:
+            for line in run_flows(results, gh, tg, now, args.dry_run):
+                print(f"차례 흐름: {line}")
         return 0
     except (ValueError, RuntimeError, FileNotFoundError, httpx.HTTPError) as e:
         print(f"오류: {e}", file=sys.stderr)

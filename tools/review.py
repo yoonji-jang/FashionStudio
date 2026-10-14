@@ -303,6 +303,14 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
             f"| {i} | {cats[i - 1]} | {it.desc} | {it.color or '-'} | {how} | {sizes[i - 1]} | "
             f"{_ref(out, ref) if ref else '없음'} |"
         )
+    scene = out / "outfit" / "originals" / "scene.jpg"
+    if scene.exists():
+        lines += [
+            "",
+            f"**장면 모델컷**: 사용자가 보낸 장면 사진 {_ref(out, scene)} 의 무드로 "
+            "그린 새 AI 인물이다. "
+            "image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).",
+        ]
     worn = out / "outfit" / "originals" / "worn_ref.jpg"
     if worn.exists():
         lines += ["", f"기준 코디 사진 (입는 모양을 이대로 따라야 함): {_ref(out, worn)}"]

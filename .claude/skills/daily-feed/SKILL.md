@@ -7,7 +7,7 @@ description: 하루치 인스타 코디 게시물을 처음부터 끝까지 만�
 
 입력: 환경변수 `ACCOUNT` (없으면 `women`), `DATE` (없으면 내일, `tools.plan` 기본값),
 `OUTFIT` (`auto`·`generate`·`photoroom`·`none`, 없으면 `auto` = profile `outfit_image.engine`),
-`COLLECT` (`1` 이면 주제 검색어로 새 상품 수집).
+`COLLECT` (`1` 이면 주제 검색어로 새 상품 수집), `SCENE` (있으면 장면 모델컷, 아래 절).
 결과: `out/<DATE>/plan.yaml` 과 `out/<DATE>/manifest.json` (core.models.Manifest, 검수 점수 포함), 슬라이드, 캡션.
 
 모든 판단은 `accounts/$ACCOUNT/profile.yaml` 과 `accounts/$ACCOUNT/voice.md` 를 따른다.
@@ -42,6 +42,27 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
   그다음 `python -m tools.review finish out/$DATE` 로 고른 코디컷으로 슬라이드·manifest 를
   다시 만든다 (종료 코드 4 = 통과 못 한 벌이 있어 사람 확인, 그대로 11로).
   벌 하나만 계속 떨어지면 그 벌의 상품을 바꾸지 말고 사람 확인으로 둔다 (사람이 고른 구성).
+
+## 장면 모델컷 (환경변수 `SCENE` 이 있을 때, 차례 흐름 profile `flow`, 2026-10-14 사용자)
+`SCENE`(보통 `out/$DATE/src/scene.jpg`)은 사용자가 이 주제에 맞춰 텔레그램으로 보낸 장면 사진 한 장이다
+(스트리트, 스튜디오 촬영컷, 거울 셀카 등). 여섯 벌 모두 이 사진의 무드로, 벌마다 자리·포즈만 다르게 그린다.
+코디컷은 `prompts/outfit_scene.md` 지시문으로 그린다. 순서는 위와 같고 아래만 다르다.
+- 1번 다음에 `SCENE` 사진을 Read 로 본다. 사진은 무드 참고일 뿐: 그 사람의 얼굴·신원·옷은 따르지 않는다.
+- 8번(검사) 전에 plan.yaml 에 쓴다 (모두 영어).
+  - `shot: model`, `scene_image: <SCENE 값>`.
+  - `mood`: 장면 사진에서 읽은 무드 한 문장. 촬영 종류(street snapshot, studio lookbook shoot, mirror selfie …),
+    장소·배경의 종류, 빛(흐림·한낮·스튜디오 조명·창빛), 색감, 카메라(폰, 필름 느낌, 플래시, 렌즈 거리).
+    실제 가게·사람 이름은 쓰지 않는다.
+  - 벌마다 `pose`: 같은 무드 안에서 벌마다 다른 자리와 포즈, 얼굴 가리는 방법을 한 문장으로
+    (예: "walking past the shop window, looking down at her phone, hair falling over her face").
+    얼굴 가리기는 고개 숙임·돌림·머리카락·손·모자 챙·거울 셀카의 폰을 섞는다. 모자를 쓰는 벌은 두 벌 이하.
+    여섯 벌이 한 장소의 다른 컷처럼 보이게: 서기·걷기·기대기·앉기, 정면·옆·뒤돌아보기, 거리(전신 위주)를 섞는다.
+    장면이 거울 셀카면 모두 거울 셀카로, 폰이 얼굴을 가리고 거울 속 전신(신발까지)이 보이게 쓴다.
+    전신이 보이게 쓴다 (앉은 포즈도 신발까지 보이게).
+  - 벌 `styling`: 사람이 입은 모양으로 ("the shirt is tucked into the front of the skirt; the jacket is worn open").
+    펼친 코디컷 말("laid", "flat")은 쓰지 않는다.
+- 10번 검수에서 `image-reviewer` 에게 "장면 모델컷: image-reviewer.md 의 모델컷·장면 모델컷 기준을 본다"고 말한다.
+- 11번 보고에 읽은 mood 와 벌마다 pose 를 적는다.
 
 ## 에이전트 부르기
 `photo-checker`, `size-reader`, `image-reviewer` 에이전트는 반드시 앞에서(`run_in_background: false`) 불러 결과를 받은 뒤

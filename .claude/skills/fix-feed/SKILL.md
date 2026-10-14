@@ -67,6 +67,12 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      지금 profile `model_shot.poses` 의 장면으로 바꾼다 (지난 장면이 옛 목록일 수 있음). 벌 n 에는 목록의 n번째 장면
      (목록보다 많으면 처음부터 다시)을 쓰고, 고치지 않는 벌의 장면과 같으면 다음 장면을 쓴다. plan `mood` 가 빛을 정해 두었으면
      (골든아워 등) profile `model_shot.mood` 로 되돌린다. 인물 문장은 바꾸지 않는다.
+   - **장면 모델컷** (plan `scene_image` 가 있을 때, 2026-10-14): 위 `model_shot.poses` 로 바꾸기는 하지 않는다.
+     옷·얼굴·포즈·손·테두리 같은 그 컷 안의 문제면 `cover:` 를 `edit_from:` 으로 옮기고 `edit_request:` 에 영어로
+     쓴다 (예: "Hide more of her face: she looks down so her hair covers her eyes. Keep the face natural, not blurred.").
+     포즈·자리를 아예 바꿔 달라면 그 벌 `pose` 를 같은 무드 안의 새 자리·포즈로 고치고 `edit_from` 없이 새로 그린다.
+     무드(빛·색감·장소)가 장면 사진과 다르다는 피드백이면 plan `mood` 를 장면 사진(`scene_image`, Read 로 봄)에 맞게 고치고
+     그 벌을 새로 그린다. `scene_image` 는 바꾸지 않는다 (워크플로가 같은 경로에 다시 둠).
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.
 3. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`. 오류는 고치고 다시 (최대 3번).
 4. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`

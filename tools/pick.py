@@ -273,11 +273,17 @@ def looks_text(plan: DailyPlan, profile: Profile, day: date, round_: int) -> str
         lines.append(top.rstrip("."))
         lines.append("   " + " · ".join(short(it.desc) for it in look.items))
     after = f"1~{use}번으로 만들어요" if rules.on_timeout == "first" else "오늘은 건너뛰어요"
+    flow = profile.flow.enabled
+    lines += ["", "[고르는 방법]"]
+    if flow:
+        # 차례 흐름 (tools.flow): 마감 없이 답을 기다린다
+        lines.append(f"• 그대로 좋으면 /pick → 1~{use}번으로 만들어요 (마감 없이 기다려요)")
+    else:
+        lines += [
+            f"• 그대로 좋으면 아무것도 안 해도 돼요. {s.pick_deadline}에 {after}",
+            "  (바로 만들려면 /pick)",
+        ]
     lines += [
-        "",
-        "[고르는 방법]",
-        f"• 그대로 좋으면 아무것도 안 해도 돼요. {s.pick_deadline}에 {after}",
-        "  (바로 만들려면 /pick)",
         '• 빼고 싶은 벌이 있으면 "4번 빼고" → 예비 벌이 그 자리를 채워요',
         '• 직접 고르려면 "1 2 3 5 6 7" 처럼 번호를 보내요'
         + (f" ({lk.min}~{lk.count}벌)" if lk.min != lk.count else ""),
@@ -285,6 +291,19 @@ def looks_text(plan: DailyPlan, profile: Profile, day: date, round_: int) -> str
     lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
     if round_ <= rules.max_again:
         lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
+    if flow:
+        lines += [
+            "• 이 주제를 쉬려면 /skip → 다음 주제를 제안해요",
+            "",
+            "[장면 사진]",
+            "• 이 주제에 맞는 장면 사진 1장을 이 채팅에 보내 주세요 "
+            "(스트리트, 스튜디오, 거울 셀카 등).",
+            "  그 무드로 벌마다 한 장씩 그려요. 다시 보내면 마지막 사진을 써요",
+            "→ 고른 벌과 장면 사진이 다 오면 한 시간 안에 확인해 만들고 미리보기를 보내요",
+            "",
+            "사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.",
+        ]
+        return "\n".join(lines)
     lines += [
         "• 오늘 쉬려면 /skip",
         f"  → {s.pick_check_every}분 안에 확인해 고른 벌만 코디컷을 만들고 미리보기를 보내요",
@@ -530,8 +549,10 @@ class Action:
     fixes: list[dict] = field(default_factory=list)  # edit: 고칠 /fix [{update_id, looks, text}]
 
 
-def latest(results: Path, account: str, day: date) -> tuple[Path, PickRecord] | None:
-    """이 계정·날짜로 후보를 보낸 가장 최근 결과 폴더."""
+def latest(
+    results: Path, account: str, day: date, since: int = 0
+) -> tuple[Path, PickRecord] | None:
+    """이 계정·날짜로 후보를 보낸 가장 최근 결과 폴더 (since 가 있으면 그 뒤에 보낸 것만)."""
     found = []
     for d in results.glob(f"{day}-run*"):
         m = re.fullmatch(rf"{day}-run(\d+)", d.name)
@@ -539,7 +560,7 @@ def latest(results: Path, account: str, day: date) -> tuple[Path, PickRecord] | 
         if not m or not f.exists():
             continue
         rec = PickRecord.model_validate_json(f.read_text(encoding="utf-8"))
-        if rec.account == account:
+        if rec.account == account and rec.sent_at >= since:
             found.append((int(m.group(1)), d, rec))
     if not found:
         return None
@@ -650,11 +671,17 @@ def check(
     final: bool,
     minutes_left: int,
     now: datetime | None = None,
+    hold: str = "",
+    since: int = 0,
 ) -> Action:
-    """schedule job 의 고르기 확인 한 번. 결정은 picks/picked.json 에 쓴다 (커밋은 워크플로)."""
+    """schedule job 의 고르기 확인 한 번. 결정은 picks/picked.json 에 쓴다 (커밋은 워크플로).
+    hold 가 있으면 고른 뒤 바로 만들지 않고 그 말로 알린다
+    (차례 흐름에서 장면 사진을 기다릴 때, tools.flow).
+    since 가 있으면 그 뒤에 보낸 후보만 본다
+    (같은 날짜로 주제를 다시 정했을 때 지난 후보를 보지 않게)."""
     ts = int((now or datetime.now()).timestamp())
     tag = f"[{profile.id}] {day:%m-%d}"
-    found = latest(results, profile.id, day)
+    found = latest(results, profile.id, day, since)
     if found is None:
         if final and tg is not None:
             tg.send(f"{tag} 코디 후보가 없어 오늘 게시물을 만들지 못했어요")
@@ -718,11 +745,16 @@ def check(
         write_chosen(run_dir, decision.choice)
         act = Action("render", run_dir.name, "chosen", decision.by)
         nums = ", ".join(map(str, decision.choice))
-        msgs.append(f"{late}{nums}번 벌로 코디컷을 만들어요. 다 되면 미리보기를 보낼게요.")
+        if hold:
+            msgs.append(f"{nums}번 벌로 정했어요. {hold}")
+        else:
+            msgs.append(f"{late}{nums}번 벌로 코디컷을 만들어요. 다 되면 미리보기를 보낼게요.")
     else:
         act = Action("render", run_dir.name, int(decision.choice), decision.by)
         msgs.append(
-            f"{late}{decision.choice}번으로 코디컷을 만들어요. 다 되면 미리보기를 보낼게요."
+            f"{decision.choice}번으로 정했어요. {hold}"
+            if hold
+            else f"{late}{decision.choice}번으로 코디컷을 만들어요. 다 되면 미리보기를 보낼게요."
         )
     if tg is not None:
         tg.send(f"{tag} " + " ".join(msgs))

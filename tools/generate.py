@@ -213,9 +213,48 @@ def parse_response(body: dict) -> tuple[bytes, float | None]:
     raise RuntimeError(f"이미지가 없는 응답: {text!r}")
 
 
-def fit_canvas(data: bytes, size: tuple[int, int] = CANVAS) -> Image.Image:
-    """4:5 가 아닌 결과는 가운데를 잘라 1080x1350 으로 맞춘다."""
+def trim_border(im: Image.Image, dark: int = 16, share: float = 0.9) -> Image.Image:
+    """사진 가장자리의 검은 테두리와 둥근 검은 모서리를 잘라 낸다 (2026-10-14 10/15 LOOK4:
+    이미지 AI 가 휴대폰 화면처럼 검은 테두리·둥근 모서리를 그림). 줄의 share 이상이 거의 검정이면
+    테두리로 보고, 남은 네 모서리 점이 검정이면 조금 더 안쪽으로 자른다. 한쪽에서 12% 까지만."""
+    import numpy as np
+
+    g = np.asarray(im.convert("L"))
+    h, w = g.shape
+    top, bottom, left, right = 0, h, 0, w
+    while top < h * 0.12 and (g[top, left:right] < dark).mean() >= share:
+        top += 1
+    while bottom > h * 0.88 and (g[bottom - 1, left:right] < dark).mean() >= share:
+        bottom -= 1
+    while left < w * 0.12 and (g[top:bottom, left] < dark).mean() >= share:
+        left += 1
+    while right > w * 0.88 and (g[top:bottom, right - 1] < dark).mean() >= share:
+        right -= 1
+    # 둥근 모서리: 테두리를 자른 뒤에도 모서리 점이 검정이고 조금 안쪽은 검정이 아니면 더 자른다
+    step = max(1, round(min(h, w) * 0.005))
+    for _ in range(8):
+        corners = [g[top, left], g[top, right - 1], g[bottom - 1, left], g[bottom - 1, right - 1]]
+        inner = int(min(h, w) * 0.04)
+        inside = [
+            g[top + inner, left + inner],
+            g[top + inner, right - 1 - inner],
+            g[bottom - 1 - inner, left + inner],
+            g[bottom - 1 - inner, right - 1 - inner],
+        ]
+        if not any(c < dark and i >= dark for c, i in zip(corners, inside, strict=True)):
+            break
+        top, left, bottom, right = top + step, left + step, bottom - step, right - step
+    if (top, bottom, left, right) == (0, h, 0, w):
+        return im
+    return im.crop((left, top, right, bottom))
+
+
+def fit_canvas(data: bytes, size: tuple[int, int] = CANVAS, trim: bool = False) -> Image.Image:
+    """4:5 가 아닌 결과는 가운데를 잘라 1080x1350 으로 맞춘다.
+    trim 이면 먼저 검은 테두리·둥근 모서리를 잘라 낸다 (사람 사진, tools.outfit_gen)."""
     im = Image.open(io.BytesIO(data)).convert("RGB")
+    if trim:
+        im = trim_border(im)
     tw, th = size
     scale = max(tw / im.width, th / im.height)
     im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)

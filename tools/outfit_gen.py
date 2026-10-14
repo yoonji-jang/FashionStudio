@@ -147,6 +147,17 @@ def season_en(d) -> str:
 
 def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile, cfg: dict) -> str:
     oi = profile.outfit_image
+    if plan.shot == "model" and plan.scene_image:
+        # 장면 모델컷 (profile flow): 사용자가 보낸 장면 사진 1장의 무드로,
+        # 벌마다 자리·포즈만 다르게
+        return render_prompt(
+            profile.flow.scene_prompt,
+            items=item_lines(plan, products, cfg),
+            styling=styling_text(plan, products, profile),
+            pose=plan.pose or "a relaxed natural pose like in the scene photo",
+            mood=plan.mood or "the same kind of photo as the scene photo",
+            season=season_en(plan.date),
+        )
     if plan.shot == "model":
         ms = profile.model_shot
         # 모델컷 지시문은 상품 정보 자리(왼쪽 아래)를 비우는 구도를 따로 갖고 있다
@@ -169,12 +180,26 @@ def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile
     )
 
 
+EDIT_KINDS = {
+    "flatlay": "a photorealistic top-down flat lay photograph of an outfit",
+    "model": "a realistic candid photo of a woman wearing an outfit",
+}
+EDIT_KEEP = {
+    "flatlay": "the floor, the light and shadows and the camera angle",
+    "model": "her face hidden as it is, the place, the light and the camera angle",
+}
+
+
 def edit_prompt(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:
-    """지난 코디컷(첫 그림)에서 고칠 곳만 바꾸는 지시문 (prompts/outfit_edit.md)."""
+    """지난 코디컷(첫 그림)에서 고칠 곳만 바꾸는 지시문 (prompts/outfit_edit.md).
+    장면 모델컷(scene_image)도 사람 사진으로 고쳐 그린다 (10/15 LOOK3·7 처럼)."""
+    kind = "model" if plan.shot == "model" else "flatlay"
     return render_prompt(
         "outfit_edit",
         request=plan.edit_request or "Fix only what is wrong compared with the product photos.",
         items=item_lines(plan, products, cfg, start=2),
+        kind=EDIT_KINDS[kind],
+        keep=EDIT_KEEP[kind],
     )
 
 
@@ -299,6 +324,22 @@ def worn_ref_panel(plan: DailyPlan, profile: Profile, cache: Path) -> bytes | No
     return buf.getvalue()
 
 
+def scene_panel(plan: DailyPlan) -> bytes | None:
+    """장면 모델컷의 장면 사진 (사용자가 보낸 1장). 무드 참고로 마지막 그림으로 보낸다.
+    지시문이 그 사람의 얼굴·신원을 따르지 말라고 한다
+    (얼굴은 자르지 않는다: 포즈·헤어도 무드라서)."""
+    if not plan.scene_image or plan.shot != "model":
+        return None
+    path = REPO_ROOT / plan.scene_image
+    if not path.exists():
+        raise FileNotFoundError(f"장면 사진이 없습니다: {plan.scene_image}")
+    img = Image.open(path).convert("RGB")
+    img.thumbnail((1536, 1536))
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=92)
+    return buf.getvalue()
+
+
 def client_for(cfg: dict, fake: bool) -> generate.Client:
     if fake:
         return generate.FakeClient()
@@ -329,7 +370,7 @@ def make_candidates(
     products = {p.id: p for p in store.products()}
     work.mkdir(parents=True, exist_ok=True)
     panels = reference_panels(plan, products, work, cfg, generate.CACHE_DIR / plan.account)
-    if plan.edit_from and plan.shot != "model":
+    if plan.edit_from and (plan.shot != "model" or plan.scene_image):
         # /fix 고쳐 그리기: 지난 코디컷을 첫 그림으로 보내고 고칠 곳만 바꾸게 한다
         base = (REPO_ROOT / plan.edit_from).read_bytes()
         panels = [base, *panels]
@@ -337,7 +378,12 @@ def make_candidates(
     else:
         prompt = build_prompt(plan, products, profile, cfg)
         worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)
-        if worn:
+        scene = scene_panel(plan)
+        if scene:
+            (work / "originals").mkdir(parents=True, exist_ok=True)
+            (work / "originals" / "scene.jpg").write_bytes(scene)
+            panels = [*panels, scene]
+        elif worn:
             (work / "originals").mkdir(parents=True, exist_ok=True)
             (work / "originals" / "worn_ref.jpg").write_bytes(worn)
             panels = [*panels, worn]
@@ -354,7 +400,7 @@ def make_candidates(
         try:
             data, cost = client.generate(model, prompt, panels)
             path = work / "results" / f"G_{n}.jpg"
-            generate.fit_canvas(data).save(path, "JPEG", quality=93)
+            generate.fit_canvas(data, trim=plan.shot == "model").save(path, "JPEG", quality=93)
             made.append(path)
             entry.update(ok=True, cost=cost, file=str(path.relative_to(work)))
         except generate.QuotaError:

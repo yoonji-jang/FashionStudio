@@ -500,7 +500,7 @@ def check(
         errors += text_problems(it.name + " " + it.comment, profile, label)
 
     recent = [] if model else store.recent_posts(plan.date, profile.themes.no_repeat_days)
-    if model and not plan.source_run:
+    if model and not plan.source_run and not plan.scene_image:
         warns.append("모델컷 기획인데 source_run(전날 결과 폴더)이 없습니다")
     if any(p.theme and p.theme == plan.theme.title_hint for p in recent):
         errors.append(f"최근 {profile.themes.no_repeat_days}일 안에 같은 주제가 있습니다")
@@ -562,12 +562,18 @@ def check(
         if oi.model not in generate.load_config()["models"]:
             errors.append(f"outfit_image.model '{oi.model}' 이 config/models.yaml 에 없습니다")
         name, field = (
-            (profile.model_shot.prompt, "model_shot.prompt")
+            (profile.flow.scene_prompt, "flow.scene_prompt")
+            if model and plan.scene_image
+            else (profile.model_shot.prompt, "model_shot.prompt")
             if model
             else (oi.prompt, "outfit_image.prompt")
         )
         if not (photoroom.PROMPTS_DIR / f"{name}.md").exists():
             errors.append(f"{field} '{name}' 파일이 prompts/ 에 없습니다")
+    if plan.scene_image and not (REPO_ROOT / plan.scene_image).exists():
+        errors.append(f"scene_image 장면 사진이 없습니다: {plan.scene_image}")
+    if plan.scene_image and not model:
+        errors.append("scene_image(장면 사진)는 shot: model 일 때만 씁니다")
     for cover in [plan.cover, *(lk.cover for lk in plan.looks)]:
         if cover and not (REPO_ROOT / cover).exists():
             errors.append(f"cover 파일이 없습니다: {cover}")

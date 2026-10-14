@@ -137,6 +137,10 @@ jobs:
             git fetch origin daily-results
             git worktree add /tmp/prev origin/daily-results
             uv run python -m tools.model_post prepare "$PICK" --prev /tmp/prev --date "$DATE" --out "out/$DATE"
+          elif [ "$MODE" = candidates ] && [ "${PICK:0:1}" = "{" ]; then
+            # 차례 흐름(tools.flow): 사용자가 고른 주제를 그날 주제로 넣는다. schedule 이 주제를 커밋하기 전에
+            # 이 실행이 꺼낸 커밋이 정해져서, 주제는 pick 으로 넘겨받는다 ({"theme": {...}})
+            uv run python -m tools.flow use-theme --account "$ACCOUNT" --json "$PICK"
           elif [ -n "$PICK" ]; then
             # 후보가 있는 결과 폴더를 가져온다 (render: 고른 후보, candidates: "다시" 누른 지난 후보)
             git fetch origin daily-results
@@ -151,6 +155,21 @@ jobs:
               mkdir -p "out/$DATE/previous"
               cp "$src"/p*.yaml "out/$DATE/previous/"
               ROUND=$(( $(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['round'])" "$src/pick.json") + 1 ))
+            fi
+          fi
+          # 장면 모델컷 (차례 흐름, 2026-10-14): 사용자가 텔레그램으로 보낸 장면 사진을 out/<날짜>/src/scene.jpg 에 둔다.
+          # 사진은 schedule 이 실행을 요청한 직후 커밋해서, 아직 없으면 잠깐 기다렸다 다시 가져온다
+          if { [ "$MODE" = render ] || [ "$MODE" = fix ]; } && [ "$(uv run python -c "from core.profile import load_profile; print(load_profile('$ACCOUNT').flow.enabled)")" = True ]; then
+            scene="flow/$ACCOUNT/$DATE/scene.jpg"
+            for i in 1 2 3 4 5 6; do
+              git fetch -q origin daily-results && git show "origin/daily-results:$scene" > /tmp/scene.jpg 2>/dev/null && break
+              rm -f /tmp/scene.jpg; sleep 20
+            done
+            if [ -s /tmp/scene.jpg ]; then
+              mkdir -p "out/$DATE/src" && mv /tmp/scene.jpg "out/$DATE/src/scene.jpg"
+              echo "SCENE=out/$DATE/src/scene.jpg" >> "$GITHUB_ENV"
+            else
+              echo "::warning::장면 사진($scene)이 없어 장면 없이 만듭니다"
             fi
           fi
           # 코디컷 방식: auto 면 계정 설정(profile outfit_image.engine)
@@ -258,7 +277,7 @@ jobs:
           prompt: |
             .claude/skills/fix-feed/SKILL.md 의 순서를 그대로 따라 out/${{ env.DATE }} 게시물을 피드백대로 고쳐.
             피드백은 out/${{ env.DATE }}/fix.json 에 있어.
-            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }}
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} SCENE=${{ env.SCENE }}
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/fix_result.yaml 과 report.md 를 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
@@ -307,7 +326,8 @@ jobs:
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
             out/${{ env.DATE }}/plan.yaml 이 이미 있으면 사람이 고른 후보이니 "고른 후보로 시작" 절을 따라.
-            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }}
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }} SCENE=${{ env.SCENE }}
+            SCENE 이 있으면 사용자가 보낸 장면 사진이니 "장면 모델컷" 절을 따라.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
