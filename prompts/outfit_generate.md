@@ -19,26 +19,24 @@ prompts/outfit/parts.yaml), $layout 고정 구도(profile looks.composition), $s
 
 -->
 Create one photorealistic top-down flat lay photograph of a complete outfit, laid out by a stylist
-on the floor and photographed from directly above, like a premium brand's styling post.
+on the floor, like a premium brand's styling post.
 
 The attached images are reference sheets of the exact items, in this order. Each sheet shows shop
-photos of one item, flat or worn by a model; draw each item once and ignore any other clothes or
-props in the photos:
+photos of one item; draw each item once and ignore any other clothes or props in the photos:
 $items
 
 Most important, three things: (1) every item has the same fit as on the model in the worn photos:
-the same silhouette, length, width, volume and drape, tops and bottoms alike. (2) Long trousers and skirts are exactly
-as long as on the model, covering the ankles, clearly the longest part of the outfit; never cropped. (3) The clothes look full and
-three-dimensional, as if a person had just been wearing them and they were laid down in that worn
-shape: a rounded chest and shoulders, sleeves filled with air and falling softly with a slight bend,
-trouser legs and skirts with real depth, thickness and soft vertical folds, knits thick and soft.
+the same silhouette, length, width, volume and drape, tops and bottoms alike. (2) Long trousers and
+skirts are exactly as long as on the model, covering the ankles, clearly the longest part of the
+outfit; never cropped. (3) The clothes look full and three-dimensional, as if a person had just been wearing them and they were laid down in that worn
+shape: a rounded chest and shoulders, sleeves falling softly with a slight bend, trouser legs and
+skirts with real depth and soft folds, knits thick and soft.
 Keep every item identical to its photos: color, fabric and its texture (knit stitches, wool nap,
 leather sheen, denim twill), pattern, cut, collar, neckline, number and position of buttons,
-pockets, hardware and shoe style; never redesign a detail. The real sizes are for proportion only:
-bottoms longer than tops, bag and shoes in true proportion to the clothes.
+pockets, hardware and shoe style; never redesign a detail.
 
 How the outfit is worn: $styling
-Sleeves and collars hang as soft as in the photos: sleeves are never rolled or folded up.
+Sleeves are never rolled or folded up.
 Layering is physical: an inner piece lies under the piece worn over it and shows only at the
 neckline, the cuffs and the hem. The waistband of the bottoms sits exactly at the height where it
 sits on the model in the worn photos, never higher and never lower; the top keeps its full body
@@ -51,7 +49,7 @@ The garments lie neatly, never crumpled or twisted, never paper-flat.
 
 Layout, the same for every image: $layout
 
-Scene: $scene. One soft light for everything; every item casts a soft natural contact shadow.
+Scene: $scene.
 Vertical 4:5 image, high detail. No people, mannequin or hanger. Never add text, letters, numbers,
 labels or logos that are not on the product itself (the sizes are never drawn). Use only the
 listed items, each exactly once: a pair of shoes is two shoes, a pair of earrings is two earrings,
