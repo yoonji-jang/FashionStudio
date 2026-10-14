@@ -287,6 +287,7 @@ def test_reels_slot_and_dispatch(monkeypatch):
 
     monkeypatch.setattr(schedule, "load_profile", core.profile.load_profile)
     p = core.profile.load_profile("women")
+    p.schedule.enabled = True  # 프로필에서 잠시 꺼도 시간 계산은 시험
     # women 은 캐러셀 게시 직후 같이 올려 따로 깨어나는 칸이 없다
     assert p.schedule.reels_at is None
     assert not [sl for sl in schedule.slots(p) if sl.task == "reels"]
