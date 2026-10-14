@@ -1,0 +1,207 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/5/outfit_r2/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 오버사이즈 울 블레이저
+  product: zigzag:165561309
+- comment: ''
+  name: 스카프 레이어링 니트
+  product: zigzag:172225710
+- comment: ''
+  name: 핀ST 스커트
+  product: zigzag:159994030
+- comment: ''
+  name: 각코 롱부츠
+  product: zigzag:107929702
+- comment: ''
+  name: 플로우 레더 호보백
+  product: zigzag:168780987
+- comment: ''
+  name: 실버 미니 귀걸이
+  product: zigzag:168924738
+- comment: ''
+  name: 울 니트 베스트
+  product: zigzag:165993167
+- comment: ''
+  name: 워싱 셔츠
+  product: zigzag:127356723
+- comment: ''
+  name: 플리츠 미디스커트
+  product: zigzag:171911973
+- comment: ''
+  name: 페니로퍼
+  product: zigzag:100425954
+- comment: ''
+  name: 클리프 숄더백
+  product: zigzag:151166447
+- comment: ''
+  name: 실버 무광 귀걸이
+  product: zigzag:168924788
+- comment: ''
+  name: 헨리넥 니트
+  product: zigzag:168059454
+- comment: ''
+  name: 폰즈 롱스커트
+  product: zigzag:155126048
+- comment: ''
+  name: 리본 플랫슈즈
+  product: zigzag:171742629
+- comment: ''
+  name: 체인 미니백
+  product: zigzag:137453892
+- comment: ''
+  name: 실버 꼬임 귀걸이
+  product: zigzag:135598371
+- comment: ''
+  name: V넥 조끼 베스트
+  product: zigzag:165972516
+- comment: ''
+  name: 릴렉스드 트라우저
+  product: zigzag:165972831
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:137014509
+- comment: ''
+  name: 볼체인 목걸이
+  product: zigzag:113341770
+- comment: ''
+  name: 울 롱코트
+  product: zigzag:171900729
+- comment: ''
+  name: 핀스트라이프 슬랙스
+  product: zigzag:166018788
+- comment: ''
+  name: 슬링백 힐
+  product: zigzag:105600430
+- comment: ''
+  name: 소부 숄더백
+  product: zigzag:157688262
+- comment: ''
+  name: 랩 블라우스
+  product: zigzag:149121102
+- comment: ''
+  name: 와이드 슬랙스
+  product: zigzag:129082539
+- comment: ''
+  name: 위빙 호보백
+  product: zigzag:161978790
+- comment: ''
+  name: 실버 두줄 귀걸이
+  product: zigzag:168924754
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 오버사이즈 울 블레이저
+    product: zigzag:165561309
+  - comment: ''
+    name: 스카프 레이어링 니트
+    product: zigzag:172225710
+  - comment: ''
+    name: 핀ST 스커트
+    product: zigzag:159994030
+  - comment: ''
+    name: 각코 롱부츠
+    product: zigzag:107929702
+  - comment: ''
+    name: 플로우 레더 호보백
+    product: zigzag:168780987
+  - comment: ''
+    name: 실버 미니 귀걸이
+    product: zigzag:168924738
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울 니트 베스트
+    product: zigzag:165993167
+  - comment: ''
+    name: 워싱 셔츠
+    product: zigzag:127356723
+  - comment: ''
+    name: 플리츠 미디스커트
+    product: zigzag:171911973
+  - comment: ''
+    name: 페니로퍼
+    product: zigzag:100425954
+  - comment: ''
+    name: 클리프 숄더백
+    product: zigzag:151166447
+  - comment: ''
+    name: 실버 무광 귀걸이
+    product: zigzag:168924788
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/3/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 헨리넥 니트
+    product: zigzag:168059454
+  - comment: ''
+    name: 폰즈 롱스커트
+    product: zigzag:155126048
+  - comment: ''
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  - comment: ''
+    name: 체인 미니백
+    product: zigzag:137453892
+  - comment: ''
+    name: 실버 꼬임 귀걸이
+    product: zigzag:135598371
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/4/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: V넥 조끼 베스트
+    product: zigzag:165972516
+  - comment: ''
+    name: 워싱 셔츠
+    product: zigzag:127356723
+  - comment: ''
+    name: 릴렉스드 트라우저
+    product: zigzag:165972831
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:137014509
+  - comment: ''
+    name: 클리프 숄더백
+    product: zigzag:151166447
+  - comment: ''
+    name: 볼체인 목걸이
+    product: zigzag:113341770
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울 롱코트
+    product: zigzag:171900729
+  - comment: ''
+    name: 헨리넥 니트
+    product: zigzag:168059454
+  - comment: ''
+    name: 핀스트라이프 슬랙스
+    product: zigzag:166018788
+  - comment: ''
+    name: 슬링백 힐
+    product: zigzag:105600430
+  - comment: ''
+    name: 소부 숄더백
+    product: zigzag:157688262
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-16/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 랩 블라우스
+    product: zigzag:149121102
+  - comment: ''
+    name: 와이드 슬랙스
+    product: zigzag:129082539
+  - comment: ''
+    name: 페니로퍼
+    product: zigzag:100425954
+  - comment: ''
+    name: 위빙 호보백
+    product: zigzag:161978790
+  - comment: ''
+    name: 실버 두줄 귀걸이
+    product: zigzag:168924754
+title_lines:
+- 튀지 않는데 기억나는
+- 가을 하객룩 조합

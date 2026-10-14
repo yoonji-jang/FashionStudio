@@ -1,0 +1,28 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "배경 왼쪽 테이블 위 생수병 라벨에 숫자 \"8\"이 그려져 있음 (상품 아닌 글자·숫자라 text_drawn, clean 0). 옷은 이상 없음. 1번 랩 블라우스는 바지 밖으로 나와 있고, 랩 겹침과 허리 옆 주름 매듭이 보이며 베이지 색과 부드러운 면 질감, 칼라가 원본과 같음. 2번 슬랙스는 하이웨이스트 스트레이트에서 밑단만 살짝 퍼지고 센터 크리스가 있으며, 밑단이 발목을 살짝 덮어 로퍼 위에서 끝남. 다리가 길어 보임. 3번 로퍼는 두 짝이 나란함. 4번 가방은 위빙 호보백으로 왼손에 들었고, 5번 귀걸이는 보이는 쪽 한 개이며 실버. 얼굴은 고개를 숙이고 머리카락으로 가려져 정면이 아님.",
+        "feedback_ok": true,
+        "faults": [
+          "text_drawn"
+        ]
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": ""
+}

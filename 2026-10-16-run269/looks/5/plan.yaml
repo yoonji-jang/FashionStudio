@@ -1,0 +1,132 @@
+account: women
+cover: out/2026-10-16/looks/5/outfit_r2/results/G_1.jpg
+cover_collage: false
+cover_look: 5
+date: '2026-10-16'
+items:
+- cm: 115.5
+  color: 차콜
+  comment: ''
+  cutout_photo: 1
+  desc: 차콜 울 롱코트 (charcoal oversized soft heavy wool long coat, broad dropped shoulders,
+    notch lapel, single-breasted, flap pockets, mid-calf length)
+  name: 울 롱코트
+  product: zigzag:171900729
+  ref_photos:
+  - 1
+  - 0
+  - 3
+  size: about 115.5 cm long from shoulder to hem, 46 cm across the shoulders, 55.5
+    cm across the chest laid flat, 60 cm long sleeves
+- cm: 55.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 헨리넥 니트 (black slim fitted long-sleeve henley-neck fine ribbed knit with
+    a four-button placket and a white layered trim at the neckline and hem)
+  name: 헨리넥 니트
+  product: zigzag:168059454
+  ref_photos:
+  - 3
+  - 2
+  size: about 55.5 cm long from shoulder to hem, 36 cm across the shoulders, 38 cm
+    across the chest laid flat, 62 cm long sleeves
+- cm: 107.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 핀스트라이프 와이드 슬랙스 (charcoal fine-pinstripe wide straight-leg slacks, soft
+    wool blend, full length slightly pooling on the shoes)
+  name: 핀스트라이프 슬랙스
+  product: zigzag:166018788
+  ref_photos:
+  - 0
+  - 5
+  size: about 107 cm long from waist to hem, 35 cm across the waist laid flat, 47
+    cm across the hips laid flat, 29 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스틸레토 슬링백힐 (black pointed-toe stiletto slingback heels with an ankle strap,
+    about 9cm heel)
+  name: 슬링백 힐
+  product: zigzag:105600430
+  ref_photos:
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 숄더백 (black soft leather hobo-shaped shoulder bag)
+  name: 소부 숄더백
+  product: zigzag:157688262
+  ref_photos:
+  - 0
+looks: []
+mood: a candid phone snapshot taken by a friend at a quiet minimal gallery or showroom
+  event space in Seoul, pale sage-green walls and a cream speckled terrazzo floor,
+  a white-clothed table with water bottles and a sculptural metal railing in the background,
+  soft even warm indoor ceiling light with muted cool-neutral colors, the whole figure
+  in frame at a little distance, slightly dark and moody grain; every woman wears
+  her hair in a sleek low bun with a middle part and a few loose strands at the temple,
+  as the sender asked (slick bun)
+pose: standing sideways beside a white-clothed reception table with a paper cup in
+  one hand, her head turned away toward the far wall, the bag on her shoulder, full
+  body with the heels visible
+reason: 차콜 롱코트에 핀스트라이프 와이드 팬츠로. 안쪽 이너는 블랙 헨리넥 니트로 바꿈. (따라 함 참고 126)
+ref_photo: https://woonan.co.kr/web/product/big/202610/2640dcee48de36cd632e86761d32d730.jpg
+scene_image: out/2026-10-16/src/scene.jpg
+shot: model
+styling: The coat is worn open over the knit, its fronts falling naturally to both
+  sides.
+text:
+  hashtags:
+  - '#하객룩'
+  - '#가을하객룩'
+  - '#결혼식하객룩'
+  - '#하객룩추천'
+  - '#차콜코디'
+  - '#올블랙코디'
+  - '#가을코디'
+  intro: 비 소식 있는 금요일, 결혼식 가는 날엔 차콜과 블랙으로 단정하게 입어요 ☔
+  points: []
+  title_lines:
+  - 튀지 않는데 기억나는
+  - 가을 하객룩 조합
+theme:
+  date: '2026-10-16'
+  mood: 깊은 가을 톤의 단정하고 품위 있는 하객룩 (흰색·아이보리 올화이트는 피함)
+  search_terms:
+    가방:
+    - 미니 숄더백
+    - 퀼팅 체인백
+    상의:
+    - 새틴 블라우스
+    - 보트넥 니트
+    소품:
+    - 진주 귀걸이
+    신발:
+    - 메리제인
+    - 발레리나 플랫
+    아우터:
+    - 트위드 자켓
+    - 크롭 가디건
+    하의:
+    - 플리츠 롱스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 단정한 라운드넥 트위드 자켓이나 크롭 니트 가디건
+  - category: 상의
+    desc: 새틴 블라우스나 보트넥 니트처럼 광택·질감이 있는 상의
+  - category: 하의
+    desc: 플리츠 롱스커트나 새틴 스커트
+  - category: 가방
+    desc: 블랙 미니 숄더백이나 퀼팅 체인백
+  - category: 신발
+    desc: 메리제인이나 발레리나 플랫
+  - category: 소품
+    desc: 진주 귀걸이나 얇은 목걸이
+  title_hint: 가을 결혼식 하객룩, 단정한데 지루하지 않게
+  type: 상황
+  why: 금요일, 최고 23도에 흐리고 비 예보 86%라 가벼운 아우터와 젖어도 부담 없는 어두운 하의, 가을 결혼식 시즌
