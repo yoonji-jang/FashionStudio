@@ -1,0 +1,88 @@
+"""코디컷 지시문과 참고판을 텔레그램으로 보내기 (2026-10-14 사용자: 제미나이에서 따로 돌려 보려고).
+
+결과 폴더(daily-results 의 <날짜>-run<번호>)의 벌마다 그림 AI 에 보낸 것과 같은 것을 보낸다.
+- 참고판: 상품마다 한 장(쇼핑몰 사진, 얼굴 가림) + 기준 코디 사진이 있으면 마지막 한 장. 다시 만들고 out/ 에만 둔다.
+- 지시문: 그 벌의 outfit/prompt.txt (마지막 회차가 아닌 첫 그림 지시문).
+그림은 새로 그리지 않아 이미지 비용이 없다. 텔레그램 보내기는 워크플로(prompt-share)만 한다.
+
+  python -m tools.prompt_share --account women --results /tmp/results/2026-10-14-run246 --out out/prompt_share
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+import yaml
+
+from core.models import DailyPlan
+from core.profile import load_profile
+from core.store import Store
+from tools import generate, outfit_gen
+
+
+def build(results: Path, account: str, out: Path) -> list[tuple[int, list[Path], Path]]:
+    """벌마다 (번호, 참고판 파일들, 지시문 파일)."""
+    profile = load_profile(account)
+    store = Store(account)
+    products = {p.id: p for p in store.products()}
+    cfg = generate.load_config()
+    cache = generate.CACHE_DIR / account
+    made = []
+    for plan_path in sorted(
+        (results / "looks").glob("*/plan.yaml"), key=lambda p: int(p.parent.name)
+    ):
+        n = int(plan_path.parent.name)
+        plan = DailyPlan.model_validate(yaml.safe_load(plan_path.read_text(encoding="utf-8")))
+        prompt_src = plan_path.parent / "outfit" / "prompt.txt"
+        if not prompt_src.exists():
+            print(f"LOOK {n}: 지시문이 없어 건너뜀", file=sys.stderr)
+            continue
+        work = out / f"look{n}"
+        work.mkdir(parents=True, exist_ok=True)
+        try:
+            panels = outfit_gen.reference_panels(plan, products, work, cfg, cache)
+        except Exception as e:  # noqa: BLE001 - 한 벌이 안 돼도 나머지는 보낸다
+            print(f"LOOK {n}: 참고판을 만들지 못함 ({e})", file=sys.stderr)
+            continue
+        worn = outfit_gen.worn_ref_panel(plan, profile, cache)
+        files = []
+        for i, data in enumerate([*panels, *([worn] if worn else [])], 1):
+            path = work / f"{i:02d}.jpg"
+            path.write_bytes(data)
+            files.append(path)
+        prompt = work / f"LOOK{n}_prompt.txt"
+        prompt.write_text(prompt_src.read_text(encoding="utf-8"), encoding="utf-8")
+        made.append((n, files, prompt))
+    return made
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+    ap.add_argument("--account", required=True)
+    ap.add_argument(
+        "--results", type=Path, required=True, help="결과 폴더 (looks/<번호>/plan.yaml)"
+    )
+    ap.add_argument("--out", type=Path, default=Path("out/prompt_share"))
+    ap.add_argument("--send", action="store_true", help="텔레그램으로 보냄 (워크플로만)")
+    args = ap.parse_args(argv)
+    made = build(args.results, args.account, args.out)
+    print(f"{len(made)}벌 준비")
+    if not args.send:
+        return 0
+    from tools import notify
+
+    tg = notify.Telegram.from_env()
+    for n, files, prompt in made:
+        tg.send_photos(
+            files,
+            f"LOOK {n} 참고판 {len(files)}장. 이 순서대로 붙이고 아래 지시문을 붙여 넣어요"
+            " (마지막 장이 착용 사진이면 기준 코디).",
+        )
+        tg.send_document(prompt, f"LOOK {n} 지시문")
+    return 0 if made else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,36 @@
+name: prompt-share
+
+# 코디컷 지시문과 참고판(상품 사진 참고판 + 기준 코디 사진)을 텔레그램으로 보낸다 (2026-10-14 사용자:
+# 제미나이에서 따로 돌려 보기). 그림은 새로 그리지 않는다. 쇼핑몰 사진은 결과 브랜치에 올리지 않는다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      results:
+        description: daily-results 의 결과 폴더 (예 2026-10-14-run246)
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: 지시문·참고판 보내기
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ACCOUNT: ${{ inputs.account }}
+          RESULTS: ${{ inputs.results }}
+        run: |
+          [[ "$RESULTS" =~ ^[0-9A-Za-z._-]+$ ]] || { echo "결과 폴더 이름이 이상함"; exit 1; }
+          git fetch --depth 1 origin daily-results
+          git worktree add /tmp/results FETCH_HEAD
+          uv run python -m tools.prompt_share --account "$ACCOUNT" --results "/tmp/results/$RESULTS" --send
