@@ -431,6 +431,20 @@ class ModelShot(BaseModel):
     mood: str = "a calm, bright minimal space with soft natural daylight, Pinterest editorial"
 
 
+class Flow(BaseModel):
+    """차례 흐름 (2026-10-14 사용자). 시각표(schedule) 대신 한 게시물씩 차례로 간다:
+    주제 제안 → 허락 → 코디 후보 + 장면 사진 받기 → 장면 모델컷 만들기 → /ok → 바로 게시
+    → 다음 주제. 사람의 답이 필요한 단계는 마감 없이 답이 올 때까지 기다린다
+    (tools.flow, schedule 이 매시 깨움)."""
+
+    enabled: bool = False
+    theme_options: int = Field(default=3, ge=1, le=5)  # 한 번에 제안하는 주제 수
+    # 장면 사진 1장의 무드로 벌마다 그리는 지시문 (prompts/<이름>.md, 기획 scene_image 가 있을 때)
+    scene_prompt: str = "outfit_scene"
+    # 게시를 요청하고 이만큼(분) 지나도 게시 기록이 없으면 한 번 알린다
+    publish_alert_minutes: int = Field(default=120, ge=30)
+
+
 WEEKDAYS = "월화수목금토일"
 WEEKLY = r"^[월화수목금토일](,[월화수목금토일])* ([01]\d|2[0-3]):[0-5]\d$"
 
@@ -598,6 +612,7 @@ class Profile(BaseModel):
     outfit_image: OutfitImage = OutfitImage()
     model_shot: ModelShot = ModelShot()
     schedule: Schedule
+    flow: Flow = Flow()
     pick: PickRules = PickRules()
     feedback: FeedbackRules = FeedbackRules()
     comments: Comments = Comments()

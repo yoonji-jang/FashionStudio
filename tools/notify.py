@@ -86,7 +86,28 @@ def slim_update(u: dict) -> dict:
     reply = (msg.get("reply_to_message") or {}).get("message_id")
     if reply:
         out["reply_to_message"] = {"message_id": reply}
+    # 장면 사진 (profile flow): 보낸 사진의 파일 번호만 남긴다 (사진은 tools.flow 가 받아 저장)
+    file_id = photo_file_id(msg)
+    if file_id:
+        out["photo"] = file_id
+        out["caption"] = msg.get("caption") or ""
     return {"update_id": u["update_id"], "message": out}
+
+
+def photo_file_id(msg: dict) -> str | None:
+    """텔레그램 글에 붙은 사진의 파일 번호 (가장 큰 크기). 압축 없이 파일로 보낸 그림도 읽는다.
+    기록(slim_update)에서 읽을 때는 photo 가 이미 파일 번호다."""
+    photo = msg.get("photo")
+    if isinstance(photo, str):
+        return photo
+    if photo:
+        # 텔레그램은 작은 크기부터 보낸다: 크기가 같으면 뒤의 것
+        size = [p.get("width", 0) * p.get("height", 0) for p in photo]
+        return max(zip(size, range(len(photo)), photo, strict=True))[2]["file_id"]
+    doc = msg.get("document") or {}
+    if str(doc.get("mime_type", "")).startswith("image/"):
+        return doc.get("file_id")
+    return None
 
 
 def save_updates_log(
@@ -217,6 +238,18 @@ class Telegram:
             )
         return msg["message_id"]
 
+    def download(self, file_id: str, dest: Path) -> Path:
+        """받은 사진(파일 번호)을 dest 에 저장한다 (getFile, 봇 파일은 20MB 까지)."""
+        info = self.call("getFile", file_id=file_id)
+        url = self.base.replace("/bot", "/file/bot", 1) + "/" + info["file_path"]
+        r = self.client.get(url)
+        if r.status_code != 200:
+            # 주소에 봇 토큰이 들어 있어서 상태 코드만 남긴다
+            raise RuntimeError(f"텔레그램 사진 받기 실패 ({r.status_code})")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(r.content)
+        return dest
+
     def updates(self) -> list[dict]:
         if self.log is not None:
             return self._logged_updates()
@@ -311,7 +344,9 @@ def control_text(
 ) -> str:
     """미리보기 마지막 안내 글. cover 는 표지로 쓴 벌 번호 (tools.cover_look)."""
     day = manifest.date
-    lines = [f"[{profile.id}] {day} {profile.schedule.publish_at} 게시 예정"]
+    flow = profile.flow.enabled  # 차례 흐름 (tools.flow): /ok 를 받으면 바로 게시, 마감 없음
+    when = "/ok 하면 바로 게시" if flow else f"{profile.schedule.publish_at} 게시 예정"
+    lines = [f"[{profile.id}] {day} {when}"]
     lines.append("제목: " + " / ".join(manifest.title_lines))
     if fix:
         lines.append("")
@@ -334,7 +369,13 @@ def control_text(
         lines.append("샌드박스(워터마크) 결과라 게시하지 않아요. 흐름 확인용이에요.")
         return "\n".join(lines)
     label = command_label(profile, day)
-    if profile.approval == "required" or manifest.needs_human:
+    if flow:
+        lines.append(f"게시하려면 /ok {label}, 이 주제를 건너뛰려면 /skip {label}")
+        lines.append(
+            "한 시간 안에 확인해 바로 게시하고 상품 링크를 보내 드려요. 마감 없이 기다려요"
+        )
+        lines.append("(아래 버튼을 누르거나 이 메시지에 /ok 로 답장해도 돼요)")
+    elif profile.approval == "required" or manifest.needs_human:
         lines.append(f"게시하려면 /ok {label}, 건너뛰려면 /skip {label}")
         dl = ok_deadline(profile, day)
         if dl is not None:
@@ -633,9 +674,10 @@ def find_now(
 
 
 def ok_deadline(profile: Profile, day: date) -> datetime | None:
-    """게시 날짜(day)의 승인 마감 시각 (schedule.ok_deadline). 게시 시각보다 늦은 시각이면 전날."""
+    """게시 날짜(day)의 승인 마감 시각 (schedule.ok_deadline). 게시 시각보다 늦은 시각이면 전날.
+    차례 흐름(profile flow)은 마감이 없다."""
     s = profile.schedule
-    if not s.ok_deadline:
+    if not s.ok_deadline or profile.flow.enabled:
         return None
     at = datetime.combine(day, datetime.min.time(), ZoneInfo(s.timezone)) + timedelta(
         minutes=minutes(s.ok_deadline)

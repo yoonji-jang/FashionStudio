@@ -365,6 +365,15 @@ model_shot:
     or a point-and-shoot film camera by a friend on an ordinary street or in a real interior in Seoul,
     light exactly as the pose describes, natural slightly muted colors
 
+# 차례 흐름 (2026-10-14 사용자, tools.flow): 시각 마감 없이 한 게시물씩 간다.
+# 주제 제안(텔레그램, 허락) → 코디 후보 고르기 + 장면 사진 1장 → 장면 모델컷 6벌 → 미리보기 /ok → 바로 게시 → 다음 주제.
+# 사람의 답은 끝까지 기다린다. schedule 워크플로가 매시 깨어날 때 확인한다 (schedule.enabled 와 따로).
+flow:
+  enabled: false            # 사용자가 켜라고 할 때 true
+  theme_options: 3          # 한 번에 제안하는 주제 수
+  scene_prompt: outfit_scene
+  publish_alert_minutes: 120
+
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
 schedule:

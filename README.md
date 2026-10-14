@@ -905,6 +905,23 @@ GitHub → 오른쪽 위 사진 → Settings → Developer settings → Personal
 
 ---
 
+## 장면 모델컷 차례 흐름 (2026-10-14)
+profile `flow.enabled: true` 면 시각표 대신 한 게시물씩 차례로 간다 (`tools.flow`). 사람의 답에는 마감이 없고,
+게시가 끝나야 다음 주제를 시작한다. schedule 워크플로가 깨어날 때마다(외부 스케줄러, 매시) 한 번 확인한다.
+
+1. **주제 허락**: theme-options 워크플로(Claude plan-themes "제안")가 주제 3개(`flow.theme_options`)를 텔레그램으로 보낸다.
+   `2` 처럼 번호를 보내면 그 주제, `/theme 니트 레이어드 코디` 처럼 적으면 그 말로 주제를 짜서 바로 진행, `다시` 면 새 제안.
+2. **코디 후보 + 장면 사진**: 고른 주제로 코디 후보가 온다 (지그재그 새 수집 포함). 평소처럼 벌을 고르고,
+   이 주제에 맞는 장면 사진 1장(스트리트, 스튜디오 촬영컷, 거울 셀카 등)을 같은 채팅에 보낸다. 순서는 상관없다.
+3. **만들기**: 둘 다 오면 daily(mode=render)가 장면 사진의 무드로 벌마다 자리·포즈만 다르게 그린다
+   (`prompts/outfit_scene.md`, 얼굴이 거의 안 보이는 새 AI 인물. 장면 속 사람을 따라 그리지 않는다).
+4. **미리보기**: `/fix …` 로 고치고(지난 그림을 고쳐 그림), `/ok` 면 바로 게시하고 상품 링크를 보낸다. `/skip` 이면 이 주제를 버리고 1로.
+5. 게시 기록이 생기면 다음 주제(1)로.
+
+- 상태: daily-results 브랜치 `flow/<계정>/state.json` (`python -m tools.flow status --account women --results <폴더>`),
+  장면 사진은 `flow/<계정>/<날짜>/scene.jpg`. 처음부터 다시: `python -m tools.flow reset …` 결과를 커밋.
+- 시각표 자동 실행(`schedule.enabled`)과 같이 켜지 않는다.
+
 ## 댓글 → DM 코디 링크 (10단계)
 
 댓글 달자마자 DM 이 가려면 메타가 댓글을 즉시 알려 주는 **웹훅**을 받는 서버가 있어야 합니다. 서버를 직접 두지

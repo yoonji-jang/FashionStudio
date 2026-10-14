@@ -1,6 +1,6 @@
 ---
 name: plan-themes
-description: 게시물 주제를 정한다. 다음 주 주제를 한꺼번에 정해 data/<계정>/themes.json 에 저장하거나(주간), 정해 둔 주제가 없는 날 하나를 정한다(하루). 주제별 지그재그 검색어도 만든다.
+description: 게시물 주제를 정한다. 다음 주 주제를 한꺼번에 정해 data/<계정>/themes.json 에 저장하거나(주간), 정해 둔 주제가 없는 날 하나를 정하거나(하루), 다음 게시물 주제 몇 개를 사용자에게 제안한다(제안). 주제별 지그재그 검색어도 만든다.
 ---
 
 # plan-themes: 주제 정하기
@@ -101,6 +101,18 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
 4. 다 쓰면 `python -m tools.refs check --account $ACCOUNT` 로 검사한다 (번호 겹침·사진 없음·하의 없음은 고친다).
    `keep_weeks` 가 지난 참고는 이 명령이 지운다.
 5. 보고(`out/refs_report.md`)에 쇼핑몰별 더한 수, 막힌 쇼핑몰과 이유를 적는다.
+
+## 제안 (차례 흐름, profile `flow.enabled`, theme-options 워크플로)
+한 게시물이 게시되면 다음 게시물 주제를 사용자에게 허락받는다 (2026-10-14 사용자: "주제 정하는거도 허락 받아줘").
+게시물 하나의 주제를 `flow.theme_options` 개(보통 3개) 제안한다. 위 "정하는 방법"을 그날 하루 기준으로 따른다.
+- 세 주제는 서로 다른 유형(상황 / 아이템 / 분위기·색)으로 고른다. 사용자가 고르기 쉽게 `title_hint` 는 한눈에 다른 말로,
+  `why` 는 한 줄로 (날씨·요일·창고 재고 근거).
+- 사용자가 보낸 장면 사진 1장(스트리트, 스튜디오, 거울 셀카 등)의 무드로 여섯 벌을 그리니, 장면을 떠올리기 쉬운 주제가 좋다.
+  장면 종류는 주제에 적지 않는다 (사용자가 고름).
+- `out/theme_options_previous.yaml` 이 있으면 사용자가 "다시" 한 앞 제안이다. 그 주제와 겹치지 않게 새로 정한다.
+- HINT 가 있으면 사용자가 직접 적은 주제다. 그 말 그대로의 뜻으로 주제 1개만 짠다 (title_hint 는 다듬되 뜻은 바꾸지 않는다).
+- `out/theme_options.yaml` 에 Theme 목록(위 "주제 한 개의 모양", date 는 게시 날짜)으로 쓴다.
+  검사·저장·텔레그램 보내기는 워크플로가 `python -m tools.flow options` 로 한다. themes.json 은 고치지 않는다.
 
 ## 저장
 - 주간: 7일치를 `out/themes_<첫날>.yaml` 로 쓰고

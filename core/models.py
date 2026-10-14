@@ -177,6 +177,11 @@ class DailyPlan(BaseModel):
     source_run: str | None = None  # 모델컷이면 벌을 가져온 전날 결과 폴더 (예 2026-10-05-run90)
     mood: str | None = None  # 모델컷 장소·분위기 (영어). 없으면 profile model_shot.mood
     pose: str | None = None  # 한 벌 기획의 모델컷 인물·포즈 (여러 벌이면 looks[].pose)
+    # 장면 모델컷 (2026-10-14 사용자, profile flow): 사용자가 보낸 장면 사진 1장
+    # (저장소 기준 경로). 있으면 shot: model 을 profile flow.scene_prompt 지시문으로 그리고
+    # 이 사진을 무드 참고로 같이 보낸다. mood 는 이 사진에서 읽은 무드,
+    # 벌 pose 는 같은 무드 안에서 벌마다 다른 자리·포즈
+    scene_image: str | None = None
 
     @model_validator(mode="after")
     def _items_or_looks(self) -> DailyPlan:
