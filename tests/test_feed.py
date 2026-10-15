@@ -300,8 +300,7 @@ def test_reel_version_extends_floor(tmp_path):
 
 
 def test_reel_version_crops_sides(tmp_path):
-    """reels.fill_mode crop: 높이는 그대로 두고 양옆만 잘라 9:16 (확대 없음).
-    사람을 못 찾으면 가운데."""
+    """reels.fill_mode crop: 높이는 그대로 두고 양옆만 잘라 9:16 (확대 없음), 가운데를 남긴다."""
     from PIL import Image
 
     from tools import feed
