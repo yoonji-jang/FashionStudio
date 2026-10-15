@@ -307,6 +307,7 @@ class Looks(BaseModel):
     line_size: int = Field(default=28, gt=0)
     shop_size: int = Field(default=21, gt=0)
     text_width: float = Field(default=0.5, gt=0.2, le=1)  # 글자가 들어가는 폭 (이미지 폭 대비)
+    show_items: bool = True  # 벌 장에 상품 목록(카테고리·이름·스토어)을 쓸지. false 면 벌 번호만
     show_shop: bool = True
     show_price: bool = False  # 가격은 바뀔 수 있어 기본으로 넣지 않음
     # 이미지 출처 한 줄. 벌 장은 상품 목록 아래, 표지는 오른쪽 아래. 빈 문자열이면 생략
