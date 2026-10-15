@@ -22,7 +22,6 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-import cv2
 import httpx
 import numpy as np
 import yaml
@@ -403,7 +402,7 @@ def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: P
 
 def open_outfit(path: Path, tall: bool = False, mode: str = "extend") -> Image.Image:
     """코디컷. tall 이면 9:16 으로: extend 는 위아래 바닥을 늘리고, crop 은 높이는 그대로 두고
-    사람이 가운데 오게 양옆을 자른다 (profile reels.fill_mode)."""
+    가운데를 남기고 양옆을 자른다 (profile reels.fill_mode)."""
     img = Image.open(path).convert("RGB")
     if not tall or img.height / img.width >= 1.6:
         return img
@@ -411,28 +410,12 @@ def open_outfit(path: Path, tall: bool = False, mode: str = "extend") -> Image.I
 
 
 def crop_tall(img: Image.Image, size: tuple[int, int] = TALL_SIZE) -> Image.Image:
-    """높이는 그대로, 양옆을 잘라 9:16 (2026-10-15 사용자: 확대하지 않고 비율만 맞추기).
-    자를 자리는 사람 위치(OpenCV 사람 찾기)를 가운데로, 못 찾으면 사진 가운데."""
+    """높이는 그대로, 양옆을 똑같이 잘라 9:16 (2026-10-15 사용자: 확대하지 않고 비율만 맞추기).
+    코디컷 지시문이 사람을 가운데에 두므로 가운데를 남긴다 (4:5 면 양옆 15%씩)."""
     w, h = img.size
     cw = min(w, round(h * size[0] / size[1]))
-    cx = person_center(img)
-    x0 = round(min(max(cx - cw / 2, 0), w - cw)) if cx is not None else (w - cw) // 2
+    x0 = (w - cw) // 2
     return img.crop((x0, 0, x0 + cw, h)).resize(size, Image.Resampling.LANCZOS)
-
-
-def person_center(img: Image.Image) -> float | None:
-    """서 있는 사람의 가로 가운데 (픽셀). 사진 높이의 절반 넘게 차는 사람만 본다."""
-    k = 540 / img.width
-    small = cv2.cvtColor(np.asarray(img.resize((540, round(img.height * k)))), cv2.COLOR_RGB2BGR)
-    hog = cv2.HOGDescriptor()
-    hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
-    boxes, weights = hog.detectMultiScale(small, winStride=(4, 4), padding=(16, 16), scale=1.05)
-    found = [
-        (float(wt), x + bw / 2)
-        for (x, _, bw, bh), wt in zip(boxes, np.asarray(weights).reshape(-1), strict=True)
-        if bh > small.shape[0] * 0.5 and wt > 0.5
-    ]
-    return max(found)[1] / k if found else None
 
 
 def extend_floor(img: Image.Image, size: tuple[int, int] = TALL_SIZE) -> Image.Image:
