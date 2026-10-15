@@ -5,6 +5,7 @@
 이제는 한 장의 무드 안에서 벌마다 자리·포즈를 다르게 한다 ($pose, daily-feed 가 벌마다 씀).
 상품 참고판을 번호 순서로, 장면 사진을 마지막 그림으로 보낸다. 장면 속 사람의 얼굴·신원은 따르지 않는다 (새 AI 인물).
 얼굴은 거의 보이지 않게 (2026-10-14 사용자: 모자를 넣거나 바꿔도 됨, 손으로 머리 넘기기 등으로 가리되 뭉개지 않게).
+긴바지는 발목을 살짝 덮는 기장, 랩·끈 디자인 상의는 하의 위로 꺼내 입기, 긴 다리 (2026-10-14 10/16 게시물 /fix).
 $items 번호별 상품 설명과 실제 크기, $styling 입는 방법, $pose 이 벌의 자리·포즈·얼굴 가리는 방법,
 $mood 장면 사진에서 읽은 무드 (촬영 종류, 장소, 빛, 색감, 카메라), $season 게시 날짜의 계절.
 이 주석은 전송되지 않는다.
@@ -31,7 +32,10 @@ unless listed. A held prop from the scene photo (coffee cup, phone, newspaper) i
 She wears exactly the listed items. How they are worn: $styling Keep every item identical to its product
 photos: color, fabric texture, pattern, cut, length, fit, collar, buttons, hardware and shoe style. A mini
 skirt stays a mini skirt, long trousers and maxi skirts keep their full length, long boots keep their
-real shaft height. Show her full outfit from the collar to the shoes unless the scene photo is cropped
+real shaft height. Full-length trousers fall onto the shoes with the hem just covering the ankle, never
+cropped above it. A top with a front design (wrap, ties, draping, peplum) hangs over the waistband so the
+design shows, unless the styling says it is tucked. Her legs are long for her height (legs about half
+her height or a little more). Show her full outfit from the collar to the shoes unless the scene photo is cropped
 tighter, and never hide the listed items behind props.
 
 Real camera photo quality, natural skin, real hair and fabric with natural creases. Vertical 4:5 photo

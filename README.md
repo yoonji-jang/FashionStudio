@@ -921,6 +921,15 @@ profile `flow.enabled: true` 면 시각표 대신 한 게시물씩 차례로 간
 - 상태: daily-results 브랜치 `flow/<계정>/state.json` (`python -m tools.flow status --account women --results <폴더>`),
   장면 사진은 `flow/<계정>/<날짜>/scene.jpg`. 처음부터 다시: `python -m tools.flow reset …` 결과를 커밋.
 - 시각표 자동 실행(`schedule.enabled`)과 같이 켜지 않는다.
+- 텔레그램에서 쓰는 말 (2026-10-14 첫 게시 10/16 가을 하객룩에서 확인):
+  - 장면 사진에 글을 붙이면(예: `슬릭번`) 모든 벌에 그대로 반영한다. 화면 캡처는 버튼·상태바를 잘라서 보낸다.
+    장면 사진을 다시 보내면 마지막 사진을 쓴다 (벌을 고르기 전에 보내야 그 사진으로 만든다).
+  - 후보 몇 벌만 마음에 들면 `4번 남기고 다시 8벌` (또는 `/again 4 8벌`): 그 벌을 앞에 두고 나머지를 참고 코디를
+    넉넉히 써서 새로 채운다 (빈칸은 새로 수집. daily pick `{"again", "keep", "count"}`). 벌 수를 안 적으면 지난 후보 수.
+  - 미리보기에서 표지 사진은 `/cover 5`, 표지 제목만 바꿀 때는 `/fix 1 제목을 '…/…' 로` (사진은 그대로).
+    `/fix` 는 고친 미리보기를 다시 보내고, 마지막 미리보기에 `/ok` 를 보내야 그 판이 올라간다.
+- 답을 보낸 뒤 바로 진행하려면 Actions → `schedule` → Run workflow (`cron: auto`, `dry_run: false`).
+  아니면 다음 매시 확인에서 진행한다.
 
 ## 댓글 → DM 코디 링크 (10단계)
 

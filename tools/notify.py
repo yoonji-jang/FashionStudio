@@ -520,6 +520,19 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
         return Command("cover", [m.group(1)], False)
     if plain in ("다시", "다시 보내줘"):
         return Command("again", [], False)
+    # 다시 짜기 (2026-10-14 사용자 "4번 채택하고 나머지 다 다시해줘. 8장 다 채워서"):
+    # "4번 남기고 다시", "4, 6 남기고 나머지 다시 8벌" → 남길 벌 번호 + "8벌"
+    m = re.fullmatch(
+        rf"({nums})\s*번?\s*(?:은|는|만)?\s*(?:남기고|두고|채택하고|살리고)\s*(?:나머지\s*)?(?:다\s*)?다시.*",
+        plain,
+    )
+    if m:
+        size = re.search(r"(\d{1,2})\s*(?:벌|장)", plain[m.end(1) :])
+        return Command(
+            "again",
+            re.findall(r"\d+", m.group(1)) + ([f"{size.group(1)}벌"] if size else []),
+            False,
+        )
     if plain in NOW_WORDS:
         return Command("now", [], False)
     m = CMD.match(plain)

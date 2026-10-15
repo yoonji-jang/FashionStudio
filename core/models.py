@@ -379,6 +379,9 @@ class PickDecision(BaseModel):
     choice: int | list[int] | Literal["again", "skip"]
     by: Literal["user", "timeout"]
     decided_at: int  # 유닉스 초
+    # "다시" 에 남길 벌(번호)과 채울 벌 수를 적었을 때 (여러 벌 게시물, 2026-10-15)
+    keep: list[int] = Field(default_factory=list)
+    count: int | None = None
 
 
 class ThemesRecord(BaseModel):

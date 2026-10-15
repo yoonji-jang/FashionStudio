@@ -687,7 +687,7 @@ def execute(
                     account=t.account,
                     date=t.date,
                     mode="candidates",
-                    pick=act.run,
+                    pick=pick.again_pick(act),
                     sandbox=False,
                 )
             elif act.action == "edit":
