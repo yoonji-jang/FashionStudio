@@ -350,7 +350,7 @@ def _step(
                 lines.append(f"코디 고름 ({st.pick})")
             elif act.action == "again":
                 send("daily.yml", account=acc, date=day.isoformat(), mode="candidates",
-                     pick=act.run, sandbox=False)  # fmt: skip
+                     pick=pick.again_pick(act), sandbox=False)  # fmt: skip
                 lines.append("새 후보 요청")
             elif act.action == "edit":
                 spec = {"run": act.run, "fixes": act.fixes}

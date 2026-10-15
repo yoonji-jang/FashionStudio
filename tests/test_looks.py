@@ -334,6 +334,31 @@ def test_decide_looks():
     assert choice("다시")[0] == "again"
 
 
+def test_decide_again_keep():
+    """2026-10-14 사용자 "4번 채택하고 나머지 다 다시해줘. 8장 다 채워서" """
+    profile = load_profile("women")
+    r = rec(count=8, looks=6, looks_min=5)
+
+    def again(text):
+        d, note, _ = pick.decide([upd(1, text)], r, CHAT, profile, False, 200, 5)
+        return (d.choice, d.keep, d.count) if d else note
+
+    assert again("다시") == ("again", [], None)
+    assert again("4번 남기고 다시") == ("again", [4], 8)  # 벌 수를 안 적으면 지난 후보 수
+    assert again("4번 채택하고 나머지 다 다시해줘. 8장 다 채워서") == ("again", [4], 8)
+    assert again("2, 5 남기고 다시 7벌") == ("again", [2, 5], 7)
+    assert again("/again 3 6벌") == ("again", [3], 6)
+    assert "9번 벌은 없어요" in again("9번 남기고 다시")
+    assert "12벌까지" in again("4번 남기고 다시 20벌")
+    act = pick.Action("again", "2026-10-16-run263", keep=[4], count=8)
+    assert json.loads(pick.again_pick(act)) == {
+        "again": "2026-10-16-run263",
+        "keep": [4],
+        "count": 8,
+    }
+    assert pick.again_pick(pick.Action("again", "2026-10-16-run263")) == "2026-10-16-run263"
+
+
 def test_check_writes_chosen_plan(tmp_path, store, monkeypatch):
     profile = load_profile("women")
     results = tmp_path / "results"

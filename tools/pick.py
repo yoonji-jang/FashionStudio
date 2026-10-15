@@ -295,6 +295,9 @@ def looks_text(
     lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
     if round_ <= rules.max_again:
         lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
+        lines.append(
+            '• 몇 벌만 마음에 들면 "4번 남기고 다시 8벌" → 그 벌을 두고 나머지를 새로 채워요'
+        )
     if flow:
         lines += [
             "• 이 주제를 쉬려면 /skip → 다음 주제를 제안해요",
@@ -561,6 +564,8 @@ class Action:
     choice: int | str = 0  # 고른 후보 번호. 여러 벌이면 "chosen" (picks/chosen.yaml)
     detail: str = ""
     fixes: list[dict] = field(default_factory=list)  # edit: 고칠 /fix [{update_id, looks, text}]
+    keep: list[int] = field(default_factory=list)  # again: 남길 벌
+    count: int | None = None  # again: 채울 벌 수
 
 
 def latest(
@@ -630,13 +635,19 @@ def decide(
             continue
         if cmd.name == "skip" and not cmd.args:
             return PickDecision(choice="skip", by="user", decided_at=now), "", None
-        if cmd.name == "again" and not cmd.args:
-            if record.round > rules.max_again:
+        if cmd.name == "again" and (not cmd.args or record.looks):
+            keep, count, why = again_request(cmd, record)
+            if why:
+                pass
+            elif record.round > rules.max_again:
                 why = f"새 후보는 {rules.max_again}번까지 받을 수 있어요"
             elif final or minutes_left < AGAIN_MIN_LEFT:
                 why = "마감이 가까워 새 후보를 만들 시간이 없어요"
             else:
-                return PickDecision(choice="again", by="user", decided_at=now), "", None
+                decision = PickDecision(
+                    choice="again", by="user", decided_at=now, keep=keep, count=count
+                )
+                return decision, "", None
             if uid not in (refused or set()):
                 note, refused_id = f"{why}. 지금 후보 중에서 골라 주세요.", uid
             break
@@ -645,6 +656,28 @@ def decide(
         choice = first if rules.on_timeout == "first" else "skip"
         return PickDecision(choice=choice, by="timeout", decided_at=now), note, refused_id
     return None, note, refused_id
+
+
+def again_request(cmd: notify.Command, record: PickRecord) -> tuple[list[int], int | None, str]:
+    """ "4번 남기고 다시 8벌" → (남길 벌, 채울 벌 수, 받지 않은 이유)."""
+    size = [int(a[:-1]) for a in cmd.args if re.fullmatch(r"\d+벌", a)]
+    keep = [int(x) for a in cmd.args if not a.endswith("벌") for x in re.findall(r"\d+", a)]
+    keep = list(dict.fromkeys(keep))
+    bad = [n for n in keep if not 1 <= n <= record.count]
+    if bad:
+        return [], None, f"{', '.join(map(str, bad))}번 벌은 없어요 (1~{record.count}번)."
+    count = size[0] if size else (record.count if keep else None)
+    if count is not None and not len(keep) < count <= 12:
+        return [], None, f"채울 벌 수는 남길 벌보다 많고 12벌까지예요 (지금 {count}벌)."
+    return keep, count, ""
+
+
+def again_pick(act: Action) -> str:
+    """daily candidates 의 pick 값.
+    남길 벌이 있으면 다시 짜기 요청 JSON (tools.flow use-theme --out)."""
+    if not act.keep and act.count is None:
+        return act.run
+    return json.dumps({"again": act.run, "keep": act.keep, "count": act.count}, ensure_ascii=False)
 
 
 def look_choice(cmd: notify.Command, record: PickRecord, default: list[int]) -> tuple[list, str]:
@@ -750,8 +783,17 @@ def check(
     )
     late = f"{profile.schedule.pick_deadline}까지 고르지 않아 " if decision.by == "timeout" else ""
     if decision.choice == "again":
-        act = Action("again", run_dir.name, detail="새 후보")
-        msgs.append("새 후보를 만들고 있어요. 다 되면 다시 보낼게요.")
+        act = Action(
+            "again", run_dir.name, detail="새 후보", keep=decision.keep, count=decision.count
+        )
+        if decision.keep:
+            kept = ", ".join(map(str, decision.keep))
+            msgs.append(
+                f"{kept}번 벌은 남기고 {decision.count}벌을 채워 다시 짜고 있어요. "
+                "다 되면 다시 보낼게요."
+            )
+        else:
+            msgs.append("새 후보를 만들고 있어요. 다 되면 다시 보낼게요.")
     elif decision.choice == "skip":
         act = Action("skip", run_dir.name, detail=decision.by)
         msgs.append(f"{late}오늘은 건너뛸게요.")
