@@ -294,7 +294,9 @@ def looks_text(
     ]
     lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
     if round_ <= rules.max_again:
-        lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
+        lines.append(
+            '• 다 별로면 "다시" → 새 후보를 보내요 (요청도 붙일 수 있어요: "다시. 외투 없이도")'
+        )
         lines.append(
             '• 몇 벌만 마음에 들면 "4번 남기고 다시 8벌" → 그 벌을 두고 나머지를 새로 채워요'
         )
@@ -345,7 +347,9 @@ def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: in
         "     다 되면 미리보기를 보내요",
     ]
     if round_ <= rules.max_again:
-        lines.append('• 다 별로면 "다시" → 새 후보를 보내요')
+        lines.append(
+            '• 다 별로면 "다시" → 새 후보를 보내요 (요청도 붙일 수 있어요: "다시. 외투 없이도")'
+        )
     lines += [
         "• 오늘 쉬려면 /skip",
         f"• {s.pick_deadline}까지 고르지 않으면 {after}",
@@ -568,6 +572,7 @@ class Action:
     fixes: list[dict] = field(default_factory=list)  # edit: 고칠 /fix [{update_id, looks, text}]
     keep: list[int] = field(default_factory=list)  # again: 남길 벌
     count: int | None = None  # again: 채울 벌 수
+    note: str = ""  # again: "다시" 뒤에 붙인 요청
 
 
 def latest(
@@ -637,8 +642,10 @@ def decide(
             continue
         if cmd.name == "skip" and not cmd.args:
             return PickDecision(choice="skip", by="user", decided_at=now), "", None
-        if cmd.name == "again" and (not cmd.args or record.looks):
+        plain_args = [a for a in cmd.args if not a.startswith(notify.NOTE)]
+        if cmd.name == "again" and (not plain_args or record.looks):
             keep, count, why = again_request(cmd, record)
+            ask = " ".join(a.removeprefix(notify.NOTE) for a in cmd.args if a not in plain_args)
             if why:
                 pass
             elif record.round > rules.max_again:
@@ -647,7 +654,7 @@ def decide(
                 why = "마감이 가까워 새 후보를 만들 시간이 없어요"
             else:
                 decision = PickDecision(
-                    choice="again", by="user", decided_at=now, keep=keep, count=count
+                    choice="again", by="user", decided_at=now, keep=keep, count=count, note=ask
                 )
                 return decision, "", None
             if uid not in (refused or set()):
@@ -662,8 +669,9 @@ def decide(
 
 def again_request(cmd: notify.Command, record: PickRecord) -> tuple[list[int], int | None, str]:
     """ "4번 남기고 다시 8벌" → (남길 벌, 채울 벌 수, 받지 않은 이유)."""
-    size = [int(a[:-1]) for a in cmd.args if re.fullmatch(r"\d+벌", a)]
-    keep = [int(x) for a in cmd.args if not a.endswith("벌") for x in re.findall(r"\d+", a)]
+    args = [a for a in cmd.args if not a.startswith(notify.NOTE)]
+    size = [int(a[:-1]) for a in args if re.fullmatch(r"\d+벌", a)]
+    keep = [int(x) for a in args if not a.endswith("벌") for x in re.findall(r"\d+", a)]
     keep = list(dict.fromkeys(keep))
     bad = [n for n in keep if not 1 <= n <= record.count]
     if bad:
@@ -676,10 +684,13 @@ def again_request(cmd: notify.Command, record: PickRecord) -> tuple[list[int], i
 
 def again_pick(act: Action) -> str:
     """daily candidates 의 pick 값.
-    남길 벌이 있으면 다시 짜기 요청 JSON (tools.flow use-theme --out)."""
-    if not act.keep and act.count is None:
+    남길 벌이나 요청이 있으면 다시 짜기 요청 JSON (tools.flow use-theme --out)."""
+    if not act.keep and act.count is None and not act.note:
         return act.run
-    return json.dumps({"again": act.run, "keep": act.keep, "count": act.count}, ensure_ascii=False)
+    req: dict = {"again": act.run, "keep": act.keep, "count": act.count}
+    if act.note:
+        req["note"] = act.note
+    return json.dumps(req, ensure_ascii=False)
 
 
 def look_choice(cmd: notify.Command, record: PickRecord, default: list[int]) -> tuple[list, str]:
@@ -786,7 +797,12 @@ def check(
     late = f"{profile.schedule.pick_deadline}까지 고르지 않아 " if decision.by == "timeout" else ""
     if decision.choice == "again":
         act = Action(
-            "again", run_dir.name, detail="새 후보", keep=decision.keep, count=decision.count
+            "again",
+            run_dir.name,
+            detail="새 후보",
+            keep=decision.keep,
+            count=decision.count,
+            note=decision.note,
         )
         if decision.keep:
             kept = ", ".join(map(str, decision.keep))
@@ -796,6 +812,8 @@ def check(
             )
         else:
             msgs.append("새 후보를 만들고 있어요. 다 되면 다시 보낼게요.")
+        if decision.note:
+            msgs.append(f'요청 "{decision.note}" 도 반영할게요.')
     elif decision.choice == "skip":
         act = Action("skip", run_dir.name, detail=decision.by)
         msgs.append(f"{late}오늘은 건너뛸게요.")

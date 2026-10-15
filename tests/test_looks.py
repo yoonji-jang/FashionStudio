@@ -359,6 +359,34 @@ def test_decide_again_keep():
     assert pick.again_pick(pick.Action("again", "2026-10-16-run263")) == "2026-10-16-run263"
 
 
+def test_decide_again_note():
+    """2026-10-15 사용자 "다시. 외투가 필수는 아니야." 가 읽히지 않았던 것"""
+    profile = load_profile("women")
+    r = rec(count=8, looks=6, looks_min=5)
+
+    def again(text):
+        d, note, _ = pick.decide([upd(1, text)], r, CHAT, profile, False, 200, 5)
+        return (d.choice, d.keep, d.count, d.note) if d else note
+
+    assert again("다시. 외투가 필수는 아니야.") == ("again", [], None, "외투가 필수는 아니야")
+    assert again("다시 해줘 니트 위주로") == ("again", [], None, "니트 위주로")
+    assert again("다시 보내줘") == ("again", [], None, "")
+    assert again("4번 남기고 다시 8벌, 스커트도 넣어줘") == (
+        "again", [4], 8, "8벌, 스커트도 넣어줘"
+    )  # fmt: skip
+    assert again("다시보기") == ""  # "다시보기" 는 명령이 아님
+    act = pick.Action("again", "2026-10-17-run271", note="외투가 필수는 아니야")
+    assert json.loads(pick.again_pick(act)) == {
+        "again": "2026-10-17-run271",
+        "keep": [],
+        "count": None,
+        "note": "외투가 필수는 아니야",
+    }
+    # 한 벌 게시물에서도 요청을 붙인 "다시" 를 받는다
+    d, _, _ = pick.decide([upd(1, "다시 밝은 색으로")], rec(), CHAT, profile, False, 200, 5)
+    assert d.choice == "again" and d.note == "밝은 색으로"
+
+
 def test_check_writes_chosen_plan(tmp_path, store, monkeypatch):
     profile = load_profile("women")
     results = tmp_path / "results"

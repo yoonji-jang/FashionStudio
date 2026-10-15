@@ -68,6 +68,8 @@ daily-feed 의 "고른 후보로 시작" 절부터 이어진다.
   그 참고의 빠진 칸은 `python -m tools.collect --account $ACCOUNT --category <칸> --query <칸 query> --report out/$DATE/collect`
   로 창고에 모은 뒤 맞춘다. 주제(하객룩 등)에 맞는 쇼핑몰 착용컷을 따라 한 벌을 새로 짜도 된다 (`reason` 에 출처).
   4-1 점수는 8점 이상 대신 7점 이상이면 넣는다. 그래도 `count` 에 모자라면 7점에 가장 가까운 벌로 채운다 (빈 자리 없이).
+- `keep` 이 비면 모두 새로 짜고, `count` 가 없으면 평소 벌 수(`looks.count`+`looks.spare`)로 채운다
+  (그냥 "다시. 외투가 필수는 아니야." 처럼 요청만 붙인 경우).
 - `note` 가 있으면 사용자의 말이니 따른다. 보고에 남긴 벌·새로 짠 벌·쓴 참고 번호를 적는다.
 
 ## 여러 벌 (profile `looks.enabled`)

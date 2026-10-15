@@ -497,6 +497,17 @@ def split_text(text: str, limit: int) -> list[str]:
     return [*chunks, cur] if cur or not chunks else chunks
 
 
+NOTE = "note:"  # "다시" 명령 args 에서 사용자 요청을 담은 칸의 머리
+
+
+def again_note(tail: str) -> list[str]:
+    """ "다시" 뒤에 붙인 말 → [NOTE + 요청] (없으면 []).
+    "해줘"·"보내줘" 같은 말과 앞뒤 문장부호는 뺀다."""
+    t = re.sub(r"^\s*(?:해\s*주세요|해\s*줘|보내\s*주세요|보내\s*줘|줘)", "", tail)
+    t = t.strip(" \t\n.,!~:;")
+    return [NOTE + t] if t else []
+
+
 def parse(text: str, account: str, day: date | None) -> Command | None:
     """ "/ok", "/pick 3 women 09-28", "/skip 2026-09-27" 같은 글을 읽는다.
     계정·날짜를 적었으면 둘 다 이 계정·날짜와 맞아야 하고(아니면 None),
@@ -520,19 +531,24 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
     m = re.fullmatch(r"표지\s*(\d{1,2})\s*번?(?:\s*(?:으로|로))?", plain)
     if m:
         return Command("cover", [m.group(1)], False)
-    if plain in ("다시", "다시 보내줘"):
-        return Command("again", [], False)
+    # "다시" 뒤에 붙인 말은 새 후보에 반영할 요청 (2026-10-15 사용자 "다시. 외투가 필수는 아니야.")
+    m = re.fullmatch(r"다시(?=$|[\s.,!~:;]|해|보내|줘)(.*)", plain, re.S)
+    if m:
+        return Command("again", again_note(m.group(1)), False)
     # 다시 짜기 (2026-10-14 사용자 "4번 채택하고 나머지 다 다시해줘. 8장 다 채워서"):
     # "4번 남기고 다시", "4, 6 남기고 나머지 다시 8벌" → 남길 벌 번호 + "8벌"
     m = re.fullmatch(
-        rf"({nums})\s*번?\s*(?:은|는|만)?\s*(?:남기고|두고|채택하고|살리고)\s*(?:나머지\s*)?(?:다\s*)?다시.*",
+        rf"({nums})\s*번?\s*(?:은|는|만)?\s*(?:남기고|두고|채택하고|살리고)\s*(?:나머지\s*)?(?:다\s*)?다시(.*)",
         plain,
+        re.S,
     )
     if m:
         size = re.search(r"(\d{1,2})\s*(?:벌|장)", plain[m.end(1) :])
         return Command(
             "again",
-            re.findall(r"\d+", m.group(1)) + ([f"{size.group(1)}벌"] if size else []),
+            re.findall(r"\d+", m.group(1))
+            + ([f"{size.group(1)}벌"] if size else [])
+            + again_note(m.group(2)),
             False,
         )
     if plain in NOW_WORDS:
