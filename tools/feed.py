@@ -958,6 +958,48 @@ def load_spec(path: Path) -> FeedSpec:
     return FeedSpec.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))
 
 
+def render_tall(out: Path, profile: Profile, store: Store | None = None) -> list[Path]:
+    """이미 만든 결과 폴더(feed.yaml, slides/)에 릴스용 9:16 판(slides/tall/)을 나중에 만든다.
+    피드 장은 건드리지 않는다. 다시 올리는 릴스용 (tools.publish --reel-again)."""
+    spec = load_spec(out / "feed.yaml")
+
+    def local(p: str | None) -> str | None:
+        # feed.yaml 의 경로는 만든 곳(Actions) 기준이라 결과 폴더 안 경로로 바꾼다
+        if p is None or Path(p).exists():
+            return p
+        return str(out / re.sub(r"^.*?/out/[^/]+/", "", p))
+
+    spec = spec.model_copy(
+        update={
+            "cover": local(spec.cover),
+            "looks": [lk.model_copy(update={"image": local(lk.image)}) for lk in spec.looks],
+        }
+    )
+    slides, tall = out / "slides", out / "slides" / TALL_DIR
+    looks = [lk for lk in spec.looks if lk.image]
+    made: list[Path] = []
+    products = None
+    for path in sorted(slides.glob("*.jpg")):
+        kind = path.stem.split("_", 1)[-1]
+        if kind == "cover" and spec.cover:
+            img = cover_slide(spec, profile, TALL_SIZE, out)
+        elif kind.startswith("look") and kind[4:].isdigit():
+            n = int(kind[4:])
+            look = looks[n - 1]
+            lines: list[LookLine] = []
+            if profile.looks.show_items:
+                if products is None:
+                    products = {p.id: p for p in (store or Store(spec.account)).products()}
+                lines = look_lines(look, spec.account, products=products)
+            img = look_slide(Path(look.image), lines, n, profile, TALL_SIZE)
+        else:
+            continue
+        tall.mkdir(exist_ok=True)
+        save_slide(img, tall / path.name, profile)
+        made.append(tall / path.name)
+    return made
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="캐러셀 슬라이드 만들기")
     ap.add_argument("--spec", required=True, type=Path, help="재료 파일 (FeedSpec YAML)")
