@@ -1,19 +1,15 @@
 {
   "account": "women",
-  "stage": "publishing",
-  "date": "2026-10-17",
-  "asked_at": 1792047683,
+  "stage": "theme_wait",
+  "date": "2026-10-18",
+  "asked_at": 1792048370,
   "hint": "",
-  "theme_at": 1792033310,
-  "pick": "2026-10-17-run275/chosen",
-  "scene": "flow/women/2026-10-17/scene.jpg",
-  "scenes": [
-    "flow/women/2026-10-17/scene.jpg",
-    "flow/women/2026-10-17/scene_2.jpg",
-    "flow/women/2026-10-17/scene_3.jpg"
-  ],
-  "scene_update": 428675799,
-  "scene_at": 1792039783,
+  "theme_at": 0,
+  "pick": "",
+  "scene": "",
+  "scenes": [],
+  "scene_update": 0,
+  "scene_at": 0,
   "alerted": false,
   "log": [
     "10-14 12:05 주제 제안 요청 (2026-10-16)",
@@ -33,6 +29,8 @@
     "10-15 05:59 미리보기 받음 (2026-10-17-run278)",
     "10-15 05:59 고쳐 만들기 요청 (1회)",
     "10-15 07:01 미리보기 받음 (2026-10-17-run279)",
-    "10-15 07:01 게시 요청 (2026-10-17-run279)"
+    "10-15 07:01 게시 요청 (2026-10-17-run279)",
+    "10-15 07:12 게시 확인",
+    "10-15 07:12 주제 제안 요청 (2026-10-18)"
   ]
 }
