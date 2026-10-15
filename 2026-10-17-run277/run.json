@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-17-run277",
+  "account": "women",
+  "sandbox": false,
+  "mode": "edit",
+  "pick": "{\"run\": \"2026-10-17-run271\", \"fixes\": [{\"update_id\": 0, \"looks\": [6], \"text\": \"자켓은 그대로 두고, 자켓 안에는 타이 블라우스랑 짧은 치마로 변경해줘\"}]}"
+}
