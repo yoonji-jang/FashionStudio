@@ -1,0 +1,115 @@
+account: women
+cover_look: 2
+date: '2026-10-17'
+edit_from: out/2026-10-17/looks/2/outfit/results/G_1.jpg
+edit_request: Change only her hair, cap and cheeks. Replace the short bob with long
+  dark wavy hair falling past her shoulders from under the cap, pull the black newsboy
+  cap lower so the brim covers more of her face, her eyes lowered but not closed,
+  and add a soft natural pink blush on her cheeks. Keep the outfit and pose.
+items:
+- color: 버건디
+  comment: ''
+  cutout_photo: 2
+  desc: 버건디 와인 브라운 벨벳 레더 블루종 (deep wine-brown velvet faux-leather collared blouson,
+    oversized, dropped shoulders, hip length, big pointed collar)
+  name: 벨벳 레더 블루종
+  product: zigzag:171752150
+  ref_photos:
+  - 2
+  - 1
+  - 5
+- color: 그레이
+  comment: ''
+  cutout_photo: 2
+  desc: 그레이 보트넥 니트 (charcoal grey boat-neck knit with elbow-length sleeves, loose
+    fit, short banded hem)
+  name: 보트넥 니트
+  product: zigzag:171909568
+  ref_photos:
+  - 2
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 쇼츠 (black wool mini shorts with a small tab detail, flat front)
+  name: 울 쇼츠
+  product: zigzag:166183665
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 슬라우치 레더 롱부츠 (black slouchy leather knee-high boots with a round toe and
+    a low chunky heel)
+  name: 슬라우치 롱부츠
+  product: zigzag:166123475
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 스웨이드 쇼퍼 숄더백 (soft black suede hobo shoulder bag with thin double handles
+    and small studs)
+  name: 스웨이드 숄더백
+  product: zigzag:164580854
+  ref_photos:
+  - 4
+  - 5
+  - 3
+looks: []
+mood: a minimalist studio lookbook shoot against a plain pale-grey wall and a pale
+  seamless floor, soft diffused daylight with gentle shadows, clean muted cool-neutral
+  colors, a clean full-body fashion-catalog photograph taken with a digital camera
+  from a few steps away; each shot's hairstyle is given in its own pose line, with
+  a soft natural blush on her cheeks
+pose: standing facing the camera in a plain black wool newsboy cap pulled low with
+  her long dark wavy hair falling past her shoulders from under it, her head tipped
+  down and to one side so the low cap brim hides most of her face, her eyes lowered
+  but not closed, soft pink blush on her cheeks, both hands pushed into the blouson
+  pockets, weight on one leg, full body visible down to the boots
+reason: '버건디 브라운 블루종이 주인공, 블랙 울 쇼츠와 슬라우치 부츠로 깊은 한 색. 참고의 와인 블루종보다 짙은 와인 브라운 (따라 함:
+  참고 136) [점수 7]'
+ref_photo: https://the-ore.kr/web/product/medium/202610/4462ae561853a5cedf9d1477c021103d.webp
+scene_image: out/2026-10-17/src/scene_2.jpg
+shot: model
+styling: The wine-brown blouson is worn open over the grey boat-neck knit; the knit
+  hem is tucked loosely so the black shorts show.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#브런치룩'
+  - '#트위드자켓'
+  - '#롱부츠'
+  - '#올블랙코디'
+  intro: 이슬비 내리는 토요일, 젖어도 티 안 나는 딥 톤으로 나가 보세요 ☔
+  points: []
+  title_lines:
+  - 비 오는 날 뭐 입지?
+  - 어두운 톤 코디 정리
+theme:
+  date: '2026-10-17'
+  mood: 젖어도 부담 없는 딥 가을 톤에 가벼운 겹쳐 입기
+  search_terms:
+    신발:
+    - 워커 부츠
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 다크 와이드 팬츠
+  slots:
+  - category: 아우터
+    desc: 가벼운 트위드나 코듀로이 느낌의 짧은 자켓
+  - category: 상의
+    desc: 보트넥 니트나 스트라이프 긴팔티
+  - category: 하의
+    desc: 젖어도 티 안 나는 다크 컬러 팬츠나 스커트
+  - category: 가방
+    desc: 어깨에 메는 스웨이드나 가죽 숄더백
+  - category: 신발
+    desc: 워커 부츠나 슬라우치 롱부츠
+  title_hint: 이슬비 오는 토요일 브런치, 비 와도 꾸민 날 코디
+  type: 상황
+  why: 토요일, 서울 약한 이슬비에 14~21도. 약속 나가기 좋은 날이라 어두운 하의와 가벼운 아우터로 실용과 멋을 함께

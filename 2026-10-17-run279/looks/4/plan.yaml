@@ -1,0 +1,114 @@
+account: women
+cover_look: 2
+date: '2026-10-17'
+edit_from: out/2026-10-17/looks/4/outfit/results/G_1.jpg
+edit_request: Change only her hair and cheeks. Replace the short bob with a sleek
+  slicked-back bun with a center part and no bangs, and add a soft natural pink blush
+  on her cheeks. Keep the outfit, pose and head turn.
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 딥 V넥 니트 (black loose fine-ribbed deep V-neck knit, dropped shoulders, hip
+    length)
+  name: 딥 V넥 니트
+  product: zigzag:168688205
+  ref_photos:
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 새틴 스카프 블라우스 (white glossy satin blouse with puffed sleeves with buttoned
+    cuffs, stand collar and a short scarf tie, hip length)
+  name: 스카프 블라우스
+  product: zigzag:129790294
+  ref_photos:
+  - 0
+  - 4
+  - 5
+  wear_with: 상의
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 핀스트라이프 랩 롱스커트 (charcoal pinstripe wrap maxi skirt with a side knot at the
+    hip and a long slit, falls straight to the ankle)
+  name: 핀스트라이프 롱스커트
+  product: zigzag:164392424
+  ref_photos:
+  - 0
+  - 3
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black soft sock ankle boots with a low block heel and a slightly
+    rounded square toe)
+  name: 삭스 앵클부츠
+  product: zigzag:147232545
+  ref_photos:
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 위빙 숄더백 (black woven leather soft hobo shoulder bag with a small metal logo)
+  name: 리브 숄더백
+  product: zigzag:169612789
+  ref_photos:
+  - 2
+  - 3
+  - 0
+looks: []
+mood: a minimalist studio lookbook shoot against a plain pale-grey wall and a pale
+  seamless floor, soft diffused daylight with gentle shadows, clean muted cool-neutral
+  colors, a clean full-body fashion-catalog photograph taken with a digital camera
+  from a few steps away; each shot's hairstyle is given in its own pose line, with
+  a soft natural blush on her cheeks
+pose: walking slowly with her body angled away from the camera and her head turned
+  over her shoulder, her hair in a sleek slicked-back bun with a center part and no
+  bangs, soft pink blush on her cheeks, one hand lightly touching the scarf tie, full
+  body visible down to the ankle boots
+reason: '블랙 딥 V넥 니트 안에 화이트 스카프 블라우스를 받쳐 스카프를 밖으로 빼고, 차콜 핀스트라이프 롱스커트와 톤온톤으로. 그레이 V넥
+  니트는 그레이 사진이 없어 블랙 V넥 니트로 교체 (따라 함: 참고 121) [점수 8]'
+ref_photo: https://woonan.co.kr/web/product/big/202610/f724697ecc0ca93cefa27b40d1a11bf7.jpg
+scene_image: out/2026-10-17/src/scene.jpg
+shot: model
+styling: The white scarf blouse is worn under the black knit with its short scarf
+  tie hanging out over the knit front; the knit hem is worn out over the skirt waist.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#브런치룩'
+  - '#트위드자켓'
+  - '#롱부츠'
+  - '#올블랙코디'
+  intro: 이슬비 내리는 토요일, 젖어도 티 안 나는 딥 톤으로 나가 보세요 ☔
+  points: []
+  title_lines:
+  - 비 오는 날 뭐 입지?
+  - 어두운 톤 코디 정리
+theme:
+  date: '2026-10-17'
+  mood: 젖어도 부담 없는 딥 가을 톤에 가벼운 겹쳐 입기
+  search_terms:
+    신발:
+    - 워커 부츠
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 다크 와이드 팬츠
+  slots:
+  - category: 아우터
+    desc: 가벼운 트위드나 코듀로이 느낌의 짧은 자켓
+  - category: 상의
+    desc: 보트넥 니트나 스트라이프 긴팔티
+  - category: 하의
+    desc: 젖어도 티 안 나는 다크 컬러 팬츠나 스커트
+  - category: 가방
+    desc: 어깨에 메는 스웨이드나 가죽 숄더백
+  - category: 신발
+    desc: 워커 부츠나 슬라우치 롱부츠
+  title_hint: 이슬비 오는 토요일 브런치, 비 와도 꾸민 날 코디
+  type: 상황
+  why: 토요일, 서울 약한 이슬비에 14~21도. 약속 나가기 좋은 날이라 어두운 하의와 가벼운 아우터로 실용과 멋을 함께
