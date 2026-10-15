@@ -297,3 +297,22 @@ def test_reel_version_extends_floor(tmp_path):
     want = profile.reels.top * 1920 + 1350 - 1350 * profile.looks.bottom
     assert 1920 * (1 - tp.looks.bottom) == pytest.approx(want)
     assert tp.looks.bottom > 0.2  # 인스타 캡션이 덮는 아래쪽보다 위
+
+
+def test_reel_version_crops_sides(tmp_path):
+    """reels.fill_mode crop: 높이는 그대로 두고 양옆만 잘라 9:16 (확대 없음).
+    사람을 못 찾으면 가운데."""
+    from PIL import Image
+
+    from tools import feed
+
+    img = Image.new("RGB", (1080, 1350), (200, 200, 200))
+    img.paste((0, 0, 0), (0, 0, 100, 1350))  # 왼쪽 끝 띠는 잘려 나간다
+    big = feed.crop_tall(img)
+    assert big.size == feed.TALL_SIZE
+    assert big.getpixel((5, 960)) == (200, 200, 200)
+    src = tmp_path / "look.jpg"
+    img.save(src)
+    assert feed.open_outfit(src, tall=True, mode="crop").size == feed.TALL_SIZE
+    assert feed.open_outfit(src, tall=True).size == feed.TALL_SIZE
+    assert feed.open_outfit(src).size == (1080, 1350)

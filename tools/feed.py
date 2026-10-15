@@ -22,6 +22,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+import cv2
 import httpx
 import numpy as np
 import yaml
@@ -37,7 +38,8 @@ from tools.overlay import load_font
 from tools.photoroom import trim_alpha
 
 MAX_SLIDES = 10  # 인스타 캐러셀 한도
-# 표지·벌 장의 릴스용 9:16 판 (슬라이드 폴더 안, profile reels.fill). 코디컷 위아래 바닥을 늘린다
+# 표지·벌 장의 릴스용 9:16 판 (슬라이드 폴더 안, profile reels.fill). 코디컷 위아래 바닥을 늘리거나
+# 양옆을 자른다 (reels.fill_mode)
 TALL_DIR = "tall"
 TALL_SIZE = (1080, 1920)
 BASE = overlay.BASE_WIDTH
@@ -388,7 +390,7 @@ def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: P
             return cover_collage.render(images, spec.title_lines, profile, size, top)
         except (ValueError, FileNotFoundError) as e:  # 오려 내기 실패면 예전 표지로
             print(f"경고: 콜라주 표지를 만들지 못해 1번 벌 표지로 만듭니다: {e}", file=sys.stderr)
-    img = open_outfit(root / spec.cover, tall)
+    img = open_outfit(root / spec.cover, tall, profile.reels.fill_mode)
     img = ImageOps.fit(img, size, Image.LANCZOS)
     if tall:
         profile = tall_profile(profile)
@@ -399,10 +401,38 @@ def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: P
     return img
 
 
-def open_outfit(path: Path, tall: bool = False) -> Image.Image:
-    """코디컷. tall 이면 위아래 바닥을 늘려 9:16 으로."""
+def open_outfit(path: Path, tall: bool = False, mode: str = "extend") -> Image.Image:
+    """코디컷. tall 이면 9:16 으로: extend 는 위아래 바닥을 늘리고, crop 은 높이는 그대로 두고
+    사람이 가운데 오게 양옆을 자른다 (profile reels.fill_mode)."""
     img = Image.open(path).convert("RGB")
-    return extend_floor(img) if tall and img.height / img.width < 1.6 else img
+    if not tall or img.height / img.width >= 1.6:
+        return img
+    return crop_tall(img) if mode == "crop" else extend_floor(img)
+
+
+def crop_tall(img: Image.Image, size: tuple[int, int] = TALL_SIZE) -> Image.Image:
+    """높이는 그대로, 양옆을 잘라 9:16 (2026-10-15 사용자: 확대하지 않고 비율만 맞추기).
+    자를 자리는 사람 위치(OpenCV 사람 찾기)를 가운데로, 못 찾으면 사진 가운데."""
+    w, h = img.size
+    cw = min(w, round(h * size[0] / size[1]))
+    cx = person_center(img)
+    x0 = round(min(max(cx - cw / 2, 0), w - cw)) if cx is not None else (w - cw) // 2
+    return img.crop((x0, 0, x0 + cw, h)).resize(size, Image.Resampling.LANCZOS)
+
+
+def person_center(img: Image.Image) -> float | None:
+    """서 있는 사람의 가로 가운데 (픽셀). 사진 높이의 절반 넘게 차는 사람만 본다."""
+    k = 540 / img.width
+    small = cv2.cvtColor(np.asarray(img.resize((540, round(img.height * k)))), cv2.COLOR_RGB2BGR)
+    hog = cv2.HOGDescriptor()
+    hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+    boxes, weights = hog.detectMultiScale(small, winStride=(4, 4), padding=(16, 16), scale=1.05)
+    found = [
+        (float(wt), x + bw / 2)
+        for (x, _, bw, bh), wt in zip(boxes, np.asarray(weights).reshape(-1), strict=True)
+        if bh > small.shape[0] * 0.5 and wt > 0.5
+    ]
+    return max(found)[1] / k if found else None
 
 
 def extend_floor(img: Image.Image, size: tuple[int, int] = TALL_SIZE) -> Image.Image:
@@ -521,7 +551,9 @@ def look_slide(
     if tall:
         profile = tall_profile(profile)
     lk, v = profile.looks, profile.visual
-    img = ImageOps.fit(open_outfit(image, tall), size, Image.LANCZOS).convert("RGBA")
+    img = ImageOps.fit(
+        open_outfit(image, tall, profile.reels.fill_mode), size, Image.LANCZOS
+    ).convert("RGBA")
     w, h = size
     k = w / BASE
     img = Image.alpha_composite(
