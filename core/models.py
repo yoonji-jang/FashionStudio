@@ -139,6 +139,8 @@ class Look(BaseModel):
     edit_request: str | None = None
     # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
     pose: str | None = None
+    # 장면 사진을 여러 장 받았을 때 이 벌이 자리·포즈를 따를 사진 (없으면 DailyPlan.scene_image)
+    scene_image: str | None = None
     # 따라 한 기준 코디 (2026-10-13 사용자: 참고한 코디 사진도 같이 보내 줘).
     # ref 는 refs.json 번호, ref_photo 는 그 코디 사진 주소 (ref_search.scout_sites 만).
     # 후보 시트에 나란히 붙인다
@@ -213,6 +215,7 @@ class DailyPlan(BaseModel):
                 "edit_request": look.edit_request,
                 "pose": look.pose,
                 "ref_photo": look.ref_photo,
+                "scene_image": look.scene_image or self.scene_image,
             }
         )
 

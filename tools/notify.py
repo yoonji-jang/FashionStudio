@@ -91,6 +91,8 @@ def slim_update(u: dict) -> dict:
     if file_id:
         out["photo"] = file_id
         out["caption"] = msg.get("caption") or ""
+        if msg.get("media_group_id"):
+            out["media_group_id"] = msg["media_group_id"]  # 앨범으로 한 번에 보낸 사진들
     return {"update_id": u["update_id"], "message": out}
 
 

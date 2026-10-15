@@ -180,7 +180,14 @@ jobs:
               # 사진에 붙인 말 (모든 벌에 반영할 요청, 예 "슬릭번")
               git show "origin/daily-results:${scene%.jpg}.txt" > "out/$DATE/src/scene.txt" 2>/dev/null \
                 || rm -f "out/$DATE/src/scene.txt"
+              # 여러 장이면 scene_2.jpg … 도 (공통 무드 + 벌마다 어울리는 사진, 2026-10-15)
+              scenes="out/$DATE/src/scene.jpg"
+              for f in $(git ls-tree --name-only "origin/daily-results" "flow/$ACCOUNT/$DATE/" | grep -E '/scene_[0-9]+\.jpg$' | sort -V); do
+                git show "origin/daily-results:$f" > "out/$DATE/src/$(basename "$f")"
+                scenes="$scenes out/$DATE/src/$(basename "$f")"
+              done
               echo "SCENE=out/$DATE/src/scene.jpg" >> "$GITHUB_ENV"
+              echo "SCENES=$scenes" >> "$GITHUB_ENV"
             else
               echo "::warning::장면 사진($scene)이 없어 장면 없이 만듭니다"
             fi
@@ -291,7 +298,7 @@ jobs:
           prompt: |
             .claude/skills/fix-feed/SKILL.md 의 순서를 그대로 따라 out/${{ env.DATE }} 게시물을 피드백대로 고쳐.
             피드백은 out/${{ env.DATE }}/fix.json 에 있어.
-            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} SCENE=${{ env.SCENE }}
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} SCENE=${{ env.SCENE }} SCENES="${{ env.SCENES }}"
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/fix_result.yaml 과 report.md 를 남겨.
             에이전트(photo-checker, image-reviewer)는 run_in_background: false 로 불러 결과를 기다려.
@@ -340,7 +347,7 @@ jobs:
           prompt: |
             .claude/skills/daily-feed/SKILL.md 의 순서를 그대로 따라 게시물 하나를 만들어.
             out/${{ env.DATE }}/plan.yaml 이 이미 있으면 사람이 고른 후보이니 "고른 후보로 시작" 절을 따라.
-            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }} SCENE=${{ env.SCENE }}
+            ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} OUTFIT=${{ env.OUTFIT }} COLLECT=${{ env.COLLECT }} SCENE=${{ env.SCENE }} SCENES="${{ env.SCENES }}"
             SCENE 이 있으면 사용자가 보낸 장면 사진이니 "장면 모델컷" 절을 따라.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             git 커밋·푸시, 게시, 외부 전송은 하지 마. 끝나면 out/${{ env.DATE }}/report.md 에 요약을 남겨.

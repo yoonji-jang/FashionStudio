@@ -99,7 +99,7 @@ def test_theme_pick_scene_render(env):
     wf, inputs = sent[-1]
     assert wf == "daily.yml" and inputs["mode"] == "candidates" and inputs["collect"] is True
     assert '"title_hint": "주제 2"' in inputs["pick"]
-    assert "장면 사진 1장" in tg.sent[-1]
+    assert "장면 사진도" in tg.sent[-1]
     # 장면 사진 먼저
     tg.photo(2, "BIG", st.theme_at + 50, caption="슬릭번")
     tick(env, tg, st.theme_at + 100)
@@ -280,3 +280,63 @@ def test_redo_request(tmp_path):
     profile = flow.load_profile("women")
     assert pick._wanted(tmp_path, profile) == 8
     assert pick._wanted(tmp_path / "none", profile) == profile.looks.count
+
+
+def test_scene_photos_batches():
+    """2026-10-15 사용자: 장면 사진 여러 장. 앨범이나 3분 안에 이어 보낸 사진은 한 묶음,
+    따로 다시 보낸 사진은 앞 묶음을 바꾼다."""
+    tg = FakeTg()
+    tg.photo(1, "OLD", T0 + 10)
+    tg.photo(2, "A", T0 + 1000)
+    tg.photo(3, "B", T0 + 1100, caption="슬릭번")
+    tg.photo(4, "C", T0 + 1200)
+    batch = flow.scene_photos(tg.ups, CHAT, T0, 0)
+    assert [p.file_id for p in batch] == ["A", "B", "C"]
+    assert flow.scene_photos(tg.ups, CHAT, T0, 4) == []
+    # 앨범은 간격과 상관없이 한 묶음
+    tg = FakeTg()
+    tg.photo(1, "X", T0)
+    tg.photo(2, "Y", T0 + 500)
+    tg.ups[0]["message"]["media_group_id"] = tg.ups[1]["message"]["media_group_id"] = "g1"
+    assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["X", "Y"]
+
+
+def test_scene_photos_saved_and_joined(env):
+    store, results, sent, _ = env
+    tg = FakeTg()
+    st = flow.FlowState(account="women", stage="pick_wait", date=date(2026, 10, 15), theme_at=T0)
+    flow.save_state(results, st)
+    folder = results / "flow/women/2026-10-15"
+    tg.photo(1, "A", T0 + 10, caption="슬릭번")
+    tg.photo(2, "B", T0 + 20)
+    tick(env, tg, T0 + 30)
+    st = flow.load_state(results, "women")
+    assert st.scenes == ["flow/women/2026-10-15/scene.jpg", "flow/women/2026-10-15/scene_2.jpg"]
+    assert st.scene == st.scenes[0] and "2장" in tg.sent[-1]
+    assert (folder / "scene.txt").read_text(encoding="utf-8") == "슬릭번\n"
+    # 확인 사이에 이어 보낸 사진은 더한다 (말은 그대로)
+    tg.photo(3, "C", T0 + 100)
+    tick(env, tg, T0 + 200)
+    st = flow.load_state(results, "women")
+    assert len(st.scenes) == 3 and st.scenes[-1].endswith("scene_3.jpg")
+    assert (folder / "scene.txt").exists()
+    # 한참 뒤 따로 보낸 한 장은 묶음을 바꾼다
+    tg.photo(4, "D", T0 + 5000)
+    tick(env, tg, T0 + 5100)
+    st = flow.load_state(results, "women")
+    assert st.scenes == ["flow/women/2026-10-15/scene.jpg"] and tg.got[-1] == "D"
+    assert not list(folder.glob("scene_*.jpg")) and not (folder / "scene.txt").exists()
+
+
+def test_look_scene_image_override():
+    """벌마다 고른 장면 사진(Look.scene_image)이 없으면 기획의 첫 장면 사진."""
+    from core.models import DailyPlan, Look
+
+    base = daily().model_dump(mode="json", exclude_none=True)
+    items = base.pop("items")
+    looks = [Look(items=items, scene_image="s2.jpg").model_dump(), Look(items=items).model_dump()]
+    plan = DailyPlan.model_validate(
+        {**base, "shot": "model", "scene_image": "s1.jpg", "looks": looks}
+    )
+    assert plan.look_plan(0).scene_image == "s2.jpg"
+    assert plan.look_plan(1).scene_image == "s1.jpg"

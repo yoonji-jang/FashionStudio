@@ -570,10 +570,14 @@ def check(
         )
         if not (photoroom.PROMPTS_DIR / f"{name}.md").exists():
             errors.append(f"{field} '{name}' 파일이 prompts/ 에 없습니다")
-    if plan.scene_image and not (REPO_ROOT / plan.scene_image).exists():
-        errors.append(f"scene_image 장면 사진이 없습니다: {plan.scene_image}")
-    if plan.scene_image and not model:
+    scenes = [s for s in [plan.scene_image, *(lk.scene_image for lk in plan.looks)] if s]
+    for scene in dict.fromkeys(scenes):
+        if not (REPO_ROOT / scene).exists():
+            errors.append(f"scene_image 장면 사진이 없습니다: {scene}")
+    if scenes and not model:
         errors.append("scene_image(장면 사진)는 shot: model 일 때만 씁니다")
+    if any(lk.scene_image for lk in plan.looks) and not plan.scene_image:
+        errors.append("벌마다 scene_image 를 쓸 때도 기획의 scene_image(첫 장면 사진)를 씁니다")
     for cover in [plan.cover, *(lk.cover for lk in plan.looks)]:
         if cover and not (REPO_ROOT / cover).exists():
             errors.append(f"cover 파일이 없습니다: {cover}")

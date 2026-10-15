@@ -11,7 +11,7 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
                 "/theme 니트 레이어드" = 이 말로 주제를 새로 짜서 바로 진행, "다시" = 새 제안.
                 정하면 주제를 themes.json 에 넣고 코디 후보 요청
                 (daily mode=candidates, 주제 검색어로 수집)
-  pick_wait     코디 고르기(tools.pick)와 장면 사진 1장을 기다림.
+  pick_wait     코디 고르기(tools.pick)와 장면 사진(한 장 또는 여러 장)을 기다림.
                 둘 다 오면 만들기 요청 (daily mode=render)
   rendering     미리보기를 기다림
   preview_wait  /fix 면 고쳐 만들기 (daily mode=fix), /cover 면 표지 바꾸기,
@@ -19,6 +19,8 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
   publishing    게시 기록이 생기면 theme 으로 (다음 주제)
 
 상태는 daily-results 의 flow/<계정>/state.json, 장면 사진은 flow/<계정>/<날짜>/scene.jpg
+(여러 장이면 scene_2.jpg, scene_3.jpg …: 공통 무드는 함께 읽고
+ 벌마다 어울리는 사진의 자리·포즈로, 2026-10-15)
 (사진에 붙인 말은 같은 폴더 scene.txt: 모든 벌에 반영할 요청, 예 "슬릭번")
 (커밋은 schedule 워크플로가 한다).
 제안 주제는 data/<계정>/theme_options.json (theme-options 워크플로가 커밋).
@@ -44,7 +46,7 @@ import sys
 import time
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
-from typing import Literal
+from typing import Literal, NamedTuple
 from zoneinfo import ZoneInfo
 
 import yaml
@@ -69,8 +71,10 @@ class FlowState(BaseModel):
     hint: str = ""  # 사용자가 직접 적은 주제 (있으면 제안 1개를 바로 씀)
     theme_at: int = 0  # 주제를 정한 시각 (이 뒤에 온 사진을 장면으로 본다)
     pick: str = ""  # 고른 후보 (<결과 폴더>/chosen 또는 /<번호>)
-    scene: str = ""  # 장면 사진 (daily-results 기준 경로)
-    scene_update: int = 0  # 장면 사진을 받은 텔레그램 update_id
+    scene: str = ""  # 장면 사진 (daily-results 기준 경로, 여러 장이면 첫 장)
+    scenes: list[str] = []  # 장면 사진 전부 (scene.jpg, scene_2.jpg …)
+    scene_update: int = 0  # 장면 사진을 받은 텔레그램 update_id (마지막 장)
+    scene_at: int = 0  # 마지막 장면 사진을 보낸 시각 (이어 보낸 사진을 한 묶음으로)
     alerted: bool = False  # 이 단계에서 늦음 알림을 보냈는지
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
@@ -171,12 +175,27 @@ def choose_theme(store: Store, theme: Theme) -> None:
     store.save_themes(sorted([*themes, theme], key=lambda t: t.date))
 
 
-def scene_photo(updates: list[dict], chat_id: str, since: int, after_update: int) -> tuple | None:
-    """since 뒤 등록된 채팅에서 온 마지막 사진 (update_id, file_id, 사진에 붙인 말).
-    after_update 이하는 이미 받은 것."""
+SCENE_GAP = 180  # 이 간격(초) 안에 이어 보낸 사진은 한 묶음 (한 장씩 여러 장 보낼 때)
+SCENE_MAX = 8  # 장면 사진은 이만큼까지
+
+
+class ScenePhoto(NamedTuple):
+    update_id: int
+    file_id: str
+    caption: str
+    at: int  # 보낸 시각
+    group: str  # 앨범 번호 (한 장씩 보냈으면 "")
+
+
+def scene_photos(
+    updates: list[dict], chat_id: str, since: int, after_update: int
+) -> list[ScenePhoto]:
+    """since 뒤 등록된 채팅에서 온 사진 중 마지막 묶음 (after_update 이하는 이미 받은 것).
+    묶음 = 앨범으로 한 번에 보낸 사진들, 또는 SCENE_GAP 초 안에 이어 보낸 사진들.
+    다시 보낸 사진(앞 묶음과 떨어져 보낸 것)은 앞 묶음을 바꾼다."""
     from tools import notify
 
-    found = None
+    photos: list[ScenePhoto] = []
     for u in updates:
         msg = u.get("message") or {}
         if str((msg.get("chat") or {}).get("id")) != str(chat_id):
@@ -185,8 +204,19 @@ def scene_photo(updates: list[dict], chat_id: str, since: int, after_update: int
             continue
         fid = notify.photo_file_id(msg)
         if fid:
-            found = (u["update_id"], fid, (msg.get("caption") or "").strip())
-    return found
+            caption = (msg.get("caption") or "").strip()
+            group = str(msg.get("media_group_id") or "")
+            photos.append(ScenePhoto(u["update_id"], fid, caption, msg.get("date", 0), group))
+    if not photos:
+        return []
+    batch = [photos[-1]]
+    for p in reversed(photos[:-1]):
+        last = batch[0]
+        if (last.group and p.group == last.group) or last.at - p.at <= SCENE_GAP:
+            batch.insert(0, p)
+        else:
+            break
+    return batch[-SCENE_MAX:]
 
 
 def tick(
@@ -250,6 +280,7 @@ def _step(
     if st.stage == "theme":
         st.date = next_date(profile, store, now)
         st.pick, st.scene, st.scene_update, st.theme_at = "", "", 0, 0
+        st.scenes, st.scene_at = [], 0
         send("theme-options.yml", account=acc, date=st.date.isoformat(), hint=st.hint)
         st.asked_at, st.stage = ts, "theme_wait"
         return f"주제 제안 요청 ({st.date})"
@@ -305,8 +336,8 @@ def _step(
         if tg is not None and not opts.hint:
             tg.send(
                 f"{tag} '{chosen.title_hint}' 주제로 할게요. 코디 후보를 만들고 있어요.\n"
-                "이 주제에 맞는 장면 사진 1장도 이 채팅에 보내 주세요 "
-                "(스트리트, 스튜디오, 거울 셀카 등)"
+                "이 주제에 맞는 장면 사진도 이 채팅에 보내 주세요 "
+                "(스트리트, 스튜디오, 거울 셀카 등. 한 장도, 여러 장도 돼요)"
             )
         return f"주제 정함: {chosen.title_hint}"
 
@@ -316,24 +347,42 @@ def _step(
     if st.stage == "pick_wait":
         lines = []
         if tg is not None:
-            got = scene_photo(tg.updates(), tg.chat_id, st.theme_at, st.scene_update)
-            if got is not None:
-                uid, fid, note = got
-                rel = f"flow/{acc}/{day}/scene.jpg"
+            batch = scene_photos(tg.updates(), tg.chat_id, st.theme_at, st.scene_update)
+            if batch:
+                folder = f"flow/{acc}/{day}"
+                # 앞 묶음에 이어 보낸 사진(간격이 짧음)은 더하고, 따로 보낸 묶음은 바꾼다
+                joined = bool(st.scenes) and batch[0].at - st.scene_at <= SCENE_GAP
+                keep = st.scenes if joined else []
+                n0 = len(keep)
+                new = [
+                    f"{folder}/scene.jpg" if n0 + i == 0 else f"{folder}/scene_{n0 + i + 1}.jpg"
+                    for i in range(len(batch))
+                ][: max(0, SCENE_MAX - n0)]
+                note = next((p.caption for p in batch if p.caption), "")
                 if not dry_run:
-                    tg.download(fid, results / rel)
+                    if not joined:
+                        for old in (results / folder).glob("scene_*.jpg"):
+                            old.unlink()
+                    for p, rel in zip(batch, new, strict=False):
+                        tg.download(p.file_id, results / rel)
                     # 사진에 붙인 말(예: "슬릭번")은 모든 벌에 반영할 요청 (daily-feed 가 읽음)
-                    note_path = results / rel.replace(".jpg", ".txt")
+                    note_path = results / folder / "scene.txt"
                     if note:
                         note_path.write_text(note + "\n", encoding="utf-8")
-                    else:
+                    elif not joined:
                         note_path.unlink(missing_ok=True)
-                st.scene, st.scene_update = rel, uid
+                st.scenes = [*keep, *new]
+                st.scene, st.scene_update, st.scene_at = (
+                    st.scenes[0],
+                    batch[-1].update_id,
+                    batch[-1].at,
+                )
                 more = "바로 만들게요" if st.pick else "코디를 골라 주시면 만들게요"
-                tg.send(f"{tag} 장면 사진을 받았어요. {more}")
-                lines.append("장면 사진 받음")
+                count = f" {len(st.scenes)}장" if len(st.scenes) > 1 else ""
+                tg.send(f"{tag} 장면 사진{count}을 받았어요. {more}")
+                lines.append(f"장면 사진 받음 ({len(st.scenes)}장)")
         if not st.pick:
-            hold = "" if st.scene else "장면 사진 1장을 보내 주시면 바로 만들게요."
+            hold = "" if st.scene else "장면 사진을 보내 주시면 바로 만들게요."
             act = pick.check(
                 profile,
                 day,
@@ -433,7 +482,7 @@ def status(results: Path, account: str) -> str:
     if st.pick:
         lines.append(f"고른 후보 {st.pick}")
     if st.scene:
-        lines.append(f"장면 사진 {st.scene}")
+        lines.append(f"장면 사진 {', '.join(st.scenes or [st.scene])}")
     lines += st.log[-10:]
     return "\n".join(lines)
 

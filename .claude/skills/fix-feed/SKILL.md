@@ -73,6 +73,7 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      포즈·자리를 아예 바꿔 달라면 그 벌 `pose` 를 같은 무드 안의 새 자리·포즈로 고치고 `edit_from` 없이 새로 그린다.
      무드(빛·색감·장소)가 장면 사진과 다르다는 피드백이면 plan `mood` 를 장면 사진(`scene_image`, Read 로 봄)에 맞게 고치고
      그 벌을 새로 그린다. `scene_image` 는 바꾸지 않는다 (워크플로가 같은 경로에 다시 둠).
+     장면 사진이 여러 장(`SCENES`)이고 "N번 사진 느낌으로" 같은 피드백이면 그 벌 `scene_image` 를 그 사진으로 바꾸고 새로 그린다.
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.
 3. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`. 오류는 고치고 다시 (최대 3번).
 4. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`
