@@ -535,11 +535,16 @@ def run_reels(
     if rec.reel_sent_at and not again:
         print(f"{tag} 릴스 영상을 이미 텔레그램으로 보냈습니다")
         return 0
-    from tools import cover_look, reels
+    from tools import cover_look, feed, reels
 
     # 표지 벌을 바꾼 날은 영상 첫 장도 바뀌어야 해서 다시 만든다
     rebuild = rebuild or cover_look.reel_stale(out)
     if rebuild and not dry_run:
+        fill = profile.reels
+        if fill.fill and fill.fill_mode == "crop" and not (out / "slides" / feed.TALL_DIR).is_dir():
+            # 9:16 판 없이 만든 날 (장면 모델컷 날 등): 양옆을 잘라 9:16 판을 지금 만든다
+            made = feed.render_tall(out, profile, store)
+            print(f"{tag} 릴스용 9:16 판 {len(made)}장을 만들었습니다")
         spec = reels.build(out, profile)
         song = spec.audio or "없음"
         print(f"{tag} 릴스 영상을 다시 만들었습니다 ({spec.duration_sec:g}초, 음원 {song})")

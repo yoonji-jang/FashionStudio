@@ -398,6 +398,9 @@ class Reels(BaseModel):
     # 펼친컷 날 표지·벌 장은 코디컷 위아래 바닥을 코드로 늘려 화면(9:16)을 꽉 채운다 (위아래 띠
     # 없음, AI 비용 없음, 2026-10-07 사용자). 글자는 4:5 장을 top 에 올렸을 때와 같은 자리
     fill: bool = False
+    # 9:16 판 만드는 법. extend: 위아래 바닥을 늘림 (펼친컷 날만). crop: 높이는 그대로 두고 양옆을
+    # 잘라 9:16 으로 (사람 위치 가운데, 장면 모델컷 날도. AI 비용 없음, 2026-10-15 사용자)
+    fill_mode: Literal["extend", "crop"] = "extend"
     background: str | None = Field(default=None, pattern=COLOR)  # 없으면 feed.background
     fps: int = Field(default=30, ge=24, le=60)
     # 배경 음악 폴더 (저장소 기준). 상업 이용이 허락된 음원만 (mp3, m4a, wav).

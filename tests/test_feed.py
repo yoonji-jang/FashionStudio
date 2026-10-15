@@ -297,3 +297,48 @@ def test_reel_version_extends_floor(tmp_path):
     want = profile.reels.top * 1920 + 1350 - 1350 * profile.looks.bottom
     assert 1920 * (1 - tp.looks.bottom) == pytest.approx(want)
     assert tp.looks.bottom > 0.2  # 인스타 캡션이 덮는 아래쪽보다 위
+
+
+def test_reel_version_crops_sides(tmp_path):
+    """reels.fill_mode crop: 높이는 그대로 두고 양옆만 잘라 9:16 (확대 없음).
+    사람을 못 찾으면 가운데."""
+    from PIL import Image
+
+    from tools import feed
+
+    img = Image.new("RGB", (1080, 1350), (200, 200, 200))
+    img.paste((0, 0, 0), (0, 0, 100, 1350))  # 왼쪽 끝 띠는 잘려 나간다
+    big = feed.crop_tall(img)
+    assert big.size == feed.TALL_SIZE
+    assert big.getpixel((5, 960)) == (200, 200, 200)
+    src = tmp_path / "look.jpg"
+    img.save(src)
+    assert feed.open_outfit(src, tall=True, mode="crop").size == feed.TALL_SIZE
+    assert feed.open_outfit(src, tall=True).size == feed.TALL_SIZE
+    assert feed.open_outfit(src).size == (1080, 1350)
+
+
+def test_render_tall_for_finished_run(tmp_path):
+    """이미 만든 결과 폴더에 릴스용 9:16 판만 나중에 만든다 (feed.yaml 경로는 만든 곳 기준)."""
+    from PIL import Image
+
+    from core.profile import load_profile
+    from tools import feed
+
+    out = tmp_path / "2026-10-17-run1"
+    img = out / "looks/1/outfit/results/G_1.jpg"
+    img.parent.mkdir(parents=True)
+    Image.new("RGB", (1080, 1350), (150, 160, 170)).save(img)
+    (out / "slides").mkdir()
+    for name in ("01_cover", "02_look1", "03_comment"):
+        Image.new("RGB", (1080, 1350)).save(out / "slides" / f"{name}.jpg")
+    far = "/home/runner/work/x/out/2026-10-17/looks/1/outfit/results/G_1.jpg"
+    (out / "feed.yaml").write_text(
+        f"account: women\ncover: {far}\ntitle_lines: [첫 줄, 둘째 줄]\n"
+        "items: [{category: 상의, name: 니트}]\nlooks:\n"
+        f"- image: {far}\n  items: [{{category: 상의, name: 니트}}]\n",
+        encoding="utf-8",
+    )
+    made = feed.render_tall(out, load_profile("women"))
+    assert [p.name for p in made] == ["01_cover.jpg", "02_look1.jpg"]
+    assert Image.open(made[1]).size == feed.TALL_SIZE
