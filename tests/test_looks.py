@@ -882,3 +882,29 @@ def test_fault_fails_review_whatever_the_score():
     assert review.pick(r, prof).id == "c2"
     r.candidates[1].score = CoverScore(**score("c2", 10), faults=["shoes_not_neat", "tuck_messy"])
     assert review.pick(r, prof).id == "c1"  # 둘 다 불합격이면 결함이 적은 쪽
+
+
+@pytest.mark.cover_once
+def test_cover_look_shown_once(tmp_path, store):
+    """2026-10-15 사용자: 표지 벌은 뒤 벌 장에 다시 나오지 않고, 벌 장 LOOK 번호는 보이는 순서대로.
+    /cover N 의 N 은 벌 장에 보이는 LOOK 번호다."""
+    profile = load_profile("women")
+    assert not profile.looks.repeat_cover_look
+    out, m = build(tmp_path, store)
+    names = [Path(x).name for x in m.images]
+    assert names == [
+        "01_cover.jpg",
+        *[f"{i:02d}_look{i}.jpg" for i in range(2, 7)],
+        "07_comment.jpg",
+    ]
+    assert cover_look.current(out, profile) == 1
+    assert cover_look.look_number(out, profile, 1) == 2  # 벌 장 LOOK 1 = 2번 벌
+    record = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    (out / "telegram.json").write_text(record.model_dump_json())
+    text = notify.control_text(notify.load_manifest(out), profile, False, cover=1)
+    assert "표지 벌은 첫 장에만" in text and "표지: LOOK" not in text
+    api = FakeApis(replies=[(1100, "/cover 3", None)])  # 벌 장 LOOK 3 = 4번 벌
+    cover_look.check(out, tg_of(api))
+    assert cover_look.current(out, profile) == 4
+    names = [Path(x).name for x in notify.load_manifest(out).images]
+    assert "02_look1.jpg" in names and not any(n.endswith("_look4.jpg") for n in names)

@@ -358,8 +358,13 @@ def control_text(
         lines += [f"- {c}" for c in changes or []] or [
             f"- {label(f)}: {f['text']}" for f in fix.get("fixes", [])
         ]
-    if cover is not None:
+    if cover is not None and profile.looks.repeat_cover_look:
         lines.append(f"표지: LOOK {cover}")
+    elif cover is not None:
+        # 표지 벌은 벌 장에 다시 나오지 않는다 (2026-10-15): 번호는 벌 장에 보이는 LOOK 번호
+        lines.append(
+            "표지 벌은 첫 장에만 나와요. 다른 벌로 바꾸려면 /cover 2 처럼 벌 장의 LOOK 번호"
+        )
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
     if manifest.needs_human:
@@ -384,7 +389,7 @@ def control_text(
             lines.append(f"승인 마감 {dl:%m/%d %H:%M}. 그때까지 /ok 가 없으면 게시하지 않아요")
         lines.append("(아래 버튼을 누르거나 이 메시지에 /ok 로 답장해도 돼요)")
         if cover is not None:
-            other = 2 if cover == 1 else 1
+            other = 2 if cover == 1 or not profile.looks.repeat_cover_look else 1
             lines.append(
                 f"표지를 다른 벌로 하려면 /ok {other} 처럼 LOOK 번호를 붙여 승인하거나, "
                 f"표지만 먼저 보려면 /cover {other}"
