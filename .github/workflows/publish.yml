@@ -115,6 +115,9 @@ jobs:
       - name: 게시 기록 커밋
         if: ${{ !inputs.dry_run }}
         run: |
+          # pull --rebase 가 커밋을 다시 쓸 때도 이름이 있어야 한다 (게시 두 개가 겹치면 실패했음, 2026-10-15)
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898279+github-actions[bot]@users.noreply.github.com"
           commit() {  # 폴더, 브랜치, 파일(pathspec …)
             git -C "$1" add -- "${@:3}" 2>/dev/null || return 0  # 새 기록 없음
             git -C "$1" diff --cached --quiet && return 0
