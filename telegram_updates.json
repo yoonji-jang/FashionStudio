@@ -1,16 +1,5 @@
 [
  {
-  "update_id": 428675782,
-  "message": {
-   "message_id": 824,
-   "date": 1791772687,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "다시"
-  }
- },
- {
   "update_id": 428675783,
   "message": {
    "message_id": 835,
@@ -144,6 +133,17 @@
     "id": 8708345474
    },
    "text": "/ok"
+  }
+ },
+ {
+  "update_id": 428675795,
+  "message": {
+   "message_id": 1454,
+   "date": 1792032863,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "2"
   }
  }
 ]
