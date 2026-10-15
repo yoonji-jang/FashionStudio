@@ -55,6 +55,20 @@ def current(out: Path, profile: Profile) -> int | None:
     return plan.cover_look or 1
 
 
+def look_number(out: Path, profile: Profile, shown: int) -> int:
+    """텔레그램에서 고른 LOOK 번호 → 벌 번호.
+    표지 벌을 벌 장에서 빼는 설정(repeat_cover_look 꺼짐)이면 벌 장에 보이는 LOOK 번호
+    (표지 벌을 뺀 순서)라서 벌 번호로 바꾼다."""
+    if profile.looks.repeat_cover_look:
+        return shown
+    plan = DailyPlan.model_validate(yaml.safe_load((out / "plan.yaml").read_text(encoding="utf-8")))
+    cover = current(out, profile)
+    rest = [n for n in range(1, len(plan.looks) + 1) if n != cover]
+    if not 1 <= shown <= len(rest):
+        raise ValueError(f"LOOK {shown} 이 없어요 (1~{len(rest)})")
+    return rest[shown - 1]
+
+
 def load_record(out: Path) -> dict:
     path = out / RECORD
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
@@ -82,12 +96,24 @@ def apply(out: Path, n: int, profile: Profile | None = None) -> list[Path]:
         raise ValueError("여러 벌 게시물이 아니라 표지 벌을 바꿀 수 없습니다")
     if not 1 <= n <= len(plan.looks):
         raise ValueError(f"LOOK {n} 이 없어요 (1~{len(plan.looks)})")
-    if not profile.looks.repeat_cover_look:
-        # 표지 벌이 벌 장에서 빠지는 설정이면 벌 장도 다시 만들어야 해서 여기서는 하지 않는다
-        raise ValueError("looks.repeat_cover_look 이 꺼져 있어 표지 벌만 바꿀 수 없습니다")
     image = looks.chosen_image(looks.look_dir(out, n))
     if image is None or not image.exists():
         raise FileNotFoundError(f"LOOK {n} 코디컷이 결과 폴더에 없습니다")
+    if not profile.looks.repeat_cover_look:
+        # 표지 벌이 벌 장에서 빠지는 설정 (2026-10-15): 지난 표지 벌이 벌 장으로 돌아오고
+        # 새 표지 벌이 빠져서 슬라이드 전체를 다시 만든다 (코드만, AI 없음). 릴스 정보는 그대로 둔다
+        reels = notify.load_manifest(out).reels
+        data = plan.model_dump(mode="json", exclude_none=True)
+        data["cover_look"] = n
+        if effective_collage(plan, profile):
+            data["cover_collage"] = False
+        _write_yaml(data, out / "plan.yaml")
+        manifest = looks.finish(out, profile)
+        if reels is not None:
+            manifest = manifest.model_copy(update={"reels": reels})
+            (out / "manifest.json").write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+        slides = notify.slide_paths(manifest, out)
+        return [slides[0], out / "preview.jpg"]
     manifest = notify.load_manifest(out)
     slides = notify.slide_paths(manifest, out)
     if not slides or not slides[0].stem.endswith("_cover"):
@@ -167,7 +193,11 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
     found = requested(out, record, profile, updates, tg.chat_id)
     if found is None:
         return ""
-    uid, n = found
+    uid, shown = found
+    try:
+        n = look_number(out, profile, shown)
+    except ValueError:
+        n = shown  # 아래 apply 가 없는 번호라고 알린다
     done = load_record(out)
     if done.get("update_id") == uid:
         return ""

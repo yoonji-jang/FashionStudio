@@ -60,6 +60,10 @@ SINGLE_OUTFIT = {
 
 def pytest_configure(config):
     config.addinivalue_line("markers", "looks: women 계정의 실제 여러 벌(looks) 설정으로 테스트")
+    config.addinivalue_line(
+        "markers",
+        "cover_once: 표지 벌을 벌 장에서 빼는 실제 설정(repeat_cover_look 꺼짐)으로 테스트",
+    )
 
 
 @pytest.fixture(autouse=True)
@@ -94,14 +98,18 @@ def fast_collage_cutout(monkeypatch, request):
 
 
 @pytest.fixture(autouse=True)
-def timed_flow(monkeypatch):
+def timed_flow(monkeypatch, request):
     """계정 profile 에서 차례 흐름(flow)을 켜도 시각표·승인 마감 테스트는 꺼진 상태로 본다
-    (tools.flow 테스트는 흐름 함수를 바로 부르므로 이 값과 상관없다)."""
+    (tools.flow 테스트는 흐름 함수를 바로 부르므로 이 값과 상관없다).
+    표지 벌을 벌 장에서 빼는 설정도 cover_once 표시가 없으면 예전(벌 장에 다시 넣음)으로 본다."""
     original = core.profile.Profile.model_validate.__func__
+    repeat = request.node.get_closest_marker("cover_once") is None
 
     def validate(cls, data, *args, **kwargs):
         if isinstance(data, dict) and "flow" in data:
             data = {**data, "flow": {**(data.get("flow") or {}), "enabled": False}}
+        if repeat and isinstance(data, dict) and isinstance(data.get("looks"), dict):
+            data = {**data, "looks": {**data["looks"], "repeat_cover_look": True}}
         return original(cls, data, *args, **kwargs)
 
     monkeypatch.setattr(core.profile.Profile, "model_validate", classmethod(validate))

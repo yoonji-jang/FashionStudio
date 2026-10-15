@@ -925,11 +925,13 @@ def render(
                 save(product_slide(card, i, profile, size), card.category)
         elif kind == "looks":
             products = {p.id: p for p in (store or Store(spec.account)).products()}
-            for n, look in shown:
+            for shown_no, (n, look) in enumerate(shown, 1):
                 lines = look_lines(look, spec.account, products=products)
                 image = root / look.image
-                big = look_slide(image, lines, n, profile, TALL_SIZE) if tall else None
-                save(look_slide(image, lines, n, profile, size), f"look{n}", big)
+                # 표지 벌을 빼면 보이는 순서대로 LOOK 1, 2 … (파일 이름은 벌 번호 그대로)
+                label = n if profile.looks.repeat_cover_look else shown_no
+                big = look_slide(image, lines, label, profile, TALL_SIZE) if tall else None
+                save(look_slide(image, lines, label, profile, size), f"look{n}", big)
         elif kind == "comment":
             save(comment_slide(profile, size), "comment")
         else:

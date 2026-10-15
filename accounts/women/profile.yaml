@@ -258,7 +258,8 @@ looks:
   type_limits: {셔츠: 2, 베스트: 2}
   type_ignore: [티셔츠, 셔츠카라, 셔츠 카라]  # 티셔츠·셔츠카라 니트는 셔츠로 세지 않음 (10/8 후보)
   candidates: 1      # 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 한 장 더 (review.max_rounds)
-  repeat_cover_look: true  # 벌 장은 LOOK 1부터 다 보여 줌 (표지로 쓴 벌도 상품 정보와 함께 한 번 더)
+  # 표지로 쓴 벌은 뒤 벌 장에 다시 넣지 않음 (2026-10-15 사용자: 벌 장에 정보를 안 쓰니 표지는 첫 장 고르는 용도로만)
+  repeat_cover_look: false
   title_count: false  # 표지 제목에 "여섯 벌" 같은 벌 수를 쓰지 않음 (2026-10-01 사용자)
   label: "LOOK {n}"
   # 2026-10-15 사용자 "이미지에 사진 출처랑 제품 정보 적지 말자": 벌 장에는 LOOK 번호만.
