@@ -1,0 +1,195 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/2/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 버튼 트위드 자켓
+  product: zigzag:150918386
+- comment: ''
+  name: 러플 블라우스
+  product: zigzag:165616435
+- comment: ''
+  name: 새틴 롱스커트
+  product: zigzag:168778375
+- comment: ''
+  name: 삭스 앵클부츠
+  product: zigzag:147232545
+- comment: ''
+  name: 레더 숄더백
+  product: zigzag:159313221
+- comment: ''
+  name: 실버 롱 목걸이
+  product: zigzag:162967207
+- comment: ''
+  name: 벨벳 레더 블루종
+  product: zigzag:171752150
+- comment: ''
+  name: 보트넥 니트
+  product: zigzag:171909568
+- comment: ''
+  name: 울 쇼츠
+  product: zigzag:166183665
+- comment: ''
+  name: 슬라우치 롱부츠
+  product: zigzag:166123475
+- comment: ''
+  name: 스웨이드 숄더백
+  product: zigzag:164580854
+- comment: ''
+  name: 오버핏 블레이저
+  product: zigzag:145565598
+- comment: ''
+  name: 2-way 타이 블라우스
+  product: zigzag:166037613
+- comment: ''
+  name: 새틴 스커트
+  product: zigzag:168869683
+- comment: ''
+  name: 스퀘어 롱부츠
+  product: zigzag:130130894
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:169612789
+- comment: ''
+  name: 딥 V넥 니트
+  product: zigzag:168688205
+- comment: ''
+  name: 스카프 블라우스
+  product: zigzag:129790294
+- comment: ''
+  name: 핀스트라이프 롱스커트
+  product: zigzag:164392424
+- comment: ''
+  name: 하이넥 카디건
+  product: zigzag:172085489
+- comment: ''
+  name: 워싱 와이드 데님
+  product: zigzag:171706237
+- comment: ''
+  name: 가죽 벨트
+  product: zigzag:165741644
+- comment: ''
+  name: 워커 부츠
+  product: zigzag:111696369
+- comment: ''
+  name: 오닉 숄더백
+  product: zigzag:166400700
+- comment: ''
+  name: 하프 트렌치
+  product: zigzag:171477130
+- comment: ''
+  name: 무지 나시
+  product: zigzag:156428546
+- comment: ''
+  name: 버클 호보백
+  product: zigzag:147738628
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 버튼 트위드 자켓
+    product: zigzag:150918386
+  - comment: ''
+    name: 러플 블라우스
+    product: zigzag:165616435
+  - comment: ''
+    name: 새틴 롱스커트
+    product: zigzag:168778375
+  - comment: ''
+    name: 삭스 앵클부츠
+    product: zigzag:147232545
+  - comment: ''
+    name: 레더 숄더백
+    product: zigzag:159313221
+  - comment: ''
+    name: 실버 롱 목걸이
+    product: zigzag:162967207
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 벨벳 레더 블루종
+    product: zigzag:171752150
+  - comment: ''
+    name: 보트넥 니트
+    product: zigzag:171909568
+  - comment: ''
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - comment: ''
+    name: 슬라우치 롱부츠
+    product: zigzag:166123475
+  - comment: ''
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 오버핏 블레이저
+    product: zigzag:145565598
+  - comment: ''
+    name: 2-way 타이 블라우스
+    product: zigzag:166037613
+  - comment: ''
+    name: 새틴 스커트
+    product: zigzag:168869683
+  - comment: ''
+    name: 스퀘어 롱부츠
+    product: zigzag:130130894
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169612789
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 딥 V넥 니트
+    product: zigzag:168688205
+  - comment: ''
+    name: 스카프 블라우스
+    product: zigzag:129790294
+  - comment: ''
+    name: 핀스트라이프 롱스커트
+    product: zigzag:164392424
+  - comment: ''
+    name: 삭스 앵클부츠
+    product: zigzag:147232545
+  - comment: ''
+    name: 리브 숄더백
+    product: zigzag:169612789
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 카디건
+    product: zigzag:172085489
+  - comment: ''
+    name: 워싱 와이드 데님
+    product: zigzag:171706237
+  - comment: ''
+    name: 가죽 벨트
+    product: zigzag:165741644
+  - comment: ''
+    name: 워커 부츠
+    product: zigzag:111696369
+  - comment: ''
+    name: 오닉 숄더백
+    product: zigzag:166400700
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-17/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하프 트렌치
+    product: zigzag:171477130
+  - comment: ''
+    name: 무지 나시
+    product: zigzag:156428546
+  - comment: ''
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - comment: ''
+    name: 스퀘어 롱부츠
+    product: zigzag:130130894
+  - comment: ''
+    name: 버클 호보백
+    product: zigzag:147738628
+title_lines:
+- 비 오는 날 뭐 입지?
+- 어두운 톤 코디 정리

@@ -1,0 +1,332 @@
+account: women
+date: '2026-10-17'
+items: []
+looks:
+- items:
+  - color: 크림
+    comment: ''
+    cutout_photo: 3
+    ref_photos: [3, 4, 5]
+    desc: 크림 라운드넥 트위드 자켓 (cream round-neck boxy tweed jacket with metal clasp buttons,
+      cropped waist length, two flap patch pockets)
+    name: 버튼 트위드 자켓
+    product: zigzag:150918386
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    ref_photos: [1, 3]
+    desc: 블랙 러플 블라우스 (loose black blouse with a ruffled button placket and long gathered sleeves,
+      hip length, soft thin drapey fabric)
+    name: 러플 블라우스
+    product: zigzag:165616435
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    ref_photos: [1]
+    desc: 블랙 새틴 롱스커트 (black satin slip long skirt with drawstring waist and a lace trim hem,
+      falls straight to the calf)
+    name: 새틴 롱스커트
+    product: zigzag:168778375
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 2]
+    desc: 블랙 삭스 앵클부츠 (black soft sock ankle boots with a low block heel and a slightly rounded square toe)
+    name: 삭스 앵클부츠
+    product: zigzag:147232545
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    ref_photos: [1, 0]
+    desc: 블랙 토트 숄더백 (large black glossy leather tote shoulder bag with two long handles and a front pocket)
+    name: 레더 숄더백
+    product: zigzag:159313221
+  - color: 실버
+    comment: ''
+    cutout_photo: 2
+    ref_photos: [2, 0]
+    desc: 실버 물방울 롱 목걸이 (exactly one silver long drop pendant necklace)
+    name: 실버 롱 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  point: 크림 트위드에 블랙 러플 블라우스로 대비를 줘요
+  reason: '크림 트위드 자켓이 주인공, 블랙 러플 블라우스와 롱스커트로 대비를 줌. 참고: 크림 트위드 자켓/블랙 프릴 블라우스/블랙 롱스커트/블랙
+    부츠 → 맞춘 것: 같은 종류·색, 프릴 블라우스와 스웨이드 앵클부츠는 맞는 색 사진이 없어 러플 블라우스·삭스 앵클부츠로 교체 (따라 함: 참고 140) [점수 8]'
+  ref: '140'
+  ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+  styling: The cream tweed jacket is worn open over the black ruffle blouse, which
+    shows its ruffled front; the blouse is lightly tucked into the skirt.
+  scene_image: out/2026-10-17/src/scene.jpg
+  pose: standing in profile with her body turned to the left and her chin lifted away from the camera, one hand slipped into the jacket pocket, her short bob with bangs and hippie perm covering the side of her face, full body visible down to the ankle boots, the tote hanging from the other arm
+- items:
+  - color: 버건디
+    comment: ''
+    cutout_photo: 2
+    ref_photos: [2, 1, 5]
+    desc: 버건디 와인 브라운 벨벳 레더 블루종 (deep wine-brown velvet faux-leather collared blouson,
+      oversized, dropped shoulders, hip length, big pointed collar)
+    name: 벨벳 레더 블루종
+    product: zigzag:171752150
+  - color: 그레이
+    comment: ''
+    cutout_photo: 2
+    ref_photos: [2]
+    desc: 그레이 보트넥 니트 (charcoal grey boat-neck knit with elbow-length sleeves, loose
+      fit, short banded hem)
+    name: 보트넥 니트
+    product: zigzag:171909568
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 1]
+    desc: 블랙 울 쇼츠 (black wool mini shorts with a small tab detail, flat front)
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    ref_photos: [1, 0]
+    desc: 블랙 슬라우치 레더 롱부츠 (black slouchy leather knee-high boots with a round toe and a low chunky heel)
+    name: 슬라우치 롱부츠
+    product: zigzag:166123475
+  - color: 블랙
+    comment: ''
+    cutout_photo: 4
+    ref_photos: [4, 5, 3]
+    desc: 블랙 스웨이드 쇼퍼 숄더백 (soft black suede hobo shoulder bag with thin double handles and small studs)
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+  point: 버건디 블루종 안에 그레이 니트를 받쳐 톤을 낮춰요
+  reason: '버건디 브라운 블루종이 주인공, 블랙 울 쇼츠와 슬라우치 부츠로 깊은 한 색. 참고의 와인 블루종보다 짙은 와인 브라운 (따라
+    함: 참고 136) [점수 7]'
+  ref: '136'
+  ref_photo: https://the-ore.kr/web/product/medium/202610/4462ae561853a5cedf9d1477c021103d.webp
+  styling: The wine-brown blouson is worn open over the grey boat-neck knit; the knit hem is tucked
+    loosely so the black shorts show.
+  scene_image: out/2026-10-17/src/scene_2.jpg
+  pose: standing facing the camera in a plain black wool newsboy cap with her head tipped down and to one side so the cap brim and the bangs of the bob hide her eyes, both hands pushed into the blouson pockets, weight on one leg, full body visible down to the boots
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0]
+    desc: 차콜 오버핏 싱글 블레이저 (charcoal oversized single-breasted two-button blazer with structured shoulders,
+      hip to upper-thigh length)
+    name: 오버핏 블레이저
+    product: zigzag:145565598
+  - color: 블랙
+    comment: ''
+    cutout_photo: 1
+    ref_photos: [1, 2, 3]
+    desc: 블랙 2-way 타이 블라우스 (black long-sleeve tie-neck blouse with puffed gathered sleeves,
+      stand collar and scarf ends hanging down the front, hip length)
+    name: 2-way 타이 블라우스
+    product: zigzag:166037613
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0]
+    desc: 블랙 새틴 A라인 스커트 (black glossy satin A-line skirt, slightly flared hem, ends around the knee, no pleats)
+    name: 새틴 스커트
+    product: zigzag:168869683
+  - color: 블랙
+    comment: ''
+    cutout_photo: 3
+    ref_photos: [3]
+    desc: 블랙 스퀘어토 롱부츠 (black square-toe knee-high boots with a low flat heel)
+    name: 스퀘어 롱부츠
+    product: zigzag:130130894
+  - color: 블랙
+    comment: ''
+    cutout_photo: 2
+    ref_photos: [2, 3, 0]
+    desc: 블랙 위빙 숄더백 (black woven leather soft hobo shoulder bag with a small metal logo)
+    name: 위빙 숄더백
+    product: zigzag:169612789
+  point: 차콜 블레이저에 블랙 새틴이 은은하게 반짝여요
+  reason: '차콜 블레이저가 주인공, 타이 블라우스와 새틴 스커트로 올다크 톤. 참고는 미니 스커트이고 맞는 색 사진이 없어 새틴 A라인
+    스커트로 교체 (따라 함: 참고 107) [점수 7]'
+  ref: '107'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/cd55aed48447a2623229e70770e5c638.jpg
+  styling: The charcoal blazer is worn open over the black tie blouse, whose tie ends hang down the front;
+    the blouse is tucked into the skirt.
+  scene_image: out/2026-10-17/src/scene_3.jpg
+  pose: standing straight and facing the camera in small oval black sunglasses, her bob with bangs framing the glasses so her eyes stay hidden, one hand holding the bag by its strap, full body visible down to the boots
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0]
+    desc: 블랙 딥 V넥 니트 (black loose fine-ribbed deep V-neck knit, dropped shoulders, hip length)
+    name: 딥 V넥 니트
+    product: zigzag:168688205
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 4, 5]
+    desc: 화이트 새틴 스카프 블라우스 (white glossy satin blouse with puffed sleeves with buttoned cuffs, stand collar and a short scarf tie,
+      hip length)
+    name: 스카프 블라우스
+    product: zigzag:129790294
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 3, 5]
+    desc: 차콜 핀스트라이프 랩 롱스커트 (charcoal pinstripe wrap maxi skirt with a side knot at the hip and a long slit,
+      falls straight to the ankle)
+    name: 핀스트라이프 롱스커트
+    product: zigzag:164392424
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 2]
+    desc: 블랙 삭스 앵클부츠 (black soft sock ankle boots with a low block heel and a slightly rounded square toe)
+    name: 삭스 앵클부츠
+    product: zigzag:147232545
+  - color: 블랙
+    comment: ''
+    cutout_photo: 2
+    ref_photos: [2, 3, 0]
+    desc: 블랙 위빙 숄더백 (black woven leather soft hobo shoulder bag with a small metal logo)
+    name: 리브 숄더백
+    product: zigzag:169612789
+  point: 블랙 니트 사이로 화이트 스카프가 흘러내려요
+  reason: '블랙 딥 V넥 니트 안에 화이트 스카프 블라우스를 받쳐 스카프를 밖으로 빼고, 차콜 핀스트라이프 롱스커트와 톤온톤으로. 그레이 V넥
+    니트는 그레이 사진이 없어 블랙 V넥 니트로 교체 (따라 함: 참고 121) [점수 8]'
+  ref: '121'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/f724697ecc0ca93cefa27b40d1a11bf7.jpg
+  styling: The white scarf blouse is worn under the black knit with its short scarf tie hanging out over the knit front;
+    the knit hem is worn out over the skirt waist.
+  scene_image: out/2026-10-17/src/scene.jpg
+  pose: walking slowly with her body angled away from the camera and her head turned over her shoulder, the bob with bangs and hippie perm falling across her face, one hand lightly touching the scarf tie, full body visible down to the ankle boots
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 3
+    ref_photos: [3, 5, 0]
+    desc: 차콜 하이넥 버튼 카디건 (charcoal relaxed raglan-sleeve high-neck button cardigan, soft fuzzy wool knit, hip length)
+    name: 하이넥 카디건
+    product: zigzag:172085489
+  - color: 그레이
+    comment: ''
+    cutout_photo: 1
+    ref_photos: [1, 0, 5]
+    desc: 그레이 워싱 와이드 데님 (faded blue-grey washed very wide-leg baggy denim, high waist, full length covering the ankles)
+    name: 워싱 와이드 데님
+    product: zigzag:171706237
+  - color: 브라운
+    comment: ''
+    cutout_photo: 4
+    ref_photos: [4, 3]
+    desc: 다크 브라운 가죽 벨트 (thin dark chocolate-brown leather belt with a silver buckle)
+    name: 가죽 벨트
+    product: zigzag:165741644
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 4, 2]
+    desc: 블랙 워커 부츠 (black lace-up chunky-sole walker boots, calf height, the toe and lower shaft show below the hem)
+    name: 워커 부츠
+    product: zigzag:111696369
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [3, 0, 5]
+    desc: 블랙 오닉 숄더백 (large black washed-leather tote with a row of eyelets and a shoulder strap)
+    name: 오닉 숄더백
+    product: zigzag:166400700
+  point: 차콜 카디건 위 가는 벨트로 허리선만 잡았어요
+  reason: '차콜 하이넥 카디건 한 장이 주인공, 워싱 와이드 데님과 벨트로 외투 없이 편하게. 벨트는 사진에서 짙은 브라운이라 브라운으로 적음
+    (따라 함: 참고 128) [점수 8]'
+  ref: '128'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/a90acde750678148cd42d63e3d42f6be.jpg
+  styling: The charcoal high-neck cardigan is worn with only some of the buttons done,
+    and the thin belt sits at the waist over it; the cardigan hem hangs over the
+    top of the jeans.
+  scene_image: out/2026-10-17/src/scene_2.jpg
+  pose: standing with one foot slightly forward in a plain charcoal baseball cap with no logo pulled low, looking down at the floor so the cap brim and the bangs of the bob hide most of her face, one hand tugging at the cardigan sleeve and the other holding the tote strap, full body visible down to the boots
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 3
+    ref_photos: [3, 4]
+    desc: 블랙 하이넥 하프 트렌치 (black oversized boxy high-neck double-breasted half-length trench coat with dropped raglan shoulders, sleeve cuff tabs, hip to upper-thigh length)
+    name: 하프 트렌치
+    product: zigzag:171477130
+  - color: 블랙
+    comment: ''
+    cutout_photo: 5
+    ref_photos: [5]
+    desc: 블랙 무지 크롭 나시 (fitted plain black cropped camisole tank with thin spaghetti straps, scoop neck)
+    name: 무지 나시
+    product: zigzag:156428546
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [0, 1]
+    desc: 블랙 울 쇼츠 (black wool mini shorts with a small tab detail, flat front)
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - color: 블랙
+    comment: ''
+    cutout_photo: 3
+    ref_photos: [3]
+    desc: 블랙 스퀘어토 롱부츠 (black square-toe knee-high boots with a low flat heel)
+    name: 스퀘어 롱부츠
+    product: zigzag:130130894
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    ref_photos: [1, 2, 0]
+    desc: 블랙 호보백 (black crinkled leather hobo bag with a small metal logo)
+    name: 버클 호보백
+    product: zigzag:147738628
+  point: 올블랙에 쇼츠와 롱부츠로 다리 라인을 길게 이어요
+  reason: '블랙 하프 트렌치가 주인공, 블랙 울 쇼츠와 롱부츠로 비 오는 날 올블랙. 벨티 하프 트렌치와 사각코 롱부츠는 맞는 색 사진이
+    없어 하이넥 하프 트렌치·스퀘어 롱부츠로 교체 (따라 함: 참고 106) [점수 7]'
+  ref: '106'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/7ba53aff117a19c65f1145ef738636ae.jpg
+  styling: The black trench is worn unbuttoned and open over the black camisole, so the black wool
+    shorts show below the camisole.
+  scene_image: out/2026-10-17/src/scene_3.jpg
+  pose: standing with a slight hip tilt in black wayfarer-style small sunglasses, the bob with bangs and hippie perm brushing the frames, one hand holding the trench open, the hobo bag hanging from the other hand, full body visible down to the boots
+reason: 이슬비 오는 토요일 브런치를 외투 없이 입는 벌과 가벼운 아우터 벌을 섞어 딥 가을 톤으로
+shot: model
+cover_look: 2
+scene_image: out/2026-10-17/src/scene.jpg
+mood: a minimalist studio lookbook shoot against a plain pale-grey wall and a pale seamless floor, soft diffused daylight with gentle shadows, clean muted cool-neutral colors, a clean full-body fashion-catalog photograph taken with a digital camera from a few steps away; the model has a short chin-length bob with bangs and a loose hippie perm (curly, wavy and slightly voluminous) in every shot
+text:
+  title_lines: ["비 오는 날 뭐 입지?", "어두운 톤 코디 정리"]
+  intro: 이슬비 내리는 토요일, 젖어도 티 안 나는 딥 톤으로 나가 보세요 ☔
+  points: []
+  hashtags: ["#비오는날코디", "#가을코디", "#브런치룩", "#트위드자켓", "#롱부츠", "#올블랙코디"]
+theme:
+  date: '2026-10-17'
+  mood: 젖어도 부담 없는 딥 가을 톤에 가벼운 겹쳐 입기
+  search_terms:
+    신발:
+    - 워커 부츠
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 다크 와이드 팬츠
+  slots:
+  - category: 아우터
+    desc: 가벼운 트위드나 코듀로이 느낌의 짧은 자켓
+  - category: 상의
+    desc: 보트넥 니트나 스트라이프 긴팔티
+  - category: 하의
+    desc: 젖어도 티 안 나는 다크 컬러 팬츠나 스커트
+  - category: 가방
+    desc: 어깨에 메는 스웨이드나 가죽 숄더백
+  - category: 신발
+    desc: 워커 부츠나 슬라우치 롱부츠
+  title_hint: 이슬비 오는 토요일 브런치, 비 와도 꾸민 날 코디
+  type: 상황
+  why: 토요일, 서울 약한 이슬비에 14~21도. 약속 나가기 좋은 날이라 어두운 하의와 가벼운 아우터로 실용과 멋을 함께

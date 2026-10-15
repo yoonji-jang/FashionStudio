@@ -1,0 +1,112 @@
+account: women
+date: '2026-10-17'
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 3
+  desc: 차콜 하이넥 버튼 카디건 (charcoal relaxed raglan-sleeve high-neck button cardigan, soft
+    fuzzy wool knit, hip length)
+  name: 하이넥 카디건
+  product: zigzag:172085489
+  ref_photos:
+  - 3
+  - 5
+  - 0
+- color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 워싱 와이드 데님 (faded blue-grey washed very wide-leg baggy denim, high waist,
+    full length covering the ankles)
+  name: 워싱 와이드 데님
+  product: zigzag:171706237
+  ref_photos:
+  - 1
+  - 0
+  - 5
+- color: 브라운
+  comment: ''
+  cutout_photo: 4
+  desc: 다크 브라운 가죽 벨트 (thin dark chocolate-brown leather belt with a silver buckle)
+  name: 가죽 벨트
+  product: zigzag:165741644
+  ref_photos:
+  - 4
+  - 3
+  wear_with: 상의
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 워커 부츠 (black lace-up chunky-sole walker boots, calf height, the toe and
+    lower shaft show below the hem)
+  name: 워커 부츠
+  product: zigzag:111696369
+  ref_photos:
+  - 0
+  - 4
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오닉 숄더백 (large black washed-leather tote with a row of eyelets and a shoulder
+    strap)
+  name: 오닉 숄더백
+  product: zigzag:166400700
+  ref_photos:
+  - 3
+  - 0
+  - 5
+looks: []
+mood: a minimalist studio lookbook shoot against a plain pale-grey wall and a pale
+  seamless floor, soft diffused daylight with gentle shadows, clean muted cool-neutral
+  colors, a clean full-body fashion-catalog photograph taken with a digital camera
+  from a few steps away; the model has a short chin-length bob with bangs and a loose
+  hippie perm (curly, wavy and slightly voluminous) in every shot
+pose: standing with one foot slightly forward in a plain charcoal baseball cap with
+  no logo pulled low, looking down at the floor so the cap brim and the bangs of the
+  bob hide most of her face, one hand tugging at the cardigan sleeve and the other
+  holding the tote strap, full body visible down to the boots
+reason: '차콜 하이넥 카디건 한 장이 주인공, 워싱 와이드 데님과 벨트로 외투 없이 편하게. 벨트는 사진에서 짙은 브라운이라 브라운으로 적음
+  (따라 함: 참고 128) [점수 8]'
+ref_photo: https://woonan.co.kr/web/product/big/202610/a90acde750678148cd42d63e3d42f6be.jpg
+scene_image: out/2026-10-17/src/scene_2.jpg
+shot: model
+styling: The charcoal high-neck cardigan is worn with only some of the buttons done,
+  and the thin belt sits at the waist over it; the cardigan hem hangs over the top
+  of the jeans.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#브런치룩'
+  - '#트위드자켓'
+  - '#롱부츠'
+  - '#올블랙코디'
+  intro: 이슬비 내리는 토요일, 젖어도 티 안 나는 딥 톤으로 나가 보세요 ☔
+  points: []
+  title_lines:
+  - 비 오는 날 뭐 입지?
+  - 어두운 톤 코디 정리
+theme:
+  date: '2026-10-17'
+  mood: 젖어도 부담 없는 딥 가을 톤에 가벼운 겹쳐 입기
+  search_terms:
+    신발:
+    - 워커 부츠
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 다크 와이드 팬츠
+  slots:
+  - category: 아우터
+    desc: 가벼운 트위드나 코듀로이 느낌의 짧은 자켓
+  - category: 상의
+    desc: 보트넥 니트나 스트라이프 긴팔티
+  - category: 하의
+    desc: 젖어도 티 안 나는 다크 컬러 팬츠나 스커트
+  - category: 가방
+    desc: 어깨에 메는 스웨이드나 가죽 숄더백
+  - category: 신발
+    desc: 워커 부츠나 슬라우치 롱부츠
+  title_hint: 이슬비 오는 토요일 브런치, 비 와도 꾸민 날 코디
+  type: 상황
+  why: 토요일, 서울 약한 이슬비에 14~21도. 약속 나가기 좋은 날이라 어두운 하의와 가벼운 아우터로 실용과 멋을 함께

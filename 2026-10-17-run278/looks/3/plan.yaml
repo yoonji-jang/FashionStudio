@@ -1,0 +1,104 @@
+account: women
+date: '2026-10-17'
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 오버핏 싱글 블레이저 (charcoal oversized single-breasted two-button blazer with
+    structured shoulders, hip to upper-thigh length)
+  name: 오버핏 블레이저
+  product: zigzag:145565598
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 2-way 타이 블라우스 (black long-sleeve tie-neck blouse with puffed gathered sleeves,
+    stand collar and scarf ends hanging down the front, hip length)
+  name: 2-way 타이 블라우스
+  product: zigzag:166037613
+  ref_photos:
+  - 1
+  - 2
+  - 3
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 새틴 A라인 스커트 (black glossy satin A-line skirt, slightly flared hem, ends
+    around the knee, no pleats)
+  name: 새틴 스커트
+  product: zigzag:168869683
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 스퀘어토 롱부츠 (black square-toe knee-high boots with a low flat heel)
+  name: 스퀘어 롱부츠
+  product: zigzag:130130894
+  ref_photos:
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 위빙 숄더백 (black woven leather soft hobo shoulder bag with a small metal logo)
+  name: 위빙 숄더백
+  product: zigzag:169612789
+  ref_photos:
+  - 2
+  - 3
+  - 0
+looks: []
+mood: a minimalist studio lookbook shoot against a plain pale-grey wall and a pale
+  seamless floor, soft diffused daylight with gentle shadows, clean muted cool-neutral
+  colors, a clean full-body fashion-catalog photograph taken with a digital camera
+  from a few steps away; the model has a short chin-length bob with bangs and a loose
+  hippie perm (curly, wavy and slightly voluminous) in every shot
+pose: standing straight and facing the camera in small oval black sunglasses, her
+  bob with bangs framing the glasses so her eyes stay hidden, one hand holding the
+  bag by its strap, full body visible down to the boots
+reason: '차콜 블레이저가 주인공, 타이 블라우스와 새틴 스커트로 올다크 톤. 참고는 미니 스커트이고 맞는 색 사진이 없어 새틴 A라인 스커트로
+  교체 (따라 함: 참고 107) [점수 7]'
+ref_photo: https://woonan.co.kr/web/product/big/202610/cd55aed48447a2623229e70770e5c638.jpg
+scene_image: out/2026-10-17/src/scene_3.jpg
+shot: model
+styling: The charcoal blazer is worn open over the black tie blouse, whose tie ends
+  hang down the front; the blouse is tucked into the skirt.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#브런치룩'
+  - '#트위드자켓'
+  - '#롱부츠'
+  - '#올블랙코디'
+  intro: 이슬비 내리는 토요일, 젖어도 티 안 나는 딥 톤으로 나가 보세요 ☔
+  points: []
+  title_lines:
+  - 비 오는 날 뭐 입지?
+  - 어두운 톤 코디 정리
+theme:
+  date: '2026-10-17'
+  mood: 젖어도 부담 없는 딥 가을 톤에 가벼운 겹쳐 입기
+  search_terms:
+    신발:
+    - 워커 부츠
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 다크 와이드 팬츠
+  slots:
+  - category: 아우터
+    desc: 가벼운 트위드나 코듀로이 느낌의 짧은 자켓
+  - category: 상의
+    desc: 보트넥 니트나 스트라이프 긴팔티
+  - category: 하의
+    desc: 젖어도 티 안 나는 다크 컬러 팬츠나 스커트
+  - category: 가방
+    desc: 어깨에 메는 스웨이드나 가죽 숄더백
+  - category: 신발
+    desc: 워커 부츠나 슬라우치 롱부츠
+  title_hint: 이슬비 오는 토요일 브런치, 비 와도 꾸민 날 코디
+  type: 상황
+  why: 토요일, 서울 약한 이슬비에 14~21도. 약속 나가기 좋은 날이라 어두운 하의와 가벼운 아우터로 실용과 멋을 함께

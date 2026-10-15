@@ -1,0 +1,119 @@
+account: women
+date: '2026-10-17'
+items:
+- color: 크림
+  comment: ''
+  cutout_photo: 3
+  desc: 크림 라운드넥 트위드 자켓 (cream round-neck boxy tweed jacket with metal clasp buttons,
+    cropped waist length, two flap patch pockets)
+  name: 버튼 트위드 자켓
+  product: zigzag:150918386
+  ref_photos:
+  - 3
+  - 4
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 러플 블라우스 (loose black blouse with a ruffled button placket and long gathered
+    sleeves, hip length, soft thin drapey fabric)
+  name: 러플 블라우스
+  product: zigzag:165616435
+  ref_photos:
+  - 1
+  - 3
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 새틴 롱스커트 (black satin slip long skirt with drawstring waist and a lace trim
+    hem, falls straight to the calf)
+  name: 새틴 롱스커트
+  product: zigzag:168778375
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 삭스 앵클부츠 (black soft sock ankle boots with a low block heel and a slightly
+    rounded square toe)
+  name: 삭스 앵클부츠
+  product: zigzag:147232545
+  ref_photos:
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 토트 숄더백 (large black glossy leather tote shoulder bag with two long handles
+    and a front pocket)
+  name: 레더 숄더백
+  product: zigzag:159313221
+  ref_photos:
+  - 1
+  - 0
+- color: 실버
+  comment: ''
+  cutout_photo: 2
+  desc: 실버 물방울 롱 목걸이 (exactly one silver long drop pendant necklace)
+  name: 실버 롱 목걸이
+  product: zigzag:162967207
+  ref_photos:
+  - 2
+  - 0
+  slot: 목걸이
+looks: []
+mood: a minimalist studio lookbook shoot against a plain pale-grey wall and a pale
+  seamless floor, soft diffused daylight with gentle shadows, clean muted cool-neutral
+  colors, a clean full-body fashion-catalog photograph taken with a digital camera
+  from a few steps away; the model has a short chin-length bob with bangs and a loose
+  hippie perm (curly, wavy and slightly voluminous) in every shot
+pose: standing in profile with her body turned to the left and her chin lifted away
+  from the camera, one hand slipped into the jacket pocket, her short bob with bangs
+  and hippie perm covering the side of her face, full body visible down to the ankle
+  boots, the tote hanging from the other arm
+reason: '크림 트위드 자켓이 주인공, 블랙 러플 블라우스와 롱스커트로 대비를 줌. 참고: 크림 트위드 자켓/블랙 프릴 블라우스/블랙 롱스커트/블랙
+  부츠 → 맞춘 것: 같은 종류·색, 프릴 블라우스와 스웨이드 앵클부츠는 맞는 색 사진이 없어 러플 블라우스·삭스 앵클부츠로 교체 (따라 함: 참고
+  140) [점수 8]'
+ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+scene_image: out/2026-10-17/src/scene.jpg
+shot: model
+styling: The cream tweed jacket is worn open over the black ruffle blouse, which shows
+  its ruffled front; the blouse is lightly tucked into the skirt.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#가을코디'
+  - '#브런치룩'
+  - '#트위드자켓'
+  - '#롱부츠'
+  - '#올블랙코디'
+  intro: 이슬비 내리는 토요일, 젖어도 티 안 나는 딥 톤으로 나가 보세요 ☔
+  points: []
+  title_lines:
+  - 비 오는 날 뭐 입지?
+  - 어두운 톤 코디 정리
+theme:
+  date: '2026-10-17'
+  mood: 젖어도 부담 없는 딥 가을 톤에 가벼운 겹쳐 입기
+  search_terms:
+    신발:
+    - 워커 부츠
+    아우터:
+    - 트위드 자켓
+    하의:
+    - 다크 와이드 팬츠
+  slots:
+  - category: 아우터
+    desc: 가벼운 트위드나 코듀로이 느낌의 짧은 자켓
+  - category: 상의
+    desc: 보트넥 니트나 스트라이프 긴팔티
+  - category: 하의
+    desc: 젖어도 티 안 나는 다크 컬러 팬츠나 스커트
+  - category: 가방
+    desc: 어깨에 메는 스웨이드나 가죽 숄더백
+  - category: 신발
+    desc: 워커 부츠나 슬라우치 롱부츠
+  title_hint: 이슬비 오는 토요일 브런치, 비 와도 꾸민 날 코디
+  type: 상황
+  why: 토요일, 서울 약한 이슬비에 14~21도. 약속 나가기 좋은 날이라 어두운 하의와 가벼운 아우터로 실용과 멋을 함께
