@@ -535,6 +535,8 @@ def look_slide(
     shop_font = load_font(profile.feed.body_font, round(lk.shop_size * k))
     step = name_font.size * lk.line_spacing
     last = h * (1 - lk.bottom)
+    if not lk.show_items:
+        lines = []  # 벌 번호만 (2026-10-15 사용자: 이미지에 제품 정보·사진 출처를 쓰지 않음)
     first = last - step * (len(lines) - 1)
     items: list = []
     for i, ln in enumerate(lines):
@@ -559,7 +561,7 @@ def look_slide(
         items.append(((margin, last + step * 0.85), drawable(lk.credit), credit_font, lk.sub_color))
     label_y = None
     if lk.label:
-        label_y = first - name_font.size * 1.25 - label_font.size * 0.4
+        label_y = first - name_font.size * 1.25 - label_font.size * 0.4 if lines else last
         items.append(((margin, label_y), lk.label.format(n=number), label_font, lk.text_color))
     out = Image.alpha_composite(img, overlay.text_layer(size, items, v.text_shadow, blur=8 * k))
     if v.accent_color and label_y is not None:

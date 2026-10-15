@@ -249,7 +249,10 @@ def test_look_credit_line(tmp_path):
     from core.profile import load_profile
     from tools.feed import LookLine, canvas_size, credit_overlay, look_slide
 
-    profile = load_profile("women")
+    women = load_profile("women")
+    assert not women.looks.credit and not women.looks.show_items  # 2026-10-15 사용자: 벌 번호만
+    show = {"credit": "이미지 출처 지그재그", "show_items": True}
+    profile = women.model_copy(update={"looks": women.looks.model_copy(update=show)})
     size = canvas_size(profile)
     base = tmp_path / "look.jpg"
     Image.new("RGB", size, "#808080").save(base)
@@ -257,8 +260,15 @@ def test_look_credit_line(tmp_path):
     plain = profile.model_copy(update={"looks": profile.looks.model_copy(update={"credit": ""})})
     with_credit = look_slide(base, lines, 1, profile, size)
     without = look_slide(base, lines, 1, plain, size)
-    assert profile.looks.credit
     assert with_credit.tobytes() != without.tobytes()
+    # 상품 목록을 빼면 목록·출처 없이 벌 번호만 (목록이 있던 자리 아래쪽에)
+    only_label = look_slide(base, lines, 1, women, size)
+    no_label = women.model_copy(update={"looks": women.looks.model_copy(update={"label": ""})})
+    assert only_label.tobytes() != without.tobytes()
+    assert (
+        look_slide(base, lines, 1, no_label, size).tobytes()
+        == look_slide(base, [], 1, no_label, size).tobytes()
+    )
     cover = credit_overlay(Image.new("RGB", size, "#808080"), profile)
     assert cover.size == size
 
