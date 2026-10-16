@@ -1,0 +1,131 @@
+account: women
+cover_look: 1
+date: '2026-10-18'
+items:
+- cm: 52.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 랩 니트 (grey wool-blend crossover wrap-front V-neck knit with no buttons,
+    loose dropped sleeves, cropped length)
+  name: 랩 니트
+  product: zigzag:171726873
+  ref_photos:
+  - 0
+  size: about 52 cm long from shoulder to hem, 54 cm across the shoulders, 59 cm across
+    the chest laid flat, 58 cm long sleeves
+- cm: 60.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 홀터넥 레이어드 탑 (black slim ribbed long-sleeve fake-halter layered top, only
+    its halter neckline and sleeves show)
+  name: 홀터넥 레이어드 탑
+  product: zigzag:153225273
+  ref_photos:
+  - 2
+  - 1
+  size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8 cm
+    long sleeves
+  wear_with: 아우터
+- cm: 87.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스트레치 롱스커트 (black stretch long skirt, straight column, high waist, mid-calf
+    length, small front slit at the hem, crisp matte fabric)
+  name: 스트레치 롱스커트
+  product: zigzag:169010137
+  ref_photos:
+  - 3
+  - 2
+  size: about 87 cm long from waist to hem, 34 cm across the waist laid flat, 51.5
+    cm across the hips laid flat, 54 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black soft crescent hobo shoulder bag with a top zip, one curved strap)
+  name: 포코 숄더백
+  product: zigzag:166194366
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 리본 메리제인 플랫 (black matte Mary Jane flats with an instep strap and a small
+    ribbon, low heel)
+  name: 리본 플랫슈즈
+  product: zigzag:158948889
+  ref_photos:
+  - 4
+- color: 실버
+  comment: ''
+  cutout_photo: 5
+  desc: 실버 물방울 귀걸이 (exactly one pair (two earrings) of small chunky silver huggie
+    hoop earrings)
+  name: 물방울 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 0
+  - 5
+  slot: 귀걸이
+looks: []
+mood: an everyday street-style snapshot of a woman in a full-body outfit, taken with
+  a phone or a small compact film camera on an ordinary Seoul street or in a plain
+  beige interior; soft flat overcast daylight, muted neutral colors (cream plaster,
+  white brick, beige walls, grey pavement), unposed and casual, no studio lighting
+pose: walking along a pavement in side profile in front of a plain cream plaster wall,
+  small oval black sunglasses, hair in a high ponytail, one arm swinging and the bag
+  hanging at her side, face turned away from the camera, full body from head to shoes
+reason: 그레이 랩 니트가 주인공, 블랙 홀터 이너를 안에 받치고 롱스커트로 톤온톤. 참고 그레이 랩 가디건/차콜 탱크/네이비 랩 롱스커트/블랙
+  미니 토트백/블랙 플랫슈즈 → 랩 니트/홀터 레이어드 탑/스트레치 롱스커트/숄더백/리본 플랫 (따라 함:참고 103)
+ref_photo: https://woonan.co.kr/web/product/big/202609/1d1db6bb2e82fd3d0a69babfca51ea10.jpg
+scene_image: out/2026-10-18/src/scene_2.jpg
+shot: model
+styling: The grey wrap knit is worn crossed at the front over the black halter top,
+  whose halter neckline shows at the V; the knit is cropped so the skirt waistband
+  is visible, and the long straight skirt hangs to mid-calf above the flats.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#가을레이어드'
+  - '#롱스커트코디'
+  - '#니트코디'
+  - '#이너코디'
+  - '#무채색코디'
+  intro: 비 소식 있는 일요일엔 얇은 이너 위에 한 겹씩 더해 입어요 ☔
+  points: []
+  title_lines:
+  - 겹쳐 입어도 안 답답한
+  - 얇은 이너 조합 정리
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음
