@@ -1,0 +1,313 @@
+account: women
+date: '2026-10-18'
+items: []
+looks:
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니트 뷔스티에 (black knit vest, V-neck, sleeveless, hip length)
+    name: 하버 뷔스티에 니트
+    product: zigzag:171826596
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 시어 셔츠 (white sheer shirt, regular collar, long sleeves, relaxed fit)
+    name: 시어 셔츠
+    product: zigzag:164681223
+    wear_with: 상의
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 랩 슬랙스 (grey wrap-front slacks, wide leg, long)
+    name: 랩 슬랙스
+    product: zigzag:168200317
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 포코 숄더백
+    product: zigzag:166194366
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 니하이 롱부츠 (black suede knee-high boots, round toe, flat)
+    name: 스웨이드 롱부츠
+    product: zigzag:149594575
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 체인볼 레이어드 목걸이 (one thin gold layered chain necklace with small balls)
+    name: 레이어드 목걸이
+    product: zigzag:135593307
+    slot: 목걸이
+  point: ''
+  reason: 블랙 니트 뷔스티에가 주인공, 크림 셔츠와 그레이 스커트팬츠에 롱부츠로 깔끔하게. 참고 블랙 캡소매 니트 베스트/크림 구김 셔츠/그레이
+    랩 스커트팬츠/블랙 롱부츠 → 하버 뷔스티에 니트/버튼업 셔츠/랩 스커트팬츠/니하이 부츠 (따라 함:참고 101)
+  ref: '101'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg
+  styling: The cream shirt sleeves and hem show below the black vest; the vest is
+    worn over the shirt.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 랩 니트 가디건 (grey wool-blend knit wrap cardigan, V-neck, loose fit, hip
+      length)
+    name: 랩 니트 가디건
+    product: zigzag:171726873
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 홀터넥 나시 (black plain halter-neck tank, slim, worn inside)
+    name: 홀터넥 나시
+    product: zigzag:153225273
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스트레치 롱스커트 (black stretch long skirt, straight, ankle length)
+    name: 스트레치 롱스커트
+    product: zigzag:169010137
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 엘론 숄더백
+    product: zigzag:150848794
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 발레리나 플랫 (black ballerina flats with a small ribbon, round toe)
+    name: 리본 플랫슈즈
+    product: zigzag:158948889
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼드 물방울 링 귀걸이 (exactly one pair (two earrings) of silver drop earrings)
+    name: 물방울 귀걸이
+    product: zigzag:139297257
+    slot: 귀걸이
+  point: ''
+  reason: 그레이 랩 니트가 주인공, 블랙 홀터 나시를 안에 받치고 롱스커트로 톤온톤. 참고 그레이 랩 가디건/차콜 탱크/네이비 랩 롱스커트/블랙
+    미니 토트백/블랙 플랫슈즈 → 랩 가디건 셋업/홀터 나시/스트레치 롱스커트/숄더백/리본 플랫 (따라 함:참고 103)
+  ref: '103'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/1d1db6bb2e82fd3d0a69babfca51ea10.jpg
+  styling: The wrap knit is worn open over the black halter tank; the tank neckline
+    shows at the center.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 슬림 브이넥 니트 (charcoal slim V-neck knit, long sleeves, hip length)
+    name: 슬림 브이넥 니트
+    product: zigzag:167858834
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 홀터넥 나시 (black plain halter-neck tank, slim, worn inside the knit)
+    name: 홀터넥 나시
+    product: zigzag:153225273
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬릿 랩 롱스커트 (black draped wrap long skirt with side slit, ankle length)
+    name: 슬릿 랩 롱스커트
+    product: zigzag:165302623
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 토크 숄더백
+    product: zigzag:161700662
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스퀘어토 롱부츠 (black square-toe knee-high boots, flat)
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 드롭 목걸이 (one long silver drop pendant necklace)
+    name: 롱 목걸이
+    product: zigzag:159636703
+    slot: 목걸이
+  point: ''
+  reason: 차콜 브이넥 니트가 주인공, 홀터 나시를 받쳐 블랙 랩 롱스커트와 롱부츠로 길게. 참고 차콜 슬림 V넥 니트/차콜 홀터 탱크/블랙
+    랩 롱스커트/블랙 롱부츠 → 슬림 브이넥 니트/홀터 나시/슬릿 랩 롱스커트/스퀘어 롱부츠 (따라 함:참고 112)
+  ref: '112'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/76d3eba89ccd6ff05c44f14f51ab12e6.jpg
+  styling: The halter top is worn inside the V-neck knit, its neckline visible at
+    the V.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 하이넥 가디건 (charcoal high-neck knit cardigan, cropped, buttoned)
+    name: 하이넥 가디건
+    product: zigzag:168261505
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 슬림 워머 티 (charcoal slim round-neck long-sleeve warmer tee, plain)
+    name: 슬림 워머 티
+    product: zigzag:155290768
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 니트 맥시 롱스커트 (charcoal chunky knit maxi skirt, high waist, straight)
+    name: 니트 맥시 스커트
+    product: zigzag:172049603
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 플랫 (black Mary Jane flats, round toe)
+    name: 메리제인 플랫
+    product: zigzag:110158856
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 펜던트 롱 체인 목걸이 (one long silver drop pendant chain necklace)
+    name: 롱 체인 목걸이
+    product: zigzag:159990191
+    slot: 목걸이
+  point: ''
+  reason: 차콜 하이넥 가디건이 주인공, 얇은 워머 티를 받치고 차콜 니트 롱스커트로 한 톤. 참고 차콜 크롭 가디건/차콜 슬림 긴팔티/차콜
+    니트 롱스커트/블랙 숄더백/블랙 플랫 → 하이넥 가디건/워머 티/니트 맥시 스커트/위빙 숄더백/아밀라 플랫 (따라 함:참고 118)
+  ref: '118'
+  ref_photo: https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg
+  styling: The cardigan is worn open; the slim tee's hem shows 3 cm below the cardigan
+    hem.
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핸드메이드 롱코트 (charcoal wool single-breasted long coat, notched lapel, below
+      knee length)
+    name: 핸드메이드 롱코트
+    product: zigzag:171904453
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 오픈스냅 헨리넥 긴팔 티 (light grey slim henley long-sleeve tee, plain, thin)
+    name: 헨리넥 긴팔 티
+    product: zigzag:169822302
+    wear_with: 아우터
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 핀스트라이프 와이드 슬랙스 (charcoal pinstripe wide-leg slacks, long, covers the
+      shoes)
+    name: 핀스트라이프 슬랙스
+    product: zigzag:168694332
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보백 (black hobo shoulder bag)
+    name: 포그 호보백
+    product: zigzag:167878705
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers, round toe)
+    name: 레이스업 로퍼
+    product: zigzag:134105153
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 볼드 물방울 귀걸이 (exactly one pair (two earrings) of gold drop earrings)
+    name: 물방울 귀걸이
+    product: zigzag:169414958
+    slot: 귀걸이
+  point: ''
+  reason: 차콜 롱코트를 열어 브라운 워머 티가 보이게, 핀스트라이프 와이드 팬츠로 길게. 참고 차콜 롱 싱글 코트/브라운 레이어드 탑/핀스트라이프
+    와이드 팬츠/블랙 호보백 → 핸드메이드 롱코트/워머 티/핀스트라이프 슬랙스/포그 호보백 (따라 함:참고 126)
+  ref: '126'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/2640dcee48de36cd632e86761d32d730.jpg
+  styling: The long coat is worn open, showing the layered top underneath.
+- items:
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 리브드 버튼 니트 가디건 (cream ribbed knit button cardigan, relaxed, hip length)
+    name: 리브드 니트 가디건
+    product: zigzag:168309583
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 프릴 블라우스 (black frill-neck blouse, long sleeves)
+    name: 프릴 블라우스
+    product: zigzag:139492730
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 새틴 스트링 롱스커트 (black satin string-waist maxi skirt, ankle length)
+    name: 새틴 롱스커트
+    product: zigzag:165618457
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 앵클부츠 (black suede ankle boots, square toe)
+    name: 스웨이드 앵클부츠
+    product: zigzag:149181846
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼드 물방울 링 귀걸이 (exactly one pair (two earrings) of silver drop earrings)
+    name: 물방울 귀걸이
+    product: zigzag:139297257
+    slot: 귀걸이
+  point: ''
+  reason: 크림 케이블 가디건이 주인공, 블랙 프릴 블라우스와 블랙 롱스커트로 대비. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙
+    부츠 → 리브드 니트 가디건/프릴 블라우스/새틴 스트링 롱스커트/앵클부츠 (따라 함:참고 140)
+  ref: '140'
+  ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+  styling: The cardigan is worn open over the blouse; the blouse frill shows at the
+    neckline.
+reason: 비 오는 일요일에 니트 베스트·카디건·브이넥 니트를 얇은 이너 위에 겹쳐 차콜·블랙 톤으로 차분하게
+shot: flatlay
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음
