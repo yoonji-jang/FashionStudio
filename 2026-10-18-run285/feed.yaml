@@ -1,5 +1,5 @@
 account: women
-cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/1/outfit/results/G_1.jpg
+cover: /tmp/results/2026-10-18-run285/looks/3/outfit/results/G_1.jpg
 cover_collage: false
 cover_has_title: false
 items:
@@ -91,7 +91,7 @@ items:
   name: 뒷지퍼 앵클부츠
   product: zigzag:130586820
 looks:
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/1/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-18-run285/looks/1/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 하버 뷔스티에 니트
@@ -111,7 +111,7 @@ looks:
   - comment: ''
     name: 롱 목걸이
     product: zigzag:159636703
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/2/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-18-run285/looks/2/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 랩 니트
@@ -131,7 +131,7 @@ looks:
   - comment: ''
     name: 물방울 귀걸이
     product: zigzag:139297257
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/3/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-18-run285/looks/3/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 소프트 브이넥 니트
@@ -151,7 +151,7 @@ looks:
   - comment: ''
     name: 롱 목걸이
     product: zigzag:159636703
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/4/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-18-run285/looks/4/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 하이넥 가디건
@@ -171,7 +171,7 @@ looks:
   - comment: ''
     name: 롱 체인 목걸이
     product: zigzag:159990191
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/5/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-18-run285/looks/5/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 핸드메이드 롱코트
@@ -191,7 +191,7 @@ looks:
   - comment: ''
     name: 골드 후프 귀걸이
     product: zigzag:169414958
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-18/looks/6/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-18-run285/looks/6/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 버튼 트위드 자켓

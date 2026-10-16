@@ -356,8 +356,8 @@ looks:
     exactly as they are.
   pose: standing in side profile beside a thin black metal bollard in front of a cream
     plaster wall, thin round dark-framed eyeglasses, hair slicked back in a low bun,
-    a small head with long-legged proportions, looking away down the street, one
-    hand on the bag strap, full body from head to shoes
+    a small head with long-legged proportions, looking away down the street, one hand
+    on the bag strap, full body from head to shoes
   scene_image: out/2026-10-18/src/scene_2.jpg
   ref: '118'
   ref_photo: https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg
@@ -449,8 +449,8 @@ looks:
 - items:
   - product: zigzag:150918386
     color: 아이보리
-    desc: 아이보리 트위드 자켓 (ivory tweed jacket, collarless round neckline, cropped
-      at the waist, four metal chain-style buttons, two large patch pockets at the waist)
+    desc: 아이보리 트위드 자켓 (ivory tweed jacket, collarless round neckline, cropped at the
+      waist, four metal chain-style buttons, two large patch pockets at the waist)
     name: 버튼 트위드 자켓
     comment: ''
     cutout_photo: 4
@@ -517,16 +517,17 @@ looks:
     - 0
     - 5
     slot: 귀걸이
-  reason: 아이보리 트위드 자켓이 주인공, 블랙 블라우스와 블랙 롱스커트로 대비. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙 부츠
-    → 버튼 트위드 자켓/블랙 블라우스/스트레치 롱스커트/앵클부츠 (따라 함:참고 140). 가디건은 /fix 로 아이보리 트위드 자켓으로 바꿈
+  reason: 아이보리 트위드 자켓이 주인공, 블랙 블라우스와 블랙 롱스커트로 대비. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙
+    부츠 → 버튼 트위드 자켓/블랙 블라우스/스트레치 롱스커트/앵클부츠 (따라 함:참고 140). 가디건은 /fix 로 아이보리 트위드 자켓으로
+    바꿈
   point: 아이보리 트위드 자켓 아래 블랙 블라우스로 색 대비를 줬어요
   styling: The ivory tweed jacket is worn open over the black blouse, whose hem shows
     about 4 cm below the cropped jacket; the blouse is tucked into the high-waisted
     skirt at the front only; do not draw any knit tied at the waist; no cardigan.
   pose: standing against a plain beige wall with nothing else beside her, holding
     a smartphone up in front of her face in one hand to take a selfie so the phone
-    hides her eyes and nose, hair pulled into a low bun, the bag on her forearm,
-    full body from head to ankle boots
+    hides her eyes and nose, hair pulled into a low bun, the bag on her forearm, full
+    body from head to ankle boots
   scene_image: out/2026-10-18/src/scene_3.jpg
   ref: '140'
   ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
@@ -546,7 +547,7 @@ text:
   - '#이너코디'
   - '#무채색코디'
 shot: model
-cover_look: 1
+cover_look: 3
 mood: an everyday street-style snapshot of a woman in a full-body outfit, taken with
   a phone or a small compact film camera on an ordinary Seoul street or in a plain
   beige interior; soft flat overcast daylight, muted neutral colors (cream plaster,
