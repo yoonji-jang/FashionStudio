@@ -64,6 +64,9 @@ def look_number(out: Path, profile: Profile, shown: int) -> int:
     plan = DailyPlan.model_validate(yaml.safe_load((out / "plan.yaml").read_text(encoding="utf-8")))
     cover = current(out, profile)
     rest = [n for n in range(1, len(plan.looks) + 1) if n != cover]
+    if profile.looks.cover_first and cover is not None:
+        # 표지가 LOOK 1, 벌 장이 LOOK 2 부터 (2026-10-16)
+        rest = [cover, *rest]
     if not 1 <= shown <= len(rest):
         raise ValueError(f"LOOK {shown} 이 없어요 (1~{len(rest)})")
     return rest[shown - 1]

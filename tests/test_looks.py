@@ -23,7 +23,19 @@ from core.store import Store
 from tests.test_pick import rec, tg_of, upd, write_candidates
 from tests.test_plan import fake_photos, product  # noqa: F401 - fixture
 from tests.test_publish import CHAT, FakeApis
-from tools import ai_label, cover_look, feedback, looks, notify, pick, plan, publish, review, share
+from tools import (
+    ai_label,
+    cover_look,
+    feed,
+    feedback,
+    looks,
+    notify,
+    pick,
+    plan,
+    publish,
+    review,
+    share,
+)
 
 pytestmark = pytest.mark.looks
 DAY = date(2026, 10, 2)
@@ -898,13 +910,21 @@ def test_cover_look_shown_once(tmp_path, store):
         "07_comment.jpg",
     ]
     assert cover_look.current(out, profile) == 1
-    assert cover_look.look_number(out, profile, 1) == 2  # 벌 장 LOOK 1 = 2번 벌
+    # 2026-10-16 cover_first: 표지가 LOOK 1, 벌 장은 LOOK 2 부터 (벌 장 LOOK 2 = 2번 벌)
+    assert profile.looks.cover_first
+    assert cover_look.look_number(out, profile, 1) == 1
+    assert cover_look.look_number(out, profile, 2) == 2
+    old = profile.model_copy(
+        update={"looks": profile.looks.model_copy(update={"cover_first": False})}
+    )
+    assert cover_look.look_number(out, old, 1) == 2  # 예전: 벌 장 LOOK 1 = 2번 벌
     record = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
     (out / "telegram.json").write_text(record.model_dump_json())
     text = notify.control_text(notify.load_manifest(out), profile, False, cover=1)
     assert "표지 벌은 첫 장에만" in text and "표지: LOOK" not in text
-    api = FakeApis(replies=[(1100, "/cover 3", None)])  # 벌 장 LOOK 3 = 4번 벌
+    api = FakeApis(replies=[(1100, "/cover 4", None)])  # 벌 장 LOOK 4 = 4번 벌 (표지가 LOOK 1)
     cover_look.check(out, tg_of(api))
     assert cover_look.current(out, profile) == 4
     names = [Path(x).name for x in notify.load_manifest(out).images]
     assert "02_look1.jpg" in names and not any(n.endswith("_look4.jpg") for n in names)
+    assert feed.first_shift(profile) == 1 and feed.first_shift(old) == 0

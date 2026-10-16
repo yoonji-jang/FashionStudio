@@ -876,6 +876,12 @@ def save_slide(img: Image.Image, path: Path, profile: Profile) -> None:
     img.save(path, "JPEG", quality=93, **label)
 
 
+def first_shift(profile: Profile) -> int:
+    """벌 장 LOOK 번호를 표지 다음부터 셀 때 더하는 수
+    (표지 = LOOK 1, profile looks.cover_first)."""
+    return 1 if profile.looks.cover_first and not profile.looks.repeat_cover_look else 0
+
+
 def render(
     spec: FeedSpec,
     out: Path,
@@ -928,8 +934,9 @@ def render(
             for shown_no, (n, look) in enumerate(shown, 1):
                 lines = look_lines(look, spec.account, products=products)
                 image = root / look.image
-                # 표지 벌을 빼면 보이는 순서대로 LOOK 1, 2 … (파일 이름은 벌 번호 그대로)
-                label = n if profile.looks.repeat_cover_look else shown_no
+                # 표지 벌을 빼면 보이는 순서대로 LOOK 1, 2 … (파일 이름은 벌 번호 그대로).
+                # cover_first 면 표지가 LOOK 1 이라 벌 장은 LOOK 2 부터
+                label = n if profile.looks.repeat_cover_look else shown_no + first_shift(profile)
                 big = look_slide(image, lines, label, profile, TALL_SIZE) if tall else None
                 save(look_slide(image, lines, label, profile, size), f"look{n}", big)
         elif kind == "comment":

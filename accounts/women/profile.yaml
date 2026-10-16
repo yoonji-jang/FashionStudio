@@ -260,6 +260,7 @@ looks:
   candidates: 1      # 벌마다 처음 그리는 코디컷 수. 검수에서 떨어진 벌만 한 장 더 (review.max_rounds)
   # 표지로 쓴 벌은 뒤 벌 장에 다시 넣지 않음 (2026-10-15 사용자: 벌 장에 정보를 안 쓰니 표지는 첫 장 고르는 용도로만)
   repeat_cover_look: false
+  cover_first: true  # 고른 순서대로, 첫 벌 = 표지 = LOOK 1 (2026-10-16)
   title_count: false  # 표지 제목에 "여섯 벌" 같은 벌 수를 쓰지 않음 (2026-10-01 사용자)
   label: "LOOK {n}"
   # 2026-10-15 사용자 "이미지에 사진 출처랑 제품 정보 적지 말자": 벌 장에는 LOOK 번호만.

@@ -298,6 +298,11 @@ class Looks(BaseModel):
     )  # 벌마다 한 번에 만드는 코디컷 수 (장당 약 $0.15)
     # 표지(1장, 제목) 다음 벌 장에 1번 벌을 다시 넣을지. false 면 1번 벌은 표지로만 보임
     repeat_cover_look: bool = True
+    # 사람이 고른 순서 그대로 쓰고 첫 벌을 표지로
+    # (2026-10-16 사용자 "3,4,2,5,1,6,7 이면 3번 후보가 look1·표지").
+    # 켜면 daily-feed 가 표지 벌을 따로 고르지 않고(cover_look 1), 벌 번호는 표지 = LOOK 1 부터 센다
+    # (repeat_cover_look 꺼짐이면 벌 장은 LOOK 2, 3 …)
+    cover_first: bool = False
     # 표지 제목에 벌 수("여섯 벌", "6벌")를 써도 되는지. false 면 tools.plan check 가 막는다
     title_count: bool = True
     # 벌 장 글자 (tools.feed). 크기는 폭 1080px 기준, 위치는 높이 대비

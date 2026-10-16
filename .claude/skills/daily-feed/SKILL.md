@@ -34,7 +34,9 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
 - 10. 검수: 벌 폴더마다 따로 한다. `python -m tools.review prep out/$DATE` 가 모든 벌을 prep 한다. 그다음
   벌마다(`out/$DATE/looks/<n>`) `image-reviewer` → `scores.yaml` → `tools.review apply out/$DATE/looks/<n>`,
   종료 코드 3이면 그 벌만 `tools.review more out/$DATE/looks/<n>` 하고 그 벌만 다시 검수한다.
-  모든 벌이 끝나면 **표지 벌을 고른다** (profile `looks.cover_collage.enabled` 가 false 일 때, 2026-10-12 사용자):
+  모든 벌이 끝나면 **표지 벌을 고른다** (profile `looks.cover_collage.enabled` 가 false 일 때, 2026-10-12 사용자).
+  단 profile `looks.cover_first` 가 켜져 있으면 고르지 않는다: 사람이 고른 순서 그대로 두고 `cover_look: 1`
+  (첫 벌 = 표지 = LOOK 1, 2026-10-16 사용자). 벌 순서도 바꾸지 않는다. 그 밖에는:
   벌마다 고른 코디컷(`looks/<n>/review/covers.jpg`)을 보고, 피드 첫 화면에서 가장 눈에 띄고 제목과 가장 잘
   맞는 한 벌을 plan.yaml `cover_look: <n>` (1부터)에 쓴다. 기준: 검수 통과·높은 점수, 제목이 말하는
   아이템·색이 보이는 벌, 아래 왼쪽 제목 자리(흰 글자)를 옷이 크게 가리지 않는 벌, 밝기·색이 단조롭지 않은 벌.
