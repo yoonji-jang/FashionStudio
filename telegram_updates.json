@@ -1,16 +1,5 @@
 [
  {
-  "update_id": 428675787,
-  "message": {
-   "message_id": 910,
-   "date": 1791856604,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "2,3,4,5,6,8"
-  }
- },
- {
   "update_id": 428675788,
   "message": {
    "message_id": 923,
@@ -197,6 +186,59 @@
     "id": 8708345474
    },
    "text": "/theme 레이어드 코디"
+  }
+ },
+ {
+  "update_id": 428675804,
+  "message": {
+   "message_id": 1520,
+   "date": 1792115260,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "2,3,4,5,7,8"
+  }
+ },
+ {
+  "update_id": 428675805,
+  "message": {
+   "message_id": 1521,
+   "date": 1792115544,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIF8WrRg1hw8wPp7lwcpUi4RYbygxDyAALlFmsbBL-JVsiSggO-QhYZAQADAgADeQADPQQ",
+   "caption": "",
+   "media_group_id": "14336924354657133"
+  }
+ },
+ {
+  "update_id": 428675806,
+  "message": {
+   "message_id": 1522,
+   "date": 1792115544,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIF8mrRg1iR3ZBtzLfUwla7gUR6BDwkAALmFmsbBL-JVqUC22-hzPerAQADAgADeQADPQQ",
+   "caption": "",
+   "media_group_id": "14336924354657133"
+  }
+ },
+ {
+  "update_id": 428675807,
+  "message": {
+   "message_id": 1523,
+   "date": 1792115544,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIF82rRg1jxhfH6rsUUNTggQVRrhRbQAALnFmsbBL-JVsqL4EvlIsLhAQADAgADeQADPQQ",
+   "caption": "",
+   "media_group_id": "14336924354657133"
   }
  }
 ]
