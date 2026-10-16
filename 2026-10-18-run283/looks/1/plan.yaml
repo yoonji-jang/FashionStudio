@@ -1,0 +1,130 @@
+account: women
+date: '2026-10-18'
+items:
+- cm: 54.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 니트 뷔스티에 (black fine-knit vest, V-neck, sleeveless, fitted, hip length)
+  name: 하버 뷔스티에 니트
+  product: zigzag:171826596
+  ref_photos:
+  - 0
+  size: about 54 cm long from shoulder to hem, 28 cm across the shoulders, 45.5 cm
+    across the chest laid flat
+- cm: 75.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 1
+  desc: 화이트 시어 셔츠 (white sheer shirt, regular collar, long sleeves, relaxed loose
+    fit, hip length, lightweight see-through fabric)
+  name: 시어 셔츠
+  product: zigzag:164681223
+  ref_photos:
+  - 1
+  - 5
+  size: about 75 cm long from shoulder to hem, 53 cm across the shoulders, 65 cm across
+    the chest laid flat, 59 cm long sleeves
+  wear_with: 상의
+- cm: 102.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 랩 슬랙스 (taupe-grey wrap-front slacks with a side tie, wide leg, soft drapey
+    fabric, floor-grazing long)
+  name: 랩 슬랙스
+  product: zigzag:168200317
+  ref_photos:
+  - 0
+  size: about 102 cm long from waist to hem, 35 cm across the waist laid flat, 48
+    cm across the hips laid flat, 26 cm across the thigh laid flat, 29 cm across the
+    hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black slouchy hobo shoulder bag, single curved strap, soft leather)
+  name: 포코 숄더백
+  product: zigzag:166194366
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 롱부츠 (black knee-high boots, slim shaft, slightly squared almond toe,
+    smooth leather, small block heel)
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+  ref_photos:
+  - 0
+  - 2
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 워터드롭 롱 체인 목걸이 (one long silver chain necklace with a small water-drop pendant)
+  name: 롱 체인 목걸이
+  product: zigzag:159990191
+  ref_photos:
+  - 0
+  - 1
+  slot: 목걸이
+looks: []
+mood: a candid everyday street-style snapshot in Seoul taken with a phone or a small
+  compact camera by a friend, calm overcast or soft diffuse daylight, muted warm-neutral
+  and cream tones with dark clothes standing out, plain textured walls, painted brick
+  and quiet corners, full-length framing with the shoes visible, no real shop names
+  or signs
+pose: standing in a quiet beige plaster stairwell beside a tall pottery vase with
+  dried branches, her dark hair in a sleek low bun with a middle part, holding a small
+  compact camera up in front of her face so it hides her eyes and nose, soft pink
+  blush on her cheeks, bag on her shoulder, one foot slightly forward, full body with
+  the boots visible
+reason: 블랙 니트 뷔스티에가 주인공, 화이트 시어 셔츠와 그레이 랩 슬랙스에 롱부츠로 깔끔하게. 참고 블랙 캡소매 니트 베스트/크림 구김 셔츠/그레이
+  랩 스커트팬츠/블랙 롱부츠 → 하버 뷔스티에 니트/시어 셔츠/랩 슬랙스/스퀘어 롱부츠 (따라 함:참고 101). 부츠는 블랙 사진이 있는 스퀘어
+  롱부츠로, 목걸이는 실버 롱 체인으로 바꿈
+ref_photo: https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg
+scene_image: out/2026-10-18/src/scene_3.jpg
+shot: model
+styling: The sheer shirt is worn under the vest with its sleeves and hem showing below
+  it; the vest is worn over the shirt; the shirt is tucked in at the front.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#니트코디'
+  - '#가을코디'
+  - '#롱스커트코디'
+  intro: 비 오는 일요일엔 얇은 이너 위에 한 겹씩 가볍게 겹쳐 입어요 ☔
+  points: []
+  title_lines:
+  - 답답해 보이지 않게
+  - 얇은 이너 레이어드 공식
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음

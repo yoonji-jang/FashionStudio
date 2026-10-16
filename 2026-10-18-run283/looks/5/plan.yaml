@@ -1,0 +1,130 @@
+account: women
+date: '2026-10-18'
+items:
+- cm: 115.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 핸드메이드 롱코트 (black wool single-breasted long coat, notched lapel, below knee
+    length, the photos also show a taupe-grey version, ignore it)
+  name: 핸드메이드 롱코트
+  product: zigzag:171904453
+  ref_photos:
+  - 4
+  - 5
+  size: about 115 cm long from shoulder to hem, 57.75 cm across the chest laid flat,
+    82.5 cm long sleeves
+- cm: 52.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 오픈스냅 헨리넥 긴팔 티 (light grey slim snap-front henley long-sleeve tee, plain,
+    thin ribbed cotton, cropped at the waist)
+  name: 헨리넥 긴팔 티
+  product: zigzag:169822302
+  ref_photos:
+  - 1
+  - 2
+  size: about 52 cm long from shoulder to hem, 40 cm across the shoulders, 43.5 cm
+    across the chest laid flat, 63 cm long sleeves
+  wear_with: 아우터
+- cm: 104.5
+  color: 차콜
+  comment: ''
+  cutout_photo: 1
+  desc: 차콜 핀스트라이프 와이드 슬랙스 (charcoal fine-pinstripe wide-leg slacks, high waist, single
+    pleat, floor length, covers the shoes)
+  name: 핀스트라이프 슬랙스
+  product: zigzag:168694332
+  ref_photos:
+  - 1
+  - 0
+  size: about 104.5 cm long from waist to hem, 36 cm across the waist laid flat, 51
+    cm across the hips laid flat, 31 cm across the thigh laid flat, 27 cm across the
+    hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스웨이드 호보백 (black large slouchy suede hobo shoulder bag with a front flap
+    pocket)
+  name: 포그 호보백
+  product: zigzag:167878705
+  ref_photos:
+  - 1
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 레이스업 로퍼 (black smooth-leather chunky-sole round-toe lace-up moc loafers)
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+  ref_photos:
+  - 1
+  - 2
+- color: 골드
+  comment: ''
+  cutout_photo: 5
+  desc: 골드 청키 후프 귀걸이 (exactly one pair (two earrings) of chunky gold huggie hoop earrings)
+  name: 골드 후프 귀걸이
+  product: zigzag:169414958
+  ref_photos:
+  - 5
+  slot: 귀걸이
+looks: []
+mood: a candid everyday street-style snapshot in Seoul taken with a phone or a small
+  compact camera by a friend, calm overcast or soft diffuse daylight, muted warm-neutral
+  and cream tones with dark clothes standing out, plain textured walls, painted brick
+  and quiet corners, full-length framing with the shoes visible, no real shop names
+  or signs
+pose: walking along a quiet street beside a painted white brick wall, looking down
+  at her phone with a plain dark cap pulled low over her eyes, dark hair in a low
+  ponytail, soft pink blush on her cheeks, hands holding phone and bag strap, full
+  body with the loafers visible
+reason: 차콜 핀스트라이프 와이드 슬랙스가 주인공, 블랙 롱코트를 열어 그레이 헨리넥이 보이게. 참고 차콜 롱 싱글 코트/브라운 레이어드 탑/핀스트라이프
+  와이드 팬츠/블랙 호보백 → 핸드메이드 롱코트/헨리넥 티/핀스트라이프 슬랙스/포그 호보백 (따라 함:참고 126). 롱코트는 차콜 사진이 없어
+  블랙으로 바꿈
+ref_photo: https://woonan.co.kr/web/product/big/202610/2640dcee48de36cd632e86761d32d730.jpg
+scene_image: out/2026-10-18/src/scene.jpg
+shot: model
+styling: The long coat is worn open, showing the grey henley underneath.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#니트코디'
+  - '#가을코디'
+  - '#롱스커트코디'
+  intro: 비 오는 일요일엔 얇은 이너 위에 한 겹씩 가볍게 겹쳐 입어요 ☔
+  points: []
+  title_lines:
+  - 답답해 보이지 않게
+  - 얇은 이너 레이어드 공식
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음

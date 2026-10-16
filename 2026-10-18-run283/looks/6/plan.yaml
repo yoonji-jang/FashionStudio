@@ -1,0 +1,130 @@
+account: women
+date: '2026-10-18'
+items:
+- cm: 50.5
+  color: 크림
+  comment: ''
+  cutout_photo: 0
+  desc: 크림 리브드 버튼 니트 가디건 (cream wide-ribbed knit button cardigan, slim fitted, cropped
+    at the high hip, round neck, curved hem, long sleeves)
+  name: 리브드 니트 가디건
+  product: zigzag:168309583
+  ref_photos:
+  - 0
+  - 2
+  size: about 50.5 cm long from shoulder to hem, 41.5 cm across the shoulders, 40.5
+    cm across the chest laid flat, 57.5 cm long sleeves
+- cm: 55.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 퍼프 블라우스 (black thin soft V-neck blouse with a button placket, gathered
+    puff sleeves with tied cuffs, relaxed, waist to hip length)
+  name: 퍼프 소매 블라우스
+  product: zigzag:139492730
+  ref_photos:
+  - 0
+  size: about 55 cm long from shoulder to hem, 41 cm across the shoulders, 50 cm across
+    the chest laid flat, 64 cm long sleeves
+  wear_with: 아우터
+- cm: 87.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스트레치 롱스커트 (black stretch nylon long skirt, straight slim, mid-calf to ankle
+    length, elastic waist, small front slit, no pleats)
+  name: 스트레치 롱스커트
+  product: zigzag:169010137
+  ref_photos:
+  - 3
+  - 2
+  size: about 87 cm long from waist to hem, 34 cm across the waist laid flat, 51.5
+    cm across the hips laid flat, 54 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 숄더백 (black structured bucket-style woven shoulder bag, long strap)
+  name: 위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 앵클부츠 (black smooth-leather ankle boots, back zip, low heel, softly pointed
+    round toe)
+  name: 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  ref_photos:
+  - 1
+  - 5
+- color: 실버
+  comment: ''
+  cutout_photo: 5
+  desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small chunky silver huggie hoop
+    earrings)
+  name: 실버 후프 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 5
+  slot: 귀걸이
+looks: []
+mood: a candid everyday street-style snapshot in Seoul taken with a phone or a small
+  compact camera by a friend, calm overcast or soft diffuse daylight, muted warm-neutral
+  and cream tones with dark clothes standing out, plain textured walls, painted brick
+  and quiet corners, full-length framing with the shoes visible, no real shop names
+  or signs
+pose: standing in profile against a pale textured plaster wall with a window, face
+  turned away, small oval dark sunglasses, dark hair in a high ponytail with bangs,
+  soft pink blush on the visible cheek, one hand brushing her hair, bag on her shoulder,
+  full body with the boots visible
+reason: 크림 니트 가디건이 주인공, 블랙 블라우스와 블랙 롱스커트로 대비. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙
+  부츠 → 리브드 니트 가디건/퍼프 소매 블라우스/새틴 롱스커트/앵클부츠 (따라 함:참고 140). 스커트·부츠는 블랙 사진이 있는 상품으로 바꿈
+  (스트레치 롱스커트는 벌 2와 함께 씀)
+ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+scene_image: out/2026-10-18/src/scene_2.jpg
+shot: model
+styling: The cardigan is worn open over the blouse; the blouse neckline shows at the
+  center.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#니트코디'
+  - '#가을코디'
+  - '#롱스커트코디'
+  intro: 비 오는 일요일엔 얇은 이너 위에 한 겹씩 가볍게 겹쳐 입어요 ☔
+  points: []
+  title_lines:
+  - 답답해 보이지 않게
+  - 얇은 이너 레이어드 공식
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음

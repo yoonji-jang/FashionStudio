@@ -1,0 +1,125 @@
+account: women
+date: '2026-10-18'
+items:
+- cm: 56.5
+  color: 차콜
+  comment: ''
+  cutout_photo: 2
+  desc: 차콜 니트 가디건 (charcoal fine wool-blend knit cardigan, slim fitted, small open
+    collar, button front, hip length)
+  name: 차콜 니트 가디건
+  product: zigzag:168261505
+  ref_photos:
+  - 2
+  size: about 56.5 cm long from shoulder to hem, 36.5 cm across the shoulders, 39
+    cm across the chest laid flat, 62 cm long sleeves
+- cm: 63.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 1
+  desc: 차콜 울 슬림 워머 티 (charcoal slim round-neck long-sleeve warmer tee, plain, soft
+    stretchy knit, hip length)
+  name: 슬림 워머 티
+  product: zigzag:155290768
+  ref_photos:
+  - 1
+  - 0
+  size: about 63 cm long from shoulder to hem, 45 cm across the shoulders, 41 cm across
+    the chest laid flat, 74 cm long sleeves
+  wear_with: 상의
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 니트 맥시 롱스커트 (charcoal thick ribbed knit maxi skirt, high waist, straight,
+    slightly flared hem, floor length)
+  name: 니트 맥시 스커트
+  product: zigzag:172049603
+  ref_photos:
+  - 0
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 숄더백 (black structured bucket-style woven shoulder bag, long strap)
+  name: 위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 벨벳 메리제인 플랫 (black matte velvet Mary Jane flats, round toe, thin strap)
+  name: 메리제인 플랫
+  product: zigzag:110158856
+  ref_photos:
+  - 0
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 워터드롭 롱 체인 목걸이 (one long silver chain necklace with a small water-drop pendant)
+  name: 롱 체인 목걸이
+  product: zigzag:159990191
+  ref_photos:
+  - 0
+  - 1
+  slot: 목걸이
+looks: []
+mood: a candid everyday street-style snapshot in Seoul taken with a phone or a small
+  compact camera by a friend, calm overcast or soft diffuse daylight, muted warm-neutral
+  and cream tones with dark clothes standing out, plain textured walls, painted brick
+  and quiet corners, full-length framing with the shoes visible, no real shop names
+  or signs
+pose: standing on a stair landing of a plain beige plaster stairwell, her dark hair
+  in a sleek low bun with a middle part, taking a photo with a small compact camera
+  held in both hands right in front of her face so it covers her eyes and nose, soft
+  pink blush on her cheeks, bag on her shoulder, weight on one leg, full body with
+  the flats visible
+reason: 차콜 니트 가디건이 주인공, 얇은 워머 티를 받치고 차콜 니트 롱스커트로 한 톤. 참고 차콜 크롭 가디건/차콜 슬림 긴팔티/차콜 니트
+  롱스커트/블랙 숄더백/블랙 플랫 → 니트 가디건/워머 티/니트 맥시 스커트/위빙 숄더백/메리제인 플랫 (따라 함:참고 118)
+ref_photo: https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg
+scene_image: out/2026-10-18/src/scene_3.jpg
+shot: model
+styling: The cardigan is worn open; the slim tee's hem shows about 3 cm below the
+  cardigan hem.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#니트코디'
+  - '#가을코디'
+  - '#롱스커트코디'
+  intro: 비 오는 일요일엔 얇은 이너 위에 한 겹씩 가볍게 겹쳐 입어요 ☔
+  points: []
+  title_lines:
+  - 답답해 보이지 않게
+  - 얇은 이너 레이어드 공식
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음

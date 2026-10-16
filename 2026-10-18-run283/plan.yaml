@@ -1,0 +1,539 @@
+account: women
+date: '2026-10-18'
+theme:
+  date: '2026-10-18'
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+items: []
+looks:
+- items:
+  - product: zigzag:171826596
+    color: 블랙
+    desc: 블랙 니트 뷔스티에 (black fine-knit vest, V-neck, sleeveless, fitted, hip length)
+    name: 하버 뷔스티에 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 54 cm long from shoulder to hem, 28 cm across the shoulders, 45.5
+      cm across the chest laid flat
+    cm: 54.0
+  - product: zigzag:164681223
+    color: 화이트
+    desc: 화이트 시어 셔츠 (white sheer shirt, regular collar, long sleeves, relaxed loose
+      fit, hip length, lightweight see-through fabric)
+    name: 시어 셔츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 5
+    size: about 75 cm long from shoulder to hem, 53 cm across the shoulders, 65 cm
+      across the chest laid flat, 59 cm long sleeves
+    cm: 75.0
+    wear_with: 상의
+  - product: zigzag:168200317
+    color: 그레이
+    desc: 그레이 랩 슬랙스 (taupe-grey wrap-front slacks with a side tie, wide leg, soft
+      drapey fabric, floor-grazing long)
+    name: 랩 슬랙스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 102 cm long from waist to hem, 35 cm across the waist laid flat, 48
+      cm across the hips laid flat, 26 cm across the thigh laid flat, 29 cm across
+      the hem laid flat
+    cm: 102.0
+  - product: zigzag:166194366
+    color: 블랙
+    desc: 블랙 숄더백 (black slouchy hobo shoulder bag, single curved strap, soft leather)
+    name: 포코 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:108156951
+    color: 블랙
+    desc: 블랙 스퀘어토 롱부츠 (black knee-high boots, slim shaft, slightly squared almond
+      toe, smooth leather, small block heel)
+    name: 스퀘어 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:159990191
+    color: 실버
+    desc: 실버 워터드롭 롱 체인 목걸이 (one long silver chain necklace with a small water-drop
+      pendant)
+    name: 롱 체인 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    slot: 목걸이
+  reason: 블랙 니트 뷔스티에가 주인공, 화이트 시어 셔츠와 그레이 랩 슬랙스에 롱부츠로 깔끔하게. 참고 블랙 캡소매 니트 베스트/크림 구김
+    셔츠/그레이 랩 스커트팬츠/블랙 롱부츠 → 하버 뷔스티에 니트/시어 셔츠/랩 슬랙스/스퀘어 롱부츠 (따라 함:참고 101). 부츠는 블랙 사진이
+    있는 스퀘어 롱부츠로, 목걸이는 실버 롱 체인으로 바꿈
+  point: 블랙 뷔스티에를 시어 셔츠 위에 겹쳐 가볍게 레이어드해요
+  styling: The sheer shirt is worn under the vest with its sleeves and hem showing
+    below it; the vest is worn over the shirt; the shirt is tucked in at the front.
+  pose: standing in a quiet beige plaster stairwell beside a tall pottery vase with
+    dried branches, her dark hair in a sleek low bun with a middle part, holding a
+    small compact camera up in front of her face so it hides her eyes and nose, soft
+    pink blush on her cheeks, bag on her shoulder, one foot slightly forward, full body with
+    the boots visible
+  scene_image: out/2026-10-18/src/scene_3.jpg
+  ref: '101'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/216795b71efe330326c0c8d51510c516.jpg
+- items:
+  - product: zigzag:171726873
+    color: 그레이
+    desc: 그레이 랩 니트 가디건 (grey wool-blend knit wrap cardigan, deep V-neck, loose relaxed
+      fit, dropped shoulders, hip length)
+    name: 랩 니트 가디건
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 52 cm long from shoulder to hem, 54 cm across the shoulders, 59 cm
+      across the chest laid flat, 58 cm long sleeves
+    cm: 52.0
+  - product: zigzag:153225273
+    color: 블랙
+    desc: 블랙 홀터 레이어드 슬림 티 (black slim ribbed long-sleeve tee with a fake halter-tank
+      layer, scoop neckline, hip length, worn inside)
+    name: 홀터 레이어드 티
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8
+      cm long sleeves
+    cm: 60.0
+    wear_with: 아우터
+  - product: zigzag:169010137
+    color: 블랙
+    desc: 블랙 스트레치 롱스커트 (black stretch nylon long skirt, straight slim, mid-calf to
+      ankle length, elastic waist, small front slit, no pleats)
+    name: 스트레치 롱스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 3
+    - 2
+    size: about 87 cm long from waist to hem, 34 cm across the waist laid flat, 51.5
+      cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 87.0
+  - product: zigzag:166194366
+    color: 블랙
+    desc: 블랙 숄더백 (black slouchy hobo shoulder bag, single curved strap, soft leather)
+    name: 포코 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:158948889
+    color: 블랙
+    desc: 블랙 리본 메리제인 플랫 (black Mary Jane flats with a thin ankle strap, small bow,
+      low block heel, soft almond toe)
+    name: 리본 메리제인
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+  - product: zigzag:139297257
+    color: 실버
+    desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small chunky silver huggie
+      hoop earrings)
+    name: 실버 후프 귀걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    slot: 귀걸이
+  reason: 그레이 랩 니트가 주인공, 블랙 이너를 안에 받치고 롱스커트로 톤온톤. 참고 그레이 랩 가디건/차콜 탱크/네이비 랩 롱스커트/블랙
+    미니 토트백/블랙 플랫슈즈 → 랩 가디건/홀터 레이어드 티/스트레치 롱스커트/숄더백/리본 메리제인 (따라 함:참고 103). 숄더백은 블랙
+    사진이 있는 포코 숄더백으로 바꿈
+  point: 그레이 랩 가디건 안에 블랙 이너를 받쳐 톤온톤으로 맞춰요 🖤
+  styling: The wrap knit is worn open over the black inner tee; the inner neckline
+    shows at the center.
+  pose: walking in profile along a pale textured plaster wall on the sidewalk, her
+    face turned away to the side with her dark hair in a high ponytail with bangs
+    swinging, small oval dark sunglasses, soft pink blush on the visible cheek, one hand loose in front, bag on her shoulder, full body with the flats
+    visible
+  scene_image: out/2026-10-18/src/scene_2.jpg
+  ref: '103'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/1d1db6bb2e82fd3d0a69babfca51ea10.jpg
+- items:
+  - product: zigzag:165810894
+    color: 네이비
+    desc: 네이비 브이넥 니트 (navy soft brushed wool V-neck knit, relaxed fit with dropped
+      rounded shoulders, voluminous sleeves bunched at the wrists, ribbed hem and
+      cuffs, waist length just below the waist)
+    name: 슬림 브이넥 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    size: about 60 cm long from shoulder to hem, 50 cm across the chest laid flat,
+      67 cm long sleeves
+    cm: 60.0
+  - product: zigzag:153225273
+    color: 블랙
+    desc: 블랙 홀터 레이어드 슬림 티 (black slim ribbed long-sleeve tee with a fake halter-tank
+      layer, scoop neckline, hip length, worn inside the knit)
+    name: 홀터 레이어드 티
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8
+      cm long sleeves
+    cm: 60.0
+    wear_with: 상의
+  - product: zigzag:165302623
+    color: 블랙
+    desc: 블랙 슬릿 랩 롱스커트 (black draped asymmetric wrap long skirt in fine pinstripe
+      fabric with a side slit, ankle length)
+    name: 슬릿 랩 롱스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 87 cm long from waist to hem, 36 cm across the waist laid flat, 51.5
+      cm across the hips laid flat, 55 cm across the hem laid flat
+    cm: 87.0
+  - product: zigzag:161700662
+    color: 블랙
+    desc: 블랙 숄더백 (black compact hobo shoulder bag, glossy crinkled patent leather)
+    name: 토크 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:108156951
+    color: 블랙
+    desc: 블랙 스퀘어토 롱부츠 (black knee-high boots, slim shaft, slightly squared almond
+      toe, smooth leather, small block heel)
+    name: 스퀘어 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:159636703
+    color: 실버
+    desc: 실버 롱 드롭 목걸이 (one long silver drop pendant necklace)
+    name: 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 차콜 브이넥 니트가 주인공, 이너를 받쳐 블랙 랩 롱스커트와 롱부츠로 길게. 참고 차콜 슬림 V넥 니트/차콜 홀터 탱크/블랙 랩
+    롱스커트/블랙 롱부츠 → 슬림 브이넥 니트/홀터 레이어드 티/슬릿 랩 롱스커트/스퀘어 롱부츠 (따라 함:참고 112). 차콜 사진이 없어 같은
+    종류의 네이비 브이넥 니트(네이비·블랙 조합)로 바꿈
+  point: 네이비 니트에 블랙 랩스커트와 롱부츠로 길게 이어요
+  styling: The inner tee is worn inside the V-neck knit, its neckline visible at the
+    V.
+  pose: leaning back against a painted white brick corner wall at a quiet street corner,
+    sipping from a paper coffee cup so the cup hides her mouth, plain dark cap pulled
+    low over her eyes, dark hair in a low ponytail, soft pink blush on her cheeks, phone in the other hand, full body with the boots
+    visible
+  scene_image: out/2026-10-18/src/scene.jpg
+  ref: '112'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/76d3eba89ccd6ff05c44f14f51ab12e6.jpg
+- items:
+  - product: zigzag:168261505
+    color: 차콜
+    desc: 차콜 니트 가디건 (charcoal fine wool-blend knit cardigan, slim fitted, small open
+      collar, button front, hip length)
+    name: 차콜 니트 가디건
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 56.5 cm long from shoulder to hem, 36.5 cm across the shoulders, 39
+      cm across the chest laid flat, 62 cm long sleeves
+    cm: 56.5
+  - product: zigzag:155290768
+    color: 차콜
+    desc: 차콜 울 슬림 워머 티 (charcoal slim round-neck long-sleeve warmer tee, plain, soft
+      stretchy knit, hip length)
+    name: 슬림 워머 티
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 63 cm long from shoulder to hem, 45 cm across the shoulders, 41 cm
+      across the chest laid flat, 74 cm long sleeves
+    cm: 63.0
+    wear_with: 상의
+  - product: zigzag:172049603
+    color: 차콜
+    desc: 차콜 니트 맥시 롱스커트 (charcoal thick ribbed knit maxi skirt, high waist, straight,
+      slightly flared hem, floor length)
+    name: 니트 맥시 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+  - product: zigzag:169369601
+    color: 블랙
+    desc: 블랙 위빙 숄더백 (black structured bucket-style woven shoulder bag, long strap)
+    name: 위빙 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:110158856
+    color: 블랙
+    desc: 블랙 벨벳 메리제인 플랫 (black matte velvet Mary Jane flats, round toe, thin strap)
+    name: 메리제인 플랫
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:159990191
+    color: 실버
+    desc: 실버 워터드롭 롱 체인 목걸이 (one long silver chain necklace with a small water-drop
+      pendant)
+    name: 롱 체인 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    slot: 목걸이
+  reason: 차콜 니트 가디건이 주인공, 얇은 워머 티를 받치고 차콜 니트 롱스커트로 한 톤. 참고 차콜 크롭 가디건/차콜 슬림 긴팔티/차콜
+    니트 롱스커트/블랙 숄더백/블랙 플랫 → 니트 가디건/워머 티/니트 맥시 스커트/위빙 숄더백/메리제인 플랫 (따라 함:참고 118)
+  point: 차콜 가디건 아래로 워머 티 밑단이 살짝 보이게 입어요 🍂
+  styling: The cardigan is worn open; the slim tee's hem shows about 3 cm below the
+    cardigan hem.
+  pose: standing on a stair landing of a plain beige plaster stairwell, her dark hair in a sleek
+    low bun with a middle part, taking a photo with a small compact camera held in
+    both hands right in front of her face so it covers her eyes and nose, soft pink
+    blush on her cheeks, bag on her shoulder, weight on one leg, full body with
+    the flats visible
+  scene_image: out/2026-10-18/src/scene_3.jpg
+  ref: '118'
+  ref_photo: https://u-ur.kr/web/product/medium/202610/0e7e6d7ef5abd35471a82b6279b995fe.jpg
+- items:
+  - product: zigzag:171904453
+    color: 블랙
+    desc: 블랙 핸드메이드 롱코트 (black wool single-breasted long coat, notched lapel, below
+      knee length, the photos also show a taupe-grey version, ignore it)
+    name: 핸드메이드 롱코트
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    size: about 115 cm long from shoulder to hem, 57.75 cm across the chest laid flat,
+      82.5 cm long sleeves
+    cm: 115.0
+  - product: zigzag:169822302
+    color: 그레이
+    desc: 그레이 오픈스냅 헨리넥 긴팔 티 (light grey slim snap-front henley long-sleeve tee, plain,
+      thin ribbed cotton, cropped at the waist)
+    name: 헨리넥 긴팔 티
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+    size: about 52 cm long from shoulder to hem, 40 cm across the shoulders, 43.5
+      cm across the chest laid flat, 63 cm long sleeves
+    cm: 52.0
+    wear_with: 아우터
+  - product: zigzag:168694332
+    color: 차콜
+    desc: 차콜 핀스트라이프 와이드 슬랙스 (charcoal fine-pinstripe wide-leg slacks, high waist,
+      single pleat, floor length, covers the shoes)
+    name: 핀스트라이프 슬랙스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 104.5 cm long from waist to hem, 36 cm across the waist laid flat,
+      51 cm across the hips laid flat, 31 cm across the thigh laid flat, 27 cm across
+      the hem laid flat
+    cm: 104.5
+  - product: zigzag:167878705
+    color: 블랙
+    desc: 블랙 스웨이드 호보백 (black large slouchy suede hobo shoulder bag with a front flap
+      pocket)
+    name: 포그 호보백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+  - product: zigzag:134105153
+    color: 블랙
+    desc: 블랙 레이스업 로퍼 (black smooth-leather chunky-sole round-toe lace-up moc loafers)
+    name: 레이스업 로퍼
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+  - product: zigzag:169414958
+    color: 골드
+    desc: 골드 청키 후프 귀걸이 (exactly one pair (two earrings) of chunky gold huggie hoop
+      earrings)
+    name: 골드 후프 귀걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    slot: 귀걸이
+  reason: 차콜 핀스트라이프 와이드 슬랙스가 주인공, 블랙 롱코트를 열어 그레이 헨리넥이 보이게. 참고 차콜 롱 싱글 코트/브라운 레이어드
+    탑/핀스트라이프 와이드 팬츠/블랙 호보백 → 핸드메이드 롱코트/헨리넥 티/핀스트라이프 슬랙스/포그 호보백 (따라 함:참고 126). 롱코트는
+    차콜 사진이 없어 블랙으로 바꿈
+  point: 블랙 롱코트를 열어 그레이 헨리넥이 보이게 입어요
+  styling: The long coat is worn open, showing the grey henley underneath.
+  pose: walking along a quiet street beside a painted white brick wall, looking down
+    at her phone with a plain dark cap pulled low over her eyes, dark hair in a low ponytail, soft pink blush on her cheeks, hands
+    holding phone and bag strap, full body with the loafers visible
+  scene_image: out/2026-10-18/src/scene.jpg
+  ref: '126'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/2640dcee48de36cd632e86761d32d730.jpg
+- items:
+  - product: zigzag:168309583
+    color: 크림
+    desc: 크림 리브드 버튼 니트 가디건 (cream wide-ribbed knit button cardigan, slim fitted, cropped
+      at the high hip, round neck, curved hem, long sleeves)
+    name: 리브드 니트 가디건
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    size: about 50.5 cm long from shoulder to hem, 41.5 cm across the shoulders, 40.5
+      cm across the chest laid flat, 57.5 cm long sleeves
+    cm: 50.5
+  - product: zigzag:139492730
+    color: 블랙
+    desc: 블랙 퍼프 블라우스 (black thin soft V-neck blouse with a button placket, gathered
+      puff sleeves with tied cuffs, relaxed, waist to hip length)
+    name: 퍼프 소매 블라우스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 55 cm long from shoulder to hem, 41 cm across the shoulders, 50 cm
+      across the chest laid flat, 64 cm long sleeves
+    cm: 55.0
+    wear_with: 아우터
+  - product: zigzag:169010137
+    color: 블랙
+    desc: 블랙 스트레치 롱스커트 (black stretch nylon long skirt, straight slim, mid-calf to
+      ankle length, elastic waist, small front slit, no pleats)
+    name: 스트레치 롱스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 3
+    - 2
+    size: about 87 cm long from waist to hem, 34 cm across the waist laid flat, 51.5
+      cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 87.0
+  - product: zigzag:169369601
+    color: 블랙
+    desc: 블랙 위빙 숄더백 (black structured bucket-style woven shoulder bag, long strap)
+    name: 위빙 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:130586820
+    color: 블랙
+    desc: 블랙 앵클부츠 (black smooth-leather ankle boots, back zip, low heel, softly pointed
+      round toe)
+    name: 뒷지퍼 앵클부츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 5
+  - product: zigzag:139297257
+    color: 실버
+    desc: 실버 후프 귀걸이 (exactly one pair (two earrings) of small chunky silver huggie
+      hoop earrings)
+    name: 실버 후프 귀걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    slot: 귀걸이
+  reason: 크림 니트 가디건이 주인공, 블랙 블라우스와 블랙 롱스커트로 대비. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙
+    부츠 → 리브드 니트 가디건/퍼프 소매 블라우스/새틴 롱스커트/앵클부츠 (따라 함:참고 140). 스커트·부츠는 블랙 사진이 있는 상품으로
+    바꿈 (스트레치 롱스커트는 벌 2와 함께 씀)
+  point: 크림 가디건 안에 블랙 블라우스를 받쳐 대비를 줘요
+  styling: The cardigan is worn open over the blouse; the blouse neckline shows at
+    the center.
+  pose: standing in profile against a pale textured plaster wall with a window, face
+    turned away, small oval dark sunglasses, dark hair in a high ponytail with bangs, soft pink blush on the visible cheek, one hand
+    brushing her hair, bag on her shoulder, full body with the boots visible
+  scene_image: out/2026-10-18/src/scene_2.jpg
+  ref: '140'
+  ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+reason: 비 오는 일요일에 니트 베스트·카디건·브이넥 니트를 얇은 이너 위에 겹쳐 차콜·블랙 톤으로 차분하게
+text:
+  title_lines:
+  - 답답해 보이지 않게
+  - 얇은 이너 레이어드 공식
+  intro: 비 오는 일요일엔 얇은 이너 위에 한 겹씩 가볍게 겹쳐 입어요 ☔
+  points: []
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#니트코디'
+  - '#가을코디'
+  - '#롱스커트코디'
+shot: model
+mood: a candid everyday street-style snapshot in Seoul taken with a phone or a small
+  compact camera by a friend, calm overcast or soft diffuse daylight, muted warm-neutral
+  and cream tones with dark clothes standing out, plain textured walls, painted brick
+  and quiet corners, full-length framing with the shoes visible, no real shop names
+  or signs
+scene_image: out/2026-10-18/src/scene.jpg

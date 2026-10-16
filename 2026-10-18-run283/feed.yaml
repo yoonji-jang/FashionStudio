@@ -1,0 +1,209 @@
+account: women
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 하버 뷔스티에 니트
+  product: zigzag:171826596
+- comment: ''
+  name: 시어 셔츠
+  product: zigzag:164681223
+- comment: ''
+  name: 랩 슬랙스
+  product: zigzag:168200317
+- comment: ''
+  name: 포코 숄더백
+  product: zigzag:166194366
+- comment: ''
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+- comment: ''
+  name: 롱 체인 목걸이
+  product: zigzag:159990191
+- comment: ''
+  name: 랩 니트 가디건
+  product: zigzag:171726873
+- comment: ''
+  name: 홀터 레이어드 티
+  product: zigzag:153225273
+- comment: ''
+  name: 스트레치 롱스커트
+  product: zigzag:169010137
+- comment: ''
+  name: 리본 메리제인
+  product: zigzag:158948889
+- comment: ''
+  name: 실버 후프 귀걸이
+  product: zigzag:139297257
+- comment: ''
+  name: 슬림 브이넥 니트
+  product: zigzag:165810894
+- comment: ''
+  name: 슬릿 랩 롱스커트
+  product: zigzag:165302623
+- comment: ''
+  name: 토크 숄더백
+  product: zigzag:161700662
+- comment: ''
+  name: 롱 목걸이
+  product: zigzag:159636703
+- comment: ''
+  name: 차콜 니트 가디건
+  product: zigzag:168261505
+- comment: ''
+  name: 슬림 워머 티
+  product: zigzag:155290768
+- comment: ''
+  name: 니트 맥시 스커트
+  product: zigzag:172049603
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:169369601
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:110158856
+- comment: ''
+  name: 핸드메이드 롱코트
+  product: zigzag:171904453
+- comment: ''
+  name: 헨리넥 긴팔 티
+  product: zigzag:169822302
+- comment: ''
+  name: 핀스트라이프 슬랙스
+  product: zigzag:168694332
+- comment: ''
+  name: 포그 호보백
+  product: zigzag:167878705
+- comment: ''
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+- comment: ''
+  name: 골드 후프 귀걸이
+  product: zigzag:169414958
+- comment: ''
+  name: 리브드 니트 가디건
+  product: zigzag:168309583
+- comment: ''
+  name: 퍼프 소매 블라우스
+  product: zigzag:139492730
+- comment: ''
+  name: 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+looks:
+- items:
+  - comment: ''
+    name: 하버 뷔스티에 니트
+    product: zigzag:171826596
+  - comment: ''
+    name: 시어 셔츠
+    product: zigzag:164681223
+  - comment: ''
+    name: 랩 슬랙스
+    product: zigzag:168200317
+  - comment: ''
+    name: 포코 숄더백
+    product: zigzag:166194366
+  - comment: ''
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - comment: ''
+    name: 롱 체인 목걸이
+    product: zigzag:159990191
+- items:
+  - comment: ''
+    name: 랩 니트 가디건
+    product: zigzag:171726873
+  - comment: ''
+    name: 홀터 레이어드 티
+    product: zigzag:153225273
+  - comment: ''
+    name: 스트레치 롱스커트
+    product: zigzag:169010137
+  - comment: ''
+    name: 포코 숄더백
+    product: zigzag:166194366
+  - comment: ''
+    name: 리본 메리제인
+    product: zigzag:158948889
+  - comment: ''
+    name: 실버 후프 귀걸이
+    product: zigzag:139297257
+- items:
+  - comment: ''
+    name: 슬림 브이넥 니트
+    product: zigzag:165810894
+  - comment: ''
+    name: 홀터 레이어드 티
+    product: zigzag:153225273
+  - comment: ''
+    name: 슬릿 랩 롱스커트
+    product: zigzag:165302623
+  - comment: ''
+    name: 토크 숄더백
+    product: zigzag:161700662
+  - comment: ''
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - comment: ''
+    name: 롱 목걸이
+    product: zigzag:159636703
+- items:
+  - comment: ''
+    name: 차콜 니트 가디건
+    product: zigzag:168261505
+  - comment: ''
+    name: 슬림 워머 티
+    product: zigzag:155290768
+  - comment: ''
+    name: 니트 맥시 스커트
+    product: zigzag:172049603
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:110158856
+  - comment: ''
+    name: 롱 체인 목걸이
+    product: zigzag:159990191
+- items:
+  - comment: ''
+    name: 핸드메이드 롱코트
+    product: zigzag:171904453
+  - comment: ''
+    name: 헨리넥 긴팔 티
+    product: zigzag:169822302
+  - comment: ''
+    name: 핀스트라이프 슬랙스
+    product: zigzag:168694332
+  - comment: ''
+    name: 포그 호보백
+    product: zigzag:167878705
+  - comment: ''
+    name: 레이스업 로퍼
+    product: zigzag:134105153
+  - comment: ''
+    name: 골드 후프 귀걸이
+    product: zigzag:169414958
+- items:
+  - comment: ''
+    name: 리브드 니트 가디건
+    product: zigzag:168309583
+  - comment: ''
+    name: 퍼프 소매 블라우스
+    product: zigzag:139492730
+  - comment: ''
+    name: 스트레치 롱스커트
+    product: zigzag:169010137
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  - comment: ''
+    name: 뒷지퍼 앵클부츠
+    product: zigzag:130586820
+  - comment: ''
+    name: 실버 후프 귀걸이
+    product: zigzag:139297257
+title_lines:
+- 답답해 보이지 않게
+- 얇은 이너 레이어드 공식
