@@ -952,6 +952,8 @@ def render_tall(out: Path, profile: Profile, store: Store | None = None) -> list
         # feed.yaml 의 경로는 만든 곳(Actions) 기준이라 결과 폴더 안 경로로 바꾼다
         if p is None or Path(p).exists():
             return p
+        if "/out/" not in p:  # 저장소 안 파일(samples/…)을 쓴 날: Actions 저장소 루트를 이쪽 루트로
+            return str(REPO_ROOT / re.sub(r"^.*?/FashionStudio/FashionStudio/", "", p))
         return str(out / re.sub(r"^.*?/out/[^/]+/", "", p))
 
     spec = spec.model_copy(
