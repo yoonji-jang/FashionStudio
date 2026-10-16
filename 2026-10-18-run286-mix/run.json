@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-18-run286",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-18-run285\", \"round\": 2, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"제목은 ‘따라입기 좋는 가을 느낌 래이어드 코디 모음’ 으로 수정해줘\"}]}"
+}
