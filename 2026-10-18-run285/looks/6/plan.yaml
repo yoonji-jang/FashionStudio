@@ -1,0 +1,134 @@
+account: women
+cover_look: 1
+date: '2026-10-18'
+items:
+- cm: 49.5
+  color: 아이보리
+  comment: ''
+  cutout_photo: 4
+  desc: 아이보리 트위드 자켓 (ivory tweed jacket, collarless round neckline, cropped at the
+    waist, four metal chain-style buttons, two large patch pockets at the waist)
+  name: 버튼 트위드 자켓
+  product: zigzag:150918386
+  ref_photos:
+  - 4
+  - 3
+  - 5
+  size: about 49.5 cm long from shoulder to hem, 42 cm across the shoulders, 50 cm
+    across the chest laid flat, 61 cm long sleeves
+- cm: 55.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 버튼 블라우스 (black light slightly sheer buttoned blouse, rounded V-neckline,
+    long sleeves, relaxed, hip length)
+  name: 블랙 블라우스
+  product: zigzag:139492730
+  ref_photos:
+  - 0
+  size: about 55 cm long from shoulder to hem, 41 cm across the shoulders, 50 cm across
+    the chest laid flat, 64 cm long sleeves
+  wear_with: 아우터
+- cm: 87.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스트레치 롱스커트 (black stretch long skirt, straight column, high waist, mid-calf
+    length, small front slit at the hem, crisp matte fabric)
+  name: 스트레치 롱스커트
+  product: zigzag:169010137
+  ref_photos:
+  - 3
+  - 2
+  size: about 87 cm long from waist to hem, 34 cm across the waist laid flat, 51.5
+    cm across the hips laid flat, 54 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 숄더백 (black woven bucket shoulder bag)
+  name: 위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 앵클부츠 (black smooth leather ankle boots, low heel, slightly pointed toe,
+    back zip)
+  name: 뒷지퍼 앵클부츠
+  product: zigzag:130586820
+  ref_photos:
+  - 1
+  - 5
+- color: 실버
+  comment: ''
+  cutout_photo: 5
+  desc: 실버 물방울 귀걸이 (exactly one pair (two earrings) of small chunky silver huggie
+    hoop earrings)
+  name: 물방울 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 0
+  - 5
+  slot: 귀걸이
+looks: []
+mood: an everyday street-style snapshot of a woman in a full-body outfit, taken with
+  a phone or a small compact film camera on an ordinary Seoul street or in a plain
+  beige interior; soft flat overcast daylight, muted neutral colors (cream plaster,
+  white brick, beige walls, grey pavement), unposed and casual, no studio lighting
+pose: standing against a plain beige wall with nothing else beside her, holding a
+  smartphone up in front of her face in one hand to take a selfie so the phone hides
+  her eyes and nose, hair pulled into a low bun, the bag on her forearm, full body
+  from head to ankle boots
+reason: 아이보리 트위드 자켓이 주인공, 블랙 블라우스와 블랙 롱스커트로 대비. 참고 크림 케이블 가디건/블랙 프릴 블라우스/블랙 롱스커트/블랙
+  부츠 → 버튼 트위드 자켓/블랙 블라우스/스트레치 롱스커트/앵클부츠 (따라 함:참고 140). 가디건은 /fix 로 아이보리 트위드 자켓으로 바꿈
+ref_photo: https://images3.kolonmall.com/upload/content/f1f38a53-01db-4a57-9e75-f0eb793a291c/b556921a-9f50-4880-a39e-6ce4ff1ceb56.jpg
+scene_image: out/2026-10-18/src/scene_3.jpg
+shot: model
+styling: The ivory tweed jacket is worn open over the black blouse, whose hem shows
+  about 4 cm below the cropped jacket; the blouse is tucked into the high-waisted
+  skirt at the front only; do not draw any knit tied at the waist; no cardigan.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#가을레이어드'
+  - '#롱스커트코디'
+  - '#니트코디'
+  - '#이너코디'
+  - '#무채색코디'
+  intro: 비 소식 있는 일요일엔 얇은 이너 위에 한 겹씩 더해 입어요 ☔
+  points: []
+  title_lines:
+  - 겹쳐 입어도 안 답답한
+  - 얇은 이너 조합 정리
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음

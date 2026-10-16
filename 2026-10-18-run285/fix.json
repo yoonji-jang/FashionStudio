@@ -1,0 +1,77 @@
+{
+  "run": "2026-10-18-run284",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "배경은 look2 써줘."
+    },
+    {
+      "slide": 2,
+      "kind": "look",
+      "look": 1,
+      "text": "조끼 밑으로 셔츠가 너무 많이 삐져나왔어. 살짝만 삐져나오게 수정해줘."
+    },
+    {
+      "slide": 4,
+      "kind": "look",
+      "look": 4,
+      "text": "헤어는 look2처럼 슬릭번으로 해줘. 그리고 비율 좀더 좋아보이게 얼굴크기 작게 해주고. 참고장면 3번째사진처럼 안경도 추가해줘."
+    },
+    {
+      "slide": 6,
+      "kind": "look",
+      "look": 6,
+      "text": "가디건 대신 아이보리 트위드 자켓으로 변경해줘. 카메라 말고 핸드폰으로 셀카찍는거로 수정해줘. 옆에 화병도 없애줘."
+    },
+    {
+      "kind": "all",
+      "text": "첫 제목 컷을 look1 로 해서 거기부터 순서대로 2,3,4,5,6 으로 해줘"
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look1.jpg",
+      "kind": "look",
+      "look": 1
+    },
+    {
+      "no": 3,
+      "file": "03_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 4,
+      "file": "04_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 5,
+      "file": "05_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 6,
+      "file": "06_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 2
+}
