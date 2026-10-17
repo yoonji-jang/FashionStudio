@@ -1,29 +1,5 @@
 [
  {
-  "update_id": 428675791,
-  "message": {
-   "message_id": 1411,
-   "date": 1791987762,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIFg2rPkDJcftaieUOWEZRQokpSjbBFAAJyEmsb-f2AVjZNZDCtwd_LAQADAgADeQADPQQ",
-   "caption": "헤어는 슬릭번"
-  }
- },
- {
-  "update_id": 428675792,
-  "message": {
-   "message_id": 1412,
-   "date": 1791987870,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "1,2,3,4,5,7"
-  }
- },
- {
   "update_id": 428675793,
   "message": {
    "message_id": 1426,
