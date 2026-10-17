@@ -1,29 +1,5 @@
 [
  {
-  "update_id": 428675789,
-  "message": {
-   "message_id": 1393,
-   "date": 1791982874,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIFcWrPfRqRS_QXwXVXXKkipFS3M3WNAAJUEmsb-f2AVm8HUzrLdisgAQADAgADeQADPQQ",
-   "caption": ""
-  }
- },
- {
-  "update_id": 428675790,
-  "message": {
-   "message_id": 1394,
-   "date": 1791982890,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "이런 느낌의 스튜디오 배경에서 슬릭번이나 머리묶은느낌으러 해줘"
-  }
- },
- {
   "update_id": 428675791,
   "message": {
    "message_id": 1411,
