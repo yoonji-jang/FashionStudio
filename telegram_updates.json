@@ -1,16 +1,5 @@
 [
  {
-  "update_id": 428675802,
-  "message": {
-   "message_id": 1506,
-   "date": 1792054952,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "다시"
-  }
- },
- {
   "update_id": 428675803,
   "message": {
    "message_id": 1509,
