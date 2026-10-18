@@ -1,47 +1,5 @@
 [
  {
-  "update_id": 428675797,
-  "message": {
-   "message_id": 1471,
-   "date": 1792039783,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIFv2rQW2etIOBIXTMy_67OdBl8VpiIAALWEGsbBL-BVuBmtq-s0LGoAQADAgADeQADPQQ",
-   "caption": "머리는 앞머리 있는 단발 히피펌으로 해줘.",
-   "media_group_id": "14336318270262549"
-  }
- },
- {
-  "update_id": 428675798,
-  "message": {
-   "message_id": 1472,
-   "date": 1792039783,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIFwGrQW2f7mxGq3rsJGxuNjq2xj0VJAALXEGsbBL-BVi4ikdaEhmZYAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14336318270262549"
-  }
- },
- {
-  "update_id": 428675799,
-  "message": {
-   "message_id": 1473,
-   "date": 1792039783,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIFwWrQW2eienG6UzpEeUbLm9qDLqPRAALYEGsbBL-BVoKyZehkbUu_AQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14336318270262549"
-  }
- },
- {
   "update_id": 428675800,
   "message": {
    "message_id": 1487,
