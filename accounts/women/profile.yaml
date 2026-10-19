@@ -375,7 +375,8 @@ model_shot:
 # 사람의 답은 끝까지 기다린다. schedule 워크플로가 매시 깨어날 때 확인한다 (schedule.enabled 와 따로).
 flow:
   enabled: true             # 2026-10-14 사용자 "지금 켜기"
-  theme_options: 3          # 한 번에 제안하는 주제 수
+  theme_options: 3          # 한 번에 제안하는 주제 수 (week_options 가 0 일 때)
+  week_options: 10          # 주간 주제 후보 수. 고치고 고른 주제들을 차례로 쓴다 (2026-10-19 사용자)
   scene_prompt: outfit_scene
   publish_alert_minutes: 120
 

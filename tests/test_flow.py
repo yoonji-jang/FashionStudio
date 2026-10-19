@@ -59,6 +59,27 @@ def theme(n: int) -> Theme:
     )
 
 
+def _profile(week: int):
+    real = flow.load_profile
+
+    def load(account):
+        p = real(account)
+        return p.model_copy(update={"flow": p.flow.model_copy(update={"week_options": week})})
+
+    return load
+
+
+@pytest.fixture(autouse=True)
+def day_mode(monkeypatch):
+    """게시물마다 주제를 묻는 흐름으로 시험한다 (주간 후보 시험은 week_mode 로 바꿈)."""
+    monkeypatch.setattr(flow, "load_profile", _profile(0))
+
+
+@pytest.fixture
+def week_mode(monkeypatch):
+    monkeypatch.setattr(flow, "load_profile", _profile(10))
+
+
 @pytest.fixture
 def env(tmp_path):
     store = Store("women", root=tmp_path / "data")
@@ -340,3 +361,79 @@ def test_look_scene_image_override():
     )
     assert plan.look_plan(0).scene_image == "s2.jpg"
     assert plan.look_plan(1).scene_image == "s1.jpg"
+
+
+def test_week_options_feedback_pick_and_queue(env, week_mode):
+    store, results, sent, _ = env
+    tg = FakeTg()
+    tick(env, tg, T0)
+    assert sent[-1] == (
+        "theme-options.yml",
+        {"account": "women", "date": "2026-10-15", "hint": "", "week": True, "feedback": ""},
+    )
+    profile = flow.load_profile("women")
+    themes = [theme(n) for n in range(1, 11)]
+    opts = flow.save_options(
+        profile, store, date(2026, 10, 15), themes, "", tg, T0 + 100, week=True
+    )
+    assert "주간 주제 후보 10개" in tg.sent[-1] and "10. [상황] 주제 10" in tg.sent[-1]
+    # 다른 명령(/ok)은 읽지 않고, 고칠 점은 여러 글을 모아 Claude 에게
+    tg.text(1, "/ok", opts.sent_at + 5)
+    tg.text(2, "3번은 데이트룩으로", opts.sent_at + 10)
+    tg.text(3, "/theme 5번 빼고 롱스커트 코디 하나 더", opts.sent_at + 20)
+    tick(env, tg, opts.sent_at + 60)
+    wf, inputs = sent[-1]
+    assert wf == "theme-options.yml" and inputs["week"] is True
+    assert inputs["feedback"] == "3번은 데이트룩으로\n5번 빼고 롱스커트 코디 하나 더"
+    st = flow.load_state(results, "women")
+    assert st.stage == "theme_wait" and st.read_upto == opts.sent_at + 20
+    # 고친 후보가 오기 전에는 기다리고, 그 사이 보낸 번호는 고친 후보에 쓴다
+    tg.text(4, "1 3 4 5 7 8 10", st.asked_at + 30)
+    assert tick(env, tg, st.asked_at + 40) == []
+    opts = flow.save_options(
+        profile, store, date(2026, 10, 15), [theme(n + 10) for n in range(1, 11)], "", tg,
+        st.asked_at + 100, week=True,
+    )  # fmt: skip
+    tick(env, tg, opts.sent_at + 60)
+    st = flow.load_state(results, "women")
+    assert st.stage == "pick_wait"
+    assert [t.title_hint for t in st.week] == [f"주제 {n}" for n in (13, 14, 15, 17, 18, 20)]
+    assert store.themes()[0].title_hint == "주제 11"
+    assert "주간 주제 7개를 정했어요" in tg.sent[-2] and "(주간 주제 1/7)" in tg.sent[-1]
+    assert sent[-1][0] == "daily.yml" and '"주제 11"' in sent[-1][1]["pick"]
+    # 게시되면 다음 주간 주제를 묻지 않고 바로 쓴다
+    st.stage = "publishing"
+    flow.save_state(results, st)
+    store.save_posts([PostRecord(date=date(2026, 10, 15), title="t")])
+    tick(env, tg, opts.sent_at + 7200)
+    st = flow.load_state(results, "women")
+    assert st.stage == "pick_wait" and st.date == date(2026, 10, 16) and len(st.week) == 5
+    assert store.themes()[-1].title_hint == "주제 13" and "남은 주제 5개" in tg.sent[-1]
+
+
+def test_week_options_bad_numbers_and_chosen(env, week_mode, tmp_path, monkeypatch):
+    store, results, sent, _ = env
+    tg = FakeTg()
+    tick(env, tg, T0)
+    profile = flow.load_profile("women")
+    themes = [theme(n) for n in range(1, 11)]
+    opts = flow.save_options(
+        profile, store, date(2026, 10, 15), themes, "", tg, T0 + 100, week=True
+    )
+    tg.text(1, "1 2 11", opts.sent_at + 5)
+    tick(env, tg, opts.sent_at + 60)
+    assert "1~10" in tg.sent[-1] and flow.load_state(results, "women").stage == "theme_wait"
+    # Claude 가 고치면서 쓸 번호까지 정한 후보 (--week, chosen): 보내지 않고 바로 정한다
+    monkeypatch.setattr(flow, "Store", lambda account: store)
+    f = tmp_path / "opts.yaml"
+    raw = {"options": [t.model_dump(mode="json") for t in themes], "chosen": [2, 1]}
+    f.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
+    n = len(tg.sent)
+    assert flow.main(["options", "--date", "2026-10-15", "--file", str(f), "--week"]) == 0
+    assert flow.load_options(store).chosen == [2, 1] and len(tg.sent) == n
+    tick(env, tg, int(datetime.now(UTC).timestamp()) + 60)
+    st = flow.load_state(results, "women")
+    assert st.stage == "pick_wait" and [t.title_hint for t in st.week] == ["주제 1"]
+    raw["chosen"] = [3, 3]
+    f.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
+    assert flow.main(["options", "--date", "2026-10-15", "--file", str(f), "--week"]) == 1

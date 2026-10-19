@@ -114,6 +114,23 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
 - `out/theme_options.yaml` 에 Theme 목록(위 "주제 한 개의 모양", date 는 게시 날짜)으로 쓴다.
   검사·저장·텔레그램 보내기는 워크플로가 `python -m tools.flow options` 로 한다. themes.json 은 고치지 않는다.
 
+## 주간 후보 (차례 흐름, profile `flow.week_options`, theme-options 워크플로 week)
+한 주에 쓸 주제를 사용자가 후보 중에서 고치고 고른다 (2026-10-19 사용자 "주제 후보 10개 보내줘. 그중 수정 및 고르는거로").
+고른 주제는 고른 순서대로 한 게시물씩 쓰고, 다 쓰면 다시 후보를 낸다.
+- DATE 부터 한 주(`themes.per_week` 일) 기준으로 위 "정하는 방법"을 따라 `flow.week_options` 개(보통 10개)를 짠다.
+  날씨·요일은 한 주를 넓게 보고, 특정 요일에 묶이는 주제("월요일 출근룩")는 피한다 (어느 날 쓸지는 고른 순서로 정해진다).
+- 유형(`type_mix` 의 유형)을 고루 섞고, 사용자가 고르기 쉽게 `title_hint` 는 한눈에 서로 다른 말로, `why` 는 한 줄로 쓴다.
+- `out/theme_feedback.txt` 가 없으면 새 후보다. `out/theme_options_previous.yaml` 이 있으면 (같은 주 앞 후보) 겹치지 않게 짠다.
+- `out/theme_feedback.txt` 가 있으면 사용자가 앞 후보(`out/theme_options_previous.yaml`, 1번부터)에 답한 글이다.
+  - 고치라는 번호만 그 말대로 고치고, 나머지는 번호와 내용을 그대로 둔다 ("3번은 데이트룩으로" → 3번만 바꿈).
+  - "5번 빼고 ○○ 하나 더"처럼 빼고 더하는 말이면 뺀 자리에 새 주제를 넣어 번호를 유지한다.
+  - "다시"만 있으면 앞 후보와 겹치지 않게 전부 새로 짠다. "다시" 뒤에 붙인 말은 새 후보에 반영한다.
+  - 쓸 번호까지 적었으면("고치고 1 3 4 5 7 8 10 으로", "3번만 바꾸고 나머지 다") 고친 뒤 번호로 `chosen` 을 채운다.
+    번호가 분명하지 않으면 `chosen` 을 비운다 (고친 후보를 다시 보내 사용자가 고른다).
+- `out/theme_options.yaml` 에 쓴다. 고를 번호가 없으면 Theme 목록, 있으면
+  `{options: [Theme 목록], chosen: [1, 3, 4, …]}` (쓸 순서대로). date 는 DATE 로 둔다.
+  검사·저장·텔레그램 보내기는 워크플로가 `python -m tools.flow options --week` 로 한다. themes.json 은 고치지 않는다.
+
 ## 저장
 - 주간: 7일치를 `out/themes_<첫날>.yaml` 로 쓰고
   `python -m tools.plan themes --account $ACCOUNT --file out/themes_<첫날>.yaml` 로 검사·저장한다.

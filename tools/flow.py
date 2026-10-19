@@ -7,10 +7,16 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
 
   theme         다음 게시 날짜를 정하고 주제 제안을 요청
                 (theme-options 워크플로, Claude plan-themes "제안")
+                profile flow.week_options 면 고른 주간 주제가 남아 있으면 다음 것을 바로 쓰고,
+                다 썼으면 주간 후보(보통 10개)를 요청한다 (2026-10-19 사용자)
   theme_wait    제안 주제에 답 기다림: "2" / "/theme 2" = 그 주제,
                 "/theme 니트 레이어드" = 이 말로 주제를 새로 짜서 바로 진행, "다시" = 새 제안.
                 정하면 주제를 themes.json 에 넣고 코디 후보 요청
                 (daily mode=candidates, 주제 검색어로 수집)
+                주간 후보면: "1 3 4 5 7 8 10" = 그 주제들을 이 순서로 쓴다,
+                그 밖의 글("3번은 데이트룩으로", "다시")은 고칠 점:
+                Claude 가 후보를 고쳐 다시 보낸다
+                (고를 번호까지 적었으면 고친 뒤 바로 정한다)
   pick_wait     코디 고르기(tools.pick)와 장면 사진(한 장 또는 여러 장)을 기다림.
                 둘 다 오면 만들기 요청 (daily mode=render)
   rendering     미리보기를 기다림
@@ -28,9 +34,9 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
 사용법:
   python -m tools.flow status --account women --results <daily-results 폴더>
   python -m tools.flow options --account women --date 2026-10-16 \
-      --file out/theme_options.yaml [--hint …] [--send]
+      --file out/theme_options.yaml [--hint …] [--week] [--send]
       Claude 가 쓴 제안 주제를 검사해 data/<계정>/theme_options.json 에 저장하고
-      텔레그램으로 보낸다
+      텔레그램으로 보낸다 (--week: 주간 후보)
   python -m tools.flow reset --account women --results <폴더>
       상태를 지우고 다음 tick 에 주제부터
   python -m tools.flow use-theme --account women --json '{"theme": {...}}'
@@ -42,6 +48,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import re
 import sys
 import time
 from datetime import UTC, date, datetime, timedelta
@@ -76,6 +83,9 @@ class FlowState(BaseModel):
     scene_update: int = 0  # 장면 사진을 받은 텔레그램 update_id (마지막 장)
     scene_at: int = 0  # 마지막 장면 사진을 보낸 시각 (이어 보낸 사진을 한 묶음으로)
     alerted: bool = False  # 이 단계에서 늦음 알림을 보냈는지
+    week: list[Theme] = []  # 고른 주간 주제 중 아직 안 쓴 것 (차례대로, flow.week_options)
+    read_upto: int = 0  # 주간 후보에 온 답을 여기(보낸 시각)까지 읽었다
+    revising: bool = False  # 주간 후보 고치기를 요청했고 고친 후보가 아직 안 옴
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -91,6 +101,8 @@ class ThemeOptions(BaseModel):
     hint: str = ""
     sent_at: int = 0
     message_ids: list[int] = []
+    week: bool = False  # 주간 후보 (flow.week_options)
+    chosen: list[int] = []  # 주간 후보에서 쓸 번호 (고칠 점에 번호까지 적었으면 Claude 가 채움)
 
 
 def state_path(results: Path, account: str) -> Path:
@@ -145,6 +157,25 @@ def options_text(profile: Profile, opts: ThemeOptions) -> str:
     return "\n".join(lines)
 
 
+def week_text(profile: Profile, opts: ThemeOptions) -> str:
+    d = opts.date
+    lines = [f"[{profile.id}] 주간 주제 후보 {len(opts.options)}개 ({d:%m-%d}부터)", ""]
+    for n, t in enumerate(opts.options, 1):
+        lines.append(f"{n}. [{t.type or '-'}] {t.title_hint}")
+        if t.why:
+            lines.append(f"   {t.why}")
+    lines += [
+        "",
+        f'• 쓸 주제 번호를 쓸 순서대로 보내 주세요: "1 3 4 5 7 8 10" → 이 순서로 하나씩 만들어요 '
+        f"(한 주 {profile.themes.per_week}개)",
+        '• 고칠 점은 편하게 적어 주세요: "3번은 데이트룩으로", "5번 빼고 롱스커트 코디 하나 더" '
+        "→ 고친 후보를 다시 보내요 (쓸 번호를 같이 적으면 고친 뒤 바로 정해요)",
+        '• 다 별로면 "다시" → 새로 제안해요',
+        "답을 받을 때까지 기다려요 (한 시간 안에 확인)",
+    ]
+    return "\n".join(lines)
+
+
 def save_options(
     profile: Profile,
     store: Store,
@@ -153,20 +184,61 @@ def save_options(
     hint: str,
     tg=None,
     sent_at: int | None = None,
+    week: bool = False,
+    chosen: list[int] | None = None,
 ) -> ThemeOptions:
-    """Claude 가 쓴 제안 주제를 저장하고(보낼 수 있으면) 텔레그램으로 보낸다."""
+    """Claude 가 쓴 제안 주제를 저장하고(보낼 수 있으면) 텔레그램으로 보낸다.
+    주간 후보에 쓸 번호(chosen)까지 정해졌으면 보내지 않는다 (흐름이 바로 정하고 알린다)."""
+    chosen = chosen or []
+    bad = [n for n in chosen if not 1 <= n <= len(themes)]
+    if bad or len(set(chosen)) != len(chosen):
+        raise ValueError(f"고른 번호가 잘못됐습니다: {chosen} (1~{len(themes)}, 겹치지 않게)")
     opts = ThemeOptions(
         account=profile.id,
         date=day,
         options=[t.model_copy(update={"date": day}) for t in themes],
         hint=hint,
         sent_at=sent_at or int(time.time()),
+        week=week,
+        chosen=chosen,
     )
-    if tg is not None and not hint:
+    if tg is not None and week and not chosen:
+        opts.message_ids = [tg.send(week_text(profile, opts))]
+    elif tg is not None and not hint and not week:
         opts.message_ids = [tg.send(options_text(profile, opts))]
     store.dir.mkdir(parents=True, exist_ok=True)
     options_path(store).write_text(opts.model_dump_json(indent=2), encoding="utf-8")
     return opts
+
+
+def week_replies(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, str]]:
+    """since 뒤 등록된 채팅에서 온 글 (보낸 시각, 글).
+    주간 후보를 기다리는 동안 온 글은 모두 답으로 본다.
+    /theme·/themes 는 명령 이름을 떼고, 다른 / 명령(/ok, /fix …)은 뺀다."""
+    found = []
+    for u in sorted(updates, key=lambda u: u.get("update_id", 0)):
+        msg = u.get("message") or {}
+        if str((msg.get("chat") or {}).get("id")) != str(chat_id):
+            continue
+        at, text = msg.get("date", 0), (msg.get("text") or "").strip()
+        if at <= since or not text:
+            continue
+        if text.startswith("/"):
+            head, _, rest = text.partition(" ")
+            if head.lower().split("@")[0] not in ("/theme", "/themes"):
+                continue
+            text = rest.strip()
+            if not text:
+                continue
+        found.append((at, text))
+    return found
+
+
+def week_numbers(text: str) -> list[int] | None:
+    """ "1 3 4 5 7 8 10", "1,3,4번" 처럼 번호만 적은 글이면 번호들 (적은 순서), 아니면 None."""
+    if not re.fullmatch(r"\d{1,2}(?:\s*(?:,|\s)\s*\d{1,2})*\s*번?", text):
+        return None
+    return [int(n) for n in re.findall(r"\d+", text)]
 
 
 def choose_theme(store: Store, theme: Theme) -> None:
@@ -260,6 +332,92 @@ def _late(st: FlowState, now: datetime, tg, text: str, after: timedelta = WAIT_A
         st.alerted = True
 
 
+def _use_theme(
+    store: Store,
+    st: FlowState,
+    tg,
+    send,
+    chosen: Theme,
+    ts: int,
+    dry_run: bool,
+    tag: str,
+    note: str = "",
+) -> str:
+    """정한 주제를 themes.json 에 넣고 코디 후보를 요청한다 (tg 가 있으면 알림)."""
+    assert st.date is not None
+    chosen = chosen.model_copy(update={"date": st.date})
+    if not dry_run:
+        choose_theme(store, chosen)
+    # daily 는 요청한 때의 커밋을 꺼내서 방금 고친 themes.json 을 못 본다: 주제를 같이 넘긴다
+    theme = json.dumps({"theme": chosen.model_dump(mode="json")}, ensure_ascii=False)
+    send(
+        "daily.yml", account=st.account, date=st.date.isoformat(), mode="candidates", pick=theme,
+        sandbox=False, collect=True,
+    )  # fmt: skip
+    st.hint, st.theme_at, st.asked_at, st.stage = "", ts, ts, "pick_wait"
+    if tg is not None:
+        tg.send(
+            f"{tag} '{chosen.title_hint}' 주제로 할게요{note}. 코디 후보를 만들고 있어요.\n"
+            "이 주제에 맞는 장면 사진도 이 채팅에 보내 주세요 "
+            "(스트리트, 스튜디오, 거울 셀카 등. 한 장도, 여러 장도 돼요)"
+        )
+    return f"주제 정함: {chosen.title_hint}"
+
+
+def _week_wait(
+    profile: Profile,
+    store: Store,
+    st: FlowState,
+    opts: ThemeOptions,
+    tg,
+    send,
+    ts: int,
+    dry_run: bool,
+    tag: str,
+) -> str:
+    """주간 후보에 온 답을 본다.
+    번호만 = 그 주제들로 정함, 그 밖의 글 = 고칠 점 (Claude 가 고쳐 다시 보냄)."""
+    if st.revising:
+        if opts.sent_at <= st.asked_at:
+            return ""  # 고친 후보를 기다림 (그 사이 온 글은 고친 후보에 대한 답으로 읽는다)
+        st.revising = False
+    nums = opts.chosen
+    if not nums:
+        if tg is None:
+            return ""
+        # 고치는 동안 온 글도 읽는다 (앞서 읽은 글 다음부터, 처음이면 후보를 보낸 뒤부터)
+        since = st.read_upto or opts.sent_at - 1
+        replies = week_replies(tg.updates(), tg.chat_id, since)
+        if not replies:
+            return ""
+        st.read_upto = replies[-1][0]
+        picks = [week_numbers(text) for _, text in replies]
+        if all(p is not None for p in picks):
+            nums = picks[-1] or []
+            bad = [n for n in nums if not 1 <= n <= len(opts.options)]
+            if bad or len(set(nums)) != len(nums) or not nums:
+                tg.send(f"{tag} 번호는 1~{len(opts.options)} 중에서 겹치지 않게 보내 주세요")
+                return f"주간 주제 번호 잘못됨: {nums}"
+        else:
+            feedback = "\n".join(text for _, text in replies)
+            send("theme-options.yml", account=st.account, date=opts.date.isoformat(), hint="",
+                 week=True, feedback=feedback)  # fmt: skip
+            st.asked_at, st.revising = ts, True
+            tg.send(f"{tag} 말씀하신 대로 주제 후보를 고치고 있어요. 다 되면 다시 보낼게요")
+            return f"주간 주제 고치기 요청: {feedback[:60]}"
+    picked = [opts.options[n - 1] for n in nums]
+    st.week = picked[1:]
+    if tg is not None:
+        lines = [
+            f"[{profile.id}] 주간 주제 {len(picked)}개를 정했어요 (이 순서로 하나씩 만들어요)",
+            "",
+        ]
+        lines += [f"{i}. {t.title_hint}" for i, t in enumerate(picked, 1)]
+        tg.send("\n".join(lines))
+    left = f" (주간 주제 1/{len(picked)})"
+    return _use_theme(store, st, tg, send, picked[0], ts, dry_run, tag, left)
+
+
 def _step(
     profile: Profile,
     store: Store,
@@ -281,6 +439,16 @@ def _step(
         st.date = next_date(profile, store, now)
         st.pick, st.scene, st.scene_update, st.theme_at = "", "", 0, 0
         st.scenes, st.scene_at = [], 0
+        if profile.flow.week_options:
+            if st.week:
+                chosen, st.week = st.week[0], st.week[1:]
+                left = f" (주간 주제, 남은 주제 {len(st.week)}개)"
+                return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, left)
+            st.read_upto, st.revising = 0, False
+            send("theme-options.yml", account=acc, date=st.date.isoformat(), hint="",
+                 week=True, feedback="")  # fmt: skip
+            st.asked_at, st.stage = ts, "theme_wait"
+            return f"주간 주제 후보 요청 ({st.date})"
         send("theme-options.yml", account=acc, date=st.date.isoformat(), hint=st.hint)
         st.asked_at, st.stage = ts, "theme_wait"
         return f"주제 제안 요청 ({st.date})"
@@ -295,6 +463,8 @@ def _step(
                 f"{tag} 주제 제안이 아직 오지 않았어요 (주제 정하기 실행을 확인해 주세요)",
             )
             return ""
+        if opts.week:
+            return _week_wait(profile, store, st, opts, tg, send, ts, dry_run, tag)
         chosen = None
         if opts.hint:
             chosen = opts.options[0]  # 사용자가 적은 주제로 짠 것: 바로 진행
@@ -323,23 +493,7 @@ def _step(
                     return f"사용자 주제로 다시 요청: {arg}"
         if chosen is None:
             return ""
-        chosen = chosen.model_copy(update={"date": st.date})
-        if not dry_run:
-            choose_theme(store, chosen)
-        # daily 는 요청한 때의 커밋을 꺼내서 방금 고친 themes.json 을 못 본다: 주제를 같이 넘긴다
-        theme = json.dumps({"theme": chosen.model_dump(mode="json")}, ensure_ascii=False)
-        send(
-            "daily.yml", account=acc, date=st.date.isoformat(), mode="candidates", pick=theme,
-            sandbox=False, collect=True,
-        )  # fmt: skip
-        st.hint, st.theme_at, st.asked_at, st.stage = "", ts, ts, "pick_wait"
-        if tg is not None and not opts.hint:
-            tg.send(
-                f"{tag} '{chosen.title_hint}' 주제로 할게요. 코디 후보를 만들고 있어요.\n"
-                "이 주제에 맞는 장면 사진도 이 채팅에 보내 주세요 "
-                "(스트리트, 스튜디오, 거울 셀카 등. 한 장도, 여러 장도 돼요)"
-            )
-        return f"주제 정함: {chosen.title_hint}"
+        return _use_theme(store, st, tg if not opts.hint else None, send, chosen, ts, dry_run, tag)
 
     assert st.date is not None
     day = st.date
@@ -511,6 +665,7 @@ def main(argv: list[str] | None = None) -> int:
         "--file", type=Path, required=True, help="Claude 가 쓴 제안 주제 YAML (Theme 목록)"
     )
     s.add_argument("--hint", default="")
+    s.add_argument("--week", action="store_true", help="주간 후보 (flow.week_options 개)")
     s.add_argument("--send", action="store_true", help="텔레그램으로 보냄")
     args = ap.parse_args(argv)
     try:
@@ -535,16 +690,28 @@ def main(argv: list[str] | None = None) -> int:
             profile = load_profile(args.account)
             day = date.fromisoformat(args.date)
             raw = yaml.safe_load(args.file.read_text(encoding="utf-8")) or []
+            # 주간 후보는 {options: [...], chosen: [1, 3, …]} 로도 쓴다
+            # (고칠 점에 쓸 번호까지 있었을 때)
+            chosen: list[int] = []
+            if isinstance(raw, dict):
+                chosen = [int(n) for n in raw.get("chosen") or []]
+                raw = raw.get("options") or []
             themes = [Theme.model_validate({**t, "date": day}) for t in raw]
             if not themes:
                 raise ValueError("제안 주제가 없습니다")
-            limit = 1 if args.hint else profile.flow.theme_options
+            if args.week:
+                limit = profile.flow.week_options or profile.flow.theme_options
+            else:
+                limit = 1 if args.hint else profile.flow.theme_options
             tg = None
             if args.send:
                 from tools import notify
 
                 tg = notify.Telegram.from_env()
-            opts = save_options(profile, Store(args.account), day, themes[:limit], args.hint, tg)
+            opts = save_options(
+                profile, Store(args.account), day, themes[:limit], args.hint, tg,
+                week=args.week, chosen=chosen,
+            )  # fmt: skip
             for n, t in enumerate(opts.options, 1):
                 print(f"{n}. {t.title_hint}")
         return 0
