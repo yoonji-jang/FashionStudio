@@ -94,7 +94,7 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
                   facette.co.kr, monodaily.com, mnem.co.kr, dayroze.com, la-room.kr,
                   curetty.co.kr, mondayoff.co.kr, sugarpowder.kr]
     # scout_sites 쇼핑몰의 사진 서버 (페이지는 열지 않고 사진만 받음)
-    image_hosts: []
+    image_hosts: [cafe24.poxo.com, ecimg.cafe24img.com]  # 모노데일리, 스탠스트 (cafe24 사진 서버)
 
 product_source:
   name: zigzag
