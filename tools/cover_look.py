@@ -208,7 +208,12 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
         return f"{tag} 표지를 LOOK {n} 으로 바꿀 예정 (시험)"
     approved = notify.approval_now(out, record, profile, updates, tg.chat_id) == "ok"
     stale = bool(done.get("reel_stale"))
-    seen = any(load_record(p).get("update_id") == uid for p in chain(out))
+    past = [r for p in chain(out) if (r := load_record(p)).get("update_id") == uid]
+    seen = bool(past)
+    if past and not past[0].get("error"):
+        # 지난 미리보기의 LOOK 번호로 이미 고른 벌. 고친 미리보기는 표지가 바뀌어 보이는 번호가
+        # 달라지므로 다시 읽지 않는다 (2026-10-16: /cover 2 가 다른 벌로 한 번 더 바뀜)
+        n = past[0].get("look", n)
     if seen and (current(out, profile) == n or fix_changed_cover(out)):
         # 지난 미리보기에서 이미 처리한 글: 고친 미리보기가 그 표지를 이어받았거나,
         # /fix 가 표지를 따로 바꿨으면 /fix 를 따른다
