@@ -1,0 +1,9 @@
+https://monodaily.com/ → https://monodaily.com/ 제목 '모노데일리': 링크 326개
+https://monodaily.com/product/list.html?cate_no=55 → https://monodaily.com/product/list.html?cate_no=55 제목 '#.소개팅룩💄 - 모노데일리': 링크 229개
+https://monodaily.com/product/list.html?cate_no=67 → https://monodaily.com/product/list.html?cate_no=67 제목 'BEST 50 - 모노데일리': 링크 229개
+https://monodaily.com/product/list.html?cate_no=99 → https://monodaily.com/product/list.html?cate_no=99 제목 'new 7%💗 - 모노데일리': 링크 232개
+https://monodaily.com/product/detail.html?product_no=12254&cate_no=55&display_group=1: 허용 안 된 사진 서버 cafe24.poxo.com
+https://monodaily.com/product/detail.html?product_no=11125&cate_no=67&display_group=1: 허용 안 된 사진 서버 cafe24.poxo.com
+https://monodaily.com/product/detail.html?product_no=12256&cate_no=99&display_group=1: 허용 안 된 사진 서버 cafe24.poxo.com
+https://monodaily.com/product/detail.html?product_no=12253&cate_no=55&display_group=1: 허용 안 된 사진 서버 cafe24.poxo.com
+monodaily.com: 상품 페이지 4곳, 확인표 0장
