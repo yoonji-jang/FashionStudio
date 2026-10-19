@@ -91,8 +91,10 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
     # robots.txt 막힘(COS·에잇세컨즈·W컨셉)은 뺐다
     # 2026-10-19 사용자가 보낸 쇼핑몰을 더함 (기존 목록은 그대로. 사이트마다 사진이 받아지는지는 ref-probe 워크플로로 확인)
     scout_sites: [woonan.co.kr, the-ore.kr, u-ur.kr, vivnluv.co.kr, stanst.kr, aisel.me, lowclassic.com, sienne.co.kr, kolonmall.com,
-                  facette.co.kr, monodaily.com, mnem.co.kr, woonan.kr, dayroze.com, la-room.kr, autumnshop.kr, reetkeem.com,
+                  facette.co.kr, monodaily.com, mnem.co.kr, dayroze.com, la-room.kr,
                   curetty.co.kr, mondayoff.co.kr, sugarpowder.kr]
+    # scout_sites 쇼핑몰의 사진 서버 (페이지는 열지 않고 사진만 받음)
+    image_hosts: []
 
 product_source:
   name: zigzag

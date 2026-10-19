@@ -391,7 +391,13 @@ def diagnose(home: str, sites: list[str]) -> str:
 
 
 def crawl(
-    home: str, sites: list[str], out: Path, menus: int = 5, products: int = 15, max_images: int = 16
+    home: str,
+    sites: list[str],
+    out: Path,
+    menus: int = 5,
+    products: int = 15,
+    max_images: int = 16,
+    image_hosts: list[str] | None = None,
 ) -> list[dict]:
     """쇼핑몰 하나를 메뉴 → 상품 페이지 순서로 돌며 상품 페이지마다 번호 붙인 확인표를 만든다.
 
@@ -422,7 +428,7 @@ def crawl(
             if href and product_key(href) not in seen and len(pages) < products:
                 seen.add(product_key(href))
                 pages.append(href)
-    report = ref_sheets(pages, sites, out, max_images) if pages else []
+    report = ref_sheets(pages, sites, out, max_images, image_hosts) if pages else []
     info: dict = {"home": home, "menus": picked, "pages": pages}
     if not picked:
         info["why"] = diagnose(home, sites)
@@ -467,7 +473,13 @@ def contact_sheet(images: list[bytes], cols: int = 4, thumb: int = 360, numbered
     return sheet
 
 
-def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 12) -> list[dict]:
+def ref_sheets(
+    urls: list[str],
+    sites: list[str],
+    out: Path,
+    max_images: int = 12,
+    image_hosts: list[str] | None = None,
+) -> list[dict]:
     """참고 코디용: 허용한 사이트의 공개 코디 페이지 사진을 확인표로 만든다 (2026-10-07).
 
     profile themes.ref_search.scout_sites 에 있는 사이트만, robots.txt 가 허용한 주소만 연다.
@@ -486,7 +498,14 @@ def ref_sheets(urls: list[str], sites: list[str], out: Path, max_images: int = 1
                 ok.append(url)
         found = page_image_urls(ok) if ok else {}
         for n, url in enumerate(ok, 1):
-            imgs = [u for u in found.get(url, []) if host_allowed(u, sites)][:max_images]
+            hosts = sites + (image_hosts or [])
+            imgs = [u for u in found.get(url, []) if host_allowed(u, hosts)][:max_images]
+            dropped = sorted(
+                {urlsplit(u).hostname or "" for u in found.get(url, [])}
+                - {urlsplit(u).hostname or "" for u in imgs}
+            )
+            if dropped:  # 사진 서버가 따로 있으면 profile image_hosts 에 더한다
+                print(f"{url}: 허용 안 된 사진 서버 {', '.join(dropped)}", file=sys.stderr)
             data, kept = [], []
             for u in imgs:
                 try:
@@ -564,7 +583,8 @@ def main(argv: list[str] | None = None) -> int:
 
         rs = load_profile(args.account).themes.ref_search
         sites = rs.scout_sites if rs else []
-        rows = crawl(f"https://{args.site}/", sites, args.out, args.menus, args.products)
+        extra = rs.image_hosts if rs else []
+        rows = crawl(f"https://{args.site}/", sites, args.out, args.menus, args.products, 16, extra)
         made = [r for r in rows if r.get("sheet")]
         print(f"{args.site}: 상품 페이지 {len(rows)}곳, 확인표 {len(made)}장")
         return 0
@@ -572,7 +592,7 @@ def main(argv: list[str] | None = None) -> int:
         from core.profile import load_profile
 
         rs = load_profile(args.account).themes.ref_search
-        print(ref_photo(args.url, rs.scout_sites if rs else [], args.out))
+        print(ref_photo(args.url, rs.hosts() if rs else [], args.out))
         return 0
     if args.cmd == "links":
         from core.profile import load_profile
@@ -589,7 +609,8 @@ def main(argv: list[str] | None = None) -> int:
         if not sites:
             print("profile themes.ref_search.scout_sites 가 비어 있다", file=sys.stderr)
             return 1
-        for row in ref_sheets(args.url, sites, args.out, args.max_images):
+        extra = rs.image_hosts if rs else []
+        for row in ref_sheets(args.url, sites, args.out, args.max_images, extra):
             print("\t".join(str(v) for v in row.values()))
         return 0
     if args.cmd == "image":
