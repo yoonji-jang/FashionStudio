@@ -1,0 +1,2 @@
+이유: robots.txt 못 읽음 (ConnectError: [Errno -2] Name or service not known)
+woonan.kr: 상품 페이지 0곳, 확인표 0장
