@@ -17,7 +17,7 @@ from datetime import date
 from typing import Any
 
 from core.models import Category, Product, SaleStatus
-from sources.base import ProductSource, SearchFilters, name_excluded, price_ok
+from sources.base import ProductSource, SearchFilters, cheap_floor, name_excluded, price_ok
 from tools import scout
 
 PRODUCT_URL = "https://zigzag.kr/catalog/products/{id}"
@@ -256,6 +256,9 @@ class Source(ProductSource):
     def __init__(self, today: date | None = None):
         self.today = today or date.today()
         self._client = None
+        # 카테고리 → 이번 검색에서 정한 "너무 싼" 경계 가격 (filters.cheap_percent).
+        # collect 가 창고 상품에도 쓴다
+        self.floors: dict[Category, int] = {}
 
     @property
     def client(self):
@@ -267,6 +270,19 @@ class Source(ProductSource):
         self, queries: list[str], category: Category, filters: SearchFilters
     ) -> dict[str, list[Product]]:
         raw = scout.search_responses(queries, min_items=filters.max_results * 2)
+        if filters.cheap_percent:
+            # 2026-10-19 사용자: 카테고리 가격대 중 하위 10~20%(15%)는 너무 싼 상품으로 뺀다.
+            # 거르기 전 검색 결과 전체(검색어 모두, 같은 상품은 한 번) 가격으로 정한다
+            prices = {
+                str(c.get("catalog_product_id")): _price(c)
+                for q in queries
+                for r in raw.get(q, [])
+                for c in iter_cards(r)
+            }
+            floor = cheap_floor([v for v in prices.values() if v], filters.cheap_percent)
+            self.floors[category] = floor
+            if floor > filters.min_price:
+                filters = filters.model_copy(update={"min_price": floor})
         return {
             q: cards_to_products(raw.get(q, []), category, q, filters, self.today) for q in queries
         }

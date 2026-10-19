@@ -45,6 +45,9 @@ class Report:
     dropped: list[tuple[Product, str]] = field(default_factory=list)  # (상품, 이유)
     trimmed: int = 0
     unfit: int = 0  # 가격대·제외어 기준에 맞지 않아 창고에서 뺀 수
+    floors: dict[str, int] = field(
+        default_factory=dict
+    )  # 카테고리 → 너무 싼 경계 가격 (cheap_percent)
     stopped: str | None = None  # 막혀서 중간에 멈춘 이유
     total: dict[str, int] = field(default_factory=dict)  # 카테고리 → 창고 상품 수
     thumbs: dict[str, bytes] = field(default_factory=dict)  # 상품 id → 대표 사진 (미리보기용)
@@ -77,9 +80,11 @@ def is_point(p: Product, profile: Profile) -> bool:
     return bool(profile.style.point_words) and name_excluded(p.name, profile.style.point_words)
 
 
-def fits(p: Product, cfg: ProductSourceConfig) -> bool:
-    """프로필의 가격대·제외어 기준에 맞는지 (창고에 이미 있던 상품도 같은 기준으로 거른다)."""
+def fits(p: Product, cfg: ProductSourceConfig, floors: dict[Category, int] | None = None) -> bool:
+    """프로필의 가격대·제외어 기준에 맞는지 (창고에 이미 있던 상품도 같은 기준으로 거른다).
+    floors 는 이번 검색에서 정한 카테고리별 "너무 싼" 경계 가격 (cheap_percent)."""
     low, high = cfg.price_range.get(p.category, (0, 0))
+    low = max(low, (floors or {}).get(p.category, 0))
     return price_ok(p.price, low, high) and not name_excluded(p.name, cfg.exclude_words)
 
 
@@ -94,6 +99,7 @@ def search_filters(
         min_price=low,
         max_price=high,
         exclude_words=cfg.exclude_words,
+        cheap_percent=cfg.cheap_percent,
     )
 
 
@@ -218,7 +224,8 @@ def collect(
         report.stopped = str(e)
 
     # 기준이 바뀌면(가격대·제외어) 창고에 있던 상품도 같이 거른다
-    unfit = [p for p in stock.values() if not fits(p, cfg)]
+    report.floors = dict(getattr(source, "floors", {}))
+    unfit = [p for p in stock.values() if not fits(p, cfg, report.floors)]
     for p in unfit:
         stock.pop(p.id)
     report.unfit = len(unfit)
@@ -265,6 +272,11 @@ def write_report(report: Report, out: Path, store: Store) -> None:
         f"- 가격대·제외어 기준으로 뺀 상품: {report.unfit}개",
         "- 창고: " + ", ".join(f"{k} {v}" for k, v in report.total.items()),
     ]
+    if report.floors:
+        lines.append(
+            "- 너무 싼 상품 경계 (검색 결과 가격 하위 %, 이보다 싸면 뺌): "
+            + ", ".join(f"{k} {v:,}원" for k, v in report.floors.items())
+        )
     if report.stopped:
         lines.append(f"- **중간에 멈춤**: {report.stopped}")
     lines += ["", "## 검색어별 후보 (평점·리뷰 기준 통과)", ""]
