@@ -105,6 +105,12 @@ class RefSearch(BaseModel):
     avoid_sites: list[str] = []  # 로그인이 필요하거나 약관상 자동으로 읽으면 안 되는 곳
     # 사진만 있는 쇼핑몰 코디 페이지: `tools.scout refs` 로 확인표를 만들어 보고 글로 옮긴다
     scout_sites: list[str] = []
+    # scout_sites 쇼핑몰이 사진을 따로 두는 곳 (사진 서버). 페이지는 열지 않고 사진만 받는다
+    image_hosts: list[str] = []
+
+    def hosts(self) -> list[str]:
+        """사진을 받아도 되는 곳: 쇼핑몰 + 그 쇼핑몰의 사진 서버."""
+        return self.scout_sites + self.image_hosts
 
 
 class ThemeRules(BaseModel):

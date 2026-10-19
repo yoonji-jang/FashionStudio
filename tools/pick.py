@@ -205,7 +205,7 @@ def with_ref(path: Path, look, profile: Profile, out: Path, panel: int = 640) ->
     try:
         if not look.ref_photo:
             raise OSError("사진 주소 없음")
-        sites = profile.themes.ref_search.scout_sites if profile.themes.ref_search else []
+        sites = profile.themes.ref_search.hosts() if profile.themes.ref_search else []
         name = re.sub(r"[^0-9A-Za-z]+", "_", look.ref_photo)[-80:]
         ph = Image.open(
             scout.ref_photo(look.ref_photo, sites, picks_dir(out) / "photos" / f"ref_{name}")

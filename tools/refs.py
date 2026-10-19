@@ -318,7 +318,7 @@ def main(argv: list[str] | None = None) -> int:
 
         rs = profile.themes.ref_search
         new = [r for r in refs if not args.since or r.added >= args.since]
-        sheets = album(new, rs.scout_sites if rs else [], args.out)
+        sheets = album(new, rs.hosts() if rs else [], args.out)
         if not sheets:
             print("보낼 참고 사진이 없음")
             return 0

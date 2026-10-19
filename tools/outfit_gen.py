@@ -310,7 +310,7 @@ def worn_ref_panel(plan: DailyPlan, profile: Profile, cache: Path) -> bytes | No
     rs = profile.themes.ref_search
     name = re.sub(r"[^0-9A-Za-z]+", "_", plan.ref_photo)[-80:]
     try:
-        path = scout.ref_photo(plan.ref_photo, rs.scout_sites if rs else [], cache / f"ref_{name}")
+        path = scout.ref_photo(plan.ref_photo, rs.hosts() if rs else [], cache / f"ref_{name}")
         img, ok = faces.hide_faces(Image.open(path).convert("RGB"))
     except Exception as e:  # noqa: BLE001 - 참고 사진 없이도 그릴 수 있다
         print(f"기준 코디 사진을 받지 못함: {plan.ref_photo} ({e})", file=sys.stderr)

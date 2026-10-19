@@ -68,7 +68,7 @@ def test_crawl_visits_menus_then_product_pages(tmp_path, monkeypatch):
     )
     got = {}
     monkeypatch.setattr(
-        scout, "ref_sheets", lambda urls, sites, out, n: got.setdefault("urls", urls) and []
+        scout, "ref_sheets", lambda urls, sites, out, n, *_: got.setdefault("urls", urls) and []
     )
     scout.crawl(home, ["woonan.co.kr"], tmp_path, menus=5, products=10)
     # 로그인·공지는 건너뛰고, 메뉴를 번갈아, 같은 상품(101)은 한 번만
