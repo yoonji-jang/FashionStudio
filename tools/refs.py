@@ -289,11 +289,19 @@ def main(argv: list[str] | None = None) -> int:
         from core.models import RefLook as Ref
 
         raw = json.loads(args.new.read_text(encoding="utf-8"))
+        # 같은 사진은 한 번만 (확인표를 다시 써서 다시 옮기거나, 나눠 옮기다 겹칠 때)
+        used = {r.photo for r in refs}
+        fresh = []
+        for item in raw:
+            if item.get("photo") not in used:
+                used.add(item.get("photo"))
+                fresh.append(item)
         start = max((r.n for r in refs), default=100) + 1
-        new = [Ref.model_validate({**item, "n": start + i}) for i, item in enumerate(raw)]
+        new = [Ref.model_validate({**item, "n": start + i}) for i, item in enumerate(fresh)]
         store.save_refs(refs + new)
+        same = f", 이미 있는 사진 {len(raw) - len(fresh)}벌은 뺌" if len(raw) > len(fresh) else ""
         print(
-            f"참고 코디 {len(new)}벌 더함 ({start}~{start + len(new) - 1}번), "
+            f"참고 코디 {len(new)}벌 더함 ({start}~{start + len(new) - 1}번){same}, "
             f"모두 {len(refs) + len(new)}벌"
         )
         return 0
