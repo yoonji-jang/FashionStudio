@@ -88,6 +88,7 @@ jobs:
               "sheets": len(sheets),
               "images": sum(len(r.get("images", [])) for r in sheets),
               "skipped": skipped,
+              "why": crawl.get("why", ""),
           }
           (out / "summary.json").write_text(json.dumps(summary, ensure_ascii=False))
           print(summary)
@@ -112,10 +113,10 @@ jobs:
       - name: 요약 표
         run: |
           {
-            echo "| 쇼핑몰 | 메뉴 | 상품 페이지 | 확인표 | 사진 | 건너뜀 |"
+            echo "| 쇼핑몰 | 메뉴 | 상품 페이지 | 확인표 | 사진 | 건너뜀·이유 |"
             echo "|---|---|---|---|---|---|"
             for f in probe/*/summary.json; do
-              jq -r '"| \(.site) | \(.menus) | \(.pages) | \(.sheets) | \(.images) | \(.skipped | to_entries | map("\(.key) \(.value)") | join(", ")) |"' "$f"
+              jq -r '"| \(.site) | \(.menus) | \(.pages) | \(.sheets) | \(.images) | \([(.skipped | to_entries | map("\(.key) \(.value)") | join(", ")), (.why // "")] | map(select(. != "")) | join(" / ")) |"' "$f"
             done
           } | tee probe/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
       - name: scout-results 브랜치에 커밋

@@ -354,6 +354,31 @@ def product_key(href: str) -> str:
     return next((g for g in m.groups() if g), href) if m else href.split("?", 1)[0]
 
 
+def diagnose(home: str, sites: list[str]) -> str:
+    """메뉴를 하나도 못 찾았을 때 이유 (2026-10-19 쇼핑몰 시험: 12곳이 이유 없이 0).
+    robots.txt 상태, 첫 화면 응답, 옮겨 간 주소만 본다 (본문은 저장하지 않는다)."""
+    parts = urlsplit(home)
+    with client() as c:
+        try:
+            status, text = fetch_page(c, f"{parts.scheme}://{parts.netloc}/robots.txt")
+        except (Blocked, httpx.HTTPError) as e:
+            return f"robots.txt 못 읽음 ({type(e).__name__}: {e})"[:200]
+        if status not in (200, 404):
+            return f"robots.txt 응답 {status} (못 읽으면 막힌 것으로 봄)"
+        if status == 200 and not robots_rules_allow(text, parts.path or "/"):
+            return "robots.txt 가 첫 화면을 막음"
+        try:
+            resp = _get(c, home)
+        except (Blocked, httpx.HTTPError) as e:
+            return f"첫 화면 못 엶 ({type(e).__name__}: {e})"[:200]
+        final = str(resp.url)
+        if resp.status_code != 200:
+            return f"첫 화면 응답 {resp.status_code} ({final})"
+        if not host_allowed(final, sites):
+            return f"다른 사이트로 옮겨 감: {final} (scout_sites 에 없음)"
+    return "첫 화면은 열리지만 메뉴 링크를 못 찾음 (화면을 스크립트로 그리는 쇼핑몰일 수 있음)"
+
+
 def crawl(
     home: str, sites: list[str], out: Path, menus: int = 5, products: int = 15, max_images: int = 16
 ) -> list[dict]:
@@ -387,11 +412,17 @@ def crawl(
                 seen.add(product_key(href))
                 pages.append(href)
     report = ref_sheets(pages, sites, out, max_images) if pages else []
+    info: dict = {"home": home, "menus": picked, "pages": pages}
+    if not picked:
+        info["why"] = diagnose(home, sites)
+    elif not pages:
+        info["why"] = "메뉴는 찾았지만 상품 페이지 링크를 못 찾음 (상품 주소 모양이 다를 수 있음)"
     (out / "crawl.json").parent.mkdir(parents=True, exist_ok=True)
     (out / "crawl.json").write_text(
-        json.dumps({"home": home, "menus": picked, "pages": pages}, ensure_ascii=False, indent=1),
-        encoding="utf-8",
+        json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8"
     )
+    if info.get("why"):
+        print(f"이유: {info['why']}")
     return report
 
 
