@@ -92,8 +92,8 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
     # 2026-10-19 사용자가 보낸 쇼핑몰을 더함 (기존 목록은 그대로. 사이트마다 사진이 받아지는지는 ref-probe 워크플로로 확인)
     scout_sites: [woonan.co.kr, the-ore.kr, u-ur.kr, vivnluv.co.kr, stanst.kr, aisel.me, lowclassic.com, sienne.co.kr, kolonmall.com,
                   facette.co.kr, monodaily.com, mnem.co.kr, dayroze.com, la-room.kr,
-                  curetty.co.kr, mondayoff.co.kr, sugarpowder.kr,
-                  29cm.co.kr, wconcept.co.kr]  # 2026-10-19 시험 (사용자 4단계 1번)
+                  curetty.co.kr, mondayoff.co.kr, sugarpowder.kr]
+    # 2026-10-19 시험 후 뺌: 29CM(robots.txt 요청부터 403으로 Actions 를 막음), W컨셉(robots.txt 가 막음)
     # scout_sites 쇼핑몰의 사진 서버 (페이지는 열지 않고 사진만 받음)
     image_hosts: [cafe24.poxo.com, ecimg.cafe24img.com]  # 모노데일리, 스탠스트 (cafe24 사진 서버)
 
