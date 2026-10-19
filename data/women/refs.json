@@ -2531,5 +2531,2039 @@
    ]
   },
   "ready": true
+ },
+ {
+  "n": 141,
+  "name": "블랙 스카프 카디건 + 차콜 울 미니스커트 + 니하이 부츠",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/6b9f38d4f8fc44255260cde7b3d1a3d3.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "올블랙",
+   "약속룩",
+   "질감"
+  ],
+  "note": "흰 스카프 칼라가 포인트 / 검정 스타킹 + 롱부츠로 이어지는 실루엣",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 스카프 칼라 슬림 카디건",
+    "query": "스카프 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 울 랩 미니스커트",
+    "query": "울 랩 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 니하이 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "미니 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 142,
+  "name": "그레이 랩 카디건 + 다크 캐미 + 블랙 랩 롱스커트",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202610/1d1db6bb2e82fd3d0a69babfca51ea10.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "니트",
+   "롱스커트",
+   "올블랙"
+  ],
+  "note": "가슴을 감싸는 랩 카디건 + 긴 목걸이 / 스커트 허리선이 살아 있음",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "라이트 그레이 랩 카디건",
+    "query": "랩 카디건"
+   },
+   {
+    "category": "상의",
+    "color": "다크그레이",
+    "desc": "다크그레이 캐미 (안에)",
+    "query": "무지 캐미"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 랩 롱스커트",
+    "query": "랩 롱스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 소프트 숄더백",
+    "query": "소프트 숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 롱 목걸이",
+    "query": "롱 목걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 143,
+  "name": "차콜 롱코트 + 브라운 캐미 + 핀스트라이프 와이드 팬츠",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202610/2640dcee48de36cd632e86761d32d730.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "톤온톤",
+   "주말 나들이"
+  ],
+  "note": "롱코트 안에 얇은 캐미 레이어 / 일자로 떨어지는 긴 바지",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "차콜",
+    "desc": "차콜 울 싱글 롱코트",
+    "query": "울 싱글 롱코트"
+   },
+   {
+    "category": "상의",
+    "color": "브라운",
+    "desc": "브라운 캐미 탑",
+    "query": "슬림 캐미"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 이너 티 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 핀스트라이프 와이드 팬츠",
+    "query": "핀스트라이프 와이드 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 포인트 토 구두 (안 보임, 어울리게)",
+    "query": "포인티드 앵클부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 숄더백",
+    "query": "가죽 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 장갑",
+    "query": "가죽 장갑"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 144,
+  "name": "베이지 랩 셔츠 + 블랙 뷔스티에 + 블랙 와이드 슬랙스",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202610/882b342c58a3aadef2ea2bfeff44e276.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "약속룩",
+   "레이어드"
+  ],
+  "note": "셔츠 위에 나시 뷔스티에 + 긴 펜던트 목걸이",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "베이지",
+    "desc": "베이지 랩 스커트형 오버 셔츠",
+    "query": "랩 셔츠"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 끈 뷔스티에 (셔츠 위)",
+    "query": "뷔스티에 탑"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 와이드 슬랙스",
+    "query": "와이드 슬랙스"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 펜던트 목걸이",
+    "query": "펜던트 목걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 145,
+  "name": "새틴 스카프 블라우스 + 핀스트라이프 미니스커트 + 니하이 부츠",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/7fe7022457a88050b542f673c59d006b.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "약속룩",
+   "첫 데이트",
+   "질감"
+  ],
+  "note": "목에 묶는 새틴 스카프 블라우스 / 스타킹 + 롱부츠 / 허리 벨트 디테일",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이브라운",
+    "desc": "그레이브라운 새틴 스카프 블라우스",
+    "query": "스카프 블라우스"
+   },
+   {
+    "category": "하의",
+    "color": "브라운",
+    "desc": "다크 브라운 핀스트라이프 미니스커트",
+    "query": "핀스트라이프 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 토트백",
+    "query": "미니 토트백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 146,
+  "name": "그레이 브이넥 니트 + 화이트 스카프 이너 + 핀스트라이프 롱스커트",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202610/08234faba311f2c5f68c1a1bb70c3339.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "니트",
+   "출근룩"
+  ],
+  "note": "니트 밑으로 흰 소매·스카프가 살짝 / 앞트임 롱스커트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "차콜 그레이 울 브이넥 니트",
+    "query": "울 브이넥 니트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 스카프 블라우스 (안에)",
+    "query": "스카프 블라우스"
+   },
+   {
+    "category": "하의",
+    "color": "브라운",
+    "desc": "다크 브라운 핀스트라이프 H라인 롱스커트",
+    "query": "핀스트라이프 롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 퀼팅 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 147,
+  "name": "블랙 라운드 니트 + 스트라이프 셔츠 레이어드 + 블랙 미니스커트",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "올블랙",
+   "니트",
+   "레이어드"
+  ],
+  "note": "니트 밑으로 스트라이프 셔츠 소매·밑단 / 긴 체인 목걸이 / 검정 스타킹",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 울 라운드 니트",
+    "query": "라운드 니트"
+   },
+   {
+    "category": "상의",
+    "color": "네이비",
+    "desc": "네이비 스트라이프 셔츠 (안에, 소매와 밑단만)",
+    "query": "스트라이프 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 트임 미니스커트",
+    "query": "미니스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 토트백",
+    "query": "토트백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 롱 체인 목걸이",
+    "query": "체인 목걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 148,
+  "name": "화이트 셔츠 + 블랙 와이드 벨트 팬츠",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/big/202610/4e97c6ba047bbf03e60b3da1c7cdeeca.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "주말 나들이",
+   "꾸안꾸"
+  ],
+  "note": "구김 셔츠를 반만 넣어 입고 허리 끈이 늘어지는 와이드 팬츠",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 구김 코튼 셔츠",
+    "query": "코튼 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 허리끈 와이드 팬츠",
+    "query": "와이드 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 포인트 토 플랫",
+    "query": "포인트 플랫슈즈"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 149,
+  "name": "블랙 브이넥 니트 + 흰 이너 + 그레이 랩 미디스커트 + 로퍼",
+  "source": "쇼핑몰 코디 (woonan)",
+  "photo": "https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "출근룩",
+   "니트"
+  ],
+  "note": "브이넥 밑으로 흰 이너 / 샤이니한 랩 스커트 / 긴 목걸이",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 울 브이넥 니트",
+    "query": "울 브이넥 니트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 이너 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 새틴 랩 미디스커트",
+    "query": "랩 미디스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 토트백",
+    "query": "토트백"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 롱 목걸이",
+    "query": "롱 목걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 150,
+  "name": "카키 스탠드칼라 점퍼 + 흰 티 + 블랙 스트레이트 팬츠",
+  "source": "쇼핑몰 코디 (the-ore)",
+  "photo": "https://the-ore.kr/web/upload/category/editor/2026/09/10/ecd97ce04974b72d55618a65c9d1dc0b.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "주말 나들이",
+   "꾸안꾸",
+   "가을 아우터"
+  ],
+  "note": "넉넉한 점퍼 + 무지 티 + 검정 바지 / 가방은 검정 호보",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "카키",
+    "desc": "카키 코튼 스탠드칼라 점퍼",
+    "query": "스탠드칼라 점퍼"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 무지 티셔츠 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 스트레이트 팬츠",
+    "query": "스트레이트 팬츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 호보백",
+    "query": "호보백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 슬립온 (안 보임, 어울리게)",
+    "query": "슬립온"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 151,
+  "name": "퍼플 라운드 카디건 + 블랙 와이드 데님",
+  "source": "쇼핑몰 코디 (the-ore)",
+  "photo": "https://the-ore.kr/web/product/small/202609/c0fef7d04cbdc8efa993b9fc9ee2cba9.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "니트",
+   "컬러 포인트",
+   "주말 나들이"
+  ],
+  "note": "깊은 퍼플 카디건 하나가 포인트 / 안에 그레이 이너, 가죽 벨트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "퍼플",
+    "desc": "딥 퍼플 울 라운드 카디건",
+    "query": "라운드 카디건"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 이너 티 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 와이드 데님",
+    "query": "와이드 데님"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 152,
+  "name": "그레이 래글런 울 니트 + 블랙 숏팬츠 + 슬라우치 부츠",
+  "source": "쇼핑몰 코디 (the-ore)",
+  "photo": "https://the-ore.kr/web/product/small/202610/36c77438255d275bc4bc1809f6121266.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "니트",
+   "키 작은 분 비율",
+   "주말 나들이"
+  ],
+  "note": "네이비 소매 배색 니트 + 짧은 하의 + 긴 펜던트 목걸이 / 부츠로 다리를 이어줌",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 네이비 소매 래글런 울 니트",
+    "query": "래글런 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 코튼 숏팬츠",
+    "query": "하이웨스트 숏팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 슬라우치 롱부츠",
+    "query": "슬라우치 부츠"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 롱 펜던트 목걸이",
+    "query": "펜던트 목걸이"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백 (안 보임, 어울리게)",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 153,
+  "name": "베이지 스탠드칼라 점퍼 + 화이트 후디 + 화이트 와이드 팬츠",
+  "source": "쇼핑몰 코디 (vivnluv)",
+  "photo": "https://vivnluv.co.kr/web/upload/NNEditor/20261012/959027257359e13095ae90963d7499b8.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "톤온톤",
+   "주말 나들이",
+   "꾸안꾸"
+  ],
+  "note": "아이보리 톤온톤 / 후드를 칼라 안으로 / 카키 보스턴백 + 블랙 슈즈로 포인트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "베이지",
+    "desc": "베이지 코튼 스탠드칼라 점퍼",
+    "query": "스탠드칼라 점퍼"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 오프숄더 후드 맨투맨",
+    "query": "후드 맨투맨"
+   },
+   {
+    "category": "하의",
+    "color": "화이트",
+    "desc": "화이트 와이드 코튼 팬츠",
+    "query": "와이드 코튼 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 스웨이드 슬립온 슈즈",
+    "query": "스웨이드 로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "카키",
+    "desc": "카키 브라운 캔버스 보스턴백",
+    "query": "보스턴백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 후프 귀걸이",
+    "query": "후프 귀걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 154,
+  "name": "블랙 모크넥 민소매 니트 + 블랙 울 미니스커트",
+  "source": "쇼핑몰 코디 (vivnluv)",
+  "photo": "https://vivnluv.co.kr/web/product/extra/big/20261014/b1935dc3ccca1ec543662c3ab54889cf.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "올블랙",
+   "질감",
+   "약속룩"
+  ],
+  "note": "매끈한 니트 + 울 스커트 질감 차이 / 미니 핸드백",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 모크넥 슬리브리스 니트",
+    "query": "모크넥 민소매 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 울 로우라이즈 미니스커트",
+    "query": "울 미니스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 핸드백",
+    "query": "미니 핸드백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠 (안 보임, 어울리게)",
+    "query": "롱부츠"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 귀걸이",
+    "query": "실버 귀걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 155,
+  "name": "블루 민소매 터틀넥 니트 + 그레이 핀스트라이프 미디스커트",
+  "source": "쇼핑몰 코디 (vivnluv)",
+  "photo": "https://vivnluv.co.kr/web/product/extra/big/20261014/b490fce2df601776acb89f4591086c4e.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "컬러 포인트",
+   "약속룩"
+  ],
+  "note": "코발트 블루 니트 하나가 포인트, 그레이 스커트로 차분하게 / 블랙 미니백",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블루",
+    "desc": "코발트 블루 슬리브리스 터틀넥 니트",
+    "query": "민소매 터틀넥 니트"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 핀스트라이프 밴딩 미디스커트",
+    "query": "핀스트라이프 미디스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 핸드백",
+    "query": "미니 핸드백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠 (안 보임, 어울리게)",
+    "query": "롱부츠"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "실버 팔찌",
+    "query": "실버 팔찌"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 156,
+  "name": "네이비 헨리넥 맨투맨 + 스트라이프 이너 + 베이지 스커트 + 팀버 부츠",
+  "source": "쇼핑몰 코디 (stanst)",
+  "photo": "https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "주말 나들이",
+   "꾸안꾸",
+   "키 작은 비율"
+  ],
+  "note": "스트라이프 이너가 밑단 아래로 / 흰 양말 + 워커 부츠 / 블랙 에코백",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "네이비",
+    "desc": "네이비 헨리넥 맨투맨",
+    "query": "헨리넥 맨투맨"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "스트라이프 긴팔 티 (안에, 밑단만)",
+    "query": "스트라이프 긴팔티"
+   },
+   {
+    "category": "하의",
+    "color": "베이지",
+    "desc": "베이지 코튼 스커트 팬츠",
+    "query": "스커트 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "카멜",
+    "desc": "카멜 워커 부츠 + 흰 양말",
+    "query": "워커 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 나일론 토트백",
+    "query": "나일론 토트백"
+   },
+   {
+    "category": "소품",
+    "color": "화이트",
+    "desc": "흰 중목 양말",
+    "query": "중목 양말"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 157,
+  "name": "퍼플 모헤어 니트 + 블랙 벨벳 레이스 미디스커트 + 발레리나",
+  "source": "쇼핑몰 코디 (stanst)",
+  "photo": "https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20261016/b2f4fb646ba6446d6abd8d94cde078a1.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "니트",
+   "약속룩"
+  ],
+  "note": "넉넉한 퍼플 니트 안에 흰 티 / 레이스 밑단 벨벳 스커트 / 니트 양말 + 플랫",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "퍼플",
+    "desc": "딥 퍼플 오버핏 모헤어 니트",
+    "query": "모헤어 니트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 무지 티 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 벨벳 레이스 밑단 미디스커트",
+    "query": "벨벳 미디스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 발레리나 플랫 (안 보임, 어울리게)",
+    "query": "발레리나 플랫"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 토트백",
+    "query": "가죽 토트백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 롱 펜던트 목걸이",
+    "query": "롱 목걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 158,
+  "name": "그레이 아가일 니트 + 흰 이너 + 차콜 벨벳 레이스 스커트 + 버클 부츠",
+  "source": "쇼핑몰 코디 (stanst)",
+  "photo": "https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20261016/9152db9f38f0ef426bf7052feab44e37.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "니트",
+   "주말 나들이"
+  ],
+  "note": "아가일 니트 밑으로 흰 이너 / 벨벳 스커트 + 슬라우치 부츠",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "라이트 그레이 아가일 니트 카디건",
+    "query": "아가일 니트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 티 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 벨벳 레이스 미디스커트",
+    "query": "벨벳 미디스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 버클 숏부츠",
+    "query": "버클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 미니 보스턴백",
+    "query": "보스턴백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 159,
+  "name": "스트라이프 후리스 집업 + 흰 니트 이너 + 카키 카고 팬츠",
+  "source": "쇼핑몰 코디 (stanst)",
+  "photo": "https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260107/ebaffc81c346ca9a1573c1e5db0cce07.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "주말 나들이",
+   "꾸안꾸",
+   "캐주얼"
+  ],
+  "note": "집업 밑단 아래로 흰 니트 이너 / 와이드 카고 / 블랙 토트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "아이보리",
+    "desc": "블랙 아이보리 스트라이프 후리스 집업",
+    "query": "스트라이프 후리스 집업"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 니트 이너 (안에, 밑단만)",
+    "query": "무지 니트"
+   },
+   {
+    "category": "하의",
+    "color": "카키",
+    "desc": "카키 와이드 카고 팬츠",
+    "query": "와이드 카고 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "브라운 가죽 스니커즈 (안 보임, 어울리게)",
+    "query": "가죽 스니커즈"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 토트백",
+    "query": "토트백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 160,
+  "name": "그레이 트위스트 니트 + 블랙 부츠컷 슬랙스 + 발레 플랫",
+  "source": "쇼핑몰 코디 (aisel)",
+  "photo": "https://aisel.me/web/product/extra/small/202610/e826d8eb4ab3ea1b6fd5a4634869dc20.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "니트",
+   "키 작은 비율"
+  ],
+  "note": "몸에 붙는 니트 + 허리 높은 부츠컷으로 다리가 길어 보임",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "차콜 그레이 트위스트 브이넥 니트",
+    "query": "트위스트 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 하이웨스트 부츠컷 슬랙스",
+    "query": "부츠컷 슬랙스"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 발레 플랫",
+    "query": "발레 플랫"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백 (안 보임, 어울리게)",
+    "query": "숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "작은 실버 귀걸이",
+    "query": "실버 귀걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 161,
+  "name": "베이지 셔링 블라우스 + 다크그레이 랩 롱스커트",
+  "source": "쇼핑몰 코디 (aisel)",
+  "photo": "https://aisel.me/web/product/extra/small/202610/f9542cfc2abe75663b5bd879109070b6.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "출근룩",
+   "약속룩"
+  ],
+  "note": "퍼프 소매 블라우스 + 허리 리본 랩 스커트 / 누드 힐",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "베이지",
+    "desc": "베이지 셔링 넥 퍼프 소매 블라우스",
+    "query": "셔링 블라우스"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 리본 랩 롱스커트",
+    "query": "랩 롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "베이지",
+    "desc": "누드 베이지 힐 펌프스",
+    "query": "펌프스 힐"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 토트백 (안 보임, 어울리게)",
+    "query": "토트백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 162,
+  "name": "차콜 벨티드 울 숏 코트 + 데님 + 블랙 퀼팅백",
+  "source": "쇼핑몰 코디 (dayroze)",
+  "photo": "https://dayroze.com/web/product/medium/202609/78fd20fbae234f4d436f1eccb6f616bc.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "주말 나들이",
+   "가을 아우터",
+   "꾸안꾸"
+  ],
+  "note": "높은 칼라와 벨트 / 안에 흰 소매 이너 / 진한 청바지",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "차콜",
+    "desc": "차콜 하이넥 벨티드 울 숏 코트",
+    "query": "벨티드 울 코트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 이너 셔츠 (안에, 소매만)",
+    "query": "화이트 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "인디고",
+    "desc": "진청 스트레이트 데님",
+    "query": "스트레이트 데님"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 퀼팅 숄더백",
+    "query": "퀼팅 숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 163,
+  "name": "그레이 더블 블레이저 + 블랙 미니스커트 + 화이트 이너",
+  "source": "쇼핑몰 코디 (dayroze)",
+  "photo": "https://dayroze.com/web/product/medium/202609/184d33b8058f67853bc6a5a0e03473cc.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "약속룩",
+   "첫 데이트"
+  ],
+  "note": "어깨선 있는 더블 블레이저 + 짧은 하의 / 얇은 초커",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "그레이",
+    "desc": "그레이 더블 울 블레이저",
+    "query": "더블 블레이저"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 이너 티 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 미니스커트",
+    "query": "미니스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 체인 숄더백",
+    "query": "체인 숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "소품",
+    "color": "화이트",
+    "desc": "화이트 초커",
+    "query": "초커"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 164,
+  "name": "브라운 니트 + 크림 롱스커트 + 블랙 부츠",
+  "source": "쇼핑몰 코디 (la-room)",
+  "photo": "https://la-room.kr/web/product/medium/202610/37357fa53c8a02fdc1e4120a72e7fa1f.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "니트",
+   "톤온톤"
+  ],
+  "note": "브라운 니트 안에 흰 이너 / 앞트임 크림 H라인 스커트 / 숄더백",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "브라운",
+    "desc": "초콜릿 브라운 라운드 니트",
+    "query": "라운드 니트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 이너 (안에)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "크림",
+    "desc": "크림 H라인 롱스커트",
+    "query": "H라인 롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "브라운 스웨이드 숄더백",
+    "query": "스웨이드 숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 165,
+  "name": "브라운 가디건 + 블랙 롱스커트",
+  "source": "쇼핑몰 코디 (la-room)",
+  "photo": "https://la-room.kr/web/product/medium/202610/20a7fba573273923bc262ce70d1df94c.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "올블랙",
+   "톤온톤"
+  ],
+  "note": "비대칭 단추 브라운 카디건 + 길게 떨어지는 블랙 스커트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "브라운",
+    "desc": "다크 브라운 슬림 카디건",
+    "query": "슬림 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 코튼 롱스커트",
+    "query": "롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 포인트 부츠",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "브라운 스웨이드 숄더백 (안 보임, 어울리게)",
+    "query": "스웨이드 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 166,
+  "name": "블랙 가죽 바이커 자켓 + 블랙 슬림 팬츠 + 브라운 플랫",
+  "source": "쇼핑몰 코디 (mondayoff)",
+  "photo": "https://cafe24.poxo.com/ec01/mondayoff/XOgGzg7Z/cVHdUf1DFtQ9zEgSJJWlJAIF3Ncm2+mQ3NE2wT5hX8dSUx6c5RpelcsonilOxKAyaXFLcC+vbdS2w==/_/web/product/medium/202609/8dd7e692259759e0147a7739e8e802d8.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "가죽자켓",
+   "올블랙",
+   "주말 나들이"
+  ],
+  "note": "오버핏 가죽 자켓 + 슬림 바지로 비율 대비 / 브라운 플랫으로 포인트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 오버핏 가죽 바이커 자켓",
+    "query": "가죽 바이커 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 무지 티 (안에, 안 보임)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 슬림 크롭 팬츠",
+    "query": "슬림 크롭 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "브라운 발레 플랫",
+    "query": "발레 플랫"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백 (안 보임, 어울리게)",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 167,
+  "name": "블루 가디건 + 그레이 레이스 캐미 + 브라운 스커트",
+  "source": "쇼핑몰 코디 (mondayoff)",
+  "photo": "https://cafe24.poxo.com/ec01/mondayoff/XOgGzg7Z/cVHdUf1DFtQ9zEgSJJWlJAIF3Ncm2+mQ3NE2wT5hX8dSUx6c5RpelcsonilOxKAyaXFLcC+vbdS2w==/_/web/product/medium/202610/5bf53353f5697d4a8775867f834edc96.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "약속룩",
+   "컬러 포인트",
+   "롱스커트"
+  ],
+  "note": "코발트 블루 가디건이 포인트 / 레이스 캐미 / 브라운 미디스커트 / 화이트 토트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블루",
+    "desc": "코발트 블루 리브 카디건",
+    "query": "리브 카디건"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 레이스 캐미 (안에)",
+    "query": "레이스 캐미"
+   },
+   {
+    "category": "하의",
+    "color": "브라운",
+    "desc": "브라운 미디스커트",
+    "query": "미디스커트"
+   },
+   {
+    "category": "가방",
+    "color": "화이트",
+    "desc": "화이트 가죽 토트백",
+    "query": "토트백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 메리제인 (안 보임, 어울리게)",
+    "query": "메리제인"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 168,
+  "name": "브라운 스웨이드 봄버 + 그레이 롱스커트",
+  "source": "쇼핑몰 코디 (mondayoff)",
+  "photo": "https://cafe24.poxo.com/ec01/mondayoff/XOgGzg7Z/cVHdUf1DFtQ9zEgSJJWlJAIF3Ncm2+mQ3NE2wT5hX8dSUx6c5RpelcsonilOxKAyaXFLcC+vbdS2w==/_/web/product/medium/202610/0799d3531cd6c6a0f2fa17d7b5686fda.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "가죽자켓",
+   "꾸안꾸"
+  ],
+  "note": "짧은 스웨이드 봄버 + 흰 칼라 이너 + 긴 그레이 스커트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "브라운",
+    "desc": "브라운 스웨이드 봄버 자켓",
+    "query": "스웨이드 봄버 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 칼라 이너 (안에)",
+    "query": "화이트 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 니트 롱스커트",
+    "query": "롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백 (안 보임, 어울리게)",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 169,
+  "name": "네이비 가디건 + 흰 칼라 셔츠 + 그레이 플리츠 미니스커트",
+  "source": "쇼핑몰 코디 (sugarpowder)",
+  "photo": "https://sugarpowder.kr/web/product/small/202610/66d67a341844062ae70cfc502f97e3ff.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "약속룩",
+   "키 작은 비율"
+  ],
+  "note": "가디건 밑으로 흰 칼라와 소매 / 짧은 플리츠 스커트 / 손목시계",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "네이비",
+    "desc": "네이비 울 라운드 카디건",
+    "query": "라운드 카디건"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 칼라 셔츠 (안에)",
+    "query": "코튼 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 플리츠 미니스커트",
+    "query": "플리츠 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 토트백",
+    "query": "토트백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "가죽 스트랩 손목시계",
+    "query": "가죽 시계"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 170,
+  "name": "브라운 가죽 자켓 + 롱부츠 + 흰 양말",
+  "source": "쇼핑몰 코디 (sugarpowder)",
+  "photo": "https://sugarpowder.kr/web/product/small/202609/cc4e82f037227f5ee4ee1c0ef81560be.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "가죽자켓",
+   "주말 나들이",
+   "시크"
+  ],
+  "note": "오버핏 모토 가죽 자켓 + 슬라우치 롱부츠 + 흰 양말",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "브라운",
+    "desc": "다크 브라운 오버핏 가죽 자켓",
+    "query": "가죽 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 무지 티 (안 보임, 어울리게)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 숏 팬츠 (안 보임, 어울리게)",
+    "query": "숏 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "브라운 슬라우치 롱부츠",
+    "query": "슬라우치 부츠"
+   },
+   {
+    "category": "소품",
+    "color": "화이트",
+    "desc": "흰 양말",
+    "query": "흰 양말"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 171,
+  "name": "카키 스탠드칼라 점퍼 + 블랙 롱스커트",
+  "source": "쇼핑몰 코디 (sugarpowder)",
+  "photo": "https://sugarpowder.kr/web/product/small/202609/aab32f318253acd3f648bb0bb4650b7d.webp",
+  "added": "2026-10-19",
+  "tags": [
+   "롱스커트",
+   "주말 나들이",
+   "꾸안꾸"
+  ],
+  "note": "넉넉한 카키 점퍼 + 길게 떨어지는 블랙 스커트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "카키",
+    "desc": "카키 오버핏 스탠드칼라 점퍼",
+    "query": "스탠드칼라 점퍼"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 티 (안에, 안 보임)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 코튼 롱스커트",
+    "query": "롱스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백 (안 보임, 어울리게)",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 172,
+  "name": "그린 프릴 앙고라 카디건 + 그레이 울 미니스커트",
+  "source": "쇼핑몰 코디 (monodaily)",
+  "photo": "https://cafe24.poxo.com/ec01/monodaily/fYw07Q+e08011Z5Qzbz30673gSvqfoJKeNqo/uKg1xlKV5PJ3wGYyUUXTKDEMa1kRjJ7mx2BlSY3tiJuU84FkQ==/_/web/upload/NNEditor/20251110/5eaf7daab1b47ce89917cc77fd80859f.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "약속룩",
+   "첫 데이트",
+   "니트"
+  ],
+  "note": "프릴 밑단 + 허리 리본 카디건 / 울 미니 / 니하이 부츠 / 토트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그린",
+    "desc": "올리브 그린 프릴 앙고라 카디건",
+    "query": "프릴 앙고라 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "블루그레이 울 미니스커트",
+    "query": "울 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "브라운 니하이 부츠",
+    "query": "니하이 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "카멜 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 173,
+  "name": "브라운 스웨이드 셔츠 자켓 + 흰 탑 + 블랙 숏팬츠",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/c0592f49e7cdfcffd539ef37d7f563bd.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "가죽자켓",
+   "주말 나들이",
+   "꾸안꾸"
+  ],
+  "note": "짧은 스웨이드 칼라 자켓 + 흰 이너 + 블랙 하의 / 블랙 미니 숄더백",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "브라운",
+    "desc": "다크 브라운 스웨이드 칼라 자켓",
+    "query": "스웨이드 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 캐미 탑 (안에)",
+    "query": "무지 캐미"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 하이웨스트 숏팬츠",
+    "query": "하이웨스트 숏팬츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 미니 숄더백",
+    "query": "미니 숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 174,
+  "name": "블랙 니트 가디건 + 그레이 레이스 캐미 + 블랙 미니스커트",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/e6760a06ebb2a0ac05bab2e92f41be45.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "올블랙",
+   "약속룩",
+   "첫 데이트"
+  ],
+  "note": "가디건 안에 그레이 캐미 / 검정 스타킹 + 미니 / 작은 가방",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 울 카디건",
+    "query": "울 카디건"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 레이스 캐미 (안에)",
+    "query": "레이스 캐미"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 울 미니스커트",
+    "query": "울 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 토트백",
+    "query": "미니 토트백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 175,
+  "name": "버건디 카디건 + 블랙 하이웨스트 쇼츠 + 화이트 숄더백",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/a20bd8696675234cff8445af514adb3a.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "니트",
+   "컬러 포인트",
+   "키 작은 비율"
+  ],
+  "note": "깊은 버건디 카디건 하나가 포인트 / 짧은 하의로 비율 / 흰 가방",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "버건디",
+    "desc": "버건디 울 라운드 카디건",
+    "query": "라운드 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 하이웨스트 와이드 쇼츠",
+    "query": "하이웨스트 쇼츠"
+   },
+   {
+    "category": "가방",
+    "color": "화이트",
+    "desc": "화이트 가죽 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   },
+   {
+    "category": "소품",
+    "color": "실버",
+    "desc": "얇은 실버 목걸이",
+    "query": "실버 목걸이"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 176,
+  "name": "아이보리 울 코트 + 블랙 미니스커트 + 롱부츠",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/c21477cf0a3990133e1f3c0ee171b205.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "약속룩",
+   "가을 아우터",
+   "출근룩"
+  ],
+  "note": "넉넉한 아이보리 칼라 코트 + 블랙 미니 + 롱부츠로 대비 / 흰 숄더백",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "아이보리",
+    "desc": "아이보리 핸드메이드 울 칼라 코트",
+    "query": "핸드메이드 울 코트"
+   },
+   {
+    "category": "상의",
+    "color": "베이지",
+    "desc": "베이지 니트 이너 (안에)",
+    "query": "베이직 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 울 미니스커트",
+    "query": "울 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "화이트",
+    "desc": "화이트 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 177,
+  "name": "베이지 알파카 카디건 + 그레이 와이드 슬랙스",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/646e536ebd9a27544f38d1830272764c.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "니트",
+   "출근룩",
+   "톤온톤"
+  ],
+  "note": "짧은 카디건 밑으로 흰 이너 / 길게 떨어지는 그레이 팬츠 / 블랙 숄더백",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "베이지",
+    "desc": "베이지 알파카 라운드 카디건",
+    "query": "알파카 카디건"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 이너 (안에, 밑단만)",
+    "query": "무지 티셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 와이드 슬랙스",
+    "query": "와이드 슬랙스"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 숄더백",
+    "query": "가죽 숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 178,
+  "name": "브라운 트렌치 + 흰 이너 + 블랙 숄더백",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/8ae848fe925d5864c1e26dfdcf8b3818.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "주말 나들이",
+   "가을 아우터"
+  ],
+  "note": "벨트로 허리를 잡은 롱 트렌치 / 안에 흰 이너 / 반짝이는 블랙 가방",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "브라운",
+    "desc": "카키 브라운 벨티드 롱 트렌치코트",
+    "query": "벨티드 트렌치코트"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "흰 이너 셔츠 (안에)",
+    "query": "화이트 셔츠"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 슬랙스 (안 보임, 어울리게)",
+    "query": "스트레이트 슬랙스"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 에나멜 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 앵클 부츠 (안 보임, 어울리게)",
+    "query": "앵클 부츠"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 179,
+  "name": "그레이 칼라 카디건 + 핀스트라이프 와이드 팬츠",
+  "source": "쇼핑몰 코디 (u-ur)",
+  "photo": "https://u-ur.kr/web/product/medium/202610/e51cdbb6ff7e28c126d9a80ffeaba2e8.jpg",
+  "added": "2026-10-19",
+  "tags": [
+   "출근룩",
+   "톤온톤",
+   "니트"
+  ],
+  "note": "단추 칼라 카디건 + 어두운 핀스트라이프 / 가죽 스트랩 시계",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 칼라 니트 카디건",
+    "query": "칼라 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 핀스트라이프 와이드 팬츠",
+    "query": "핀스트라이프 와이드 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백 (안 보임, 어울리게)",
+    "query": "숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "가죽 스트랩 손목시계",
+    "query": "가죽 시계"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 180,
+  "name": "네이비 케이블 카디건 + 화이트 미디스커트",
+  "source": "지그재그 착용컷",
+  "photo": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/29/16965_202609291624190906_10305.jpeg",
+  "added": "2026-10-19",
+  "tags": [
+   "약속룩",
+   "니트",
+   "롱스커트"
+  ],
+  "note": "단추를 채운 꼬임 카디건을 허리 높은 흰 스커트에 / 베이지 토트",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "네이비",
+    "desc": "네이비 케이블 라운드 카디건",
+    "query": "케이블 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "화이트",
+    "desc": "화이트 코튼 미디스커트",
+    "query": "코튼 미디스커트"
+   },
+   {
+    "category": "가방",
+    "color": "베이지",
+    "desc": "베이지 캔버스 토트백",
+    "query": "캔버스 토트백"
+   },
+   {
+    "category": "신발",
+    "color": "화이트",
+    "desc": "화이트 스니커즈 (안 보임, 어울리게)",
+    "query": "스니커즈"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 181,
+  "name": "올리브 케이블 카디건 + 데님 팬츠 + 블랙 숄더백",
+  "source": "지그재그 착용컷",
+  "photo": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/29/16965_202609291624192284_19841.jpeg",
+  "added": "2026-10-19",
+  "tags": [
+   "주말 나들이",
+   "꾸안꾸",
+   "니트"
+  ],
+  "note": "올리브 카디건에 청바지의 편한 조합",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "올리브",
+    "desc": "올리브 케이블 라운드 카디건",
+    "query": "케이블 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "인디고",
+    "desc": "미디엄 블루 스트레이트 데님",
+    "query": "스트레이트 데님"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "신발",
+    "color": "화이트",
+    "desc": "화이트 스니커즈 (안 보임, 어울리게)",
+    "query": "스니커즈"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 182,
+  "name": "핑크 케이블 카디건 + 다크 브라운 코듀로이 팬츠",
+  "source": "지그재그 착용컷",
+  "photo": "https://cf.product-image.s.zigzag.kr/original/d/2026/9/29/16965_202609291624194199_52245.jpeg",
+  "added": "2026-10-19",
+  "tags": [
+   "주말 나들이",
+   "컬러 포인트",
+   "니트"
+  ],
+  "note": "연핑크 니트에 진한 브라운 하의로 차분하게 / 팔에 흰 니트를 걸침",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "핑크",
+    "desc": "라이트 핑크 케이블 라운드 카디건",
+    "query": "케이블 카디건"
+   },
+   {
+    "category": "하의",
+    "color": "브라운",
+    "desc": "다크 브라운 코듀로이 와이드 팬츠",
+    "query": "코듀로이 팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "브라운 로퍼 (안 보임, 어울리게)",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "브라운 스웨이드 숄더백 (안 보임, 어울리게)",
+    "query": "스웨이드 숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
  }
 ]
