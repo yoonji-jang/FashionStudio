@@ -115,11 +115,35 @@ def test_add_numbers_new_refs_after_existing(tmp_path, monkeypatch):
     store = Store("women", root=tmp_path)
     store.save_refs([ref(n=131)])
     monkeypatch.setattr(refs, "Store", lambda acc: store)
-    item = ref().model_dump(mode="json", exclude={"n", "matches", "ready"})
+    skip = {"n", "matches", "ready"}
+    items = [
+        ref(photo=f"https://a.kr/{i}.jpg").model_dump(mode="json", exclude=skip) for i in (1, 2)
+    ]
     new = tmp_path / "new.json"
-    new.write_text(json.dumps([item, item]), encoding="utf-8")
+    new.write_text(json.dumps(items), encoding="utf-8")
     assert refs.main(["add", "--account", "women", "--new", str(new)]) == 0
     assert [r.n for r in store.refs()] == [131, 132, 133]
+
+
+def test_add_skips_photos_already_in_refs(tmp_path, monkeypatch):
+    import json
+
+    from core.store import Store
+
+    store = Store("women", root=tmp_path)
+    store.save_refs([ref(n=131, photo="https://a.kr/old.jpg")])
+    monkeypatch.setattr(refs, "Store", lambda acc: store)
+    items = [
+        ref(photo=u).model_dump(mode="json", exclude={"n", "matches", "ready"})
+        for u in ("https://a.kr/old.jpg", "https://a.kr/new.jpg", "https://a.kr/new.jpg")
+    ]
+    new = tmp_path / "new.json"
+    new.write_text(json.dumps(items), encoding="utf-8")
+    assert refs.main(["add", "--account", "women", "--new", str(new)]) == 0
+    assert [(r.n, r.photo) for r in store.refs()] == [
+        (131, "https://a.kr/old.jpg"),
+        (132, "https://a.kr/new.jpg"),
+    ]
 
 
 def test_crawl_opens_popular_and_lookbook_menus_first(tmp_path, monkeypatch):

@@ -17,9 +17,11 @@ import argparse
 import math
 import shutil
 import sys
+import time
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from io import BytesIO
+from itertools import zip_longest
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -135,6 +137,10 @@ def pick_photos(
     return updated, scored
 
 
+class _TimeUp(Exception):
+    pass
+
+
 def collect(
     account: str,
     plan: dict[Category, list[str]] | None = None,
@@ -144,8 +150,12 @@ def collect(
     store: Store | None = None,
     fetch=None,
     today: date | None = None,
+    minutes: float | None = None,
 ) -> Report:
+    """minutes 가 있으면 그 시간이 지나면 새 상품 확인을 멈추고 그때까지 모은 것을 남긴다
+    (참고 코디가 많은 주에 워크플로 시간 제한으로 통째로 잃지 않게, 2026-10-19)."""
     profile = load_profile(account)
+    stop_at = time.monotonic() + minutes * 60 if minutes else None
     cfg = profile.product_source
     today = today or date.today()
     source = source or get_source(cfg.name)
@@ -159,8 +169,13 @@ def collect(
     stock: dict[str, Product] = {p.id: p for p in store.products()}
     seen: set[str] = set()
 
+    batches = list(plan.items())
+    if stop_at is not None:
+        # 시간 안에 멈출 수 있으니 카테고리를 번갈아 검색어 4개씩 (한 카테고리만 모으고 끝나지 않게)
+        chunks = [[(c, qs[i : i + 4]) for i in range(0, len(qs), 4)] for c, qs in plan.items()]
+        batches = [b for row in zip_longest(*chunks) for b in row if b]
     try:
-        for category, queries in plan.items():
+        for category, queries in batches:
             if not queries:
                 continue
             found = source.search(queries, category, search_filters(cfg, category, per_query))
@@ -191,6 +206,8 @@ def collect(
                             "review_count": cand.review_count,
                         }
                     )
+                    if stop_at is not None and time.monotonic() > stop_at:
+                        raise _TimeUp(f"{minutes:g}분이 지나 멈춤 (남은 검색어는 다음 수집 때)")
                     checked = source.detail(base)
                     if checked.status != "on_sale":
                         if old:
@@ -220,7 +237,7 @@ def collect(
                 else:
                     stock[p.id] = checked
                     report.refreshed += 1
-    except scout.Blocked as e:
+    except (scout.Blocked, _TimeUp) as e:
         report.stopped = str(e)
 
     # 기준이 바뀌면(가격대·제외어) 창고에 있던 상품도 같이 거른다
@@ -386,6 +403,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--per-query", type=int, help="검색어마다 확인할 상품 수 (프로필 값 대신)")
     ap.add_argument("--no-recheck", action="store_true", help="창고 상품 다시 확인 안 함")
     ap.add_argument("--report", type=Path, help="보고서 폴더")
+    ap.add_argument("--minutes", type=float, help="이 시간(분)이 지나면 멈추고 모은 것까지 저장")
     ap.add_argument(
         "--from-refs",
         action="store_true",
@@ -412,7 +430,12 @@ def main(argv: list[str] | None = None) -> int:
         plan = {k: v[: args.max_queries] for k, v in plan.items()}
 
     report = collect(
-        args.account, plan, per_query=args.per_query, recheck=not args.no_recheck, store=store
+        args.account,
+        plan,
+        per_query=args.per_query,
+        recheck=not args.no_recheck,
+        store=store,
+        minutes=args.minutes,
     )
     if args.from_refs:
         refs = refs_tool.match(store.refs(), store.products())

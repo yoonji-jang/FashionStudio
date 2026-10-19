@@ -515,3 +515,36 @@ def test_collect_drops_stored_products_below_cheap_floor(tmp_path: Path):
     )
     assert [p.id for p in store.products()] == ["zigzag:2"]
     assert report.unfit == 1 and report.floors == {"아우터": 30000}
+
+
+def test_collect_stops_after_minutes_and_keeps_what_it_has(tmp_path: Path, monkeypatch):
+    # 참고 코디가 많은 주: 시간이 지나면 멈추되 모은 것은 남기고, 카테고리를 번갈아 본다
+    store = Store("women", root=tmp_path)
+    source = FakeSource(
+        cards={
+            "레더자켓": [card(1)],
+            "트렌치": [card(2)],
+            "니트": [card(3)],
+            "블라우스": [card(4)],
+        },
+        pages={},
+    )
+    clock = iter(range(0, 10_000, 50))  # 부를 때마다 50초씩 지남
+    monkeypatch.setattr(collect.time, "monotonic", lambda: next(clock))
+    report = collect.collect(
+        "women",
+        plan={
+            "아우터": ["레더자켓", "a1", "a2", "a3", "트렌치"],
+            "상의": ["니트", "b1", "b2", "b3", "블라우스"],
+        },
+        source=source,
+        store=store,
+        fetch=fake_fetch,
+        today=TODAY,
+        recheck=False,
+        minutes=2,
+    )
+    # 0초에 시작 → 50초 아우터 첫 묶음 1번 → 100초 상의 첫 묶음 3번 → 150초 > 120초 멈춤
+    assert source.detailed == ["1", "3"]
+    assert {p.id for p in store.products()} == {"zigzag:1", "zigzag:3"}
+    assert report.stopped and "2분" in report.stopped
