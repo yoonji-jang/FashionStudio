@@ -323,6 +323,11 @@ def page_links(
                 "() => [...document.querySelectorAll('a[href]')].map(a => ["
                 "(a.innerText || a.title || '').trim().replace(/\\s+/g, ' ').slice(0, 40), a.href])"
             )
+            # 메뉴를 못 찾을 때 이유를 보려고 (봇 확인 화면으로 옮겨 갔는지, 링크가 몇 개인지)
+            print(
+                f"{url} → {page.url} 제목 {page.title()[:40]!r}: 링크 {len(found)}개",
+                file=sys.stderr,
+            )
         except Exception as e:  # noqa: BLE001 - 실패하면 빈 목록
             print(f"페이지 실패 ({url}): {e}", file=sys.stderr)
             found = []
