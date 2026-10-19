@@ -1,0 +1,148 @@
+name: ref-probe
+
+# 참고 코디 쇼핑몰 접속 시험 (2026-10-19 사용자 "각 웹사이트에서 이미지 조회되는지도 확인해").
+# Claude 없이 코드만 돈다: 쇼핑몰마다 tools.scout crawl (메뉴 → 상품 페이지 → 사진 확인표).
+# robots.txt 가 막은 곳은 열지 않는다. 페이지·사진 원본은 저장하지 않고 확인표와 개수만 남긴다.
+# 결과는 scout-results 브랜치 ref-probe-<실행번호>/<쇼핑몰>/ 와 실행 요약(표)에 있다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      sites:
+        description: 시험할 쇼핑몰 (쉼표로, 빈칸이면 profile scout_sites 전부)
+        default: ""
+      menus:
+        description: 쇼핑몰마다 볼 메뉴 수
+        default: "8"
+      products:
+        description: 쇼핑몰마다 볼 상품 페이지 수
+        default: "30"
+
+permissions:
+  contents: write
+
+jobs:
+  sites:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.list.outputs.list }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - id: list
+        env:
+          ACCOUNT: ${{ inputs.account }}
+          SITES: ${{ inputs.sites }}
+        run: |
+          list=$(uv run python -c "
+          import json, os
+          from core.profile import load_profile
+          given = [s.strip() for s in os.environ['SITES'].split(',') if s.strip()]
+          rs = load_profile(os.environ['ACCOUNT']).themes.ref_search
+          print(json.dumps(given or (rs.scout_sites if rs else [])))")
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+
+  probe:
+    needs: sites
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        site: ${{ fromJSON(needs.sites.outputs.list) }}
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      SITE: ${{ matrix.site }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --group scout
+      - run: uv run playwright install --with-deps chromium
+      - name: 쇼핑몰 돌기
+        run: |
+          mkdir -p "out/$SITE"
+          timeout 35m uv run python -m tools.scout crawl --account "$ACCOUNT" --site "$SITE" \
+            --out "out/$SITE" --menus "${{ inputs.menus }}" --products "${{ inputs.products }}" \
+            > "out/$SITE/log.txt" 2>&1 || echo "실패 또는 시간 초과 (코드 $?)" >> "out/$SITE/log.txt"
+          tail -5 "out/$SITE/log.txt"
+          uv run python - <<'PY'
+          import json, os
+          from pathlib import Path
+          site = os.environ["SITE"]
+          out = Path("out") / site
+          crawl = json.loads((out / "crawl.json").read_text()) if (out / "crawl.json").exists() else {}
+          rows = json.loads((out / "refs.json").read_text()) if (out / "refs.json").exists() else []
+          sheets = [r for r in rows if r.get("sheet")]
+          skipped = {}
+          for r in rows:
+              if r.get("skipped"):
+                  skipped[r["skipped"]] = skipped.get(r["skipped"], 0) + 1
+          summary = {
+              "site": site,
+              "menus": len(crawl.get("menus", [])),
+              "pages": len(crawl.get("pages", [])),
+              "sheets": len(sheets),
+              "images": sum(len(r.get("images", [])) for r in sheets),
+              "skipped": skipped,
+          }
+          (out / "summary.json").write_text(json.dumps(summary, ensure_ascii=False))
+          print(summary)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: probe-${{ matrix.site }}
+          path: out/${{ matrix.site }}
+          retention-days: 3
+          if-no-files-found: ignore
+
+  report:
+    needs: probe
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: probe
+      - name: 요약 표
+        run: |
+          {
+            echo "| 쇼핑몰 | 메뉴 | 상품 페이지 | 확인표 | 사진 | 건너뜀 |"
+            echo "|---|---|---|---|---|---|"
+            for f in probe/*/summary.json; do
+              jq -r '"| \(.site) | \(.menus) | \(.pages) | \(.sheets) | \(.images) | \(.skipped | to_entries | map("\(.key) \(.value)") | join(", ")) |"' "$f"
+            done
+          } | tee probe/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+      - name: scout-results 브랜치에 커밋
+        run: |
+          dest="ref-probe-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin scout-results 2>/dev/null; then
+            git worktree add /tmp/results origin/scout-results
+            git -C /tmp/results checkout -B scout-results
+          else
+            git worktree add --detach /tmp/results
+            git -C /tmp/results checkout --orphan scout-results
+            git -C /tmp/results rm -rf --quiet .
+          fi
+          mkdir -p "/tmp/results/$dest"
+          cp probe/SUMMARY.md "/tmp/results/$dest/"
+          for d in probe/probe-*/; do
+            site=$(basename "$d"); site=${site#probe-}
+            mkdir -p "/tmp/results/$dest/$site"
+            cp "$d"/*.jpg "$d"/summary.json "$d"/log.txt "/tmp/results/$dest/$site/" 2>/dev/null || true
+          done
+          echo "source: ${{ github.sha }}" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -q -m "참고 코디 쇼핑몰 시험 $dest"
+          for i in 1 2 3; do
+            git -C /tmp/results pull -q --rebase origin scout-results && git -C /tmp/results push -q origin scout-results && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
