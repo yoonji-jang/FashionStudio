@@ -350,12 +350,18 @@ SKIP_WORDS = re.compile(
     r"로그인|회원|장바구니|주문|공지|리뷰|후기|이벤트|문의|약관|개인정보",
     re.IGNORECASE,
 )
-PRODUCT_LINK = re.compile(r"/product/|detail|goods|product_no=", re.IGNORECASE)
+# 상품 상세 주소. cafe24 의 상품 목록(/product/list.html?cate_no=…)은 메뉴라 빼야 한다
+# (2026-10-19 쇼핑몰 시험: 메뉴가 모두 list.html 인 9곳이 메뉴 0개로 끝남).
+# /products/ 는 해외형 쇼핑몰
+PRODUCT_LINK = re.compile(
+    r"/product/(?!list\.html)[^?#]|detail|/goods/|goods_no=|product_no=|/products/[^/?#]+",
+    re.IGNORECASE,
+)
 
 
 def product_key(href: str) -> str:
     """같은 상품의 다른 주소(카테고리 경로가 붙은 cafe24 주소 등)를 하나로."""
-    m = re.search(r"/product/[^/]*/(\d+)|product_no=(\d+)|/goods/(\d+)", href)
+    m = re.search(r"/product/[^/]*/(\d+)|product_no=(\d+)|/goods/(\d+)|/products/([^/?#]+)", href)
     return next((g for g in m.groups() if g), href) if m else href.split("?", 1)[0]
 
 

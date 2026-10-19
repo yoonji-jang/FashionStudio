@@ -47,3 +47,20 @@ def test_contact_sheet_skips_broken():
     )
     assert sheet is not None and sheet.size == (200, 150)
     assert scout.contact_sheet([b"x"]) is None
+
+
+def test_product_link_skips_cafe24_list_pages():
+    from tools.scout import PRODUCT_LINK, product_key
+
+    menus = [
+        "https://the-ore.kr/product/list.html?cate_no=24",
+        "https://woonan.co.kr/category/outer/24/",
+    ]
+    products = [
+        "https://the-ore.kr/product/detail.html?product_no=123&cate_no=24",
+        "https://woonan.co.kr/product/니트-베스트/456/category/24/",
+        "https://lowclassic.com/products/wool-coat",
+    ]
+    assert not any(PRODUCT_LINK.search(u) for u in menus)
+    assert all(PRODUCT_LINK.search(u) for u in products)
+    assert product_key(products[0]) == "123" and product_key(products[2]) == "wool-coat"
