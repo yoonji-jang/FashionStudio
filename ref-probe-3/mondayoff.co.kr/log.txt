@@ -1,0 +1,3 @@
+https://mondayoff.co.kr/ → https://mondayoff.co.kr/ 제목 '먼데이오프': 링크 364개
+이유: 첫 화면은 열리지만 메뉴 링크를 못 찾음 (화면을 스크립트로 그리는 쇼핑몰일 수 있음)
+mondayoff.co.kr: 상품 페이지 0곳, 확인표 0장
