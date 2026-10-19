@@ -1,77 +1,13 @@
 [
  {
-  "update_id": 428675804,
+  "update_id": 428675810,
   "message": {
-   "message_id": 1520,
-   "date": 1792115260,
+   "message_id": 1588,
+   "date": 1792401211,
    "chat": {
     "id": 8708345474
    },
-   "text": "2,3,4,5,7,8"
-  }
- },
- {
-  "update_id": 428675805,
-  "message": {
-   "message_id": 1521,
-   "date": 1792115544,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIF8WrRg1hw8wPp7lwcpUi4RYbygxDyAALlFmsbBL-JVsiSggO-QhYZAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14336924354657133"
-  }
- },
- {
-  "update_id": 428675806,
-  "message": {
-   "message_id": 1522,
-   "date": 1792115544,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIF8mrRg1iR3ZBtzLfUwla7gUR6BDwkAALmFmsbBL-JVqUC22-hzPerAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14336924354657133"
-  }
- },
- {
-  "update_id": 428675807,
-  "message": {
-   "message_id": 1523,
-   "date": 1792115544,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIF82rRg1jxhfH6rsUUNTggQVRrhRbQAALnFmsbBL-JVsqL4EvlIsLhAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14336924354657133"
-  }
- },
- {
-  "update_id": 428675808,
-  "message": {
-   "message_id": 1540,
-   "date": 1792121142,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/fix 1 배경은 look2 써줘. \n/fix 2 조끼 밑으로 셔츠가 너무 많이 삐져나왔어. 살짝만 삐져나오게 수정해줘. \n/fix 4 헤어는 look2처럼 슬릭번으로 해줘. 그리고 비율 좀더 좋아보이게 얼굴크기 작게 해주고. 참고장면 3번째사진처럼 안경도 추가해줘. \n/fix 6 가디건 대신 아이보리 트위드 자켓으로 변경해줘. 카메라 말고 핸드폰으로 셀카찍는거로 수정해줘. 옆에 화병도 없애줘. \n/fix 첫 제목 컷을 look1 로 해서 거기부터 순서대로 2,3,4,5,6 으로 해줘"
-  }
- },
- {
-  "update_id": 428675809,
-  "message": {
-   "message_id": 1552,
-   "date": 1792122994,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/fix 1 제목은 ‘따라입기 좋는 가을 느낌 래이어드 코디 모음’ 으로 수정해줘\n/cover 2"
+   "text": "1,2,4,6,9,10\n7번은 니트 코디로 바꿔줘. 셔츠 조건은 강제하지 마"
   }
  }
 ]
