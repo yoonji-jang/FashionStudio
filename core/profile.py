@@ -448,6 +448,10 @@ class Flow(BaseModel):
 
     enabled: bool = False
     theme_options: int = Field(default=3, ge=1, le=5)  # 한 번에 제안하는 주제 수
+    # 주간 주제 후보 수 (2026-10-19 사용자 "주제 후보 10개, 그중 수정 및 고르기").
+    # 0 이면 게시물마다 theme_options 개를 제안한다. 켜면 후보를 보내 고친 뒤
+    # 고른 주제들을 차례로 쓰고, 다 쓰면 다시 후보를 보낸다
+    week_options: int = Field(default=0, ge=0, le=15)
     # 장면 사진 1장의 무드로 벌마다 그리는 지시문 (prompts/<이름>.md, 기획 scene_image 가 있을 때)
     scene_prompt: str = "outfit_scene"
     # 게시를 요청하고 이만큼(분) 지나도 게시 기록이 없으면 한 번 알린다

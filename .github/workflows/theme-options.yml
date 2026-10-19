@@ -4,6 +4,8 @@ name: theme-options
 # Claude(plan-themes "제안")가 주제 몇 개(profile flow.theme_options)를 짜면 data/<계정>/theme_options.json 에 저장·커밋하고
 # 텔레그램으로 보낸다. 사용자가 번호를 고르면 schedule(tools.flow)이 그 주제로 코디 후보를 요청한다.
 # hint 가 있으면 사용자가 "/theme …" 로 직접 적은 주제: 1개만 짜고 보내지 않는다 (schedule 이 바로 진행).
+# week 면 주간 후보(profile flow.week_options, 보통 10개, 2026-10-19 사용자). feedback 은 사용자가 후보에 답한
+# 고칠 점: 앞 후보를 그대로 고쳐 다시 보낸다 (쓸 번호까지 적었으면 chosen 을 채워 보내지 않고 바로 정한다).
 on:
   workflow_dispatch:
     inputs:
@@ -15,6 +17,13 @@ on:
         required: true
       hint:
         description: 사용자가 적은 주제 (빈칸이면 여러 개 제안)
+        default: ""
+      week:
+        description: 주간 주제 후보 (flow.week_options 개)
+        type: boolean
+        default: false
+      feedback:
+        description: 주간 후보에 사용자가 답한 고칠 점 (빈칸이면 새 후보)
         default: ""
 
 permissions:
@@ -32,6 +41,7 @@ jobs:
       ACCOUNT: ${{ inputs.account }}
       DATE: ${{ inputs.date }}
       HINT: ${{ inputs.hint }}
+      FEEDBACK: ${{ inputs.feedback }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -50,6 +60,9 @@ jobs:
           if opts and str(opts.date) == os.environ["DATE"] and not opts.hint:
               with open("out/theme_options_previous.yaml", "w", encoding="utf-8") as f:
                   yaml.safe_dump([t.model_dump(mode="json") for t in opts.options], f, allow_unicode=True)
+          if os.environ.get("FEEDBACK"):
+              with open("out/theme_feedback.txt", "w", encoding="utf-8") as f:
+                  f.write(os.environ["FEEDBACK"] + "\n")
           PY
 
       - name: Claude 주제 제안 (plan-themes "제안")
@@ -60,13 +73,13 @@ jobs:
           # schedule 이 GITHUB_TOKEN 으로 실행을 요청하면 실행자가 github-actions 봇이 된다
           allowed_bots: "github-actions"
           prompt: |
-            .claude/skills/plan-themes/SKILL.md 의 "제안" 방법으로 ${{ env.DATE }} 게시물 주제를 정해
+            .claude/skills/plan-themes/SKILL.md 의 ${{ inputs.week && '"주간 후보"' || '"제안"' }} 방법으로 ${{ env.DATE }} ${{ inputs.week && '부터 한 주 주제 후보를' || '게시물 주제를' }} 정해
             out/theme_options.yaml 에 써.
             ACCOUNT=${{ env.ACCOUNT }} HINT=${{ env.HINT }}
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan context ...` 처럼 부르면 돼.
             저장·텔레그램은 워크플로가 하니 git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
-            --max-turns 40
+            --max-turns ${{ inputs.week && '60' || '40' }}
             --allowedTools "Bash(python -m tools.plan context:*),Read,Write,Edit,Glob,Grep"
 
       - name: 검사·저장·텔레그램으로 보내기
@@ -76,7 +89,7 @@ jobs:
         run: |
           send=""; [ -n "$TELEGRAM_BOT_TOKEN" ] && send="--send"
           python -m tools.flow options --account "$ACCOUNT" --date "$DATE" \
-            --file out/theme_options.yaml --hint "$HINT" $send
+            --file out/theme_options.yaml --hint "$HINT" ${{ inputs.week && '--week' || '' }} $send
 
       - name: 제안 주제 커밋
         run: |
