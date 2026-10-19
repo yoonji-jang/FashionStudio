@@ -85,7 +85,10 @@ class ProductSourceConfig(BaseModel):
     recheck_days: int = Field(default=3, ge=0)  # 이 날짜가 지나면 판매 상태를 다시 확인
     # 가성비 베스트셀러만 쌓이지 않게 (21단계). 카테고리별 [최저, 최고] 가격(원), 없으면 제한 없음
     price_range: dict[Category, tuple[int, int]] = {}
-    exclude_words: list[str] = []  # 이름에 있으면 빼는 말 (만장, 1위, 특가 같은 판매량 광고)
+    exclude_words: list[str] = []  # 이름에 있으면 빼는 말 (만장, 1위 같은 판매량 광고)
+    # 카테고리마다 검색 결과 가격 하위 이 %는 너무 싼 상품으로 뺀다
+    # (price_range 최저가와 함께, 0이면 안 씀)
+    cheap_percent: int = Field(default=0, ge=0, le=50)
     review_cap: int = Field(default=0, ge=0)  # 순위에 리뷰 수를 이 수까지만 반영 (0이면 제한 없음)
 
 

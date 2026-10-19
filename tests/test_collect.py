@@ -473,3 +473,45 @@ def test_collect_keeps_products_matched_to_ref_looks(tmp_path: Path, monkeypatch
     store.save_refs([ref])
     collect.collect("women", plan={"아우터": ["다른 검색어"]}, **run)
     assert dropped in {p.id for p in store.products()}
+
+
+def test_cheap_floor_is_lower_percentile():
+    from sources.base import cheap_floor
+
+    prices = [10000 * i for i in range(1, 21)]  # 1만 ~ 20만
+    assert cheap_floor(prices, 15) == 40000  # 하위 15%(3개)보다 비싼 첫 가격
+    assert cheap_floor(prices, 0) == 0 and cheap_floor(prices[:5], 15) == 0  # 끔, 너무 적음
+
+
+def test_search_drops_cheapest_15_percent_of_category(monkeypatch):
+    cards = {
+        "니트": [card(i, final_price=10000 * i) for i in range(1, 11)],
+        "가디건": [card(i, final_price=10000 * i) for i in range(5, 21)],  # 5~10 은 겹침
+    }
+    monkeypatch.setattr(
+        scout,
+        "search_responses",
+        lambda queries, min_items=0: {q: [search_response(cards[q])] for q in queries},
+    )
+    source = zigzag.Source(today=TODAY)
+    found = source.search(["니트", "가디건"], "상의", SearchFilters(cheap_percent=15))
+    # 두 검색어 결과 20개(겹친 상품은 한 번) 중 하위 15% = 1~3만원은 뺀다
+    assert source.floors == {"상의": 40000}
+    assert min(p.price for p in found["니트"]) == 40000
+
+
+def test_collect_drops_stored_products_below_cheap_floor(tmp_path: Path):
+    store = Store("women", root=tmp_path)
+    store.save_products([_stored(1, TODAY, price=15000), _stored(2, TODAY, price=80000)])
+
+    class Floored(FakeSource):
+        def search(self, queries, category, filters):
+            self.floors[category] = 30000
+            return super().search(queries, category, filters)
+
+    source = Floored(cards={"q": []}, pages={})
+    report = collect.collect(
+        "women", plan={"아우터": ["q"]}, source=source, store=store, fetch=fake_fetch, today=TODAY
+    )
+    assert [p.id for p in store.products()] == ["zigzag:2"]
+    assert report.unfit == 1 and report.floors == {"아우터": 30000}

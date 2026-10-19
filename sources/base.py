@@ -17,11 +17,21 @@ class SearchFilters(BaseModel):
     min_price: int = 0
     max_price: int = 0  # 0이면 제한 없음
     exclude_words: list[str] = []  # 상품 이름에 있으면 뺀다
+    # 검색 결과 가격 중 하위 이 %(카테고리마다)는 너무 싼 상품으로 뺀다 (0이면 안 씀)
+    cheap_percent: int = 0
 
 
 def name_excluded(name: str, words: list[str]) -> bool:
     low = name.lower()
     return any(w.lower() in low for w in words)
+
+
+def cheap_floor(prices: list[int], percent: int) -> int:
+    """가격 목록의 하위 percent% 경계 가격 (이보다 싸면 뺀다). 가격이 적거나 percent 가 0이면 0."""
+    if percent <= 0 or len(prices) < 10:
+        return 0
+    ordered = sorted(prices)
+    return ordered[len(ordered) * percent // 100]
 
 
 def price_ok(price: int | None, low: int, high: int) -> bool:
