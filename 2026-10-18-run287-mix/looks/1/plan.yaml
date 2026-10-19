@@ -1,0 +1,129 @@
+account: women
+cover: out/2026-10-18/looks/1/outfit/results/G_1.jpg
+cover_look: 3
+date: '2026-10-18'
+items:
+- cm: 61.5
+  color: 버건디
+  comment: ''
+  cutout_photo: 0
+  desc: 버건디 소프트 브이넥 니트 (wine burgundy soft V-neck knit, dropped shoulders, long sleeves,
+    hip length)
+  name: 소프트 브이넥 니트
+  product: zigzag:172140695
+  ref_photos:
+  - 0
+  size: about 61.5 cm long from shoulder to hem, 55 cm across the shoulders, 57 cm
+    across the chest laid flat, 55 cm long sleeves
+- cm: 60.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 홀터넥 레이어드 탑 (black slim ribbed long-sleeve fake-halter layered top, only
+    its halter neckline and sleeves show)
+  name: 홀터넥 레이어드 탑
+  product: zigzag:153225273
+  ref_photos:
+  - 2
+  - 1
+  size: about 60 cm long from shoulder to hem, 32 cm across the shoulders, 59.8 cm
+    long sleeves
+  wear_with: 상의
+- cm: 87.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬릿 랩 롱스커트 (black draped wrap long skirt with faint white pinstripes and
+    a side slit, calf-to-ankle length)
+  name: 슬릿 랩 롱스커트
+  product: zigzag:165302623
+  ref_photos:
+  - 0
+  size: about 87 cm long from waist to hem, 36 cm across the waist laid flat, 51.5
+    cm across the hips laid flat, 55 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black glossy crinkled leather shoulder bag, rounded shape, top zip)
+  name: 토크 숄더백
+  product: zigzag:161700662
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 롱부츠 (black square-toe knee-high boots, 5 cm block heel)
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+  ref_photos:
+  - 0
+  - 2
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 드롭 목걸이 (one long thin silver chain necklace with a small drop pendant)
+  name: 롱 목걸이
+  product: zigzag:159636703
+  ref_photos:
+  - 0
+  slot: 목걸이
+looks: []
+mood: an everyday street-style snapshot of a woman in a full-body outfit, taken with
+  a phone or a small compact film camera on an ordinary Seoul street or in a plain
+  beige interior; soft flat overcast daylight, muted neutral colors (cream plaster,
+  white brick, beige walls, grey pavement), unposed and casual, no studio lighting
+pose: standing on a plain beige stairwell landing next to a dried-branch vase, taking
+  a photo with a small compact film camera held up in front of her face so it hides
+  her eyes and nose, hair slicked back in a low bun, the bag on her forearm, weight
+  on one leg, full body from head to boots
+reason: 와인색 브이넥 니트가 주인공 (차콜 사진이 없어 버건디로), 홀터 이너를 받쳐 블랙 랩 롱스커트와 롱부츠로 길게. 참고 차콜 슬림 V넥
+  니트/차콜 홀터 탱크/블랙 랩 롱스커트/블랙 롱부츠 → 소프트 브이넥 니트/홀터 레이어드 탑/슬릿 랩 롱스커트/스퀘어 롱부츠 (따라 함:참고 112)
+ref_photo: https://woonan.co.kr/web/product/tiny/202609/76d3eba89ccd6ff05c44f14f51ab12e6.jpg
+scene_image: out/2026-10-18/src/scene_3.jpg
+shot: model
+styling: The black halter layered top is worn inside the V-neck knit, its halter neckline
+  visible at the V; the knit hangs to the hip over the wrap skirt; the long skirt
+  falls to the calf over the boot tops.
+text:
+  hashtags:
+  - '#비오는날코디'
+  - '#레이어드코디'
+  - '#가을레이어드'
+  - '#롱스커트코디'
+  - '#니트코디'
+  - '#이너코디'
+  - '#무채색코디'
+  intro: 비 소식 있는 일요일엔 얇은 이너 위에 한 겹씩 더해 입어요 ☔
+  points: []
+  title_lines:
+  - 따라입기 좋은 가을 느낌
+  - 레이어드 코디 모음
+theme:
+  date: '2026-10-18'
+  mood: 차콜·네이비·브라운 위주의 차분한 가을 톤에 얇은 이너로 겹 맞추기
+  search_terms:
+    상의:
+    - 니트 베스트
+    - 뷔스티에
+    - 레이어드 나시
+    아우터:
+    - 부클 가디건
+    - 니트 집업
+    하의:
+    - 와이드 슬랙스
+  slots:
+  - category: 아우터
+    desc: 카디건이나 짧은 자켓
+  - category: 상의
+    desc: 니트 베스트나 뷔스티에 + 셔츠나 얇은 티 겹쳐 입기
+  - category: 하의
+    desc: 어두운 톤 와이드 팬츠나 롱스커트 (비 와도 젖어 보이지 않게)
+  - category: 가방
+    desc: 블랙이나 브라운 숄더백
+  - category: 신발
+    desc: 로퍼나 앵클 부츠
+  - category: 소품
+    desc: 가죽끈 목걸이나 스카프
+  title_hint: 비 오는 일요일, 답답하지 않게 겹쳐 입는 레이어드 코디
+  type: 팁
+  why: 일요일, 뇌우에 16~22도라 얇은 이너 + 상의 + 가벼운 겉옷으로 더웠다 추웠다 조절하기 좋음

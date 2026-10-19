@@ -1,0 +1,1 @@
+copied from 2026-10-18-run287, looks reordered 3,2,4,5,6,1 (cover first = LOOK 1)
