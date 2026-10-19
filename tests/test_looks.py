@@ -879,6 +879,26 @@ def test_cover_carries_to_fixed_preview(tmp_path, store):
     assert cover_look.current(c, load_profile("women")) == 5
 
 
+@pytest.mark.cover_once
+def test_cover_not_reread_on_fixed_preview(tmp_path, store):
+    """표지를 바꾼 뒤 고친 미리보기에서 같은 /cover 를 그 미리보기 번호로 다시 읽지 않는다."""
+    a, _ = build(tmp_path, store)
+    rec_a = PreviewRecord(account="women", date=DAY, run="a", sent_at=1000, message_ids=[11])
+    (a / "telegram.json").write_text(rec_a.model_dump_json())
+    api = FakeApis(replies=[(1100, "/fix 1 제목 바꿔\n/cover 2", None)])
+    cover_look.check(a, tg_of(api))
+    profile = load_profile("women")
+    picked = cover_look.current(a, profile)
+    b = tmp_path / "b"
+    shutil.copytree(a, b)
+    (b / "cover.json").unlink()
+    (b / "fix.json").write_text(json.dumps({"run": "out", "fixes": []}))
+    rec_b = rec_a.model_copy(update={"run": "b", "sent_at": 2000, "message_ids": [21]})
+    (b / "telegram.json").write_text(rec_b.model_dump_json())
+    assert "그대로" in cover_look.check(b, tg_of(api))
+    assert cover_look.current(b, profile) == picked
+
+
 def test_fault_fails_review_whatever_the_score():
     # 2026-10-12 사용자: 짧은 바지·벌어진 신발을 검수가 찾고도 1점만 깎아 통과시킴
     prof = load_profile("women")
