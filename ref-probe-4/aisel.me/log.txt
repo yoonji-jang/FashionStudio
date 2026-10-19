@@ -1,0 +1,8 @@
+https://aisel.me/ → https://aisel.me/ 제목 '에이슬': 링크 55개
+https://aisel.me/product/list.html?cate_no=56 → https://aisel.me/product/list.html?cate_no=56 제목 '베스트 인기상품 - 에이슬': 링크 87개
+https://aisel.me/product/list.html?cate_no=77 → https://aisel.me/product/list.html?cate_no=77 제목 '신상품 - 에이슬': 링크 90개
+https://aisel.me/product/list.html?cate_no=45 → https://aisel.me/product/list.html?cate_no=45 제목 '여성 컴포트팬츠·밴딩슬랙스 - 에이슬': 링크 104개
+https://aisel.me/product/list.html?cate_no=44 → https://aisel.me/product/list.html?cate_no=44 제목 '여성 밴딩스커트·롱스커트 - 에이슬': 링크 87개
+https://aisel.me/product/list.html?cate_no=57 → https://aisel.me/product/list.html?cate_no=57 제목 '여성 블라우스·니트·셔츠 - 에이슬': 링크 90개
+https://aisel.me/product/list.html?cate_no=58 → https://aisel.me/product/list.html?cate_no=58 제목 '여성 원피스 - 에이슬': 링크 76개
+aisel.me: 상품 페이지 30곳, 확인표 29장
