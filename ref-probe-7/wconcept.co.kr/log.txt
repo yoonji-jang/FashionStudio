@@ -1,0 +1,2 @@
+이유: robots.txt 가 첫 화면을 막음
+wconcept.co.kr: 상품 페이지 0곳, 확인표 0장
