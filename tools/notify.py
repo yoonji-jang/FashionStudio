@@ -364,6 +364,7 @@ def control_text(
         # 표지 벌은 벌 장에 다시 나오지 않는다 (2026-10-15): 번호는 벌 장에 보이는 LOOK 번호
         lines.append(
             "표지 벌은 첫 장에만 나와요. 다른 벌로 바꾸려면 /cover 2 처럼 벌 장의 LOOK 번호"
+            + (" (표지가 LOOK 1)" if profile.looks.cover_first else "")
         )
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")

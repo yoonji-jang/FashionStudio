@@ -292,6 +292,10 @@ def looks_text(
         '• 직접 고르려면 "1 2 3 5 6 7" 처럼 번호를 보내요'
         + (f" ({lk.min}~{want}벌)" if lk.min != want else ""),
     ]
+    if lk.cover_first:
+        lines.append(
+            "  보낸 순서대로 놓이고 첫 번호가 표지(LOOK 1)예요. 예: 3 4 2 5 1 6 → 3번이 표지"
+        )
     lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
     if round_ <= rules.max_again:
         lines.append(
