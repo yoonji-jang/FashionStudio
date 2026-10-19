@@ -120,3 +120,27 @@ def test_add_numbers_new_refs_after_existing(tmp_path, monkeypatch):
     new.write_text(json.dumps([item, item]), encoding="utf-8")
     assert refs.main(["add", "--account", "women", "--new", str(new)]) == 0
     assert [r.n for r in store.refs()] == [131, 132, 133]
+
+
+def test_crawl_opens_popular_and_lookbook_menus_first(tmp_path, monkeypatch):
+    from tools import scout
+
+    home = "https://the-ore.kr/"
+    menus = [
+        ("OUTER", home + "product/list.html?cate_no=24"),
+        ("NEW 5%", home + "product/list.html?cate_no=25"),
+        ("LOOKBOOK", home + "product/list.html?cate_no=26"),
+        ("BEST", home + "product/list.html?cate_no=27"),
+    ]
+    seen = []
+
+    def links(url, sites, limit=200, scrolls=0):
+        if url == home:
+            return menus
+        seen.append(url)
+        return []
+
+    monkeypatch.setattr(scout, "page_links", links)
+    scout.crawl(home, ["the-ore.kr"], tmp_path, menus=3, products=10)
+    # 인기 → 룩북 → 신상 순, 메뉴 수가 차면 나머지(OUTER)는 뺀다
+    assert seen == [menus[3][1], menus[2][1], menus[1][1]]

@@ -26,6 +26,9 @@ on:
       reuse_run:
         description: 이 실행 번호(run id)의 참고 코디 확인표를 다시 써서 쇼핑몰을 다시 돌지 않음 (3일 안)
         default: ""
+      week_themes:
+        description: refs_only 때 이번 주 주제 (한 줄에 하나, 차례 흐름이 주간 주제를 정하면 넘김)
+        default: ""
 
 permissions:
   contents: write
@@ -51,11 +54,13 @@ jobs:
       - name: 준비 (날짜, 다시 정하는 주제)
         env:
           INPUT_DATE: ${{ inputs.date }}
+          WEEK_THEMES: ${{ inputs.week_themes }}
         run: |
           echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          mkdir -p out
+          [ -n "$WEEK_THEMES" ] && printf '%s\n' "$WEEK_THEMES" > out/week_themes.txt
           FIRST="$INPUT_DATE"
           [ -n "$FIRST" ] || FIRST=$(uv run python -c "from datetime import datetime, timedelta; from zoneinfo import ZoneInfo; from core.profile import load_profile; p = load_profile('$ACCOUNT'); print((datetime.now(ZoneInfo(p.schedule.timezone)) + timedelta(days=1)).date())")
-          mkdir -p out
           # 이미 정한 같은 주 주제가 있으면 "다시" 요청이다: Claude 가 겹치지 않게 참고한다
           uv run python - "$FIRST" <<'PY'
           import os, sys, yaml
@@ -102,11 +107,12 @@ jobs:
       - name: 쇼핑몰 착용컷 확인표 만들기 (tools.scout crawl)
         if: inputs.reuse_run == ''
         run: |
+          # 2026-10-19 사용자: 사이트마다 20~30곳 이상. 메뉴 8개·상품 페이지 30곳, 쇼핑몰 4곳씩 함께
           sites=$(uv run python -c "from core.profile import load_profile; rs = load_profile('$ACCOUNT').themes.ref_search; print(' '.join(rs.scout_sites if rs else []))")
-          for site in $sites; do
-            timeout 20m uv run python -m tools.scout crawl --account "$ACCOUNT" --site "$site" \
-              --out "out/refs/${site%%.*}" --menus 5 --products 15 || echo "$site 실패"
-          done
+          printf '%s\n' $sites | xargs -P 4 -I{} sh -c '
+            timeout 35m uv run python -m tools.scout crawl --account "$ACCOUNT" --site "$1" \
+              --out "out/refs/${1%%.*}" --menus 8 --products 30 > "out/refs_crawl_${1%%.*}.log" 2>&1 \
+              || echo "$1 실패"; tail -n 1 "out/refs_crawl_${1%%.*}.log"' _ {}
 
       # 창고 상품의 지그재그 상세 착용컷도 참고 코디 출처로 (2026-10-13, 쇼핑몰 룩북만으로는 31벌)
       - name: 창고 상품 착용컷 확인표 만들기 (tools.refs zigzag)
@@ -122,14 +128,16 @@ jobs:
           allowed_bots: "github-actions"
           prompt: |
             .claude/skills/plan-themes/SKILL.md 의 "참고 코디 모으기"만 해. 주제는 정하지도 저장하지도 마.
-            ${{ env.FIRST }} 부터 한 주 주제는 data/${{ env.ACCOUNT }}/themes.json 에 있으니 참고만 해.
+            이번 주 주제는 out/week_themes.txt 가 있으면 거기(한 줄에 하나), 없으면 data/${{ env.ACCOUNT }}/themes.json 의 ${{ env.FIRST }} 부터 한 주야. 참고만 해.
+            주제 맞춤은 느슨하게: 주제에 맞는 코디를 먼저 고르되, 딱 맞지 않아도 계절·스타일에 맞으면 넣어 (참고 코디가 모자라지 않게).
             새 참고 코디는 data/ 파일을 직접 고치지 말고, 15벌쯤 모일 때마다 out/refs_new_<n>.json 에 JSON 목록으로 Write 한 뒤
             `python -m tools.refs add --account ${{ env.ACCOUNT }} --new out/refs_new_<n>.json` 으로 더해 (번호 n 은 이 명령이 매김, 중간에 끊겨도 앞의 것은 남음).
             다 더하면 `python -m tools.refs check --account ${{ env.ACCOUNT }}` 로 검사하고, 마지막에 out/refs_report.md 를 꼭 써.
             허용된 명령 말고 다른 Bash(ls, cat, python -c 등)는 막혀 있으니 Glob·Read 를 써.
-            out/refs/zigzag/ 에는 창고 상품의 지그재그 상세 사진 확인표가 있어 (출처는 "지그재그 착용컷"). 모델이 위아래·신발까지 입은 전신 사진만 옮겨.
+            out/refs/zigzag/ 에는 창고 상품의 지그재그 상세 사진 확인표가 있어 (출처는 "지그재그 착용컷").
             쇼핑몰마다 상품 페이지 확인표가 이미 out/refs/<쇼핑몰>/sheet_N.jpg 에 있어 (같은 폴더 refs.json 에 칸 번호 순 사진 주소 images 와 상품 페이지 url).
-            먼저 이 확인표를 하나도 빼지 말고 모두 Read 로 보고 전신 코디를 옮겨 (겹쳐 보일 것 같아도 열어 봐). 모자라면 그때 links/refs 로 더 찾아.
+            번호가 앞인 확인표가 인기·룩북 메뉴 상품이야. 쇼핑몰을 번갈아 가며 앞 번호부터 Read 로 보고 코디를 옮겨. 모자라면 그때 links/refs 로 더 찾아.
+            전신 사진이 아니어도 되고, 신발·가방·소품은 안 보이면 어울리게 정해 (스킬의 3번).
             ACCOUNT=${{ env.ACCOUNT }}. 더한 참고 코디 수는 out/refs_report.md 에 한 줄로 적어.
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.scout refs --account ${{ env.ACCOUNT }} --url … --out out/refs` 처럼
             그대로 불러 (uv run, cd, 변수, 파이프 없이). profile scout_sites 의 쇼핑몰마다 코디·룩북 페이지를 찾아 확인표를 꼭 만들어 보고, 쇼핑몰별로 열렸는지·막혔는지(이유)를 out/refs_report.md 에 적어.

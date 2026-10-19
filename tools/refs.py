@@ -28,8 +28,9 @@ from core.models import Category, Product, RefLook, RefSlot
 from core.profile import load_profile
 from core.store import Store
 
-# 꼭 맞춰야 하는 칸. 가방·소품은 비슷한 것으로 바꿔도 된다 (styling.md "따라 입기")
-REQUIRED: set[Category] = {"아우터", "상의", "하의", "원피스", "신발"}
+# 꼭 맞춰야 하는 칸 (옷만). 신발·가방·소품은 Claude 가 어울리게 골라도 된다
+# (2026-10-19 사용자: 잡화·악세서리는 100% 같지 않아도 된다)
+REQUIRED: set[Category] = {"아우터", "상의", "하의", "원피스"}
 MAX_MATCHES = 5
 
 # 같은 색으로 보는 말 (상품 이름·색 옵션은 쇼핑몰마다 다르게 쓴다)
