@@ -396,10 +396,20 @@ def test_week_options_feedback_pick_and_queue(env, week_mode):
     )  # fmt: skip
     tick(env, tg, opts.sent_at + 60)
     st = flow.load_state(results, "women")
+    # 정한 주제로 참고 코디를 먼저 모은다 (2026-10-19)
+    assert st.stage == "refs_wait" and "참고 코디를 모으고" in tg.sent[-1]
+    assert "주간 주제 7개를 정했어요" in tg.sent[-1]
+    wf, inputs = sent[-1]
+    assert wf == "themes.yml" and inputs["refs_only"] is True
+    assert inputs["week_themes"].splitlines() == [f"주제 {n}" for n in (11, 13, 14, 15, 17, 18, 20)]
+    assert tick(env, tg, opts.sent_at + 3600) == []
+    # 수집이 끝나면(refs_done.json) 첫 주제 후보
+    (store.dir / "refs_done.json").write_text(f'{{"done_at": {opts.sent_at + 4000}}}')
+    tick(env, tg, opts.sent_at + 4000)
+    st = flow.load_state(results, "women")
     assert st.stage == "pick_wait"
     assert [t.title_hint for t in st.week] == [f"주제 {n}" for n in (13, 14, 15, 17, 18, 20)]
-    assert store.themes()[0].title_hint == "주제 11"
-    assert "주간 주제 7개를 정했어요" in tg.sent[-2] and "(주간 주제 1/7)" in tg.sent[-1]
+    assert store.themes()[0].title_hint == "주제 11" and "남은 주제 6개" in tg.sent[-1]
     assert sent[-1][0] == "daily.yml" and '"주제 11"' in sent[-1][1]["pick"]
     # 게시되면 다음 주간 주제를 묻지 않고 바로 쓴다
     st.stage = "publishing"
@@ -431,9 +441,14 @@ def test_week_options_bad_numbers_and_chosen(env, week_mode, tmp_path, monkeypat
     n = len(tg.sent)
     assert flow.main(["options", "--date", "2026-10-15", "--file", str(f), "--week"]) == 0
     assert flow.load_options(store).chosen == [2, 1] and len(tg.sent) == n
-    tick(env, tg, int(datetime.now(UTC).timestamp()) + 60)
+    now = int(datetime.now(UTC).timestamp())
+    tick(env, tg, now + 60)
+    assert flow.load_state(results, "women").stage == "refs_wait"
+    # 수집이 끝나지 않아도 REFS_WAIT 가 지나면 있는 참고 코디로 간다
+    tick(env, tg, now + 60 + int(flow.REFS_WAIT.total_seconds()))
     st = flow.load_state(results, "women")
     assert st.stage == "pick_wait" and [t.title_hint for t in st.week] == ["주제 1"]
+    assert "늦어져" in tg.sent[-2] and store.themes()[-1].title_hint == "주제 2"
     raw["chosen"] = [3, 3]
     f.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
     assert flow.main(["options", "--date", "2026-10-15", "--file", str(f), "--week"]) == 1

@@ -63,7 +63,9 @@ from core.models import Theme
 from core.profile import WEEKDAYS, Profile, load_profile
 from core.store import Store
 
-Stage = Literal["theme", "theme_wait", "pick_wait", "rendering", "preview_wait", "publishing"]
+Stage = Literal[
+    "theme", "theme_wait", "refs_wait", "pick_wait", "rendering", "preview_wait", "publishing"
+]
 WAIT_ALERT = timedelta(hours=3)  # 워크플로를 요청하고 이만큼 지나도 결과가 없으면 한 번 알림
 NO_DEADLINE = 10**6  # tools.pick 에 넘기는 "마감까지 남은 분" (마감 없음)
 
@@ -103,6 +105,20 @@ class ThemeOptions(BaseModel):
     message_ids: list[int] = []
     week: bool = False  # 주간 후보 (flow.week_options)
     chosen: list[int] = []  # 주간 후보에서 쓸 번호 (고칠 점에 번호까지 적었으면 Claude 가 채움)
+
+
+# 주간 주제를 정하면 그 주제로 참고 코디를 모은 뒤(themes refs_only → collect from_refs)
+# 첫 후보를 만든다. 수집이 끝나면 collect 가 data/<계정>/refs_done.json 을 남긴다.
+# 이만큼 지나도 안 끝나면 있는 참고 코디로 간다
+REFS_WAIT = timedelta(hours=8)
+
+
+def refs_done_at(store: Store) -> int:
+    """참고 코디 수집(collect from_refs)이 마지막으로 끝난 시각 (없으면 0)."""
+    path = store.dir / "refs_done.json"
+    if not path.exists():
+        return 0
+    return int(json.loads(path.read_text(encoding="utf-8")).get("done_at", 0))
 
 
 def state_path(results: Path, account: str) -> Path:
@@ -406,14 +422,27 @@ def _week_wait(
             tg.send(f"{tag} 말씀하신 대로 주제 후보를 고치고 있어요. 다 되면 다시 보낼게요")
             return f"주간 주제 고치기 요청: {feedback[:60]}"
     picked = [opts.options[n - 1] for n in nums]
-    st.week = picked[1:]
+    refs = profile.themes.ref_search is not None
     if tg is not None:
         lines = [
             f"[{profile.id}] 주간 주제 {len(picked)}개를 정했어요 (이 순서로 하나씩 만들어요)",
             "",
         ]
         lines += [f"{i}. {t.title_hint}" for i, t in enumerate(picked, 1)]
+        if refs:
+            lines += [
+                "",
+                "이 주제들로 쇼핑몰 참고 코디를 모으고 있어요. "
+                "다 모으면 첫 주제의 코디 후보를 보낼게요",
+            ]
         tg.send("\n".join(lines))
+    if refs:
+        # 2026-10-19 사용자: 한 주 주제에 쓸 만한 코디를 쇼핑몰에서 모으기 (주제 맞춤은 느슨하게)
+        send("themes.yml", account=st.account, date=opts.date.isoformat(), refs_only=True,
+             week_themes="\n".join(t.title_hint for t in picked))  # fmt: skip
+        st.week, st.asked_at, st.stage, st.alerted = picked, ts, "refs_wait", False
+        return f"주간 주제 {len(picked)}개 정함, 참고 코디 수집 요청"
+    st.week = picked[1:]
     left = f" (주간 주제 1/{len(picked)})"
     return _use_theme(store, st, tg, send, picked[0], ts, dry_run, tag, left)
 
@@ -494,6 +523,20 @@ def _step(
         if chosen is None:
             return ""
         return _use_theme(store, st, tg if not opts.hint else None, send, chosen, ts, dry_run, tag)
+
+    if st.stage == "refs_wait":
+        done = refs_done_at(store) >= st.asked_at
+        late = ts - st.asked_at >= REFS_WAIT.total_seconds()
+        if not (done or late):
+            return ""
+        if not st.week:  # 정한 주제가 없어졌으면 새로 받는다
+            st.stage = "theme"
+            return "참고 코디 수집 뒤 남은 주간 주제가 없음"
+        chosen, st.week = st.week[0], st.week[1:]
+        note = f" (주간 주제, 남은 주제 {len(st.week)}개)"
+        if not done and tg is not None:
+            tg.send(f"{tag} 참고 코디 수집이 늦어져 지금 있는 참고 코디로 후보를 만들게요")
+        return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, note)
 
     assert st.date is not None
     day = st.date

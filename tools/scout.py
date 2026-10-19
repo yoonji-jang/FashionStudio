@@ -342,9 +342,25 @@ def page_links(
 
 MENU_WORDS = re.compile(
     r"best|베스트|new|신상|outer|아우터|top|상의|bottom|하의|skirt|스커트|pants|팬츠|knit|니트|"
-    r"dress|원피스|코디|look|룩|most|인기|weekly",
+    r"dress|원피스|코디|look|룩|most|인기|weekly|랭킹|ranking|styling|스타일링",
     re.IGNORECASE,
 )
+# 메뉴 우선순위: 앞쪽 무리일수록 먼저 연다 (인기 → 룩북·코디 → 신상 → 나머지)
+MENU_PRIORITY = [
+    re.compile(r"best|베스트|인기|most|weekly|랭킹|ranking", re.IGNORECASE),
+    re.compile(r"look|룩|코디|styling|스타일링", re.IGNORECASE),
+    re.compile(r"new|신상", re.IGNORECASE),
+]
+
+
+def menu_rank(text: str, href: str) -> int:
+    """메뉴 글자·주소로 우선순위 (작을수록 먼저)."""
+    for i, pat in enumerate(MENU_PRIORITY):
+        if pat.search(text) or pat.search(href):
+            return i
+    return len(MENU_PRIORITY)
+
+
 SKIP_WORDS = re.compile(
     r"login|join|member|cart|order|mypage|board|notice|review|event|faq|qna|privacy|agreement|"
     r"로그인|회원|장바구니|주문|공지|리뷰|후기|이벤트|문의|약관|개인정보",
@@ -404,18 +420,21 @@ def crawl(
     2026-10-13 사용자: 참고 코디를 한 주 100벌쯤 모으기. Claude 가 메뉴를 하나씩 누르는 대신
     코드가 돌고, Claude 는 확인표만 본다. robots.txt·허용 사이트는 page_links·ref_sheets 가 지킨다.
     페이지·사진 원본은 저장하지 않는다."""
-    picked: list[str] = []
+    found: list[tuple[str, str]] = []
     for text, href in page_links(home, sites):
-        if len(picked) >= menus:
-            break
         if (
             SKIP_WORDS.search(text + href)
             or PRODUCT_LINK.search(href)
             or href.rstrip("/") == home.rstrip("/")
+            or href in (h for _, h in found)
         ):
             continue
         if MENU_WORDS.search(text) or MENU_WORDS.search(href):
-            picked.append(href)
+            found.append((text, href))
+    # 인기·룩북 메뉴를 먼저 (2026-10-19 사용자: 인기 룩북·베스트 아이템을 우선).
+    # 같은 순위는 화면 순서
+    found.sort(key=lambda th: menu_rank(*th))
+    picked = [href for _, href in found[:menus]]
     lists = [
         [h for _, h in page_links(m, sites, limit=400, scrolls=3) if PRODUCT_LINK.search(h)]
         for m in picked
