@@ -379,10 +379,11 @@ def busy_warnings(where: str, cats: list[str], items: list[Product], profile: Pr
 
 
 def check(
-    plan: DailyPlan, profile: Profile, store: Store, draft: bool = False
+    plan: DailyPlan, profile: Profile, store: Store, draft: bool = False, wanted: int = 0
 ) -> tuple[list[str], list[str]]:
     """기획 파일을 프로필 규칙으로 검사한다. (오류, 경고). 오류가 있으면 빌드하지 않는다.
-    draft 는 문구(text)를 쓰기 전 코디 후보 (9단계 tools.pick): text 가 없어도 오류가 아니다."""
+    draft 는 문구(text)를 쓰기 전 코디 후보 (9단계 tools.pick): text 가 없어도 오류가 아니다.
+    wanted 는 사용자가 정한 후보 벌 수 (picks_request.json count, 고른 참고 코디 수)."""
     errors: list[str] = []
     warns: list[str] = []
     rules, c = profile.outfit, profile.copy_rules
@@ -442,7 +443,7 @@ def check(
                     f"{where}쇼핑몰 {shop} 상품이 {k}개입니다 (최대 {rules.max_per_shop})"
                 )
     if plan.looks:
-        errors += looks_problems(plan, profile, products, draft)
+        errors += looks_problems(plan, profile, products, draft, wanted)
         warns += same_kind_warnings(plan, profile, products)
         warns += accessory_warnings(plan, profile, products)
         warns += type_warnings(plan, profile, products)
@@ -590,11 +591,14 @@ def check(
 _LOOK_COUNT = re.compile(r"(\d+|한|두|세|네|다섯|여섯|일곱|여덟|아홉|열)\s*(벌|가지\s*(룩|코디))")
 
 
-def looks_problems(plan: DailyPlan, profile: Profile, products: dict, draft: bool) -> list[str]:
-    """여러 벌 게시물 규칙 (20단계): 벌 수, 벌 사이 상품 겹침."""
+def looks_problems(
+    plan: DailyPlan, profile: Profile, products: dict, draft: bool, wanted: int = 0
+) -> list[str]:
+    """여러 벌 게시물 규칙 (20단계): 벌 수, 벌 사이 상품 겹침.
+    후보(draft)는 사용자가 정한 벌 수(wanted)만큼 많아도 된다."""
     lk = profile.looks
     errors = []
-    lo, hi = (lk.min, lk.count + lk.spare) if draft else (lk.min, lk.count)
+    lo, hi = (lk.min, max(lk.count + lk.spare, wanted)) if draft else (lk.min, lk.count)
     if not lo <= len(plan.looks) <= hi:
         errors.append(f"벌은 {lo}~{hi}개여야 합니다 (지금 {len(plan.looks)})")
     seen: dict[str, list[int]] = {}
@@ -1075,7 +1079,11 @@ def main(argv: list[str] | None = None) -> int:
         plan = load_plan(args.plan)
         profile, store = load_profile(plan.account), Store(plan.account)
         if args.cmd == "check":
-            errors, warns = check(plan, profile, store, args.draft)
+            wanted = 0
+            request = args.plan.resolve().parent.parent / "picks_request.json"
+            if args.draft and request.exists():
+                wanted = int(json.loads(request.read_text(encoding="utf-8")).get("count") or 0)
+            errors, warns = check(plan, profile, store, args.draft, wanted)
             for e in errors:
                 print(f"오류: {e}")
             for w in warns:

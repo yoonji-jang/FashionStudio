@@ -156,7 +156,7 @@ class DailyPlan(BaseModel):
     date: date
     theme: Theme
     items: list[PlanItem] = Field(default=[], max_length=10)
-    looks: list[Look] = Field(default=[], max_length=9)
+    looks: list[Look] = Field(default=[], max_length=12)
     reason: str  # 이 조합을 고른 이유 (색, 분위기)
     text: PlanText | None = None
     # 생성형 코디컷에서 옷을 어떻게 입혀 펼칠지 (영어). 없으면 profile outfit_image.outer_styling
