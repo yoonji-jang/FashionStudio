@@ -53,5 +53,47 @@
    },
    "text": "2 3 8 5 6 4"
   }
+ },
+ {
+  "update_id": 428675815,
+  "message": {
+   "message_id": 1668,
+   "date": 1792497420,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIGhGrXVwzbz7xbrcFitsWS_57oRozzAAItFGsbT9bAVtA5sUbY_YeDAQADAgADeQADPQQ",
+   "caption": "머리는 참고 모델처럼 슬릭번 또는 긴 히피펌으로 해줘. 얼굴은 화장이 진한 편이고 이국적인 얼굴로 해줘.",
+   "media_group_id": "14339979362354061"
+  }
+ },
+ {
+  "update_id": 428675816,
+  "message": {
+   "message_id": 1669,
+   "date": 1792497420,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIGhWrXVwwAATEkfk0rMprncPxaGwABQDYAAi4UaxtP1sBWk2Jteje1epYBAAMCAAN5AAM9BA",
+   "caption": "",
+   "media_group_id": "14339979362354061"
+  }
+ },
+ {
+  "update_id": 428675817,
+  "message": {
+   "message_id": 1670,
+   "date": 1792497420,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIGhmrXVwwITln44-WcJtImwJQRD1NJAAIvFGsbT9bAVoM2ui60q1OMAQADAgADeQADPQQ",
+   "caption": "",
+   "media_group_id": "14339979362354061"
+  }
  }
 ]
