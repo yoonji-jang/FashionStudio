@@ -317,6 +317,8 @@ class Looks(BaseModel):
     # 벌 장 글자 (tools.feed). 크기는 폭 1080px 기준, 위치는 높이 대비
     label: str = "LOOK {n}"  # 벌 번호 (빈 문자열이면 생략)
     label_size: int = Field(default=26, gt=0)
+    # 표지에도 표지 벌 번호(label, LOOK 1)를 제목 위에 쓸지 (2026-10-20 사용자, cover_first 일 때)
+    cover_label: bool = False
     # 상품 한 줄: 카테고리(보조 색) 이름(굵게) 스토어·가격(작게, 자리가 있을 때)
     line_size: int = Field(default=28, gt=0)
     shop_size: int = Field(default=21, gt=0)
