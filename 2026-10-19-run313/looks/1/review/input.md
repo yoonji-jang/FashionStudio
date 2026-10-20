@@ -9,11 +9,11 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 상의 | 네이비 와플 헨리넥 맨투맨 (navy waffle henley sweatshirt, oversized, dropped shoulders, soft waffle-knit cotton, a few buttons on the placket with a small collar, hip length; the photos also show a plaid shirt and brown shorts, ignore them) | 네이비 | - | 기장 72cm | outfit/originals/01_top.jpg |
-| 2 | 상의 | 화이트 네이비 스트라이프 긴팔 티 (white and navy breton stripe long-sleeve tee, boat neck, relaxed fit, wide stripes about 1 cm) | 화이트 | 상의에 입힘 | 기장 67.5cm | outfit/originals/02_top.jpg |
-| 3 | 하의 | 베이지 스커트 팬츠 (beige structured A-line mini skirt over built-in shorts, mid-thigh length, crisp wool-blend, no pleats) | 베이지 | - | 기장 34.5cm | outfit/originals/03_bottoms.jpg |
-| 4 | 신발 | 블랙 레이스업 워커 부츠 (black matte smooth leather lace-up lug-sole walker boots, chunky sole, round toe, ankle height, one pair (two boots)) | 블랙 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
-| 5 | 가방 | 블랙 토트백 (black glossy leather-look boston-style bag with two short top handles, a zip top and a rounded bottom, not nylon) | 블랙 | - | 긴 쪽 52cm | outfit/originals/05_bag.jpg |
+| 1 | 상의 | 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a thick folded neckline, fitted, long sleeves with thumb-hole cuffs, waist length) | 그레이 | - | 기장 55cm | outfit/originals/01_top.jpg |
+| 2 | 상의 | 화이트 홀터넥 슬림 이너 (off-white slim halter-neck layered top, cropped to the waist) | 화이트 | 상의에 입힘 | 기장 57cm | outfit/originals/02_top.jpg |
+| 3 | 하의 | 그레이 플라워 프린트 롱스커트 (light blue-gray watercolor flower print on a white ground, sheer layered chiffon h-line long skirt, slim, ankle length) | 그레이 | - | 기장 89cm | outfit/originals/03_bottoms.jpg |
+| 4 | 신발 | 블랙 포인티드 앵클부츠 (black smooth leather pointed-toe ankle boots with a back zipper, low block heel, one pair (two boots)) | 블랙 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
+| 5 | 가방 | 블랙 나일론 숄더백 (black nylon boston shoulder bag with two short handles, a zip top, two shoulder straps and a small triangle logo plate) | 블랙 | - | 긴 쪽 52cm | outfit/originals/05_bag.jpg |
 
 **장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
 
@@ -21,7 +21,7 @@
 
 - c2: `outfit_r2/results/G_1.jpg`
 
-이미 매긴 점수: c1 7점
+이미 매긴 점수: c1 8점
 
 ## 캐러셀 상품 장
 

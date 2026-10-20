@@ -9,19 +9,17 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 상의 | 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a thick folded neckline, fitted, long sleeves with thumb-hole cuffs, waist length) | 그레이 | - | 기장 55cm | outfit/originals/01_top.jpg |
-| 2 | 상의 | 화이트 홀터넥 슬림 이너 (off-white slim halter-neck layered top, cropped to the waist) | 화이트 | 상의에 입힘 | 기장 57cm | outfit/originals/02_top.jpg |
-| 3 | 하의 | 그레이 플라워 프린트 롱스커트 (light blue-gray watercolor flower print on a white ground, sheer layered chiffon h-line long skirt, slim, ankle length) | 그레이 | - | 기장 89cm | outfit/originals/03_bottoms.jpg |
-| 4 | 신발 | 블랙 포인티드 앵클부츠 (black smooth leather pointed-toe ankle boots with a back zipper, low block heel, one pair (two boots)) | 블랙 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
-| 5 | 가방 | 블랙 나일론 숄더백 (black nylon boston shoulder bag with two short handles, a zip top, two shoulder straps and a small triangle logo plate) | 블랙 | - | 긴 쪽 52cm | outfit/originals/05_bag.jpg |
+| 1 | 상의 | 블랙 모크넥 민소매 골지 니트 (black sleeveless ribbed knit tank, mock neck, fitted, thin knit, waist length; the photo shows a two-piece set with a v-neck knit, draw only the sleeveless tank) | 블랙 | - | 기장 64cm | outfit/originals/01_top.jpg |
+| 2 | 하의 | 블랙 울 미니스커트 (black smooth structured wool mini skirt, low-rise, straight to slightly A-line, no pleats, mid-thigh length) | 블랙 | - | 기장 34.5cm | outfit/originals/02_bottoms.jpg |
+| 3 | 가방 | 블랙 미니 숄더백 (black soft half-moon hobo shoulder bag, medium size, a small logo plate, a zip at the top and one curved strap) | 블랙 | - | 긴 쪽 52cm | outfit/originals/03_bag.jpg |
+| 4 | 신발 | 블랙 스퀘어토 롱부츠 (black smooth leather square-toe knee-high boots, slim shaft, block heel about 5 cm, one pair (two boots)) | 블랙 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
+| 5 | 소품 | 실버 물방울 링 귀걸이 (silver drop hoop earrings, exactly one pair (two earrings)) | 실버 | - | 긴 쪽 9cm | outfit/originals/05_accessory.jpg |
 
 **장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
 
 ## 점수를 매길 코디컷 후보
 
-- c2: `outfit_r2/results/G_1.jpg`
-
-이미 매긴 점수: c1 8점
+- c1: `outfit/results/G_1.jpg`
 
 ## 캐러셀 상품 장
 
@@ -65,4 +63,4 @@
 
 ## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)
 
-- c2 [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: `review/face_c2_1.jpg` (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)
+- c1 [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: `review/face_c1_1.jpg` (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)

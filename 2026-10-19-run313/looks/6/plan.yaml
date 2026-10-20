@@ -1,78 +1,94 @@
 account: women
 date: '2026-10-19'
 items:
-- color: 블랙
-  comment: ''
-  cutout_photo: 2
-  desc: 블랙 모크넥 민소매 골지 니트 (black sleeveless ribbed knit tank, mock neck, fitted, thin
-    knit, waist length; the photo shows a two-piece set with a v-neck knit, draw only
-    the sleeveless tank)
-  name: 모크넥 민소매 니트
-  product: zigzag:167099943
-  ref_photos:
-  - 2
-- cm: 34.5
+- cm: 57.5
   color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 블랙 울 미니스커트 (black smooth structured wool mini skirt, low-rise, straight to
-    slightly A-line, no pleats, mid-thigh length)
-  name: 울 미니스커트
-  product: zigzag:156220482
+  desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length,
+    ribbed cuffs and hem)
+  name: 브이넥 니트
+  product: zigzag:167263764
   ref_photos:
   - 0
-  size: about 34.5 cm long from waist to hem, 37 cm across the waist laid flat, 51
-    cm across the hips laid flat, 55.5 cm across the hem laid flat
+  - 3
+  - 4
+  size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52 cm
+    across the chest laid flat, 64 cm long sleeves
+- color: 화이트
+  comment: ''
+  cutout_photo: 2
+  desc: 화이트 무지 긴팔 티셔츠 (plain white long-sleeve crew-neck tee, relaxed fit, hip length,
+    ignore the small logo and text in the photo)
+  name: 무지 긴팔 티
+  product: zigzag:172325922
+  ref_photos:
+  - 2
+  wear_with: 상의
+- cm: 84.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 랩 롱스커트 (charcoal gray A-line wrap skirt with a side tie at the waist and
+    a side slit, thick soft ponte jersey, no pleats, mid-calf to ankle length)
+  name: 랩 스커트
+  product: zigzag:171413914
+  ref_photos:
+  - 0
+  - 1
+  - 3
+  size: about 84 cm long from waist to hem, 36 cm across the waist laid flat, 46 cm
+    across the hips laid flat, 53 cm across the hem laid flat
 - color: 블랙
   comment: ''
   cutout_photo: 2
-  desc: 블랙 미니 숄더백 (black soft half-moon hobo shoulder bag, medium size, a small logo
-    plate, a zip at the top and one curved strap)
-  name: 미니 숄더백
-  product: zigzag:166194366
+  desc: 블랙 페니 로퍼 (black matte leather chunky lug-sole penny loafers, one pair (two
+    shoes))
+  name: 페니 로퍼
+  product: zigzag:130568193
   ref_photos:
   - 2
   - 1
 - color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 블랙 스퀘어토 롱부츠 (black smooth leather square-toe knee-high boots, slim shaft,
-    block heel about 5 cm, one pair (two boots))
-  name: 스퀘어 롱부츠
-  product: zigzag:108156951
+  desc: 블랙 토트백 (black structured tote bag with a zip top, two short handles and a
+    small silver charm on the front)
+  name: 토트백
+  product: zigzag:165216398
   ref_photos:
   - 0
-  - 2
-  - 5
+  - 1
 - color: 실버
   comment: ''
   cutout_photo: 0
-  desc: 실버 물방울 링 귀걸이 (silver drop hoop earrings, exactly one pair (two earrings))
-  name: 실버 귀걸이
-  product: zigzag:139297257
+  desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small drop
+    pendant)
+  name: 롱 목걸이
+  product: zigzag:159636703
   ref_photos:
   - 0
-  - 5
-  slot: 귀걸이
+  slot: 목걸이
 looks: []
 mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
   wall and a matching pale floor, bright even daylight-like studio light with a crisp
   soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
   taken with a digital camera from a medium distance, nothing else in the frame
-pose: standing in the pale studio like the third reference photo, one leg stepped
-  forward and one hand lifting her hair at the back of her head while the other hand
-  holds the hobo bag strap on her shoulder, her head tilted up in profile; her hair
-  long, loose and in hippie-perm waves; bold dramatic makeup with defined dark eyes,
-  deep rosy blush and glossy deep red lips, striking exotic-looking features; the
-  whole body is visible down to the knee-high boots
-reason: 블랙 민소매 니트와 울 미니스커트의 올블랙 질감 대비. 참고 154(블랙 모크넥 민소매 니트/블랙 울 미니/미니 핸드백/롱부츠/실버
-  귀걸이) → 맞춘 것 모크넥 민소매 니트 세트/아레나 울 미니/호보 숄더백/스퀘어 롱부츠/실버 귀걸이 (따라 함 - 참고 154, 니트와 미니는
-  블랙 사진이 있는 다른 상품으로 바꿈)
-ref_photo: https://vivnluv.co.kr/web/product/extra/big/20261014/b1935dc3ccca1ec543662c3ab54889cf.jpg
-scene_image: out/2026-10-19/src/scene_3.jpg
+pose: standing in the pale studio like the first reference photo, her body turned
+  a quarter to the side with the tote held in one hand at her hip and the other hand
+  touching the long necklace, her head bowed and turned away so her hair falls over
+  part of her face; her hair long, loose and in hippie-perm waves; bold dramatic makeup
+  with deep rosy blush and glossy deep red lips, striking exotic-looking features;
+  the whole body is visible down to the loafers
+reason: 블랙 브이넥 니트와 그레이 랩 롱스커트의 단정한 출근룩. 참고 149(블랙 브이넥 니트/화이트 이너/그레이 랩 미디/로퍼/토트/롱 목걸이)
+  → 맞춘 것 울 캐시미어 브이넥 니트/소로나 긴팔 티/드모즈 랩 롱 스커트(차콜)/페니로퍼/탈리아 토트/롱 목걸이 (따라 함 - 참고 149,
+  랩 스커트는 그레이 사진이 있는 다른 상품으로 바꿈)
+ref_photo: https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg
+scene_image: out/2026-10-19/src/scene.jpg
 shot: model
-styling: The sleeveless knit is tucked smoothly into the low-rise wool skirt. The
-  knee-high boots are worn under the skirt hem and come up to just below the knee.
+styling: The white tee shows under the V-neck of the black knit and its hem peeks
+  out a little. The knit is tucked into the wrap skirt at the front only. A long silver
+  pendant necklace hangs over the knit.
 text:
   hashtags:
   - '#스커트코디'

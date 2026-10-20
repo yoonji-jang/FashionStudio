@@ -1,84 +1,86 @@
 account: women
 date: '2026-10-19'
 items:
-- color: 네이비
+- cm: 55.0
+  color: 그레이
   comment: ''
-  cutout_photo: 0
-  desc: 네이비 와플 헨리넥 맨투맨 (navy waffle henley sweatshirt, oversized, dropped shoulders,
-    soft waffle-knit cotton, a few buttons on the placket with a small collar, hip
-    length; the photos also show a plaid shirt and brown shorts, ignore them)
-  name: 헨리넥 맨투맨
-  product: zigzag:172058437
+  cutout_photo: 5
+  desc: 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a thick folded neckline,
+    fitted, long sleeves with thumb-hole cuffs, waist length)
+  name: 오프숄더 니트
+  product: zigzag:131421251
   ref_photos:
-  - 0
-- cm: 67.5
+  - 5
+  - 1
+  - 4
+  size: about 55 cm long from shoulder to hem, 30 cm across the chest laid flat, 49
+    cm long sleeves
+- cm: 57.0
   color: 화이트
   comment: ''
   cutout_photo: 0
-  desc: 화이트 네이비 스트라이프 긴팔 티 (white and navy breton stripe long-sleeve tee, boat neck,
-    relaxed fit, wide stripes about 1 cm)
-  name: 스트라이프 티
-  product: zigzag:160666337
+  desc: 화이트 홀터넥 슬림 이너 (off-white slim halter-neck layered top, cropped to the waist)
+  name: 홀터 이너
+  product: zigzag:168657305
   ref_photos:
   - 0
-  size: about 67.5 cm long from shoulder to hem, 43 cm across the shoulders, 48 cm
-    across the chest laid flat, 65 cm long sleeves
+  size: about 57 cm long from shoulder to hem, 40 cm across the shoulders, 45 cm across
+    the chest laid flat, 61 cm long sleeves
   wear_with: 상의
-- cm: 34.5
-  color: 베이지
+- cm: 89.0
+  color: 그레이
   comment: ''
-  cutout_photo: 3
-  desc: 베이지 스커트 팬츠 (beige structured A-line mini skirt over built-in shorts, mid-thigh
-    length, crisp wool-blend, no pleats)
-  name: 스커트 팬츠
-  product: zigzag:169396657
+  cutout_photo: 4
+  desc: 그레이 플라워 프린트 롱스커트 (light blue-gray watercolor flower print on a white ground,
+    sheer layered chiffon h-line long skirt, slim, ankle length)
+  name: 플라워 롱스커트
+  product: zigzag:164875576
   ref_photos:
-  - 3
   - 0
-  size: about 34.5 cm long from waist to hem, 36.5 cm across the waist laid flat,
-    49 cm across the hips laid flat, 32.5 cm across the hem laid flat
+  - 4
+  size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 46.5
+    cm across the hips laid flat, 51.5 cm across the hem laid flat
 - color: 블랙
   comment: ''
-  cutout_photo: 2
-  desc: 블랙 레이스업 워커 부츠 (black matte smooth leather lace-up lug-sole walker boots, chunky
-    sole, round toe, ankle height, one pair (two boots))
-  name: 워커 부츠
-  product: zigzag:130583785
+  cutout_photo: 1
+  desc: 블랙 포인티드 앵클부츠 (black smooth leather pointed-toe ankle boots with a back zipper,
+    low block heel, one pair (two boots))
+  name: 포인티드 앵클부츠
+  product: zigzag:130586820
   ref_photos:
-  - 2
   - 1
-  - 3
+  - 0
 - color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 블랙 토트백 (black glossy leather-look boston-style bag with two short top handles,
-    a zip top and a rounded bottom, not nylon)
-  name: 블랙 토트백
-  product: zigzag:159478154
+  desc: 블랙 나일론 숄더백 (black nylon boston shoulder bag with two short handles, a zip
+    top, two shoulder straps and a small triangle logo plate)
+  name: 나일론 숄더백
+  product: zigzag:133826914
   ref_photos:
   - 0
+  - 1
   - 3
 looks: []
 mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
   wall and a matching pale floor, bright even daylight-like studio light with a crisp
   soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
   taken with a digital camera from a medium distance, nothing else in the frame
-pose: standing in the middle of the pale studio like the second reference photo, her
-  weight on one leg, one hand pulled into the long sweatshirt sleeve and the other
-  holding the bag by her side, her face turned to the side and her eyes looking away
-  past the camera; her hair in a sleek slicked-back low bun with a center part; bold
-  dramatic makeup with defined dark eyes, deep rosy blush and glossy deep red lips,
-  striking exotic-looking features; the whole body is visible down to the boots
-reason: 네이비 헨리넥 맨투맨에 베이지 스커트 팬츠로 편하게 입는 주말룩. 참고 156(네이비 헨리넥 맨투맨/스트라이프 이너/베이지 스커트 팬츠/카멜
-  워커 부츠/블랙 토트) → 맞춘 것 와플 헨리넥 맨투맨/세인트제임스 스트라이프 티/시더 스커트 팬츠/블랙 워커 부츠/토트백 (따라 함 - 참고
-  156, 워커 부츠는 카멜 사진이 없어 블랙)
-ref_photo: https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg
+pose: standing in the pale studio like the second reference photo, her weight on one
+  leg, one hand on the strap of the boston bag on her shoulder, her chin lowered and
+  her gaze dropped to the side so her face is turned slightly away; her hair in a
+  sleek slicked-back bun at the nape with a center part; bold dramatic makeup with
+  defined dark eyes, deep rosy blush and glossy deep red lips, striking exotic-looking
+  features; the whole body is visible down to the ankle boots
+reason: 그레이 오프숄더 니트에 화이트 홀터 이너, 플라워 롱스커트로 데이트룩. 참고 462(그레이 오프숄더 니트/화이트 홀터 탑/플라워 롱스커트/포인티드
+  앵클부츠/나이론 숄더) → 맞춘 것 옹송 오프숄더 니트/홀터 이너/티네사 플라워 롱스커트/뒷지퍼 앵클부츠/보스턴 나일론 숄더 (따라 함 - 참고
+  462, 홀터 이너는 화이트 사진이 있는 다른 상품으로, 스커트는 블루그레이 꽃무늬 사진으로 바꿈)
+ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261012/887c476fde182a35dd4ff89982e0c511.jpg
 scene_image: out/2026-10-19/src/scene_2.jpg
 shot: model
-styling: The sweatshirt is worn with its sleeves slightly pushed up and its hem half
-  tucked into the front of the skirt pants. The striped tee's hem shows about 4 cm
-  below the navy sweatshirt hem and its cuffs peek out at the sleeves. The boots are
-  worn over a short white sock.
+styling: The white halter inner shows at the neckline under the folded off-shoulder
+  neckline of the gray knit; the knit hem is half tucked into the skirt. The ankle
+  boots show under the skirt hem.
 text:
   hashtags:
   - '#스커트코디'
