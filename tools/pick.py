@@ -513,6 +513,9 @@ def prepare_edit(spec: dict, prev: Path, out: Path) -> Path:
     shutil.copy(src / "pick.json", dst / "prev_pick.json")
     if (src / "refused.txt").exists():
         shutil.copy(src / "refused.txt", dst / "refused.txt")
+    # 고른 참고 코디로 짠 후보면 벌 수 검사가 그 요청(count)을 따른다
+    if (src.parent / "picks_request.json").exists():
+        shutil.copy(src.parent / "picks_request.json", out / "picks_request.json")
     (dst / "edit.json").write_text(json.dumps(spec, ensure_ascii=False, indent=2), encoding="utf-8")
     return dst / "edit.json"
 
