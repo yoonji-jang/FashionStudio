@@ -24,7 +24,7 @@ import sys
 from datetime import date, timedelta
 from pathlib import Path
 
-from core.models import Category, Product, RefLook, RefSlot
+from core.models import Category, Product, RefLook, RefSlot, Theme
 from core.profile import load_profile
 from core.store import Store
 
@@ -195,6 +195,54 @@ def album(refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12)
         img.save(path, quality=85)
         sheets.append(path)
     return sheets
+
+
+def theme_refs(refs: list[RefLook], theme: Theme, limit: int) -> list[RefLook]:
+    """주제에 맞는 참고 코디 (창고로 맞출 수 있는 것만, 맞는 순서로 limit 개, 2026-10-20 사용자:
+    참고 코디 목록에서 내가 고르게). 주제 검색어의 마지막 낱말(스커트, 레더자켓)이 같은 칸에 있으면
+    맞는 것으로 보고, 태그가 주제 제목에 있으면 더 앞에 둔다. 맞는 게 없으면 최근 것부터."""
+    words = {c: {q.split()[-1] for q in qs if q.split()} for c, qs in theme.search_terms.items()}
+
+    def score(r: RefLook) -> tuple[int, int, int]:
+        hit = sum(
+            any(w in f"{s.desc} {s.query}" for w in words.get(s.category, ())) for s in r.slots
+        )
+        tags = sum(t in theme.title_hint for t in r.tags)
+        return hit, tags, r.n
+
+    ready = [r for r in refs if r.ready]
+    ranked = sorted(ready, key=score, reverse=True)
+    if any(score(r)[0] for r in ranked):
+        ranked = [r for r in ranked if score(r)[0]]
+    return ranked[:limit]
+
+
+def ref_numbers(text: str) -> list[int] | str | None:
+    """참고 코디 고르기 답: "141 203 250", "참고 141, 203번" → 번호들,
+    "알아서" → "auto", 그 밖은 None."""
+    plain = text.strip()
+    if re.fullmatch(r"(?:알아서|아무거나|맡길게요?|추천해?\s*줘|골라\s*줘)[.!~ ]*", plain):
+        return "auto"
+    body = re.sub(r"^참고\s*(?:코디)?\s*", "", plain)
+    if re.fullmatch(r"\d{1,4}(?:\s*[,\s]\s*\d{1,4})*\s*번?", body):
+        return list(dict.fromkeys(int(n) for n in re.findall(r"\d+", body)))
+    return None
+
+
+def send_theme_album(profile, store: Store, theme: Theme, tg, out: Path) -> list[int]:
+    """주제에 맞는 참고 코디 묶음을 텔레그램으로 보내고 보낸 번호를 돌려준다."""
+    rs = profile.themes.ref_search
+    picked = theme_refs(store.refs(), theme, profile.flow.ref_pick)
+    sheets = album(picked, rs.hosts() if rs else [], out)
+    if not sheets:
+        return []
+    caption = (
+        f"[{profile.id}] '{theme.title_hint}' 참고 코디 {len(picked)}벌이에요. "
+        "따라 할 코디 번호를 보내 주세요 (예: 141 203 250). 고른 게 모자라면 나머지는 제가 채워요. "
+        '맡기시려면 "알아서"'
+    )
+    tg.send_photos(sheets, caption)
+    return [r.n for r in picked]
 
 
 def zigzag_pages(products: list[Product], refs: list[RefLook], count: int = 40) -> list[Product]:

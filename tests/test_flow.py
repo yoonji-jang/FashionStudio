@@ -59,12 +59,13 @@ def theme(n: int) -> Theme:
     )
 
 
-def _profile(week: int):
+def _profile(week: int, ref_pick: int = 0):
     real = flow.load_profile
 
     def load(account):
         p = real(account)
-        return p.model_copy(update={"flow": p.flow.model_copy(update={"week_options": week})})
+        f = p.flow.model_copy(update={"week_options": week, "ref_pick": ref_pick})
+        return p.model_copy(update={"flow": f})
 
     return load
 
@@ -452,3 +453,69 @@ def test_week_options_bad_numbers_and_chosen(env, week_mode, tmp_path, monkeypat
     raw["chosen"] = [3, 3]
     f.write_text(yaml.safe_dump(raw, allow_unicode=True), encoding="utf-8")
     assert flow.main(["options", "--date", "2026-10-15", "--file", str(f), "--week"]) == 1
+
+
+@pytest.mark.looks
+def test_ref_pick_album_then_candidates_from_chosen_refs(env, monkeypatch):
+    # 2026-10-20 사용자: 주제마다 참고 코디 묶음을 먼저 보내고, 고른 번호로 후보를 만든다
+    from tools import refs
+
+    store, results, sent, _ = env
+    monkeypatch.setattr(flow, "load_profile", _profile(10, ref_pick=48))
+    albums = []
+
+    def album(profile, store_, theme_, tg_, out):
+        albums.append(theme_.title_hint)
+        return [141, 203]
+
+    monkeypatch.setattr(refs, "send_theme_album", album)
+    monkeypatch.setattr(Store, "refs", lambda self: [type("R", (), {"n": n})() for n in (141, 203)])
+    tg = FakeTg()
+    st = flow.FlowState(account="women", stage="refs_wait", date=date(2026, 10, 15),
+                        week=[theme(1), theme(2)], asked_at=T0)  # fmt: skip
+    flow.save_state(results, st)
+    (store.dir).mkdir(parents=True, exist_ok=True)
+    (store.dir / "refs_done.json").write_text(f'{{"done_at": {T0 + 10}}}')
+    tick(env, tg, T0 + 100)
+    st = flow.load_state(results, "women")
+    assert st.stage == "ref_pick_wait" and albums == ["주제 1"] and not sent
+    assert "참고 코디를 보낼게요" in tg.sent[-1]
+    # 번호가 아닌 글, 없는 번호
+    tg.text(1, "음 고민중", T0 + 200)
+    assert tick(env, tg, T0 + 250) == []
+    tg.text(2, "141 999", T0 + 300)
+    tick(env, tg, T0 + 350)
+    assert "999번은 없어요" in tg.sent[-1] and not sent
+    tg.text(3, "참고 203, 141번", T0 + 400)
+    tick(env, tg, T0 + 450)
+    st = flow.load_state(results, "women")
+    assert st.stage == "pick_wait"
+    wf, inputs = sent[-1]
+    assert wf == "daily.yml" and inputs["mode"] == "candidates"
+    req = __import__("json").loads(inputs["pick"])
+    assert (
+        req["refs"] == [203, 141] and req["count"] == 8 and req["theme"]["title_hint"] == "주제 1"
+    )
+    # 후보를 기다리는 동안 묶음을 다시 보내지 않는다
+    tick(env, tg, T0 + 500)
+    assert albums == ["주제 1"]
+
+
+def test_ref_pick_auto_and_existing_pick_wait(env, monkeypatch):
+    from tools import refs
+
+    store, results, sent, _ = env
+    monkeypatch.setattr(flow, "load_profile", _profile(10, ref_pick=48))
+    monkeypatch.setattr(refs, "send_theme_album", lambda *a: [141])
+    monkeypatch.setattr(Store, "refs", lambda self: [])
+    flow.choose_theme(store, theme(1))
+    # 참고 고르기를 켜기 전에 후보를 기다리던 주제: 묶음을 먼저 보낸다
+    flow.save_state(results, flow.FlowState(account="women", stage="pick_wait",
+                                            date=date(2026, 10, 15), theme_at=T0))  # fmt: skip
+    tg = FakeTg()
+    tick(env, tg, T0 + 100)
+    assert flow.load_state(results, "women").stage == "ref_pick_wait"
+    tg.text(1, "알아서", T0 + 200)
+    tick(env, tg, T0 + 300)
+    req = __import__("json").loads(sent[-1][1]["pick"])
+    assert "refs" not in req and "제가 골라서" in tg.sent[-1]
