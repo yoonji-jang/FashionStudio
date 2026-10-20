@@ -1,0 +1,310 @@
+account: women
+date: '2026-10-19'
+items: []
+looks:
+- items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 와플 헨리넥 맨투맨 (navy waffle henley sweatshirt, oversized, button placket,
+      hip length)
+    name: 헨리넥 맨투맨
+    product: zigzag:172058437
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 네이비 스트라이프 긴팔 티 (white and navy breton stripe long-sleeve tee, boat neck)
+    name: 스트라이프 티
+    product: zigzag:160666337
+    wear_with: 상의
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 스커트 팬츠 (beige cotton layered skirt pants, a wrap skirt over short trousers,
+      knee-above length)
+    name: 스커트 팬츠
+    product: zigzag:165725313
+  - color: 카멜
+    comment: ''
+    cutout_photo: 0
+    desc: 카멜 레이스업 워커 부츠 (camel lace-up lug-sole walker boots, one pair (two boots))
+    name: 워커 부츠
+    product: zigzag:130583785
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 나일론 토트백 (black nylon tote bag)
+    name: 나일론 토트백
+    product: zigzag:159478154
+  point: ''
+  reason: 네이비 헨리넥 맨투맨에 베이지 스커트 팬츠로 편하게 입는 주말룩. 참고 156(네이비 헨리넥 맨투맨/스트라이프 이너/베이지 스커트
+    팬츠/카멜 워커 부츠/블랙 토트) → 맞춘 것 와플 헨리넥 맨투맨/세인트제임스 스트라이프 티/크렘므 스커트 팬츠/워커 부츠/토트백 (따라 함
+    - 참고 156)
+  ref: '156'
+  ref_photo: https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg
+  styling: The striped tee's hem shows about 4 cm below the navy sweatshirt hem and
+    its cuffs peek out at the sleeves. The sweatshirt is half tucked into the skirt
+    pants. The boots are worn over a short white sock.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드넥 울 니트 (black round-neck wool knit, relaxed fit, hip length)
+    name: 라운드 울 니트
+    product: zigzag:171470324
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 스트라이프 셔츠 (navy pinstripe slim shirt with a pointed collar)
+    name: 스트라이프 셔츠
+    product: zigzag:166123375
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니스커트 (black mini skirt with a belt, a slit at the side, above knee)
+    name: 블랙 미니스커트
+    product: zigzag:133521354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스타킹 느낌 삭스 (black sheer over-the-knee socks)
+    name: 블랙 삭스
+    product: zigzag:161559034
+    wear_with: 하의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers, round toe, one pair (two shoes))
+    name: 레이스업 로퍼
+    product: zigzag:134105153
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트백 (black structured tote bag)
+    name: 토트백
+    product: zigzag:161886716
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace)
+    name: 롱 목걸이
+    product: zigzag:159636703
+    slot: 목걸이
+  point: ''
+  reason: 블랙 라운드 니트 밑으로 네이비 줄무늬 셔츠가 보이고 실버 롱 목걸이를 더한 블랙 미니 출근룩. 참고 129(블랙 라운드 니트/네이비
+    스트라이프 셔츠/블랙 슬릿 미니/스타킹/로퍼/토트) → 맞춘 것 울 오버핏 니트/엘르 스트라이프 셔츠/블랙 벨트 미니/니삭스/레이스업 로퍼/토트
+    (따라 함 - 참고 129)
+  ref: '129'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
+  styling: The navy striped shirt is worn underneath; its collar shows at the neckline
+    and its hem hangs about 4 cm below the black knit hem. Black sheer stockings.
+    A long silver pendant necklace hangs over the black knit.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 초콜릿 브라운 울 라운드 니트 (chocolate brown wool round-neck knit, slightly relaxed,
+      waist length)
+    name: 브라운 울 니트
+    product: zigzag:168193209
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 베이직 티셔츠 (plain white crew-neck short-sleeve cotton tee)
+    name: 베이직 티셔츠
+    product: zigzag:159205603
+    wear_with: 상의
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 H라인 맥시 스커트 (cream h-line maxi skirt with a front slit, floor-grazing
+      length)
+    name: 맥시 스커트
+    product: zigzag:148088112
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 앵클부츠 (black ankle boots, one pair (two boots))
+    name: 앵클부츠
+    product: zigzag:171827376
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 숄더백
+    product: zigzag:130117567
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings, exactly one pair (two earrings))
+    name: 실버 귀걸이
+    product: zigzag:142880069
+    slot: 귀걸이
+  point: ''
+  reason: 브라운 니트 안에 화이트 이너 티를 받쳐 크림 H라인 롱스커트, 블랙 앵클부츠와 맞춘 톤온톤. 참고 164(브라운 라운드 니트/흰
+    이너/크림 H라인 롱스커트/블랙 앵클부츠/브라운 스웨이드 숄더) → 맞춘 것 브라운 울 니트/크림 슬릿 맥시 스커트/앵클부츠/스웨이드 숄더
+    (흰 이너는 창고에 겹치지 않는 베이직이 없어 뺌) (따라 함 - 참고 164)
+  ref: '164'
+  ref_photo: https://la-room.kr/web/product/medium/202610/37357fa53c8a02fdc1e4120a72e7fa1f.webp
+  styling: The white tee shows at the neckline under the brown knit and its hem peeks
+    out a little. The brown knit is tucked a little into the front of the cream skirt
+    so the slit shows. Black ankle boots peek out under the skirt hem.
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a folded neckline, fitted,
+      waist length)
+    name: 오프숄더 니트
+    product: zigzag:131421251
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 홀터넥 슬림 이너 (plain white halter-neck slim inner top)
+    name: 홀터 이너
+    product: zigzag:153225273
+    wear_with: 상의
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 플라워 프린트 롱스커트 (gray watercolor flower print long skirt, h-line, ankle
+      length)
+    name: 플라워 롱스커트
+    product: zigzag:164875576
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 포인티드 앵클부츠 (black pointed-toe ankle boots with a back zipper, one pair
+      (two boots))
+    name: 포인티드 앵클부츠
+    product: zigzag:130586820
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 나일론 숄더백 (black nylon boston shoulder bag)
+    name: 나일론 숄더백
+    product: zigzag:133826914
+  point: ''
+  reason: 그레이 오프숄더 니트에 화이트 홀터 이너, 플라워 롱스커트로 데이트룩. 참고 462(그레이 오프숄더 니트/화이트 홀터 탑/플라워
+    롱스커트/포인티드 앵클부츠/나이론 숄더) → 맞춘 것 옹송 오프숄더 니트/홀터 이너/티네사 플라워 롱스커트/뒷지퍼 앵클부츠/보스턴 나일론 숄더
+    (따라 함 - 참고 462)
+  ref: '462'
+  ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261012/887c476fde182a35dd4ff89982e0c511.jpg
+  styling: The white halter inner shows at the neckline under the folded off-shoulder
+    neckline of the gray knit; the knit hem is half tucked into the skirt.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length)
+    name: 브이넥 니트
+    product: zigzag:167263764
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 무지 긴팔 티셔츠 (plain white long-sleeve crew-neck tee)
+    name: 무지 긴팔 티
+    product: zigzag:172325922
+    wear_with: 상의
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 랩 미디스커트 (gray wrap midi skirt with a pintuck waist, calf length)
+    name: 랩 스커트
+    product: zigzag:171435505
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 페니 로퍼 (black penny loafers, one pair (two shoes))
+    name: 페니 로퍼
+    product: zigzag:130568193
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트백 (black tote bag)
+    name: 토트백
+    product: zigzag:165216398
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace)
+    name: 롱 목걸이
+    product: zigzag:159636703
+    slot: 목걸이
+  point: ''
+  reason: 블랙 브이넥 니트와 그레이 랩 미디스커트의 단정한 출근룩. 참고 149(블랙 브이넥 니트/화이트 이너/그레이 랩 미디/로퍼/토트/롱
+    목걸이) → 맞춘 것 울 캐시미어 브이넥 니트/소로나 긴팔 티/누아센르 랩 스커트/페니로퍼/탈리아 토트/롱 목걸이 (따라 함 - 참고 149)
+  ref: '149'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg
+  styling: The white tee shows under the V-neck of the black knit and its hem peeks
+    out a little. The knit is tucked into the wrap skirt.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 모크넥 민소매 골지 니트 (black mock-neck sleeveless ribbed knit, fitted, waist
+      length)
+    name: 모크넥 민소매 니트
+    product: zigzag:113835947
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 미니스커트 (black wool mini skirt, low-rise, straight, mid-thigh)
+    name: 울 미니스커트
+    product: zigzag:166297956
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 숄더백 (black small shoulder bag)
+    name: 미니 숄더백
+    product: zigzag:166194366
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스퀘어토 롱부츠 (black square-toe knee-high boots, one pair (two boots))
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 링 귀걸이 (silver drop hoop earrings, exactly one pair (two earrings))
+    name: 실버 귀걸이
+    product: zigzag:139297257
+    slot: 귀걸이
+  point: ''
+  reason: 블랙 민소매 니트와 울 미니스커트의 올블랙 질감 대비. 참고 154(블랙 모크넥 민소매 니트/블랙 울 미니/미니 핸드백/롱부츠/실버
+    귀걸이) → 맞춘 것 로사 골지 민소매 니트/miel 울 미니/미니백/스퀘어 롱부츠/실버 귀걸이 (따라 함 - 참고 154)
+  ref: '154'
+  ref_photo: https://vivnluv.co.kr/web/product/extra/big/20261014/b1935dc3ccca1ec543662c3ab54889cf.jpg
+  styling: The sleeveless knit is tucked smoothly into the low-rise wool skirt. The
+    knee-high boots are worn under the skirt hem.
+reason: 사용자가 고른 참고 코디 11벌을 순서대로 따라 한 스커트 코디
+shot: flatlay
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨
