@@ -1,0 +1,116 @@
+account: women
+date: '2026-10-19'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 모크넥 민소매 골지 니트 (black sleeveless ribbed knit tank, mock neck, fitted, thin
+    knit, waist length; the photo shows a two-piece set with a v-neck knit, draw only
+    the sleeveless tank)
+  name: 모크넥 민소매 니트
+  product: zigzag:167099943
+  ref_photos:
+  - 2
+- cm: 34.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 미니스커트 (black smooth structured wool mini skirt, low-rise, straight to
+    slightly A-line, no pleats, mid-thigh length)
+  name: 울 미니스커트
+  product: zigzag:156220482
+  ref_photos:
+  - 0
+  size: about 34.5 cm long from waist to hem, 37 cm across the waist laid flat, 51
+    cm across the hips laid flat, 55.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 미니 숄더백 (black soft half-moon hobo shoulder bag, medium size, a small logo
+    plate, a zip at the top and one curved strap)
+  name: 미니 숄더백
+  product: zigzag:166194366
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스퀘어토 롱부츠 (black smooth leather square-toe knee-high boots, slim shaft,
+    block heel about 5 cm, one pair (two boots))
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+  ref_photos:
+  - 0
+  - 2
+  - 5
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 링 귀걸이 (silver drop hoop earrings, exactly one pair (two earrings))
+  name: 실버 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 0
+  - 5
+  slot: 귀걸이
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+pose: standing in the pale studio like the third reference photo, one leg stepped
+  forward and one hand lifting her hair at the back of her head while the other hand
+  holds the hobo bag strap on her shoulder, her head tilted up in profile; her hair
+  long, loose and in hippie-perm waves; bold dramatic makeup with defined dark eyes,
+  deep rosy blush and glossy deep red lips, striking exotic-looking features; the
+  whole body is visible down to the knee-high boots
+reason: 블랙 민소매 니트와 울 미니스커트의 올블랙 질감 대비. 참고 154(블랙 모크넥 민소매 니트/블랙 울 미니/미니 핸드백/롱부츠/실버
+  귀걸이) → 맞춘 것 모크넥 민소매 니트 세트/아레나 울 미니/호보 숄더백/스퀘어 롱부츠/실버 귀걸이 (따라 함 - 참고 154, 니트와 미니는
+  블랙 사진이 있는 다른 상품으로 바꿈)
+ref_photo: https://vivnluv.co.kr/web/product/extra/big/20261014/b1935dc3ccca1ec543662c3ab54889cf.jpg
+scene_image: out/2026-10-19/src/scene_3.jpg
+shot: model
+styling: The sleeveless knit is tucked smoothly into the low-rise wool skirt. The
+  knee-high boots are worn under the skirt hem and come up to just below the knee.
+text:
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+  intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 가을엔 치마가 답임
+  - 언니들 스커트 옷장 공개
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨

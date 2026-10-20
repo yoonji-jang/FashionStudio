@@ -1,0 +1,124 @@
+account: women
+date: '2026-10-19'
+items:
+- cm: 55.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 5
+  desc: 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a thick folded neckline,
+    fitted, long sleeves with thumb-hole cuffs, waist length)
+  name: 오프숄더 니트
+  product: zigzag:131421251
+  ref_photos:
+  - 5
+  - 1
+  - 4
+  size: about 55 cm long from shoulder to hem, 30 cm across the chest laid flat, 49
+    cm long sleeves
+- cm: 57.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 홀터넥 슬림 이너 (off-white slim halter-neck layered top, cropped to the waist)
+  name: 홀터 이너
+  product: zigzag:168657305
+  ref_photos:
+  - 0
+  size: about 57 cm long from shoulder to hem, 40 cm across the shoulders, 45 cm across
+    the chest laid flat, 61 cm long sleeves
+  wear_with: 상의
+- cm: 89.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 4
+  desc: 그레이 플라워 프린트 롱스커트 (light blue-gray watercolor flower print on a white ground,
+    sheer layered chiffon h-line long skirt, slim, ankle length)
+  name: 플라워 롱스커트
+  product: zigzag:164875576
+  ref_photos:
+  - 0
+  - 4
+  size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 46.5
+    cm across the hips laid flat, 51.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 포인티드 앵클부츠 (black smooth leather pointed-toe ankle boots with a back zipper,
+    low block heel, one pair (two boots))
+  name: 포인티드 앵클부츠
+  product: zigzag:130586820
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 나일론 숄더백 (black nylon boston shoulder bag with two short handles, a zip
+    top, two shoulder straps and a small triangle logo plate)
+  name: 나일론 숄더백
+  product: zigzag:133826914
+  ref_photos:
+  - 0
+  - 1
+  - 3
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+pose: standing in the pale studio like the second reference photo, her weight on one
+  leg, one hand on the strap of the boston bag on her shoulder, her chin lowered and
+  her gaze dropped to the side so her face is turned slightly away; her hair in a
+  sleek slicked-back bun at the nape with a center part; bold dramatic makeup with
+  defined dark eyes, deep rosy blush and glossy deep red lips, striking exotic-looking
+  features; the whole body is visible down to the ankle boots
+reason: 그레이 오프숄더 니트에 화이트 홀터 이너, 플라워 롱스커트로 데이트룩. 참고 462(그레이 오프숄더 니트/화이트 홀터 탑/플라워 롱스커트/포인티드
+  앵클부츠/나이론 숄더) → 맞춘 것 옹송 오프숄더 니트/홀터 이너/티네사 플라워 롱스커트/뒷지퍼 앵클부츠/보스턴 나일론 숄더 (따라 함 - 참고
+  462, 홀터 이너는 화이트 사진이 있는 다른 상품으로, 스커트는 블루그레이 꽃무늬 사진으로 바꿈)
+ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261012/887c476fde182a35dd4ff89982e0c511.jpg
+scene_image: out/2026-10-19/src/scene_2.jpg
+shot: model
+styling: The white halter inner shows at the neckline under the folded off-shoulder
+  neckline of the gray knit; the knit hem is half tucked into the skirt. The ankle
+  boots show under the skirt hem.
+text:
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+  intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 가을엔 치마가 답임
+  - 언니들 스커트 옷장 공개
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨
