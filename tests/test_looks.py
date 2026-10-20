@@ -749,7 +749,9 @@ def test_candidate_fix_edits_one_look_then_pick_continues(tmp_path, store):
     # daily mode=edit: 지난 후보를 가져와 Claude 가 1번 벌을 고친다 (2번은 실수로 바꿈)
     out = tmp_path / "out"
     store.save_products([*store.products(), product(500, "상의")])
+    (run / "picks_request.json").write_text('{"count": 8, "refs": [1]}', encoding="utf-8")
     pick.prepare_edit({"run": run.name, "fixes": act.fixes}, results, out)
+    assert pick._candidates_max(out, profile) == 8  # 고른 참고 코디 요청도 가져온다
     data = yaml.safe_load((out / "picks" / "p1.yaml").read_text())
     data["looks"][0]["items"][1] = {
         "product": "zigzag:500",
