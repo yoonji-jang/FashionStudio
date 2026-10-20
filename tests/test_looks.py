@@ -967,3 +967,55 @@ def test_cover_look_shown_once(tmp_path, store):
     names = [Path(x).name for x in notify.load_manifest(out).images]
     assert "02_look1.jpg" in names and not any(n.endswith("_look4.jpg") for n in names)
     assert feed.first_shift(profile) == 1 and feed.first_shift(old) == 0
+
+
+def test_order_from_telegram(tmp_path, store):
+    """/order 3 1 2 4 5 6: 벌 순서를 바꾸고 첫 벌이 표지. 같은 글의 /cover 는 버린다."""
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    assert notify.order_numbers(["4,2,3,6,1,5"]) == [4, 2, 3, 6, 1, 5]
+    assert notify.order_numbers(["표지는", "4"]) is None
+    assert notify.parse("순서 4 2 3 1", "women", DAY).name == "order"
+    ups = [upd(1, "/fix 1 제목 바꿔줘\n/order 4 2 3 6 1 5")]
+    assert notify.find_order(ups, r, CHAT) == (1, [4, 2, 3, 6, 1, 5])
+    assert notify.find_decision(ups, r, CHAT) is None
+
+    out, _ = build(tmp_path, store)
+    profile = load_profile("women")
+    (out / "telegram.json").write_text(r.model_dump_json())
+    plan_before = plan.load_plan(out / "plan.yaml")
+    first = [lk.items[0].product for lk in plan_before.looks]
+    shown = [3, 1, 2, 4, 5, 6]
+    want = [cover_look.look_number(out, profile, s) for s in shown]
+    img3 = looks.chosen_image(looks.look_dir(out, want[0])).read_bytes()
+    api = FakeApis(replies=[(1100, "/cover 2\n/order 3 1 2 4 5 6", None)])
+    line = cover_look.check(out, tg_of(api))
+    assert "순서" in line and "표지" not in line  # 같은 글의 /cover 2 는 쓰지 않음
+    after = plan.load_plan(out / "plan.yaml")
+    assert [lk.items[0].product for lk in after.looks] == [first[n - 1] for n in want]
+    assert after.cover_look == 1 and cover_look.current(out, profile) == 1
+    assert looks.chosen_image(looks.look_dir(out, 1)).read_bytes() == img3  # 벌 폴더도 같이
+    assert cover_look.reel_stale(out) == (notify.load_manifest(out).reels is not None)
+    # 같은 글은 한 번만, 잘못된 번호는 알리고 그대로
+    assert cover_look.check(out, tg_of(api)) == ""
+    api2 = FakeApis(
+        replies=[(1100, "/cover 2\n/order 3 1 2 4 5 6", None), (1300, "/order 1 2", None)]
+    )
+    assert "실패" in cover_look.check(out, tg_of(api2))
+    assert any("한 번씩 모두" in t for t in api2.texts)
+
+
+def test_order_carries_to_fixed_preview(tmp_path, store):
+    """/fix 가 순서를 바꾸기 전 기획을 가져가도 고친 미리보기를 같은 순서로 맞춘다."""
+    a, _ = build(tmp_path, store)
+    rec_a = PreviewRecord(account="women", date=DAY, run="a", sent_at=1000, message_ids=[11])
+    (a / "telegram.json").write_text(rec_a.model_dump_json())
+    b = tmp_path / "b"
+    shutil.copytree(a, b)  # 순서를 바꾸기 전에 가져감
+    (b / "fix.json").write_text(json.dumps({"run": "out", "cover_look": None, "fixes": []}))
+    rec_b = rec_a.model_copy(update={"run": "b", "sent_at": 2000, "message_ids": [21]})
+    (b / "telegram.json").write_text(rec_b.model_dump_json())
+    api = FakeApis(replies=[(1100, "/fix 1 제목 바꿔줘\n/order 3 1 2 4 5 6", None)])
+    assert "순서" in cover_look.check(a, tg_of(api))
+    assert "이어받음" in cover_look.check(b, tg_of(api))
+    assert cover_look._look_keys(b) == cover_look._look_keys(a)
+    assert cover_look.check(b, tg_of(api)) == ""

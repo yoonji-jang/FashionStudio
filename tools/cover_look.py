@@ -6,24 +6,30 @@ Claude·이미지 AI 없이 코드만.
 미리보기를 보낸 뒤 텔레그램으로 바꾼다.
 - "/ok 3", "/ok 표지 3"   3번 벌을 표지로 하고 승인
 - "/cover 3", "표지 3번"  승인 없이 표지만 3번 벌로 (새 표지 사진을 받아 보고 /ok)
+- "/order 4 2 3 6 1 5", "순서 4 2 3 6 1 5"  벌 순서를 그 LOOK 번호 순서로, 첫 번호가 표지
+  (2026-10-20)
 번호는 미리보기의 LOOK 번호. 승인 마감(schedule.ok_deadline)까지 온 마지막 글을 쓴다.
 
 바꿀 때는 결과 폴더의 표지 장(slides/01_cover.jpg, 릴스용 slides/tall/01_cover.jpg)과 미리보기
 (preview.jpg)를 그 벌 코디컷으로 다시 만들고 plan.yaml·feed.yaml 에 남긴 뒤,
 새 표지 사진을 텔레그램으로 보낸다. 릴스 영상은 첫 장이 바뀌므로 cover.json 의 reel_stale 을 보고
 릴스 게시 때 다시 만든다.
-같은 글은 한 번만 처리한다 (cover.json 의 update_id).
+같은 글은 한 번만 처리한다 (cover.json·order.json 의 update_id).
+순서를 바꿀 때는 벌 폴더(looks/<n>)와 기획의 벌 순서를 바꾸고 슬라이드·캡션·manifest 를 다시 만든다
+(코드만, AI 없음). 같은 글의 /cover 는 순서 바꾸기보다 앞이면 버린다 (첫 번호가 표지).
 
 schedule 매시 확인(links 칸)과 게시(tools.publish) 직전에 부른다.
 
 사용법 (결과 폴더에서 바로 바꿔 보기, 텔레그램 없이):
   python -m tools.cover_look apply out/2026-10-13 3
+  python -m tools.cover_look order out/2026-10-13 4 2 3 6 1 5
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 import time
 from pathlib import Path
@@ -35,6 +41,7 @@ from core.profile import Profile, load_profile
 from tools import feed, looks, notify
 
 RECORD = "cover.json"  # 처리한 표지 바꾸기 (결과 폴더)
+ORDER_RECORD = "order.json"  # 처리한 벌 순서 바꾸기 (결과 폴더)
 
 
 def effective_collage(plan: DailyPlan, profile: Profile) -> bool:
@@ -77,9 +84,14 @@ def load_record(out: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
 
+def load_order(out: Path) -> dict:
+    path = out / ORDER_RECORD
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
 def reel_stale(out: Path) -> bool:
-    """표지를 바꾼 뒤 릴스 영상을 아직 다시 만들지 않았는지."""
-    return bool(load_record(out).get("reel_stale"))
+    """표지나 벌 순서를 바꾼 뒤 릴스 영상을 아직 다시 만들지 않았는지."""
+    return bool(load_record(out).get("reel_stale") or load_order(out).get("reel_stale"))
 
 
 def _write_yaml(data: dict, path: Path) -> None:
@@ -145,6 +157,62 @@ def apply(out: Path, n: int, profile: Profile | None = None) -> list[Path]:
     return made
 
 
+def reorder(out: Path, shown: list[int], profile: Profile | None = None) -> list[Path]:
+    """벌 순서를 미리보기 LOOK 번호 shown 순서로 바꾸고 첫 벌을 표지로 (코드만, AI 없음).
+    다시 만든 표지 장과 미리보기 경로."""
+    from tools import plan as plan_tool
+
+    plan = plan_tool.load_plan(out / "plan.yaml")
+    profile = profile or load_profile(plan.account)
+    if not plan.looks:
+        raise ValueError("여러 벌 게시물이 아니라 순서를 바꿀 수 없습니다")
+    total = len(plan.looks)
+    if sorted(shown) != list(range(1, total + 1)):
+        raise ValueError(f"LOOK 1~{total} 을 한 번씩 모두 적어 주세요 (받은 번호: {shown})")
+    # 보이는 LOOK 번호 → 기획의 벌 번호 (표지 벌 때문에 다를 수 있음)
+    return _reorder(out, [look_number(out, profile, s) for s in shown], profile)
+
+
+def _look_keys(out: Path) -> list[tuple[str, ...]]:
+    from tools import plan as plan_tool
+
+    return [
+        tuple(it.product for it in lk.items) for lk in plan_tool.load_plan(out / "plan.yaml").looks
+    ]
+
+
+def _reorder(out: Path, order: list[int], profile: Profile) -> list[Path]:
+    """기획의 벌 번호 order 순서로 벌 폴더·기획을 바꾸고 다시 만든다. 이미 그 순서면 []."""
+    from tools import plan as plan_tool
+
+    plan = plan_tool.load_plan(out / "plan.yaml")
+    if order == list(range(1, len(plan.looks) + 1)) and current(out, profile) == 1:
+        return []
+    reels = notify.load_manifest(out).reels
+    tmp = out / (looks.LOOKS_DIR + ".order")
+    shutil.rmtree(tmp, ignore_errors=True)
+    tmp.mkdir()
+    for new, old in enumerate(order, 1):
+        src = looks.look_dir(out, old)
+        if src.exists():
+            src.rename(tmp / str(new))
+    for d in sorted(tmp.iterdir()):
+        d.rename(looks.look_dir(out, int(d.name)))
+    tmp.rmdir()
+    data = plan.model_dump(mode="json", exclude_none=True)
+    data["looks"] = [data["looks"][n - 1] for n in order]
+    data["cover_look"] = 1
+    if effective_collage(plan, profile):
+        data["cover_collage"] = False
+    _write_yaml(data, out / "plan.yaml")
+    manifest = looks.finish(out, profile)
+    if reels is not None:
+        manifest = manifest.model_copy(update={"reels": reels})
+        (out / "manifest.json").write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+    slides = notify.slide_paths(manifest, out)
+    return [slides[0], out / "preview.jpg"]
+
+
 def chain(out: Path) -> list[Path]:
     """/fix 로 다시 만든 결과면 지난 결과 폴더들 (fix.json 의 run, 가까운 것부터)."""
     from tools import feedback
@@ -183,8 +251,88 @@ def requested(
     return notify.find_cover(updates, record, chat_id, int(dl.timestamp()) if dl else None, since)
 
 
+def requested_order(
+    out: Path, record: PreviewRecord, profile: Profile, updates: list[dict], chat_id: str
+) -> tuple[int, list[int]] | None:
+    """승인 마감까지 온 마지막 벌 순서 바꾸기 (update_id, LOOK 번호 순서).
+    requested 와 같은 범위."""
+    dl = notify.ok_deadline(profile, record.date)
+    sent = [r.sent_at for p in chain(out) if (r := notify.load_record(p))]
+    since = min([record.sent_at, *sent])
+    return notify.find_order(updates, record, chat_id, int(dl.timestamp()) if dl else None, since)
+
+
 def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = False) -> str:
-    """텔레그램에 표지 벌 고르기가 왔으면 표지를 다시 만들고 새 표지를 보낸다. 로그 한 줄."""
+    """텔레그램에 벌 순서 바꾸기나 표지 벌 고르기가 왔으면 다시 만들고 새 표지를 보낸다. 로그."""
+    record = notify.load_record(out)
+    if record is None or record.sandbox or tg is None:
+        return ""
+    if (out / "published.json").exists():
+        return ""
+    updates = tg.updates() if updates is None else updates
+    lines = [check_order(out, tg, updates, dry_run), check_cover(out, tg, updates, dry_run)]
+    return "\n".join(x for x in lines if x)
+
+
+def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> str:
+    """벌 순서 바꾸기 (/order 4 2 3 6 1 5).
+    같은 글은 한 번만 (지난 미리보기에서 처리했으면 넘김)."""
+    record = notify.load_record(out)
+    assert record is not None
+    profile = load_profile(record.account)
+    tag = f"[{record.account}] {record.date}"
+    found = requested_order(out, record, profile, updates, tg.chat_id)
+    if found is None:
+        return ""
+    uid, shown = found
+    if load_order(out).get("update_id") == uid:
+        return ""
+    prev = next((p for p in chain(out) if load_order(p).get("update_id") == uid), None)
+    if prev is not None:
+        # 지난 미리보기에서 바꾼 순서. /fix 가 순서를 바꾸기 전 기획을 가져갔으면 같은 순서로 맞춘다
+        # (벌 상품 구성으로 짝지음, 고친 벌이 있어 짝이 안 맞으면 그대로)
+        want, have = _look_keys(prev), _look_keys(out)
+        if dry_run or want == have or sorted(want) != sorted(have):
+            if not dry_run:
+                _save_order(out, uid, shown, False)
+            return ""
+        order = [have.index(k) + 1 for k in want]
+        made = _reorder(out, order, profile)
+        _save_order(out, uid, shown, notify.load_manifest(out).reels is not None)
+        return f"{tag} 지난 미리보기에서 바꾼 벌 순서를 이어받음" if made else ""
+    if dry_run:
+        return f"{tag} 벌 순서를 {shown} 으로 바꿀 예정 (시험)"
+    approved = notify.approval_now(out, record, profile, updates, tg.chat_id) == "ok"
+    try:
+        made = reorder(out, shown, profile)
+    except (ValueError, FileNotFoundError) as e:
+        tg.send(f"{tag} 벌 순서를 바꾸지 못했어요: {e}")
+        _save_order(out, uid, shown, False, str(e))
+        return f"{tag} 벌 순서 바꾸기 실패: {e}"
+    order = " ".join(map(str, shown))
+    if not made:
+        tg.send(f"{tag} 벌 순서가 이미 {order} 이에요")
+        _save_order(out, uid, shown, False)
+        return f"{tag} 벌 순서 그대로"
+    stale = notify.load_manifest(out).reels is not None
+    tail = "이 순서로 게시해요" if approved else "이 순서로 올리려면 /ok 를 보내 주세요"
+    tg.send_photos(
+        [made[1]],
+        f"{tag} 벌 순서를 {order} 으로 바꿨어요 (첫 벌이 표지, LOOK 번호는 새 순서로). {tail}",
+    )
+    _save_order(out, uid, shown, stale)
+    return f"{tag} 벌 순서를 {order} 으로 바꿈"
+
+
+def _save_order(out: Path, uid: int, shown: list[int], stale: bool, error: str = "") -> None:
+    data = {"update_id": uid, "order": shown, "reel_stale": stale, "at": int(time.time())}
+    if error:
+        data["error"] = error
+    (out / ORDER_RECORD).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+
+def check_cover(out: Path, tg, updates: list[dict], dry_run: bool = False) -> str:
+    """표지 벌 고르기 (/ok 3, /cover 3). 벌 순서 바꾸기보다 앞에 온 글은 버린다."""
     record = notify.load_record(out)
     if record is None or record.sandbox or tg is None:
         return ""
@@ -192,11 +340,13 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
         return ""
     profile = load_profile(record.account)
     tag = f"[{record.account}] {record.date}"
-    updates = tg.updates() if updates is None else updates
     found = requested(out, record, profile, updates, tg.chat_id)
     if found is None:
         return ""
     uid, shown = found
+    ordered = requested_order(out, record, profile, updates, tg.chat_id)
+    if ordered is not None and uid <= ordered[0]:
+        return ""  # 순서 바꾸기의 첫 번호가 표지라 그 앞(같은 글 포함)의 표지 고르기는 쓰지 않는다
     try:
         n = look_number(out, profile, shown)
     except ValueError:
@@ -251,9 +401,15 @@ def main(argv: list[str] | None = None) -> int:
     a = sub.add_parser("apply", help="결과 폴더의 표지를 n번 벌로 다시 만들기")
     a.add_argument("out", type=Path)
     a.add_argument("look", type=int)
+    o = sub.add_parser("order", help="결과 폴더의 벌 순서를 LOOK 번호 순서로 (첫 번호가 표지)")
+    o.add_argument("out", type=Path)
+    o.add_argument("looks", type=int, nargs="+")
     args = ap.parse_args(argv)
     try:
-        made = apply(args.out, args.look)
+        if args.cmd == "order":
+            made = reorder(args.out, args.looks)
+        else:
+            made = apply(args.out, args.look)
     except (ValueError, FileNotFoundError) as e:
         print(f"오류: {e}", file=sys.stderr)
         return 1

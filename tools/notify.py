@@ -366,6 +366,10 @@ def control_text(
             "표지 벌은 첫 장에만 나와요. 다른 벌로 바꾸려면 /cover 2 처럼 벌 장의 LOOK 번호"
             + (" (표지가 LOOK 1)" if profile.looks.cover_first else "")
         )
+        if profile.looks.cover_first:
+            lines.append(
+                "벌 순서를 바꾸려면 /order 4 2 3 1 처럼 LOOK 번호를 원하는 순서로 (첫 번호가 표지)"
+            )
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
     if manifest.needs_human:
@@ -533,6 +537,12 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
     m = re.fullmatch(rf"({nums})\s*번?\s*(?:은|는)?\s*빼(?:고|줘|주세요|기)?.*", plain)
     if m:
         return Command("drop", re.findall(r"\d+", m.group(1)), False)
+    # 벌 순서 바꾸기 (tools.cover_look): "순서 4 2 3 6 1 5" (첫 번호가 표지)
+    m = re.fullmatch(
+        rf"순서\s*(?:는|를|바꿔|변경)?\s*:?\s*({nums})\s*(?:번|순서로|으로|로)?.*", plain
+    )
+    if m:
+        return Command("order", re.findall(r"\d+", m.group(1)), False)
     # 표지 벌 바꾸기 (tools.cover_look): "표지 3번", "표지3"
     m = re.fullmatch(r"표지\s*(\d{1,2})\s*번?(?:\s*(?:으로|로))?", plain)
     if m:
@@ -688,6 +698,41 @@ def find_cover(
             until,
         )
         if (n := cover_number(cmd.args)) is not None
+    ]
+    return found[-1] if found else None
+
+
+def order_numbers(args: list[str]) -> list[int] | None:
+    """/order 뒤 LOOK 번호 순서 ("4 2 3 6 1 5", "4,2,3,6,1,5"). 숫자가 없으면 None."""
+    nums = re.findall(r"\d+", " ".join(args))
+    if not nums or re.sub(r"[\d\s,번]", "", " ".join(args)):
+        return None
+    return [int(n) for n in nums]
+
+
+def find_order(
+    updates: list[dict],
+    record: PreviewRecord,
+    chat_id: str,
+    until: int | None = None,
+    since: int | None = None,
+) -> tuple[int, list[int]] | None:
+    """미리보기(since 가 있으면 그때) 뒤 온 마지막 벌 순서 바꾸기 (update_id, LOOK 번호 순서).
+    "/order 4 2 3 6 1 5", "순서 4 2 3 6 1 5" 를 읽는다 (첫 번호가 표지).
+    /fix 와 한 메시지에 써도 된다."""
+    found = [
+        (uid, nums)
+        for uid, cmd in commands(
+            split_lines(updates),
+            chat_id,
+            record.sent_at if since is None else since,
+            record.account,
+            record.date,
+            {"order"},
+            record.message_ids,
+            until,
+        )
+        if (nums := order_numbers(cmd.args)) is not None
     ]
     return found[-1] if found else None
 

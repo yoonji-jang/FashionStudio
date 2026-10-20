@@ -394,7 +394,10 @@ def cover_slide(spec: FeedSpec, profile: Profile, size: tuple[int, int], root: P
     if tall:
         profile = tall_profile(profile)
     if not spec.cover_has_title:
-        img = overlay.apply(img, spec.title_lines, profile.visual)
+        lk = profile.looks
+        # 표지 벌 = LOOK 1 (cover_first) 이면 표지에도 번호를 쓴다 (looks.cover_label)
+        label = lk.label.format(n=1) if spec.looks and lk.cover_label and lk.cover_first else ""
+        img = overlay.apply(img, spec.title_lines, profile.visual, label, lk.label_size)
     if spec.looks and profile.looks.credit:
         img = credit_overlay(img, profile, slide_bottom(profile) if tall else None)
     return img

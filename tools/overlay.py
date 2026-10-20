@@ -86,8 +86,15 @@ def _check_lines(title_lines: list[str], visual: Visual) -> list[str]:
     return title_lines
 
 
-def apply(image: Image.Image, title_lines: list[str], visual: Visual) -> Image.Image:
-    """image 에 그라데이션, 포인트 선, 제목, 계정 이름을 합성한 같은 크기의 RGB 이미지."""
+def apply(
+    image: Image.Image,
+    title_lines: list[str],
+    visual: Visual,
+    label: str = "",
+    label_size: int = 26,
+) -> Image.Image:
+    """image 에 그라데이션, 포인트 선, 제목, 계정 이름을 합성한 같은 크기의 RGB 이미지.
+    label 이 있으면 제목 첫 줄 위에 작게 (여러 벌 게시물 표지의 LOOK 1, 크기는 폭 1080px 기준)."""
     lines = _check_lines(title_lines, visual)
     base = image.convert("RGBA")
     w, h = base.size
@@ -107,6 +114,10 @@ def apply(image: Image.Image, title_lines: list[str], visual: Visual) -> Image.I
         if visual.title_align == "center":
             x += (width - font.getlength(line)) / 2
         items.append(((x, first_baseline + step * i), line, font, visual.title_color))
+    if label:
+        label_font = load_font(visual.font, round(label_size * k))
+        label_y = first_baseline - font.size * 1.05 - label_font.size * 0.3
+        items.append(((margin, label_y), label, label_font, visual.title_color))
 
     if visual.logo_text:
         logo_font = load_font(visual.logo_font or visual.font, round(visual.logo_font_size * k))
