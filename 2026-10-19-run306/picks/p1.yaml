@@ -1,0 +1,138 @@
+account: women
+date: 2026-10-19
+theme:
+  date: 2026-10-19
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  slots:
+    - {category: 아우터, desc: 베이지 숏 트렌치 또는 니트 가디건}
+    - {category: 상의, desc: 크롭 니트}
+    - {category: 하의, desc: "스커트 (롱·미디·미니, 플리츠·랩·H라인 등 자유)"}
+    - {category: 가방, desc: 스웨이드 숄더백}
+    - {category: 신발, desc: 앵클부츠}
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨
+  search_terms:
+    상의: [크롭 니트, 슬림 긴팔티]
+    하의: [플리츠 스커트, 미디 스커트, 롱 스커트, 미니 스커트, 랩 스커트]
+reason: 사용자가 고른 참고 코디 11벌을 그 순서대로 따라 입기
+looks:
+  # 1: 참고 219
+  - ref: "219"
+    ref_photo: https://aisel.me/web/product/extra/small/202610/5dfd3c49bd8128275a5008b04c3f230b.jpg
+    reason: 올리브 오프숄더 니트에 차콜 랩 롱스커트로 톤온톤. 참고 올리브 오프숄더 니트/차콜 랩 롱스커트/올리브 스카프/블랙 숄더백/블랙 플랫 → 맞춘 것 같은 칸 상품 (올리브 오프숄더·올리브 스카프는 창고에 없어 블랙·아이보리로, 따라 함 참고 219)
+    items:
+      - {product: "zigzag:131421251", color: 블랙, desc: "블랙 오프숄더 골지 니트 (black ribbed off-shoulder knit top with folded neckline)", name: 오프숄더 니트}
+      - {product: "zigzag:153225273", color: 화이트, desc: "화이트 홀터넥 나시 (plain white halter-neck camisole inner)", name: 홀터 나시, wear_with: 상의}
+      - {product: "zigzag:171435505", color: 차콜, desc: "차콜 랩 롱스커트 (charcoal wrap maxi skirt with back band)", name: 랩 롱스커트}
+      - {product: "zigzag:147477007", color: 아이보리, desc: "아이보리 쁘띠 스카프 (small ivory neck scarf)", name: 쁘띠 스카프, wear_with: 상의}
+      - {product: "zigzag:166194366", color: 블랙, desc: "블랙 숄더백 (black shoulder bag)", name: 숄더백}
+      - {product: "zigzag:172014189", color: 블랙, desc: "블랙 메리제인 플랫 (black pointed flat shoes)", name: 플랫슈즈}
+  # 2: 참고 156
+  - ref: "156"
+    ref_photo: https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg
+    reason: 네이비 헨리넥 맨투맨에 베이지 스커트, 카멜 부츠로 편하게. 참고 네이비 헨리넥 맨투맨/스트라이프 이너/베이지 스커트팬츠/카멜 워커부츠/흰 양말 → 맞춘 것 같은 칸 상품 (카멜 부츠는 창고에 없어 블랙 워커로, 따라 함 참고 156)
+    styling: "The striped tee's hem shows 4 cm below the sweatshirt hem; white crew socks show above the boots."
+    items:
+      - {product: "zigzag:172058437", color: 네이비, desc: "네이비 헨리넥 와플 맨투맨 (navy waffle henley sweatshirt with buttons)", name: 헨리넥 맨투맨}
+      - {product: "zigzag:160666337", color: 화이트, desc: "화이트 네이비 스트라이프 긴팔티 (white and navy breton stripe long sleeve tee)", name: 스트라이프 티, wear_with: 상의}
+      - {product: "zigzag:115691423", color: 베이지, desc: "베이지 H라인 미디스커트 (beige H-line midi skirt)", name: 미디스커트}
+      - {product: "zigzag:130583785", color: 블랙, desc: "블랙 레이스업 워커부츠 (black lace-up walker boots)", name: 워커부츠}
+      - {product: "zigzag:133826914", color: 블랙, desc: "블랙 나일론 숄더백 (black nylon shoulder bag)", name: 나일론 백}
+      - {product: "zigzag:106653463", color: 화이트, desc: "화이트 중목 양말 (white crew socks)", name: 중목 양말, wear_with: 신발}
+  # 3: 참고 129
+  - ref: "129"
+    ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
+    reason: 블랙 라운드 니트에 네이비 스트라이프 셔츠를 겹친 올블랙 출근룩. 참고 블랙 라운드 니트/네이비 스트라이프 셔츠/블랙 미니/블랙 스타킹/로퍼/토트백 → 맞춘 것 같은 칸 상품 (따라 함 참고 129)
+    styling: "The striped shirt hem and collar show below and above the black knit; the knit is tucked at the front of the skirt."
+    items:
+      - {product: "zigzag:168588081", color: 블랙, desc: "블랙 라운드넥 니트 (black crew neck knit)", name: 라운드 니트}
+      - {product: "zigzag:166123375", color: 네이비, desc: "네이비 스트라이프 슬림 셔츠 (navy pinstripe slim shirt with regular collar)", name: 스트라이프 셔츠, wear_with: 상의}
+      - {product: "zigzag:133521354", color: 블랙, desc: "블랙 미니스커트 (black mini skirt with belt)", name: 블랙 미니스커트}
+      - {product: "zigzag:161559034", color: 블랙, desc: "블랙 니삭스 (black knee socks)", name: 블랙 삭스, wear_with: 하의}
+      - {product: "zigzag:111145203", color: 블랙, desc: "블랙 라운드토 로퍼 (black round-toe lace-up loafers)", name: 로퍼}
+      - {product: "zigzag:161886716", color: 블랙, desc: "블랙 토트백 (black tote bag)", name: 토트백}
+  # 4: 참고 154
+  - ref: "154"
+    ref_photo: https://vivnluv.co.kr/web/product/extra/big/20261014/b1935dc3ccca1ec543662c3ab54889cf.jpg
+    reason: 블랙 모크넥 민소매 니트와 울 미니스커트의 질감 차이로 올블랙 약속룩. 참고 블랙 모크넥 민소매 니트/블랙 울 미니/미니 핸드백/롱부츠/실버 귀걸이 → 맞춘 것 같은 칸 상품 (따라 함 참고 154)
+    items:
+      - {product: "zigzag:113835947", color: 블랙, desc: "블랙 모크넥 민소매 골지 니트 (black ribbed sleeveless mock neck knit)", name: 모크넥 민소매}
+      - {product: "zigzag:167184825", color: 블랙, desc: "블랙 슬릿 울 스커트 (black wool skirt with slit)", name: 울 스커트}
+      - {product: "zigzag:170446634", color: 블랙, desc: "블랙 미니 토트백 (black mini tote bag)", name: 미니 핸드백}
+      - {product: "zigzag:108156951", color: 블랙, desc: "블랙 스퀘어토 롱부츠 (black square-toe long boots)", name: 롱부츠}
+      - {product: "zigzag:139297257", color: 실버, desc: "실버 링 귀걸이 (exactly one pair (two earrings) of silver hoop earrings)", name: 실버 귀걸이, slot: 귀걸이}
+  # 5: 참고 462
+  - ref: "462"
+    ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261012/887c476fde182a35dd4ff89982e0c511.jpg
+    reason: 그레이 오프숄더 니트에 플라워 롱스커트, 블랙 앵클부츠로 로맨틱하게. 참고 그레이 오프숄더 니트/화이트 홀터 이너/플라워 롱스커트/블랙 앵클부츠/나일론 숄더백 → 맞춘 것 같은 칸 상품 (따라 함 참고 462)
+    items:
+      - {product: "zigzag:131421251", color: 그레이, desc: "그레이 오프숄더 골지 니트 (grey ribbed off-shoulder knit top)", name: 오프숄더 니트}
+      - {product: "zigzag:153225273", color: 화이트, desc: "화이트 홀터넥 나시 (plain white halter-neck camisole inner)", name: 홀터 나시, wear_with: 상의}
+      - {product: "zigzag:164875576", color: 그레이, desc: "그레이 플라워 프린트 롱스커트 (grey floral print long skirt)", name: 플라워 롱스커트}
+      - {product: "zigzag:130586820", color: 블랙, desc: "블랙 앵클부츠 (black pointed ankle boots with back zipper)", name: 앵클부츠}
+      - {product: "zigzag:133826914", color: 블랙, desc: "블랙 나일론 숄더백 (black nylon shoulder bag)", name: 나일론 백}
+  # 6: 참고 149
+  - ref: "149"
+    ref_photo: https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg
+    reason: 블랙 브이넥 니트에 흰 이너, 그레이 랩 미디스커트로 단정한 출근룩. 참고 블랙 브이넥 니트/흰 이너/그레이 랩 미디스커트/로퍼/토트백/실버 롱 목걸이 → 맞춘 것 같은 칸 상품 (따라 함 참고 149)
+    items:
+      - {product: "zigzag:167263764", color: 블랙, desc: "블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit)", name: 브이넥 니트}
+      - {product: "zigzag:172325922", color: 화이트, desc: "화이트 무지 긴팔 티셔츠 (plain white long sleeve tee inner)", name: 무지 티셔츠, wear_with: 상의}
+      - {product: "zigzag:168200317", color: 그레이, desc: "그레이 랩 스커트 (grey wrap midi skirt-style trousers)", name: 랩 미디스커트}
+      - {product: "zigzag:166397158", color: 블랙, desc: "블랙 로퍼 (black classic loafers)", name: 로퍼}
+      - {product: "zigzag:159478154", color: 블랙, desc: "블랙 토트백 (black tote bag)", name: 토트백}
+      - {product: "zigzag:159636703", color: 실버, desc: "실버 롱 목걸이 (exactly one long silver pendant necklace)", name: 롱 목걸이, slot: 목걸이}
+  # 7: 참고 468
+  - ref: "468"
+    ref_photo: https://la-room.kr/web/product/medium/202610/265de997bc9b8f4daae56a4b58ed5c69.webp
+    reason: 올리브 모헤어 니트와 브라운 코듀로이로 깊은 가을 톤. 참고 올리브 모헤어 니트/흰 이너/브라운 코듀로이 팬츠/스웨이드 플랫/블랙 숄더백 → 맞춘 것 같은 칸 상품 (따라 함 참고 468)
+    items:
+      - {product: "zigzag:172009965", color: 올리브, desc: "올리브 모헤어 브이넥 가디건 (olive mohair v-neck cardigan)", name: 모헤어 가디건}
+      - {product: "zigzag:159205603", color: 화이트, desc: "화이트 무지 코튼 티셔츠 (plain white cotton tee inner)", name: 무지 티셔츠, wear_with: 상의}
+      - {product: "zigzag:171306936", color: 브라운, desc: "브라운 코듀로이 와이드 팬츠 (brown corduroy wide pants)", name: 코듀로이 팬츠}
+      - {product: "zigzag:172198229", color: 브라운, desc: "브라운 스웨이드 모카신 (brown suede moccasin flats)", name: 스웨이드 플랫}
+      - {product: "zigzag:166194366", color: 블랙, desc: "블랙 숄더백 (black shoulder bag)", name: 숄더백}
+  # 8: 참고 164
+  - ref: "164"
+    ref_photo: https://la-room.kr/web/product/medium/202610/37357fa53c8a02fdc1e4120a72e7fa1f.webp
+    reason: 브라운 라운드 니트에 크림 롱스커트, 블랙 부츠로 톤온톤. 참고 브라운 라운드 니트/흰 이너/크림 H라인 롱스커트/블랙 앵클부츠/브라운 스웨이드 숄더백 → 맞춘 것 같은 칸 상품 (따라 함 참고 164)
+    items:
+      - {product: "zigzag:171928685", color: 브라운, desc: "브라운 라운드 플러피 니트 (brown fluffy crew neck knit, no logo)", name: 라운드 니트}
+      - {product: "zigzag:155290768", color: 화이트, desc: "화이트 슬림 워머 티 (plain white slim long sleeve warmer tee inner)", name: 워머 티, wear_with: 상의}
+      - {product: "zigzag:148088112", color: 크림, desc: "크림 슬릿 맥시스커트 (cream maxi skirt with front slit)", name: 크림 롱스커트}
+      - {product: "zigzag:149181846", color: 블랙, desc: "블랙 스웨이드 앵클부츠 (black suede ankle boots)", name: 앵클부츠}
+      - {product: "zigzag:165726653", color: 브라운, desc: "브라운 스웨이드 숄더백 (brown suede shoulder bag)", name: 스웨이드 백}
+  # 9: 참고 104
+  - ref: "104"
+    ref_photo: https://woonan.co.kr/web/product/big/202609/f666d17c703c5eab28617574a4a77665.jpg
+    reason: 차콜 니트 베스트에 흰 셔츠, 차콜 미디스커트로 톤온톤 출근룩. 참고 차콜 모크넥 니트 베스트/흰 셔츠/차콜 A라인 미디스커트/블랙 숄더백/블랙 로퍼 → 맞춘 것 같은 칸 상품 (따라 함 참고 104)
+    styling: "The white shirt cuffs and hem peek out from the knit vest."
+    items:
+      - {product: "zigzag:155379478", color: 차콜, desc: "차콜 터틀넥 니트 조끼 (charcoal knit turtleneck vest)", name: 니트 베스트}
+      - {product: "zigzag:147774916", color: 화이트, desc: "화이트 코튼 셔츠 (white cotton shirt with regular collar)", name: 화이트 셔츠, wear_with: 상의}
+      - {product: "zigzag:172278162", color: 차콜, desc: "차콜 미디스커트 (charcoal A-line midi skirt)", name: 미디스커트}
+      - {product: "zigzag:167878880", color: 블랙, desc: "블랙 루비 숄더백 (black shoulder bag)", name: 숄더백}
+      - {product: "zigzag:134105153", color: 블랙, desc: "블랙 로퍼 (black lace-up loafers)", name: 로퍼}
+  # 10: 참고 326
+  - ref: "326"
+    ref_photo: https://sugarpowder.kr/web/product/big/202610/abcdc5ee7ee352dc0913823356f55428.webp
+    reason: 그레이 헨리넥 니트 밑으로 하늘색 셔츠를 보이게 한 그레이 미니스커트 코디. 참고 그레이 헨리넥 니트/하늘색 셔츠/그레이 미니스커트/블랙 퀼팅 숄더백/로퍼 → 맞춘 것 같은 칸 상품 (따라 함 참고 326)
+    styling: "The light blue shirt collar, cuffs and hem show out of the grey knit."
+    items:
+      - {product: "zigzag:171290965", color: 그레이, desc: "그레이 헨리넥 니트 (grey henley knit, loose fit)", name: 헨리넥 니트}
+      - {product: "zigzag:171182278", color: 블루, desc: "하늘색 스트라이프 셔츠 (light blue striped shirt)", name: 하늘색 셔츠, wear_with: 상의}
+      - {product: "zigzag:171927461", color: 그레이, desc: "그레이 벨트 미니스커트 (grey mini skirt with belt)", name: 미니스커트}
+      - {product: "zigzag:105424126", color: 블랙, desc: "블랙 퀼팅 체인백 (black quilted chain shoulder bag)", name: 퀼팅 백}
+      - {product: "zigzag:147841380", color: 블랙, desc: "블랙 레이스업 로퍼 (black lace-up loafers)", name: 로퍼}
+  # 11: 참고 320
+  - ref: "320"
+    ref_photo: https://the-ore.kr/web/product/small/202609/db449775ed88bc1778294921aead8d66.webp
+    reason: 블랙 레더 자켓에 크림 니트, 블랙 롱스커트와 아이보리 스카프로 시크하게. 참고 블랙 가죽 블루종/크림 얇은 니트/블랙 롱스커트/아이보리 스카프/블랙 로퍼 → 맞춘 것 같은 칸 상품 (따라 함 참고 320)
+    items:
+      - {product: "zigzag:165576378", color: 블랙, desc: "블랙 싱글 레더 하프 자켓 (black single leather half jacket, hip length)", name: 레더 자켓}
+      - {product: "zigzag:131379280", color: 크림, desc: "크림 브이넥 니트 (cream thin v-neck knit)", name: 브이넥 니트}
+      - {product: "zigzag:171413033", color: 블랙, desc: "블랙 D링 롱스커트 (black long skirt with D-ring)", name: 블랙 롱스커트}
+      - {product: "zigzag:147477007", color: 아이보리, desc: "아이보리 쁘띠 스카프 (ivory scarf worn long around the neck)", name: 쁘띠 스카프, wear_with: 상의}
+      - {product: "zigzag:165200845", color: 블랙, desc: "블랙 미니멀 레더 숄더백 (black minimal leather shoulder bag)", name: 레더 백}
+      - {product: "zigzag:166397158", color: 블랙, desc: "블랙 로퍼 (black classic loafers)", name: 로퍼}
