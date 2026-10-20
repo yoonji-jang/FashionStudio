@@ -1,23 +1,23 @@
 account: women
-cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/1/outfit_r2/results/G_1.jpg
+cover: /tmp/results/2026-10-19-run313/looks/1/outfit_r2/results/G_1.jpg
 cover_collage: false
 cover_has_title: false
 items:
 - comment: ''
-  name: 헨리넥 맨투맨
-  product: zigzag:172058437
+  name: 오프숄더 니트
+  product: zigzag:131421251
 - comment: ''
-  name: 스트라이프 티
-  product: zigzag:160666337
+  name: 홀터 이너
+  product: zigzag:168657305
 - comment: ''
-  name: 스커트 팬츠
-  product: zigzag:169396657
+  name: 플라워 롱스커트
+  product: zigzag:164875576
 - comment: ''
-  name: 워커 부츠
-  product: zigzag:130583785
+  name: 포인티드 앵클부츠
+  product: zigzag:130586820
 - comment: ''
-  name: 블랙 토트백
-  product: zigzag:159478154
+  name: 나일론 숄더백
+  product: zigzag:133826914
 - comment: ''
   name: 브이넥 니트
   product: zigzag:167263764
@@ -49,38 +49,11 @@ items:
   name: 맥시 스커트
   product: zigzag:148088112
 - comment: ''
-  name: 앵클부츠
-  product: zigzag:130586820
-- comment: ''
   name: 스웨이드 숄더백
   product: zigzag:130117567
 - comment: ''
   name: 실버 귀걸이
   product: zigzag:139297257
-- comment: ''
-  name: 오프숄더 니트
-  product: zigzag:131421251
-- comment: ''
-  name: 홀터 이너
-  product: zigzag:168657305
-- comment: ''
-  name: 플라워 롱스커트
-  product: zigzag:164875576
-- comment: ''
-  name: 나일론 숄더백
-  product: zigzag:133826914
-- comment: ''
-  name: 무지 긴팔 티
-  product: zigzag:172325922
-- comment: ''
-  name: 랩 스커트
-  product: zigzag:171413914
-- comment: ''
-  name: 페니 로퍼
-  product: zigzag:130568193
-- comment: ''
-  name: 토트백
-  product: zigzag:165216398
 - comment: ''
   name: 모크넥 민소매 니트
   product: zigzag:167099943
@@ -93,25 +66,52 @@ items:
 - comment: ''
   name: 스퀘어 롱부츠
   product: zigzag:108156951
+- comment: ''
+  name: 헨리넥 맨투맨
+  product: zigzag:172058437
+- comment: ''
+  name: 스트라이프 티
+  product: zigzag:160666337
+- comment: ''
+  name: 스커트 팬츠
+  product: zigzag:169396657
+- comment: ''
+  name: 워커 부츠
+  product: zigzag:130583785
+- comment: ''
+  name: 블랙 토트백
+  product: zigzag:159478154
+- comment: ''
+  name: 무지 긴팔 티
+  product: zigzag:172325922
+- comment: ''
+  name: 랩 스커트
+  product: zigzag:171413914
+- comment: ''
+  name: 페니 로퍼
+  product: zigzag:130568193
+- comment: ''
+  name: 토트백
+  product: zigzag:165216398
 looks:
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/1/outfit_r2/results/G_1.jpg
+- image: /tmp/results/2026-10-19-run313/looks/1/outfit_r2/results/G_1.jpg
   items:
   - comment: ''
-    name: 헨리넥 맨투맨
-    product: zigzag:172058437
+    name: 오프숄더 니트
+    product: zigzag:131421251
   - comment: ''
-    name: 스트라이프 티
-    product: zigzag:160666337
+    name: 홀터 이너
+    product: zigzag:168657305
   - comment: ''
-    name: 스커트 팬츠
-    product: zigzag:169396657
+    name: 플라워 롱스커트
+    product: zigzag:164875576
   - comment: ''
-    name: 워커 부츠
-    product: zigzag:130583785
+    name: 포인티드 앵클부츠
+    product: zigzag:130586820
   - comment: ''
-    name: 블랙 토트백
-    product: zigzag:159478154
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/2/outfit_r2/results/G_1.jpg
+    name: 나일론 숄더백
+    product: zigzag:133826914
+- image: /tmp/results/2026-10-19-run313/looks/2/outfit_r2/results/G_1.jpg
   items:
   - comment: ''
     name: 브이넥 니트
@@ -134,7 +134,7 @@ looks:
   - comment: ''
     name: 롱 목걸이
     product: zigzag:159636703
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/3/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-19-run313/looks/3/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 라운드 울 니트 가디건
@@ -154,24 +154,41 @@ looks:
   - comment: ''
     name: 실버 귀걸이
     product: zigzag:139297257
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/4/outfit_r2/results/G_1.jpg
+- image: /tmp/results/2026-10-19-run313/looks/4/outfit/results/G_1.jpg
   items:
   - comment: ''
-    name: 오프숄더 니트
-    product: zigzag:131421251
+    name: 모크넥 민소매 니트
+    product: zigzag:167099943
   - comment: ''
-    name: 홀터 이너
-    product: zigzag:168657305
+    name: 울 미니스커트
+    product: zigzag:156220482
   - comment: ''
-    name: 플라워 롱스커트
-    product: zigzag:164875576
+    name: 미니 숄더백
+    product: zigzag:166194366
   - comment: ''
-    name: 포인티드 앵클부츠
-    product: zigzag:130586820
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
   - comment: ''
-    name: 나일론 숄더백
-    product: zigzag:133826914
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/5/outfit_r2/results/G_1.jpg
+    name: 실버 귀걸이
+    product: zigzag:139297257
+- image: /tmp/results/2026-10-19-run313/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 헨리넥 맨투맨
+    product: zigzag:172058437
+  - comment: ''
+    name: 스트라이프 티
+    product: zigzag:160666337
+  - comment: ''
+    name: 스커트 팬츠
+    product: zigzag:169396657
+  - comment: ''
+    name: 워커 부츠
+    product: zigzag:130583785
+  - comment: ''
+    name: 블랙 토트백
+    product: zigzag:159478154
+- image: /tmp/results/2026-10-19-run313/looks/6/outfit_r2/results/G_1.jpg
   items:
   - comment: ''
     name: 브이넥 니트
@@ -191,23 +208,6 @@ looks:
   - comment: ''
     name: 롱 목걸이
     product: zigzag:159636703
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-19/looks/6/outfit/results/G_1.jpg
-  items:
-  - comment: ''
-    name: 모크넥 민소매 니트
-    product: zigzag:167099943
-  - comment: ''
-    name: 울 미니스커트
-    product: zigzag:156220482
-  - comment: ''
-    name: 미니 숄더백
-    product: zigzag:166194366
-  - comment: ''
-    name: 스퀘어 롱부츠
-    product: zigzag:108156951
-  - comment: ''
-    name: 실버 귀걸이
-    product: zigzag:139297257
 title_lines:
 - 가을엔 치마가 답임
 - 언니들 스커트 옷장 공개

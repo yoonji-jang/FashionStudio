@@ -28,242 +28,21 @@ theme:
     - 미니 스커트
     - 랩 스커트
 items: []
-cover_look: 1
-shot: model
-scene_image: out/2026-10-19/src/scene.jpg
-mood: >-
-  a clean minimal studio lookbook shoot against a plain pale grey-white seamless wall and a matching
-  pale floor, bright even daylight-like studio light with a crisp soft shadow on the floor, muted
-  neutral colors, a full-length fashion catalog photo taken with a digital camera from a medium distance,
-  nothing else in the frame
 looks:
-- items:
-  - product: zigzag:172058437
-    color: 네이비
-    desc: 네이비 와플 헨리넥 맨투맨 (navy waffle henley sweatshirt, oversized, dropped shoulders, soft waffle-knit
-      cotton, a few buttons on the placket with a small collar, hip length; the photos also show a plaid
-      shirt and brown shorts, ignore them)
-    name: 헨리넥 맨투맨
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0]
-  - product: zigzag:160666337
-    color: 화이트
-    desc: 화이트 네이비 스트라이프 긴팔 티 (white and navy breton stripe long-sleeve tee, boat neck,
-      relaxed fit, wide stripes about 1 cm)
-    name: 스트라이프 티
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0]
-    size: about 67.5 cm long from shoulder to hem, 43 cm across the shoulders, 48 cm across the chest
-      laid flat, 65 cm long sleeves
-    cm: 67.5
-    wear_with: 상의
-  - product: zigzag:169396657
-    color: 베이지
-    desc: 베이지 스커트 팬츠 (beige structured A-line mini skirt over built-in shorts, mid-thigh length,
-      crisp wool-blend, no pleats)
-    name: 스커트 팬츠
-    comment: ''
-    cutout_photo: 3
-    ref_photos: [3, 0]
-    size: about 34.5 cm long from waist to hem, 36.5 cm across the waist laid flat, 49 cm across the
-      hips laid flat, 32.5 cm across the hem laid flat
-    cm: 34.5
-  - product: zigzag:130583785
-    color: 블랙
-    desc: 블랙 레이스업 워커 부츠 (black matte smooth leather lace-up lug-sole walker boots with visible
-      front laces and eyelets, no side elastic band, not chelsea boots, chunky sole, round toe, ankle
-      height, one pair (two boots))
-    name: 워커 부츠
-    comment: ''
-    cutout_photo: 2
-    ref_photos: [2, 1, 3]
-  - product: zigzag:159478154
-    color: 블랙
-    desc: 블랙 토트백 (black glossy leather-look boston-style bag with two short top handles, a zip top
-      and a rounded bottom, not nylon)
-    name: 블랙 토트백
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0, 3]
-  reason: 네이비 헨리넥 맨투맨에 베이지 스커트 팬츠로 편하게 입는 주말룩. 참고 156(네이비 헨리넥 맨투맨/스트라이프 이너/베이지 스커트
-    팬츠/카멜 워커 부츠/블랙 토트) → 맞춘 것 와플 헨리넥 맨투맨/세인트제임스 스트라이프 티/시더 스커트 팬츠/블랙 워커 부츠/토트백 (따라 함
-    - 참고 156, 워커 부츠는 카멜 사진이 없어 블랙)
-  point: 네이비 맨투맨 밑으로 스트라이프 티를 살짝 빼 입어요
-  scene_image: out/2026-10-19/src/scene_2.jpg
-  pose: >-
-    standing in the middle of the pale studio like the second reference photo, her weight on one leg,
-    one hand pulled into the long sweatshirt sleeve and the other holding the bag by her side, her face
-    turned to the side and her eyes looking away past the camera; her hair in a sleek slicked-back low
-    bun with a center part; bold dramatic makeup with defined dark eyes, deep rosy blush and glossy
-    deep red lips, striking exotic-looking features; the whole body is visible down to the boots
-  styling: The sweatshirt is worn with its sleeves slightly pushed up and its hem half tucked into the
-    front of the skirt pants. The striped tee's hem shows about 4 cm below the navy sweatshirt hem and
-    its cuffs peek out at the sleeves. The boots are worn over a short white sock.
-  ref: '156'
-  ref_photo: https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg
-- items:
-  - product: zigzag:167263764
-    color: 블랙
-    desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length, ribbed
-      cuffs and hem)
-    name: 브이넥 니트
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0, 3, 4]
-    size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52 cm across the chest
-      laid flat, 64 cm long sleeves
-    cm: 57.5
-  - product: zigzag:166123375
-    color: 네이비
-    desc: 네이비 셔츠 (plain navy slim shirt with a pointed collar and button cuffs, crisp smooth cotton-poly,
-      no stripes)
-    name: 네이비 셔츠
-    comment: ''
-    cutout_photo: 5
-    ref_photos: [5, 0, 4]
-    size: about 66 cm long from shoulder to hem, 40 cm across the shoulders, 45.5 cm across the chest
-      laid flat, 64 cm long sleeves
-    cm: 66.0
-    wear_with: 상의
-  - product: zigzag:166900476
-    color: 블랙
-    desc: 블랙 울 미니스커트 (black thick structured wool mini skirt, low-rise, slightly A-line with a
-      curved hem, no belt, no slit, mid-thigh length)
-    name: 블랙 미니스커트
-    comment: ''
-    cutout_photo: 2
-    ref_photos: [2]
-    size: about 31 cm long from waist to hem, 37 cm across the waist laid flat, 48 cm across the hips
-      laid flat, 53 cm across the hem laid flat
-    cm: 31.0
-  - product: zigzag:146969420
-    color: 블랙
-    desc: 블랙 오버니 삭스 (black opaque snug ribbed over-the-knee socks, thigh high)
-    name: 블랙 삭스
-    comment: ''
-    cutout_photo: 5
-    ref_photos: [2, 5]
-    wear_with: 하의
-  - product: zigzag:134105153
-    color: 블랙
-    desc: 블랙 레이스업 로퍼 (black matte leather lace-up loafers, round toe, moccasin stitching, one
-      pair (two shoes))
-    name: 레이스업 로퍼
-    comment: ''
-    cutout_photo: 2
-    ref_photos: [2, 1]
-  - product: zigzag:161886716
-    color: 블랙
-    desc: 블랙 토트백 (black soft tote bag with a zip top and two short handles)
-    name: 토트백
-    comment: ''
-    cutout_photo: 1
-    ref_photos: [1]
-  - product: zigzag:159636703
-    color: 실버
-    desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small drop pendant)
-    name: 롱 목걸이
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0]
-    slot: 목걸이
-  reason: 블랙 브이넥 니트 밑으로 네이비 셔츠가 보이고 실버 롱 목걸이를 더한 블랙 미니 출근룩. 참고 129(블랙 라운드 니트/네이비
-    스트라이프 셔츠/블랙 슬릿 미니/스타킹/로퍼/토트) → 맞춘 것 캐시미어 브이넥 니트/엘르 셔츠(네이비 무지)/울 미니/오버니삭스/레이스업
-    로퍼/토트 (따라 함 - 참고 129, 블랙 라운드 니트·벨트 미니는 맞는 색 사진이 없어 바꿈)
-  point: 블랙 니트 아래 네이비 셔츠 끝을 살짝 내서 포인트를 줘요 🖤
-  scene_image: out/2026-10-19/src/scene.jpg
-  pose: >-
-    standing straight and facing the camera in the middle of the pale studio like the first reference
-    photo, small narrow black oval sunglasses on, one hand holding the tote down at her side and the
-    other hand on the hem of the knit; her hair in a sleek slicked-back low bun with a center part;
-    bold dramatic makeup with deep rosy blush and glossy deep red lips, striking exotic-looking
-    features; no rings on her fingers; the whole body is visible down to the loafers
-  styling: The navy shirt is worn underneath; its collar shows at the V-neckline and its hem hangs about
-    4 cm below the black knit hem. The black knit is worn out over the low-rise mini skirt. Black opaque
-    over-the-knee socks are pulled up to mid-thigh under the skirt hem. A long silver pendant necklace
-    hangs over the shirt and the knit.
-  ref: '129'
-  ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
-- items:
-  - product: zigzag:166394650
-    color: 브라운
-    desc: 브라운 라운드 울 니트 가디건 (dark chocolate brown wool round-neck knit cardigan with small
-      buttons, buttoned up like a sweater except the top button, relaxed fit, waist length, ribbed hem
-      and cuffs, soft slightly fuzzy)
-    name: 라운드 울 니트 가디건
-    comment: ''
-    cutout_photo: 1
-    ref_photos: [1, 2]
-  - product: zigzag:159205603
-    color: 화이트
-    desc: 화이트 베이직 티셔츠 (plain white crew-neck short-sleeve cotton tee, regular fit, hip length)
-    name: 베이직 티셔츠
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0]
-    wear_with: 상의
-  - product: zigzag:148088112
-    color: 크림
-    desc: 크림 H라인 맥시 스커트 (cream straight h-line maxi skirt, high waist, a front slit, crisp linen-blend
-      cotton twill, no pleats, ankle length ending just above the ankle)
-    name: 맥시 스커트
-    comment: ''
-    cutout_photo: 1
-    ref_photos: [1, 0]
-    size: about 89 cm long from waist to hem, 35 cm across the waist laid flat, 51 cm across the hips
-      laid flat, 57.5 cm across the hem laid flat
-    cm: 89.0
-  - product: zigzag:130586820
-    color: 블랙
-    desc: 블랙 앵클부츠 (black smooth leather ankle boots, almond to slightly pointed toe, low block heel
-      about 2 cm, back zipper, one pair (two boots))
-    name: 앵클부츠
-    comment: ''
-    cutout_photo: 1
-    ref_photos: [1, 0]
-  - product: zigzag:130117567
-    color: 브라운
-    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag, soft structure with a thin strap)
-    name: 스웨이드 숄더백
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0]
-  - product: zigzag:139297257
-    color: 실버
-    desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings, exactly one pair (two earrings))
-    name: 실버 귀걸이
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0, 5]
-    slot: 귀걸이
-  reason: 브라운 니트 가디건 안에 화이트 이너 티를 받쳐 크림 H라인 롱스커트, 블랙 앵클부츠와 맞춘 톤온톤. 참고 164(브라운 라운드 니트/흰
-    이너/크림 H라인 롱스커트/블랙 앵클부츠/브라운 스웨이드 숄더) → 맞춘 것 브라운 울 니트 가디건/베이직 티/크림 슬릿 맥시 스커트/앵클부츠/스웨이드
-    숄더/실버 귀걸이 (따라 함 - 참고 164, 니트는 브라운 사진이 있는 라운드 니트 가디건으로 바꿈)
-  point: 브라운 가디건에 크림 롱스커트로 톤을 맞춰요 🤎
-  scene_image: out/2026-10-19/src/scene_3.jpg
-  pose: >-
-    standing in a relaxed pose in the pale studio like the third reference photo, her body angled to the
-    side with one hand in the cardigan pocket and the suede bag hanging from her other shoulder, her
-    head tilted up in profile; her hair long, loose and in hippie-perm waves falling past her shoulders;
-    bold dramatic makeup with defined dark eyes, deep rosy blush and glossy deep red lips, striking
-    exotic-looking features; the whole body is visible down to the ankle boots
-  styling: The white tee shows at the neckline under the brown cardigan and its hem peeks out a little.
-    The brown cardigan is buttoned and tucked a little into the front of the cream skirt so the slit
-    shows. Black ankle boots show under the skirt hem.
-  ref: '164'
-  ref_photo: https://la-room.kr/web/product/medium/202610/37357fa53c8a02fdc1e4120a72e7fa1f.webp
 - items:
   - product: zigzag:131421251
     color: 그레이
-    desc: 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a thick folded neckline, fitted,
-      long sleeves with thumb-hole cuffs, waist length)
+    desc: 그레이 오프숄더 골지 니트 (gray ribbed off-shoulder knit with a thick folded neckline,
+      fitted, long sleeves with thumb-hole cuffs, waist length)
     name: 오프숄더 니트
     comment: ''
     cutout_photo: 5
-    ref_photos: [5, 1, 4]
-    size: about 55 cm long from shoulder to hem, 30 cm across the chest laid flat, 49 cm long sleeves
+    ref_photos:
+    - 5
+    - 1
+    - 4
+    size: about 55 cm long from shoulder to hem, 30 cm across the chest laid flat,
+      49 cm long sleeves
     cm: 55.0
   - product: zigzag:168657305
     color: 화이트
@@ -271,187 +50,494 @@ looks:
     name: 홀터 이너
     comment: ''
     cutout_photo: 0
-    ref_photos: [0]
-    size: about 57 cm long from shoulder to hem, 40 cm across the shoulders, 45 cm across the chest
-      laid flat, 61 cm long sleeves
+    ref_photos:
+    - 0
+    size: about 57 cm long from shoulder to hem, 40 cm across the shoulders, 45 cm
+      across the chest laid flat, 61 cm long sleeves
     cm: 57.0
     wear_with: 상의
   - product: zigzag:164875576
     color: 그레이
     desc: 그레이 플라워 프린트 롱스커트 (light blue-gray watercolor flower print on a white ground,
-      sheer layered chiffon h-line long skirt, slim, ankle length, the hem ends just above the ankle
-      bone, well below mid-calf, and the boots are mostly hidden under it)
+      sheer layered chiffon h-line long skirt, slim, ankle length, the hem ends just
+      above the ankle bone, well below mid-calf, and the boots are mostly hidden under
+      it)
     name: 플라워 롱스커트
     comment: ''
     cutout_photo: 4
-    ref_photos: [0, 4]
-    size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 46.5 cm across the
-      hips laid flat, 51.5 cm across the hem laid flat
+    ref_photos:
+    - 0
+    - 4
+    size: about 89 cm long from waist to hem, 33 cm across the waist laid flat, 46.5
+      cm across the hips laid flat, 51.5 cm across the hem laid flat
     cm: 89.0
   - product: zigzag:130586820
     color: 블랙
-    desc: 블랙 포인티드 앵클부츠 (black smooth leather pointed-toe ankle boots with a back zipper, low
-      block heel, short shaft that ends at the ankle bone, not mid-calf, one pair (two boots))
+    desc: 블랙 포인티드 앵클부츠 (black smooth leather pointed-toe ankle boots with a back zipper,
+      low block heel, short shaft that ends at the ankle bone, not mid-calf, one pair
+      (two boots))
     name: 포인티드 앵클부츠
     comment: ''
     cutout_photo: 1
-    ref_photos: [1, 0]
+    ref_photos:
+    - 1
+    - 0
   - product: zigzag:133826914
     color: 블랙
-    desc: 블랙 나일론 숄더백 (black nylon boston shoulder bag with two short handles, a zip top, two
-      shoulder straps and a small triangle logo plate)
+    desc: 블랙 나일론 숄더백 (black nylon boston shoulder bag with two short handles, a zip
+      top, two shoulder straps and a small triangle logo plate)
     name: 나일론 숄더백
     comment: ''
     cutout_photo: 0
-    ref_photos: [0, 1, 3]
+    ref_photos:
+    - 0
+    - 1
+    - 3
   reason: 그레이 오프숄더 니트에 화이트 홀터 이너, 플라워 롱스커트로 데이트룩. 참고 462(그레이 오프숄더 니트/화이트 홀터 탑/플라워
     롱스커트/포인티드 앵클부츠/나이론 숄더) → 맞춘 것 옹송 오프숄더 니트/홀터 이너/티네사 플라워 롱스커트/뒷지퍼 앵클부츠/보스턴 나일론 숄더
     (따라 함 - 참고 462, 홀터 이너는 화이트 사진이 있는 다른 상품으로, 스커트는 블루그레이 꽃무늬 사진으로 바꿈)
   point: 오프숄더 니트 안에 홀터 이너를 받쳐 데이트룩으로 입어요
+  styling: The white halter inner shows at the neckline under the folded off-shoulder
+    neckline of the gray knit; the knit hem is half tucked into the skirt. The ankle
+    boots show under the skirt hem.
+  pose: standing in the pale studio like the second reference photo, her weight on
+    one leg, one hand on the strap of the boston bag on her shoulder, her chin lowered
+    and her gaze dropped to the side so her face is turned slightly away; her hair
+    in a sleek slicked-back bun at the nape with a center part; bold dramatic makeup
+    with defined dark eyes, deep rosy blush and glossy deep red lips, striking exotic-looking
+    features; the whole body is visible down to the ankle boots
   scene_image: out/2026-10-19/src/scene_2.jpg
-  pose: >-
-    standing in the pale studio like the second reference photo, her weight on one leg, one hand on the
-    strap of the boston bag on her shoulder, her chin lowered and her gaze dropped to the side so her
-    face is turned slightly away; her hair in a sleek slicked-back bun at the nape with a center part;
-    bold dramatic makeup with defined dark eyes, deep rosy blush and glossy deep red lips, striking
-    exotic-looking features; the whole body is visible down to the ankle boots
-  styling: The white halter inner shows at the neckline under the folded off-shoulder neckline of the
-    gray knit; the knit hem is half tucked into the skirt. The ankle boots show under the skirt hem.
   ref: '462'
   ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261012/887c476fde182a35dd4ff89982e0c511.jpg
 - items:
   - product: zigzag:167263764
     color: 블랙
-    desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length, ribbed
-      cuffs and hem)
+    desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length,
+      ribbed cuffs and hem)
     name: 브이넥 니트
     comment: ''
     cutout_photo: 0
-    ref_photos: [0, 3, 4]
-    size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52 cm across the chest
-      laid flat, 64 cm long sleeves
+    ref_photos:
+    - 0
+    - 3
+    - 4
+    size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52
+      cm across the chest laid flat, 64 cm long sleeves
     cm: 57.5
-  - product: zigzag:172325922
-    color: 화이트
-    desc: 화이트 무지 긴팔 티셔츠 (plain white long-sleeve crew-neck tee, relaxed fit, hip length, ignore
-      the small logo and text in the photo)
-    name: 무지 긴팔 티
+  - product: zigzag:166123375
+    color: 네이비
+    desc: 네이비 셔츠 (plain navy slim shirt with a pointed collar and button cuffs, crisp
+      smooth cotton-poly, no stripes)
+    name: 네이비 셔츠
     comment: ''
-    cutout_photo: 2
-    ref_photos: [2]
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 0
+    - 4
+    size: about 66 cm long from shoulder to hem, 40 cm across the shoulders, 45.5
+      cm across the chest laid flat, 64 cm long sleeves
+    cm: 66.0
     wear_with: 상의
-  - product: zigzag:171413914
-    color: 그레이
-    desc: 그레이 랩 롱스커트 (charcoal gray A-line wrap skirt with a side tie at the waist and a side
-      slit, thick soft ponte jersey, no pleats, mid-calf to ankle length)
-    name: 랩 스커트
-    comment: ''
-    cutout_photo: 0
-    ref_photos: [0, 1, 3]
-    size: about 84 cm long from waist to hem, 36 cm across the waist laid flat, 46 cm across the hips
-      laid flat, 53 cm across the hem laid flat
-    cm: 84.0
-  - product: zigzag:130568193
+  - product: zigzag:166900476
     color: 블랙
-    desc: 블랙 페니 로퍼 (black matte leather chunky lug-sole penny loafers, one pair (two shoes))
-    name: 페니 로퍼
+    desc: 블랙 울 미니스커트 (black thick structured wool mini skirt, low-rise, slightly A-line
+      with a curved hem, no belt, no slit, mid-thigh length)
+    name: 블랙 미니스커트
     comment: ''
     cutout_photo: 2
-    ref_photos: [2, 1]
-  - product: zigzag:165216398
+    ref_photos:
+    - 2
+    size: about 31 cm long from waist to hem, 37 cm across the waist laid flat, 48
+      cm across the hips laid flat, 53 cm across the hem laid flat
+    cm: 31.0
+  - product: zigzag:146969420
     color: 블랙
-    desc: 블랙 토트백 (black structured tote bag with a zip top, two short handles and a small silver
-      charm on the front)
+    desc: 블랙 오버니 삭스 (black opaque snug ribbed over-the-knee socks, thigh high)
+    name: 블랙 삭스
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 2
+    - 5
+    wear_with: 하의
+  - product: zigzag:134105153
+    color: 블랙
+    desc: 블랙 레이스업 로퍼 (black matte leather lace-up loafers, round toe, moccasin stitching,
+      one pair (two shoes))
+    name: 레이스업 로퍼
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:161886716
+    color: 블랙
+    desc: 블랙 토트백 (black soft tote bag with a zip top and two short handles)
     name: 토트백
     comment: ''
-    cutout_photo: 0
-    ref_photos: [0, 1]
+    cutout_photo: 1
+    ref_photos:
+    - 1
   - product: zigzag:159636703
     color: 실버
-    desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small drop pendant)
+    desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small
+      drop pendant)
     name: 롱 목걸이
     comment: ''
     cutout_photo: 0
-    ref_photos: [0]
+    ref_photos:
+    - 0
     slot: 목걸이
-  reason: 블랙 브이넥 니트와 그레이 랩 롱스커트의 단정한 출근룩. 참고 149(블랙 브이넥 니트/화이트 이너/그레이 랩 미디/로퍼/토트/롱
-    목걸이) → 맞춘 것 울 캐시미어 브이넥 니트/소로나 긴팔 티/드모즈 랩 롱 스커트(차콜)/페니로퍼/탈리아 토트/롱 목걸이 (따라 함 - 참고
-    149, 랩 스커트는 그레이 사진이 있는 다른 상품으로 바꿈)
-  point: 블랙 니트에 그레이 랩 스커트로 단정하게 입어요
+  reason: 블랙 브이넥 니트 밑으로 네이비 셔츠가 보이고 실버 롱 목걸이를 더한 블랙 미니 출근룩. 참고 129(블랙 라운드 니트/네이비 스트라이프
+    셔츠/블랙 슬릿 미니/스타킹/로퍼/토트) → 맞춘 것 캐시미어 브이넥 니트/엘르 셔츠(네이비 무지)/울 미니/오버니삭스/레이스업 로퍼/토트
+    (따라 함 - 참고 129, 블랙 라운드 니트·벨트 미니는 맞는 색 사진이 없어 바꿈)
+  point: 블랙 니트 아래 네이비 셔츠 끝을 살짝 내서 포인트를 줘요 🖤
+  styling: The navy shirt is worn underneath; its collar shows at the V-neckline and
+    its hem hangs about 4 cm below the black knit hem. The black knit is worn out
+    over the low-rise mini skirt. Black opaque over-the-knee socks are pulled up to
+    mid-thigh under the skirt hem. A long silver pendant necklace hangs over the shirt
+    and the knit.
+  pose: standing straight and facing the camera in the middle of the pale studio like
+    the first reference photo, small narrow black oval sunglasses on, one hand holding
+    the tote down at her side and the other hand on the hem of the knit; her hair
+    in a sleek slicked-back low bun with a center part; bold dramatic makeup with
+    deep rosy blush and glossy deep red lips, striking exotic-looking features; no
+    rings on her fingers; the whole body is visible down to the loafers
   scene_image: out/2026-10-19/src/scene.jpg
-  pose: >-
-    standing in the pale studio like the first reference photo, her body turned a quarter to the side
-    with the tote held in one hand at her hip and the other hand touching the long necklace, her head
-    bowed and turned away so her hair falls over part of her face; her hair long, loose and in
-    hippie-perm waves; bold dramatic makeup with deep rosy blush and glossy deep red lips, striking
-    exotic-looking features; no rings on her fingers; the whole body is visible down to the loafers
-  styling: The white tee shows under the V-neck of the black knit and its hem peeks out a little. The
-    knit is tucked into the wrap skirt at the front only. A long silver pendant necklace hangs over
-    the knit.
-  ref: '149'
-  ref_photo: https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg
+  ref: '129'
+  ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
+- items:
+  - product: zigzag:166394650
+    color: 브라운
+    desc: 브라운 라운드 울 니트 가디건 (dark chocolate brown wool round-neck knit cardigan with
+      small buttons, buttoned up like a sweater except the top button, relaxed fit,
+      waist length, ribbed hem and cuffs, soft slightly fuzzy)
+    name: 라운드 울 니트 가디건
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+  - product: zigzag:159205603
+    color: 화이트
+    desc: 화이트 베이직 티셔츠 (plain white crew-neck short-sleeve cotton tee, regular fit,
+      hip length)
+    name: 베이직 티셔츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 상의
+  - product: zigzag:148088112
+    color: 크림
+    desc: 크림 H라인 맥시 스커트 (cream straight h-line maxi skirt, high waist, a front slit,
+      crisp linen-blend cotton twill, no pleats, ankle length ending just above the
+      ankle)
+    name: 맥시 스커트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 89 cm long from waist to hem, 35 cm across the waist laid flat, 51
+      cm across the hips laid flat, 57.5 cm across the hem laid flat
+    cm: 89.0
+  - product: zigzag:130586820
+    color: 블랙
+    desc: 블랙 앵클부츠 (black smooth leather ankle boots, almond to slightly pointed toe,
+      low block heel about 2 cm, back zipper, one pair (two boots))
+    name: 앵클부츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:130117567
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag, soft structure with a thin strap)
+    name: 스웨이드 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:139297257
+    color: 실버
+    desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings, exactly one pair (two earrings))
+    name: 실버 귀걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+    slot: 귀걸이
+  reason: 브라운 니트 가디건 안에 화이트 이너 티를 받쳐 크림 H라인 롱스커트, 블랙 앵클부츠와 맞춘 톤온톤. 참고 164(브라운 라운드
+    니트/흰 이너/크림 H라인 롱스커트/블랙 앵클부츠/브라운 스웨이드 숄더) → 맞춘 것 브라운 울 니트 가디건/베이직 티/크림 슬릿 맥시 스커트/앵클부츠/스웨이드
+    숄더/실버 귀걸이 (따라 함 - 참고 164, 니트는 브라운 사진이 있는 라운드 니트 가디건으로 바꿈)
+  point: 브라운 가디건에 크림 롱스커트로 톤을 맞춰요 🤎
+  styling: The white tee shows at the neckline under the brown cardigan and its hem
+    peeks out a little. The brown cardigan is buttoned and tucked a little into the
+    front of the cream skirt so the slit shows. Black ankle boots show under the skirt
+    hem.
+  pose: standing in a relaxed pose in the pale studio like the third reference photo,
+    her body angled to the side with one hand in the cardigan pocket and the suede
+    bag hanging from her other shoulder, her head tilted up in profile; her hair long,
+    loose and in hippie-perm waves falling past her shoulders; bold dramatic makeup
+    with defined dark eyes, deep rosy blush and glossy deep red lips, striking exotic-looking
+    features; the whole body is visible down to the ankle boots
+  scene_image: out/2026-10-19/src/scene_3.jpg
+  ref: '164'
+  ref_photo: https://la-room.kr/web/product/medium/202610/37357fa53c8a02fdc1e4120a72e7fa1f.webp
 - items:
   - product: zigzag:167099943
     color: 블랙
-    desc: 블랙 모크넥 민소매 골지 니트 (black sleeveless ribbed knit tank, mock neck, fitted, thin knit,
-      waist length; the photo shows a two-piece set with a v-neck knit, draw only the sleeveless tank)
+    desc: 블랙 모크넥 민소매 골지 니트 (black sleeveless ribbed knit tank, mock neck, fitted,
+      thin knit, waist length; the photo shows a two-piece set with a v-neck knit,
+      draw only the sleeveless tank)
     name: 모크넥 민소매 니트
     comment: ''
     cutout_photo: 2
-    ref_photos: [2]
+    ref_photos:
+    - 2
   - product: zigzag:156220482
     color: 블랙
-    desc: 블랙 울 미니스커트 (black smooth structured wool mini skirt, low-rise, straight to slightly
-      A-line, no pleats, mid-thigh length)
+    desc: 블랙 울 미니스커트 (black smooth structured wool mini skirt, low-rise, straight
+      to slightly A-line, no pleats, mid-thigh length)
     name: 울 미니스커트
     comment: ''
     cutout_photo: 0
-    ref_photos: [0]
-    size: about 34.5 cm long from waist to hem, 37 cm across the waist laid flat, 51 cm across the hips
-      laid flat, 55.5 cm across the hem laid flat
+    ref_photos:
+    - 0
+    size: about 34.5 cm long from waist to hem, 37 cm across the waist laid flat,
+      51 cm across the hips laid flat, 55.5 cm across the hem laid flat
     cm: 34.5
   - product: zigzag:166194366
     color: 블랙
-    desc: 블랙 미니 숄더백 (black soft half-moon hobo shoulder bag, medium size, a small logo plate, a
-      zip at the top and one curved strap)
+    desc: 블랙 미니 숄더백 (black soft half-moon hobo shoulder bag, medium size, a small
+      logo plate, a zip at the top and one curved strap)
     name: 미니 숄더백
     comment: ''
     cutout_photo: 2
-    ref_photos: [2, 1]
+    ref_photos:
+    - 2
+    - 1
   - product: zigzag:108156951
     color: 블랙
-    desc: 블랙 스퀘어토 롱부츠 (black smooth leather square-toe knee-high boots, slim shaft, block heel
-      about 5 cm, one pair (two boots))
+    desc: 블랙 스퀘어토 롱부츠 (black smooth leather square-toe knee-high boots, slim shaft,
+      block heel about 5 cm, one pair (two boots))
     name: 스퀘어 롱부츠
     comment: ''
     cutout_photo: 0
-    ref_photos: [0, 2, 5]
+    ref_photos:
+    - 0
+    - 2
+    - 5
   - product: zigzag:139297257
     color: 실버
     desc: 실버 물방울 링 귀걸이 (silver drop hoop earrings, exactly one pair (two earrings))
     name: 실버 귀걸이
     comment: ''
     cutout_photo: 0
-    ref_photos: [0, 5]
+    ref_photos:
+    - 0
+    - 5
     slot: 귀걸이
   reason: 블랙 민소매 니트와 울 미니스커트의 올블랙 질감 대비. 참고 154(블랙 모크넥 민소매 니트/블랙 울 미니/미니 핸드백/롱부츠/실버
     귀걸이) → 맞춘 것 모크넥 민소매 니트 세트/아레나 울 미니/호보 숄더백/스퀘어 롱부츠/실버 귀걸이 (따라 함 - 참고 154, 니트와 미니는
     블랙 사진이 있는 다른 상품으로 바꿈)
   point: 블랙 민소매 니트에 미니스커트, 롱부츠로 올블랙을 완성해요
+  styling: The sleeveless knit is tucked smoothly into the low-rise wool skirt. The
+    knee-high boots are worn under the skirt hem and come up to just below the knee.
+  pose: standing in the pale studio like the third reference photo, one leg stepped
+    forward and one hand lifting her hair at the back of her head while the other
+    hand holds the hobo bag strap on her shoulder, her head tilted up in profile;
+    her hair long, loose and in hippie-perm waves; bold dramatic makeup with defined
+    dark eyes, deep rosy blush and glossy deep red lips, striking exotic-looking features;
+    the whole body is visible down to the knee-high boots
   scene_image: out/2026-10-19/src/scene_3.jpg
-  pose: >-
-    standing in the pale studio like the third reference photo, one leg stepped forward and one hand
-    lifting her hair at the back of her head while the other hand holds the hobo bag strap on her
-    shoulder, her head tilted up in profile; her hair long, loose and in hippie-perm waves; bold
-    dramatic makeup with defined dark eyes, deep rosy blush and glossy deep red lips, striking
-    exotic-looking features; the whole body is visible down to the knee-high boots
-  styling: The sleeveless knit is tucked smoothly into the low-rise wool skirt. The knee-high boots are
-    worn under the skirt hem and come up to just below the knee.
   ref: '154'
   ref_photo: https://vivnluv.co.kr/web/product/extra/big/20261014/b1935dc3ccca1ec543662c3ab54889cf.jpg
+- items:
+  - product: zigzag:172058437
+    color: 네이비
+    desc: 네이비 와플 헨리넥 맨투맨 (navy waffle henley sweatshirt, oversized, dropped shoulders,
+      soft waffle-knit cotton, a few buttons on the placket with a small collar, hip
+      length; the photos also show a plaid shirt and brown shorts, ignore them)
+    name: 헨리넥 맨투맨
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:160666337
+    color: 화이트
+    desc: 화이트 네이비 스트라이프 긴팔 티 (white and navy breton stripe long-sleeve tee, boat neck,
+      relaxed fit, wide stripes about 1 cm)
+    name: 스트라이프 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 67.5 cm long from shoulder to hem, 43 cm across the shoulders, 48
+      cm across the chest laid flat, 65 cm long sleeves
+    cm: 67.5
+    wear_with: 상의
+  - product: zigzag:169396657
+    color: 베이지
+    desc: 베이지 스커트 팬츠 (beige structured A-line mini skirt over built-in shorts, mid-thigh
+      length, crisp wool-blend, no pleats)
+    name: 스커트 팬츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 0
+    size: about 34.5 cm long from waist to hem, 36.5 cm across the waist laid flat,
+      49 cm across the hips laid flat, 32.5 cm across the hem laid flat
+    cm: 34.5
+  - product: zigzag:130583785
+    color: 블랙
+    desc: 블랙 레이스업 워커 부츠 (black matte smooth leather lace-up lug-sole walker boots
+      with visible front laces and eyelets, no side elastic band, not chelsea boots,
+      chunky sole, round toe, ankle height, one pair (two boots))
+    name: 워커 부츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+    - 3
+  - product: zigzag:159478154
+    color: 블랙
+    desc: 블랙 토트백 (black glossy leather-look boston-style bag with two short top handles,
+      a zip top and a rounded bottom, not nylon)
+    name: 블랙 토트백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  reason: 네이비 헨리넥 맨투맨에 베이지 스커트 팬츠로 편하게 입는 주말룩. 참고 156(네이비 헨리넥 맨투맨/스트라이프 이너/베이지 스커트
+    팬츠/카멜 워커 부츠/블랙 토트) → 맞춘 것 와플 헨리넥 맨투맨/세인트제임스 스트라이프 티/시더 스커트 팬츠/블랙 워커 부츠/토트백 (따라
+    함 - 참고 156, 워커 부츠는 카멜 사진이 없어 블랙)
+  point: 네이비 맨투맨 밑으로 스트라이프 티를 살짝 빼 입어요
+  styling: The sweatshirt is worn with its sleeves slightly pushed up and its hem
+    half tucked into the front of the skirt pants. The striped tee's hem shows about
+    4 cm below the navy sweatshirt hem and its cuffs peek out at the sleeves. The
+    boots are worn over a short white sock.
+  pose: standing in the middle of the pale studio like the second reference photo,
+    her weight on one leg, one hand pulled into the long sweatshirt sleeve and the
+    other holding the bag by her side, her face turned to the side and her eyes looking
+    away past the camera; her hair in a sleek slicked-back low bun with a center part;
+    bold dramatic makeup with defined dark eyes, deep rosy blush and glossy deep red
+    lips, striking exotic-looking features; the whole body is visible down to the
+    boots
+  scene_image: out/2026-10-19/src/scene_2.jpg
+  ref: '156'
+  ref_photo: https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg
+- items:
+  - product: zigzag:167263764
+    color: 블랙
+    desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length,
+      ribbed cuffs and hem)
+    name: 브이넥 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    - 4
+    size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52
+      cm across the chest laid flat, 64 cm long sleeves
+    cm: 57.5
+  - product: zigzag:172325922
+    color: 화이트
+    desc: 화이트 무지 긴팔 티셔츠 (plain white long-sleeve crew-neck tee, relaxed fit, hip length,
+      ignore the small logo and text in the photo)
+    name: 무지 긴팔 티
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    wear_with: 상의
+  - product: zigzag:171413914
+    color: 그레이
+    desc: 그레이 랩 롱스커트 (charcoal gray A-line wrap skirt with a side tie at the waist
+      and a side slit, thick soft ponte jersey, no pleats, mid-calf to ankle length)
+    name: 랩 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 3
+    size: about 84 cm long from waist to hem, 36 cm across the waist laid flat, 46
+      cm across the hips laid flat, 53 cm across the hem laid flat
+    cm: 84.0
+  - product: zigzag:130568193
+    color: 블랙
+    desc: 블랙 페니 로퍼 (black matte leather chunky lug-sole penny loafers, one pair (two
+      shoes))
+    name: 페니 로퍼
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:165216398
+    color: 블랙
+    desc: 블랙 토트백 (black structured tote bag with a zip top, two short handles and
+      a small silver charm on the front)
+    name: 토트백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:159636703
+    color: 실버
+    desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small
+      drop pendant)
+    name: 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 블랙 브이넥 니트와 그레이 랩 롱스커트의 단정한 출근룩. 참고 149(블랙 브이넥 니트/화이트 이너/그레이 랩 미디/로퍼/토트/롱
+    목걸이) → 맞춘 것 울 캐시미어 브이넥 니트/소로나 긴팔 티/드모즈 랩 롱 스커트(차콜)/페니로퍼/탈리아 토트/롱 목걸이 (따라 함 - 참고
+    149, 랩 스커트는 그레이 사진이 있는 다른 상품으로 바꿈)
+  point: 블랙 니트에 그레이 랩 스커트로 단정하게 입어요
+  styling: The white tee shows under the V-neck of the black knit and its hem peeks
+    out a little. The knit is tucked into the wrap skirt at the front only. A long
+    silver pendant necklace hangs over the knit.
+  pose: standing in the pale studio like the first reference photo, her body turned
+    a quarter to the side with the tote held in one hand at her hip and the other
+    hand touching the long necklace, her head bowed and turned away so her hair falls
+    over part of her face; her hair long, loose and in hippie-perm waves; bold dramatic
+    makeup with deep rosy blush and glossy deep red lips, striking exotic-looking
+    features; no rings on her fingers; the whole body is visible down to the loafers
+  scene_image: out/2026-10-19/src/scene.jpg
+  ref: '149'
+  ref_photo: https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg
 reason: 사용자가 고른 참고 코디 6벌을 순서대로 따라 한 스커트 코디
 text:
-  title_lines: [가을엔 치마가 답임, 언니들 스커트 옷장 공개]
+  title_lines:
+  - 가을엔 치마가 답임
+  - 언니들 스커트 옷장 공개
   intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
   points: []
-  hashtags: ["#스커트코디", "#가을스커트", "#롱스커트", "#미니스커트", "#랩스커트", "#가을코디", "#니트코디"]
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+shot: model
+cover_look: 1
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+scene_image: out/2026-10-19/src/scene.jpg
