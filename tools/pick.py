@@ -99,7 +99,7 @@ def validate(out: Path, profile: Profile, store: Store) -> list[str]:
         except (ValueError, yaml.YAMLError) as e:
             notes.append(f"{path.name}: 읽을 수 없음 ({str(e).splitlines()[0]})")
             continue
-        errors, _ = check(plan, profile, store, draft=True)
+        errors, _ = check(plan, profile, store, draft=True, wanted=_candidates_max(out, profile))
         if errors:
             notes.append(f"{path.name}: " + "; ".join(errors))
             continue
@@ -363,13 +363,25 @@ def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: in
     return "\n".join(lines)
 
 
+def _request(out: Path) -> dict:
+    path = out / "picks_request.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
 def _wanted(out: Path, profile: Profile) -> int:
     """기본으로 쓸 벌 수.
-    사용자가 벌 수를 정해 다시 짜게 했으면 (picks_request.json count) 그 수."""
-    path = out / "picks_request.json"
-    if path.exists():
-        return int(json.loads(path.read_text(encoding="utf-8")).get("count") or profile.looks.count)
-    return profile.looks.count
+    사용자가 벌 수를 정해 다시 짜게 했으면 (picks_request.json count) 그 수.
+    고른 참고 코디(refs)로 짠 후보면 count 는 후보 수라 게시물 벌 수는 profile 대로."""
+    req = _request(out)
+    if req.get("refs"):
+        return profile.looks.count
+    return int(req.get("count") or profile.looks.count)
+
+
+def _candidates_max(out: Path, profile: Profile) -> int:
+    """후보로 보낼 수 있는 벌 수: looks.count+spare, 사용자가 정한 수(count)가 더 크면 그 수."""
+    lk = profile.looks
+    return max(lk.count + lk.spare, int(_request(out).get("count") or 0))
 
 
 def send(

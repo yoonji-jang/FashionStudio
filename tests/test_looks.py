@@ -127,6 +127,23 @@ def test_check_looks_rules(store):
     assert "최대 2벌" in text
 
 
+def test_check_draft_allows_requested_count(store, tmp_path):
+    """고른 참고 코디가 많으면 (picks_request.json count) 후보가 count+spare 벌보다 많아도 된다."""
+    profile = load_profile("women").model_copy(deep=True)
+    profile.looks.spare = 0
+    draft = looks_plan(8, text=None)
+    assert any("5~6개" in e for e in plan.check(draft, profile, store, draft=True)[0])
+    assert plan.check(draft, profile, store, draft=True, wanted=8)[0] == []
+    out = tmp_path / "out"
+    out.mkdir()
+    assert pick._candidates_max(out, profile) == 6 and pick._wanted(out, profile) == 6
+    (out / "picks_request.json").write_text('{"count": 11, "refs": [1, 2]}', encoding="utf-8")
+    # 후보는 11벌까지, 게시물 벌 수는 profile 그대로
+    assert pick._candidates_max(out, profile) == 11 and pick._wanted(out, profile) == 6
+    (out / "picks_request.json").write_text('{"count": 5}', encoding="utf-8")
+    assert pick._wanted(out, profile) == 5
+
+
 def test_same_kind_warning(store):
     # 2026-10-06: 여섯 벌 모두 스웨이드 자켓이 되지 않게 (profile looks.max_same_kind 3)
     profile = load_profile("women")
