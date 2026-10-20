@@ -168,3 +168,36 @@ def test_crawl_opens_popular_and_lookbook_menus_first(tmp_path, monkeypatch):
     scout.crawl(home, ["the-ore.kr"], tmp_path, menus=3, products=10)
     # 인기 → 룩북 → 신상 순, 메뉴 수가 차면 나머지(OUTER)는 뺀다
     assert seen == [menus[3][1], menus[2][1], menus[1][1]]
+
+
+def test_theme_refs_and_ref_numbers():
+    from core.models import Theme
+
+    top = {"category": "상의", "color": "아이보리", "desc": "아이보리 니트", "query": "니트"}
+    skirt_slot = {
+        "category": "하의",
+        "color": "블랙",
+        "desc": "블랙 플리츠",
+        "query": "플리츠 스커트",
+    }
+    pants_slot = {
+        "category": "하의",
+        "color": "블랙",
+        "desc": "블랙 슬랙스",
+        "query": "와이드 슬랙스",
+    }
+    skirt = ref(n=120, slots=[top, skirt_slot]).model_copy(update={"ready": True})
+    pants = ref(n=121, slots=[top, pants_slot]).model_copy(update={"ready": True})
+    not_ready = ref(n=122, slots=[top, skirt_slot])
+    th = Theme(
+        date=DAY,
+        title_hint="스커트 코디",
+        mood="가을",
+        slots=[{"category": "하의", "desc": "스커트"}],
+        search_terms={"하의": ["미니 스커트", "롱 스커트"]},
+    )
+    assert [r.n for r in refs.theme_refs([skirt, pants, not_ready], th, 48)] == [120]
+    assert refs.ref_numbers("참고 141, 203번") == [141, 203]
+    assert refs.ref_numbers("141 141 250") == [141, 250]
+    assert refs.ref_numbers("알아서") == "auto"
+    assert refs.ref_numbers("다시") is None

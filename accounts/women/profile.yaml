@@ -386,6 +386,7 @@ flow:
   enabled: true             # 2026-10-14 사용자 "지금 켜기"
   theme_options: 3          # 한 번에 제안하는 주제 수 (week_options 가 0 일 때)
   week_options: 10          # 주간 주제 후보 수. 고치고 고른 주제들을 차례로 쓴다 (2026-10-19 사용자)
+  ref_pick: 48              # 주제마다 맞는 참고 코디를 이만큼까지 먼저 보내 번호로 고르게 함 (2026-10-20 사용자)
   scene_prompt: outfit_scene
   publish_alert_minutes: 120
 

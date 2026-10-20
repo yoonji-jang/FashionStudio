@@ -64,7 +64,14 @@ from core.profile import WEEKDAYS, Profile, load_profile
 from core.store import Store
 
 Stage = Literal[
-    "theme", "theme_wait", "refs_wait", "pick_wait", "rendering", "preview_wait", "publishing"
+    "theme",
+    "theme_wait",
+    "refs_wait",
+    "ref_pick_wait",
+    "pick_wait",
+    "rendering",
+    "preview_wait",
+    "publishing",
 ]
 WAIT_ALERT = timedelta(hours=3)  # 워크플로를 요청하고 이만큼 지나도 결과가 없으면 한 번 알림
 NO_DEADLINE = 10**6  # tools.pick 에 넘기는 "마감까지 남은 분" (마감 없음)
@@ -88,6 +95,7 @@ class FlowState(BaseModel):
     week: list[Theme] = []  # 고른 주간 주제 중 아직 안 쓴 것 (차례대로, flow.week_options)
     read_upto: int = 0  # 주간 후보에 온 답을 여기(보낸 시각)까지 읽었다
     revising: bool = False  # 주간 후보 고치기를 요청했고 고친 후보가 아직 안 옴
+    ref_pick_at: int = 0  # 이 주제의 참고 코디 묶음을 보낸 시각 (flow.ref_pick, 0 이면 아직)
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -358,12 +366,27 @@ def _use_theme(
     dry_run: bool,
     tag: str,
     note: str = "",
+    profile: Profile | None = None,
 ) -> str:
-    """정한 주제를 themes.json 에 넣고 코디 후보를 요청한다 (tg 가 있으면 알림)."""
+    """정한 주제를 themes.json 에 넣고 코디 후보를 요청한다 (tg 가 있으면 알림).
+    profile flow.ref_pick 이면 후보 대신 참고 코디 묶음을 먼저 보내 고르게 한다."""
     assert st.date is not None
     chosen = chosen.model_copy(update={"date": st.date})
     if not dry_run:
         choose_theme(store, chosen)
+    st.ref_pick_at = (
+        ts  # 참고 고르기를 하지 않는 주제도 "처리함"으로 (pick_wait 에서 다시 보내지 않게)
+    )
+    if profile is not None and profile.flow.ref_pick and tg is not None:
+        st.hint, st.theme_at, st.asked_at = "", ts, ts
+        tg.send(
+            f"{tag} '{chosen.title_hint}' 주제로 할게요{note}. "
+            "이 주제에 맞는 참고 코디를 보낼게요.\n"
+            "이 주제에 맞는 장면 사진도 이 채팅에 보내 주세요 "
+            "(스트리트, 스튜디오, 거울 셀카 등. 한 장도, 여러 장도 돼요)"
+        )
+        done = f"주제 정함: {chosen.title_hint}"
+        return _send_ref_album(profile, store, st, tg, send, chosen, ts, dry_run, done)
     # daily 는 요청한 때의 커밋을 꺼내서 방금 고친 themes.json 을 못 본다: 주제를 같이 넘긴다
     theme = json.dumps({"theme": chosen.model_dump(mode="json")}, ensure_ascii=False)
     send(
@@ -378,6 +401,38 @@ def _use_theme(
             "(스트리트, 스튜디오, 거울 셀카 등. 한 장도, 여러 장도 돼요)"
         )
     return f"주제 정함: {chosen.title_hint}"
+
+
+def _send_ref_album(
+    profile: Profile, store: Store, st: FlowState, tg, send, theme: Theme, ts: int,
+    dry_run: bool, done: str,
+) -> str:  # fmt: skip
+    """주제에 맞는 참고 코디 묶음을 보내고 고르기를 기다린다 (없으면 바로 후보)."""
+    from tools import refs
+
+    sent = [] if dry_run else refs.send_theme_album(profile, store, theme, tg, Path("out/ref_pick"))
+    st.ref_pick_at = ts
+    if not sent and not dry_run:
+        _request_candidates(profile, st, send, theme, ts, [])
+        return done + ", 맞는 참고 코디가 없어 바로 후보 요청"
+    st.stage = "ref_pick_wait"
+    return f"{done}, 참고 코디 {len(sent)}벌 보냄"
+
+
+def _request_candidates(
+    profile: Profile, st: FlowState, send, theme: Theme, ts: int, refs: list[int]
+) -> None:
+    """고른 참고 코디(없으면 Claude 가 고름)로 코디 후보를 요청한다."""
+    req: dict = {"theme": theme.model_dump(mode="json")}
+    if refs:
+        base = profile.looks.count + profile.looks.spare if profile.looks.enabled else 0
+        req["refs"] = refs
+        req["count"] = min(12, max(base, len(refs)))
+    send(
+        "daily.yml", account=st.account, date=theme.date.isoformat(), mode="candidates",
+        pick=json.dumps(req, ensure_ascii=False), sandbox=False, collect=True,
+    )  # fmt: skip
+    st.asked_at, st.stage = ts, "pick_wait"
 
 
 def _week_wait(
@@ -444,7 +499,7 @@ def _week_wait(
         return f"주간 주제 {len(picked)}개 정함, 참고 코디 수집 요청"
     st.week = picked[1:]
     left = f" (주간 주제 1/{len(picked)})"
-    return _use_theme(store, st, tg, send, picked[0], ts, dry_run, tag, left)
+    return _use_theme(store, st, tg, send, picked[0], ts, dry_run, tag, left, profile)
 
 
 def _step(
@@ -472,7 +527,7 @@ def _step(
             if st.week:
                 chosen, st.week = st.week[0], st.week[1:]
                 left = f" (주간 주제, 남은 주제 {len(st.week)}개)"
-                return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, left)
+                return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, left, profile)
             st.read_upto, st.revising = 0, False
             send("theme-options.yml", account=acc, date=st.date.isoformat(), hint="",
                  week=True, feedback="")  # fmt: skip
@@ -522,7 +577,17 @@ def _step(
                     return f"사용자 주제로 다시 요청: {arg}"
         if chosen is None:
             return ""
-        return _use_theme(store, st, tg if not opts.hint else None, send, chosen, ts, dry_run, tag)
+        return _use_theme(
+            store,
+            st,
+            tg if not opts.hint else None,
+            send,
+            chosen,
+            ts,
+            dry_run,
+            tag,
+            profile=profile,
+        )
 
     if st.stage == "refs_wait":
         done = refs_done_at(store) >= st.asked_at
@@ -536,12 +601,50 @@ def _step(
         note = f" (주간 주제, 남은 주제 {len(st.week)}개)"
         if not done and tg is not None:
             tg.send(f"{tag} 참고 코디 수집이 늦어져 지금 있는 참고 코디로 후보를 만들게요")
-        return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, note)
+        return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, note, profile)
 
     assert st.date is not None
     day = st.date
 
+    if st.stage == "ref_pick_wait":
+        if tg is None:
+            return ""
+        theme = next((t for t in store.themes() if t.date == day), None)
+        if theme is None:
+            st.stage = "theme"
+            return "주제가 없어져 처음부터"
+        from tools import refs as refs_tool
+
+        have = {r.n for r in store.refs()}
+        for _, text in reversed(week_replies(tg.updates(), tg.chat_id, st.ref_pick_at)):
+            got = refs_tool.ref_numbers(text)
+            if got is None:
+                continue
+            nums = [] if got == "auto" else got
+            bad = [n for n in nums if n not in have]
+            if bad:
+                tg.send(
+                    f"{tag} 참고 {', '.join(map(str, bad))}번은 없어요. "
+                    "묶음의 번호로 다시 보내 주세요"
+                )
+                st.ref_pick_at = ts
+                return f"참고 번호 잘못됨: {bad}"
+            _request_candidates(profile, st, send, theme, ts, nums)
+            if nums:
+                tg.send(f"{tag} 참고 {len(nums)}벌로 코디 후보를 만들고 있어요")
+            else:
+                tg.send(f"{tag} 참고 코디는 제가 골라서 코디 후보를 만들고 있어요")
+            return f"참고 고름 ({', '.join(map(str, nums)) or '알아서'}), 후보 요청"
+        return ""
+
     if st.stage == "pick_wait":
+        if profile.flow.ref_pick and not st.ref_pick_at and not st.pick and tg is not None:
+            # 참고 고르기를 켜기 전에 정한 주제: 묶음을 먼저 보낸다
+            theme = next((t for t in store.themes() if t.date == day), None)
+            if theme is not None:
+                return _send_ref_album(
+                    profile, store, st, tg, send, theme, ts, dry_run, "참고 고르기"
+                )
         lines = []
         if tg is not None:
             batch = scene_photos(tg.updates(), tg.chat_id, st.theme_at, st.scene_update)
@@ -720,7 +823,7 @@ def main(argv: list[str] | None = None) -> int:
                 theme = Theme.model_validate(req["theme"])
                 choose_theme(Store(args.account), theme)
                 print(f"{theme.date} 주제: {theme.title_hint}")
-            ask = {k: req[k] for k in ("again", "keep", "count", "note") if req.get(k)}
+            ask = {k: req[k] for k in ("again", "keep", "count", "note", "refs") if req.get(k)}
             if ask and args.out:
                 args.out.mkdir(parents=True, exist_ok=True)
                 path = args.out / "picks_request.json"

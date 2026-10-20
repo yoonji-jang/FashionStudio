@@ -230,7 +230,7 @@ jobs:
           prompt: |
             .claude/skills/outfit-candidates/SKILL.md 의 순서를 그대로 따라 코디 후보를 만들어.
             ACCOUNT=${{ env.ACCOUNT }} DATE=${{ env.DATE }} COLLECT=${{ env.COLLECT }}
-            out/${{ env.DATE }}/picks_request.json 이 있으면 사용자의 다시 짜기 요청이니 그 절을 따라.
+            out/${{ env.DATE }}/picks_request.json 이 있으면 사용자의 요청이니 그 절을 따라 (refs 가 있으면 "사용자가 고른 참고 코디", again 이 있으면 "다시 짜기 요청").
             python 은 이미 가상환경이 잡혀 있으니 `python -m tools.plan ...` 처럼 부르면 돼.
             코디컷 만들기(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-

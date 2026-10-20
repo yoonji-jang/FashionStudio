@@ -461,6 +461,10 @@ class Flow(BaseModel):
     # 0 이면 게시물마다 theme_options 개를 제안한다. 켜면 후보를 보내 고친 뒤
     # 고른 주제들을 차례로 쓰고, 다 쓰면 다시 후보를 보낸다
     week_options: int = Field(default=0, ge=0, le=15)
+    # 주제를 정하면 그 주제에 맞는 참고 코디를 번호 붙인 사진 묶음으로 이만큼까지 먼저 보내고,
+    # 사용자가 번호로 고른(또는 "알아서") 뒤에 코디 후보를 만든다.
+    # 0 이면 바로 후보 (2026-10-20 사용자)
+    ref_pick: int = Field(default=0, ge=0, le=96)
     # 장면 사진 1장의 무드로 벌마다 그리는 지시문 (prompts/<이름>.md, 기획 scene_image 가 있을 때)
     scene_prompt: str = "outfit_scene"
     # 게시를 요청하고 이만큼(분) 지나도 게시 기록이 없으면 한 번 알린다
