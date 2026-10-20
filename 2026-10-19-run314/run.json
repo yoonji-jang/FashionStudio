@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-19-run314",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-19-run313\", \"round\": 1, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"제목을 \\\"뻔한 코디가 지겨울때 / 참고하는 스커트 룩북\\\" 으로 바꿔줘 /order 4 2 3 6 1 5\"}]}"
+}

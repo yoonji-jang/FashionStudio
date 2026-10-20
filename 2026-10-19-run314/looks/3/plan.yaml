@@ -1,0 +1,130 @@
+account: women
+cover: out/2026-10-19/looks/3/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-19'
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 1
+  desc: 브라운 라운드 울 니트 가디건 (dark chocolate brown wool round-neck knit cardigan with
+    small buttons, buttoned up like a sweater except the top button, relaxed fit,
+    waist length, ribbed hem and cuffs, soft slightly fuzzy)
+  name: 라운드 울 니트 가디건
+  product: zigzag:166394650
+  ref_photos:
+  - 1
+  - 2
+- color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 베이직 티셔츠 (plain white crew-neck short-sleeve cotton tee, regular fit, hip
+    length)
+  name: 베이직 티셔츠
+  product: zigzag:159205603
+  ref_photos:
+  - 0
+  wear_with: 상의
+- cm: 89.0
+  color: 크림
+  comment: ''
+  cutout_photo: 1
+  desc: 크림 H라인 맥시 스커트 (cream straight h-line maxi skirt, high waist, a front slit,
+    crisp linen-blend cotton twill, no pleats, ankle length ending just above the
+    ankle)
+  name: 맥시 스커트
+  product: zigzag:148088112
+  ref_photos:
+  - 1
+  - 0
+  size: about 89 cm long from waist to hem, 35 cm across the waist laid flat, 51 cm
+    across the hips laid flat, 57.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 앵클부츠 (black smooth leather ankle boots, almond to slightly pointed toe,
+    low block heel about 2 cm, back zipper, one pair (two boots))
+  name: 앵클부츠
+  product: zigzag:130586820
+  ref_photos:
+  - 1
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag, soft structure with a thin strap)
+  name: 스웨이드 숄더백
+  product: zigzag:130117567
+  ref_photos:
+  - 0
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings, exactly one pair (two earrings))
+  name: 실버 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 0
+  - 5
+  slot: 귀걸이
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+pose: standing in a relaxed pose in the pale studio like the third reference photo,
+  her body angled to the side with one hand in the cardigan pocket and the suede bag
+  hanging from her other shoulder, her head tilted up in profile; her hair long, loose
+  and in hippie-perm waves falling past her shoulders; bold dramatic makeup with defined
+  dark eyes, deep rosy blush and glossy deep red lips, striking exotic-looking features;
+  the whole body is visible down to the ankle boots
+reason: 브라운 니트 가디건 안에 화이트 이너 티를 받쳐 크림 H라인 롱스커트, 블랙 앵클부츠와 맞춘 톤온톤. 참고 164(브라운 라운드 니트/흰
+  이너/크림 H라인 롱스커트/블랙 앵클부츠/브라운 스웨이드 숄더) → 맞춘 것 브라운 울 니트 가디건/베이직 티/크림 슬릿 맥시 스커트/앵클부츠/스웨이드
+  숄더/실버 귀걸이 (따라 함 - 참고 164, 니트는 브라운 사진이 있는 라운드 니트 가디건으로 바꿈)
+ref_photo: https://la-room.kr/web/product/medium/202610/37357fa53c8a02fdc1e4120a72e7fa1f.webp
+scene_image: out/2026-10-19/src/scene_3.jpg
+shot: model
+styling: The white tee shows at the neckline under the brown cardigan and its hem
+  peeks out a little. The brown cardigan is buttoned and tucked a little into the
+  front of the cream skirt so the slit shows. Black ankle boots show under the skirt
+  hem.
+text:
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+  intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 뻔한 코디가 지겨울때
+  - 참고하는 스커트 룩북
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨

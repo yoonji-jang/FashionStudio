@@ -1,0 +1,134 @@
+account: women
+cover: out/2026-10-19/looks/6/outfit_r2/results/G_1.jpg
+cover_look: 1
+date: '2026-10-19'
+items:
+- cm: 57.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length,
+    ribbed cuffs and hem)
+  name: 브이넥 니트
+  product: zigzag:167263764
+  ref_photos:
+  - 0
+  - 3
+  - 4
+  size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52 cm
+    across the chest laid flat, 64 cm long sleeves
+- color: 화이트
+  comment: ''
+  cutout_photo: 2
+  desc: 화이트 무지 긴팔 티셔츠 (plain white long-sleeve crew-neck tee, relaxed fit, hip length,
+    ignore the small logo and text in the photo)
+  name: 무지 긴팔 티
+  product: zigzag:172325922
+  ref_photos:
+  - 2
+  wear_with: 상의
+- cm: 84.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 랩 롱스커트 (charcoal gray A-line wrap skirt with a side tie at the waist and
+    a side slit, thick soft ponte jersey, no pleats, mid-calf to ankle length)
+  name: 랩 스커트
+  product: zigzag:171413914
+  ref_photos:
+  - 0
+  - 1
+  - 3
+  size: about 84 cm long from waist to hem, 36 cm across the waist laid flat, 46 cm
+    across the hips laid flat, 53 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 페니 로퍼 (black matte leather chunky lug-sole penny loafers, one pair (two
+    shoes))
+  name: 페니 로퍼
+  product: zigzag:130568193
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 토트백 (black structured tote bag with a zip top, two short handles and a
+    small silver charm on the front)
+  name: 토트백
+  product: zigzag:165216398
+  ref_photos:
+  - 0
+  - 1
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small drop
+    pendant)
+  name: 롱 목걸이
+  product: zigzag:159636703
+  ref_photos:
+  - 0
+  slot: 목걸이
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+pose: standing in the pale studio like the first reference photo, her body turned
+  a quarter to the side with the tote held in one hand at her hip and the other hand
+  touching the long necklace, her head bowed and turned away so her hair falls over
+  part of her face; her hair long, loose and in hippie-perm waves; bold dramatic makeup
+  with deep rosy blush and glossy deep red lips, striking exotic-looking features;
+  no rings on her fingers; the whole body is visible down to the loafers
+reason: 블랙 브이넥 니트와 그레이 랩 롱스커트의 단정한 출근룩. 참고 149(블랙 브이넥 니트/화이트 이너/그레이 랩 미디/로퍼/토트/롱 목걸이)
+  → 맞춘 것 울 캐시미어 브이넥 니트/소로나 긴팔 티/드모즈 랩 롱 스커트(차콜)/페니로퍼/탈리아 토트/롱 목걸이 (따라 함 - 참고 149,
+  랩 스커트는 그레이 사진이 있는 다른 상품으로 바꿈)
+ref_photo: https://woonan.co.kr/web/product/tiny/202609/7aa3b5a8582146997db8c7257c7fff1d.jpg
+scene_image: out/2026-10-19/src/scene.jpg
+shot: model
+styling: The white tee shows under the V-neck of the black knit and its hem peeks
+  out a little. The knit is tucked into the wrap skirt at the front only. A long silver
+  pendant necklace hangs over the knit.
+text:
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+  intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 뻔한 코디가 지겨울때
+  - 참고하는 스커트 룩북
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨

@@ -1,0 +1,125 @@
+account: women
+cover: out/2026-10-19/looks/5/outfit_r2/results/G_1.jpg
+cover_look: 1
+date: '2026-10-19'
+items:
+- color: 네이비
+  comment: ''
+  cutout_photo: 0
+  desc: 네이비 와플 헨리넥 맨투맨 (navy waffle henley sweatshirt, oversized, dropped shoulders,
+    soft waffle-knit cotton, a few buttons on the placket with a small collar, hip
+    length; the photos also show a plaid shirt and brown shorts, ignore them)
+  name: 헨리넥 맨투맨
+  product: zigzag:172058437
+  ref_photos:
+  - 0
+- cm: 67.5
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 네이비 스트라이프 긴팔 티 (white and navy breton stripe long-sleeve tee, boat neck,
+    relaxed fit, wide stripes about 1 cm)
+  name: 스트라이프 티
+  product: zigzag:160666337
+  ref_photos:
+  - 0
+  size: about 67.5 cm long from shoulder to hem, 43 cm across the shoulders, 48 cm
+    across the chest laid flat, 65 cm long sleeves
+  wear_with: 상의
+- cm: 34.5
+  color: 베이지
+  comment: ''
+  cutout_photo: 3
+  desc: 베이지 스커트 팬츠 (beige structured A-line mini skirt over built-in shorts, mid-thigh
+    length, crisp wool-blend, no pleats)
+  name: 스커트 팬츠
+  product: zigzag:169396657
+  ref_photos:
+  - 3
+  - 0
+  size: about 34.5 cm long from waist to hem, 36.5 cm across the waist laid flat,
+    49 cm across the hips laid flat, 32.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 레이스업 워커 부츠 (black matte smooth leather lace-up lug-sole walker boots with
+    visible front laces and eyelets, no side elastic band, not chelsea boots, chunky
+    sole, round toe, ankle height, one pair (two boots))
+  name: 워커 부츠
+  product: zigzag:130583785
+  ref_photos:
+  - 2
+  - 1
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 토트백 (black glossy leather-look boston-style bag with two short top handles,
+    a zip top and a rounded bottom, not nylon)
+  name: 블랙 토트백
+  product: zigzag:159478154
+  ref_photos:
+  - 0
+  - 3
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+pose: standing in the middle of the pale studio like the second reference photo, her
+  weight on one leg, one hand pulled into the long sweatshirt sleeve and the other
+  holding the bag by her side, her face turned to the side and her eyes looking away
+  past the camera; her hair in a sleek slicked-back low bun with a center part; bold
+  dramatic makeup with defined dark eyes, deep rosy blush and glossy deep red lips,
+  striking exotic-looking features; the whole body is visible down to the boots
+reason: 네이비 헨리넥 맨투맨에 베이지 스커트 팬츠로 편하게 입는 주말룩. 참고 156(네이비 헨리넥 맨투맨/스트라이프 이너/베이지 스커트 팬츠/카멜
+  워커 부츠/블랙 토트) → 맞춘 것 와플 헨리넥 맨투맨/세인트제임스 스트라이프 티/시더 스커트 팬츠/블랙 워커 부츠/토트백 (따라 함 - 참고
+  156, 워커 부츠는 카멜 사진이 없어 블랙)
+ref_photo: https://ecimg.cafe24img.com/pg1891b09090299003/stanst/web/product/extra/small/20260825/c42df10aea200aedf456aaa4c5297f40.jpg
+scene_image: out/2026-10-19/src/scene_2.jpg
+shot: model
+styling: The sweatshirt is worn with its sleeves slightly pushed up and its hem half
+  tucked into the front of the skirt pants. The striped tee's hem shows about 4 cm
+  below the navy sweatshirt hem and its cuffs peek out at the sleeves. The boots are
+  worn over a short white sock.
+text:
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+  intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 뻔한 코디가 지겨울때
+  - 참고하는 스커트 룩북
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨

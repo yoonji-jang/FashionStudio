@@ -1,0 +1,147 @@
+account: women
+cover: out/2026-10-19/looks/2/outfit_r2/results/G_1.jpg
+cover_look: 1
+date: '2026-10-19'
+items:
+- cm: 57.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 캐시미어 브이넥 니트 (black wool cashmere v-neck knit, slim fit, waist length,
+    ribbed cuffs and hem)
+  name: 브이넥 니트
+  product: zigzag:167263764
+  ref_photos:
+  - 0
+  - 3
+  - 4
+  size: about 57.5 cm long from shoulder to hem, 41 cm across the shoulders, 52 cm
+    across the chest laid flat, 64 cm long sleeves
+- cm: 66.0
+  color: 네이비
+  comment: ''
+  cutout_photo: 5
+  desc: 네이비 셔츠 (plain navy slim shirt with a pointed collar and button cuffs, crisp
+    smooth cotton-poly, no stripes)
+  name: 네이비 셔츠
+  product: zigzag:166123375
+  ref_photos:
+  - 5
+  - 0
+  - 4
+  size: about 66 cm long from shoulder to hem, 40 cm across the shoulders, 45.5 cm
+    across the chest laid flat, 64 cm long sleeves
+  wear_with: 상의
+- cm: 31.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 울 미니스커트 (black thick structured wool mini skirt, low-rise, slightly A-line
+    with a curved hem, no belt, no slit, mid-thigh length)
+  name: 블랙 미니스커트
+  product: zigzag:166900476
+  ref_photos:
+  - 2
+  size: about 31 cm long from waist to hem, 37 cm across the waist laid flat, 48 cm
+    across the hips laid flat, 53 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 오버니 삭스 (black opaque snug ribbed over-the-knee socks, thigh high)
+  name: 블랙 삭스
+  product: zigzag:146969420
+  ref_photos:
+  - 2
+  - 5
+  wear_with: 하의
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 레이스업 로퍼 (black matte leather lace-up loafers, round toe, moccasin stitching,
+    one pair (two shoes))
+  name: 레이스업 로퍼
+  product: zigzag:134105153
+  ref_photos:
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 토트백 (black soft tote bag with a zip top and two short handles)
+  name: 토트백
+  product: zigzag:161886716
+  ref_photos:
+  - 1
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 펜던트 목걸이 (long silver drop pendant necklace, thin chain with a small drop
+    pendant)
+  name: 롱 목걸이
+  product: zigzag:159636703
+  ref_photos:
+  - 0
+  slot: 목걸이
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and a matching pale floor, bright even daylight-like studio light with a crisp
+  soft shadow on the floor, muted neutral colors, a full-length fashion catalog photo
+  taken with a digital camera from a medium distance, nothing else in the frame
+pose: standing straight and facing the camera in the middle of the pale studio like
+  the first reference photo, small narrow black oval sunglasses on, one hand holding
+  the tote down at her side and the other hand on the hem of the knit; her hair in
+  a sleek slicked-back low bun with a center part; bold dramatic makeup with deep
+  rosy blush and glossy deep red lips, striking exotic-looking features; no rings
+  on her fingers; the whole body is visible down to the loafers
+reason: 블랙 브이넥 니트 밑으로 네이비 셔츠가 보이고 실버 롱 목걸이를 더한 블랙 미니 출근룩. 참고 129(블랙 라운드 니트/네이비 스트라이프
+  셔츠/블랙 슬릿 미니/스타킹/로퍼/토트) → 맞춘 것 캐시미어 브이넥 니트/엘르 셔츠(네이비 무지)/울 미니/오버니삭스/레이스업 로퍼/토트 (따라
+  함 - 참고 129, 블랙 라운드 니트·벨트 미니는 맞는 색 사진이 없어 바꿈)
+ref_photo: https://woonan.co.kr/web/product/big/202609/e091a11f5c3cb3ba6f497a287d3942d5.jpg
+scene_image: out/2026-10-19/src/scene.jpg
+shot: model
+styling: The navy shirt is worn underneath; its collar shows at the V-neckline and
+  its hem hangs about 4 cm below the black knit hem. The black knit is worn out over
+  the low-rise mini skirt. Black opaque over-the-knee socks are pulled up to mid-thigh
+  under the skirt hem. A long silver pendant necklace hangs over the shirt and the
+  knit.
+text:
+  hashtags:
+  - '#스커트코디'
+  - '#가을스커트'
+  - '#롱스커트'
+  - '#미니스커트'
+  - '#랩스커트'
+  - '#가을코디'
+  - '#니트코디'
+  intro: 일교차 큰 흐린 월요일엔 스커트에 니트 한 장 걸쳐 보세요 🍂
+  points: []
+  title_lines:
+  - 뻔한 코디가 지겨울때
+  - 참고하는 스커트 룩북
+theme:
+  date: '2026-10-19'
+  mood: 차분한 가을 톤, 롱·미디·미니 어떤 기장이든 스커트가 중심인 룩
+  search_terms:
+    상의:
+    - 크롭 니트
+    - 슬림 긴팔티
+    하의:
+    - 플리츠 스커트
+    - 미디 스커트
+    - 롱 스커트
+    - 미니 스커트
+    - 랩 스커트
+  slots:
+  - category: 아우터
+    desc: 베이지 숏 트렌치 또는 니트 가디건
+  - category: 상의
+    desc: 크롭 니트
+  - category: 하의
+    desc: 스커트 (롱·미디·미니
+  - category: 가방
+    desc: 스웨이드 숄더백
+  - category: 신발
+    desc: 앵클부츠
+  title_hint: 스커트 하나로 끝내는 가을 코디
+  type: 아이템
+  why: 최고 17도라 스커트에 니트나 가벼운 아우터를 맞추기 좋은 날씨
