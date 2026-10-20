@@ -1,0 +1,1 @@
+- 8번 벌: 홀터 이너(zigzag:153225273)를 소매 있는 흰 무지 티셔츠(zigzag:159205603, 이블렛 코튼 베이직 티셔츠)로 바꿈. 나머지 아이템·styling·reason 은 그대로. `tools.plan check --draft` 통과.
