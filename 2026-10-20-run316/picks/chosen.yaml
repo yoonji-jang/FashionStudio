@@ -1,0 +1,312 @@
+account: women
+date: '2026-10-20'
+items: []
+looks:
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 블루종 (black oversized leather blouson, ribbed hem)
+    name: 레더 블루종
+    product: zigzag:168686940
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 브이넥 니트 (ivory thin fitted V-neck knit)
+    name: 브이넥 니트
+    product: zigzag:131379280
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플리츠 미디 스커트 (black pleated midi skirt, calf length)
+    name: 플리츠 미디스커트
+    product: zigzag:128439072
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf)
+    name: 아이보리 롱 스카프
+    product: zigzag:169299009
+    wear_how: draped loosely around the neck with both long ends hanging down the
+      front
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 로퍼 (black platform loafers)
+    name: 블랙 로퍼
+    product: zigzag:119684251
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보 숄더백 (black hobo shoulder bag)
+    name: 호보 숄더백
+    product: zigzag:167003822
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 목걸이 (silver long bean necklace)
+    name: 롱 목걸이
+    product: zigzag:154156593
+    slot: 목걸이
+  point: ''
+  reason: 블랙 레더 블루종에 아이보리 니트와 얇은 롱 스카프, 블랙 미디스커트로 부드럽게. 참고 블랙 가죽 블루종/크림 얇은 니트/블랙 롱스커트/아이보리
+    스카프/블랙 로퍼 → 같은 종류·색, 스커트는 미디, 실버 목걸이 추가 (따라 함 참고 320)
+  ref: '320'
+  ref_photo: https://the-ore.kr/web/product/small/202609/db449775ed88bc1778294921aead8d66.webp
+  styling: The leather blouson is worn open over the knit; the thin ivory scarf is
+    draped around the neck with both long ends hanging down the front and the silver
+    long necklace hangs over the knit; the knit hem is lightly tucked into the pleated
+    midi skirt.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 싱글 레더 하프 자켓 (dark brown single leather half-length jacket, hip-to-upper-thigh
+      length)
+    name: 브라운 레더 하프자켓
+    product: zigzag:168759295
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 슬림 워머 티 (brown slim wool layering tee, round neck)
+    name: 브라운 워머 티
+    product: zigzag:155290768
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 H라인 롱스커트 (white H-line long skirt, straight falling line)
+    name: 화이트 롱스커트
+    product: zigzag:171368190
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf)
+    name: 아이보리 롱 스카프
+    product: zigzag:169299009
+    wear_how: draped loosely around the neck with both long ends hanging down the
+      front
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 리본 발레 플랫 (black suede ribbon ballet flats)
+    name: 발레 플랫
+    product: zigzag:130877289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:169369601
+  point: ''
+  reason: 브라운 레더 하프 자켓에 화이트 롱스커트와 얇은 롱 스카프로 가볍게. 참고 브라운 레더 하이넥 자켓/브라운 슬림 탑/화이트 H라인
+    롱스커트/아이보리 쁘띠 스카프/블랙 발레 플랫 → 같은 종류·색, 자켓은 더 긴 하프 기장, 스카프는 얇은 롱 (따라 함 참고 481)
+  ref: '481'
+  ref_photo: https://la-room.kr/web/product/extra/small/202602/fab10f5cff852a5bc7f11368d348222d.jpg
+  styling: The longer leather half jacket is worn open; the brown slim top shows underneath;
+    the thin ivory scarf is draped around the neck with both long ends hanging down
+    the front; the white skirt falls straight.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오버핏 레더 미디 자켓 (black oversized leather midi jacket, single-breasted, thigh
+      length)
+    name: 블랙 레더 미디자켓
+    product: zigzag:128479345
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 드레이프 긴팔 티셔츠 (white long sleeve draped tee)
+    name: 화이트 티
+    product: zigzag:171944915
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 와이드 코튼 팬츠 (ivory wide cotton pants, full length)
+    name: 와이드 코튼팬츠
+    product: zigzag:172164527
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 벨트 (black leather belt)
+    name: 블랙 벨트
+    product: zigzag:138681881
+    wear_with: 하의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 로퍼 (black platform loafers)
+    name: 블랙 로퍼
+    product: zigzag:119684251
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토크 숄더백 (black small shoulder bag)
+    name: 토크 숄더백
+    product: zigzag:161700662
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 하트 목걸이 (thin silver necklace with a small heart pendant)
+    name: 하트 목걸이
+    product: zigzag:128507670
+    slot: 목걸이
+  point: ''
+  reason: 블랙 오버핏 레더 미디 자켓에 흰 티와 아이보리 와이드 팬츠, 실버 목걸이로 부담 덜게. 참고 블랙 오버핏 가죽 자켓/화이트 무지
+    티/아이보리 와이드 코튼 팬츠/블랙 벨트/블랙 로퍼 → 같은 종류·색, 자켓은 더 긴 오버핏, 실버 목걸이 추가 (따라 함 참고 318)
+  ref: '318'
+  ref_photo: https://the-ore.kr/web/product/small/202609/882b2d005dd46d68dd95d7e5bf3eb4b8.webp
+  styling: The oversized long jacket is worn open; the white tee is tucked slightly
+    into the wide ivory pants, a thin black belt shows at the waist and a silver chain
+    necklace sits at the neckline.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 서틀 브라운 오버핏 레더 블루종 (subtle brown oversized leather blouson with pockets)
+    name: 브라운 블루종
+    product: zigzag:171289656
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 하트넥 긴팔 티셔츠 (white heart-neck long sleeve tee)
+    name: 하트넥 티
+    product: zigzag:165711726
+  - color: 블루
+    comment: ''
+    cutout_photo: 0
+    desc: 블루 부츠컷 데님 팬츠 (mid-blue bootcut denim pants, slim thigh flaring at the hem,
+      long length)
+    name: 부츠컷 데님
+    product: zigzag:136402065
+  - color: 버건디
+    comment: ''
+    cutout_photo: 0
+    desc: 버건디 숄더백 (burgundy shoulder bag)
+    name: 버건디 숄더백
+    product: zigzag:150848794
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 포인티드 토 슬링백 (black pointed-toe slingback, low kitten heel)
+    name: 포인티드 슬링백
+    product: zigzag:136665746
+  point: ''
+  reason: 브라운 레더 블루종에 화이트 티와 부츠컷 데님, 버건디 백, 뾰족코 슈즈로 포인트. 참고 브라운 레더 블루종/화이트 슬림 티/플레어
+    데님/포인티드 슈즈/버건디 스웨이드 백 → 같은 종류, 데님은 부츠컷, 신발은 앞코가 뾰족한 슬링백 (따라 함 참고 458)
+  ref: '458'
+  ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261019/55207b3ddb467c8f0c5c4a21244b595d.jpg
+  styling: The leather blouson is worn open; the white tee is tucked in at the front;
+    the bootcut denim flares at the hem and falls long over the pointed-toe shoes.
+- items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 크롭 숏 자켓 (dark brown cropped short jacket, collarless, ends at the waist)
+    name: 브라운 크롭 자켓
+    product: zigzag:165551823
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 드레이프 긴팔 티셔츠 (ivory draped long sleeve tee)
+    name: 드레이프 티
+    product: zigzag:171433037
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 벨트 미니 스커트 (ivory belted mini skirt)
+    name: 벨트 미니스커트
+    product: zigzag:171927461
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니삭스 (black knee socks)
+    name: 블랙 니삭스
+    product: zigzag:161559034
+    wear_with: 신발
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 메리제인 (black platform mary jane shoes)
+    name: 메리제인
+    product: zigzag:172014189
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 루비 숄더백 (black small shoulder bag)
+    name: 루비 숄더백
+    product: zigzag:167878880
+  point: ''
+  reason: 허리까지 오는 브라운 숏 자켓으로 크림 상의와 미니스커트를 부담 없이 중화. 참고 브라운 가죽 보머/크림 플레어 슬립 원피스/레이스
+    스타킹/블랙 메리제인 → 원피스 대신 아이보리 드레이프 티+아이보리 미니스커트, 스타킹은 블랙 니삭스, 자켓은 더 짧은 숏 자켓으로 (따라
+    함 참고 267)
+  ref: '267'
+  ref_photo: https://curetty.co.kr/web/upload/NNEditor/20250822/c25fw_lookbook_05.jpg
+  styling: The short brown jacket ends at the waist and is worn open over the ivory
+    top; the mini skirt shows below the jacket.
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 트임 랩 니트 티셔츠 (black asymmetric wrap knit tee with slit)
+    name: 트임 랩 니트
+    product: zigzag:163931748
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 벨벳 플라워 프릴 미디스커트 (black velvet flower ruffle midi skirt)
+    name: 벨벳 미디스커트
+    product: zigzag:155487211
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 니하이 롱부츠 (black suede knee-high boots)
+    name: 블랙 롱부츠
+    product: zigzag:149594575
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 블랙 숄더백
+    product: zigzag:168002869
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 목걸이 (silver long bean necklace)
+    name: 롱 목걸이
+    product: zigzag:154156593
+    slot: 목걸이
+  point: ''
+  reason: 블랙 니트에 벨벳 미디스커트와 롱부츠로 질감만 달리한 올블랙. 참고 블랙 비대칭 단추 니트/블랙 플레어 미디/블랙 롱부츠/블랙 숄더백/실버
+    롱 목걸이 → 같은 종류·색 (따라 함 참고 486, 가죽자켓 없음)
+  ref: '486'
+  ref_photo: https://la-room.kr/web/product/extra/small/202609/b50d210fba2a5f162aca020a68bc5230.jpg
+  styling: The cropped knit is worn over the skirt waist; the long necklace hangs
+    over the knit.
+reason: 사용자가 고른 참고 코디 10벌(320·250·515·481·458·318·267·170·486·441)을 그대로 따라 가죽자켓을 부담
+  없게 입는 모음
+shot: flatlay
+theme:
+  date: '2026-10-20'
+  mood: 레더의 시크함에 부드러운 이너를 더한 가을 룩
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 크롭 레더자켓
+    - 레더 블루종
+    - 가죽 자켓
+  slots:
+  - category: 아우터
+    desc: 크롭 레더자켓
+  - category: 상의
+    desc: 보트넥 니트
+  - category: 하의
+    desc: 부츠컷 데님
+  - category: 가방
+    desc: 호보백
+  - category: 신발
+    desc: 롱부츠
+  title_hint: 가죽자켓, 이렇게 입으면 안 부담스러워요
+  type: 아이템
+  why: 아침저녁 9도라 가죽자켓이 가장 잘 어울리는 시기
