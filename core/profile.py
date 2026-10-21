@@ -471,6 +471,13 @@ class Flow(BaseModel):
     scene_prompt: str = "outfit_scene"
     # 게시를 요청하고 이만큼(분) 지나도 게시 기록이 없으면 한 번 알린다
     publish_alert_minutes: int = Field(default=120, ge=30)
+    # 주간 주제가 남아 있으면 다음 주제를 시작하기 전에 남은 주제 목록을 보내고 답을 기다린다:
+    # "좋아" = 1번으로 시작, 번호 = 그 순서로(빠진 번호는 뺌), 글 = Claude 가 목록을 고쳐 다시 보냄,
+    # "새로" = 주간 후보를 새로 받음 (2026-10-21 사용자)
+    theme_review: bool = False
+    # 게시를 확인하면 그동안 받은 /fix 피드백을 규칙에 반영한다 (feedback-rules 워크플로,
+    # 새 피드백이 없으면 건너뜀, 2026-10-21 사용자)
+    rules_after_post: bool = False
 
 
 WEEKDAYS = "월화수목금토일"
@@ -566,6 +573,9 @@ class FeedbackRules(BaseModel):
     # (계정 시간대 HH:MM, 하루 한 번, feedback-rules 워크플로). 새 피드백이 없으면 건너뛴다.
     # null 이면 안 함
     rules_at: str | None = Field(default=None, pattern=HHMM)
+    # 규칙 반영 PR 을 검사(ruff·프로필·pytest)가 통과하면 바로 합친다
+    # (2026-10-21 사용자 "바로 적용"). false 면 PR 만 만들고 알린다
+    rules_merge: bool = False
 
 
 class Comments(BaseModel):

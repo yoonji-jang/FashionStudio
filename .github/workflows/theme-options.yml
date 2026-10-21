@@ -6,6 +6,7 @@ name: theme-options
 # hint 가 있으면 사용자가 "/theme …" 로 직접 적은 주제: 1개만 짜고 보내지 않는다 (schedule 이 바로 진행).
 # week 면 주간 후보(profile flow.week_options, 보통 10개, 2026-10-19 사용자). feedback 은 사용자가 후보에 답한
 # 고칠 점: 앞 후보를 그대로 고쳐 다시 보낸다 (쓸 번호까지 적었으면 chosen 을 채워 보내지 않고 바로 정한다).
+# base 가 있으면 남은 주제 확인 단계(2026-10-21): 앞 후보 대신 이미 고른 남은 주제 목록을 고친다.
 on:
   workflow_dispatch:
     inputs:
@@ -25,6 +26,9 @@ on:
       feedback:
         description: 주간 후보에 사용자가 답한 고칠 점 (빈칸이면 새 후보)
         default: ""
+      base:
+        description: 고칠 남은 주제 목록 (JSON, 남은 주제 확인 단계. 빈칸이면 앞 후보를 고침)
+        default: ""
 
 permissions:
   contents: write
@@ -42,6 +46,7 @@ jobs:
       DATE: ${{ inputs.date }}
       HINT: ${{ inputs.hint }}
       FEEDBACK: ${{ inputs.feedback }}
+      BASE: ${{ inputs.base }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -53,13 +58,18 @@ jobs:
           mkdir -p out
           # 같은 날짜로 앞서 보낸 제안이 있으면 "다시" 요청이다: Claude 가 겹치지 않게 참고한다
           uv run python - <<'PY'
-          import os, yaml
+          import json, os, yaml
           from tools import flow
           from core.store import Store
           opts = flow.load_options(Store(os.environ["ACCOUNT"]))
           if opts and str(opts.date) == os.environ["DATE"] and not opts.hint:
               with open("out/theme_options_previous.yaml", "w", encoding="utf-8") as f:
                   yaml.safe_dump([t.model_dump(mode="json") for t in opts.options], f, allow_unicode=True)
+          if os.environ.get("BASE"):
+              # 남은 주제 확인(2026-10-21): 이미 고른 남은 주제 목록을 앞 후보로 두고 고친다
+              with open("out/theme_options_previous.yaml", "w", encoding="utf-8") as f:
+                  yaml.safe_dump(json.loads(os.environ["BASE"]), f, allow_unicode=True)
+              open("out/theme_review.txt", "w", encoding="utf-8").write("남은 주제 확인\n")
           if os.environ.get("FEEDBACK"):
               with open("out/theme_feedback.txt", "w", encoding="utf-8") as f:
                   f.write(os.environ["FEEDBACK"] + "\n")

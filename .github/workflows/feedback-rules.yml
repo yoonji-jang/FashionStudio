@@ -4,8 +4,10 @@ name: feedback-rules
 # schedule 워크플로가 profile feedback.rules_at 에 하루 한 번 부른다. Actions 탭에서 직접 돌려도 된다.
 # 1. 새 피드백이 없으면 끝 (tools.feedback pending 종료 코드 5)
 # 2. Claude(feedback-rules 스킬)가 지시문·검수 기준·스킬·계정 설정을 고치고 PR 설명을 쓴다
-# 3. 고친 게 있으면 feedback-rules/<계정>-<날짜> 브랜치로 PR 을 만들고 ci 를 돌린 뒤 텔레그램으로 알린다
-#    (GITHUB_TOKEN 으로 만든 PR 에는 ci 가 저절로 돌지 않아서 workflow_dispatch 로 부른다)
+# 3. 고친 게 있으면 feedback-rules/<계정>-<날짜> 브랜치로 PR 을 만들고 텔레그램으로 알린다.
+#    profile feedback.rules_merge 면 검사(ruff·프로필·pytest)가 통과할 때 바로 합친다 (2026-10-21 사용자 "바로 적용").
+#    아니면 ci 를 돌린다 (GITHUB_TOKEN 으로 만든 PR 에는 ci 가 저절로 돌지 않아서 workflow_dispatch 로 부른다)
+# 차례 흐름(profile flow.rules_after_post)이면 게시를 확인할 때 schedule 이 부른다.
 # 4. 다룬 피드백을 data/<계정>/feedback_rules.json 에 적어 main 에 커밋 (다음 날 다시 다루지 않음)
 # 처음 한 번: 저장소 Settings → Actions → General → Workflow permissions 에서
 # "Allow GitHub Actions to create and approve pull requests" 를 켜야 PR 을 만들 수 있다.
@@ -85,6 +87,7 @@ jobs:
           fi
           uv run ruff check . && uv run python -m core.profile && uv run pytest -q > /tmp/test.txt 2>&1 \
             && result="통과" || result="실패 (아래 로그 확인)"
+          tail -5 /tmp/test.txt || true
           branch="feedback-rules/$ACCOUNT-$DAY"
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
@@ -108,6 +111,16 @@ jobs:
           fi
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "tests=$result" >> "$GITHUB_OUTPUT"
+          merge=$(uv run python -c "from core.profile import load_profile; print(str(load_profile('$ACCOUNT').feedback.rules_merge).lower())")
+          if [ "$merge" = true ] && [ "$result" = "통과" ]; then
+            # 바로 적용: 검사를 통과했으면 합친다 (ci 는 돌리지 않음)
+            if gh pr merge "$branch" --squash --delete-branch; then
+              echo "merged=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "::warning::PR 합치기 실패"
+          fi
+          echo "merged=false" >> "$GITHUB_OUTPUT"
           # GITHUB_TOKEN 으로 만든 PR 에는 ci 가 저절로 돌지 않아 직접 부른다 (결과는 PR 검사에 보임)
           gh workflow run ci.yml --ref "$branch" || echo "::warning::ci 실행 요청 실패"
 
@@ -137,8 +150,25 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           URL: ${{ steps.pr.outputs.url }}
           TESTS: ${{ steps.pr.outputs.tests }}
+          MERGED: ${{ steps.pr.outputs.merged }}
         run: |
-          uv run python -m tools.notify send "[$ACCOUNT] 📝 피드백을 규칙에 반영한 PR 을 만들었어요. 확인하고 괜찮으면 합쳐 주세요 (검사: $TESTS)
+          # 바뀐 점: Claude 가 쓴 PR 설명에서 "## 반영한 피드백" 까지(Before/After)와 반영 목록
+          summary=$(uv run python - <<'PY'
+          from pathlib import Path
+          p = Path("out/feedback_rules/pr_body.md")
+          text = p.read_text(encoding="utf-8").strip() if p.exists() else ""
+          print(text[:1500] + (" …" if len(text) > 1500 else ""))
+          PY
+          )
+          if [ "$MERGED" = true ]; then
+            head="[$ACCOUNT] 📝 /fix 피드백을 규칙에 반영했어요. 다음 게시물부터 적용돼요"
+          else
+            head="[$ACCOUNT] 📝 피드백을 규칙에 반영한 PR 을 만들었어요. 확인하고 괜찮으면 합쳐 주세요 (검사: $TESTS)"
+          fi
+          uv run python -m tools.notify send "$head
+
+          $summary
+
           $URL"
 
       - name: 사용량 한도 기록 (한도가 풀리면 schedule 이 같은 입력으로 다시 돌림)

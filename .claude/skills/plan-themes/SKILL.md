@@ -143,6 +143,10 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
   - "다시"만 있으면 앞 후보와 겹치지 않게 전부 새로 짠다. "다시" 뒤에 붙인 말은 새 후보에 반영한다.
   - 쓸 번호까지 적었으면("고치고 1 3 4 5 7 8 10 으로", "3번만 바꾸고 나머지 다") 고친 뒤 번호로 `chosen` 을 채운다.
     번호가 분명하지 않으면 `chosen` 을 비운다 (고친 후보를 다시 보내 사용자가 고른다).
+- `out/theme_review.txt` 가 있으면 앞 후보는 사용자가 이미 고르고 아직 안 쓴 **남은 주제 목록**이다
+  (다음 주제를 시작하기 전 확인 단계, 2026-10-21 사용자). 말한 곳만 고치고 나머지는 그대로 두며,
+  더하라는 말이 없으면 개수를 늘리지 않는다 (`flow.week_options` 개까지 채우지 않는다).
+  "고치고 바로 시작", "나머지는 그대로 진행"처럼 쓸 순서가 분명하면 `chosen` 을 채운다.
 - `out/theme_options.yaml` 에 쓴다. 고를 번호가 없으면 Theme 목록, 있으면
   `{options: [Theme 목록], chosen: [1, 3, 4, …]}` (쓸 순서대로). date 는 DATE 로 둔다.
   검사·저장·텔레그램 보내기는 워크플로가 `python -m tools.flow options --week` 로 한다. themes.json 은 고치지 않는다.

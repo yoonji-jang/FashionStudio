@@ -390,6 +390,8 @@ flow:
   ref_pick: 48              # 주제마다 맞는 참고 코디를 이만큼까지 먼저 보내 번호로 고르게 함 (2026-10-20 사용자)
   scene_prompt: outfit_scene
   publish_alert_minutes: 120
+  theme_review: true        # 다음 주제 전에 남은 주간 주제 목록을 보내 확인·수정 (2026-10-21 사용자)
+  rules_after_post: true    # 게시 뒤 쌓인 /fix 피드백을 규칙에 반영 (2026-10-21 사용자)
 
 # 매일 자동 실행 시간표 (9단계). 바꾼 뒤 `uv run python -m tools.schedule sync` 로 워크플로 시간을 맞춘다.
 # 정각은 GitHub Actions 지연이 커서 피한다. Actions 는 몇 분~30분 늦게 돌 수 있다.
@@ -430,6 +432,7 @@ feedback:
   render_minutes: 40  # 승인 마감(05:00)까지 이만큼 남아야 다시 만듦 (04:20 까지 받음)
   recent_days: 14     # 최근 피드백을 다음 기획·검수에 보여 줄 기간(일)
   rules_at: "08:00"   # 새 피드백을 규칙에 반영하는 PR 만들기 (하루 한 번, 없으면 건너뜀). 바꾸면 tools.schedule sync
+  rules_merge: true   # 검사가 통과하면 규칙 PR 을 바로 합침 (2026-10-21 사용자 "바로 적용")
 
 # 댓글 → DM 코디 링크 (10단계). 켜면 캡션의 "프로필 링크" 문구 대신 cta 가 들어간다.
 # DM 은 mode 에 따라 external: ManyChat 이 댓글 즉시 보냄 (DM 에는 아래 link_page 주소)
