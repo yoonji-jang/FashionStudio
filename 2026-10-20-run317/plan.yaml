@@ -1,0 +1,552 @@
+account: women
+date: '2026-10-20'
+theme:
+  date: '2026-10-20'
+  title_hint: 가죽자켓, 이렇게 입으면 안 부담스러워요
+  mood: 레더의 시크함에 부드러운 이너를 더한 가을 룩
+  slots:
+  - category: 아우터
+    desc: 크롭 레더자켓
+  - category: 상의
+    desc: 보트넥 니트
+  - category: 하의
+    desc: 부츠컷 데님
+  - category: 가방
+    desc: 호보백
+  - category: 신발
+    desc: 롱부츠
+  type: 아이템
+  why: 아침저녁 9도라 가죽자켓이 가장 잘 어울리는 시기
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 크롭 레더자켓
+    - 레더 블루종
+    - 가죽 자켓
+items: []
+looks:
+- items:
+  - product: zigzag:168686940
+    color: 블랙
+    desc: 블랙 레더 블루종 (black oversized boxy glossy faux-leather blouson, hip length,
+      dropped shoulders, ribbed hem and cuffs, front zip)
+    name: 레더 블루종
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 56 cm long from shoulder to hem, 61 cm across the shoulders, 66.5
+      cm across the chest laid flat, 51.5 cm long sleeves
+    cm: 56.0
+  - product: zigzag:167858834
+    color: 아이보리
+    desc: 아이보리 브이넥 니트 (ivory warm-cream relaxed V-neck wool knit sweater, hip length,
+      ribbed neckline, hem and cuffs, slightly dropped shoulders)
+    name: 브이넥 니트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 60 cm long from shoulder to hem, 50 cm across the chest laid flat,
+      67 cm long sleeves
+    cm: 60.0
+  - product: zigzag:128439072
+    color: 블랙
+    desc: 블랙 플리츠 미디 스커트 (black matte crepe pleated skirt with wide soft pleats, A-line
+      flare, falls from the waist to mid-calf)
+    name: 플리츠 미디스커트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 0
+    - 4
+    - 3
+    size: about 58 cm long from waist to hem, 31 cm across the waist laid flat, 50
+      cm across the hips laid flat, 60 cm across the hem laid flat
+    cm: 58.0
+  - product: zigzag:169299009
+    color: 아이보리
+    desc: 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf)
+    name: 아이보리 롱 스카프
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_how: draped loosely around the neck with both long ends hanging down the
+      front
+  - product: zigzag:119684251
+    color: 블랙
+    desc: 블랙 플랫폼 로퍼 (black round-toe chunky platform loafers; the photo shows white
+      socks and a yellow bag, ignore them)
+    name: 블랙 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:167003822
+    color: 블랙
+    desc: 블랙 호보 숄더백 (black hobo shoulder bag with a thin strap)
+    name: 호보 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  - product: zigzag:154156593
+    color: 실버
+    desc: 실버 롱 목걸이 (one silver long bean-chain necklace)
+    name: 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 블랙 레더 블루종에 아이보리 니트와 얇은 롱 스카프, 블랙 미디스커트로 부드럽게. 참고 블랙 가죽 블루종/크림 얇은 니트/블랙 롱스커트/아이보리
+    스카프/블랙 로퍼 → 같은 종류·색, 스커트는 미디, 실버 목걸이 추가 (따라 함 참고 320)
+  point: 블랙 블루종 안에 아이보리 니트와 롱스카프로 부드럽게 풀어요
+  styling: The leather blouson is worn open over the knit; the thin ivory scarf is
+    draped around the neck with both long ends hanging down the front and the silver
+    long necklace hangs over the knit; the knit hem is lightly tucked into the pleated
+    midi skirt.
+  pose: 'studio lookbook pose like the scene photo: she stands facing the camera in
+    the middle of the plain grey studio, feet slightly apart, one hand holding the
+    hobo bag strap at her side and the other hand relaxed, chin tucked down a little;
+    her dark hair is pulled back into a sleek low slicked-back bun with a center part,
+    and she wears small slim oval black sunglasses that hide her eyes; below the sunglasses
+    only her nose, strong lip color and a small silver hoop earring show'
+  scene_image: out/2026-10-20/src/scene.jpg
+  ref: '320'
+  ref_photo: https://the-ore.kr/web/product/small/202609/db449775ed88bc1778294921aead8d66.webp
+- items:
+  - product: zigzag:168759295
+    color: 브라운
+    desc: 브라운 싱글 레더 하프 자켓 (dark brown oversized boxy single-breasted leather half-length
+      jacket with flap pockets and a shirt collar, matte slightly suede-like leather,
+      hip-to-upper-thigh length)
+    name: 브라운 레더 하프자켓
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 0
+    - 1
+    size: about 77.5 cm long from shoulder to hem, 50 cm across the shoulders, 59
+      cm across the chest laid flat, 58 cm long sleeves
+    cm: 77.5
+  - product: zigzag:171433037
+    color: 아이보리
+    desc: 아이보리 드레이프 긴팔 티셔츠 (ivory very light white fitted slim long sleeve jersey
+      top with a wide boat neckline, side ruching, long sleeves covering the wrists,
+      waist length)
+    name: 드레이프 티
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    size: about 54 cm long from shoulder to hem, 34.9 cm across the shoulders, 40.6
+      cm across the chest laid flat, 61.6 cm long sleeves
+    cm: 54.0
+  - product: zigzag:147368133
+    color: 아이보리
+    desc: 아이보리 머메이드 롱스커트 (light cream warm-ivory high-waisted mermaid skirt in thick
+      smooth matte crepe, slim through hips and thighs, flaring below the knee, ankle
+      length, no pleats, no slit)
+    name: 크림 롱스커트
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    size: about 84 cm long from waist to hem, 35 cm across the waist laid flat, 48
+      cm across the hips laid flat, 79 cm across the hem laid flat
+    cm: 84.0
+  - product: zigzag:169299009
+    color: 아이보리
+    desc: 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf)
+    name: 아이보리 롱 스카프
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_how: draped loosely around the neck with both long ends hanging down the
+      front
+  - product: zigzag:130877289
+    color: 블랙
+    desc: 블랙 스웨이드 리본 발레 플랫 (black suede round-toe ballet flats with a small ribbon
+      bow)
+    name: 발레 플랫
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 5
+    - 3
+  - product: zigzag:169369601
+    color: 블랙
+    desc: 블랙 위빙 숄더백 (black woven bucket shoulder bag with a long strap)
+    name: 위빙 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  reason: 브라운 레더 하프 자켓에 크림 롱스커트와 얇은 롱 스카프로 가볍게. 참고 브라운 레더 하이넥 자켓/브라운 슬림 탑/화이트 H라인
+    롱스커트/아이보리 쁘띠 스카프/블랙 발레 플랫 → 같은 종류, 자켓은 더 긴 하프 기장, 스카프는 얇은 롱. 브라운 슬림 탑과 화이트 롱스커트는
+    맞는 색 사진이 없어 아이보리 드레이프 티와 크림 머메이드 롱스커트로 바꿈 (따라 함 참고 481)
+  point: 브라운 하프자켓에 크림 롱스커트로 톤을 맞춰요
+  styling: The longer leather half jacket is worn open; the ivory tee shows underneath
+    and is tucked into the high waist of the cream mermaid skirt; the thin ivory scarf
+    is draped around the neck with both long ends hanging down the front; the skirt
+    fits close through the hips and flares at the hem.
+  pose: 'studio lookbook pose like the scene photo: she stands in the plain light-grey
+    studio in profile, her body turned to the side and her chin lifted, looking up
+    and away, one hand tucked into the jacket pocket, one knee slightly bent; her
+    long black hair is a loose long hippie perm with big soft waves and wispy see-through
+    bangs falling over her cheek and neck, so most of her face is turned away; the
+    visible side of her face has defined strong makeup, a bold double eyelid and a
+    soft blush that is not overdone'
+  scene_image: out/2026-10-20/src/scene_3.jpg
+  ref: '481'
+  ref_photo: https://la-room.kr/web/product/extra/small/202602/fab10f5cff852a5bc7f11368d348222d.jpg
+- items:
+  - product: zigzag:128479345
+    color: 블랙
+    desc: 블랙 오버핏 레더 미디 자켓 (black oversized glossy crinkled faux-leather jacket, single-breasted,
+      large flap pockets, shirt collar, dropped shoulders, hip-to-upper-thigh length)
+    name: 블랙 레더 미디자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 2
+    - 0
+    - 5
+  - product: zigzag:171944915
+    color: 화이트
+    desc: 화이트 드레이프 긴팔 티셔츠 (white fitted slim long sleeve jersey tee with side ruching
+      and an asymmetric V hem, slightly draped neckline, hip length)
+    name: 화이트 티
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 56 cm long from shoulder to hem, 35 cm across the shoulders, 42 cm
+      across the chest laid flat, 63 cm long sleeves
+    cm: 56.0
+  - product: zigzag:172164527
+    color: 아이보리
+    desc: 아이보리 와이드 코튼 팬츠 (ivory wide-leg cotton twill pants, loose straight, five
+      pockets, no pleats, full length covering the top of the shoes)
+    name: 와이드 코튼팬츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+    size: about 105 cm long from waist to hem, 34.75 cm across the waist laid flat,
+      51.75 cm across the hips laid flat, 28.1 cm across the hem laid flat
+    cm: 105.0
+  - product: zigzag:138681881
+    color: 블랙
+    desc: 블랙 레더 벨트 (thin black leather belt with a silver square buckle)
+    name: 블랙 벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    wear_with: 하의
+  - product: zigzag:119684251
+    color: 블랙
+    desc: 블랙 플랫폼 로퍼 (black round-toe chunky platform loafers; the photo shows white
+      socks and a yellow bag, ignore them)
+    name: 블랙 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:161700662
+    color: 블랙
+    desc: 블랙 토크 숄더백 (black glossy small shoulder bag)
+    name: 토크 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:128507670
+    color: 실버
+    desc: 실버 하트 목걸이 (one thin silver necklace with a small heart pendant)
+    name: 하트 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    slot: 목걸이
+  reason: 블랙 오버핏 레더 미디 자켓에 흰 티와 아이보리 와이드 팬츠, 실버 목걸이로 부담 덜게. 참고 블랙 오버핏 가죽 자켓/화이트 무지
+    티/아이보리 와이드 코튼 팬츠/블랙 벨트/블랙 로퍼 → 같은 종류·색, 자켓은 더 긴 오버핏, 실버 목걸이 추가 (따라 함 참고 318)
+  point: 오버핏 레더 미디자켓은 흰 티와 아이보리 팬츠로 가볍게 🖤
+  styling: The oversized long jacket is worn open; the white tee is tucked slightly
+    into the wide ivory pants, a thin black belt shows at the waist and a silver chain
+    necklace sits at the neckline.
+  pose: 'studio lookbook pose like the scene photo: she stands straight facing the
+    camera in the plain white studio with her weight on one leg, her head turned slightly
+    to the side and looking down past her shoulder, one hand hanging at her side holding
+    the small shoulder bag by its strap and the other arm relaxed; her dark hair is
+    pulled back into a sleek slicked-back bun with a neat center part; her face is
+    small and half turned, with defined strong makeup, a bold double eyelid and a
+    soft blush that is not overdone'
+  scene_image: out/2026-10-20/src/scene_2.jpg
+  ref: '318'
+  ref_photo: https://the-ore.kr/web/product/small/202609/882b2d005dd46d68dd95d7e5bf3eb4b8.webp
+- items:
+  - product: zigzag:171289656
+    color: 브라운
+    desc: 서틀 브라운 오버핏 레더 블루종 (subtle brown oversized boxy smooth leather blouson with
+      flap pockets, ribbed hem, front zip, hip length)
+    name: 브라운 블루종
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 65 cm long from shoulder to hem, 55 cm across the shoulders, 59 cm
+      across the chest laid flat, 56 cm long sleeves
+    cm: 65.0
+  - product: zigzag:167752600
+    color: 화이트
+    desc: 화이트 카라 브이 티셔츠 (pure white fitted long sleeve top with a pointed shirt collar
+      and a shallow V opening, gathered ruched center front, a sharp V-notched asymmetric
+      hem that ends at the waist, soft stretchy jersey, a tiny dark logo patch on
+      the chest to ignore)
+    name: 화이트 카라 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 59 cm long from shoulder to hem, 37.5 cm across the shoulders, 38.5
+      cm across the chest laid flat, 62.5 cm long sleeves
+    cm: 59.0
+  - product: zigzag:136402065
+    color: 블루
+    desc: 블루 부츠컷 데님 팬츠 (mid-blue washed stretch bootcut denim pants, slim through
+      the thigh, flaring at the hem, floor length covering the shoes)
+    name: 부츠컷 데님
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 5
+    - 1
+  - product: zigzag:150848794
+    color: 버건디
+    desc: 버건디 숄더백 (burgundy shoulder bag)
+    name: 버건디 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+  - product: zigzag:133601050
+    color: 블랙
+    desc: 블랙 에나멜 포인티드 토 슬링백 (black glossy patent leather pointed-toe slingback with
+      a contrast patent toe cap, thin ankle strap with a small gold square buckle,
+      low thin kitten heel about 4-5 cm)
+    name: 에나멜 슬링백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+  reason: 브라운 레더 블루종에 화이트 티와 부츠컷 데님, 버건디 백, 뾰족코 슈즈로 포인트. 참고 브라운 레더 블루종/화이트 슬림 티/플레어
+    데님/포인티드 슈즈/버건디 스웨이드 백 → 같은 종류, 데님은 부츠컷, 신발은 앞코가 뾰족한 에나멜 슬링백. 하트넥 티는 맞는 색 사진이 없어
+    화이트 카라 티로, 슬링백도 사진에 맞는 에나멜로 바꿈 (따라 함 참고 458)
+  point: 브라운 블루종에 부츠컷 데님, 버건디 백으로 포인트를 줘요 🍷
+  styling: The leather blouson is worn open; the white collared top is worn out over
+    the waist of the jeans, its V-notched hem ending at the waist, with the collar
+    open at the neckline; the bootcut denim flares at the hem and falls long over
+    the pointed-toe shoes.
+  pose: 'studio lookbook pose like the scene photo: she walks slowly across the plain
+    light-grey studio seen from a slight three-quarter side angle, one foot in front
+    of the other, her chin raised and her head turned away to look off to the side;
+    her long black hair is a loose long hippie perm with big soft waves and see-through
+    bangs blowing a little across her face; the visible side of her face has defined
+    strong makeup, a bold double eyelid and a soft blush that is not overdone'
+  scene_image: out/2026-10-20/src/scene_3.jpg
+  ref: '458'
+  ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261019/55207b3ddb467c8f0c5c4a21244b595d.jpg
+- items:
+  - product: zigzag:165551823
+    color: 브라운
+    desc: 브라운 크롭 숏 자켓 (dark brown cropped boxy collarless short jacket in a brushed
+      suede-like matte fabric, button front with chest flap pockets, ends at the waist)
+    name: 브라운 크롭 자켓
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 0
+    - 3
+    size: about 50 cm long from shoulder to hem, 43 cm across the shoulders, 51 cm
+      across the chest laid flat, 55 cm long sleeves
+    cm: 50.0
+  - product: zigzag:171433037
+    color: 아이보리
+    desc: 아이보리 드레이프 긴팔 티셔츠 (ivory very light white fitted slim long sleeve jersey
+      top with a wide boat neckline, side ruching, long sleeves covering the wrists,
+      waist length)
+    name: 드레이프 티
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    size: about 54 cm long from shoulder to hem, 34.9 cm across the shoulders, 40.6
+      cm across the chest laid flat, 61.6 cm long sleeves
+    cm: 54.0
+  - product: zigzag:171927461
+    color: 브라운
+    desc: 브라운 벨트 미니 스커트 (dark chocolate brown A-line high-waisted mini skirt in crisp
+      wool-like twill, upper-thigh length, no pleats, thin diagonal self-fabric belt
+      with a small metal slide buckle at the hip and a long thin tail hanging down
+      the front)
+    name: 브라운 미니스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 40 cm long from waist to hem, 36 cm across the waist laid flat, 45
+      cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 40.0
+  - product: zigzag:100673075
+    color: 차콜
+    desc: 차콜 브라운 슬라우치 니삭스 (dark charcoal-brown chunky ribbed knit knee-high socks,
+      loose and slouchy, bunching at the calf and ending just below the knee; the
+      photo also shows black boots and a pink sleeve, ignore them)
+    name: 차콜 니삭스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 신발
+  - product: zigzag:172014189
+    color: 블랙
+    desc: 블랙 플랫폼 메리제인 (black thick platform mary jane shoes with a double buckle cross
+      strap)
+    name: 메리제인
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    - 5
+  - product: zigzag:167878880
+    color: 블랙
+    desc: 블랙 루비 숄더백 (black small shoulder bag)
+    name: 루비 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 1
+  reason: 허리까지 오는 브라운 숏 자켓으로 아이보리 티와 브라운 미니스커트를 톤온톤으로 부담 없이. 참고 브라운 가죽 보머/크림 플레어 슬립
+    원피스/레이스 스타킹/블랙 메리제인 → 원피스 대신 아이보리 드레이프 티+브라운 미니스커트(아이보리 미니스커트는 맞는 색 사진이 없어 바꿈),
+    스타킹은 짙은 차콜 브라운 니삭스, 자켓은 더 짧은 숏 자켓으로 (따라 함 참고 267)
+  point: 허리 기장 브라운 숏자켓에 미니스커트로 톤온톤을 맞춰요
+  styling: The short brown jacket ends at the waist and is worn open over the ivory
+    top, whose hem is tucked into the high waist of the mini skirt; the mini skirt
+    shows below the jacket and the socks are pulled up over the calves just under
+    the knee.
+  pose: 'studio lookbook pose like the scene photo: she stands facing the camera in
+    the plain white studio with her weight on one leg and one knee slightly bent,
+    the small shoulder bag hanging from one hand at her side, her head tilted and
+    looking down; her hair is a short chin-length wavy hippie perm bob with soft see-through
+    bangs and loose messy curls that fall over her cheeks and hide most of her face,
+    like the hair in the fourth reference photo; the visible part of her face has
+    defined strong makeup, a bold double eyelid and a soft blush that is not overdone'
+  scene_image: out/2026-10-20/src/scene_2.jpg
+  ref: '267'
+  ref_photo: https://curetty.co.kr/web/upload/NNEditor/20250822/c25fw_lookbook_05.jpg
+- items:
+  - product: zigzag:163931748
+    color: 블랙
+    desc: 블랙 트임 랩 니트 티셔츠 (black fitted fine-knit wrap-front top with a button detail
+      and short cap sleeves, waist length, the front wrap shown over the skirt waist)
+    name: 트임 랩 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 63 cm long from shoulder to hem, 39 cm across the shoulders, 52 cm
+      across the chest laid flat, 60 cm long sleeves
+    cm: 63.0
+  - product: zigzag:155487211
+    color: 블랙
+    desc: 블랙 플라워 프릴 미디스커트 (black A-line midi skirt with a ruffle hem, in a floral-textured
+      lace-like jacquard fabric, falls to mid-calf)
+    name: 플라워 미디스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 55 cm long from waist to hem, 46 cm across the waist laid flat, 52
+      cm across the hips laid flat, 59 cm across the hem laid flat
+    cm: 55.0
+  - product: zigzag:114431649
+    color: 블랙
+    desc: 블랙 스웨이드 롱부츠 (black matte suede stretch sock boots with a round toe and a
+      low block heel, very high shaft reaching under the skirt hem)
+    name: 블랙 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:168002869
+    color: 블랙
+    desc: 블랙 숄더백 (black glossy crescent shoulder bag)
+    name: 블랙 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+  - product: zigzag:154156593
+    color: 실버
+    desc: 실버 롱 목걸이 (one silver long bean-chain necklace)
+    name: 롱 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+  reason: 블랙 니트에 플라워 미디스커트와 롱부츠로 질감만 달리한 올블랙. 참고 블랙 비대칭 단추 니트/블랙 플레어 미디/블랙 롱부츠/블랙
+    숄더백/실버 롱 목걸이 → 같은 종류·색 (벨벳 스커트는 사진상 플라워 자카드, 베이지 롱부츠는 블랙 스웨이드 롱부츠로 바꿈) (따라 함 참고
+    486, 가죽자켓 없음)
+  point: 자켓 없이도 올블랙은 질감 차이만으로 풍성해요
+  styling: The cropped knit is worn over the skirt waist with the wrap front showing;
+    the long necklace hangs over the knit; the long boot shafts disappear under the
+    skirt hem.
+  pose: 'studio lookbook pose like the scene photo: she stands in the plain light-grey
+    studio turned in three-quarter view, shoulders angled, her face looking down over
+    her shoulder, one hand lightly touching the skirt and the black bag held at her
+    other side; her dark hair is pulled back into a sleek slicked-back low bun with
+    a center part and no bangs; the visible side of her face has defined strong makeup,
+    a bold double eyelid and a soft blush that is not overdone'
+  scene_image: out/2026-10-20/src/scene.jpg
+  ref: '486'
+  ref_photo: https://la-room.kr/web/product/extra/small/202609/b50d210fba2a5f162aca020a68bc5230.jpg
+reason: 사용자가 고른 참고 코디 10벌(320·250·515·481·458·318·267·170·486·441)을 그대로 따라 가죽자켓을 부담
+  없게 입는 모음
+shot: model
+cover_look: 1
+text:
+  title_lines: [가죽자켓 부담스럽다던, 언니들 이렇게 입더라]
+  intro: 아침저녁으로 쌀쌀한 요즘, 가죽자켓을 부드럽게 입어 보세요 🍂
+  points: []
+  hashtags: ["#가죽자켓", "#레더자켓", "#가죽자켓코디", "#가을코디", "#블루종"]
+mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop model
+  photos: a plain seamless light-grey wall with a pale white matte floor and no props,
+  crisp bright studio light like hard sunlight from one side that casts a sharp soft-edged
+  shadow on the floor, cool neutral grey-white tones, sharp full-length vertical frame
+  shot straight on from about chest height with a standard lens; the model is a fictional
+  Korean woman with an exotic look, strong defined makeup, bold double eyelids and
+  a soft blush that is not overdone'
+scene_image: out/2026-10-20/src/scene.jpg

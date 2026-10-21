@@ -1,0 +1,131 @@
+- product: zigzag:168686940
+  found: true
+  size: FF
+  length: 56
+  shoulder: 61
+  chest: 66.5
+  sleeve: 51.5
+  where: 4-4
+  note: 사이즈 FF 하나뿐. 밑단 단면 47(밑단이 조여지는 블루종)
+- product: zigzag:167858834
+  found: true
+  size: M
+  length: 60
+  chest: 50
+  sleeve: 67
+  where: 7-11
+  note: 표에 어깨 없음. 단면 기준
+- product: zigzag:128439072
+  found: true
+  size: "1"
+  length: 58
+  waist: 31
+  hip: 50
+  hem: 60
+  where: text
+  note: 미디스커트. 사이즈 1, 2 기장 같음
+- product: zigzag:168759295
+  found: true
+  size: M
+  length: 77.5
+  shoulder: 50
+  chest: 59
+  sleeve: 58
+  where: 4-3
+  note: 오버 표시, 밑단 62
+- product: zigzag:171433037
+  found: true
+  size: M
+  length: 54
+  shoulder: 34.9
+  chest: 40.6
+  sleeve: 61.6
+  where: 24-0
+  note: 단면 기준
+- product: zigzag:147368133
+  found: true
+  size: M
+  length: 84
+  waist: 35
+  hip: 48
+  hem: 79
+  where: text
+  note: 롱스커트
+- product: zigzag:128479345
+  found: false
+  note: 본문에 cm 실측표를 못 찾음. 미디 기장감, 루즈핏 설명만 있음
+- product: zigzag:171944915
+  found: true
+  size: 1번
+  length: 56
+  shoulder: 35
+  chest: 42
+  sleeve: 63
+  where: 7-0
+  note: 앞 56, 뒤 46 비대칭 밑단. 밑단 단면 38
+- product: zigzag:172164527
+  found: true
+  size: 27(070)
+  length: 105
+  waist: 34.75
+  hip: 51.75
+  hem: 28.1
+  where: 3-0
+  note: 와이드 코튼팬츠. 둘레 표를 2로 나눔
+- product: zigzag:171289656
+  found: true
+  size: M
+  length: 65
+  shoulder: 55
+  chest: 59
+  sleeve: 56
+  where: 5-9
+  note: 단면 기준
+- product: zigzag:167752600
+  found: true
+  size: M
+  length: 59
+  shoulder: 37.5
+  chest: 38.5
+  sleeve: 62.5
+  where: 11-0
+  note: 앞이 짧고 아래가 비대칭인 셔링 카라 티
+- product: zigzag:136402065
+  found: false
+  note: 본문에 실측표 없음
+- product: zigzag:165551823
+  found: true
+  size: FREE
+  length: 50
+  shoulder: 43
+  chest: 51
+  sleeve: 55
+  where: text
+  note: 크롭 자켓
+- product: zigzag:171927461
+  found: true
+  size: M
+  length: 40
+  waist: 36
+  hip: 45
+  hem: 54
+  where: 35-0
+  note: 미니스커트
+- product: zigzag:163931748
+  found: true
+  size: 긴팔
+  length: 63
+  shoulder: 39
+  chest: 52
+  sleeve: 60
+  where: text
+  note: 총장 범위 46-63, 트임 있는 비대칭 밑단
+- product: zigzag:155487211
+  found: true
+  size: FREE
+  length: 55
+  waist: 46
+  hip: 52
+  hem: 59
+  where: text
+  note: 미디 길이

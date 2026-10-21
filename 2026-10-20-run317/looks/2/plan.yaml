@@ -1,0 +1,133 @@
+account: women
+cover_look: 1
+date: '2026-10-20'
+items:
+- cm: 77.5
+  color: 브라운
+  comment: ''
+  cutout_photo: 4
+  desc: 브라운 싱글 레더 하프 자켓 (dark brown oversized boxy single-breasted leather half-length
+    jacket with flap pockets and a shirt collar, matte slightly suede-like leather,
+    hip-to-upper-thigh length)
+  name: 브라운 레더 하프자켓
+  product: zigzag:168759295
+  ref_photos:
+  - 4
+  - 0
+  - 1
+  size: about 77.5 cm long from shoulder to hem, 50 cm across the shoulders, 59 cm
+    across the chest laid flat, 58 cm long sleeves
+- cm: 54.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 5
+  desc: 아이보리 드레이프 긴팔 티셔츠 (ivory very light white fitted slim long sleeve jersey top
+    with a wide boat neckline, side ruching, long sleeves covering the wrists, waist
+    length)
+  name: 드레이프 티
+  product: zigzag:171433037
+  ref_photos:
+  - 5
+  size: about 54 cm long from shoulder to hem, 34.9 cm across the shoulders, 40.6
+    cm across the chest laid flat, 61.6 cm long sleeves
+- cm: 84.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 5
+  desc: 아이보리 머메이드 롱스커트 (light cream warm-ivory high-waisted mermaid skirt in thick
+    smooth matte crepe, slim through hips and thighs, flaring below the knee, ankle
+    length, no pleats, no slit)
+  name: 크림 롱스커트
+  product: zigzag:147368133
+  ref_photos:
+  - 5
+  size: about 84 cm long from waist to hem, 35 cm across the waist laid flat, 48 cm
+    across the hips laid flat, 79 cm across the hem laid flat
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf)
+  name: 아이보리 롱 스카프
+  product: zigzag:169299009
+  ref_photos:
+  - 0
+  wear_how: draped loosely around the neck with both long ends hanging down the front
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스웨이드 리본 발레 플랫 (black suede round-toe ballet flats with a small ribbon bow)
+  name: 발레 플랫
+  product: zigzag:130877289
+  ref_photos:
+  - 2
+  - 5
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 숄더백 (black woven bucket shoulder bag with a long strap)
+  name: 위빙 숄더백
+  product: zigzag:169369601
+  ref_photos:
+  - 1
+looks: []
+mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop model
+  photos: a plain seamless light-grey wall with a pale white matte floor and no props,
+  crisp bright studio light like hard sunlight from one side that casts a sharp soft-edged
+  shadow on the floor, cool neutral grey-white tones, sharp full-length vertical frame
+  shot straight on from about chest height with a standard lens; the model is a fictional
+  Korean woman with an exotic look, strong defined makeup, bold double eyelids and
+  a soft blush that is not overdone'
+pose: 'studio lookbook pose like the scene photo: she stands in the plain light-grey
+  studio in profile, her body turned to the side and her chin lifted, looking up and
+  away, one hand tucked into the jacket pocket, one knee slightly bent; her long black
+  hair is a loose long hippie perm with big soft waves and wispy see-through bangs
+  falling over her cheek and neck, so most of her face is turned away; the visible
+  side of her face has defined strong makeup, a bold double eyelid and a soft blush
+  that is not overdone'
+reason: 브라운 레더 하프 자켓에 크림 롱스커트와 얇은 롱 스카프로 가볍게. 참고 브라운 레더 하이넥 자켓/브라운 슬림 탑/화이트 H라인 롱스커트/아이보리
+  쁘띠 스카프/블랙 발레 플랫 → 같은 종류, 자켓은 더 긴 하프 기장, 스카프는 얇은 롱. 브라운 슬림 탑과 화이트 롱스커트는 맞는 색 사진이
+  없어 아이보리 드레이프 티와 크림 머메이드 롱스커트로 바꿈 (따라 함 참고 481)
+ref_photo: https://la-room.kr/web/product/extra/small/202602/fab10f5cff852a5bc7f11368d348222d.jpg
+scene_image: out/2026-10-20/src/scene_3.jpg
+shot: model
+styling: The longer leather half jacket is worn open; the ivory tee shows underneath
+  and is tucked into the high waist of the cream mermaid skirt; the thin ivory scarf
+  is draped around the neck with both long ends hanging down the front; the skirt
+  fits close through the hips and flares at the hem.
+text:
+  hashtags:
+  - '#가죽자켓'
+  - '#레더자켓'
+  - '#가죽자켓코디'
+  - '#가을코디'
+  - '#블루종'
+  intro: 아침저녁으로 쌀쌀한 요즘, 가죽자켓을 부드럽게 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 가죽자켓 부담스럽다던
+  - 언니들 이렇게 입더라
+theme:
+  date: '2026-10-20'
+  mood: 레더의 시크함에 부드러운 이너를 더한 가을 룩
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 크롭 레더자켓
+    - 레더 블루종
+    - 가죽 자켓
+  slots:
+  - category: 아우터
+    desc: 크롭 레더자켓
+  - category: 상의
+    desc: 보트넥 니트
+  - category: 하의
+    desc: 부츠컷 데님
+  - category: 가방
+    desc: 호보백
+  - category: 신발
+    desc: 롱부츠
+  title_hint: 가죽자켓, 이렇게 입으면 안 부담스러워요
+  type: 아이템
+  why: 아침저녁 9도라 가죽자켓이 가장 잘 어울리는 시기
