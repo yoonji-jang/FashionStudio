@@ -1,6 +1,7 @@
 from datetime import date
 
 from core.models import RefLook
+from core.store import Store
 from tests.test_plan import product
 from tools import refs
 
@@ -216,3 +217,38 @@ def test_theme_refs_and_ref_numbers():
     assert refs.ref_numbers("141 141 250") == [141, 250]
     assert refs.ref_numbers("알아서") == "auto"
     assert refs.ref_numbers("다시") is None
+
+
+def test_send_album_skipped_under_flow_and_ready_only(monkeypatch, tmp_path, capsys):
+    # 2026-10-21 사용자: 모은 참고 코디를 통째로 보내지 말고 창고로 맞출 수 있는 것만
+    from tools import notify
+
+    store = Store("women", root=tmp_path / "data")
+    slot = {"category": "상의", "color": "핑크", "desc": "핑크 니트", "query": "니트"}
+    store.save_refs([
+        ref(n=101, slots=[slot, slot]).model_copy(update={"ready": True}),
+        ref(n=102, slots=[slot, slot]),
+    ])  # fmt: skip
+    monkeypatch.setattr(refs, "Store", lambda account: store)
+    sent, albums = [], []
+    monkeypatch.setattr(
+        notify.Telegram, "from_env", classmethod(lambda cls: type("T", (), {
+            "send_photos": lambda self, sheets, caption: sent.append(caption)})())
+    )  # fmt: skip
+    monkeypatch.setattr(refs, "album", lambda rs, hosts, out: albums.append(rs) or [out / "1.jpg"])
+    real = refs.load_profile
+
+    def with_flow(on):
+        def load(account):
+            p = real(account)
+            f = p.flow.model_copy(update={"enabled": on, "ref_pick": 48 if on else 0})
+            return p.model_copy(update={"flow": f})
+
+        return load
+
+    monkeypatch.setattr(refs, "load_profile", with_flow(True))
+    assert refs.main(["send", "--account", "women"]) == 0
+    assert not sent and "건너뜀" in capsys.readouterr().out
+    monkeypatch.setattr(refs, "load_profile", with_flow(False))
+    assert refs.main(["send", "--account", "women"]) == 0
+    assert [r.n for r in albums[0]] == [101] and "1벌" in sent[0]
