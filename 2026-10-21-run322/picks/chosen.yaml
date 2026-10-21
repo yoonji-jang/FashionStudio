@@ -1,0 +1,283 @@
+account: women
+date: '2026-10-21'
+items: []
+looks:
+- items:
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 수술 트위드 자켓 (white tassel-fringe tweed jacket, round neck)
+    name: 수술 트위드 자켓
+    product: zigzag:171377979
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 드레이프 셔링 새틴 블라우스 (ivory draped shirred satin blouse, soft cowl neckline)
+    name: 드레이프 새틴 블라우스
+    product: zigzag:171950237
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 원턱 와이드 슬랙스 (black one-tuck wide slacks)
+    name: 원턱 와이드 슬랙스
+    product: zigzag:129830192
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 쁘띠 스카프 (white small scarf)
+    name: 쁘띠 스카프
+    product: zigzag:147477007
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트백 (black tote bag)
+    name: 토트백
+    product: zigzag:167741389
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 로퍼 (black suede loafers)
+    name: 스웨이드 로퍼
+    product: zigzag:153677725
+  point: ''
+  reason: 아이보리 트위드 자켓에 새틴 블라우스와 블랙 슬랙스로 단정한 첫 만남. 참고 =아이보리 프린지 트위드/화이트 카울넥 블라우스/블랙
+    와이드 슬랙스/스카프/블랙 토트/블랙 로퍼 → 맞춘 것 =크림 수술 트위드/아이보리 드레이프 새틴 블라우스/원턱 슬랙스/쁘띠 스카프/토트백/스웨이드
+    로퍼 (따라 함 - 참고 198) [점수 7]
+  ref: '198'
+  ref_photo: https://cafe24.poxo.com/ec01/mondayoff/XOgGzg7Z/cVHdUf1DFtQ9zEgSJJWlJAIF3Ncm2+mQ3NE2wT5hX8dSUx6c5RpelcsonilOxKAyaXFLcC+vbdS2w==/_/web/product/big/202510/3d8133f686adb86ac440870aa4357fea.webp
+- items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 멜란지 그레이 울 하이넥 니트 가디건 (melange gray wool high-neck knit cardigan)
+    name: 하이넥 니트 가디건
+    product: zigzag:165394055
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레이스 레이어드 나시 (white lace layered camisole)
+    name: 레이스 나시
+    product: zigzag:169196108
+  - color: 버건디
+    comment: ''
+    cutout_photo: 0
+    desc: 버건디 코듀로이 미니스커트 (burgundy corduroy mini skirt)
+    name: 코듀로이 미니스커트
+    product: zigzag:153684988
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스트랩 숄더백 (black strap shoulder bag)
+    name: 스트랩 숄더백
+    product: zigzag:170446631
+  - color: 카멜
+    comment: ''
+    cutout_photo: 0
+    desc: 카멜 스웨이드 롱부츠 (camel suede long boots)
+    name: 스웨이드 롱부츠
+    product: zigzag:149594575
+  point: ''
+  reason: 그레이 가디건에 흰 레이스 캐미, 버건디 미니로 대비. 참고 =그레이 퍼 가디건/아이보리 레이스 캐미/브라운 미니/블랙 숄더백/브라운
+    롱부츠 → 맞춘 것 =그레이 니트 가디건(퍼 아님)/레이스 나시/버건디 골덴 미니(브라운 없음)/블랙 숄더백/카멜 롱부츠 (따라 함 - 참고
+    687) [점수 6]
+  ref: '687'
+  ref_photo: https://dayroze.com/web/upload/NNEditor/20261020/6500a8700056767822faa8ff9e294f7c.jpg
+- items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 오버핏 코튼 딥브이넥 맨투맨 (charcoal oversized cotton deep V-neck sweatshirt)
+    name: 딥브이넥 맨투맨
+    product: zigzag:168315295
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레이스 브이넥 슬리브리스 (white thin lace-trim V-neck sleeveless top)
+    name: 레이스 슬리브리스
+    product: zigzag:171212681
+    wear_with: 상의
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레이스 미디 스커트 (white lace midi skirt)
+    name: 레이스 미디 스커트
+    product: zigzag:169309924
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 볼드 가죽 벨트 (black bold leather belt)
+    name: 볼드 가죽벨트
+    product: zigzag:165791922
+    wear_with: 하의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 소가죽 슬라우치 롱부츠 (black leather slouchy long boots)
+    name: 슬라우치 롱부츠
+    product: zigzag:166288289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보백 (black hobo bag)
+    name: 호보백
+    product: zigzag:171374344
+  point: ''
+  reason: 그레이 딥브이 맨투맨에 화이트 레이스 스커트로 허리를 잡아. 참고 =차콜 딥브이 레이스 맨투맨/화이트 슬립 미디/블랙 벨트/슬라우치
+    부츠/호보백 → 맞춘 것 =그레이 딥브이 맨투맨(차콜 아님)+레이스 슬리브리스/레이스 슬립 미디/가죽 벨트/슬라우치 롱부츠/호보백 (따라 함
+    - 참고 703) [점수 8]
+  ref: '703'
+  ref_photo: https://dayroze.com/web/upload/NNEditor/20261016/ee4b75fa4ea7bd17bf447ef8b113f2d4.jpg
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 브이넥 니트 (ivory V-neck knit)
+    name: 브이넥 니트
+    product: zigzag:171290931
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 심플 캐미 탑 (plain white camisole top, no lace)
+    name: 심플 캐미
+    product: zigzag:169382067
+    wear_with: 상의
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레이스 프릴 미니스커트 (white lace ruffle mini skirt)
+    name: 레이스 프릴 미니
+    product: zigzag:160618952
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 발레리나 플랫 (black ballerina flats)
+    name: 발레리나 플랫
+    product: zigzag:152501732
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 토트백 (black mini tote bag)
+    name: 미니 토트백
+    product: zigzag:170446634
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 큐빅 목걸이 (silver cubic necklace)
+    name: 큐빅 목걸이
+    product: zigzag:168750112
+    slot: 목걸이
+  point: ''
+  reason: 아이보리 브이넥 니트 안에 화이트 캐미를 레이어드하고 레이스 프릴 미니로 사랑스럽게. 참고 =아이보리 V넥 오버핏 니트/러플 미니/블랙
+    플랫 → 맞춘 것 =아이보리 브이넥 니트/화이트 레이스 프릴 미니/블랙 발레리나 플랫 (따라 함 - 참고 650) [점수 8]
+  ref: '650'
+  ref_photo: https://curetty.co.kr/web/upload/NNEditor/20250822/c25fw_lookbook_10.jpg
+- items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 딥 브이넥 니트 (black deep V-neck knit)
+    name: 딥브이 니트
+    product: zigzag:168350943
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 심플 캐미 탑 (plain white camisole top, no lace)
+    name: 심플 캐미
+    product: zigzag:169382067
+    wear_with: 상의
+  - color: 골드
+    comment: ''
+    cutout_photo: 0
+    desc: 골드 체인볼 하트 레이어드 목걸이 (gold chain ball heart layered necklace)
+    name: 하트 목걸이
+    product: zigzag:135593307
+    slot: 목걸이
+  - color: 핑크
+    comment: ''
+    cutout_photo: 0
+    desc: 더스티 핑크 새틴 미디스커트 (dusty pink satin midi skirt)
+    name: 새틴 미디스커트
+    product: zigzag:168541609
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 메리제인 플랫슈즈 (black Mary Jane flats)
+    name: 메리제인 플랫
+    product: zigzag:110158856
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 미니 체인백 (black quilted mini chain bag)
+    name: 퀼팅 미니 체인백
+    product: zigzag:155370993
+  point: ''
+  reason: 블랙 브이넥 니트에 더스티 핑크 새틴 스커트로 은은하게. 참고 =블랙 V넥 니트/핑크 새틴 미니/블랙 플랫/블랙 미니 숄더백 →
+    맞춘 것 =블랙 딥브이 니트+흰 캐미/핑크 새틴 미디(미니 아님, 색 미확인)/블랙 메리제인 플랫/블랙 미니 체인백 (따라 함 - 참고 539)
+    [점수 6]
+  ref: '539'
+  ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2026/9/7/20_202609070943168980_61336.jpeg
+- items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 베이직 셔츠 (ivory thin relaxed basic shirt, worn open over the camisole)
+    name: 베이직 셔츠
+    product: zigzag:147774916
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 레이스 레이어드 나시 (white lace layered camisole)
+    name: 레이스 나시
+    product: zigzag:169196108
+    wear_with: 상의
+  - color: 올리브
+    comment: ''
+    cutout_photo: 0
+    desc: 올리브 스웨이드 미디스커트 (olive green suede midi skirt)
+    name: 스웨이드 미디스커트
+    product: zigzag:171970791
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 버킷 숄더백 (black woven bucket shoulder bag)
+    name: 버킷 숄더백
+    product: zigzag:162619421
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 소가죽 미들부츠 (black leather mid-calf boots)
+    name: 미들부츠
+    product: zigzag:148873148
+  point: ''
+  reason: 아이보리 셔츠를 레이스 나시 위에 걸치고 올리브 스웨이드 스커트로 가을 톤. 참고 =아이보리 스트라이프 리브 카디건/흰 레이스 캐미/브라운
+    스웨이드 미니/블랙 버킷백/블랙 앵클부츠 → 맞춘 것 =베이지 스트라이프 가디건/레이스 나시/올리브 스웨이드 미디(브라운 미니 없음)/블랙
+    버킷백/블랙 미들부츠 (따라 함 - 참고 498) [점수 5]
+  ref: '498'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/a43d3bd427e71c05bd1f2da724f70a41.jpg
+reason: 사용자가 고른 참고 코디 10벌을 순서대로 따라 한 첫 데이트 약속룩
+shot: flatlay
+theme:
+  date: '2026-10-21'
+  mood: 부드러운 더스티 핑크·아이보리 톤의 은은한 데이트 룩
+  search_terms:
+    아우터:
+    - 모헤어 가디건
+    - 트위드 자켓
+    하의:
+    - 랩스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 모헤어 가디건
+  - category: 상의
+    desc: 레이스 트리밍 캐미솔
+  - category: 하의
+    desc: 랩스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  title_hint: 첫 데이트 앞두고 꾸민 듯 안 꾸민 가을 약속룩
+  type: 상황
+  why: 쌀쌀한 저녁에 걸치기 좋은 가디건과 부드러운 색감이 어울리는 약속
