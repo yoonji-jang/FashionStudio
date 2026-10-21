@@ -1,0 +1,225 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 브라운 레더 하프자켓
+  product: zigzag:168759295
+- comment: ''
+  name: 드레이프 티
+  product: zigzag:171433037
+- comment: ''
+  name: 크림 롱스커트
+  product: zigzag:147368133
+- comment: ''
+  name: 아이보리 롱 스카프
+  product: zigzag:169299009
+- comment: ''
+  name: 발레 플랫
+  product: zigzag:130877289
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:169369601
+- comment: ''
+  name: 트임 랩 니트
+  product: zigzag:163931748
+- comment: ''
+  name: 플라워 미디스커트
+  product: zigzag:155487211
+- comment: ''
+  name: 블랙 롱부츠
+  product: zigzag:114431649
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:168002869
+- comment: ''
+  name: 롱 목걸이
+  product: zigzag:154156593
+- comment: ''
+  name: 블랙 레더 미디자켓
+  product: zigzag:128479345
+- comment: ''
+  name: 화이트 티
+  product: zigzag:171944915
+- comment: ''
+  name: 와이드 코튼팬츠
+  product: zigzag:172164527
+- comment: ''
+  name: 블랙 벨트
+  product: zigzag:138681881
+- comment: ''
+  name: 블랙 로퍼
+  product: zigzag:119684251
+- comment: ''
+  name: 토크 숄더백
+  product: zigzag:161700662
+- comment: ''
+  name: 하트 목걸이
+  product: zigzag:128507670
+- comment: ''
+  name: 레더 블루종
+  product: zigzag:168686940
+- comment: ''
+  name: 브이넥 니트
+  product: zigzag:167858834
+- comment: ''
+  name: 플리츠 미디스커트
+  product: zigzag:128439072
+- comment: ''
+  name: 호보 숄더백
+  product: zigzag:167003822
+- comment: ''
+  name: 브라운 크롭 자켓
+  product: zigzag:165551823
+- comment: ''
+  name: 브라운 미니스커트
+  product: zigzag:171927461
+- comment: ''
+  name: 차콜 니삭스
+  product: zigzag:100673075
+- comment: ''
+  name: 메리제인
+  product: zigzag:172014189
+- comment: ''
+  name: 루비 숄더백
+  product: zigzag:167878880
+- comment: ''
+  name: 브라운 블루종
+  product: zigzag:171289656
+- comment: ''
+  name: 화이트 카라 티
+  product: zigzag:167752600
+- comment: ''
+  name: 부츠컷 데님
+  product: zigzag:136402065
+- comment: ''
+  name: 버건디 숄더백
+  product: zigzag:150848794
+- comment: ''
+  name: 에나멜 슬링백
+  product: zigzag:133601050
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브라운 레더 하프자켓
+    product: zigzag:168759295
+  - comment: ''
+    name: 드레이프 티
+    product: zigzag:171433037
+  - comment: ''
+    name: 크림 롱스커트
+    product: zigzag:147368133
+  - comment: ''
+    name: 아이보리 롱 스카프
+    product: zigzag:169299009
+  - comment: ''
+    name: 발레 플랫
+    product: zigzag:130877289
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:169369601
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 트임 랩 니트
+    product: zigzag:163931748
+  - comment: ''
+    name: 플라워 미디스커트
+    product: zigzag:155487211
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:114431649
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168002869
+  - comment: ''
+    name: 롱 목걸이
+    product: zigzag:154156593
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 블랙 레더 미디자켓
+    product: zigzag:128479345
+  - comment: ''
+    name: 화이트 티
+    product: zigzag:171944915
+  - comment: ''
+    name: 와이드 코튼팬츠
+    product: zigzag:172164527
+  - comment: ''
+    name: 블랙 벨트
+    product: zigzag:138681881
+  - comment: ''
+    name: 블랙 로퍼
+    product: zigzag:119684251
+  - comment: ''
+    name: 토크 숄더백
+    product: zigzag:161700662
+  - comment: ''
+    name: 하트 목걸이
+    product: zigzag:128507670
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 블루종
+    product: zigzag:168686940
+  - comment: ''
+    name: 브이넥 니트
+    product: zigzag:167858834
+  - comment: ''
+    name: 플리츠 미디스커트
+    product: zigzag:128439072
+  - comment: ''
+    name: 아이보리 롱 스카프
+    product: zigzag:169299009
+  - comment: ''
+    name: 블랙 로퍼
+    product: zigzag:119684251
+  - comment: ''
+    name: 호보 숄더백
+    product: zigzag:167003822
+  - comment: ''
+    name: 롱 목걸이
+    product: zigzag:154156593
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브라운 크롭 자켓
+    product: zigzag:165551823
+  - comment: ''
+    name: 드레이프 티
+    product: zigzag:171433037
+  - comment: ''
+    name: 브라운 미니스커트
+    product: zigzag:171927461
+  - comment: ''
+    name: 차콜 니삭스
+    product: zigzag:100673075
+  - comment: ''
+    name: 메리제인
+    product: zigzag:172014189
+  - comment: ''
+    name: 루비 숄더백
+    product: zigzag:167878880
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-20/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브라운 블루종
+    product: zigzag:171289656
+  - comment: ''
+    name: 화이트 카라 티
+    product: zigzag:167752600
+  - comment: ''
+    name: 부츠컷 데님
+    product: zigzag:136402065
+  - comment: ''
+    name: 버건디 숄더백
+    product: zigzag:150848794
+  - comment: ''
+    name: 에나멜 슬링백
+    product: zigzag:133601050
+title_lines:
+- 센스있는 가죽자켓 코디
+- 고민되면 이렇게 입어봐

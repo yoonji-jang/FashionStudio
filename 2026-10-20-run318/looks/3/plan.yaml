@@ -1,0 +1,137 @@
+account: women
+cover: out/2026-10-20/looks/3/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-20'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오버핏 레더 미디 자켓 (black oversized glossy crinkled faux-leather jacket, single-breasted,
+    large flap pockets, shirt collar, dropped shoulders, hip-to-upper-thigh length)
+  name: 블랙 레더 미디자켓
+  product: zigzag:128479345
+  ref_photos:
+  - 2
+  - 0
+  - 5
+- cm: 56.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 드레이프 긴팔 티셔츠 (white fitted slim long sleeve jersey tee with side ruching
+    and an asymmetric V hem, slightly draped neckline, hip length)
+  name: 화이트 티
+  product: zigzag:171944915
+  ref_photos:
+  - 3
+  size: about 56 cm long from shoulder to hem, 35 cm across the shoulders, 42 cm across
+    the chest laid flat, 63 cm long sleeves
+- cm: 105.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 1
+  desc: 아이보리 와이드 코튼 팬츠 (ivory wide-leg cotton twill pants, loose straight, five pockets,
+    no pleats, full length covering the top of the shoes)
+  name: 와이드 코튼팬츠
+  product: zigzag:172164527
+  ref_photos:
+  - 1
+  - 2
+  size: about 105 cm long from waist to hem, 34.75 cm across the waist laid flat,
+    51.75 cm across the hips laid flat, 28.1 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 벨트 (thin black leather belt with a silver square buckle)
+  name: 블랙 벨트
+  product: zigzag:138681881
+  ref_photos:
+  - 0
+  - 1
+  wear_with: 하의
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 플랫폼 로퍼 (black round-toe chunky platform loafers; the photo shows white
+    socks and a yellow bag, ignore them)
+  name: 블랙 로퍼
+  product: zigzag:119684251
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 토크 숄더백 (black glossy small shoulder bag)
+  name: 토크 숄더백
+  product: zigzag:161700662
+  ref_photos:
+  - 0
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 하트 목걸이 (one thin silver necklace with a small heart pendant)
+  name: 하트 목걸이
+  product: zigzag:128507670
+  ref_photos:
+  - 0
+  - 1
+  slot: 목걸이
+looks: []
+mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop model
+  photos: a plain seamless light-grey wall with a pale white matte floor and no props,
+  crisp bright studio light like hard sunlight from one side that casts a sharp soft-edged
+  shadow on the floor, cool neutral grey-white tones, sharp full-length vertical frame
+  shot straight on from about chest height with a standard lens; the model is a fictional
+  Korean woman with an exotic look, strong defined makeup, bold double eyelids and
+  a soft blush that is not overdone'
+pose: 'studio lookbook pose like the scene photo: she stands straight facing the camera
+  in the plain white studio with her weight on one leg, her head turned slightly to
+  the side and looking down past her shoulder, one hand hanging at her side holding
+  the small shoulder bag by its strap and the other arm relaxed; her dark hair is
+  pulled back into a sleek slicked-back bun with a neat center part; her face is small
+  and half turned, with defined strong makeup, a bold double eyelid and a soft blush
+  that is not overdone'
+reason: 블랙 오버핏 레더 미디 자켓에 흰 티와 아이보리 와이드 팬츠, 실버 목걸이로 부담 덜게. 참고 블랙 오버핏 가죽 자켓/화이트 무지 티/아이보리
+  와이드 코튼 팬츠/블랙 벨트/블랙 로퍼 → 같은 종류·색, 자켓은 더 긴 오버핏, 실버 목걸이 추가 (따라 함 참고 318)
+ref_photo: https://the-ore.kr/web/product/small/202609/882b2d005dd46d68dd95d7e5bf3eb4b8.webp
+scene_image: out/2026-10-20/src/scene_2.jpg
+shot: model
+styling: The oversized long jacket is worn open; the white tee is tucked slightly
+  into the wide ivory pants, a thin black belt shows at the waist and a silver chain
+  necklace sits at the neckline.
+text:
+  hashtags:
+  - '#가죽자켓'
+  - '#레더자켓'
+  - '#가죽자켓코디'
+  - '#가을코디'
+  - '#블루종'
+  intro: 아침저녁으로 쌀쌀한 요즘, 가죽자켓을 부드럽게 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 센스있는 가죽자켓 코디
+  - 고민되면 이렇게 입어봐
+theme:
+  date: '2026-10-20'
+  mood: 레더의 시크함에 부드러운 이너를 더한 가을 룩
+  search_terms:
+    상의:
+    - 보트넥 니트
+    아우터:
+    - 크롭 레더자켓
+    - 레더 블루종
+    - 가죽 자켓
+  slots:
+  - category: 아우터
+    desc: 크롭 레더자켓
+  - category: 상의
+    desc: 보트넥 니트
+  - category: 하의
+    desc: 부츠컷 데님
+  - category: 가방
+    desc: 호보백
+  - category: 신발
+    desc: 롱부츠
+  title_hint: 가죽자켓, 이렇게 입으면 안 부담스러워요
+  type: 아이템
+  why: 아침저녁 9도라 가죽자켓이 가장 잘 어울리는 시기

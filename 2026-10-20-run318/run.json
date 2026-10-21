@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-20-run318",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-20-run317\", \"round\": 1, \"fixes\": [{\"kind\": \"all\", \"text\": \"제목은 “센스있는 가죽자켓 코디 / 고민되면 이렇게 입어봐” 로 변경해\"}]}"
+}
