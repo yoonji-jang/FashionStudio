@@ -46,3 +46,4 @@
 {"account":"women","date":"2026-10-18","run":"2026-10-18-run284","slide":null,"kind":"all","product":null,"look":null,"text":"첫 제목 컷을 look1 로 해서 거기부터 순서대로 2,3,4,5,6 으로 해줘","at":1792121142,"update_id":428675808,"result":"rerender","round":1}
 {"account":"women","date":"2026-10-18","run":"2026-10-18-run285","slide":1,"kind":"cover","product":null,"look":null,"text":"제목은 ‘따라입기 좋는 가을 느낌 래이어드 코디 모음’ 으로 수정해줘","at":1792122994,"update_id":428675809,"result":"rerender","round":2}
 {"account":"women","date":"2026-10-19","run":"2026-10-19-run313","slide":1,"kind":"cover","product":null,"look":null,"text":"제목을 \"뻔한 코디가 지겨울때 / 참고하는 스커트 룩북\" 으로 바꿔줘 /order 4 2 3 6 1 5","at":1792503735,"update_id":428675818,"result":"rerender","round":1}
+{"account":"women","date":"2026-10-20","run":"2026-10-20-run317","slide":null,"kind":"all","product":null,"look":null,"text":"제목은 “센스있는 가죽자켓 코디 / 고민되면 이렇게 입어봐” 로 변경해","at":1792554352,"update_id":428675827,"result":"rerender","round":1}
