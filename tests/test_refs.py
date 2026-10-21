@@ -196,7 +196,22 @@ def test_theme_refs_and_ref_numbers():
         slots=[{"category": "하의", "desc": "스커트"}],
         search_terms={"하의": ["미니 스커트", "롱 스커트"]},
     )
-    assert [r.n for r in refs.theme_refs([skirt, pants, not_ready], th, 48)] == [120]
+    # 맞는 것이 앞, 안 맞아도 뒤에 채운다 (2026-10-21 사용자: 주제에 맞는 룩이 먼저이기만 하면 됨)
+    assert [r.n for r in refs.theme_refs([pants, skirt, not_ready], th, 48)] == [120, 121]
+    # 주제 제목으로 모은 코디와 무드 색이 맞는 코디가 먼저 (2026-10-21: 데이트룩이 어두움)
+    pink = {"category": "상의", "color": "핑크", "desc": "핑크 니트", "query": "니트"}
+    date_th = th.model_copy(
+        update={"title_hint": "첫 데이트 약속룩", "mood": "더스티 핑크·아이보리 톤"}
+    )
+    dark = ref(n=130, slots=[pants_slot, skirt_slot]).model_copy(update={"ready": True})
+    tagged = dark.model_copy(update={"n": 131, "tags": ["첫 데이트 약속룩"]})
+    autumn = dark.model_copy(update={"n": 132, "tags": ["가을"]})
+    rosy = ref(n=133, slots=[pink, skirt_slot]).model_copy(update={"ready": True})
+    got = refs.theme_refs([dark, tagged, autumn, rosy], date_th, 3)
+    assert [r.n for r in got] == [131, 133, 132]
+    assert refs.theme_line(date_th, "화사하게") == (
+        "첫 데이트 약속룩 — 무드: 더스티 핑크·아이보리 톤 (요청: 화사하게)"
+    )
     assert refs.ref_numbers("참고 141, 203번") == [141, 203]
     assert refs.ref_numbers("141 141 250") == [141, 250]
     assert refs.ref_numbers("알아서") == "auto"
