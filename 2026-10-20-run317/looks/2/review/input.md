@@ -9,12 +9,11 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 아우터 | 브라운 싱글 레더 하프 자켓 (dark brown oversized boxy single-breasted leather half-length jacket with flap pockets and a shirt collar, matte slightly suede-like leather, hip-to-upper-thigh length) | 브라운 | - | 기장 77.5cm | outfit/originals/01_outer.jpg |
-| 2 | 상의 | 아이보리 드레이프 긴팔 티셔츠 (ivory very light white fitted slim long sleeve jersey top with a wide boat neckline, side ruching, long sleeves covering the wrists, waist length) | 아이보리 | - | 기장 54cm | outfit/originals/02_top.jpg |
-| 3 | 하의 | 아이보리 머메이드 롱스커트 (light cream warm-ivory high-waisted mermaid skirt in thick smooth matte crepe, slim through hips and thighs, flaring below the knee, ankle length, no pleats, no slit) | 아이보리 | - | 기장 84cm | outfit/originals/03_bottoms.jpg |
-| 4 | 소품 | 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf) | 아이보리 | - | 긴 쪽 22cm | outfit/originals/04_accessory.jpg |
-| 5 | 신발 | 블랙 스웨이드 리본 발레 플랫 (black suede round-toe ballet flats with a small ribbon bow) | 블랙 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
-| 6 | 가방 | 블랙 위빙 숄더백 (black woven bucket shoulder bag with a long strap) | 블랙 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
+| 1 | 상의 | 블랙 트임 랩 니트 티셔츠 (black fitted fine-knit wrap-front top with a button detail and short cap sleeves, waist length, the front wrap shown over the skirt waist) | 블랙 | - | 기장 63cm | outfit/originals/01_top.jpg |
+| 2 | 하의 | 블랙 플라워 프릴 미디스커트 (black A-line midi skirt with a ruffle hem, in a floral-textured lace-like jacquard fabric, falls to mid-calf) | 블랙 | - | 기장 55cm | outfit/originals/02_bottoms.jpg |
+| 3 | 신발 | 블랙 스웨이드 롱부츠 (black matte suede stretch sock boots with a round toe and a low block heel, very high shaft reaching under the skirt hem) | 블랙 | - | 긴 쪽 35cm | outfit/originals/03_shoes.jpg |
+| 4 | 가방 | 블랙 숄더백 (black glossy crescent shoulder bag) | 블랙 | - | 긴 쪽 52cm | outfit/originals/04_bag.jpg |
+| 5 | 소품 | 실버 롱 목걸이 (one silver long bean-chain necklace) | 실버 | - | 긴 쪽 34cm | outfit/originals/05_accessory.jpg |
 
 **장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
 
@@ -22,7 +21,7 @@
 
 - c2: `outfit_r2/results/G_1.jpg`
 
-이미 매긴 점수: c1 7점
+이미 매긴 점수: c1 6점
 
 ## 캐러셀 상품 장
 

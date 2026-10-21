@@ -9,21 +9,20 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 아우터 | 블랙 레더 블루종 (black oversized boxy glossy faux-leather blouson, hip length, dropped shoulders, ribbed hem and cuffs, front zip) | 블랙 | - | 기장 56cm | outfit/originals/01_outer.jpg |
-| 2 | 상의 | 아이보리 브이넥 니트 (ivory warm-cream relaxed V-neck wool knit sweater, hip length, ribbed neckline, hem and cuffs, slightly dropped shoulders) | 아이보리 | - | 기장 60cm | outfit/originals/02_top.jpg |
-| 3 | 하의 | 블랙 플리츠 미디 스커트 (black matte crepe pleated skirt with wide soft pleats, A-line flare, falls from the waist to mid-calf) | 블랙 | - | 기장 58cm | outfit/originals/03_bottoms.jpg |
+| 1 | 아우터 | 브라운 싱글 레더 하프 자켓 (dark brown oversized boxy single-breasted leather half-length jacket with flap pockets and a shirt collar, matte slightly suede-like leather, hip-to-upper-thigh length) | 브라운 | - | 기장 77.5cm | outfit/originals/01_outer.jpg |
+| 2 | 상의 | 아이보리 드레이프 긴팔 티셔츠 (ivory very light white fitted slim long sleeve jersey top with a wide boat neckline, side ruching, long sleeves covering the wrists, waist length) | 아이보리 | - | 기장 54cm | outfit/originals/02_top.jpg |
+| 3 | 하의 | 아이보리 머메이드 롱스커트 (light cream warm-ivory high-waisted mermaid skirt in thick smooth matte crepe, slim through hips and thighs, flaring below the knee, ankle length, no pleats, no slit) | 아이보리 | - | 기장 84cm | outfit/originals/03_bottoms.jpg |
 | 4 | 소품 | 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf) | 아이보리 | - | 긴 쪽 22cm | outfit/originals/04_accessory.jpg |
-| 5 | 신발 | 블랙 플랫폼 로퍼 (black round-toe chunky platform loafers; the photo shows white socks and a yellow bag, ignore them) | 블랙 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
-| 6 | 가방 | 블랙 호보 숄더백 (black hobo shoulder bag with a thin strap) | 블랙 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
-| 7 | 소품 | 실버 롱 목걸이 (one silver long bean-chain necklace) | 실버 | - | 긴 쪽 34cm | outfit/originals/07_accessory.jpg |
+| 5 | 신발 | 블랙 스웨이드 리본 발레 플랫 (black suede round-toe ballet flats with a small ribbon bow) | 블랙 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
+| 6 | 가방 | 블랙 위빙 숄더백 (black woven bucket shoulder bag with a long strap) | 블랙 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
 
 **장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
 
 ## 점수를 매길 코디컷 후보
 
-- 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
+- c2: `outfit_r2/results/G_1.jpg`
 
-이미 매긴 점수: c1 10점
+이미 매긴 점수: c1 7점
 
 ## 캐러셀 상품 장
 
@@ -68,4 +67,4 @@
 
 ## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)
 
-- 없음
+- c2 [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: `review/face_c2_1.jpg` (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)

@@ -2,58 +2,64 @@ account: women
 cover_look: 1
 date: '2026-10-20'
 items:
-- cm: 63.0
-  color: 블랙
+- cm: 65.0
+  color: 브라운
   comment: ''
   cutout_photo: 0
-  desc: 블랙 트임 랩 니트 티셔츠 (black fitted fine-knit wrap-front top with a button detail
-    and short cap sleeves, waist length, the front wrap shown over the skirt waist)
-  name: 트임 랩 니트
-  product: zigzag:163931748
+  desc: 서틀 브라운 오버핏 레더 블루종 (subtle brown oversized boxy smooth leather blouson with
+    flap pockets, ribbed hem, front zip, hip length)
+  name: 브라운 블루종
+  product: zigzag:171289656
   ref_photos:
   - 0
-  size: about 63 cm long from shoulder to hem, 39 cm across the shoulders, 52 cm across
-    the chest laid flat, 60 cm long sleeves
-- cm: 55.0
-  color: 블랙
+  size: about 65 cm long from shoulder to hem, 55 cm across the shoulders, 59 cm across
+    the chest laid flat, 56 cm long sleeves
+- cm: 59.0
+  color: 화이트
   comment: ''
   cutout_photo: 0
-  desc: 블랙 플라워 프릴 미디스커트 (black A-line midi skirt with a ruffle hem, in a floral-textured
-    lace-like jacquard fabric, falls to mid-calf)
-  name: 플라워 미디스커트
-  product: zigzag:155487211
+  desc: 화이트 카라 브이 티셔츠 (pure white fitted long sleeve top with a pointed shirt collar
+    and a shallow V opening, gathered ruched center front, a sharp V-notched asymmetric
+    hem that ends at the waist, soft stretchy jersey, a tiny dark logo patch on the
+    chest to ignore)
+  name: 화이트 카라 티
+  product: zigzag:167752600
   ref_photos:
   - 0
-  size: about 55 cm long from waist to hem, 46 cm across the waist laid flat, 52 cm
-    across the hips laid flat, 59 cm across the hem laid flat
-- color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 스웨이드 롱부츠 (black matte suede stretch sock boots with a round toe and a low
-    block heel, very high shaft reaching under the skirt hem)
-  name: 블랙 롱부츠
-  product: zigzag:114431649
-  ref_photos:
-  - 0
-  - 1
-- color: 블랙
-  comment: ''
-  cutout_photo: 3
-  desc: 블랙 숄더백 (black glossy crescent shoulder bag)
-  name: 블랙 숄더백
-  product: zigzag:168002869
-  ref_photos:
   - 3
-  - 5
-- color: 실버
+  size: about 59 cm long from shoulder to hem, 37.5 cm across the shoulders, 38.5
+    cm across the chest laid flat, 62.5 cm long sleeves
+- color: 블루
   comment: ''
   cutout_photo: 0
-  desc: 실버 롱 목걸이 (one silver long bean-chain necklace)
-  name: 롱 목걸이
-  product: zigzag:154156593
+  desc: 블루 부츠컷 데님 팬츠 (mid-blue washed stretch bootcut denim pants, slim through the
+    thigh, flaring at the hem, floor length covering the shoes)
+  name: 부츠컷 데님
+  product: zigzag:136402065
   ref_photos:
   - 0
-  slot: 목걸이
+  - 5
+  - 1
+- color: 버건디
+  comment: ''
+  cutout_photo: 2
+  desc: 버건디 숄더백 (burgundy shoulder bag)
+  name: 버건디 숄더백
+  product: zigzag:150848794
+  ref_photos:
+  - 2
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 에나멜 포인티드 토 슬링백 (black glossy patent leather pointed-toe slingback with
+    a contrast patent toe cap, thin ankle strap with a small gold square buckle, low
+    thin kitten heel about 4-5 cm)
+  name: 에나멜 슬링백
+  product: zigzag:133601050
+  ref_photos:
+  - 2
+  - 0
 looks: []
 mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop model
   photos: a plain seamless light-grey wall with a pale white matte floor and no props,
@@ -62,21 +68,22 @@ mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop mod
   shot straight on from about chest height with a standard lens; the model is a fictional
   Korean woman with an exotic look, strong defined makeup, bold double eyelids and
   a soft blush that is not overdone'
-pose: 'studio lookbook pose like the scene photo: she stands in the plain light-grey
-  studio turned in three-quarter view, shoulders angled, her face looking down over
-  her shoulder, one hand lightly touching the skirt and the black bag held at her
-  other side; her dark hair is pulled back into a sleek slicked-back low bun with
-  a center part and no bangs; the visible side of her face has defined strong makeup,
-  a bold double eyelid and a soft blush that is not overdone'
-reason: 블랙 니트에 플라워 미디스커트와 롱부츠로 질감만 달리한 올블랙. 참고 블랙 비대칭 단추 니트/블랙 플레어 미디/블랙 롱부츠/블랙 숄더백/실버
-  롱 목걸이 → 같은 종류·색 (벨벳 스커트는 사진상 플라워 자카드, 베이지 롱부츠는 블랙 스웨이드 롱부츠로 바꿈) (따라 함 참고 486, 가죽자켓
-  없음)
-ref_photo: https://la-room.kr/web/product/extra/small/202609/b50d210fba2a5f162aca020a68bc5230.jpg
-scene_image: out/2026-10-20/src/scene.jpg
+pose: 'studio lookbook pose like the scene photo: she walks slowly across the plain
+  light-grey studio seen from a slight three-quarter side angle, one foot in front
+  of the other, her chin raised and her head turned away to look off to the side;
+  her long black hair is a loose long hippie perm with big soft waves and see-through
+  bangs blowing a little across her face; the visible side of her face has defined
+  strong makeup, a bold double eyelid and a soft blush that is not overdone'
+reason: 브라운 레더 블루종에 화이트 티와 부츠컷 데님, 버건디 백, 뾰족코 슈즈로 포인트. 참고 브라운 레더 블루종/화이트 슬림 티/플레어
+  데님/포인티드 슈즈/버건디 스웨이드 백 → 같은 종류, 데님은 부츠컷, 신발은 앞코가 뾰족한 에나멜 슬링백. 하트넥 티는 맞는 색 사진이 없어
+  화이트 카라 티로, 슬링백도 사진에 맞는 에나멜로 바꿈 (따라 함 참고 458)
+ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261019/55207b3ddb467c8f0c5c4a21244b595d.jpg
+scene_image: out/2026-10-20/src/scene_3.jpg
 shot: model
-styling: The cropped knit is worn over the skirt waist with the wrap front showing;
-  the long necklace hangs over the knit; the long boot shafts disappear under the
-  skirt hem.
+styling: The leather blouson is worn open; the white collared top is worn out over
+  the waist of the jeans, its V-notched hem ending at the waist, with the collar open
+  at the neckline; the bootcut denim flares at the hem and falls long over the pointed-toe
+  shoes.
 text:
   hashtags:
   - '#가죽자켓'

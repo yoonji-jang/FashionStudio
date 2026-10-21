@@ -2,64 +2,80 @@ account: women
 cover_look: 1
 date: '2026-10-20'
 items:
-- cm: 65.0
-  color: 브라운
+- cm: 56.0
+  color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 서틀 브라운 오버핏 레더 블루종 (subtle brown oversized boxy smooth leather blouson with
-    flap pockets, ribbed hem, front zip, hip length)
-  name: 브라운 블루종
-  product: zigzag:171289656
+  cutout_photo: 1
+  desc: 블랙 레더 블루종 (black oversized boxy glossy faux-leather blouson, hip length, dropped
+    shoulders, ribbed hem and cuffs, front zip)
+  name: 레더 블루종
+  product: zigzag:168686940
   ref_photos:
-  - 0
-  size: about 65 cm long from shoulder to hem, 55 cm across the shoulders, 59 cm across
-    the chest laid flat, 56 cm long sleeves
-- cm: 59.0
-  color: 화이트
-  comment: ''
-  cutout_photo: 0
-  desc: 화이트 카라 브이 티셔츠 (pure white fitted long sleeve top with a pointed shirt collar
-    and a shallow V opening, gathered ruched center front, a sharp V-notched asymmetric
-    hem that ends at the waist, soft stretchy jersey, a tiny dark logo patch on the
-    chest to ignore)
-  name: 화이트 카라 티
-  product: zigzag:167752600
-  ref_photos:
-  - 0
-  - 3
-  size: about 59 cm long from shoulder to hem, 37.5 cm across the shoulders, 38.5
-    cm across the chest laid flat, 62.5 cm long sleeves
-- color: 블루
-  comment: ''
-  cutout_photo: 0
-  desc: 블루 부츠컷 데님 팬츠 (mid-blue washed stretch bootcut denim pants, slim through the
-    thigh, flaring at the hem, floor length covering the shoes)
-  name: 부츠컷 데님
-  product: zigzag:136402065
-  ref_photos:
-  - 0
-  - 5
   - 1
-- color: 버건디
+  - 0
+  size: about 56 cm long from shoulder to hem, 61 cm across the shoulders, 66.5 cm
+    across the chest laid flat, 51.5 cm long sleeves
+- cm: 60.0
+  color: 아이보리
   comment: ''
-  cutout_photo: 2
-  desc: 버건디 숄더백 (burgundy shoulder bag)
-  name: 버건디 숄더백
-  product: zigzag:150848794
+  cutout_photo: 3
+  desc: 아이보리 브이넥 니트 (ivory warm-cream relaxed V-neck wool knit sweater, hip length,
+    ribbed neckline, hem and cuffs, slightly dropped shoulders)
+  name: 브이넥 니트
+  product: zigzag:167858834
   ref_photos:
-  - 2
+  - 3
+  size: about 60 cm long from shoulder to hem, 50 cm across the chest laid flat, 67
+    cm long sleeves
+- cm: 58.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 플리츠 미디 스커트 (black matte crepe pleated skirt with wide soft pleats, A-line
+    flare, falls from the waist to mid-calf)
+  name: 플리츠 미디스커트
+  product: zigzag:128439072
+  ref_photos:
+  - 0
+  - 4
+  - 3
+  size: about 58 cm long from waist to hem, 31 cm across the waist laid flat, 50 cm
+    across the hips laid flat, 60 cm across the hem laid flat
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf)
+  name: 아이보리 롱 스카프
+  product: zigzag:169299009
+  ref_photos:
+  - 0
+  wear_how: draped loosely around the neck with both long ends hanging down the front
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 플랫폼 로퍼 (black round-toe chunky platform loafers; the photo shows white
+    socks and a yellow bag, ignore them)
+  name: 블랙 로퍼
+  product: zigzag:119684251
+  ref_photos:
   - 0
 - color: 블랙
   comment: ''
-  cutout_photo: 2
-  desc: 블랙 에나멜 포인티드 토 슬링백 (black glossy patent leather pointed-toe slingback with
-    a contrast patent toe cap, thin ankle strap with a small gold square buckle, low
-    thin kitten heel about 4-5 cm)
-  name: 에나멜 슬링백
-  product: zigzag:133601050
+  cutout_photo: 3
+  desc: 블랙 호보 숄더백 (black hobo shoulder bag with a thin strap)
+  name: 호보 숄더백
+  product: zigzag:167003822
   ref_photos:
-  - 2
+  - 3
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 목걸이 (one silver long bean-chain necklace)
+  name: 롱 목걸이
+  product: zigzag:154156593
+  ref_photos:
   - 0
+  slot: 목걸이
 looks: []
 mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop model
   photos: a plain seamless light-grey wall with a pale white matte floor and no props,
@@ -68,22 +84,20 @@ mood: 'a clean minimal fashion lookbook studio shoot like Korean online-shop mod
   shot straight on from about chest height with a standard lens; the model is a fictional
   Korean woman with an exotic look, strong defined makeup, bold double eyelids and
   a soft blush that is not overdone'
-pose: 'studio lookbook pose like the scene photo: she walks slowly across the plain
-  light-grey studio seen from a slight three-quarter side angle, one foot in front
-  of the other, her chin raised and her head turned away to look off to the side;
-  her long black hair is a loose long hippie perm with big soft waves and see-through
-  bangs blowing a little across her face; the visible side of her face has defined
-  strong makeup, a bold double eyelid and a soft blush that is not overdone'
-reason: 브라운 레더 블루종에 화이트 티와 부츠컷 데님, 버건디 백, 뾰족코 슈즈로 포인트. 참고 브라운 레더 블루종/화이트 슬림 티/플레어
-  데님/포인티드 슈즈/버건디 스웨이드 백 → 같은 종류, 데님은 부츠컷, 신발은 앞코가 뾰족한 에나멜 슬링백. 하트넥 티는 맞는 색 사진이 없어
-  화이트 카라 티로, 슬링백도 사진에 맞는 에나멜로 바꿈 (따라 함 참고 458)
-ref_photo: https://vivnluv.co.kr/web/upload/NNEditor/20261019/55207b3ddb467c8f0c5c4a21244b595d.jpg
-scene_image: out/2026-10-20/src/scene_3.jpg
+pose: 'studio lookbook pose like the scene photo: she stands facing the camera in
+  the middle of the plain grey studio, feet slightly apart, one hand holding the hobo
+  bag strap at her side and the other hand relaxed, chin tucked down a little; her
+  dark hair is pulled back into a sleek low slicked-back bun with a center part, and
+  she wears small slim oval black sunglasses that hide her eyes; below the sunglasses
+  only her nose, strong lip color and a small silver hoop earring show'
+reason: 블랙 레더 블루종에 아이보리 니트와 얇은 롱 스카프, 블랙 미디스커트로 부드럽게. 참고 블랙 가죽 블루종/크림 얇은 니트/블랙 롱스커트/아이보리
+  스카프/블랙 로퍼 → 같은 종류·색, 스커트는 미디, 실버 목걸이 추가 (따라 함 참고 320)
+ref_photo: https://the-ore.kr/web/product/small/202609/db449775ed88bc1778294921aead8d66.webp
+scene_image: out/2026-10-20/src/scene.jpg
 shot: model
-styling: The leather blouson is worn open; the white collared top is worn out over
-  the waist of the jeans, its V-notched hem ending at the waist, with the collar open
-  at the neckline; the bootcut denim flares at the hem and falls long over the pointed-toe
-  shoes.
+styling: The leather blouson is worn open over the knit; the thin ivory scarf is draped
+  around the neck with both long ends hanging down the front and the silver long necklace
+  hangs over the knit; the knit hem is lightly tucked into the pleated midi skirt.
 text:
   hashtags:
   - '#가죽자켓'

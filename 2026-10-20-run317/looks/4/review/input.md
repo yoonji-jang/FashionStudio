@@ -9,11 +9,13 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 아우터 | 서틀 브라운 오버핏 레더 블루종 (subtle brown oversized boxy smooth leather blouson with flap pockets, ribbed hem, front zip, hip length) | 브라운 | - | 기장 65cm | outfit/originals/01_outer.jpg |
-| 2 | 상의 | 화이트 카라 브이 티셔츠 (pure white fitted long sleeve top with a pointed shirt collar and a shallow V opening, gathered ruched center front, a sharp V-notched asymmetric hem that ends at the waist, soft stretchy jersey, a tiny dark logo patch on the chest to ignore) | 화이트 | - | 기장 59cm | outfit/originals/02_top.jpg |
-| 3 | 하의 | 블루 부츠컷 데님 팬츠 (mid-blue washed stretch bootcut denim pants, slim through the thigh, flaring at the hem, floor length covering the shoes) | 블루 | - | 기장 100cm | outfit/originals/03_bottoms.jpg |
-| 4 | 가방 | 버건디 숄더백 (burgundy shoulder bag) | 버건디 | - | 긴 쪽 52cm | outfit/originals/04_bag.jpg |
-| 5 | 신발 | 블랙 에나멜 포인티드 토 슬링백 (black glossy patent leather pointed-toe slingback with a contrast patent toe cap, thin ankle strap with a small gold square buckle, low thin kitten heel about 4-5 cm) | 블랙 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
+| 1 | 아우터 | 블랙 레더 블루종 (black oversized boxy glossy faux-leather blouson, hip length, dropped shoulders, ribbed hem and cuffs, front zip) | 블랙 | - | 기장 56cm | outfit/originals/01_outer.jpg |
+| 2 | 상의 | 아이보리 브이넥 니트 (ivory warm-cream relaxed V-neck wool knit sweater, hip length, ribbed neckline, hem and cuffs, slightly dropped shoulders) | 아이보리 | - | 기장 60cm | outfit/originals/02_top.jpg |
+| 3 | 하의 | 블랙 플리츠 미디 스커트 (black matte crepe pleated skirt with wide soft pleats, A-line flare, falls from the waist to mid-calf) | 블랙 | - | 기장 58cm | outfit/originals/03_bottoms.jpg |
+| 4 | 소품 | 아이보리 시스루 롱 스카프 (ivory thin sheer long skinny scarf) | 아이보리 | - | 긴 쪽 22cm | outfit/originals/04_accessory.jpg |
+| 5 | 신발 | 블랙 플랫폼 로퍼 (black round-toe chunky platform loafers; the photo shows white socks and a yellow bag, ignore them) | 블랙 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
+| 6 | 가방 | 블랙 호보 숄더백 (black hobo shoulder bag with a thin strap) | 블랙 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
+| 7 | 소품 | 실버 롱 목걸이 (one silver long bean-chain necklace) | 실버 | - | 긴 쪽 34cm | outfit/originals/07_accessory.jpg |
 
 **장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
 
@@ -21,7 +23,7 @@
 
 - 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
 
-이미 매긴 점수: c1 8점
+이미 매긴 점수: c1 10점
 
 ## 캐러셀 상품 장
 
