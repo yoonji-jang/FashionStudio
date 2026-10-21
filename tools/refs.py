@@ -197,24 +197,64 @@ def album(refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12)
     return sheets
 
 
+# 주제 무드에서 읽는 색 (COLOR_WORDS 에 없는 밝은 색도, 2026-10-21 사용자: 데이트룩은 화사하게)
+EXTRA_COLORS: dict[str, list[str]] = {
+    "핑크": ["핑크", "로즈", "pink"],
+    "라벤더": ["라벤더", "라일락", "연보라"],
+    "스카이블루": ["스카이", "하늘", "소라", "라이트블루"],
+    "민트": ["민트"],
+    "옐로": ["옐로", "레몬", "버터"],
+    "코랄": ["코랄", "피치", "살구"],
+}
+
+
+def mood_colors(theme: Theme) -> list[list[str]]:
+    """주제 무드·칸에 적힌 색 (같은 색으로 보는 말 묶음)."""
+    text = norm(f"{theme.mood} {theme.title_hint} {' '.join(s.desc for s in theme.slots)}")
+    return [words for name, words in {**COLOR_WORDS, **EXTRA_COLORS}.items() if norm(name) in text]
+
+
+def theme_score(r: RefLook, theme: Theme) -> tuple[int, int]:
+    """주제에 얼마나 맞는지 (점수, 검색어 끝말 맞음). 2026-10-21 사용자: 주제에 맞는 룩이 먼저.
+    - 이 주제로 모은 코디(태그가 주제 제목과 같거나 그 낱말이 제목에 다 있음) 4점
+    - 태그 낱말이 제목에 있으면 낱말마다 1점 (최대 2)
+    - 옷 칸 색이 주제 무드 색이면 칸마다 2점, 검색어 전체("트위드 자켓")가 칸에 있으면 칸마다 2점
+    - 검색어 끝말("자켓")만 맞으면 따로 센다 (같은 점수일 때만 앞에)"""
+    title = norm(theme.title_hint)
+    tags = 0
+    for t in r.tags:
+        words = [w for w in re.split(r"[\s,·]+", t) if len(w) >= 2]
+        # "가을"처럼 짧은 낱말 하나는 이 주제로 모은 표시가 아니다
+        if len(norm(t)) >= 4 and (norm(t) in title or title in norm(t) or
+                                  all(norm(w) in title for w in words)):  # fmt: skip
+            tags = max(tags, 4)
+        else:
+            tags = max(tags, min(2, sum(norm(w) in title for w in words)))
+    colors = mood_colors(theme)
+    terms = theme.search_terms
+    last = {c: {q.split()[-1] for q in qs if q.split()} for c, qs in terms.items()}
+    color = full = word = 0
+    for s in r.slots:
+        text = norm(f"{s.color} {s.desc} {s.query}")
+        if s.category in REQUIRED and "안에" not in s.desc:
+            color += 2 * any(any(norm(w) in text for w in ws) for ws in colors)
+        full += 2 * any(norm(q) in text for q in terms.get(s.category, ()))
+        word += any(norm(w) in text for w in last.get(s.category, ()))
+    return tags + color + full, word
+
+
 def theme_refs(refs: list[RefLook], theme: Theme, limit: int) -> list[RefLook]:
     """주제에 맞는 참고 코디 (창고로 맞출 수 있는 것만, 맞는 순서로 limit 개, 2026-10-20 사용자:
-    참고 코디 목록에서 내가 고르게). 주제 검색어의 마지막 낱말(스커트, 레더자켓)이 같은 칸에 있으면
-    맞는 것으로 보고, 태그가 주제 제목에 있으면 더 앞에 둔다. 맞는 게 없으면 최근 것부터."""
-    words = {c: {q.split()[-1] for q in qs if q.split()} for c, qs in theme.search_terms.items()}
-
-    def score(r: RefLook) -> tuple[int, int, int]:
-        hit = sum(
-            any(w in f"{s.desc} {s.query}" for w in words.get(s.category, ())) for s in r.slots
-        )
-        tags = sum(t in theme.title_hint for t in r.tags)
-        return hit, tags, r.n
-
+    참고 코디 목록에서 내가 고르게). theme_score 가 높은 것부터, 같으면 최근 것부터.
+    앞서 보낸 코디도 빼지 않는다 (2026-10-21 사용자: 주제에 맞는 룩이 먼저이기만 하면 됨)."""
     ready = [r for r in refs if r.ready]
-    ranked = sorted(ready, key=score, reverse=True)
-    if any(score(r)[0] for r in ranked):
-        ranked = [r for r in ranked if score(r)[0]]
-    return ranked[:limit]
+    return sorted(ready, key=lambda r: (*theme_score(r, theme), r.n), reverse=True)[:limit]
+
+
+def theme_line(theme: Theme, note: str = "") -> str:
+    """참고 코디 모으기(themes refs_only)에 넘기는 주제 한 줄: 제목 — 무드 (+ 사용자 요청)."""
+    line = f"{theme.title_hint} — 무드: {theme.mood}" if theme.mood else theme.title_hint
+    return f"{line} (요청: {note})" if note else line
 
 
 def ref_numbers(text: str) -> list[int] | str | None:
@@ -239,7 +279,7 @@ def send_theme_album(profile, store: Store, theme: Theme, tg, out: Path) -> list
     caption = (
         f"[{profile.id}] '{theme.title_hint}' 참고 코디 {len(picked)}벌이에요. "
         "따라 할 코디 번호를 보내 주세요 (예: 141 203 250). 고른 게 모자라면 나머지는 제가 채워요. "
-        '맡기시려면 "알아서"'
+        '맡기시려면 "알아서", 주제에 맞는 게 모자라면 "더 모아줘 화사하게"처럼 보내 주세요'
     )
     tg.send_photos(sheets, caption)
     return [r.n for r in picked]

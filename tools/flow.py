@@ -286,6 +286,12 @@ GO_WORDS = {"좋아", "좋아요", "좋음", "그대로", "시작", "진행", "�
 NEW_WORDS = {"새로", "새로 받기", "새 주제", "새후보", "새 후보", "다시"}
 
 
+# 참고 코디 묶음에 "더 모아줘 화사하게" 처럼 답하면 이 주제로 참고 코디를 더 모은다
+MORE_REFS = re.compile(
+    r"^\s*(?:참고\s*코디\s*)?(?:더|다시|새로)\s*모아(?:줘|주세요|요)?(.*)$", re.S
+)
+
+
 def review_reply(text: str) -> Literal["go", "new"] | list[int] | None:
     """남은 주제 확인에 온 답: "go" (그대로 시작), "new" (주간 후보 새로), 번호 (이 순서로),
     None (고칠 점)."""
@@ -525,6 +531,8 @@ def _week_wait(
             st.asked_at, st.revising = ts, True
             tg.send(f"{tag} 말씀하신 대로 주제 후보를 고치고 있어요. 다 되면 다시 보낼게요")
             return f"주간 주제 고치기 요청: {feedback[:60]}"
+    from tools import refs as refs_tool
+
     picked = [opts.options[n - 1] for n in nums]
     refs = profile.themes.ref_search is not None
     if tg is not None:
@@ -543,7 +551,7 @@ def _week_wait(
     if refs:
         # 2026-10-19 사용자: 한 주 주제에 쓸 만한 코디를 쇼핑몰에서 모으기 (주제 맞춤은 느슨하게)
         send("themes.yml", account=st.account, date=opts.date.isoformat(), refs_only=True,
-             week_themes="\n".join(t.title_hint for t in picked))  # fmt: skip
+             week_themes="\n".join(refs_tool.theme_line(t) for t in picked))  # fmt: skip
         st.week, st.asked_at, st.stage, st.alerted = picked, ts, "refs_wait", False
         return f"주간 주제 {len(picked)}개 정함, 참고 코디 수집 요청"
     st.week = picked[1:]
@@ -674,6 +682,19 @@ def _step(
 
         have = {r.n for r in store.refs()}
         for _, text in reversed(week_replies(tg.updates(), tg.chat_id, st.ref_pick_at)):
+            more = MORE_REFS.match(text)
+            if more and profile.themes.ref_search is not None:
+                # 2026-10-21 사용자: 묶음이 주제와 안 맞으면
+                # 이 주제로 참고 코디를 더 모아 다시 보낸다
+                note = more.group(1).strip(" .,:")
+                send("themes.yml", account=st.account, date=day.isoformat(), refs_only=True,
+                     week_themes=refs_tool.theme_line(theme, note))  # fmt: skip
+                st.week = [theme, *st.week]
+                st.asked_at, st.stage = ts, "refs_wait"
+                why = f" ({note})" if note else ""
+                tg.send(f"{tag} '{theme.title_hint}' 주제에 맞는 참고 코디를 더 모을게요{why}. "
+                        "다 모으면 묶음을 다시 보낼게요")  # fmt: skip
+                return f"참고 코디 더 모으기 요청{why}"
             got = refs_tool.ref_numbers(text)
             if got is None:
                 continue

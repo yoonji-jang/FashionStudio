@@ -406,7 +406,9 @@ def test_week_options_feedback_pick_and_queue(env, week_mode):
     assert "주간 주제 7개를 정했어요" in tg.sent[-1]
     wf, inputs = sent[-1]
     assert wf == "themes.yml" and inputs["refs_only"] is True
-    assert inputs["week_themes"].splitlines() == [f"주제 {n}" for n in (11, 13, 14, 15, 17, 18, 20)]
+    assert inputs["week_themes"].splitlines() == [
+        f"주제 {n} — 무드: 가을" for n in (11, 13, 14, 15, 17, 18, 20)
+    ]
     assert tick(env, tg, opts.sent_at + 3600) == []
     # 수집이 끝나면(refs_done.json) 첫 주제 후보
     (store.dir / "refs_done.json").write_text(f'{{"done_at": {opts.sent_at + 4000}}}')
@@ -503,6 +505,38 @@ def test_ref_pick_album_then_candidates_from_chosen_refs(env, monkeypatch):
     # 후보를 기다리는 동안 묶음을 다시 보내지 않는다
     tick(env, tg, T0 + 500)
     assert albums == ["주제 1"]
+
+
+def test_ref_pick_more_refs(env, monkeypatch):
+    # 2026-10-21 사용자: 묶음이 주제와 안 맞으면 "더 모아줘 화사하게" → 이 주제로 더 모아 다시 보냄
+    from tools import refs
+
+    store, results, sent, _ = env
+    monkeypatch.setattr(flow, "load_profile", _profile(10, ref_pick=48))
+    albums = []
+    monkeypatch.setattr(
+        refs, "send_theme_album", lambda p, s, t, tg, out: albums.append(t.title_hint) or [141]
+    )
+    flow.choose_theme(store, theme(1))
+    st = flow.FlowState(account="women", stage="ref_pick_wait", date=date(2026, 10, 15),
+                        week=[theme(2)], ref_pick_at=T0)  # fmt: skip
+    flow.save_state(results, st)
+    tg = FakeTg()
+    tg.text(1, "더 모아줘 화사하게", T0 + 10)
+    tick(env, tg, T0 + 100)
+    st = flow.load_state(results, "women")
+    wf, inputs = sent[-1]
+    assert wf == "themes.yml" and inputs["refs_only"] is True and inputs["date"] == "2026-10-15"
+    assert inputs["week_themes"] == "주제 1 — 무드: 가을 (요청: 화사하게)"
+    assert st.stage == "refs_wait" and [t.title_hint for t in st.week] == ["주제 1", "주제 2"]
+    assert "더 모을게요 (화사하게)" in tg.sent[-1]
+    # 다 모으면 같은 주제로 묶음을 다시 보낸다
+    (store.dir / "refs_done.json").write_text(f'{{"done_at": {T0 + 200}}}')
+    tick(env, tg, T0 + 300)
+    st = flow.load_state(results, "women")
+    assert st.stage == "ref_pick_wait" and albums == ["주제 1"]
+    assert [t.title_hint for t in st.week] == ["주제 2"]
+    assert flow.MORE_REFS.match("참고 코디 다시 모아요") and not flow.MORE_REFS.match("141 203")
 
 
 def test_ref_pick_auto_and_existing_pick_wait(env, monkeypatch):
