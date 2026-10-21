@@ -83,6 +83,7 @@ jobs:
             echo "반영할 규칙이 없어 PR 을 만들지 않습니다"
             [ -f out/feedback_rules/pr_body.md ] && cat out/feedback_rules/pr_body.md
             echo "url=" >> "$GITHUB_OUTPUT"
+            echo "none=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           uv run ruff check . && uv run python -m core.profile && uv run pytest -q > /tmp/test.txt 2>&1 \
@@ -170,6 +171,24 @@ jobs:
           $summary
 
           $URL"
+
+      - name: 텔레그램 알림 (반영할 규칙 없음)
+        # 게시 뒤 흐름이 부른 반영도 결과를 알 수 있게 Claude 가 남긴 이유를 보낸다 (2026-10-21)
+        if: steps.pr.outputs.none == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          summary=$(uv run python - <<'PY'
+          from pathlib import Path
+          p = Path("out/feedback_rules/pr_body.md")
+          text = p.read_text(encoding="utf-8").strip() if p.exists() else ""
+          print(text[:1500] + (" …" if len(text) > 1500 else ""))
+          PY
+          )
+          uv run python -m tools.notify send "[$ACCOUNT] 📝 받은 /fix 피드백을 살펴봤는데 새로 고칠 규칙은 없었어요
+
+          $summary"
 
       - name: 사용량 한도 기록 (한도가 풀리면 schedule 이 같은 입력으로 다시 돌림)
         if: failure()
