@@ -413,15 +413,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "send":
         from tools import notify
 
+        if profile.flow.enabled and profile.flow.ref_pick:
+            # 차례 흐름이 주제마다 맞는 코디만 묶어 보낸다
+            # (2026-10-21 사용자: 모은 것 통째는 너무 많음)
+            print("차례 흐름이 주제별 참고 코디 묶음을 보내므로 건너뜀")
+            return 0
         rs = profile.themes.ref_search
-        new = [r for r in refs if not args.since or r.added >= args.since]
+        # 창고로 맞출 수 있는 것만 (2026-10-21 사용자)
+        new = [r for r in refs if r.ready and (not args.since or r.added >= args.since)]
         sheets = album(new, rs.hosts() if rs else [], args.out)
         if not sheets:
             print("보낼 참고 사진이 없음")
             return 0
-        ready = sum(r.ready for r in new)
         caption = (
-            f"[{profile.id}] 참고 코디 {len(new)}벌 (창고로 맞출 수 있음 {ready}벌). "
+            f"[{profile.id}] 창고로 맞출 수 있는 참고 코디 {len(new)}벌. "
             "빼고 싶은 코디는 번호로 알려 주세요."
         )
         notify.Telegram.from_env().send_photos(sheets, caption)
