@@ -1,10 +1,11 @@
+import json
 from datetime import UTC, date, datetime
 
 import pytest
 import yaml
 from PIL import Image
 
-from core.models import PickRecord, PostRecord, Theme
+from core.models import FeedbackEntry, PickRecord, PostRecord, Theme
 from core.store import Store
 from tests.test_plan import CATS, daily, fake_photos, product  # noqa: F401 - fixture
 from tools import flow, generate, notify
@@ -59,12 +60,15 @@ def theme(n: int) -> Theme:
     )
 
 
-def _profile(week: int, ref_pick: int = 0):
+def _profile(week: int, ref_pick: int = 0, review: bool = False, rules: bool = False):
     real = flow.load_profile
 
     def load(account):
         p = real(account)
-        f = p.flow.model_copy(update={"week_options": week, "ref_pick": ref_pick})
+        f = p.flow.model_copy(
+            update={"week_options": week, "ref_pick": ref_pick, "theme_review": review,
+                    "rules_after_post": rules}
+        )  # fmt: skip
         return p.model_copy(update={"flow": f})
 
     return load
@@ -519,3 +523,119 @@ def test_ref_pick_auto_and_existing_pick_wait(env, monkeypatch):
     tick(env, tg, T0 + 300)
     req = __import__("json").loads(sent[-1][1]["pick"])
     assert "refs" not in req and "제가 골라서" in tg.sent[-1]
+
+
+def _review_state(env, n: int = 4) -> flow.FlowState:
+    store, results, _, _ = env
+    st = flow.FlowState(
+        account="women", stage="publishing", date=date(2026, 10, 15), asked_at=T0,
+        week=[theme(i) for i in range(1, n + 1)],
+    )  # fmt: skip
+    flow.save_state(results, st)
+    store.save_posts([PostRecord(date=date(2026, 10, 15), title="t")])
+    return st
+
+
+def test_theme_review_go_and_reorder(env, monkeypatch):
+    # 2026-10-21 사용자: 주제 시작 전에 남은 주제 목록을 보여 주고 고칠 수 있게
+    monkeypatch.setattr(flow, "load_profile", _profile(10, review=True))
+    store, results, sent, _ = env
+    _review_state(env)
+    tg = FakeTg()
+    lines = tick(env, tg, T0 + 600)
+    st = flow.load_state(results, "women")
+    assert lines == ["게시 확인", "남은 주제 4개 확인 요청 (2026-10-16)"]
+    assert st.stage == "theme_review" and "4. [상황] 주제 4" in tg.sent[-1] and sent == []
+    # 보내기 전 글과 다른 명령은 읽지 않는다
+    tg.text(1, "좋아", T0 + 500)
+    tg.text(2, "/fix 1 신발", T0 + 610)
+    assert tick(env, tg, T0 + 700) == []
+    tg.text(3, "3 1", T0 + 710)
+    tick(env, tg, T0 + 800)
+    st = flow.load_state(results, "women")
+    assert "1. 주제 3\n2. 주제 1" in tg.sent[-2]
+    assert st.stage == "pick_wait" and [t.title_hint for t in st.week] == ["주제 1"]
+    assert store.themes()[-1].title_hint == "주제 3" and sent[-1][0] == "daily.yml"
+    # 다음 게시 뒤 다시 묻고, /ok 도 "좋아"
+    st.stage = "publishing"
+    flow.save_state(results, st)
+    store.save_posts([PostRecord(date=date(2026, 10, 16), title="t")])
+    tick(env, tg, T0 + 900)
+    assert flow.load_state(results, "women").stage == "theme_review"
+    tg.text(4, "/ok", T0 + 910)
+    tick(env, tg, T0 + 1000)
+    st = flow.load_state(results, "women")
+    assert st.stage == "pick_wait" and st.week == [] and store.themes()[-1].title_hint == "주제 1"
+    # 남은 주제가 없으면 묻지 않고 주간 후보
+    st.stage = "publishing"
+    flow.save_state(results, st)
+    store.save_posts([PostRecord(date=date(2026, 10, 17), title="t")])
+    tick(env, tg, T0 + 1100)
+    st = flow.load_state(results, "women")
+    assert st.stage == "theme_wait" and sent[-1][1]["week"] is True
+
+
+def test_theme_review_edit_new_and_bad(env, monkeypatch):
+    monkeypatch.setattr(flow, "load_profile", _profile(10, review=True))
+    store, results, sent, _ = env
+    _review_state(env, 3)
+    tg = FakeTg()
+    tick(env, tg, T0 + 600)
+    tg.text(1, "1 4", T0 + 610)
+    tick(env, tg, T0 + 700)
+    assert "1~3" in tg.sent[-1] and flow.load_state(results, "women").stage == "theme_review"
+    # 고칠 점: 남은 목록을 base 로 Claude 에게, 고친 목록은 주간 후보처럼 와서 번호로 고른다
+    tg.text(2, "2번은 겨울 니트 레이어드로", T0 + 710)
+    tick(env, tg, T0 + 800)
+    wf, inputs = sent[-1]
+    assert wf == "theme-options.yml" and inputs["week"] is True
+    assert inputs["feedback"] == "2번은 겨울 니트 레이어드로" and inputs["date"] == "2026-10-16"
+    assert [t["title_hint"] for t in json.loads(inputs["base"])] == ["주제 1", "주제 2", "주제 3"]
+    st = flow.load_state(results, "women")
+    assert st.stage == "theme_wait" and len(st.week) == 3
+    profile = flow.load_profile("women")
+    opts = flow.save_options(
+        profile, store, date(2026, 10, 16), [theme(1), theme(9), theme(3)], "", tg, T0 + 900,
+        week=True,
+    )  # fmt: skip
+    tg.text(3, "1 2 3", opts.sent_at + 10)
+    tick(env, tg, opts.sent_at + 60)
+    st = flow.load_state(results, "women")
+    assert st.stage == "refs_wait" and [t.title_hint for t in st.week] == [
+        "주제 1",
+        "주제 9",
+        "주제 3",
+    ]
+    # "새로": 남은 주제를 버리고 주간 후보를 새로
+    _review_state(env, 2)
+    tick(env, tg, T0 + 2000)
+    tg.text(4, "새로", T0 + 2010)
+    tick(env, tg, T0 + 2100)
+    st = flow.load_state(results, "women")
+    assert st.stage == "theme_wait" and st.week == [] and sent[-1][1]["feedback"] == ""
+    assert flow.review_reply("좋아요!") == "go" and flow.review_reply("2, 1번") == [2, 1]
+
+
+def test_published_requests_feedback_rules(env, monkeypatch):
+    # 2026-10-21 사용자: 게시가 끝나면 받은 /fix 를 규칙에 반영
+    monkeypatch.setattr(flow, "load_profile", _profile(0, rules=True))
+    store, results, sent, _ = env
+    st = flow.FlowState(account="women", stage="publishing", date=date(2026, 10, 15), asked_at=T0)
+    flow.save_state(results, st)
+    store.save_posts([PostRecord(date=date(2026, 10, 15), title="t")])
+    tg = FakeTg()
+    assert tick(env, tg, T0 + 600)[0] == "게시 확인"  # 새 피드백이 없으면 부르지 않음
+    assert all(wf != "feedback-rules.yml" for wf, _ in sent)
+    store.add_feedback([
+        FeedbackEntry(account="women", date=date(2026, 10, 16), text=f"신발 {i}", at=T0,
+                      update_id=100 + i, result="rerender")
+        for i in range(2)
+    ])  # fmt: skip
+    st = flow.load_state(results, "women")
+    st.stage, st.date = "publishing", date(2026, 10, 16)
+    flow.save_state(results, st)
+    store.save_posts([PostRecord(date=date(2026, 10, 16), title="t")])
+    lines = tick(env, tg, T0 + 1200)
+    assert lines[0] == "게시 확인, 피드백 규칙 반영 요청 (2개)"
+    assert ("feedback-rules.yml", {"account": "women"}) in sent and "2개" in tg.sent[0]
+    assert flow.load_state(results, "women").stage == "theme_wait"

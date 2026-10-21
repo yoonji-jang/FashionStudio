@@ -9,6 +9,12 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
                 (theme-options 워크플로, Claude plan-themes "제안")
                 profile flow.week_options 면 고른 주간 주제가 남아 있으면 다음 것을 바로 쓰고,
                 다 썼으면 주간 후보(보통 10개)를 요청한다 (2026-10-19 사용자)
+                flow.theme_review 면 남은 주제로 시작하기 전에 theme_review 로
+  theme_review  남은 주간 주제 목록을 보내고 답을 기다림 (2026-10-21 사용자):
+                "좋아" = 1번으로 시작, "3 1 2" = 이 순서로 (빠진 번호는 뺌) 바로 시작,
+                "새로" = 주간 후보를 새로 받음,
+                그 밖의 글 = 고칠 점: Claude 가 남은 목록을 고쳐
+                주간 후보처럼 다시 보낸다 (theme_wait)
   theme_wait    제안 주제에 답 기다림: "2" / "/theme 2" = 그 주제,
                 "/theme 니트 레이어드" = 이 말로 주제를 새로 짜서 바로 진행, "다시" = 새 제안.
                 정하면 주제를 themes.json 에 넣고 코디 후보 요청
@@ -22,7 +28,9 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
   rendering     미리보기를 기다림
   preview_wait  /fix 면 고쳐 만들기 (daily mode=fix), /cover 면 표지 바꾸기,
                 /ok 면 바로 게시 요청 (publish), /skip 이면 이 주제를 버리고 theme 으로
-  publishing    게시 기록이 생기면 theme 으로 (다음 주제)
+  publishing    게시 기록이 생기면 theme 으로 (다음 주제).
+                flow.rules_after_post 면 그동안 받은 /fix 피드백을 규칙에 반영하라고
+                feedback-rules 워크플로를 요청한다 (새 피드백이 있을 때만, 2026-10-21 사용자)
 
 상태는 daily-results 의 flow/<계정>/state.json, 장면 사진은 flow/<계정>/<날짜>/scene.jpg
 (여러 장이면 scene_2.jpg, scene_3.jpg …: 공통 무드는 함께 읽고
@@ -66,6 +74,7 @@ from core.store import Store
 Stage = Literal[
     "theme",
     "theme_wait",
+    "theme_review",
     "refs_wait",
     "ref_pick_wait",
     "pick_wait",
@@ -235,10 +244,13 @@ def save_options(
     return opts
 
 
-def week_replies(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, str]]:
+def week_replies(
+    updates: list[dict], chat_id: str, since: int, ok: bool = False
+) -> list[tuple[int, str]]:
     """since 뒤 등록된 채팅에서 온 글 (보낸 시각, 글).
     주간 후보를 기다리는 동안 온 글은 모두 답으로 본다.
-    /theme·/themes 는 명령 이름을 떼고, 다른 / 명령(/ok, /fix …)은 뺀다."""
+    /theme·/themes 는 명령 이름을 떼고, 다른 / 명령(/ok, /fix …)은 뺀다.
+    ok 면 /ok 는 "좋아" 로 본다 (남은 주제 확인)."""
     found = []
     for u in sorted(updates, key=lambda u: u.get("update_id", 0)):
         msg = u.get("message") or {}
@@ -249,7 +261,11 @@ def week_replies(updates: list[dict], chat_id: str, since: int) -> list[tuple[in
             continue
         if text.startswith("/"):
             head, _, rest = text.partition(" ")
-            if head.lower().split("@")[0] not in ("/theme", "/themes"):
+            name = head.lower().split("@")[0]
+            if ok and name == "/ok":
+                found.append((at, "좋아"))
+                continue
+            if name not in ("/theme", "/themes"):
                 continue
             text = rest.strip()
             if not text:
@@ -263,6 +279,39 @@ def week_numbers(text: str) -> list[int] | None:
     if not re.fullmatch(r"\d{1,2}(?:\s*(?:,|\s)\s*\d{1,2})*\s*번?", text):
         return None
     return [int(n) for n in re.findall(r"\d+", text)]
+
+
+GO_WORDS = {"좋아", "좋아요", "좋음", "그대로", "시작", "진행", "고", "ok", "okay", "go", "ㅇㅋ",
+            "오케이", "네", "응", "ㅇㅇ"}  # fmt: skip
+NEW_WORDS = {"새로", "새로 받기", "새 주제", "새후보", "새 후보", "다시"}
+
+
+def review_reply(text: str) -> Literal["go", "new"] | list[int] | None:
+    """남은 주제 확인에 온 답: "go" (그대로 시작), "new" (주간 후보 새로), 번호 (이 순서로),
+    None (고칠 점)."""
+    word = re.sub(r"[\s!.~^]+$", "", text.strip().lower())
+    if word in GO_WORDS:
+        return "go"
+    if word in NEW_WORDS:
+        return "new"
+    return week_numbers(text)
+
+
+def review_text(profile: Profile, st: FlowState) -> str:
+    d = st.date
+    head = f"[{profile.id}] {d:%m-%d}({WEEKDAYS[d.weekday()]}) " if d else f"[{profile.id}] "
+    lines = [head + f"다음 주제를 시작하기 전에 남은 주제 {len(st.week)}개를 확인해 주세요", ""]
+    lines += [f"{n}. [{t.type or '-'}] {t.title_hint}" for n, t in enumerate(st.week, 1)]
+    lines += [
+        "",
+        '• 이대로면 "좋아" → 1번 주제로 시작해요',
+        '• 순서를 바꾸거나 빼려면 번호를 쓸 순서대로: "3 1 2" → 빠진 번호는 빼고 3번부터 시작해요',
+        '• 고칠 점은 편하게 적어 주세요: "2번은 겨울 니트 레이어드로", "하나 더 넣어줘" '
+        "→ 고친 목록을 다시 보내요",
+        '• 남은 주제를 버리고 주간 후보를 새로 받으려면 "새로"',
+        "답을 받을 때까지 기다려요 (한 시간 안에 확인)",
+    ]
+    return "\n".join(lines)
 
 
 def choose_theme(store: Store, theme: Theme) -> None:
@@ -524,6 +573,11 @@ def _step(
         st.pick, st.scene, st.scene_update, st.theme_at = "", "", 0, 0
         st.scenes, st.scene_at = [], 0
         if profile.flow.week_options:
+            if st.week and profile.flow.theme_review and tg is not None:
+                tg.send(review_text(profile, st))
+                st.asked_at = st.read_upto = ts
+                st.stage = "theme_review"
+                return f"남은 주제 {len(st.week)}개 확인 요청 ({st.date})"
             if st.week:
                 chosen, st.week = st.week[0], st.week[1:]
                 left = f" (주간 주제, 남은 주제 {len(st.week)}개)"
@@ -588,6 +642,9 @@ def _step(
             tag,
             profile=profile,
         )
+
+    if st.stage == "theme_review":
+        return _review_wait(profile, store, st, tg, send, ts, dry_run, tag)
 
     if st.stage == "refs_wait":
         done = refs_done_at(store) >= st.asked_at
@@ -772,8 +829,65 @@ def _step(
             _late(st, now, tg, f"{tag} 게시 기록이 아직 없어요 (게시 실행을 확인해 주세요)", mins)
             return ""
         st.stage = "theme"
+        if profile.flow.rules_after_post and profile.feedback.enabled:
+            new = feedback.pending_entries(store)
+            if new:
+                send("feedback-rules.yml", account=acc)
+                if tg is not None:
+                    tg.send(f"{tag} 게시를 확인했어요. 그동안 받은 /fix 피드백 {len(new)}개를 "
+                            "규칙에 반영하고 있어요. 다 되면 바뀐 점을 알려 드릴게요")  # fmt: skip
+                return f"게시 확인, 피드백 규칙 반영 요청 ({len(new)}개)"
         return "게시 확인"
     return ""
+
+
+def _review_wait(
+    profile: Profile,
+    store: Store,
+    st: FlowState,
+    tg,
+    send,
+    ts: int,
+    dry_run: bool,
+    tag: str,
+) -> str:
+    """남은 주간 주제 확인에 온 답을 본다 (마지막 답이 정한다)."""
+    if not st.week:
+        st.stage = "theme"
+        return "확인할 남은 주제가 없음"
+    if tg is None:
+        return ""
+    replies = week_replies(tg.updates(), tg.chat_id, st.read_upto, ok=True)
+    if not replies:
+        return ""
+    st.read_upto = replies[-1][0]
+    answer = review_reply(replies[-1][1])
+    if answer == "new":
+        st.week, st.stage = [], "theme"
+        tg.send(f"{tag} 남은 주제는 버리고 주간 주제 후보를 새로 받을게요")
+        return "남은 주제 버림, 주간 후보 새로"
+    if isinstance(answer, list):
+        bad = [n for n in answer if not 1 <= n <= len(st.week)]
+        if bad or len(set(answer)) != len(answer) or not answer:
+            tg.send(f"{tag} 번호는 1~{len(st.week)} 중에서 겹치지 않게 보내 주세요")
+            return f"남은 주제 번호 잘못됨: {answer}"
+        st.week = [st.week[n - 1] for n in answer]
+        lines = [f"{tag} 이 순서로 할게요", ""]
+        lines += [f"{i}. {t.title_hint}" for i, t in enumerate(st.week, 1)]
+        tg.send("\n".join(lines))
+    if answer is None:
+        feedback = "\n".join(text for _, text in replies)
+        base = json.dumps([t.model_dump(mode="json") for t in st.week], ensure_ascii=False)
+        send("theme-options.yml", account=st.account, date=st.date.isoformat(), hint="",
+             week=True, feedback=feedback, base=base)  # fmt: skip
+        # 고친 목록은 주간 후보처럼 와서(theme_wait) 쓸 번호를 고르면 그 주제들로 간다
+        st.asked_at, st.read_upto, st.revising, st.stage = ts, 0, False, "theme_wait"
+        tg.send(f"{tag} 말씀하신 대로 남은 주제를 고치고 있어요. 고친 목록을 보내면 "
+                "쓸 번호를 순서대로 보내 주세요")  # fmt: skip
+        return f"남은 주제 고치기 요청: {feedback[:60]}"
+    chosen, st.week = st.week[0], st.week[1:]
+    left = f" (주간 주제, 남은 주제 {len(st.week)}개)"
+    return _use_theme(store, st, tg, send, chosen, ts, dry_run, tag, left, profile)
 
 
 def status(results: Path, account: str) -> str:
