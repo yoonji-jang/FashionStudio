@@ -492,9 +492,53 @@ def test_fix_edits_previous_outfit_image(store, tmp_path, monkeypatch):
     assert rec.images == [b"p1", b"p2"] and "Pair the shoes" not in rec.prompt
 
 
+def test_fix_edit_sends_worn_ref_and_user_photos(store, tmp_path, monkeypatch):
+    """/fix 고쳐 그리기에 기준 코디 사진(모델컷도)과 /fix 참고 사진을 상품 참고판 뒤에 붙인다
+    (2026-10-22 사용자: "참고 모델핏과 비슷하게", "코끝을 두 번째 사진처럼")."""
+    from tools import outfit_gen, scout
+
+    base = tmp_path / "prev.jpg"
+    Image.new("RGB", (40, 50), "#888888").save(base)
+    for name in ("u1.jpg", "u2.jpg"):
+        Image.new("RGB", (30, 30), "#333333").save(tmp_path / name)
+    worn = tmp_path / "ref.jpg"
+    Image.new("RGB", (60, 90), "#777777").save(worn)
+    monkeypatch.setattr(outfit_gen, "REPO_ROOT", tmp_path)
+    monkeypatch.setattr(outfit_gen, "reference_panels", lambda *a, **k: [b"p1"])
+    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest: worn)
+    monkeypatch.setattr(outfit_gen.faces, "hide_faces", lambda img: (img, True))
+
+    class Recorder:
+        def generate(self, model, prompt, images):
+            self.prompt, self.images = prompt, images
+            buf = io.BytesIO()
+            Image.new("RGB", (1080, 1350)).save(buf, "PNG")
+            return buf.getvalue(), 0.0
+
+    rec = Recorder()
+    p = daily(
+        edit_from="prev.jpg",
+        edit_request="Make the nose tip higher like user photo 2.",
+        ref_photo="https://woonan.co.kr/a.jpg",
+        edit_refs=["u1.jpg", "u2.jpg", "없음.jpg"],
+        shot="model",
+        scene_image="prev.jpg",
+    )
+    outfit_gen.make_candidates(p, store, tmp_path / "w", load_profile("women"), 1, client=rec)
+    assert len(rec.images) == 5 and rec.images[:2] == [base.read_bytes(), b"p1"]
+    n = 2 + len(p.items)
+    assert f"Image {n} is the reference outfit photo" in rec.prompt
+    assert f"user photo 2 = image {n + 2}" in rec.prompt and "user photo 3" not in rec.prompt
+    assert "her face hidden" not in rec.prompt and "$" not in rec.prompt
+    # 새로 그리는 장면 모델컷에는 기준 코디 사진을 보내지 않는다
+    assert outfit_gen.worn_ref_panel(p, load_profile("women"), tmp_path) is None
+
+
 def test_check_catches_missing_edit_from(store):
     errors, _ = plan.check(daily(edit_from="out/없는/G_1.jpg"), load_profile("women"), store)
     assert any("edit_from 파일이 없습니다" in e for e in errors)
+    errors, _ = plan.check(daily(edit_refs=["out/없는/u.jpg"]), load_profile("women"), store)
+    assert any("edit_refs 파일이 없습니다" in e for e in errors)
 
 
 def test_worn_ref_photo_goes_last(store, tmp_path, monkeypatch):

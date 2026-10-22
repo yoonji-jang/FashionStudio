@@ -137,6 +137,9 @@ class Look(BaseModel):
     # 고칠 점(영어). edit_from 이 있으면 처음부터 그리지 않고 이 그림에서 고칠 곳만 바꾼다
     edit_from: str | None = None
     edit_request: str | None = None
+    # /fix 에 붙여 보낸 참고 사진 (저장소 기준 경로, 2026-10-22 사용자: "코끝을 두 번째 사진처럼").
+    # 고쳐 그릴 때 고칠 점에 적힌 부분만 참고로 같이 보낸다
+    edit_refs: list[str] = Field(default=[], max_length=6)
     # 모델컷(16단계)의 인물·포즈 (영어). 없으면 profile model_shot.poses 의 첫 포즈
     pose: str | None = None
     # 장면 사진을 여러 장 받았을 때 이 벌이 자리·포즈를 따를 사진 (없으면 DailyPlan.scene_image)
@@ -166,6 +169,7 @@ class DailyPlan(BaseModel):
     # 따라 한 기준 코디 사진 주소 (Look.ref_photo). 코디컷을 그릴 때 입는 모양 참고로 같이 보낸다
     ref_photo: str | None = None
     edit_request: str | None = None
+    edit_refs: list[str] = Field(default=[], max_length=6)  # Look.edit_refs 와 같음
     # 16단계: flatlay = 펼친 코디컷, model = 옷을 입은 얼굴 없는 AI 모델컷
     # (전날 게시물 벌을 다시 그림, tools.model_post)
     shot: Literal["flatlay", "model"] = "flatlay"
@@ -213,6 +217,7 @@ class DailyPlan(BaseModel):
                 "cover": look.cover,
                 "edit_from": look.edit_from,
                 "edit_request": look.edit_request,
+                "edit_refs": list(look.edit_refs),
                 "pose": look.pose,
                 "ref_photo": look.ref_photo,
                 "scene_image": look.scene_image or self.scene_image,

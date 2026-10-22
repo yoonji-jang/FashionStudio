@@ -12,6 +12,9 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
   `kind`: `cover`(표지 코디컷·제목), `product`(상품 장, `product` 는 상품 창고 id), `summary`(요약 장),
   `comment`(댓글 안내 장), `caption`(캡션), `all`(장을 정하지 않음), `slide`(그 밖의 장). `slides` 는 장 번호 → 종류 표다.
 - `plan.yaml`: 지난 기획. `cover:` 에 지난 표지 코디컷(이미 검수한 것)이 적혀 있다.
+  `photos` 가 있으면 그 /fix 에 붙여 보낸 참고 사진(저장소 기준 경로, 보낸 순서)이다.
+- `candidates`: 이 미리보기를 만든 코디 후보 파일(`candidates.yaml`, 여러 벌 기획) 경로. "코디 후보 N번 추가"의
+  N 은 이 파일 `looks` 의 N번째 벌이다 (텔레그램 후보 시트 번호).
 - `review/review.json`: 지난 검수 기록 (표지 점수 그대로).
 - `before/`: 지난 `slides/`, `preview.jpg`, `caption.txt`, `report.md`, 코디컷 지시문 `prompt.txt`.
 
@@ -75,6 +78,25 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      그 벌을 새로 그린다. `scene_image` 는 바꾸지 않는다 (워크플로가 같은 경로에 다시 둠).
      장면 사진이 여러 장(`SCENES`)이고 "N번 사진 느낌으로" 같은 피드백이면 그 벌 `scene_image` 를 그 사진으로 바꾸고 새로 그린다.
    - **전체**: 피드백이 어느 장을 말하는지 판단해 위 중 하나로 처리한다.
+     모델·얼굴·키·다리 길이·체형처럼 모든 벌에 보이는 것이면 **모든 벌**에 반영한다 (2026-10-22 사용자:
+     "1~6 까지는 /fix 내용 참고하고, 각각 /fix 숫자 장면까지 추가로 반영"). 벌마다 `edit_request` 에 이 전체 고칠 점과
+     그 벌 장에 온 /fix 를 함께 영어로 쓴다 (예: "Make her about 5 cm taller with longer legs. Give her a softer,
+     innocent-looking face with a higher, straighter nose tip like user photo 2. Also: unbutton the cardigan so the
+     camisole shows."). 한 /fix 안에 전체 고칠 점과 다른 요청(후보 추가 등)이 섞여 있으면 나눠서 각각 처리한다.
+   - **참고 사진** (fix `photos`): 그 /fix 가 닿는 벌마다 `edit_refs:` 에 `photos` 경로를 그대로 적는다 (전체 /fix 면 모든 벌).
+     사진은 Read 로 직접 보고, `edit_request` 에서는 "user photo 1, 2 …"(보낸 순서)로 가리킨다
+     ("두 번째 사진처럼" → "like user photo 2"). 도구가 상품 참고판 뒤에 붙여 보내고, 적힌 부분(코 모양 등)만
+     따르고 그 사람 얼굴·옷·배경은 따르지 말라고 지시한다.
+   - **참고 코디 핏처럼** ("참고 모델핏과 비슷하게", "참고 코디컷처럼"): 그 벌 `ref_photo` 가 있으면 고쳐 그릴 때
+     도구가 그 사진을 핏 참고로 같이 보낸다. `edit_request` 에 "Match how the clothes fit in the reference outfit photo:
+     …"처럼 무엇(기장·품·넣어 입기)을 맞출지 적는다. `ref_photo` 가 없으면 그 벌 기준 코디(`ref`)를 `refs` 창고에서 찾지 말고
+     피드백 글대로만 고친다.
+   - **코디 후보 추가** ("코디 후보 3번도 추가"): `candidates` 파일의 `looks[N-1]` 벌을 plan.yaml `looks` 끝에 그대로
+     붙인다 (상품·`desc`·`size`·`styling`·`ref`·`ref_photo`). 장면 모델컷이면 `daily-feed` 의 "장면 모델컷" 절대로
+     다른 벌과 겹치지 않는 새 `pose` 를 쓰고, 장면 사진이 여러 장이면 어울리는 `scene_image` 도 고른다.
+     이 벌은 지난 그림이 없어 `edit_from` 없이 새로 그린다. 전체 고칠 점(얼굴·키 등)은 이 벌 `pose` 문장에 더한다.
+     벌 수는 profile `looks.count + looks.spare` 까지다. 넘으면 더하지 않고 이유를 적는다.
+     캡션 `text.points` 에도 이 벌 한 줄을 `write-copy` 기준으로 더하고, 이 벌 `point` 를 쓴다.
 3. **검사**: `python -m tools.plan check out/$DATE/plan.yaml`. 오류는 고치고 다시 (최대 3번).
 4. **만들기**: `python -m tools.plan build out/$DATE/plan.yaml --outfit $OUTFIT`
    (`cover:` 가 있으면 코디컷을 새로 만들지 않는다). 종료 코드 2(이미지 서비스 한도)면 `cover:` 를 지난

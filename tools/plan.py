@@ -585,6 +585,9 @@ def check(
     for edit in [plan.edit_from, *(lk.edit_from for lk in plan.looks)]:
         if edit and not (REPO_ROOT / edit).exists():
             errors.append(f"edit_from 파일이 없습니다 (고쳐 그릴 지난 코디컷): {edit}")
+    for ref in [*plan.edit_refs, *(r for lk in plan.looks for r in lk.edit_refs)]:
+        if not (REPO_ROOT / ref).exists():
+            errors.append(f"edit_refs 파일이 없습니다 (/fix 참고 사진): {ref}")
     return errors, warns
 
 
@@ -595,10 +598,11 @@ def looks_problems(
     plan: DailyPlan, profile: Profile, products: dict, draft: bool, wanted: int = 0
 ) -> list[str]:
     """여러 벌 게시물 규칙 (20단계): 벌 수, 벌 사이 상품 겹침.
-    후보(draft)는 사용자가 정한 벌 수(wanted)만큼 많아도 된다."""
+    후보(draft)는 사용자가 정한 벌 수(wanted)만큼 많아도 된다. 게시물은 count 에 spare 만큼
+    더 넣어도 된다 (2026-10-22 사용자: 미리보기 /fix 로 "코디 후보 3번도 추가")."""
     lk = profile.looks
     errors = []
-    lo, hi = (lk.min, max(lk.count + lk.spare, wanted)) if draft else (lk.min, lk.count)
+    lo, hi = (lk.min, max(lk.count + lk.spare, wanted)) if draft else (lk.min, lk.count + lk.spare)
     if not lo <= len(plan.looks) <= hi:
         errors.append(f"벌은 {lo}~{hi}개여야 합니다 (지금 {len(plan.looks)})")
     seen: dict[str, list[int]] = {}

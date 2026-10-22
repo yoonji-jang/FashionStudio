@@ -125,6 +125,15 @@ jobs:
           if [ "$MODE" = fix ]; then
             # 지난 결과(기획, 검수 기록, 고른 코디컷)를 가져오고 피드백을 fix.json 에 둔다
             git fetch origin daily-results
+            # /fix 참고 사진(flow/<계정>/<날짜>/fix/)은 schedule 이 커밋한다. 아직이면 잠깐 기다린다 (2026-10-22)
+            for i in 1 2 3 4 5 6; do
+              missing=0
+              for f in $(jq -r '[.fixes[].photos // [] | .[]] | unique | .[]' <<< "$PICK"); do
+                git cat-file -e "origin/daily-results:$f" 2>/dev/null || missing=1
+              done
+              [ "$missing" = 0 ] && break
+              sleep 20; git fetch -q origin daily-results
+            done
             git worktree add /tmp/prev origin/daily-results
             uv run python -m tools.feedback prepare "$PICK" --prev /tmp/prev --out "out/$DATE"
           elif [ "$MODE" = edit ]; then
