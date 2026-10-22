@@ -702,9 +702,17 @@ def rules_state(store: Store) -> int:
     return int(json.loads(path.read_text(encoding="utf-8")).get("last_update_id", 0))
 
 
-def rules_requests(updates: list[dict], chat_id: str, account: str, after: int) -> list[dict]:
+def _numbered(args: list[str]) -> bool:
+    """ "/fix 2 …" 처럼 장·벌 번호로 시작하는지 (게시물 /fix)."""
+    return bool(args) and re.match(r"\d", args[0]) is not None
+
+
+def rules_requests(
+    updates: list[dict], chat_id: str, account: str, after: int, plain: bool = False
+) -> list[dict]:
     """피드백 규칙을 더하거나 고쳐 달라는 글 (update_id 순): "/fix 규칙 …" 또는 규칙 반영 알림(📝)에
-    답장한 "/fix …" (2026-10-22 사용자). {update_id, at, text}."""
+    답장한 "/fix …" (2026-10-22 사용자). plain 이면 (고칠 미리보기·후보가 없을 때)
+    다른 글에 답장하지 않은 그냥 "/fix …" (번호로 시작하지 않는 것)도. {update_id, at, text}."""
     found = []
     for u in sorted(updates, key=lambda u: u["update_id"]):
         msg = u.get("message") or {}
@@ -714,7 +722,10 @@ def rules_requests(updates: list[dict], chat_id: str, account: str, after: int) 
         if cmd is None:
             continue
         replied = (msg.get("reply_to_message") or {}).get("text") or ""
+        replying = bool(msg.get("reply_to_message"))
         if cmd.name == "fix" and notify.RULES_MARK in replied.split("\n", 1)[0]:
+            cmd = notify.Command("rules", cmd.args, cmd.labeled)
+        elif cmd.name == "fix" and plain and not replying and not _numbered(cmd.args):
             cmd = notify.Command("rules", cmd.args, cmd.labeled)
         text = " ".join(cmd.args).strip()
         if cmd.name == "rules" and text:
