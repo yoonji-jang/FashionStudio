@@ -15,6 +15,8 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
   `photos` 가 있으면 그 /fix 에 붙여 보낸 참고 사진(저장소 기준 경로, 보낸 순서)이다.
 - `candidates`: 이 미리보기를 만든 코디 후보 파일(`candidates.yaml`, 여러 벌 기획) 경로. "코디 후보 N번 추가"의
   N 은 이 파일 `looks` 의 N번째 벌이다 (텔레그램 후보 시트 번호).
+- `earlier`: 이 미리보기가 /fix 로 고친 것이면 고치기 전 결과 `{run, looks: {벌 번호: 코디컷 경로}}`.
+  `out/$DATE/earlier/` 에 고치기 전 `plan.yaml`, 벌마다 고른 코디컷·검수 기록(`looks/<n>/`), `slides/` 가 있다.
 - `review/review.json`: 지난 검수 기록 (표지 점수 그대로).
 - `before/`: 지난 `slides/`, `preview.jpg`, `caption.txt`, `report.md`, 코디컷 지시문 `prompt.txt`.
 
@@ -101,6 +103,12 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      둘 다 없으면 피드백 글대로만 고치고 참고 사진이 없었다고 적는다.
    - **장면 사진처럼**: 그 장면 사진 경로(`SCENES` 의 것, `out/$DATE/src/scene*.jpg`)를 그 벌 `edit_refs` 에 더하고
      `edit_request` 에서 "user photo N" 으로 가리킨다 (자리·포즈를 아예 바꾸는 요청이면 위 "장면 모델컷" 대로 새로 그림).
+   - **고치기 전으로 되돌리기** ("고치기 전 이미지를 사용해줘", "전 그림이 나아", 2026-10-22 사용자): 그 벌을
+     `earlier` 의 같은 벌로 되돌린다. 벌 번호는 상품이 같은 벌로 맞춘다 (`earlier/plan.yaml` 과 비교; 고칠 때
+     상품을 바꾼 벌이면 장 번호 순서로). `out/$DATE/looks/<n>/` 를 지우고 `earlier/looks/<m>/` 를 통째로 복사한 뒤,
+     plan.yaml 그 벌을 `earlier/plan.yaml` 의 벌(상품·`styling`·`pose` 등)로 바꾸고 `cover:` 를 복사한 코디컷 경로
+     (`out/$DATE/looks/<n>/…`)로 둔다. `edit_from`·`edit_request`·`edit_refs` 는 지운다. 이미지 AI 를 부르지 않고
+     지난 검수 점수도 그대로 남는다. 다른 벌은 `cover:` 를 둬 그대로 둔다.
    - **코디 후보 추가** ("코디 후보 3번도 추가"): `candidates` 파일의 `looks[N-1]` 벌을 plan.yaml `looks` 끝에 그대로
      붙인다 (상품·`desc`·`size`·`styling`·`ref`·`ref_photo`). 장면 모델컷이면 `daily-feed` 의 "장면 모델컷" 절대로
      다른 벌과 겹치지 않는 새 `pose` 를 쓰고, 장면 사진이 여러 장이면 어울리는 `scene_image` 도 고른다.
