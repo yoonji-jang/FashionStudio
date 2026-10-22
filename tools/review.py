@@ -101,10 +101,10 @@ def _ref(out: Path, path: Path) -> str:
 
 def cand_path(out: Path, c: Candidate) -> Path:
     """후보 그림 경로 (out 기준, 절대 경로면 그대로). 다른 실행에서 적은 절대 경로라 없으면
-    out 안의 같은 outfit…/ 아래 파일로 찾는다 (10-22 run329: 고치기 전 그림을 되돌린 벌의
-    검수 기록에 out/<날짜>/earlier/… 절대 경로가 남아 다음 실행에서 순서 바꾸기가 멈춤)."""
+    out 안의 같은 outfit…/ 아래 파일로 찾는다. 고치기 전 그림(earlier/, before/)은 이 벌의
+    그림과 다른 그림이라 찾지 않는다 (10-22 run329: 되돌린 1번 벌에 고친 그림이 대신 올라감)."""
     path = out / c.file
-    if path.is_absolute() and not path.exists():
+    if path.is_absolute() and not path.exists() and not {"earlier", "before"} & set(path.parts):
         parts = Path(c.file).parts
         at = [i for i, x in enumerate(parts) if re.fullmatch(r"outfit(_r\d+)?", x)]
         if at and (moved := out.joinpath(*parts[at[-1] :])).exists():

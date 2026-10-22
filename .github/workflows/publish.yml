@@ -37,6 +37,10 @@ on:
         description: 승인이 없을 때 텔레그램으로 알림
         type: boolean
         default: true
+      again:
+        description: 다시 올리기 (그날 게시 기록이 있어도 이 결과로 올리고 기록을 바꿈, 릴스는 안 올림, 앞 게시물은 앱에서 지우기)
+        type: boolean
+        default: false
       reels:
         description: 릴스만 올리기 (그날 캐러셀을 게시한 결과의 영상, 19단계)
         type: boolean
@@ -103,6 +107,7 @@ jobs:
           ${{ inputs.force && 'args+=(--force)' || '' }}
           ${{ inputs.scheduled && 'args+=(--scheduled)' || '' }}
           ${{ !inputs.notify_wait && 'args+=(--quiet-wait)' || '' }}
+          ${{ inputs.again && 'args+=(--again)' || '' }}
           ${{ inputs.reels && 'args+=(--reels)' || '' }}
           ${{ inputs.reel_again && 'args+=(--reel-again)' || '' }}
           set +e
