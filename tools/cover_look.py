@@ -218,12 +218,24 @@ def _reorder(out: Path, order: list[int], profile: Profile) -> list[Path]:
     if effective_collage(plan, profile):
         data["cover_collage"] = False
     _write_yaml(data, out / "plan.yaml")
+    return _refinish(out, profile, reels)
+
+
+def _refinish(out: Path, profile: Profile, reels=None) -> list[Path]:
+    """기획대로 슬라이드·미리보기·manifest 를 다시 만든다 (릴스 설정은 그대로).
+    표지 장과 미리보기 경로."""
     manifest = looks.finish(out, profile)
     if reels is not None:
         manifest = manifest.model_copy(update={"reels": reels})
         (out / "manifest.json").write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
     slides = notify.slide_paths(manifest, out)
     return [slides[0], out / "preview.jpg"]
+
+
+def _half_done(out: Path) -> bool:
+    """순서 바꾸기가 기획·벌 폴더만 바꾸고 manifest 를 못 만든 채 멈췄는지
+    (기획과 manifest 의 벌이 다름)."""
+    return [list(k) for k in _look_keys(out)] != notify.load_manifest(out).plan.looks
 
 
 def chain(out: Path) -> list[Path]:
@@ -298,8 +310,19 @@ def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
     if found is None:
         return ""
     uid, shown = found
-    if load_order(out).get("update_id") == uid:
-        return ""
+    if (rec := load_order(out)).get("update_id") == uid:
+        if dry_run or not rec.get("error") or not _half_done(out):
+            return ""
+        # 지난번에 기획·벌 폴더만 바꾸고 실패한 순서 바꾸기: 바뀐 기획대로 미리보기를 마저 만든다
+        reels = notify.load_manifest(out).reels
+        made = _refinish(out, profile, reels)
+        tg.send_photos(
+            [made[1]],
+            f"{tag} 벌 순서를 {_shown(rec)} 으로 마저 바꿨어요."
+            " 이 순서로 올리려면 /ok 를 보내 주세요",
+        )
+        _save_order(out, uid, rec.get("order", shown), reels is not None)
+        return f"{tag} 멈췄던 벌 순서 바꾸기를 마침"
     prev = next((p for p in chain(out) if load_order(p).get("update_id") == uid), None)
     if prev is not None:
         # 지난 미리보기에서 바꾼 순서. /fix 가 순서를 바꾸기 전 기획을 가져갔으면 같은 순서로 맞춘다
@@ -341,6 +364,10 @@ def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
     )
     _save_order(out, uid, shown, stale)
     return f"{tag} 벌 순서를 {order} 으로 바꿈"
+
+
+def _shown(rec: dict) -> str:
+    return " ".join(map(str, rec.get("order", [])))
 
 
 def _save_order(out: Path, uid: int, shown: list[int], stale: bool, error: str = "") -> None:
