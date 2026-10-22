@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-21-run329",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-21-run326\", \"round\": 2, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"고치기 전 이미지를 사용해줘.\"}]}"
+}

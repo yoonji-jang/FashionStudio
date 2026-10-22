@@ -1,0 +1,114 @@
+account: women
+cover: out/2026-10-21/looks/6/outfit/results/G_1.jpg
+date: '2026-10-21'
+edit_refs: []
+items:
+- cm: 73.5
+  color: 아이보리
+  comment: ''
+  cutout_photo: 4
+  desc: 아이보리 베이직 셔츠 (ivory thin crisp cotton oversized relaxed button-front shirt,
+    long sleeves, hip to upper-thigh length, worn open over the camisole)
+  name: 베이직 셔츠
+  product: zigzag:147774916
+  ref_photos:
+  - 4
+  size: about 73.5 cm long from shoulder to hem, 49 cm across the shoulders, 63.5
+    cm across the chest laid flat, 60 cm long sleeves
+- color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 레이스 레이어드 나시 (white lace-trim fitted camisole, thin straps, hip length)
+  name: 레이스 나시
+  product: zigzag:169196108
+  ref_photos:
+  - 3
+  - 5
+  wear_with: 상의
+- color: 올리브
+  comment: ''
+  cutout_photo: 0
+  desc: 올리브 스웨이드 스커트 (olive green matte suede slim A-line skirt, knee length or just
+    above the knee, not a midi)
+  name: 스웨이드 스커트
+  product: zigzag:171970791
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 위빙 버킷 숄더백 (black woven bucket shoulder bag)
+  name: 버킷 숄더백
+  product: zigzag:162619421
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 소가죽 미들부츠 (black leather mid-calf boots with buckle straps and slouchy creases)
+  name: 미들부츠
+  product: zigzag:148873148
+  ref_photos:
+  - 0
+looks: []
+mood: 'a clean studio lookbook shoot like the scene photo: a plain pale grey seamless
+  studio wall above a pale beige-grey polished concrete floor with soft window-light
+  shadows on it, soft even diffused daylight-like studio light, muted cool-neutral
+  color tone, shot on a good digital camera from a little distance as a full-length
+  vertical frame (head to shoes, the same framing as the scene photo). Her face is
+  clearly visible and is the soft pretty face of the hair-and-makeup references: a
+  fresh dewy pink-based makeup with rosy cheeks and soft pink eyeshadow, a glossy
+  plump rosy-pink lip, a gentle calm gaze slightly off the camera with lips softly
+  parted. Her hair is long soft layered waves, loose or half-up. Ignore any rule about
+  hiding her face: here the face is shown, natural and sharp, never blurred.'
+pose: standing full-length with one foot slightly forward and her weight on the back
+  leg, one hand in the open shirt's pocket line at her hip and the other holding the
+  strap of the bucket bag on her shoulder, her head tilted with a soft gaze slightly
+  off camera; long soft wavy hair worn loose
+reason: 아이보리 셔츠를 레이스 나시 위에 걸치고 올리브 스웨이드 스커트로 가을 톤. 참고 =아이보리 스트라이프 리브 카디건/흰 레이스 캐미/브라운
+  스웨이드 미니/블랙 버킷백/블랙 앵클부츠 → 맞춘 것 =아이보리 셔츠/레이스 나시/올리브 스웨이드 스커트(브라운 미니 없음)/블랙 버킷백/블랙
+  미들부츠 (따라 함 - 참고 498) [점수 5]
+ref_photo: https://woonan.co.kr/web/product/big/202610/a43d3bd427e71c05bd1f2da724f70a41.jpg
+scene_image: out/2026-10-21/src/scene.jpg
+shot: model
+styling: The ivory shirt is worn open over the white lace camisole, hanging out over
+  the skirt waistband with its sleeves pushed up to the forearms; the bucket bag hangs
+  on her shoulder.
+text:
+  hashtags:
+  - '#첫데이트룩'
+  - '#데이트룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#트위드자켓'
+  - '#레이스스커트'
+  - '#꾸안꾸'
+  intro: 이슬비 내리는 쌀쌀한 날, 첫 데이트엔 부드러운 톤으로 꾸민 듯 안 꾸민 룩 어때요 🍂
+  points: []
+  title_lines:
+  - 첫 데이트 앞두고 고른
+  - 꾸안꾸 가을 옷장 공개
+theme:
+  date: '2026-10-21'
+  mood: 부드러운 더스티 핑크·아이보리 톤의 은은한 데이트 룩
+  search_terms:
+    아우터:
+    - 모헤어 가디건
+    - 트위드 자켓
+    하의:
+    - 랩스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 모헤어 가디건
+  - category: 상의
+    desc: 레이스 트리밍 캐미솔
+  - category: 하의
+    desc: 랩스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  title_hint: 첫 데이트 앞두고 꾸민 듯 안 꾸민 가을 약속룩
+  type: 상황
+  why: 쌀쌀한 저녁에 걸치기 좋은 가디건과 부드러운 색감이 어울리는 약속
