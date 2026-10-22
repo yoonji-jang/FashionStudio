@@ -29,8 +29,11 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
   preview_wait  /fix 면 고쳐 만들기 (daily mode=fix), /cover 면 표지 바꾸기,
                 /ok 면 바로 게시 요청 (publish), /skip 이면 이 주제를 버리고 theme 으로
   publishing    게시 기록이 생기면 theme 으로 (다음 주제).
-                flow.rules_after_post 면 그동안 받은 /fix 피드백을 규칙에 반영하라고
-                feedback-rules 워크플로를 요청한다 (새 피드백이 있을 때만, 2026-10-21 사용자)
+                flow.rules_after_post 이고 새 /fix 피드백이 있으면 먼저 피드백 반영 단계로
+                (feedback-round 워크플로, 2026-10-22 사용자):
+  rules_plan    반영 계획을 보냄. /ok 면 PR 요청, /fix 면 계획 다시, /skip 이면 theme 으로
+  rules_pr      반영 PR 을 보냄. /merge 면 합치기 요청, /fix 면 같은 PR 고치기, /skip 이면 theme
+  rules_merge   합치면 theme 으로 (다음 주제)
 
 상태는 daily-results 의 flow/<계정>/state.json, 장면 사진은 flow/<계정>/<날짜>/scene.jpg
 (여러 장이면 scene_2.jpg, scene_3.jpg …: 공통 무드는 함께 읽고
@@ -81,6 +84,9 @@ Stage = Literal[
     "rendering",
     "preview_wait",
     "publishing",
+    "rules_plan",  # 피드백 반영 계획을 보냈거나 기다림 (/ok·/fix·/skip)
+    "rules_pr",  # 반영 PR 을 보냈거나 기다림 (/merge·/fix·/skip)
+    "rules_merge",  # /merge 를 받고 합치기를 기다림
 ]
 WAIT_ALERT = timedelta(hours=3)  # 워크플로를 요청하고 이만큼 지나도 결과가 없으면 한 번 알림
 NO_DEADLINE = 10**6  # tools.pick 에 넘기는 "마감까지 남은 분" (마감 없음)
@@ -408,9 +414,9 @@ def tick(
     return done
 
 
-RULES_FIX_FRESH = (
-    2 * 3600
-)  # 처음 볼 때는 이만큼 지난 요청까지만 (기능을 켜기 전 글을 다시 다루지 않게)
+ROUND_WF = "feedback-round.yml"  # 피드백 반영 단계 워크플로 (step plan·apply·revise·merge)
+# 처음 볼 때는 이만큼 지난 요청까지만 (기능을 켜기 전 글을 다시 다루지 않게)
+RULES_FIX_FRESH = 2 * 3600
 
 
 def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run: bool) -> str:
@@ -419,6 +425,8 @@ def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run
     한 글은 한 번만."""
     if tg is None or not profile.feedback.enabled:
         return ""
+    if st.stage.startswith("rules_"):
+        return ""  # 피드백 반영 단계에서는 /fix 가 그 단계의 답 (rules_upto 는 그 뒤 글부터 봄)
     from tools import feedback
 
     found = feedback.rules_requests(tg.updates(), tg.chat_id, profile.id, st.rules_upto)
@@ -886,12 +894,101 @@ def _step(
         if profile.flow.rules_after_post and profile.feedback.enabled:
             new = feedback.pending_entries(store)
             if new:
-                send("feedback-rules.yml", account=acc)
+                # 피드백 반영 단계: 계획 → /ok → PR → /merge 가 끝나야 다음 주제 (2026-10-22 사용자)
+                if not dry_run:
+                    feedback.save_round(results, acc, feedback.RulesRound())
+                send(ROUND_WF, account=acc, step="plan")
+                st.asked_at, st.stage = ts, "rules_plan"
                 if tg is not None:
                     tg.send(f"{tag} 게시를 확인했어요. 그동안 받은 /fix 피드백 {len(new)}개를 "
-                            "규칙에 반영하고 있어요. 다 되면 바뀐 점을 알려 드릴게요")  # fmt: skip
-                return f"게시 확인, 피드백 규칙 반영 요청 ({len(new)}개)"
+                            "규칙에 어떻게 반영할지 계획을 보내 드릴게요")  # fmt: skip
+                return f"게시 확인, 피드백 반영 계획 요청 ({len(new)}개)"
         return "게시 확인"
+
+    if st.stage in ("rules_plan", "rules_pr", "rules_merge"):
+        return _rules_round(profile, st, results, tg, send, now, dry_run)
+    return ""
+
+
+def _rules_round(
+    profile: Profile, st: FlowState, results: Path, tg, send, now: datetime, dry_run: bool
+) -> str:
+    """피드백 반영 단계. 워크플로 결과(rules.json)가 오면 사용자 답을 읽고 다음으로 넘긴다."""
+    from tools import feedback
+
+    acc = profile.id
+    ts = int(now.timestamp())
+    tag = f"[{acc}]"
+    rnd = feedback.load_round(results, acc)
+    if rnd.failed_at >= st.asked_at and tg is not None:
+        # 워크플로 실패 (알림은 워크플로가 보냄): 사용자가 워크플로를 다시 돌리거나 /skip
+        late = feedback.round_replies(tg.updates(), tg.chat_id, acc, rnd.failed_at)
+        if late and late[-1][1] == "skip":
+            st.rules_upto = max(st.rules_upto, late[-1][0])
+            st.stage = "theme"
+            tg.send(f"{tag} 이번 피드백 반영은 건너뛸게요. 다음 주제로 넘어갈게요")
+            return "피드백 반영 건너뜀 (실패 뒤 /skip)"
+        if rnd.plan_at < rnd.failed_at and rnd.pr_at < rnd.failed_at:
+            return ""
+    if st.stage == "rules_merge":
+        if rnd.merged_at < st.asked_at:
+            _late(
+                st,
+                now,
+                tg,
+                f"{tag} 규칙 PR 합치기가 아직 끝나지 않았어요 (워크플로를 확인해 주세요)",
+            )
+            return ""
+        st.stage = "theme"
+        return "피드백 반영 마침 (PR 합침)"
+    sent_at = rnd.plan_at if st.stage == "rules_plan" else rnd.pr_at
+    if sent_at < st.asked_at:
+        what = "반영 계획" if st.stage == "rules_plan" else "반영 PR"
+        _late(st, now, tg, f"{tag} 피드백 {what}이 아직 오지 않았어요 (워크플로를 확인해 주세요)")
+        return ""
+    if tg is None:
+        return ""
+    replies = feedback.round_replies(tg.updates(), tg.chat_id, acc, sent_at)
+    if not replies:
+        return ""
+    # 이 답들은 "/fix 규칙" 요청(_rules_fix)으로 다시 읽지 않는다
+    st.rules_upto = max(st.rules_upto, replies[-1][0])
+    fixes = [text for _, name, text in replies if name == "fix"]
+    last = replies[-1][1]
+    if last == "skip":
+        st.stage = "theme"
+        tg.send(f"{tag} 이번 피드백 반영은 건너뛸게요 (피드백은 다음 반영 때 다시 다뤄요). "
+                "다음 주제로 넘어갈게요")  # fmt: skip
+        return "피드백 반영 건너뜀 (/skip)"
+    if st.stage == "rules_plan":
+        if last == "ok":
+            send(ROUND_WF, account=acc, step="apply")
+            st.asked_at, st.stage = ts, "rules_pr"
+            tg.send(f"{tag} 계획대로 규칙을 고쳐 PR 을 만들게요")
+            return "피드백 반영 계획 확정, PR 요청"
+        if fixes:
+            if not dry_run:
+                rnd.plan_notes += fixes
+                feedback.save_round(results, acc, rnd)
+            send(ROUND_WF, account=acc, step="plan")
+            st.asked_at = ts
+            tg.send(f"{tag} 말씀하신 대로 반영 계획을 고쳐 다시 보낼게요")
+            return f"피드백 반영 계획 고치기 ({len(fixes)}개)"
+        return ""
+    # rules_pr
+    if last == "merge":
+        send(ROUND_WF, account=acc, step="merge")
+        st.asked_at, st.stage = ts, "rules_merge"
+        tg.send(f"{tag} 규칙 PR 을 합칠게요. 합치면 다음 주제를 시작해요")
+        return "규칙 PR 합치기 요청 (/merge)"
+    if fixes:
+        if not dry_run:
+            rnd.pr_notes += fixes
+            feedback.save_round(results, acc, rnd)
+        send(ROUND_WF, account=acc, step="revise")
+        st.asked_at = ts
+        tg.send(f"{tag} 말씀하신 대로 PR 을 고쳐 다시 보낼게요")
+        return f"규칙 PR 고치기 ({len(fixes)}개)"
     return ""
 
 

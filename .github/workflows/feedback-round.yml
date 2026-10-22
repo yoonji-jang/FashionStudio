@@ -1,0 +1,189 @@
+name: feedback-round
+
+# 피드백 반영 단계 (2026-10-22 사용자): 게시를 확인하면 차례 흐름(tools.flow)이 step 을 바꿔 가며 부른다.
+#   plan    쌓인 /fix 피드백을 어디에 어떻게 반영할지 계획만 써서 텔레그램으로 보낸다 (/ok·/fix·/skip)
+#   apply   확정한 계획대로 규칙을 고친 PR 을 만들어 보낸다 (합치지 않음, /merge·/fix·/skip)
+#   revise  PR 에 대한 /fix 대로 같은 PR 을 고쳐 다시 보낸다
+#   merge   /merge 를 받으면 PR 을 합치고 다룬 피드백을 기록한다. 그 뒤 흐름이 다음 주제를 시작한다
+# 단계 기록은 daily-results 의 flow/<계정>/rules.json (tools.feedback RulesRound).
+# 아무 때나 보내는 "/fix 규칙 …" 은 feedback-rules 워크플로가 따로 다룬다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      step:
+        description: plan / apply / revise / merge
+        default: plan
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  round:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    concurrency:
+      group: feedback-rules-${{ inputs.account }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      STEP: ${{ inputs.step }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+
+      - name: 단계 기록 가져오기 (daily-results)
+        run: |
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          git fetch -q origin daily-results
+          git worktree add /tmp/results origin/daily-results
+          git -C /tmp/results checkout -q -B daily-results
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          echo "BRANCH=$(uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results --get branch)" >> "$GITHUB_ENV"
+          echo "UPTO=$(uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results --get upto)" >> "$GITHUB_ENV"
+
+      - name: PR 브랜치 꺼내기 (revise)
+        if: inputs.step == 'revise'
+        run: |
+          git fetch -q origin "$BRANCH"
+          git checkout -q -B "$BRANCH" "origin/$BRANCH"
+
+      - name: 재료 쓰기
+        if: inputs.step != 'merge'
+        run: |
+          uv run python -m tools.feedback round-material --account "$ACCOUNT" --results /tmp/results \
+            --step "$STEP" --out "out/feedback_rules/$ACCOUNT.md"
+          if [ "$STEP" = plan ]; then
+            set +e
+            uv run python -m tools.feedback pending --account "$ACCOUNT" > /tmp/pending.txt
+            set -e
+            echo "UPTO=$(grep -oP '^UPTO=\K\d+' /tmp/pending.txt | tail -1)" >> "$GITHUB_ENV"
+          fi
+
+      - name: Claude (feedback-rules 스킬)
+        if: inputs.step != 'merge'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          allowed_bots: "github-actions"
+          prompt: |
+            .claude/skills/feedback-rules/SKILL.md 의 "피드백 반영 단계" 에서 단계 ${{ inputs.step }} 를 따라.
+            ACCOUNT=${{ env.ACCOUNT }} 재료: out/feedback_rules/${{ env.ACCOUNT }}.md
+            python 은 이미 가상환경이 잡혀 있으니 `python -m ...` 처럼 부르면 돼.
+            git 커밋·푸시, PR 만들기, 게시, 외부 전송은 하지 마 (워크플로가 한다).
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Bash(python -m tools.feedback summary:*),Bash(python -m core.profile:*),Bash(python -m pytest:*),Read,Write,Edit,Glob,Grep"
+
+      - name: 계획 보내기 (plan)
+        if: inputs.step == 'plan'
+        run: |
+          test -s out/feedback_rules/plan.md || { echo "Claude 가 계획을 남기지 않았습니다"; exit 1; }
+          git status --porcelain -- . ':!data' ':!out' | grep -q . && { echo "::warning::계획 단계에서 고친 파일은 버립니다"; git checkout -- . ; }
+          uv run python -m tools.notify send "[$ACCOUNT] 🗂 피드백 반영 계획
+
+          $(head -c 3000 out/feedback_rules/plan.md)
+
+          /ok 이대로 진행 · /fix 고칠 점 · /skip 이번 반영 건너뛰기"
+          uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results \
+            --plan out/feedback_rules/plan.md --upto "${UPTO:-0}"
+
+      - name: PR 만들기·고치기 (apply, revise)
+        id: pr
+        if: inputs.step == 'apply' || inputs.step == 'revise'
+        run: |
+          git checkout -- data/ 2>/dev/null || true
+          git clean -fdq data/ || true
+          if [ -z "$(git status --porcelain -- . ':!out')" ]; then
+            msg="[$ACCOUNT] 🗂 고칠 파일이 없었어요.
+          $(head -c 1500 out/feedback_rules/pr_body.md 2>/dev/null)
+          /fix 고칠 점 · /skip 이번 반영 건너뛰기"
+            uv run python -m tools.notify send "$msg"
+            uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results --pr
+            exit 0
+          fi
+          uv run ruff check . && uv run python -m core.profile && uv run pytest -q > /tmp/test.txt 2>&1 \
+            && result="통과" || result="실패 (아래 로그 확인)"
+          tail -5 /tmp/test.txt || true
+          if [ "$STEP" = apply ]; then
+            BRANCH="feedback-rules/$ACCOUNT-$(TZ=Asia/Seoul date +%F-%H%M)"
+            git checkout -q -b "$BRANCH"
+          fi
+          git add -A -- . ':!data'
+          git commit -qm "피드백 규칙 반영: $ACCOUNT ($STEP)"
+          git push -q -f origin "$BRANCH"
+          body=out/feedback_rules/pr_body_full.md
+          { cat out/feedback_rules/pr_body.md 2>/dev/null || echo "(Claude 가 PR 설명을 남기지 않았습니다)"
+            echo; echo "---"; echo "검사(ruff, 프로필, pytest): $result"
+            echo; echo "피드백 반영 단계(feedback-round 워크플로)가 만들었습니다. 텔레그램 /merge 로 합칩니다."
+          } > "$body"
+          url=$(gh pr view "$BRANCH" --json url -q .url 2>/dev/null || true)
+          if [ -z "$url" ]; then
+            url=$(gh pr create --base main --head "$BRANCH" \
+              --title "피드백 규칙 반영 ($ACCOUNT $(TZ=Asia/Seoul date +%F))" --body-file "$body" \
+              --assignee "${{ github.repository_owner }}")
+          else
+            gh pr edit "$BRANCH" --body-file "$body"
+          fi
+          head="[$ACCOUNT] 🗂 피드백 반영 PR 을 만들었어요 (검사: $result)"
+          [ "$STEP" = revise ] && head="[$ACCOUNT] 🗂 말씀하신 대로 PR 을 고쳤어요 (검사: $result)"
+          uv run python -m tools.notify send "$head
+
+          $(head -c 2500 out/feedback_rules/pr_body.md 2>/dev/null)
+
+          $url
+
+          /merge 합치기 · /fix 고칠 점 · /skip 이번 반영 건너뛰기"
+          uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results \
+            --branch "$BRANCH" --pr-url "$url" --pr
+
+      - name: 합치기 (merge)
+        if: inputs.step == 'merge'
+        run: |
+          gh pr merge "$BRANCH" --squash --delete-branch
+          git fetch -q origin main
+          git checkout -q -f -B state origin/main
+          if [ -n "$UPTO" ] && [ "$UPTO" != 0 ]; then
+            uv run python -m tools.feedback mark --account "$ACCOUNT" --upto "$UPTO"
+            git add "data/$ACCOUNT/feedback_rules.json"
+            if ! git diff --cached --quiet; then
+              git commit -qm "피드백 규칙 반영 기록 ($ACCOUNT)"
+              for i in 1 2 3; do
+                git pull -q --rebase origin main && git push -q origin HEAD:main && break
+                sleep $((i * 5))
+              done
+            fi
+          fi
+          uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results --merged
+          uv run python -m tools.notify send "[$ACCOUNT] 🗂 규칙 PR 을 합쳤어요. 다음 게시물부터 적용돼요. 다음 주제를 시작할게요"
+
+      - name: 실패 기록
+        if: failure()
+        run: |
+          uv run python -m tools.feedback round-record --account "$ACCOUNT" --results /tmp/results --failed || true
+          TEXT="[$ACCOUNT] 피드백 반영($STEP) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          다시 하려면 이 워크플로를 같은 단계로 돌리고, 건너뛰려면 /skip 을 보내 주세요"
+          TEXT="$TEXT" .github/scripts/alert.sh
+
+      - name: 단계 기록 올리기 (daily-results)
+        if: always()
+        run: |
+          cd /tmp/results 2>/dev/null || exit 0
+          git add "flow/$ACCOUNT/rules.json" 2>/dev/null || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -qm "피드백 반영 단계 기록 ($ACCOUNT $STEP)"
+          for i in 1 2 3 4; do
+            git pull -q --rebase --autostash origin daily-results && git push -q origin HEAD:daily-results && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

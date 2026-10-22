@@ -44,6 +44,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import yaml
+from pydantic import BaseModel
 
 from core.models import FeedbackEntry, FeedbackResult, Manifest, PreviewRecord
 from core.profile import Profile, load_profile, minutes
@@ -780,6 +781,90 @@ def mark_rules(store: Store, upto: int, now: datetime | None = None) -> None:
     )
 
 
+# ---------- 피드백 반영 단계 (2026-10-22 사용자) ----------
+# 게시 확인 → 반영 계획 보내기 → /ok·/fix → PR 보내기 → /merge·/fix → 합치면 다음 주제.
+# 차례 흐름(tools.flow)이 단계를 넘기고, feedback-rules 워크플로(step plan·apply·revise·merge)가
+# Claude 로 계획·PR 을 만들어 텔레그램으로 보낸 뒤 이 기록
+# (daily-results flow/<계정>/rules.json)을 남긴다.
+
+RULES_RECORD = "rules.json"
+
+
+class RulesRound(BaseModel):
+    """이번 피드백 반영 한 번의 기록."""
+
+    plan: str = ""  # 보낸 반영 계획 (Claude 가 쓴 글)
+    plan_at: int = 0  # 계획을 텔레그램으로 보낸 시각
+    plan_notes: list[str] = []  # 계획에 대한 사용자 /fix (차례대로)
+    upto: int = 0  # 이 반영에서 다루는 마지막 피드백 update_id
+    branch: str = ""  # PR 브랜치
+    pr_url: str = ""
+    pr_at: int = 0  # PR 을 (다시) 텔레그램으로 보낸 시각
+    pr_notes: list[str] = []  # PR 에 대한 사용자 /fix (차례대로)
+    merged_at: int = 0
+    failed_at: int = 0  # 워크플로가 실패한 시각 (실패 알림은 워크플로가 보냄)
+
+
+def rules_round_path(results: Path, account: str) -> Path:
+    return results / "flow" / account / RULES_RECORD
+
+
+def load_round(results: Path, account: str) -> RulesRound:
+    path = rules_round_path(results, account)
+    if not path.exists():
+        return RulesRound()
+    return RulesRound.model_validate_json(path.read_text(encoding="utf-8"))
+
+
+def save_round(results: Path, account: str, rnd: RulesRound) -> None:
+    path = rules_round_path(results, account)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(rnd.model_dump_json(indent=2) + "\n", encoding="utf-8")
+
+
+def round_material(store: Store, rnd: RulesRound, step: str, today: date) -> str:
+    """워크플로 step 마다 Claude 가 읽을 재료."""
+    out = [f"# 단계: {step}", ""]
+    if step in ("plan", "apply"):
+        out.append(pending_report(store, today))
+    if rnd.plan and step != "plan":
+        out += ["# 확정한 반영 계획", "", rnd.plan, ""]
+    if step == "plan" and rnd.plan_notes:
+        out += [
+            "# 지난 계획",
+            "",
+            rnd.plan or "(없음)",
+            "",
+            "# 계획에 대한 사용자 요청 (차례대로)",
+            "",
+        ]
+        out += [f"- {n}" for n in rnd.plan_notes] + [""]
+    if step == "revise":
+        out += ["# PR 에 대한 사용자 요청 (차례대로, 마지막 것이 새 요청)", ""]
+        out += [f"- {n}" for n in rnd.pr_notes] + [""]
+    return "\n".join(out) + "\n"
+
+
+def round_replies(
+    updates: list[dict], chat_id: str, account: str, since: int
+) -> list[tuple[int, str, str]]:
+    """반영 계획·PR 을 보낸 뒤 온 답 (update_id, 명령, 글): ok·fix·merge·skip.
+    "/fix 규칙 …" 은 따로 다루므로 뺀다."""
+    found = []
+    for u in sorted(updates, key=lambda u: u["update_id"]):
+        msg = u.get("message") or {}
+        if str((msg.get("chat") or {}).get("id")) != str(chat_id) or msg.get("date", 0) < since:
+            continue
+        cmd = notify.parse(msg.get("text") or "", account, None)
+        if cmd is None or cmd.name not in ("ok", "fix", "merge", "skip"):
+            continue
+        text = " ".join(cmd.args).strip()
+        if cmd.name == "fix" and not text:
+            continue
+        found.append((u["update_id"], cmd.name, text))
+    return found
+
+
 # ---------- CLI ----------
 
 
@@ -825,6 +910,22 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--account", required=True)
     s.add_argument("--request", required=True, help='JSON {"requests": [{update_id, at, text}]}')
     s.add_argument("--out", type=Path, required=True)
+    s = sub.add_parser("round-material", help="피드백 반영 단계 재료 쓰기 (워크플로 step)")
+    s.add_argument("--account", required=True)
+    s.add_argument("--results", type=Path, required=True, help="daily-results 를 꺼낸 폴더")
+    s.add_argument("--step", choices=["plan", "apply", "revise"], required=True)
+    s.add_argument("--out", type=Path, required=True)
+    s = sub.add_parser("round-record", help="피드백 반영 단계 기록 (워크플로 step 끝)")
+    s.add_argument("--account", required=True)
+    s.add_argument("--results", type=Path, required=True)
+    s.add_argument("--plan", type=Path, help="보낸 계획 파일 (plan 단계)")
+    s.add_argument("--upto", type=int, help="다루는 마지막 피드백 update_id (plan 단계)")
+    s.add_argument("--branch", default="")
+    s.add_argument("--pr-url", default="")
+    s.add_argument("--pr", action="store_true", help="PR 을 (다시) 보냄")
+    s.add_argument("--merged", action="store_true")
+    s.add_argument("--failed", action="store_true")
+    s.add_argument("--get", help="이 칸 값만 출력 (branch, pr_url, upto)")
     s = sub.add_parser("mark", help="규칙 PR 에서 다룬 피드백 기록")
     s.add_argument("--account", required=True)
     s.add_argument("--upto", type=int, required=True, help="다룬 마지막 update_id")
@@ -857,6 +958,33 @@ def main(argv: list[str] | None = None) -> int:
             report = rules_request_report(requests, last_rules_change(), tz)
             args.out.write_text(report, encoding="utf-8")
             print(f"규칙 고치기 요청 {len(requests)}개 → {args.out}")
+        elif args.cmd == "round-material":
+            rnd = load_round(args.results, args.account)
+            text = round_material(Store(args.account), rnd, args.step, date.today())
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(text, encoding="utf-8")
+            print(f"재료 → {args.out}")
+        elif args.cmd == "round-record":
+            rnd = load_round(args.results, args.account)
+            if args.get:
+                print(getattr(rnd, args.get))
+                return 0
+            now = int(datetime.now(UTC).timestamp())
+            if args.plan:
+                rnd.plan, rnd.plan_at = args.plan.read_text(encoding="utf-8").strip(), now
+                rnd.upto = args.upto or rnd.upto
+            if args.branch:
+                rnd.branch = args.branch
+            if args.pr_url:
+                rnd.pr_url = args.pr_url
+            if args.pr:
+                rnd.pr_at = now
+            if args.merged:
+                rnd.merged_at = now
+            if args.failed:
+                rnd.failed_at = now
+            save_round(args.results, args.account, rnd)
+            print(rnd.model_dump_json(indent=2))
         elif args.cmd == "mark":
             mark_rules(Store(args.account), args.upto)
             print(f"규칙 PR 기록: update_id {args.upto} 까지")
