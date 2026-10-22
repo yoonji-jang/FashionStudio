@@ -415,13 +415,11 @@ def tick(
 
 
 ROUND_WF = "feedback-round.yml"  # 피드백 반영 단계 워크플로 (step plan·apply·revise·merge)
-# 처음 볼 때는 이만큼 지난 요청까지만 (기능을 켜기 전 글을 다시 다루지 않게)
-RULES_FIX_FRESH = 2 * 3600
 
 
 def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run: bool) -> str:
     """피드백 규칙을 더하거나 고쳐 달라는 텔레그램 글("/fix 규칙 …", 규칙 반영 알림에 답장한
-    "/fix …")이 오면 feedback-rules 워크플로에 그 글을 넘겨 규칙을 고친다 (단계와 상관없이).
+    "/fix …", 주제 단계의 "/fix …")이 오면 feedback-rules 워크플로에 그 글을 넘겨 규칙을 고친다.
     한 글은 한 번만."""
     if tg is None or not profile.feedback.enabled:
         return ""
@@ -429,9 +427,14 @@ def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run
         return ""  # 피드백 반영 단계에서는 /fix 가 그 단계의 답 (rules_upto 는 그 뒤 글부터 봄)
     from tools import feedback
 
-    found = feedback.rules_requests(tg.updates(), tg.chat_id, profile.id, st.rules_upto)
+    updates = tg.updates()
     if st.rules_upto == 0:
-        found = [r for r in found if now.timestamp() - r["at"] <= RULES_FIX_FRESH]
+        # 처음: 지금까지 온 글은 다루지 않은 것으로 두고 다음 글부터 본다
+        st.rules_upto = max((u["update_id"] for u in updates), default=0) or 1
+        return ""
+    # 미리보기·후보가 없는 주제 단계의 그냥 "/fix …" 도 규칙 고치기 (2026-10-22 게시 뒤 보냄)
+    plain = st.stage in ("theme", "theme_wait", "theme_review")
+    found = feedback.rules_requests(updates, tg.chat_id, profile.id, st.rules_upto, plain)
     if not found:
         return ""
     tag = f"[{profile.id}]"

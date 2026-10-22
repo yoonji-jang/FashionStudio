@@ -737,7 +737,9 @@ def test_rules_fix_request_goes_to_feedback_rules(env):
     "/fix 규칙 …" 이나 규칙 반영 알림(📝)에 답장한 "/fix …" 는 단계와 상관없이
     규칙 고치기로 넘긴다."""
     store, results, sent, _ = env
-    st = flow.FlowState(account="women", stage="theme_wait", date=date(2026, 10, 16), asked_at=T0)
+    st = flow.FlowState(
+        account="women", stage="preview_wait", date=date(2026, 10, 16), asked_at=T0, rules_upto=1
+    )
     flow.save_state(results, st)
     tg = FakeTg()
     tg.text(500, "/fix 규칙 신발은 앞코 뾰족한 구두도 괜찮다고 넣어줘", T0 + 10)
@@ -770,9 +772,13 @@ def test_rules_fix_ignores_old_messages_first_time(env):
     store, results, sent, _ = env
     flow.save_state(results, flow.FlowState(account="women", stage="theme_wait", asked_at=T0))
     tg = FakeTg()
-    tg.text(400, "/fix 규칙 오래된 요청", T0 - 3 * 3600)
+    tg.text(400, "/fix 규칙 기능을 켜기 전 요청", T0 - 60)
     tick(env, tg, T0)
     assert all(wf != "feedback-rules.yml" for wf, _ in sent)
+    assert flow.load_state(results, "women").rules_upto == 400
+    # 주제 단계(미리보기 없음)의 그냥 /fix 도 규칙 고치기 (2026-10-22 사용자가 게시 뒤 보냄)
+    tg.text(401, "/fix 바지는 발등을 덮게", T0 + 60)
+    assert tick(env, tg, T0 + 120)[0] == "규칙 고치기 요청 (1개)"
 
 
 def test_rules_word_is_not_a_post_fix():
