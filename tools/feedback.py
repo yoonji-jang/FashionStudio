@@ -4,6 +4,9 @@ r"""최종 이미지 피드백 (15단계). 미리보기를 받은 뒤 텔레그�
   /fix 캡션 도입 한 줄을 더 짧게            캡션
   /fix 전체 좀 더 밝은 분위기로             게시물 전체 (장 번호 없이 써도 같음)
   미리보기 사진 한 장에 답장으로 /fix 신발 더 크게  → 그 장
+  사진에 /fix 를 설명으로 달거나, /fix 앞뒤 3분 안에 사진을 보내면 그 /fix 의 참고 사진
+  (예: "코끝을 두 번째 사진처럼", 2026-10-22 사용자). 차례 흐름 계정만 받는다
+  (flow/<계정>/<날짜>/fix/ 에 저장, schedule 이 커밋)
 
 봇 서버 없이 동작한다. schedule job 이 깨어날 때 답장을 읽어(check) 결과를 정하고,
 다시 만들 때는 daily 워크플로를 mode=fix 로 부른다. daily 는 지난 결과를 가져와(prepare)
@@ -61,6 +64,9 @@ KIND_NAMES = {
 }
 # 다시 만들기를 보낸 뒤 이만큼(분) 지나도 새 미리보기가 없으면 실패로 보고 다시 받는다
 STALE_MINUTES = 120
+# /fix 앞뒤로 이만큼(초) 안에 따로 보낸 사진은 그 /fix 의 참고 사진
+FIX_PHOTO_GAP = 180
+FIX_PHOTO_MAX = 6
 
 
 # ---------- 장 번호 ----------
@@ -136,16 +142,21 @@ def find_fixes(
     """미리보기 뒤 등록된 채팅에서 온 이 계정·날짜의 /fix (update_id 순).
     계정·날짜 없이 봇의 다른 메시지(다른 계정·다른 날)에 답장한 글은 그쪽 것이라 뺀다."""
     found = []
-    for u in sorted(updates, key=lambda u: u["update_id"]):
+    mine = [
+        u
+        for u in sorted(updates, key=lambda u: u["update_id"])
+        if str(((u.get("message") or {}).get("chat") or {}).get("id")) == str(chat_id)
+        and (u.get("message") or {}).get("date", 0) >= record.sent_at
+    ]
+    for u in mine:
         msg = u.get("message") or {}
-        if str((msg.get("chat") or {}).get("id")) != str(chat_id):
-            continue
-        if msg.get("date", 0) < record.sent_at:
-            continue
         reply_to = (msg.get("reply_to_message") or {}).get("message_id")
+        # 사진에 설명으로 단 /fix 도 읽는다 (2026-10-22 사용자: 참고 사진을 붙여 보냄)
+        text = msg.get("text") or msg.get("caption") or ""
         # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다.
         # 줄을 바꿔 쓴 표지 벌 고르기("/cover 3", "/ok 3", "표지 3번")는 고칠 내용에 넣지 않는다
-        parts = re.split(r"\n(?=\s*(?:/(?:fix|cover|ok)\b|표지\s*\d))", msg.get("text") or "")
+        parts = re.split(r"\n(?=\s*(?:/(?:fix|cover|ok)\b|표지\s*\d))", text)
+        photos: list[str] | None = None
         for part in parts:
             cmd = notify.parse(part, record.account, record.date)
             if cmd is None or cmd.name != "fix":
@@ -161,8 +172,56 @@ def find_fixes(
                 fix = target(args, reply_to, record, slides)
                 if not fix["text"]:
                     continue  # 고칠 내용이 없는 /fix
+                if photos is None:
+                    photos = fix_photos(mine, u)
+                if photos:
+                    fix["photos"] = photos
                 found.append(fix | {"update_id": u["update_id"], "at": msg.get("date", 0)})
     return found
+
+
+def fix_photos(updates: list[dict], fix_update: dict) -> list[str]:
+    """이 /fix 글의 참고 사진 파일 번호 (보낸 순서): 글에 붙은 사진과 같은 앨범의 사진,
+    그리고 앞뒤 FIX_PHOTO_GAP 초 안에 따로 보낸 (명령이 아닌) 사진."""
+    msg = fix_update.get("message") or {}
+    at, group = msg.get("date", 0), str(msg.get("media_group_id") or "")
+    out = []
+    for u in updates:
+        m = u.get("message") or {}
+        fid = notify.photo_file_id(m)
+        if not fid:
+            continue
+        caption = (m.get("caption") or "").strip()
+        same = u is fix_update or (group and str(m.get("media_group_id") or "") == group)
+        near = abs(m.get("date", 0) - at) <= FIX_PHOTO_GAP and not caption.startswith("/")
+        if same or near:
+            out.append(fid)
+    return list(dict.fromkeys(out))[:FIX_PHOTO_MAX]
+
+
+def save_fix_photos(
+    fixes: list[dict], results: Path, account: str, day: date, tg, dry_run: bool
+) -> None:
+    """참고 사진을 받아 daily-results flow/<계정>/<날짜>/fix/ 에 두고, fix 의 photos 를
+    그 경로(daily-results 기준)로 바꾼다. 받지 못한 사진은 뺀다."""
+    saved: dict[str, str] = {}
+    for f in fixes:
+        paths = []
+        for i, fid in enumerate(f.get("photos") or [], 1):
+            if fid not in saved:
+                rel_path = f"flow/{account}/{day.isoformat()}/fix/{f['update_id']}_{i}.jpg"
+                try:
+                    if not dry_run:
+                        tg.download(fid, results / rel_path)
+                    saved[fid] = rel_path
+                except Exception as e:  # noqa: BLE001 - 사진 없이도 고칠 수 있다
+                    print(f"/fix 참고 사진을 받지 못함: {e}", file=sys.stderr)
+                    continue
+            paths.append(saved[fid])
+        if paths:
+            f["photos"] = paths
+        else:
+            f.pop("photos", None)
 
 
 # ---------- 결과 폴더 ----------
@@ -316,6 +375,12 @@ def check(
             return None
     result = decide(profile, store, run_dir, record, now, known)
     rnd = rounds_used(store, day) + 1 if result == "rerender" else 0
+    if result == "rerender":
+        if profile.flow.enabled:
+            save_fix_photos(fixes, results, account, day, tg, dry_run)
+        else:
+            for f in fixes:
+                f.pop("photos", None)
     entries = [
         FeedbackEntry(
             account=account,
@@ -334,7 +399,11 @@ def check(
         for f in fixes
     ]
     head = MESSAGES[result].format(round=rnd, max=profile.feedback.max_fixes)
-    lines = [f"[{account}] {day} {head}"] + [f"- {label(f)}: {f['text']}" for f in fixes]
+    lines = [f"[{account}] {day} {head}"] + [
+        f"- {label(f)}: {f['text']}"
+        + (f" (참고 사진 {len(f['photos'])}장)" if f.get("photos") else "")
+        for f in fixes
+    ]
     if result in ("limit", "late", "busy"):
         lines.append(f"지금 미리보기로 게시하려면 /ok {notify.command_label(profile, day)}")
     if not dry_run:
@@ -346,7 +415,11 @@ def check(
         "run": run_dir.name,
         "round": rnd,
         "fixes": [
-            {k: f[k] for k in ("slide", "kind", "product", "category", "look", "text") if f.get(k)}
+            {
+                k: f[k]
+                for k in ("slide", "kind", "product", "category", "look", "text", "photos")
+                if f.get(k)
+            }
             for f in fixes
         ],
     }
@@ -456,16 +529,52 @@ def prepare(pick: dict, prev_root: Path, out: Path) -> dict:
         shutil.copy2(src / "outfit" / "prompt.txt", before / "prompt.txt")
     if (src / "slides").is_dir():
         shutil.copytree(src / "slides", before / "slides", dirs_exist_ok=True)
+    fixes = [dict(f) for f in pick["fixes"]]
+    for f in fixes:
+        # 참고 사진 (daily-results 기준 경로) → out/<날짜>/fix_photos/
+        paths = []
+        for p in f.get("photos") or []:
+            if (prev_root / p).exists():
+                dest = out / "fix_photos" / Path(p).name
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(prev_root / p, dest)
+                paths.append(rel(dest))
+            else:
+                print(f"/fix 참고 사진이 없음: {p}", file=sys.stderr)
+        if paths:
+            f["photos"] = paths
+        else:
+            f.pop("photos", None)
     data = {
         "run": pick["run"],
         "round": pick.get("round", 1),
         "cover": cover,
-        "fixes": pick["fixes"],
+        "fixes": fixes,
         "slides": slide_map(manifest),
         "cover_look": plan.cover_look,  # 지난 표지 벌 (tools.cover_look 이 /fix 가 바꿨는지 봄)
     }
+    cand = _candidates(src, prev_root, out)
+    if cand:
+        data["candidates"] = cand  # "코디 후보 3번 추가" 처럼 후보 벌을 더할 때 (2026-10-22 사용자)
     (out / "fix.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return data
+
+
+def _candidates(src: Path, prev_root: Path, out: Path) -> str | None:
+    """이 미리보기를 만든 코디 후보(여러 벌 p1.yaml)를 out/candidates.yaml 로 (저장소 기준 경로).
+    후보 번호 N 은 이 파일 looks 의 N번째 벌이다 (텔레그램 후보 시트 번호)."""
+    from tools.plan import rel
+
+    run = src / "run.json"
+    if not run.exists():
+        return None
+    pick = str(json.loads(run.read_text(encoding="utf-8")).get("pick") or "")
+    p1 = prev_root / pick.split("/")[0] / "picks" / "p1.yaml"
+    if "/" not in pick or not p1.exists():
+        return None
+    dest = out / "candidates.yaml"
+    shutil.copy2(p1, dest)
+    return rel(dest)
 
 
 def _keep_chosen(src: Path, out: Path, sub: str) -> str | None:

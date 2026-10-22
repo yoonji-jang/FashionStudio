@@ -186,20 +186,46 @@ EDIT_KINDS = {
 }
 EDIT_KEEP = {
     "flatlay": "the floor, the light and shadows and the camera angle",
-    "model": "her face hidden as it is, the place, the light and the camera angle",
+    # 얼굴·키·다리 길이를 고쳐 달라는 /fix 도 있다 (2026-10-22 사용자: 코끝, 청순한 얼굴, 키)
+    "model": (
+        "her face, hair and body as they are unless the change is about them,"
+        " the place, the light and the camera angle"
+    ),
 }
+# 고쳐 그릴 때 덧붙이는 참고 그림 설명 (상품 참고판 다음 순서대로)
+EDIT_WORN = (
+    "Image {n} is the reference outfit photo this look copies. Use it for how the clothes fit"
+    " and sit on the body (length, looseness, tuck), never for its background, pose or face."
+)
+EDIT_REFS = (
+    "Then come reference photos the user sent for this change ({nums}). Use them only for what"
+    " the change asks (for example the shape of the nose), never copy the person's identity,"
+    " clothes or background."
+)
 
 
-def edit_prompt(plan: DailyPlan, products: dict[str, Product], cfg: dict) -> str:
+def edit_prompt(
+    plan: DailyPlan, products: dict[str, Product], cfg: dict, worn: bool = False, refs: int = 0
+) -> str:
     """지난 코디컷(첫 그림)에서 고칠 곳만 바꾸는 지시문 (prompts/outfit_edit.md).
-    장면 모델컷(scene_image)도 사람 사진으로 고쳐 그린다 (10/15 LOOK3·7 처럼)."""
+    장면 모델컷(scene_image)도 사람 사진으로 고쳐 그린다 (10/15 LOOK3·7 처럼).
+    worn 이면 상품 참고판 다음에 기준 코디 사진, refs 는 그 다음 사용자 참고 사진 장 수."""
     kind = "model" if plan.shot == "model" else "flatlay"
+    n = 2 + len(plan.items)
+    extra = []
+    if worn:
+        extra.append(EDIT_WORN.format(n=n))
+        n += 1
+    if refs:
+        nums = ", ".join(f"user photo {i + 1} = image {n + i}" for i in range(refs))
+        extra.append(EDIT_REFS.format(nums=nums))
     return render_prompt(
         "outfit_edit",
         request=plan.edit_request or "Fix only what is wrong compared with the product photos.",
         items=item_lines(plan, products, cfg, start=2),
         kind=EDIT_KINDS[kind],
         keep=EDIT_KEEP[kind],
+        extra=" ".join(extra),
     )
 
 
@@ -301,9 +327,13 @@ WORN_REF = (
 )
 
 
-def worn_ref_panel(plan: DailyPlan, profile: Profile, cache: Path) -> bytes | None:
-    """기준 코디 사진 (얼굴은 가림). 받지 못하면 없이 그린다."""
-    if not plan.ref_photo or plan.shot == "model":
+def worn_ref_panel(
+    plan: DailyPlan, profile: Profile, cache: Path, edit: bool = False
+) -> bytes | None:
+    """기준 코디 사진 (얼굴은 가림). 받지 못하면 없이 그린다.
+    모델컷은 새로 그릴 때 장면 사진을 따르므로 보내지 않고, 고쳐 그릴 때만 핏 참고로 보낸다
+    (2026-10-22 사용자: "참고 모델핏과 비슷하게")."""
+    if not plan.ref_photo or (plan.shot == "model" and not edit):
         return None
     from tools import scout
 
@@ -340,6 +370,22 @@ def scene_panel(plan: DailyPlan) -> bytes | None:
     return buf.getvalue()
 
 
+def edit_ref_panels(plan: DailyPlan) -> list[bytes]:
+    """/fix 에 붙여 보낸 참고 사진 (plan.edit_refs, 저장소 기준 경로). 없는 파일은 뺀다."""
+    out = []
+    for p in plan.edit_refs:
+        path = REPO_ROOT / p
+        if not path.exists():
+            print(f"/fix 참고 사진이 없음: {p}", file=sys.stderr)
+            continue
+        img = Image.open(path).convert("RGB")
+        img.thumbnail((1536, 1536))
+        buf = io.BytesIO()
+        img.save(buf, "JPEG", quality=92)
+        out.append(buf.getvalue())
+    return out
+
+
 def client_for(cfg: dict, fake: bool) -> generate.Client:
     if fake:
         return generate.FakeClient()
@@ -373,8 +419,10 @@ def make_candidates(
     if plan.edit_from and (plan.shot != "model" or plan.scene_image):
         # /fix 고쳐 그리기: 지난 코디컷을 첫 그림으로 보내고 고칠 곳만 바꾸게 한다
         base = (REPO_ROOT / plan.edit_from).read_bytes()
-        panels = [base, *panels]
-        prompt = edit_prompt(plan, products, cfg)
+        worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account, edit=True)
+        refs = edit_ref_panels(plan)
+        panels = [base, *panels, *([worn] if worn else []), *refs]
+        prompt = edit_prompt(plan, products, cfg, worn=bool(worn), refs=len(refs))
     else:
         prompt = build_prompt(plan, products, profile, cfg)
         worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)

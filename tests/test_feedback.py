@@ -123,6 +123,63 @@ def test_find_fixes_splits_several_slide_numbers(results):  # noqa: F811
     ]
 
 
+def photo_update(uid: int, at: int, fid: str, caption: str = "", group: str = ""):
+    u = update(uid, at, "")
+    m = u["message"]
+    del m["text"]
+    m["photo"] = [{"file_id": fid, "width": 10, "height": 10}]
+    if caption:
+        m["caption"] = caption
+    if group:
+        m["media_group_id"] = group
+    return u
+
+
+def test_find_fixes_reads_caption_and_attached_photos(results):  # noqa: F811
+    """사진에 설명으로 단 /fix 와 그 앨범·앞뒤 3분 안 사진을 참고 사진으로 (2026-10-22 사용자)."""
+    slides = slides_of(results)
+    rec = record(message_ids=[11, 12])
+    text = (
+        "/fix 코끝을 두번째 사진처럼 오똑하게. 코디 후보 3번도 추가해줘.\n"
+        "/fix 2 가디건 단추는 열고 이너 나시가 보이게\n/fix 3 벨트 제거"
+    )
+    upd = [
+        photo_update(1, 1200, "A", caption=text, group="g"),
+        photo_update(2, 1200, "B", group="g"),
+        photo_update(3, 1300, "C"),  # 3분 안에 따로 보낸 사진
+        photo_update(4, 1600, "D"),  # 3분 넘게 지난 사진
+        photo_update(5, 1250, "E", caption="/cover 2"),  # 명령을 단 사진은 빼고
+    ]
+    found = feedback.find_fixes(upd, rec, CHAT, slides)
+    assert [(f["slide"], f["kind"]) for f in found][0] == (None, "all")
+    assert [f["slide"] for f in found[1:]] == [2, 3]
+    assert all(f["photos"] == ["A", "B", "C"] for f in found)
+    assert "코디 후보 3번도 추가" in found[0]["text"]
+    # 사진 없는 /fix 는 photos 가 없다
+    plain = feedback.find_fixes([update(9, 1200, "/fix 2 밝게")], rec, CHAT, slides)
+    assert "photos" not in plain[0]
+
+
+def test_save_fix_photos_downloads_and_drops_failed(tmp_path):
+    class Tg:
+        def download(self, fid, dest):
+            if fid == "X":
+                raise RuntimeError("없음")
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(fid.encode())
+            return dest
+
+    fixes = [
+        {"update_id": 7, "photos": ["A", "X"]},
+        {"update_id": 7, "photos": ["A"]},
+        {"update_id": 8, "photos": ["X"]},
+    ]
+    feedback.save_fix_photos(fixes, tmp_path, "women", DAY, Tg(), False)
+    want = f"flow/women/{DAY}/fix/7_1.jpg"
+    assert fixes[0]["photos"] == [want] and fixes[1]["photos"] == [want]
+    assert "photos" not in fixes[2] and (tmp_path / want).read_bytes() == b"A"
+
+
 def test_check_leaves_old_preview_after_new_candidates(results, store):  # noqa: F811
     api = FakeApis()
     rec = sent(api, results / RUN)
@@ -205,6 +262,26 @@ def test_prepare_keeps_reviewed_cover(results, store, tmp_path, monkeypatch):  #
     assert [c.id for c in again.candidates] == ["c1", "c2"] and again.chosen == "c2"
     assert again.candidates[1].score.total == 9
     assert not list(out.glob("outfit*/gen.json"))  # 이미지 AI 를 부르지 않음
+
+
+def test_prepare_copies_fix_photos_and_candidates(results, tmp_path, monkeypatch):  # noqa: F811
+    prev = results / RUN
+    (results / "photo" / "fix").mkdir(parents=True)
+    (results / "photo" / "fix" / "7_1.jpg").write_bytes(b"jpg")
+    cand = results / "2026-09-26-run4" / "picks"
+    cand.mkdir(parents=True)
+    (cand / "p1.yaml").write_text("looks: []\n", encoding="utf-8")
+    (prev / "run.json").write_text(json.dumps({"pick": "2026-09-26-run4/chosen"}), "utf-8")
+    root = tmp_path / "repo"
+    monkeypatch.setattr(plan, "REPO_ROOT", root)
+    out = root / "out" / str(DAY)
+    fixes = [{"kind": "all", "text": "키 크게", "photos": ["photo/fix/7_1.jpg", "photo/없음.jpg"]}]
+    data = feedback.prepare({"run": RUN, "round": 1, "fixes": fixes}, results, out)
+    assert data["fixes"][0]["photos"] == [f"out/{DAY}/fix_photos/7_1.jpg"]
+    assert (out / "fix_photos" / "7_1.jpg").read_bytes() == b"jpg"
+    assert data["candidates"] == f"out/{DAY}/candidates.yaml"
+    assert (out / "candidates.yaml").exists()
+    assert fixes[0]["photos"][0] == "photo/fix/7_1.jpg"  # 받은 pick 은 그대로
 
 
 def test_preview_shows_fix_round_changes_and_hint(results):  # noqa: F811

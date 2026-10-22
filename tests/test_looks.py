@@ -108,9 +108,10 @@ def test_check_looks_rules(store):
     profile = load_profile("women")
     errors, _ = plan.check(looks_plan(), profile, store)
     assert errors == []
-    # 후보(draft)는 예비 벌까지 8벌, 최종은 6벌까지
+    # 후보(draft)는 예비 벌까지 8벌. 최종도 /fix 로 후보 벌을 더할 수 있어 8벌까지
     assert plan.check(looks_plan(8, text=None), profile, store, draft=True)[0] == []
-    assert any("5~6개" in e for e in plan.check(looks_plan(8), profile, store)[0])
+    assert not any("벌은" in e for e in plan.check(looks_plan(7), profile, store)[0])
+    assert any("5~8개" in e for e in plan.check(looks_plan(9), profile, store)[0])
     p = looks_plan()
     p.looks[1].items[0].product = "zigzag:10"  # 1번 벌 아우터를 2번 벌에도
     p.looks[2].point = ""
