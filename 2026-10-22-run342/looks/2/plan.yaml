@@ -1,0 +1,139 @@
+account: women
+date: '2026-10-22'
+edit_from: out/2026-10-22/looks/2/outfit/results/G_1.jpg
+edit_refs: []
+edit_request: 'Shorten the upper body and lengthen the lower body: the black knit
+  must not hang so low, its hem sits at the waist to high hip and the waist line is
+  placed higher, so the legs look longer. Make the white tee peek out much less, only
+  about 2 cm below the knit hem. Give the face more dimension with clearer, softer
+  light and shadow on the cheekbones, nose and jaw.'
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 싱글 레더 하프 자켓 (black glossy faux leather oversized half jacket with a shirt
+    collar, button front and dropped shoulders, hip length)
+  name: 레더 하프자켓
+  product: zigzag:165576378
+  ref_photos:
+  - 1
+  - 0
+- cm: 56.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 울 캐시미어 라운드넥 니트 (black fine wool-cashmere buttoned round-neck cardigan-style
+    knit top, fitted, cropped at the waist to the high hip)
+  name: 라운드넥 니트
+  product: zigzag:146045687
+  ref_photos:
+  - 3
+  - 1
+  size: about 56 cm long from shoulder to hem, 38 cm across the shoulders, 53 cm across
+    the chest laid flat, 66 cm long sleeves
+- cm: 60.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 라운드 티셔츠 (plain white crisp cotton loose tee with 3/4 sleeves and a small
+    notched round neckline)
+  name: 화이트 티
+  product: zigzag:111492421
+  ref_photos:
+  - 0
+  - 3
+  size: about 60 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm across
+    the chest laid flat, 37 cm long sleeves
+  wear_with: 상의
+- cm: 50.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 H라인 스커트 (black soft structured twill H-line skirt, about 50 cm long so
+    it ends just above the knee, no pleats, no belt)
+  name: H라인 스커트
+  product: zigzag:115691423
+  ref_photos:
+  - 0
+  - 1
+  size: about 50.5 cm long from waist to hem, 34.5 cm across the waist laid flat,
+    46.5 cm across the hips laid flat, 53 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스판 롱부츠 (black slim stretch knee-high boots with a flat low heel)
+  name: 스판 롱부츠
+  product: zigzag:165441441
+  ref_photos:
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더 토트백 (black boston-shaped shoulder tote bag with short handles)
+  name: 숄더 토트백
+  product: zigzag:129584739
+  ref_photos:
+  - 0
+  - 3
+looks: []
+mood: a minimal studio lookbook shoot against a plain seamless pale-grey and white
+  wall and floor with nothing else in the frame, bright clean daylight-balanced light
+  with a crisp soft-edged shadow on the floor, cool neutral colors, shot straight
+  on at about waist height with a clean digital camera so she is seen head to toe
+  with a lot of empty wall around her; her look is a tall slim model with long legs
+  and a small face, bold deep makeup that is defined but with no heavy blush, full
+  lips, a cool attitude
+pose: standing in profile in the empty pale studio with her weight on one leg, her
+  head tipped up and turned away so the face is mostly in profile, one hand in the
+  jacket pocket and the other holding the tote at her side, her long dark hair sleek
+  and straight behind her shoulders, full lips and a cool expression; full body from
+  head to boots
+reason: 블랙 레더 하프자켓이 주인공, 흰 이너 밑단만 살짝 보여 올블랙에 숨통. 참고 레더 자켓(지퍼 오픈)/블랙 니트/흰 이너 밑단/블랙
+  미디 스커트/롱부츠 → 같은 종류로 맞춤 (따라 함 참고 476) [점수 8]
+ref_photo: https://la-room.kr/web/product/medium/202609/5d0a6354a7501a52eab5044cf47e5bc9.webp
+scene_image: out/2026-10-22/src/scene_3.jpg
+shot: model
+styling: The leather jacket is worn open over the black knit; the white tee's hem
+  shows 2 cm below the black knit hem; the knit is worn out over the high-waisted
+  H-line skirt, the skirt ends just above the knee and the knee-high boots rise to
+  just under its hem. The upper body is short and the waist line high so the legs
+  look long; the white tee shows only 2 cm.
+text:
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#차콜'
+  - '#가을코디'
+  - '#레더자켓'
+  - '#블레이저코디'
+  - '#미니스커트코디'
+  intro: 맑고 일교차 큰 가을 목요일, 블랙 하나로도 질감을 바꿔 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 올블랙인데 안 심심한 이유
+  - 질감 하나 바꿨더니 이렇게
+theme:
+  date: '2026-10-22'
+  mood: 블랙과 차콜 사이에서 소재로 변화를 준 룩
+  search_terms:
+    상의:
+    - 새틴 캐미
+    - 딥브이 골지 티
+    하의:
+    - 블랙 슬랙스
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 스웨이드·레더 자켓
+  - category: 상의
+    desc: 블랙 새틴 캐미
+  - category: 하의
+    desc: 블랙 슬랙스
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 부츠
+  title_hint: 올블랙에 질감만 달리한 시크 코디
+  type: 컬러무드
+  why: 할로윈 시즌 분위기에도 맞고 무채색이라 활용도가 높은 주제

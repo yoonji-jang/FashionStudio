@@ -1,0 +1,142 @@
+account: women
+date: '2026-10-22'
+edit_from: out/2026-10-22/looks/5/outfit_r2/results/G_1.jpg
+edit_refs: []
+edit_request: Make the white tee show only a tiny bit, 1 to 2 cm, below the knit hem,
+  or almost not at all. Lengthen her legs. Lengthen the jeans so they cover the top
+  of the foot and the boots. Put the belt on the jeans at the waist through the belt
+  loops, not over the knit. Make the white tee's neckline a plain round crew neck.
+  Make her hair smooth and straight, falling down evenly, with no bangs covering the
+  face.
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 스모키 블랙 브이넥 캐시미어 니트 (smoky black soft fuzzy cashmere-wool v-neck knit, relaxed
+    fit, slightly dropped shoulders, full sleeves gathered at ribbed cuffs, hem at
+    the high hip)
+  name: 블랙 브이넥 니트
+  product: zigzag:165948313
+  ref_photos:
+  - 5
+  - 0
+  - 4
+- cm: 60.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 라운드 티셔츠 (plain white crisp cotton loose tee with 3/4 sleeves and a small
+    plain round crew neckline, its hem shows only 1 to 2 cm below the knit)
+  name: 화이트 티
+  product: zigzag:111492421
+  ref_photos:
+  - 0
+  - 3
+  size: about 60 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm across
+    the chest laid flat, 37 cm long sleeves
+  wear_with: 상의
+- cm: 107.0
+  color: 연청
+  comment: ''
+  cutout_photo: 5
+  desc: 연청 와이드 데님 (light-wash blue relaxed wide-leg denim pants, mid-to-high rise,
+    full length reaching the ankle or foot)
+  name: 연청 와이드 데님
+  product: zigzag:109956120
+  ref_photos:
+  - 5
+  - 3
+  size: about 107 cm long from waist to hem, 35 cm across the waist laid flat, 49
+    cm across the hips laid flat, 23 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 셔링 더플백 (black crinkled round duffle shoulder bag with a central leather
+    strap band and two long handles)
+  name: 셔링 더플백
+  product: zigzag:138364376
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 앵클부츠 (black block-heel square-toe ankle boots, about 5 cm heel, smooth
+    leather)
+  name: 호레인 앵클부츠
+  product: zigzag:107677011
+  ref_photos:
+  - 0
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 와이드 레더 벨트 (black wide leather belt with a bold square buckle)
+  name: 와이드 버클 벨트
+  product: zigzag:148980176
+  ref_photos:
+  - 2
+  - 3
+  segment: belt
+  wear_how: the wide belt is worn on the jeans at the waist, threaded through the
+    belt loops, not over the knit
+  wear_with: 하의
+looks: []
+mood: a minimal studio lookbook shoot against a plain seamless pale-grey and white
+  wall and floor with nothing else in the frame, bright clean daylight-balanced light
+  with a crisp soft-edged shadow on the floor, cool neutral colors, shot straight
+  on at about waist height with a clean digital camera so she is seen head to toe
+  with a lot of empty wall around her; her look is a tall slim model with long legs
+  and a small face, bold deep makeup that is defined but with no heavy blush, full
+  lips, a cool attitude
+pose: standing in the bright empty white studio with her back half turned to the camera
+  and her head turned to the side and down, the bag hanging from her shoulder and
+  her sleek straight hair falling smooth and flat behind her shoulders with no bangs
+  over the face, full lips visible; full body from head to boots
+reason: 블랙 브이넥 니트 안에 흰 티 밑단까지 보이게, 연청 와이드 데님으로 편하게. 참고 블랙 브이넥 니트/흰 티/연청 와이드 데님/블랙
+  숄더백/로퍼 → 같은 종류로 맞춤, 니트는 캐시미어 브이넥, 가방은 더플백, 신발은 앵클부츠로 (따라 함 참고 489) [점수 8]
+ref_photo: https://la-room.kr/web/product/extra/small/202603/06387f44ce57d031d7aea2350708aa49.jpg
+scene_image: out/2026-10-22/src/scene_2.jpg
+shot: model
+styling: The black v-neck knit is worn loose with the white round-neck tee's hem showing
+  only 1 to 2 cm below the knit hem; the wide belt is worn on the jeans at the waist,
+  threaded through the belt loops, not over the knit; the wide jeans are full length
+  and cover the top of the foot and the boots; her legs are long; her hair is smooth
+  and straight with no bangs over the face.
+text:
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#차콜'
+  - '#가을코디'
+  - '#레더자켓'
+  - '#블레이저코디'
+  - '#미니스커트코디'
+  intro: 맑고 일교차 큰 가을 목요일, 블랙 하나로도 질감을 바꿔 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 올블랙인데 안 심심한 이유
+  - 질감 하나 바꿨더니 이렇게
+theme:
+  date: '2026-10-22'
+  mood: 블랙과 차콜 사이에서 소재로 변화를 준 룩
+  search_terms:
+    상의:
+    - 새틴 캐미
+    - 딥브이 골지 티
+    하의:
+    - 블랙 슬랙스
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 스웨이드·레더 자켓
+  - category: 상의
+    desc: 블랙 새틴 캐미
+  - category: 하의
+    desc: 블랙 슬랙스
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 부츠
+  title_hint: 올블랙에 질감만 달리한 시크 코디
+  type: 컬러무드
+  why: 할로윈 시즌 분위기에도 맞고 무채색이라 활용도가 높은 주제

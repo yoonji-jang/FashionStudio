@@ -1,0 +1,216 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 오버핏 블레이저
+  product: zigzag:120727778
+- comment: ''
+  name: 그레이 긴팔 티
+  product: zigzag:172085537
+- comment: ''
+  name: 솔트워싱 블랙진
+  product: zigzag:171984226
+- comment: ''
+  name: 셔링 더플백
+  product: zigzag:138364376
+- comment: ''
+  name: 슬링백 힐
+  product: zigzag:151111416
+- comment: ''
+  name: 레더 하프자켓
+  product: zigzag:165576378
+- comment: ''
+  name: 라운드넥 니트
+  product: zigzag:146045687
+- comment: ''
+  name: 화이트 티
+  product: zigzag:111492421
+- comment: ''
+  name: H라인 스커트
+  product: zigzag:115691423
+- comment: ''
+  name: 스판 롱부츠
+  product: zigzag:165441441
+- comment: ''
+  name: 숄더 토트백
+  product: zigzag:129584739
+- comment: ''
+  name: 골지 브이넥 가디건
+  product: zigzag:156283662
+- comment: ''
+  name: 스트라이프 티
+  product: zigzag:171612105
+- comment: ''
+  name: 새틴 롱스커트
+  product: zigzag:100742919
+- comment: ''
+  name: 실버 펜던트 목걸이
+  product: zigzag:165668871
+- comment: ''
+  name: 스니커즈 로퍼
+  product: zigzag:147059381
+- comment: ''
+  name: 클래식 니트 가디건
+  product: zigzag:165149653
+- comment: ''
+  name: 그레이 립 캐미솔
+  product: zigzag:169072284
+- comment: ''
+  name: 차콜 미니스커트
+  product: zigzag:168273333
+- comment: ''
+  name: 미니 숄더백
+  product: zigzag:163046605
+- comment: ''
+  name: 포인트토 앵클부츠
+  product: zigzag:166308704
+- comment: ''
+  name: 블랙 브이넥 니트
+  product: zigzag:165948313
+- comment: ''
+  name: 연청 와이드 데님
+  product: zigzag:109956120
+- comment: ''
+  name: 호레인 앵클부츠
+  product: zigzag:107677011
+- comment: ''
+  name: 와이드 버클 벨트
+  product: zigzag:148980176
+- comment: ''
+  name: 카라 레이어드 니트
+  product: zigzag:166088038
+- comment: ''
+  name: 워싱 데님 미니스커트
+  product: zigzag:124604456
+- comment: ''
+  name: 블랙 위빙백
+  product: zigzag:169682178
+- comment: ''
+  name: 플랫 롱부츠
+  product: zigzag:166127095
+- comment: ''
+  name: 슬림 골드버클 벨트
+  product: zigzag:158546103
+- comment: ''
+  name: 블랙 뿔테 안경
+  product: zigzag:113382000
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 오버핏 블레이저
+    product: zigzag:120727778
+  - comment: ''
+    name: 그레이 긴팔 티
+    product: zigzag:172085537
+  - comment: ''
+    name: 솔트워싱 블랙진
+    product: zigzag:171984226
+  - comment: ''
+    name: 셔링 더플백
+    product: zigzag:138364376
+  - comment: ''
+    name: 슬링백 힐
+    product: zigzag:151111416
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 하프자켓
+    product: zigzag:165576378
+  - comment: ''
+    name: 라운드넥 니트
+    product: zigzag:146045687
+  - comment: ''
+    name: 화이트 티
+    product: zigzag:111492421
+  - comment: ''
+    name: H라인 스커트
+    product: zigzag:115691423
+  - comment: ''
+    name: 스판 롱부츠
+    product: zigzag:165441441
+  - comment: ''
+    name: 숄더 토트백
+    product: zigzag:129584739
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/3/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 골지 브이넥 가디건
+    product: zigzag:156283662
+  - comment: ''
+    name: 스트라이프 티
+    product: zigzag:171612105
+  - comment: ''
+    name: 새틴 롱스커트
+    product: zigzag:100742919
+  - comment: ''
+    name: 숄더 토트백
+    product: zigzag:129584739
+  - comment: ''
+    name: 실버 펜던트 목걸이
+    product: zigzag:165668871
+  - comment: ''
+    name: 스니커즈 로퍼
+    product: zigzag:147059381
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 클래식 니트 가디건
+    product: zigzag:165149653
+  - comment: ''
+    name: 그레이 립 캐미솔
+    product: zigzag:169072284
+  - comment: ''
+    name: 차콜 미니스커트
+    product: zigzag:168273333
+  - comment: ''
+    name: 미니 숄더백
+    product: zigzag:163046605
+  - comment: ''
+    name: 포인트토 앵클부츠
+    product: zigzag:166308704
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 블랙 브이넥 니트
+    product: zigzag:165948313
+  - comment: ''
+    name: 화이트 티
+    product: zigzag:111492421
+  - comment: ''
+    name: 연청 와이드 데님
+    product: zigzag:109956120
+  - comment: ''
+    name: 셔링 더플백
+    product: zigzag:138364376
+  - comment: ''
+    name: 호레인 앵클부츠
+    product: zigzag:107677011
+  - comment: ''
+    name: 와이드 버클 벨트
+    product: zigzag:148980176
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-22/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 카라 레이어드 니트
+    product: zigzag:166088038
+  - comment: ''
+    name: 워싱 데님 미니스커트
+    product: zigzag:124604456
+  - comment: ''
+    name: 블랙 위빙백
+    product: zigzag:169682178
+  - comment: ''
+    name: 플랫 롱부츠
+    product: zigzag:166127095
+  - comment: ''
+    name: 슬림 골드버클 벨트
+    product: zigzag:158546103
+  - comment: ''
+    name: 블랙 뿔테 안경
+    product: zigzag:113382000
+title_lines:
+- 올블랙인데 안 심심한 이유
+- 질감 하나 바꿨더니 이렇게
