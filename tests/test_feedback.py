@@ -284,6 +284,31 @@ def test_prepare_copies_fix_photos_and_candidates(results, tmp_path, monkeypatch
     assert fixes[0]["photos"][0] == "photo/fix/7_1.jpg"  # 받은 pick 은 그대로
 
 
+def test_prepare_on_fixed_preview_finds_candidates_and_earlier(results, tmp_path, monkeypatch):  # noqa: F811
+    """고친 미리보기를 또 고칠 때: run.json pick 이 고칠 점 JSON 이어도 후보 파일을 찾고
+    고치기 전 결과를 earlier/ 에 둔다 (10-22 run327 이 파일 이름이 길다며 멈춤)."""
+    import shutil
+
+    first = results / "2026-09-27-run4"
+    shutil.copytree(results / RUN, first)
+    cand = results / "2026-09-26-run3" / "picks"
+    cand.mkdir(parents=True)
+    (cand / "p1.yaml").write_text("looks: []\n", encoding="utf-8")
+    (first / "run.json").write_text(json.dumps({"pick": "2026-09-26-run3/chosen"}), "utf-8")
+    fix_pick = {"run": "2026-09-27-run4", "fixes": [{"kind": "all", "text": "키 " * 200}]}
+    (results / RUN / "run.json").write_text(
+        json.dumps({"pick": json.dumps(fix_pick, ensure_ascii=False)}), "utf-8"
+    )
+    root = tmp_path / "repo"
+    monkeypatch.setattr(plan, "REPO_ROOT", root)
+    out = root / "out" / str(DAY)
+    fixes = [{"slide": 1, "kind": "cover", "text": "고치기 전 이미지를 사용해줘."}]
+    data = feedback.prepare({"run": RUN, "round": 2, "fixes": fixes}, results, out)
+    assert data["candidates"] == f"out/{DAY}/candidates.yaml"
+    assert data["earlier"]["run"] == "2026-09-27-run4"
+    assert (out / "earlier" / "plan.yaml").exists()
+
+
 def test_ref_photos_downloads_each_looks_ref(tmp_path, monkeypatch):
     """fix-feed 가 "참고 코디컷처럼" 을 볼 수 있게 벌마다 기준 코디 사진을 받는다 (2026-10-22)."""
     from tests.test_looks import looks_plan

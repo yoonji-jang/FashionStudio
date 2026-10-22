@@ -479,7 +479,7 @@ jobs:
           [ -d "out/$DATE" ] || exit 0
           rsync -a --exclude '/photos/' --exclude 'src/' --exclude 'originals/' \
             --exclude '/picks/photos/' --exclude '/picks/sheets/' --exclude '/previous/' \
-            --exclude '/before/' "out/$DATE/" /tmp/upload/
+            --exclude '/before/' --exclude '/earlier/' "out/$DATE/" /tmp/upload/
           # 게시 job 이 샌드박스(워터마크) 결과를 게시하지 않도록 만든 방식을 남긴다
           sandbox=false; [ -n "$SANDBOX" ] && { [ "$ENGINE" = photoroom ] || [ "$GITHUB_EVENT_NAME" = push ]; } && sandbox=true
           # pick 에 피드백 JSON(따옴표)이 들어갈 수 있어 jq 로 쓴다
@@ -498,6 +498,7 @@ jobs:
         if: always()
         run: |
           [ -n "$(ls -A /tmp/upload)" ] || exit 0
+          [ -n "$DATE" ] || exit 0  # 날짜를 정하기 전에 멈춘 실행 (10-22 run327: "-run327" 폴더로 커밋하려다 실패)
           dest="$DATE-run$RUN"
           git config user.name "github-actions[bot]"
           git config user.email "41898279+github-actions[bot]@users.noreply.github.com"

@@ -556,25 +556,73 @@ def prepare(pick: dict, prev_root: Path, out: Path) -> dict:
     cand = _candidates(src, prev_root, out)
     if cand:
         data["candidates"] = cand  # "코디 후보 3번 추가" 처럼 후보 벌을 더할 때 (2026-10-22 사용자)
+    earlier = _earlier(src, prev_root, out)
+    if earlier:
+        data["earlier"] = earlier  # 고치기 전 미리보기 (그 벌을 되돌릴 때)
     (out / "fix.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return data
 
 
-def _candidates(src: Path, prev_root: Path, out: Path) -> str | None:
-    """이 미리보기를 만든 코디 후보(여러 벌 p1.yaml)를 out/candidates.yaml 로 (저장소 기준 경로).
-    후보 번호 N 은 이 파일 looks 의 N번째 벌이다 (텔레그램 후보 시트 번호)."""
-    from tools.plan import rel
-
+def _source_pick(src: Path) -> str:
+    """결과 폴더를 만든 daily pick 값 (run.json). 없으면 빈칸."""
     run = src / "run.json"
     if not run.exists():
+        return ""
+    return str(json.loads(run.read_text(encoding="utf-8")).get("pick") or "")
+
+
+def _earlier_run(src: Path, prev_root: Path) -> Path | None:
+    """src 가 /fix 로 고친 미리보기면 고치기 전 결과 폴더 (pick 이 고칠 점 JSON)."""
+    pick = _source_pick(src)
+    if not pick.startswith("{"):
         return None
-    pick = str(json.loads(run.read_text(encoding="utf-8")).get("pick") or "")
-    p1 = prev_root / pick.split("/")[0] / "picks" / "p1.yaml"
-    if "/" not in pick or not p1.exists():
+    try:
+        name = str(json.loads(pick).get("run") or "")
+    except json.JSONDecodeError:
         return None
+    earlier = prev_root / name
+    return earlier if name and earlier.is_dir() else None
+
+
+def _candidates(src: Path, prev_root: Path, out: Path, depth: int = 0) -> str | None:
+    """이 미리보기를 만든 코디 후보(여러 벌 p1.yaml)를 out/candidates.yaml 로 (저장소 기준 경로).
+    후보 번호 N 은 이 파일 looks 의 N번째 벌이다 (텔레그램 후보 시트 번호).
+    고친 미리보기를 또 고칠 때는 그 결과의 candidates.yaml, 없으면 고치기 전 결과를 따라간다."""
+    from tools.plan import rel
+
     dest = out / "candidates.yaml"
+    if (src / "candidates.yaml").exists():
+        shutil.copy2(src / "candidates.yaml", dest)
+        return rel(dest)
+    earlier = _earlier_run(src, prev_root)
+    if earlier is not None:
+        return _candidates(earlier, prev_root, out, depth + 1) if depth < 5 else None
+    pick = _source_pick(src)
+    if "/" not in pick:
+        return None
+    p1 = prev_root / pick.split("/")[0] / "picks" / "p1.yaml"
+    if not p1.exists():
+        return None
     shutil.copy2(p1, dest)
     return rel(dest)
+
+
+def _earlier(src: Path, prev_root: Path, out: Path) -> dict | None:
+    """고친 미리보기를 또 고칠 때 고치기 전 결과(기획·벌마다 고른 코디컷)를 out/earlier/ 에 둔다
+    (2026-10-22 사용자: "/fix 1 고치기 전 이미지를 사용해줘")."""
+    earlier = _earlier_run(src, prev_root)
+    if earlier is None or not (earlier / "plan.yaml").exists():
+        return None
+    dest = out / "earlier"
+    dest.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(earlier / "plan.yaml", dest / "plan.yaml")
+    looks = {}
+    for d in sorted((earlier / "looks").glob("*")) if (earlier / "looks").is_dir() else []:
+        if d.name.isdigit() and (path := _keep_chosen(earlier, dest, f"looks/{d.name}")):
+            looks[int(d.name)] = path
+    if (earlier / "slides").is_dir():
+        shutil.copytree(earlier / "slides", dest / "slides", dirs_exist_ok=True)
+    return {"run": earlier.name, "looks": looks}
 
 
 def _keep_chosen(src: Path, out: Path, sub: str) -> str | None:
