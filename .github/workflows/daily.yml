@@ -72,12 +72,14 @@ on:
 permissions:
   contents: write
   id-token: write
+  actions: read  # 진행 알림이 지금 단계 이름을 읽는다 (tools.progress)
 
 jobs:
   daily:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[daily]')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # 90분이면 참고 코디를 많이 고른 날 후보 만들기가 끊겼다 (2026-10-22 run337, 11벌)
+    timeout-minutes: 150
     # 워크플로 단위로 묶으면 같은 푸시에서 건너뛴 다른 워크플로가 대기 중인 실행을 취소해서 job 단위로 둔다
     concurrency:
       group: daily-${{ inputs.account || 'women' }}
@@ -96,6 +98,9 @@ jobs:
       PREVIEW: ${{ (github.event_name == 'push' || inputs.preview) && '1' || '' }}
       HAS_TELEGRAM: ${{ secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
       RUN: ${{ github.run_number }}
+      # Claude 가 부르는 상품 수집은 한 번에 10분까지, 창고 전체 다시 확인은 collect 워크플로에서만
+      COLLECT_MINUTES: "10"
+      COLLECT_NO_RECHECK: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -224,6 +229,19 @@ jobs:
             fi
           fi
 
+      - name: 진행 알림 (한 시간 넘게 걸리면 한 시간마다 텔레그램, tools.progress)
+        if: env.HAS_TELEGRAM == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          case "$MODE" in
+            candidates) what="코디 후보 만들기" ;; edit) what="코디 후보 고치기" ;;
+            render) what="고른 코디로 게시물 만들기" ;; fix) what="게시물 고쳐 만들기" ;; *) what="게시물 만들기" ;;
+          esac
+          nohup python -m tools.progress watch --label "[$ACCOUNT] $DATE $what" --limit 150 \
+            > /tmp/progress.log 2>&1 &
       - name: Claude 코디 후보 (outfit-candidates 스킬)
         if: env.MODE == 'candidates'
         uses: anthropics/claude-code-action@v1
@@ -244,7 +262,7 @@ jobs:
             코디컷 만들기(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 150
-            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.collect:*),Bash(python -m tools.scout refphoto:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep"
+            --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.collect:*),Bash(python -m tools.scout refphoto:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep"
 
       - name: 후보 검사·텔레그램으로 보내기
         if: env.MODE == 'candidates'
@@ -277,7 +295,7 @@ jobs:
             코디컷 만들기(tools.plan build), git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 80
-            --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.scout refphoto:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep"
+            --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.scout refphoto:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep"
 
       - name: 고친 후보 텔레그램으로 보내기
         if: env.MODE == 'edit'
@@ -315,7 +333,7 @@ jobs:
             fix_result.yaml 과 manifest.json 이 생기기 전에는 끝내지 마.
           claude_args: >-
             --max-turns 180
-            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Bash(python -m tools.feedback ref-photos:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+            --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Bash(python -m tools.feedback ref-photos:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: Claude 모델컷 게시물 (model-feed 스킬)
         if: env.MODE == 'model'
@@ -339,7 +357,7 @@ jobs:
             out/${{ env.DATE }}/manifest.json 이 생기기 전에는 끝내지 마.
           claude_args: >-
             --max-turns 200
-            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+            --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
         if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'edit' && env.MODE != 'fix' && env.MODE != 'model'
@@ -367,7 +385,7 @@ jobs:
           # 여러 벌 게시물(20단계)은 벌마다 검수해서 턴이 많이 든다
           claude_args: >-
             --max-turns 250
-            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+            --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: 기획 파일로 만들기
         if: env.PLAN != ''
@@ -518,11 +536,12 @@ jobs:
           git -C /tmp/results push origin daily-results
 
       - name: 실패 알림
-        if: failure()
+        # 시간 제한으로 끊긴 실행(cancelled)도 알린다 (2026-10-22 run337 은 알림 없이 멈춰 흐름이 기다리기만 함)
+        if: failure() || cancelled()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TEXT: "[${{ env.ACCOUNT }}] ${{ env.DATE }} 게시물 만들기(${{ env.MODE }}) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TEXT: "[${{ env.ACCOUNT }}] ${{ env.DATE }} 게시물 만들기(${{ env.MODE }}) ${{ job.status == 'cancelled' && '중단 (시간 제한이거나 취소)' || '실패' }}: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         run: |
           [ -n "$LIMITED" ] && TEXT="$TEXT
           Claude 사용량 한도로 멈췄어요. 한도가 풀리면 자동으로 다시 시작해요"

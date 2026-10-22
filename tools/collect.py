@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import math
+import os
 import shutil
 import sys
 import time
@@ -410,6 +411,12 @@ def main(argv: list[str] | None = None) -> int:
         help="참고 코디(refs.json)에서 창고에 없는 칸의 검색어로 모으고 칸 맞추기를 다시 함",
     )
     args = ap.parse_args(argv)
+    # 게시물 만들기(daily) 안의 수집은 시간을 정해 둔다: 창고 전체 다시 확인과 긴 검색으로
+    # 90분 제한을 넘겨 후보 없이 끝났다 (2026-10-22 run337). 워크플로가 환경 변수로 기본값을 준다
+    if args.minutes is None and os.environ.get("COLLECT_MINUTES"):
+        args.minutes = float(os.environ["COLLECT_MINUTES"])
+    if os.environ.get("COLLECT_NO_RECHECK") == "1":
+        args.no_recheck = True
 
     from tools import refs as refs_tool
 

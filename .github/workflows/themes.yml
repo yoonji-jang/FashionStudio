@@ -51,6 +51,15 @@ jobs:
       - run: uv sync --group scout
       - run: uv run playwright install --with-deps chromium
 
+      - name: 진행 알림 (한 시간 넘게 걸리면 한 시간마다 텔레그램, tools.progress)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          nohup uv run python -m tools.progress watch --label "[$ACCOUNT] 주간 주제·참고 코디 모으기" --limit 340 \
+            > /tmp/progress.log 2>&1 &
+
       - name: 준비 (날짜, 다시 정하는 주제)
         env:
           INPUT_DATE: ${{ inputs.date }}
@@ -426,11 +435,11 @@ jobs:
             KEY="themes:$ACCOUNT" .github/scripts/limit.sh
 
       - name: 실패 알림
-        if: failure()
+        if: failure() || cancelled()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TEXT: "[${{ inputs.account }}] 주간 주제 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TEXT: "[${{ inputs.account }}] 주간 주제 ${{ job.status == 'cancelled' && '중단' || '실패' }}: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         run: |
           [ -n "$LIMITED" ] && TEXT="$TEXT
           Claude 사용량 한도로 멈췄어요. 한도가 풀리면 자동으로 다시 시작해요"
