@@ -7,7 +7,7 @@ from urllib.parse import parse_qs
 import httpx
 import pytest
 
-from core.models import PreviewRecord
+from core.models import PostRecord, PreviewRecord
 from core.profile import load_profile
 from tests.test_review import built, fake_photos, store  # noqa: F401 - pytest fixture
 from tools import ai_label, notify, publish, share
@@ -441,3 +441,23 @@ def test_remind_until_ok_then_deadline_notice(results, store, monkeypatch):  # n
     assert "승인 마감" in api.texts[-1]
     api.replies = [(rec.sent_at + 5, "/ok women 09-27", None)]
     assert "이미 답함" in schedule.remind("women", day, results, tg)
+
+
+def test_publish_again_replaces_post_record(results, store):  # noqa: F811
+    """잘못 올라간 게시물을 다른 결과로 다시 올림 (2026-10-22 사용자: 1번 벌 그림이 잘못 올라감).
+    그날 게시 기록을 새 게시물로 바꾸고, 앞 릴스 기록은 남기고 릴스는 다시 올리지 않는다."""
+    run = results / "2026-09-27-run5"
+    api = FakeApis()
+    sent(api, run)
+    tg, ig, host = clients(api)
+    old = PostRecord(date=DAY, title="앞", media_id="m1", reel_media_id="r1", reel_permalink="x")
+    store.save_posts([old])
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host, force=True) == 0
+    assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 0
+    code = publish.run(
+        "women", DAY, results, store=store, tg=tg, ig=ig, host=host, force=True, again=True
+    )
+    assert code == 0
+    posts = [p for p in store.posts() if p.date == DAY]
+    assert len(posts) == 1 and posts[0].media_id == "m777" and posts[0].reel_media_id == "r1"
+    assert sum(1 for c in api.calls if c[1].endswith("/media_publish")) == 1

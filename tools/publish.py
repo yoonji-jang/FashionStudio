@@ -192,13 +192,16 @@ def run(
     host: GitHubHost | None = None,
     scheduled: bool = False,
     notify_wait: bool = True,
+    again: bool = False,
 ) -> int:
+    """again: 같은 날 게시 기록이 있어도 이 결과로 다시 올린다 (잘못 올라간 게시물을 바로잡을 때,
+    앞 게시물은 사람이 앱에서 지운다). 게시 기록은 새 게시물로 바꾸고 릴스는 다시 올리지 않는다."""
     profile = load_profile(account)
     store = store or Store(account)
     cfg = notify.publish_config()
     tag = f"[{account}] {day}"
 
-    if any(p.date == day for p in store.posts()):
+    if not again and any(p.date == day for p in store.posts()):
         print(f"{tag} 이미 게시했습니다 (posts.json)")
         return 0
     try:
@@ -322,6 +325,9 @@ def run(
         if tg is not None and ask.message_ids:
             share.read_links(ask, tg.updates(), tg.chat_id, len(links))
     posts = store.posts()
+    # 다시 올리면 그날 앞 게시 기록을 새 게시물로 바꾼다 (앞에 올린 릴스 기록은 남김)
+    old = next((p for p in posts if p.date == day), None) if again else None
+    posts = [p for p in posts if not (again and p.date == day)]
     posts.append(
         PostRecord(
             date=day,
@@ -332,11 +338,13 @@ def run(
             media_id=media_id,
             links=links,
             share=ask,
+            reel_media_id=old.reel_media_id if old else None,
+            reel_permalink=old.reel_permalink if old else None,
         )
     )
     store.save_posts(sorted(posts, key=lambda p: p.date))
     print(f"{tag} 게시 완료: {link or media_id}")
-    if profile.reels.enabled and profile.schedule.reels_at is None:
+    if profile.reels.enabled and profile.schedule.reels_at is None and not again:
         # 릴스 시각이 없으면 캐러셀 바로 뒤에 한다. 실패해도 캐러셀은 올라갔으니 알림만
         try:
             if profile.reels.delivery == "telegram":
@@ -632,6 +640,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--scheduled", action="store_true", help="자동 실행: 결과가 없으면 조용히 끝냄")
     ap.add_argument("--quiet-wait", action="store_true", help="승인 대기 알림을 보내지 않음")
     ap.add_argument(
+        "--again",
+        action="store_true",
+        help="같은 날 게시 기록이 있어도 이 결과로 다시 올림 (기록을 바꾸고 릴스는 올리지 않음)",
+    )
+    ap.add_argument(
         "--reels", action="store_true", help="릴스만 올림 (그날 캐러셀을 게시한 결과의 영상)"
     )
     ap.add_argument(
@@ -671,6 +684,7 @@ def main(argv: list[str] | None = None) -> int:
             tg=tg,
             scheduled=args.scheduled,
             notify_wait=not args.quiet_wait,
+            again=args.again,
         )
     except (Blocked, IGError, ValueError, FileNotFoundError, RuntimeError, httpx.HTTPError) as e:
         what = "릴스 게시" if args.reels else "게시"

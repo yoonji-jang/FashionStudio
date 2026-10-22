@@ -18,6 +18,7 @@ r"""코디 여러 벌 게시물 만들기 (20단계, profile looks). tools.plan 
 
 from __future__ import annotations
 
+import shutil
 import sys
 from pathlib import Path
 
@@ -38,6 +39,7 @@ from core.store import Store
 from tools import feed, overlay
 
 LOOKS_DIR = "looks"
+KEPT_DIR = "kept"  # 다른 폴더의 코디컷을 그대로 쓰는 벌 (cover) 의 사본
 
 
 def look_dir(out: Path, n: int) -> Path:
@@ -82,6 +84,13 @@ def build(
         d = look_dir(out, n)
         write_plan(sub, d / "plan.yaml")
         made: list[Path] = [REPO_ROOT / sub.cover] if sub.cover else []
+        if made and not made[0].resolve().is_relative_to((out / LOOKS_DIR).resolve()):
+            # 고치기 전 그림(earlier/)처럼 결과에 올리지 않는 폴더의 그림은 벌 폴더로 복사해 쓴다
+            # (2026-10-22 run329: 되돌린 1번 벌이 earlier/ 를 가리켜 게시물에 고친 그림이 올라감)
+            kept = d / KEPT_DIR / made[0].name
+            kept.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(made[0], kept)
+            made = [kept]
         if not made and review_tool.review_path(d).exists():
             # /fix 로 다시 그리는 벌: 같은 파일 이름의 지난 후보 점수를 남기지 않는다
             review_tool.review_path(d).unlink()

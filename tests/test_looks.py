@@ -619,7 +619,8 @@ def test_fix_cover_swapped_to_other_image_drops_old_review(tmp_path, store):
     looks_ = [lk.model_copy(update={"cover": str(Path(lk.cover).resolve())}) for lk in p.looks]
     looks_[3] = looks_[3].model_copy(update={"cover": str(other)})
     plan.build(p.model_copy(update={"looks": looks_}), new, load_profile("women"), store, fake=True)
-    assert looks.chosen_image(new / "looks" / "4").resolve() == other.resolve()
+    chosen = looks.chosen_image(new / "looks" / "4")
+    assert chosen.parent.name == looks.KEPT_DIR and chosen.read_bytes() == other.read_bytes()
     assert review.load_review(new / "looks" / "4").status == "not_reviewed"
     assert review.load_review(new / "looks" / "1").status == "passed"
 
@@ -1078,7 +1079,25 @@ def test_cand_path_finds_moved_absolute_file(tmp_path):
     img = out / "looks" / "1" / "outfit_r2" / "results" / "G_1.jpg"
     img.parent.mkdir(parents=True)
     img.write_bytes(b"x")
-    gone = "/home/runner/x/out/earlier/looks/1/outfit_r2/results/G_1.jpg"
+    gone = "/home/runner/x/out/looks/1/outfit_r2/results/G_1.jpg"
     c = Candidate(id="c1", file=gone)
     assert review.cand_path(out / "looks" / "1", c) == img
+    # 고치기 전 그림은 다른 그림이라 이 벌의 그림으로 바꾸지 않는다
+    old = Candidate(id="c1", file="/home/runner/x/out/earlier/looks/1/outfit_r2/results/G_1.jpg")
+    assert not review.cand_path(out / "looks" / "1", old).exists()
     assert review.cand_path(out, Candidate(id="c2", file="a.jpg")) == out / "a.jpg"
+
+
+def test_cover_from_earlier_is_copied_into_look(tmp_path, store):
+    """고치기 전 그림(earlier/)으로 되돌린 벌은 그 그림을 벌 폴더로 복사해 쓴다
+    (2026-10-22 run329: 결과에 올리지 않는 earlier/ 를 가리켜 게시물에 고친 그림이 올라감)."""
+    src = tmp_path / "earlier" / "G_1.jpg"
+    src.parent.mkdir()
+    Image.new("RGB", (40, 50), (200, 10, 10)).save(src)
+    p = looks_plan()
+    p.looks[0].cover = str(src)
+    out, m = build(tmp_path, store, p)
+    d = out / "looks" / "1"
+    assert looks.chosen_image(d) == d / looks.KEPT_DIR / "G_1.jpg"
+    assert not Path(review.load_review(d).candidates[0].file).is_absolute()
+    assert m.images and Path(looks.chosen_image(d)).read_bytes() == src.read_bytes()
