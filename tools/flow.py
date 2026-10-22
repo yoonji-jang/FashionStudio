@@ -447,6 +447,17 @@ def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run
     return f"규칙 고치기 요청 ({len(found)}개)"
 
 
+def resend(results: Path, account: str) -> str:
+    """주제 단계(남은 주제 확인, 주간 후보 기다림)를 처음부터: 다음 확인 때 다시 보낸다.
+    남은 주간 주제는 그대로 둔다 (2026-10-22 사용자: 피드백 반영이 끝난 뒤 주제부터 새로)."""
+    st = load_state(results, account)
+    if st.stage not in ("theme_review", "theme_wait"):
+        return f"[{account}] 지금 단계({st.stage})는 다시 보낼 주제 단계가 아니에요"
+    st.stage, st.asked_at, st.alerted, st.revising = "theme", 0, False, False
+    save_state(results, st)
+    return f"[{account}] 주제 단계를 처음부터 다시 보내요 (남은 주제 {len(st.week)}개)"
+
+
 def _late(st: FlowState, now: datetime, tg, text: str, after: timedelta = WAIT_ALERT) -> None:
     if st.alerted or not st.asked_at or tg is None:
         return
@@ -1061,6 +1072,9 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("status")
     s.add_argument("--account", default="women")
     s.add_argument("--results", type=Path, required=True)
+    s = sub.add_parser("resend", help="주제 확인·주간 후보 단계를 처음부터 다시 보냄")
+    s.add_argument("--account", default="women")
+    s.add_argument("--results", type=Path, required=True)
     s = sub.add_parser("reset")
     s.add_argument("--account", default="women")
     s.add_argument("--results", type=Path, required=True)
@@ -1097,6 +1111,8 @@ def main(argv: list[str] | None = None) -> int:
                 path = args.out / "picks_request.json"
                 path.write_text(json.dumps(ask, ensure_ascii=False, indent=2), encoding="utf-8")
                 print(f"다시 짜기 요청: {ask}")
+        elif args.cmd == "resend":
+            print(resend(args.results, args.account))
         elif args.cmd == "reset":
             save_state(args.results, FlowState(account=args.account))
             print(f"[{args.account}] 차례 흐름을 처음(주제)부터 다시 해요")
