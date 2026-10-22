@@ -1,0 +1,116 @@
+account: women
+date: '2026-10-22'
+edit_refs: []
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 클래식 니트 가디건 (black fine knit buttoned round-neck cardigan, fitted, slim
+    long sleeves, cropped at the waist)
+  name: 클래식 니트 가디건
+  product: zigzag:165149653
+  ref_photos:
+  - 3
+  - 0
+- cm: 53.8
+  color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 멜란지 그레이 립 캐미솔 (plain light melange grey ribbed cotton cami tank top with a
+    scoop neck and wide straps, waist length)
+  name: 그레이 립 캐미솔
+  product: zigzag:169072284
+  ref_photos:
+  - 0
+  - 3
+  size: about 53.8 cm long from shoulder to hem, 30.5 cm across the chest laid flat
+  wear_with: 아우터
+- cm: 43.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 3
+  desc: 차콜 A라인 미니 스커트 (charcoal high-waist A-line mini skirt with front waist darts,
+    slightly flared, mid-thigh length, smooth twill, flat front)
+  name: 차콜 미니스커트
+  product: zigzag:168273333
+  ref_photos:
+  - 3
+  - 5
+  size: about 43 cm long from waist to hem, 36 cm across the waist laid flat, 49 cm
+    across the hips laid flat, 58 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 미니 바 백 (small black bar-shaped shoulder bag with a long thin strap)
+  name: 미니 숄더백
+  product: zigzag:163046605
+  ref_photos:
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 앵클부츠 (black pointed-toe stiletto ankle boots with a back zip)
+  name: 포인트토 앵클부츠
+  product: zigzag:166308704
+  ref_photos:
+  - 4
+  - 2
+looks: []
+mood: a minimal studio lookbook shoot against a plain seamless pale-grey and white
+  wall and floor with nothing else in the frame, bright clean daylight-balanced light
+  with a crisp soft-edged shadow on the floor, cool neutral colors, shot straight
+  on at about waist height with a clean digital camera so she is seen head to toe
+  with a lot of empty wall around her; her look is a tall slim model with long legs
+  and a small face, bold deep makeup that is defined but with no heavy blush, full
+  lips, a cool attitude
+pose: standing in the bright empty white studio with her weight on one leg and one
+  hand deep in the cardigan pocket, the other hand letting the small bar bag hang
+  from a long strap, her head turned in three quarters and tilted down so her hair,
+  tied in a sleek high bun, shades part of her face, full lips and a cool expression;
+  full body from head to boots
+reason: 블랙 울 카디건 안에 그레이 캐미가 살짝, 차콜 미니스커트로 올블랙에 그레이만. 참고 울 카디건/그레이 레이스 캐미/울 미니/앵클부츠/미니
+  토트/스타킹 → 캐미는 레이스 없는 그레이 립으로, 스커트는 차콜 A라인, 스타킹은 뺌 (따라 함 참고 174) [점수 7]
+ref_photo: https://u-ur.kr/web/product/medium/202610/e6760a06ebb2a0ac05bab2e92f41be45.jpg
+scene_image: out/2026-10-22/src/scene_2.jpg
+shot: model
+styling: The black cardigan is buttoned except the top two buttons so the grey cami
+  shows at the neckline; the cardigan hem ends at the waist and the charcoal mini
+  skirt shows below it; the pointed ankle boots show below the skirt hem on bare legs.
+text:
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#차콜'
+  - '#가을코디'
+  - '#레더자켓'
+  - '#블레이저코디'
+  - '#미니스커트코디'
+  intro: 맑고 일교차 큰 가을 목요일, 블랙 하나로도 질감을 바꿔 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 올블랙인데 안 심심한 이유
+  - 질감 하나 바꿨더니 이렇게
+theme:
+  date: '2026-10-22'
+  mood: 블랙과 차콜 사이에서 소재로 변화를 준 룩
+  search_terms:
+    상의:
+    - 새틴 캐미
+    - 딥브이 골지 티
+    하의:
+    - 블랙 슬랙스
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 스웨이드·레더 자켓
+  - category: 상의
+    desc: 블랙 새틴 캐미
+  - category: 하의
+    desc: 블랙 슬랙스
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 부츠
+  title_hint: 올블랙에 질감만 달리한 시크 코디
+  type: 컬러무드
+  why: 할로윈 시즌 분위기에도 맞고 무채색이라 활용도가 높은 주제

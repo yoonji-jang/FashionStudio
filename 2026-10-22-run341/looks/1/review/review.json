@@ -1,0 +1,44 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "3번 청바지 밑단이 발목에서 끝나고 신발 위로 쌓이지 않음(설명은 신발 위로 살짝 쌓이는 풀기장). 2번 상의는 힙 기장인데 허리선 위에서 끝나는 크롭으로 짧게 그려짐. 장면 사진과 같은 스튜디오 자리, 그림자, 슬릭번, 선글라스, 서 있는 포즈가 거의 같아 장면 복사 느낌이 있고 헤어가 장면 속 인물과 닮음.",
+        "feedback_ok": null,
+        "faults": [
+          "hem_short"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "상품 목록에 없는 은색 귀걸이(양쪽 귀)와 가는 목걸이가 그려져 있음 (선글라스는 허용). 3번 블랙진은 원본이 밑단까지 넉넉한 와이드인데 무릎 아래부터 많이 좁아지는 배럴 실루엣이라 밑단 폭이 원본보다 좁음. 기장은 발목을 거의 덮음. 나머지 상품은 원본과 같음.",
+        "feedback_ok": null,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "c2 는 상품 색, 형태, 전신 구도가 좋지만 목록에 없는 귀걸이와 목걸이가 있어 clean 0. 바지 밑단 폭도 원본보다 좁음. 합계 7점."
+}

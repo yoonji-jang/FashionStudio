@@ -1,0 +1,121 @@
+account: women
+date: '2026-10-22'
+edit_refs: []
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 셔츠 카라 일체형 슬림 니트 (black slim ribbed knit top with an attached light-blue
+    shirt collar, round neck, long sleeves, cropped at the waist)
+  name: 카라 레이어드 니트
+  product: zigzag:166088038
+  ref_photos:
+  - 0
+- color: 다크그레이
+  comment: ''
+  cutout_photo: 3
+  desc: 차콜 워싱 데님 미니스커트 (charcoal washed stretch denim high-waist mini skirt with a
+    double-button waistband and a raw hem, above mid-thigh)
+  name: 워싱 데님 미니스커트
+  product: zigzag:124604456
+  ref_photos:
+  - 3
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 위빙 백 (black woven-texture hobo shoulder bag with a single knotted handle
+    and a leather tassel on the front zip)
+  name: 블랙 위빙백
+  product: zigzag:169682178
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 플랫 롱부츠 (black soft slouchy flat knee-high boots with a rounded toe and
+    almost no heel)
+  name: 플랫 롱부츠
+  product: zigzag:166127095
+  ref_photos:
+  - 0
+  - 2
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬림 골드버클 벨트 (black slim leather belt with a small gold buckle)
+  name: 슬림 골드버클 벨트
+  product: zigzag:158546103
+  ref_photos:
+  - 0
+  segment: belt
+  wear_how: the belt is threaded through the belt loops and sits at the waist of the
+    skirt
+  wear_with: 하의
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 뿔테 안경 (exactly one pair of black square-frame glasses)
+  name: 블랙 뿔테 안경
+  product: zigzag:113382000
+  ref_photos:
+  - 2
+looks: []
+mood: a minimal studio lookbook shoot against a plain seamless pale-grey and white
+  wall and floor with nothing else in the frame, bright clean daylight-balanced light
+  with a crisp soft-edged shadow on the floor, cool neutral colors, shot straight
+  on at about waist height with a clean digital camera so she is seen head to toe
+  with a lot of empty wall around her; her look is a tall slim model with long legs
+  and a small face, bold deep makeup that is defined but with no heavy blush, full
+  lips, a cool attitude
+pose: standing in profile in the empty pale studio, one leg slightly crossed in front
+  of the other, her face turned away and tipped up toward the wall, one hand holding
+  the bag at her hip, her hair in a sleek low bun, small slim oval black sunglasses,
+  full lips; full body from head to boots
+reason: 블랙 카라 레이어드 탑에 차콜 워싱 데님 미니, 블랙 위빙백과 롱부츠. 참고 카라 레이어드 블랙 탑/차콜 워싱 데님 미니/가죽 쇼퍼백/롱부츠
+  → 같은 종류로 맞춤, 가방은 위빙백, 부츠는 플랫 롱부츠로 (따라 함 참고 258) [점수 7]
+ref_photo: https://curetty.co.kr/web/upload/NNEditor/20260827/26FW20EBA3A9EBB68120ED8EB8ECA791EBB3B8EC9584ED8AB8EBB3B4EB939C204.jpg
+scene_image: out/2026-10-22/src/scene_3.jpg
+shot: model
+styling: The black knit top with its attached shirt collar is worn out over the skirt
+  waistband, with the slim belt over it at the waist; the washed denim mini skirt
+  shows below, and the knee-high boots rise over bare knees.
+text:
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#차콜'
+  - '#가을코디'
+  - '#레더자켓'
+  - '#블레이저코디'
+  - '#미니스커트코디'
+  intro: 맑고 일교차 큰 가을 목요일, 블랙 하나로도 질감을 바꿔 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 올블랙인데 안 심심한 이유
+  - 질감 하나 바꿨더니 이렇게
+theme:
+  date: '2026-10-22'
+  mood: 블랙과 차콜 사이에서 소재로 변화를 준 룩
+  search_terms:
+    상의:
+    - 새틴 캐미
+    - 딥브이 골지 티
+    하의:
+    - 블랙 슬랙스
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 스웨이드·레더 자켓
+  - category: 상의
+    desc: 블랙 새틴 캐미
+  - category: 하의
+    desc: 블랙 슬랙스
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 부츠
+  title_hint: 올블랙에 질감만 달리한 시크 코디
+  type: 컬러무드
+  why: 할로윈 시즌 분위기에도 맞고 무채색이라 활용도가 높은 주제

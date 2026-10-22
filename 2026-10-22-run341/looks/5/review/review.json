@@ -1,0 +1,44 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "6번 벨트가 하의 허리가 아니라 니트 밑단 위에 둘러져 있고, 그 아래로 2번 흰 티 밑단이 나와 있어 입는 방법(하의에 입힘)과 다름. 청바지 허리는 티 밑단 아래에 있어 벨트가 몸통에 떠 있는 모양이고 허리선이 낮아 보임. 얼굴은 옆모습이지만 눈·코·입술이 비교적 또렷함. 4번 더플백은 셔링 주름 대신 매끈한 나일론처럼 그려졌고 작은 로고가 있음. 1번 니트 소매의 리브 커프 모양은 불분명함.",
+        "feedback_ok": null,
+        "faults": [
+          "waist_off"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 2,
+        "notes": "얼굴은 고개를 숙인 옆모습이고 머리카락에 반쯤 가려 정면 얼굴은 아님. 다만 눈과 코 윤곽이 꽤 보여 clean 1. 3번 연청 바지는 와이드보다 일자에 가깝고 밑단이 발목 부츠 윗부분에서 끝남. 6번 벨트는 니트 아래로 비치는 흰 티 위 허리에 둘렀는데 하의 벨트고리 자리가 아니라 티 밑단 위여서 위치가 약간 어색함. 나머지는 원본과 같음. 글자, 없는 물건, 장면 사진 옷은 없음.",
+        "feedback_ok": null,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 는 색과 상품 구성이 원본과 맞고 전신이 다 보임. 얼굴 일부 노출과 바지 핏 및 기장이 조금 아쉬워 shape 1, clean 1 로 총 8점."
+}

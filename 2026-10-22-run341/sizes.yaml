@@ -1,0 +1,118 @@
+- product: zigzag:120727778
+  found: true
+  size: 미표기
+  length: 75.5
+  shoulder: 44
+  chest: 56.5
+  sleeve: 61
+  hem: 58.5
+  where: text
+  note: 글 줄에 사이즈 표기 없이 한 줄만 있음. 오버핏 블레이저, 엉덩이~허벅지 위 기장
+- product: zigzag:172085537
+  found: false
+  note: 본문에 실측표 없음
+- product: zigzag:171984226
+  found: true
+  size: M
+  length: 107
+  waist: 36
+  hip: 52
+  hem: 29.5
+  where: 24-0
+  note: 단면 cm. 와이드 진, 발목을 덮는 풀기장
+- product: zigzag:165576378
+  found: false
+  note: 본문에 실측표 이미지 없음
+- product: zigzag:146045687
+  found: true
+  size: M
+  length: 56
+  shoulder: 38
+  chest: 53
+  sleeve: 66
+  where: 04-0
+  note: 단면 기준. 허리~높은 힙 기장 가디건형
+- product: zigzag:111492421
+  found: true
+  size: 미표기
+  length: 60
+  shoulder: 42
+  chest: 49
+  hem: 49
+  sleeve: 37
+  where: text
+  note: 3/4 소매
+- product: zigzag:115691423
+  found: true
+  size: M
+  length: 50.5
+  waist: 34.5
+  hip: 46.5
+  hem: 53
+  where: 33-0
+  note: 이름은 미디스커트지만 실측 총기장은 50.5
+- product: zigzag:156283662
+  found: true
+  size: M
+  length: 59
+  shoulder: 34
+  chest: 35.5
+  sleeve: 59
+  where: 03-0
+  note: 단면 기준. 기장이 짧은 크롭 가디건
+- product: zigzag:171612105
+  found: true
+  size: 미표기
+  length: 54
+  shoulder: 40
+  chest: 40
+  hem: 37.5
+  sleeve: 65
+  where: text
+  note: 기장이 짧은 편(총장 54)
+- product: zigzag:100742919
+  found: true
+  size: M
+  length: 88
+  waist: 34
+  hip: 45
+  where: text
+  note: 롱스커트, 발목 기장
+- product: zigzag:165149653
+  found: false
+  note: 실측 숫자 없음
+- product: zigzag:169072284
+  found: true
+  size: M
+  length: 53.8
+  chest: 30.5
+  waist: 33
+  where: text
+  note: 가슴둘레 61, 허리둘레 66 을 2로 나눈 단면값. 허리 기장 캐미솔
+- product: zigzag:168273333
+  found: true
+  size: M
+  length: 43
+  waist: 36
+  hip: 49
+  hem: 58
+  where: 12-0
+  note: 기장 옵션 중 긴 EXD 43. 단면 cm
+- product: zigzag:165948313
+  found: false
+  note: 표가 이 상품 것인지 확인 불가
+- product: zigzag:109956120
+  found: true
+  size: M
+  length: 107
+  waist: 35
+  hip: 49
+  hem: 23
+  where: text
+  note: 롱기장 M(연청)
+- product: zigzag:166088038
+  found: false
+  note: 실측표 없음
+- product: zigzag:124604456
+  found: false
+  note: 숫자 없음

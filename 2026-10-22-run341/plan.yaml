@@ -1,0 +1,527 @@
+account: women
+date: '2026-10-22'
+theme:
+  date: '2026-10-22'
+  title_hint: 올블랙에 질감만 달리한 시크 코디
+  mood: 블랙과 차콜 사이에서 소재로 변화를 준 룩
+  slots:
+  - category: 아우터
+    desc: 블랙 스웨이드·레더 자켓
+  - category: 상의
+    desc: 블랙 새틴 캐미
+  - category: 하의
+    desc: 블랙 슬랙스
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 부츠
+  type: 컬러무드
+  why: 할로윈 시즌 분위기에도 맞고 무채색이라 활용도가 높은 주제
+  search_terms:
+    상의:
+    - 새틴 캐미
+    - 딥브이 골지 티
+    하의:
+    - 블랙 슬랙스
+    - 새틴 스커트
+items: []
+looks:
+- items:
+  - product: zigzag:120727778
+    color: 차콜
+    desc: 차콜 오버핏 쓰리버튼 블레이저 (charcoal oversized shoulder-padded structured blazer,
+      notched lapel, hip length to upper thigh)
+    name: 오버핏 블레이저
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 75.5 cm long from shoulder to hem, 44 cm across the shoulders, 56.5
+      cm across the chest laid flat, 61 cm long sleeves
+    cm: 75.5
+  - product: zigzag:172085537
+    color: 그레이
+    desc: 그레이 드레이프 긴소매 티 (fitted heathered grey thin jersey long-sleeve top with a
+      soft cowl draped neckline, hip length)
+    name: 그레이 긴팔 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 4
+  - product: zigzag:171984226
+    color: 블랙
+    desc: 솔트워싱 블랙진 (faded salt-washed black wide-leg barrel jeans with horizontal
+      seams at the knee, relaxed fit, high rise, full length stacking slightly over
+      the shoes, flat front)
+    name: 솔트워싱 블랙진
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 107 cm long from waist to hem, 36 cm across the waist laid flat, 52
+      cm across the hips laid flat, 29.5 cm across the hem laid flat
+    cm: 107.0
+  - product: zigzag:138364376
+    color: 블랙
+    desc: 블랙 셔링 더플백 (black crinkled round duffle shoulder bag with a central leather
+      strap band and two long handles)
+    name: 셔링 더플백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:151111416
+    color: 블랙
+    desc: 블랙 슬링백 힐 (black pointed-toe thin-heel slingback heels with a mary-jane strap
+      across the instep)
+    name: 슬링백 힐
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  reason: 차콜 오버핏 블레이저가 주인공, 그레이 이너 소매 끝을 살짝 보이게 블랙 데님으로. 참고 차콜 블레이저/그레이 롱슬리브/블랙 데님/블랙
+    숄더백/블랙 플랫 → 같은 종류로 맞춤, 데님은 솔트워싱 블랙진·신발은 슬링백으로 (따라 함 참고 419) [점수 7]
+  point: 차콜 블레이저 소매 끝에 그레이 이너가 살짝 보이게 입었어요
+  styling: The blazer is worn open over the grey long-sleeve top, the top's cuffs
+    peek out 3 cm at the blazer cuffs; the top is worn out over the waistband of the
+    jeans, its hem just below the waist; the jeans are full length and fall onto the
+    shoes with the hem just covering the ankle.
+  edit_refs: []
+  pose: standing straight-on in the middle of the empty white studio, feet apart,
+    one hand holding the bag at her side and the other tugging the blazer lapel, chin
+    slightly up behind small slim oval black sunglasses, her hair in a sleek low bun,
+    full lips and a cool expression; full body from head to shoes
+  scene_image: out/2026-10-22/src/scene.jpg
+  ref: '419'
+  ref_photo: https://lowclassic.com/web/product/extra/small/202608/3a54cedbc0c56f9335632b8f7ed06fe0.jpg
+- items:
+  - product: zigzag:165576378
+    color: 블랙
+    desc: 블랙 싱글 레더 하프 자켓 (black glossy faux leather oversized half jacket with a shirt
+      collar, button front and dropped shoulders, hip length)
+    name: 레더 하프자켓
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:146045687
+    color: 블랙
+    desc: 블랙 울 캐시미어 라운드넥 니트 (black fine wool-cashmere buttoned round-neck cardigan-style
+      knit top, fitted, cropped at the waist to the high hip)
+    name: 라운드넥 니트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 3
+    - 1
+    size: about 56 cm long from shoulder to hem, 38 cm across the shoulders, 53 cm
+      across the chest laid flat, 66 cm long sleeves
+    cm: 56.0
+  - product: zigzag:111492421
+    color: 화이트
+    desc: 화이트 라운드 티셔츠 (plain white crisp cotton loose tee with 3/4 sleeves and a small
+      notched round neckline)
+    name: 화이트 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 60 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm
+      across the chest laid flat, 37 cm long sleeves
+    cm: 60.0
+    wear_with: 상의
+  - product: zigzag:115691423
+    color: 블랙
+    desc: 블랙 H라인 스커트 (black soft structured twill H-line skirt, about 50 cm long so it ends
+      just above the knee, no pleats, no belt)
+    name: H라인 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 50.5 cm long from waist to hem, 34.5 cm across the waist laid flat,
+      46.5 cm across the hips laid flat, 53 cm across the hem laid flat
+    cm: 50.5
+  - product: zigzag:165441441
+    color: 블랙
+    desc: 블랙 스판 롱부츠 (black slim stretch knee-high boots with a flat low heel)
+    name: 스판 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:129584739
+    color: 블랙
+    desc: 블랙 숄더 토트백 (black boston-shaped shoulder tote bag with short handles)
+    name: 숄더 토트백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  reason: 블랙 레더 하프자켓이 주인공, 흰 이너 밑단만 살짝 보여 올블랙에 숨통. 참고 레더 자켓(지퍼 오픈)/블랙 니트/흰 이너 밑단/블랙
+    미디 스커트/롱부츠 → 같은 종류로 맞춤 (따라 함 참고 476) [점수 8]
+  point: 블랙 레더 하프자켓 아래 흰 티 밑단으로 숨통을 틔워요 🖤
+  styling: The leather jacket is worn open over the black knit; the white tee's hem
+    shows 4 cm below the black knit hem; the knit is worn out over the high-waisted
+    H-line skirt, the skirt ends just above the knee and the knee-high boots rise to
+    just under its hem.
+  edit_refs: []
+  pose: standing in profile in the empty pale studio with her weight on one leg, her
+    head tipped up and turned away so the face is mostly in profile, one hand in the
+    jacket pocket and the other holding the tote at her side, her long dark hair sleek
+    and straight behind her shoulders, full lips and a cool expression; full body
+    from head to boots
+  scene_image: out/2026-10-22/src/scene_3.jpg
+  ref: '476'
+  ref_photo: https://la-room.kr/web/product/medium/202609/5d0a6354a7501a52eab5044cf47e5bc9.webp
+- items:
+  - product: zigzag:156283662
+    color: 블랙
+    desc: 블랙 골지 브이넥 가디건 (black fitted ribbed deep v-neck button-front cardigan, stretchy
+      rib knit, hip length)
+    name: 골지 브이넥 가디건
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 59 cm long from shoulder to hem, 34 cm across the shoulders, 35.5
+      cm across the chest laid flat, 59 cm long sleeves
+    cm: 59.0
+  - product: zigzag:171612105
+    color: 차콜
+    desc: 차콜 스트라이프 티셔츠 (plain simple charcoal and grey thin-striped long-sleeve boat-neck
+      tee, fitted, short waist-to-high-hip length, soft thin cotton jersey, no trim, no detail)
+    name: 스트라이프 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 54 cm long from shoulder to hem, 40 cm across the shoulders, 40 cm
+      across the chest laid flat, 65 cm long sleeves
+    cm: 54.0
+    wear_with: 상의
+  - product: zigzag:100742919
+    color: 블랙
+    desc: 블랙 새틴 머메이드 롱스커트 (glossy black satin mermaid skirt, fitted through the hip
+      with a flared hem, mid-calf to ankle length, no pleats)
+    name: 새틴 롱스커트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    size: about 88 cm long from waist to hem, 34 cm across the waist laid flat, 45
+      cm across the hips laid flat
+    cm: 88.0
+  - product: zigzag:129584739
+    color: 블랙
+    desc: 블랙 숄더 토트백 (black boston-shaped shoulder tote bag with short handles)
+    name: 숄더 토트백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  - product: zigzag:165668871
+    color: 실버
+    desc: 실버 하트 Y라인 목걸이 (exactly one thin silver Y-line pendant necklace)
+    name: 실버 펜던트 목걸이
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    slot: 목걸이
+    segment: necklace
+  - product: zigzag:147059381
+    color: 블랙
+    desc: 블랙 스퀘어토 스니커즈 로퍼 (black chunky platform lace-up sneaker loafers with silver
+      eyelets, rounded square toe, glossy leather)
+    name: 스니커즈 로퍼
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+  reason: 깊게 파인 블랙 브이넥 가디건에 심플한 스트라이프 티를 받쳐 입고 블랙 롱스커트, 스니커즈 로퍼와 펜던트로 마무리. 참고 배색 가디건/스트라이프
+    이너/블랙 롱스커트/숄더백/펜던트/로퍼 → 같은 종류로 맞춤 (따라 함 참고 323) [점수 7]
+  point: 깊은 브이넥 가디건에 스트라이프 티를 받치고 새틴 롱스커트로 이어요
+  styling: The black ribbed v-neck cardigan is worn open and unbuttoned over the charcoal
+    striped tee, its deep V showing the tee at the chest; the tee is tucked into the
+    front of the high-waisted satin skirt; the skirt is ankle length and the loafers
+    show below the hem.
+  edit_refs: []
+  pose: standing in the empty studio with her body turned a quarter to the side and
+    her face turned away over her shoulder toward the wall, one hand holding the tote
+    strap, her hair in a sleek low bun, small full lips visible in profile, the long
+    satin skirt hem swinging slightly; full body from head to shoes
+  scene_image: out/2026-10-22/src/scene.jpg
+  ref: '323'
+  ref_photo: https://sugarpowder.kr/web/product/small/202601/6143d7b800c239e260344ee62d73f9f8.webp
+- items:
+  - product: zigzag:165149653
+    color: 블랙
+    desc: 블랙 울 클래식 니트 가디건 (black fine knit buttoned round-neck cardigan, fitted, slim
+      long sleeves, cropped at the waist)
+    name: 클래식 니트 가디건
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 3
+    - 0
+  - product: zigzag:169072284
+    color: 그레이
+    desc: 멜란지 그레이 립 캐미솔 (plain light melange grey ribbed cotton cami tank top with
+      a scoop neck and wide straps, waist length)
+    name: 그레이 립 캐미솔
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 53.8 cm long from shoulder to hem, 30.5 cm across the chest laid flat
+    cm: 53.8
+    wear_with: 아우터
+  - product: zigzag:168273333
+    color: 차콜
+    desc: 차콜 A라인 미니 스커트 (charcoal high-waist A-line mini skirt with front waist darts,
+      slightly flared, mid-thigh length, smooth twill, flat front)
+    name: 차콜 미니스커트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+    size: about 43 cm long from waist to hem, 36 cm across the waist laid flat, 49
+      cm across the hips laid flat, 58 cm across the hem laid flat
+    cm: 43.0
+  - product: zigzag:163046605
+    color: 블랙
+    desc: 블랙 미니 바 백 (small black bar-shaped shoulder bag with a long thin strap)
+    name: 미니 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:166308704
+    color: 블랙
+    desc: 블랙 앵클부츠 (black pointed-toe stiletto ankle boots with a back zip)
+    name: 포인트토 앵클부츠
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 2
+  reason: 블랙 울 카디건 안에 그레이 캐미가 살짝, 차콜 미니스커트로 올블랙에 그레이만. 참고 울 카디건/그레이 레이스 캐미/울 미니/앵클부츠/미니
+    토트/스타킹 → 캐미는 레이스 없는 그레이 립으로, 스커트는 차콜 A라인, 스타킹은 뺌 (따라 함 참고 174) [점수 7]
+  point: 블랙 가디건 단추 두 개만 풀어 그레이 캐미를 보여 줘요
+  styling: The black cardigan is buttoned except the top two buttons so the grey cami
+    shows at the neckline; the cardigan hem ends at the waist and the charcoal mini
+    skirt shows below it; the pointed ankle boots show below the skirt hem on bare
+    legs.
+  edit_refs: []
+  pose: standing in the bright empty white studio with her weight on one leg and one
+    hand deep in the cardigan pocket, the other hand letting the small bar bag hang
+    from a long strap, her head turned in three quarters and tilted down so her hair,
+    tied in a sleek high bun, shades part of her face, full lips and a cool expression;
+    full body from head to boots
+  scene_image: out/2026-10-22/src/scene_2.jpg
+  ref: '174'
+  ref_photo: https://u-ur.kr/web/product/medium/202610/e6760a06ebb2a0ac05bab2e92f41be45.jpg
+- items:
+  - product: zigzag:165948313
+    color: 블랙
+    desc: 스모키 블랙 브이넥 캐시미어 니트 (smoky black soft fuzzy cashmere-wool v-neck knit, relaxed
+      fit, slightly dropped shoulders, full sleeves gathered at ribbed cuffs, hem
+      at the high hip)
+    name: 블랙 브이넥 니트
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 0
+    - 4
+  - product: zigzag:111492421
+    color: 화이트
+    desc: 화이트 라운드 티셔츠 (plain white crisp cotton loose tee with 3/4 sleeves and a small
+      notched round neckline, its hem shows below the knit)
+    name: 화이트 티
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+    size: about 60 cm long from shoulder to hem, 42 cm across the shoulders, 49 cm
+      across the chest laid flat, 37 cm long sleeves
+    cm: 60.0
+    wear_with: 상의
+  - product: zigzag:109956120
+    color: 연청
+    desc: 연청 와이드 데님 (light-wash blue relaxed wide-leg denim pants, mid-to-high rise,
+      full length reaching the ankle or foot)
+    name: 연청 와이드 데님
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    - 3
+    size: about 107 cm long from waist to hem, 35 cm across the waist laid flat, 49
+      cm across the hips laid flat, 23 cm across the hem laid flat
+    cm: 107.0
+  - product: zigzag:138364376
+    color: 블랙
+    desc: 블랙 셔링 더플백 (black crinkled round duffle shoulder bag with a central leather
+      strap band and two long handles)
+    name: 셔링 더플백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:107677011
+    color: 블랙
+    desc: 블랙 앵클부츠 (black block-heel square-toe ankle boots, about 5 cm heel, smooth
+      leather)
+    name: 호레인 앵클부츠
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 0
+    - 3
+  - product: zigzag:148980176
+    color: 블랙
+    desc: 블랙 와이드 레더 벨트 (black wide leather belt with a bold square buckle)
+    name: 와이드 버클 벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 2
+    - 3
+    segment: belt
+    wear_with: 하의
+    wear_how: the front of the knit and tee is tucked in at the center so the wide
+      belt shows at the waist, threaded through the belt loops
+  reason: 블랙 브이넥 니트 안에 흰 티 밑단까지 보이게, 연청 와이드 데님으로 편하게. 참고 블랙 브이넥 니트/흰 티/연청 와이드 데님/블랙
+    숄더백/로퍼 → 같은 종류로 맞춤, 니트는 캐시미어 브이넥, 가방은 더플백, 신발은 앵클부츠로 (따라 함 참고 489) [점수 8]
+  point: 블랙 브이넥 니트 밑으로 흰 티를 빼고 연청 데님으로 풀어요 🤍
+  styling: The black v-neck knit is worn loose with the white tee's hem showing below
+    the knit hem; the front of the knit and tee is tucked in at the center so the
+    wide belt shows at the waist, threaded through the belt loops; the wide jeans
+    are full length and fall over the top of the boots.
+  edit_refs: []
+  pose: standing in the bright empty white studio with her back half turned to the
+    camera and her head turned to the side and down, the bag hanging from her shoulder
+    and one hand pushing her sleek straight hair back, her face in shadow, full lips
+    visible; full body from head to boots
+  scene_image: out/2026-10-22/src/scene_2.jpg
+  ref: '489'
+  ref_photo: https://la-room.kr/web/product/extra/small/202603/06387f44ce57d031d7aea2350708aa49.jpg
+- items:
+  - product: zigzag:166088038
+    color: 블랙
+    desc: 블랙 셔츠 카라 일체형 슬림 니트 (black slim ribbed knit top with an attached light-blue
+      shirt collar, round neck, long sleeves, cropped at the waist)
+    name: 카라 레이어드 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:124604456
+    color: 다크그레이
+    desc: 차콜 워싱 데님 미니스커트 (charcoal washed stretch denim high-waist mini skirt with
+      a double-button waistband and a raw hem, above mid-thigh)
+    name: 워싱 데님 미니스커트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 1
+  - product: zigzag:169682178
+    color: 블랙
+    desc: 블랙 위빙 백 (black woven-texture hobo shoulder bag with a single knotted handle
+      and a leather tassel on the front zip)
+    name: 블랙 위빙백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:166127095
+    color: 블랙
+    desc: 블랙 플랫 롱부츠 (black soft slouchy flat knee-high boots with a rounded toe and
+      almost no heel)
+    name: 플랫 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 1
+  - product: zigzag:158546103
+    color: 블랙
+    desc: 블랙 슬림 골드버클 벨트 (black slim leather belt with a small gold buckle)
+    name: 슬림 골드버클 벨트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    segment: belt
+    wear_with: 하의
+    wear_how: the belt is threaded through the belt loops and sits at the waist of
+      the skirt
+  - product: zigzag:113382000
+    color: 블랙
+    desc: 블랙 뿔테 안경 (exactly one pair of black square-frame glasses)
+    name: 블랙 뿔테 안경
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  reason: 블랙 카라 레이어드 탑에 차콜 워싱 데님 미니, 블랙 위빙백과 롱부츠. 참고 카라 레이어드 블랙 탑/차콜 워싱 데님 미니/가죽 쇼퍼백/롱부츠
+    → 같은 종류로 맞춤, 가방은 위빙백, 부츠는 플랫 롱부츠로 (따라 함 참고 258) [점수 7]
+  point: 차콜 워싱 데님 미니에 얇은 벨트로 허리선을 잡아요
+  styling: The black knit top with its attached shirt collar is worn out over the
+    skirt waistband, with the slim belt over it at the waist; the washed denim mini
+    skirt shows below, and the knee-high boots rise over bare knees.
+  edit_refs: []
+  pose: standing in profile in the empty pale studio, one leg slightly crossed in
+    front of the other, her face turned away and tipped up toward the wall, one hand
+    holding the bag at her hip, her hair in a sleek low bun, small slim oval black
+    sunglasses, full lips; full body from head to boots
+  scene_image: out/2026-10-22/src/scene_3.jpg
+  ref: '258'
+  ref_photo: https://curetty.co.kr/web/upload/NNEditor/20260827/26FW20EBA3A9EBB68120ED8EB8ECA791EBB3B8EC9584ED8AB8EBB3B4EB939C204.jpg
+reason: 사용자가 고른 참고 코디 11벌(506 419 476 262 266 323 174 489 441 337 258)을 그 순서대로 따라
+  입기
+edit_refs: []
+shot: model
+mood: a minimal studio lookbook shoot against a plain seamless pale-grey and white
+  wall and floor with nothing else in the frame, bright clean daylight-balanced light
+  with a crisp soft-edged shadow on the floor, cool neutral colors, shot straight
+  on at about waist height with a clean digital camera so she is seen head to toe
+  with a lot of empty wall around her; her look is a tall slim model with long legs
+  and a small face, bold deep makeup that is defined but with no heavy blush, full
+  lips, a cool attitude
+scene_image: out/2026-10-22/src/scene.jpg
+text:
+  title_lines:
+  - 올블랙인데 안 심심한 이유
+  - 질감 하나 바꿨더니 이렇게
+  intro: 맑고 일교차 큰 가을 목요일, 블랙 하나로도 질감을 바꿔 입어 보세요 🍂
+  points: []
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#차콜'
+  - '#가을코디'
+  - '#레더자켓'
+  - '#블레이저코디'
+  - '#미니스커트코디'

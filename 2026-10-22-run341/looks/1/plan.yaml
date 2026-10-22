@@ -1,0 +1,120 @@
+account: women
+date: '2026-10-22'
+edit_refs: []
+items:
+- cm: 75.5
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 오버핏 쓰리버튼 블레이저 (charcoal oversized shoulder-padded structured blazer, notched
+    lapel, hip length to upper thigh)
+  name: 오버핏 블레이저
+  product: zigzag:120727778
+  ref_photos:
+  - 0
+  - 1
+  size: about 75.5 cm long from shoulder to hem, 44 cm across the shoulders, 56.5
+    cm across the chest laid flat, 61 cm long sleeves
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 드레이프 긴소매 티 (fitted heathered grey thin jersey long-sleeve top with a soft
+    cowl draped neckline, hip length)
+  name: 그레이 긴팔 티
+  product: zigzag:172085537
+  ref_photos:
+  - 0
+  - 2
+  - 4
+- cm: 107.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 솔트워싱 블랙진 (faded salt-washed black wide-leg barrel jeans with horizontal seams
+    at the knee, relaxed fit, high rise, full length stacking slightly over the shoes,
+    flat front)
+  name: 솔트워싱 블랙진
+  product: zigzag:171984226
+  ref_photos:
+  - 0
+  - 1
+  size: about 107 cm long from waist to hem, 36 cm across the waist laid flat, 52
+    cm across the hips laid flat, 29.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 셔링 더플백 (black crinkled round duffle shoulder bag with a central leather
+    strap band and two long handles)
+  name: 셔링 더플백
+  product: zigzag:138364376
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬링백 힐 (black pointed-toe thin-heel slingback heels with a mary-jane strap
+    across the instep)
+  name: 슬링백 힐
+  product: zigzag:151111416
+  ref_photos:
+  - 0
+  - 2
+looks: []
+mood: a minimal studio lookbook shoot against a plain seamless pale-grey and white
+  wall and floor with nothing else in the frame, bright clean daylight-balanced light
+  with a crisp soft-edged shadow on the floor, cool neutral colors, shot straight
+  on at about waist height with a clean digital camera so she is seen head to toe
+  with a lot of empty wall around her; her look is a tall slim model with long legs
+  and a small face, bold deep makeup that is defined but with no heavy blush, full
+  lips, a cool attitude
+pose: standing straight-on in the middle of the empty white studio, feet apart, one
+  hand holding the bag at her side and the other tugging the blazer lapel, chin slightly
+  up behind small slim oval black sunglasses, her hair in a sleek low bun, full lips
+  and a cool expression; full body from head to shoes
+reason: 차콜 오버핏 블레이저가 주인공, 그레이 이너 소매 끝을 살짝 보이게 블랙 데님으로. 참고 차콜 블레이저/그레이 롱슬리브/블랙 데님/블랙
+  숄더백/블랙 플랫 → 같은 종류로 맞춤, 데님은 솔트워싱 블랙진·신발은 슬링백으로 (따라 함 참고 419) [점수 7]
+ref_photo: https://lowclassic.com/web/product/extra/small/202608/3a54cedbc0c56f9335632b8f7ed06fe0.jpg
+scene_image: out/2026-10-22/src/scene.jpg
+shot: model
+styling: The blazer is worn open over the grey long-sleeve top, the top's cuffs peek
+  out 3 cm at the blazer cuffs; the top is worn out over the waistband of the jeans,
+  its hem just below the waist; the jeans are full length and fall onto the shoes
+  with the hem just covering the ankle.
+text:
+  hashtags:
+  - '#올블랙코디'
+  - '#블랙코디'
+  - '#차콜'
+  - '#가을코디'
+  - '#레더자켓'
+  - '#블레이저코디'
+  - '#미니스커트코디'
+  intro: 맑고 일교차 큰 가을 목요일, 블랙 하나로도 질감을 바꿔 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 올블랙인데 안 심심한 이유
+  - 질감 하나 바꿨더니 이렇게
+theme:
+  date: '2026-10-22'
+  mood: 블랙과 차콜 사이에서 소재로 변화를 준 룩
+  search_terms:
+    상의:
+    - 새틴 캐미
+    - 딥브이 골지 티
+    하의:
+    - 블랙 슬랙스
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 블랙 스웨이드·레더 자켓
+  - category: 상의
+    desc: 블랙 새틴 캐미
+  - category: 하의
+    desc: 블랙 슬랙스
+  - category: 가방
+    desc: 블랙 퀼팅 체인백
+  - category: 신발
+    desc: 블랙 부츠
+  title_hint: 올블랙에 질감만 달리한 시크 코디
+  type: 컬러무드
+  why: 할로윈 시즌 분위기에도 맞고 무채색이라 활용도가 높은 주제
