@@ -881,6 +881,7 @@ LIMIT_NAMES = {
     "daily.yml": "게시물 만들기",
     "themes.yml": "주제 정하기",
     "feedback-rules.yml": "피드백 규칙 반영",
+    "feedback-round.yml": "피드백 반영 단계",
 }
 LIMIT_DAYS = 2  # 이보다 오래된 한도 기록은 다시 시작하지 않는다
 LIMIT_MARGIN = timedelta(minutes=5)  # 한도가 풀리는 시각에서 조금 더 기다린다

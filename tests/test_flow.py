@@ -670,9 +670,66 @@ def test_published_requests_feedback_rules(env, monkeypatch):
     flow.save_state(results, st)
     store.save_posts([PostRecord(date=date(2026, 10, 16), title="t")])
     lines = tick(env, tg, T0 + 1200)
-    assert lines[0] == "게시 확인, 피드백 규칙 반영 요청 (2개)"
-    assert ("feedback-rules.yml", {"account": "women"}) in sent and "2개" in tg.sent[0]
-    assert flow.load_state(results, "women").stage == "theme_wait"
+    assert lines == ["게시 확인, 피드백 반영 계획 요청 (2개)"]
+    assert ("feedback-round.yml", {"account": "women", "step": "plan"}) in sent
+    assert "2개" in tg.sent[0]
+    assert flow.load_state(results, "women").stage == "rules_plan"
+
+
+def _round_sent(results, **kw):
+    from tools import feedback
+
+    rnd = feedback.load_round(results, "women")
+    feedback.save_round(results, "women", rnd.model_copy(update=kw))
+
+
+def test_feedback_round_plan_pr_merge_then_theme(env, monkeypatch):
+    """2026-10-22 사용자: 반영 계획 → /fix·/ok → PR → /fix·/merge → 합치면 다음 주제."""
+    monkeypatch.setattr(flow, "load_profile", _profile(0, rules=True))
+    store, results, sent, _ = env
+    st = flow.FlowState(account="women", stage="rules_plan", date=date(2026, 10, 16), asked_at=T0)
+    flow.save_state(results, st)
+    tg = FakeTg()
+    rounds = lambda: [i["step"] for wf, i in sent if wf == "feedback-round.yml"]  # noqa: E731
+    assert tick(env, tg, T0 + 60) == []  # 계획이 아직 안 옴
+    _round_sent(results, plan="1. 신발", plan_at=T0 + 100)
+    tg.text(10, "/fix 2번은 빼줘", T0 + 200)
+    assert tick(env, tg, T0 + 300) == ["피드백 반영 계획 고치기 (1개)"]
+    assert rounds() == ["plan"]
+    from tools import feedback
+
+    assert feedback.load_round(results, "women").plan_notes == ["2번은 빼줘"]
+    assert tick(env, tg, T0 + 400) == []  # 고친 계획을 기다림 (그 전 답은 다시 읽지 않음)
+    _round_sent(results, plan_at=T0 + 500)
+    tg.text(11, "/ok", T0 + 600)
+    assert tick(env, tg, T0 + 700) == ["피드백 반영 계획 확정, PR 요청"]
+    assert flow.load_state(results, "women").stage == "rules_pr"
+    _round_sent(results, pr_at=T0 + 800, branch="b", pr_url="u")
+    tg.text(12, "/fix 문장을 더 짧게", T0 + 900)
+    assert tick(env, tg, T0 + 1000) == ["규칙 PR 고치기 (1개)"]
+    _round_sent(results, pr_at=T0 + 1100)
+    tg.text(13, "/merge", T0 + 1200)
+    assert tick(env, tg, T0 + 1300) == ["규칙 PR 합치기 요청 (/merge)"]
+    assert rounds() == ["plan", "apply", "revise", "merge"]
+    assert tick(env, tg, T0 + 1400) == []  # 합치기를 기다림, 주제는 아직
+    assert all(wf != "theme-options.yml" for wf, _ in sent)
+    _round_sent(results, merged_at=T0 + 1500)
+    lines = tick(env, tg, T0 + 1600)
+    assert lines[0] == "피드백 반영 마침 (PR 합침)" and lines[1].startswith("주제 제안 요청")
+    # 단계 안에서 보낸 /fix 는 "/fix 규칙" 요청으로 다시 읽지 않는다
+    assert all(wf != "feedback-rules.yml" for wf, _ in sent)
+
+
+def test_feedback_round_skip_goes_to_theme(env, monkeypatch):
+    monkeypatch.setattr(flow, "load_profile", _profile(0, rules=True))
+    store, results, sent, _ = env
+    st = flow.FlowState(account="women", stage="rules_plan", date=date(2026, 10, 16), asked_at=T0)
+    flow.save_state(results, st)
+    _round_sent(results, plan="1. 신발", plan_at=T0 + 100)
+    tg = FakeTg()
+    tg.text(10, "/skip", T0 + 200)
+    lines = tick(env, tg, T0 + 300)
+    assert lines[0] == "피드백 반영 건너뜀 (/skip)" and lines[1].startswith("주제 제안 요청")
 
 
 def test_rules_fix_request_goes_to_feedback_rules(env):
@@ -722,3 +779,21 @@ def test_rules_word_is_not_a_post_fix():
     cmd = notify.parse("/fix 규칙 신발 문장 고쳐줘", "women", date(2026, 10, 15))
     assert cmd == notify.Command("rules", ["신발", "문장", "고쳐줘"], False)
     assert notify.parse("/fix 2 신발", "women", None).name == "fix"
+
+
+def test_round_record_and_material_cli(tmp_path, monkeypatch):
+    from tools import feedback
+
+    results = tmp_path / "results"
+    plan = tmp_path / "plan.md"
+    plan.write_text("1. 신발\n")
+    args = ["round-record", "--account", "women", "--results", str(results)]
+    assert feedback.main([*args, "--plan", str(plan), "--upto", "7"]) == 0
+    assert feedback.main([*args, "--branch", "feedback-rules/x", "--pr-url", "u", "--pr"]) == 0
+    rnd = feedback.load_round(results, "women")
+    assert rnd.plan == "1. 신발" and rnd.upto == 7 and rnd.branch == "feedback-rules/x"
+    assert rnd.plan_at and rnd.pr_at
+    rnd.pr_notes = ["더 짧게"]
+    feedback.save_round(results, "women", rnd)
+    text = feedback.round_material(Store("women", root=tmp_path / "d"), rnd, "revise", date.today())
+    assert "# 확정한 반영 계획" in text and "더 짧게" in text
