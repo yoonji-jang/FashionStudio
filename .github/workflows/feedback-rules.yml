@@ -9,6 +9,8 @@ name: feedback-rules
 #    아니면 ci 를 돌린다 (GITHUB_TOKEN 으로 만든 PR 에는 ci 가 저절로 돌지 않아서 workflow_dispatch 로 부른다)
 # 차례 흐름(profile flow.rules_after_post)이면 게시를 확인할 때 schedule 이 부른다.
 # 4. 다룬 피드백을 data/<계정>/feedback_rules.json 에 적어 main 에 커밋 (다음 날 다시 다루지 않음)
+# request 를 주면 (텔레그램 "/fix 규칙 …", 규칙 반영 알림에 답장한 /fix, 2026-10-22 사용자)
+# 새 피드백 대신 그 요청대로 지난 규칙 반영을 더하거나 고친다 (차례 흐름이 부른다).
 # 처음 한 번: 저장소 Settings → Actions → General → Workflow permissions 에서
 # "Allow GitHub Actions to create and approve pull requests" 를 켜야 PR 을 만들 수 있다.
 on:
@@ -17,6 +19,9 @@ on:
       account:
         description: 계정
         default: women
+      request:
+        description: 규칙 고치기 요청 JSON {"requests":[{update_id, at, text}]} (비우면 새 피드백 반영)
+        default: ""
 
 permissions:
   contents: write
@@ -36,13 +41,25 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100  # 규칙 고치기: 지난 규칙 반영 커밋을 재료로 넣는다
       - uses: astral-sh/setup-uv@v6
       - run: uv sync
 
       - name: 새 피드백 확인
         id: pending
+        env:
+          REQUEST: ${{ inputs.request }}
         run: |
           echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          if [ -n "$REQUEST" ]; then
+            uv run python -m tools.feedback rules-request --account "$ACCOUNT" --request "$REQUEST" \
+              --out "out/feedback_rules/$ACCOUNT.md"
+            echo "new=true" >> "$GITHUB_OUTPUT"
+            echo "request=true" >> "$GITHUB_OUTPUT"
+            echo "day=$(TZ=Asia/Seoul date +%F)-fix$(date +%H%M%S)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           set +e
           uv run python -m tools.feedback pending --account "$ACCOUNT" --out "out/feedback_rules/$ACCOUNT.md" | tee /tmp/pending.txt
           code=${PIPESTATUS[0]}
@@ -63,6 +80,7 @@ jobs:
           allowed_bots: "github-actions"
           prompt: |
             .claude/skills/feedback-rules/SKILL.md 의 순서를 그대로 따라 새 피드백을 규칙에 반영해.
+            ${{ steps.pending.outputs.request == 'true' && '이번에는 사용자가 텔레그램으로 보낸 규칙 고치기 요청이야. SKILL.md "사용자가 직접 고치기" 를 따라.' || '' }}
             ACCOUNT=${{ env.ACCOUNT }} 재료: out/feedback_rules/${{ env.ACCOUNT }}.md
             python 은 이미 가상환경이 잡혀 있으니 `python -m ...` 처럼 부르면 돼.
             git 커밋·푸시, PR 만들기, 게시, 외부 전송은 하지 마 (워크플로가 한다).
@@ -126,7 +144,7 @@ jobs:
           gh workflow run ci.yml --ref "$branch" || echo "::warning::ci 실행 요청 실패"
 
       - name: 다룬 피드백 기록 (main)
-        if: steps.pending.outputs.new == 'true'
+        if: steps.pending.outputs.new == 'true' && steps.pending.outputs.request != 'true'
         env:
           UPTO: ${{ steps.pending.outputs.upto }}
         run: |
@@ -152,6 +170,7 @@ jobs:
           URL: ${{ steps.pr.outputs.url }}
           TESTS: ${{ steps.pr.outputs.tests }}
           MERGED: ${{ steps.pr.outputs.merged }}
+          REQUEST: ${{ steps.pending.outputs.request }}
         run: |
           # 바뀐 점: Claude 가 쓴 PR 설명에서 "## 반영한 피드백" 까지(Before/After)와 반영 목록
           summary=$(uv run python - <<'PY'
@@ -161,8 +180,10 @@ jobs:
           print(text[:1500] + (" …" if len(text) > 1500 else ""))
           PY
           )
+          what="/fix 피드백을"
+          [ "$REQUEST" = true ] && what="보내 주신 규칙 고치기 요청을"
           if [ "$MERGED" = true ]; then
-            head="[$ACCOUNT] 📝 /fix 피드백을 규칙에 반영했어요. 다음 게시물부터 적용돼요"
+            head="[$ACCOUNT] 📝 $what 규칙에 반영했어요. 다음 게시물부터 적용돼요"
           else
             head="[$ACCOUNT] 📝 피드백을 규칙에 반영한 PR 을 만들었어요. 확인하고 괜찮으면 합쳐 주세요 (검사: $TESTS)"
           fi
@@ -170,7 +191,9 @@ jobs:
 
           $summary
 
-          $URL"
+          $URL
+
+          더하거나 고칠 점은 이 메시지에 답장으로 /fix 내용 을 보내 주세요 (또는 /fix 규칙 내용)"
 
       - name: 텔레그램 알림 (반영할 규칙 없음)
         # 게시 뒤 흐름이 부른 반영도 결과를 알 수 있게 Claude 가 남긴 이유를 보낸다 (2026-10-21)

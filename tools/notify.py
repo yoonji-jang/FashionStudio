@@ -519,6 +519,10 @@ def again_note(tail: str) -> list[str]:
     return [NOTE + t] if t else []
 
 
+RULES_WORDS = ("규칙", "rules")
+RULES_MARK = "📝"  # 피드백 규칙 반영 알림 앞머리 (이 글에 답장한 /fix 는 규칙 고치기)
+
+
 def parse(text: str, account: str, day: date | None) -> Command | None:
     """ "/ok", "/pick 3 women 09-28", "/skip 2026-09-27" 같은 글을 읽는다.
     계정·날짜를 적었으면 둘 다 이 계정·날짜와 맞아야 하고(아니면 None),
@@ -588,7 +592,11 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
             labeled = True
         else:
             args.append(token)
-    return Command(m.group(1).lower(), args, labeled)
+    name = m.group(1).lower()
+    if name == "fix" and args and args[0].rstrip(":") in RULES_WORDS:
+        # "/fix 규칙 …" 은 게시물이 아니라 피드백 규칙을 고치는 요청 (tools.feedback.rules_requests)
+        return Command("rules", args[1:], labeled)
+    return Command(name, args, labeled)
 
 
 def commands(

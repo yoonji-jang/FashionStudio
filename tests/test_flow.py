@@ -673,3 +673,52 @@ def test_published_requests_feedback_rules(env, monkeypatch):
     assert lines[0] == "게시 확인, 피드백 규칙 반영 요청 (2개)"
     assert ("feedback-rules.yml", {"account": "women"}) in sent and "2개" in tg.sent[0]
     assert flow.load_state(results, "women").stage == "theme_wait"
+
+
+def test_rules_fix_request_goes_to_feedback_rules(env):
+    """2026-10-22 사용자: 규칙 반영 PR 에 더하거나 고칠 점도 /fix 로 보낸다.
+    "/fix 규칙 …" 이나 규칙 반영 알림(📝)에 답장한 "/fix …" 는 단계와 상관없이
+    규칙 고치기로 넘긴다."""
+    store, results, sent, _ = env
+    st = flow.FlowState(account="women", stage="theme_wait", date=date(2026, 10, 16), asked_at=T0)
+    flow.save_state(results, st)
+    tg = FakeTg()
+    tg.text(500, "/fix 규칙 신발은 앞코 뾰족한 구두도 괜찮다고 넣어줘", T0 + 10)
+    tg.ups.append(
+        {
+            "update_id": 501,
+            "message": {
+                "date": T0 + 20,
+                "chat": {"id": 42},
+                "text": "/fix 치마 기장 문장은 되돌려줘",
+                "reply_to_message": {"message_id": 9, "text": "[women] 📝 /fix 피드백을 규칙에"},
+            },
+        }
+    )
+    tg.text(502, "/fix 2 신발 바꿔줘", T0 + 30)  # 게시물 /fix 는 규칙 고치기가 아님
+    lines = tick(env, tg, T0 + 60)
+    assert lines[0] == "규칙 고치기 요청 (2개)"
+    wf, inputs = next((wf, i) for wf, i in sent if wf == "feedback-rules.yml")
+    texts = [r["text"] for r in json.loads(inputs["request"])["requests"]]
+    assert texts == ["신발은 앞코 뾰족한 구두도 괜찮다고 넣어줘", "치마 기장 문장은 되돌려줘"]
+    assert flow.load_state(results, "women").rules_upto == 501
+    assert any("규칙 고치기 요청을 받았어요" in t for t in tg.sent)
+    # 같은 글은 한 번만
+    n = len(sent)
+    tick(env, tg, T0 + 120)
+    assert sum(1 for wf, _ in sent[n:] if wf == "feedback-rules.yml") == 0
+
+
+def test_rules_fix_ignores_old_messages_first_time(env):
+    store, results, sent, _ = env
+    flow.save_state(results, flow.FlowState(account="women", stage="theme_wait", asked_at=T0))
+    tg = FakeTg()
+    tg.text(400, "/fix 규칙 오래된 요청", T0 - 3 * 3600)
+    tick(env, tg, T0)
+    assert all(wf != "feedback-rules.yml" for wf, _ in sent)
+
+
+def test_rules_word_is_not_a_post_fix():
+    cmd = notify.parse("/fix 규칙 신발 문장 고쳐줘", "women", date(2026, 10, 15))
+    assert cmd == notify.Command("rules", ["신발", "문장", "고쳐줘"], False)
+    assert notify.parse("/fix 2 신발", "women", None).name == "fix"
