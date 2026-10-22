@@ -1,0 +1,16 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "kept/look2.jpg",
+      "round": 1,
+      "score": null
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": false,
+  "status": "not_reviewed",
+  "slide_issues": [],
+  "summary": ""
+}
