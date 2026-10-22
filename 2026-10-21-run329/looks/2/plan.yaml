@@ -1,59 +1,72 @@
 account: women
-cover: out/2026-10-21/looks/2/outfit/results/G_1.jpg
+cover: out/2026-10-21/looks/4/outfit/results/G_1.jpg
 date: '2026-10-21'
 edit_refs: []
 items:
-- cm: 58.5
-  color: 그레이
+- cm: 62.0
+  color: 아이보리
   comment: ''
-  cutout_photo: 0
-  desc: 멜란지 그레이 울 하이넥 니트 가디건 (melange gray fine wool high-neck knit cardigan, slim
-    and fitted, waist length, button front, ribbed hem)
-  name: 하이넥 니트 가디건
-  product: zigzag:165394055
+  cutout_photo: 5
+  desc: 아이보리 브이넥 니트 (ivory oversized slouchy thin fuzzy V-neck knit, wide deep V neckline,
+    hip length)
+  name: 브이넥 니트
+  product: zigzag:171290931
   ref_photos:
-  - 0
-  - 1
-  size: about 58.5 cm long from shoulder to hem, 49 cm across the chest laid flat,
-    69.5 cm long sleeves
+  - 5
+  size: about 62 cm long from shoulder to hem, 47.5 cm across the shoulders, 53 cm
+    across the chest laid flat, 54.5 cm long sleeves
 - color: 화이트
   comment: ''
-  cutout_photo: 3
-  desc: 화이트 레이스 레이어드 나시 (white lace-trim fitted camisole, thin straps, hip length)
-  name: 레이스 나시
-  product: zigzag:169196108
-  ref_photos:
-  - 3
-  - 5
-- cm: 33.5
-  color: 버건디
-  comment: ''
-  cutout_photo: 1
-  desc: 버건디 코듀로이 미니스커트 (burgundy plush corduroy fitted A-line mini skirt, mid-thigh
-    length)
-  name: 코듀로이 미니스커트
-  product: zigzag:153684988
-  ref_photos:
-  - 1
-  - 3
-  size: about 33.5 cm long from waist to hem, 36 cm across the waist laid flat, 54
-    cm across the hips laid flat, 54.5 cm across the hem laid flat
-- color: 블랙
-  comment: ''
-  cutout_photo: 3
-  desc: 블랙 스트랩 숄더백 (black shoulder bag with a U-shaped strap)
-  name: 스트랩 숄더백
-  product: zigzag:170446631
-  ref_photos:
-  - 3
-- color: 카멜
-  comment: ''
   cutout_photo: 0
-  desc: 카멜 스웨이드 롱부츠 (camel suede long boots)
-  name: 스웨이드 롱부츠
-  product: zigzag:149594575
+  desc: 화이트 심플 캐미 탑 (plain white cropped camisole top with thin straps, no lace)
+  name: 심플 캐미
+  product: zigzag:169382067
   ref_photos:
   - 0
+  wear_with: 상의
+- cm: 37.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 레이스 프릴 미니스커트 (white fitted-waist flared mini skirt with a tiered ruffle
+    hem of eyelet lace, crisp light cotton, upper-thigh length)
+  name: 레이스 프릴 미니
+  product: zigzag:160618952
+  ref_photos:
+  - 3
+  - 2
+  - 4
+  size: about 37 cm long from waist to hem, 37 cm across the waist laid flat, 55 cm
+    across the hips laid flat, 77.5 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 발레리나 플랫 (black ballerina flats)
+  name: 발레리나 플랫
+  product: zigzag:152501732
+  ref_photos:
+  - 1
+  - 0
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 미니 토트백 (black mini tote bag)
+  name: 미니 토트백
+  product: zigzag:170446634
+  ref_photos:
+  - 2
+  - 1
+- color: 실버
+  comment: ''
+  cutout_photo: 2
+  desc: 실버 큐빅 목걸이 (silver cubic necklace)
+  name: 큐빅 목걸이
+  product: zigzag:168750112
+  ref_photos:
+  - 2
+  - 0
+  slot: 목걸이
 looks: []
 mood: 'a clean studio lookbook shoot like the scene photo: a plain pale grey seamless
   studio wall above a pale beige-grey polished concrete floor with soft window-light
@@ -65,20 +78,18 @@ mood: 'a clean studio lookbook shoot like the scene photo: a plain pale grey sea
   plump rosy-pink lip, a gentle calm gaze slightly off the camera with lips softly
   parted. Her hair is long soft layered waves, loose or half-up. Ignore any rule about
   hiding her face: here the face is shown, natural and sharp, never blurred.'
-pose: standing full-length with a slight step forward, one hand holding the strap
-  of the shoulder bag on her shoulder, the other hand brushing her long hair behind
-  her ear, her body turned a little to the side and her face toward the camera with
-  a soft gaze; long soft wavy hair worn loose
-reason: 그레이 가디건에 흰 레이스 캐미, 버건디 미니로 대비. 참고 =그레이 퍼 가디건/아이보리 레이스 캐미/브라운 미니/블랙 숄더백/브라운
-  롱부츠 → 맞춘 것 =그레이 니트 가디건(퍼 아님)/레이스 나시/버건디 골덴 미니(브라운 없음)/블랙 숄더백/카멜 롱부츠 (따라 함 - 참고 687)
-  [점수 6]
-ref_photo: https://dayroze.com/web/upload/NNEditor/20261020/6500a8700056767822faa8ff9e294f7c.jpg
+pose: standing full-length with her knees slightly bent and her weight on one leg,
+  the mini tote held in front of her thighs with both hands, her head tilted a little,
+  soft gaze slightly off camera; long soft wavy hair worn loose
+reason: 아이보리 브이넥 니트 안에 화이트 캐미를 레이어드하고 레이스 프릴 미니로 사랑스럽게. 참고 =아이보리 V넥 오버핏 니트/러플 미니/블랙
+  플랫 → 맞춘 것 =아이보리 브이넥 니트/화이트 레이스 프릴 미니/블랙 발레리나 플랫 (따라 함 - 참고 650) [점수 8]
+ref_photo: https://curetty.co.kr/web/upload/NNEditor/20250822/c25fw_lookbook_10.jpg
 scene_image: out/2026-10-21/src/scene.jpg
 shot: model
-styling: The grey cardigan is worn unbuttoned and open at the front, hanging open
-  so the white lace camisole underneath is clearly visible down the front, with the
-  lace hem peeking out under the cardigan; the cardigan ends above the waistband of
-  the mini skirt; the bag hangs on her shoulder.
+styling: The ivory V-neck knit is worn over the white camisole, the knit slipping
+  slightly off one shoulder and the camisole showing in the V, the knit hem worn out
+  over the waist of the mini skirt; the silver necklace sits on her collarbone; the
+  mini tote is held in front.
 text:
   hashtags:
   - '#첫데이트룩'

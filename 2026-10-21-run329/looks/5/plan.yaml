@@ -1,68 +1,57 @@
 account: women
-cover: out/2026-10-21/looks/5/outfit/results/G_1.jpg
+cover: out/2026-10-21/looks/2/outfit/results/G_1.jpg
 date: '2026-10-21'
 edit_refs: []
 items:
-- cm: 65.0
-  color: 블랙
+- cm: 58.5
+  color: 그레이
   comment: ''
-  cutout_photo: 4
-  desc: 블랙 딥 브이넥 니트 (black soft lightweight deep V-neck knit worn in a neat fit, not
-    baggy, shortened at the waist by a loose front tuck)
-  name: 딥브이 니트
-  product: zigzag:168350943
+  cutout_photo: 0
+  desc: 멜란지 그레이 울 하이넥 니트 가디건 (melange gray fine wool high-neck knit cardigan, slim
+    and fitted, waist length, button front, ribbed hem)
+  name: 하이넥 니트 가디건
+  product: zigzag:165394055
   ref_photos:
-  - 4
-  - 5
-  size: about 65 cm long from shoulder to hem, 60 cm across the shoulders, 60 cm across
-    the chest laid flat, 54 cm long sleeves
+  - 0
+  - 1
+  size: about 58.5 cm long from shoulder to hem, 49 cm across the chest laid flat,
+    69.5 cm long sleeves
 - color: 화이트
   comment: ''
-  cutout_photo: 0
-  desc: 화이트 심플 캐미 탑 (plain white cropped camisole top with thin straps, no lace)
-  name: 심플 캐미
-  product: zigzag:169382067
+  cutout_photo: 3
+  desc: 화이트 레이스 레이어드 나시 (white lace-trim fitted camisole, thin straps, hip length)
+  name: 레이스 나시
+  product: zigzag:169196108
   ref_photos:
-  - 0
-  wear_with: 상의
-- color: 실버
+  - 3
+  - 5
+- cm: 33.5
+  color: 버건디
   comment: ''
-  cutout_photo: 2
-  desc: 실버 큐빅 목걸이 (silver cubic necklace)
-  name: 큐빅 목걸이
-  product: zigzag:168750112
+  cutout_photo: 1
+  desc: 버건디 코듀로이 미니스커트 (burgundy plush corduroy fitted A-line mini skirt, mid-thigh
+    length)
+  name: 코듀로이 미니스커트
+  product: zigzag:153684988
   ref_photos:
-  - 2
-  - 0
-  slot: 목걸이
-- cm: 66.0
-  color: 핑크
-  comment: ''
-  cutout_photo: 2
-  desc: 더스티 핑크 새틴 스커트 (dusty pink slim bias-cut A-line satin skirt, glossy drapey
-    satin, worn pulled up at the high waist so the hem ends just above the knee, no
-    pleats)
-  name: 새틴 스커트
-  product: zigzag:168541609
-  ref_photos:
-  - 2
-  - 4
-  size: about 66 cm long from waist to hem, 37 cm across the waist laid flat, 49 cm
-    across the hips laid flat, 56.5 cm across the hem laid flat
+  - 1
+  - 3
+  size: about 33.5 cm long from waist to hem, 36 cm across the waist laid flat, 54
+    cm across the hips laid flat, 54.5 cm across the hem laid flat
 - color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 블랙 메리제인 플랫슈즈 (black velvet Mary Jane flats)
-  name: 메리제인 플랫
-  product: zigzag:110158856
+  cutout_photo: 3
+  desc: 블랙 스트랩 숄더백 (black shoulder bag with a U-shaped strap)
+  name: 스트랩 숄더백
+  product: zigzag:170446631
   ref_photos:
-  - 0
-- color: 블랙
+  - 3
+- color: 카멜
   comment: ''
   cutout_photo: 0
-  desc: 블랙 퀼팅 미니 체인백 (black quilted mini chain bag)
-  name: 퀼팅 미니 체인백
-  product: zigzag:155370993
+  desc: 카멜 스웨이드 롱부츠 (camel suede long boots)
+  name: 스웨이드 롱부츠
+  product: zigzag:149594575
   ref_photos:
   - 0
 looks: []
@@ -76,21 +65,20 @@ mood: 'a clean studio lookbook shoot like the scene photo: a plain pale grey sea
   plump rosy-pink lip, a gentle calm gaze slightly off the camera with lips softly
   parted. Her hair is long soft layered waves, loose or half-up. Ignore any rule about
   hiding her face: here the face is shown, natural and sharp, never blurred.'
-pose: standing full-length turned three-quarters to the camera, one hand holding the
-  chain strap of the mini bag at her hip, the other hand lightly touching the hair
-  at her cheek, looking over her shoulder with a soft gaze; long soft wavy hair worn
-  half up with the rest falling down
-reason: 블랙 브이넥 니트에 더스티 핑크 새틴 스커트로 은은하게. 참고 =블랙 V넥 니트/핑크 새틴 미니/블랙 플랫/블랙 미니 숄더백 → 맞춘
-  것 =블랙 딥브이 니트+흰 캐미/핑크 새틴 미디(미니 아님, 색 미확인)/블랙 메리제인 플랫/블랙 미니 체인백. 하트 목걸이는 골드 옵션 사진이
-  없어 실버 큐빅 목걸이로 바꿈 (따라 함 - 참고 539) [점수 6]
-ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2026/9/7/20_202609070943168980_61336.jpeg
+pose: standing full-length with a slight step forward, one hand holding the strap
+  of the shoulder bag on her shoulder, the other hand brushing her long hair behind
+  her ear, her body turned a little to the side and her face toward the camera with
+  a soft gaze; long soft wavy hair worn loose
+reason: 그레이 가디건에 흰 레이스 캐미, 버건디 미니로 대비. 참고 =그레이 퍼 가디건/아이보리 레이스 캐미/브라운 미니/블랙 숄더백/브라운
+  롱부츠 → 맞춘 것 =그레이 니트 가디건(퍼 아님)/레이스 나시/버건디 골덴 미니(브라운 없음)/블랙 숄더백/카멜 롱부츠 (따라 함 - 참고 687)
+  [점수 6]
+ref_photo: https://dayroze.com/web/upload/NNEditor/20261020/6500a8700056767822faa8ff9e294f7c.jpg
 scene_image: out/2026-10-21/src/scene.jpg
 shot: model
-styling: The black V-neck knit is worn in a neat fit like the reference outfit photo,
-  shortened to end at the waist and lightly tucked into the high waist of the satin
-  skirt at the front, over the white camisole, whose edge shows in the V under the
-  silver necklace; the satin skirt is pulled up at the high waist so its hem ends
-  just above the knee; the quilted bag is held at the hip by its chain.
+styling: The grey cardigan is worn unbuttoned and open at the front, hanging open
+  so the white lace camisole underneath is clearly visible down the front, with the
+  lace hem peeking out under the cardigan; the cardigan ends above the waistband of
+  the mini skirt; the bag hangs on her shoulder.
 text:
   hashtags:
   - '#첫데이트룩'
