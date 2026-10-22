@@ -1,0 +1,12 @@
+covers:
+  - id: c2
+    color: 1
+    shape: 2
+    complete: 2
+    clean: 1
+    layout: 1
+    notes: 신발이 c1 과 같이 한쪽은 앞코가 바깥쪽 아래, 다른 쪽은 오른쪽을 향해 V자로 벌어지고 높이가 어긋난다(shoes_not_neat). 머리가 검은색으로 바뀌었고 장면·지난 그림의 갈색과 다르다. 가방은 블랙이 아니라 짙은 와인·갈색 톤으로 보인다(5번 색 어긋남). 볼터치가 진하고 얼굴이 c1 보다 덜 청순하다. 옷·소재·핏은 유지됨. 키와 다리는 길어졌다.
+    faults: [shoes_not_neat]
+    feedback_ok: true
+slides: []
+summary: c2 는 신발이 V자로 벌어지고 가방이 갈색 톤, 머리색이 달라졌다.

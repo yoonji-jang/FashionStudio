@@ -1,0 +1,93 @@
+{
+  "run": "2026-10-21-run323",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "kind": "all",
+      "text": "코끝이 너무 들려있어서 들창코같아. 코끝을 좀더 첨부 이미지처럼 오똑하게 해주고, 청순한 이미지의 헤어와 얼굴과 최대한 유사하게 수정해줘. 전반적으로 키를 좀더 키워줘. 다리길이가 더 길어지면 좋겠어. 그리고 코디 후보 3번도 추가해줘.",
+      "photos": [
+        "out/2026-10-21/fix_photos/428675837_1.jpg"
+      ]
+    },
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "신발은 앞코가 뾰족한 구두로 변경해줘.",
+      "photos": [
+        "out/2026-10-21/fix_photos/428675837_1.jpg"
+      ]
+    },
+    {
+      "slide": 2,
+      "kind": "look",
+      "look": 2,
+      "text": "가디건 단추는 열고 이너 나시가 보이게 해줘.",
+      "photos": [
+        "out/2026-10-21/fix_photos/428675837_1.jpg"
+      ]
+    },
+    {
+      "slide": 3,
+      "kind": "look",
+      "look": 3,
+      "text": "맨투맨이 너무 루즈하니 좀더 참고 모델핏과 비슷하게 해줘. 벨트 제거해. 치마는 미디스커트라 기장은 무릎위까지 오게해줘.",
+      "photos": [
+        "out/2026-10-21/fix_photos/428675837_1.jpg"
+      ]
+    },
+    {
+      "slide": 5,
+      "kind": "look",
+      "look": 5,
+      "text": "니트 기장이 너무 길고 루즈해. 참고 코디컷 모델 핏처럼 니트 기장 줄여주고 허리선에 맞춰 살짝 치마에 넣어줘. 치마기장도 미디스커트라 무릎 위로 와야해. 전체적으로 참고코티컷 모델과 비슷하게 해줘.",
+      "photos": [
+        "out/2026-10-21/fix_photos/428675837_1.jpg"
+      ]
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 3,
+      "file": "03_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 4,
+      "file": "04_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 5,
+      "file": "05_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 6,
+      "file": "06_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": null,
+  "candidates": "out/2026-10-21/candidates.yaml"
+}
