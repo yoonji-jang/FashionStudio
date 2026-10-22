@@ -368,7 +368,8 @@ def control_text(
         )
         if profile.looks.cover_first:
             lines.append(
-                "벌 순서를 바꾸려면 /order 4 2 3 1 처럼 LOOK 번호를 원하는 순서로 (첫 번호가 표지)"
+                "벌 순서를 바꾸려면 /order 4 2 3 1 처럼 LOOK 번호를 원하는 순서로"
+                " (첫 번호가 표지, 적지 않은 LOOK 은 빠짐)"
             )
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
