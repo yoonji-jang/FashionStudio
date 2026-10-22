@@ -60,6 +60,15 @@ jobs:
       - run: uv sync --group scout
       - run: uv run playwright install --with-deps chromium
 
+      - name: 진행 알림 (한 시간 넘게 걸리면 한 시간마다 텔레그램, tools.progress)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          nohup uv run python -m tools.progress watch --label "[$ACCOUNT] 상품 수집" --limit 150 \
+            > /tmp/progress.log 2>&1 &
+
       - name: 수집
         env:
           CATEGORY: ${{ inputs.category }}
@@ -167,9 +176,9 @@ jobs:
           git -C /tmp/results push origin scout-results
 
       - name: 실패 알림
-        if: failure() && github.event_name == 'workflow_dispatch'
+        if: (failure() || cancelled()) && github.event_name == 'workflow_dispatch'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TEXT: "[${{ env.ACCOUNT }}] 상품 수집 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TEXT: "[${{ env.ACCOUNT }}] 상품 수집 ${{ job.status == 'cancelled' && '중단' || '실패' }}: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         run: .github/scripts/alert.sh
