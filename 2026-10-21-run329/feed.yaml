@@ -1,5 +1,5 @@
 account: women
-cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/earlier/looks/1/outfit/results/G_1.jpg
+cover: /tmp/results/2026-10-21-run329/looks/1/outfit/results/G_1.jpg
 cover_collage: false
 cover_has_title: false
 items:
@@ -100,7 +100,7 @@ items:
   name: 호보백
   product: zigzag:171374344
 looks:
-- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/earlier/looks/1/outfit/results/G_1.jpg
+- image: /tmp/results/2026-10-21-run329/looks/1/outfit/results/G_1.jpg
   items:
   - comment: ''
     name: 수술 트위드 자켓
