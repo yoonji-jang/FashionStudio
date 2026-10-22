@@ -7,7 +7,8 @@ Claude·이미지 AI 없이 코드만.
 - "/ok 3", "/ok 표지 3"   3번 벌을 표지로 하고 승인
 - "/cover 3", "표지 3번"  승인 없이 표지만 3번 벌로 (새 표지 사진을 받아 보고 /ok)
 - "/order 4 2 3 6 1 5", "순서 4 2 3 6 1 5"  벌 순서를 그 LOOK 번호 순서로, 첫 번호가 표지
-  (2026-10-20)
+  (2026-10-20). 번호를 일부만 적으면 적지 않은 벌은 게시물에서 뺀다 (2026-10-22 사용자,
+  profile looks.min 벌까지. 뺀 벌 폴더는 looks_dropped/ 에 둔다)
 번호는 미리보기의 LOOK 번호. 승인 마감(schedule.ok_deadline)까지 온 마지막 글을 쓴다.
 
 바꿀 때는 결과 폴더의 표지 장(slides/01_cover.jpg, 릴스용 slides/tall/01_cover.jpg)과 미리보기
@@ -42,6 +43,7 @@ from tools import feed, looks, notify
 
 RECORD = "cover.json"  # 처리한 표지 바꾸기 (결과 폴더)
 ORDER_RECORD = "order.json"  # 처리한 벌 순서 바꾸기 (결과 폴더)
+DROPPED_DIR = "looks_dropped"  # 순서 바꾸기에서 뺀 벌 폴더
 
 
 def effective_collage(plan: DailyPlan, profile: Profile) -> bool:
@@ -167,8 +169,12 @@ def reorder(out: Path, shown: list[int], profile: Profile | None = None) -> list
     if not plan.looks:
         raise ValueError("여러 벌 게시물이 아니라 순서를 바꿀 수 없습니다")
     total = len(plan.looks)
-    if sorted(shown) != list(range(1, total + 1)):
-        raise ValueError(f"LOOK 1~{total} 을 한 번씩 모두 적어 주세요 (받은 번호: {shown})")
+    if len(set(shown)) != len(shown) or not all(1 <= s <= total for s in shown):
+        raise ValueError(f"LOOK 1~{total} 중에서 한 번씩만 적어 주세요 (받은 번호: {shown})")
+    if len(shown) < min(profile.looks.min, total):
+        raise ValueError(
+            f"벌은 {profile.looks.min}벌 이상 남겨야 해요 (받은 번호 {len(shown)}개: {shown})"
+        )
     # 보이는 LOOK 번호 → 기획의 벌 번호 (표지 벌 때문에 다를 수 있음)
     return _reorder(out, [look_number(out, profile, s) for s in shown], profile)
 
@@ -196,6 +202,13 @@ def _reorder(out: Path, order: list[int], profile: Profile) -> list[Path]:
         src = looks.look_dir(out, old)
         if src.exists():
             src.rename(tmp / str(new))
+    # 순서에 없는 벌은 게시물에서 뺀다 (폴더는 looks_dropped/<지난 벌 번호> 로 옮겨 둔다)
+    for n in range(1, len(plan.looks) + 1):
+        if n not in order and (src := looks.look_dir(out, n)).exists():
+            dropped = out / DROPPED_DIR / str(n)
+            shutil.rmtree(dropped, ignore_errors=True)
+            dropped.parent.mkdir(exist_ok=True)
+            src.rename(dropped)
     for d in sorted(tmp.iterdir()):
         d.rename(looks.look_dir(out, int(d.name)))
     tmp.rmdir()
@@ -303,6 +316,7 @@ def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
     if dry_run:
         return f"{tag} 벌 순서를 {shown} 으로 바꿀 예정 (시험)"
     approved = notify.approval_now(out, record, profile, updates, tg.chat_id) == "ok"
+    before = len(_look_keys(out))
     try:
         made = reorder(out, shown, profile)
     except (ValueError, FileNotFoundError) as e:
@@ -316,9 +330,14 @@ def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
         return f"{tag} 벌 순서 그대로"
     stale = notify.load_manifest(out).reels is not None
     tail = "이 순서로 게시해요" if approved else "이 순서로 올리려면 /ok 를 보내 주세요"
+    left = [n for n in range(1, before + 1) if n not in shown]
+    drop = (
+        f" 적지 않은 LOOK {', '.join(map(str, left))} 은 뺐어요 ({len(shown)}벌)." if left else ""
+    )
     tg.send_photos(
         [made[1]],
-        f"{tag} 벌 순서를 {order} 으로 바꿨어요 (첫 벌이 표지, LOOK 번호는 새 순서로). {tail}",
+        f"{tag} 벌 순서를 {order} 으로 바꿨어요 (첫 벌이 표지, LOOK 번호는 새 순서로)."
+        f"{drop} {tail}",
     )
     _save_order(out, uid, shown, stale)
     return f"{tag} 벌 순서를 {order} 으로 바꿈"

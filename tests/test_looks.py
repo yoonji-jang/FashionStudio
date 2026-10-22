@@ -1002,7 +1002,34 @@ def test_order_from_telegram(tmp_path, store):
         replies=[(1100, "/cover 2\n/order 3 1 2 4 5 6", None), (1300, "/order 1 2", None)]
     )
     assert "실패" in cover_look.check(out, tg_of(api2))
-    assert any("한 번씩 모두" in t for t in api2.texts)
+    assert any("5벌 이상 남겨야" in t for t in api2.texts)
+
+
+def test_order_with_fewer_numbers_drops_the_rest(tmp_path, store):
+    """번호를 일부만 적으면 적지 않은 벌은 뺀다
+    (2026-10-22 사용자: 7벌 중 6개만 보내면 한 장은 버림)."""
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    out, _ = build(tmp_path, store)
+    profile = load_profile("women")
+    (out / "telegram.json").write_text(r.model_dump_json())
+    before = plan.load_plan(out / "plan.yaml")
+    first = [lk.items[0].product for lk in before.looks]
+    shown = [2, 1, 3, 4, 5]  # LOOK 6 을 뺌
+    want = [cover_look.look_number(out, profile, x) for x in shown]
+    dropped = cover_look.look_number(out, profile, 6)
+    api = FakeApis(replies=[(1100, "/order 2 1 3 4 5", None)])
+    assert "순서" in cover_look.check(out, tg_of(api))
+    after = plan.load_plan(out / "plan.yaml")
+    assert [lk.items[0].product for lk in after.looks] == [first[n - 1] for n in want]
+    assert len(looks.look_dirs(out)) == 5
+    assert (out / cover_look.DROPPED_DIR / str(dropped)).is_dir()
+    m = notify.load_manifest(out)
+    assert len(m.plan.looks) == 5 and not any(x.endswith("_look6.jpg") for x in m.images)
+    # 같은 번호를 두 번, 없는 번호는 알리고 그대로
+    with pytest.raises(ValueError, match="한 번씩만"):
+        cover_look.reorder(out, [1, 1, 2, 3, 4], profile)
+    with pytest.raises(ValueError, match="한 번씩만"):
+        cover_look.reorder(out, [1, 2, 3, 4, 9], profile)
 
 
 def test_order_carries_to_fixed_preview(tmp_path, store):
