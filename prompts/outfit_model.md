@@ -16,6 +16,7 @@ $season: 게시 날짜의 계절 (영어).
 신발·가방이 잘려도 됨, 글자 자리(왼쪽 아래) 비우기 없앰(글자 뒤 그라데이션이 받침), 입던 옷처럼 자연스러운 구김,
 흐릿한 행인·생활 물건 허용, 힙한 핀터레스트 느낌.
 2026-10-07 사용자 4차: 모델 다리가 조금 더 길면 좋겠다, 특히 앉은 사진 → 다리 비율 문장, 앉은 장면은 다리를 뻗게, 위에서 내려찍지 않게. 바지는 실제 기장보다 짧게 그리지 않는다 (LOOK 4 와이드 팬츠가 짧아 보임).
+2026-10-22 사용자(텔레그램 /fix 규칙): 모델은 키 더 크고 다리 더 길고 얼굴 더 작게, 기본은 이국적인 얼굴, 긴바지는 발목이 아니라 발등을 덮게 → 다리 비율·바지 기장 문장을 고침.
 이 주석은 전송되지 않는다.
 -->
 Create one candid, effortlessly cool everyday photo of a person wearing this exact outfit, the kind of
@@ -34,7 +35,8 @@ fit, collar or lapel type, neckline, buttons, pockets, hardware, toe shape and p
 change a collar into a different collar type, do not change the style of the shoes, do not add,
 remove or redesign any detail, no logos or text. Trousers keep the leg silhouette and length seen in
 the worn photos (never flared, cropped or wider than in the photos), and trousers and skirts are never
-drawn shorter than their real size: long trousers break over the shoes or graze the ground.
+drawn shorter than their real size: long trousers never stop at the ankle bone; they cover the
+instep and break over the shoes or graze the ground.
 The person wears or carries every item in the list and nothing else: no hat, cap, scarf, sunglasses,
 glasses, belt, watch, rings, necklace, earrings or other jewelry unless it is in the numbered list,
 and no other bag or clothing on top. Hair and skin are the only other things on the body (a plain hair tie or
@@ -44,7 +46,9 @@ listed items.
 
 Styling: $styling
 Person and pose: $pose
-Her legs are long for her height (legs about half her height or a little more): standing, sitting or
+She is tall and slim with a small face and head for her body (about eight heads tall), and her
+features are exotic, not typically Korean or East Asian. Her legs are very long for her height (legs
+clearly more than half her height): standing, sitting or
 squatting, the thighs and shins stay long and are never shortened, folded small or foreshortened by the
 camera angle; when she sits, her legs stretch out or cross long in front of her.
 The face may be partly visible the way it is in a candid photo (looking down, turned away, half
