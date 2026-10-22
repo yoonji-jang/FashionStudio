@@ -1047,3 +1047,38 @@ def test_order_carries_to_fixed_preview(tmp_path, store):
     assert "이어받음" in cover_look.check(b, tg_of(api))
     assert cover_look._look_keys(b) == cover_look._look_keys(a)
     assert cover_look.check(b, tg_of(api)) == ""
+
+
+def test_order_finishes_half_done_reorder(tmp_path, store, monkeypatch):
+    """순서 바꾸기가 기획·벌 폴더만 바꾸고 실패하면 다음 확인 때 미리보기를 마저 만든다
+    (2026-10-22 run329: 되돌린 벌의 검수 기록이 올리지 않는 earlier/ 를 가리켜 실패)."""
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    out, _ = build(tmp_path, store)
+    (out / "telegram.json").write_text(r.model_dump_json())
+    finish = looks.finish
+
+    def broken(*a, **k):
+        raise FileNotFoundError("earlier/looks/1/outfit/results/G_1.jpg")
+
+    monkeypatch.setattr(looks, "finish", broken)
+    api = FakeApis(replies=[(1100, "/order 2 1 3 4 5", None)])
+    assert "실패" in cover_look.check(out, tg_of(api))
+    assert cover_look._half_done(out)
+    monkeypatch.setattr(looks, "finish", finish)
+    assert "마침" in cover_look.check(out, tg_of(api))
+    assert not cover_look._half_done(out)
+    assert len(notify.load_manifest(out).plan.looks) == 5
+    assert "error" not in cover_look.load_order(out)
+    assert cover_look.check(out, tg_of(api)) == ""
+
+
+def test_cand_path_finds_moved_absolute_file(tmp_path):
+    """다른 실행에서 적은 절대 경로라 없으면 out 안의 같은 outfit/ 아래 파일을 쓴다."""
+    out = tmp_path / "out"
+    img = out / "looks" / "1" / "outfit_r2" / "results" / "G_1.jpg"
+    img.parent.mkdir(parents=True)
+    img.write_bytes(b"x")
+    gone = "/home/runner/x/out/earlier/looks/1/outfit_r2/results/G_1.jpg"
+    c = Candidate(id="c1", file=gone)
+    assert review.cand_path(out / "looks" / "1", c) == img
+    assert review.cand_path(out, Candidate(id="c2", file="a.jpg")) == out / "a.jpg"
