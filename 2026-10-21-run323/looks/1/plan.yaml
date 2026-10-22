@@ -1,0 +1,131 @@
+account: women
+date: '2026-10-21'
+items:
+- cm: 50.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 1
+  desc: 크림빛 화이트 수술 트위드 자켓 (cream-white tassel-fringe nubby bouclé tweed jacket, round
+    neck, boxy and cropped to the waist, patch pockets, pearl buttons)
+  name: 수술 트위드 자켓
+  product: zigzag:171377979
+  ref_photos:
+  - 1
+  - 5
+  size: about 50 cm long from shoulder to hem, 39 cm across the shoulders, 50 cm across
+    the chest laid flat, 58 cm long sleeves
+- color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 드레이프 셔링 새틴 블라우스 (ivory draped shirred satin blouse, soft cowl neckline,
+    relaxed hip length, glossy drapey satin)
+  name: 드레이프 새틴 블라우스
+  product: zigzag:171950237
+  ref_photos:
+  - 2
+  - 1
+- cm: 106.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 원턱 와이드 슬랙스 (black high-waist one-tuck wide straight slacks, full length
+    reaching the shoe tops)
+  name: 원턱 와이드 슬랙스
+  product: zigzag:129830192
+  ref_photos:
+  - 1
+  - 0
+  - 2
+  size: about 106 cm long from waist to hem, 34.5 cm across the waist laid flat, 55
+    cm across the hips laid flat, 26.5 cm across the hem laid flat
+- color: 화이트
+  comment: ''
+  cutout_photo: 1
+  desc: 화이트 쁘띠 스카프 (white small scarf with a thin black edge)
+  name: 쁘띠 스카프
+  product: zigzag:147477007
+  ref_photos:
+  - 1
+  - 2
+  wear_with: 상의
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 토트백 (black leather tote bag)
+  name: 토트백
+  product: zigzag:167741389
+  ref_photos:
+  - 3
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 로퍼 (black suede loafers)
+  name: 스웨이드 로퍼
+  product: zigzag:153677725
+  ref_photos:
+  - 0
+  - 1
+  - 2
+looks: []
+mood: 'a clean studio lookbook shoot like the scene photo: a plain pale grey seamless
+  studio wall above a pale beige-grey polished concrete floor with soft window-light
+  shadows on it, soft even diffused daylight-like studio light, muted cool-neutral
+  color tone, shot on a good digital camera from a little distance as a full-length
+  vertical frame (head to shoes, the same framing as the scene photo). Her face is
+  clearly visible and is the soft pretty face of the hair-and-makeup references: a
+  fresh dewy pink-based makeup with rosy cheeks and soft pink eyeshadow, a glossy
+  plump rosy-pink lip, a gentle calm gaze slightly off the camera with lips softly
+  parted. Her hair is long soft layered waves, loose or half-up. Ignore any rule about
+  hiding her face: here the face is shown, natural and sharp, never blurred.'
+pose: standing full-length at an angle in front of the grey studio wall like the scene
+  photo, her weight on one leg, one hand lifted to touch her collarbone, the other
+  arm relaxed, her head tilted slightly, soft gaze slightly off camera; long soft
+  wavy hair worn loose
+reason: 아이보리 트위드 자켓에 새틴 블라우스와 블랙 슬랙스로 단정한 첫 만남. 참고 =아이보리 프린지 트위드/화이트 카울넥 블라우스/블랙 와이드
+  슬랙스/스카프/블랙 토트/블랙 로퍼 → 맞춘 것 =크림 수술 트위드/아이보리 드레이프 새틴 블라우스/원턱 슬랙스/쁘띠 스카프/토트백/스웨이드 로퍼
+  (따라 함 - 참고 198) [점수 7]
+ref_photo: https://cafe24.poxo.com/ec01/mondayoff/XOgGzg7Z/cVHdUf1DFtQ9zEgSJJWlJAIF3Ncm2+mQ3NE2wT5hX8dSUx6c5RpelcsonilOxKAyaXFLcC+vbdS2w==/_/web/product/big/202510/3d8133f686adb86ac440870aa4357fea.webp
+scene_image: out/2026-10-21/src/scene.jpg
+shot: model
+styling: The tweed jacket is worn open over the satin blouse, which is tucked loosely
+  into the high waist of the slacks at the front; the small white scarf is tied loosely
+  at the neck under the cowl neckline; the tote bag is held in one hand at her side.
+text:
+  hashtags:
+  - '#첫데이트룩'
+  - '#데이트룩'
+  - '#약속룩'
+  - '#가을코디'
+  - '#트위드자켓'
+  - '#레이스스커트'
+  - '#꾸안꾸'
+  intro: 이슬비 내리는 쌀쌀한 날, 첫 데이트엔 부드러운 톤으로 꾸민 듯 안 꾸민 룩 어때요 🍂
+  points: []
+  title_lines:
+  - 첫 데이트 앞두고 고른
+  - 꾸안꾸 가을 옷장 공개
+theme:
+  date: '2026-10-21'
+  mood: 부드러운 더스티 핑크·아이보리 톤의 은은한 데이트 룩
+  search_terms:
+    아우터:
+    - 모헤어 가디건
+    - 트위드 자켓
+    하의:
+    - 랩스커트
+    - 새틴 스커트
+  slots:
+  - category: 아우터
+    desc: 모헤어 가디건
+  - category: 상의
+    desc: 레이스 트리밍 캐미솔
+  - category: 하의
+    desc: 랩스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  title_hint: 첫 데이트 앞두고 꾸민 듯 안 꾸민 가을 약속룩
+  type: 상황
+  why: 쌀쌀한 저녁에 걸치기 좋은 가디건과 부드러운 색감이 어울리는 약속

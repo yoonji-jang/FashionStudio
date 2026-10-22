@@ -1,0 +1,216 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 수술 트위드 자켓
+  product: zigzag:171377979
+- comment: ''
+  name: 드레이프 새틴 블라우스
+  product: zigzag:171950237
+- comment: ''
+  name: 원턱 와이드 슬랙스
+  product: zigzag:129830192
+- comment: ''
+  name: 쁘띠 스카프
+  product: zigzag:147477007
+- comment: ''
+  name: 토트백
+  product: zigzag:167741389
+- comment: ''
+  name: 스웨이드 로퍼
+  product: zigzag:153677725
+- comment: ''
+  name: 하이넥 니트 가디건
+  product: zigzag:165394055
+- comment: ''
+  name: 레이스 나시
+  product: zigzag:169196108
+- comment: ''
+  name: 코듀로이 미니스커트
+  product: zigzag:153684988
+- comment: ''
+  name: 스트랩 숄더백
+  product: zigzag:170446631
+- comment: ''
+  name: 스웨이드 롱부츠
+  product: zigzag:149594575
+- comment: ''
+  name: 딥브이넥 맨투맨
+  product: zigzag:168315295
+- comment: ''
+  name: 레이스 슬리브리스
+  product: zigzag:171212681
+- comment: ''
+  name: 레이스 슬립 스커트
+  product: zigzag:169309924
+- comment: ''
+  name: 볼드 가죽벨트
+  product: zigzag:165791922
+- comment: ''
+  name: 슬라우치 롱부츠
+  product: zigzag:166288289
+- comment: ''
+  name: 호보백
+  product: zigzag:171374344
+- comment: ''
+  name: 브이넥 니트
+  product: zigzag:171290931
+- comment: ''
+  name: 심플 캐미
+  product: zigzag:169382067
+- comment: ''
+  name: 레이스 프릴 미니
+  product: zigzag:160618952
+- comment: ''
+  name: 발레리나 플랫
+  product: zigzag:152501732
+- comment: ''
+  name: 미니 토트백
+  product: zigzag:170446634
+- comment: ''
+  name: 큐빅 목걸이
+  product: zigzag:168750112
+- comment: ''
+  name: 딥브이 니트
+  product: zigzag:168350943
+- comment: ''
+  name: 새틴 미디스커트
+  product: zigzag:168541609
+- comment: ''
+  name: 메리제인 플랫
+  product: zigzag:110158856
+- comment: ''
+  name: 퀼팅 미니 체인백
+  product: zigzag:155370993
+- comment: ''
+  name: 베이직 셔츠
+  product: zigzag:147774916
+- comment: ''
+  name: 스웨이드 스커트
+  product: zigzag:171970791
+- comment: ''
+  name: 버킷 숄더백
+  product: zigzag:162619421
+- comment: ''
+  name: 미들부츠
+  product: zigzag:148873148
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 수술 트위드 자켓
+    product: zigzag:171377979
+  - comment: ''
+    name: 드레이프 새틴 블라우스
+    product: zigzag:171950237
+  - comment: ''
+    name: 원턱 와이드 슬랙스
+    product: zigzag:129830192
+  - comment: ''
+    name: 쁘띠 스카프
+    product: zigzag:147477007
+  - comment: ''
+    name: 토트백
+    product: zigzag:167741389
+  - comment: ''
+    name: 스웨이드 로퍼
+    product: zigzag:153677725
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 니트 가디건
+    product: zigzag:165394055
+  - comment: ''
+    name: 레이스 나시
+    product: zigzag:169196108
+  - comment: ''
+    name: 코듀로이 미니스커트
+    product: zigzag:153684988
+  - comment: ''
+    name: 스트랩 숄더백
+    product: zigzag:170446631
+  - comment: ''
+    name: 스웨이드 롱부츠
+    product: zigzag:149594575
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 딥브이넥 맨투맨
+    product: zigzag:168315295
+  - comment: ''
+    name: 레이스 슬리브리스
+    product: zigzag:171212681
+  - comment: ''
+    name: 레이스 슬립 스커트
+    product: zigzag:169309924
+  - comment: ''
+    name: 볼드 가죽벨트
+    product: zigzag:165791922
+  - comment: ''
+    name: 슬라우치 롱부츠
+    product: zigzag:166288289
+  - comment: ''
+    name: 호보백
+    product: zigzag:171374344
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브이넥 니트
+    product: zigzag:171290931
+  - comment: ''
+    name: 심플 캐미
+    product: zigzag:169382067
+  - comment: ''
+    name: 레이스 프릴 미니
+    product: zigzag:160618952
+  - comment: ''
+    name: 발레리나 플랫
+    product: zigzag:152501732
+  - comment: ''
+    name: 미니 토트백
+    product: zigzag:170446634
+  - comment: ''
+    name: 큐빅 목걸이
+    product: zigzag:168750112
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 딥브이 니트
+    product: zigzag:168350943
+  - comment: ''
+    name: 심플 캐미
+    product: zigzag:169382067
+  - comment: ''
+    name: 큐빅 목걸이
+    product: zigzag:168750112
+  - comment: ''
+    name: 새틴 미디스커트
+    product: zigzag:168541609
+  - comment: ''
+    name: 메리제인 플랫
+    product: zigzag:110158856
+  - comment: ''
+    name: 퀼팅 미니 체인백
+    product: zigzag:155370993
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-21/looks/6/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 베이직 셔츠
+    product: zigzag:147774916
+  - comment: ''
+    name: 레이스 나시
+    product: zigzag:169196108
+  - comment: ''
+    name: 스웨이드 스커트
+    product: zigzag:171970791
+  - comment: ''
+    name: 버킷 숄더백
+    product: zigzag:162619421
+  - comment: ''
+    name: 미들부츠
+    product: zigzag:148873148
+title_lines:
+- 첫 데이트 앞두고 고른
+- 꾸안꾸 가을 옷장 공개

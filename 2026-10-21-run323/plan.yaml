@@ -1,0 +1,492 @@
+account: women
+date: '2026-10-21'
+theme:
+  date: '2026-10-21'
+  title_hint: 첫 데이트 앞두고 꾸민 듯 안 꾸민 가을 약속룩
+  mood: 부드러운 더스티 핑크·아이보리 톤의 은은한 데이트 룩
+  slots:
+  - category: 아우터
+    desc: 모헤어 가디건
+  - category: 상의
+    desc: 레이스 트리밍 캐미솔
+  - category: 하의
+    desc: 랩스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  type: 상황
+  why: 쌀쌀한 저녁에 걸치기 좋은 가디건과 부드러운 색감이 어울리는 약속
+  search_terms:
+    아우터:
+    - 모헤어 가디건
+    - 트위드 자켓
+    하의:
+    - 랩스커트
+    - 새틴 스커트
+items: []
+looks:
+- items:
+  - product: zigzag:171377979
+    color: 화이트
+    desc: 크림빛 화이트 수술 트위드 자켓 (cream-white tassel-fringe nubby bouclé tweed jacket,
+      round neck, boxy and cropped to the waist, patch pockets, pearl buttons)
+    name: 수술 트위드 자켓
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 5
+    size: about 50 cm long from shoulder to hem, 39 cm across the shoulders, 50 cm
+      across the chest laid flat, 58 cm long sleeves
+    cm: 50.0
+  - product: zigzag:171950237
+    color: 아이보리
+    desc: 아이보리 드레이프 셔링 새틴 블라우스 (ivory draped shirred satin blouse, soft cowl neckline,
+      relaxed hip length, glossy drapey satin)
+    name: 드레이프 새틴 블라우스
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:129830192
+    color: 블랙
+    desc: 블랙 원턱 와이드 슬랙스 (black high-waist one-tuck wide straight slacks, full length
+      reaching the shoe tops)
+    name: 원턱 와이드 슬랙스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    - 2
+    size: about 106 cm long from waist to hem, 34.5 cm across the waist laid flat,
+      55 cm across the hips laid flat, 26.5 cm across the hem laid flat
+    cm: 106.0
+  - product: zigzag:147477007
+    color: 화이트
+    desc: 화이트 쁘띠 스카프 (white small scarf with a thin black edge)
+    name: 쁘띠 스카프
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 2
+    wear_with: 상의
+  - product: zigzag:167741389
+    color: 블랙
+    desc: 블랙 토트백 (black leather tote bag)
+    name: 토트백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 0
+  - product: zigzag:153677725
+    color: 블랙
+    desc: 블랙 스웨이드 로퍼 (black suede loafers)
+    name: 스웨이드 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  reason: 아이보리 트위드 자켓에 새틴 블라우스와 블랙 슬랙스로 단정한 첫 만남. 참고 =아이보리 프린지 트위드/화이트 카울넥 블라우스/블랙
+    와이드 슬랙스/스카프/블랙 토트/블랙 로퍼 → 맞춘 것 =크림 수술 트위드/아이보리 드레이프 새틴 블라우스/원턱 슬랙스/쁘띠 스카프/토트백/스웨이드
+    로퍼 (따라 함 - 참고 198) [점수 7]
+  point: 크림빛 트위드에 아이보리 새틴으로 부드럽고 단정하게 🤍
+  styling: The tweed jacket is worn open over the satin blouse, which is tucked loosely
+    into the high waist of the slacks at the front; the small white scarf is tied
+    loosely at the neck under the cowl neckline; the tote bag is held in one hand
+    at her side.
+  pose: standing full-length at an angle in front of the grey studio wall like the
+    scene photo, her weight on one leg, one hand lifted to touch her collarbone, the
+    other arm relaxed, her head tilted slightly, soft gaze slightly off camera; long
+    soft wavy hair worn loose
+  scene_image: out/2026-10-21/src/scene.jpg
+  ref: '198'
+  ref_photo: https://cafe24.poxo.com/ec01/mondayoff/XOgGzg7Z/cVHdUf1DFtQ9zEgSJJWlJAIF3Ncm2+mQ3NE2wT5hX8dSUx6c5RpelcsonilOxKAyaXFLcC+vbdS2w==/_/web/product/big/202510/3d8133f686adb86ac440870aa4357fea.webp
+- items:
+  - product: zigzag:165394055
+    color: 그레이
+    desc: 멜란지 그레이 울 하이넥 니트 가디건 (melange gray fine wool high-neck knit cardigan, slim
+      and fitted, waist length, button front, ribbed hem)
+    name: 하이넥 니트 가디건
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 58.5 cm long from shoulder to hem, 49 cm across the chest laid flat,
+      69.5 cm long sleeves
+    cm: 58.5
+  - product: zigzag:169196108
+    color: 화이트
+    desc: 화이트 레이스 레이어드 나시 (white lace-trim fitted camisole, thin straps, hip length)
+    name: 레이스 나시
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+  - product: zigzag:153684988
+    color: 버건디
+    desc: 버건디 코듀로이 미니스커트 (burgundy plush corduroy fitted A-line mini skirt, mid-thigh
+      length)
+    name: 코듀로이 미니스커트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+    size: about 33.5 cm long from waist to hem, 36 cm across the waist laid flat,
+      54 cm across the hips laid flat, 54.5 cm across the hem laid flat
+    cm: 33.5
+  - product: zigzag:170446631
+    color: 블랙
+    desc: 블랙 스트랩 숄더백 (black shoulder bag with a U-shaped strap)
+    name: 스트랩 숄더백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  - product: zigzag:149594575
+    color: 카멜
+    desc: 카멜 스웨이드 롱부츠 (camel suede long boots)
+    name: 스웨이드 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: 그레이 가디건에 흰 레이스 캐미, 버건디 미니로 대비. 참고 =그레이 퍼 가디건/아이보리 레이스 캐미/브라운 미니/블랙 숄더백/브라운
+    롱부츠 → 맞춘 것 =그레이 니트 가디건(퍼 아님)/레이스 나시/버건디 골덴 미니(브라운 없음)/블랙 숄더백/카멜 롱부츠 (따라 함 - 참고
+    687) [점수 6]
+  point: 그레이 가디건 속 레이스 나시와 버건디 미니로 은근한 대비
+  styling: The grey cardigan is buttoned high at the collar and worn closed over the
+    lace camisole, whose lace hem peeks out a little under the cardigan; the cardigan
+    ends above the waistband of the mini skirt; the bag hangs on her shoulder.
+  pose: standing full-length with a slight step forward, one hand holding the strap
+    of the shoulder bag on her shoulder, the other hand brushing her long hair behind
+    her ear, her body turned a little to the side and her face toward the camera with
+    a soft gaze; long soft wavy hair worn loose
+  scene_image: out/2026-10-21/src/scene.jpg
+  ref: '687'
+  ref_photo: https://dayroze.com/web/upload/NNEditor/20261020/6500a8700056767822faa8ff9e294f7c.jpg
+- items:
+  - product: zigzag:168315295
+    color: 그레이
+    desc: 밝은 멜란지 그레이 오버핏 코튼 딥브이넥 맨투맨 (light melange gray oversized thick brushed cotton
+      deep V-neck sweatshirt, dropped shoulders, hip length)
+    name: 딥브이넥 맨투맨
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 63.5 cm long from shoulder to hem, 61 cm across the shoulders, 65
+      cm across the chest laid flat, 55 cm long sleeves
+    cm: 63.5
+  - product: zigzag:171212681
+    color: 화이트
+    desc: 화이트 레이스 브이넥 슬리브리스 (white thin lace-trim V-neck sleeveless top, fitted, thin
+      straps)
+    name: 레이스 슬리브리스
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    wear_with: 상의
+  - product: zigzag:169309924
+    color: 화이트
+    desc: 화이트 레이스 미디 스커트 (white slim straight slip skirt with a scalloped lace hem,
+      soft lightweight cotton, falling just below the knee, no pleats)
+    name: 레이스 슬립 스커트
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+    - 1
+    size: about 59 cm long from waist to hem, 37.5 cm across the waist laid flat,
+      49.5 cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 59.0
+  - product: zigzag:165791922
+    color: 블랙
+    desc: 블랙 볼드 가죽 벨트 (black bold leather belt with a bold buckle)
+    name: 볼드 가죽벨트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    wear_with: 하의
+  - product: zigzag:166288289
+    color: 블랙
+    desc: 블랙 소가죽 슬라우치 롱부츠 (black leather slouchy long boots with two buckle straps)
+    name: 슬라우치 롱부츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:171374344
+    color: 블랙
+    desc: 블랙 호보백 (black hobo bag)
+    name: 호보백
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+  reason: 그레이 딥브이 맨투맨에 화이트 레이스 스커트로 허리를 잡아. 참고 =차콜 딥브이 레이스 맨투맨/화이트 슬립 미디/블랙 벨트/슬라우치
+    부츠/호보백 → 맞춘 것 =그레이 딥브이 맨투맨(차콜 아님)+레이스 슬리브리스/레이스 슬립 미디/가죽 벨트/슬라우치 롱부츠/호보백 (따라 함
+    - 참고 703) [점수 8]
+  point: 넉넉한 그레이 맨투맨에 벨트로 허리를 잡고 레이스 스커트로 마무리
+  styling: The oversized grey sweatshirt is worn over the white lace sleeveless top,
+    whose V neckline and lace trim show inside the deep V; the sweatshirt hem is worn
+    out, hanging over the waist of the white lace skirt with the black leather belt
+    cinched over the sweatshirt at the waist; the skirt falls just below the knee
+    and the slouchy long boots rise up to meet its hem; the bag is carried in one
+    hand.
+  pose: standing full-length in a relaxed stance facing the camera at a slight angle,
+    one arm bent with the hobo bag hanging from her hand, the other hand sliding into
+    her hair, her chin slightly lowered with a soft gaze to the camera; long soft
+    wavy hair worn half up with the rest falling down her back
+  scene_image: out/2026-10-21/src/scene.jpg
+  ref: '703'
+  ref_photo: https://dayroze.com/web/upload/NNEditor/20261016/ee4b75fa4ea7bd17bf447ef8b113f2d4.jpg
+- items:
+  - product: zigzag:171290931
+    color: 아이보리
+    desc: 아이보리 브이넥 니트 (ivory oversized slouchy thin fuzzy V-neck knit, wide deep V
+      neckline, hip length)
+    name: 브이넥 니트
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    size: about 62 cm long from shoulder to hem, 47.5 cm across the shoulders, 53
+      cm across the chest laid flat, 54.5 cm long sleeves
+    cm: 62.0
+  - product: zigzag:169382067
+    color: 화이트
+    desc: 화이트 심플 캐미 탑 (plain white cropped camisole top with thin straps, no lace)
+    name: 심플 캐미
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 상의
+  - product: zigzag:160618952
+    color: 화이트
+    desc: 화이트 레이스 프릴 미니스커트 (white fitted-waist flared mini skirt with a tiered ruffle
+      hem of eyelet lace, crisp light cotton, upper-thigh length)
+    name: 레이스 프릴 미니
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+    - 4
+    size: about 37 cm long from waist to hem, 37 cm across the waist laid flat, 55
+      cm across the hips laid flat, 77.5 cm across the hem laid flat
+    cm: 37.0
+  - product: zigzag:152501732
+    color: 블랙
+    desc: 블랙 발레리나 플랫 (black ballerina flats)
+    name: 발레리나 플랫
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    - 4
+  - product: zigzag:170446634
+    color: 블랙
+    desc: 블랙 미니 토트백 (black mini tote bag)
+    name: 미니 토트백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 1
+  - product: zigzag:168750112
+    color: 실버
+    desc: 실버 큐빅 목걸이 (silver cubic necklace)
+    name: 큐빅 목걸이
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    slot: 목걸이
+  reason: 아이보리 브이넥 니트 안에 화이트 캐미를 레이어드하고 레이스 프릴 미니로 사랑스럽게. 참고 =아이보리 V넥 오버핏 니트/러플 미니/블랙
+    플랫 → 맞춘 것 =아이보리 브이넥 니트/화이트 레이스 프릴 미니/블랙 발레리나 플랫 (따라 함 - 참고 650) [점수 8]
+  point: 아이보리 니트에 프릴 미니로 사랑스러운 약속룩 ☕
+  styling: The ivory V-neck knit is worn over the white camisole, the knit slipping
+    slightly off one shoulder and the camisole showing in the V, the knit hem worn
+    out over the waist of the mini skirt; the silver necklace sits on her collarbone;
+    the mini tote is held in front.
+  pose: standing full-length with her knees slightly bent and her weight on one leg,
+    the mini tote held in front of her thighs with both hands, her head tilted a little,
+    soft gaze slightly off camera; long soft wavy hair worn loose
+  scene_image: out/2026-10-21/src/scene.jpg
+  ref: '650'
+  ref_photo: https://curetty.co.kr/web/upload/NNEditor/20250822/c25fw_lookbook_10.jpg
+- items:
+  - product: zigzag:168350943
+    color: 블랙
+    desc: 블랙 딥 브이넥 니트 (black oversized loose soft lightweight deep V-neck knit, dropped
+      shoulders, hip length)
+    name: 딥브이 니트
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    size: about 65 cm long from shoulder to hem, 60 cm across the shoulders, 60 cm
+      across the chest laid flat, 54 cm long sleeves
+    cm: 65.0
+  - product: zigzag:169382067
+    color: 화이트
+    desc: 화이트 심플 캐미 탑 (plain white cropped camisole top with thin straps, no lace)
+    name: 심플 캐미
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    wear_with: 상의
+  - product: zigzag:168750112
+    color: 실버
+    desc: 실버 큐빅 목걸이 (silver cubic necklace)
+    name: 큐빅 목걸이
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    slot: 목걸이
+  - product: zigzag:168541609
+    color: 핑크
+    desc: 더스티 핑크 새틴 미디스커트 (dusty pink slim bias-cut A-line satin skirt, glossy drapey
+      satin, falling below the knee, no pleats)
+    name: 새틴 미디스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 4
+    size: about 66 cm long from waist to hem, 37 cm across the waist laid flat, 49
+      cm across the hips laid flat, 56.5 cm across the hem laid flat
+    cm: 66.0
+  - product: zigzag:110158856
+    color: 블랙
+    desc: 블랙 메리제인 플랫슈즈 (black velvet Mary Jane flats)
+    name: 메리제인 플랫
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:155370993
+    color: 블랙
+    desc: 블랙 퀼팅 미니 체인백 (black quilted mini chain bag)
+    name: 퀼팅 미니 체인백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: 블랙 브이넥 니트에 더스티 핑크 새틴 스커트로 은은하게. 참고 =블랙 V넥 니트/핑크 새틴 미니/블랙 플랫/블랙 미니 숄더백 →
+    맞춘 것 =블랙 딥브이 니트+흰 캐미/핑크 새틴 미디(미니 아님, 색 미확인)/블랙 메리제인 플랫/블랙 미니 체인백. 하트 목걸이는 골드 옵션
+    사진이 없어 실버 큐빅 목걸이로 바꿈 (따라 함 - 참고 539) [점수 6]
+  point: 블랙 니트에 더스티 핑크 새틴 스커트로 은은한 포인트
+  styling: The black V-neck knit is worn over the white camisole, whose edge shows
+    in the V under the silver necklace; the knit hem is worn out over the waist of
+    the satin skirt; the quilted bag is held at the hip by its chain.
+  pose: standing full-length turned three-quarters to the camera, one hand holding
+    the chain strap of the mini bag at her hip, the other hand lightly touching the
+    hair at her cheek, looking over her shoulder with a soft gaze; long soft wavy
+    hair worn half up with the rest falling down
+  scene_image: out/2026-10-21/src/scene.jpg
+  ref: '539'
+  ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2026/9/7/20_202609070943168980_61336.jpeg
+- items:
+  - product: zigzag:147774916
+    color: 아이보리
+    desc: 아이보리 베이직 셔츠 (ivory thin crisp cotton oversized relaxed button-front shirt,
+      long sleeves, hip to upper-thigh length, worn open over the camisole)
+    name: 베이직 셔츠
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    size: about 73.5 cm long from shoulder to hem, 49 cm across the shoulders, 63.5
+      cm across the chest laid flat, 60 cm long sleeves
+    cm: 73.5
+  - product: zigzag:169196108
+    color: 화이트
+    desc: 화이트 레이스 레이어드 나시 (white lace-trim fitted camisole, thin straps, hip length)
+    name: 레이스 나시
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 5
+    wear_with: 상의
+  - product: zigzag:171970791
+    color: 올리브
+    desc: 올리브 스웨이드 스커트 (olive green matte suede slim A-line skirt, knee length or
+      just above the knee, not a midi)
+    name: 스웨이드 스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:162619421
+    color: 블랙
+    desc: 블랙 위빙 버킷 숄더백 (black woven bucket shoulder bag)
+    name: 버킷 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:148873148
+    color: 블랙
+    desc: 블랙 소가죽 미들부츠 (black leather mid-calf boots with buckle straps and slouchy
+      creases)
+    name: 미들부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: 아이보리 셔츠를 레이스 나시 위에 걸치고 올리브 스웨이드 스커트로 가을 톤. 참고 =아이보리 스트라이프 리브 카디건/흰 레이스 캐미/브라운
+    스웨이드 미니/블랙 버킷백/블랙 앵클부츠 → 맞춘 것 =아이보리 셔츠/레이스 나시/올리브 스웨이드 스커트(브라운 미니 없음)/블랙 버킷백/블랙
+    미들부츠 (따라 함 - 참고 498) [점수 5]
+  point: 열어 입은 아이보리 셔츠와 올리브 스웨이드로 가을 톤 맞추기
+  styling: The ivory shirt is worn open over the white lace camisole, hanging out
+    over the skirt waistband with its sleeves pushed up to the forearms; the bucket
+    bag hangs on her shoulder.
+  pose: standing full-length with one foot slightly forward and her weight on the
+    back leg, one hand in the open shirt's pocket line at her hip and the other holding
+    the strap of the bucket bag on her shoulder, her head tilted with a soft gaze
+    slightly off camera; long soft wavy hair worn loose
+  scene_image: out/2026-10-21/src/scene.jpg
+  ref: '498'
+  ref_photo: https://woonan.co.kr/web/product/big/202610/a43d3bd427e71c05bd1f2da724f70a41.jpg
+reason: 사용자가 고른 참고 코디 10벌을 순서대로 따라 한 첫 데이트 약속룩
+text:
+  title_lines: [첫 데이트 앞두고 고른, 꾸안꾸 가을 옷장 공개]
+  intro: 이슬비 내리는 쌀쌀한 날, 첫 데이트엔 부드러운 톤으로 꾸민 듯 안 꾸민 룩 어때요 🍂
+  points: []
+  hashtags: ["#첫데이트룩", "#데이트룩", "#약속룩", "#가을코디", "#트위드자켓", "#레이스스커트", "#꾸안꾸"]
+shot: model
+mood: 'a clean studio lookbook shoot like the scene photo: a plain pale grey seamless
+  studio wall above a pale beige-grey polished concrete floor with soft window-light
+  shadows on it, soft even diffused daylight-like studio light, muted cool-neutral
+  color tone, shot on a good digital camera from a little distance as a full-length
+  vertical frame (head to shoes, the same framing as the scene photo). Her face is
+  clearly visible and is the soft pretty face of the hair-and-makeup references: a
+  fresh dewy pink-based makeup with rosy cheeks and soft pink eyeshadow, a glossy
+  plump rosy-pink lip, a gentle calm gaze slightly off the camera with lips softly
+  parted. Her hair is long soft layered waves, loose or half-up. Ignore any rule about
+  hiding her face: here the face is shown, natural and sharp, never blurred.'
+scene_image: out/2026-10-21/src/scene.jpg
