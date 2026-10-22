@@ -803,3 +803,18 @@ def test_round_record_and_material_cli(tmp_path, monkeypatch):
     feedback.save_round(results, "women", rnd)
     text = feedback.round_material(Store("women", root=tmp_path / "d"), rnd, "revise", date.today())
     assert "# 확정한 반영 계획" in text and "더 짧게" in text
+
+
+def test_resend_theme_review(env, monkeypatch):
+    """2026-10-22 사용자: 피드백 반영이 끝났으니 주제 보내기부터 새로."""
+    monkeypatch.setattr(flow, "load_profile", _profile(10, review=True))
+    store, results, sent, _ = env
+    st = flow.FlowState(account="women", stage="theme_review", week=[theme(1), theme(2)])
+    flow.save_state(results, st)
+    assert "남은 주제 2개" in flow.resend(results, "women")
+    tg = FakeTg()
+    assert tick(env, tg, T0)[0].startswith("남은 주제 2개 확인 요청")
+    assert "남은 주제 2개를 확인해 주세요" in tg.sent[-1]
+    assert flow.load_state(results, "women").stage == "theme_review"
+    flow.save_state(results, flow.FlowState(account="women", stage="pick_wait"))
+    assert "아니에요" in flow.resend(results, "women")
