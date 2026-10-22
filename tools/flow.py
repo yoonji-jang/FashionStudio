@@ -105,6 +105,7 @@ class FlowState(BaseModel):
     read_upto: int = 0  # 주간 후보에 온 답을 여기(보낸 시각)까지 읽었다
     revising: bool = False  # 주간 후보 고치기를 요청했고 고친 후보가 아직 안 옴
     ref_pick_at: int = 0  # 이 주제의 참고 코디 묶음을 보낸 시각 (flow.ref_pick, 0 이면 아직)
+    rules_upto: int = 0  # 규칙 고치기 요청(/fix 규칙 …)을 여기(update_id)까지 처리했다
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -387,6 +388,10 @@ def tick(
     st = load_state(results, account)
     done: list[str] = []
     try:
+        line = _rules_fix(profile, st, tg, send, now, dry_run)
+        if line:
+            done.append(line)
+            st.note(now, line)
         for _ in range(4):
             before = st.stage
             line = _step(profile, store, st, results, tg, send, now, dry_run)
@@ -401,6 +406,34 @@ def tick(
         if not dry_run:
             save_state(results, st)
     return done
+
+
+RULES_FIX_FRESH = (
+    2 * 3600
+)  # 처음 볼 때는 이만큼 지난 요청까지만 (기능을 켜기 전 글을 다시 다루지 않게)
+
+
+def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run: bool) -> str:
+    """피드백 규칙을 더하거나 고쳐 달라는 텔레그램 글("/fix 규칙 …", 규칙 반영 알림에 답장한
+    "/fix …")이 오면 feedback-rules 워크플로에 그 글을 넘겨 규칙을 고친다 (단계와 상관없이).
+    한 글은 한 번만."""
+    if tg is None or not profile.feedback.enabled:
+        return ""
+    from tools import feedback
+
+    found = feedback.rules_requests(tg.updates(), tg.chat_id, profile.id, st.rules_upto)
+    if st.rules_upto == 0:
+        found = [r for r in found if now.timestamp() - r["at"] <= RULES_FIX_FRESH]
+    if not found:
+        return ""
+    tag = f"[{profile.id}]"
+    if dry_run:
+        return f"{tag} 규칙 고치기 요청 {len(found)}개 (시험)"
+    request = json.dumps({"requests": found}, ensure_ascii=False)
+    send("feedback-rules.yml", account=profile.id, request=request)
+    st.rules_upto = max(r["update_id"] for r in found)
+    tg.send(f"{tag} 📝 규칙 고치기 요청을 받았어요. 규칙에 반영하고 바뀐 점을 알려 드릴게요")
+    return f"규칙 고치기 요청 ({len(found)}개)"
 
 
 def _late(st: FlowState, now: datetime, tg, text: str, after: timedelta = WAIT_ALERT) -> None:

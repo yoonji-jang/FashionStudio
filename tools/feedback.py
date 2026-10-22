@@ -701,6 +701,57 @@ def rules_state(store: Store) -> int:
     return int(json.loads(path.read_text(encoding="utf-8")).get("last_update_id", 0))
 
 
+def rules_requests(updates: list[dict], chat_id: str, account: str, after: int) -> list[dict]:
+    """피드백 규칙을 더하거나 고쳐 달라는 글 (update_id 순): "/fix 규칙 …" 또는 규칙 반영 알림(📝)에
+    답장한 "/fix …" (2026-10-22 사용자). {update_id, at, text}."""
+    found = []
+    for u in sorted(updates, key=lambda u: u["update_id"]):
+        msg = u.get("message") or {}
+        if u["update_id"] <= after or str((msg.get("chat") or {}).get("id")) != str(chat_id):
+            continue
+        cmd = notify.parse(msg.get("text") or msg.get("caption") or "", account, None)
+        if cmd is None:
+            continue
+        replied = (msg.get("reply_to_message") or {}).get("text") or ""
+        if cmd.name == "fix" and notify.RULES_MARK in replied.split("\n", 1)[0]:
+            cmd = notify.Command("rules", cmd.args, cmd.labeled)
+        text = " ".join(cmd.args).strip()
+        if cmd.name == "rules" and text:
+            found.append({"update_id": u["update_id"], "at": msg.get("date", 0), "text": text})
+    return found
+
+
+RULES_COMMIT = "피드백 규칙 반영"  # feedback-rules 워크플로가 만든 PR 제목·커밋 앞머리
+
+
+def rules_request_report(requests: list[dict], last_change: str, tz: str = "Asia/Seoul") -> str:
+    """규칙 고치기 요청 재료 (feedback-rules 스킬 "사용자가 직접 고치기"가 읽음)."""
+    lines = ["# 규칙 고치기 요청", ""]
+    for r in requests:
+        at = datetime.fromtimestamp(r.get("at", 0), ZoneInfo(tz)).strftime("%m-%d %H:%M")
+        lines.append(f"- {at} {r['text']}")
+    lines += ["", "# 지난 규칙 반영 (가장 최근 커밋)", ""]
+    lines += ["```diff", last_change.strip() or "(찾지 못함)", "```"] if last_change else ["(없음)"]
+    return "\n".join(lines) + "\n"
+
+
+def last_rules_change(max_lines: int = 400) -> str:
+    """main 에 들어간 가장 최근 규칙 반영 커밋 (설명과 바뀐 줄). git 이 없으면 빈 문자열."""
+    import subprocess
+
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%h %ad %s%n%n%b", "--date=short", "-p",
+             f"--grep={RULES_COMMIT}", "--", ".", ":!data"],
+            capture_output=True, text=True, check=True,
+        ).stdout  # fmt: skip
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+    lines = out.splitlines()
+    more = len(lines) - max_lines
+    return "\n".join(lines[:max_lines]) + (f"\n… ({more}줄 더)" if more > 0 else "")
+
+
 def pending_entries(store: Store) -> list[FeedbackEntry]:
     """아직 규칙 PR 에서 다루지 않은 피드백."""
     last = rules_state(store)
@@ -770,6 +821,10 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("pending", help="규칙 PR 에 아직 넣지 않은 피드백 (없으면 종료 코드 5)")
     s.add_argument("--account", required=True)
     s.add_argument("--out", type=Path, help="재료를 쓸 파일 (기본: 화면)")
+    s = sub.add_parser("rules-request", help="규칙 고치기 요청 재료 쓰기 (/fix 규칙 …)")
+    s.add_argument("--account", required=True)
+    s.add_argument("--request", required=True, help='JSON {"requests": [{update_id, at, text}]}')
+    s.add_argument("--out", type=Path, required=True)
     s = sub.add_parser("mark", help="규칙 PR 에서 다룬 피드백 기록")
     s.add_argument("--account", required=True)
     s.add_argument("--upto", type=int, required=True, help="다룬 마지막 update_id")
@@ -795,6 +850,13 @@ def main(argv: list[str] | None = None) -> int:
                 args.out.write_text(report, encoding="utf-8")
             print(report if not args.out else f"새 피드백 {len(new)}개 → {args.out}")
             print(f"UPTO={max(e.update_id for e in new)}")
+        elif args.cmd == "rules-request":
+            requests = json.loads(args.request)["requests"]
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            tz = load_profile(args.account).schedule.timezone
+            report = rules_request_report(requests, last_rules_change(), tz)
+            args.out.write_text(report, encoding="utf-8")
+            print(f"규칙 고치기 요청 {len(requests)}개 → {args.out}")
         elif args.cmd == "mark":
             mark_rules(Store(args.account), args.upto)
             print(f"규칙 PR 기록: update_id {args.upto} 까지")
