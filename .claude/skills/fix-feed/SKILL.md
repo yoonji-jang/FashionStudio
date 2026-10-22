@@ -83,14 +83,24 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      그 벌 장에 온 /fix 를 함께 영어로 쓴다 (예: "Make her about 5 cm taller with longer legs. Give her a softer,
      innocent-looking face with a higher, straighter nose tip like user photo 2. Also: unbutton the cardigan so the
      camisole shows."). 한 /fix 안에 전체 고칠 점과 다른 요청(후보 추가 등)이 섞여 있으면 나눠서 각각 처리한다.
-   - **참고 사진** (fix `photos`): 그 /fix 가 닿는 벌마다 `edit_refs:` 에 `photos` 경로를 그대로 적는다 (전체 /fix 면 모든 벌).
+   - **사진 부르는 말** (2026-10-22 사용자: 참고 코디컷·장면 사진은 다시 보내지 않아도 알아보게):
+     - "첨부 사진", "보낸 사진", "N번째 사진": 그 /fix 에 붙여 보낸 사진 (fix `photos`, 보낸 순서).
+     - "참고 코디(컷)", "참고 모델(핏)", "참고 사진", "참고룩": 그 벌이 따라 한 기준 코디 사진 (벌 `ref_photo`).
+       사용자는 후보 시트 왼쪽에서 이미 본 사진이라 다시 보내지 않는다. 그 벌에 첨부 사진이 없으면 이 뜻이다.
+     - "장면 사진", "장면컷", "N번 장면": 이 주제에 받은 장면 사진 (`SCENES` 의 N번째, 벌 `scene_image`).
+     - 어느 쪽인지 모호하면 그 벌에 있는 사진 중 말에 맞는 쪽으로 정하고 `fix_result.yaml` 에 적는다.
+   - **첨부 사진** (fix `photos`): 그 /fix 가 닿는 벌마다 `edit_refs:` 에 `photos` 경로를 그대로 적는다 (전체 /fix 면 모든 벌).
      사진은 Read 로 직접 보고, `edit_request` 에서는 "user photo 1, 2 …"(보낸 순서)로 가리킨다
      ("두 번째 사진처럼" → "like user photo 2"). 도구가 상품 참고판 뒤에 붙여 보내고, 적힌 부분(코 모양 등)만
-     따르고 그 사람 얼굴·옷·배경은 따르지 말라고 지시한다.
-   - **참고 코디 핏처럼** ("참고 모델핏과 비슷하게", "참고 코디컷처럼"): 그 벌 `ref_photo` 가 있으면 고쳐 그릴 때
-     도구가 그 사진을 핏 참고로 같이 보낸다. `edit_request` 에 "Match how the clothes fit in the reference outfit photo:
-     …"처럼 무엇(기장·품·넣어 입기)을 맞출지 적는다. `ref_photo` 가 없으면 그 벌 기준 코디(`ref`)를 `refs` 창고에서 찾지 말고
-     피드백 글대로만 고친다.
+     따르고 그 사람 얼굴·옷은 따르지 말라고 지시한다.
+   - **참고 코디 핏처럼**: 고쳐 그릴 때 도구가 그 벌 `ref_photo` 를 핏 참고로 늘 같이 보낸다 (얼굴 가림).
+     먼저 `python -m tools.feedback ref-photos out/$DATE/plan.yaml --dest /tmp/fix_refs` 로 받아 Read 로 보고,
+     `edit_request` 에 "Match how the clothes fit in the reference outfit photo: …"처럼 무엇(기장·품·넣어 입기)을
+     맞출지 구체적으로 쓴다. 받은 사진은 `out/` 에 복사하지 않는다 (결과 브랜치에 올리지 않음).
+     `ref_photo` 가 없고 `ref` 번호만 있으면 `data/$ACCOUNT/refs.json` 에서 그 번호의 `photo` 를 벌 `ref_photo` 에 적는다.
+     둘 다 없으면 피드백 글대로만 고치고 참고 사진이 없었다고 적는다.
+   - **장면 사진처럼**: 그 장면 사진 경로(`SCENES` 의 것, `out/$DATE/src/scene*.jpg`)를 그 벌 `edit_refs` 에 더하고
+     `edit_request` 에서 "user photo N" 으로 가리킨다 (자리·포즈를 아예 바꾸는 요청이면 위 "장면 모델컷" 대로 새로 그림).
    - **코디 후보 추가** ("코디 후보 3번도 추가"): `candidates` 파일의 `looks[N-1]` 벌을 plan.yaml `looks` 끝에 그대로
      붙인다 (상품·`desc`·`size`·`styling`·`ref`·`ref_photo`). 장면 모델컷이면 `daily-feed` 의 "장면 모델컷" 절대로
      다른 벌과 겹치지 않는 새 `pose` 를 쓰고, 장면 사진이 여러 장이면 어울리는 `scene_image` 도 고른다.
