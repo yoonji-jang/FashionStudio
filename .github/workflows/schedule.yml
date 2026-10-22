@@ -38,10 +38,6 @@ on:
         description: 시험 (워크플로 실행 요청·텔레그램 알림·결정 기록 없이 무엇을 할지만 보여 줌)
         type: boolean
         default: true
-      resend:
-        description: 이 계정의 주제 확인·주간 후보 단계를 처음부터 다시 보냄 (예 women, 비우면 안 함)
-        required: false
-        default: ""
 
 permissions:
   contents: write
@@ -85,11 +81,7 @@ jobs:
           IG_SECRETS: ${{ toJSON(secrets) }}
           # 공유리워드 링크를 반영한 상품 페이지를 사진 저장소에 올림 (tools.share)
           MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
-          RESEND: ${{ inputs.resend }}
         run: |
-          if [ -n "$RESEND" ] && [ "${{ inputs.dry_run }}" != true ]; then
-            uv run python -m tools.flow resend --account "$RESEND" --results /tmp/results
-          fi
           uv run python -m tools.schedule due --cron "$CRON" --results /tmp/results
           uv run python -m tools.schedule run --cron "$CRON" --results /tmp/results \
             ${{ inputs.dry_run && '--dry-run' || '' }}

@@ -818,3 +818,21 @@ def test_resend_theme_review(env, monkeypatch):
     assert flow.load_state(results, "women").stage == "theme_review"
     flow.save_state(results, flow.FlowState(account="women", stage="pick_wait"))
     assert "아니에요" in flow.resend(results, "women")
+
+
+def test_resend_from_schedule_cron(env, monkeypatch, capsys):
+    """schedule.yml 에 입력을 더하면 실행이 승인 대기로 막혀 cron 칸에 resend:<계정> 으로 받는다."""
+    from tools import schedule as sched
+
+    store, results, sent, _ = env
+    flow.save_state(results, flow.FlowState(account="women", stage="theme_review", week=[theme(1)]))
+    monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
+    monkeypatch.setattr(sched, "execute", lambda *a, **k: [])
+    monkeypatch.setattr(sched, "retry_limited", lambda *a, **k: [])
+    argv = ["run", "--cron", "resend:women", "--results", str(results)]
+    assert sched.main([*argv, "--dry-run"]) == 0
+    assert "(시험) women" in capsys.readouterr().out
+    assert flow.load_state(results, "women").stage == "theme_review"
+    monkeypatch.setattr(sched.GitHub, "from_env", classmethod(lambda cls: None))
+    assert sched.main(argv) == 0
+    assert flow.load_state(results, "women").stage == "theme"

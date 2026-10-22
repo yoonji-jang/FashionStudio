@@ -1022,6 +1022,9 @@ def run_flows(results: Path, gh, tg, now: datetime, dry_run: bool = False) -> li
     return log
 
 
+RESEND_PREFIX = "resend:"
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1070,6 +1073,13 @@ def main(argv: list[str] | None = None) -> int:
         results = args.results
         ticks = Ticks(results, now)
         missed: list[Task] = []
+        resend = ""
+        if args.cron.strip().startswith(RESEND_PREFIX):
+            # "resend:<계정>": 그 계정 주제 단계를 처음부터 다시 보내고 auto 로 (2026-10-22).
+            # schedule.yml 에 입력을 더하면 실행이 승인 대기(action_required)로 막혀
+            # cron 칸으로 받는다
+            resend = args.cron.strip()[len(RESEND_PREFIX) :].strip()
+            args.cron = "auto"
         if args.cron.strip() == "auto":
             tasks, missed = due_auto(ticks, results, now)
         else:
@@ -1087,6 +1097,14 @@ def main(argv: list[str] | None = None) -> int:
         gh = DryRun() if args.dry_run else GitHub.from_env()
         if args.dry_run and tg is not None:
             tg = QuietTelegram(tg)
+        if resend and results is not None:
+            from tools import flow
+
+            print(
+                f"(시험) {resend} 주제 단계 다시 보내기"
+                if args.dry_run
+                else flow.resend(results, resend)
+            )
         report_missed(missed, tg)
         try:
             for line in retry_limited(results, gh, tg, now, args.dry_run):
