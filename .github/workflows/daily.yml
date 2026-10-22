@@ -315,7 +315,7 @@ jobs:
             fix_result.yaml 과 manifest.json 이 생기기 전에는 끝내지 마.
           claude_args: >-
             --max-turns 180
-            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+            --allowedTools "Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Bash(python -m tools.feedback ref-photos:*),Read,Write,Edit,Glob,Grep,Task,Agent"
 
       - name: Claude 모델컷 게시물 (model-feed 스킬)
         if: env.MODE == 'model'

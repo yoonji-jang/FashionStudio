@@ -684,6 +684,28 @@ def mark_rules(store: Store, upto: int, now: datetime | None = None) -> None:
 # ---------- CLI ----------
 
 
+def ref_photos(plan_path: Path, dest: Path) -> list[tuple[int, Path | None]]:
+    """기획 벌마다 따라 한 기준 코디 사진(ref_photo)을 dest 에 받는다 (얼굴은 가림, 고쳐 그릴 때
+    이미지 AI 가 받는 것과 같은 사진). fix-feed 가 "참고 코디컷처럼" 을 보고 고칠 점을 쓰도록
+    (2026-10-22 사용자: 참고 코디컷은 다시 보내지 않아도 알아보게). dest 는 결과 폴더 밖에 둔다."""
+    from tools import outfit_gen
+    from tools.plan import load_plan
+
+    plan = load_plan(plan_path)
+    profile = load_profile(plan.account)
+    out: list[tuple[int, Path | None]] = []
+    for i in range(len(plan.looks)):
+        lp = plan.look_plan(i)
+        data = outfit_gen.worn_ref_panel(lp, profile, dest / "cache", edit=True)
+        path = None
+        if data:
+            path = dest / f"look{i + 1}.jpg"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+        out.append((i + 1, path))
+    return out
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -691,6 +713,9 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("pick", help="daily pick 값 (JSON: run, round, fixes)")
     s.add_argument("--prev", type=Path, required=True, help="daily-results 브랜치를 꺼낸 폴더")
     s.add_argument("--out", type=Path, required=True)
+    s = sub.add_parser("ref-photos", help="벌마다 기준 코디 사진 받기 (fix-feed 가 봄)")
+    s.add_argument("plan", type=Path)
+    s.add_argument("--dest", type=Path, required=True, help="받을 폴더 (결과 폴더 밖)")
     s = sub.add_parser("summary", help="피드백 모아 보기")
     s.add_argument("--account", required=True)
     s.add_argument("--days", type=int, default=30)
@@ -707,6 +732,9 @@ def main(argv: list[str] | None = None) -> int:
             for f in data["fixes"]:
                 print(f"- {label(f)}: {f['text']}")
             print(f"표지 코디컷: {data['cover'] or '없음 (새로 만듦)'}")
+        elif args.cmd == "ref-photos":
+            for n, path in ref_photos(args.plan, args.dest):
+                print(f"looks[{n - 1}]: {path or '기준 코디 사진 없음'}")
         elif args.cmd == "pending":
             store = Store(args.account)
             new = pending_entries(store)

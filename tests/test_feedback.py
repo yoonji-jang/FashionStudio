@@ -284,6 +284,27 @@ def test_prepare_copies_fix_photos_and_candidates(results, tmp_path, monkeypatch
     assert fixes[0]["photos"][0] == "photo/fix/7_1.jpg"  # 받은 pick 은 그대로
 
 
+def test_ref_photos_downloads_each_looks_ref(tmp_path, monkeypatch):
+    """fix-feed 가 "참고 코디컷처럼" 을 볼 수 있게 벌마다 기준 코디 사진을 받는다 (2026-10-22)."""
+    from tests.test_looks import looks_plan
+    from tools import outfit_gen
+
+    p = looks_plan()
+    p.looks[1].ref_photo = "https://woonan.co.kr/a.jpg"
+    path = tmp_path / "plan.yaml"
+    path.write_text(yaml.safe_dump(json.loads(p.model_dump_json()), allow_unicode=True), "utf-8")
+    seen = []
+
+    def panel(lp, profile, cache, edit=False):
+        seen.append(edit)
+        return b"jpg" if lp.ref_photo else None
+
+    monkeypatch.setattr(outfit_gen, "worn_ref_panel", panel)
+    got = feedback.ref_photos(path, tmp_path / "refs")
+    assert [n for n, f in got if f] == [2] and got[1][1].read_bytes() == b"jpg"
+    assert all(seen) and len(got) == len(p.looks)
+
+
 def test_preview_shows_fix_round_changes_and_hint(results):  # noqa: F811
     run = results / RUN
     profile = load_profile("women")

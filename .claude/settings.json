@@ -16,6 +16,7 @@
       "Bash(python -m tools.reels:*)",
       "Bash(python -m tools.feedback summary:*)",
       "Bash(python -m tools.feedback prepare:*)",
+      "Bash(python -m tools.feedback ref-photos:*)",
       "Bash(pytest:*)",
       "Read",
       "Write(out/**)",

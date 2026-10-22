@@ -198,9 +198,9 @@ EDIT_WORN = (
     " and sit on the body (length, looseness, tuck), never for its background, pose or face."
 )
 EDIT_REFS = (
-    "Then come reference photos the user sent for this change ({nums}). Use them only for what"
-    " the change asks (for example the shape of the nose), never copy the person's identity,"
-    " clothes or background."
+    "Then come reference photos for this change ({nums}). Use them only for what the change asks"
+    " (for example the shape of the nose, or the place and mood of a scene photo); never copy a"
+    " person's face or identity from them, and never take clothes from them."
 )
 
 
