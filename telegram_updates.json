@@ -1,27 +1,5 @@
 [
  {
-  "update_id": 428675819,
-  "message": {
-   "message_id": 1695,
-   "date": 1792506097,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/ok"
-  }
- },
- {
-  "update_id": 428675820,
-  "message": {
-   "message_id": 1703,
-   "date": 1792506935,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "320 250 515 481 458 318 267 170 486 441"
-  }
- },
- {
   "update_id": 428675821,
   "message": {
    "message_id": 1716,
