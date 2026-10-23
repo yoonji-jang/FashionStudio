@@ -1,16 +1,5 @@
 [
  {
-  "update_id": 428675818,
-  "message": {
-   "message_id": 1682,
-   "date": 1792503735,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "/fix 1 제목을 \"뻔한 코디가 지겨울때 / 참고하는 스커트 룩북\" 으로 바꿔줘\n/order 4 2 3 6 1 5"
-  }
- },
- {
   "update_id": 428675819,
   "message": {
    "message_id": 1695,
