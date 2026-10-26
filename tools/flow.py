@@ -385,13 +385,16 @@ def scene_photos(
 
 
 REF_CAPTION = re.compile(r"^\s*참고")
+# 텔레그램 앨범은 10장까지라 나머지는 따로 간다: "참고" 사진 뒤 이만큼 안에 설명 없이 온 사진도 참고
+REF_GAP = 180
 
 
 def ref_photos(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, str]]:
     """since 뒤 온 참고 코디 사진 (update_id, 파일 번호).
     2026-10-26 사용자: 참고 묶음이 마음에 안 들면 따라 할 코디 사진을 직접 보낸다.
     장면 사진과 나누려고 사진 설명이 "참고" 로 시작하는 것만
-    (앨범은 설명이 한 장에만 붙으니 같은 앨범 사진 모두)."""
+    (앨범은 설명이 한 장에만 붙으니 같은 앨범 사진 모두,
+    그 뒤 REF_GAP 초 안에 설명 없이 이어 보낸 사진도: 앨범은 10장까지라 넘치면 따로 간다)."""
     from tools import notify
 
     found = []
@@ -401,10 +404,24 @@ def ref_photos(updates: list[dict], chat_id: str, since: int) -> list[tuple[int,
             continue
         fid = notify.photo_file_id(msg)
         if fid:
-            ref = bool(REF_CAPTION.match(msg.get("caption") or ""))
-            found.append((u["update_id"], fid, str(msg.get("media_group_id") or ""), ref))
-    groups = {g for _, _, g, ref in found if ref and g}
-    return [(uid, fid) for uid, fid, g, ref in found if ref or (g and g in groups)]
+            caption = msg.get("caption") or ""
+            ref = bool(REF_CAPTION.match(caption))
+            found.append(
+                (u["update_id"], fid, str(msg.get("media_group_id") or ""), ref, caption,
+                 msg.get("date", 0))
+            )  # fmt: skip
+    groups = {g for _, _, g, ref, _, _ in found if ref and g}
+    out, last = [], None
+    for uid, fid, g, ref, caption, at in found:
+        if ref or (g and g in groups):
+            out.append((uid, fid))
+            last = at
+        elif not caption.strip() and last is not None and at - last <= REF_GAP:
+            out.append((uid, fid))
+            last = at
+        else:
+            last = None
+    return out
 
 
 def tick(
