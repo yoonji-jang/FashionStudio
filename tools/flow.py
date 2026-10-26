@@ -663,7 +663,7 @@ def _week_wait(
     picked = [opts.options[n - 1] for n in nums]
     rs = profile.themes.ref_search
     # 주제마다 검색하면(image_search) 주간 쇼핑몰 수집은 하지 않는다 (2026-10-26 사용자: 끄자)
-    refs = rs is not None and not rs.searched()
+    refs = rs is not None and rs.weekly_crawl and not rs.searched()
     if tg is not None:
         lines = [
             f"[{profile.id}] 주간 주제 {len(picked)}개를 정했어요 (이 순서로 하나씩 만들어요)",

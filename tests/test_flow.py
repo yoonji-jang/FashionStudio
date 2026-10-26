@@ -72,7 +72,9 @@ def _profile(
                     "rules_after_post": rules}
         )  # fmt: skip
         # 주제별 이미지 검색은 search 일 때만 (그 밖의 시험은 예전 쇼핑몰 수집 흐름)
-        rs = p.themes.ref_search.model_copy(update={"image_search": ["daum"] if search else []})
+        rs = p.themes.ref_search.model_copy(
+            update={"image_search": ["daum"] if search else [], "weekly_crawl": True}
+        )
         themes = p.themes.model_copy(update={"ref_search": rs})
         return p.model_copy(update={"flow": f, "themes": themes})
 
