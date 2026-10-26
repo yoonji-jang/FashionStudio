@@ -1,0 +1,216 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/1/outfit_r2/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 레더 후드 점퍼
+  product: zigzag:172421417
+- comment: ''
+  name: 블랙 레이어드 티
+  product: zigzag:153225273
+- comment: ''
+  name: 워싱 데님 스커트
+  product: zigzag:162414325
+- comment: ''
+  name: 스웨이드 롱부츠
+  product: zigzag:147005253
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:168564549
+- comment: ''
+  name: 블랙 골지 니삭스
+  product: zigzag:141916298
+- comment: ''
+  name: 하이넥 점퍼
+  product: zigzag:157745502
+- comment: ''
+  name: 화이트 티
+  product: zigzag:167142875
+- comment: ''
+  name: 울 플리츠 미니
+  product: zigzag:109137110
+- comment: ''
+  name: 롱 버클 부츠
+  product: zigzag:171985452
+- comment: ''
+  name: 퀼팅 체인백
+  product: zigzag:135922060
+- comment: ''
+  name: 브라운 울 싱글 코트
+  product: zigzag:154608024
+- comment: ''
+  name: 블랙 헨리넥 티
+  product: zigzag:165972153
+- comment: ''
+  name: 플리츠 미니
+  product: zigzag:155417168
+- comment: ''
+  name: 오버니 부츠
+  product: zigzag:131281211
+- comment: ''
+  name: 블랙 위빙 숄더백
+  product: zigzag:168305853
+- comment: ''
+  name: 노카라 자켓
+  product: zigzag:168299406
+- comment: ''
+  name: 소가죽 메리제인
+  product: zigzag:166028838
+- comment: ''
+  name: 울블렌드 하프 코트
+  product: zigzag:172175729
+- comment: ''
+  name: 반하이넥 골지 니트
+  product: zigzag:171832859
+- comment: ''
+  name: 모직 미니스커트
+  product: zigzag:165443666
+- comment: ''
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+- comment: ''
+  name: 퀼팅 체인백
+  product: zigzag:119058597
+- comment: ''
+  name: 골드 하트 목걸이
+  product: zigzag:154200102
+- comment: ''
+  name: 하이넥 토글 자켓
+  product: zigzag:171975012
+- comment: ''
+  name: 블랙 반폴라 티
+  product: zigzag:151586371
+- comment: ''
+  name: 블랙 숏팬츠
+  product: zigzag:158913245
+- comment: ''
+  name: 앵클부츠
+  product: zigzag:110635258
+- comment: ''
+  name: 진주 하트 목걸이
+  product: zigzag:134391809
+- comment: ''
+  name: 골드 물방울 귀걸이
+  product: zigzag:169414958
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 후드 점퍼
+    product: zigzag:172421417
+  - comment: ''
+    name: 블랙 레이어드 티
+    product: zigzag:153225273
+  - comment: ''
+    name: 워싱 데님 스커트
+    product: zigzag:162414325
+  - comment: ''
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168564549
+  - comment: ''
+    name: 블랙 골지 니삭스
+    product: zigzag:141916298
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 점퍼
+    product: zigzag:157745502
+  - comment: ''
+    name: 화이트 티
+    product: zigzag:167142875
+  - comment: ''
+    name: 울 플리츠 미니
+    product: zigzag:109137110
+  - comment: ''
+    name: 롱 버클 부츠
+    product: zigzag:171985452
+  - comment: ''
+    name: 퀼팅 체인백
+    product: zigzag:135922060
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 브라운 울 싱글 코트
+    product: zigzag:154608024
+  - comment: ''
+    name: 블랙 헨리넥 티
+    product: zigzag:165972153
+  - comment: ''
+    name: 플리츠 미니
+    product: zigzag:155417168
+  - comment: ''
+    name: 오버니 부츠
+    product: zigzag:131281211
+  - comment: ''
+    name: 블랙 위빙 숄더백
+    product: zigzag:168305853
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/4/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 노카라 자켓
+    product: zigzag:168299406
+  - comment: ''
+    name: 블랙 레이어드 티
+    product: zigzag:153225273
+  - comment: ''
+    name: 모직 플리츠 미니
+    product: zigzag:109137110
+  - comment: ''
+    name: 소가죽 메리제인
+    product: zigzag:166028838
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168564549
+  - comment: ''
+    name: 블랙 골지 니삭스
+    product: zigzag:141916298
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울블렌드 하프 코트
+    product: zigzag:172175729
+  - comment: ''
+    name: 반하이넥 골지 니트
+    product: zigzag:171832859
+  - comment: ''
+    name: 모직 미니스커트
+    product: zigzag:165443666
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - comment: ''
+    name: 퀼팅 체인백
+    product: zigzag:119058597
+  - comment: ''
+    name: 골드 하트 목걸이
+    product: zigzag:154200102
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 토글 자켓
+    product: zigzag:171975012
+  - comment: ''
+    name: 블랙 반폴라 티
+    product: zigzag:151586371
+  - comment: ''
+    name: 블랙 숏팬츠
+    product: zigzag:158913245
+  - comment: ''
+    name: 앵클부츠
+    product: zigzag:110635258
+  - comment: ''
+    name: 퀼팅 체인백
+    product: zigzag:135922060
+  - comment: ''
+    name: 진주 하트 목걸이
+    product: zigzag:134391809
+  - comment: ''
+    name: 골드 물방울 귀걸이
+    product: zigzag:169414958
+title_lines:
+- 연말 모임 가면 다들 물어봄
+- 블랙 파티룩 이렇게 입음

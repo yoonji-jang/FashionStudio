@@ -1,0 +1,109 @@
+account: women
+date: '2026-10-23'
+edit_refs: []
+face: a young woman with an exotic, striking look, large round eyes with deep double
+  eyelids, defined dark eyebrows, bold full makeup with winged eyeliner and a flushed
+  blush, plump full glossy lips, a smooth fair-skinned heart-shaped face
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 울블렌드 하프 코트 (gray wool-blend half coat, hip length, single breasted)
+  name: 울블렌드 하프 코트
+  product: zigzag:172175729
+  ref_photos:
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 반하이넥 슬림핏 골지 니트 (black ribbed knit half-high-neck slim short-sleeve top,
+    fitted, cropped near the waist)
+  name: 반하이넥 골지 니트
+  product: zigzag:171832859
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 모직 미니스커트 (black wool mini skirt, slim A-line, above the knee, flat front)
+  name: 모직 미니스커트
+  product: zigzag:165443666
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 롱부츠 (black knee-high boots, round toe, flat heel)
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+  ref_photos:
+  - 3
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 퀼팅 체인백 (black quilted chevron bucket-style bag with a silver chain strap)
+  name: 퀼팅 체인백
+  product: zigzag:119058597
+  ref_photos:
+  - 0
+  - 3
+  - 2
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 골드 투 하트 목걸이 (exactly one thin gold chain necklace with two small heart pendants)
+  name: 골드 하트 목걸이
+  product: zigzag:154200102
+  slot: 목걸이
+looks: []
+mood: minimal studio lookbook shoot against a plain pale grey-white seamless wall
+  and floor, bright soft even light with a crisp cast shadow on the floor, clean full-length
+  e-commerce lookbook framing shot straight on with a sharp digital camera, neutral
+  cool colors
+pose: standing three-quarter turned in the white studio, the folded fur coat carried
+  over one forearm, the other hand holding the chain bag strap, looking at the camera,
+  hair in long loose waves over her shoulders
+reason: '블랙 하프넥 니트 미니가 주인공, 그레이 코트를 팔에 걸치고 골드 목걸이로 은은하게 반짝이는 모임 룩. 참고: 블랙 하프넥 니트 미니
+  원피스/그레이 퍼 코트(팔에 걸침)/블랙 롱부츠/체인 크로스백/스타킹/골드 펜던트 → 맞춘 것: 블랙 반하이넥 골지 니트+블랙 모직 미니스커트(창고에
+  니트 미니 원피스가 없어 한 벌처럼)/그레이 더플 하프코트(그레이 퍼 코트는 맞는 색 사진이 없어 바꿈)/블랙 롱부츠/블랙 퀼팅 체인백/골드 하트
+  목걸이 (시스루 스타킹 요청은 창고에 없어 반영 못 함) (따라 함: 참고 781)'
+ref_photo: tg:AgACAgUAAxkBAAIHwGrfCfbs5qCHTL_-ngOi_PCeZEfVAAKOFWsbCo_5Vl1cqHzqTA7IAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene_2.jpg
+shot: model
+styling: 'The gray coat is not worn: it is carried folded over one forearm. The black
+  half-neck knit is tucked into the black mini skirt, slim and body-skimming, so the
+  two read as one black knit mini dress; the gold necklace shows at the neckline.'
+text:
+  hashtags:
+  - '#연말룩'
+  - '#파티룩'
+  - '#모임룩'
+  - '#블랙코디'
+  - '#연말모임'
+  - '#레더자켓'
+  - '#가을코디'
+  intro: 7~20도로 일교차 큰 연말 모임엔 겉옷 하나 걸쳐 가요 ✨
+  points: []
+  title_lines:
+  - 연말 모임 가면 다들 물어봄
+  - 블랙 파티룩 이렇게 입음
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)
