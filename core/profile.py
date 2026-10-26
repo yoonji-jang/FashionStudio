@@ -110,6 +110,12 @@ class RefSearch(BaseModel):
     scout_sites: list[str] = []
     # scout_sites 쇼핑몰이 사진을 따로 두는 곳 (사진 서버). 페이지는 열지 않고 사진만 받는다
     image_hosts: list[str] = []
+    # 주제별 이미지 검색 (2026-10-26 사용자: 쇼핑몰 주간 수집 대신 주제마다 검색, tools.ref_search).
+    # 공식 검색 API 만: daum(카카오, KAKAO_REST_API_KEY),
+    # naver(API HUB, NAVER_API_KEY_ID·NAVER_API_KEY)
+    image_search: list[Literal["daum", "naver"]] = []
+    search_per_query: int = Field(default=60, ge=10, le=100)  # 검색어마다 받을 결과 수
+    search_min_height: int = Field(default=600, ge=200)  # 이보다 낮은 사진은 뺀다 (px)
 
     def hosts(self) -> list[str]:
         """사진을 받아도 되는 곳: 쇼핑몰 + 그 쇼핑몰의 사진 서버."""
