@@ -111,7 +111,7 @@ jobs:
 
       # 쇼핑몰마다 메뉴 → 상품 페이지를 코드가 돌며 확인표를 만든다 (Claude 는 확인표만 본다, 2026-10-13)
       - name: 지난 실행의 확인표 받기
-        if: inputs.reuse_run != '' && env.REF_SEARCH != '1'
+        if: inputs.reuse_run != '' && env.REF_SEARCH != '1' && inputs.user_photos == ''
         uses: actions/download-artifact@v4
         with:
           name: refs-${{ inputs.account }}
@@ -120,7 +120,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 쇼핑몰 착용컷 확인표 만들기 (tools.scout crawl)
-        if: inputs.reuse_run == '' && env.REF_SEARCH != '1'
+        if: inputs.reuse_run == '' && env.REF_SEARCH != '1' && inputs.user_photos == ''
         run: |
           # 2026-10-19 사용자: 사이트마다 20~30곳 이상. 메뉴 8개·상품 페이지 30곳, 쇼핑몰 4곳씩 함께
           sites=$(uv run python -c "from core.profile import load_profile; rs = load_profile('$ACCOUNT').themes.ref_search; print(' '.join(rs.scout_sites if rs else []))")
@@ -131,13 +131,13 @@ jobs:
 
       # 창고 상품의 지그재그 상세 착용컷도 참고 코디 출처로 (2026-10-13, 쇼핑몰 룩북만으로는 31벌)
       - name: 창고 상품 착용컷 확인표 만들기 (tools.refs zigzag)
-        if: inputs.reuse_run == '' && env.REF_SEARCH != '1'
+        if: inputs.reuse_run == '' && env.REF_SEARCH != '1' && inputs.user_photos == ''
         run: timeout 30m uv run python -m tools.refs zigzag --account "$ACCOUNT" --out out/refs/zigzag --count 60 || echo "착용컷 확인표 실패"
 
       # 참고 코디를 칸별로 data/<계정>/refs.json 에 모은다 (2026-10-13 사용자). 주간 주제 다음에도 돈다.
       # 2026-10-19: 한 번에 다 보게 하면 앞쪽 확인표 몇 장만 보고 끝나서(470장 중 42벌) 쇼핑몰을 몇 곳씩 나눠 따로 옮긴다
       - name: 참고 코디 옮길 쇼핑몰 나누기
-        if: env.REF_SEARCH != '1'
+        if: env.REF_SEARCH != '1' && inputs.user_photos == ''
         run: |
           python - <<'PY'
           import os
