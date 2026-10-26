@@ -699,6 +699,8 @@ def test_find_edits_reads_look_number_or_replied_sheet():
         upd(5, "/fix 이너를 나시로"),  # 번호 없음
         upd(6, "/fix 1"),  # 내용 없음
         upd(7, "/fix 1 이너를 나시로", to=999),  # 봇의 다른 메시지에 답장
+        upd(8, "/fix 4목에 얇은 스카프"),  # 번호 뒤 띄어쓰기 없음
+        upd(9, "/fix 3번은 그대로, 신발만"),
     ]
     found = pick.find_edits(ups, r, CHAT)
     assert [(e["update_id"], e["looks"], e["text"]) for e in found] == [
@@ -707,6 +709,8 @@ def test_find_edits_reads_look_number_or_replied_sheet():
         (3, [2], "신발을 로퍼로"),
         (4, [2], "가방을 숄더백으로"),
         (5, [], "이너를 나시로"),
+        (8, [4], "목에 얇은 스카프"),
+        (9, [3], "그대로, 신발만"),
     ]
 
 
