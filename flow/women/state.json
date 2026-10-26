@@ -1,8 +1,8 @@
 {
   "account": "women",
-  "stage": "refs_wait",
+  "stage": "pick_wait",
   "date": "2026-10-23",
-  "asked_at": 1793002062,
+  "asked_at": 1793013035,
   "hint": "",
   "theme_at": 1792998064,
   "pick": "",
@@ -12,49 +12,6 @@
   "scene_at": 0,
   "alerted": false,
   "week": [
-    {
-      "date": "2026-10-23",
-      "title_hint": "연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디",
-      "mood": "깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기",
-      "slots": [
-        {
-          "category": "아우터",
-          "desc": "블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기"
-        },
-        {
-          "category": "상의",
-          "desc": "벨벳 또는 새틴 소재 블라우스·홀터 니트"
-        },
-        {
-          "category": "하의",
-          "desc": "새틴 미디스커트 또는 벨벳 와이드 팬츠"
-        },
-        {
-          "category": "가방",
-          "desc": "미니 숄더백 또는 클러치"
-        },
-        {
-          "category": "신발",
-          "desc": "뾰족한 앞코 힐 또는 메리제인"
-        }
-      ],
-      "type": "상황",
-      "why": "사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)",
-      "search_terms": {
-        "상의": [
-          "벨벳 블라우스",
-          "새틴 블라우스",
-          "홀터 니트"
-        ],
-        "하의": [
-          "새틴 미디스커트",
-          "벨벳 와이드 팬츠"
-        ],
-        "가방": [
-          "미니 숄더백"
-        ]
-      }
-    },
     {
       "date": "2026-10-23",
       "title_hint": "니트 하나로 달라지는 가을 코디, 질감과 핏으로 골라 입기",
@@ -173,23 +130,11 @@
   ],
   "read_upto": 1792996868,
   "revising": false,
-  "ref_pick_at": 1792998064,
+  "ref_pick_at": 1793013035,
   "searched": "2026-10-23|연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디",
-  "user_refs": [
-    "AgACAgUAAxkBAAIHuWrfCfZ94dvV2wUV8coDPiSXLQ4LAAKHFWsbCo_5Vjuenw1LDohzAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHumrfCfa8VdoxZnNOPxr947PWfjcPAAKIFWsbCo_5VmFax3Gv3FOaAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHu2rfCfYBrHoDpalKKofdjuK7TL2xAAKJFWsbCo_5VkmC5G3MfWAkAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHvGrfCfb_usCNCYewSNU1HKDL1BraAAKKFWsbCo_5VpASpjgFRoxlAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHvWrfCfYlFOL19OEzMHHM4wPkV9_AAAKLFWsbCo_5VuPZCKt9vMBVAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHv2rfCfZS3LNrTGDUpBzu9oA-RDbiAAKNFWsbCo_5VooRol6ikE8_AQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHwGrfCfbs5qCHTL_-ngOi_PCeZEfVAAKOFWsbCo_5Vl1cqHzqTA7IAQADAgADeQADPQQ",
-    "AgACAgUAAxkBAAIHwWrfCfblnrmAiupcx5OiL64AASeg2AACjxVrGwqP-VZhHIpIr_LW8wEAAwIAA3kAAz0E",
-    "AgACAgUAAxkBAAIHwmrfCfb7-Cudctewp9FAA1n4cnuLAAKQFWsbCo_5Vvc3Ysa2ozqRAQADAgADeQADPQQ"
-  ],
+  "user_refs": [],
   "rules_upto": 428675842,
   "log": [
-    "10-21 05:01 주제 정함: 첫 데이트 앞두고 꾸민 듯 안 꾸민 가을 약속룩, 참고 코디 48벌 보냄",
     "10-21 07:22 참고 코디 더 모으기 요청 (화사하게)",
     "10-21 12:01 주제 정함: 첫 데이트 앞두고 꾸민 듯 안 꾸민 가을 약속룩, 참고 코디 48벌 보냄",
     "10-21 14:14 참고 고름 (525, 198, 738, 562, 687, 703, 650, 600, 539, 498), 후보 요청",
@@ -218,6 +163,7 @@
     "10-26 06:09 남은 주제 고치기 요청: 연말 파티룩을 1번으로 넣어줘",
     "10-26 06:42 주간 주제 고치기 요청: 4번 초겨울 외투 코디로 변경하고 4개로 시작해",
     "10-26 07:01 주제 정함: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디, 참고 코디 48벌 보냄",
-    "10-26 08:07 보낸 참고 사진 10장 옮기기 요청"
+    "10-26 08:07 보낸 참고 사진 10장 옮기기 요청",
+    "10-26 11:10 보낸 참고 사진으로 후보 요청 (774, 775, 776, 777, 778, 779, 780, 781, 782, 783)"
   ]
 }
