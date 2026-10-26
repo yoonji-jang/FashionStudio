@@ -205,10 +205,12 @@ def with_ref(path: Path, look, profile: Profile, out: Path, panel: int = 640) ->
     try:
         if not look.ref_photo:
             raise OSError("사진 주소 없음")
-        sites = profile.themes.ref_search.hosts() if profile.themes.ref_search else []
+        rs = profile.themes.ref_search
+        sites = rs.hosts() if rs else []
         name = re.sub(r"[^0-9A-Za-z]+", "_", look.ref_photo)[-80:]
+        dest = picks_dir(out) / "photos" / f"ref_{name}"
         ph = Image.open(
-            scout.ref_photo(look.ref_photo, sites, picks_dir(out) / "photos" / f"ref_{name}")
+            scout.ref_photo(look.ref_photo, sites, dest, rs.searched() if rs else False)
         )
         ph = ph.convert("RGB")
         ph.thumbnail((box_w, box_h))

@@ -549,16 +549,32 @@ def ref_sheets(
     return report
 
 
-def ref_photo(url: str, sites: list[str], dest: Path) -> Path:
+TELEGRAM_PHOTO = "tg:"  # 사용자가 텔레그램으로 보낸 참고 사진 (파일 번호만 저장, 2026-10-26)
+
+
+def ref_photo(url: str, sites: list[str], dest: Path, any_host: bool = False) -> Path:
     """참고 코디 사진 한 장 받기 (후보 시트 옆에 붙임). 허용한 사이트·robots.txt 가 허용한 주소만.
+    any_host 면 이미지 검색으로 찾은 사진(profile ref_search.image_search)이라
+    다른 서버 사진도 받는다 (공식 검색 API 가 준 사진 주소, 페이지는 열지 않음).
+    "tg:<파일 번호>" 는 사용자가 텔레그램으로 보낸 사진.
     dest 는 out/ 아래 (저장소·결과 브랜치에 올리지 않는 곳)."""
+    if url.startswith(TELEGRAM_PHOTO):
+        if not dest.exists():
+            from tools.notify import Telegram
+
+            try:
+                Telegram.from_env().download(url[len(TELEGRAM_PHOTO) :], dest)
+            except (ValueError, RuntimeError, httpx.HTTPError) as e:
+                raise ImageUnavailable(f"텔레그램 사진을 받지 못함: {e}") from e
+        return dest
     # 지그재그 상품 사진(창고 상품의 착용컷)은 상품 창고 사진과 같은 방법으로 받는다
     zigzag = host_allowed(url, ["zigzag.kr"])
-    if not (zigzag or host_allowed(url, sites)):
+    listed = host_allowed(url, sites)
+    if not (zigzag or listed or (any_host and url.startswith(("https://", "http://")))):
         raise ImageUnavailable(f"허용한 사이트가 아님: {url}")
     if not dest.exists():
         with client() as c:
-            if not zigzag and not robots_allows(c, url):
+            if listed and not zigzag and not robots_allows(c, url):
                 raise ImageUnavailable(f"robots.txt 가 허용하지 않음: {url}")
             data = fetch_bytes(c, normalize_image_url(url) if zigzag else url)
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -611,7 +627,9 @@ def main(argv: list[str] | None = None) -> int:
         from core.profile import load_profile
 
         rs = load_profile(args.account).themes.ref_search
-        print(ref_photo(args.url, rs.hosts() if rs else [], args.out))
+        print(
+            ref_photo(args.url, rs.hosts() if rs else [], args.out, rs.searched() if rs else False)
+        )
         return 0
     if args.cmd == "links":
         from core.profile import load_profile

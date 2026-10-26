@@ -111,6 +111,12 @@ class FlowState(BaseModel):
     read_upto: int = 0  # 주간 후보에 온 답을 여기(보낸 시각)까지 읽었다
     revising: bool = False  # 주간 후보 고치기를 요청했고 고친 후보가 아직 안 옴
     ref_pick_at: int = 0  # 이 주제의 참고 코디 묶음을 보낸 시각 (flow.ref_pick, 0 이면 아직)
+    # 참고 코디를 검색한 주제 ("날짜|제목", profile ref_search.image_search).
+    # 같으면 다시 검색하지 않는다
+    searched: str = ""
+    # 사용자가 텔레그램으로 보낸 참고 사진 (파일 번호).
+    # 옮겨 적고 수집한 뒤 이 사진들로 후보를 만든다
+    user_refs: list[str] = []
     rules_upto: int = 0  # 규칙 고치기 요청(/fix 규칙 …)을 여기(update_id)까지 처리했다
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
@@ -353,12 +359,13 @@ def scene_photos(
     다시 보낸 사진(앞 묶음과 떨어져 보낸 것)은 앞 묶음을 바꾼다."""
     from tools import notify
 
+    refs = {uid for uid, _ in ref_photos(updates, chat_id, 0)}  # 참고 사진은 장면이 아니다
     photos: list[ScenePhoto] = []
     for u in updates:
         msg = u.get("message") or {}
         if str((msg.get("chat") or {}).get("id")) != str(chat_id):
             continue
-        if msg.get("date", 0) < since or u["update_id"] <= after_update:
+        if msg.get("date", 0) < since or u["update_id"] <= after_update or u["update_id"] in refs:
             continue
         fid = notify.photo_file_id(msg)
         if fid:
@@ -375,6 +382,29 @@ def scene_photos(
         else:
             break
     return batch[-SCENE_MAX:]
+
+
+REF_CAPTION = re.compile(r"^\s*참고")
+
+
+def ref_photos(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, str]]:
+    """since 뒤 온 참고 코디 사진 (update_id, 파일 번호).
+    2026-10-26 사용자: 참고 묶음이 마음에 안 들면 따라 할 코디 사진을 직접 보낸다.
+    장면 사진과 나누려고 사진 설명이 "참고" 로 시작하는 것만
+    (앨범은 설명이 한 장에만 붙으니 같은 앨범 사진 모두)."""
+    from tools import notify
+
+    found = []
+    for u in sorted(updates, key=lambda u: u.get("update_id", 0)):
+        msg = u.get("message") or {}
+        if str((msg.get("chat") or {}).get("id")) != str(chat_id) or msg.get("date", 0) <= since:
+            continue
+        fid = notify.photo_file_id(msg)
+        if fid:
+            ref = bool(REF_CAPTION.match(msg.get("caption") or ""))
+            found.append((u["update_id"], fid, str(msg.get("media_group_id") or ""), ref))
+    groups = {g for _, _, g, ref in found if ref and g}
+    return [(uid, fid) for uid, fid, g, ref in found if ref or (g and g in groups)]
 
 
 def tick(
@@ -482,6 +512,48 @@ def _use_theme(
     profile flow.ref_pick 이면 후보 대신 참고 코디 묶음을 먼저 보내 고르게 한다."""
     assert st.date is not None
     chosen = chosen.model_copy(update={"date": st.date})
+    rs = profile.themes.ref_search if profile is not None else None
+    key = f"{st.date}|{chosen.title_hint}"
+    if (
+        profile is not None
+        and profile.flow.ref_pick
+        and rs is not None
+        and rs.searched()
+        and st.searched != key
+    ):
+        # 2026-10-26 사용자: 주제 직전에 그 주제로 참고 코디를 검색해서 고른다
+        # (themes refs_only → collect from_refs → refs_wait 가 끝나면 다시 여기로,
+        # 그땐 묶음을 보낸다)
+        from tools import refs as refs_tool
+
+        send("themes.yml", account=st.account, date=st.date.isoformat(), refs_only=True,
+             week_themes=refs_tool.theme_line(chosen))  # fmt: skip
+        st.week = [chosen, *st.week]
+        st.searched, st.user_refs = key, []
+        st.asked_at, st.stage, st.alerted = ts, "refs_wait", False
+        if tg is not None:
+            tg.send(
+                f"{tag} '{chosen.title_hint}' 주제로 할게요{note}. "
+                "이 주제로 참고 코디를 검색해서 모으고 있어요. 다 모으면 묶음을 보낼게요"
+            )
+        return f"주제 정함: {chosen.title_hint}, 참고 코디 검색 요청"
+    if st.user_refs and profile is not None:
+        # 사용자가 보낸 참고 사진을 옮겨 적고 옷을 모았으면 그 코디로 바로 후보를 만든다
+        from tools.scout import TELEGRAM_PHOTO
+
+        wanted = {TELEGRAM_PHOTO + f for f in st.user_refs}
+        nums = [r.n for r in store.refs() if r.photo in wanted]
+        st.user_refs = []
+        if nums:
+            if not dry_run:
+                choose_theme(store, chosen)
+            st.ref_pick_at = ts
+            _request_candidates(profile, st, send, chosen, ts, nums)
+            if tg is not None:
+                tg.send(f"{tag} 보내 주신 참고 사진 {len(nums)}벌로 코디 후보를 만들고 있어요")
+            return f"보낸 참고 사진으로 후보 요청 ({', '.join(map(str, nums))})"
+        if tg is not None:
+            tg.send(f"{tag} 보내 주신 참고 사진을 옮겨 적지 못했어요. 참고 묶음을 다시 보낼게요")
     if not dry_run:
         choose_theme(store, chosen)
     st.ref_pick_at = (
@@ -589,7 +661,9 @@ def _week_wait(
     from tools import refs as refs_tool
 
     picked = [opts.options[n - 1] for n in nums]
-    refs = profile.themes.ref_search is not None
+    rs = profile.themes.ref_search
+    # 주제마다 검색하면(image_search) 주간 쇼핑몰 수집은 하지 않는다 (2026-10-26 사용자: 끄자)
+    refs = rs is not None and not rs.searched()
     if tg is not None:
         lines = [
             f"[{profile.id}] 주간 주제 {len(picked)}개를 정했어요 (이 순서로 하나씩 만들어요)",
@@ -736,6 +810,21 @@ def _step(
         from tools import refs as refs_tool
 
         have = {r.n for r in store.refs()}
+        rs = profile.themes.ref_search
+        sent = ref_photos(tg.updates(), tg.chat_id, st.ref_pick_at)
+        if sent and rs is not None:
+            # 2026-10-26 사용자: 묶음이 마음에 안 들면 참고 사진을 직접 보낸다
+            # → 옮겨 적고 옷을 모아 그 코디로
+            fids = list(dict.fromkeys(fid for _, fid in sent))[:12]
+            send("themes.yml", account=st.account, date=day.isoformat(), refs_only=True,
+                 week_themes=refs_tool.theme_line(theme),
+                 user_photos=json.dumps(fids))  # fmt: skip
+            st.week = [theme, *st.week]
+            st.user_refs, st.searched = fids, f"{day}|{theme.title_hint}"
+            st.asked_at, st.stage, st.alerted = ts, "refs_wait", False
+            tg.send(f"{tag} 보내 주신 참고 사진 {len(fids)}장을 옮겨 적고 옷을 모을게요. "
+                    "다 되면 그 코디로 후보를 만들어요")  # fmt: skip
+            return f"보낸 참고 사진 {len(fids)}장 옮기기 요청"
         for _, text in reversed(week_replies(tg.updates(), tg.chat_id, st.ref_pick_at)):
             more = MORE_REFS.match(text)
             if more and profile.themes.ref_search is not None:
