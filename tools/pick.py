@@ -453,7 +453,14 @@ def find_edits(updates: list[dict], record: PickRecord, chat_id: str) -> list[di
             if not cmd.labeled and reply_to and reply_to not in record.message_ids:
                 continue
             words, nums = list(cmd.args), []
-            while words and re.fullmatch(r"\d{1,2}(?:,\d{1,2})*,?(?:번|번은|번에서)?,?", words[0]):
+            # "/fix 4목에 …" 처럼 번호 뒤에 띄어쓰기 없이 글이 붙어도 번호로 (2026-10-26)
+            num = r"\d{1,2}(?:,\d{1,2})*,?(?:번|번은|번에서)?,?"
+            glued = (
+                re.fullmatch(r"(\d{1,2}(?:,\d{1,2})*번?)([가-힣].*)", words[0]) if words else None
+            )
+            if glued and not re.fullmatch(num, words[0]) and glued.group(2)[0] not in "번벌개장":
+                words[:1] = [glued.group(1), glued.group(2)]
+            while words and re.fullmatch(num, words[0]):
                 nums += [int(x) for x in re.findall(r"\d+", words.pop(0))]
             if not nums and reply_to in record.sheets:
                 nums = [record.sheets[reply_to]]
