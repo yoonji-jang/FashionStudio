@@ -116,6 +116,8 @@ class RefSearch(BaseModel):
     image_search: list[Literal["daum", "naver"]] = []
     search_per_query: int = Field(default=60, ge=10, le=100)  # 검색어마다 받을 결과 수
     search_min_height: int = Field(default=600, ge=200)  # 이보다 낮은 사진은 뺀다 (px)
+    # 주간 주제를 정할 때 scout_sites 쇼핑몰 수집 (image_search 가 있으면 어차피 안 함)
+    weekly_crawl: bool = True
 
     def hosts(self) -> list[str]:
         """사진을 받아도 되는 곳: 쇼핑몰 + 그 쇼핑몰의 사진 서버."""

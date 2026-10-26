@@ -87,7 +87,9 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
     # 2026-10-26 사용자: 검색 결과에 나온 핀터레스트 사진은 쓴다 (핀터레스트 페이지는 열지 않고 사진만)
     avoid_sites: [instagram.com, cdninstagram.com, threads.net, facebook.com, fbcdn.net, tiktok.com, tiktokcdn.com]
     # 주제별 이미지 검색 (tools.ref_search). 키가 없는 곳은 건너뛴다 (카카오 먼저, 네이버는 나중에)
-    image_search: [daum, naver]
+    # 2026-10-26 사용자: 다음 검색 결과는 단품·코스튬·음식 사진이 많아 못 씀 → 끔 (핀터레스트 방법을 찾는 중)
+    image_search: []
+    weekly_crawl: false  # 쇼핑몰 주간 수집도 끈 채로 (2026-10-26 사용자: 끄자). 지금 있는 참고 코디로 묶음
     # 사진만 있는 쇼핑몰 코디 페이지를 tools.scout refs 로 볼 사이트. 비움 (2026-10-07):
     # 29CM 은 robots.txt 는 허용이지만 GitHub Actions 요청을 서버가 거절해서 뺐다. 무신사·29CM 은 웹 검색 글로만 참고.
     # 2026-10-13 사용자가 고른 쇼핑몰 + 후보. 첫 화면만이 아니라 메뉴·상품 페이지까지 본다 (tools.scout links).
