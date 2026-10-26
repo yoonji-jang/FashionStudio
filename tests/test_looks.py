@@ -328,7 +328,7 @@ def test_look_sheet_shows_ref_photo(tmp_path, store, monkeypatch):
     write_candidates(out, [plan_])
     asked = []
 
-    def fake(url, sites, dest):
+    def fake(url, sites, dest, any_host=False):
         asked.append((url, "woonan.co.kr" in sites))
         dest.parent.mkdir(parents=True, exist_ok=True)
         Image.new("RGB", (300, 450), "gray").save(dest, "JPEG")

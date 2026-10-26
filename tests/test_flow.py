@@ -60,7 +60,9 @@ def theme(n: int) -> Theme:
     )
 
 
-def _profile(week: int, ref_pick: int = 0, review: bool = False, rules: bool = False):
+def _profile(
+    week: int, ref_pick: int = 0, review: bool = False, rules: bool = False, search: bool = False
+):
     real = flow.load_profile
 
     def load(account):
@@ -69,7 +71,10 @@ def _profile(week: int, ref_pick: int = 0, review: bool = False, rules: bool = F
             update={"week_options": week, "ref_pick": ref_pick, "theme_review": review,
                     "rules_after_post": rules}
         )  # fmt: skip
-        return p.model_copy(update={"flow": f})
+        # 주제별 이미지 검색은 search 일 때만 (그 밖의 시험은 예전 쇼핑몰 수집 흐름)
+        rs = p.themes.ref_search.model_copy(update={"image_search": ["daum"] if search else []})
+        themes = p.themes.model_copy(update={"ref_search": rs})
+        return p.model_copy(update={"flow": f, "themes": themes})
 
     return load
 
@@ -537,6 +542,83 @@ def test_ref_pick_more_refs(env, monkeypatch):
     assert st.stage == "ref_pick_wait" and albums == ["주제 1"]
     assert [t.title_hint for t in st.week] == ["주제 2"]
     assert flow.MORE_REFS.match("참고 코디 다시 모아요") and not flow.MORE_REFS.match("141 203")
+
+
+def test_ref_search_before_theme_then_album(env, monkeypatch):
+    # 2026-10-26 사용자: 주제 직전에 그 주제로 참고 코디를 검색하고, 다 모으면 묶음을 보낸다
+    from tools import refs
+
+    store, results, sent, _ = env
+    monkeypatch.setattr(flow, "load_profile", _profile(10, ref_pick=48, search=True))
+    albums = []
+    monkeypatch.setattr(
+        refs, "send_theme_album", lambda p, s, t, tg, out: albums.append(t.title_hint) or [141]
+    )
+    st = flow.FlowState(account="women", stage="theme", week=[theme(1), theme(2)])
+    flow.save_state(results, st)
+    tg = FakeTg()
+    tick(env, tg, T0)
+    st = flow.load_state(results, "women")
+    wf, inputs = sent[-1]
+    assert wf == "themes.yml" and inputs["refs_only"] is True
+    assert inputs["week_themes"] == "주제 1 — 무드: 가을" and "user_photos" not in inputs
+    assert st.stage == "refs_wait" and [t.title_hint for t in st.week] == ["주제 1", "주제 2"]
+    assert "검색해서 모으고" in tg.sent[-1] and not albums
+    # 수집이 끝나면 다시 검색하지 않고 묶음을 보낸다
+    store.dir.mkdir(parents=True, exist_ok=True)
+    (store.dir / "refs_done.json").write_text(f'{{"done_at": {T0 + 200}}}')
+    n = len(sent)
+    tick(env, tg, T0 + 300)
+    st = flow.load_state(results, "women")
+    assert st.stage == "ref_pick_wait" and albums == ["주제 1"] and len(sent) == n
+    assert [t.title_hint for t in st.week] == ["주제 2"]
+
+
+def test_ref_pick_user_photos(env, monkeypatch):
+    # 2026-10-26 사용자: 묶음이 마음에 안 들면 참고 사진을 직접 보낸다
+    # (설명 "참고", 앨범은 한 장에만)
+    from core.models import RefLook
+    from tools import refs
+
+    store, results, sent, _ = env
+    monkeypatch.setattr(flow, "load_profile", _profile(10, ref_pick=48, search=True))
+    monkeypatch.setattr(refs, "send_theme_album", lambda *a: [141])
+    flow.choose_theme(store, theme(1))
+    key = "2026-10-15|주제 1"
+    flow.save_state(results, flow.FlowState(
+        account="women", stage="ref_pick_wait", date=date(2026, 10, 15), week=[theme(2)],
+        ref_pick_at=T0, theme_at=T0, searched=key,
+    ))  # fmt: skip
+    tg = FakeTg()
+    tg.photo(1, "scene_a", T0 + 5)  # 장면 사진 (설명 없음)
+    tg.photo(2, "ref_a", T0 + 10, caption="참고")
+    tg.ups.append({"update_id": 3, "message": {
+        "date": T0 + 10, "chat": {"id": 42}, "media_group_id": "g1",
+        "photo": [{"file_id": "ref_b", "width": 1280}]}})  # fmt: skip
+    tg.ups[1]["message"]["media_group_id"] = "g1"
+    assert flow.ref_photos(tg.ups, CHAT, T0) == [(2, "ref_a"), (3, "ref_b")]
+    assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["scene_a"]
+    tick(env, tg, T0 + 100)
+    st = flow.load_state(results, "women")
+    wf, inputs = sent[-1]
+    assert wf == "themes.yml" and json.loads(inputs["user_photos"]) == ["ref_a", "ref_b"]
+    assert st.stage == "refs_wait" and st.user_refs == ["ref_a", "ref_b"] and st.searched == key
+    # 옮겨 적고 수집이 끝나면 그 코디들로 바로 후보
+    looks = [
+        RefLook(n=n, name="x", source="사용자 사진", photo=f"tg:{fid}", added=date(2026, 10, 15),
+                slots=[{"category": "상의", "color": "블랙", "desc": "니트", "query": "니트"},
+                       {"category": "하의", "color": "블랙", "desc": "치마", "query": "치마"}])
+        for n, fid in ((901, "ref_a"), (902, "ref_b"))
+    ]  # fmt: skip
+    monkeypatch.setattr(Store, "refs", lambda self: looks)
+    (store.dir / "refs_done.json").write_text(f'{{"done_at": {T0 + 200}}}')
+    tick(env, tg, T0 + 300)
+    st = flow.load_state(results, "women")
+    wf, inputs = sent[-1]
+    req = json.loads(inputs["pick"])
+    assert wf == "daily.yml" and req["refs"] == [901, 902] and st.stage == "pick_wait"
+    assert st.user_refs == [] and any("보내 주신 참고 사진 2벌" in t for t in tg.sent)
+    assert st.scene  # 장면 사진은 따로 받는다
 
 
 def test_ref_pick_auto_and_existing_pick_wait(env, monkeypatch):

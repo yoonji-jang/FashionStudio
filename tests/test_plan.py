@@ -505,7 +505,7 @@ def test_fix_edit_sends_worn_ref_and_user_photos(store, tmp_path, monkeypatch):
     Image.new("RGB", (60, 90), "#777777").save(worn)
     monkeypatch.setattr(outfit_gen, "REPO_ROOT", tmp_path)
     monkeypatch.setattr(outfit_gen, "reference_panels", lambda *a, **k: [b"p1"])
-    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest: worn)
+    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest, any_host=False: worn)
     monkeypatch.setattr(outfit_gen.faces, "hide_faces", lambda img: (img, True))
 
     class Recorder:
@@ -549,7 +549,7 @@ def test_worn_ref_photo_goes_last(store, tmp_path, monkeypatch):
     photo = tmp_path / "ref.jpg"
     Image.new("RGB", (60, 90), "#777777").save(photo)
     monkeypatch.setattr(outfit_gen, "reference_panels", lambda *a, **k: [b"p1"])
-    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest: photo)
+    monkeypatch.setattr(scout, "ref_photo", lambda url, sites, dest, any_host=False: photo)
     monkeypatch.setattr(outfit_gen.faces, "hide_faces", lambda img: (img, True))
 
     class Recorder:

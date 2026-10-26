@@ -156,7 +156,9 @@ def check(refs: list[RefLook], keep_weeks: int, today: date) -> tuple[list[RefLo
     return [r for r in refs if r.added >= cutoff], errors
 
 
-def album(refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12) -> list[Path]:
+def album(
+    refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12, any_host: bool = False
+) -> list[Path]:
     """참고 사진을 번호와 함께 4×3 묶음으로 (2026-10-13 사용자: 참고 이미지를 나도 보고 싶어).
     사진은 out/ 에만 받고 저장소에 올리지 않는다."""
     from PIL import Image, ImageDraw
@@ -169,7 +171,7 @@ def album(refs: list[RefLook], sites: list[str], out: Path, per_sheet: int = 12)
         if not r.photo:
             continue
         try:
-            path = scout.ref_photo(r.photo, sites, out / "photos" / f"ref_{r.n}.jpg")
+            path = scout.ref_photo(r.photo, sites, out / "photos" / f"ref_{r.n}.jpg", any_host)
             im = Image.open(path).convert("RGB")
         except Exception as e:  # noqa: BLE001 - 한 장 못 받아도 나머지는 보낸다
             print(f"참고 {r.n} 사진을 받지 못함 ({e})", file=sys.stderr)
@@ -273,7 +275,7 @@ def send_theme_album(profile, store: Store, theme: Theme, tg, out: Path) -> list
     """주제에 맞는 참고 코디 묶음을 텔레그램으로 보내고 보낸 번호를 돌려준다."""
     rs = profile.themes.ref_search
     picked = theme_refs(store.refs(), theme, profile.flow.ref_pick)
-    sheets = album(picked, rs.hosts() if rs else [], out)
+    sheets = album(picked, rs.hosts() if rs else [], out, any_host=bool(rs and rs.searched()))
     if not sheets:
         return []
     caption = (
@@ -281,6 +283,11 @@ def send_theme_album(profile, store: Store, theme: Theme, tg, out: Path) -> list
         "따라 할 코디 번호를 보내 주세요 (예: 141 203 250). 고른 게 모자라면 나머지는 제가 채워요. "
         '맡기시려면 "알아서", 주제에 맞는 게 모자라면 "더 모아줘 화사하게"처럼 보내 주세요'
     )
+    if rs is not None and rs.searched():
+        caption += (
+            '. 마음에 드는 게 없으면 따라 할 코디 사진을 직접 보내 주세요 (사진 설명에 "참고", '
+            "여러 장이면 앨범으로)"
+        )
     tg.send_photos(sheets, caption)
     return [r.n for r in picked]
 
@@ -421,7 +428,7 @@ def main(argv: list[str] | None = None) -> int:
         rs = profile.themes.ref_search
         # 창고로 맞출 수 있는 것만 (2026-10-21 사용자)
         new = [r for r in refs if r.ready and (not args.since or r.added >= args.since)]
-        sheets = album(new, rs.hosts() if rs else [], args.out)
+        sheets = album(new, rs.hosts() if rs else [], args.out, any_host=bool(rs and rs.searched()))
         if not sheets:
             print("보낼 참고 사진이 없음")
             return 0

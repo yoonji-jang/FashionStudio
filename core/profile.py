@@ -121,6 +121,10 @@ class RefSearch(BaseModel):
         """사진을 받아도 되는 곳: 쇼핑몰 + 그 쇼핑몰의 사진 서버."""
         return self.scout_sites + self.image_hosts
 
+    def searched(self) -> bool:
+        """참고 사진이 이미지 검색에서 온다 (어느 서버 사진이든 받는다)."""
+        return bool(self.image_search)
+
 
 class ThemeRules(BaseModel):
     """주간 주제를 정하는 기준. plan-themes 스킬(5단계)이 읽는다."""

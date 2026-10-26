@@ -235,7 +235,9 @@ def test_send_album_skipped_under_flow_and_ready_only(monkeypatch, tmp_path, cap
         notify.Telegram, "from_env", classmethod(lambda cls: type("T", (), {
             "send_photos": lambda self, sheets, caption: sent.append(caption)})())
     )  # fmt: skip
-    monkeypatch.setattr(refs, "album", lambda rs, hosts, out: albums.append(rs) or [out / "1.jpg"])
+    monkeypatch.setattr(
+        refs, "album", lambda rs, hosts, out, any_host=False: albums.append(rs) or [out / "1.jpg"]
+    )
     real = refs.load_profile
 
     def with_flow(on):
