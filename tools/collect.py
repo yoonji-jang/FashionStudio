@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import os
 import shutil
@@ -410,6 +411,10 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="참고 코디(refs.json)에서 창고에 없는 칸의 검색어로 모으고 칸 맞추기를 다시 함",
     )
+    ap.add_argument(
+        "--ref-photos",
+        help="--from-refs 때 이 사진(JSON 목록, 텔레그램 파일 번호)의 참고 코디 칸만 모음",
+    )
     args = ap.parse_args(argv)
     # 게시물 만들기(daily) 안의 수집은 시간을 정해 둔다: 창고 전체 다시 확인과 긴 검색으로
     # 90분 제한을 넘겨 후보 없이 끝났다 (2026-10-22 run337). 워크플로가 환경 변수로 기본값을 준다
@@ -425,7 +430,14 @@ def main(argv: list[str] | None = None) -> int:
     plan: dict = dict(profile.product_source.queries)
     if args.from_refs:
         store.save_refs(refs_tool.match(store.refs(), store.products()))
-        plan = refs_tool.missing_queries(store.refs())
+        wanted = store.refs()
+        if args.ref_photos:
+            # 2026-10-26: 사용자가 보낸 사진만 옮겼으면 그 코디 칸만 (전체를 찾으면 2시간)
+            from tools.scout import TELEGRAM_PHOTO
+
+            photos = {TELEGRAM_PHOTO + f for f in json.loads(args.ref_photos)}
+            wanted = [r for r in wanted if r.photo in photos]
+        plan = refs_tool.missing_queries(wanted)
         print(f"참고 코디에서 찾을 검색어 {sum(map(len, plan.values()))}개")
         if args.per_query is None:
             args.per_query = 8  # 칸마다 고를 거리가 넉넉하도록 (사용자 2026-10-13 "넉넉하게")

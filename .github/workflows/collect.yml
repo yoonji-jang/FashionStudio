@@ -34,6 +34,9 @@ on:
       then_candidates:
         description: 수집 뒤 이 게시 날짜의 코디 후보를 보냄 (주간 주제가 씀)
         default: ""
+      user_photos:
+        description: from_refs 때 사용자가 보낸 이 사진(JSON 목록, 텔레그램 파일 번호)의 참고 코디만 모으고 묶음은 보내지 않음
+        default: ""
   push:
     branches: ["claude/**"]
     paths: ["sources/**", "tools/scout.py", "tools/collect.py", "tools/photo_pick.py", "accounts/**", ".github/workflows/collect.yml"]
@@ -75,6 +78,7 @@ jobs:
           QUERIES: ${{ inputs.queries }}
           MAX_QUERIES: ${{ inputs.max_queries }}
           FROM_REFS: ${{ inputs.from_refs && '1' || '' }}
+          USER_PHOTOS: ${{ inputs.user_photos }}
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           args=(--account "$ACCOUNT" --report "$OUT")
@@ -83,6 +87,7 @@ jobs:
           [ -n "$MAX_QUERIES" ] && args+=(--max-queries "$MAX_QUERIES")
           # 참고 코디가 많은 주(쇼핑몰마다 20~30벌)에도 시간 제한 전에 멈추고 모은 것을 커밋한다 (2026-10-19)
           [ -n "$FROM_REFS" ] && args+=(--from-refs --no-recheck --minutes 120)
+          [ -n "$FROM_REFS" ] && [ -n "$USER_PHOTOS" ] && args+=(--ref-photos "$USER_PHOTOS")
           if [ -n "$CATEGORY" ]; then
             args+=(--category "$CATEGORY")
             IFS=',' read -ra qs <<< "$QUERIES"
@@ -134,7 +139,7 @@ jobs:
           exit 1
 
       - name: 참고 코디 사진 묶음 텔레그램으로
-        if: inputs.from_refs
+        if: inputs.from_refs && inputs.user_photos == ''
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
