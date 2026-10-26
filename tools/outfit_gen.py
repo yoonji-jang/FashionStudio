@@ -150,8 +150,15 @@ def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile
     if plan.shot == "model" and plan.scene_image:
         # 장면 모델컷 (profile flow): 사용자가 보낸 장면 사진 1장의 무드로,
         # 벌마다 자리·포즈만 다르게
+        # 얼굴 참고를 받았으면 그 특징의 얼굴을 보이게, 아니면 얼굴을 가린다 (2026-10-26 사용자)
+        person = (
+            render_prompt("scene_face_shown", face=plan.face.strip().rstrip("."))
+            if plan.face
+            else render_prompt("scene_face_hidden")
+        )
         return render_prompt(
             profile.flow.scene_prompt,
+            person=person,
             items=item_lines(plan, products, cfg),
             styling=styling_text(plan, products, profile),
             pose=plan.pose or "a relaxed natural pose like in the scene photo",
