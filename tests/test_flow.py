@@ -920,3 +920,19 @@ def test_resend_from_schedule_cron(env, monkeypatch, capsys):
     monkeypatch.setattr(sched.GitHub, "from_env", classmethod(lambda cls: None))
     assert sched.main(argv) == 0
     assert flow.load_state(results, "women").stage == "theme"
+
+
+def test_ref_photos_overflow_after_album():
+    # 2026-10-26 사용자: 앨범은 10장까지라 12장을 보내면 2장이 따로 간다 (설명 없이)
+    tg = FakeTg()
+    tg.photo(1, "ref_a", T0 + 10, caption="참고")
+    tg.ups[0]["message"]["media_group_id"] = "g1"
+    tg.ups.append({"update_id": 2, "message": {
+        "date": T0 + 10, "chat": {"id": 42}, "media_group_id": "g1",
+        "photo": [{"file_id": "ref_b", "width": 1280}]}})  # fmt: skip
+    tg.photo(3, "ref_c", T0 + 30)
+    tg.photo(4, "ref_d", T0 + 31)
+    tg.photo(5, "scene", T0 + 31 + flow.REF_GAP + 1)  # 한참 뒤 사진은 참고가 아니다
+    got = [fid for _, fid in flow.ref_photos(tg.ups, CHAT, T0)]
+    assert got == ["ref_a", "ref_b", "ref_c", "ref_d"]
+    assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["scene"]
