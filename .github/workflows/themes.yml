@@ -514,11 +514,13 @@ jobs:
       - name: 참고 코디 옷 수집 요청
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_PHOTOS: ${{ inputs.user_photos }}
         run: |
           [ -s "data/$ACCOUNT/refs.json" ] || exit 0
           gh workflow run collect.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
             -f from_refs=true -f commit=true -f since="$(date -u -d '-1 day' +%F)" \
-            -f then_candidates="${{ !inputs.refs_only && inputs.then_candidates || '' }}"
+            -f then_candidates="${{ !inputs.refs_only && inputs.then_candidates || '' }}" \
+            -f user_photos="$USER_PHOTOS"
 
       - name: 코디 후보 보내기 요청 (참고 코디가 없을 때)
         if: inputs.then_candidates != '' && !inputs.refs_only
