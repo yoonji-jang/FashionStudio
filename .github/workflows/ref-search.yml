@@ -1,0 +1,72 @@
+name: ref-search
+
+# 주제별 참고 코디 이미지 검색 시험 (2026-10-26 사용자: 쇼핑몰 주간 수집 대신 주제마다 검색).
+# Claude 없이 코드만 돈다: tools.ref_search 가 다음·네이버 공식 이미지 검색 API 로 찾고 확인표를 만든다.
+# 확인표는 텔레그램으로 보내고 artifact 로 3일 남긴다. 저장소가 공개라 확인표·사진은 커밋하지 않는다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      queries:
+        description: 검색어 (쉼표로)
+        default: "롱스커트 가을 코디, 롱스커트 데일리룩 여자, 플리츠 롱스커트 코디"
+      telegram:
+        description: 확인표를 텔레그램으로 보냄
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      QUERIES: ${{ inputs.queries }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - name: 검색하고 확인표 만들기
+        env:
+          KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+          NAVER_API_KEY_ID: ${{ secrets.NAVER_API_KEY_ID }}
+          NAVER_API_KEY: ${{ secrets.NAVER_API_KEY }}
+        run: |
+          args=()
+          IFS=',' read -ra qs <<< "$QUERIES"
+          for q in "${qs[@]}"; do args+=(--query "$q"); done
+          uv run python -m tools.ref_search sheets --account "$ACCOUNT" --out out/ref_search "${args[@]}" || true
+      - name: 요약
+        run: |
+          [ -f out/ref_search/summary.json ] || { echo "결과 없음" | tee -a "$GITHUB_STEP_SUMMARY"; exit 1; }
+          jq -r '"검색어: \(.queries | join(", "))\n\n찾은 사진 \(.found)장 (\(.by_engine | to_entries | map("\(.key) \(.value)") | join(", "))), 확인표 \(.sheets)장에 \(.images)장\n\n\(.notes | map("- " + .) | join("\n"))"' \
+            out/ref_search/summary.json | tee -a "$GITHUB_STEP_SUMMARY"
+          jq -r '.[] | "\(.sheet): \(.sites | group_by(.) | map("\(.[0]) \(length)") | join(", "))"' \
+            out/ref_search/refs.json | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: 텔레그램으로 확인표 보내기
+        if: inputs.telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          uv run python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from tools.notify import Telegram
+          s = json.loads(Path("out/ref_search/summary.json").read_text())
+          paths = sorted(Path("out/ref_search").glob("sheet_*.jpg"), key=lambda p: int(p.stem.split("_")[1]))
+          head = f"[{os.environ['ACCOUNT']}] 참고 코디 검색 시험: {', '.join(s['queries'])}\n찾은 사진 {s['found']}장, 확인표 {len(paths)}장"
+          Telegram.from_env().send_photos(paths, head)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ref-search-${{ inputs.account }}
+          path: out/ref_search
+          retention-days: 3
+          if-no-files-found: ignore
