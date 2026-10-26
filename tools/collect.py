@@ -432,7 +432,7 @@ def main(argv: list[str] | None = None) -> int:
         store.save_refs(refs_tool.match(store.refs(), store.products()))
         wanted = store.refs()
         if args.ref_photos:
-            # 2026-10-26: 사용자가 보낸 사진만 옮겼으면 그 코디 칸만 (전체 참고를 다 찾으면 2시간 걸림)
+            # 2026-10-26: 사용자가 보낸 사진만 옮겼으면 그 코디 칸만 (전체를 찾으면 2시간)
             from tools.scout import TELEGRAM_PHOTO
 
             photos = {TELEGRAM_PHOTO + f for f in json.loads(args.ref_photos)}
