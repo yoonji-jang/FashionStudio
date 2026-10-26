@@ -360,7 +360,13 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     found = [
         f"- {cid} [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: "
         + ", ".join(f"`{_ref(out, f)}`" for f in crops)
-        + " (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)"
+        + (
+            # 얼굴 참고를 받은 게시물은 얼굴이 보여도 된다 (2026-10-26 사용자)
+            " (얼굴 참고 게시물: 보여도 괜찮음, 흐리거나 뭉개졌으면 clean 0)"
+            if plan.face
+            else " (열어 보고 정면 얼굴이 또렷하면 clean 0,"
+            " 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)"
+        )
         for cid, crops in face_crops(out, plan, review).items()
         if cid in todo_ids
     ]

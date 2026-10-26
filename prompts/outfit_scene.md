@@ -9,6 +9,7 @@
 (/mnt/project-files/image-feedback/ref_1015_hats/): 무지 볼캡을 깊게 눌러 쓰고 머리는 낮게 묶음, 검은 울 뉴스보이캡,
 작은 타원형 검은 선글라스, 볼캡 + 선글라스. 로고 없이, 코디 색(검정·차콜·회색·네이비·버건디)에 맞춘다.
 긴바지는 발목을 살짝 덮는 기장, 랩·끈 디자인 상의는 하의 위로 꺼내 입기, 긴 다리 (2026-10-14 10/16 게시물 /fix).
+$person 인물과 얼굴 (기획에 face 가 있으면 prompts/scene_face_shown.md, 없으면 scene_face_hidden.md),
 $items 번호별 상품 설명과 실제 크기, $styling 입는 방법, $pose 이 벌의 자리·포즈·얼굴 가리는 방법,
 $mood 장면 사진에서 읽은 무드 (촬영 종류, 장소, 빛, 색감, 카메라), $season 게시 날짜의 계절.
 이 주석은 전송되지 않는다.
@@ -25,15 +26,7 @@ shoot, mirror selfie or whatever it is), the same kind of place and background, 
 tone, camera style, framing distance and photo quality. It is not a copy: $mood. This photo's spot and
 pose: $pose. Season: $season.
 
-The person is a fictional young Korean woman: never copy the face or identity of the person in the scene
-photo or in the item sheets. Her face is barely visible: turned away, looking down, behind her hair or a
-hand, under a cap brim, behind sunglasses, or behind the phone in a mirror selfie. What shows of her face
-is natural and clear, never blurred, smudged or pixelated. To help hide her face she may wear face-hiding
-accessories that are not listed: one hat (a plain baseball cap pulled low with her hair tied low at the
-nape, or a black wool newsboy cap) and/or small slim oval black sunglasses, as in casual street-style
-snapshots, only when it suits this outfit and scene. They have no logo or text and match the outfit colors (black, charcoal, grey, navy or
-burgundy). Apart from these she wears nothing that is not listed: no scarf, socks, belt, jewelry or
-other bag unless listed. A held prop from the scene photo (coffee cup, phone, newspaper) is fine.
+$person
 
 She wears exactly the listed items. How they are worn: $styling Keep every item identical to its product
 photos: color, fabric texture, pattern, cut, length, fit, collar, buttons, hardware and shoe style. A mini

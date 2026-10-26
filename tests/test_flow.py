@@ -266,6 +266,12 @@ def test_scene_prompt(tmp_path):
     text = outfit_gen.build_prompt(plan, products, profile, generate.load_config())
     assert "scene photo" in text and "a mirror selfie" in text and "P1" in text
     assert "$" not in text
+    assert "barely visible" in text
+    # 2026-10-26 사용자: 얼굴 참고를 받았으면 그 특징의 얼굴을 보이게
+    face = plan.model_copy(update={"face": "big double-lidded eyes, bold makeup, full lips."})
+    text = outfit_gen.build_prompt(face, products, profile, generate.load_config())
+    assert "full lips. She is a new person" in text and "barely visible" not in text
+    assert "$" not in text
 
 
 def test_preview_ok_publishes_now(env, monkeypatch, tmp_path):

@@ -57,6 +57,13 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
   - plan 의 `scene_image` 는 첫 장(`SCENE`) 그대로 둔다. 보고에 벌마다 고른 사진 번호를 적는다.
   `out/$DATE/src/scene.txt` 가 있으면 사용자가 장면 사진에 붙인 요청이다 (예: "슬릭번" = 모든 벌 머리를 낮게 묶은
   슬릭번으로). 여섯 벌 모두의 `pose`(또는 `mood`)에 영어로 분명히 넣는다. 보고에 어떻게 넣었는지 적는다.
+- **얼굴 참고** (2026-10-26 사용자): scene.txt 가 몇 장은 얼굴 참고라고 하면 (예: "앞에 3장은 장면, 뒤에 3장은 얼굴")
+  그 사진은 벌 `scene_image` 로 쓰지 않는다 (장면 사진만 고르게 나눠 쓴다). 얼굴 사진과 scene.txt 의 말을 보고
+  plan 의 `face` 에 모든 벌 공통 얼굴을 영어 한 문장으로 쓴다: 인상, 눈매·쌍꺼풀, 눈썹, 화장, 입술, 얼굴형, 피부 톤, 헤어.
+  사진 속 사람을 닮게 하는 말(이름, "like the woman in photo 4", 점·흉터 같은 그 사람만의 특징)은 쓰지 않고
+  여러 장에 공통인 일반 특징만 쓴다 (실제 사람을 닮게 하지 않는다: 특징은 같고 사람은 새 인물).
+  `face` 가 있으면 얼굴은 가리지 않으므로 `pose` 에 얼굴 가리는 방법·모자·선글라스를 쓰지 않는다
+  (사진 설명이 정한 헤어는 모든 벌 `pose` 에 넣는다). 보고에 face 문장과 장면·얼굴로 나눈 사진 번호를 적는다.
 - 8번(검사) 전에 plan.yaml 에 쓴다 (모두 영어).
   - `shot: model`, `scene_image: <SCENE 값>`.
   - `mood`: 장면 사진에서 읽은 무드 한 문장. 촬영 종류(street snapshot, studio lookbook shoot, mirror selfie …),
@@ -75,6 +82,7 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
   - 벌 `styling`: 사람이 입은 모양으로 ("the shirt is tucked into the front of the skirt; the jacket is worn open").
     펼친 코디컷 말("laid", "flat")은 쓰지 않는다.
 - 10번 검수에서 `image-reviewer` 에게 "장면 모델컷: image-reviewer.md 의 모델컷·장면 모델컷 기준을 본다"고 말한다.
+  plan 에 `face` 가 있으면 "얼굴 참고: face = <문장>. 얼굴이 보여도 되고, 이 특징과 맞는지·벌마다 같은 사람인지 본다"도 말한다.
 - 11번 보고에 읽은 mood 와 벌마다 pose 를 적는다.
 
 ## 에이전트 부르기

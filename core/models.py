@@ -188,6 +188,10 @@ class DailyPlan(BaseModel):
     # 이 사진을 무드 참고로 같이 보낸다. mood 는 이 사진에서 읽은 무드,
     # 벌 pose 는 같은 무드 안에서 벌마다 다른 자리·포즈
     scene_image: str | None = None
+    # 장면 모델컷 인물의 공통 얼굴 (영어, 2026-10-26 사용자: 얼굴 참고 사진과 특징을 보냄).
+    # 있으면 얼굴을 가리지 않고 이 특징으로, 모든 벌이 같은 사람처럼.
+    # 실제 사람을 닮게 하지 않는 일반 특징만
+    face: str | None = None
 
     @model_validator(mode="after")
     def _items_or_looks(self) -> DailyPlan:
