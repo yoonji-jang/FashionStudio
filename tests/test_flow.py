@@ -270,7 +270,7 @@ def test_scene_prompt(tmp_path):
     # 2026-10-26 사용자: 얼굴 참고를 받았으면 그 특징의 얼굴을 보이게
     face = plan.model_copy(update={"face": "big double-lidded eyes, bold makeup, full lips."})
     text = outfit_gen.build_prompt(face, products, profile, generate.load_config())
-    assert "full lips. She is a new person" in text and "barely visible" not in text
+    assert "full lips. Her face is small and slim" in text and "barely visible" not in text
     assert "$" not in text
 
 

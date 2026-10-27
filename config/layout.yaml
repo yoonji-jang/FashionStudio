@@ -45,6 +45,7 @@ lengths:
     롱: 110
     long: 110
     크롭: 48
+    cropped: 48
     숏: 55
     # 오버핏은 엉덩이를 덮는 기장 (2026-10-06: 오버핏 자켓·가디건이 크롭처럼 짧게 그려짐)
     오버핏: 75
@@ -52,6 +53,7 @@ lengths:
     oversized: 75
   상의:
     크롭: 45
+    cropped: 45
     오버핏: 72
     oversized: 72
   하의:
@@ -60,9 +62,12 @@ lengths:
     longskirt: 85
     midiskirt: 75
     미니스커트: 42
-    스커트: 65
+    # 2026-10-27: 상품 이름에 "미니"가 없고 기획 설명만 영어로 "mini skirt"·"shorts" 인 경우 (스커트 65cm·바지 100cm 로 그려짐)
+    miniskirt: 42
     반바지: 38
     쇼츠: 38
+    shorts: 38
+    스커트: 65
     버뮤다: 55
 shadow:  # 코드 그림자 (AI 그림자를 쓰지 않을 때)
   offset: [10, 16]

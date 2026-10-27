@@ -55,9 +55,34 @@ def english(desc: str) -> str:
     return found[-1].strip() if found else desc.strip()
 
 
-def item_size(it: PlanItem, product: Product, cfg: dict) -> str:
+# 165cm 안팎 여성이 입었을 때 기장(cm)이 끝나는 자리 (어깨부터 / 허리부터)
+FROM_SHOULDER_POINTS = [
+    (52, "at her waist (a cropped length)"),
+    (62, "at her high hip, just below the waist"),
+    (74, "at her hip, covering the waistband"),
+    (86, "at her upper thigh, below the hip"),
+    (98, "at mid-thigh"),
+    (110, "just above the knee"),
+    (125, "at mid-calf"),
+]
+FROM_WAIST_POINTS = [
+    (36, "at the very top of her thighs (very short)"),
+    (46, "at her upper thigh, well above mid-thigh"),
+    (56, "at mid-thigh"),
+    (66, "just above the knee"),
+    (76, "just below the knee"),
+    (88, "at mid-calf"),
+]
+
+
+def body_point(cat: str, cm: float) -> str:
+    points = FROM_WAIST_POINTS if cat == "하의" else FROM_SHOULDER_POINTS
+    return next((where for limit, where in points if cm <= limit), "at her ankles")
+
+
+def item_size(it: PlanItem, product: Product, cfg: dict, worn: bool = False) -> str:
     """상품의 실제 크기 (영어). 기획 size, 옷은 cm (기획·이름·layout.yaml), 나머지는
-    config default_sizes."""
+    config default_sizes. worn 이면(모델컷) 옷 기장이 몸의 어디까지 오는지도 붙인다."""
     from tools import plan as plan_tool
     from tools.compose import load_layout
 
@@ -69,7 +94,12 @@ def item_size(it: PlanItem, product: Product, cfg: dict) -> str:
         layout = load_layout()
         cm = plan_tool.item_length(it, product, layout) or layout["slots"][cat]["cm"]
         where = "from waist to hem" if cat == "하의" else "from shoulder to hem"
-        return f"about {cm:g} cm long {where}"
+        text = f"about {cm:g} cm long {where}"
+        if worn:
+            # 입은 모습은 cm 보다 몸의 어디까지 오는지로 알려 준다
+            # (2026-10-27 사용자: 기장이 자꾸 길게 그려짐)
+            text += f", so on her it ends {body_point(cat, cm)}"
+        return text
     # 스카프를 목걸이 칸에 넣으면 목걸이 크기가 붙어 체인처럼 그려질 수 있다 (2026-10-14 run246)
     text = f"{product.name} {it.desc}".lower()
     if "스카프" in text or "scarf" in text:
@@ -130,10 +160,11 @@ def sheet_name(i: int) -> str:
 
 def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1) -> str:
     lines = []
+    worn = plan.shot == "model"
     for i, it in enumerate(plan.items, start):
         p = products[it.product]
         cat = generate.CATEGORY_EN.get(p.category, "item")
-        size = item_size(it, p, cfg)
+        size = item_size(it, p, cfg, worn)
         line = f"The {sheet_name(i)}: the {cat}, {english(it.desc)}."
         lines.append(line + (f" Real size: {size}." if size else ""))
     return "\n".join(lines)
@@ -145,7 +176,10 @@ def season_en(d) -> str:
     return ["early ", "", "late "][d.month % 3] + name
 
 
-def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile, cfg: dict) -> str:
+def build_prompt(
+    plan: DailyPlan, products: dict[str, Product], profile: Profile, cfg: dict, worn: bool = False
+) -> str:
+    """worn 이면 장면 모델컷에 기준 코디 사진(상품 참고판 다음, 장면 사진 앞)을 같이 보낸다."""
     oi = profile.outfit_image
     if plan.shot == "model" and plan.scene_image:
         # 장면 모델컷 (profile flow): 사용자가 보낸 장면 사진 1장의 무드로,
@@ -159,6 +193,7 @@ def build_prompt(plan: DailyPlan, products: dict[str, Product], profile: Profile
         return render_prompt(
             profile.flow.scene_prompt,
             person=person,
+            worn=WORN_REF_MODEL if worn else "",
             items=item_lines(plan, products, cfg),
             styling=styling_text(plan, products, profile),
             pose=plan.pose or "a relaxed natural pose like in the scene photo",
@@ -334,13 +369,29 @@ WORN_REF = (
 )
 
 
+# 2026-10-27 사용자: "참고 코디컷과 동일하게 입어야 해"
+# (코트 허리 묶기, 자켓 밑으로 티셔츠가 얼마나 삐져나오는지).
+# 장면 모델컷도 따라 한 기준 코디 사진을 보내 입는 모양을 따르게 한다 (장면 사진은 무드·자리·포즈만)
+WORN_REF_MODEL = (
+    "The image after the item sheets is the reference outfit photo this look copies."
+    " Dress her exactly the way the outfit is worn there, with each piece swapped for"
+    " the matching item from the sheets: whether an outer is open or closed and how a"
+    " coat belt or waist tie is tied, how much of a top is tucked in and how much hangs"
+    " out, which hems, cuffs and collars peek out from under other layers and by how"
+    " much, how sleeves are pushed up, and the silhouette and length each piece has on"
+    " her body. Take colors and details only from the item sheets, draw nothing that is"
+    " not in the sheets even if that model wears it, and never copy that photo's face,"
+    " background or pose."
+)
+
+
 def worn_ref_panel(
     plan: DailyPlan, profile: Profile, cache: Path, edit: bool = False
 ) -> bytes | None:
     """기준 코디 사진 (얼굴은 가림). 받지 못하면 없이 그린다.
-    모델컷은 새로 그릴 때 장면 사진을 따르므로 보내지 않고, 고쳐 그릴 때만 핏 참고로 보낸다
-    (2026-10-22 사용자: "참고 모델핏과 비슷하게")."""
-    if not plan.ref_photo or (plan.shot == "model" and not edit):
+    모델컷은 고쳐 그릴 때 핏 참고로 보낸다 (2026-10-22 사용자: "참고 모델핏과 비슷하게").
+    장면 모델컷은 새로 그릴 때도 입는 모양 참고로 보낸다 (2026-10-27 사용자)."""
+    if not plan.ref_photo or (plan.shot == "model" and not edit and not plan.scene_image):
         return None
     from tools import scout
 
@@ -436,13 +487,15 @@ def make_candidates(
         panels = [base, *panels, *([worn] if worn else []), *refs]
         prompt = edit_prompt(plan, products, cfg, worn=bool(worn), refs=len(refs))
     else:
-        prompt = build_prompt(plan, products, profile, cfg)
         worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)
         scene = scene_panel(plan)
+        prompt = build_prompt(plan, products, profile, cfg, worn=bool(scene and worn))
         if scene:
             (work / "originals").mkdir(parents=True, exist_ok=True)
             (work / "originals" / "scene.jpg").write_bytes(scene)
-            panels = [*panels, scene]
+            if worn:
+                (work / "originals" / "worn_ref.jpg").write_bytes(worn)
+            panels = [*panels, *([worn] if worn else []), scene]
         elif worn:
             (work / "originals").mkdir(parents=True, exist_ok=True)
             (work / "originals" / "worn_ref.jpg").write_bytes(worn)
