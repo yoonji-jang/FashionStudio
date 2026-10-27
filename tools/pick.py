@@ -89,6 +89,14 @@ def short(desc: str) -> str:
     return desc.split(" (")[0].strip()
 
 
+def look_items(look) -> str:
+    """후보 안내의 아이템 줄. 그리기 요청(requests)은 다음 줄에 붙인다."""
+    line = " · ".join(short(it.desc) for it in look.items)
+    if look.requests:
+        line += "\n   + 그리기: " + " · ".join(short(x) for x in look.requests)
+    return line
+
+
 # ---------- 검사 ----------
 
 
@@ -286,7 +294,7 @@ def looks_text(
         mark = "" if n <= use else " (예비)"
         top = f"{n}. " + (look.reason.split(". ")[0] if look.reason else "") + mark
         lines.append(top.rstrip("."))
-        lines.append("   " + " · ".join(short(it.desc) for it in look.items))
+        lines.append("   " + look_items(look))
     after = f"1~{use}번으로 만들어요" if rules.on_timeout == "first" else "오늘은 건너뛰어요"
     flow = profile.flow.enabled
     lines += ["", "[고르는 방법]"]
@@ -736,7 +744,7 @@ def send_edit(
         look = looks[n - 1]
         if n in changed:
             lines.append(f"{n}. " + (look.reason.split(". ")[0] if look.reason else "").rstrip("."))
-            lines.append("   " + " · ".join(short(it.desc) for it in look.items))
+            lines.append("   " + look_items(look))
         else:
             linked = any(n in f["looks"] and f.get("link_errors") for f in spec["fixes"])
             lines.append(

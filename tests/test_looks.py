@@ -314,6 +314,11 @@ def test_pick_sends_look_sheets(tmp_path, store):
     text = pick.looks_text(pick.load_candidates(out)[0], profile, DAY, 1)
     assert "7. 7번 벌은 톤온톤으로 (예비)" in text
     assert "4번 빼고" in text and "1~6번으로 만들어요" in text
+    # 미리 정한 그리기 요청은 아이템 다음 줄에 (2026-10-27 사용자)
+    plan_ = pick.load_candidates(out)[0]
+    plan_.looks[0].requests = ["시스루 검은 스타킹 (sheer black tights)", "자켓 거의 여밈 (closed)"]
+    text = pick.looks_text(plan_, profile, DAY, 1)
+    assert "   + 그리기: 시스루 검은 스타킹 · 자켓 거의 여밈" in text
 
 
 def test_look_sheet_shows_ref_photo(tmp_path, store, monkeypatch):

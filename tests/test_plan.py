@@ -542,13 +542,36 @@ def test_fix_edit_sends_worn_ref_and_user_photos(store, tmp_path, monkeypatch):
     # 장면 없는 모델컷을 새로 그릴 때는 기준 코디 사진을 보내지 않는다
     plain = p.model_copy(update={"scene_image": None, "edit_from": None})
     assert outfit_gen.worn_ref_panel(plain, load_profile("women"), tmp_path) is None
-    # 2026-10-27 사용자: 새로 그리는 장면 모델컷은 기준 코디 사진을 상품 참고판 뒤, 장면 앞에
+    # 2026-10-27 사용자: 새로 그리는 장면 모델컷은 기준 코디 사진을 맨 앞(상품 참고판 앞),
+    # 장면은 마지막
     new = p.model_copy(update={"edit_from": None, "edit_request": None, "edit_refs": []})
     outfit_gen.make_candidates(new, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
-    assert len(rec.images) == 3 and rec.images[0] == b"p1"
+    assert len(rec.images) == 3 and rec.images[1] == b"p1"
+    assert rec.images[0] == (tmp_path / "w2" / "originals" / "worn_ref.jpg").read_bytes()
     assert rec.images[2] == (tmp_path / "w2" / "originals" / "scene.jpg").read_bytes()
-    assert "The image after the item sheets is the reference outfit photo" in rec.prompt
+    assert "The first attached image is the reference outfit photo" in rec.prompt
+    assert "Ignore how the shop models there wear" in rec.prompt
     assert "$" not in rec.prompt
+
+
+def test_styling_requests_beat_ref(store):
+    """2026-10-27 사용자: /fix 로 쓴 입는 모양과 미리 정한 그리기 요청(상품 아닌 소품·포즈·여밈)은
+    참고 코디 사진대로 입히기에 묻히지 않고 앞서는 요청으로 간다."""
+    from tools import outfit_gen
+
+    products = {x.id: x for x in store.products()}
+    prof = load_profile("women")
+    p = daily()
+    assert outfit_gen.styling_text(p, products, prof, ref=True) == outfit_gen.REF_STYLING
+    p = daily(
+        styling="The jacket is closed almost all the way.",
+        requests=["시스루 검은 스타킹 (she wears sheer black tights)"],
+    )
+    text = outfit_gen.styling_text(p, products, prof, ref=True)
+    assert "except for these exact requests" in text and "closed almost all the way" in text
+    assert "sheer black tights" in text and "시스루" not in text
+    # 참고 사진이 없어도 요청은 붙는다
+    assert "sheer black tights" in outfit_gen.styling_text(p, products, prof)
 
 
 def test_check_catches_missing_edit_from(store):
