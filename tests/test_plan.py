@@ -594,12 +594,23 @@ def test_scarf_gets_scarf_size_even_in_necklace_slot(store):
 
 def test_model_lengths_say_where_on_body():
     # 2026-10-27 사용자: 미니스커트·반바지가 길게, 하프코트가 롱코트로 그려짐
-    from tools import outfit_gen
     from tools.compose import load_layout, real_length
 
     layout = load_layout()
     assert real_length("하의", "워싱 데님 스커트 denim mini skirt", layout) == 42
     assert real_length("하의", "데님 팬츠 denim shorts", layout) == 38
-    assert outfit_gen.body_point("하의", 42) == "at her upper thigh, well above mid-thigh"
-    assert outfit_gen.body_point("아우터", 48) == "at her waist (a cropped length)"
-    assert outfit_gen.body_point("하의", 100) == "at her ankles"
+
+
+def test_scene_lengths_follow_worn_photos_not_default_cm(store):
+    # 2026-10-27 사용자: 기장을 기본값으로 고정하지 말고 상세페이지 착용컷 그대로
+    from tools import outfit_gen
+
+    p = daily()
+    products = {x.id: x for x in store.products()}
+    it = next(i for i in p.items if products[i.product].category == "하의")
+    text = outfit_gen.item_size(it, products[it.product], {}, worn=True)
+    assert "cm" not in text and "shop model in its worn photos" in text
+    measured = it.model_copy(update={"size": "total length 40 cm"})
+    text = outfit_gen.item_size(measured, products[it.product], {}, worn=True)
+    assert text.startswith("total length 40 cm;")
+    assert "cm long" in outfit_gen.item_size(it, products[it.product], {})
