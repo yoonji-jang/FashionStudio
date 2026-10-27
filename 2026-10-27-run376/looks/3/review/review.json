@@ -1,0 +1,42 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 1,
+        "shape": 2,
+        "complete": 1,
+        "clean": 2,
+        "layout": 1,
+        "notes": "1번 퍼 자켓은 원본 사진(따뜻한 회갈색~베이지 톤)보다 차가운 라이트그레이로 보이고, 고른 색은 베이지라서 조금 어긋남. 자켓 기장(허리 위 크롭), 둥근 노카라, 긴 파일 퍼 질감과 두께는 원본과 같음. 5번 시스루 니삭스는 얇은 검은 스타킹처럼 허벅지 아래까지 이어져 보여, 무릎 양말인지 알아보기 어려움 (complete 1). 기준 코디 사진(worn_ref)에서는 자켓을 몸에 두른 채 앞을 거의 모아 입었는데, 이 후보는 한 손으로 자켓 앞을 벌려 안감이 보임. 여밈 정도가 달라서 layout 1. 얼굴은 face 특징과 맞음.",
+        "feedback_ok": null,
+        "faults": []
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 1,
+        "shape": 2,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "1번 퍼 자켓이 고른 색(베이지)보다 차가운 라이트그레이로 보임(원본은 회색빛 베이지). 부츠·원피스·가방은 원본과 같음. 얼굴은 face 특징과 맞음. 장면은 강한 햇빛과 긴 그림자인데 c2 는 푸른 기가 도는 부드러운 스튜디오 조명이고 그림자가 거의 없어 조금 다름.",
+        "feedback_ok": null,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 는 상품 형태, 소재, 기장이 원본과 같고 결함이 없음. 퍼 색이 조금 차갑고 장면의 햇빛·그림자 무드가 약해 8점."
+}

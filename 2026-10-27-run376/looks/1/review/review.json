@@ -1,0 +1,42 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "3번 쇼츠에 검은 벨트(금색 버클)가 그려짐. 이 벨트는 상품 목록에 없고 기준 코디 사진(worn_ref)에도 없다. 쇼핑몰 착용컷에서 모델이 맨 벨트를 따라 그린 것으로 보이며, 규칙상 없는 소품이라 clean 0. 나머지는 원본과 같다. 얼굴은 face 특징과 맞는다.",
+        "feedback_ok": null,
+        "faults": []
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "1번 퍼자켓 칼라가 원본의 우뚝 선 하이넥 칼라보다 낮고 앞이 벌어진 숄 칼라처럼 보이고, 자켓 앞을 연 모양이 기준 코디 사진의 여민 모양과 조금 다름 (작은 차이). 나머지 상품은 색·질감·기장이 원본과 같고 개수도 맞음. 얼굴은 face 특징과 맞음.",
+        "feedback_ok": null,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 는 상품 색·질감·기장이 원본과 같고 결함이 없다. 감점은 퍼자켓 칼라가 하이넥보다 낮은 점 하나뿐이다. 합계 9점이라 c1(8점)보다 높다."
+}

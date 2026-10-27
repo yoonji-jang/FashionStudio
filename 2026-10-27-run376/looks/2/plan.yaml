@@ -1,0 +1,124 @@
+account: women
+date: '2026-10-27'
+edit_refs: []
+face: an exotic, striking look with long calm eyes with a double eyelid, slim straight
+  eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
+  skin, a small slim face with narrow width and a high straight nose bridge
+items:
+- cm: 68.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit)
+  name: 앙고라 브이넥 니트
+  product: zigzag:167233725
+  ref_photos:
+  - 0
+  - 1
+  - 4
+  size: about 68 cm long from shoulder to hem, 60 cm across the shoulders, 53 cm across
+    the chest laid flat, 46 cm long sleeves
+- cm: 50.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top)
+  name: 레이스 이너 나시
+  product: zigzag:157994590
+  size: about 50 cm long from shoulder to hem, 25 cm across the shoulders, 34 cm across
+    the chest laid flat
+  wear_with: 상의
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 가죽 시계 (brown leather watch)
+  name: 레더 시계
+  product: zigzag:123161642
+- cm: 45.0
+  color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt)
+  name: 스웨이드 미니스커트
+  product: zigzag:167025790
+  ref_photos:
+  - 0
+  - 1
+  - 2
+  size: about 45 cm long from waist to hem, 36 cm across the waist laid flat, 47 cm
+    across the hips laid flat, 54 cm across the hem laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 스웨이드 롱부츠 (matte napped suede boots)
+  name: 스웨이드 롱부츠
+  product: zigzag:130914498
+  ref_photos:
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag)
+  name: 스웨이드 숄더백
+  product: zigzag:164580854
+  ref_photos:
+  - 0
+  - 1
+looks: []
+mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
+  and a clean white floor, soft even studio light with a soft shadow on the floor,
+  neutral cool color tone, a clean digital camera look, full-body framing at a medium
+  distance'
+pose: standing sideways in profile to the camera in the plain studio, one hand in
+  her hair, her chin lifted a little and her eyes looking up and away, feet in a loose
+  stagger so one leg crosses in front of the other; hair long and loose in soft waves
+reason: 앙고라 브이넥 니트에 블랙 레이스 나시를 받쳐 입고 스웨이드 미니, 롱부츠까지 톤온톤
+ref_photo: tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E
+scene_image: out/2026-10-27/src/scene_3.jpg
+shot: model
+text:
+  hashtags:
+  - '#퍼자켓'
+  - '#에코퍼'
+  - '#가을코디'
+  - '#퍼코디'
+  - '#가을룩북'
+  - '#뽀글이자켓'
+  - '#어그부츠'
+  intro: 맑고 쌀쌀한 가을 아침엔 포근한 퍼 하나 꺼내 입어요 🤎
+  points: []
+  title_lines:
+  - 올가을 퍼는
+  - 자켓부터 부츠까지 이렇게
+theme:
+  date: '2026-10-27'
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음

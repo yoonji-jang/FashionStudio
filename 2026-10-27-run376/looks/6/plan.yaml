@@ -1,0 +1,122 @@
+account: women
+date: '2026-10-27'
+edit_refs: []
+face: an exotic, striking look with long calm eyes with a double eyelid, slim straight
+  eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
+  skin, a small slim face with narrow width and a high straight nose bridge
+items:
+- cm: 80.0
+  color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 양털 뽀글이 자켓 (beige thick curly sherpa fleece jacket)
+  name: 뽀글이 자켓
+  product: zigzag:167061632
+  ref_photos:
+  - 0
+  size: about 80 cm long from shoulder to hem, 59 cm across the shoulders, 62 cm across
+    the chest laid flat, 52 cm long sleeves
+- cm: 54.0
+  color: 그레이
+  comment: ''
+  cutout_photo: 3
+  desc: 그레이 풀오버 후드티 (gray thin stretchy cotton jersey pullover hoodie with a drawstring
+    hood)
+  name: 피치 후드티
+  product: zigzag:172327451
+  ref_photos:
+  - 3
+  size: about 54 cm long from shoulder to hem, 39.5 cm across the shoulders, 38.5
+    cm across the chest laid flat, 65 cm long sleeves
+- color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 그레이 스웻팬츠 (gray cotton fleece sweatpants)
+  name: 스웻팬츠
+  product: zigzag:166044824
+  ref_photos:
+  - 1
+  - 0
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 카멜 플랫폼 어그 부츠 (camel napped suede platform ugg-style boots with shearling lining)
+  name: 어그 부츠
+  product: zigzag:153382969
+  ref_photos:
+  - 4
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 미니 패딩 크로스백 (black quilted nylon puffy crossbody bag with a knotted strap)
+  name: 패딩 크로스백
+  product: zigzag:121658265
+  ref_photos:
+  - 0
+- color: 그린
+  comment: ''
+  cutout_photo: 0
+  desc: 그린 볼캡 (green washed ball cap)
+  name: 워시드 볼캡
+  product: zigzag:167562963
+looks: []
+mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
+  and a clean white floor, soft even studio light with a soft shadow on the floor,
+  neutral cool color tone, a clean digital camera look, full-body framing at a medium
+  distance'
+pose: standing in the plain studio with a relaxed lean, her weight on one leg, both
+  hands in the jacket pockets and her shoulders loose, her face turned half to the
+  side under the green ball cap pulled low; hair in a slick low bun under the cap
+  with fine flyaway strands
+reason: 베이지 뽀글이 자켓에 크롭 후드티와 스웻팬츠, 어그 부츠로 포근한 캐주얼
+ref_photo: tg:AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E
+scene_image: out/2026-10-27/src/scene.jpg
+shot: model
+text:
+  hashtags:
+  - '#퍼자켓'
+  - '#에코퍼'
+  - '#가을코디'
+  - '#퍼코디'
+  - '#가을룩북'
+  - '#뽀글이자켓'
+  - '#어그부츠'
+  intro: 맑고 쌀쌀한 가을 아침엔 포근한 퍼 하나 꺼내 입어요 🤎
+  points: []
+  title_lines:
+  - 올가을 퍼는
+  - 자켓부터 부츠까지 이렇게
+theme:
+  date: '2026-10-27'
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음

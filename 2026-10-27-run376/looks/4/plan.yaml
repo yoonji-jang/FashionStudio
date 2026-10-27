@@ -1,0 +1,120 @@
+account: women
+date: '2026-10-27'
+edit_refs: []
+face: an exotic, striking look with long calm eyes with a double eyelid, slim straight
+  eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
+  skin, a small slim face with narrow width and a high straight nose bridge
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 3
+  desc: 브라운 페이크퍼 샤프카 에스키모 모자 (brown faux-fur ushanka-style hat)
+  name: 퍼 샤프카
+  product: zigzag:132787487
+  ref_photos:
+  - 3
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 레더 라이더 자켓 (black thin glossy smooth leather rider jacket)
+  name: 레더 라이더 자켓
+  product: zigzag:129200643
+  ref_photos:
+  - 0
+- cm: 51.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 슬림 브이넥 티셔츠 (black thin matte jersey v-neck tee)
+  name: 슬림 브이넥 티
+  product: zigzag:172226652
+  ref_photos:
+  - 3
+  - 2
+  size: about 51.5 cm long from shoulder to hem, 36 cm across the shoulders, 38 cm
+    across the chest laid flat, 59 cm long sleeves
+- cm: 39.0
+  color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 울 미니스커트 (charcoal brushed wool mini skirt)
+  name: 울 미니스커트
+  product: zigzag:149438922
+  ref_photos:
+  - 0
+  size: about 39 cm long from waist to hem, 35 cm across the waist laid flat, 44 cm
+    across the hips laid flat, 55 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 미니 크로스백 (black mini crossbody bag)
+  name: 미니 크로스백
+  product: zigzag:115638721
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 플랫폼 어그 부츠 (black napped suede platform ugg-style shearling boots)
+  name: 어그 부츠
+  product: zigzag:153382969
+  ref_photos:
+  - 2
+  - 5
+looks: []
+mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
+  and a clean white floor, soft even studio light with a soft shadow on the floor,
+  neutral cool color tone, a clean digital camera look, full-body framing at a medium
+  distance'
+pose: standing straight on to the camera in the plain studio with her chin slightly
+  down and a cool expression, one hip pushed out and one hand in the jacket pocket,
+  the other hand holding the crossbody strap; the ushanka hat sits low on her head
+  with a few fine flyaway strands at her temples
+reason: 퍼 샤프카가 포인트, 블랙 라이더에 브이넥 티, 차콜 울 미니스커트와 어그 부츠
+ref_photo: tg:AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E
+scene_image: out/2026-10-27/src/scene_2.jpg
+shot: model
+text:
+  hashtags:
+  - '#퍼자켓'
+  - '#에코퍼'
+  - '#가을코디'
+  - '#퍼코디'
+  - '#가을룩북'
+  - '#뽀글이자켓'
+  - '#어그부츠'
+  intro: 맑고 쌀쌀한 가을 아침엔 포근한 퍼 하나 꺼내 입어요 🤎
+  points: []
+  title_lines:
+  - 올가을 퍼는
+  - 자켓부터 부츠까지 이렇게
+theme:
+  date: '2026-10-27'
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음

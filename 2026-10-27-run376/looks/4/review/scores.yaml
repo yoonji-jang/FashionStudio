@@ -1,0 +1,11 @@
+covers:
+  - id: c2
+    color: 2
+    shape: 1
+    complete: 2
+    clean: 2
+    layout: 2
+    notes: 1번 모자는 원본 사진이 귀덮개 없는 둥근 퍼 모자인데 귀덮개가 달린 샤프카 모양으로 그려져 모양이 조금 다름. 이 한 가지만 작은 차이로 보고 shape 1. 나머지는 원본과 같음. 얼굴은 face 특징과 맞음.
+    faults: []
+slides: []
+summary: c2 는 상품 6개가 모두 원본과 같고 결함이 없음. 모자 모양만 조금 다르고 얼굴은 face 특징과 맞음. 합계 9점.
