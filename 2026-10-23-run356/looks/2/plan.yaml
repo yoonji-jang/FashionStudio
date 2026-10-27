@@ -1,0 +1,96 @@
+account: women
+cover_look: 1
+date: '2026-10-23'
+edit_refs: []
+face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
+  dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
+  full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
+items:
+- color: 카멜
+  comment: ''
+  cutout_photo: 5
+  desc: 카멜 코튼 하이넥 점퍼 (camel cotton high-stand-collar blouson jacket, voluminous boxy
+    fit, crisp twill, snap buttons, ends at the waist to high hip)
+  name: 하이넥 점퍼
+  product: zigzag:157745502
+  ref_photos:
+  - 5
+- color: 화이트
+  comment: ''
+  cutout_photo: 3
+  desc: 화이트 무지 라운드 티셔츠 (plain white crew-neck long-sleeve tee, fitted, thin soft knit)
+  name: 화이트 티
+  product: zigzag:167142875
+  ref_photos:
+  - 3
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 미니스커트 (black matte wool slim A-line mini skirt, perfectly smooth flat
+    front with no pleats, very short, ends high on the upper thigh)
+  name: 울 미니스커트
+  product: zigzag:150110018
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬라우치 버클 부츠 (black slouchy buckle boots, round toe, buckle strap at the
+    calf, knee length)
+  name: 슬라우치 부츠
+  product: zigzag:165705028
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 퀼팅 체인백 (black quilted shoulder bag with a chain strap)
+  name: 퀼팅 체인백
+  product: zigzag:105424126
+looks: []
+mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
+  pale grey-white wall and floor, soft diffused studio light with one gentle shadow
+  on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
+  so the whole body from head to shoes is visible
+pose: standing in the studio like the zip-knit lookbook shot, turned slightly three-quarters
+  with one hand tucked in the jacket pocket, the chain bag hanging from the other
+  shoulder, looking at the camera; her black hair is long and softly wavy, falling
+  over her shoulders
+reason: '카멜 하이넥 벨트 점퍼가 주인공, 블랙 미니와 롱부츠로 날렵하게 모은 파티룩. 참고: 카멜 하이넥 벨트 점퍼/흰 티셔츠/블랙 미니스커트/블랙
+  버클 롱부츠/블랙 퀼팅 숄더백/슬림 선글라스 → 맞춘 것: 카멜 하이넥 점퍼/화이트 울텐셀 티/블랙 울 미니/블랙 슬라우치 버클 부츠/블랙 퀼팅
+  체인백 (선글라스는 창고에 없어 뺌) (따라 함: 참고 775)'
+ref_photo: tg:AgACAgUAAxkBAAIHumrfCfa8VdoxZnNOPxr947PWfjcPAAKIFWsbCo_5VmFax3Gv3FOaAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene_2.jpg
+shot: model
+styling: The high-neck blouson is zipped most of the way up and is voluminous and
+  puffy around the body; a belt, if any, is not drawn. Only a very small strip of
+  the white tee peeks out below the jacket hem. The mini skirt is smooth and plain,
+  very short, and shows just below the jacket. The boots are pulled up to the knee.
+text:
+  hashtags:
+  - '#연말모임룩'
+  - '#파티룩'
+  - '#올블랙코디'
+  - '#가을겨울코디'
+  intro: 7~20도 오락가락하는 요즘, 연말 모임 옷은 미리 저장해 두세요 🍷
+  points: []
+  title_lines:
+  - 연말 모임 앞두고
+  - 어두운 톤 옷장 공개
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)
