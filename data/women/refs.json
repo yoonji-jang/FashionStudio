@@ -44234,5 +44234,440 @@
    ]
   },
   "ready": false
+ },
+ {
+  "n": 784,
+  "name": "아이보리 모헤어 니트 + 카멜 스웨이드 미니 + 카멜 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "데일리",
+   "포근한 니트"
+  ],
+  "note": "보송한 니트와 스웨이드 톤온톤 / 롱부츠",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "아이보리",
+    "desc": "아이보리 루즈핏 모헤어 니트",
+    "query": "모헤어 니트"
+   },
+   {
+    "category": "하의",
+    "color": "카멜",
+    "desc": "카멜 스웨이드 미니스커트",
+    "query": "스웨이드 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "카멜",
+    "desc": "카멜 스웨이드 롱부츠",
+    "query": "스웨이드 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "브라운 숄더백",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 785,
+  "name": "블랙 가죽 점퍼 + 화이트 지퍼 톱 + 블랙 쇼츠 + 퍼 부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIUmrgbQYddB0igV16xbr69g91piz4AAI-FGsbB_YAAVdKEca7sliuQAEAAwIAA3gAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 부츠",
+   "시크"
+  ],
+  "note": "에코퍼 부츠 + 니삭스 레이어드",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 오버핏 가죽 점퍼",
+    "query": "가죽 블루종"
+   },
+   {
+    "category": "상의",
+    "color": "화이트",
+    "desc": "화이트 지퍼 코르셋 톱",
+    "query": "지퍼 톱"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 숏팬츠",
+    "query": "숏팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "화이트",
+    "desc": "화이트 에코퍼 부츠 + 아이보리 니삭스",
+    "query": "퍼 부츠"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 786,
+  "name": "베이지 퍼 자켓 + 블랙 니트 원피스 + 블랙 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 자켓",
+   "올블랙 포인트"
+  ],
+  "note": "블랙 위에 베이지 퍼 한 점 / 호보백",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "베이지",
+    "desc": "베이지 에코퍼 숏 자켓",
+    "query": "퍼 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 터틀넥 미니 원피스",
+    "query": "터틀넥 미니원피스"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 호보 숄더백",
+    "query": "호보백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 787,
+  "name": "아이보리 퍼 볼레로 + 블랙 케이블 니트 원피스",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIVGrgbQaKeeA9Y5cL47SAkT8FWlHVAAJAFGsbB_YAAVdXgz4hMGg_hAEAAwIAA3gAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 볼레로",
+   "데이트룩"
+  ],
+  "note": "긴 소매 퍼 숏 볼레로 / 몸에 붙는 니트 원피스 / 미니 체인백",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "아이보리",
+    "desc": "아이보리 에코퍼 크롭 볼레로",
+    "query": "퍼 볼레로"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 케이블 니트 버튼 미니 원피스",
+    "query": "케이블 니트 원피스"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 퀼팅 미니 체인백",
+    "query": "퀼팅 체인백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 패턴 스타킹",
+    "query": "패턴 스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 788,
+  "name": "퍼 트루퍼 햇 + 블랙 가죽 라이더 + 그레이 울 미니스커트",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 모자",
+   "올블랙"
+  ],
+  "note": "브라운 퍼 햇이 포인트 / 올블랙 레이어드",
+  "slots": [
+   {
+    "category": "소품",
+    "color": "브라운",
+    "desc": "브라운 에코퍼 트루퍼 햇",
+    "query": "퍼 모자"
+   },
+   {
+    "category": "아우터",
+    "color": "블랙",
+    "desc": "블랙 가죽 라이더 자켓",
+    "query": "가죽 라이더 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "블랙",
+    "desc": "블랙 리브 니트 탑 (안에)",
+    "query": "리브 니트 탑"
+   },
+   {
+    "category": "하의",
+    "color": "차콜",
+    "desc": "차콜 울 미니스커트",
+    "query": "울 미니스커트"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 크로스백",
+    "query": "미니 크로스백"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 부츠 (안 보임, 어울리게)",
+    "query": "앵클부츠"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 789,
+  "name": "화이트 퍼 숏 자켓 + 브라운 탑 + 로우라이즈 부츠컷 데님",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIVmrgbQaWSHjZqqF2Xkfpgz_GUMq7AAJCFGsbB_YAAVeCEDLOlqy6OgEAAwIAA3kAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 자켓",
+   "스트리트"
+  ],
+  "note": "볼륨 퍼 자켓 + 빈티지 워싱 데님 / 허리에 두른 스카프 벨트",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "화이트",
+    "desc": "화이트 그레이 믹스 에코퍼 숏 자켓",
+    "query": "퍼 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "브라운",
+    "desc": "브라운 슬림 브이넥 탑",
+    "query": "브이넥 탑"
+   },
+   {
+    "category": "하의",
+    "color": "블루",
+    "desc": "빈티지 워싱 로우라이즈 부츠컷 데님",
+    "query": "부츠컷 데님"
+   },
+   {
+    "category": "소품",
+    "color": "브라운",
+    "desc": "브라운 스카프 벨트",
+    "query": "스카프 벨트"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 초커 목걸이",
+    "query": "초커"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 부츠 (안 보임, 어울리게)",
+    "query": "앵클부츠"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 790,
+  "name": "베이지 퍼 코트 + 블랙 미니스커트 + 블랙 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIV2rgbQZcQYBm_hDaLILH1-xLAAFgkAACQxRrGwf2AAFXlaWc51HOZA8BAAMCAAN5AAM9BA",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 코트",
+   "데이트룩"
+  ],
+  "note": "와이드 카라 에코퍼 코트 / 블랙 미니와 스타킹 / 미니 탑핸들백",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "베이지",
+    "desc": "베이지 와이드 카라 에코퍼 숏 코트",
+    "query": "퍼 코트"
+   },
+   {
+    "category": "상의",
+    "color": "아이보리",
+    "desc": "아이보리 니트 (안에, 소매만 보임)",
+    "query": "니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 플레어 미니스커트",
+    "query": "플레어 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 롱부츠",
+    "query": "롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 탑핸들백",
+    "query": "탑핸들 미니백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 스타킹",
+    "query": "스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 791,
+  "name": "아이보리 셰기 퍼 자켓 + 아이보리 니트 미니 + 레그워머 + 로퍼",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIWWrgbQa_WXEd61M-PZgJ0Md3LwLnAAJEFGsbB_YAAVdDRv98H3dghQEAAwIAA3kAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "퍼 자켓",
+   "톤온톤"
+  ],
+  "note": "아이보리 톤온톤 / 레그워머와 브라운 로퍼로 마무리",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "아이보리",
+    "desc": "아이보리 셰기 에코퍼 자켓 (버튼)",
+    "query": "셰기 퍼 자켓"
+   },
+   {
+    "category": "하의",
+    "color": "아이보리",
+    "desc": "아이보리 니트 미니스커트",
+    "query": "니트 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "브라운 로퍼",
+    "query": "로퍼"
+   },
+   {
+    "category": "소품",
+    "color": "아이보리",
+    "desc": "아이보리 니트 레그워머",
+    "query": "레그워머"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "브라운 패턴 호보백",
+    "query": "호보백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 792,
+  "name": "베이지 뽀글이 자켓 + 그레이 후드 + 그레이 스웻팬츠 + 어그 부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E",
+  "added": "2026-10-27",
+  "tags": [
+   "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+   "뽀글이 자켓",
+   "캐주얼"
+  ],
+  "note": "포근한 뽀글이 자켓 + 편한 스웻팬츠 / 그린 볼캡",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "베이지",
+    "desc": "베이지 뽀글이 양털 숏 자켓",
+    "query": "뽀글이 자켓"
+   },
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 후드 집업 (안에)",
+    "query": "후드 집업"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 조거 스웻팬츠",
+    "query": "스웻팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "카멜",
+    "desc": "카멜 플랫폼 어그 부츠",
+    "query": "어그 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 패딩 숄더백",
+    "query": "패딩 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "그린",
+    "desc": "그린 볼캡",
+    "query": "볼캡"
+   }
+  ],
+  "matches": {},
+  "ready": false
  }
 ]
