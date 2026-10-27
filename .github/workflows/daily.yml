@@ -248,6 +248,7 @@ jobs:
         if: (env.MODE == 'render' || env.MODE == 'fix') && env.HAS_TELEGRAM == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           if [ -f "out/$DATE/plan.yaml" ]; then
             uv run python -m tools.plan refs "out/$DATE/plan.yaml" \
