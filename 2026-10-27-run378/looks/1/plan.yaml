@@ -1,0 +1,130 @@
+account: women
+cover_look: 1
+date: '2026-10-27'
+edit_refs: []
+face: an exotic, striking look with long calm eyes with a double eyelid, slim straight
+  eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
+  skin, a small slim face with narrow width and a high straight nose bridge
+items:
+- cm: 59.5
+  color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up
+    high collar)
+  name: 하이넥 숏 퍼자켓
+  product: zigzag:172046026
+  ref_photos:
+  - 0
+  - 4
+  - 1
+  size: about 59.5 cm long from shoulder to hem, 59.5 cm across the shoulders, 48.5
+    cm across the chest laid flat, 62 cm long sleeves
+- cm: 60.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 헨리넥 티셔츠 (white henley tee)
+  name: 헨리넥 티셔츠
+  product: zigzag:171221132
+  size: about 60 cm long from shoulder to hem, 35 cm across the shoulders, 40 cm across
+    the chest laid flat, 62 cm long sleeves
+- cm: 29.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 쇼츠 (black matte textured wool shorts)
+  name: 울 쇼츠
+  product: zigzag:166183665
+  ref_photos:
+  - 1
+  - 0
+  - 2
+  size: about 29.5 cm long from waist to hem, 40 cm across the waist laid flat, 51.5
+    cm across the hips laid flat, 33 cm across the hem laid flat
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots)
+  name: 스웨이드 버클 부츠
+  product: zigzag:165455974
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 레더 호보백 (brown soft leather hobo bag)
+  name: 레더 호보백
+  product: zigzag:168780987
+  ref_photos:
+  - 0
+  - 1
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 골지 니트 롱 삭스 (ivory chunky ribbed knit long socks)
+  name: 골지 롱 삭스
+  product: zigzag:131020807
+  ref_photos:
+  - 3
+  - 0
+looks: []
+mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
+  and a clean white floor, soft even studio light with a soft shadow on the floor,
+  neutral cool color tone, a clean digital camera look, full-body framing at a medium
+  distance'
+pose: standing at the center of the plain studio, weight on one leg with the other
+  knee relaxed, both arms relaxed at her sides with one hand holding the bag handle,
+  her head turned a little to the side and her eyes looking off to the side; hair
+  in a slick low bun with a few loose flyaway strands at the temples
+reason: 하이넥 숏 퍼자켓이 주인공, 화이트 티와 블랙 쇼츠에 브라운 롱부츠와 골지 롱 삭스로 톤온톤
+ref_photo: tg:AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ
+requests: []
+scene_image: out/2026-10-27/src/scene.jpg
+shot: model
+styling: The fur jacket is closed almost all the way, so only a very thin strip of
+  the white inner tee shows at the neck.
+text:
+  hashtags:
+  - '#퍼자켓'
+  - '#에코퍼'
+  - '#가을코디'
+  - '#퍼코디'
+  - '#가을룩북'
+  - '#뽀글이자켓'
+  - '#어그부츠'
+  intro: 맑고 쌀쌀한 가을 아침엔 포근한 퍼 하나 꺼내 입어요 🤎
+  points: []
+  title_lines:
+  - 올가을 퍼는
+  - 자켓부터 부츠까지 이렇게
+theme:
+  date: '2026-10-27'
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음
