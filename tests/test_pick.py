@@ -1,3 +1,4 @@
+import json
 from datetime import date, datetime
 
 import httpx
@@ -6,6 +7,7 @@ import yaml
 
 from core.models import PickRecord, Theme
 from core.profile import load_profile
+from core.store import Store
 from tests.test_plan import CATS, daily, fake_photos, product, store  # noqa: F401 - fixture
 from tests.test_publish import CHAT, FakeApis
 from tools import notify, pick
@@ -146,3 +148,98 @@ def test_themes_again(store):  # noqa: F811
     api.replies = [(sent.sent_at + 5, "/themes again women", None)]
     assert pick.themes_again(profile, store, tg_of(api)).first == day
     assert pick.themes_again(profile, store, tg_of(api)) is None  # 한 번만
+
+
+def page_html(pid: str, name: str, sales: str = "ON_SALE") -> str:
+    item = {
+        "name": name,
+        "sales_status": sales,
+        "final_price": 59000,
+        "product_image_list": [{"origin_url": f"https://cf.example.com/{pid}.jpg"}],
+    }
+    data = {"product": item, "shop": {"name": "퍼샵"}}
+    nxt = {"props": {"pageProps": {"dehydratedState": {"queries": [{"state": {"data": data}}]}}}}
+    return f'<script id="__NEXT_DATA__" type="application/json">{json.dumps(nxt)}</script>'
+
+
+def test_guess_category():
+    assert pick.guess_category("[MADE] 에코퍼 숏 자켓 (3color)") == "아우터"
+    assert pick.guess_category("퍼 트리밍 니트 롱 부츠") == "신발"
+    assert pick.guess_category("데님 롱 스커트") == "하의"
+    assert pick.guess_category("퍼 숄더백") == "가방"
+    assert pick.guess_category("무지 울 머플러") == "소품"
+    assert pick.guess_category("무지 울 머플러", "/fix 2 (링크) 이걸로 아우터") == "아우터"
+
+
+def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
+    out = tmp_path / "out"
+    (out / "picks").mkdir(parents=True)
+    spec = {
+        "run": "r",
+        "fixes": [
+            {
+                "update_id": 1,
+                "looks": [2],
+                "text": "https://zigzag.kr/catalog/products/555 이걸로 아우터",
+            },
+            {
+                "update_id": 2,
+                "looks": [3],
+                "text": "https://zigzag.link/abc 이거랑 https://zigzag.kr/catalog/products/777",
+            },
+            {"update_id": 3, "looks": [4], "text": "이너를 나시로"},
+        ],
+    }
+    (out / "picks" / "edit.json").write_text(json.dumps(spec), encoding="utf-8")
+    pages = {
+        "555": page_html("555", "에코퍼 숏 자켓"),
+        "666": page_html("666", "퍼 롱 부츠"),
+        "777": page_html("777", "니트 원피스", "SOLD_OUT"),
+    }
+    calls = []
+
+    def fetch(url):
+        calls.append(url)
+        if "zigzag.link" in url:
+            return 200, "https://zigzag.kr/catalog/products/666?utm=share", ""
+        pid = url.rsplit("/", 1)[-1]
+        return 200, url, pages[pid]
+
+    added = pick.add_links(out, store, DAY, fetch)
+    assert [p.id for p in added] == ["zigzag:555", "zigzag:666"]
+    got = {p.id: p for p in store.products()}
+    assert got["zigzag:555"].category == "아우터" and got["zigzag:666"].category == "신발"
+    assert got["zigzag:555"].shop == "퍼샵" and got["zigzag:555"].price == 59000
+    assert "zigzag:777" not in got
+    fixes = json.loads((out / "picks" / "edit.json").read_text(encoding="utf-8"))["fixes"]
+    assert fixes[0]["products"][0]["id"] == "zigzag:555"
+    assert fixes[1]["products"][0]["id"] == "zigzag:666"
+    assert fixes[1]["link_errors"][0]["why"] == "품절이에요"
+    assert "products" not in fixes[2]
+    saved = json.loads((out / pick.USER_PRODUCTS).read_text(encoding="utf-8"))
+    assert {r["id"] for r in saved} == {"zigzag:555", "zigzag:666"}
+
+    # 다음 실행: 창고(main)에 없으면 결과 브랜치의 user_products.json 에서 다시 넣는다
+    prev = tmp_path / "prev"
+    (prev / "2026-10-27-run1").mkdir(parents=True)
+    (out / pick.USER_PRODUCTS).rename(prev / "2026-10-27-run1" / pick.USER_PRODUCTS)
+    fresh = Store("women", root=tmp_path / "fresh")
+    fresh.save_products([p for p in store.products() if p.id not in ("zigzag:555", "zigzag:666")])
+    assert pick.restore_user(fresh, prev) == 2
+    assert pick.restore_user(fresh, prev) == 0
+    assert "zigzag:555" in {p.id for p in fresh.products()}
+
+
+def test_add_links_unreadable(tmp_path, store):  # noqa: F811
+    out = tmp_path / "out"
+    (out / "picks").mkdir(parents=True)
+    spec = {"run": "r", "fixes": [{"update_id": 1, "looks": [1], "text": "https://zigzag.link/x"}]}
+    (out / "picks" / "edit.json").write_text(json.dumps(spec), encoding="utf-8")
+
+    def fetch(url):
+        raise httpx.ConnectError("down")
+
+    assert pick.add_links(out, store, DAY, fetch) == []
+    fix = json.loads((out / "picks" / "edit.json").read_text(encoding="utf-8"))["fixes"][0]
+    assert fix["link_errors"][0]["why"] == "링크를 열지 못했어요"
+    assert not (out / pick.USER_PRODUCTS).exists()
