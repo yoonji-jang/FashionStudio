@@ -243,6 +243,7 @@ def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
     plan_dir.mkdir()
     (plan_dir / "plan.yaml").write_text("items:\n- product: zigzag:555\n- product: zigzag:801\n")
     assert pick.restore_user(fresh, prev, plan_dir) == 2
+    assert pick.restore_user(fresh, prev, plan_dir, run="2026-10-26-run9") == 0  # 다른 실행
     assert pick.restore_user(fresh, prev) == 2  # out 없이는 나머지 모두
     assert pick.restore_user(fresh, prev) == 0
     assert {"zigzag:555", "zigzag:801", "zigzag:802"} <= {p.id for p in fresh.products()}
