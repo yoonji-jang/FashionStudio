@@ -186,7 +186,10 @@ jobs:
           # 사람이 /fix 링크로 보낸 상품과 후보 실행 중 모은 상품은 창고(main)에 커밋되지 않아
           # 결과 브랜치에서 이 실행 기획이 쓰는 것만 다시 넣는다
           if [ -d /tmp/prev ]; then
-            uv run python -m tools.pick restore-user --account "$ACCOUNT" --prev /tmp/prev --out "out/$DATE"
+            # 후보 고치기는 그 후보 실행이 모은 상품(어그 부츠 같은)에서도 고를 수 있게 모두 넣는다
+            from_run=""; [ "$MODE" = edit ] && from_run=$(jq -r .run <<< "$PICK")
+            uv run python -m tools.pick restore-user --account "$ACCOUNT" --prev /tmp/prev --out "out/$DATE" \
+              ${from_run:+--run "$from_run"}
           fi
           # 장면 모델컷 (차례 흐름, 2026-10-14): 사용자가 텔레그램으로 보낸 장면 사진을 out/<날짜>/src/scene.jpg 에 둔다.
           # 사진은 schedule 이 실행을 요청한 직후 커밋해서, 아직 없으면 잠깐 기다렸다 다시 가져온다

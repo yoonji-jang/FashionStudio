@@ -674,12 +674,13 @@ def add_links(out: Path, store: Store, today: date, fetch=fetch_link) -> list[Pr
     return list(added.values())
 
 
-def restore_user(store: Store, prev: Path, out: Path | None = None) -> int:
+def restore_user(store: Store, prev: Path, out: Path | None = None, run: str | None = None) -> int:
     """창고에 없는 상품을 지난 실행이 남긴 기록에서 다시 넣는다. 실행은 창고를 main 에 커밋하지
     않아서, 사람이 /fix 링크로 보낸 상품(user_products.json)과 후보 실행 중 tools.collect 로 모은
     상품(collect_*/products.json)은 결과 브랜치에만 남는다.
     out 을 주면 그 안의 기획(*.yaml)이 쓰는 상품만 넣는다
-    (판매 끝난 옛 상품이 후보로 돌아오지 않게)."""
+    (판매 끝난 옛 상품이 후보로 돌아오지 않게). run 결과 폴더가 모은 상품은 모두 넣는다
+    (후보 고치기가 그 후보 실행이 모은 상품에서 고를 수 있게)."""
     products = {p.id: p for p in store.products()}
     wanted = None
     if out is not None:
@@ -689,7 +690,10 @@ def restore_user(store: Store, prev: Path, out: Path | None = None) -> int:
     added = 0
     for f in reversed(files):  # 같은 상품이면 최근 실행 것
         for row in json.loads(f.read_text(encoding="utf-8")):
-            if row["id"] in products or (wanted is not None and row["id"] not in wanted):
+            mine = run is not None and f.relative_to(prev).parts[0] == run
+            if row["id"] in products or (
+                wanted is not None and row["id"] not in wanted and not mine
+            ):
                 continue
             products[row["id"]] = Product.model_validate(row)
             added += 1
@@ -1114,6 +1118,7 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--account", required=True)
     s.add_argument("--prev", type=Path, required=True, help="daily-results 브랜치 폴더")
     s.add_argument("--out", type=Path, help="이 실행 폴더 (그 기획이 쓰는 상품만 넣음)")
+    s.add_argument("--run", help="이 결과 폴더가 모은 상품은 모두 넣음 (후보 고치기)")
     s = sub.add_parser("send-edit", help="고친 벌 시트만 다시 보내기")
     s.add_argument("out", type=Path)
     s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
@@ -1133,7 +1138,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"후보 고치기 준비 → {f}")
             return 0
         if args.cmd == "restore-user":
-            n = restore_user(Store(args.account), args.prev, args.out)
+            n = restore_user(Store(args.account), args.prev, args.out, args.run)
             print(f"창고에 없던 상품 {n}개를 지난 실행 기록에서 다시 넣음")
             return 0
         if args.cmd == "status":
