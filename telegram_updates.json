@@ -382,5 +382,16 @@
    },
    "text": "/ok"
   }
+ },
+ {
+  "update_id": 428675882,
+  "message": {
+   "message_id": 2117,
+   "date": 1793086178,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "/merge"
+  }
  }
 ]
