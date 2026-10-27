@@ -475,7 +475,9 @@ link_page:
 reels:
   enabled: true
   slides: null             # null 이면 그날 캐러셀 장 전부를 순서대로 (펼친컷 날·모델컷 날 모두)
-  seconds: {cover: 2.0, comment: 1.5}  # 장 종류별로 보여 주는 시간 (초). 나머지 장은 default_sec
+  # 장 종류별로 보여 주는 시간 (초). 비어 있으면 모든 장이 default_sec
+  # (2026-10-27 사용자 "첫 장도 다음 장과 같게, 모든 사진 유지 시간 동일": 표지 2.0·댓글 안내 1.5 → 1.0)
+  seconds: {}
   default_sec: 1.0          # 2026-10-15 사용자 "전환이 느림" (1.6 → 1.0)
   transition: cut          # cut(바로 다음 장으로) / slide(캐러셀 넘기듯) / fade. 확대 효과 없음
   transition_sec: 0.35
