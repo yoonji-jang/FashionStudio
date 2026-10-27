@@ -606,6 +606,9 @@ def test_ref_pick_user_photos(env, monkeypatch):
     tg.ups[1]["message"]["media_group_id"] = "g1"
     assert flow.ref_photos(tg.ups, CHAT, T0) == [(2, "ref_a"), (3, "ref_b")]
     assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["scene_a"]
+    # 후보를 보낸 뒤 "참고" 로 보낸 사진은 장면 사진 (바로 앞 사진과 한 묶음)
+    late = flow.scene_photos(tg.ups, CHAT, T0, 0, refs_until=T0 + 6)
+    assert [p.file_id for p in late] == ["scene_a", "ref_a", "ref_b"]
     tick(env, tg, T0 + 100)
     st = flow.load_state(results, "women")
     wf, inputs = sent[-1]

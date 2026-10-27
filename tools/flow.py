@@ -352,14 +352,21 @@ class ScenePhoto(NamedTuple):
 
 
 def scene_photos(
-    updates: list[dict], chat_id: str, since: int, after_update: int
+    updates: list[dict], chat_id: str, since: int, after_update: int, refs_until: int | None = None
 ) -> list[ScenePhoto]:
     """since 뒤 등록된 채팅에서 온 사진 중 마지막 묶음 (after_update 이하는 이미 받은 것).
     묶음 = 앨범으로 한 번에 보낸 사진들, 또는 SCENE_GAP 초 안에 이어 보낸 사진들.
-    다시 보낸 사진(앞 묶음과 떨어져 보낸 것)은 앞 묶음을 바꾼다."""
+    다시 보낸 사진(앞 묶음과 떨어져 보낸 것)은 앞 묶음을 바꾼다.
+    refs_until 을 주면 그 뒤에 "참고" 로 보낸 사진은 장면 사진으로 본다 (후보를 보낸 뒤라
+    참고 코디로 쓸 수 없다. 2026-10-27 사용자가 모델 얼굴·머리 참고 사진을 "참고. …" 로 보냄)."""
     from tools import notify
 
-    refs = {uid for uid, _ in ref_photos(updates, chat_id, 0)}  # 참고 사진은 장면이 아니다
+    dates = {u.get("update_id"): (u.get("message") or {}).get("date", 0) for u in updates}
+    refs = {  # 참고 사진은 장면이 아니다
+        uid
+        for uid, _ in ref_photos(updates, chat_id, 0)
+        if refs_until is None or dates.get(uid, 0) <= refs_until
+    }
     photos: list[ScenePhoto] = []
     for u in updates:
         msg = u.get("message") or {}
@@ -886,7 +893,9 @@ def _step(
                 )
         lines = []
         if tg is not None:
-            batch = scene_photos(tg.updates(), tg.chat_id, st.theme_at, st.scene_update)
+            batch = scene_photos(
+                tg.updates(), tg.chat_id, st.theme_at, st.scene_update, refs_until=st.asked_at
+            )
             if batch:
                 folder = f"flow/{acc}/{day}"
                 # 앞 묶음에 이어 보낸 사진(간격이 짧음)은 더하고, 따로 보낸 묶음은 바꾼다
@@ -898,6 +907,7 @@ def _step(
                     for i in range(len(batch))
                 ][: max(0, SCENE_MAX - n0)]
                 note = next((p.caption for p in batch if p.caption), "")
+                note = REF_CAPTION.sub("", note).lstrip(" .,:") if REF_CAPTION.match(note) else note
                 if not dry_run:
                     if not joined:
                         for old in (results / folder).glob("scene_*.jpg"):
