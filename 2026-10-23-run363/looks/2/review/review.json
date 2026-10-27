@@ -1,0 +1,26 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "점퍼가 직전 후보보다 확실히 풍성해짐(몸판 넓어짐, 소매 둥글게 부품, 도톰한 주름). 밑단에 고무줄 밴드가 생기고 원단이 솜 누빔처럼 보임. 나머지는 맞음.",
+        "feedback_ok": true,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "풍성하고 두껍게 요청 반영. 합계 9점, 결함 없음."
+}

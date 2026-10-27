@@ -1,0 +1,26 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "지퍼가 후드 목선 끝까지 완전히 잠김. 점퍼가 상품보다 풍선처럼 둥글게 부푼 느낌이 약하고 후드가 덜 빳빳함. 스커트·부츠·가방·스타킹·얼굴은 맞음.",
+        "feedback_ok": true,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "지퍼 요청 반영. 합계 9점, 결함 없음."
+}

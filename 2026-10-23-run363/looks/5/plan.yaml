@@ -1,0 +1,115 @@
+account: women
+cover: out/2026-10-23/looks/5/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-23'
+edit_refs: []
+face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
+  dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
+  full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 페이크 퍼 더플 숏 코트 (gray faux-fur duffle short coat, fluffy visible fur pile,
+    hip length)
+  name: 퍼 더플 숏 코트
+  product: zigzag:172164501
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 반하이넥 슬림핏 골지 니트 (black thin ribbed knit half-high-neck slim top, fitted,
+    waist length)
+  name: 반하이넥 골지 니트
+  product: zigzag:171832859
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 모직 미니스커트 (black dark-charcoal speckled thin wool-like slim A-line mini
+    skirt, flat front, very short, high waist, ends high on the upper thigh)
+  name: 모직 미니스커트
+  product: zigzag:165443666
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 롱부츠 (black smooth leather knee-high boots, round toe, flat heel, shaft
+    ends just below the knee)
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+  ref_photos:
+  - 2
+  - 3
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 퀼팅 체인백 (black chevron quilted leather small drawstring bucket bag with
+    a silver chain strap)
+  name: 퀼팅 체인백
+  product: zigzag:119058597
+  ref_photos:
+  - 0
+  - 3
+  - 2
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 하트 레이어드 목걸이 (exactly one thin layered chain necklace with a small heart pendant,
+    drawn exactly as in the product photos)
+  name: 하트 목걸이
+  product: zigzag:135593307
+  slot: 목걸이
+looks: []
+mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
+  pale grey-white wall and floor, soft diffused studio light with one gentle shadow
+  on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
+  so the whole body from head to shoes is visible
+pose: standing in the studio like the first lookbook shot, in a long elegant stance
+  with the weight on one leg, head tilted up slightly and turned a little away from
+  the camera, one hand on the strap of the small chain bag; her black hair is long
+  and loosely wavy, falling past her shoulders
+reason: '블랙 하프넥 니트 미니가 주인공, 그레이 퍼 코트를 어깨에 걸치고 하트 목걸이로 은은하게 반짝이는 모임 룩. 참고: 블랙 하프넥 니트
+  미니 원피스/그레이 퍼 코트(팔에 걸침)/블랙 롱부츠/체인 크로스백/스타킹/골드 펜던트 → 맞춘 것: 블랙 반하이넥 골지 니트+블랙 모직 미니스커트(창고에
+  니트 미니 원피스가 없어 한 벌처럼)/그레이 퍼 더플 숏 코트/블랙 롱부츠/블랙 퀼팅 체인백/하트 목걸이 (따라 함: 참고 781)'
+ref_photo: tg:AgACAgUAAxkBAAIHwGrfCfbs5qCHTL_-ngOi_PCeZEfVAAKOFWsbCo_5Vl1cqHzqTA7IAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene.jpg
+shot: model
+styling: The gray fluffy fur coat is draped loosely over her shoulders like a cape,
+  not worn through the sleeves and not carried in the hand, so the fur pile stays
+  full and fluffy. The black thin ribbed half-neck knit is tucked into the plain black
+  mini skirt, slim and body-skimming, so the two read as one black dress with the
+  same dull matte finish; the necklace shows at the neckline. The skirt is very short
+  with a high waist, shorter than before, which makes her legs look long. The black
+  knee-high boots end just below the knee.
+text:
+  hashtags:
+  - '#연말모임룩'
+  - '#파티룩'
+  - '#올블랙코디'
+  - '#가을겨울코디'
+  intro: 7~20도 오락가락하는 요즘, 연말 모임 옷은 미리 저장해 두세요 🍷
+  points: []
+  title_lines:
+  - 연말 모임 앞두고
+  - 어두운 톤 옷장 공개
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)

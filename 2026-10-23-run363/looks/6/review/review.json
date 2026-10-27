@@ -1,0 +1,26 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 2,
+        "notes": "숏팬츠 롤업 없음, 허리 단추·주머니 징 있음, 완전한 검정, 윗허벅지 기장으로 상품과 맞음. 밑위는 중간~높은 편. 자켓 부클 질감이 다소 매끈.",
+        "feedback_ok": true,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c1",
+  "rounds": 1,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "요청한 숏팬츠 수정이 모두 보임. 합계 9점."
+}
