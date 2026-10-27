@@ -104,10 +104,16 @@ def styling_text(
 ) -> str:
     """입는 방법. 기획 styling, 없으면 아우터 기본(profile)과 상품별 wear_how.
     ref(기준 코디 사진을 같이 보냄)면 기본 입는 법을 글로 정하지 않고 그 사진대로 입힌다."""
-    if plan.styling:
-        return plan.styling
+    asks = requests_sentence(plan)
     if ref:
-        return REF_STYLING
+        # 2026-10-27 사용자: /fix 로 쓴 입는 모양("거의 다 여며서")이 "참고 사진대로"에 묻히지 않게,
+        # 기획 styling 은 참고 사진보다 앞서는 요청으로 붙인다
+        text = REF_STYLING
+        if plan.styling:
+            text = REF_OVERRIDE.format(styling=plan.styling.strip())
+        return f"{text} {asks}".strip()
+    if plan.styling:
+        return f"{plan.styling} {asks}".strip()
     cats = [products[it.product].category for it in plan.items]
     outer = profile.outfit_image.outer_styling if "아우터" in cats else ""
     parts = [outer] if outer else []
@@ -118,7 +124,20 @@ def styling_text(
         if outer and it.wear_with == "아우터":
             continue  # 예전 누끼 방식의 "활짝 열기" 지시와 겹치지 않게 아우터 기본을 쓴다
         parts.append(it.wear_how)
+    parts += [asks] if asks else []
     return " ".join(parts) or "Each item lies naturally as described, like a person wearing it."
+
+
+def requests_sentence(plan: DailyPlan) -> str:
+    """사람이 그리기 전에 정한 요청 (기획 requests, "한국어 (영어)").
+    상품이 아닌 소품, 포즈, 여밈 정도 등."""
+    if not plan.requests:
+        return ""
+    asks = "; ".join(english(x).strip().rstrip(".") for x in plan.requests)
+    return (
+        "The user also asked for these, and they beat the photos and any words above where they"
+        f" differ (an item named here is drawn even though it is not in the item sheets): {asks}."
+    )
 
 
 def layer_sentences(plan: DailyPlan, products: dict[str, Product], profile: Profile) -> list[str]:
@@ -186,6 +205,7 @@ def build_prompt(
             profile.flow.scene_prompt,
             person=person,
             worn=WORN_REF_MODEL if worn else "",
+            sheets=SHEETS_AFTER_REF if worn else SHEETS_FIRST,
             body=render_prompt("scene_body_ref" if worn else "scene_body"),
             items=item_lines(plan, products, cfg, ref=worn),
             styling=styling_text(plan, products, profile, ref=worn),
@@ -370,16 +390,32 @@ WORN_REF = (
 # 같은 날: 1. 참고 코디와 최대한 "동일"한 핏·코디 느낌, 2. 실제 제품의 재질·기장·색은
 # 절대 왜곡하지 않기. 그래서 입는 모양·핏은 이 사진, 상품 자체(재질·기장·색·디테일)는
 # 상품 참고판에서만 가져온다.
+SHEETS_FIRST = (
+    "The attached images are, in order, reference sheets of the exact items. Each sheet shows shop"
+    " photos of one item: worn photos show how long it is and how it sits on a body, close-ups show"
+    " its fabric."
+)
+# 2026-10-27 run376: 상품 사진 속 모델이 자켓을 열거나 벨트를 맨 모습을 따라 그려 참고 코디와 달라짐
+SHEETS_AFTER_REF = (
+    "After it come reference sheets of the exact items, in order. Each sheet decides only what the"
+    " product is: fabric, color, pattern, details, thickness and kind of length. Ignore how the"
+    " shop models there wear or style it (open or closed, belted, tucked, sleeves, pose)."
+)
 REF_STYLING = "exactly as in the reference outfit photo."
+REF_OVERRIDE = (
+    "as in the reference outfit photo, except for these exact requests, which beat the photo"
+    " where they differ: {styling}"
+)
 
 WORN_REF_MODEL = (
-    "The image after the item sheets is the reference outfit photo this look copies. Recreate that"
+    "The first attached image is the reference outfit photo this look copies. Recreate that"
     " look as closely as possible, as if that model's clothes were swapped one by one for the items"
     " in the sheets: the same silhouette and fit, the same length of each piece on her body, and"
     " the same way of wearing (open or closed, how far a zip is done up, how a belt or tie is tied,"
     " tucked or loose, which hems, cuffs and collars peek out and by how much, a coat over the"
     " shoulders or slipping off one shoulder, pushed-up sleeves, how high the waistband sits and"
-    " how much of the bottoms shows below the outer). This photo beats any wearing words. What each"
+    " how much of the bottoms shows below the outer). This photo beats the shop photos and any"
+    ' general wearing words; only the requests under "How they are worn" below beat it. What each'
     " product is comes only from its sheet: fabric, color, pattern and details (never add a belt,"
     " collar, pleats or buttons the product does not have), and its kind of length (a mini stays a"
     " mini, a half coat stays a half coat). She may also wear the plain tights or socks that model"
@@ -509,7 +545,8 @@ def make_candidates(
             (work / "originals" / "scene.jpg").write_bytes(scene)
             if worn:
                 (work / "originals" / "worn_ref.jpg").write_bytes(worn)
-            panels = [*panels, *([worn] if worn else []), scene]
+            # 기준 코디 사진을 맨 앞에 (상품 사진 속 입은 모양보다 먼저 보게)
+            panels = [*([worn] if worn else []), *panels, scene]
         elif worn:
             (work / "originals").mkdir(parents=True, exist_ok=True)
             (work / "originals" / "worn_ref.jpg").write_bytes(worn)

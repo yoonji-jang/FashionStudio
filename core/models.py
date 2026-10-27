@@ -149,6 +149,10 @@ class Look(BaseModel):
     # 후보 시트에 나란히 붙인다
     ref: str | None = None
     ref_photo: str | None = None
+    # 사람이 그리기 전에 정한 요청 (2026-10-27 사용자: 상품이 아닌 시스루 스타킹·선글라스,
+    # 포즈, 여밈 정도 같은 그리기 지시를 미리).
+    # "한국어 (영어)" 로 쓰고 이미지 AI 에는 영어만 간다. 후보 /fix 로 넣는다
+    requests: list[str] = Field(default=[], max_length=6)
 
 
 class DailyPlan(BaseModel):
@@ -192,6 +196,7 @@ class DailyPlan(BaseModel):
     # 있으면 얼굴을 가리지 않고 이 특징으로, 모든 벌이 같은 사람처럼.
     # 실제 사람을 닮게 하지 않는 일반 특징만
     face: str | None = None
+    requests: list[str] = Field(default=[], max_length=6)  # Look.requests 와 같음
 
     @model_validator(mode="after")
     def _items_or_looks(self) -> DailyPlan:
@@ -225,6 +230,7 @@ class DailyPlan(BaseModel):
                 "pose": look.pose,
                 "ref_photo": look.ref_photo,
                 "scene_image": look.scene_image or self.scene_image,
+                "requests": list(look.requests),
             }
         )
 

@@ -48,10 +48,18 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      (2026-10-27 사용자: 고쳐 그리면 틀린 상품이 남아 다시 그리는 비용이 듦). 먼저 `daily-feed` 의 "장면 모델컷" 절대로
      `python -m tools.plan photos out/$DATE/plan.yaml` 로 받은 그 벌의 참고 코디 사진(`src/refs/look_<n>.jpg`)과
      상세 사진을 photo-checker 로 다시 보고 `ref_photos`·`desc` 를 고친다. 참고 코디 사진이 있는 벌의 입는 모양
-     피드백(지퍼 올린 정도, 삐져나온 정도, 어깨에 걸치기, 한쪽 흘러내림, 핏·기장)은 참고 사진을 보고 판단한다:
-     참고 사진과 같게 해 달라는 것이면 `styling` 에 글로 적지 않고 처음부터 다시 그린다 (사진이 정답, 2026-10-27 사용자:
-     글로 강제하지 말고 참고 코디컷과 같은 룩). 참고와 다르게 해 달라는 것이나 상품이 아닌 것(스타킹 등)만 `styling` 에
-     영어로 짧게 적는다. 이미 `styling`·`desc` 에 있는 입는 모양·핏·기장 말은 지운다.
+     피드백(여밈, 지퍼 올린 정도, 삐져나온 정도, 어깨에 걸치기, 한쪽 흘러내림, 핏·기장)은 **사용자가 쓴 구체적인 말을
+     그대로** 그 벌 `styling` 에 영어로 옮긴다 (예: "/fix 1 거의 다 여며서 이너 흰티가 아주 조금만" → "The fur jacket is
+     closed almost all the way, so only a very thin strip of the white inner tee shows at the neck."). 참고 사진과 같게
+     해 달라는 말이어도 적는다 (2026-10-27 사용자: 같은 피드백이 반복됨 → 참고 사진만으로는 못 고침). 도구가 이 문장을
+     "참고 사진대로, 다만 이 요청이 앞섬"으로 보낸다. 기장은 몸 기준으로 쓴다 ("covers about half of her hips",
+     "the skirt shows about half as much as before, only a little below the knit"). 그 벌의 예전 `styling` 문장 중 새 요청과
+     어긋나는 것은 지운다. 상품이 아닌 것(시스루 스타킹, 선글라스, 모자)은 그 벌 `requests` 에 "한국어 (영어)" 로 넣고
+     (예: "시스루 검은 스타킹 (she wears sheer black see-through tights)"), 그 자리를 대신하던 상품(양말 등)은 뺀다.
+     벌에 이미 있는 `requests`(후보 때 사용자가 정한 그리기 요청)는 사용자가 바꾸라고 하지 않으면 그대로 둔다.
+     "상세페이지 느낌 살려줘", "더 풍성하게" 처럼 상품 자체가 덜 닮았다는 말이면 그 상품 `desc` 에 재질·부피 말(예:
+     "very fluffy, voluminous long-pile faux fur")을 더하고 photo-checker 로 재질 확대컷과 전신 착용컷이 `ref_photos` 에
+     들어가게 고른다.
    - **표지 코디컷** (옷 모양·크기·배치·색·입은 모양): `cover:` 줄을 지운다 (위 "고쳐 그린다" 대로 `edit_from` 으로 옮김). 피드백을 영어로 바꿔
      plan.yaml 의 `styling` 에 한 문장씩 덧붙이고(있던 문장과 어긋나면 그 문장을 고친다), 특정 상품의
      크기·기장·핏이면 그 상품의 `desc` 영어 부분, `size`, `cm` 을 고친다. 배치 기준은 `pick-outfit`
