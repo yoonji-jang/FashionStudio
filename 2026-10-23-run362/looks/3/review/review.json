@@ -1,0 +1,44 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 0,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "코트가 원본과 다름. 원본은 하이넥 스탠드칼라, 더블 단추 두 줄, 래글런 솔기, 소매 커프 탭인데 그림은 단추 하나짜리 넓은 라펠 칼라, 커프 탭·래글런 솔기 없음. 원단이 매끈한 펠트처럼 보임. 색은 초콜릿 브라운. 시스루 검정 스타킹, 양말 없음, 치마는 코트 밑으로 조금만 보임. 포즈는 두 팔을 내린 차렷에 가까워 경직됨. 얼굴은 face 참고보다 약함.",
+        "feedback_ok": false,
+        "faults": [
+          "material_differs"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 1,
+        "clean": 2,
+        "layout": 2,
+        "notes": "코트는 하이넥 칼라, 더블 단추, 래글런 솔기, 소매 커프 탭, 허리 벨트가 원본과 같고 색도 브라운. 부츠 밑창이 두꺼운 러그솔이라 원본의 낮은 굽과 다름. 가방이 코트와 팔 뒤로 절반 가까이 가려져 형태를 알아보기 어려움. 치마는 칼주름 미니로 코트 밑으로 조금만 보임. 스타킹 시스루 검정, 양말 없음. 한 손을 허리에 올리고 체중을 실어 차렷이 아님. 얼굴은 face 와 잘 맞음.",
+        "feedback_ok": true,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 가 원본 코트 디테일을 살렸고 /fix 요청(브라운, 짧은 치마, 시스루 스타킹, 차렷 아님)을 모두 반영함. c1 은 코트 칼라·단추 구성이 바뀌고 포즈 경직."
+}

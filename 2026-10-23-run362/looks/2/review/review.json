@@ -1,0 +1,42 @@
+{
+  "candidates": [
+    {
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 1,
+        "layout": 1,
+        "notes": "자켓은 둥근 블루종에 가깝지만 소매 개더가 약하고 몸판이 단정함. 부츠 앞코가 서로 다른 방향으로 벌어짐. 치마는 허벅지 중간까지 와서 짧게 해 달라는 요청에 덜 맞음. 흰 티는 가슴 쪽만 보이고 밑단은 거의 안 나옴. 얼굴은 face 참고보다 평범하고 순함. 정면 화보 포즈라 힙한 느낌 약함.",
+        "feedback_ok": false,
+        "faults": []
+      }
+    },
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 1,
+        "complete": 2,
+        "clean": 2,
+        "layout": 1,
+        "notes": "자켓은 라글란 어깨와 소매가 둥글게 부푸는 오버핏이고 커프스에서 오므려져 요청에 맞음. 치마는 상윗벅지 높이의 매끈한 미니로 맞음. 흰 티는 자켓 밑단 아래로 살짝만 보임. 부츠는 버클이 종아리가 아니라 발목에 있고 한 짝은 슬라우치, 다른 짝은 곧아 모양이 조금 다름. 정면 화보 같은 서 있는 포즈라 힙한 느낌은 약함. 얼굴은 face 참고와 가장 잘 맞음.",
+        "feedback_ok": true,
+        "faults": []
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": true,
+  "status": "passed",
+  "slide_issues": [],
+  "summary": "c2 가 자켓 볼륨, 짧은 치마, 흰 티 노출, 얼굴 일치에서 요청에 더 잘 맞음. 둘 다 단정한 스튜디오 정면 포즈라 힙한 느낌은 부족."
+}
