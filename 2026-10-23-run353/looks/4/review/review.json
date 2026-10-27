@@ -1,0 +1,28 @@
+{
+  "candidates": [
+    {
+      "id": "c2",
+      "file": "outfit_r2/results/G_1.jpg",
+      "round": 2,
+      "score": {
+        "id": "c2",
+        "color": 2,
+        "shape": 2,
+        "complete": 2,
+        "clean": 0,
+        "layout": 2,
+        "notes": "손가락에 반지가 보임(가방 든 오른손), 목록에 없는 물건이라 clean 0. 메리제인 두 짝의 각도가 서로 달라(왼쪽은 옆으로 돌아가고 오른쪽은 정면) 가지런하지 않음. 홀터넥 레이어드 이너, 각진 숄더백, 플리츠 미니, 골지 니삭스, 크롭 트위드 자켓은 원본과 잘 맞음. 얼굴은 face 특징(큰 쌍꺼풀 눈, 진한 눈썹과 아이라인, 블러셔, 도톰한 입술)에 가깝고 c1 과 같은 사람. 장면 사진의 스튜디오 무드와 전신 구도는 맞고, 장면 속 사람이나 옷은 섞이지 않음.",
+        "feedback_ok": null,
+        "faults": [
+          "shoes_not_neat"
+        ]
+      }
+    }
+  ],
+  "chosen": "c2",
+  "rounds": 2,
+  "passed": false,
+  "status": "failed",
+  "slide_issues": [],
+  "summary": "c2 가 원본과 더 가깝다(홀터 이너와 가방이 맞음). 다만 두 후보 모두 손가락 반지(clean 0)와 메리제인 정렬 문제(shoes_not_neat)가 있어 불합격이라 다시 그려야 한다. 다시 그릴 때 반지 없이, 신발을 앞코가 같은 쪽을 향하게 나란히 놓도록 한다."
+}
