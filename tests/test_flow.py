@@ -364,7 +364,8 @@ def test_scene_photos_saved_and_joined(env):
     tick(env, tg, T0 + 5100)
     st = flow.load_state(results, "women")
     assert st.scenes == ["flow/women/2026-10-15/scene.jpg"] and tg.got[-1] == "D"
-    assert not list(folder.glob("scene_*.jpg")) and not (folder / "scene.txt").exists()
+    # 설명 없이 다시 보낸 사진은 앞서 보낸 설명을 그대로 쓴다 (2026-10-27)
+    assert not list(folder.glob("scene_*.jpg")) and (folder / "scene.txt").exists()
 
 
 def test_look_scene_image_override():
@@ -945,3 +946,22 @@ def test_ref_photos_overflow_after_album():
     got = [fid for _, fid in flow.ref_photos(tg.ups, CHAT, T0)]
     assert got == ["ref_a", "ref_b", "ref_c", "ref_d"]
     assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["scene"]
+
+
+def test_scenes_carry_to_next_theme(tmp_path):
+    """장면 사진·설명은 새로 보낼 때까지 다음 주제에도 쓴다 (2026-10-27 사용자)."""
+    old = tmp_path / "flow/women/2026-10-27"
+    old.mkdir(parents=True)
+    for name in ("scene.jpg", "scene_2.jpg", "scene.txt"):
+        (old / name).write_text(name)
+    st = flow.FlowState(
+        account="women",
+        date=date(2026, 10, 28),
+        scenes=["flow/women/2026-10-27/scene.jpg", "flow/women/2026-10-27/scene_2.jpg"],
+        scene="flow/women/2026-10-27/scene.jpg",
+    )
+    flow._carry_scenes(tmp_path, "women", st, date(2026, 10, 27), False)
+    new = tmp_path / "flow/women/2026-10-28"
+    assert st.scene == "flow/women/2026-10-28/scene.jpg"
+    assert st.scenes[1] == "flow/women/2026-10-28/scene_2.jpg"
+    assert sorted(f.name for f in new.iterdir()) == ["scene.jpg", "scene.txt", "scene_2.jpg"]
