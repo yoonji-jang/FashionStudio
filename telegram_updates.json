@@ -566,5 +566,58 @@
    },
    "text": "/fix 10 스트라이프가 아닌 회색 후드티로 바꿔줘"
   }
+ },
+ {
+  "update_id": 428675896,
+  "message": {
+   "message_id": 2169,
+   "date": 1793103823,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "1,2,4,6,9,10"
+  }
+ },
+ {
+  "update_id": 428675897,
+  "message": {
+   "message_id": 2170,
+   "date": 1793104294,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIH5GrfVb1E0Oeu-qUN_TPQDYdNzVO7AAJ5FmsbCo_5VnDRcSxbYDPUAQADAgADeQADPQQ",
+   "caption": "참고. 이국적인 얼굴, 갸름하고 가로 여백 좁은 얼굴형, 잔머리있는 까치 슬릭번 또는 긴 웨이브머리",
+   "media_group_id": "14344834358559173"
+  }
+ },
+ {
+  "update_id": 428675898,
+  "message": {
+   "message_id": 2171,
+   "date": 1793104294,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIH5WrfVb17ozStH0QAAciuHjFTYu6QGgACehZrGwqP-VZX_B5ELk6jlAEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344834358559173"
+  }
+ },
+ {
+  "update_id": 428675899,
+  "message": {
+   "message_id": 2172,
+   "date": 1793104294,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIH42rfVb3r9Sa9hQqqhiiW3Zc8UQc0AAJ4FmsbCo_5Vn0AAcLXnz76_QEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344834358559173"
+  }
  }
 ]
