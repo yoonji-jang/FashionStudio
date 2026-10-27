@@ -5,10 +5,10 @@
 같은 날 게시 뒤 사용자: 글로 "허리선은 보통 높게", "치마는 조금만" 처럼 정하지 말고 참고 사진 그대로. 같은 날 run376: 장면 포즈(자켓 주머니에 손)가 여민 자켓을 벌림 → 포즈는 입은 모양을 바꾸지 않게.
 이 주석은 전송되지 않는다.
 -->
-Her body is slim with long legs. Everything about how the outfit sits on her comes from the reference
-outfit photo, not from words: the silhouette (an oversized, rounded or cocoon piece stays big and round,
+Her body is slim with long legs. Apart from the user's requests at the top, everything about how the outfit sits on her comes from the
+reference outfit photo, not from words: the silhouette (an oversized, rounded or cocoon piece stays big and round,
 a fitted piece stays fitted), where the waistband sits, how far each piece comes down on her body, how
 much of one layer shows under another, and how each piece is worn. Recreate that photo's look as closely
 as possible with these products.
 Her pose comes from the scene photo but never changes how the clothes are worn: an outer that is closed in
-the reference stays closed even with a hand in a pocket, and no hand pulls clothes open or up.
+the reference stays closed even with a hand in a pocket, and no hand pulls clothes open or up. A raised arm never lifts a top or knit shorter than it should be.

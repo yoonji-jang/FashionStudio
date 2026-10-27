@@ -551,7 +551,21 @@ def test_fix_edit_sends_worn_ref_and_user_photos(store, tmp_path, monkeypatch):
     assert rec.images[2] == (tmp_path / "w2" / "originals" / "scene.jpg").read_bytes()
     assert "The first attached image is the reference outfit photo" in rec.prompt
     assert "Ignore how the shop models there wear" in rec.prompt
-    assert "$" not in rec.prompt
+    assert "$" not in rec.prompt and "MOST IMPORTANT" not in rec.prompt
+    # 사용자 요청(기획 styling·requests)은 맨 위에 (2026-10-27 run378: 맨 끝에선 묻힘)
+    asked = new.model_copy(
+        update={
+            "styling": "The knit covers half of her hips.",
+            "requests": ["스타킹 (black tights)"],
+        }
+    )
+    products = {x.id: x for x in store.products()}
+    text = outfit_gen.build_prompt(asked, products, load_profile("women"), {}, worn=True)
+    top = text.index("MOST IMPORTANT")
+    assert top < text.index("The first attached image")
+    assert text.index("covers half of her hips") < text.index("The first attached image")
+    assert "black tights" in text[top:] and "스타킹" not in text
+    assert f"How they are worn: {outfit_gen.REF_STYLING}" in text
 
 
 def test_styling_requests_beat_ref(store):
