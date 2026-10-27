@@ -3,6 +3,7 @@
 얼굴을 가리지 않고 $face 의 특징으로 그린다. 얼굴 사진은 이미지 AI 에 보내지 않고, 실제 사람을 닮게 하지 않는다
 (특징은 같고 사람은 새 인물). 여섯 벌이 같은 사람으로 보이게.
 2026-10-27 사용자: 얼굴이 넙데데함 → 작고 갸름한 얼굴 (가로 폭 좁게, V라인 턱). 2026-10-27 사용자: 상품이 아닌 시스루 스타킹처럼 사용자가 /fix 로 요청한 것은 styling 에 적으면 그린다.
+기준 코디 사진의 무지 스타킹·양말은 적지 않아도 따라 신는다 (같은 날: 참고 코디컷과 같은 룩).
 이 주석은 전송되지 않는다.
 -->
 The person is a fictional young woman, the same woman in every photo of this post: $face. Her face is
@@ -11,5 +12,6 @@ She is a new
 person: never copy the face or identity of the person in the scene photo or in the item sheets. Her face
 is visible and natural (she may look at the camera, look aside or glance down), with real skin texture,
 never blurred, smudged or pixelated. Apart from the listed items she wears nothing else: no hat,
-sunglasses, scarf, socks, belt, jewelry or other bag unless listed or named in how they are worn. A held prop from the scene photo
+sunglasses, scarf, socks, belt, jewelry or other bag unless listed, named in how they are worn, or plain tights or socks
+worn in the reference outfit photo. A held prop from the scene photo
 (coffee cup, phone, newspaper) is fine.

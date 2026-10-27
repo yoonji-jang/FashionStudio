@@ -55,14 +55,22 @@ def english(desc: str) -> str:
     return found[-1].strip() if found else desc.strip()
 
 
-def item_size(it: PlanItem, product: Product, cfg: dict, worn: bool = False) -> str:
+def item_size(
+    it: PlanItem, product: Product, cfg: dict, worn: bool = False, ref: bool = False
+) -> str:
     """상품의 실제 크기 (영어). 기획 size, 옷은 cm (기획·이름·layout.yaml), 나머지는
-    config default_sizes. worn 이면(장면 모델컷) 옷 기장은 cm 대신 상품 착용컷을 따르게 한다."""
+    config default_sizes. worn 이면(장면 모델컷) 옷 기장은 cm 대신 상품 착용컷을 따르게 하고,
+    ref(기준 코디 사진을 같이 보냄)면 옷 기장·크기를 글로 정하지 않는다 (그 사진이 정답)."""
     from tools import plan as plan_tool
     from tools.compose import load_layout
 
     cat = product.category
     clothes = cat in (*CLOTHES_FROM_SHOULDER, "하의")
+    if ref and clothes:
+        # 몸에서 보이는 기장은 기준 코디 사진대로 (2026-10-27 사용자: 핏·기장을 글로 강제하지 말고
+        # 참고 코디컷과 같은 실루엣·기장으로). 실측 cm 나 "착용컷 기장" 글이 사진과
+        # 다투지 않게 비운다
+        return ""
     if worn and clothes:
         # 입은 모습의 기장은 상품 착용컷의 모델 몸에서 끝나는 자리를 따른다. 실측표를 못 읽었을 때
         # 이름으로 짐작한 기본 cm 를 보내면 사진과 어긋난다 (2026-10-27 사용자: 크롭 점퍼에 68cm,
@@ -91,10 +99,15 @@ def ref_indexes(it: PlanItem) -> list[int]:
     return list(dict.fromkeys([it.cutout_photo] + ([it.photo] if it.photo is not None else [])))
 
 
-def styling_text(plan: DailyPlan, products: dict[str, Product], profile: Profile) -> str:
-    """입는 방법. 기획 styling, 없으면 아우터 기본(profile)과 상품별 wear_how."""
+def styling_text(
+    plan: DailyPlan, products: dict[str, Product], profile: Profile, ref: bool = False
+) -> str:
+    """입는 방법. 기획 styling, 없으면 아우터 기본(profile)과 상품별 wear_how.
+    ref(기준 코디 사진을 같이 보냄)면 기본 입는 법을 글로 정하지 않고 그 사진대로 입힌다."""
     if plan.styling:
         return plan.styling
+    if ref:
+        return REF_STYLING
     cats = [products[it.product].category for it in plan.items]
     outer = profile.outfit_image.outer_styling if "아우터" in cats else ""
     parts = [outer] if outer else []
@@ -135,13 +148,15 @@ def sheet_name(i: int) -> str:
     return f"{ORDINALS[i - 1]} sheet" if 0 < i <= len(ORDINALS) else f"sheet {i}"
 
 
-def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1) -> str:
+def item_lines(
+    plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1, ref: bool = False
+) -> str:
     lines = []
     worn = plan.shot == "model" and bool(plan.scene_image)
     for i, it in enumerate(plan.items, start):
         p = products[it.product]
         cat = generate.CATEGORY_EN.get(p.category, "item")
-        size = item_size(it, p, cfg, worn)
+        size = item_size(it, p, cfg, worn, ref and worn)
         line = f"The {sheet_name(i)}: the {cat}, {english(it.desc)}."
         lines.append(line + (f" Real size: {size}." if size else ""))
     return "\n".join(lines)
@@ -172,8 +187,8 @@ def build_prompt(
             person=person,
             worn=WORN_REF_MODEL if worn else "",
             body=render_prompt("scene_body_ref" if worn else "scene_body"),
-            items=item_lines(plan, products, cfg),
-            styling=styling_text(plan, products, profile),
+            items=item_lines(plan, products, cfg, ref=worn),
+            styling=styling_text(plan, products, profile, ref=worn),
             pose=plan.pose or "a relaxed natural pose like in the scene photo",
             mood=plan.mood or "the same kind of photo as the scene photo",
             season=season_en(plan.date),
@@ -214,8 +229,9 @@ EDIT_KEEP = {
 }
 # 고쳐 그릴 때 덧붙이는 참고 그림 설명 (상품 참고판 다음 순서대로)
 EDIT_WORN = (
-    "Image {n} is the reference outfit photo this look copies. Use it for how the clothes fit"
-    " and sit on the body (length, looseness, tuck), never for its background, pose or face."
+    "Image {n} is the reference outfit photo this look copies. Use it for how the clothes fit,"
+    " sit and are worn on the body (silhouette, length on the body, looseness, tuck, closures,"
+    " what peeks out), never for its background, pose or face."
 )
 EDIT_REFS = (
     "Then come reference photos for this change ({nums}). Use them only for what the change asks"
@@ -242,7 +258,7 @@ def edit_prompt(
     return render_prompt(
         "outfit_edit",
         request=plan.edit_request or "Fix only what is wrong compared with the product photos.",
-        items=item_lines(plan, products, cfg, start=2),
+        items=item_lines(plan, products, cfg, start=2, ref=worn),
         kind=EDIT_KINDS[kind],
         keep=EDIT_KEEP[kind],
         extra=" ".join(extra),
@@ -354,21 +370,21 @@ WORN_REF = (
 # 같은 날: 1. 참고 코디와 최대한 "동일"한 핏·코디 느낌, 2. 실제 제품의 재질·기장·색은
 # 절대 왜곡하지 않기. 그래서 입는 모양·핏은 이 사진, 상품 자체(재질·기장·색·디테일)는
 # 상품 참고판에서만 가져온다.
+REF_STYLING = "exactly as in the reference outfit photo."
+
 WORN_REF_MODEL = (
-    "The image after the item sheets is the reference outfit photo this look copies. Dress her"
-    " exactly the way the outfit is worn there, as if that model's clothes were swapped one by"
-    " one for the items in the sheets, so the fit and the feel of the outfit are the same:"
-    " whether an outer is open or closed and how a coat belt or waist tie is tied, how much of a"
-    " top is tucked in and how much hangs out, which hems, cuffs and collars peek out from under"
-    " other layers and by how much, how sleeves are pushed up, how high the waistband sits and"
-    " how much of the bottoms shows below the outer, how loose or close each piece sits on the"
-    " body and the overall silhouette. Where this photo differs from the general wearing"
-    " rules below, follow this photo. The products themselves come only from the item sheets:"
-    " never take fabric, color, pattern, length or details from this photo. If a piece there is"
-    " longer or shorter, or has a belt, collar, pleats or buttons the product does not have, draw"
-    " the product as it is in its sheet. Never copy that photo's face, background or pose, and"
-    " draw nothing that is not in the sheets even if that model wears it, unless the wearing"
-    " text below names it."
+    "The image after the item sheets is the reference outfit photo this look copies. Recreate that"
+    " look as closely as possible, as if that model's clothes were swapped one by one for the items"
+    " in the sheets: the same silhouette and fit, the same length of each piece on her body, and"
+    " the same way of wearing (open or closed, how far a zip is done up, how a belt or tie is tied,"
+    " tucked or loose, which hems, cuffs and collars peek out and by how much, a coat over the"
+    " shoulders or slipping off one shoulder, pushed-up sleeves, how high the waistband sits and"
+    " how much of the bottoms shows below the outer). This photo beats any wearing words. What each"
+    " product is comes only from its sheet: fabric, color, pattern and details (never add a belt,"
+    " collar, pleats or buttons the product does not have), and its kind of length (a mini stays a"
+    " mini, a half coat stays a half coat). She may also wear the plain tights or socks that model"
+    " wears. Never copy that photo's face or background, and draw nothing else that is not in the"
+    " sheets, unless the wearing text below names it."
 )
 
 
