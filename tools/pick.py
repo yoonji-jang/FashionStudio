@@ -566,6 +566,12 @@ TEXT_KINDS: dict[str, Category] = {
     "원피스": "원피스",
     "신발": "신발",
     "가방": "가방",
+    "모자": "소품",
+    "양말": "소품",
+    "스타킹": "소품",
+    "벨트": "소품",
+    "머플러": "소품",
+    "목도리": "소품",
 }
 
 
@@ -579,10 +585,9 @@ def guess_category(name: str, hint: str = "") -> Category:
                 best = (at + len(w), cat)
     if best:
         return best[1]
-    for w, cat in TEXT_KINDS.items():
-        if w in hint:
-            return cat
-    return "소품"
+    # 사람이 쓴 말에서는 가장 먼저 나온 종류 ("모자 이거로 바꿔줘. 이너 티셔츠는 …" → 소품)
+    said = [(hint.find(w), cat) for w, cat in TEXT_KINDS.items() if w in hint]
+    return min(said)[1] if said else "소품"
 
 
 def fetch_link(url: str) -> tuple[int, str, str]:
@@ -621,7 +626,7 @@ def link_product(
         shop=info.shop or "",
         name=info.name,
         price=info.price or 0,
-        category=old.category if old else guess_category(info.name, hint),
+        category=guess_category(info.name, hint),  # 창고 분류가 틀린 상품도 있어 이름으로 다시
         image_urls=info.image_urls,
         style_tags=info.style_tags,
         status="on_sale",
@@ -669,16 +674,25 @@ def add_links(out: Path, store: Store, today: date, fetch=fetch_link) -> list[Pr
     return list(added.values())
 
 
-def restore_user(store: Store, prev: Path) -> int:
-    """지난 실행들이 남긴 user_products.json 의 상품 중 창고에 없는 것을 다시 넣는다.
-    (실행이 창고를 main 에 커밋하지 않아, 사람이 보낸 상품은 결과 브랜치에만 남는다)"""
+def restore_user(store: Store, prev: Path, out: Path | None = None) -> int:
+    """창고에 없는 상품을 지난 실행이 남긴 기록에서 다시 넣는다. 실행은 창고를 main 에 커밋하지
+    않아서, 사람이 /fix 링크로 보낸 상품(user_products.json)과 후보 실행 중 tools.collect 로 모은
+    상품(collect_*/products.json)은 결과 브랜치에만 남는다.
+    out 을 주면 그 안의 기획(*.yaml)이 쓰는 상품만 넣는다
+    (판매 끝난 옛 상품이 후보로 돌아오지 않게)."""
     products = {p.id: p for p in store.products()}
+    wanted = None
+    if out is not None:
+        text = " ".join(f.read_text(encoding="utf-8") for f in out.rglob("*.yaml"))
+        wanted = set(re.findall(r"[a-z0-9_-]+:\d+", text))
+    files = sorted(prev.glob(f"*/{USER_PRODUCTS}")) + sorted(prev.glob("*/collect_*/products.json"))
     added = 0
-    for f in sorted(prev.glob(f"*/{USER_PRODUCTS}")):
+    for f in reversed(files):  # 같은 상품이면 최근 실행 것
         for row in json.loads(f.read_text(encoding="utf-8")):
-            if row["id"] not in products:
-                products[row["id"]] = Product.model_validate(row)
-                added += 1
+            if row["id"] in products or (wanted is not None and row["id"] not in wanted):
+                continue
+            products[row["id"]] = Product.model_validate(row)
+            added += 1
     if added:
         store.save_products(list(products.values()))
     return added
@@ -1099,6 +1113,7 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("restore-user", help="지난 실행이 넣은 사람이 보낸 상품을 창고에 다시 넣기")
     s.add_argument("--account", required=True)
     s.add_argument("--prev", type=Path, required=True, help="daily-results 브랜치 폴더")
+    s.add_argument("--out", type=Path, help="이 실행 폴더 (그 기획이 쓰는 상품만 넣음)")
     s = sub.add_parser("send-edit", help="고친 벌 시트만 다시 보내기")
     s.add_argument("out", type=Path)
     s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
@@ -1118,8 +1133,8 @@ def main(argv: list[str] | None = None) -> int:
             print(f"후보 고치기 준비 → {f}")
             return 0
         if args.cmd == "restore-user":
-            n = restore_user(Store(args.account), args.prev)
-            print(f"사람이 보낸 상품 {n}개를 창고에 다시 넣음")
+            n = restore_user(Store(args.account), args.prev, args.out)
+            print(f"창고에 없던 상품 {n}개를 지난 실행 기록에서 다시 넣음")
             return 0
         if args.cmd == "status":
             f = args.run_dir / "picks" / "pick.json"

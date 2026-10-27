@@ -189,6 +189,15 @@ def test_check_counts_shops_and_required(store):
     assert any("필수 카테고리 가방" in e for e in errors)
 
 
+def test_dress_fills_top_and_bottom(store):
+    store.save_products(store.products() + [product(50, "원피스")])
+    p = daily()
+    p.items = [it for it in p.items if it.product not in ("zigzag:2", "zigzag:3")]
+    p.items.insert(1, p.items[0].model_copy(update={"product": "zigzag:50", "name": "원피스"}))
+    errors, _ = plan.check(p, load_profile("women"), store)
+    assert not any("필수 카테고리 상의" in e or "필수 카테고리 하의" in e for e in errors)
+
+
 def test_candidates_skip_used_and_sold_out(store):
     profile = load_profile("women")
     products = store.products()
