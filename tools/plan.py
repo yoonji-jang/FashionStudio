@@ -781,6 +781,36 @@ def fetch_candidates(plan: DailyPlan, profile: Profile, store: Store, dest: Path
     return result
 
 
+def missing_photos(plan: DailyPlan, photos: dict, store: Store, wanted: int) -> list[str]:
+    """받으려던 사진 수보다 적게 받은 상품 id (서버 오류 등)."""
+    urls = {p.id: len(p.image_urls) for p in store.products()}
+    ids = dict.fromkeys(it.product for it in plan.all_items())
+    return [pid for pid in ids if len(photos.get(pid, [])) < min(wanted, urls.get(pid, 0))]
+
+
+def look_refs(plan: DailyPlan, profile: Profile, out: Path) -> list[str]:
+    """벌마다 따라 한 참고 코디 사진을 out/<날짜>/src/refs/look_<n>.jpg 로 받는다 (얼굴은 가림).
+    photo-checker 가 이 사진과 가장 비슷하게 입은 상세 사진을 고른다 (2026-10-27 사용자).
+    src/ 는 결과 브랜치에 올리지 않는다."""
+    from tools import outfit_gen
+
+    lines = []
+    for n in range(1, len(plan.looks) + 1):
+        look = plan.look_plan(n - 1)
+        if not look.ref_photo:
+            continue
+        cache = generate.CACHE_DIR / plan.account
+        data = outfit_gen.worn_ref_panel(look, profile, cache, edit=True)
+        if not data:
+            lines.append(f"{n}벌 참고 코디 사진을 받지 못함")
+            continue
+        path = out / "src" / "refs" / f"look_{n}.jpg"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
+        lines.append(f"{n}벌 참고 코디: {rel(path)}")
+    return lines
+
+
 def photo_sheet(plan: DailyPlan, photos: dict, out: Path, thumb: int = 230) -> Path:
     """사진 확인표: 상품마다 한 줄. 왼쪽에 상품 이름·고른 색, 오른쪽에 사진과 번호
     (얼굴이 있으면 빨간 표시)."""
@@ -1128,6 +1158,16 @@ def main(argv: list[str] | None = None) -> int:
             # 여러 벌이면 벌마다 한 장 (한 장에 다 넣으면 너무 길어 읽기 어려움)
             for n in range(1, len(plan.looks) + 1):
                 print(photo_sheet(plan.look_plan(n - 1), photos, out / f"photo_check_{n}.jpg"))
+            for line in look_refs(plan, profile, out):
+                print(line)
+            missing = missing_photos(plan, photos, store, profile.feed.photo_candidates)
+            if missing:
+                # 사진을 못 받았다고 상품을 바꾸면 사람이 고른 것과 다른 옷이 그려진다
+                # (2026-10-27 run349)
+                print(
+                    "사진을 다 받지 못한 상품 (다시 돌리면 받은 사진은 건너뜀): "
+                    + ", ".join(missing)
+                )
             return 0
         manifest = build(plan, out, profile, store, args.outfit, args.fake)
         print(f"완료: 슬라이드 {len(manifest.images)}장 → {rel(out / 'manifest.json')}")

@@ -55,51 +55,28 @@ def english(desc: str) -> str:
     return found[-1].strip() if found else desc.strip()
 
 
-# 165cm 안팎 여성이 입었을 때 기장(cm)이 끝나는 자리 (어깨부터 / 허리부터)
-FROM_SHOULDER_POINTS = [
-    (52, "at her waist (a cropped length)"),
-    (62, "at her high hip, just below the waist"),
-    (74, "at her hip, covering the waistband"),
-    (86, "at her upper thigh, below the hip"),
-    (98, "at mid-thigh"),
-    (110, "just above the knee"),
-    (125, "at mid-calf"),
-]
-FROM_WAIST_POINTS = [
-    (36, "at the very top of her thighs (very short)"),
-    (46, "at her upper thigh, well above mid-thigh"),
-    (56, "at mid-thigh"),
-    (66, "just above the knee"),
-    (76, "just below the knee"),
-    (88, "at mid-calf"),
-]
-
-
-def body_point(cat: str, cm: float) -> str:
-    points = FROM_WAIST_POINTS if cat == "하의" else FROM_SHOULDER_POINTS
-    return next((where for limit, where in points if cm <= limit), "at her ankles")
-
-
 def item_size(it: PlanItem, product: Product, cfg: dict, worn: bool = False) -> str:
     """상품의 실제 크기 (영어). 기획 size, 옷은 cm (기획·이름·layout.yaml), 나머지는
-    config default_sizes. worn 이면(모델컷) 옷 기장이 몸의 어디까지 오는지도 붙인다."""
+    config default_sizes. worn 이면(장면 모델컷) 옷 기장은 cm 대신 상품 착용컷을 따르게 한다."""
     from tools import plan as plan_tool
     from tools.compose import load_layout
 
+    cat = product.category
+    clothes = cat in (*CLOTHES_FROM_SHOULDER, "하의")
+    if worn and clothes:
+        # 입은 모습의 기장은 상품 착용컷의 모델 몸에서 끝나는 자리를 따른다. 실측표를 못 읽었을 때
+        # 이름으로 짐작한 기본 cm 를 보내면 사진과 어긋난다 (2026-10-27 사용자: 크롭 점퍼에 68cm,
+        # "기장을 고정하면 안 되고 상세페이지·참고 코디컷을 그대로")
+        same = "its hem ends on her body exactly where it ends on the shop model in its worn photos"
+        return f"{it.size}; {same}" if it.size else same
     if it.size:
         return it.size
-    cat = product.category
     sizes = cfg.get("default_sizes", {})
-    if cat in (*CLOTHES_FROM_SHOULDER, "하의"):
+    if clothes:
         layout = load_layout()
         cm = plan_tool.item_length(it, product, layout) or layout["slots"][cat]["cm"]
         where = "from waist to hem" if cat == "하의" else "from shoulder to hem"
-        text = f"about {cm:g} cm long {where}"
-        if worn:
-            # 입은 모습은 cm 보다 몸의 어디까지 오는지로 알려 준다
-            # (2026-10-27 사용자: 기장이 자꾸 길게 그려짐)
-            text += f", so on her it ends {body_point(cat, cm)}"
-        return text
+        return f"about {cm:g} cm long {where}"
     # 스카프를 목걸이 칸에 넣으면 목걸이 크기가 붙어 체인처럼 그려질 수 있다 (2026-10-14 run246)
     text = f"{product.name} {it.desc}".lower()
     if "스카프" in text or "scarf" in text:
@@ -160,7 +137,7 @@ def sheet_name(i: int) -> str:
 
 def item_lines(plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1) -> str:
     lines = []
-    worn = plan.shot == "model"
+    worn = plan.shot == "model" and bool(plan.scene_image)
     for i, it in enumerate(plan.items, start):
         p = products[it.product]
         cat = generate.CATEGORY_EN.get(p.category, "item")
@@ -371,17 +348,24 @@ WORN_REF = (
 
 # 2026-10-27 사용자: "참고 코디컷과 동일하게 입어야 해"
 # (코트 허리 묶기, 자켓 밑으로 티셔츠가 얼마나 삐져나오는지).
-# 장면 모델컷도 따라 한 기준 코디 사진을 보내 입는 모양을 따르게 한다 (장면 사진은 무드·자리·포즈만)
+# 장면 모델컷도 따라 한 기준 코디 사진을 보내 입는 모양을 따르게 한다
+# (장면 사진은 무드·자리·포즈만).
+# 같은 날: 1. 참고 코디와 최대한 "동일"한 핏·코디 느낌, 2. 실제 제품의 재질·기장·색은
+# 절대 왜곡하지 않기. 그래서 입는 모양·핏은 이 사진, 상품 자체(재질·기장·색·디테일)는
+# 상품 참고판에서만 가져온다.
 WORN_REF_MODEL = (
-    "The image after the item sheets is the reference outfit photo this look copies."
-    " Dress her exactly the way the outfit is worn there, with each piece swapped for"
-    " the matching item from the sheets: whether an outer is open or closed and how a"
-    " coat belt or waist tie is tied, how much of a top is tucked in and how much hangs"
-    " out, which hems, cuffs and collars peek out from under other layers and by how"
-    " much, how sleeves are pushed up, and the silhouette and length each piece has on"
-    " her body. Take colors and details only from the item sheets, draw nothing that is"
-    " not in the sheets even if that model wears it, and never copy that photo's face,"
-    " background or pose."
+    "The image after the item sheets is the reference outfit photo this look copies. Dress her"
+    " exactly the way the outfit is worn there, as if that model's clothes were swapped one by"
+    " one for the items in the sheets, so the fit and the feel of the outfit are the same:"
+    " whether an outer is open or closed and how a coat belt or waist tie is tied, how much of a"
+    " top is tucked in and how much hangs out, which hems, cuffs and collars peek out from under"
+    " other layers and by how much, how sleeves are pushed up, how loose or close each piece sits"
+    " on the body and the overall silhouette. Where this photo differs from the general wearing"
+    " rules below, follow this photo. The products themselves come only from the item sheets:"
+    " never take fabric, color, pattern, length or details from this photo. If a piece there is"
+    " longer or shorter, or has a belt, collar, pleats or buttons the product does not have, draw"
+    " the product as it is in its sheet. Never copy that photo's face, background or pose, and"
+    " draw nothing that is not in the sheets even if that model wears it."
 )
 
 

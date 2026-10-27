@@ -10,8 +10,10 @@ tools: Read, Glob
 얼굴이 잡힌 사진은 빨간 "얼굴 N"), `out/<날짜>/photos.json` (번호별 파일 경로와 얼굴 수).
 필요하면 `out/<날짜>/photos/` 의 사진을 하나씩 크게 본다.
 여러 벌 게시물(20단계, plan.yaml 에 `looks`)이면 확인표가 벌마다 `photo_check_<벌 번호>.jpg` 로 나온다.
+장면 모델컷이면 벌마다 따라 한 참고 코디 사진 `out/<날짜>/src/refs/look_<벌 번호>.jpg` 도 있다 (아래 9번).
 상품 장이 없으니 `photo` 는 비워도 되고 `cutout_photo`·`ref_photos`(코디컷 참고)만 고르면 된다.
-같은 상품(가방·신발)이 두 벌에 있으면 한 번만 돌려준다.
+같은 상품(가방·신발)이 두 벌에 있으면 한 번만 돌려준다. 단 장면 모델컷은 벌마다 참고 코디가 달라 고를 사진이 달라질 수 있으니
+벌마다 따로 돌려주고 `look: <벌 번호>` 를 붙인다.
 
 상품마다 판단할 것:
 1. **색**: plan.yaml 의 `color` 와 같은 색의 상품이 찍힌 사진인지. 한 사진에 여러 색이 함께 있으면
@@ -37,7 +39,23 @@ tools: Read, Glob
 7. **쇼핑몰 코디 (styled_with, 옷만)**: 착용컷에서 모델이 이 상품을 무엇과 입었는지 짧게 적는다.
    특히 안에 받쳐 입은 이너(white crew-neck tee, black sleeveless tank, thin turtleneck)가 보이면 꼭 적는다.
    목선이 깊게 파인 상의(딥 브이넥, 오프숄더, 홀터)인데 착용컷에 이너가 없어도 "needs a plain inner" 로 적는다.
-8. 맞는 사진이 하나도 없으면 그 상품은 "교체 필요"로 표시한다.
+8. 맞는 사진이 하나도 없으면 그 상품은 "교체 필요"로 표시한다. 단 사진을 받지 못해 줄이 비었거나 몇 장만 있으면
+   (서버 오류) 교체가 아니라 `missing: true` 로 돌려준다 (2026-10-27: 서버 오류로 사진이 빠져 사람이 고른 상품이 바뀜).
+9. **참고 코디와 맞추기** (장면 모델컷, `out/<날짜>/src/refs/look_<n>.jpg` 가 있을 때, 2026-10-27 사용자):
+   이 사진은 그 벌이 따라 하는 참고 코디다. 사용자의 가장 중요한 기준은 "참고 코디와 최대한 동일한 핏·코디 느낌"과
+   "실제 제품의 재질·기장·색을 절대 왜곡하지 않기"다. 그래서 그 벌 상품의 `ref_photos` 는 2~4장을 이 순서로 고른다.
+   - (a) 참고 코디와 가장 비슷하게 입은 착용컷: 같은 여밈(열림·닫힘), 코트 벨트·허리끈 묶음, 넣어 입음, 소매 걷음,
+     비슷한 포즈와 핏. 예: 참고에서 코트 허리를 벨트로 묶었으면 벨트로 묶은 착용컷.
+   - (b) 기장이 보이는 전신 착용컷 (밑단이 모델 몸 어디서 끝나는지 보임). (a) 가 전신이면 따로 안 넣어도 된다.
+   - (c) 정면 단독컷이나 정면 착용컷 (모양 전체).
+   - (d) 재질 확대컷 (니트 짜임, 울 결, 가죽 광, 새틴 광택, 부클 고리). 확대컷이 없으면 재질이 가장 잘 보이는 사진.
+   첫 장은 (a). (a) 가 없으면 정면 착용컷을 첫 장으로. 다른 색 사진은 넣지 않는다.
+   그리고 옷마다 다음을 적는다.
+   - `length`: 착용컷 모델 몸에서 밑단이 끝나는 자리 (영어: ends at the waist / high hip / upper thigh / mid-thigh /
+     just above the knee / mid-calf / ankle).
+   - `material`: 사진으로 본 재질과 두께 (영어: thick brushed wool, thin glossy satin, chunky ribbed knit).
+   - `ref_diff`: 참고 코디의 그 옷과 상품이 다른 점 (기장, 벨트·카라·주름·단추 유무, 재질, 핏). 같으면 빈칸.
+     예: "참고 코트는 벨트로 묶었는데 상품에 벨트가 없음", "참고 스커트는 무릎 위, 상품은 허벅지 위".
 
 돌려줄 형식 (YAML 만):
 ```yaml
@@ -49,6 +67,9 @@ tools: Read, Glob
   fit: oversized, dropped shoulders, hip length, soft drapey cotton   # 옷만
   styled_with: white crew-neck tee inside, tucked into wide denim   # 옷만, 착용컷에서 본 코디
   note: 0번은 두 색이 함께 있어 상품 장은 2번. desc 는 cropped 인데 사진은 엉덩이 기장 오버핏
+  length: ends at the high hip     # 장면 모델컷, 옷만
+  material: soft drapey cotton twill, medium weight
+  ref_diff: 참고 자켓은 허리 벨트로 묶었는데 상품에 벨트가 없음
 - product: zigzag:136581318
   replace: true
   note: 화이트 옵션 사진이 없음 (블루만 있음)
