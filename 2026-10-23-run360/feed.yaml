@@ -1,0 +1,222 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 레더 후드 점퍼
+  product: zigzag:172421417
+- comment: ''
+  name: 블랙 레이어링 티
+  product: zigzag:136294220
+- comment: ''
+  name: 워싱 데님 스커트
+  product: zigzag:162414325
+- comment: ''
+  name: 스웨이드 롱부츠
+  product: zigzag:147005253
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:168564549
+- comment: ''
+  name: 하이넥 점퍼
+  product: zigzag:157745502
+- comment: ''
+  name: 화이트 티
+  product: zigzag:167142875
+- comment: ''
+  name: 울 미니스커트
+  product: zigzag:150110018
+- comment: ''
+  name: 슬라우치 부츠
+  product: zigzag:165705028
+- comment: ''
+  name: 퀼팅 체인백
+  product: zigzag:105424126
+- comment: ''
+  name: 벨티드 숏 코트
+  product: zigzag:172115313
+- comment: ''
+  name: 블랙 무지 티
+  product: zigzag:166412607
+- comment: ''
+  name: 플리츠 미니
+  product: zigzag:167228033
+- comment: ''
+  name: 오버니 부츠
+  product: zigzag:131281211
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:170305230
+- comment: ''
+  name: 트위드 자켓
+  product: zigzag:168299406
+- comment: ''
+  name: 캉캉 미니
+  product: zigzag:167352017
+- comment: ''
+  name: 스틸레토 메리제인
+  product: zigzag:121428665
+- comment: ''
+  name: 블랙 토트백
+  product: zigzag:130366243
+- comment: ''
+  name: 골지 니삭스
+  product: zigzag:136839704
+- comment: ''
+  name: 퍼 더플 숏 코트
+  product: zigzag:172164501
+- comment: ''
+  name: 반하이넥 골지 니트
+  product: zigzag:171832859
+- comment: ''
+  name: 모직 미니스커트
+  product: zigzag:165443666
+- comment: ''
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+- comment: ''
+  name: 퀼팅 체인백
+  product: zigzag:119058597
+- comment: ''
+  name: 하트 목걸이
+  product: zigzag:135593307
+- comment: ''
+  name: 부클 트위드 자켓
+  product: zigzag:131968425
+- comment: ''
+  name: 블랙 반폴라 티
+  product: zigzag:151586371
+- comment: ''
+  name: 블랙 숏팬츠
+  product: zigzag:158913245
+- comment: ''
+  name: 스틸레토 앵클부츠
+  product: zigzag:110635258
+- comment: ''
+  name: 퀼팅 체인백
+  product: zigzag:135922060
+- comment: ''
+  name: 진주 초커
+  product: zigzag:134391809
+- comment: ''
+  name: 골드 링 귀걸이
+  product: zigzag:142880069
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 레더 후드 점퍼
+    product: zigzag:172421417
+  - comment: ''
+    name: 블랙 레이어링 티
+    product: zigzag:136294220
+  - comment: ''
+    name: 워싱 데님 스커트
+    product: zigzag:162414325
+  - comment: ''
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168564549
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 점퍼
+    product: zigzag:157745502
+  - comment: ''
+    name: 화이트 티
+    product: zigzag:167142875
+  - comment: ''
+    name: 울 미니스커트
+    product: zigzag:150110018
+  - comment: ''
+    name: 슬라우치 부츠
+    product: zigzag:165705028
+  - comment: ''
+    name: 퀼팅 체인백
+    product: zigzag:105424126
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 벨티드 숏 코트
+    product: zigzag:172115313
+  - comment: ''
+    name: 블랙 무지 티
+    product: zigzag:166412607
+  - comment: ''
+    name: 플리츠 미니
+    product: zigzag:167228033
+  - comment: ''
+    name: 오버니 부츠
+    product: zigzag:131281211
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:170305230
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 트위드 자켓
+    product: zigzag:168299406
+  - comment: ''
+    name: 블랙 무지 티
+    product: zigzag:166412607
+  - comment: ''
+    name: 캉캉 미니
+    product: zigzag:167352017
+  - comment: ''
+    name: 스틸레토 메리제인
+    product: zigzag:121428665
+  - comment: ''
+    name: 블랙 토트백
+    product: zigzag:130366243
+  - comment: ''
+    name: 골지 니삭스
+    product: zigzag:136839704
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/5/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 퍼 더플 숏 코트
+    product: zigzag:172164501
+  - comment: ''
+    name: 반하이넥 골지 니트
+    product: zigzag:171832859
+  - comment: ''
+    name: 모직 미니스커트
+    product: zigzag:165443666
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - comment: ''
+    name: 퀼팅 체인백
+    product: zigzag:119058597
+  - comment: ''
+    name: 하트 목걸이
+    product: zigzag:135593307
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-23/looks/6/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 부클 트위드 자켓
+    product: zigzag:131968425
+  - comment: ''
+    name: 블랙 반폴라 티
+    product: zigzag:151586371
+  - comment: ''
+    name: 블랙 숏팬츠
+    product: zigzag:158913245
+  - comment: ''
+    name: 스틸레토 앵클부츠
+    product: zigzag:110635258
+  - comment: ''
+    name: 퀼팅 체인백
+    product: zigzag:135922060
+  - comment: ''
+    name: 진주 초커
+    product: zigzag:134391809
+  - comment: ''
+    name: 골드 링 귀걸이
+    product: zigzag:142880069
+title_lines:
+- 연말 모임 앞두고
+- 어두운 톤 옷장 공개

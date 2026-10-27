@@ -1,0 +1,108 @@
+account: women
+cover: out/2026-10-23/looks/1/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-23'
+edit_refs: []
+face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
+  dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
+  full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 오버핏 레더 후드 점퍼 (black thick glossy faux-leather rounded oversized hooded
+    jacket exactly as in the product photo, with big rounded cocoon-like shoulders
+    and sleeves, hood, long enough to cover the hips, with a drawstring gathered hem,
+    front zip fully closed)
+  name: 레더 후드 점퍼
+  product: zigzag:172421417
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 무지 레이어링 티셔츠 (plain black long-sleeve crew-neck tee, slim fit, no print)
+  name: 블랙 레이어링 티
+  product: zigzag:136294220
+  ref_photos:
+  - 1
+  wear_with: 아우터
+- color: 카키
+  comment: ''
+  cutout_photo: 4
+  desc: 빛바랜 워싱 데님 스커트 (dark washed denim mini skirt with a faded khaki-grey tint and
+    lighter fade patches, straight H-line, ends high on the upper thigh)
+  name: 워싱 데님 스커트
+  product: zigzag:162414325
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 롱부츠 (black knee-high boots, round toe, flat low heel, shaft ends just below
+    the knee)
+  name: 스웨이드 롱부츠
+  product: zigzag:147005253
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 숄더백 (black soft rectangular box shoulder bag with a thin long strap)
+  name: 블랙 숄더백
+  product: zigzag:168564549
+  ref_photos:
+  - 1
+  - 0
+looks: []
+mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
+  pale grey-white wall and floor, soft diffused studio light with one gentle shadow
+  on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
+  so the whole body from head to shoes is visible
+pose: standing in the studio like the zip-knit lookbook shot, relaxed and hip-cocked
+  with weight on one leg and her body turned slightly, one hand in the jacket pocket
+  and the other holding the bag strap, chin slightly tilted, cool gaze at the camera;
+  her black hair is in a sleek low bun with a few loose wisps at the temples
+reason: '블랙 오버핏 레더 점퍼가 주인공, 빛바랜 데님 미니와 검정 부츠로 톤을 통일한 스트릿 파티룩. 참고: 블랙 오버핏 레더 점퍼/카키
+  워싱 데님 미니/블랙 롱 어그부츠/블랙 숄더백/블랙 스타킹 → 맞춘 것: 블랙 오버핏 레더 후드 점퍼/빈티지워싱 데님스커트/블랙 스웨이드 통넓은
+  니하이 부츠/블랙 숄더백/블랙 시스루 삭스 (참고에 이너가 안 보여 블랙 티를 받침) (따라 함: 참고 774)'
+ref_photo: tg:AgACAgUAAxkBAAIHuWrfCfZ94dvV2wUV8coDPiSXLQ4LAAKHFWsbCo_5Vjuenw1LDohzAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene_2.jpg
+shot: model
+styling: The thick rounded oversized leather hooded jacket is zipped up fully, closed
+  to the neck like the product photo, loose and rounded with the drawstring gathered
+  hem, long enough to cover the hips. The denim mini skirt is extremely short and
+  sits at a high waist, so only a small strip of it, about a hand's width, shows below
+  the jacket hem; the skirt hem ends high on the upper thigh. She wears sheer see-through
+  black stockings (not socks) so her skin shows faintly through them, and the knee-high
+  boots go over them. Her hip-and-leg proportions are long and the legs show more
+  than the skirt.
+text:
+  hashtags:
+  - '#연말모임룩'
+  - '#파티룩'
+  - '#올블랙코디'
+  - '#가을겨울코디'
+  intro: 7~20도 오락가락하는 요즘, 연말 모임 옷은 미리 저장해 두세요 🍷
+  points: []
+  title_lines:
+  - 연말 모임 앞두고
+  - 어두운 톤 옷장 공개
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)

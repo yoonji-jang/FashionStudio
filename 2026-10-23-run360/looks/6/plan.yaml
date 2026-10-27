@@ -1,0 +1,125 @@
+account: women
+cover: out/2026-10-23/looks/6/outfit_r2/results/G_1.jpg
+cover_look: 1
+date: '2026-10-23'
+edit_refs: []
+face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
+  dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
+  full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 금장 트위드 부클 자켓 (charcoal tweed boucle jacket with a nubby looped boucle texture,
+    gold-tone buttons clearly visible down the front, collar and button design exactly
+    as in the product photo, boxy cropped fit)
+  name: 부클 트위드 자켓
+  product: zigzag:131968425
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 반폴라 티 (plain black fitted half-turtleneck top, thin smooth knit)
+  name: 블랙 반폴라 티
+  product: zigzag:151586371
+  ref_photos:
+  - 0
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 생지 셔링 숏팬츠 (solid jet-black matte shorts, very short, ends at the upper
+    thigh, slightly wide leg, plain smooth fabric that is neither washed-denim nor
+    cotton looking)
+  name: 블랙 숏팬츠
+  product: zigzag:158913245
+  ref_photos:
+  - 3
+  - 0
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 스틸레토 앵클부츠 (black leather pointed-toe ankle boots, block heel, shaft ends
+    just above the ankle)
+  name: 스틸레토 앵클부츠
+  product: zigzag:110635258
+  ref_photos:
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 4
+  desc: 블랙 퀼팅 체인백 (black quilted leather flap bag with a silver-tone chain and twist
+    lock)
+  name: 퀼팅 체인백
+  product: zigzag:135922060
+  ref_photos:
+  - 4
+- color: 화이트
+  comment: ''
+  cutout_photo: 2
+  desc: 진주 초커 목걸이 (exactly one short layered necklace of small white pearls plus a
+    thin silver chain with a small heart pendant, as in the product photos)
+  name: 진주 초커
+  product: zigzag:134391809
+  ref_photos:
+  - 0
+  - 2
+  slot: 목걸이
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 골드 볼드 링 귀걸이 (exactly one pair (two earrings) of gold bold hoop earrings)
+  name: 골드 링 귀걸이
+  product: zigzag:142880069
+  slot: 귀걸이
+looks: []
+mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
+  pale grey-white wall and floor, soft diffused studio light with one gentle shadow
+  on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
+  so the whole body from head to shoes is visible
+pose: standing front-on in the studio like the black blazer lookbook shot, feet apart
+  in a confident stance, one hand holding the chain bag by its strap and the other
+  relaxed at her side, looking at the camera; her black hair is in a sleek low bun
+  with a few loose wisps at the temples
+reason: '차콜 부클 자켓이 주인공, 블랙 쇼츠와 진주 목걸이·후프 귀걸이로 화려하게 마무리한 모임 룩. 참고: 차콜 부클 자켓(펄 실·금단추)/블랙
+  하이넥 이너/블랙 쇼츠/블랙 힐/체인 토트/진주 목걸이/골드 후프 → 맞춘 것: 차콜 금장 트위드 부클 자켓/블랙 반폴라 티/블랙 데님 숏팬츠/블랙
+  스틸레토 앵클부츠/블랙 퀼팅 체인백/진주 초커/골드 링 귀걸이 (따라 함: 참고 782)'
+ref_photo: tg:AgACAgUAAxkBAAIHwWrfCfblnrmAiupcx5OiL64AASeg2AACjxVrGwqP-VZhHIpIr_LW8wEAAwIAA3kAAz0E
+scene_image: out/2026-10-23/src/scene_3.jpg
+shot: model
+styling: The tweed boucle jacket is buttoned at the middle button only so the gold
+  buttons stand out, worn over the black half-turtleneck, which is visible at the
+  neckline. The pearl choker sits over the turtleneck collar. The shorts are very
+  short and fully black, much shorter than before and ending high on the upper thigh
+  as in the product photo, worn at a high waist so only a small strip of shorts shows
+  below the jacket hem. She wears sheer see-through black stockings that show a faint
+  glimpse of skin through them, with the black ankle boots.
+text:
+  hashtags:
+  - '#연말모임룩'
+  - '#파티룩'
+  - '#올블랙코디'
+  - '#가을겨울코디'
+  intro: 7~20도 오락가락하는 요즘, 연말 모임 옷은 미리 저장해 두세요 🍷
+  points: []
+  title_lines:
+  - 연말 모임 앞두고
+  - 어두운 톤 옷장 공개
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)
