@@ -57,9 +57,6 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      어긋나는 것은 지운다. 상품이 아닌 것(시스루 스타킹, 선글라스, 모자)은 그 벌 `requests` 에 "한국어 (영어)" 로 넣고
      (예: "시스루 검은 스타킹 (she wears sheer black see-through tights)"), 그 자리를 대신하던 상품(양말 등)은 뺀다.
      벌에 이미 있는 `requests`(후보 때 사용자가 정한 그리기 요청)는 사용자가 바꾸라고 하지 않으면 그대로 둔다.
-     기장·여밈·품 요청이 있는 벌은 그 벌 `pose` 도 본다: 팔을 머리 위로 올리기(상의가 들려 짧아짐), 손으로 앞섶을 잡거나
-     벌리기, 주머니에 손 넣기(여민 아우터가 벌어짐)는 요청을 망치므로 팔을 편하게 내린 포즈로 바꾼다
-     (2026-10-27 run378: "한 손을 머리에" 포즈로 니트가 들려 엉덩이 절반 기장 요청이 안 보임, 자켓을 손으로 벌린 포즈로 여밈 탈락).
      요청은 지난번보다 확실히 크게 바뀌게 쓴다 (예: "much longer than before: the knit hem reaches the middle of her hips").
      "상세페이지 느낌 살려줘", "더 풍성하게" 처럼 상품 자체가 덜 닮았다는 말이면 그 상품 `desc` 에 재질·부피 말(예:
      "very fluffy, voluminous long-pile faux fur")을 더하고 photo-checker 로 재질 확대컷과 전신 착용컷이 `ref_photos` 에

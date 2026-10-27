@@ -11,4 +11,4 @@ a fitted piece stays fitted), where the waistband sits, how far each piece comes
 much of one layer shows under another, and how each piece is worn. Recreate that photo's look as closely
 as possible with these products.
 Her pose comes from the scene photo but never changes how the clothes are worn: an outer that is closed in
-the reference stays closed even with a hand in a pocket, and no hand pulls clothes open or up. A raised arm never lifts a top or knit shorter than it should be.
+the reference stays closed even with a hand in a pocket, and no hand pulls clothes open or up. Any pose is fine, but a raised arm never lifts a top or knit shorter than it should be.
