@@ -171,6 +171,7 @@ def build_prompt(
             profile.flow.scene_prompt,
             person=person,
             worn=WORN_REF_MODEL if worn else "",
+            body=render_prompt("scene_body_ref" if worn else "scene_body"),
             items=item_lines(plan, products, cfg),
             styling=styling_text(plan, products, profile),
             pose=plan.pose or "a relaxed natural pose like in the scene photo",
@@ -359,8 +360,9 @@ WORN_REF_MODEL = (
     " one for the items in the sheets, so the fit and the feel of the outfit are the same:"
     " whether an outer is open or closed and how a coat belt or waist tie is tied, how much of a"
     " top is tucked in and how much hangs out, which hems, cuffs and collars peek out from under"
-    " other layers and by how much, how sleeves are pushed up, how loose or close each piece sits"
-    " on the body and the overall silhouette. Where this photo differs from the general wearing"
+    " other layers and by how much, how sleeves are pushed up, how high the waistband sits and"
+    " how much of the bottoms shows below the outer, how loose or close each piece sits on the"
+    " body and the overall silhouette. Where this photo differs from the general wearing"
     " rules below, follow this photo. The products themselves come only from the item sheets:"
     " never take fabric, color, pattern, length or details from this photo. If a piece there is"
     " longer or shorter, or has a belt, collar, pleats or buttons the product does not have, draw"
@@ -468,12 +470,23 @@ def make_candidates(
         # /fix 고쳐 그리기: 지난 코디컷을 첫 그림으로 보내고 고칠 곳만 바꾸게 한다
         base = (REPO_ROOT / plan.edit_from).read_bytes()
         worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account, edit=True)
+        if plan.scene_image and plan.ref_photo and not worn:
+            raise RuntimeError(
+                f"참고 코디 사진을 받지 못해 고쳐 그리지 않습니다: {plan.ref_photo[:40]}"
+            )
         refs = edit_ref_panels(plan)
         panels = [base, *panels, *([worn] if worn else []), *refs]
         prompt = edit_prompt(plan, products, cfg, worn=bool(worn), refs=len(refs))
     else:
         worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)
         scene = scene_panel(plan)
+        if scene and plan.ref_photo and not worn:
+            # 참고 코디 없이 그리면 참고와 다른 핏이 나와 다시 그리는 비용만 든다
+            # (2026-10-27 사용자)
+            raise RuntimeError(
+                f"참고 코디 사진을 받지 못해 그리지 않습니다: {plan.ref_photo[:40]}"
+                " (텔레그램 사진은 daily.yml 이 tools.plan refs 로 미리 받음)"
+            )
         prompt = build_prompt(plan, products, profile, cfg, worn=bool(scene and worn))
         if scene:
             (work / "originals").mkdir(parents=True, exist_ok=True)
