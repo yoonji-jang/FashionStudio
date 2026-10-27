@@ -1,8 +1,8 @@
 {
   "account": "women",
-  "stage": "ref_pick_wait",
+  "stage": "refs_wait",
   "date": "2026-10-27",
-  "asked_at": 1793089867,
+  "asked_at": 1793092941,
   "hint": "",
   "theme_at": 1793089867,
   "pick": "",
@@ -12,6 +12,57 @@
   "scene_at": 0,
   "alerted": false,
   "week": [
+    {
+      "date": "2026-10-27",
+      "title_hint": "퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+      "mood": "포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤",
+      "slots": [
+        {
+          "category": "아우터",
+          "desc": "에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트"
+        },
+        {
+          "category": "상의",
+          "desc": "얇은 니트나 셔츠, 퍼가 돋보이게 단정하게"
+        },
+        {
+          "category": "하의",
+          "desc": "슬랙스 또는 미디스커트, 퍼와 질감 대비"
+        },
+        {
+          "category": "가방",
+          "desc": "퍼 숄더백 또는 퍼 트리밍 가방"
+        },
+        {
+          "category": "신발",
+          "desc": "퍼 부츠 또는 퍼 트리밍 앵클부츠"
+        },
+        {
+          "category": "소품",
+          "desc": "퍼 비니, 퍼 머플러"
+        }
+      ],
+      "type": "아이템",
+      "why": "최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음",
+      "search_terms": {
+        "아우터": [
+          "에코퍼 자켓",
+          "페이크퍼 숏자켓",
+          "퍼 카라 코트"
+        ],
+        "신발": [
+          "퍼 부츠",
+          "퍼 트리밍 앵클부츠"
+        ],
+        "가방": [
+          "퍼 숄더백"
+        ],
+        "소품": [
+          "퍼 비니",
+          "퍼 머플러"
+        ]
+      }
+    },
     {
       "date": "2026-10-27",
       "title_hint": "주말 나들이, 걷기 편하면서 예쁜 가을 데일리",
@@ -94,11 +145,21 @@
   "read_upto": 0,
   "revising": false,
   "ref_pick_at": 1793089867,
-  "searched": "2026-10-23|연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디",
-  "user_refs": [],
+  "searched": "2026-10-27|퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
+  "user_refs": [
+    "AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E",
+    "AgACAgUAAxkBAAIIUmrgbQYddB0igV16xbr69g91piz4AAI-FGsbB_YAAVdKEca7sliuQAEAAwIAA3gAAz0E",
+    "AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E",
+    "AgACAgUAAxkBAAIIVGrgbQaKeeA9Y5cL47SAkT8FWlHVAAJAFGsbB_YAAVdXgz4hMGg_hAEAAwIAA3gAAz0E",
+    "AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E",
+    "AgACAgUAAxkBAAIIVmrgbQaWSHjZqqF2Xkfpgz_GUMq7AAJCFGsbB_YAAVeCEDLOlqy6OgEAAwIAA3kAAz0E",
+    "AgACAgUAAxkBAAIIV2rgbQZcQYBm_hDaLILH1-xLAAFgkAACQxRrGwf2AAFXlaWc51HOZA8BAAMCAAN5AAM9BA",
+    "AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAIIWWrgbQa_WXEd61M-PZgJ0Md3LwLnAAJEFGsbB_YAAVdDRv98H3dghQEAAwIAA3kAAz0E",
+    "AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E"
+  ],
   "rules_upto": 428675882,
   "log": [
-    "10-22 14:01 후보 고치기 요청",
     "10-22 15:01 코디 고름 (2026-10-22-run340/chosen)",
     "10-22 16:01 장면 사진 받음 (3장), 만들기 요청",
     "10-22 17:01 미리보기 받음 (2026-10-22-run341)",
@@ -127,6 +188,7 @@
     "10-27 07:41 피드백 반영 마침 (PR 합침)",
     "10-27 07:41 남은 주제 3개 확인 요청 (2026-10-27)",
     "10-27 08:04 남은 주제 고치기 요청: 1번은 퍼 를 주제로 하자. 퍼자켓 퍼부츠 등등 퍼로 포인트 주는 주제로 하고싶어. 이 주제로 시작해",
-    "10-27 08:31 주제 정함: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지, 참고 코디 48벌 보냄"
+    "10-27 08:31 주제 정함: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지, 참고 코디 48벌 보냄",
+    "10-27 09:22 보낸 참고 사진 10장 옮기기 요청"
   ]
 }
