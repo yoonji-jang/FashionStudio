@@ -15,6 +15,9 @@ r"""코디 고르기 (9단계). 외부로 보내는 도구라 Claude 허용 목�
   (daily mode=edit) 요청한다.
   prepare-edit 이 지난 후보를 가져오고, Claude(outfit-candidates "후보 고치기")가 그 벌만 바꾼 뒤
   send-edit 이 고친 벌 시트만 다시 보낸다. 고르기는 그대로 이어진다 (고치기 전에 보낸 번호도 읽음)
+- links: "/fix 2 <지그재그 상품 링크> 이걸로 아우터" 처럼 사람이 직접 고른 상품 링크를 읽어
+  창고에 넣고 edit.json 의 그 고칠 점에 products(넣은 상품)·link_errors(품절·못 읽음)를 단다.
+  넣은 상품은 out/<날짜>/user_products.json 에도 남아 다음 실행이 restore-user 로 창고에 다시 넣는다
 - themes: 주간 주제를 보낸다 (review_before_use 면 "/themes again" 버튼)
 
 봇 서버 없이 동작한다. 답장은 schedule job 이 돌 때 getUpdates 로 읽는다.
@@ -24,6 +27,8 @@ r"""코디 고르기 (9단계). 외부로 보내는 도구라 Claude 허용 목�
   python -m tools.pick send out/2026-09-28 --run 2026-09-28-run31 [--round 2]
   python -m tools.pick prepare-edit '{"run": "...", "fixes": [...]}' --prev <결과 브랜치> \
       --out out/<날짜>
+  python -m tools.pick links out/2026-09-28
+  python -m tools.pick restore-user --account women --prev <결과 브랜치>
   python -m tools.pick send-edit out/2026-09-28 --run 2026-09-28-run33
   python -m tools.pick themes --account women --first 2026-09-29
 """
@@ -44,16 +49,20 @@ import httpx
 import yaml
 from PIL import Image, ImageDraw
 
-from core.models import DailyPlan, PickDecision, PickRecord, ThemesRecord
+from core.models import Category, DailyPlan, PickDecision, PickRecord, Product, ThemesRecord
 from core.profile import Profile, load_profile
 from core.store import Store
-from tools import feed, notify
+from sources import zigzag
+from tools import feed, notify, scout
 from tools.overlay import load_font
 
 AGAIN_MIN_LEFT = 60  # 마감까지 이만큼(분) 남아야 "다시"·후보 고치기를 받는다 (새 후보 만드는 시간)
 EDIT_WAIT = 120  # 후보 고치기 실행이 이만큼(분) 지나도 끝나지 않으면 기다리지 않고 고르기를 받는다
 EDITS = "edits.json"  # 고치라고 요청한 /fix (결과 폴더 picks/, 고친 후보가 올 때까지 고르기를 미룸)
 WEEKDAYS = "월화수목금토일"
+USER_PRODUCTS = (
+    "user_products.json"  # 사람이 /fix 링크로 보낸 상품 (결과 폴더, restore-user 가 읽음)
+)
 
 
 def picks_dir(out: Path) -> Path:
@@ -529,6 +538,152 @@ def prepare_edit(spec: dict, prev: Path, out: Path) -> Path:
     return dst / "edit.json"
 
 
+# ---------- 사람이 보낸 상품 링크 (2026-10-27) ----------
+
+LINK = re.compile(r"https?://[^\s<>\"']*zigzag[^\s<>\"']*", re.I)
+LINK_ID = re.compile(r"(?:catalog/products/|catalog_product_id=|product_id=)(\d+)")
+# 상품 이름에서 종류 찾기. 이름 끝쪽 말이 종류라 가장 뒤에 나온 말을 쓴다 ("퍼 숄더백" → 가방)
+KIND_WORDS: dict[Category, list[str]] = {
+    "아우터": (
+        "코트 자켓 재킷 점퍼 잠바 패딩 무스탕 가디건 "
+        "블레이저 야상 집업 바람막이 트렌치 케이프 아우터"
+    ).split(),
+    "상의": (
+        "니트 티셔츠 셔츠 블라우스 맨투맨 후드 나시 탑 "
+        "슬리브리스 베스트 조끼 스웨터 폴라 터틀넥 롱슬리브"
+    ).split(),
+    "하의": "스커트 치마 팬츠 바지 슬랙스 데님 청바지 레깅스 쇼츠".split(),
+    "원피스": "원피스 드레스".split(),
+    "신발": "부츠 로퍼 힐 스니커즈 구두 슈즈 플랫 샌들 뮬 워커 메리제인 부티 슬리퍼".split(),
+    "가방": "가방 백 토트 파우치".split(),
+}
+TEXT_KINDS: dict[str, Category] = {
+    "아우터": "아우터",
+    "외투": "아우터",
+    "상의": "상의",
+    "이너": "상의",
+    "하의": "하의",
+    "원피스": "원피스",
+    "신발": "신발",
+    "가방": "가방",
+}
+
+
+def guess_category(name: str, hint: str = "") -> Category:
+    """상품 이름(없으면 사람이 쓴 말 hint)으로 종류를 짐작한다. 모르면 소품."""
+    best: tuple[int, Category] | None = None
+    for cat, words in KIND_WORDS.items():
+        for w in words:
+            at = name.rfind(w)
+            if at >= 0 and (best is None or at + len(w) > best[0]):
+                best = (at + len(w), cat)
+    if best:
+        return best[1]
+    for w, cat in TEXT_KINDS.items():
+        if w in hint:
+            return cat
+    return "소품"
+
+
+def fetch_link(url: str) -> tuple[int, str, str]:
+    """(상태 코드, 마지막 주소, 본문). 짧은 공유 링크는 따라간다 (tools.scout 로만 접근)."""
+    with scout.client() as c:
+        resp = scout._get(c, url)
+        return resp.status_code, str(resp.url), resp.text
+
+
+def link_product(
+    url: str, hint: str, today: date, fetch=fetch_link, known: dict[str, Product] | None = None
+) -> Product:
+    """지그재그 상품 링크 → Product. 판매 중이 아니거나 읽지 못하면 ValueError (이유).
+    판매자 연락처 같은 정보는 읽지 않고 이름·스토어 이름·가격·사진·판매 상태만 쓴다."""
+    m = LINK_ID.search(url) if "/catalog/products/" in url else None
+    if m:
+        pid = m.group(1)
+    else:  # 앱 공유 링크 같은 짧은 주소는 따라가서 상품 번호를 찾는다
+        _, final, text = fetch(url)
+        m = LINK_ID.search(final) or LINK_ID.search(text)
+        if not m:
+            raise ValueError("지그재그 상품 링크로 읽히지 않아요")
+        pid = m.group(1)
+    page = zigzag.PRODUCT_URL.format(id=pid)
+    code, _, text = fetch(page)
+    info = zigzag.parse_page(code, text)
+    if info.status == "sold_out":
+        raise ValueError("품절이에요")
+    if info.status != "on_sale" or not info.image_urls or not info.name:
+        raise ValueError("판매 중인 상품 페이지로 읽히지 않아요")
+    old = (known or {}).get(f"zigzag:{pid}")
+    return Product(
+        id=f"zigzag:{pid}",
+        source="zigzag",
+        url=page,
+        shop=info.shop or "",
+        name=info.name,
+        price=info.price or 0,
+        category=old.category if old else guess_category(info.name, hint),
+        image_urls=info.image_urls,
+        style_tags=info.style_tags,
+        status="on_sale",
+        query=old.query if old else "사람이 보낸 링크",
+        collected_at=old.collected_at if old and old.collected_at else today,
+        checked_at=today,
+    )
+
+
+def short_links(text: str) -> str:
+    """텔레그램 안내에서 긴 주소 대신 (링크)."""
+    return LINK.sub("(링크)", text)
+
+
+def add_links(out: Path, store: Store, today: date, fetch=fetch_link) -> list[Product]:
+    """edit.json 의 /fix 글에 든 지그재그 링크를 읽어 창고에 넣고, 그 고칠 점에
+    products [{id, category, name}] 와 link_errors [{url, why}] 를 단다."""
+    f = picks_dir(out) / "edit.json"
+    spec = json.loads(f.read_text(encoding="utf-8"))
+    products = {p.id: p for p in store.products()}
+    added: dict[str, Product] = {}
+    for fix in spec.get("fixes", []):
+        urls = list(dict.fromkeys(LINK.findall(fix.get("text", ""))))
+        if not urls:
+            continue
+        hint = short_links(fix["text"]) if len(urls) == 1 else ""
+        fix["products"], fix["link_errors"] = [], []
+        for url in urls:
+            try:
+                p = link_product(url, hint, today, fetch, products)
+            except (ValueError, httpx.HTTPError, scout.Blocked) as e:
+                why = str(e) if isinstance(e, ValueError) else "링크를 열지 못했어요"
+                fix["link_errors"].append({"url": url, "why": why})
+                continue
+            products[p.id] = added[p.id] = p
+            fix["products"].append({"id": p.id, "category": p.category, "name": p.name})
+    f.write_text(json.dumps(spec, ensure_ascii=False, indent=2), encoding="utf-8")
+    if added:
+        store.save_products(list(products.values()))
+        dst = out / USER_PRODUCTS
+        old = json.loads(dst.read_text(encoding="utf-8")) if dst.exists() else []
+        keep = [x for x in old if x["id"] not in added]
+        rows = keep + [p.model_dump(mode="json") for p in added.values()]
+        dst.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
+    return list(added.values())
+
+
+def restore_user(store: Store, prev: Path) -> int:
+    """지난 실행들이 남긴 user_products.json 의 상품 중 창고에 없는 것을 다시 넣는다.
+    (실행이 창고를 main 에 커밋하지 않아, 사람이 보낸 상품은 결과 브랜치에만 남는다)"""
+    products = {p.id: p for p in store.products()}
+    added = 0
+    for f in sorted(prev.glob(f"*/{USER_PRODUCTS}")):
+        for row in json.loads(f.read_text(encoding="utf-8")):
+            if row["id"] not in products:
+                products[row["id"]] = Product.model_validate(row)
+                added += 1
+    if added:
+        store.save_products(list(products.values()))
+    return added
+
+
 def send_edit(
     out: Path, run: str, tg: notify.Telegram, profile: Profile, store: Store
 ) -> PickRecord:
@@ -555,7 +710,9 @@ def send_edit(
     changed = [n for n in asked if looks[n - 1] != before.looks[n - 1]]
     lines = [f"[{profile.id}] {day:%m-%d}({WEEKDAYS[day.weekday()]}) 코디 후보 고침"]
     for f in spec["fixes"]:
-        lines.append(f"• {', '.join(map(str, f['looks']))}번: {f['text']}")
+        lines.append(f"• {', '.join(map(str, f['looks']))}번: {short_links(f['text'])}")
+        for e in f.get("link_errors", []):
+            lines.append(f"  보낸 링크를 쓰지 못했어요 ({e['why']}): {e['url']}")
     lines.append("")
     for n in asked:
         look = looks[n - 1]
@@ -563,7 +720,12 @@ def send_edit(
             lines.append(f"{n}. " + (look.reason.split(". ")[0] if look.reason else "").rstrip("."))
             lines.append("   " + " · ".join(short(it.desc) for it in look.items))
         else:
-            lines.append(f"{n}. 바꿀 상품을 찾지 못해 그대로예요")
+            linked = any(n in f["looks"] and f.get("link_errors") for f in spec["fixes"])
+            lines.append(
+                f"{n}. 보낸 링크를 쓰지 못해 그대로예요"
+                if linked
+                else f"{n}. 바꿀 상품을 찾지 못해 그대로예요"
+            )
     lines += [
         "",
         "고르는 방법은 그대로예요. 그대로 두거나 번호를 보내면 고친 벌로 만들어요.",
@@ -932,6 +1094,11 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("spec", help='{"run": 지난 결과 폴더, "fixes": [{update_id, looks, text}]} JSON')
     s.add_argument("--prev", type=Path, required=True, help="daily-results 브랜치 폴더")
     s.add_argument("--out", type=Path, required=True)
+    s = sub.add_parser("links", help="/fix 속 지그재그 상품 링크를 읽어 창고에 넣기")
+    s.add_argument("out", type=Path)
+    s = sub.add_parser("restore-user", help="지난 실행이 넣은 사람이 보낸 상품을 창고에 다시 넣기")
+    s.add_argument("--account", required=True)
+    s.add_argument("--prev", type=Path, required=True, help="daily-results 브랜치 폴더")
     s = sub.add_parser("send-edit", help="고친 벌 시트만 다시 보내기")
     s.add_argument("out", type=Path)
     s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
@@ -949,6 +1116,10 @@ def main(argv: list[str] | None = None) -> int:
         if args.cmd == "prepare-edit":
             f = prepare_edit(json.loads(args.spec), args.prev, args.out)
             print(f"후보 고치기 준비 → {f}")
+            return 0
+        if args.cmd == "restore-user":
+            n = restore_user(Store(args.account), args.prev)
+            print(f"사람이 보낸 상품 {n}개를 창고에 다시 넣음")
             return 0
         if args.cmd == "status":
             f = args.run_dir / "picks" / "pick.json"
@@ -976,6 +1147,13 @@ def main(argv: list[str] | None = None) -> int:
             for n in validate(args.out, profile, store):
                 print(f"뺀 후보: {n}")
             print(f"후보 {len(candidate_paths(args.out))}개")
+            return 0
+        if args.cmd == "links":
+            for p in add_links(args.out, store, date.today()):
+                print(f"창고에 넣음: {p.id} [{p.category}] {p.name}")
+            spec = json.loads((picks_dir(args.out) / "edit.json").read_text(encoding="utf-8"))
+            for e in (e for f in spec["fixes"] for e in f.get("link_errors", [])):
+                print(f"링크를 쓰지 못함 ({e['why']}): {e['url']}")
             return 0
         if args.cmd == "send-edit":
             rec = send_edit(args.out, args.run, notify.Telegram.from_env(), profile, store)
