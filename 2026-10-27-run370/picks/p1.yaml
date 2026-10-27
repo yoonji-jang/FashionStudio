@@ -1,0 +1,449 @@
+account: women
+date: '2026-10-27'
+edit_refs: []
+items: []
+looks:
+- edit_refs: []
+  items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 하이넥 숏 퍼 자켓 (high-neck short faux-fur jacket)
+    name: 하이넥 숏 퍼자켓
+    product: zigzag:172046026
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 헨리넥 티셔츠 (white henley tee)
+    name: 헨리넥 티셔츠
+    product: zigzag:171221132
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 쇼츠 (black wool shorts)
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots)
+    name: 스웨이드 버클 부츠
+    product: zigzag:165455974
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레더 호보백 (brown leather hobo bag)
+    name: 레더 호보백
+    product: zigzag:168780987
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 골지 울니트 롱 양말 (ivory ribbed wool-knit long socks)
+    name: 골지 롱 양말
+    product: zigzag:131020807
+  point: ''
+  reason: 하이넥 숏 퍼 자켓이 주인공, 화이트 티와 블랙 쇼츠에 브라운 롱부츠, 골지 롱 양말을 더함
+  ref: '779'
+  ref_photo: tg:AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 앙고라 브이넥 루즈핏 니트 (ivory angora v-neck loose-fit knit)
+    name: 앙고라 브이넥 니트
+    product: zigzag:167233725
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스 나시 (black lace-trim camisole)
+    name: 레이스 이너 나시
+    product: zigzag:157994590
+    wear_with: 상의
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 가죽 시계 (brown leather watch)
+    name: 레더 시계
+    product: zigzag:123161642
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 스웨이드 미니스커트 (suede mini skirt)
+    name: 스웨이드 미니스커트
+    product: zigzag:167025790
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 스웨이드 롱부츠 (suede knee-high boots)
+    name: 스웨이드 롱부츠
+    product: zigzag:130914498
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+  point: ''
+  reason: 아이보리 앙고라 니트에 블랙 레이스 나시를 받쳐 카멜 스웨이드 미니, 롱부츠까지 톤온톤
+  ref: '784'
+  ref_photo: tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오버핏 레더 자켓 (black oversized leather jacket)
+    name: 오버핏 레더 자켓
+    product: zigzag:122698956
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 브이넥 크롭 니트 반팔 (white v-neck cropped short-sleeve knit top)
+    name: 크롭 니트 반팔
+    product: zigzag:147510620
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 쇼츠 (black wool shorts)
+    name: 울 쇼츠
+    product: zigzag:131272324
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 퍼안감 롱부츠 (fur-lined long boots)
+    name: 퍼안감 롱부츠
+    product: zigzag:150460542
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 니삭스 (ivory knee socks)
+    name: 골지 니삭스
+    product: zigzag:168887889
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 오닉 숄더백
+    product: zigzag:166400700
+  point: ''
+  reason: 블랙 레더 블루종에 화이트 크롭 니트 반팔, 퍼 부츠로 시크하게
+  ref: '785'
+  ref_photo: tg:AgACAgUAAxkBAAIIUmrgbQYddB0igV16xbr69g91piz4AAI-FGsbB_YAAVdKEca7sliuQAEAAwIAA3gAAz0E
+- edit_refs: []
+  items:
+  - color: 라이트그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 라이트그레이 소프트 퍼 크롭 자켓 (light gray soft faux-fur cropped jacket)
+    name: 소프트 퍼 크롭 자켓
+    product: zigzag:172474103
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 라운드 단추 슬림핏 미니 니트 원피스 (black round-neck buttoned slim-fit knit mini dress)
+    name: 블랙 니트 원피스
+    product: zigzag:151022581
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱부츠 (black long boots)
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 호보백 (black hobo bag)
+    name: 버클 호보백
+    product: zigzag:147738628
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 시스루 스타킹 (black sheer stockings)
+    name: 시스루 스타킹
+    product: zigzag:161559034
+  point: ''
+  reason: 라이트그레이 퍼 크롭 자켓이 주인공, 블랙 니트 원피스와 롱부츠, 시스루 스타킹으로 올블랙 포인트
+  ref: '786'
+  ref_photo: tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 퍼 자켓 (ivory faux-fur jacket)
+    name: 브렌 퍼 자켓
+    product: zigzag:167008119
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 꽈배기 니트 미니 원피스 (black cable-knit mini dress)
+    name: 꽈배기 니트 원피스
+    product: zigzag:167058470
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 뾰족코 스틸레토 슬링백 힐 (black pointed-toe stiletto slingback heels)
+    name: 스틸레토 힐
+    product: zigzag:136665746
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 체인 미니백 (black chain mini bag)
+    name: 체인 미니백
+    product: zigzag:137453892
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 골지 니삭스 (black ribbed knee socks)
+    name: 골지 니삭스
+    product: zigzag:141916298
+  point: ''
+  reason: 아이보리 퍼 자켓에 블랙 꽈배기 니트 원피스, 스틸레토 힐로 데이트룩
+  ref: '787'
+  ref_photo: tg:AgACAgUAAxkBAAIIVGrgbQaKeeA9Y5cL47SAkT8FWlHVAAJAFGsbB_YAAVdXgz4hMGg_hAEAAwIAA3gAAz0E
+- edit_refs: []
+  items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 페이크퍼 샤프카 모자 (faux-fur shapka hat)
+    name: 퍼 샤프카
+    product: zigzag:132787487
+    slot: 소품
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 라이더 자켓 (black leather rider jacket)
+    name: 레더 라이더 자켓
+    product: zigzag:129200643
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬림 브이넥 티셔츠 (black slim v-neck tee)
+    name: 슬림 브이넥 티
+    product: zigzag:172226652
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 미니스커트 (charcoal wool mini skirt)
+    name: 울 미니스커트
+    product: zigzag:149438922
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 크로스백 (black mini crossbody bag)
+    name: 미니 크로스백
+    product: zigzag:115638721
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 앵클부츠 (black ankle boots)
+    name: 삭스 앵클부츠
+    product: zigzag:149181846
+  point: ''
+  reason: 퍼 샤프카가 포인트, 블랙 라이더와 슬림 브이넥 티에 차콜 울 미니스커트
+  ref: '788'
+  ref_photo: tg:AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E
+- edit_refs: []
+  items:
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 그레이 오버핏 퍼 누빔 숏 자켓 (cream-gray oversized faux-fur quilted short jacket)
+    name: 퍼 누빔 숏 자켓
+    product: zigzag:167713765
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 슬림핏 브이넥 티셔츠 (brown slim-fit v-neck tee)
+    name: 슬림 브이넥 티
+    product: zigzag:172226652
+  - color: 블루
+    comment: ''
+    cutout_photo: 0
+    desc: 로우라이즈 워싱 부츠컷 데님 (low-rise washed bootcut jeans)
+    name: 워싱 부츠컷
+    product: zigzag:168287666
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 앵클부츠 (black ankle boots)
+    name: 뒷지퍼 앵클부츠
+    product: zigzag:130586820
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 레더 벨트 (brown leather belt)
+    name: 레더 벨트
+    product: zigzag:165741644
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더 크로스백 (black shoulder crossbody bag)
+    name: 숄더 크로스백
+    product: zigzag:153923114
+  point: ''
+  reason: 크림 그레이 퍼 누빔 숏 자켓에 슬림 브이넥 티, 워싱 부츠컷 데님으로 스트리트하게
+  ref: '789'
+  ref_photo: tg:AgACAgUAAxkBAAIIVmrgbQaWSHjZqqF2Xkfpgz_GUMq7AAJCFGsbB_YAAVeCEDLOlqy6OgEAAwIAA3kAAz0E
+- edit_refs: []
+  items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 시어링 퍼 하프코트 (beige shearling fur half coat)
+    name: 시어링 퍼 코트
+    product: zigzag:167202466
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 헨리넥 니트 (cream henley knit)
+    name: 헨리넥 니트
+    product: zigzag:171757382
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니스커트 (black mini skirt)
+    name: 블랙 미니스커트
+    product: zigzag:133521354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱부츠 (black long boots)
+    name: 하비 롱부츠
+    product: zigzag:146926302
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트 크로스백 (black tote crossbody bag)
+    name: 토트 크로스백
+    product: zigzag:159478154
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 시스루 삭스 (black sheer knee socks)
+    name: 시스루 삭스
+    product: zigzag:161559034
+  point: ''
+  reason: 베이지 퍼 코트에 크림 니트, 블랙 미니스커트와 롱부츠로 데이트룩
+  ref: '790'
+  ref_photo: tg:AgACAgUAAxkBAAIIV2rgbQZcQYBm_hDaLILH1-xLAAFgkAACQxRrGwf2AAFXlaWc51HOZA8BAAMCAAN5AAM9BA
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 웬디 퍼 누빔 안감 자켓 (quilted-lined faux-fur jacket)
+    name: 웬디 퍼 자켓
+    product: zigzag:167334294
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 헨리넥 긴팔티 (white henley long-sleeve tee)
+    name: 헨리넥 긴팔티
+    product: zigzag:165972153
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 미니스커트 (ivory mini skirt)
+    name: 미니스커트
+    product: zigzag:154052552
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 로퍼 (brown suede loafers)
+    name: 스웨이드 로퍼
+    product: zigzag:165725019
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 레그워머 (ivory leg warmers)
+    name: 레그워머
+    product: zigzag:168607993
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 호보백 (brown suede hobo bag)
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  point: ''
+  reason: 웬디 퍼 자켓에 화이트 헨리넥 긴팔티, 아이보리 미니스커트와 레그워머, 브라운 로퍼로 톤온톤
+  ref: '791'
+  ref_photo: tg:AgACAgUAAxkBAAIIWWrgbQa_WXEd61M-PZgJ0Md3LwLnAAJEFGsbB_YAAVdDRv98H3dghQEAAwIAA3kAAz0E
+- edit_refs: []
+  items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 양털 뽀글이 하프 자켓 (beige sherpa fleece half jacket)
+    name: 뽀글이 자켓
+    product: zigzag:167061632
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 후드티셔츠 (pullover hoodie)
+    name: 후드티셔츠
+    product: zigzag:172327451
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 스웻팬츠 (gray sweatpants)
+    name: 스웻팬츠
+    product: zigzag:166044824
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 카멜 플랫폼 어그 부츠 (camel platform ugg-style boots)
+    name: 어그 부츠
+    product: zigzag:153382969
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 패딩 크로스백 (black mini padded crossbody bag)
+    name: 패딩 크로스백
+    product: zigzag:121658265
+  - color: 그린
+    comment: ''
+    cutout_photo: 0
+    desc: 그린 볼캡 (green ball cap)
+    name: 워시드 볼캡
+    product: zigzag:167562963
+  point: ''
+  reason: 베이지 뽀글이 자켓에 후드티셔츠와 그레이 스웻팬츠, 어그 부츠로 포근한 캐주얼
+  ref: '792'
+  ref_photo: tg:AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E
+reason: 사용자가 고른 참고 코디 10벌(779, 784~792)을 순서대로 따라 짠 퍼 코디 모음
+shot: flatlay
+theme:
+  date: '2026-10-27'
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음

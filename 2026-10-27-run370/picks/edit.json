@@ -1,0 +1,134 @@
+{
+  "run": "2026-10-27-run368",
+  "fixes": [
+    {
+      "update_id": 428675894,
+      "looks": [
+        1
+      ],
+      "text": "https://s.zigzag.kr/abr/IIHVzt4wxY 아우터 이걸로 바꿔줘. 양말 긴것도 추가해줘.",
+      "products": [
+        {
+          "id": "zigzag:172046026",
+          "category": "아우터",
+          "name": "[❄️겨울][mlt] 앤더슨 하이넥 숏 퍼자켓"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        2
+      ],
+      "text": "https://s.zigzag.kr/abr/JaltgxkiNd 니트는 이걸로 바꾸고 https://s.zigzag.kr/abr/uICjnMUe5F 이 제품 블랙 색상으로 이너 나시 추가해줘",
+      "products": [
+        {
+          "id": "zigzag:167233725",
+          "category": "상의",
+          "name": "[앙고라니트💕/MD추천✔️] 로미나 앙고라니트/앙고라니트/루즈핏니트/브이넥니트/겨울니트/연말룩/데이트룩/오늘출발/당일발송"
+        },
+        {
+          "id": "zigzag:157994590",
+          "category": "상의",
+          "name": "[5만장🏆두꺼운나시] 마틸다 레이스 나시/이너나시/레이어드나시/여름나시/레이스나시/슬림나시/민소매/가을나시/니트나시/레이어드나시"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        3
+      ],
+      "text": "이너는 나시가 아니라 니트반팔로 바꿔줘."
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        4
+      ],
+      "text": "https://s.zigzag.kr/abr/vdUE5fxSZX 아우터 이걸로 바꿔줘. 그리고 https://s.zigzag.kr/abr/qTDKSBqlwy 안에는 이 원피스로 변경해줘. 양말이 아닌 시스루 스타킹으로 변경해줘.",
+      "products": [
+        {
+          "id": "zigzag:172474103",
+          "category": "아우터",
+          "name": "[이연 PICK] 소프트 퍼 크롭 자켓 라이트그레이 MDJK047LGRAY"
+        },
+        {
+          "id": "zigzag:151022581",
+          "category": "상의",
+          "name": "[남친심쿵💗슬림핏] 라운드 단추 미니 블랙 니트 원피스 (H라인, 잘록허리)"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        5
+      ],
+      "text": "https://s.zigzag.kr/abr/0yqGUNuLcK 아우터 이걸로 바꿔줘. 원피스를 코디했으니 쇼츠는 제거해. 신발은 뾰족한 스틸레토 구두로 바꿔줘. 양말이 아닌 시스루 스타킹으로 변경해.",
+      "products": [
+        {
+          "id": "zigzag:167008119",
+          "category": "아우터",
+          "name": "[어텀🍂] 브렌 퍼 자켓 (아이보리)"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        6
+      ],
+      "text": "https://s.zigzag.kr/abr/NkuknEQ4yZ 모자 이거로 바꿔줘. 이너 티셔츠는 목부분이 브이넥인 티셔츠로 바꿔줘. 헨리넥도 좋아. 신발은 앵클부츠 말고 어그부츠 느낌의 털부츠로 바꿔줘.",
+      "products": [
+        {
+          "id": "zigzag:132787487",
+          "category": "상의",
+          "name": "[인기템] 샤프카 밍크 겨울 페이크퍼 빅사이즈 에스키모 삿포로 여행 모자 4color"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        7
+      ],
+      "text": "https://s.zigzag.kr/abr/AMvhIkeikc 아우터 이걸로 바꿔줘. 티셔츠는 슬림핏 제품으로 바꿔줘.",
+      "products": [
+        {
+          "id": "zigzag:167713765",
+          "category": "아우터",
+          "name": "겨울 오버핏 연말룩 미엘 카인드 퍼 누빔 크림 그레이 숏 자켓 하객룩 크리스마스룩"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        9
+      ],
+      "text": "https://s.zigzag.kr/abr/f032OHI2t8 아우터는 이걸로 바꿔줘.",
+      "products": [
+        {
+          "id": "zigzag:167334294",
+          "category": "아우터",
+          "name": "진짜 따뜻한 3온스 누빔 안감 퀄리티 웬디 퍼 자켓 (2color)"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675894,
+      "looks": [
+        10
+      ],
+      "text": "후드집업 후드티로 바꿔줘. 기장 좀더 짧으면 좋겠어"
+    }
+  ]
+}
