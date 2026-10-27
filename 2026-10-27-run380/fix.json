@@ -1,0 +1,79 @@
+{
+  "run": "2026-10-27-run378",
+  "round": 2,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "자켓은 목부터 배꼽까지 여며서 흰 티는 허리부분만 살짝 보이도록 하고, 자켓은 뚝떨어지는 핏이 아니라 살짝 풍성하고 퐁실한 핏이야. 상세페이지 이미지처럼 핏이나오게 해줘. 바지 기장 절반으로 줄여줘. 바지 통도 줄여서 허벅지에 거의 딱 맞게 해줘!"
+    },
+    {
+      "slide": 2,
+      "kind": "look",
+      "look": 2,
+      "text": "니트는 루즈하게 엉덩이 절반정도 덮는 기장으로 늘려주고, 한쪽만 살짝 허리에 걸치듯 해줘. 참고 코디컷과 동일한 핏이 나오도록 수정해줘. 니트에 가려지고, 치마 기장도 조금 줄여서 치마는 지금보다 절반 정도만 보일수 있게 해줘."
+    },
+    {
+      "slide": 5,
+      "kind": "look",
+      "look": 5,
+      "text": "퍼자켓이 좀더 퐁실하고 풍성한 느낌으로 헤줘. 제품 상세페이지 이미지 느낌을 많이 살려줘. 그리고 거의 여며주고, 치마 기장 더 짧게해서 살짝만 삐져나오게 하고 양말좀더 길게 해줘"
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 3,
+      "file": "03_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 4,
+      "file": "04_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 5,
+      "file": "05_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 6,
+      "file": "06_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 1,
+  "candidates": "out/2026-10-27/candidates.yaml",
+  "earlier": {
+    "run": "2026-10-27-run376",
+    "looks": {
+      "1": "out/2026-10-27/earlier/looks/1/outfit_r2/results/G_1.jpg",
+      "2": "out/2026-10-27/earlier/looks/2/outfit/results/G_1.jpg",
+      "3": "out/2026-10-27/earlier/looks/3/outfit_r2/results/G_1.jpg",
+      "4": "out/2026-10-27/earlier/looks/4/outfit_r2/results/G_1.jpg",
+      "5": "out/2026-10-27/earlier/looks/5/outfit/results/G_1.jpg",
+      "6": "out/2026-10-27/earlier/looks/6/outfit/results/G_1.jpg"
+    }
+  }
+}

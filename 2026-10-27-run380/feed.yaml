@@ -1,0 +1,228 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 하이넥 숏 퍼자켓
+  product: zigzag:172046026
+- comment: ''
+  name: 헨리넥 티셔츠
+  product: zigzag:171221132
+- comment: ''
+  name: 울 쇼츠
+  product: zigzag:166183665
+- comment: ''
+  name: 스웨이드 버클 부츠
+  product: zigzag:165455974
+- comment: ''
+  name: 레더 호보백
+  product: zigzag:168780987
+- comment: ''
+  name: 골지 롱 삭스
+  product: zigzag:131020807
+- comment: ''
+  name: 앙고라 브이넥 니트
+  product: zigzag:167233725
+- comment: ''
+  name: 레이스 이너 나시
+  product: zigzag:157994590
+- comment: ''
+  name: 레더 시계
+  product: zigzag:123161642
+- comment: ''
+  name: 스웨이드 미니스커트
+  product: zigzag:167025790
+- comment: ''
+  name: 스웨이드 롱부츠
+  product: zigzag:130914498
+- comment: ''
+  name: 스웨이드 숄더백
+  product: zigzag:164580854
+- comment: ''
+  name: 소프트 퍼 크롭 자켓
+  product: zigzag:172474103
+- comment: ''
+  name: 단추 니트 원피스
+  product: zigzag:151022581
+- comment: ''
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+- comment: ''
+  name: 버클 호보백
+  product: zigzag:147738628
+- comment: ''
+  name: 실버 볼체인 목걸이
+  product: zigzag:113341770
+- comment: ''
+  name: 퍼 샤프카
+  product: zigzag:132787487
+- comment: ''
+  name: 오버핏 레더 자켓
+  product: zigzag:148146251
+- comment: ''
+  name: 슬림 브이넥 티
+  product: zigzag:172226652
+- comment: ''
+  name: 미니 크로스백
+  product: zigzag:115638721
+- comment: ''
+  name: 어그 부츠
+  product: zigzag:153382969
+- comment: ''
+  name: 레그워머
+  product: zigzag:168607993
+- comment: ''
+  name: 웬디 퍼 자켓
+  product: zigzag:167334294
+- comment: ''
+  name: 헨리넥 긴팔티
+  product: zigzag:165972153
+- comment: ''
+  name: 미니스커트
+  product: zigzag:154052552
+- comment: ''
+  name: 스웨이드 로퍼
+  product: zigzag:165725019
+- comment: ''
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+- comment: ''
+  name: 뽀글이 자켓
+  product: zigzag:167061632
+- comment: ''
+  name: 피치 후드티
+  product: zigzag:172327451
+- comment: ''
+  name: 스웻팬츠
+  product: zigzag:166044824
+- comment: ''
+  name: 패딩 크로스백
+  product: zigzag:121658265
+- comment: ''
+  name: 워시드 볼캡
+  product: zigzag:167562963
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하이넥 숏 퍼자켓
+    product: zigzag:172046026
+  - comment: ''
+    name: 헨리넥 티셔츠
+    product: zigzag:171221132
+  - comment: ''
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - comment: ''
+    name: 스웨이드 버클 부츠
+    product: zigzag:165455974
+  - comment: ''
+    name: 레더 호보백
+    product: zigzag:168780987
+  - comment: ''
+    name: 골지 롱 삭스
+    product: zigzag:131020807
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 앙고라 브이넥 니트
+    product: zigzag:167233725
+  - comment: ''
+    name: 레이스 이너 나시
+    product: zigzag:157994590
+  - comment: ''
+    name: 레더 시계
+    product: zigzag:123161642
+  - comment: ''
+    name: 스웨이드 미니스커트
+    product: zigzag:167025790
+  - comment: ''
+    name: 스웨이드 롱부츠
+    product: zigzag:130914498
+  - comment: ''
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 소프트 퍼 크롭 자켓
+    product: zigzag:172474103
+  - comment: ''
+    name: 단추 니트 원피스
+    product: zigzag:151022581
+  - comment: ''
+    name: 스퀘어 롱부츠
+    product: zigzag:108156951
+  - comment: ''
+    name: 버클 호보백
+    product: zigzag:147738628
+  - comment: ''
+    name: 실버 볼체인 목걸이
+    product: zigzag:113341770
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 퍼 샤프카
+    product: zigzag:132787487
+  - comment: ''
+    name: 오버핏 레더 자켓
+    product: zigzag:148146251
+  - comment: ''
+    name: 슬림 브이넥 티
+    product: zigzag:172226652
+  - comment: ''
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - comment: ''
+    name: 미니 크로스백
+    product: zigzag:115638721
+  - comment: ''
+    name: 어그 부츠
+    product: zigzag:153382969
+  - comment: ''
+    name: 레그워머
+    product: zigzag:168607993
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 웬디 퍼 자켓
+    product: zigzag:167334294
+  - comment: ''
+    name: 헨리넥 긴팔티
+    product: zigzag:165972153
+  - comment: ''
+    name: 미니스커트
+    product: zigzag:154052552
+  - comment: ''
+    name: 스웨이드 로퍼
+    product: zigzag:165725019
+  - comment: ''
+    name: 레그워머
+    product: zigzag:168607993
+  - comment: ''
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-27/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 뽀글이 자켓
+    product: zigzag:167061632
+  - comment: ''
+    name: 피치 후드티
+    product: zigzag:172327451
+  - comment: ''
+    name: 스웻팬츠
+    product: zigzag:166044824
+  - comment: ''
+    name: 어그 부츠
+    product: zigzag:153382969
+  - comment: ''
+    name: 패딩 크로스백
+    product: zigzag:121658265
+  - comment: ''
+    name: 워시드 볼캡
+    product: zigzag:167562963
+title_lines:
+- 올가을 퍼는
+- 자켓부터 부츠까지 이렇게

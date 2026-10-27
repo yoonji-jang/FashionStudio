@@ -1,0 +1,527 @@
+account: women
+date: '2026-10-27'
+theme:
+  date: '2026-10-27'
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+items: []
+looks:
+- items:
+  - product: zigzag:172046026
+    color: 브라운
+    desc: 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up
+      high collar, very fluffy and voluminous with a slightly puffy boxy shape, not a straight
+      drop fit)
+    name: 하이넥 숏 퍼자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 4
+    - 1
+    size: about 59.5 cm long from shoulder to hem, 59.5 cm across the shoulders, 48.5
+      cm across the chest laid flat, 62 cm long sleeves
+    cm: 59.5
+  - product: zigzag:171221132
+    color: 화이트
+    desc: 화이트 헨리넥 티셔츠 (white henley tee)
+    name: 헨리넥 티셔츠
+    comment: ''
+    cutout_photo: 0
+    size: about 60 cm long from shoulder to hem, 35 cm across the shoulders, 40 cm
+      across the chest laid flat, 62 cm long sleeves
+    cm: 60.0
+  - product: zigzag:166183665
+    color: 블랙
+    desc: 블랙 울 쇼츠 (black matte textured wool shorts)
+    name: 울 쇼츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 1
+    - 0
+    - 2
+    size: worn shortened to about half the usual length, about 15 cm long from waist
+      to hem, hem hugging the upper thighs almost snugly
+    cm: 29.5
+  - product: zigzag:165455974
+    color: 브라운
+    desc: 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots)
+    name: 스웨이드 버클 부츠
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:168780987
+    color: 브라운
+    desc: 브라운 레더 호보백 (brown soft leather hobo bag)
+    name: 레더 호보백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  - product: zigzag:131020807
+    color: 아이보리
+    desc: 아이보리 골지 니트 롱 삭스 (ivory chunky ribbed knit long socks)
+    name: 골지 롱 삭스
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 3
+    - 0
+  reason: 하이넥 숏 퍼자켓이 주인공, 화이트 티와 블랙 쇼츠에 브라운 롱부츠와 골지 롱 삭스로 톤온톤
+  point: 브라운 퍼에 블랙 쇼츠를 맞추고 아이보리 삭스로 톤을 이었어요
+  styling: The fur jacket is zipped up from the neck all the way down to her navel,
+    so the white inner tee shows only as a small strip at the waist below the jacket
+    hem, none at the chest or neck. The jacket is slightly fluffy, puffy and voluminous
+    with a soft rounded boxy shape, not a straight drop fit, matching the product
+    detail photos. The black wool shorts are about half as long as before and slim,
+    hugging the thighs almost snugly with a short hem high on the upper thighs.
+  cover: out/2026-10-27/looks/1/outfit/results/G_1.jpg
+  edit_refs: []
+  pose: standing at the center of the plain studio, weight on one leg with the other
+    knee relaxed, both arms relaxed at her sides with one hand holding the bag handle,
+    her head turned a little to the side and her eyes looking off to the side; hair
+    in a slick low bun with a few loose flyaway strands at the temples
+  scene_image: out/2026-10-27/src/scene.jpg
+  ref: '779'
+  ref_photo: tg:AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ
+  requests: []
+- items:
+  - product: zigzag:167233725
+    color: 아이보리
+    desc: 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit)
+    name: 앙고라 브이넥 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 4
+    size: about 68 cm long from shoulder to hem, 60 cm across the shoulders, 53 cm
+      across the chest laid flat, 46 cm long sleeves
+    cm: 68.0
+  - product: zigzag:157994590
+    color: 블랙
+    desc: 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top)
+    name: 레이스 이너 나시
+    comment: ''
+    cutout_photo: 0
+    size: about 50 cm long from shoulder to hem, 25 cm across the shoulders, 34 cm
+      across the chest laid flat
+    cm: 50.0
+    wear_with: 상의
+  - product: zigzag:123161642
+    color: 브라운
+    desc: 브라운 가죽 시계 (brown leather watch)
+    name: 레더 시계
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:167025790
+    color: 브라운
+    desc: 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt)
+    name: 스웨이드 미니스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+    size: about 45 cm long from waist to hem, 36 cm across the waist laid flat, 47
+      cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 45.0
+  - product: zigzag:130914498
+    color: 브라운
+    desc: 스웨이드 롱부츠 (matte napped suede boots)
+    name: 스웨이드 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:164580854
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag)
+    name: 스웨이드 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  reason: 앙고라 브이넥 니트에 블랙 레이스 나시를 받쳐 입고 스웨이드 미니, 롱부츠까지 톤온톤
+  point: 앙고라 니트 안에 블랙 레이스 나시를 받쳐 입었어요
+  styling: The ivory knit is worn loose and longer than the original photo, and its
+    hem ends at the middle of her hips, not lower, so it must never reach her thighs
+    or look like a dress, matching the fit in the reference outfit photo. Only one
+    side of the knit hem is hooked lightly into the skirt waist, the other side hangs
+    loose over the hip. The suede mini skirt is shortened and a clear strip of about
+    10 cm of it shows below the knit hem, about half as much as in the first version.
+  edit_refs: []
+  pose: standing sideways in profile to the camera in the plain studio, both arms
+    hanging relaxed and low so the knit hem is not lifted, her chin lifted a little
+    and her eyes looking up and away, feet in a loose stagger so one leg crosses in
+    front of the other; hair long and loose in soft waves
+  scene_image: out/2026-10-27/src/scene_3.jpg
+  ref: '784'
+  ref_photo: tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E
+  requests: []
+- items:
+  - product: zigzag:172474103
+    color: 베이지
+    desc: 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket)
+    name: 소프트 퍼 크롭 자켓
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 3
+    - 5
+    size: about 48 cm long from shoulder to hem, 46 cm across the shoulders, 50 cm
+      across the chest laid flat, 56 cm long sleeves
+    cm: 48.0
+  - product: zigzag:151022581
+    color: 블랙
+    desc: 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley
+      placket)
+    name: 단추 니트 원피스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    - 2
+    size: about 80 cm long from shoulder to hem, 37 cm across the shoulders, 36 cm
+      across the chest laid flat
+    cm: 80.0
+  - product: zigzag:108156951
+    color: 블랙
+    desc: 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe)
+    name: 스퀘어 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 5
+  - product: zigzag:147738628
+    color: 블랙
+    desc: 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle)
+    name: 버클 호보백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 1
+  - product: zigzag:113341770
+    color: 실버
+    desc: 실버 볼 체인 목걸이 (thin silver ball-chain necklace)
+    name: 실버 볼체인 목걸이
+    comment: ''
+    cutout_photo: 0
+    slot: 목걸이
+    segment: necklace
+  reason: 라이트그레이 퍼 크롭 자켓이 주인공, 블랙 니트 원피스와 롱부츠로 올블랙 포인트
+  point: 라이트그레이 퍼를 올블랙 원피스 위에 걸쳐 질감을 살렸어요
+  styling: She wears sheer black see-through tights instead of socks.
+  cover: out/2026-10-27/looks/3/outfit/results/G_1.jpg
+  edit_refs: []
+  pose: standing in the plain studio with her body turned a little away from the camera
+    and her face turned back toward it, one hand holding the bag strap and the other
+    hand loosely lifting the hem of the jacket, her weight on the back leg; hair in
+    a sleek slick bun with fine flyaway baby hairs
+  scene_image: out/2026-10-27/src/scene_2.jpg
+  ref: '786'
+  ref_photo: tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E
+  requests:
+  - 시스루 검은 스타킹 (she wears sheer black see-through tights)
+- items:
+  - product: zigzag:132787487
+    color: 브라운
+    desc: 브라운 페이크퍼 모자 (brown soft long-pile fluffy faux-fur hat, no ear flaps and
+      no ties)
+    name: 퍼 샤프카
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+  - product: zigzag:148146251
+    color: 브라운
+    desc: 다크 브라운 오버핏 레더 자켓 (dark chocolate brown thick oversized leather bomber-style
+      jacket)
+    name: 오버핏 레더 자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 3
+    - 0
+  - product: zigzag:172226652
+    color: 블랙
+    desc: 블랙 슬림 브이넥 티셔츠 (black thin matte jersey v-neck tee)
+    name: 슬림 브이넥 티
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+    size: about 51.5 cm long from shoulder to hem, 36 cm across the shoulders, 38
+      cm across the chest laid flat, 59 cm long sleeves
+    cm: 51.5
+  - product: zigzag:166183665
+    color: 블랙
+    desc: 블랙 울 쇼츠 (black matte textured wool shorts)
+    name: 울 쇼츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 1
+    - 0
+    - 2
+    size: about 29.5 cm long from waist to hem, 40 cm across the waist laid flat,
+      51.5 cm across the hips laid flat, 33 cm across the hem laid flat
+    cm: 29.5
+  - product: zigzag:115638721
+    color: 블랙
+    desc: 블랙 미니 크로스백 (black mini crossbody bag)
+    name: 미니 크로스백
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:153382969
+    color: 블랙
+    desc: 블랙 플랫폼 어그 부츠 (black napped suede platform ugg-style shearling boots)
+    name: 어그 부츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 5
+  - product: zigzag:168607993
+    color: 블랙
+    desc: 블랙 레그워머 (thick soft ribbed knit leg warmers, black with a charcoal folded
+      cuff)
+    name: 레그워머
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  reason: 퍼 모자가 포인트, 오버핏 레더 자켓에 브이넥 티, 울 쇼츠와 어그 부츠
+  point: 퍼 모자 하나로 오버핏 레더 룩에 포근함을 더했어요
+  styling: The jacket is thick and worn oversized. The wool shorts are worn at their
+    shortest, with a very short hem high on the thighs. Thick dark charcoal ribbed
+    leg warmers are worn over the black tights, bunched above the ugg boots.
+  cover: out/2026-10-27/looks/4/outfit/results/G_1.jpg
+  edit_refs: []
+  pose: standing straight on to the camera in the plain studio with her chin slightly
+    down and a cool expression, one hip pushed out and one hand in the jacket pocket,
+    the other hand holding the crossbody strap; the ushanka hat sits low on her head
+    with her long wavy hair falling loose past her shoulders from under the hat
+  scene_image: out/2026-10-27/src/scene_2.jpg
+  ref: '788'
+  ref_photo: tg:AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E
+  requests:
+  - 검은 스타킹 (she wears black tights under the shorts)
+- items:
+  - product: zigzag:167334294
+    color: 아이보리
+    desc: 아이보리 퍼 자켓 (ivory thick long-pile shaggy faux-fur jacket with a shawl collar,
+      very fluffy, voluminous long-pile faux fur)
+    name: 웬디 퍼 자켓
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    size: about 65 cm long from shoulder to hem, 45 cm across the shoulders, 57 cm
+      across the chest laid flat, 72 cm long sleeves
+    cm: 65.0
+  - product: zigzag:165972153
+    color: 화이트
+    desc: 화이트 헨리넥 긴팔티 (white thin ribbed cotton henley long-sleeve tee)
+    name: 헨리넥 긴팔티
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37
+      cm across the chest laid flat, 68 cm long sleeves
+    cm: 49.5
+  - product: zigzag:154052552
+    color: 아이보리
+    desc: 아이보리 미니스커트 (ivory smooth woven cotton mini skirt)
+    name: 미니스커트
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 3
+    - 2
+    size: worn shortened, about 28 cm long from waist to hem, only a small strip
+      of hem peeks out below the jacket
+    cm: 40.0
+  - product: zigzag:165725019
+    color: 브라운
+    desc: 브라운 스웨이드 로퍼 (matte suede lace-up loafers with a gum crepe sole)
+    name: 스웨이드 로퍼
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 3
+    - 1
+  - product: zigzag:168607993
+    color: 아이보리
+    desc: 아이보리 레그워머 (ivory leg warmers, long, scrunched up high)
+    name: 레그워머
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+  - product: zigzag:150024149
+    color: 브라운
+    desc: 브라운 스웨이드 호보백 (napped dark brown suede hobo bag)
+    name: 스웨이드 호보백
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 3
+    - 0
+  reason: 웬디 퍼 자켓에 아이보리 미니스커트, 레그워머와 브라운 로퍼로 톤온톤
+  point: 아이보리 퍼와 미니스커트를 맞추고 브라운 로퍼로 마무리했어요
+  styling: The fur jacket is much fluffier and more voluminous than before, like the
+    product detail photos, and it is closed almost all the way, only a thin strip
+    of the white tee shows at the neck. The ivory mini skirt is much shorter than
+    before and only peeks out a little below the jacket hem. The ivory leg warmers
+    are longer than before, reaching up to just above her knees.
+  cover: out/2026-10-27/looks/5/outfit/results/G_1.jpg
+  edit_refs: []
+  pose: standing at an angle in the plain studio, a hand tucked into the jacket pocket
+    and the other holding the bag, one foot crossed in front of the other, her head
+    tilted slightly and her eyes looking off to the side; hair long and loose in soft
+    waves
+  scene_image: out/2026-10-27/src/scene_3.jpg
+  ref: '791'
+  ref_photo: tg:AgACAgUAAxkBAAIIWWrgbQa_WXEd61M-PZgJ0Md3LwLnAAJEFGsbB_YAAVdDRv98H3dghQEAAwIAA3kAAz0E
+  requests: []
+- items:
+  - product: zigzag:167061632
+    color: 베이지
+    desc: 베이지 양털 뽀글이 자켓 (beige thick curly sherpa fleece jacket)
+    name: 뽀글이 자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 80 cm long from shoulder to hem, 59 cm across the shoulders, 62 cm
+      across the chest laid flat, 52 cm long sleeves
+    cm: 80.0
+  - product: zigzag:172327451
+    color: 그레이
+    desc: 그레이 풀오버 후드티 (gray thin stretchy cotton jersey pullover hoodie with a drawstring
+      hood)
+    name: 피치 후드티
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    size: about 54 cm long from shoulder to hem, 39.5 cm across the shoulders, 38.5
+      cm across the chest laid flat, 65 cm long sleeves
+    cm: 54.0
+  - product: zigzag:166044824
+    color: 그레이
+    desc: 그레이 스웻팬츠 (gray cotton fleece sweatpants)
+    name: 스웻팬츠
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:153382969
+    color: 브라운
+    desc: 카멜 플랫폼 어그 부츠 (camel napped suede platform ugg-style boots with shearling
+      lining)
+    name: 어그 부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 4
+    - 0
+    - 1
+  - product: zigzag:121658265
+    color: 블랙
+    desc: 블랙 미니 패딩 크로스백 (black quilted nylon puffy crossbody bag with a knotted strap)
+    name: 패딩 크로스백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:167562963
+    color: 그린
+    desc: 그린 볼캡 (green washed ball cap)
+    name: 워시드 볼캡
+    comment: ''
+    cutout_photo: 0
+  reason: 베이지 뽀글이 자켓에 크롭 후드티와 스웻팬츠, 어그 부츠로 포근한 캐주얼
+  point: 뽀글이 자켓에 그레이 후드티를 맞춰 포근하게 입었어요
+  cover: out/2026-10-27/looks/6/outfit/results/G_1.jpg
+  edit_refs: []
+  pose: standing in the plain studio with a relaxed lean, her weight on one leg, both
+    hands in the jacket pockets and her shoulders loose, her face turned half to the
+    side under the green ball cap pulled low; hair in a slick low bun under the cap
+    with fine flyaway strands
+  scene_image: out/2026-10-27/src/scene.jpg
+  ref: '792'
+  ref_photo: tg:AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E
+  requests: []
+reason: 사용자가 고른 참고 코디 10벌(779, 784~792)을 순서대로 따라 짠 퍼 코디 모음
+text:
+  title_lines:
+  - 올가을 퍼는
+  - 자켓부터 부츠까지 이렇게
+  intro: 맑고 쌀쌀한 가을 아침엔 포근한 퍼 하나 꺼내 입어요 🤎
+  points: []
+  hashtags:
+  - '#퍼자켓'
+  - '#에코퍼'
+  - '#가을코디'
+  - '#퍼코디'
+  - '#가을룩북'
+  - '#뽀글이자켓'
+  - '#어그부츠'
+edit_refs: []
+shot: model
+cover_look: 1
+mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
+  and a clean white floor, soft even studio light with a soft shadow on the floor,
+  neutral cool color tone, a clean digital camera look, full-body framing at a medium
+  distance'
+scene_image: out/2026-10-27/src/scene.jpg
+face: an exotic, striking look with long calm eyes with a double eyelid, slim straight
+  eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
+  skin, a small slim face with narrow width and a high straight nose bridge
+requests: []

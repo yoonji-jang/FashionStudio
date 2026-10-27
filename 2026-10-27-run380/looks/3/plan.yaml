@@ -1,0 +1,126 @@
+account: women
+cover: out/2026-10-27/looks/3/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-27'
+edit_refs: []
+face: an exotic, striking look with long calm eyes with a double eyelid, slim straight
+  eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
+  skin, a small slim face with narrow width and a high straight nose bridge
+items:
+- cm: 48.0
+  color: 베이지
+  comment: ''
+  cutout_photo: 4
+  desc: 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket)
+  name: 소프트 퍼 크롭 자켓
+  product: zigzag:172474103
+  ref_photos:
+  - 4
+  - 3
+  - 5
+  size: about 48 cm long from shoulder to hem, 46 cm across the shoulders, 50 cm across
+    the chest laid flat, 56 cm long sleeves
+- cm: 80.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley
+    placket)
+  name: 단추 니트 원피스
+  product: zigzag:151022581
+  ref_photos:
+  - 1
+  - 0
+  - 2
+  size: about 80 cm long from shoulder to hem, 37 cm across the shoulders, 36 cm across
+    the chest laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe)
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
+  ref_photos:
+  - 0
+  - 2
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle)
+  name: 버클 호보백
+  product: zigzag:147738628
+  ref_photos:
+  - 0
+  - 2
+  - 1
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 볼 체인 목걸이 (thin silver ball-chain necklace)
+  name: 실버 볼체인 목걸이
+  product: zigzag:113341770
+  segment: necklace
+  slot: 목걸이
+looks: []
+mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
+  and a clean white floor, soft even studio light with a soft shadow on the floor,
+  neutral cool color tone, a clean digital camera look, full-body framing at a medium
+  distance'
+pose: standing in the plain studio with her body turned a little away from the camera
+  and her face turned back toward it, one hand holding the bag strap and the other
+  hand loosely lifting the hem of the jacket, her weight on the back leg; hair in
+  a sleek slick bun with fine flyaway baby hairs
+reason: 라이트그레이 퍼 크롭 자켓이 주인공, 블랙 니트 원피스와 롱부츠로 올블랙 포인트
+ref_photo: tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E
+requests:
+- 시스루 검은 스타킹 (she wears sheer black see-through tights)
+scene_image: out/2026-10-27/src/scene_2.jpg
+shot: model
+styling: She wears sheer black see-through tights instead of socks.
+text:
+  hashtags:
+  - '#퍼자켓'
+  - '#에코퍼'
+  - '#가을코디'
+  - '#퍼코디'
+  - '#가을룩북'
+  - '#뽀글이자켓'
+  - '#어그부츠'
+  intro: 맑고 쌀쌀한 가을 아침엔 포근한 퍼 하나 꺼내 입어요 🤎
+  points: []
+  title_lines:
+  - 올가을 퍼는
+  - 자켓부터 부츠까지 이렇게
+theme:
+  date: '2026-10-27'
+  mood: 포근한 에코퍼 질감을 아우터·신발·가방·소품에 포인트로, 차분한 깊은 가을 톤
+  search_terms:
+    가방:
+    - 퍼 숄더백
+    소품:
+    - 퍼 비니
+    - 퍼 머플러
+    신발:
+    - 퍼 부츠
+    - 퍼 트리밍 앵클부츠
+    아우터:
+    - 에코퍼 자켓
+    - 페이크퍼 숏자켓
+    - 퍼 카라 코트
+  slots:
+  - category: 아우터
+    desc: 에코퍼 숏자켓 또는 퍼 카라 코트, 안에는 깔끔한 니트
+  - category: 상의
+    desc: 얇은 니트나 셔츠, 퍼가 돋보이게 단정하게
+  - category: 하의
+    desc: 슬랙스 또는 미디스커트, 퍼와 질감 대비
+  - category: 가방
+    desc: 퍼 숄더백 또는 퍼 트리밍 가방
+  - category: 신발
+    desc: 퍼 부츠 또는 퍼 트리밍 앵클부츠
+  - category: 소품
+    desc: 퍼 비니, 퍼 머플러
+  title_hint: 퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지
+  type: 아이템
+  why: 최저 5도까지 내려가 퍼 질감이 자연스러워지는 시기, 맑은 날씨라 가볍게 퍼 하나 걸치기 좋음
