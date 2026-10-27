@@ -38,7 +38,8 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
 상태는 daily-results 의 flow/<계정>/state.json, 장면 사진은 flow/<계정>/<날짜>/scene.jpg
 (여러 장이면 scene_2.jpg, scene_3.jpg …: 공통 무드는 함께 읽고
  벌마다 어울리는 사진의 자리·포즈로, 2026-10-15)
-(사진에 붙인 말은 같은 폴더 scene.txt: 모든 벌에 반영할 요청, 예 "슬릭번")
+(사진에 붙인 말은 같은 폴더 scene.txt: 모든 벌에 반영할 요청, 예 "슬릭번".
+ 사진과 설명은 새로 보낼 때까지 다음 주제에도 그대로 쓴다, 2026-10-27)
 (커밋은 schedule 워크플로가 한다).
 제안 주제는 data/<계정>/theme_options.json (theme-options 워크플로가 커밋).
 
@@ -60,6 +61,7 @@ import argparse
 import datetime as dt
 import json
 import re
+import shutil
 import sys
 import time
 from datetime import UTC, date, datetime, timedelta
@@ -712,6 +714,20 @@ def _week_wait(
     return _use_theme(store, st, tg, send, picked[0], ts, dry_run, tag, left, profile)
 
 
+def _carry_scenes(results: Path, acc: str, st: FlowState, prev_day, dry_run: bool) -> None:
+    """지난 주제의 장면 사진·설명(scene.txt)을 새 날짜 폴더로 옮겨 적는다."""
+    if not st.scenes or prev_day is None or prev_day == st.date:
+        return
+    src, dst = f"flow/{acc}/{prev_day}", f"flow/{acc}/{st.date}"
+    if not dry_run:
+        (results / dst).mkdir(parents=True, exist_ok=True)
+        for f in [*st.scenes, f"{src}/scene.txt"]:
+            if (results / f).exists():
+                shutil.copy(results / f, results / dst / Path(f).name)
+    st.scenes = [f"{dst}/{Path(f).name}" for f in st.scenes]
+    st.scene = st.scenes[0]
+
+
 def _step(
     profile: Profile,
     store: Store,
@@ -730,9 +746,12 @@ def _step(
     tag = f"[{acc}] {st.date:%m-%d}" if st.date else f"[{acc}]"
 
     if st.stage == "theme":
+        prev_day = st.date
         st.date = next_date(profile, store, now)
-        st.pick, st.scene, st.scene_update, st.theme_at = "", "", 0, 0
-        st.scenes, st.scene_at = [], 0
+        st.pick, st.theme_at = "", 0
+        # 장면 사진과 설명은 새로 보낼 때까지 다음 주제에도 그대로 쓴다
+        # (2026-10-27 사용자: 한 참고 사진으로 여러 주제를 만들고 싶다)
+        _carry_scenes(results, acc, st, prev_day, dry_run)
         if profile.flow.week_options:
             if st.week and profile.flow.theme_review and tg is not None:
                 tg.send(review_text(profile, st))
@@ -916,10 +935,9 @@ def _step(
                         tg.download(p.file_id, results / rel)
                     # 사진에 붙인 말(예: "슬릭번")은 모든 벌에 반영할 요청 (daily-feed 가 읽음)
                     note_path = results / folder / "scene.txt"
+                    # 설명 없이 사진만 다시 보내면 앞서 보낸 설명을 그대로 쓴다 (2026-10-27)
                     if note:
                         note_path.write_text(note + "\n", encoding="utf-8")
-                    elif not joined:
-                        note_path.unlink(missing_ok=True)
                 st.scenes = [*keep, *new]
                 st.scene, st.scene_update, st.scene_at = (
                     st.scenes[0],
