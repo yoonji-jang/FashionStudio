@@ -404,5 +404,145 @@
    },
    "text": "1번은 퍼 를 주제로 하자. 퍼자켓 퍼부츠 등등 퍼로 포인트 주는 주제로 하고싶어. 이 주제로 시작해"
   }
+ },
+ {
+  "update_id": 428675884,
+  "message": {
+   "message_id": 2129,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E",
+   "caption": "참고",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675885,
+  "message": {
+   "message_id": 2130,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIUmrgbQYddB0igV16xbr69g91piz4AAI-FGsbB_YAAVdKEca7sliuQAEAAwIAA3gAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675886,
+  "message": {
+   "message_id": 2131,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675887,
+  "message": {
+   "message_id": 2132,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIVGrgbQaKeeA9Y5cL47SAkT8FWlHVAAJAFGsbB_YAAVdXgz4hMGg_hAEAAwIAA3gAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675888,
+  "message": {
+   "message_id": 2133,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675889,
+  "message": {
+   "message_id": 2134,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIVmrgbQaWSHjZqqF2Xkfpgz_GUMq7AAJCFGsbB_YAAVeCEDLOlqy6OgEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675890,
+  "message": {
+   "message_id": 2135,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIV2rgbQZcQYBm_hDaLILH1-xLAAFgkAACQxRrGwf2AAFXlaWc51HOZA8BAAMCAAN5AAM9BA",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675891,
+  "message": {
+   "message_id": 2136,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675892,
+  "message": {
+   "message_id": 2137,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIWWrgbQa_WXEd61M-PZgJ0Md3LwLnAAJEFGsbB_YAAVdDRv98H3dghQEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
+ },
+ {
+  "update_id": 428675893,
+  "message": {
+   "message_id": 2138,
+   "date": 1793092870,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E",
+   "caption": "",
+   "media_group_id": "14344742960530165"
+  }
  }
 ]
