@@ -1,0 +1,7 @@
+changes:
+  - "1장 표지 제목: '추워도 핫하고 싶을 때' / '핫걸 연말 파티룩 모음' 으로 바꿈"
+  - "1번 벌 코디컷: 고치기 전 그림(earlier)으로 되돌림, 새로 그리지 않음 (지난 검수 점수는 기록이 도구에서 '미검수'로 바뀜)"
+  - "벌 순서 3,5,1,6,2,4 로 바꾸기: 못 함 — tools.cover_look order 실행과 looks 폴더 이동이 이 환경에서 승인 대기로 막혀 순서는 그대로"
+notes:
+  - "되돌리기: 폴더 삭제·복사(rm, cp)가 막혀 looks/1 을 복사하지 못함. 대신 plan 1번 벌 cover 를 earlier/looks/1/outfit/results/G_1.jpg 로 지정하고 styling 은 earlier 것으로 되돌림. edit_from/edit_request 는 지움."
+  - "벌 순서는 사람이 python -m tools.cover_look order out/2026-10-23 3 5 1 6 2 4 로 한 번 더 실행해야 함."

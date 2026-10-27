@@ -1,0 +1,103 @@
+account: women
+cover: out/2026-10-23/looks/3/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-23'
+edit_refs: []
+face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
+  dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
+  full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 핸드메이드 하이넥 벨티드 숏 코트 (chocolate brown wool high-neck short coat with large
+    front buttons and a waist belt, ends above the hip, drop-shoulder, thick wool;
+    the colour is warm chocolate brown, never charcoal or grey)
+  name: 벨티드 숏 코트
+  product: zigzag:172115313
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 무지 라운드 티셔츠 (plain black round-neck 3/4-sleeve tee, fitted)
+  name: 블랙 무지 티
+  product: zigzag:166412607
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 모직 플리츠 미니스커트 (black wool knife-pleated mini skirt, very short, high waist,
+    ends high on the upper thigh, soft unpressed pleats)
+  name: 플리츠 미니
+  product: zigzag:167228033
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 스웨이드 오버니 부츠 (black matte suede over-the-knee boots, snug straight shaft,
+    round toe, low heel, shaft reaches the mid-thigh)
+  name: 오버니 부츠
+  product: zigzag:131281211
+  ref_photos:
+  - 2
+  - 3
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black small shoulder bag)
+  name: 블랙 숄더백
+  product: zigzag:170305230
+looks: []
+mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
+  pale grey-white wall and floor, soft diffused studio light with one gentle shadow
+  on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
+  so the whole body from head to shoes is visible
+pose: standing in the studio like the first lookbook shot, body turned slightly to
+  the side in a gentle three-quarter turn with her face toward the camera, weight
+  on one leg with one hand in the coat pocket and the other arm relaxed with a slight
+  bend, head tilted a little, looking at the camera so the eyes can be seen, a relaxed
+  natural stance, not stiff arms-down; her black hair is long and loosely wavy, falling
+  down her back
+reason: '브라운 벨티드 숏 코트가 주인공, 플리츠 미니와 니하이 부츠로 다리를 길게 보이는 파티룩. 참고: 브라운 울 벨티드 숏 코트/블랙
+  플리츠 미니/블랙 스웨이드 오버니삭스 부츠/블랙 가방/블랙 스타킹 → 맞춘 것: 브라운 하이넥 벨티드 숏 코트(창고에 같은 상품이 없어 가장 비슷한
+  것)/블랙 모직 플리츠 미니/블랙 스웨이드 오버니 부츠/블랙 숄더백/블랙 삭스 (따라 함: 참고 776)'
+ref_photo: tg:AgACAgUAAxkBAAIHu2rfCfYBrHoDpalKKofdjuK7TL2xAAKJFWsbCo_5VkmC5G3MfWAkAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene.jpg
+shot: model
+styling: The coat's high collar stands straight up around her neck, not folded down.
+  The belted short coat is warm chocolate brown wool exactly like the coat in the
+  reference outfit photo (NOT charcoal or grey; ignore any grey tint in the product
+  photos), closed at the front with its belt tied at the waist so the waist looks
+  narrow; the coat ends above the hip, at about the top of her hips. The black tee
+  shows only at the neckline. The pleated mini skirt is very short with a high waist,
+  so only a thin strip of it shows below the coat hem, much shorter than before. She
+  wears sheer see-through black stockings (no socks of any kind), so her skin shows
+  faintly through them, with the suede over-the-knee boots over them.
+text:
+  hashtags:
+  - '#연말모임룩'
+  - '#파티룩'
+  - '#올블랙코디'
+  - '#가을겨울코디'
+  intro: 7~20도 오락가락하는 요즘, 연말 모임 옷은 미리 저장해 두세요 🍷
+  points: []
+  title_lines:
+  - 추워도 핫하고 싶을 때
+  - 핫걸 연말 파티룩 모음
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)

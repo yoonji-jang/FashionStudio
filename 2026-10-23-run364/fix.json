@@ -1,0 +1,67 @@
+{
+  "run": "2026-10-23-run363",
+  "round": 3,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "1번 벌(표지)은 고치기 전 이미지를 사용해줘 (고치기 전으로 되돌리기, 새로 그리지 않음). 제목은 두 줄 '추워도 핫하고 싶을 때' / '핫걸 연말 파티룩 모음' 으로 바꿔줘. 그리고 벌 순서를 지금 미리보기의 LOOK 번호로 3, 5, 1, 6, 2, 4 순서로 바꿔줘 (첫 번호 LOOK 3 이 표지). 순서는 되돌리기와 제목을 반영한 뒤 python -m tools.cover_look order out/$DATE 3 5 1 6 2 4 와 같은 결과가 되게 looks/<n> 폴더와 plan.looks 순서를 옮기고 cover_look 1. 이미지 AI 로 다시 그리는 벌은 없음."
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 3,
+      "file": "03_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 4,
+      "file": "04_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 5,
+      "file": "05_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 6,
+      "file": "06_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 1,
+  "candidates": "out/2026-10-23/candidates.yaml",
+  "earlier": {
+    "run": "2026-10-23-run362",
+    "looks": {
+      "1": "out/2026-10-23/earlier/looks/1/outfit/results/G_1.jpg",
+      "2": "out/2026-10-23/earlier/looks/2/outfit_r2/results/G_1.jpg",
+      "3": "out/2026-10-23/earlier/looks/3/outfit_r2/results/G_1.jpg",
+      "4": "out/2026-10-23/earlier/looks/4/outfit_r2/results/G_1.jpg",
+      "5": "out/2026-10-23/earlier/looks/5/outfit/results/G_1.jpg",
+      "6": "out/2026-10-23/earlier/looks/6/outfit/results/G_1.jpg"
+    }
+  }
+}

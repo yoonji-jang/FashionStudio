@@ -1,0 +1,104 @@
+account: women
+cover: out/2026-10-23/looks/4/outfit_r2/results/G_1.jpg
+cover_look: 1
+date: '2026-10-23'
+edit_refs: []
+face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
+  dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
+  full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 노카라 트위드 자켓 (black collarless round-neck tweed jacket, cropped boxy structured
+    fit, gold-tone buttons, ends at the hip)
+  name: 트위드 자켓
+  product: zigzag:168299406
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 무지 라운드 티셔츠 (plain black round-neck 3/4-sleeve tee, fitted)
+  name: 블랙 무지 티
+  product: zigzag:166412607
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 캉캉 미니스커트 (black thin lightweight matte cotton-like tiered ruffled can-can
+    mini skirt with three tiers, elastic waistband, voluminous, very short, ends high
+    on the upper thigh; the fabric is matte and flat, not velvet, no pile and no sheen)
+  name: 캉캉 미니
+  product: zigzag:167352017
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스틸레토 메리제인 (black pointed-toe stiletto Mary Jane shoes, narrow pointed toe,
+    ankle strap, thin high stiletto heel)
+  name: 스틸레토 메리제인
+  product: zigzag:121428665
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 미니 토트백 (black small tote bag with top handle)
+  name: 블랙 토트백
+  product: zigzag:130366243
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 골지 니삭스 (exactly one pair of black ribbed knee socks)
+  name: 골지 니삭스
+  product: zigzag:136839704
+  wear_with: 신발
+looks: []
+mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
+  pale grey-white wall and floor, soft diffused studio light with one gentle shadow
+  on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
+  so the whole body from head to shoes is visible
+pose: standing front-on in the studio like the black blazer lookbook shot, one hand
+  holding the tote at her side and the other hand lightly on her hip, hip pushed to
+  one side, looking straight at the camera with a cool expression; her black hair
+  is in a sleek bun with a few loose wisps at the temples
+reason: '블랙 트위드 자켓이 주인공, 프릴 미니와 메리제인으로 클래식하게 모은 올블랙 파티룩. 참고: 블랙 트위드 자켓(금단추·리본)/프릴
+  튤 미니/에나멜 메리제인/도트 미니 토트/도트 스타킹/리본 헤어핀 → 맞춘 것: 블랙 노카라 트위드 자켓/블랙 벨벳 캉캉 미니/블랙 스틸레토 메리제인(앞코
+  뾰족)/블랙 토트/블랙 골지 니삭스 (헤어핀은 창고에 없어 뺌) (따라 함: 참고 778)'
+ref_photo: tg:AgACAgUAAxkBAAIHvWrfCfYlFOL19OEzMHHM4wPkV9_AAAKLFWsbCo_5VuPZCKt9vMBVAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene_3.jpg
+shot: model
+styling: The tweed jacket is buttoned at the middle button only and sits at the hip,
+  nipped in so the waist line is clearly shown; the black tee shows at the neckline.
+  The can-can skirt is a tiered ruffled skirt of thin lightweight matte cotton-like
+  fabric (not velvet, no pile, no plush sheen, soft crisp ruffles) that flares out
+  in a full A-line with plenty of volume, very short, with a high waist, as in the
+  product photo. Black ribbed knee socks are worn with the pointed-toe stiletto Mary
+  Janes.
+text:
+  hashtags:
+  - '#연말모임룩'
+  - '#파티룩'
+  - '#올블랙코디'
+  - '#가을겨울코디'
+  intro: 7~20도 오락가락하는 요즘, 연말 모임 옷은 미리 저장해 두세요 🍷
+  points: []
+  title_lines:
+  - 추워도 핫하고 싶을 때
+  - 핫걸 연말 파티룩 모음
+theme:
+  date: '2026-10-23'
+  mood: 깊은 와인·플럼 톤에 벨벳·새틴 질감으로 차려입은 분위기
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 블랙 하프 코트 또는 테일러드 자켓, 파티 옷이 보이게 걸치기
+  - category: 상의
+    desc: 벨벳 또는 새틴 소재 블라우스·홀터 니트
+  - category: 하의
+    desc: 새틴 미디스커트 또는 벨벳 와이드 팬츠
+  - category: 가방
+    desc: 미니 숄더백 또는 클러치
+  - category: 신발
+    desc: 뾰족한 앞코 힐 또는 메리제인
+  title_hint: 연말 파티룩, 모임 자리에서 은은하게 반짝이는 코디
+  type: 상황
+  why: 사용자 요청, 연말 모임을 앞두고 미리 저장해 둘 파티룩 (7~20도라 가벼운 겉옷 필요)

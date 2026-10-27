@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-23-run364",
+  "account": "women",
+  "sandbox": false,
+  "mode": "fix",
+  "pick": "{\"run\": \"2026-10-23-run363\", \"round\": 3, \"fixes\": [{\"slide\": 1, \"kind\": \"cover\", \"text\": \"1번 벌(표지)은 고치기 전 이미지를 사용해줘 (고치기 전으로 되돌리기, 새로 그리지 않음). 제목은 두 줄 '추워도 핫하고 싶을 때' / '핫걸 연말 파티룩 모음' 으로 바꿔줘. 그리고 벌 순서를 지금 미리보기의 LOOK 번호로 3, 5, 1, 6, 2, 4 순서로 바꿔줘 (첫 번호 LOOK 3 이 표지). 순서는 되돌리기와 제목을 반영한 뒤 python -m tools.cover_look order out/$DATE 3 5 1 6 2 4 와 같은 결과가 되게 looks/<n> 폴더와 plan.looks 순서를 옮기고 cover_look 1. 이미지 AI 로 다시 그리는 벌은 없음.\"}]}"
+}
