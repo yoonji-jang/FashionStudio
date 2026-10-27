@@ -365,7 +365,8 @@ WORN_REF_MODEL = (
     " never take fabric, color, pattern, length or details from this photo. If a piece there is"
     " longer or shorter, or has a belt, collar, pleats or buttons the product does not have, draw"
     " the product as it is in its sheet. Never copy that photo's face, background or pose, and"
-    " draw nothing that is not in the sheets even if that model wears it."
+    " draw nothing that is not in the sheets even if that model wears it, unless the wearing"
+    " text below names it."
 )
 
 
