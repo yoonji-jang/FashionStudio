@@ -19,10 +19,12 @@
 $person 인물과 얼굴 (기획에 face 가 있으면 prompts/scene_face_shown.md, 없으면 scene_face_hidden.md),
 $items 번호별 상품 설명과 실측 (2026-10-27 사용자: 기장은 cm 기본값이 아니라 상품 착용컷의 모델 몸에서 끝나는 자리를 따름),
 $body 몸과 실루엣 (기준 코디 사진이 있으면 prompts/scene_body_ref.md, 없으면 scene_body.md), $sheets 상품 참고판 설명 (기준 코디가 있으면 상품 사진 속 모델이 입은 방식은 따르지 않게), $worn 기준 코디 사진 설명 (따라 한 참고 코디가 있으면, 2026-10-27 사용자: 참고 코디와 똑같이 입기. 없으면 빈칸), $styling 입는 방법, $pose 이 벌의 자리·포즈·얼굴 가리는 방법,
-$mood 장면 사진에서 읽은 무드 (촬영 종류, 장소, 빛, 색감, 카메라), $season 게시 날짜의 계절.
+$must 사용자가 /fix·후보 /fix 로 정한 요청 (맨 위, 모든 것보다 앞섬. 2026-10-27 run378: 요청이 맨 끝 styling 에 있고
+"글보다 사진" 문장에 눌려 니트 기장이 그대로 → 맨 위로), $mood 장면 사진에서 읽은 무드 (촬영 종류, 장소, 빛, 색감, 카메라), $season 게시 날짜의 계절.
 이 주석은 전송되지 않는다.
 -->
 Create one realistic photo of a young woman wearing this exact outfit, the kind of photo people save on Pinterest.
+$must
 
 $worn
 $sheets Draw each item once and ignore other clothes or people in those photos:
@@ -36,7 +38,8 @@ her body: the silhouette, how each piece fits, how long each piece looks on her 
 (open or closed, how far a zip is done up, tucked or loose, what peeks out and by how much, a coat on the
 shoulders or slipping off one shoulder, pushed-up sleeves). The item sheets decide what each product is:
 its fabric, color, pattern, details and thickness. The scene photo decides only the place, light and
-pose. The text only tells the items apart: where the text and the photos differ, follow the photos.
+pose. Apart from the user's requests at the top, the text only tells the items apart: where other
+text and the photos differ, follow the photos.
 
 Make a new photo in the same mood as the scene photo: the same kind of shot (street snapshot, studio
 shoot, mirror selfie or whatever it is), the same kind of place and background, the same light, color

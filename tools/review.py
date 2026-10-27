@@ -414,7 +414,13 @@ def _manifest(out: Path) -> Manifest | None:
 
 
 def passes(score: CoverScore, profile: Profile) -> bool:
-    return score.total >= profile.review.min_score and not score.zeros and not score.faults
+    # 2026-10-27 사용자: /fix 요청이 안 보이는데 8점 통과해 거의 같은 그림이 옴 → 요청 미반영은 탈락
+    return (
+        score.total >= profile.review.min_score
+        and not score.zeros
+        and not score.faults
+        and score.feedback_ok is not False
+    )
 
 
 def pick(review: Review, profile: Profile) -> Candidate | None:

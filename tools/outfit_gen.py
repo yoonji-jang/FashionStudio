@@ -128,6 +128,22 @@ def styling_text(
     return " ".join(parts) or "Each item lies naturally as described, like a person wearing it."
 
 
+def must_text(plan: DailyPlan, worn: bool) -> str:
+    """장면 모델컷 맨 위에 두는 사용자 요청 (2026-10-27 run378: 맨 끝 styling 에 두니
+    "글보다 사진" 문장에 눌려 니트 기장·여밈 요청이 거의 반영되지 않음).
+    기준 코디가 있으면 기획 styling 도 사용자 요청이다 (daily-feed·fix-feed 가 그때만 씀)."""
+    asks = [plan.styling.strip()] if worn and plan.styling else []
+    asks += [english(x).strip().rstrip(".") + "." for x in plan.requests]
+    if not asks:
+        return ""
+    return (
+        "\nMOST IMPORTANT, the user's own requests for this photo. They beat everything below,"
+        " including the reference outfit photo, the shop photos and the pose; an item named here"
+        " is drawn even if it is not in the item sheets. Make each change clearly visible, not"
+        " a small step: " + " ".join(asks) + "\n"
+    )
+
+
 def requests_sentence(plan: DailyPlan) -> str:
     """사람이 그리기 전에 정한 요청 (기획 requests, "한국어 (영어)").
     상품이 아닌 소품, 포즈, 여밈 정도 등."""
@@ -208,7 +224,12 @@ def build_prompt(
             sheets=SHEETS_AFTER_REF if worn else SHEETS_FIRST,
             body=render_prompt("scene_body_ref" if worn else "scene_body"),
             items=item_lines(plan, products, cfg, ref=worn),
-            styling=styling_text(plan, products, profile, ref=worn),
+            must=must_text(plan, worn),
+            styling=(
+                REF_STYLING
+                if worn
+                else styling_text(plan.model_copy(update={"requests": []}), products, profile)
+            ),
             pose=plan.pose or "a relaxed natural pose like in the scene photo",
             mood=plan.mood or "the same kind of photo as the scene photo",
             season=season_en(plan.date),
@@ -415,7 +436,7 @@ WORN_REF_MODEL = (
     " tucked or loose, which hems, cuffs and collars peek out and by how much, a coat over the"
     " shoulders or slipping off one shoulder, pushed-up sleeves, how high the waistband sits and"
     " how much of the bottoms shows below the outer). This photo beats the shop photos and any"
-    ' general wearing words; only the requests under "How they are worn" below beat it. What each'
+    " general wearing words; only the user's requests at the top beat it. What each"
     " product is comes only from its sheet: fabric, color, pattern and details (never add a belt,"
     " collar, pleats or buttons the product does not have), and its kind of length (a mini stays a"
     " mini, a half coat stays a half coat). She may also wear the plain tights or socks that model"
