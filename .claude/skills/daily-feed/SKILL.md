@@ -81,6 +81,13 @@ plan.yaml 에 `items` 대신 `looks`(벌 목록)가 있다. 사람이 고른 벌
     전신이 보이게 쓴다 (앉은 포즈도 신발까지 보이게).
   - 벌 `styling`: 사람이 입은 모양으로 ("the shirt is tucked into the front of the skirt; the jacket is worn open").
     펼친 코디컷 말("laid", "flat")은 쓰지 않는다.
+  - 벌에 따라 한 참고 코디(`ref_photo`)가 있으면 그 사진을 Read 로 다시 보고 `styling` 을 그 사진대로 쓴다
+    (2026-10-27 사용자: 참고 코디컷과 똑같이 입기): 아우터 여밈, 코트 허리끈을 묶었는지, 이너를 넣었는지와
+    아우터 밑으로 삐져나온 길이, 소매 걷음. 이 사진은 코디컷을 그릴 때도 이미지 AI 에 같이 간다.
+  - 아이템 `desc` 의 기장·재질 말은 상품 사진과 맞춘다 (2026-10-27 사용자: 기장이 길게, 두꺼운 옷이 얇게 그려짐).
+    미니스커트는 "mini skirt, mid-thigh"처럼 쓰고 "above the knee" 는 쓰지 않는다 (무릎 근처로 그려짐).
+    "cropped" 와 "hip length", "half coat" 와 "long" 처럼 서로 다른 기장 말을 같이 쓰지 않는다.
+    상품에 없는 디테일(주름, 카라, 단추)은 쓰지 않고, 두꺼운 옷은 "thick", "heavy" 처럼 두께를 쓴다.
 - 10번 검수에서 `image-reviewer` 에게 "장면 모델컷: image-reviewer.md 의 모델컷·장면 모델컷 기준을 본다"고 말한다.
   plan 에 `face` 가 있으면 "얼굴 참고: face = <문장>. 얼굴이 보여도 되고, 이 특징과 맞는지·벌마다 같은 사람인지 본다"도 말한다.
 - 11번 보고에 읽은 mood 와 벌마다 pose 를 적는다.

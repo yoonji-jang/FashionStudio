@@ -530,8 +530,16 @@ def test_fix_edit_sends_worn_ref_and_user_photos(store, tmp_path, monkeypatch):
     assert f"Image {n} is the reference outfit photo" in rec.prompt
     assert f"user photo 2 = image {n + 2}" in rec.prompt and "user photo 3" not in rec.prompt
     assert "her face hidden" not in rec.prompt and "$" not in rec.prompt
-    # 새로 그리는 장면 모델컷에는 기준 코디 사진을 보내지 않는다
-    assert outfit_gen.worn_ref_panel(p, load_profile("women"), tmp_path) is None
+    # 장면 없는 모델컷을 새로 그릴 때는 기준 코디 사진을 보내지 않는다
+    plain = p.model_copy(update={"scene_image": None, "edit_from": None})
+    assert outfit_gen.worn_ref_panel(plain, load_profile("women"), tmp_path) is None
+    # 2026-10-27 사용자: 새로 그리는 장면 모델컷은 기준 코디 사진을 상품 참고판 뒤, 장면 앞에
+    new = p.model_copy(update={"edit_from": None, "edit_request": None, "edit_refs": []})
+    outfit_gen.make_candidates(new, store, tmp_path / "w2", load_profile("women"), 1, client=rec)
+    assert len(rec.images) == 3 and rec.images[0] == b"p1"
+    assert rec.images[2] == (tmp_path / "w2" / "originals" / "scene.jpg").read_bytes()
+    assert "The image after the item sheets is the reference outfit photo" in rec.prompt
+    assert "$" not in rec.prompt
 
 
 def test_check_catches_missing_edit_from(store):
@@ -582,3 +590,16 @@ def test_scarf_gets_scarf_size_even_in_necklace_slot(store):
     it = p.items[5].model_copy(update={"desc": "burgundy knit scarf", "slot": "목걸이"})
     cfg = {"default_sizes": {"목걸이": "one necklace", "스카프": "one scarf"}}
     assert outfit_gen.item_size(it, products[it.product], cfg) == "one scarf"
+
+
+def test_model_lengths_say_where_on_body():
+    # 2026-10-27 사용자: 미니스커트·반바지가 길게, 하프코트가 롱코트로 그려짐
+    from tools import outfit_gen
+    from tools.compose import load_layout, real_length
+
+    layout = load_layout()
+    assert real_length("하의", "워싱 데님 스커트 denim mini skirt", layout) == 42
+    assert real_length("하의", "데님 팬츠 denim shorts", layout) == 38
+    assert outfit_gen.body_point("하의", 42) == "at her upper thigh, well above mid-thigh"
+    assert outfit_gen.body_point("아우터", 48) == "at her waist (a cropped length)"
+    assert outfit_gen.body_point("하의", 100) == "at her ankles"
