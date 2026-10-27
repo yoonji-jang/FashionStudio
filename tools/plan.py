@@ -429,8 +429,10 @@ def check(
         picked = [products[it.product] for it in group if it.product in products]
         warns += busy_warnings(where, cats, picked, profile)
         warns += unity_warnings(where, group, products, profile)
+        # 원피스는 상의·하의 자리를 함께 채운다 (2026-10-27 사용자가 원피스로 바꿔 입힘)
+        dress = {"상의", "하의"} if "원피스" in cats else set()
         for rule in rules.slots:
-            if rule.required and rule.category not in cats:
+            if rule.required and rule.category not in cats and rule.category not in dress:
                 errors.append(f"{where}필수 카테고리 {rule.category} 상품이 없습니다")
         shops: dict[str, int] = {}
         for it in group:

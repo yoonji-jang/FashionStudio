@@ -169,6 +169,8 @@ def test_guess_category():
     assert pick.guess_category("퍼 숄더백") == "가방"
     assert pick.guess_category("무지 울 머플러") == "소품"
     assert pick.guess_category("무지 울 머플러", "/fix 2 (링크) 이걸로 아우터") == "아우터"
+    hat = "[인기템] 샤프카 밍크 겨울 페이크퍼 빅사이즈 에스키모 여행 모자 4color"
+    assert pick.guess_category(hat, "(링크) 모자 이거로 바꿔줘. 이너 티셔츠는 브이넥") == "소품"
 
 
 def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
@@ -205,8 +207,15 @@ def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
         pid = url.rsplit("/", 1)[-1]
         return 200, url, pages[pid]
 
+    # 창고에 상의로 잘못 들어 있던 상품도 이름으로 종류를 다시 정한다
+    store.save_products(store.products() + [product(888, "상의")])
+    pages["888"] = page_html("888", "미니 니트 원피스 (H라인)")
+    spec["fixes"].append(
+        {"update_id": 4, "looks": [5], "text": "https://zigzag.kr/catalog/products/888"}
+    )
+    (out / "picks" / "edit.json").write_text(json.dumps(spec), encoding="utf-8")
     added = pick.add_links(out, store, DAY, fetch)
-    assert [p.id for p in added] == ["zigzag:555", "zigzag:666"]
+    assert [p.id for p in added] == ["zigzag:555", "zigzag:666", "zigzag:888"]
     got = {p.id: p for p in store.products()}
     assert got["zigzag:555"].category == "아우터" and got["zigzag:666"].category == "신발"
     assert got["zigzag:555"].shop == "퍼샵" and got["zigzag:555"].price == 59000
@@ -217,7 +226,8 @@ def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
     assert fixes[1]["link_errors"][0]["why"] == "품절이에요"
     assert "products" not in fixes[2]
     saved = json.loads((out / pick.USER_PRODUCTS).read_text(encoding="utf-8"))
-    assert {r["id"] for r in saved} == {"zigzag:555", "zigzag:666"}
+    assert {r["id"] for r in saved} == {"zigzag:555", "zigzag:666", "zigzag:888"}
+    assert {p.id: p for p in store.products()}["zigzag:888"].category == "원피스"
 
     # 다음 실행: 창고(main)에 없으면 결과 브랜치의 user_products.json 에서 다시 넣는다
     prev = tmp_path / "prev"
@@ -225,9 +235,17 @@ def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
     (out / pick.USER_PRODUCTS).rename(prev / "2026-10-27-run1" / pick.USER_PRODUCTS)
     fresh = Store("women", root=tmp_path / "fresh")
     fresh.save_products([p for p in store.products() if p.id not in ("zigzag:555", "zigzag:666")])
-    assert pick.restore_user(fresh, prev) == 2
+    # 후보 실행 중 모은 상품(collect_*/products.json)도: out 을 주면 그 기획이 쓰는 것만
+    (prev / "2026-10-27-run1" / "collect_bag").mkdir()
+    rows = [product(i, "가방").model_dump(mode="json") for i in (801, 802)]
+    (prev / "2026-10-27-run1" / "collect_bag" / "products.json").write_text(json.dumps(rows))
+    plan_dir = tmp_path / "plan"
+    plan_dir.mkdir()
+    (plan_dir / "plan.yaml").write_text("items:\n- product: zigzag:555\n- product: zigzag:801\n")
+    assert pick.restore_user(fresh, prev, plan_dir) == 2
+    assert pick.restore_user(fresh, prev) == 2  # out 없이는 나머지 모두
     assert pick.restore_user(fresh, prev) == 0
-    assert "zigzag:555" in {p.id for p in fresh.products()}
+    assert {"zigzag:555", "zigzag:801", "zigzag:802"} <= {p.id for p in fresh.products()}
 
 
 def test_add_links_unreadable(tmp_path, store):  # noqa: F811
