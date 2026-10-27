@@ -1,26 +1,26 @@
 {
   "candidates": [
     {
-      "id": "c2",
-      "file": "outfit_r2/results/G_1.jpg",
-      "round": 2,
+      "id": "c1",
+      "file": "outfit/results/G_1.jpg",
+      "round": 1,
       "score": {
-        "id": "c2",
+        "id": "c1",
         "color": 2,
-        "shape": 2,
+        "shape": 1,
         "complete": 2,
-        "clean": 1,
+        "clean": 2,
         "layout": 2,
-        "notes": "치마는 얇은 무광 면 느낌의 3단 프릴로 벨벳 광택 없음. 자켓은 노카라 라운드넥 트위드에 금단추, 엉덩이 위에서 끝남. 허리선이 높고 다리가 길어 보임. 스틸레토 메리제인 뾰족, 니삭스 1쌍, 토트백 1개. 기준 코디(자켓 앞을 연 모양)와 비슷함. 얼굴은 눈이 크고 밝은 느낌이 약해 face 와 조금 다르지만 같은 사람.",
+        "notes": "숏팬츠 롤업 없음, 허리 단추·주머니 징 있음, 완전한 검정, 윗허벅지 기장으로 상품과 맞음. 밑위는 중간~높은 편. 자켓 부클 질감이 다소 매끈.",
         "feedback_ok": true,
         "faults": []
       }
     }
   ],
-  "chosen": "c2",
-  "rounds": 2,
+  "chosen": "c1",
+  "rounds": 1,
   "passed": true,
   "status": "passed",
   "slide_issues": [],
-  "summary": "c2 가 요청(무광 면 3단 프릴, 짧은 자켓, 높은 허리선)을 모두 반영하고 상품과 가장 가까움."
+  "summary": "요청한 숏팬츠 수정이 모두 보임. 합계 9점."
 }

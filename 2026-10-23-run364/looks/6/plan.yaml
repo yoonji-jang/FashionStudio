@@ -1,5 +1,5 @@
 account: women
-cover: out/2026-10-23/looks/6/outfit/results/G_1.jpg
+cover: out/2026-10-23/looks/4/outfit_r2/results/G_1.jpg
 cover_look: 1
 date: '2026-10-23'
 edit_refs: []
@@ -7,99 +7,72 @@ face: an exotic-looking young woman with large bright eyes, deep double eyelids,
   dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
   full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
 items:
-- color: 차콜
+- color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 차콜 금장 트위드 부클 자켓 (charcoal tweed boucle jacket with a nubby looped boucle texture,
-    gold-tone buttons clearly visible down the front, collar and button design exactly
-    as in the product photo, boxy cropped fit)
-  name: 부클 트위드 자켓
-  product: zigzag:131968425
+  cutout_photo: 1
+  desc: 블랙 노카라 트위드 자켓 (black collarless round-neck tweed jacket, cropped boxy structured
+    fit, gold-tone buttons, ends at the hip)
+  name: 트위드 자켓
+  product: zigzag:168299406
+  ref_photos:
+  - 1
 - color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 블랙 반폴라 티 (plain black fitted half-turtleneck top, thin smooth knit)
-  name: 블랙 반폴라 티
-  product: zigzag:151586371
-  ref_photos:
-  - 0
+  desc: 블랙 무지 라운드 티셔츠 (plain black round-neck 3/4-sleeve tee, fitted)
+  name: 블랙 무지 티
+  product: zigzag:166412607
   wear_with: 아우터
 - color: 블랙
   comment: ''
-  cutout_photo: 3
-  desc: 블랙 생지 숏팬츠 (deep solid jet-black stiff matte cotton denim micro shorts, low-to-mid
-    rise with a short crotch, one silver shank button at the center of the narrow
-    waistband plus small silver studs at the pocket corners, plain straight hem with
-    no roll-up, no turn-up and no cuff, extremely short, hem sits only a hand-width
-    below the crotch, ends high on the upper thigh)
-  name: 블랙 숏팬츠
-  product: zigzag:158913245
-  ref_photos:
-  - 3
-  - 0
-  - 4
+  cutout_photo: 0
+  desc: 블랙 캉캉 미니스커트 (black thin lightweight matte cotton-like tiered ruffled can-can
+    mini skirt with three tiers, elastic waistband, voluminous, very short, ends high
+    on the upper thigh; the fabric is matte and flat, not velvet, no pile and no sheen)
+  name: 캉캉 미니
+  product: zigzag:167352017
 - color: 블랙
-  comment: ''
-  cutout_photo: 2
-  desc: 블랙 스틸레토 앵클부츠 (black leather pointed-toe ankle boots, block heel, shaft ends
-    just above the ankle)
-  name: 스틸레토 앵클부츠
-  product: zigzag:110635258
-  ref_photos:
-  - 2
-- color: 블랙
-  comment: ''
-  cutout_photo: 4
-  desc: 블랙 퀼팅 체인백 (black quilted leather flap bag with a silver-tone chain and twist
-    lock)
-  name: 퀼팅 체인백
-  product: zigzag:135922060
-  ref_photos:
-  - 4
-- color: 화이트
-  comment: ''
-  cutout_photo: 2
-  desc: 진주 초커 목걸이 (exactly one short layered necklace of small white pearls plus a
-    thin silver chain with a small heart pendant, as in the product photos)
-  name: 진주 초커
-  product: zigzag:134391809
-  ref_photos:
-  - 0
-  - 2
-  slot: 목걸이
-- color: 골드
   comment: ''
   cutout_photo: 0
-  desc: 골드 볼드 링 귀걸이 (exactly one pair (two earrings) of gold bold hoop earrings)
-  name: 골드 링 귀걸이
-  product: zigzag:142880069
-  slot: 귀걸이
+  desc: 블랙 스틸레토 메리제인 (black pointed-toe stiletto Mary Jane shoes, narrow pointed toe,
+    ankle strap, thin high stiletto heel)
+  name: 스틸레토 메리제인
+  product: zigzag:121428665
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 미니 토트백 (black small tote bag with top handle)
+  name: 블랙 토트백
+  product: zigzag:130366243
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 골지 니삭스 (exactly one pair of black ribbed knee socks)
+  name: 골지 니삭스
+  product: zigzag:136839704
+  wear_with: 신발
 looks: []
 mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
   pale grey-white wall and floor, soft diffused studio light with one gentle shadow
   on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
   so the whole body from head to shoes is visible
-pose: standing front-on in the studio like the black blazer lookbook shot, feet apart
-  in a confident stance, one hand holding the chain bag by its strap and the other
-  relaxed at her side, looking at the camera; her black hair is in a sleek low bun
-  with a few loose wisps at the temples
-reason: '차콜 부클 자켓이 주인공, 블랙 쇼츠와 진주 목걸이·후프 귀걸이로 화려하게 마무리한 모임 룩. 참고: 차콜 부클 자켓(펄 실·금단추)/블랙
-  하이넥 이너/블랙 쇼츠/블랙 힐/체인 토트/진주 목걸이/골드 후프 → 맞춘 것: 차콜 금장 트위드 부클 자켓/블랙 반폴라 티/블랙 데님 숏팬츠/블랙
-  스틸레토 앵클부츠/블랙 퀼팅 체인백/진주 초커/골드 링 귀걸이 (따라 함: 참고 782)'
-ref_photo: tg:AgACAgUAAxkBAAIHwWrfCfblnrmAiupcx5OiL64AASeg2AACjxVrGwqP-VZhHIpIr_LW8wEAAwIAA3kAAz0E
+pose: standing front-on in the studio like the black blazer lookbook shot, one hand
+  holding the tote at her side and the other hand lightly on her hip, hip pushed to
+  one side, looking straight at the camera with a cool expression; her black hair
+  is in a sleek bun with a few loose wisps at the temples
+reason: '블랙 트위드 자켓이 주인공, 프릴 미니와 메리제인으로 클래식하게 모은 올블랙 파티룩. 참고: 블랙 트위드 자켓(금단추·리본)/프릴
+  튤 미니/에나멜 메리제인/도트 미니 토트/도트 스타킹/리본 헤어핀 → 맞춘 것: 블랙 노카라 트위드 자켓/블랙 벨벳 캉캉 미니/블랙 스틸레토 메리제인(앞코
+  뾰족)/블랙 토트/블랙 골지 니삭스 (헤어핀은 창고에 없어 뺌) (따라 함: 참고 778)'
+ref_photo: tg:AgACAgUAAxkBAAIHvWrfCfYlFOL19OEzMHHM4wPkV9_AAAKLFWsbCo_5VuPZCKt9vMBVAQADAgADeQADPQQ
 scene_image: out/2026-10-23/src/scene_3.jpg
 shot: model
-styling: The tweed boucle jacket is buttoned at the middle button only so the gold
-  buttons stand out, worn over the black half-turtleneck, which is visible at the
-  neckline. The pearl choker sits over the turtleneck collar. The shorts are very
-  short and fully black, with a high waist hidden under the jacket, so only a small
-  part of the shorts shows below the jacket hem, shorter than before, ending high
-  on the upper thigh like the real product. The shorts are exactly like the product
-  photos, a deep solid jet-black (not faded, not grey), low-to-mid rise with a short
-  crotch, a silver button at the center of the narrow waistband and small silver studs
-  at the pocket corners, extremely short micro-short length, and a plain straight
-  hem with no roll-up, no turn-up and no cuff. She wears sheer see-through black stockings
-  that show a faint glimpse of skin through them, with the black ankle boots.
+styling: The tweed jacket is buttoned at the middle button only and sits at the hip,
+  nipped in so the waist line is clearly shown; the black tee shows at the neckline.
+  The can-can skirt is a tiered ruffled skirt of thin lightweight matte cotton-like
+  fabric (not velvet, no pile, no plush sheen, soft crisp ruffles) that flares out
+  in a full A-line with plenty of volume, very short, with a high waist, as in the
+  product photo. Black ribbed knee socks are worn with the pointed-toe stiletto Mary
+  Janes.
 text:
   hashtags:
   - '#연말모임룩'

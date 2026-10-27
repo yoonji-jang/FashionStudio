@@ -1,5 +1,5 @@
 account: women
-cover: out/2026-10-23/looks/3/outfit/results/G_1.jpg
+cover: out/2026-10-23/earlier/looks/1/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-23'
 edit_refs: []
@@ -7,71 +7,77 @@ face: an exotic-looking young woman with large bright eyes, deep double eyelids,
   dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
   full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
 items:
-- color: 브라운
-  comment: ''
-  cutout_photo: 0
-  desc: 브라운 핸드메이드 하이넥 벨티드 숏 코트 (chocolate brown wool high-neck short coat with large
-    front buttons and a waist belt, ends above the hip, drop-shoulder, thick wool;
-    the colour is warm chocolate brown, never charcoal or grey)
-  name: 벨티드 숏 코트
-  product: zigzag:172115313
 - color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 블랙 무지 라운드 티셔츠 (plain black round-neck 3/4-sleeve tee, fitted)
-  name: 블랙 무지 티
-  product: zigzag:166412607
-  wear_with: 아우터
-- color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 모직 플리츠 미니스커트 (black wool knife-pleated mini skirt, very short, high waist,
-    ends high on the upper thigh, soft unpressed pleats)
-  name: 플리츠 미니
-  product: zigzag:167228033
-- color: 블랙
-  comment: ''
-  cutout_photo: 3
-  desc: 블랙 스웨이드 오버니 부츠 (black matte suede over-the-knee boots, snug straight shaft,
-    round toe, low heel, shaft reaches the mid-thigh)
-  name: 오버니 부츠
-  product: zigzag:131281211
+  desc: 블랙 오버핏 레더 후드 점퍼 (black thick glossy faux-leather oversized hooded jacket,
+    round balloon silhouette with dropped round shoulders and a large stiff round
+    hood, hem ends at the hip and is gathered in with a drawstring or elastic so it
+    puffs out round, elastic cuffs, zip front, side zip pockets)
+  name: 레더 후드 점퍼
+  product: zigzag:172421417
   ref_photos:
-  - 2
-  - 3
   - 0
 - color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 블랙 숄더백 (black small shoulder bag)
+  cutout_photo: 1
+  desc: 블랙 무지 레이어링 티셔츠 (plain black long-sleeve crew-neck tee, slim fit, no print)
+  name: 블랙 레이어링 티
+  product: zigzag:136294220
+  ref_photos:
+  - 1
+  wear_with: 아우터
+- color: 카키
+  comment: ''
+  cutout_photo: 4
+  desc: 빛바랜 워싱 데님 스커트 (dark washed denim mini skirt with a faded khaki-grey tint and
+    lighter fade patches, straight H-line, high waist, very short, ends high on the
+    upper thigh)
+  name: 워싱 데님 스커트
+  product: zigzag:162414325
+  ref_photos:
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 롱부츠 (black knee-high boots, round toe, flat low heel, shaft ends just below
+    the knee)
+  name: 스웨이드 롱부츠
+  product: zigzag:147005253
+  ref_photos:
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 숄더백 (black soft rectangular box shoulder bag with a thin long strap)
   name: 블랙 숄더백
-  product: zigzag:170305230
+  product: zigzag:168564549
+  ref_photos:
+  - 1
+  - 0
 looks: []
 mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
   pale grey-white wall and floor, soft diffused studio light with one gentle shadow
   on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
   so the whole body from head to shoes is visible
-pose: standing in the studio like the first lookbook shot, body turned slightly to
-  the side in a gentle three-quarter turn with her face toward the camera, weight
-  on one leg with one hand in the coat pocket and the other arm relaxed with a slight
-  bend, head tilted a little, looking at the camera so the eyes can be seen, a relaxed
-  natural stance, not stiff arms-down; her black hair is long and loosely wavy, falling
-  down her back
-reason: '브라운 벨티드 숏 코트가 주인공, 플리츠 미니와 니하이 부츠로 다리를 길게 보이는 파티룩. 참고: 브라운 울 벨티드 숏 코트/블랙
-  플리츠 미니/블랙 스웨이드 오버니삭스 부츠/블랙 가방/블랙 스타킹 → 맞춘 것: 브라운 하이넥 벨티드 숏 코트(창고에 같은 상품이 없어 가장 비슷한
-  것)/블랙 모직 플리츠 미니/블랙 스웨이드 오버니 부츠/블랙 숄더백/블랙 삭스 (따라 함: 참고 776)'
-ref_photo: tg:AgACAgUAAxkBAAIHu2rfCfYBrHoDpalKKofdjuK7TL2xAAKJFWsbCo_5VkmC5G3MfWAkAQADAgADeQADPQQ
-scene_image: out/2026-10-23/src/scene.jpg
+pose: standing straight toward the camera in the studio like the zip-knit lookbook
+  shot, weight on one leg, one hand in the jacket pocket and the other holding the
+  bag strap down at her side, calm direct gaze at the camera; her black hair is in
+  a sleek low bun with a few loose wisps at the temples
+reason: '블랙 오버핏 레더 점퍼가 주인공, 빛바랜 데님 미니와 검정 부츠로 톤을 통일한 스트릿 파티룩. 참고: 블랙 오버핏 레더 점퍼/카키
+  워싱 데님 미니/블랙 롱 어그부츠/블랙 숄더백/블랙 스타킹 → 맞춘 것: 블랙 오버핏 레더 후드 점퍼/빈티지워싱 데님스커트/블랙 스웨이드 통넓은
+  니하이 부츠/블랙 숄더백/블랙 시스루 삭스 (참고에 이너가 안 보여 블랙 티를 받침) (따라 함: 참고 774)'
+ref_photo: tg:AgACAgUAAxkBAAIHuWrfCfZ94dvV2wUV8coDPiSXLQ4LAAKHFWsbCo_5Vjuenw1LDohzAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene_2.jpg
 shot: model
-styling: The coat's high collar stands straight up around her neck, not folded down.
-  The belted short coat is warm chocolate brown wool exactly like the coat in the
-  reference outfit photo (NOT charcoal or grey; ignore any grey tint in the product
-  photos), closed at the front with its belt tied at the waist so the waist looks
-  narrow; the coat ends above the hip, at about the top of her hips. The black tee
-  shows only at the neckline. The pleated mini skirt is very short with a high waist,
-  so only a thin strip of it shows below the coat hem, much shorter than before. She
-  wears sheer see-through black stockings (no socks of any kind), so her skin shows
-  faintly through them, with the suede over-the-knee boots over them.
+styling: The oversized round balloon-shaped leather hooded jacket is fully zipped
+  up to the neck, with the large round hood resting behind her neck. It is loose and
+  rounded around the body with dropped shoulders, and its gathered hem ends at the
+  hip, covering the hips, exactly like the product photo. The waist of the very short
+  high-waisted denim mini skirt sits high under the jacket, so only a small strip
+  of the skirt shows below the jacket hem, much shorter than before. She wears sheer
+  see-through black stockings (no socks of any kind), so her skin shows faintly through
+  them, and the knee-high boots go over them.
 text:
   hashtags:
   - '#연말모임룩'

@@ -2,15 +2,25 @@
   "candidates": [
     {
       "id": "c1",
-      "file": "kept/G_1.jpg",
+      "file": "outfit/results/G_1.jpg",
       "round": 1,
-      "score": null
+      "score": {
+        "id": "c1",
+        "color": 2,
+        "shape": 1,
+        "complete": 1,
+        "clean": 2,
+        "layout": 2,
+        "notes": "코트 칼라 세움·얼굴 톤 밝힘은 반영. 몸을 측면으로 돌리기는 거의 정면이라 미반영. 오버니 부츠 샤프트가 무릎 바로 위로 짧음, 블랙 티가 하이넥에 가려 안 보임.",
+        "feedback_ok": false,
+        "faults": []
+      }
     }
   ],
   "chosen": "c1",
   "rounds": 1,
-  "passed": false,
-  "status": "not_reviewed",
+  "passed": true,
+  "status": "passed",
   "slide_issues": [],
-  "summary": ""
+  "summary": "측면 회전 미반영, 부츠 기장 짧음."
 }

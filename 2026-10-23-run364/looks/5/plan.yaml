@@ -1,89 +1,84 @@
 account: women
-cover: out/2026-10-23/looks/5/outfit/results/G_1.jpg
+cover: out/2026-10-23/looks/2/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-23'
+edit_from: out/2026-10-23/looks/2/outfit/results/G_1.jpg
 edit_refs: []
+edit_request: Make the camel blouson jacket MUCH fuller and thicker than it is now,
+  clearly about 30 percent wider through the body and sleeves, a thick heavy padded-looking
+  twill with deep soft folds, a big puffy rounded balloon silhouette and very full
+  puffed raglan sleeves gathered at the cuffs; the difference must be obvious at a
+  glance; keep the colour, high collar, snaps, skirt, boots, bag, face, pose and background
+  the same.
 face: an exotic-looking young woman with large bright eyes, deep double eyelids, long
   dark lashes, bold defined eye makeup with soft eyeliner, straight tidy eyebrows,
   full plump lips in a rosy tint, fair clear skin with a glossy blush, black hair
 items:
-- color: 그레이
+- color: 카멜
   comment: ''
-  cutout_photo: 0
-  desc: 그레이 페이크 퍼 더플 숏 코트 (gray faux-fur duffle short coat, fluffy visible fur pile,
-    hip length)
-  name: 퍼 더플 숏 코트
-  product: zigzag:172164501
-- color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 반하이넥 슬림핏 골지 니트 (black thin ribbed knit half-high-neck slim top, fitted,
-    waist length)
-  name: 반하이넥 골지 니트
-  product: zigzag:171832859
+  cutout_photo: 5
+  desc: 카멜 코튼 하이넥 점퍼 (camel cotton high-stand-collar blouson jacket, rounded oversized
+    blouson shape with raglan dropped sleeves that puff out round and gather at the
+    cuffs, crisp twill, snap buttons, ends at the waist to high hip)
+  name: 하이넥 점퍼
+  product: zigzag:157745502
   ref_photos:
-  - 0
-- color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 모직 미니스커트 (black dark-charcoal speckled thin wool-like slim A-line mini
-    skirt, flat front, very short, high waist, ends high on the upper thigh)
-  name: 모직 미니스커트
-  product: zigzag:165443666
-  ref_photos:
-  - 0
-- color: 블랙
-  comment: ''
-  cutout_photo: 2
-  desc: 블랙 롱부츠 (black smooth leather knee-high boots, round toe, flat heel, shaft
-    ends just below the knee)
-  name: 블랙 롱부츠
-  product: zigzag:116422044
-  ref_photos:
-  - 2
-  - 3
-  - 4
-- color: 블랙
+  - 5
+- color: 화이트
   comment: ''
   cutout_photo: 3
-  desc: 블랙 퀼팅 체인백 (black chevron quilted leather small drawstring bucket bag with
-    a silver chain strap)
-  name: 퀼팅 체인백
-  product: zigzag:119058597
+  desc: 화이트 무지 라운드 티셔츠 (plain white crew-neck long-sleeve tee, fitted, thin soft knit)
+  name: 화이트 티
+  product: zigzag:167142875
   ref_photos:
-  - 0
   - 3
-  - 2
-- color: 골드
+  wear_with: 아우터
+- color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 하트 레이어드 목걸이 (exactly one thin layered chain necklace with a small heart pendant,
-    drawn exactly as in the product photos)
-  name: 하트 목걸이
-  product: zigzag:135593307
-  slot: 목걸이
+  desc: 블랙 울 미니스커트 (black matte wool slim A-line mini skirt, perfectly smooth flat
+    front with no pleats, very short, high waist, ends high on the upper thigh)
+  name: 울 미니스커트
+  product: zigzag:150110018
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬라우치 버클 부츠 (black slouchy buckle boots, round toe, buckle strap at the
+    calf, knee length)
+  name: 슬라우치 부츠
+  product: zigzag:165705028
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 퀼팅 체인백 (black quilted shoulder bag with a chain strap)
+  name: 퀼팅 체인백
+  product: zigzag:105424126
 looks: []
 mood: clean minimalist studio lookbook shoot, full-body standing shot against a seamless
   pale grey-white wall and floor, soft diffused studio light with one gentle shadow
   on the floor, cool neutral tones, sharp fashion-catalog camera at medium-long distance
   so the whole body from head to shoes is visible
-pose: standing in the studio like the first lookbook shot, in a long elegant stance
-  with the weight on one leg, head tilted up slightly and turned a little away from
-  the camera, one hand on the strap of the small chain bag; her black hair is long
-  and loosely wavy, falling past her shoulders
-reason: '블랙 하프넥 니트 미니가 주인공, 그레이 퍼 코트를 어깨에 걸치고 하트 목걸이로 은은하게 반짝이는 모임 룩. 참고: 블랙 하프넥 니트
-  미니 원피스/그레이 퍼 코트(팔에 걸침)/블랙 롱부츠/체인 크로스백/스타킹/골드 펜던트 → 맞춘 것: 블랙 반하이넥 골지 니트+블랙 모직 미니스커트(창고에
-  니트 미니 원피스가 없어 한 벌처럼)/그레이 퍼 더플 숏 코트/블랙 롱부츠/블랙 퀼팅 체인백/하트 목걸이 (따라 함: 참고 781)'
-ref_photo: tg:AgACAgUAAxkBAAIHwGrfCfbs5qCHTL_-ngOi_PCeZEfVAAKOFWsbCo_5Vl1cqHzqTA7IAQADAgADeQADPQQ
-scene_image: out/2026-10-23/src/scene.jpg
+pose: standing in the studio like the zip-knit lookbook shot, turned slightly three-quarters
+  with one hand tucked in the jacket pocket, the chain bag hanging from the other
+  shoulder, looking at the camera; her black hair is long and softly wavy, falling
+  over her shoulders
+reason: '카멜 하이넥 벨트 점퍼가 주인공, 블랙 미니와 롱부츠로 날렵하게 모은 파티룩. 참고: 카멜 하이넥 벨트 점퍼/흰 티셔츠/블랙 미니스커트/블랙
+  버클 롱부츠/블랙 퀼팅 숄더백/슬림 선글라스 → 맞춘 것: 카멜 하이넥 점퍼/화이트 울텐셀 티/블랙 울 미니/블랙 슬라우치 버클 부츠/블랙 퀼팅
+  체인백 (선글라스는 창고에 없어 뺌) (따라 함: 참고 775)'
+ref_photo: tg:AgACAgUAAxkBAAIHumrfCfa8VdoxZnNOPxr947PWfjcPAAKIFWsbCo_5VmFax3Gv3FOaAQADAgADeQADPQQ
+scene_image: out/2026-10-23/src/scene_2.jpg
 shot: model
-styling: The gray fluffy fur coat is draped loosely over her shoulders like a cape,
-  not worn through the sleeves and not carried in the hand, so the fur pile stays
-  full and fluffy. The black thin ribbed half-neck knit is tucked into the plain black
-  mini skirt, slim and body-skimming, so the two read as one black dress with the
-  same dull matte finish; the necklace shows at the neckline. The skirt is very short
-  with a high waist, shorter than before, which makes her legs look long. The black
-  knee-high boots end just below the knee.
+styling: The high-neck blouson is thick and heavy, fuller and puffier than before,
+  with a rounded oversized shape, not a straight tidy drop, it balloons around the
+  body and the sleeves puff out round, worn with a relaxed, slightly slouchy streetwear
+  attitude (collar up, sleeves a little pushed and bunched, jacket hanging off one
+  shoulder slightly), hip and edgy rather than neat; a belt, if any, is not drawn.
+  Only a very small strip of the white tee peeks out below the jacket hem. The mini
+  skirt is smooth and plain, very short with a high waist hidden under the jacket,
+  so only a small strip of it shows just below the jacket hem, much shorter than before.
+  The boots are pulled up to the knee.
 text:
   hashtags:
   - '#연말모임룩'
