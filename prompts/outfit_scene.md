@@ -9,11 +9,12 @@
 (/mnt/project-files/image-feedback/ref_1015_hats/): 무지 볼캡을 깊게 눌러 쓰고 머리는 낮게 묶음, 검은 울 뉴스보이캡,
 작은 타원형 검은 선글라스, 볼캡 + 선글라스. 로고 없이, 코디 색(검정·차콜·회색·네이비·버건디)에 맞춘다.
 2026-10-27 사용자: 상품과 다른 디테일(주름·카라·단추)·기장·두께, 통짜 허리, 넙데데한 얼굴을 고침.
+같은 날 run356 원인: 일반 몸 규칙(허리 굴곡·통짜 금지)이 둥근 오버핏을 일자로 만들고, 카탈로그 차렷 포즈가 단정해 보임 → 기준 코디가 있으면 몸 규칙 대신 그 실루엣, 차렷 금지 (포즈는 장면 사진, 사용자 B).
 같은 날 우선순위: 상품 참고판(재질·색·기장·디테일) > 기준 코디 사진(입는 모양·핏) > 일반 규칙 > 장면 사진(장소·빛·포즈만).
 긴바지는 발목을 살짝 덮는 기장, 랩·끈 디자인 상의는 하의 위로 꺼내 입기, 긴 다리 (2026-10-14 10/16 게시물 /fix).
 $person 인물과 얼굴 (기획에 face 가 있으면 prompts/scene_face_shown.md, 없으면 scene_face_hidden.md),
 $items 번호별 상품 설명과 실측 (2026-10-27 사용자: 기장은 cm 기본값이 아니라 상품 착용컷의 모델 몸에서 끝나는 자리를 따름),
-$worn 기준 코디 사진 설명 (따라 한 참고 코디가 있으면, 2026-10-27 사용자: 참고 코디와 똑같이 입기. 없으면 빈칸), $styling 입는 방법, $pose 이 벌의 자리·포즈·얼굴 가리는 방법,
+$body 몸과 실루엣 (기준 코디 사진이 있으면 prompts/scene_body_ref.md, 없으면 scene_body.md), $worn 기준 코디 사진 설명 (따라 한 참고 코디가 있으면, 2026-10-27 사용자: 참고 코디와 똑같이 입기. 없으면 빈칸), $styling 입는 방법, $pose 이 벌의 자리·포즈·얼굴 가리는 방법,
 $mood 장면 사진에서 읽은 무드 (촬영 종류, 장소, 빛, 색감, 카메라), $season 게시 날짜의 계절.
 이 주석은 전송되지 않는다.
 -->
@@ -55,13 +56,10 @@ flimsy; thin pieces stay thin. Unless the reference outfit photo shows otherwise
 fall onto the shoes with the hem just covering the ankle, and a top with a front design (wrap, ties,
 draping, peplum) hangs over the waistband so the design shows.
 
-Her body is slim with a clearly shaped waist and long legs (legs about half her height or a little more).
-The clothes sit on that body the way real fabric does: fitted and tucked pieces show the curve of the
-waist and hips, the waistband sits at her real waist, and even a boxy or oversized outer hangs from her
-shoulders with her slim figure visible inside it. Never a straight boxy column from chest to hip. Each
-fabric folds and drapes by its own weight: soft knits and satin flow, stiff wool and leather hold their
-shape. Show her full outfit from the collar to the shoes unless the scene photo is cropped tighter, and
-never hide the listed items behind props.
+$body Each fabric folds and drapes by its own weight: soft knits and satin flow, stiff wool and leather
+hold their shape. Show her full outfit from the collar to the shoes unless the scene photo is cropped
+tighter, and never hide the listed items behind props. Her pose is relaxed and natural, with some
+attitude: never a stiff, straight upright stance with both arms hanging at her sides.
 
 Real camera photo quality, natural skin, real hair and fabric with natural creases. Vertical 4:5 photo
 filling the whole canvas: no black or white border, no rounded corners, no phone screen frame. No text,
