@@ -242,6 +242,17 @@ jobs:
           esac
           nohup python -m tools.progress watch --label "[$ACCOUNT] $DATE $what" --limit 150 \
             > /tmp/progress.log 2>&1 &
+      - name: 참고 코디 사진 받기 (텔레그램 사진은 Claude 단계에 토큰이 없어 미리 받음)
+        # 2026-10-27: 사용자가 텔레그램으로 보낸 참고 코디(tg:)를 Claude 단계에서 받지 못해 코디컷에 빠졌다.
+        # 여기서 받아 두면 같은 러너의 캐시(/tmp)와 out/<날짜>/src/refs/ 를 Claude 단계가 쓴다
+        if: (env.MODE == 'render' || env.MODE == 'fix') && env.HAS_TELEGRAM == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ -f "out/$DATE/plan.yaml" ]; then
+            uv run python -m tools.plan refs "out/$DATE/plan.yaml" \
+              || echo "::warning::참고 코디 사진을 받지 못했습니다"
+          fi
       - name: Claude 코디 후보 (outfit-candidates 스킬)
         if: env.MODE == 'candidates'
         uses: anthropics/claude-code-action@v1

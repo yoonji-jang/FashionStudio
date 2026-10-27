@@ -1078,12 +1078,12 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("themes", help="주간 주제 검사·저장")
     s.add_argument("--account", **account)
     s.add_argument("--file", type=Path, required=True, help="Theme 목록 YAML")
-    for name in ("check", "photos", "sizes", "measure", "caption", "build"):
+    for name in ("check", "photos", "refs", "sizes", "measure", "caption", "build"):
         s = sub.add_parser(name)
         s.add_argument("plan", type=Path)
         if name == "measure":
             s.add_argument("--file", type=Path, required=True, help="size-reader 결과 YAML")
-        if name in ("photos", "sizes", "build"):
+        if name in ("photos", "refs", "sizes", "build"):
             s.add_argument("--out", type=Path, help="결과 폴더 (기본: 기획 파일 폴더)")
         if name == "check":
             s.add_argument("--draft", action="store_true", help="문구 없는 코디 후보 검사")
@@ -1149,6 +1149,10 @@ def main(argv: list[str] | None = None) -> int:
                 encoding="utf-8",
             )
             print("\n".join(notes) or "적은 실측 없음")
+            return 0
+        if args.cmd == "refs":
+            # 텔레그램 참고 코디는 토큰이 있는 워크플로 단계에서 미리 받는다 (daily.yml)
+            print("\n".join(look_refs(plan, profile, out)) or "참고 코디 없음")
             return 0
         if args.cmd == "photos":
             photos = fetch_candidates(plan, profile, store, out / "photos")
