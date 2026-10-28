@@ -337,6 +337,11 @@ def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
         )
         _save_order(out, uid, rec.get("order", shown), reels is not None)
         return f"{tag} 멈췄던 벌 순서 바꾸기를 마침"
+    if rec.get("order") == shown and not rec.get("error"):
+        # 같은 순서를 다시 보낸 글: 이미 그 순서라 또 바꾸면 섞인다 (2026-10-28 run380 게시 실패)
+        if not dry_run:
+            _save_order(out, uid, shown, bool(rec.get("reel_stale")))
+        return ""
     prev = next((p for p in chain(out) if load_order(p).get("update_id") == uid), None)
     if prev is not None:
         # 지난 미리보기에서 바꾼 순서. /fix 가 순서를 바꾸기 전 기획을 가져갔으면 같은 순서로 맞춘다
