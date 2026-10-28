@@ -371,6 +371,7 @@ def control_text(
                 "벌 순서를 바꾸려면 /order 4 2 3 1 처럼 LOOK 번호를 원하는 순서로"
                 " (첫 번호가 표지, 적지 않은 LOOK 은 빠짐)"
             )
+    lines.append("표지 제목만 바꾸려면 /제목 첫 줄/둘째 줄 (그림은 그대로)")
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
     if manifest.needs_human:
@@ -574,6 +575,10 @@ def parse(text: str, account: str, day: date | None) -> Command | None:
         )
     if plain in NOW_WORDS:
         return Command("now", [], False)
+    # 표지 제목만 바꾸기 (tools.cover_look, 2026-10-28 사용자): "/제목 첫 줄/둘째 줄", "/title …"
+    m = re.fullmatch(r"/(?:제목|title)(?:@\w+)?\s*[:：]?\s*(.*)", plain, re.S | re.I)
+    if m:
+        return Command("title", [m.group(1).strip()], False)
     m = CMD.match(plain)
     if not m:
         return None
@@ -707,6 +712,35 @@ def find_cover(
             until,
         )
         if (n := cover_number(cmd.args)) is not None
+    ]
+    return found[-1] if found else None
+
+
+def title_lines(args: list[str]) -> list[str] | None:
+    """/제목 뒤 글 → 제목 줄 ("/" 로 나눔, 따옴표는 뺌). 비었으면 None."""
+    text = " ".join(args).strip().strip("'\"‘’“”")
+    lines = [x.strip().strip("'\"‘’“”").strip() for x in text.split("/")]
+    lines = [x for x in lines if x]
+    return lines or None
+
+
+def find_title(
+    updates: list[dict], record: PreviewRecord, chat_id: str, until: int | None = None
+) -> tuple[int, list[str]] | None:
+    """미리보기 뒤 온 마지막 표지 제목 바꾸기 (update_id, 제목 줄)."""
+    found = [
+        (uid, lines)
+        for uid, cmd in commands(
+            split_lines(updates),
+            chat_id,
+            record.sent_at,
+            record.account,
+            record.date,
+            {"title"},
+            record.message_ids,
+            until,
+        )
+        if (lines := title_lines(cmd.args)) is not None
     ]
     return found[-1] if found else None
 

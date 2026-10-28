@@ -43,6 +43,7 @@ from tools import feed, looks, notify
 
 RECORD = "cover.json"  # 처리한 표지 바꾸기 (결과 폴더)
 ORDER_RECORD = "order.json"  # 처리한 벌 순서 바꾸기 (결과 폴더)
+TITLE_RECORD = "title.json"  # 처리한 표지 제목 바꾸기 (결과 폴더)
 DROPPED_DIR = "looks_dropped"  # 순서 바꾸기에서 뺀 벌 폴더
 
 
@@ -91,9 +92,18 @@ def load_order(out: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
 
+def load_title(out: Path) -> dict:
+    path = out / TITLE_RECORD
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
 def reel_stale(out: Path) -> bool:
-    """표지나 벌 순서를 바꾼 뒤 릴스 영상을 아직 다시 만들지 않았는지."""
-    return bool(load_record(out).get("reel_stale") or load_order(out).get("reel_stale"))
+    """표지·벌 순서·제목을 바꾼 뒤 릴스 영상을 아직 다시 만들지 않았는지."""
+    return bool(
+        load_record(out).get("reel_stale")
+        or load_order(out).get("reel_stale")
+        or load_title(out).get("reel_stale")
+    )
 
 
 def _write_yaml(data: dict, path: Path) -> None:
@@ -295,7 +305,11 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
     if (out / "published.json").exists():
         return ""
     updates = tg.updates() if updates is None else updates
-    lines = [check_order(out, tg, updates, dry_run), check_cover(out, tg, updates, dry_run)]
+    lines = [
+        check_order(out, tg, updates, dry_run),
+        check_cover(out, tg, updates, dry_run),
+        check_title(out, tg, updates, dry_run),
+    ]
     return "\n".join(x for x in lines if x)
 
 
@@ -364,6 +378,59 @@ def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
     )
     _save_order(out, uid, shown, stale)
     return f"{tag} 벌 순서를 {order} 으로 바꿈"
+
+
+def check_title(out: Path, tg, updates: list[dict], dry_run: bool = False) -> str:
+    """표지 제목만 바꾸기 (/제목 첫 줄/둘째 줄, 2026-10-28 사용자). 그림은 그대로, 코드만.
+    같은 글은 한 번만."""
+    record = notify.load_record(out)
+    assert record is not None
+    profile = load_profile(record.account)
+    tag = f"[{record.account}] {record.date}"
+    dl = notify.ok_deadline(profile, record.date)
+    found = notify.find_title(updates, record, tg.chat_id, int(dl.timestamp()) if dl else None)
+    if found is None or load_title(out).get("update_id") == found[0]:
+        return ""
+    uid, lines = found
+    shown = " / ".join(lines)
+    if dry_run:
+        return f"{tag} 표지 제목을 '{shown}' 으로 바꿀 예정 (시험)"
+    approved = notify.approval_now(out, record, profile, updates, tg.chat_id) == "ok"
+    stale = bool(load_title(out).get("reel_stale"))
+    try:
+        made = retitle(out, lines, profile)
+    except (ValueError, FileNotFoundError) as e:
+        tg.send(f"{tag} 표지 제목을 바꾸지 못했어요: {e}")
+        _save_title(out, uid, lines, stale, str(e))
+        return f"{tag} 표지 제목 바꾸기 실패: {e}"
+    stale = stale or notify.load_manifest(out).reels is not None
+    tail = "이 제목으로 게시해요" if approved else "이 제목으로 올리려면 /ok 를 보내 주세요"
+    tg.send_photos([made[0]], f"{tag} 표지 제목을 '{shown}' 으로 바꿨어요. {tail}")
+    _save_title(out, uid, lines, stale)
+    return f"{tag} 표지 제목을 '{shown}' 으로 바꿈"
+
+
+def retitle(out: Path, lines: list[str], profile: Profile | None = None) -> list[Path]:
+    """기획 제목을 바꾸고 슬라이드·미리보기·manifest 를 다시 만든다 (AI 없음).
+    표지 장과 미리보기 경로."""
+    from tools import plan as plan_tool
+
+    plan = plan_tool.load_plan(out / "plan.yaml")
+    profile = profile or load_profile(plan.account)
+    if plan.text is None or not plan.looks:
+        raise ValueError("여러 벌 게시물만 제목을 바로 바꿀 수 있어요 (/fix 1 제목을 … 로)")
+    reels = notify.load_manifest(out).reels
+    data = plan.model_dump(mode="json", exclude_none=True)
+    data["text"]["title_lines"] = lines
+    _write_yaml(data, out / "plan.yaml")
+    return _refinish(out, profile, reels)
+
+
+def _save_title(out: Path, uid: int, lines: list[str], stale: bool, error: str = "") -> None:
+    data = {"update_id": uid, "title_lines": lines, "reel_stale": stale, "at": int(time.time())}
+    if error:
+        data["error"] = error
+    (out / TITLE_RECORD).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
 
 
 def _shown(rec: dict) -> str:

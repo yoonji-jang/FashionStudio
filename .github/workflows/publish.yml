@@ -138,6 +138,6 @@ jobs:
           commit . "${{ github.ref_name }}" "data/$ACCOUNT/posts.json"
           commit /tmp/results daily-results ':(glob)*/published.json'
           # 게시 직전에 반영한 표지 벌·벌 순서 바꾸기 (tools.cover_look). 릴스 게시가 같은 표지로 다시 만든다
-          commit /tmp/results daily-results ':(glob)*/cover.json' ':(glob)*/order.json' ':(glob)*/plan.yaml' \
+          commit /tmp/results daily-results ':(glob)*/cover.json' ':(glob)*/order.json' ':(glob)*/title.json' ':(glob)*/plan.yaml' \
             ':(glob)*/feed.yaml' ':(glob)*/preview.jpg' ':(glob)*/slides/**' ':(glob)*/looks/**' \
             ':(glob)*/manifest.json' ':(glob)*/caption.txt' ':(glob)*/report.md'
