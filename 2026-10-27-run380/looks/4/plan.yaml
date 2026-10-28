@@ -1,5 +1,5 @@
 account: women
-cover: out/2026-10-27/looks/4/outfit/results/G_1.jpg
+cover: out/2026-10-27/looks/5/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-27'
 edit_refs: []
@@ -7,92 +7,89 @@ face: an exotic, striking look with long calm eyes with a double eyelid, slim st
   eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
   skin, a small slim face with narrow width and a high straight nose bridge
 items:
-- color: 브라운
+- cm: 65.0
+  color: 아이보리
   comment: ''
-  cutout_photo: 3
-  desc: 브라운 페이크퍼 모자 (brown soft long-pile fluffy faux-fur hat, no ear flaps and no
-    ties)
-  name: 퍼 샤프카
-  product: zigzag:132787487
+  cutout_photo: 4
+  desc: 아이보리 퍼 자켓 (ivory thick long-pile shaggy faux-fur jacket with a shawl collar,
+    very fluffy, voluminous long-pile faux fur)
+  name: 웬디 퍼 자켓
+  product: zigzag:167334294
   ref_photos:
-  - 3
-- color: 브라운
-  comment: ''
-  cutout_photo: 0
-  desc: 다크 브라운 오버핏 레더 자켓 (dark chocolate brown thick oversized leather bomber-style
-    jacket)
-  name: 오버핏 레더 자켓
-  product: zigzag:148146251
-  ref_photos:
-  - 3
-  - 0
-- cm: 51.5
-  color: 블랙
-  comment: ''
-  cutout_photo: 3
-  desc: 블랙 슬림 브이넥 티셔츠 (black thin matte jersey v-neck tee)
-  name: 슬림 브이넥 티
-  product: zigzag:172226652
-  ref_photos:
-  - 3
-  - 2
-  size: about 51.5 cm long from shoulder to hem, 36 cm across the shoulders, 38 cm
-    across the chest laid flat, 59 cm long sleeves
-- cm: 29.5
-  color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 울 쇼츠 (black matte textured wool shorts)
-  name: 울 쇼츠
-  product: zigzag:166183665
-  ref_photos:
-  - 1
-  - 0
-  - 2
-  size: about 29.5 cm long from waist to hem, 40 cm across the waist laid flat, 51.5
-    cm across the hips laid flat, 33 cm across the hem laid flat
-- color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 미니 크로스백 (black mini crossbody bag)
-  name: 미니 크로스백
-  product: zigzag:115638721
-- color: 블랙
+  - 4
+  - 5
+  size: about 65 cm long from shoulder to hem, 45 cm across the shoulders, 57 cm across
+    the chest laid flat, 72 cm long sleeves
+- cm: 49.5
+  color: 화이트
   comment: ''
   cutout_photo: 2
-  desc: 블랙 플랫폼 어그 부츠 (black napped suede platform ugg-style shearling boots)
-  name: 어그 부츠
-  product: zigzag:153382969
+  desc: 화이트 헨리넥 긴팔티 (white thin ribbed cotton henley long-sleeve tee)
+  name: 헨리넥 긴팔티
+  product: zigzag:165972153
   ref_photos:
   - 2
-  - 5
-- color: 블랙
+  size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37 cm
+    across the chest laid flat, 68 cm long sleeves
+- cm: 40.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 미니스커트 (ivory smooth woven cotton mini skirt)
+  name: 미니스커트
+  product: zigzag:154052552
+  ref_photos:
+  - 3
+  - 2
+  size: worn shortened, about 28 cm long from waist to hem, only a small strip of
+    hem peeks out below the jacket
+- color: 브라운
   comment: ''
   cutout_photo: 1
-  desc: 블랙 레그워머 (thick soft ribbed knit leg warmers, black with a charcoal folded
-    cuff)
+  desc: 브라운 스웨이드 로퍼 (matte suede lace-up loafers with a gum crepe sole)
+  name: 스웨이드 로퍼
+  product: zigzag:165725019
+  ref_photos:
+  - 3
+  - 1
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 레그워머 (ivory leg warmers, long, scrunched up high)
   name: 레그워머
   product: zigzag:168607993
   ref_photos:
-  - 1
+  - 0
+  - 2
+- color: 브라운
+  comment: ''
+  cutout_photo: 4
+  desc: 브라운 스웨이드 호보백 (napped dark brown suede hobo bag)
+  name: 스웨이드 호보백
+  product: zigzag:150024149
+  ref_photos:
+  - 4
+  - 3
+  - 0
 looks: []
 mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
   and a clean white floor, soft even studio light with a soft shadow on the floor,
   neutral cool color tone, a clean digital camera look, full-body framing at a medium
   distance'
-pose: standing straight on to the camera in the plain studio with her chin slightly
-  down and a cool expression, one hip pushed out and one hand in the jacket pocket,
-  the other hand holding the crossbody strap; the ushanka hat sits low on her head
-  with her long wavy hair falling loose past her shoulders from under the hat
-reason: 퍼 모자가 포인트, 오버핏 레더 자켓에 브이넥 티, 울 쇼츠와 어그 부츠
-ref_photo: tg:AgACAgUAAxkBAAIIVWrgbQaJHE9ypqc941VZihZSBLUNAAJBFGsbB_YAAVfGFJmLoODyMwEAAwIAA3kAAz0E
-requests:
-- 검은 스타킹 (she wears black tights under the shorts)
-scene_image: out/2026-10-27/src/scene_2.jpg
+pose: standing at an angle in the plain studio, a hand tucked into the jacket pocket
+  and the other holding the bag, one foot crossed in front of the other, her head
+  tilted slightly and her eyes looking off to the side; hair long and loose in soft
+  waves
+reason: 웬디 퍼 자켓에 아이보리 미니스커트, 레그워머와 브라운 로퍼로 톤온톤
+ref_photo: tg:AgACAgUAAxkBAAIIWWrgbQa_WXEd61M-PZgJ0Md3LwLnAAJEFGsbB_YAAVdDRv98H3dghQEAAwIAA3kAAz0E
+requests: []
+scene_image: out/2026-10-27/src/scene_3.jpg
 shot: model
-styling: The jacket is thick and worn oversized. The wool shorts are worn at their
-  shortest, with a very short hem high on the thighs. Thick dark charcoal ribbed leg
-  warmers are worn over the black tights, bunched above the ugg boots.
+styling: The fur jacket is much fluffier and more voluminous than before, like the
+  product detail photos, and it is closed almost all the way, only a thin strip of
+  the white tee shows at the neck. The ivory mini skirt is much shorter than before
+  and only peeks out a little below the jacket hem. The ivory leg warmers are longer
+  than before, reaching up to just above her knees.
 text:
   hashtags:
   - '#퍼자켓'

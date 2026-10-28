@@ -9,12 +9,12 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 상의 | 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit) | 아이보리 | - | 기장 68cm | outfit/originals/01_top.jpg |
-| 2 | 상의 | 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top) | 블랙 | 상의에 입힘 | 기장 50cm | outfit/originals/02_top.jpg |
-| 3 | 소품 | 브라운 가죽 시계 (brown leather watch) | 브라운 | - | 긴 쪽 22cm | outfit/originals/03_accessory.jpg |
-| 4 | 하의 | 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt) | 브라운 | - | 기장 45cm | outfit/originals/04_bottoms.jpg |
-| 5 | 신발 | 스웨이드 롱부츠 (matte napped suede boots) | 브라운 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
-| 6 | 가방 | 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag) | 브라운 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
+| 1 | 아우터 | 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up high collar, very fluffy and voluminous with a slightly puffy boxy shape, not a straight drop fit) | 브라운 | - | 기장 59.5cm | outfit/originals/01_outer.jpg |
+| 2 | 상의 | 화이트 헨리넥 티셔츠 (white henley tee) | 화이트 | - | 기장 60cm | outfit/originals/02_top.jpg |
+| 3 | 하의 | 블랙 울 쇼츠 (black matte textured wool shorts) | 블랙 | - | 기장 29.5cm | outfit/originals/03_bottoms.jpg |
+| 4 | 신발 | 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots) | 브라운 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
+| 5 | 가방 | 브라운 레더 호보백 (brown soft leather hobo bag) | 브라운 | - | 긴 쪽 52cm | outfit/originals/05_bag.jpg |
+| 6 | 소품 | 아이보리 골지 니트 롱 삭스 (ivory chunky ribbed knit long socks) | 아이보리 | - | 긴 쪽 22cm | outfit/originals/06_accessory.jpg |
 
 **장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
 
@@ -22,7 +22,9 @@
 
 ## 점수를 매길 코디컷 후보
 
-- c1: `outfit/results/G_1.jpg`
+- 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
+
+이미 매긴 점수: c1 9점
 
 ## 캐러셀 상품 장
 
@@ -75,4 +77,4 @@
 
 ## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)
 
-- c1 [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: `review/face_c1_1.jpg` (얼굴 참고 게시물: 보여도 괜찮음, 흐리거나 뭉개졌으면 clean 0)
+- 없음

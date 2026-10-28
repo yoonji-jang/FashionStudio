@@ -1,5 +1,5 @@
 account: women
-cover: out/2026-10-27/looks/1/outfit/results/G_1.jpg
+cover: out/2026-10-27/looks/3/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-27'
 edit_refs: []
@@ -7,87 +7,77 @@ face: an exotic, striking look with long calm eyes with a double eyelid, slim st
   eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
   skin, a small slim face with narrow width and a high straight nose bridge
 items:
-- cm: 59.5
-  color: 브라운
+- cm: 48.0
+  color: 베이지
   comment: ''
-  cutout_photo: 0
-  desc: 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up
-    high collar, very fluffy and voluminous with a slightly puffy boxy shape, not
-    a straight drop fit)
-  name: 하이넥 숏 퍼자켓
-  product: zigzag:172046026
+  cutout_photo: 4
+  desc: 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket)
+  name: 소프트 퍼 크롭 자켓
+  product: zigzag:172474103
   ref_photos:
-  - 0
   - 4
-  - 1
-  size: about 59.5 cm long from shoulder to hem, 59.5 cm across the shoulders, 48.5
-    cm across the chest laid flat, 62 cm long sleeves
-- cm: 60.0
-  color: 화이트
-  comment: ''
-  cutout_photo: 0
-  desc: 화이트 헨리넥 티셔츠 (white henley tee)
-  name: 헨리넥 티셔츠
-  product: zigzag:171221132
-  size: about 60 cm long from shoulder to hem, 35 cm across the shoulders, 40 cm across
-    the chest laid flat, 62 cm long sleeves
-- cm: 29.5
+  - 3
+  - 5
+  size: about 48 cm long from shoulder to hem, 46 cm across the shoulders, 50 cm across
+    the chest laid flat, 56 cm long sleeves
+- cm: 80.0
   color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 블랙 울 쇼츠 (black matte textured wool shorts)
-  name: 울 쇼츠
-  product: zigzag:166183665
+  cutout_photo: 1
+  desc: 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley
+    placket)
+  name: 단추 니트 원피스
+  product: zigzag:151022581
   ref_photos:
   - 1
   - 0
   - 2
-  size: worn shortened to about half the usual length, about 15 cm long from waist
-    to hem, hem hugging the upper thighs almost snugly
-- color: 브라운
+  size: about 80 cm long from shoulder to hem, 37 cm across the shoulders, 36 cm across
+    the chest laid flat
+- color: 블랙
   comment: ''
   cutout_photo: 0
-  desc: 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots)
-  name: 스웨이드 버클 부츠
-  product: zigzag:165455974
-- color: 브라운
-  comment: ''
-  cutout_photo: 0
-  desc: 브라운 레더 호보백 (brown soft leather hobo bag)
-  name: 레더 호보백
-  product: zigzag:168780987
+  desc: 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe)
+  name: 스퀘어 롱부츠
+  product: zigzag:108156951
   ref_photos:
   - 0
+  - 2
+  - 5
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle)
+  name: 버클 호보백
+  product: zigzag:147738628
+  ref_photos:
+  - 0
+  - 2
   - 1
-- color: 아이보리
+- color: 실버
   comment: ''
   cutout_photo: 0
-  desc: 아이보리 골지 니트 롱 삭스 (ivory chunky ribbed knit long socks)
-  name: 골지 롱 삭스
-  product: zigzag:131020807
-  ref_photos:
-  - 3
-  - 0
+  desc: 실버 볼 체인 목걸이 (thin silver ball-chain necklace)
+  name: 실버 볼체인 목걸이
+  product: zigzag:113341770
+  segment: necklace
+  slot: 목걸이
 looks: []
 mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
   and a clean white floor, soft even studio light with a soft shadow on the floor,
   neutral cool color tone, a clean digital camera look, full-body framing at a medium
   distance'
-pose: standing at the center of the plain studio, weight on one leg with the other
-  knee relaxed, both arms relaxed at her sides with one hand holding the bag handle,
-  her head turned a little to the side and her eyes looking off to the side; hair
-  in a slick low bun with a few loose flyaway strands at the temples
-reason: 하이넥 숏 퍼자켓이 주인공, 화이트 티와 블랙 쇼츠에 브라운 롱부츠와 골지 롱 삭스로 톤온톤
-ref_photo: tg:AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ
-requests: []
-scene_image: out/2026-10-27/src/scene.jpg
+pose: standing in the plain studio with her body turned a little away from the camera
+  and her face turned back toward it, one hand holding the bag strap and the other
+  hand loosely lifting the hem of the jacket, her weight on the back leg; hair in
+  a sleek slick bun with fine flyaway baby hairs
+reason: 라이트그레이 퍼 크롭 자켓이 주인공, 블랙 니트 원피스와 롱부츠로 올블랙 포인트
+ref_photo: tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E
+requests:
+- 시스루 검은 스타킹 (she wears sheer black see-through tights)
+scene_image: out/2026-10-27/src/scene_2.jpg
 shot: model
-styling: The fur jacket is zipped up from the neck all the way down to her navel,
-  so the white inner tee shows only as a small strip at the waist below the jacket
-  hem, none at the chest or neck. The jacket is slightly fluffy, puffy and voluminous
-  with a soft rounded boxy shape, not a straight drop fit, matching the product detail
-  photos. The black wool shorts are about half as long as before and slim, hugging
-  the thighs almost snugly with a short hem high on the upper thighs.
+styling: She wears sheer black see-through tights instead of socks.
 text:
   hashtags:
   - '#퍼자켓'

@@ -9,17 +9,19 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 아우터 | 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket) | 베이지 | - | 기장 48cm | 없음 |
-| 2 | 원피스 | 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley placket) | 블랙 | - | 기장 80cm | 없음 |
-| 3 | 신발 | 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe) | 블랙 | - | 긴 쪽 35cm | 없음 |
-| 4 | 가방 | 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle) | 블랙 | - | 긴 쪽 52cm | 없음 |
-| 5 | 소품 | 실버 볼 체인 목걸이 (thin silver ball-chain necklace) | 실버 | - | 긴 쪽 34cm | 없음 |
+| 1 | 소품 | 브라운 페이크퍼 모자 (brown soft long-pile fluffy faux-fur hat, no ear flaps and no ties) | 브라운 | - | 긴 쪽 22cm | 없음 |
+| 2 | 아우터 | 다크 브라운 오버핏 레더 자켓 (dark chocolate brown thick oversized leather bomber-style jacket) | 브라운 | - | 기장 75cm | 없음 |
+| 3 | 상의 | 블랙 슬림 브이넥 티셔츠 (black thin matte jersey v-neck tee) | 블랙 | - | 기장 51.5cm | 없음 |
+| 4 | 하의 | 블랙 울 쇼츠 (black matte textured wool shorts) | 블랙 | - | 기장 29.5cm | 없음 |
+| 5 | 가방 | 블랙 미니 크로스백 (black mini crossbody bag) | 블랙 | - | 긴 쪽 52cm | 없음 |
+| 6 | 신발 | 블랙 플랫폼 어그 부츠 (black napped suede platform ugg-style shearling boots) | 블랙 | - | 긴 쪽 35cm | 없음 |
+| 7 | 소품 | 블랙 레그워머 (thick soft ribbed knit leg warmers, black with a charcoal folded cuff) | 블랙 | - | 긴 쪽 22cm | 없음 |
 
 ## 점수를 매길 코디컷 후보
 
 - 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
 
-이미 매긴 점수: c1 8점
+이미 매긴 점수: c1 9점
 
 ## 캐러셀 상품 장
 

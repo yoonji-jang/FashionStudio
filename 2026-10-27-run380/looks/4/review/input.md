@@ -9,13 +9,16 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 소품 | 브라운 페이크퍼 모자 (brown soft long-pile fluffy faux-fur hat, no ear flaps and no ties) | 브라운 | - | 긴 쪽 22cm | 없음 |
-| 2 | 아우터 | 다크 브라운 오버핏 레더 자켓 (dark chocolate brown thick oversized leather bomber-style jacket) | 브라운 | - | 기장 75cm | 없음 |
-| 3 | 상의 | 블랙 슬림 브이넥 티셔츠 (black thin matte jersey v-neck tee) | 블랙 | - | 기장 51.5cm | 없음 |
-| 4 | 하의 | 블랙 울 쇼츠 (black matte textured wool shorts) | 블랙 | - | 기장 29.5cm | 없음 |
-| 5 | 가방 | 블랙 미니 크로스백 (black mini crossbody bag) | 블랙 | - | 긴 쪽 52cm | 없음 |
-| 6 | 신발 | 블랙 플랫폼 어그 부츠 (black napped suede platform ugg-style shearling boots) | 블랙 | - | 긴 쪽 35cm | 없음 |
-| 7 | 소품 | 블랙 레그워머 (thick soft ribbed knit leg warmers, black with a charcoal folded cuff) | 블랙 | - | 긴 쪽 22cm | 없음 |
+| 1 | 아우터 | 아이보리 퍼 자켓 (ivory thick long-pile shaggy faux-fur jacket with a shawl collar, very fluffy, voluminous long-pile faux fur) | 아이보리 | - | 기장 65cm | outfit/originals/01_outer.jpg |
+| 2 | 상의 | 화이트 헨리넥 긴팔티 (white thin ribbed cotton henley long-sleeve tee) | 화이트 | - | 기장 49.5cm | outfit/originals/02_top.jpg |
+| 3 | 하의 | 아이보리 미니스커트 (ivory smooth woven cotton mini skirt) | 아이보리 | - | 기장 40cm | outfit/originals/03_bottoms.jpg |
+| 4 | 신발 | 브라운 스웨이드 로퍼 (matte suede lace-up loafers with a gum crepe sole) | 브라운 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
+| 5 | 소품 | 아이보리 레그워머 (ivory leg warmers, long, scrunched up high) | 아이보리 | - | 긴 쪽 22cm | outfit/originals/05_accessory.jpg |
+| 6 | 가방 | 브라운 스웨이드 호보백 (napped dark brown suede hobo bag) | 브라운 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
+
+**장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
+
+기준 코디 사진 (입는 모양을 이대로 따라야 함): outfit/originals/worn_ref.jpg
 
 ## 점수를 매길 코디컷 후보
 

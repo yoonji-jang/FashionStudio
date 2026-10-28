@@ -9,22 +9,17 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 아우터 | 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up high collar, very fluffy and voluminous with a slightly puffy boxy shape, not a straight drop fit) | 브라운 | - | 기장 59.5cm | outfit/originals/01_outer.jpg |
-| 2 | 상의 | 화이트 헨리넥 티셔츠 (white henley tee) | 화이트 | - | 기장 60cm | outfit/originals/02_top.jpg |
-| 3 | 하의 | 블랙 울 쇼츠 (black matte textured wool shorts) | 블랙 | - | 기장 29.5cm | outfit/originals/03_bottoms.jpg |
-| 4 | 신발 | 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots) | 브라운 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
-| 5 | 가방 | 브라운 레더 호보백 (brown soft leather hobo bag) | 브라운 | - | 긴 쪽 52cm | outfit/originals/05_bag.jpg |
-| 6 | 소품 | 아이보리 골지 니트 롱 삭스 (ivory chunky ribbed knit long socks) | 아이보리 | - | 긴 쪽 22cm | outfit/originals/06_accessory.jpg |
-
-**장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
-
-기준 코디 사진 (입는 모양을 이대로 따라야 함): outfit/originals/worn_ref.jpg
+| 1 | 아우터 | 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket) | 베이지 | - | 기장 48cm | 없음 |
+| 2 | 원피스 | 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley placket) | 블랙 | - | 기장 80cm | 없음 |
+| 3 | 신발 | 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe) | 블랙 | - | 긴 쪽 35cm | 없음 |
+| 4 | 가방 | 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle) | 블랙 | - | 긴 쪽 52cm | 없음 |
+| 5 | 소품 | 실버 볼 체인 목걸이 (thin silver ball-chain necklace) | 실버 | - | 긴 쪽 34cm | 없음 |
 
 ## 점수를 매길 코디컷 후보
 
 - 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
 
-이미 매긴 점수: c1 9점
+이미 매긴 점수: c1 8점
 
 ## 캐러셀 상품 장
 

@@ -9,18 +9,20 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 아우터 | 베이지 양털 뽀글이 자켓 (beige thick curly sherpa fleece jacket) | 베이지 | - | 기장 80cm | 없음 |
-| 2 | 상의 | 그레이 풀오버 후드티 (gray thin stretchy cotton jersey pullover hoodie with a drawstring hood) | 그레이 | - | 기장 54cm | 없음 |
-| 3 | 하의 | 그레이 스웻팬츠 (gray cotton fleece sweatpants) | 그레이 | - | 기장 100cm | 없음 |
-| 4 | 신발 | 카멜 플랫폼 어그 부츠 (camel napped suede platform ugg-style boots with shearling lining) | 브라운 | - | 긴 쪽 35cm | 없음 |
-| 5 | 가방 | 블랙 미니 패딩 크로스백 (black quilted nylon puffy crossbody bag with a knotted strap) | 블랙 | - | 긴 쪽 52cm | 없음 |
-| 6 | 소품 | 그린 볼캡 (green washed ball cap) | 그린 | - | 긴 쪽 22cm | 없음 |
+| 1 | 상의 | 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit) | 아이보리 | - | 기장 68cm | outfit/originals/01_top.jpg |
+| 2 | 상의 | 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top) | 블랙 | 상의에 입힘 | 기장 50cm | outfit/originals/02_top.jpg |
+| 3 | 소품 | 브라운 가죽 시계 (brown leather watch) | 브라운 | - | 긴 쪽 22cm | outfit/originals/03_accessory.jpg |
+| 4 | 하의 | 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt) | 브라운 | - | 기장 45cm | outfit/originals/04_bottoms.jpg |
+| 5 | 신발 | 스웨이드 롱부츠 (matte napped suede boots) | 브라운 | - | 긴 쪽 35cm | outfit/originals/05_shoes.jpg |
+| 6 | 가방 | 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag) | 브라운 | - | 긴 쪽 52cm | outfit/originals/06_bag.jpg |
+
+**장면 모델컷**: 사용자가 보낸 장면 사진 outfit/originals/scene.jpg 의 무드로 그린 새 AI 인물이다. image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).
+
+기준 코디 사진 (입는 모양을 이대로 따라야 함): outfit/originals/worn_ref.jpg
 
 ## 점수를 매길 코디컷 후보
 
-- 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
-
-이미 매긴 점수: c1 9점
+- c1: `outfit/results/G_1.jpg`
 
 ## 캐러셀 상품 장
 
@@ -73,4 +75,4 @@
 
 ## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)
 
-- 없음
+- c1 [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: `review/face_c1_1.jpg` (얼굴 참고 게시물: 보여도 괜찮음, 흐리거나 뭉개졌으면 clean 0)

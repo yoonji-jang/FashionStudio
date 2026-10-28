@@ -1,4 +1,5 @@
 account: women
+cover: out/2026-10-27/looks/1/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-27'
 edit_refs: []
@@ -6,85 +7,87 @@ face: an exotic, striking look with long calm eyes with a double eyelid, slim st
   eyebrows, soft natural makeup with a light blush and muted rosy lips, fair clear
   skin, a small slim face with narrow width and a high straight nose bridge
 items:
-- cm: 68.0
-  color: 아이보리
-  comment: ''
-  cutout_photo: 0
-  desc: 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit)
-  name: 앙고라 브이넥 니트
-  product: zigzag:167233725
-  ref_photos:
-  - 0
-  - 1
-  - 4
-  size: about 68 cm long from shoulder to hem, 60 cm across the shoulders, 53 cm across
-    the chest laid flat, 46 cm long sleeves
-- cm: 50.0
-  color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top)
-  name: 레이스 이너 나시
-  product: zigzag:157994590
-  size: about 50 cm long from shoulder to hem, 25 cm across the shoulders, 34 cm across
-    the chest laid flat
-  wear_with: 상의
-- color: 브라운
-  comment: ''
-  cutout_photo: 0
-  desc: 브라운 가죽 시계 (brown leather watch)
-  name: 레더 시계
-  product: zigzag:123161642
-- cm: 45.0
+- cm: 59.5
   color: 브라운
   comment: ''
   cutout_photo: 0
-  desc: 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt)
-  name: 스웨이드 미니스커트
-  product: zigzag:167025790
+  desc: 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up
+    high collar, very fluffy and voluminous with a slightly puffy boxy shape, not
+    a straight drop fit)
+  name: 하이넥 숏 퍼자켓
+  product: zigzag:172046026
   ref_photos:
   - 0
+  - 4
   - 1
+  size: about 59.5 cm long from shoulder to hem, 59.5 cm across the shoulders, 48.5
+    cm across the chest laid flat, 62 cm long sleeves
+- cm: 60.0
+  color: 화이트
+  comment: ''
+  cutout_photo: 0
+  desc: 화이트 헨리넥 티셔츠 (white henley tee)
+  name: 헨리넥 티셔츠
+  product: zigzag:171221132
+  size: about 60 cm long from shoulder to hem, 35 cm across the shoulders, 40 cm across
+    the chest laid flat, 62 cm long sleeves
+- cm: 29.5
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 쇼츠 (black matte textured wool shorts)
+  name: 울 쇼츠
+  product: zigzag:166183665
+  ref_photos:
+  - 1
+  - 0
   - 2
-  size: about 45 cm long from waist to hem, 36 cm across the waist laid flat, 47 cm
-    across the hips laid flat, 54 cm across the hem laid flat
+  size: worn shortened to about half the usual length, about 15 cm long from waist
+    to hem, hem hugging the upper thighs almost snugly
 - color: 브라운
   comment: ''
   cutout_photo: 0
-  desc: 스웨이드 롱부츠 (matte napped suede boots)
-  name: 스웨이드 롱부츠
-  product: zigzag:130914498
-  ref_photos:
-  - 0
+  desc: 브라운 스웨이드 버클 롱부츠 (brown suede buckle long boots)
+  name: 스웨이드 버클 부츠
+  product: zigzag:165455974
 - color: 브라운
   comment: ''
   cutout_photo: 0
-  desc: 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag)
-  name: 스웨이드 숄더백
-  product: zigzag:164580854
+  desc: 브라운 레더 호보백 (brown soft leather hobo bag)
+  name: 레더 호보백
+  product: zigzag:168780987
   ref_photos:
   - 0
   - 1
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 골지 니트 롱 삭스 (ivory chunky ribbed knit long socks)
+  name: 골지 롱 삭스
+  product: zigzag:131020807
+  ref_photos:
+  - 3
+  - 0
 looks: []
 mood: 'a studio lookbook shoot of a fashion web shop: a plain pale grey seamless wall
   and a clean white floor, soft even studio light with a soft shadow on the floor,
   neutral cool color tone, a clean digital camera look, full-body framing at a medium
   distance'
-pose: standing sideways in profile to the camera in the plain studio, both arms hanging
-  relaxed and low so the knit hem is not lifted, her chin lifted a little and her
-  eyes looking up and away, feet in a loose stagger so one leg crosses in front of
-  the other; hair long and loose in soft waves
-reason: 앙고라 브이넥 니트에 블랙 레이스 나시를 받쳐 입고 스웨이드 미니, 롱부츠까지 톤온톤
-ref_photo: tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E
+pose: standing at the center of the plain studio, weight on one leg with the other
+  knee relaxed, both arms relaxed at her sides with one hand holding the bag handle,
+  her head turned a little to the side and her eyes looking off to the side; hair
+  in a slick low bun with a few loose flyaway strands at the temples
+reason: 하이넥 숏 퍼자켓이 주인공, 화이트 티와 블랙 쇼츠에 브라운 롱부츠와 골지 롱 삭스로 톤온톤
+ref_photo: tg:AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ
 requests: []
-scene_image: out/2026-10-27/src/scene_3.jpg
+scene_image: out/2026-10-27/src/scene.jpg
 shot: model
-styling: The ivory knit is worn loose and longer than the original photo, and its
-  hem ends at the middle of her hips, not lower, so it must never reach her thighs
-  or look like a dress, matching the fit in the reference outfit photo. Only one side
-  of the knit hem is hooked lightly into the skirt waist, the other side hangs loose
-  over the hip. The suede mini skirt is shortened and a clear strip of about 10 cm
-  of it shows below the knit hem, about half as much as in the first version.
+styling: The fur jacket is zipped up from the neck all the way down to her navel,
+  so the white inner tee shows only as a small strip at the waist below the jacket
+  hem, none at the chest or neck. The jacket is slightly fluffy, puffy and voluminous
+  with a soft rounded boxy shape, not a straight drop fit, matching the product detail
+  photos. The black wool shorts are about half as long as before and slim, hugging
+  the thighs almost snugly with a short hem high on the upper thighs.
 text:
   hashtags:
   - '#퍼자켓'
