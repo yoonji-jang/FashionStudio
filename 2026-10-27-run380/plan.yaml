@@ -35,11 +35,81 @@ theme:
 items: []
 looks:
 - items:
+  - product: zigzag:172474103
+    color: 베이지
+    desc: 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket)
+    name: 소프트 퍼 크롭 자켓
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 3
+    - 5
+    size: about 48 cm long from shoulder to hem, 46 cm across the shoulders, 50 cm
+      across the chest laid flat, 56 cm long sleeves
+    cm: 48.0
+  - product: zigzag:151022581
+    color: 블랙
+    desc: 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley
+      placket)
+    name: 단추 니트 원피스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+    - 2
+    size: about 80 cm long from shoulder to hem, 37 cm across the shoulders, 36 cm
+      across the chest laid flat
+    cm: 80.0
+  - product: zigzag:108156951
+    color: 블랙
+    desc: 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe)
+    name: 스퀘어 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 5
+  - product: zigzag:147738628
+    color: 블랙
+    desc: 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle)
+    name: 버클 호보백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 1
+  - product: zigzag:113341770
+    color: 실버
+    desc: 실버 볼 체인 목걸이 (thin silver ball-chain necklace)
+    name: 실버 볼체인 목걸이
+    comment: ''
+    cutout_photo: 0
+    slot: 목걸이
+    segment: necklace
+  reason: 라이트그레이 퍼 크롭 자켓이 주인공, 블랙 니트 원피스와 롱부츠로 올블랙 포인트
+  point: 라이트그레이 퍼를 올블랙 원피스 위에 걸쳐 질감을 살렸어요
+  styling: She wears sheer black see-through tights instead of socks.
+  cover: out/2026-10-27/looks/3/outfit/results/G_1.jpg
+  edit_refs: []
+  pose: standing in the plain studio with her body turned a little away from the camera
+    and her face turned back toward it, one hand holding the bag strap and the other
+    hand loosely lifting the hem of the jacket, her weight on the back leg; hair in
+    a sleek slick bun with fine flyaway baby hairs
+  scene_image: out/2026-10-27/src/scene_2.jpg
+  ref: '786'
+  ref_photo: tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E
+  requests:
+  - 시스루 검은 스타킹 (she wears sheer black see-through tights)
+- items:
   - product: zigzag:172046026
     color: 브라운
     desc: 브라운 퍼자켓, 우뚝 선 하이넥 칼라 (brown long-pile shaggy faux-fur jacket with a stand-up
-      high collar, very fluffy and voluminous with a slightly puffy boxy shape, not a straight
-      drop fit)
+      high collar, very fluffy and voluminous with a slightly puffy boxy shape, not
+      a straight drop fit)
     name: 하이넥 숏 퍼자켓
     comment: ''
     cutout_photo: 0
@@ -114,153 +184,6 @@ looks:
   ref: '779'
   ref_photo: tg:AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ
   requests: []
-- items:
-  - product: zigzag:167233725
-    color: 아이보리
-    desc: 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit)
-    name: 앙고라 브이넥 니트
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 0
-    - 1
-    - 4
-    size: about 68 cm long from shoulder to hem, 60 cm across the shoulders, 53 cm
-      across the chest laid flat, 46 cm long sleeves
-    cm: 68.0
-  - product: zigzag:157994590
-    color: 블랙
-    desc: 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top)
-    name: 레이스 이너 나시
-    comment: ''
-    cutout_photo: 0
-    size: about 50 cm long from shoulder to hem, 25 cm across the shoulders, 34 cm
-      across the chest laid flat
-    cm: 50.0
-    wear_with: 상의
-  - product: zigzag:123161642
-    color: 브라운
-    desc: 브라운 가죽 시계 (brown leather watch)
-    name: 레더 시계
-    comment: ''
-    cutout_photo: 0
-  - product: zigzag:167025790
-    color: 브라운
-    desc: 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt)
-    name: 스웨이드 미니스커트
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 0
-    - 1
-    - 2
-    size: about 45 cm long from waist to hem, 36 cm across the waist laid flat, 47
-      cm across the hips laid flat, 54 cm across the hem laid flat
-    cm: 45.0
-  - product: zigzag:130914498
-    color: 브라운
-    desc: 스웨이드 롱부츠 (matte napped suede boots)
-    name: 스웨이드 롱부츠
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 0
-  - product: zigzag:164580854
-    color: 브라운
-    desc: 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag)
-    name: 스웨이드 숄더백
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 0
-    - 1
-  reason: 앙고라 브이넥 니트에 블랙 레이스 나시를 받쳐 입고 스웨이드 미니, 롱부츠까지 톤온톤
-  point: 앙고라 니트 안에 블랙 레이스 나시를 받쳐 입었어요
-  styling: The ivory knit is worn loose and longer than the original photo, and its
-    hem ends at the middle of her hips, not lower, so it must never reach her thighs
-    or look like a dress, matching the fit in the reference outfit photo. Only one
-    side of the knit hem is hooked lightly into the skirt waist, the other side hangs
-    loose over the hip. The suede mini skirt is shortened and a clear strip of about
-    10 cm of it shows below the knit hem, about half as much as in the first version.
-  edit_refs: []
-  pose: standing sideways in profile to the camera in the plain studio, both arms
-    hanging relaxed and low so the knit hem is not lifted, her chin lifted a little
-    and her eyes looking up and away, feet in a loose stagger so one leg crosses in
-    front of the other; hair long and loose in soft waves
-  scene_image: out/2026-10-27/src/scene_3.jpg
-  ref: '784'
-  ref_photo: tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E
-  requests: []
-- items:
-  - product: zigzag:172474103
-    color: 베이지
-    desc: 라이트그레이 소프트 퍼 자켓 (light gray soft fluffy long-pile faux-fur jacket)
-    name: 소프트 퍼 크롭 자켓
-    comment: ''
-    cutout_photo: 4
-    ref_photos:
-    - 4
-    - 3
-    - 5
-    size: about 48 cm long from shoulder to hem, 46 cm across the shoulders, 50 cm
-      across the chest laid flat, 56 cm long sleeves
-    cm: 48.0
-  - product: zigzag:151022581
-    color: 블랙
-    desc: 블랙 라운드 단추 니트 원피스 (black thin ribbed knit dress with a round-button henley
-      placket)
-    name: 단추 니트 원피스
-    comment: ''
-    cutout_photo: 1
-    ref_photos:
-    - 1
-    - 0
-    - 2
-    size: about 80 cm long from shoulder to hem, 37 cm across the shoulders, 36 cm
-      across the chest laid flat
-    cm: 80.0
-  - product: zigzag:108156951
-    color: 블랙
-    desc: 블랙 롱부츠, 스퀘어 앞코 (black smooth leather boots with a square toe)
-    name: 스퀘어 롱부츠
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 0
-    - 2
-    - 5
-  - product: zigzag:147738628
-    color: 블랙
-    desc: 블랙 버클 호보백 (black crinkled glossy leather hobo bag with a buckle)
-    name: 버클 호보백
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 0
-    - 2
-    - 1
-  - product: zigzag:113341770
-    color: 실버
-    desc: 실버 볼 체인 목걸이 (thin silver ball-chain necklace)
-    name: 실버 볼체인 목걸이
-    comment: ''
-    cutout_photo: 0
-    slot: 목걸이
-    segment: necklace
-  reason: 라이트그레이 퍼 크롭 자켓이 주인공, 블랙 니트 원피스와 롱부츠로 올블랙 포인트
-  point: 라이트그레이 퍼를 올블랙 원피스 위에 걸쳐 질감을 살렸어요
-  styling: She wears sheer black see-through tights instead of socks.
-  cover: out/2026-10-27/looks/3/outfit/results/G_1.jpg
-  edit_refs: []
-  pose: standing in the plain studio with her body turned a little away from the camera
-    and her face turned back toward it, one hand holding the bag strap and the other
-    hand loosely lifting the hem of the jacket, her weight on the back leg; hair in
-    a sleek slick bun with fine flyaway baby hairs
-  scene_image: out/2026-10-27/src/scene_2.jpg
-  ref: '786'
-  ref_photo: tg:AgACAgUAAxkBAAIIU2rgbQaXcF-qLO5dh9aCV5sGxFBpAAI_FGsbB_YAAVdymdb0Gv2cTQEAAwIAA3kAAz0E
-  requests:
-  - 시스루 검은 스타킹 (she wears sheer black see-through tights)
 - items:
   - product: zigzag:132787487
     color: 브라운
@@ -380,8 +303,8 @@ looks:
     ref_photos:
     - 3
     - 2
-    size: worn shortened, about 28 cm long from waist to hem, only a small strip
-      of hem peeks out below the jacket
+    size: worn shortened, about 28 cm long from waist to hem, only a small strip of
+      hem peeks out below the jacket
     cm: 40.0
   - product: zigzag:165725019
     color: 브라운
@@ -497,6 +420,83 @@ looks:
   scene_image: out/2026-10-27/src/scene.jpg
   ref: '792'
   ref_photo: tg:AgACAgUAAxkBAAIIWmrgbQZSqTOfUE-rI6og_u3jIg7nAAJFFGsbB_YAAVeuDY6Zg7MqMAEAAwIAA3kAAz0E
+  requests: []
+- items:
+  - product: zigzag:167233725
+    color: 아이보리
+    desc: 아이보리 앙고라 브이넥 니트 (ivory fuzzy angora mohair v-neck knit)
+    name: 앙고라 브이넥 니트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 4
+    size: about 68 cm long from shoulder to hem, 60 cm across the shoulders, 53 cm
+      across the chest laid flat, 46 cm long sleeves
+    cm: 68.0
+  - product: zigzag:157994590
+    color: 블랙
+    desc: 블랙 레이스 나시, 니트 안에 받쳐 입는 이너 (black lace-trim sleeveless inner top)
+    name: 레이스 이너 나시
+    comment: ''
+    cutout_photo: 0
+    size: about 50 cm long from shoulder to hem, 25 cm across the shoulders, 34 cm
+      across the chest laid flat
+    cm: 50.0
+    wear_with: 상의
+  - product: zigzag:123161642
+    color: 브라운
+    desc: 브라운 가죽 시계 (brown leather watch)
+    name: 레더 시계
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:167025790
+    color: 브라운
+    desc: 브라운 스웨이드 미니스커트 (smooth thin suede-look mini skirt)
+    name: 스웨이드 미니스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+    size: about 45 cm long from waist to hem, 36 cm across the waist laid flat, 47
+      cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 45.0
+  - product: zigzag:130914498
+    color: 브라운
+    desc: 스웨이드 롱부츠 (matte napped suede boots)
+    name: 스웨이드 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:164580854
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown brushed suede shoulder bag)
+    name: 스웨이드 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+  reason: 앙고라 브이넥 니트에 블랙 레이스 나시를 받쳐 입고 스웨이드 미니, 롱부츠까지 톤온톤
+  point: 앙고라 니트 안에 블랙 레이스 나시를 받쳐 입었어요
+  styling: The ivory knit is worn loose and longer than the original photo, and its
+    hem ends at the middle of her hips, not lower, so it must never reach her thighs
+    or look like a dress, matching the fit in the reference outfit photo. Only one
+    side of the knit hem is hooked lightly into the skirt waist, the other side hangs
+    loose over the hip. The suede mini skirt is shortened and a clear strip of about
+    10 cm of it shows below the knit hem, about half as much as in the first version.
+  edit_refs: []
+  pose: standing sideways in profile to the camera in the plain studio, both arms
+    hanging relaxed and low so the knit hem is not lifted, her chin lifted a little
+    and her eyes looking up and away, feet in a loose stagger so one leg crosses in
+    front of the other; hair long and loose in soft waves
+  scene_image: out/2026-10-27/src/scene_3.jpg
+  ref: '784'
+  ref_photo: tg:AgACAgUAAxkBAAIIUWrgbQY6Z5h4MU8Jm-yqb7Flmv1eAAI9FGsbB_YAAVe_FrVyjmdx2AEAAwIAA3kAAz0E
   requests: []
 reason: 사용자가 고른 참고 코디 10벌(779, 784~792)을 순서대로 따라 짠 퍼 코디 모음
 text:
