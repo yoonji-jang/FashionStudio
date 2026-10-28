@@ -113,9 +113,11 @@ description: 텔레그램 /fix 로 받은 피드백대로 하루 게시물을 �
      사진은 Read 로 직접 보고, `edit_request` 에서는 "user photo 1, 2 …"(보낸 순서)로 가리킨다
      ("두 번째 사진처럼" → "like user photo 2"). 도구가 상품 참고판 뒤에 붙여 보내고, 적힌 부분(코 모양 등)만
      따르고 그 사람 얼굴·옷은 따르지 말라고 지시한다.
-   - **참고 코디 핏처럼**: 고쳐 그릴 때 도구가 그 벌 `ref_photo` 를 핏 참고로 늘 같이 보낸다 (얼굴 가림).
+   - **참고 코디처럼 입기**: 고쳐 그릴 때 도구가 그 벌 `ref_photo` 를 입는 방법 참고로 늘 같이 보낸다 (얼굴 가림).
+     2026-10-28 사용자: 입는 방법(넣어 입기, 단추·여밈, 카라, 이너 삐져나온 정도, 언발란스)만 참고 코디, 옷의 길이·재질·품·핏은
+     상세페이지.
      먼저 `python -m tools.feedback ref-photos out/$DATE/plan.yaml --dest /tmp/fix_refs` 로 받아 Read 로 보고,
-     `edit_request` 에 "Match how the clothes fit in the reference outfit photo: …"처럼 무엇(기장·품·넣어 입기)을
+     `edit_request` 에 "Wear the clothes as in the reference outfit photo: …"처럼 무엇(넣어 입기·여밈·삐져나온 정도)을
      맞출지 구체적으로 쓴다. 받은 사진은 `out/` 에 복사하지 않는다 (결과 브랜치에 올리지 않음).
      `ref_photo` 가 없고 `ref` 번호만 있으면 `data/$ACCOUNT/refs.json` 에서 그 번호의 `photo` 를 벌 `ref_photo` 에 적는다.
      둘 다 없으면 피드백 글대로만 고치고 참고 사진이 없었다고 적는다.
