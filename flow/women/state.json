@@ -1,16 +1,16 @@
 {
   "account": "women",
-  "stage": "rules_merge",
-  "date": "2026-10-27",
-  "asked_at": 1793178077,
+  "stage": "theme_review",
+  "date": "2026-10-28",
+  "asked_at": 1793181680,
   "hint": "",
-  "theme_at": 1793089867,
-  "pick": "2026-10-27-run374/chosen",
-  "scene": "flow/women/2026-10-27/scene.jpg",
+  "theme_at": 0,
+  "pick": "",
+  "scene": "flow/women/2026-10-28/scene.jpg",
   "scenes": [
-    "flow/women/2026-10-27/scene.jpg",
-    "flow/women/2026-10-27/scene_2.jpg",
-    "flow/women/2026-10-27/scene_3.jpg"
+    "flow/women/2026-10-28/scene.jpg",
+    "flow/women/2026-10-28/scene_2.jpg",
+    "flow/women/2026-10-28/scene_3.jpg"
   ],
   "scene_update": 428675899,
   "scene_at": 1793104294,
@@ -95,15 +95,13 @@
       }
     }
   ],
-  "read_upto": 0,
+  "read_upto": 1793181680,
   "revising": false,
   "ref_pick_at": 1793095265,
   "searched": "2026-10-27|퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
   "user_refs": [],
   "rules_upto": 428675910,
   "log": [
-    "10-27 00:51 고쳐 만들기 요청 (1회)",
-    "10-27 03:01 미리보기 받음 (2026-10-23-run360)",
     "10-27 04:12 고쳐 만들기 요청 (2회)",
     "10-27 05:01 미리보기 받음 (2026-10-23-run364)",
     "10-27 05:16 게시 요청 (2026-10-23-run365)",
@@ -131,6 +129,8 @@
     "10-28 06:01 피드백 반영 계획 고치기 (2개)",
     "10-28 07:01 피드백 반영 계획 고치기 (1개)",
     "10-28 08:01 피드백 반영 계획 확정, PR 요청",
-    "10-28 09:01 규칙 PR 합치기 요청 (/merge)"
+    "10-28 09:01 규칙 PR 합치기 요청 (/merge)",
+    "10-28 10:01 피드백 반영 마침 (PR 합침)",
+    "10-28 10:01 남은 주제 2개 확인 요청 (2026-10-28)"
   ]
 }
