@@ -265,9 +265,9 @@ EDIT_KEEP = {
 }
 # 고쳐 그릴 때 덧붙이는 참고 그림 설명 (상품 참고판 다음 순서대로)
 EDIT_WORN = (
-    "Image {n} is the reference outfit photo this look copies. Use it for how the clothes fit,"
-    " sit and are worn on the body (silhouette, looseness, tuck, closures,"
-    " what peeks out), never for its background, pose or face."
+    "Image {n} is the reference outfit photo this look copies. Use it only for how the clothes"
+    " are worn (tuck, closures, collar, what peeks out, asymmetric styling), never for their fit,"
+    " length or fabric (those come from the product sheets), its background, pose or face."
 )
 EDIT_REFS = (
     "Then come reference photos for this change ({nums}). Use them only for what the change asks"
@@ -404,8 +404,8 @@ WORN_REF = (
 # 장면 모델컷도 따라 한 기준 코디 사진을 보내 입는 모양을 따르게 한다
 # (장면 사진은 무드·자리·포즈만).
 # 같은 날: 1. 참고 코디와 최대한 "동일"한 핏·코디 느낌, 2. 실제 제품의 재질·기장·색은
-# 절대 왜곡하지 않기. 그래서 입는 모양·핏은 이 사진, 상품 자체(재질·기장·색·디테일)는
-# 상품 참고판에서만 가져온다.
+# 절대 왜곡하지 않기. 2026-10-28 사용자 기준: 입는 방법만 이 사진,
+# 상품 자체(품·핏·기장·재질·색·디테일)는 상품 참고판에서만 가져온다.
 SHEETS_FIRST = (
     "The attached images are, in order, reference sheets of the exact items. Each sheet shows shop"
     " photos of one item: worn photos show how long it is and how it sits on a body, close-ups show"
@@ -413,9 +413,10 @@ SHEETS_FIRST = (
 )
 # 2026-10-27 run376: 상품 사진 속 모델이 자켓을 열거나 벨트를 맨 모습을 따라 그려 참고 코디와 달라짐
 SHEETS_AFTER_REF = (
-    "After it come reference sheets of the exact items, in order. Each sheet decides only what the"
-    " product is: fabric, color, pattern, details, thickness and length. Ignore how the"
-    " shop models there wear or style it (open or closed, belted, tucked, sleeves, pose)."
+    "After it come reference sheets of the exact items, in order. Each sheet decides only"
+    " what the product is: fit, volume, length, fabric, color, pattern, details and thickness."
+    " Ignore how the shop models there wear or style it (open or closed, belted, tucked,"
+    " sleeves, pose)."
 )
 REF_STYLING = "exactly as in the reference outfit photo."
 REF_OVERRIDE = (
@@ -424,20 +425,21 @@ REF_OVERRIDE = (
 )
 
 WORN_REF_MODEL = (
-    "The first attached image is the reference outfit photo this look copies. Recreate that"
-    " look as closely as possible, as if that model's clothes were swapped one by one for the items"
-    " in the sheets: the same silhouette and fit, and"
-    " the same way of wearing (open or closed, how far a zip is done up, how a belt or tie is tied,"
-    " tucked or loose, which hems, cuffs and collars peek out and by how much, a coat over the"
-    " shoulders or slipping off one shoulder, pushed-up sleeves, how high the waistband sits)."
-    " This photo beats the shop photos and any"
-    " general wearing words; only the user's requests at the top beat it. What each"
-    " product is comes only from its sheet: fabric, color, pattern and details (never add a belt,"
-    " collar, pleats or buttons the product does not have), and its length (exactly as long as in"
-    " its shop photos, even where the reference piece is longer or shorter). She may also wear"
-    " the plain tights or socks that model wears. Never copy that photo's face or background, and"
-    " draw nothing else that is not in the"
-    " sheets, unless the wearing text below names it."
+    "The first attached image is the reference outfit photo this look copies. Copy only how"
+    " each piece is worn there, as if that model's clothes were swapped one by one for the"
+    " items in the sheets: tucked in or loose (fully, front only or one side), open or closed"
+    " and how many buttons or how far a zip is done up, how the collar sits, which hems, cuffs"
+    " and collars peek out and by how much, asymmetric styling, a coat over the shoulders or"
+    " slipping off one shoulder, pushed-up sleeves, how high the waistband sits. This photo"
+    " beats the shop photos and any general words for how things are worn; only the user's"
+    " requests at the top beat it. What each product is comes only from its sheet: its fit,"
+    " volume and looseness, length, fabric, color, pattern and details, exactly as in its shop"
+    " photos even where the reference piece is bigger, smaller, longer or shorter. Wearing a"
+    " piece the reference's way never changes its fit or length, and if the product cannot be"
+    " worn that way (no buttons, too short to tuck) it stays as it is: never add a belt,"
+    " collar, pleats or buttons the product does not have. She may also wear the plain tights"
+    " or socks that model wears. Never copy that photo's face or background, and draw nothing"
+    " else that is not in the sheets, unless the wearing text below names it."
 )
 
 

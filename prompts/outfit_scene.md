@@ -33,11 +33,11 @@ $items
 The last attached image is the scene photo, a photo of a different person that sets the mood. Take only
 the kind of shot, place, light and mood from it, never that person's clothes, face or body.
 
-What decides what, in this order: the reference outfit photo (if attached) decides the whole look on
-her body: the silhouette, how each piece fits and how it is worn
-(open or closed, how far a zip is done up, tucked or loose, what peeks out and by how much, a coat on the
-shoulders or slipping off one shoulder, pushed-up sleeves). The item sheets decide what each product is:
-its fabric, color, pattern, details, thickness and length (as long as in its shop photos). The scene photo decides only the place, light and
+What decides what: the reference outfit photo (if attached) decides only how each piece is worn
+(tucked or loose, open or closed, how far a zip or buttons are done up, how the collar sits, what peeks
+out and by how much, asymmetric styling, a coat on the shoulders or slipping off one shoulder,
+pushed-up sleeves). The item sheets decide what each product is: its fit, volume and looseness, length,
+fabric, color, pattern, details and thickness, exactly as in its shop photos. The scene photo decides only the place, light and
 pose. Apart from the user's requests at the top, the text only tells the items apart: where other
 text and the photos differ, follow the photos.
 
