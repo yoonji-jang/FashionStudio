@@ -44865,5 +44865,461 @@
    ]
   },
   "ready": true
+ },
+ {
+  "n": 793,
+  "name": "아이보리 퍼니트 미니원피스 + 블랙 니삭스부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII0mrh_cCzhFij3R-2791u5_FXpmngAAJPFGsbyf4RV0-K6cenCxatAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "데이트룩",
+   "니트원피스",
+   "아이보리"
+  ],
+  "note": "보송한 니트 미니 / 블랙 시스루 스타킹과 롱부츠로 다리선 강조",
+  "slots": [
+   {
+    "category": "원피스",
+    "color": "아이보리",
+    "desc": "아이보리 퍼 질감 긴팔 니트 미니원피스",
+    "query": "니트 미니원피스"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 스웨이드 니하이 롱부츠",
+    "query": "니하이 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 체인 숄더백",
+    "query": "체인 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 시스루 스타킹",
+    "query": "시스루 스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 794,
+  "name": "차콜 터틀넥 니트 원피스 + 블랙 벨트 + 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII02rh_cA4neLFsPGGNT7U-rdpV7xJAAJQFGsbyf4RV8RVlgGDClPpAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "데이트룩",
+   "니트원피스",
+   "벨트"
+  ],
+  "note": "골지 터틀넥 니트를 벨트로 허리 잡아 입음 / 오버핏 소매",
+  "slots": [
+   {
+    "category": "원피스",
+    "color": "차콜",
+    "desc": "차콜 골지 터틀넥 니트 미니원피스",
+    "query": "터틀넥 니트원피스"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 가죽 벨트",
+    "query": "가죽 벨트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 가죽 통굽 롱부츠",
+    "query": "통굽 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 체인 미니 숄더백",
+    "query": "체인 미니백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 795,
+  "name": "블루 브라운 스트라이프 니트 + 베이지 숏팬츠 + 웨스턴 부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII1Grh_cBp3NlL7bOnnvKr_A0Ym7vNAAJRFGsbyf4RV-A61U31UQPiAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "주말",
+   "스트라이프니트",
+   "캐주얼"
+  ],
+  "note": "털 보송한 오버핏 스트라이프 니트 / 숏팬츠에 슬라우치 부츠",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "블루",
+    "desc": "하늘색·브라운 스트라이프 헨리넥 모헤어 니트",
+    "query": "스트라이프 헨리넥 니트"
+   },
+   {
+    "category": "하의",
+    "color": "베이지",
+    "desc": "베이지 카키 숏팬츠",
+    "query": "코튼 숏팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "베이지",
+    "desc": "베이지 스웨이드 웨스턴 미드 부츠",
+    "query": "웨스턴 스웨이드 부츠"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "카멜 스웨이드 숄더백",
+    "query": "스웨이드 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블루",
+    "desc": "블루 배색 볼캡",
+    "query": "배색 볼캡"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 796,
+  "name": "브라운 부클 오버핏 니트 + 블랙 스타킹 + 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII1Wrh_cBcKK4jfbZodQTRiKUgevwiAAJSFGsbyf4RV9H-C86QY1WzAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "스트리트",
+   "오버핏니트",
+   "브라운"
+  ],
+  "note": "긴 기장 부클 니트를 원피스처럼 / 하의는 거의 안 보임",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "브라운",
+    "desc": "초콜릿 브라운 부클 오버핏 롱 니트",
+    "query": "부클 오버핏 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 숏팬츠 (안 보임, 어울리게)",
+    "query": "숏팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 가죽 롱부츠",
+    "query": "가죽 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 시스루 스타킹과 선글라스",
+    "query": "시스루 스타킹"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 797,
+  "name": "차콜 구멍 오프숄더 니트 + 아이보리 프릴 미니스커트 + 브라운 부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII1mrh_cBCRQp9DxmWbXpVI1DjUfJvAAJTFGsbyf4RVy1gH2f6bg9-AQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "데이트룩",
+   "오프숄더니트",
+   "러블리"
+  ],
+  "note": "구멍 난 루즈핏 니트 + 겹겹 프릴 스커트 / 안에 흰 캐미솔 끈",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "차콜",
+    "desc": "차콜 디스트로이드 오프숄더 루즈핏 니트",
+    "query": "오프숄더 루즈핏 니트"
+   },
+   {
+    "category": "상의",
+    "color": "아이보리",
+    "desc": "아이보리 캐미솔 (안에)",
+    "query": "슬립 캐미솔"
+   },
+   {
+    "category": "하의",
+    "color": "아이보리",
+    "desc": "아이보리 티어드 프릴 미니스커트",
+    "query": "프릴 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "다크 브라운 슬라우치 부츠",
+    "query": "슬라우치 부츠"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 798,
+  "name": "베이지 오프숄더 니트 + 브라운 플리츠 미니스커트 + 벨트 + 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII12rh_cBndX8HvS63yR03XAHDMe4RAAJUFGsbyf4RVz5TJCNjsuUUAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "데이트룩",
+   "오프숄더니트",
+   "브라운"
+  ],
+  "note": "성근 짜임 베이지 니트 / 브라운 톤으로 맞춘 스커트·부츠·가방",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "베이지",
+    "desc": "베이지 성근 짜임 오프숄더 루즈핏 니트",
+    "query": "오프숄더 루즈핏 니트"
+   },
+   {
+    "category": "하의",
+    "color": "브라운",
+    "desc": "다크 브라운 플리츠 미니스커트",
+    "query": "플리츠 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "브라운",
+    "desc": "다크 브라운 버클 롱부츠",
+    "query": "버클 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "브라운",
+    "desc": "다크 브라운 숄더백",
+    "query": "숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 웨스턴 버클 벨트",
+    "query": "버클 벨트"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 799,
+  "name": "그레이 모헤어 니트 + 같은 톤 니트 스커트 + 블랙 벨트 + 버클 부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII2Grh_cBB4nLIw2BpD3SXSTegOLhCAAJVFGsbyf4RV_PDWUQgX7tzAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "주말",
+   "톤온톤",
+   "그레이"
+  ],
+  "note": "그레이 니트 셋업처럼 맞추고 와이드 벨트로 허리 강조 / 니삭스·장갑·벙거지",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 모헤어 브이넥 니트",
+    "query": "모헤어 브이넥 니트"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 니트 미니스커트",
+    "query": "니트 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 버클 롱부츠 + 그레이 니삭스",
+    "query": "버클 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 미니 보스턴백",
+    "query": "보스턴백"
+   },
+   {
+    "category": "소품",
+    "color": "블랙",
+    "desc": "블랙 와이드 벨트, 블랙 가죽 장갑, 블랙 벙거지",
+    "query": "와이드 벨트"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 800,
+  "name": "그레이 하이넥 오버핏 니트 + 블랙 데님 미니스커트 + 양털 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII2Wrh_cAuLf2PyImoIBk_H1bAwDK7AAJWFGsbyf4RV1XFF9cf9eNPAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "캐주얼",
+   "오버핏니트",
+   "그레이"
+  ],
+  "note": "목까지 올라오는 큰 니트에 짧은 데님 스커트 / 핑거리스 소매",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 하이넥 하프집업 오버핏 니트",
+    "query": "하이넥 오버핏 니트"
+   },
+   {
+    "category": "하의",
+    "color": "블랙",
+    "desc": "블랙 데님 미니스커트",
+    "query": "데님 미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "양털 컬러 블랙 통굽 롱부츠",
+    "query": "양털 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가방 (안 보임, 어울리게)",
+    "query": "숄더백"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 801,
+  "name": "그레이 케이블 니트 + 니트 숏팬츠 + 머플러 + 롱부츠",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII2mrh_cBdIoOXj22sGkq7Wbc2fp8sAAJXFGsbyf4RV2DseUAprpzeAQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "톤온톤",
+   "케이블니트",
+   "그레이"
+  ],
+  "note": "케이블 니트와 니트 숏팬츠를 같은 그레이로 / 어깨에 두른 머플러, 레그워머",
+  "slots": [
+   {
+    "category": "상의",
+    "color": "그레이",
+    "desc": "그레이 케이블 오버핏 니트",
+    "query": "케이블 오버핏 니트"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 니트 숏팬츠",
+    "query": "니트 숏팬츠"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 통굽 롱부츠 + 그레이 레그워머",
+    "query": "통굽 롱부츠"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 토트백",
+    "query": "가죽 토트백"
+   },
+   {
+    "category": "소품",
+    "color": "그레이",
+    "desc": "그레이 머플러, 블랙 볼캡, 블랙 스타킹",
+    "query": "울 머플러"
+   }
+  ],
+  "matches": {},
+  "ready": false
+ },
+ {
+  "n": 802,
+  "name": "차콜 울 하프코트 + 그레이 스커트 + 그레이 타이츠·레그워머 + 로퍼",
+  "source": "사용자 사진",
+  "photo": "tg:AgACAgUAAxkBAAII22rh_cB8csHn-BAfG1dISLgY6r5MAAJYFGsbyf4RVxk1z8X2WBZ4AQADAgADeQADPQQ",
+  "added": "2026-10-28",
+  "tags": [
+   "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+   "카페",
+   "레그워머",
+   "그레이"
+  ],
+  "note": "벨트 달린 짧은 울 코트에 그레이 레그워머 / 로퍼로 단정하게",
+  "slots": [
+   {
+    "category": "아우터",
+    "color": "차콜",
+    "desc": "차콜 하이넥 벨티드 울 하프코트",
+    "query": "하이넥 울 하프코트"
+   },
+   {
+    "category": "하의",
+    "color": "그레이",
+    "desc": "그레이 미니스커트 (코트에 가려짐)",
+    "query": "미니스커트"
+   },
+   {
+    "category": "신발",
+    "color": "블랙",
+    "desc": "블랙 가죽 로퍼",
+    "query": "로퍼"
+   },
+   {
+    "category": "가방",
+    "color": "블랙",
+    "desc": "블랙 가죽 숄더백",
+    "query": "가죽 숄더백"
+   },
+   {
+    "category": "소품",
+    "color": "그레이",
+    "desc": "그레이 골지 레그워머, 그레이 타이츠",
+    "query": "골지 레그워머"
+   }
+  ],
+  "matches": {},
+  "ready": false
  }
 ]
