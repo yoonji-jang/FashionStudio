@@ -26,9 +26,8 @@ photos of one item; draw each item once and ignore any other clothes or props in
 $items
 
 Most important, three things: (1) every item has the same fit as on the model in the worn photos:
-the same silhouette, length, width, volume and drape. (2) Every bottom is
-exactly as long as on the model: full-length trousers and maxi skirts cover the ankles and are never
-cropped; a mini skirt stays mini. (3) The clothes look full and three-dimensional, as if a person had just been wearing them and they were laid down in that worn
+the same silhouette, length, width, volume and drape. (2) Every item is
+exactly as long as in its product photos, never longer or shorter. (3) The clothes look full and three-dimensional, as if a person had just been wearing them and they were laid down in that worn
 shape: a rounded chest and shoulders, sleeves falling softly with a slight bend, trouser legs and
 skirts with real depth and soft folds, knits thick and soft.
 Keep every item identical to its photos: color, fabric and its texture (knit stitches, wool nap,

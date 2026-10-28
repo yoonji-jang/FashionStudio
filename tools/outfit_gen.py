@@ -59,19 +59,14 @@ def item_size(
     it: PlanItem, product: Product, cfg: dict, worn: bool = False, ref: bool = False
 ) -> str:
     """상품의 실제 크기 (영어). 기획 size, 옷은 cm (기획·이름·layout.yaml), 나머지는
-    config default_sizes. worn 이면(장면 모델컷) 옷 기장은 cm 대신 상품 착용컷을 따르게 하고,
-    ref(기준 코디 사진을 같이 보냄)면 옷 기장·크기를 글로 정하지 않는다 (그 사진이 정답)."""
+    config default_sizes. worn·ref 면(장면 모델컷) 옷 기장은 cm 대신 상품 착용컷을 따르게 한다."""
     from tools import plan as plan_tool
     from tools.compose import load_layout
 
     cat = product.category
     clothes = cat in (*CLOTHES_FROM_SHOULDER, "하의")
-    if ref and clothes:
-        # 몸에서 보이는 기장은 기준 코디 사진대로 (2026-10-27 사용자: 핏·기장을 글로 강제하지 말고
-        # 참고 코디컷과 같은 실루엣·기장으로). 실측 cm 나 "착용컷 기장" 글이 사진과
-        # 다투지 않게 비운다
-        return ""
-    if worn and clothes:
+    if (worn or ref) and clothes:
+        # 2026-10-28 사용자: 기장 설명은 빼고 상세페이지와 동일하게만 (기준 코디 사진이 있어도)
         # 입은 모습의 기장은 상품 착용컷의 모델 몸에서 끝나는 자리를 따른다. 실측표를 못 읽었을 때
         # 이름으로 짐작한 기본 cm 를 보내면 사진과 어긋난다 (2026-10-27 사용자: 크롭 점퍼에 68cm,
         # "기장을 고정하면 안 되고 상세페이지·참고 코디컷을 그대로")
@@ -271,7 +266,7 @@ EDIT_KEEP = {
 # 고쳐 그릴 때 덧붙이는 참고 그림 설명 (상품 참고판 다음 순서대로)
 EDIT_WORN = (
     "Image {n} is the reference outfit photo this look copies. Use it for how the clothes fit,"
-    " sit and are worn on the body (silhouette, length on the body, looseness, tuck, closures,"
+    " sit and are worn on the body (silhouette, looseness, tuck, closures,"
     " what peeks out), never for its background, pose or face."
 )
 EDIT_REFS = (
@@ -419,7 +414,7 @@ SHEETS_FIRST = (
 # 2026-10-27 run376: 상품 사진 속 모델이 자켓을 열거나 벨트를 맨 모습을 따라 그려 참고 코디와 달라짐
 SHEETS_AFTER_REF = (
     "After it come reference sheets of the exact items, in order. Each sheet decides only what the"
-    " product is: fabric, color, pattern, details, thickness and kind of length. Ignore how the"
+    " product is: fabric, color, pattern, details, thickness and length. Ignore how the"
     " shop models there wear or style it (open or closed, belted, tucked, sleeves, pose)."
 )
 REF_STYLING = "exactly as in the reference outfit photo."
@@ -431,16 +426,17 @@ REF_OVERRIDE = (
 WORN_REF_MODEL = (
     "The first attached image is the reference outfit photo this look copies. Recreate that"
     " look as closely as possible, as if that model's clothes were swapped one by one for the items"
-    " in the sheets: the same silhouette and fit, the same length of each piece on her body, and"
+    " in the sheets: the same silhouette and fit, and"
     " the same way of wearing (open or closed, how far a zip is done up, how a belt or tie is tied,"
     " tucked or loose, which hems, cuffs and collars peek out and by how much, a coat over the"
-    " shoulders or slipping off one shoulder, pushed-up sleeves, how high the waistband sits and"
-    " how much of the bottoms shows below the outer). This photo beats the shop photos and any"
+    " shoulders or slipping off one shoulder, pushed-up sleeves, how high the waistband sits)."
+    " This photo beats the shop photos and any"
     " general wearing words; only the user's requests at the top beat it. What each"
     " product is comes only from its sheet: fabric, color, pattern and details (never add a belt,"
-    " collar, pleats or buttons the product does not have), and its kind of length (a mini stays a"
-    " mini, a half coat stays a half coat). She may also wear the plain tights or socks that model"
-    " wears. Never copy that photo's face or background, and draw nothing else that is not in the"
+    " collar, pleats or buttons the product does not have), and its length (exactly as long as in"
+    " its shop photos, even where the reference piece is longer or shorter). She may also wear"
+    " the plain tights or socks that model wears. Never copy that photo's face or background, and"
+    " draw nothing else that is not in the"
     " sheets, unless the wearing text below names it."
 )
 

@@ -2,8 +2,8 @@
 # 검수 불합격으로 다시 그릴 때 가장 나은 후보를 첫 그림으로 보내고 이 문장들로 그 부분만 고치게 한다
 # (2026-10-13 사용자: 검수 불합격 때도 새로 그리지 말고 고쳐 그리기). 키는 REVIEW_FAULTS 와 같아야 한다(테스트가 본다).
 hem_short: >-
-  Make the long trousers or long skirt full length, as on the model in the product photos: the hem
-  reaches the top of the shoes, not above the ankle.
+  Make every bottom exactly as long as on the model in its product photos, never longer and never
+  shorter.
 fit_differs: >-
   Redraw the bottoms with the same fit as worn by the model in the product photos (keep wide or
   straight legs wide or straight, do not narrow them).
