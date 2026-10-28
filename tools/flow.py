@@ -1003,6 +1003,10 @@ def _step(
             return ""
         rec = notify.load_record(out)
         assert rec is not None
+        if (out / "published.json").exists():
+            # 채팅으로 바로 게시한 날 (/ok 없이 publish 를 돌림): 게시 확인 단계로 (2026-10-28)
+            st.asked_at, st.stage = ts, "publishing"
+            return f"이미 게시됨 ({out.name})"
         print(sched.cover_change(acc, day.isoformat(), results, tg, dry_run))
         fix = feedback.check(acc, day, results, tg, now, dry_run, store)
         if fix is not None:

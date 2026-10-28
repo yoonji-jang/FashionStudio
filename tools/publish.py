@@ -141,12 +141,15 @@ def approval(
     return "wait", f"{why} /ok 를 기다립니다"
 
 
-def cover_change(out: Path, tg: notify.Telegram | None) -> None:
+def cover_change(out: Path, tg: notify.Telegram | None, store: Store | None = None) -> None:
     """매시 확인이 아직 처리하지 않은 표지 벌 고르기(/ok 3, /cover 3)를 게시 전에 반영한다.
     실패해도 게시는 지금 표지로 한다 (tools.cover_look)."""
-    from tools import cover_look
+    from tools import cover_look, pick
 
     try:
+        if store is not None:
+            # 결과 브랜치에만 있는 상품 (링크로 넣은 것 등). 없으면 순서 바꾸기가 멈춤
+            pick.restore_user(store, out.parent)
         line = cover_look.check(out, tg or notify.Telegram.from_env())
     except (RuntimeError, ValueError, FileNotFoundError, httpx.HTTPError) as e:
         print(f"경고: 표지 바꾸기를 확인하지 못했습니다: {e}", file=sys.stderr)
@@ -216,7 +219,7 @@ def run(
         print(f"{tag} 이미 게시했습니다 ({out.name}/published.json)")
         return 0
     if not dry_run:
-        cover_change(out, tg)
+        cover_change(out, tg, store)
     manifest = notify.load_manifest(out)
     if manifest.date != day:
         raise Blocked(f"결과 날짜가 다릅니다 ({manifest.date})")

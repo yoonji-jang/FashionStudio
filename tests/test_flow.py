@@ -309,6 +309,22 @@ def test_preview_ok_publishes_now(env, monkeypatch, tmp_path):
     assert "지금 게시" in tg.sent[-1]
 
 
+def test_preview_published_by_hand(env, monkeypatch):
+    """2026-10-28: /ok 없이 publish 를 직접 돌려 게시했으면 게시 확인 단계로 넘어간다."""
+    from tools import feedback
+
+    store, results, sent, _ = env
+    out = results / "2026-10-27-run380"
+    out.mkdir()
+    (out / "published.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(feedback, "latest_preview", lambda *a: out)
+    monkeypatch.setattr(notify, "load_record", lambda o: object())
+    st = flow.FlowState(account="women", stage="preview_wait", date=date(2026, 10, 27), asked_at=T0)
+    flow.save_state(results, st)
+    tick(env, FakeTg(), T0 + 100)
+    assert flow.load_state(results, "women").stage == "publishing" and sent == []
+
+
 def test_redo_request(tmp_path):
     from tools import pick
 

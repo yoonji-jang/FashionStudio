@@ -1015,6 +1015,21 @@ def test_order_from_telegram(tmp_path, store):
     assert any("5벌 이상 남겨야" in t for t in api2.texts)
 
 
+def test_order_resent_same_is_ignored(tmp_path, store):
+    """2026-10-28 run380: 같은 /order 를 다시 보내면 이미 그 순서라 또 바꾸지 않는다."""
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    out, _ = build(tmp_path, store)
+    (out / "telegram.json").write_text(r.model_dump_json())
+    api = FakeApis(replies=[(1100, "/order 3 1 2 4 5 6", None)])
+    assert "순서" in cover_look.check(out, tg_of(api))
+    once = plan.load_plan(out / "plan.yaml")
+    api2 = FakeApis(
+        replies=[(1100, "/order 3 1 2 4 5 6", None), (1200, "/order 3,1,2,4,5,6", None)]
+    )
+    assert cover_look.check(out, tg_of(api2)) == ""
+    assert plan.load_plan(out / "plan.yaml") == once
+
+
 def test_order_with_fewer_numbers_drops_the_rest(tmp_path, store):
     """번호를 일부만 적으면 적지 않은 벌은 뺀다
     (2026-10-22 사용자: 7벌 중 6개만 보내면 한 장은 버림)."""
