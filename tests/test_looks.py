@@ -1110,3 +1110,27 @@ def test_cover_from_earlier_is_copied_into_look(tmp_path, store):
     assert looks.chosen_image(d) == d / looks.KEPT_DIR / "G_1.jpg"
     assert not Path(review.load_review(d).candidates[0].file).is_absolute()
     assert m.images and Path(looks.chosen_image(d)).read_bytes() == src.read_bytes()
+
+
+def test_title_from_telegram(tmp_path, store):
+    """/제목 첫 줄/둘째 줄: 그림은 그대로 표지 제목만 바꾼다 (2026-10-28 사용자)."""
+    r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
+    assert notify.parse("/제목 퍼 코디 어려우면 / 이렇게 입어봐", "women", DAY).name == "title"
+    assert notify.title_lines(["'퍼 코디 어려우면/이렇게 입어봐'"]) == [
+        "퍼 코디 어려우면",
+        "이렇게 입어봐",
+    ]
+    assert notify.title_lines([""]) is None
+    out, _ = build(tmp_path, store)
+    (out / "telegram.json").write_text(r.model_dump_json())
+    look1 = looks.chosen_image(looks.look_dir(out, 1)).read_bytes()
+    api = FakeApis(
+        replies=[(1100, "/order 2 1 3 4 5 6\n/제목 퍼 코디 어려우면/이렇게 입어봐", None)]
+    )
+    line = cover_look.check(out, tg_of(api))
+    assert "순서" in line and "제목" in line
+    after = plan.load_plan(out / "plan.yaml")
+    assert after.text.title_lines == ["퍼 코디 어려우면", "이렇게 입어봐"]
+    assert notify.load_manifest(out).title_lines == ["퍼 코디 어려우면", "이렇게 입어봐"]
+    assert looks.chosen_image(looks.look_dir(out, 2)).read_bytes() == look1  # 순서만, 그림 그대로
+    assert cover_look.check(out, tg_of(api)) == ""  # 같은 글은 한 번만
