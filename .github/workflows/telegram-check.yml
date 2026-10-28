@@ -5,6 +5,7 @@ name: telegram-check
 # 작업 브랜치에서는 커밋 메시지에 [telegram-check] 를 넣어 이 파일을 푸시하면 돈다.
 # 커밋 메시지에 [telegram-preview:<결과 폴더>] 를 넣으면 daily-results 의 그 결과로
 # 미리보기도 보내 본다 (시험용이라 게시 버튼 없이, telegram.json 은 저장하지 않음).
+# 릴스가 낡았으면 (reel_stale) 다시 만들어 보낸다. 최종 캐러셀·영상을 다시 받아 볼 때도 쓴다.
 # [pick-status:<결과 폴더>] 를 넣으면 그 코디 후보에 온 답장을 읽어 어떻게 정할지 보여 준다 (기록·실행 없음).
 on:
   workflow_dispatch:
@@ -19,7 +20,7 @@ jobs:
   check:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[telegram-check]')
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -37,6 +38,11 @@ jobs:
           [ -z "$dir" ] && exit 0
           git fetch --depth 1 origin daily-results
           git worktree add /tmp/results FETCH_HEAD
+          # 벌 순서·표지·제목을 바꾼 뒤라 릴스가 낡았으면 게시 때처럼 다시 만들어 보낸다 (커밋하지 않음)
+          if uv run python -c "import sys; from pathlib import Path; from tools import cover_look; sys.exit(0 if cover_look.reel_stale(Path(sys.argv[1])) else 1)" "/tmp/results/$dir"; then
+            command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+            uv run python -m tools.reels build "/tmp/results/$dir"
+          fi
           uv run python -m tools.notify preview "/tmp/results/$dir" --run "$dir" --sandbox
       - name: 코디 고르기 답장 확인
         env:
