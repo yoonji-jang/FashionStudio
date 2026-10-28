@@ -223,6 +223,21 @@ def test_reel_right_after_carousel_when_no_time(results, store, monkeypatch):  #
     assert "릴스도 올렸어요" in api.texts[-1]
 
 
+def test_stale_reel_rebuilt_before_posting(results, store, monkeypatch):  # noqa: F811
+    """2026-10-28 run380: /order 뒤 옛 순서 영상이 그대로 올라감. 낡았으면 다시 만들고 올린다."""
+    from tools import cover_look
+
+    api = ReelApis()
+    run = ok_published(results, store, api, monkeypatch)
+    monkeypatch.setattr(publish, "load_profile", reels_at(None))
+    monkeypatch.setattr(cover_look, "reel_stale", lambda out: True)
+    built = []
+    monkeypatch.setattr(publish, "rebuild_reel", lambda out, *a: built.append(out))
+    tg, ig, host = clients(api)
+    assert publish.run("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
+    assert built == [run] and api.published == 2
+
+
 def test_reel_failure_keeps_carousel(results, store, monkeypatch):  # noqa: F811
     api = ReelApis()
     run = ok_published(results, store, api, monkeypatch)

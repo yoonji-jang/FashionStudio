@@ -350,6 +350,12 @@ def run(
     if profile.reels.enabled and profile.schedule.reels_at is None and not again:
         # 릴스 시각이 없으면 캐러셀 바로 뒤에 한다. 실패해도 캐러셀은 올라갔으니 알림만
         try:
+            from tools import cover_look
+
+            if cover_look.reel_stale(out):
+                # 표지·순서·제목을 바꾼 뒤라 영상이 옛 순서 (2026-10-28 run380)
+                rebuild_reel(out, profile, store, tag)
+                manifest = notify.load_manifest(out)
             if profile.reels.delivery == "telegram":
                 if tg is None:
                     raise RuntimeError("텔레그램 설정이 없어 릴스 영상을 보내지 못합니다")
@@ -506,6 +512,20 @@ def send_reel(profile: Profile, manifest: Manifest, out: Path, tg: notify.Telegr
     done.write_text(rec.model_dump_json(indent=2), encoding="utf-8")
 
 
+def rebuild_reel(out: Path, profile: Profile, store: Store, tag: str) -> None:
+    """지금 슬라이드로 릴스 영상을 다시 만든다 (표지·순서·제목을 바꾼 날)."""
+    from tools import feed, reels
+
+    fill = profile.reels
+    if fill.fill and fill.fill_mode == "crop" and not (out / "slides" / feed.TALL_DIR).is_dir():
+        # 9:16 판 없이 만든 날 (장면 모델컷 날 등): 양옆을 잘라 9:16 판을 지금 만든다
+        made = feed.render_tall(out, profile, store)
+        print(f"{tag} 릴스용 9:16 판 {len(made)}장을 만들었습니다")
+    spec = reels.build(out, profile)
+    song = spec.audio or "없음"
+    print(f"{tag} 릴스 영상을 다시 만들었습니다 ({spec.duration_sec:g}초, 음원 {song})")
+
+
 def run_reels(
     account: str,
     day: date,
@@ -546,19 +566,12 @@ def run_reels(
     if rec.reel_sent_at and not again:
         print(f"{tag} 릴스 영상을 이미 텔레그램으로 보냈습니다")
         return 0
-    from tools import cover_look, feed, reels
+    from tools import cover_look, reels
 
     # 표지 벌을 바꾼 날은 영상 첫 장도 바뀌어야 해서 다시 만든다
     rebuild = rebuild or cover_look.reel_stale(out)
     if rebuild and not dry_run:
-        fill = profile.reels
-        if fill.fill and fill.fill_mode == "crop" and not (out / "slides" / feed.TALL_DIR).is_dir():
-            # 9:16 판 없이 만든 날 (장면 모델컷 날 등): 양옆을 잘라 9:16 판을 지금 만든다
-            made = feed.render_tall(out, profile, store)
-            print(f"{tag} 릴스용 9:16 판 {len(made)}장을 만들었습니다")
-        spec = reels.build(out, profile)
-        song = spec.audio or "없음"
-        print(f"{tag} 릴스 영상을 다시 만들었습니다 ({spec.duration_sec:g}초, 음원 {song})")
+        rebuild_reel(out, profile, store, tag)
     manifest = notify.load_manifest(out)
     if reels.video_path(manifest, out) is None:
         # 릴스 기능 전에 만든 결과이거나 daily 의 릴스 만들기가 실패한 날. 실패로 끝내지 않고 알림만
