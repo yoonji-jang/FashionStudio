@@ -551,3 +551,20 @@ def test_empty_schedule_keeps_workflow_valid():
     돌지 않는 줄을 하나 둔다."""
     block = schedule.render_block({})
     assert f'- cron: "{schedule.NEVER}"' in block
+
+
+def test_restore_products_before_checks(tmp_path, monkeypatch):
+    """매시 확인이 결과 브랜치에만 있는 상품(사람이 링크로 넣은 것)을 창고에 다시 넣는다
+    (2026-10-28 run380 /order 가 창고에 없는 상품으로 멈춤). 실패해도 확인은 계속한다."""
+    from tools import pick
+    from tools import schedule as sched
+
+    seen = []
+
+    def fake(store, prev, out=None, run=None):
+        seen.append((store.account, prev))
+        raise ValueError("깨진 파일")
+
+    monkeypatch.setattr(pick, "restore_user", fake)
+    sched.restore_products(tmp_path)
+    assert seen and all(p == tmp_path for _, p in seen)
