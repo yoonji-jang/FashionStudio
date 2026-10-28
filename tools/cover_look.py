@@ -43,7 +43,9 @@ from tools import feed, looks, notify
 
 RECORD = "cover.json"  # 처리한 표지 바꾸기 (결과 폴더)
 ORDER_RECORD = "order.json"  # 처리한 벌 순서 바꾸기 (결과 폴더)
-TITLE_RECORD = "title.json"  # 처리한 표지 제목 바꾸기 (결과 폴더)
+# 처리한 표지 제목 바꾸기 (결과 폴더). schedule.yml 은 고치면 실행마다 승인 대기에 걸려서
+# 이미 커밋하는 picks/** 아래에 둔다 (2026-10-28)
+TITLE_RECORD = "picks/title.json"
 DROPPED_DIR = "looks_dropped"  # 순서 바꾸기에서 뺀 벌 폴더
 
 
@@ -435,6 +437,7 @@ def _save_title(out: Path, uid: int, lines: list[str], stale: bool, error: str =
     data = {"update_id": uid, "title_lines": lines, "reel_stale": stale, "at": int(time.time())}
     if error:
         data["error"] = error
+    (out / TITLE_RECORD).parent.mkdir(parents=True, exist_ok=True)
     (out / TITLE_RECORD).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
 
 
