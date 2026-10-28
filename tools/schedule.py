@@ -1025,6 +1025,21 @@ def run_flows(results: Path, gh, tg, now: datetime, dry_run: bool = False) -> li
 RESEND_PREFIX = "resend:"
 
 
+def restore_products(results: Path) -> None:
+    """결과 브랜치에만 남은 상품(사람이 /fix 링크로 넣은 것, 후보 실행이 모은 것)을
+    창고에 다시 넣는다.
+    매시 확인의 /order·/cover·차례 흐름이 미리보기 기획을 다시 읽을 때 창고에 없다고 멈추지 않게
+    (2026-10-28 run380: /order 가 zigzag:172046026 을 못 찾아 벌 폴더만 바꾸고 멈춤)."""
+    from core.store import Store
+    from tools import pick
+
+    for account in load_index().accounts:
+        try:
+            pick.restore_user(Store(account), results)
+        except Exception as e:  # noqa: BLE001 - 못 넣어도 나머지 확인은 한다
+            print(f"[{account}] 결과 브랜치 상품을 창고에 넣지 못함: {e}", file=sys.stderr)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1097,6 +1112,8 @@ def main(argv: list[str] | None = None) -> int:
         gh = DryRun() if args.dry_run else GitHub.from_env()
         if args.dry_run and tg is not None:
             tg = QuietTelegram(tg)
+        if results is not None:
+            restore_products(results)
         if resend and results is not None:
             from tools import flow
 
