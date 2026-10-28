@@ -1,8 +1,8 @@
 {
   "account": "women",
-  "stage": "ref_pick_wait",
+  "stage": "refs_wait",
   "date": "2026-10-28",
-  "asked_at": 1793188883,
+  "asked_at": 1793195548,
   "hint": "",
   "theme_at": 1793188883,
   "pick": "",
@@ -16,6 +16,47 @@
   "scene_at": 1793104294,
   "alerted": false,
   "week": [
+    {
+      "date": "2026-10-28",
+      "title_hint": "여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+      "mood": "아이보리·더스티 핑크·애쉬 블루처럼 부드러운 톤의 포근한 여친룩",
+      "slots": [
+        {
+          "category": "상의",
+          "desc": "보트넥·라운드넥·크롭 가디건처럼 모양이 다른 부드러운 니트 (여섯 벌 모두 니트)"
+        },
+        {
+          "category": "하의",
+          "desc": "플리츠 미디스커트, 슬림 부츠컷 데님, 미니스커트처럼 단정한 하의"
+        },
+        {
+          "category": "가방",
+          "desc": "미니 숄더백, 호보백처럼 작고 부드러운 가방"
+        },
+        {
+          "category": "신발",
+          "desc": "메리제인, 발레리나 플랫, 롱부츠"
+        },
+        {
+          "category": "소품",
+          "desc": "얇은 목걸이, 리본 헤어핀, 작은 귀걸이 (포인트로 한두 개)"
+        }
+      ],
+      "type": "아이템",
+      "why": "최저 2도 최고 12도로 쌀쌀해져 니트 하나로 포근하게 입기 좋은 날씨",
+      "search_terms": {
+        "상의": [
+          "보트넥 니트",
+          "크롭 니트 가디건",
+          "라운드넥 니트",
+          "레이스 트리밍 니트"
+        ],
+        "하의": [
+          "플리츠 미디스커트",
+          "부츠컷 데님"
+        ]
+      }
+    },
     {
       "date": "2026-10-28",
       "title_hint": "초겨울 외투 코디, 쌀쌀해지면 꺼내 입는 울 코트와 무스탕",
@@ -59,11 +100,21 @@
   "read_upto": 0,
   "revising": false,
   "ref_pick_at": 1793188883,
-  "searched": "2026-10-27|퍼 하나로 포인트 주는 가을 코디, 퍼 자켓부터 퍼 부츠까지",
-  "user_refs": [],
+  "searched": "2026-10-28|여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트",
+  "user_refs": [
+    "AgACAgUAAxkBAAII0mrh_cCzhFij3R-2791u5_FXpmngAAJPFGsbyf4RV0-K6cenCxatAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII02rh_cA4neLFsPGGNT7U-rdpV7xJAAJQFGsbyf4RV8RVlgGDClPpAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII1Grh_cBp3NlL7bOnnvKr_A0Ym7vNAAJRFGsbyf4RV-A61U31UQPiAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII1Wrh_cBcKK4jfbZodQTRiKUgevwiAAJSFGsbyf4RV9H-C86QY1WzAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII1mrh_cBCRQp9DxmWbXpVI1DjUfJvAAJTFGsbyf4RVy1gH2f6bg9-AQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII12rh_cBndX8HvS63yR03XAHDMe4RAAJUFGsbyf4RVz5TJCNjsuUUAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII2Grh_cBB4nLIw2BpD3SXSTegOLhCAAJVFGsbyf4RV_PDWUQgX7tzAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII2Wrh_cAuLf2PyImoIBk_H1bAwDK7AAJWFGsbyf4RV1XFF9cf9eNPAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII2mrh_cBdIoOXj22sGkq7Wbc2fp8sAAJXFGsbyf4RV2DseUAprpzeAQADAgADeQADPQQ",
+    "AgACAgUAAxkBAAII22rh_cB8csHn-BAfG1dISLgY6r5MAAJYFGsbyf4RVxk1z8X2WBZ4AQADAgADeQADPQQ"
+  ],
   "rules_upto": 428675910,
   "log": [
-    "10-27 05:16 게시 요청 (2026-10-23-run365)",
     "10-27 05:43 게시 확인, 피드백 반영 계획 요청 (16개)",
     "10-27 07:08 피드백 반영 계획 확정, PR 요청",
     "10-27 07:31 규칙 PR 합치기 요청 (/merge)",
@@ -92,6 +143,7 @@
     "10-28 10:01 피드백 반영 마침 (PR 합침)",
     "10-28 10:01 남은 주제 2개 확인 요청 (2026-10-28)",
     "10-28 11:30 남은 주제 고치기 요청: 주제 1번 여친룩 니트 코디로 변경하고 바로시작해",
-    "10-28 12:01 주제 정함: 여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트, 참고 코디 48벌 보냄"
+    "10-28 12:01 주제 정함: 여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트, 참고 코디 48벌 보냄",
+    "10-28 13:52 보낸 참고 사진 10장 옮기기 요청"
   ]
 }
