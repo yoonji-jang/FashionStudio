@@ -34,10 +34,10 @@ The last attached image is the scene photo, a photo of a different person that s
 the kind of shot, place, light and mood from it, never that person's clothes, face or body.
 
 What decides what, in this order: the reference outfit photo (if attached) decides the whole look on
-her body: the silhouette, how each piece fits, how long each piece looks on her and how it is worn
+her body: the silhouette, how each piece fits and how it is worn
 (open or closed, how far a zip is done up, tucked or loose, what peeks out and by how much, a coat on the
 shoulders or slipping off one shoulder, pushed-up sleeves). The item sheets decide what each product is:
-its fabric, color, pattern, details and thickness. The scene photo decides only the place, light and
+its fabric, color, pattern, details, thickness and length (as long as in its shop photos). The scene photo decides only the place, light and
 pose. Apart from the user's requests at the top, the text only tells the items apart: where other
 text and the photos differ, follow the photos.
 
@@ -55,8 +55,7 @@ sheet: color, fabric and its surface (leather shine, wool fuzz, boucle loops, de
 sheen, velvet pile), pattern, cut, collar shape, number and kind of buttons, zips, belts and pockets,
 shoe toe shape (pointed, round or square) and heel height. Never add details the product does not have:
 a plain skirt gets no pleats, a collarless jacket gets no collar, a coat without a belt gets no belt.
-Each piece keeps its kind of length: a mini skirt or shorts stay short, a cropped jacket stays cropped,
-a half coat never becomes a long coat. Thick, heavy pieces (wool coats, padded or quilted jackets, fur,
+Thick, heavy pieces (wool coats, padded or quilted jackets, fur,
 chunky knits, thick denim) keep their real thickness, weight and volume and are never drawn thin or
 flimsy; thin pieces stay thin.
 

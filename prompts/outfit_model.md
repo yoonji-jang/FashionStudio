@@ -33,10 +33,9 @@ $items
 Keep every item identical to its product photos: same color, fabric texture, pattern, cut, length,
 fit, collar or lapel type, neckline, buttons, pockets, hardware, toe shape and proportions. Do not
 change a collar into a different collar type, do not change the style of the shoes, do not add,
-remove or redesign any detail, no logos or text. Trousers keep the leg silhouette and length seen in
-the worn photos (never flared, cropped or wider than in the photos), and trousers and skirts are never
-drawn shorter than their real size: long trousers never stop at the ankle bone; they cover the
-instep and break over the shoes or graze the ground.
+remove or redesign any detail, no logos or text. Trousers keep the leg silhouette seen in
+the worn photos (never flared or wider than in the photos), and every item is exactly as long as in its
+product photos, never longer or shorter.
 The person wears or carries every item in the list and nothing else: no hat, cap, scarf, sunglasses,
 glasses, belt, watch, rings, necklace, earrings or other jewelry unless it is in the numbered list,
 and no other bag or clothing on top. Hair and skin are the only other things on the body (a plain hair tie or
