@@ -86,59 +86,91 @@ looks:
   - 시스루 스타킹 신김 (she wears sheer black see-through tights)
   - 머리는 풍성하고 굵은 웨이브 (her hair is voluminous with big thick waves)
 - items:
-  - product: zigzag:119290134
-    color: 차콜
-    desc: 차콜 터틀넥 니트 원피스 (charcoal heathered turtleneck knit dress, chunky wool-blend
-      knit)
-    name: 터틀넥 니트원피스
+  - product: zigzag:167155870
+    color: 그레이
+    desc: 멜란지 그레이 하이넥 코트 (dark charcoal grey boucle coat knitted from mixed black
+      and white yarn, coarse chunky nubby texture, darker than a light grey, tall
+      funnel neck wrapping the neck, a scarf-like asymmetric flap running diagonally
+      across the chest, one big button, dropped shoulders and very big balloon sleeves,
+      short boxy oversized body with a rounded puffy hem, very bulky and voluminous,
+      ends at the high hip)
+    name: 멜란지 하이넥 코트
     comment: ''
     cutout_photo: 1
     ref_photos:
-    - 1
-  - product: zigzag:165741644
-    color: 블랙
-    desc: 블랙 가죽 벨트 (black leather belt)
-    name: 블랙 레더 벨트
-    comment: ''
-    cutout_photo: 0
-    wear_with: 원피스
-  - product: zigzag:107799679
-    color: 블랙
-    desc: 블랙 통굽 롱부츠 (black platform boots)
-    name: 통굽 롱부츠
-    comment: ''
-    cutout_photo: 0
-  - product: zigzag:137453892
-    color: 블랙
-    desc: 블랙 퀼팅 체인 숄더백 (black quilted shoulder bag with a gold chain strap)
-    name: 체인 미니백
-    comment: ''
-    cutout_photo: 2
-    ref_photos:
-    - 2
     - 0
-  - product: zigzag:148600384
-    color: 실버
-    desc: 실버 하트 펜던트 목걸이 (thin silver chain necklace with a small heart pendant)
-    name: 펜던트 목걸이
+    - 1
+  - product: zigzag:169072918
+    color: 화이트
+    desc: 화이트 탱크 캐미솔 (white ribbed cotton cami tank with a scoop neck)
+    name: 코튼 캐미솔
     comment: ''
     cutout_photo: 4
     ref_photos:
     - 4
-    - 5
+    - 2
     - 0
-    slot: 목걸이
-  reason: 차콜 터틀넥 니트원피스를 블랙 벨트로 잘록하게 잡고 통굽 롱부츠를 신은 코디. 참고 차콜 골지 터틀넥 원피스/블랙 벨트/통굽 롱부츠/체인
-    미니백 → 맞춘 것 같은 종류·색 (목걸이는 더함). (따라 함 - 참고 794) [사용자 선택]
-  point: 차콜 터틀넥 원피스는 벨트로 허리를 잡고 통굽 롱부츠로 마무리해요
-  cover: out/2026-10-28/looks/2/kept/G_1.jpg
+    wear_with: 아우터
+  - product: zigzag:167155869
+    color: 블랙
+    desc: 블랙 스커트 (black smooth straight skirt)
+    name: 블랙 미니 스커트
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 0
+  - product: zigzag:146926302
+    color: 블랙
+    desc: 블랙 롱부츠 (black boots)
+    name: 블랙 롱부츠
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:168305853
+    color: 블랙
+    desc: 블랙 위빙 숄더백 (black woven glossy leather shoulder bag)
+    name: 위빙 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 1
+    - 0
+    - 2
+  - product: zigzag:139297257
+    color: 실버
+    desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings)
+    name: 링 귀걸이
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 0
+    - 5
+    slot: 귀걸이
+  reason: 멜란지 그레이 하이넥 코트가 주인공, 블랙 미니스커트와 블랙 롱부츠로 단정하게 입은 코디. 참고 그레이 하이넥 니트/블랙 데님 미니/양털
+    롱부츠 → 맞춘 것 같은 종류 (데님은 다크그레이 워싱, 양털 부츠 대신 블랙 롱부츠, 귀걸이는 더함). (따라 함 - 참고 800) [사용자
+    선택]
+  point: 멜란지 그레이 하이넥 코트에 블랙 미니스커트로 단정하게 입어요
+  styling: The coat is fully closed with its single big button and the funnel neck
+    up to her chin, so the cami shows only a little or not at all. The coat matches
+    the product page exactly in fit, material, color and design - dark charcoal grey
+    boucle of mixed black and white yarn with a coarse chunky grain, a scarf-like
+    asymmetric flap crossing diagonally over the chest, dropped shoulders, very big
+    balloon sleeves, a short boxy oversized body with a rounded puffy hem.
+  edit_from: out/2026-10-28/earlier/looks/6/outfit/results/G_1.jpg
+  edit_request: 'Redraw only the coat so it is identical to the product photos (user
+    product reference 0 and 1): dark charcoal grey boucle woven from mixed black and
+    white yarn, darker than now with a much coarser, chunkier grain; a tall funnel
+    neck wrapping the neck; a scarf-like asymmetric flap running diagonally across
+    the chest; one big button; dropped shoulders and very big balloon sleeves; a short
+    boxy oversized body with a rounded puffy hem. Keep her face, hair, pose, skirt,
+    boots, bag and background exactly the same.'
   edit_refs: []
-  pose: standing front-facing with one hip pushed out and one hand resting lightly
-    on the bag strap, looking straight into the camera with her face fully visible,
-    long loose waves falling over her shoulders, full body from head to boots
-  scene_image: out/2026-10-28/src/scene_2.jpg
-  ref: '794'
-  ref_photo: tg:AgACAgUAAxkBAAII02rh_cA4neLFsPGGNT7U-rdpV7xJAAJQFGsbyf4RV8RVlgGDClPpAQADAgADeQADPQQ
+  pose: standing with her upper body facing the camera squarely, weight on one leg,
+    chin lifted slightly, looking at the camera with her face visible, long loose
+    waves falling over her shoulders, full body from head to boots
+  scene_image: out/2026-10-28/src/scene_3.jpg
+  ref: '800'
+  ref_photo: tg:AgACAgUAAxkBAAII2Wrh_cAuLf2PyImoIBk_H1bAwDK7AAJWFGsbyf4RV1XFF9cf9eNPAQADAgADeQADPQQ
   requests: []
 - items:
   - product: zigzag:167198245
@@ -210,6 +242,61 @@ looks:
   ref_photo: tg:AgACAgUAAxkBAAII1Grh_cBp3NlL7bOnnvKr_A0Ym7vNAAJRFGsbyf4RV-A61U31UQPiAQADAgADeQADPQQ
   requests:
   - 모자 씀 (she wears a hat)
+- items:
+  - product: zigzag:119290134
+    color: 차콜
+    desc: 차콜 터틀넥 니트 원피스 (charcoal heathered turtleneck knit dress, chunky wool-blend
+      knit)
+    name: 터틀넥 니트원피스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:165741644
+    color: 블랙
+    desc: 블랙 가죽 벨트 (black leather belt)
+    name: 블랙 레더 벨트
+    comment: ''
+    cutout_photo: 0
+    wear_with: 원피스
+  - product: zigzag:107799679
+    color: 블랙
+    desc: 블랙 통굽 롱부츠 (black platform boots)
+    name: 통굽 롱부츠
+    comment: ''
+    cutout_photo: 0
+  - product: zigzag:137453892
+    color: 블랙
+    desc: 블랙 퀼팅 체인 숄더백 (black quilted shoulder bag with a gold chain strap)
+    name: 체인 미니백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+  - product: zigzag:148600384
+    color: 실버
+    desc: 실버 하트 펜던트 목걸이 (thin silver chain necklace with a small heart pendant)
+    name: 펜던트 목걸이
+    comment: ''
+    cutout_photo: 4
+    ref_photos:
+    - 4
+    - 5
+    - 0
+    slot: 목걸이
+  reason: 차콜 터틀넥 니트원피스를 블랙 벨트로 잘록하게 잡고 통굽 롱부츠를 신은 코디. 참고 차콜 골지 터틀넥 원피스/블랙 벨트/통굽 롱부츠/체인
+    미니백 → 맞춘 것 같은 종류·색 (목걸이는 더함). (따라 함 - 참고 794) [사용자 선택]
+  point: 차콜 터틀넥 원피스는 벨트로 허리를 잡고 통굽 롱부츠로 마무리해요
+  cover: out/2026-10-28/looks/2/kept/G_1.jpg
+  edit_refs: []
+  pose: standing front-facing with one hip pushed out and one hand resting lightly
+    on the bag strap, looking straight into the camera with her face fully visible,
+    long loose waves falling over her shoulders, full body from head to boots
+  scene_image: out/2026-10-28/src/scene_2.jpg
+  ref: '794'
+  ref_photo: tg:AgACAgUAAxkBAAII02rh_cA4neLFsPGGNT7U-rdpV7xJAAJQFGsbyf4RV8RVlgGDClPpAQADAgADeQADPQQ
+  requests: []
 - items:
   - product: zigzag:166033034
     color: 차콜
@@ -339,92 +426,11 @@ looks:
   ref: '799'
   ref_photo: tg:AgACAgUAAxkBAAII2Grh_cBB4nLIw2BpD3SXSTegOLhCAAJVFGsbyf4RV_PDWUQgX7tzAQADAgADeQADPQQ
   requests: []
-- items:
-  - product: zigzag:167155870
-    color: 그레이
-    desc: 멜란지 그레이 하이넥 코트 (dark charcoal grey boucle coat knitted from mixed black and white yarn,
-      coarse chunky nubby texture, darker than a light grey, tall funnel neck wrapping the neck, a scarf-like
-      asymmetric flap running diagonally across the chest, one big button, dropped shoulders and very big balloon
-      sleeves, short boxy oversized body with a rounded puffy hem, very bulky and voluminous, ends at the high hip)
-    name: 멜란지 하이넥 코트
-    comment: ''
-    cutout_photo: 1
-    ref_photos:
-    - 0
-    - 1
-  - product: zigzag:169072918
-    color: 화이트
-    desc: 화이트 탱크 캐미솔 (white ribbed cotton cami tank with a scoop neck)
-    name: 코튼 캐미솔
-    comment: ''
-    cutout_photo: 4
-    ref_photos:
-    - 4
-    - 2
-    - 0
-    wear_with: 아우터
-  - product: zigzag:167155869
-    color: 블랙
-    desc: 블랙 스커트 (black smooth straight skirt)
-    name: 블랙 미니 스커트
-    comment: ''
-    cutout_photo: 1
-    ref_photos:
-    - 1
-    - 0
-  - product: zigzag:146926302
-    color: 블랙
-    desc: 블랙 롱부츠 (black boots)
-    name: 블랙 롱부츠
-    comment: ''
-    cutout_photo: 0
-  - product: zigzag:168305853
-    color: 블랙
-    desc: 블랙 위빙 숄더백 (black woven glossy leather shoulder bag)
-    name: 위빙 숄더백
-    comment: ''
-    cutout_photo: 0
-    ref_photos:
-    - 1
-    - 0
-    - 2
-  - product: zigzag:139297257
-    color: 실버
-    desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings)
-    name: 링 귀걸이
-    comment: ''
-    cutout_photo: 5
-    ref_photos:
-    - 0
-    - 5
-    slot: 귀걸이
-  reason: 멜란지 그레이 하이넥 코트가 주인공, 블랙 미니스커트와 블랙 롱부츠로 단정하게 입은 코디. 참고 그레이 하이넥 니트/블랙 데님 미니/양털
-    롱부츠 → 맞춘 것 같은 종류 (데님은 다크그레이 워싱, 양털 부츠 대신 블랙 롱부츠, 귀걸이는 더함). (따라 함 - 참고 800) [사용자
-    선택]
-  point: 멜란지 그레이 하이넥 코트에 블랙 미니스커트로 단정하게 입어요
-  styling: The coat is fully closed with its single big button and the funnel neck up to her chin, so the cami shows only
-    a little or not at all. The coat matches the product page exactly in fit, material, color and design - dark charcoal
-    grey boucle of mixed black and white yarn with a coarse chunky grain, a scarf-like asymmetric flap crossing diagonally
-    over the chest, dropped shoulders, very big balloon sleeves, a short boxy oversized body with a rounded puffy hem.
-  edit_from: out/2026-10-28/earlier/looks/6/outfit/results/G_1.jpg
-  edit_request: 'Redraw only the coat so it is identical to the product photos (user product reference 0 and 1): dark
-    charcoal grey boucle woven from mixed black and white yarn, darker than now with a much coarser, chunkier grain; a tall
-    funnel neck wrapping the neck; a scarf-like asymmetric flap running diagonally across the chest; one big button;
-    dropped shoulders and very big balloon sleeves; a short boxy oversized body with a rounded puffy hem. Keep her face,
-    hair, pose, skirt, boots, bag and background exactly the same.'
-  edit_refs: []
-  pose: standing with her upper body facing the camera squarely, weight on one leg,
-    chin lifted slightly, looking at the camera with her face visible, long loose
-    waves falling over her shoulders, full body from head to boots
-  scene_image: out/2026-10-28/src/scene_3.jpg
-  ref: '800'
-  ref_photo: tg:AgACAgUAAxkBAAII2Wrh_cAuLf2PyImoIBk_H1bAwDK7AAJWFGsbyf4RV1XFF9cf9eNPAQADAgADeQADPQQ
-  requests: []
 reason: 사용자가 고른 참고 코디 10벌(793~802)을 순서대로 따라 짠 니트 코디
 text:
   title_lines:
-  - 갑자기 추워진 날
-  - 여친룩 니트 이렇게 입더라
+  - 이렇게만 입어줘
+  - 니트 여친룩 모음
   intro: 최저 2도까지 내려가는 쌀쌀한 날, 포근한 니트로 여친룩 입어 보세요 🍂
   points: []
   hashtags:
