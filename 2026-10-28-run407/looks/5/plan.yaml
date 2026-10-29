@@ -1,72 +1,74 @@
 account: women
-cover: out/2026-10-28/looks/5/outfit/results/G_1.jpg
+cover: out/2026-10-28/looks/4/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-28'
 edit_refs: []
+edit_request: Make the knit a little longer so its hem hangs lower and covers the
+  waistband area of the white skirt more; only the tiered ruffles below show. Keep
+  everything else the same.
 items:
-- color: 그레이
+- color: 차콜
   comment: ''
   cutout_photo: 0
-  desc: 그레이 부클 모헤어 라운드 니트 (heathered grey fuzzy boucle mohair-blend round-neck knit)
-  name: 헤일로 부클 니트
-  product: zigzag:168770375
+  desc: 차콜 보트넥 오프숄더 울 니트 (charcoal heathered off-shoulder boat neck wool knit, soft
+    fuzzy wool-blend)
+  name: 오프숄더 울 니트
+  product: zigzag:166033034
+  ref_photos:
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 코튼 끈나시 (white cotton spaghetti-strap camisole, thin straps visible at
+    the bare shoulders)
+  name: 코튼 끈나시
+  product: zigzag:156394404
   ref_photos:
   - 3
-  - 0
   - 2
-- color: 그레이
+  - 5
+  wear_with: 상의
+- color: 화이트
+  comment: ''
+  cutout_photo: 1
+  desc: 캔캔 리본 스커트 (white tiered ruffle skirt with ribbon ties, thin cotton with lace
+    trim)
+  name: 캔캔 리본 스커트
+  product: zigzag:148473326
+  ref_photos:
+  - 1
+- color: 브라운
   comment: ''
   cutout_photo: 0
-  desc: 그레이 골지 니트 스커트 (heathered grey ribbed knit skirt)
-  name: 골지 니트 미니스커트
-  product: zigzag:132751467
-  ref_photos:
-  - 0
-  - 1
+  desc: 브라운 버클 슬라우치 부츠 (brown buckle slouch boots)
+  name: 슬라우치 부츠
+  product: zigzag:171260251
 - color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 블랙 버클 소프트 부츠 (black matte crinkled leather boots with buckle straps)
-  name: 버클 롱부츠
-  product: zigzag:171985452
+  cutout_photo: 1
+  desc: 블랙 토트백 (black tote bag)
+  name: 미니 토트백
+  product: zigzag:161886716
   ref_photos:
   - 1
-  - 0
-  - 4
-- color: 블랙
-  comment: ''
-  cutout_photo: 3
-  desc: 블랙 보스턴 숄더백 (black boston shoulder bag with a triangle plate and two long straps)
-  name: 보스턴 숄더백
-  product: zigzag:133826914
-  ref_photos:
-  - 3
-  - 0
-  - 1
-- color: 블랙
-  comment: ''
-  cutout_photo: 3
-  desc: 블랙 와이드 레더 벨트 (black wide leather belt with a silver buckle)
-  name: 와이드 레더 벨트
-  product: zigzag:148980176
-  ref_photos:
-  - 2
-  - 3
-  wear_with: 하의
 looks: []
 mood: a clean fashion lookbook studio shoot in front of a plain light grey seamless
   wall and a pale floor, soft even studio light, calm cool neutral colors, crisp sharp
   full-body shots like an online shop model cut
-pose: standing with her feet slightly apart and a gentle head tilt, the bag hanging
-  from one hand, looking at the camera with her face fully visible, hair in a low
-  slick bun with a few wispy flyaway strands, full body from head to boots
-reason: 그레이 부클 라운드 니트에 그레이 골지 니트 미니스커트와 블랙 와이드 벨트로 톤을 맞춘 코디. 참고 그레이 모헤어 브이넥 니트/그레이
-  니트 미니스커트/블랙 버클 롱부츠/보스턴백/와이드 벨트 → 맞춘 것 같은 종류·색 (스커트는 플리츠 미디 니트 스커트라 기장이 더 김). (따라
-  함 - 참고 799) [사용자 선택]
-ref_photo: tg:AgACAgUAAxkBAAII2Grh_cBB4nLIw2BpD3SXSTegOLhCAAJVFGsbyf4RV_PDWUQgX7tzAQADAgADeQADPQQ
-requests: []
-scene_image: out/2026-10-28/src/scene_2.jpg
+pose: leaning one shoulder lightly against the wall with a bent knee and one hand
+  resting on her hip, looking at the camera with her face fully visible, full body
+  from head to boots
+reason: 차콜 오프숄더 니트 안에 화이트 끈나시를 받쳐 끈이 어깨에 보이게 하고 캔캔 리본 미니스커트를 입은 러블리한 코디. 참고 차콜 오프숄더
+  니트/흰 캐미솔/아이보리 프릴 미니/브라운 슬라우치 부츠 → 맞춘 것 같은 종류·색 (스커트는 사용자가 고른 캔캔 리본 미니스커트). (따라 함
+  - 참고 797) [사용자 선택]
+ref_photo: tg:AgACAgUAAxkBAAII1mrh_cBCRQp9DxmWbXpVI1DjUfJvAAJTFGsbyf4RVy1gH2f6bg9-AQADAgADeQADPQQ
+requests:
+- 참고 코디컷처럼 잔머리가 많이 삐져나온 더티번 헤어 (her hair is in a messy dirty bun with many loose wispy
+  strands escaping around the face, like the reference)
+scene_image: out/2026-10-28/src/scene.jpg
 shot: model
+styling: The knit is a little longer than before, its hem covering the waist part
+  of the skirt so only the ruffle tiers show.
 text:
   hashtags:
   - '#니트코디'

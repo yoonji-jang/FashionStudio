@@ -9,17 +9,16 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 원피스 | 차콜 터틀넥 니트 원피스 (charcoal heathered turtleneck knit dress, chunky wool-blend knit) | 차콜 | - | 기장 105cm | 없음 |
-| 2 | 소품 | 블랙 가죽 벨트 (black leather belt) | 블랙 | 원피스에 입힘 | 긴 쪽 22cm | 없음 |
-| 3 | 신발 | 블랙 통굽 롱부츠 (black platform boots) | 블랙 | - | 긴 쪽 35cm | 없음 |
-| 4 | 가방 | 블랙 퀼팅 체인 숄더백 (black quilted shoulder bag with a gold chain strap) | 블랙 | - | 긴 쪽 52cm | 없음 |
-| 5 | 소품 | 실버 하트 펜던트 목걸이 (thin silver chain necklace with a small heart pendant) | 실버 | - | 긴 쪽 34cm | 없음 |
+| 1 | 아우터 | 멜란지 그레이 하이넥 코트 (dark charcoal grey boucle coat knitted from mixed black and white yarn, coarse chunky nubby texture, darker than a light grey, tall funnel neck wrapping the neck, a scarf-like asymmetric flap running diagonally across the chest, one big button, dropped shoulders and very big balloon sleeves, short boxy oversized body with a rounded puffy hem, very bulky and voluminous, ends at the high hip) | 그레이 | - | 기장 75cm | outfit/originals/01_outer.jpg |
+| 2 | 상의 | 화이트 탱크 캐미솔 (white ribbed cotton cami tank with a scoop neck) | 화이트 | 아우터에 입힘 | 기장 64cm | outfit/originals/02_top.jpg |
+| 3 | 하의 | 블랙 스커트 (black smooth straight skirt) | 블랙 | - | 기장 42cm | outfit/originals/03_bottoms.jpg |
+| 4 | 신발 | 블랙 롱부츠 (black boots) | 블랙 | - | 긴 쪽 35cm | outfit/originals/04_shoes.jpg |
+| 5 | 가방 | 블랙 위빙 숄더백 (black woven glossy leather shoulder bag) | 블랙 | - | 긴 쪽 52cm | outfit/originals/05_bag.jpg |
+| 6 | 소품 | 실버 물방울 링 귀걸이 (small silver drop hoop earrings) | 실버 | - | 긴 쪽 9cm | outfit/originals/06_accessory.jpg |
 
 ## 점수를 매길 코디컷 후보
 
-- 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
-
-이미 매긴 점수: c2 9점
+- c1: `outfit/results/G_1.jpg`
 
 ## 캐러셀 상품 장
 
@@ -81,4 +80,4 @@
 
 ## 도구가 찾은 문제 (점수 파일에 다시 적지 않아도 됨)
 
-- 없음
+- c1 [얼굴 확인] 얼굴 검출 도구가 얼굴로 본 자리: `review/face_c1_1.jpg` (열어 보고 정면 얼굴이 또렷하면 clean 0, 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)

@@ -9,17 +9,17 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 상의 | 그레이 부클 모헤어 라운드 니트 (heathered grey fuzzy boucle mohair-blend round-neck knit) | 그레이 | - | 기장 64cm | 없음 |
-| 2 | 하의 | 그레이 골지 니트 스커트 (heathered grey ribbed knit skirt) | 그레이 | - | 기장 42cm | 없음 |
-| 3 | 신발 | 블랙 버클 소프트 부츠 (black matte crinkled leather boots with buckle straps) | 블랙 | - | 긴 쪽 35cm | 없음 |
-| 4 | 가방 | 블랙 보스턴 숄더백 (black boston shoulder bag with a triangle plate and two long straps) | 블랙 | - | 긴 쪽 52cm | 없음 |
-| 5 | 소품 | 블랙 와이드 레더 벨트 (black wide leather belt with a silver buckle) | 블랙 | 하의에 입힘 | 긴 쪽 22cm | 없음 |
+| 1 | 상의 | 차콜 보트넥 오프숄더 울 니트 (charcoal heathered off-shoulder boat neck wool knit, soft fuzzy wool-blend) | 차콜 | - | 기장 72cm | 없음 |
+| 2 | 상의 | 화이트 코튼 끈나시 (white cotton spaghetti-strap camisole, thin straps visible at the bare shoulders) | 화이트 | 상의에 입힘 | 기장 64cm | 없음 |
+| 3 | 하의 | 캔캔 리본 스커트 (white tiered ruffle skirt with ribbon ties, thin cotton with lace trim) | 화이트 | - | 기장 42cm | 없음 |
+| 4 | 신발 | 브라운 버클 슬라우치 부츠 (brown buckle slouch boots) | 브라운 | - | 긴 쪽 35cm | 없음 |
+| 5 | 가방 | 블랙 토트백 (black tote bag) | 블랙 | - | 긴 쪽 52cm | 없음 |
 
 ## 점수를 매길 코디컷 후보
 
 - 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
 
-이미 매긴 점수: c1 8점
+이미 매긴 점수: c1 9점
 
 ## 캐러셀 상품 장
 

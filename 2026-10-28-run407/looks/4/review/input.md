@@ -9,17 +9,17 @@
 
 | # | 카테고리 | 코디컷 설명 | 고른 색 | 입는 방법 | 실제 크기 | 원본 사진 |
 |---|---|---|---|---|---|---|
-| 1 | 상의 | 차콜 보트넥 오프숄더 울 니트 (charcoal heathered off-shoulder boat neck wool knit, soft fuzzy wool-blend) | 차콜 | - | 기장 72cm | 없음 |
-| 2 | 상의 | 화이트 코튼 끈나시 (white cotton spaghetti-strap camisole, thin straps visible at the bare shoulders) | 화이트 | 상의에 입힘 | 기장 64cm | 없음 |
-| 3 | 하의 | 캔캔 리본 스커트 (white tiered ruffle skirt with ribbon ties, thin cotton with lace trim) | 화이트 | - | 기장 42cm | 없음 |
-| 4 | 신발 | 브라운 버클 슬라우치 부츠 (brown buckle slouch boots) | 브라운 | - | 긴 쪽 35cm | 없음 |
-| 5 | 가방 | 블랙 토트백 (black tote bag) | 블랙 | - | 긴 쪽 52cm | 없음 |
+| 1 | 원피스 | 차콜 터틀넥 니트 원피스 (charcoal heathered turtleneck knit dress, chunky wool-blend knit) | 차콜 | - | 기장 105cm | 없음 |
+| 2 | 소품 | 블랙 가죽 벨트 (black leather belt) | 블랙 | 원피스에 입힘 | 긴 쪽 22cm | 없음 |
+| 3 | 신발 | 블랙 통굽 롱부츠 (black platform boots) | 블랙 | - | 긴 쪽 35cm | 없음 |
+| 4 | 가방 | 블랙 퀼팅 체인 숄더백 (black quilted shoulder bag with a gold chain strap) | 블랙 | - | 긴 쪽 52cm | 없음 |
+| 5 | 소품 | 실버 하트 펜던트 목걸이 (thin silver chain necklace with a small heart pendant) | 실버 | - | 긴 쪽 34cm | 없음 |
 
 ## 점수를 매길 코디컷 후보
 
 - 없음 (이미 점수를 매긴 후보만 있음. covers 는 비워도 된다)
 
-이미 매긴 점수: c1 9점
+이미 매긴 점수: c2 9점
 
 ## 캐러셀 상품 장
 

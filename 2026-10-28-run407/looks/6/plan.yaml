@@ -1,96 +1,72 @@
 account: women
+cover: out/2026-10-28/looks/5/outfit/results/G_1.jpg
 cover_look: 1
 date: '2026-10-28'
-edit_from: out/2026-10-28/earlier/looks/6/outfit/results/G_1.jpg
 edit_refs: []
-edit_request: 'Redraw only the coat so it is identical to the product photos (user
-  product reference 0 and 1): dark charcoal grey boucle woven from mixed black and
-  white yarn, darker than now with a much coarser, chunkier grain; a tall funnel neck
-  wrapping the neck; a scarf-like asymmetric flap running diagonally across the chest;
-  one big button; dropped shoulders and very big balloon sleeves; a short boxy oversized
-  body with a rounded puffy hem. Keep her face, hair, pose, skirt, boots, bag and
-  background exactly the same.'
 items:
 - color: 그레이
   comment: ''
-  cutout_photo: 1
-  desc: 멜란지 그레이 하이넥 코트 (dark charcoal grey boucle coat knitted from mixed black and
-    white yarn, coarse chunky nubby texture, darker than a light grey, tall funnel
-    neck wrapping the neck, a scarf-like asymmetric flap running diagonally across
-    the chest, one big button, dropped shoulders and very big balloon sleeves, short
-    boxy oversized body with a rounded puffy hem, very bulky and voluminous, ends
-    at the high hip)
-  name: 멜란지 하이넥 코트
-  product: zigzag:167155870
+  cutout_photo: 0
+  desc: 그레이 부클 모헤어 라운드 니트 (heathered grey fuzzy boucle mohair-blend round-neck knit)
+  name: 헤일로 부클 니트
+  product: zigzag:168770375
+  ref_photos:
+  - 3
+  - 0
+  - 2
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 골지 니트 스커트 (heathered grey ribbed knit skirt)
+  name: 골지 니트 미니스커트
+  product: zigzag:132751467
   ref_photos:
   - 0
   - 1
-- color: 화이트
+- color: 블랙
   comment: ''
-  cutout_photo: 4
-  desc: 화이트 탱크 캐미솔 (white ribbed cotton cami tank with a scoop neck)
-  name: 코튼 캐미솔
-  product: zigzag:169072918
+  cutout_photo: 0
+  desc: 블랙 버클 소프트 부츠 (black matte crinkled leather boots with buckle straps)
+  name: 버클 롱부츠
+  product: zigzag:171985452
   ref_photos:
+  - 1
+  - 0
   - 4
-  - 2
-  - 0
-  wear_with: 아우터
 - color: 블랙
   comment: ''
-  cutout_photo: 1
-  desc: 블랙 스커트 (black smooth straight skirt)
-  name: 블랙 미니 스커트
-  product: zigzag:167155869
+  cutout_photo: 3
+  desc: 블랙 보스턴 숄더백 (black boston shoulder bag with a triangle plate and two long straps)
+  name: 보스턴 숄더백
+  product: zigzag:133826914
   ref_photos:
+  - 3
+  - 0
   - 1
-  - 0
 - color: 블랙
   comment: ''
-  cutout_photo: 0
-  desc: 블랙 롱부츠 (black boots)
-  name: 블랙 롱부츠
-  product: zigzag:146926302
-- color: 블랙
-  comment: ''
-  cutout_photo: 0
-  desc: 블랙 위빙 숄더백 (black woven glossy leather shoulder bag)
-  name: 위빙 숄더백
-  product: zigzag:168305853
+  cutout_photo: 3
+  desc: 블랙 와이드 레더 벨트 (black wide leather belt with a silver buckle)
+  name: 와이드 레더 벨트
+  product: zigzag:148980176
   ref_photos:
-  - 1
-  - 0
   - 2
-- color: 실버
-  comment: ''
-  cutout_photo: 5
-  desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings)
-  name: 링 귀걸이
-  product: zigzag:139297257
-  ref_photos:
-  - 0
-  - 5
-  slot: 귀걸이
+  - 3
+  wear_with: 하의
 looks: []
 mood: a clean fashion lookbook studio shoot in front of a plain light grey seamless
   wall and a pale floor, soft even studio light, calm cool neutral colors, crisp sharp
   full-body shots like an online shop model cut
-pose: standing with her upper body facing the camera squarely, weight on one leg,
-  chin lifted slightly, looking at the camera with her face visible, long loose waves
-  falling over her shoulders, full body from head to boots
-reason: 멜란지 그레이 하이넥 코트가 주인공, 블랙 미니스커트와 블랙 롱부츠로 단정하게 입은 코디. 참고 그레이 하이넥 니트/블랙 데님 미니/양털
-  롱부츠 → 맞춘 것 같은 종류 (데님은 다크그레이 워싱, 양털 부츠 대신 블랙 롱부츠, 귀걸이는 더함). (따라 함 - 참고 800) [사용자
-  선택]
-ref_photo: tg:AgACAgUAAxkBAAII2Wrh_cAuLf2PyImoIBk_H1bAwDK7AAJWFGsbyf4RV1XFF9cf9eNPAQADAgADeQADPQQ
+pose: standing with her feet slightly apart and a gentle head tilt, the bag hanging
+  from one hand, looking at the camera with her face fully visible, hair in a low
+  slick bun with a few wispy flyaway strands, full body from head to boots
+reason: 그레이 부클 라운드 니트에 그레이 골지 니트 미니스커트와 블랙 와이드 벨트로 톤을 맞춘 코디. 참고 그레이 모헤어 브이넥 니트/그레이
+  니트 미니스커트/블랙 버클 롱부츠/보스턴백/와이드 벨트 → 맞춘 것 같은 종류·색 (스커트는 플리츠 미디 니트 스커트라 기장이 더 김). (따라
+  함 - 참고 799) [사용자 선택]
+ref_photo: tg:AgACAgUAAxkBAAII2Grh_cBB4nLIw2BpD3SXSTegOLhCAAJVFGsbyf4RV_PDWUQgX7tzAQADAgADeQADPQQ
 requests: []
-scene_image: out/2026-10-28/src/scene_3.jpg
+scene_image: out/2026-10-28/src/scene_2.jpg
 shot: model
-styling: The coat is fully closed with its single big button and the funnel neck up
-  to her chin, so the cami shows only a little or not at all. The coat matches the
-  product page exactly in fit, material, color and design - dark charcoal grey boucle
-  of mixed black and white yarn with a coarse chunky grain, a scarf-like asymmetric
-  flap crossing diagonally over the chest, dropped shoulders, very big balloon sleeves,
-  a short boxy oversized body with a rounded puffy hem.
 text:
   hashtags:
   - '#니트코디'
