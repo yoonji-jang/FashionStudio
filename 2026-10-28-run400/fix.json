@@ -1,0 +1,80 @@
+{
+  "run": "2026-10-28-run399",
+  "round": 1,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 1,
+      "kind": "cover",
+      "text": "표정 살짝만 더 싱그럽게 미소+웃음기 넣어줘. 고개 살짝 까딱해도 돼. 살짝 애교있는 분위기 조금만 추기해줘."
+    },
+    {
+      "slide": 2,
+      "kind": "look",
+      "look": 2,
+      "text": "치마기장 좀 더 줄여주고, 좀더 h라인 만들어줘. 통이 너무 넓으니 통도 줄여줘. 손은 살짝 모아서 소매 속에 손 좀더 넣어줘."
+    },
+    {
+      "slide": 3,
+      "kind": "look",
+      "look": 3,
+      "text": "니트는 넣어입지 말고 살짝 빼서 입게 변경해줘. 살짝 비대칭으로."
+    },
+    {
+      "slide": 4,
+      "kind": "look",
+      "look": 4,
+      "text": "니트기장 조금더 길게해서 치마 허리쪽부분 조금 더 가려줘."
+    },
+    {
+      "slide": 6,
+      "kind": "look",
+      "look": 6,
+      "text": "코트 다 여며주고 고개 살짝 들어줘. 상체가 좀더 정면을 바라보게 해줘. 코트 오버핏인데 좀 작게 그려진거같아. 상세페이지랑 동일한 핏으로 그려줘."
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 3,
+      "file": "03_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 4,
+      "file": "04_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 5,
+      "file": "05_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 6,
+      "file": "06_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 1,
+  "candidates": "out/2026-10-28/candidates.yaml"
+}

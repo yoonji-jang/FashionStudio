@@ -1,0 +1,101 @@
+account: women
+cover: out/2026-10-28/looks/5/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-28'
+edit_refs: []
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 부클 모헤어 라운드 니트 (heathered grey fuzzy boucle mohair-blend round-neck knit)
+  name: 헤일로 부클 니트
+  product: zigzag:168770375
+  ref_photos:
+  - 3
+  - 0
+  - 2
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 골지 니트 스커트 (heathered grey ribbed knit skirt)
+  name: 골지 니트 미니스커트
+  product: zigzag:132751467
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 버클 소프트 부츠 (black matte crinkled leather boots with buckle straps)
+  name: 버클 롱부츠
+  product: zigzag:171985452
+  ref_photos:
+  - 1
+  - 0
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 보스턴 숄더백 (black boston shoulder bag with a triangle plate and two long straps)
+  name: 보스턴 숄더백
+  product: zigzag:133826914
+  ref_photos:
+  - 3
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 3
+  desc: 블랙 와이드 레더 벨트 (black wide leather belt with a silver buckle)
+  name: 와이드 레더 벨트
+  product: zigzag:148980176
+  ref_photos:
+  - 2
+  - 3
+  wear_with: 하의
+looks: []
+mood: a clean fashion lookbook studio shoot in front of a plain light grey seamless
+  wall and a pale floor, soft even studio light, calm cool neutral colors, crisp sharp
+  full-body shots like an online shop model cut
+pose: standing with her feet slightly apart and a gentle head tilt, the bag hanging
+  from one hand, looking at the camera with her face fully visible, hair in a low
+  slick bun with a few wispy flyaway strands, full body from head to boots
+reason: 그레이 부클 라운드 니트에 그레이 골지 니트 미니스커트와 블랙 와이드 벨트로 톤을 맞춘 코디. 참고 그레이 모헤어 브이넥 니트/그레이
+  니트 미니스커트/블랙 버클 롱부츠/보스턴백/와이드 벨트 → 맞춘 것 같은 종류·색 (스커트는 플리츠 미디 니트 스커트라 기장이 더 김). (따라
+  함 - 참고 799) [사용자 선택]
+ref_photo: tg:AgACAgUAAxkBAAII2Grh_cBB4nLIw2BpD3SXSTegOLhCAAJVFGsbyf4RV_PDWUQgX7tzAQADAgADeQADPQQ
+requests: []
+scene_image: out/2026-10-28/src/scene_2.jpg
+shot: model
+text:
+  hashtags:
+  - '#니트코디'
+  - '#여친룩'
+  - '#가을니트'
+  - '#니트원피스'
+  - '#미니스커트'
+  - '#롱부츠'
+  - '#가을코디'
+  intro: 최저 2도까지 내려가는 쌀쌀한 날, 포근한 니트로 여친룩 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 갑자기 추워진 날
+  - 여친룩 니트 이렇게 입더라
+theme:
+  date: '2026-10-28'
+  mood: 아이보리·더스티 핑크·애쉬 블루처럼 부드러운 톤의 포근한 여친룩
+  search_terms: {}
+  slots:
+  - category: 상의
+    desc: 보트넥·라운드넥·크롭 가디건처럼 모양이 다른 부드러운 니트 (여섯 벌 모두 니트)
+  - category: 하의
+    desc: 플리츠 미디스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 얇은 목걸이
+  title_hint: 여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트
+  type: 아이템
+  why: 최저 2도 최고 12도로 쌀쌀해져 니트 하나로 포근하게 입기 좋은 날씨

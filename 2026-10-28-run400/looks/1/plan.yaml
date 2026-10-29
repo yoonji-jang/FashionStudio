@@ -1,0 +1,102 @@
+account: women
+cover_look: 1
+date: '2026-10-28'
+edit_from: out/2026-10-28/looks/1/outfit/results/G_1.jpg
+edit_refs: []
+edit_request: Give her a slightly fresher, brighter expression with a soft smile and
+  a hint of a laugh in her eyes, and tilt her head gently to one side. Add just a
+  little playful, charming (aegyo) mood. Keep the outfit, pose and everything else
+  exactly the same.
+items:
+- color: 아이보리
+  comment: ''
+  cutout_photo: 1
+  desc: 아이보리 원숄더 앙고라 퍼 니트 원피스 (ivory one-shoulder angora fuzzy knit dress, thick fluffy
+    brushed knit)
+  name: 원숄더 퍼 원피스
+  product: zigzag:167435675
+  ref_photos:
+  - 1
+  - 0
+  - 2
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 니하이 부츠 (black matte suede stretch boots)
+  name: 니하이 롱부츠
+  product: zigzag:114431649
+  ref_photos:
+  - 0
+  - 1
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 퀼팅 체인 숄더백 (black quilted shoulder bag with a gold chain strap)
+  name: 체인 미니백
+  product: zigzag:137453892
+  ref_photos:
+  - 2
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 시스루 스타킹 (black sheer stockings)
+  name: 시스루 스타킹
+  product: zigzag:161559034
+- color: 골드
+  comment: ''
+  cutout_photo: 5
+  desc: 골드 물방울 귀걸이 (small gold drop earrings)
+  name: 미니 귀걸이
+  product: zigzag:169325375
+  ref_photos:
+  - 5
+  - 4
+  slot: 귀걸이
+looks: []
+mood: a clean fashion lookbook studio shoot in front of a plain light grey seamless
+  wall and a pale floor, soft even studio light, calm cool neutral colors, crisp sharp
+  full-body shots like an online shop model cut
+pose: standing relaxed with her weight on one leg and a slight head tilt, one hand
+  holding the chain strap of the bag, looking toward the camera with her face fully
+  visible, hair in big thick voluminous waves, full body from head to boots
+reason: 아이보리 원숄더 앙고라 미니원피스에 블랙 니하이 부츠로 포근하게 다리선을 살린 코디. 참고 아이보리 퍼 미니원피스/블랙 니하이 롱부츠/체인
+  숄더백/시스루 스타킹 → 맞춘 것 같은 종류·색 (귀걸이는 더함). (따라 함 - 참고 793) [사용자 선택]
+ref_photo: tg:AgACAgUAAxkBAAII0mrh_cCzhFij3R-2791u5_FXpmngAAJPFGsbyf4RV0-K6cenCxatAQADAgADeQADPQQ
+requests:
+- 시스루 스타킹 신김 (she wears sheer black see-through tights)
+- 머리는 풍성하고 굵은 웨이브 (her hair is voluminous with big thick waves)
+scene_image: out/2026-10-28/src/scene.jpg
+shot: model
+text:
+  hashtags:
+  - '#니트코디'
+  - '#여친룩'
+  - '#가을니트'
+  - '#니트원피스'
+  - '#미니스커트'
+  - '#롱부츠'
+  - '#가을코디'
+  intro: 최저 2도까지 내려가는 쌀쌀한 날, 포근한 니트로 여친룩 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 갑자기 추워진 날
+  - 여친룩 니트 이렇게 입더라
+theme:
+  date: '2026-10-28'
+  mood: 아이보리·더스티 핑크·애쉬 블루처럼 부드러운 톤의 포근한 여친룩
+  search_terms: {}
+  slots:
+  - category: 상의
+    desc: 보트넥·라운드넥·크롭 가디건처럼 모양이 다른 부드러운 니트 (여섯 벌 모두 니트)
+  - category: 하의
+    desc: 플리츠 미디스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 얇은 목걸이
+  title_hint: 여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트
+  type: 아이템
+  why: 최저 2도 최고 12도로 쌀쌀해져 니트 하나로 포근하게 입기 좋은 날씨
