@@ -69,6 +69,8 @@ def quality(p: Product, profile: Profile | None = None) -> float:
     if profile and profile.product_source.review_cap:
         reviews = min(reviews, profile.product_source.review_cap)
     base = (p.rating or 0) * math.log1p(reviews)
+    if profile and not profile.product_source.rank_by_reviews:
+        base = 1.0
     base *= 1.15 if p.has_flat_shot else 1.0
     if profile and is_point(p, profile):
         base *= 1.3

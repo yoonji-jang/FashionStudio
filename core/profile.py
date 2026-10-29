@@ -90,6 +90,7 @@ class ProductSourceConfig(BaseModel):
     # (price_range 최저가와 함께, 0이면 안 씀)
     cheap_percent: int = Field(default=0, ge=0, le=50)
     review_cap: int = Field(default=0, ge=0)  # 순위에 리뷰 수를 이 수까지만 반영 (0이면 제한 없음)
+    rank_by_reviews: bool = True  # false 면 평점·리뷰 수를 순위에 쓰지 않는다
 
 
 class Place(BaseModel):

@@ -104,8 +104,10 @@ themes:  # 주간 주제 정하는 기준 (매주 일요일 다음 주 7개 생�
 
 product_source:
   name: zigzag
-  min_rating: 4.5
-  min_reviews: 5          # 브랜드·디자이너 숍 상품은 리뷰가 적어서 20 → 5 (21단계, 2026-10-02)
+  # 2026-10-29 사용자: 평점·리뷰 수 제한 없앰 (순위에도 쓰지 않음)
+  min_rating: 0
+  min_reviews: 0
+  rank_by_reviews: false
   prefer_flat_shot: true
   # 상품 창고를 채울 검색어 (카테고리별). 기본 명사 대신 코디 포인트가 되는 아이템 위주 (21단계,
   # 사용자 참고 사진 기준: /mnt/project-files/styling-criteria/코디_기준.md). 주제 검색어는 Claude가 따로 더한다
@@ -130,7 +132,6 @@ product_source:
   exclude_words: [만장, 장 돌파, 장돌파, 만개, 만족, 1위, 1등, BEST, 최저가, 폭주, 누적, 재구매, 가성비]
   # 2026-10-19 사용자: 카테고리 가격대 중 하위 10~20% 는 너무 싼 상품이라 뺀다 (검색 결과 가격 기준, price_range 최저가와 함께)
   cheap_percent: 15
-  review_cap: 300         # 리뷰는 300개까지만 순위에 반영 (리뷰 수만으로 앞서지 않게)
   per_query: 10          # 검색어마다 상세까지 확인할 상품 수
   max_per_category: 150  # 카테고리별 창고 최대 보관 수 (하루 6벌이라 60 → 150, 2026-10-01)
   recheck_days: 3        # 창고 상품의 판매 상태를 다시 확인하는 주기

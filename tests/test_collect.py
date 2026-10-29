@@ -254,13 +254,17 @@ def _stored(pid: int, checked: date, **kw) -> Product:
 
 @pytest.fixture(autouse=True)
 def no_price_rules(monkeypatch):
-    """가짜 카드 가격(42,400원)이 계정의 실제 가격대에 걸리지 않게 가격대·제외어를 끈다."""
+    """가짜 카드 가격(42,400원)이 계정의 실제 가격대에 걸리지 않게 가격대·제외어를 끈다.
+    평점·리뷰 거르기와 리뷰 순위는 기능 확인용으로 켠다 (women 계정은 2026-10-29부터 끔)."""
     original = collect.load_profile
 
     def load(account, *args, **kwargs):
         profile = original(account, *args, **kwargs)
         profile.product_source.price_range = {}
         profile.product_source.exclude_words = []
+        profile.product_source.min_rating = 4.5
+        profile.product_source.min_reviews = 5
+        profile.product_source.rank_by_reviews = True
         return profile
 
     monkeypatch.setattr(collect, "load_profile", load)
@@ -397,7 +401,9 @@ def test_quality_caps_reviews_and_prefers_point_items():
     from tools.collect import fits, quality
 
     profile = load_profile("women")
-    cap = profile.product_source.review_cap
+    src = profile.product_source.model_copy(update={"review_cap": 300, "rank_by_reviews": True})
+    profile = profile.model_copy(update={"product_source": src})
+    cap = src.review_cap
     base = dict(
         source="zigzag",
         url="https://zigzag.kr/catalog/products/1",
@@ -548,3 +554,24 @@ def test_collect_stops_after_minutes_and_keeps_what_it_has(tmp_path: Path, monke
     assert source.detailed == ["1", "3"]
     assert {p.id for p in store.products()} == {"zigzag:1", "zigzag:3"}
     assert report.stopped and "2분" in report.stopped
+
+
+def test_women_has_no_rating_or_review_limit():
+    """2026-10-29 사용자: 평점·리뷰 수 제한을 없애고 순위에도 쓰지 않는다."""
+    from core.profile import load_profile
+    from tools.collect import quality
+
+    profile = load_profile("women")
+    src = profile.product_source
+    assert src.min_rating == 0 and src.min_reviews == 0
+    base = dict(
+        source="zigzag",
+        url="https://zigzag.kr/catalog/products/1",
+        shop="s",
+        category="하의",
+        price=50000,
+        image_urls=["https://img.example/a.jpg"],
+    )
+    new = Product(id="zigzag:1", name="미니 스커트", **base)
+    hit = Product(id="zigzag:2", name="미니 스커트", rating=4.9, review_count=900, **base)
+    assert quality(new, profile) == quality(hit, profile)
