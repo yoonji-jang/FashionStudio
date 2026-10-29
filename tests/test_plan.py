@@ -660,3 +660,27 @@ def test_scene_lengths_follow_worn_photos_not_default_cm(store):
     text = outfit_gen.item_size(measured, products[it.product], {}, worn=True)
     assert text.startswith("total length 40 cm;")
     assert "cm long" in outfit_gen.item_size(it, products[it.product], {})
+
+
+def test_detail_photos_join_the_item_sheet(store, tmp_path, monkeypatch):
+    """상세 본문 조각(detail_photos)은 대표 사진 뒤에 같은 상품 참고판으로 들어간다 (2026-10-29)."""
+    from tools import faces, outfit_gen
+
+    photo, piece = tmp_path / "shop.jpg", tmp_path / "piece.jpg"
+    Image.new("RGB", (40, 50), "#111111").save(photo)
+    Image.new("RGB", (40, 80), "#eeeeee").save(piece)
+    monkeypatch.setattr(feed, "fetch_photo", lambda url, dest: photo)
+    monkeypatch.setattr(faces, "hide_faces", lambda img: (img, True))
+    joined = []
+    monkeypatch.setattr(
+        outfit_gen.generate, "reference_panel", lambda shots, px: joined.append(shots) or b"x"
+    )
+    p = daily()
+    p.items[0].detail_photos = [str(piece)]
+    products = {x.id: x for x in store.products()}
+    outfit_gen.reference_panels(p, products, tmp_path / "w", {}, tmp_path)
+    assert len(joined[0]) == 2 and all(len(s) == 1 for s in joined[1:])
+
+    p.items[0].detail_photos = [str(tmp_path / "none.jpg")]
+    errors, _ = plan.check(p, load_profile("women"), store)
+    assert any("detail_photos" in e for e in errors)

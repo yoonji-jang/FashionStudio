@@ -100,6 +100,9 @@ class PlanItem(BaseModel):
     # 생성형 코디컷(outfit_image.engine: generate)에 참고로 보낼 창고 사진 번호 1~3개 (고른 색만).
     # 없으면 cutout_photo 와 photo 를 쓴다
     ref_photos: list[int] | None = Field(default=None, max_length=4)
+    # 상세 본문 이미지 조각 경로 1~3개 (tools.plan sizes 가 out/<날짜>/src/sizes/ 에 자른 것).
+    # 대표 사진만으로 핏이 안 보일 때 참고판에 더한다 (2026-10-29 "상세페이지 이미지 그대로")
+    detail_photos: list[str] | None = Field(default=None, max_length=3)
     # 생성형 코디컷용 실제 크기 (영어, 예: "about 110 cm long from shoulder to hem").
     # 없으면 cm·기본값으로 도구가 쓴다
     size: str | None = None
