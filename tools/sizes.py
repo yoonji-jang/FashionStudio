@@ -16,6 +16,7 @@ import json
 import sys
 from pathlib import Path
 
+import httpx
 from PIL import Image, ImageDraw
 
 from core.models import DailyPlan, Product
@@ -82,7 +83,8 @@ def prepare_product(product: Product, dest: Path, client=None) -> dict:
                 break
             try:
                 img = Image.open(io.BytesIO(scout.fetch_bytes(c, url)))
-            except (scout.ImageUnavailable, OSError) as e:
+            except (scout.ImageUnavailable, scout.Blocked, httpx.HTTPError, OSError) as e:
+                # 판매자 서버의 본문 이미지 한 장이 500 이어도 나머지는 받는다 (2026-10-29 run403)
                 print(f"상세 이미지를 받지 못해 건너뜀: {url} ({e})", file=sys.stderr)
                 continue
             for k, piece in enumerate(split_tall(img)):

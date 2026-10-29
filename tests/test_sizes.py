@@ -10,6 +10,7 @@ from PIL import Image
 
 from sources import zigzag
 from tests.test_plan import daily, store  # noqa: F401
+from tests.test_plan import product as product_of
 from tools import plan as plan_tool
 from tools import scout, sizes
 
@@ -109,3 +110,24 @@ def test_measure_writes_cm_and_size(tmp_path, store, monkeypatch):  # noqa: F811
     )
     assert items["zigzag:3"].size.startswith("about 102 cm long from waist to hem, 35 cm")
     assert items["zigzag:2"].cm is None and items["zigzag:2"].size is None
+
+
+def test_one_bad_detail_image_does_not_stop_the_rest(tmp_path, monkeypatch):
+    """판매자 서버의 본문 이미지 한 장이 500 이어도 나머지 조각은 만든다 (2026-10-29 run403)."""
+    buf = io.BytesIO()
+    Image.new("RGB", (100, 200), "white").save(buf, "JPEG")
+
+    def fetch(c, url):
+        if "bad" in url:
+            raise scout.Blocked("500 로 계속 막힘")
+        return buf.getvalue()
+
+    monkeypatch.setattr(scout, "fetch_page", lambda c, url: (200, "<html></html>"))
+    monkeypatch.setattr(
+        zigzag, "description_images", lambda page: ["https://x/bad", "https://x/ok"]
+    )
+    monkeypatch.setattr(zigzag, "size_lines", lambda page: [])
+    monkeypatch.setattr(scout, "fetch_bytes", fetch)
+    product = product_of(1, "아우터")
+    info = sizes.prepare_product(product, tmp_path, client=object())
+    assert list(info["pieces"]) == ["1-0"]
