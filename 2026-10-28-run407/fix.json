@@ -1,0 +1,68 @@
+{
+  "run": "2026-10-28-run403",
+  "round": 3,
+  "cover": null,
+  "fixes": [
+    {
+      "slide": 6,
+      "kind": "look",
+      "look": 6,
+      "text": "6번은 고치기 전 이미지(earlier = run400 의 6번 그림, 스타킹 없고 회색 코트를 다 여민 정면 그림)로 먼저 되돌려. 그 그림을 edit_from 으로 두고 코트만 상세페이지 상품과 똑같이 고쳐 그려줘. 핏·재질·색상·디자인 다 동일하게: 상품 사진의 코트는 검정·흰 실이 섞인 차콜 그레이 부클(지금보다 어둡고 알갱이가 굵음), 목을 감싸는 높은 깔때기 넥, 가슴 앞을 사선으로 가로지르는 목도리 같은 비대칭 플랩, 큰 단추 하나, 떨어진 어깨와 아주 큰 벌룬 소매, 짧고 박시한 기장에 밑단이 둥글게 부푼 실루엣. 상품 대표 사진 0·1번을 참고판으로 꼭 보내고, 상세 본문 조각(detail_photos)도 받아지면 더해. 얼굴·머리·포즈·치마·부츠·가방·배경은 그 그림 그대로 두고 코트만 바꿔."
+    }
+  ],
+  "slides": [
+    {
+      "no": 1,
+      "file": "01_cover.jpg",
+      "kind": "cover"
+    },
+    {
+      "no": 2,
+      "file": "02_look2.jpg",
+      "kind": "look",
+      "look": 2
+    },
+    {
+      "no": 3,
+      "file": "03_look3.jpg",
+      "kind": "look",
+      "look": 3
+    },
+    {
+      "no": 4,
+      "file": "04_look4.jpg",
+      "kind": "look",
+      "look": 4
+    },
+    {
+      "no": 5,
+      "file": "05_look5.jpg",
+      "kind": "look",
+      "look": 5
+    },
+    {
+      "no": 6,
+      "file": "06_look6.jpg",
+      "kind": "look",
+      "look": 6
+    },
+    {
+      "no": 7,
+      "file": "07_comment.jpg",
+      "kind": "comment"
+    }
+  ],
+  "cover_look": 1,
+  "candidates": "out/2026-10-28/candidates.yaml",
+  "earlier": {
+    "run": "2026-10-28-run400",
+    "looks": {
+      "1": "out/2026-10-28/earlier/looks/1/outfit/results/G_1.jpg",
+      "2": "out/2026-10-28/earlier/looks/2/outfit/results/G_1.jpg",
+      "3": "out/2026-10-28/earlier/looks/3/outfit/results/G_1.jpg",
+      "4": "out/2026-10-28/earlier/looks/4/outfit/results/G_1.jpg",
+      "5": "out/2026-10-28/earlier/looks/5/outfit/results/G_1.jpg",
+      "6": "out/2026-10-28/earlier/looks/6/outfit/results/G_1.jpg"
+    }
+  }
+}

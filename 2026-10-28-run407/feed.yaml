@@ -1,0 +1,204 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/1/outfit/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 원숄더 퍼 원피스
+  product: zigzag:167435675
+- comment: ''
+  name: 니하이 롱부츠
+  product: zigzag:114431649
+- comment: ''
+  name: 체인 미니백
+  product: zigzag:137453892
+- comment: ''
+  name: 시스루 스타킹
+  product: zigzag:161559034
+- comment: ''
+  name: 미니 귀걸이
+  product: zigzag:169325375
+- comment: ''
+  name: 터틀넥 니트원피스
+  product: zigzag:119290134
+- comment: ''
+  name: 블랙 레더 벨트
+  product: zigzag:165741644
+- comment: ''
+  name: 통굽 롱부츠
+  product: zigzag:107799679
+- comment: ''
+  name: 펜던트 목걸이
+  product: zigzag:148600384
+- comment: ''
+  name: 스트라이프 카라 니트
+  product: zigzag:167198245
+- comment: ''
+  name: 스웨이드 치마바지
+  product: zigzag:167454984
+- comment: ''
+  name: 셔링 롱부츠
+  product: zigzag:172200569
+- comment: ''
+  name: 스웨이드 숄더백
+  product: zigzag:165406385
+- comment: ''
+  name: 라운드 귀걸이
+  product: zigzag:133580915
+- comment: ''
+  name: 오프숄더 울 니트
+  product: zigzag:166033034
+- comment: ''
+  name: 코튼 끈나시
+  product: zigzag:156394404
+- comment: ''
+  name: 캔캔 리본 스커트
+  product: zigzag:148473326
+- comment: ''
+  name: 슬라우치 부츠
+  product: zigzag:171260251
+- comment: ''
+  name: 미니 토트백
+  product: zigzag:161886716
+- comment: ''
+  name: 헤일로 부클 니트
+  product: zigzag:168770375
+- comment: ''
+  name: 골지 니트 미니스커트
+  product: zigzag:132751467
+- comment: ''
+  name: 버클 롱부츠
+  product: zigzag:171985452
+- comment: ''
+  name: 보스턴 숄더백
+  product: zigzag:133826914
+- comment: ''
+  name: 와이드 레더 벨트
+  product: zigzag:148980176
+- comment: ''
+  name: 멜란지 하이넥 코트
+  product: zigzag:167155870
+- comment: ''
+  name: 코튼 캐미솔
+  product: zigzag:169072918
+- comment: ''
+  name: 블랙 미니 스커트
+  product: zigzag:167155869
+- comment: ''
+  name: 블랙 롱부츠
+  product: zigzag:146926302
+- comment: ''
+  name: 위빙 숄더백
+  product: zigzag:168305853
+- comment: ''
+  name: 링 귀걸이
+  product: zigzag:139297257
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/1/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 원숄더 퍼 원피스
+    product: zigzag:167435675
+  - comment: ''
+    name: 니하이 롱부츠
+    product: zigzag:114431649
+  - comment: ''
+    name: 체인 미니백
+    product: zigzag:137453892
+  - comment: ''
+    name: 시스루 스타킹
+    product: zigzag:161559034
+  - comment: ''
+    name: 미니 귀걸이
+    product: zigzag:169325375
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/2/kept/G_1.jpg
+  items:
+  - comment: ''
+    name: 터틀넥 니트원피스
+    product: zigzag:119290134
+  - comment: ''
+    name: 블랙 레더 벨트
+    product: zigzag:165741644
+  - comment: ''
+    name: 통굽 롱부츠
+    product: zigzag:107799679
+  - comment: ''
+    name: 체인 미니백
+    product: zigzag:137453892
+  - comment: ''
+    name: 펜던트 목걸이
+    product: zigzag:148600384
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/3/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 스트라이프 카라 니트
+    product: zigzag:167198245
+  - comment: ''
+    name: 스웨이드 치마바지
+    product: zigzag:167454984
+  - comment: ''
+    name: 셔링 롱부츠
+    product: zigzag:172200569
+  - comment: ''
+    name: 스웨이드 숄더백
+    product: zigzag:165406385
+  - comment: ''
+    name: 라운드 귀걸이
+    product: zigzag:133580915
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 오프숄더 울 니트
+    product: zigzag:166033034
+  - comment: ''
+    name: 코튼 끈나시
+    product: zigzag:156394404
+  - comment: ''
+    name: 캔캔 리본 스커트
+    product: zigzag:148473326
+  - comment: ''
+    name: 슬라우치 부츠
+    product: zigzag:171260251
+  - comment: ''
+    name: 미니 토트백
+    product: zigzag:161886716
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 헤일로 부클 니트
+    product: zigzag:168770375
+  - comment: ''
+    name: 골지 니트 미니스커트
+    product: zigzag:132751467
+  - comment: ''
+    name: 버클 롱부츠
+    product: zigzag:171985452
+  - comment: ''
+    name: 보스턴 숄더백
+    product: zigzag:133826914
+  - comment: ''
+    name: 와이드 레더 벨트
+    product: zigzag:148980176
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-10-28/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 멜란지 하이넥 코트
+    product: zigzag:167155870
+  - comment: ''
+    name: 코튼 캐미솔
+    product: zigzag:169072918
+  - comment: ''
+    name: 블랙 미니 스커트
+    product: zigzag:167155869
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:146926302
+  - comment: ''
+    name: 위빙 숄더백
+    product: zigzag:168305853
+  - comment: ''
+    name: 링 귀걸이
+    product: zigzag:139297257
+title_lines:
+- 갑자기 추워진 날
+- 여친룩 니트 이렇게 입더라

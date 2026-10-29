@@ -1,0 +1,103 @@
+account: women
+cover: out/2026-10-28/looks/4/outfit/results/G_1.jpg
+cover_look: 1
+date: '2026-10-28'
+edit_refs: []
+edit_request: Make the knit a little longer so its hem hangs lower and covers the
+  waistband area of the white skirt more; only the tiered ruffles below show. Keep
+  everything else the same.
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 보트넥 오프숄더 울 니트 (charcoal heathered off-shoulder boat neck wool knit, soft
+    fuzzy wool-blend)
+  name: 오프숄더 울 니트
+  product: zigzag:166033034
+  ref_photos:
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 5
+  desc: 화이트 코튼 끈나시 (white cotton spaghetti-strap camisole, thin straps visible at
+    the bare shoulders)
+  name: 코튼 끈나시
+  product: zigzag:156394404
+  ref_photos:
+  - 3
+  - 2
+  - 5
+  wear_with: 상의
+- color: 화이트
+  comment: ''
+  cutout_photo: 1
+  desc: 캔캔 리본 스커트 (white tiered ruffle skirt with ribbon ties, thin cotton with lace
+    trim)
+  name: 캔캔 리본 스커트
+  product: zigzag:148473326
+  ref_photos:
+  - 1
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 버클 슬라우치 부츠 (brown buckle slouch boots)
+  name: 슬라우치 부츠
+  product: zigzag:171260251
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 토트백 (black tote bag)
+  name: 미니 토트백
+  product: zigzag:161886716
+  ref_photos:
+  - 1
+looks: []
+mood: a clean fashion lookbook studio shoot in front of a plain light grey seamless
+  wall and a pale floor, soft even studio light, calm cool neutral colors, crisp sharp
+  full-body shots like an online shop model cut
+pose: leaning one shoulder lightly against the wall with a bent knee and one hand
+  resting on her hip, looking at the camera with her face fully visible, full body
+  from head to boots
+reason: 차콜 오프숄더 니트 안에 화이트 끈나시를 받쳐 끈이 어깨에 보이게 하고 캔캔 리본 미니스커트를 입은 러블리한 코디. 참고 차콜 오프숄더
+  니트/흰 캐미솔/아이보리 프릴 미니/브라운 슬라우치 부츠 → 맞춘 것 같은 종류·색 (스커트는 사용자가 고른 캔캔 리본 미니스커트). (따라 함
+  - 참고 797) [사용자 선택]
+ref_photo: tg:AgACAgUAAxkBAAII1mrh_cBCRQp9DxmWbXpVI1DjUfJvAAJTFGsbyf4RVy1gH2f6bg9-AQADAgADeQADPQQ
+requests:
+- 참고 코디컷처럼 잔머리가 많이 삐져나온 더티번 헤어 (her hair is in a messy dirty bun with many loose wispy
+  strands escaping around the face, like the reference)
+scene_image: out/2026-10-28/src/scene.jpg
+shot: model
+styling: The knit is a little longer than before, its hem covering the waist part
+  of the skirt so only the ruffle tiers show.
+text:
+  hashtags:
+  - '#니트코디'
+  - '#여친룩'
+  - '#가을니트'
+  - '#니트원피스'
+  - '#미니스커트'
+  - '#롱부츠'
+  - '#가을코디'
+  intro: 최저 2도까지 내려가는 쌀쌀한 날, 포근한 니트로 여친룩 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 갑자기 추워진 날
+  - 여친룩 니트 이렇게 입더라
+theme:
+  date: '2026-10-28'
+  mood: 아이보리·더스티 핑크·애쉬 블루처럼 부드러운 톤의 포근한 여친룩
+  search_terms: {}
+  slots:
+  - category: 상의
+    desc: 보트넥·라운드넥·크롭 가디건처럼 모양이 다른 부드러운 니트 (여섯 벌 모두 니트)
+  - category: 하의
+    desc: 플리츠 미디스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 얇은 목걸이
+  title_hint: 여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트
+  type: 아이템
+  why: 최저 2도 최고 12도로 쌀쌀해져 니트 하나로 포근하게 입기 좋은 날씨
