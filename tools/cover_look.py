@@ -316,10 +316,20 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
         check_cover(out, tg, updates, dry_run),
         check_title(out, tg, updates, dry_run),
     ]
-    if not dry_run and final_key(out) != load_final(out).get("key"):
-        # 표지·순서·제목을 바꿨으면 최종본을 통째로 다시 보낸다 (2026-10-29 사용자)
-        lines.append(send_final(out, tg, "바뀐 최종본"))
+    if not dry_run:
+        sent = load_final(out)
+        if final_key(out) != sent.get("key"):
+            # 표지·순서·제목을 바꿨으면 최종본을 통째로 다시 보낸다 (2026-10-29 사용자)
+            lines.append(send_final(out, tg, "바뀐 최종본"))
+        elif not sent.get("video") and _has_reel(out):
+            # 사진만 보내고 영상은 못 만든 최종본: 영상만 마저 보낸다
+            lines.append(send_final(out, tg, "최종본 영상", photos=False))
     return "\n".join(x for x in lines if x)
+
+
+def _has_reel(out: Path) -> bool:
+    manifest = notify.load_manifest(out)
+    return load_profile(manifest.account).reels.enabled and manifest.reels is not None
 
 
 def load_final(out: Path) -> dict:
@@ -342,7 +352,7 @@ def mark_final(out: Path, video: bool) -> None:
     (out / FINAL_RECORD).write_text(json.dumps(data), encoding="utf-8")
 
 
-def send_final(out: Path, tg, why: str = "최종본") -> str:
+def send_final(out: Path, tg, why: str = "최종본", photos: bool = True) -> str:
     """모든 슬라이드와 릴스 영상을 텔레그램으로 통째로 보낸다 (2026-10-29 사용자: "제목이나 순서
     바꿔도 최종 사진 모음, 영상 통째로 다시 보내줘. 항상 게시 전엔 최종본"). 영상은 옛 순서면
     다시 만든다. 영상을 못 만들면 사진만 보낸다."""
@@ -353,7 +363,8 @@ def send_final(out: Path, tg, why: str = "최종본") -> str:
     profile = load_profile(manifest.account)
     tag = f"[{manifest.account}] {manifest.date}"
     slides = notify.slide_paths(manifest, out)
-    tg.send_photos(slides, f"{tag} {why} · 사진 {len(slides)}장 (게시할 순서)")
+    if photos:
+        tg.send_photos(slides, f"{tag} {why} · 사진 {len(slides)}장 (게시할 순서)")
     video, note = None, ""
     if profile.reels.enabled and manifest.reels is not None:
         try:
@@ -365,7 +376,11 @@ def send_final(out: Path, tg, why: str = "최종본") -> str:
             note = f" (영상은 다시 만들지 못했어요: {e})"
         if video is not None:
             tg.send_video(video, f"{tag} {why} · 릴스 영상")
+        elif photos:
+            tg.send(f"{tag} 영상은 아직 못 만들었어요. 다음 확인 때 영상만 다시 보내요{note}")
     mark_final(out, video is not None)
+    if not photos:
+        return f"{tag} {why}을 보냄" if video else f"{tag} {why}을 못 만듦{note}"
     return f"{tag} {why}을 보냄 (사진 {len(slides)}장{', 영상' if video else ''}){note}"
 
 
