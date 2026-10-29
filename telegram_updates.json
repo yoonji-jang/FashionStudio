@@ -961,5 +961,40 @@
    "caption": "",
    "media_group_id": "14345971078761533"
   }
+ },
+ {
+  "update_id": 428675929,
+  "message": {
+   "message_id": 2325,
+   "date": 1793257808,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIJFWri8VAyh1E-IWtAqfmI1UZevqqyAAKPE2sbyf4ZVz2xmgIjPn7fAQADAgADeQADPQQ",
+   "caption": "얼굴"
+  }
+ },
+ {
+  "update_id": 428675930,
+  "message": {
+   "message_id": 2326,
+   "date": 1793258000,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "/draw 1 시스루 스타킹 신게 그려줘. 머리는 풍성하고 굵은 웨이브로 그려줘. \n/draw 3 모자 그려줘 \n/draw 5 참고코디컷처럼 잔머리가 많이 삐져나온 더티번 헤어로 그려줘."
+  }
+ },
+ {
+  "update_id": 428675931,
+  "message": {
+   "message_id": 2327,
+   "date": 1793258028,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "1,2,3,5,7,8"
+  }
  }
 ]
