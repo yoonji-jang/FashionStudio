@@ -14,8 +14,8 @@ slots, reuse_cooldown_days, max_per_shop), `style`, `product_source` (min_rating
 python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 아우터
 python -m tools.plan candidates --account $ACCOUNT --date $DATE --category 상의 --query "코튼 셔츠"
 ```
-판매 중, 평점·리뷰 기준 이상, 가격대·제외어(profile `product_source`)에 맞고 최근에 쓰지 않은 상품만 나온다.
-순서는 포인트 아이템(이름에 profile `style.point_words`)이 앞이고, 리뷰 수는 `review_cap` 까지만 센다.
+판매 중, 평점·리뷰 기준 이상(profile 값, 0이면 제한 없음), 가격대·제외어(profile `product_source`)에 맞고 최근에 쓰지 않은 상품만 나온다.
+순서는 포인트 아이템(이름에 profile `style.point_words`)이 앞이고, 리뷰 수는 `review_cap` 까지만 센다 (`rank_by_reviews: false` 면 평점·리뷰 수는 순위에 쓰지 않는다).
 앞쪽만 보지 말고 `--query` 로 styling.md 의 포인트 아이템(스웨이드, 레이스, 체크, 쁘띠 스카프 …)을 찾아본다.
 각 줄: `id | 카테고리 | 짧은 이름 | 쇼핑몰 | 가격 | 평점(리뷰) | 단독컷/모델컷 | 스타일 | 검색어 | 원문`.
 
