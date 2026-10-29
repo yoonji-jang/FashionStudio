@@ -71,7 +71,8 @@ def og_image(page_html: str) -> str | None:
 
 def _is_image_host(url: str) -> bool:
     host = urlsplit(url).hostname or ""
-    return "image" in host or url.lower().split("?")[0].endswith((".jpg", ".jpeg", ".png", ".webp"))
+    path = url.lower().split("?")[0]
+    return "image" in host or path.endswith((".jpg", ".jpeg", ".png", ".webp", ".gif"))
 
 
 def _wait_turn(url: str, sleep: Callable[[float], None] = time.sleep) -> None:
