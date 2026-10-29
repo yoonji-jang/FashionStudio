@@ -1,0 +1,107 @@
+account: women
+cover: out/2026-10-28/looks/6/outfit/results/G_1.jpg
+date: '2026-10-28'
+edit_refs: []
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 1
+  desc: 멜란지 그레이 하이넥 코트 (melange gray high-funnel-neck coat, thick fluffy heathered
+    boucle wool)
+  name: 멜란지 하이넥 코트
+  product: zigzag:167155870
+  ref_photos:
+  - 1
+  - 0
+- color: 화이트
+  comment: ''
+  cutout_photo: 4
+  desc: 화이트 탱크 캐미솔 (white ribbed cotton cami tank with a scoop neck)
+  name: 코튼 캐미솔
+  product: zigzag:169072918
+  ref_photos:
+  - 4
+  - 2
+  - 0
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 1
+  desc: 블랙 스커트 (black smooth straight skirt)
+  name: 블랙 미니 스커트
+  product: zigzag:167155869
+  ref_photos:
+  - 1
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 롱부츠 (black boots)
+  name: 블랙 롱부츠
+  product: zigzag:146926302
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 위빙 숄더백 (black woven glossy leather shoulder bag)
+  name: 위빙 숄더백
+  product: zigzag:168305853
+  ref_photos:
+  - 1
+  - 0
+  - 2
+- color: 실버
+  comment: ''
+  cutout_photo: 5
+  desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings)
+  name: 링 귀걸이
+  product: zigzag:139297257
+  ref_photos:
+  - 0
+  - 5
+  slot: 귀걸이
+looks: []
+mood: a clean fashion lookbook studio shoot in front of a plain light grey seamless
+  wall and a pale floor, soft even studio light, calm cool neutral colors, crisp sharp
+  full-body shots like an online shop model cut
+pose: standing in a relaxed three-quarter turn with her weight on one leg, glancing
+  back toward the camera over her shoulder with her face visible, long loose waves
+  falling over her shoulders, full body from head to boots
+reason: 멜란지 그레이 하이넥 코트가 주인공, 블랙 미니스커트와 블랙 롱부츠로 단정하게 입은 코디. 참고 그레이 하이넥 니트/블랙 데님 미니/양털
+  롱부츠 → 맞춘 것 같은 종류 (데님은 다크그레이 워싱, 양털 부츠 대신 블랙 롱부츠, 귀걸이는 더함). (따라 함 - 참고 800) [사용자
+  선택]
+ref_photo: tg:AgACAgUAAxkBAAII2Wrh_cAuLf2PyImoIBk_H1bAwDK7AAJWFGsbyf4RV1XFF9cf9eNPAQADAgADeQADPQQ
+requests: []
+scene_image: out/2026-10-28/src/scene_3.jpg
+shot: model
+text:
+  hashtags:
+  - '#니트코디'
+  - '#여친룩'
+  - '#가을니트'
+  - '#니트원피스'
+  - '#미니스커트'
+  - '#롱부츠'
+  - '#가을코디'
+  intro: 최저 2도까지 내려가는 쌀쌀한 날, 포근한 니트로 여친룩 입어 보세요 🍂
+  points: []
+  title_lines:
+  - 갑자기 추워진 날
+  - 여친룩 니트 이렇게 입더라
+theme:
+  date: '2026-10-28'
+  mood: 아이보리·더스티 핑크·애쉬 블루처럼 부드러운 톤의 포근한 여친룩
+  search_terms: {}
+  slots:
+  - category: 상의
+    desc: 보트넥·라운드넥·크롭 가디건처럼 모양이 다른 부드러운 니트 (여섯 벌 모두 니트)
+  - category: 하의
+    desc: 플리츠 미디스커트
+  - category: 가방
+    desc: 미니 숄더백
+  - category: 신발
+    desc: 메리제인
+  - category: 소품
+    desc: 얇은 목걸이
+  title_hint: 여친룩 니트 코디, 포근하고 단정하게 입는 가을 니트
+  type: 아이템
+  why: 최저 2도 최고 12도로 쌀쌀해져 니트 하나로 포근하게 입기 좋은 날씨
