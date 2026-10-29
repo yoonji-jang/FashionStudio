@@ -1,0 +1,16 @@
+{
+  "spec": "experiments/face_1029/m1.yaml",
+  "started": "2026-10-29T04:31:07",
+  "results": [
+    {
+      "model": "nano_banana_pro",
+      "shot": "person",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.14244,
+      "file": "nano_banana_pro/person_1.jpg",
+      "sec": 25.2
+    }
+  ],
+  "finished": "2026-10-29T04:31:32"
+}
