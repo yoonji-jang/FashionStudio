@@ -573,6 +573,17 @@ KIND_WORDS: dict[Category, list[str]] = {
     "신발": "부츠 로퍼 힐 스니커즈 구두 슈즈 플랫 샌들 뮬 워커 메리제인 부티 슬리퍼".split(),
     "가방": "가방 백 토트 파우치".split(),
 }
+# 영어 이름 상품 (2026-10-29 "CanCan Ribbon Mini Skirt" 가 소품으로 들어감). 소문자로 비교
+KIND_WORDS_EN: dict[Category, list[str]] = {
+    "아우터": "coat jacket jumper padding mustang cardigan blazer zip-up trench cape outer".split(),
+    "상의": (
+        "knit tee t-shirt shirt blouse sweatshirt hoodie top sleeveless vest sweater turtleneck"
+    ).split(),
+    "하의": "skirt pants trousers slacks denim jeans leggings shorts".split(),
+    "원피스": "dress onepiece one-piece".split(),
+    "신발": "boots loafer heel sneakers shoes flat sandal mule walker maryjane slipper".split(),
+    "가방": "bag tote pouch".split(),
+}
 TEXT_KINDS: dict[str, Category] = {
     "아우터": "아우터",
     "외투": "아우터",
@@ -582,6 +593,7 @@ TEXT_KINDS: dict[str, Category] = {
     "원피스": "원피스",
     "신발": "신발",
     "가방": "가방",
+    **{w: cat for cat, words in KIND_WORDS.items() for w in words if len(w) > 1},
     "모자": "소품",
     "양말": "소품",
     "스타킹": "소품",
@@ -594,9 +606,10 @@ TEXT_KINDS: dict[str, Category] = {
 def guess_category(name: str, hint: str = "") -> Category:
     """상품 이름(없으면 사람이 쓴 말 hint)으로 종류를 짐작한다. 모르면 소품."""
     best: tuple[int, Category] | None = None
-    for cat, words in KIND_WORDS.items():
+    lower = name.lower()
+    for cat, words in [*KIND_WORDS.items(), *KIND_WORDS_EN.items()]:
         for w in words:
-            at = name.rfind(w)
+            at = lower.rfind(w)
             if at >= 0 and (best is None or at + len(w) > best[0]):
                 best = (at + len(w), cat)
     if best:
