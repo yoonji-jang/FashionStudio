@@ -1,0 +1,34 @@
+{
+  "run": "2026-10-28-run387",
+  "fixes": [
+    {
+      "update_id": 428675923,
+      "looks": [
+        5
+      ],
+      "text": "https://zigzag.kr/catalog/products/148473326 치마 이거로 변경해",
+      "products": [
+        {
+          "id": "zigzag:148473326",
+          "category": "소품",
+          "name": "CanCan Ribbon Mini Skirt [2color]"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675923,
+      "looks": [
+        8
+      ],
+      "text": "https://s.zigzag.kr/abr/ZA7tPhkRaX 이거로 부츠 변경해",
+      "products": [],
+      "link_errors": [
+        {
+          "url": "https://s.zigzag.kr/abr/ZA7tPhkRaX",
+          "why": "판매 중인 상품 페이지로 읽히지 않아요"
+        }
+      ]
+    }
+  ]
+}
