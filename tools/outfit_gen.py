@@ -207,9 +207,13 @@ def build_prompt(
         # 장면 모델컷 (profile flow): 사용자가 보낸 장면 사진 1장의 무드로,
         # 벌마다 자리·포즈만 다르게
         # 얼굴 참고를 받았으면 그 특징의 얼굴을 보이게, 아니면 얼굴을 가린다 (2026-10-26 사용자)
+        # 계정 얼굴 사진(텔레그램 "얼굴")이 있으면 그 얼굴 그대로, 얼굴 보이게 (2026-10-29 사용자)
+        face = (plan.face or "").strip().rstrip(".")
         person = (
-            render_prompt("scene_face_shown", face=plan.face.strip().rstrip("."))
-            if plan.face
+            render_prompt("scene_face_ref", face=f"{face}." if face else "")
+            if face_path(plan)
+            else render_prompt("scene_face_shown", face=face)
+            if face
             else render_prompt("scene_face_hidden")
         )
         return render_prompt(
@@ -491,6 +495,32 @@ def scene_panel(plan: DailyPlan) -> bytes | None:
     return buf.getvalue()
 
 
+def face_path(plan: DailyPlan) -> Path | None:
+    """계정 얼굴 사진 (daily.yml 이 장면 사진 옆 src/face.jpg 에 둠).
+    2026-10-29 사용자: 모든 코디컷을 같은 얼굴로."""
+    if not plan.scene_image or plan.shot != "model":
+        return None
+    path = REPO_ROOT / Path(plan.scene_image).parent / "face.jpg"
+    return path if path.exists() else None
+
+
+def face_panel(plan: DailyPlan) -> bytes | None:
+    path = face_path(plan)
+    if path is None:
+        return None
+    img = Image.open(path).convert("RGB")
+    img.thumbnail((1024, 1024))
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=92)
+    return buf.getvalue()
+
+
+FACE_EDIT = (
+    "The last attached image is the face photo of this model: keep her face exactly like it "
+    "(same face shape, eyes and eye makeup, nose, lips), clearly visible."
+)
+
+
 def edit_ref_panels(plan: DailyPlan) -> list[bytes]:
     """/fix 에 붙여 보낸 참고 사진 (plan.edit_refs, 저장소 기준 경로). 없는 파일은 뺀다."""
     out = []
@@ -548,6 +578,10 @@ def make_candidates(
         refs = edit_ref_panels(plan)
         panels = [base, *panels, *([worn] if worn else []), *refs]
         prompt = edit_prompt(plan, products, cfg, worn=bool(worn), refs=len(refs))
+        face = face_panel(plan)
+        if face:
+            panels.append(face)
+            prompt = f"{prompt.rstrip()}\n{FACE_EDIT}\n"
     else:
         worn = worn_ref_panel(plan, profile, generate.CACHE_DIR / plan.account)
         scene = scene_panel(plan)
@@ -564,8 +598,10 @@ def make_candidates(
             (work / "originals" / "scene.jpg").write_bytes(scene)
             if worn:
                 (work / "originals" / "worn_ref.jpg").write_bytes(worn)
-            # 기준 코디 사진을 맨 앞에 (상품 사진 속 입은 모양보다 먼저 보게)
-            panels = [*([worn] if worn else []), *panels, scene]
+            # 기준 코디 사진을 맨 앞에 (상품 사진 속 입은 모양보다 먼저 보게),
+            # 얼굴 사진은 장면 사진 바로 앞 (prompts/scene_face_ref.md)
+            face = face_panel(plan)
+            panels = [*([worn] if worn else []), *panels, *([face] if face else []), scene]
         elif worn:
             (work / "originals").mkdir(parents=True, exist_ok=True)
             (work / "originals" / "worn_ref.jpg").write_bytes(worn)
