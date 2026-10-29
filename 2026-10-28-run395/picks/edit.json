@@ -1,0 +1,20 @@
+{
+  "run": "2026-10-28-run387",
+  "fixes": [
+    {
+      "update_id": 428675923,
+      "looks": [
+        5
+      ],
+      "text": "https://zigzag.kr/catalog/products/148473326 치마 이거로 변경해",
+      "products": [
+        {
+          "id": "zigzag:148473326",
+          "category": "하의",
+          "name": "CanCan Ribbon Mini Skirt [2color]"
+        }
+      ],
+      "link_errors": []
+    }
+  ]
+}
