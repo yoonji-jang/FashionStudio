@@ -149,7 +149,9 @@ looks:
 ## 후보 고치기 (daily mode=edit)
 사람이 후보를 보고 "/fix 1 이너를 나그랑티가 아닌 나시로" 처럼 한 벌의 일부만 바꿔 달라고 하면 이 절만 한다.
 `out/$DATE/picks/p1.yaml` 이 지난 후보 그대로 있고, `out/$DATE/picks/edit.json` 의 `fixes` 에
-`looks`(벌 번호)와 `text`(사람이 쓴 말)가 있다.
+`looks`(벌 번호)와 `text`(사람이 쓴 말), `draw` 가 있다.
+`draw: true` 는 텔레그램 `/draw` 로 온 **그리기 요청**이다 (2026-10-29 사용자: "/fix 는 상품 바꾸기, /draw 는 그리기").
+이때는 상품을 하나도 바꾸지 않고 아래 "그리기 요청" 처럼 그 벌 `requests` 에만 넣는다 (상품 이름이 들어 있어도).
 
 1. `accounts/$ACCOUNT/profile.yaml`, `styling.md` 를 읽고 p1.yaml 과 edit.json 을 읽는다.
 2. 적힌 벌만 **말한 부분만** 바꾼다. 나머지 아이템, 다른 벌, 벌 순서, `theme`, 전체 `reason` 은 그대로 둔다

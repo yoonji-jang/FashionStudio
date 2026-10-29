@@ -706,8 +706,10 @@ def test_find_edits_reads_look_number_or_replied_sheet():
         upd(7, "/fix 1 이너를 나시로", to=999),  # 봇의 다른 메시지에 답장
         upd(8, "/fix 4목에 얇은 스카프"),  # 번호 뒤 띄어쓰기 없음
         upd(9, "/fix 3번은 그대로, 신발만"),
+        upd(10, "/fix 3 부츠 롱부츠로 변경\n/draw 3 걷는포즈"),
     ]
     found = pick.find_edits(ups, r, CHAT)
+    assert [e["draw"] for e in found] == [False] * 8 + [True]
     assert [(e["update_id"], e["looks"], e["text"]) for e in found] == [
         (1, [1], "이너를 나그랑티가 아닌 나시로 변경"),
         (2, [1, 3], "더 밝은 색으로"),
@@ -716,6 +718,8 @@ def test_find_edits_reads_look_number_or_replied_sheet():
         (5, [], "이너를 나시로"),
         (8, [4], "목에 얇은 스카프"),
         (9, [3], "그대로, 신발만"),
+        (10, [3], "부츠 롱부츠로 변경"),
+        (10, [3], "걷는포즈"),
     ]
 
 
@@ -750,7 +754,9 @@ def test_candidate_fix_edits_one_look_then_pick_continues(tmp_path, store):
     tg = EditTg(["1 3 5 7 8", "/fix 1 이너를 나그랑티가 아닌 나시로"])
     act = pick.check(profile, DAY, results, tg, False, 200, datetime.fromtimestamp(2000))
     assert act.action == "edit" and act.run == run.name
-    assert act.fixes == [{"update_id": 2, "looks": [1], "text": "이너를 나그랑티가 아닌 나시로"}]
+    assert act.fixes == [
+        {"update_id": 2, "looks": [1], "text": "이너를 나그랑티가 아닌 나시로", "draw": False}
+    ]
     assert "1번 벌을 고치고 있어요" in tg.sent[-1]
     assert not (run / "picks" / "picked.json").exists()
     # 고치는 중에는 고르기를 미룬다

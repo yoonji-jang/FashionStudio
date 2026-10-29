@@ -316,6 +316,7 @@ def looks_text(
             "  보낸 순서대로 놓이고 첫 번호가 표지(LOOK 1)예요. 예: 3 4 2 5 1 6 → 3번이 표지"
         )
     lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
+    lines.append('• 상품 말고 그릴 것만 더하려면 "/draw 1 걷는 포즈, 선글라스" → 그릴 때 반영해요')
     if round_ <= rules.max_again:
         lines.append(
             '• 다 별로면 "다시" → 새 후보를 보내요 (요청도 붙일 수 있어요: "다시. 외투 없이도")'
@@ -451,8 +452,9 @@ def send(
 
 
 def find_edits(updates: list[dict], record: PickRecord, chat_id: str) -> list[dict]:
-    """후보를 보낸 뒤 온 /fix (update_id 순): {update_id, looks: [벌 번호], text}.
+    """후보를 보낸 뒤 온 /fix·/draw (update_id 순): {update_id, looks: [벌 번호], text, draw}.
     "/fix 1 이너를 나시로", "/fix 1,3 …", 벌 시트에 답장한 "/fix 이너를 나시로" 를 읽는다.
+    /draw 는 상품을 바꾸지 않는 그리기 요청만 (draw: true, 2026-10-29 "/draw 3 걷는 포즈").
     번호를 못 읽으면 looks 가 비어 있다. 계정·날짜 없이 봇의 다른 메시지에 답장한 글은 뺀다."""
     found = []
     for u in sorted(updates, key=lambda u: u["update_id"]):
@@ -462,10 +464,10 @@ def find_edits(updates: list[dict], record: PickRecord, chat_id: str) -> list[di
         if msg.get("date", 0) < record.sent_at:
             continue
         reply_to = (msg.get("reply_to_message") or {}).get("message_id")
-        # 한 메시지에 줄을 바꿔 /fix 를 여러 개 적으면 하나씩 따로 읽는다
-        for part in re.split(r"\n(?=\s*/fix\b)", msg.get("text") or ""):
+        # 한 메시지에 줄을 바꿔 /fix·/draw 를 여러 개 적으면 하나씩 따로 읽는다
+        for part in re.split(r"\n(?=\s*/(?:fix|draw)\b)", msg.get("text") or ""):
             cmd = notify.parse(part, record.account, record.date)
-            if cmd is None or cmd.name != "fix":
+            if cmd is None or cmd.name not in ("fix", "draw"):
                 continue
             if not cmd.labeled and reply_to and reply_to not in record.message_ids:
                 continue
@@ -484,7 +486,12 @@ def find_edits(updates: list[dict], record: PickRecord, chat_id: str) -> list[di
             text = " ".join(words).strip()
             if text:
                 found.append(
-                    {"update_id": u["update_id"], "looks": list(dict.fromkeys(nums)), "text": text}
+                    {
+                        "update_id": u["update_id"],
+                        "looks": list(dict.fromkeys(nums)),
+                        "text": text,
+                        "draw": cmd.name == "draw",
+                    }
                 )
     return found
 
@@ -515,7 +522,8 @@ def edit_request(
     for e in new:
         wrong = [n for n in e["looks"] if not 1 <= n <= record.count]
         if not e["looks"]:
-            bad.append(e | {"why": '고칠 벌 번호를 같이 보내 주세요 (예: "/fix 1 이너를 나시로").'})
+            why = '벌 번호를 같이 보내 주세요 (예: "/fix 1 이너를 나시로", "/draw 1 걷는 포즈").'
+            bad.append(e | {"why": why})
         elif wrong:
             nums = ", ".join(map(str, wrong))
             bad.append(e | {"why": f"{nums}번 벌은 없어요 (1~{record.count}번)."})
