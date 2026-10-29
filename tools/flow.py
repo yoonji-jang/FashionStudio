@@ -369,6 +369,7 @@ def scene_photos(
         for uid, _ in ref_photos(updates, chat_id, 0)
         if refs_until is None or dates.get(uid, 0) <= refs_until
     }
+    refs |= {uid for uid, _ in face_photos(updates, chat_id, 0)}  # 얼굴 사진도 장면이 아니다
     photos: list[ScenePhoto] = []
     for u in updates:
         msg = u.get("message") or {}
@@ -398,7 +399,18 @@ REF_CAPTION = re.compile(r"^\s*참고")
 REF_GAP = 180
 
 
-def ref_photos(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, str]]:
+FACE_CAPTION = re.compile(r"^\s*얼굴")
+
+
+def face_photos(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, str]]:
+    """since 뒤 설명이 "얼굴" 로 시작하는 사진 묶음 (update_id, 파일 번호).
+    2026-10-29 사용자: 모델 얼굴을 통일하려고 참고할 얼굴 사진을 보낸다. 장면·참고 코디가 아니다."""
+    return ref_photos(updates, chat_id, since, FACE_CAPTION)
+
+
+def ref_photos(
+    updates: list[dict], chat_id: str, since: int, caption_re: re.Pattern = REF_CAPTION
+) -> list[tuple[int, str]]:
     """since 뒤 온 참고 코디 사진 (update_id, 파일 번호).
     2026-10-26 사용자: 참고 묶음이 마음에 안 들면 따라 할 코디 사진을 직접 보낸다.
     장면 사진과 나누려고 사진 설명이 "참고" 로 시작하는 것만
@@ -414,7 +426,7 @@ def ref_photos(updates: list[dict], chat_id: str, since: int) -> list[tuple[int,
         fid = notify.photo_file_id(msg)
         if fid:
             caption = msg.get("caption") or ""
-            ref = bool(REF_CAPTION.match(caption))
+            ref = bool(caption_re.match(caption))
             found.append(
                 (u["update_id"], fid, str(msg.get("media_group_id") or ""), ref, caption,
                  msg.get("date", 0))
