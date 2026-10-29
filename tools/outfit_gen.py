@@ -368,6 +368,12 @@ def reference_panels(
             buf = io.BytesIO()
             img.save(buf, "JPEG", quality=92)
             shots.append(buf.getvalue())
+        for d in it.detail_photos or []:
+            # 상세 본문 조각: 입은 핏을 보여 주는 사진이라 얼굴을 못 가려도 그대로 쓴다
+            img, _ = faces.hide_faces(Image.open(d).convert("RGB"))
+            buf = io.BytesIO()
+            img.save(buf, "JPEG", quality=92)
+            shots.append(buf.getvalue())
         if not shots:
             # 고른 사진이 모두 얼굴을 못 잘라 내면 원본을 쓴다 (10-14 사용자: 얼굴 사진 괜찮음)
             k = ref_indexes(it)[0]

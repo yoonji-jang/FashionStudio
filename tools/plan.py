@@ -477,6 +477,9 @@ def check(
         bad = [k for k in it.ref_photos or [] if not 0 <= k < len(p.image_urls)]
         if bad:
             errors.append(f"{label}: ref_photos {bad} 번 사진이 없습니다 ({len(p.image_urls)}장)")
+        gone = [d for d in it.detail_photos or [] if not Path(d).exists()]
+        if gone:
+            errors.append(f"{label}: detail_photos 파일이 없습니다 {gone}")
         if it.slot and it.slot not in layout_slots:
             errors.append(f"{label}: slot '{it.slot}' 은 config/layout.yaml 에 없습니다")
         if it.method and it.method not in get_args(photoroom.CutoutMethod):
