@@ -120,6 +120,7 @@ class FlowState(BaseModel):
     # 옮겨 적고 수집한 뒤 이 사진들로 후보를 만든다
     user_refs: list[str] = []
     rules_upto: int = 0  # 규칙 고치기 요청(/fix 규칙 …)을 여기(update_id)까지 처리했다
+    face_update: int = 0  # 얼굴 사진(설명 "얼굴")을 여기(update_id)까지 받았다
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -462,10 +463,13 @@ def tick(
     st = load_state(results, account)
     done: list[str] = []
     try:
-        line = _rules_fix(profile, st, tg, send, now, dry_run)
-        if line:
-            done.append(line)
-            st.note(now, line)
+        for line in (
+            _rules_fix(profile, st, tg, send, now, dry_run),
+            _face(st, results, tg, dry_run),
+        ):
+            if line:
+                done.append(line)
+                st.note(now, line)
         for _ in range(4):
             before = st.stage
             line = _step(profile, store, st, results, tg, send, now, dry_run)
@@ -483,6 +487,41 @@ def tick(
 
 
 ROUND_WF = "feedback-round.yml"  # 피드백 반영 단계 워크플로 (step plan·apply·revise·merge)
+
+
+FACE_MAX = 2  # 얼굴 사진은 최근 묶음에서 이만큼 (앞모습 하나면 충분)
+
+
+def _face(st: FlowState, results: Path, tg, dry_run: bool) -> str:
+    """새로 온 얼굴 사진 묶음을 flow/<계정>/face.jpg (face_2.jpg) 로 받는다. 어느 단계에서나.
+    계정에 하나라 새로 보낼 때까지 모든 주제에 쓴다 (daily.yml 이 장면 사진 옆에 둠).
+    2026-10-29 사용자: 직접 만든 얼굴로 모든 코디컷을 같은 얼굴로."""
+    if tg is None:
+        return ""
+    new = [(u, f) for u, f in face_photos(tg.updates(), tg.chat_id, 0) if u > st.face_update]
+    if not new:
+        return ""
+    # 마지막 묶음만 (따로 다시 보낸 묶음이 앞 묶음을 바꾼다)
+    dates = {u.get("update_id"): u.get("message") or {} for u in tg.updates()}
+    last = dates.get(new[-1][0], {})
+    group, at = last.get("media_group_id"), last.get("date", 0)
+    batch = [
+        (u, f)
+        for u, f in new
+        if (group and dates.get(u, {}).get("media_group_id") == group)
+        or abs(dates.get(u, {}).get("date", 0) - at) <= REF_GAP
+    ][:FACE_MAX]
+    folder = f"flow/{st.account}"
+    if not dry_run:
+        for old in (results / folder).glob("face*.jpg"):
+            old.unlink()
+        for i, (_, fid) in enumerate(batch):
+            tg.download(fid, results / folder / ("face.jpg" if i == 0 else f"face_{i + 1}.jpg"))
+        tg.send(
+            f"[{st.account}] 얼굴 사진 {len(batch)}장을 받았어요. 다음 코디컷부터 이 얼굴로 그려요"
+        )
+    st.face_update = new[-1][0]
+    return f"얼굴 사진 {len(batch)}장 받음"
 
 
 def _rules_fix(profile: Profile, st: FlowState, tg, send, now: datetime, dry_run: bool) -> str:

@@ -210,6 +210,9 @@ jobs:
                 git show "origin/daily-results:$f" > "out/$DATE/src/$(basename "$f")"
                 scenes="$scenes out/$DATE/src/$(basename "$f")"
               done
+              # 계정 얼굴 사진 (텔레그램 "얼굴", 2026-10-29 사용자: 모든 코디컷 같은 얼굴). tools.outfit_gen 이 장면 옆 face.jpg 를 쓴다
+              git show "origin/daily-results:flow/$ACCOUNT/face.jpg" > "out/$DATE/src/face.jpg" 2>/dev/null \
+                || rm -f "out/$DATE/src/face.jpg"
               echo "SCENE=out/$DATE/src/scene.jpg" >> "$GITHUB_ENV"
               echo "SCENES=$scenes" >> "$GITHUB_ENV"
             else

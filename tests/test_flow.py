@@ -272,6 +272,29 @@ def test_scene_prompt(tmp_path):
     text = outfit_gen.build_prompt(face, products, profile, generate.load_config())
     assert "full lips. Her face is small and slim" in text and "barely visible" not in text
     assert "$" not in text
+    # 2026-10-29 사용자: 계정 얼굴 사진(장면 옆 face.jpg)이 있으면 그 얼굴 그대로
+    src = tmp_path / "src"
+    src.mkdir()
+    (src / "face.jpg").write_bytes(b"x")
+    withface = plan.model_copy(update={"scene_image": str(src / "scene.jpg")})
+    assert outfit_gen.face_path(withface) == src / "face.jpg"
+    text = outfit_gen.build_prompt(withface, products, profile, generate.load_config())
+    assert "FACE PHOTO" in text and "barely visible" not in text and "$" not in text
+    assert outfit_gen.face_path(plan) is None
+
+
+def test_face_photos_saved_for_account(tmp_path):
+    # 2026-10-29 사용자: "얼굴" 사진은 어느 단계에서나 계정 얼굴로 받는다
+    # (마지막 묶음이 앞 묶음을 바꾼다)
+    tg = FakeTg()
+    tg.photo(1, "old_a", T0, caption="얼굴")
+    tg.photo(2, "old_b", T0 + 5)
+    tg.photo(3, "scene", T0 + 1000)
+    tg.photo(4, "new", T0 + 2000, caption="얼굴")
+    st = flow.FlowState(account="women", stage="pick_wait")
+    assert flow._face(st, tmp_path, tg, False) == "얼굴 사진 1장 받음"
+    assert tg.got == ["new"] and (tmp_path / "flow/women/face.jpg").exists()
+    assert st.face_update == 4 and flow._face(st, tmp_path, tg, False) == ""
 
 
 def test_preview_ok_publishes_now(env, monkeypatch, tmp_path):
