@@ -29,6 +29,7 @@ schedule 매시 확인(links 칸)과 게시(tools.publish) 직전에 부른다.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import sys
@@ -46,6 +47,9 @@ ORDER_RECORD = "order.json"  # 처리한 벌 순서 바꾸기 (결과 폴더)
 # 처리한 표지 제목 바꾸기 (결과 폴더). schedule.yml 은 고치면 실행마다 승인 대기에 걸려서
 # 이미 커밋하는 picks/** 아래에 둔다 (2026-10-28)
 TITLE_RECORD = "picks/title.json"
+# 텔레그램으로 보낸 최종본(모든 슬라이드 + 릴스 영상)의 지문 (2026-10-29 사용자가 받아 씀).
+# schedule 이 커밋하는 picks/ 아래에 둔다
+FINAL_RECORD = "picks/final.json"
 DROPPED_DIR = "looks_dropped"  # 순서 바꾸기에서 뺀 벌 폴더
 
 
@@ -312,7 +316,57 @@ def check(out: Path, tg, updates: list[dict] | None = None, dry_run: bool = Fals
         check_cover(out, tg, updates, dry_run),
         check_title(out, tg, updates, dry_run),
     ]
+    if not dry_run and final_key(out) != load_final(out).get("key"):
+        # 표지·순서·제목을 바꿨으면 최종본을 통째로 다시 보낸다 (2026-10-29 사용자)
+        lines.append(send_final(out, tg, "바뀐 최종본"))
     return "\n".join(x for x in lines if x)
+
+
+def load_final(out: Path) -> dict:
+    f = out / FINAL_RECORD
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+
+
+def final_key(out: Path) -> str:
+    """지금 슬라이드·캡션의 지문. 보낸 최종본과 같으면 다시 보내지 않는다."""
+    manifest = notify.load_manifest(out)
+    h = hashlib.sha1(notify.full_caption(manifest).encode())
+    for path in notify.slide_paths(manifest, out):
+        h.update(path.read_bytes())
+    return h.hexdigest()
+
+
+def mark_final(out: Path, video: bool) -> None:
+    data = {"key": final_key(out), "video": video, "at": int(time.time())}
+    (out / FINAL_RECORD).parent.mkdir(parents=True, exist_ok=True)
+    (out / FINAL_RECORD).write_text(json.dumps(data), encoding="utf-8")
+
+
+def send_final(out: Path, tg, why: str = "최종본") -> str:
+    """모든 슬라이드와 릴스 영상을 텔레그램으로 통째로 보낸다 (2026-10-29 사용자: "제목이나 순서
+    바꿔도 최종 사진 모음, 영상 통째로 다시 보내줘. 항상 게시 전엔 최종본"). 영상은 옛 순서면
+    다시 만든다. 영상을 못 만들면 사진만 보낸다."""
+    from core.store import Store
+    from tools import publish, reels
+
+    manifest = notify.load_manifest(out)
+    profile = load_profile(manifest.account)
+    tag = f"[{manifest.account}] {manifest.date}"
+    slides = notify.slide_paths(manifest, out)
+    tg.send_photos(slides, f"{tag} {why} · 사진 {len(slides)}장 (게시할 순서)")
+    video, note = None, ""
+    if profile.reels.enabled and manifest.reels is not None:
+        try:
+            if reel_stale(out):
+                publish.rebuild_reel(out, profile, Store(manifest.account), tag)
+                manifest = notify.load_manifest(out)
+            video = reels.video_path(manifest, out)
+        except (RuntimeError, ValueError, FileNotFoundError) as e:
+            note = f" (영상은 다시 만들지 못했어요: {e})"
+        if video is not None:
+            tg.send_video(video, f"{tag} {why} · 릴스 영상")
+    mark_final(out, video is not None)
+    return f"{tag} {why}을 보냄 (사진 {len(slides)}장{', 영상' if video else ''}){note}"
 
 
 def check_order(out: Path, tg, updates: list[dict], dry_run: bool = False) -> str:
@@ -404,6 +458,7 @@ def check_title(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
         return f"{tag} 표지 제목을 '{shown}' 으로 바꿀 예정 (시험)"
     approved = notify.approval_now(out, record, profile, updates, tg.chat_id) == "ok"
     stale = bool(load_title(out).get("reel_stale"))
+    before = notify.load_manifest(out).title_lines
     try:
         made = retitle(out, lines, profile)
     except (ValueError, FileNotFoundError) as e:
@@ -411,10 +466,40 @@ def check_title(out: Path, tg, updates: list[dict], dry_run: bool = False) -> st
         _save_title(out, uid, lines, stale, str(e))
         return f"{tag} 표지 제목 바꾸기 실패: {e}"
     stale = stale or notify.load_manifest(out).reels is not None
+    note_title(out, record, uid, before, lines)
     tail = "이 제목으로 게시해요" if approved else "이 제목으로 올리려면 /ok 를 보내 주세요"
     tg.send_photos([made[0]], f"{tag} 표지 제목을 '{shown}' 으로 바꿨어요. {tail}")
     _save_title(out, uid, lines, stale)
     return f"{tag} 표지 제목을 '{shown}' 으로 바꿈"
+
+
+def store_of(account: str):
+    from core.store import Store
+
+    return Store(account)
+
+
+def note_title(
+    out: Path, record: PreviewRecord, uid: int, before: list[str], lines: list[str]
+) -> None:
+    """사용자가 /제목 으로 고친 제목을 피드백 기록에 남긴다. 게시 뒤 피드백 반영 단계가
+    다른 /fix 와 함께 읽어 제목 쓰는 규칙에 반영한다 (2026-10-29 사용자)."""
+    from core.models import FeedbackEntry
+
+    old, new = " / ".join(before), " / ".join(lines)
+    text = f"표지 제목을 사용자가 직접 바꿈: '{old}' → '{new}' (바꾼 제목처럼 쓰기)"
+    entry = FeedbackEntry(
+        account=record.account,
+        date=record.date,
+        run=out.name,
+        slide=1,
+        kind="cover",
+        text=text,
+        at=int(time.time()),
+        update_id=uid,
+        result="title",
+    )
+    store_of(record.account).add_feedback([entry])
 
 
 def retitle(out: Path, lines: list[str], profile: Profile | None = None) -> list[Path]:

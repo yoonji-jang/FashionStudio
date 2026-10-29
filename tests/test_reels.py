@@ -260,7 +260,9 @@ def test_reel_sent_to_telegram_instead_of_posting(results, store, monkeypatch): 
     assert publish.run_reels("women", DAY, results, store=store, tg=tg, ig=ig, host=host) == 0
     assert api.published == 1 and not api.uploads
     methods = [c[1].rsplit("/", 1)[-1] for c in api.calls[before:]]
-    assert methods == ["sendVideo", "sendMessage"]
+    # 게시 전에 최종본(사진 + 영상)을 이미 보냈으면 영상은 다시 보내지 않는다 (2026-10-29)
+    assert methods == ["sendMessage", "sendMessage"]
+    assert any(c[1].endswith("/sendVideo") for c in api.calls[:before])
     m = notify.load_manifest(run)
     assert publish.post_caption(publish.load_profile("women"), m) in api.texts[-1]
     done = PublishRecord.model_validate_json((run / "published.json").read_text())

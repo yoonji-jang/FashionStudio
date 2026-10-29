@@ -1134,7 +1134,7 @@ def test_cover_from_earlier_is_copied_into_look(tmp_path, store):
     assert m.images and Path(looks.chosen_image(d)).read_bytes() == src.read_bytes()
 
 
-def test_title_from_telegram(tmp_path, store):
+def test_title_from_telegram(tmp_path, store, monkeypatch):
     """/제목 첫 줄/둘째 줄: 그림은 그대로 표지 제목만 바꾼다 (2026-10-28 사용자)."""
     r = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
     assert notify.parse("/제목 퍼 코디 어려우면 / 이렇게 입어봐", "women", DAY).name == "title"
@@ -1149,8 +1149,15 @@ def test_title_from_telegram(tmp_path, store):
     api = FakeApis(
         replies=[(1100, "/order 2 1 3 4 5 6\n/제목 퍼 코디 어려우면/이렇게 입어봐", None)]
     )
+    monkeypatch.setattr(cover_look, "store_of", lambda account: store)
     line = cover_look.check(out, tg_of(api))
     assert "순서" in line and "제목" in line
+    # 사용자가 고친 제목은 게시 뒤 피드백 반영에 들어간다 (2026-10-29 사용자)
+    fb = store.feedback()[-1]
+    assert fb.result == "title" and "이렇게 입어봐" in fb.text
+    # 바꾼 뒤 최종본(모든 슬라이드)을 통째로 다시 보낸다 (2026-10-29 사용자)
+    assert "바뀐 최종본" in line
+    assert cover_look.load_final(out)["key"] == cover_look.final_key(out)
     after = plan.load_plan(out / "plan.yaml")
     assert after.text.title_lines == ["퍼 코디 어려우면", "이렇게 입어봐"]
     assert notify.load_manifest(out).title_lines == ["퍼 코디 어려우면", "이렇게 입어봐"]
