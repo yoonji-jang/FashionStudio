@@ -7,6 +7,8 @@ name: telegram-check
 # 미리보기도 보내 본다 (시험용이라 게시 버튼 없이, telegram.json 은 저장하지 않음).
 # 릴스가 낡았으면 (reel_stale) 다시 만들어 보낸다. 최종 캐러셀·영상을 다시 받아 볼 때도 쓴다.
 # [pick-status:<결과 폴더>] 를 넣으면 그 코디 후보에 온 답장을 읽어 어떻게 정할지 보여 준다 (기록·실행 없음).
+# [pick-resend:<결과 폴더>] 를 넣으면 그 결과의 코디 후보(지금 p1.yaml) 시트를 텔레그램으로 다시 보낸다
+# (pick.json 은 저장하지 않아 번호로 고르면 되고, 시트 답장 /fix 는 벌 번호를 같이 적는다).
 on:
   workflow_dispatch:
   push:
@@ -54,3 +56,16 @@ jobs:
           [ -z "$dir" ] && exit 0
           [ -d /tmp/results ] || { git fetch --depth 1 origin daily-results; git worktree add /tmp/results FETCH_HEAD; }
           uv run python -m tools.pick status "/tmp/results/$dir"
+      - name: 코디 후보 다시 보내기
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          dir=$(grep -oP '\[pick-resend:\K[\w.-]+(?=\])' <<<"$MSG" || true)
+          [ -z "$dir" ] && exit 0
+          [ -d /tmp/results ] || { git fetch --depth 1 origin daily-results; git worktree add /tmp/results FETCH_HEAD; }
+          cp -r "/tmp/results/$dir" /tmp/resend
+          account=$(jq -r .account "/tmp/results/$dir/run.json")
+          uv run python -m tools.pick restore-user --account "$account" --prev /tmp/results --out /tmp/resend --run "$dir"
+          uv run python -m tools.pick send /tmp/resend --run "$dir"
