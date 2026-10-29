@@ -913,5 +913,75 @@
    },
    "text": "/fix 5 https://zigzag.kr/catalog/products/148473326 치마 이거로 변경해\n/fix 8  https://s.zigzag.kr/abr/ZA7tPhkRaX 이거로 부츠 변경해"
   }
+ },
+ {
+  "update_id": 428675924,
+  "message": {
+   "message_id": 2319,
+   "date": 1793246384,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIJD2rixLAF5wLGTc96UsrzqO5H2fpNAAIME2sbyf4ZV-q0TKlRCaiVAQADAgADeQADPQQ",
+   "caption": "얼굴",
+   "media_group_id": "14345971078761533"
+  }
+ },
+ {
+  "update_id": 428675925,
+  "message": {
+   "message_id": 2320,
+   "date": 1793246384,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIJEGrixLACcRw-JP2pkfpozzk0sAlmAAINE2sbyf4ZV6wjJTbljc-LAQADAgADeAADPQQ",
+   "caption": "",
+   "media_group_id": "14345971078761533"
+  }
+ },
+ {
+  "update_id": 428675926,
+  "message": {
+   "message_id": 2321,
+   "date": 1793246384,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIJEWrixLDJ20bMWmTGUJgQ-4GHzGC2AAIOE2sbyf4ZV37qXWMbBOTyAQADAgADeAADPQQ",
+   "caption": "",
+   "media_group_id": "14345971078761533"
+  }
+ },
+ {
+  "update_id": 428675927,
+  "message": {
+   "message_id": 2322,
+   "date": 1793246384,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIJEmrixLDpMvAsPNdNAXMell20iNZdAAIPE2sbyf4ZVxh-q4c0KCm_AQADAgADeAADPQQ",
+   "caption": "",
+   "media_group_id": "14345971078761533"
+  }
+ },
+ {
+  "update_id": 428675928,
+  "message": {
+   "message_id": 2323,
+   "date": 1793246384,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "",
+   "photo": "AgACAgUAAxkBAAIJE2rixLDCLe1xyWPm1ofuk9wgebgqAAIQE2sbyf4ZV7_ZwhF2rfzLAQADAgADeAADPQQ",
+   "caption": "",
+   "media_group_id": "14345971078761533"
+  }
  }
 ]
