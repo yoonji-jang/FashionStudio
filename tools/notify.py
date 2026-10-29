@@ -360,18 +360,6 @@ def control_text(
         ]
     if cover is not None and profile.looks.repeat_cover_look:
         lines.append(f"표지: LOOK {cover}")
-    elif cover is not None:
-        # 표지 벌은 벌 장에 다시 나오지 않는다 (2026-10-15): 번호는 벌 장에 보이는 LOOK 번호
-        lines.append(
-            "표지 벌은 첫 장에만 나와요. 다른 벌로 바꾸려면 /cover 2 처럼 벌 장의 LOOK 번호"
-            + (" (표지가 LOOK 1)" if profile.looks.cover_first else "")
-        )
-        if profile.looks.cover_first:
-            lines.append(
-                "벌 순서를 바꾸려면 /order 4 2 3 1 처럼 LOOK 번호를 원하는 순서로"
-                " (첫 번호가 표지, 적지 않은 LOOK 은 빠짐)"
-            )
-    lines.append("표지 제목만 바꾸려면 /제목 첫 줄/둘째 줄 (그림은 그대로)")
     if manifest.review and manifest.review.status != "not_reviewed":
         lines.append(f"검수: 표지 {manifest.review_score:g}/10")
     if manifest.needs_human:
@@ -415,14 +403,34 @@ def control_text(
         lines.append(
             f"/skip {label} 을 보내지 않으면 {profile.schedule.publish_at} 에 자동 게시해요"
         )
-    fb = profile.feedback
-    left = fb.max_fixes - (fix or {}).get("round", 0)
-    if fb.enabled and left > 0:
-        lines.append(
-            f"고칠 점은 /fix 1 신발 더 크게 처럼 보내 주세요 (1 = 사진 순서, 캡션은 /fix 캡션 …, "
-            f"사진에 답장해도 돼요. 남은 횟수 {left}번)"
-        )
+    lines += edit_guide(profile, fix, cover)
     return "\n".join(lines)
+
+
+def edit_guide(profile: Profile, fix: dict | None, cover: int | None) -> list[str]:
+    """미리보기에서 쓸 수 있는 고치기 명령 전부 (2026-10-29 사용자: 텔레그램 메시지마다 안내).
+    고치기 횟수를 다 써도 /fix 안내는 남기고 다 썼다고 알린다."""
+    lines = ["", "[고치기] 번호는 사진 순서 (1 = 표지)"]
+    fb = profile.feedback
+    if fb.enabled:
+        left = fb.max_fixes - (fix or {}).get("round", 0)
+        lines += [
+            '• 그림·글 고치기: "/fix 3 신발 더 크게" (사진에 답장해도 돼요, 캡션은 "/fix 캡션 …")',
+            '  한 상품만 다르게 그려졌으면: "/fix 6 이 그림에서 코트만 상세페이지와 똑같이"',
+            '• 고치기 전 그림으로: "/fix 2 고치기 전 이미지 사용"',
+            "• 여러 줄로 /fix 를 한 번에 보내도 돼요",
+            f"  남은 횟수 {left}번" if left > 0 else "  오늘 고치기 횟수를 다 썼어요",
+        ]
+    lines.append('• 표지 제목만 바꾸기: "/제목 첫 줄/둘째 줄" (그림은 그대로)')
+    if cover is not None and not profile.looks.repeat_cover_look:
+        # 표지 벌은 벌 장에 다시 나오지 않는다 (2026-10-15): 번호는 벌 장에 보이는 LOOK 번호
+        first = " (표지가 LOOK 1)" if profile.looks.cover_first else ""
+        lines.append(f'• 표지 벌 바꾸기: "/cover 2" 처럼 벌 장의 LOOK 번호{first}')
+        if profile.looks.cover_first:
+            lines.append(
+                '• 벌 순서 바꾸기·빼기: "/order 4 2 3 1" (첫 번호가 표지, 적지 않은 LOOK 은 빠짐)'
+            )
+    return lines
 
 
 def reel_caption(profile: Profile, spec: ReelsSpec | None) -> str:
