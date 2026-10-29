@@ -48,6 +48,9 @@ jobs:
       - name: 실험 실행
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # 사용자가 텔레그램으로 보낸 사진(tg:파일 번호)을 받을 때만 쓴다
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           re_m='\[models:([^]]+)\]'; re_s='\[shots:([^]]+)\]'; re_p='\[spec:([^]]+)\]'

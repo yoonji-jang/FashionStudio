@@ -28,6 +28,7 @@ import base64
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -73,7 +74,16 @@ def load_config(path: Path = CONFIG_PATH) -> dict:
 
 
 def read_ref(ref: str) -> bytes:
-    """'브랜치:경로' 는 git 에서, 아니면 저장소 기준 파일에서 읽는다."""
+    """'브랜치:경로' 는 git 에서, 'tg:<파일 번호>' 는 텔레그램에서
+    (사용자가 보낸 사진, 저장소에 올리지 않음), 아니면 저장소 기준 파일에서 읽는다."""
+    if ref.startswith("tg:"):
+        from tools import notify
+
+        dest = CACHE_DIR / "tg" / re.sub(r"[^0-9A-Za-z_-]", "_", ref[3:])[-80:]
+        if not dest.exists():
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            notify.Telegram.from_env().download(ref[3:], dest)
+        return dest.read_bytes()
     path = REPO_ROOT / ref
     if ":" not in ref or path.exists():
         return path.read_bytes()
@@ -361,9 +371,10 @@ def run(
         if it.get("photos"):
             shots_in += product_photos(it["product"], it["photos"], account, CACHE_DIR, extra)
         jpeg = reference_panel(shots_in, cfg.get("panel_max_px", 1536))
-        (out / "inputs" / f"{i:02d}_{CATEGORY_EN.get(it['category'], 'item')}.jpg").write_bytes(
-            jpeg
-        )
+        # 사용자 사진(tg:)은 결과 브랜치에 올리지 않는다
+        if not str(it.get("image", "")).startswith("tg:"):
+            name = f"{i:02d}_{CATEGORY_EN.get(it.get('category', ''), 'item')}.jpg"
+            (out / "inputs" / name).write_bytes(jpeg)
         inputs.append(jpeg)
     guide = prepare_input(read_ref(spec["guide"]), max_px) if spec.get("guide") else None
     compare = out / "inputs" / "current.jpg"

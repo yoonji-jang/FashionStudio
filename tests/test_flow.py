@@ -981,3 +981,14 @@ def test_scenes_carry_to_next_theme(tmp_path):
     assert st.scene == "flow/women/2026-10-28/scene.jpg"
     assert st.scenes[1] == "flow/women/2026-10-28/scene_2.jpg"
     assert sorted(f.name for f in new.iterdir()) == ["scene.jpg", "scene.txt", "scene_2.jpg"]
+
+
+def test_face_photos_are_not_scenes():
+    # 2026-10-29 사용자: 모델 얼굴 참고 사진은 설명 "얼굴" 로 보낸다 (장면 사진을 바꾸지 않음)
+    tg = FakeTg()
+    tg.photo(1, "scene_a", T0 + 5)
+    tg.photo(2, "face_a", T0 + 400, caption="얼굴")
+    tg.photo(3, "face_b", T0 + 410)  # 설명 없이 이어 보낸 사진도 얼굴
+    assert flow.face_photos(tg.ups, CHAT, T0) == [(2, "face_a"), (3, "face_b")]
+    assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["scene_a"]
+    assert flow.ref_photos(tg.ups, CHAT, T0) == []
