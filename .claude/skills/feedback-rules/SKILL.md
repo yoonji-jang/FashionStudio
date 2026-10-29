@@ -27,6 +27,7 @@ description: 텔레그램 /fix 로 쌓인 새 피드백을 읽고, 되풀이될 
 | 검수가 놓친 문제 (같은 문제가 통과됨) | `.claude/agents/image-reviewer.md` 의 생성형 코디컷 확인 목록·점수표 |
 | 상품 장 사진 고르기 (색 다름, 얼굴, 잘림) | `.claude/agents/photo-checker.md` |
 | 제목·상품 이름·코멘트·캡션 말투 | `accounts/$ACCOUNT/voice.md`, 규칙이면 `.claude/skills/write-copy/SKILL.md` |
+| 사용자가 `/제목` 으로 직접 바꾼 제목 (처리 `title`, "'옛 제목' → '새 제목'") | `accounts/$ACCOUNT/voice.md` 커버 제목: 새 제목이 옛 제목보다 나은 점(길이, 말투, 걸기 방식)을 규칙과 예시로 더한다 (2026-10-29 사용자) |
 | 글자 수·개수 같은 숫자 | `accounts/$ACCOUNT/profile.yaml` `copy` (바꾸면 `python -m core.profile $ACCOUNT` 로 검증) |
 | 코디 조합·주제 | `.claude/skills/pick-outfit/SKILL.md`, `.claude/skills/plan-themes/SKILL.md` |
 | 레이아웃·폰트 같은 코드 문제 | 고치지 않고 PR 설명 "코드로 고칠 것"에 적는다 |

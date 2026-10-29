@@ -273,6 +273,17 @@ def run(
             print(f"  {p.name}{mark}")
         return 0
 
+    if tg is not None:
+        from tools import cover_look
+
+        if cover_look.final_key(out) != cover_look.load_final(out).get("key"):
+            # 게시 전엔 항상 최종본을 보낸다 (2026-10-29 사용자). 보낸 그대로면 다시 보내지 않음
+            try:
+                print(cover_look.send_final(out, tg, "게시할 최종본"))
+            except (RuntimeError, httpx.HTTPError) as e:
+                print(f"경고: 최종본을 보내지 못했습니다: {e}", file=sys.stderr)
+            manifest = notify.load_manifest(out)
+
     ig = ig or make_instagram(profile, cfg)
     host_cfg = cfg.get("image_host", {})
     host = host or GitHubHost.from_config(host_cfg)
@@ -504,7 +515,15 @@ def send_reel(profile: Profile, manifest: Manifest, out: Path, tg: notify.Telegr
         raise Blocked("릴스 영상 검사 실패:\n" + "\n".join(f"- {e}" for e in errors))
     assert video is not None
     tag = f"[{profile.id}] {manifest.date}"
-    tg.send_video(video, f"{tag} 오늘 릴스 영상이에요. 인스타 앱에서 음악을 붙여 올려 주세요 🎵")
+    from tools import cover_look
+
+    final = cover_look.load_final(out)
+    upload = "인스타 앱에서 음악을 붙여 올려 주세요 🎵"
+    if final.get("video") and final.get("key") == cover_look.final_key(out):
+        # 게시 전에 보낸 최종본의 영상과 같다: 캡션만 (2026-10-29)
+        tg.send(f"{tag} 릴스 영상은 위에 보낸 최종본 영상이에요. {upload}")
+    else:
+        tg.send_video(video, f"{tag} 오늘 릴스 영상이에요. {upload}")
     tg.send(reel_text(profile, manifest))
     done = out / "published.json"
     rec = PublishRecord.model_validate_json(done.read_text(encoding="utf-8"))

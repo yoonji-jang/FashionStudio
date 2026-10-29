@@ -488,6 +488,8 @@ def preview(
         needs_human=manifest.needs_human,
     )
     (out / "telegram.json").write_text(record.model_dump_json(indent=2), encoding="utf-8")
+    # 미리보기도 모든 슬라이드와 영상을 보낸 최종본이다 (게시 전에 같은 것을 또 보내지 않게)
+    cover_look.mark_final(out, video is not None)
     return record
 
 

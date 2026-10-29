@@ -349,7 +349,15 @@ Decision = Literal["ok", "skip"]
 # 가까움 / busy: 앞의 피드백으로 다시 만드는 중 / after_post: 이미 게시함 / sandbox: 시험 미리보기
 # / no_preview: 미리보기를 보내기 전
 FeedbackResult = Literal[
-    "rerender", "limit", "late", "busy", "after_post", "sandbox", "no_preview", "candidates"
+    "rerender",
+    "limit",
+    "late",
+    "busy",
+    "after_post",
+    "sandbox",
+    "no_preview",
+    "candidates",
+    "title",  # /제목 으로 사용자가 직접 바꾼 표지 제목 (코드로 반영, 2026-10-29)
 ]
 
 
