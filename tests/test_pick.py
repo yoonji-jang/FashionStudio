@@ -165,6 +165,10 @@ def page_html(pid: str, name: str, sales: str = "ON_SALE") -> str:
 def test_guess_category():
     assert pick.guess_category("[MADE] 에코퍼 숏 자켓 (3color)") == "아우터"
     assert pick.guess_category("퍼 트리밍 니트 롱 부츠") == "신발"
+    # 영어 이름, 사람이 쓴 "치마"·"부츠" (2026-10-29 미니스커트가 소품으로 들어가 후보 고치기 실패)
+    assert pick.guess_category("CanCan Ribbon Mini Skirt [2color]") == "하의"
+    assert pick.guess_category("Ribbon", "(링크) 치마 이거로 변경해") == "하의"
+    assert pick.guess_category("Ribbon", "(링크) 이거로 부츠 변경해") == "신발"
     assert pick.guess_category("데님 롱 스커트") == "하의"
     assert pick.guess_category("퍼 숄더백") == "가방"
     assert pick.guess_category("무지 울 머플러") == "소품"
