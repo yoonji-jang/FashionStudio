@@ -283,8 +283,7 @@ def looks_text(
 ) -> str:
     """여러 벌 후보 안내 (20단계). 앞의 looks.count 벌(count 가 있으면 그 수)이 기본,
     나머지는 바꿔 넣을 예비."""
-    s, rules, lk = profile.schedule, profile.pick, profile.looks
-    want = count or lk.count
+    want = count or profile.looks.count
     use = min(want, len(plan.looks))
     head = f"[{profile.id}] {day:%m-%d}({WEEKDAYS[day.weekday()]}) 코디 {len(plan.looks)}벌 후보"
     if round_ > 1:
@@ -295,9 +294,17 @@ def looks_text(
         top = f"{n}. " + (look.reason.split(". ")[0] if look.reason else "") + mark
         lines.append(top.rstrip("."))
         lines.append("   " + look_items(look))
+    lines += guide_lines(profile, round_, use, want)
+    return "\n".join(lines)
+
+
+def guide_lines(profile: Profile, round_: int, use: int, want: int) -> list[str]:
+    """코디 후보에 답할 수 있는 것 전부 (2026-10-29 사용자: 메시지마다 쓸 수 있는 명령 안내).
+    후보를 처음 보낼 때와 고친 벌을 다시 보낼 때 같은 안내를 붙인다."""
+    s, rules, lk = profile.schedule, profile.pick, profile.looks
     after = f"1~{use}번으로 만들어요" if rules.on_timeout == "first" else "오늘은 건너뛰어요"
     flow = profile.flow.enabled
-    lines += ["", "[고르는 방법]"]
+    lines = ["", "[고르는 방법]"]
     if flow:
         # 차례 흐름 (tools.flow): 마감 없이 답을 기다린다
         lines.append(f"• 그대로 좋으면 /pick → 1~{use}번으로 만들어요 (마감 없이 기다려요)")
@@ -315,8 +322,14 @@ def looks_text(
         lines.append(
             "  보낸 순서대로 놓이고 첫 번호가 표지(LOOK 1)예요. 예: 3 4 2 5 1 6 → 3번이 표지"
         )
-    lines.append('• 한 벌만 조금 바꾸려면 "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요')
-    lines.append('• 상품 말고 그릴 것만 더하려면 "/draw 1 걷는 포즈, 선글라스" → 그릴 때 반영해요')
+    lines += [
+        "",
+        "[고르기 전에 고치기] 번호는 이 후보 번호예요",
+        '• 상품 바꾸기: "/fix 1 이너를 나시로" → 그 벌만 고쳐 다시 보내요',
+        '  원하는 상품이 있으면 링크를 붙여요: "/fix 3 <지그재그 링크> 니트 이거로"',
+        '• 그릴 것만 더하기: "/draw 1 걷는 포즈, 선글라스" → 상품은 그대로, 그릴 때 반영해요',
+        "• 여러 줄로 /fix·/draw 를 한 번에 보내도 돼요",
+    ]
     if round_ <= rules.max_again:
         lines.append(
             '• 다 별로면 "다시" → 새 후보를 보내요 (요청도 붙일 수 있어요: "다시. 외투 없이도")'
@@ -328,24 +341,24 @@ def looks_text(
         lines += [
             "• 이 주제를 쉬려면 /skip → 다음 주제를 제안해요",
             "",
-            "[장면 사진]",
-            "• 이 주제에 맞는 장면 사진을 이 채팅에 보내 주세요 "
-            "(스트리트, 스튜디오, 거울 셀카 등).",
+            "[사진 보내기] 이 채팅에 사진을 보내요",
+            '• 장면 사진: 그냥 보내거나 캡션 "참고" (스트리트, 스튜디오, 거울 셀카 등).',
             "  한 장이면 그 무드로, 여러 장(앨범)이면 공통 무드로",
-            "  벌마다 어울리는 사진의 자리·포즈로 그려요.",
-            "  따로 다시 보내면 마지막으로 보낸 사진(묶음)을 써요",
+            "  벌마다 어울리는 사진의 자리·포즈로 그려요. 캡션에 적은 말(머리 모양 등)도 반영해요.",
+            "  새로 보내기 전까지 다음 주제에도 계속 써요",
+            '• 얼굴 사진: 캡션 "얼굴" → 모든 코디컷을 이 얼굴로 그려요 (바꿀 때만 다시 보내요)',
             "→ 고른 벌과 장면 사진이 다 오면 한 시간 안에 확인해 만들고 미리보기를 보내요",
             "",
             "사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.",
         ]
-        return "\n".join(lines)
+        return lines
     lines += [
         "• 오늘 쉬려면 /skip",
         f"  → {s.pick_check_every}분 안에 확인해 고른 벌만 코디컷을 만들고 미리보기를 보내요",
         "",
         "사진은 쇼핑몰 대표 사진이라 고른 색과 다를 수 있어요.",
     ]
-    return "\n".join(lines)
+    return lines
 
 
 def control_text(plans: list[DailyPlan], profile: Profile, day: date, round_: int) -> str:
@@ -773,11 +786,9 @@ def send_edit(
                 if linked
                 else f"{n}. 바꿀 상품을 찾지 못해 그대로예요"
             )
-    lines += [
-        "",
-        "고르는 방법은 그대로예요. 그대로 두거나 번호를 보내면 고친 벌로 만들어요.",
-        f"더 고치려면 /fix 를 또 보내요. 마감은 {profile.schedule.pick_deadline}.",
-    ]
+    lines.append("그대로 두거나 번호를 보내면 고친 벌로 만들어요.")
+    use = min(profile.looks.count, len(looks))
+    lines += guide_lines(profile, prev.round, use, profile.looks.count)
     sheets = [look_sheet(plan, n, store, out, profile) for n in changed]
     ids = tg.send_photos(sheets, f"[{profile.id}] {day} 코디 후보 고침") if sheets else []
     new_sheets = dict(prev.sheets) | dict(zip(ids, changed, strict=True))

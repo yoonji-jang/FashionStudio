@@ -335,13 +335,13 @@ def test_preview_shows_fix_round_changes_and_hint(results):  # noqa: F811
     profile = load_profile("women")
     m = notify.load_manifest(run)
     text = notify.control_text(m, profile, False)
-    assert "/fix 1 신발 더 크게" in text and "남은 횟수 2번" in text
+    assert "/fix 3 신발 더 크게" in text and "남은 횟수 2번" in text
     fix = {"round": 1, "fixes": [{"slide": 1, "kind": "cover", "text": "신발 크게"}]}
     text = notify.control_text(m, profile, False, fix)
     assert "고친 점 (1/2회)" in text and "- 1장 표지: 신발 크게" in text
     assert "남은 횟수 1번" in text
     text = notify.control_text(m, profile, False, fix | {"round": 2}, ["1장 표지: 신발을 키움"])
-    assert "- 1장 표지: 신발을 키움" in text and "/fix 1" not in text
+    assert "- 1장 표지: 신발을 키움" in text and "고치기 횟수를 다 썼어요" in text
     assert "/fix" not in notify.control_text(m, profile, True)  # 시험 미리보기
 
     (run / "fix.json").write_text(json.dumps(fix), encoding="utf-8")

@@ -977,7 +977,8 @@ def test_cover_look_shown_once(tmp_path, store):
     record = PreviewRecord(account="women", date=DAY, run="r", sent_at=1000, message_ids=[11])
     (out / "telegram.json").write_text(record.model_dump_json())
     text = notify.control_text(notify.load_manifest(out), profile, False, cover=1)
-    assert "표지 벌은 첫 장에만" in text and "표지: LOOK" not in text
+    assert "/cover 2" in text and "/order 4 2 3 1" in text and "표지: LOOK" not in text
+    assert "/제목" in text and "고치기 전 이미지" in text
     api = FakeApis(replies=[(1100, "/cover 4", None)])  # 벌 장 LOOK 4 = 4번 벌 (표지가 LOOK 1)
     cover_look.check(out, tg_of(api))
     assert cover_look.current(out, profile) == 4

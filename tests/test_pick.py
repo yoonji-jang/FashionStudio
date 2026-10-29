@@ -266,3 +266,12 @@ def test_add_links_unreadable(tmp_path, store):  # noqa: F811
     fix = json.loads((out / "picks" / "edit.json").read_text(encoding="utf-8"))["fixes"][0]
     assert fix["link_errors"][0]["why"] == "링크를 열지 못했어요"
     assert not (out / pick.USER_PRODUCTS).exists()
+
+
+def test_candidate_edit_resend_repeats_the_guide():
+    """고친 벌을 다시 보낼 때도 /fix·/draw·사진 캡션 안내를 다시 붙인다 (2026-10-29 사용자)."""
+    profile = load_profile("women")
+    profile = profile.model_copy(update={"flow": profile.flow.model_copy(update={"enabled": True})})
+    text = "\n".join(pick.guide_lines(profile, 1, 6, 6))
+    for word in ("/fix 1", "/draw 1", "지그재그 링크", '"얼굴"', '"참고"', "/skip", "다시"):
+        assert word in text
