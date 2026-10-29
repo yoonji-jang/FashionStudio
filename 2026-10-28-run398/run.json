@@ -1,0 +1,7 @@
+{
+  "run": "2026-10-28-run398",
+  "account": "women",
+  "sandbox": false,
+  "mode": "edit",
+  "pick": "{\"run\": \"2026-10-28-run395\", \"fixes\": [{\"update_id\": 428675930, \"looks\": [1], \"text\": \"시스루 스타킹 신게 그려줘. 머리는 풍성하고 굵은 웨이브로 그려줘.\", \"draw\": true}, {\"update_id\": 428675930, \"looks\": [3], \"text\": \"모자 그려줘\", \"draw\": true}, {\"update_id\": 428675930, \"looks\": [5], \"text\": \"참고코디컷처럼 잔머리가 많이 삐져나온 더티번 헤어로 그려줘.\", \"draw\": true}]}"
+}
