@@ -1,173 +1,5 @@
 [
  {
-  "update_id": 428675854,
-  "message": {
-   "message_id": 1977,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHuWrfCfZ94dvV2wUV8coDPiSXLQ4LAAKHFWsbCo_5Vjuenw1LDohzAQADAgADeQADPQQ",
-   "caption": "참고",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675855,
-  "message": {
-   "message_id": 1978,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHumrfCfa8VdoxZnNOPxr947PWfjcPAAKIFWsbCo_5VmFax3Gv3FOaAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675856,
-  "message": {
-   "message_id": 1979,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHu2rfCfYBrHoDpalKKofdjuK7TL2xAAKJFWsbCo_5VkmC5G3MfWAkAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675857,
-  "message": {
-   "message_id": 1980,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHvGrfCfb_usCNCYewSNU1HKDL1BraAAKKFWsbCo_5VpASpjgFRoxlAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675858,
-  "message": {
-   "message_id": 1981,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHvWrfCfYlFOL19OEzMHHM4wPkV9_AAAKLFWsbCo_5VuPZCKt9vMBVAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675859,
-  "message": {
-   "message_id": 1982,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHvmrfCfbxh2C0V-AYBN-LF5BUsQuqAAKMFWsbCo_5Vk9jUQQk6g3fAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675860,
-  "message": {
-   "message_id": 1983,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHv2rfCfZS3LNrTGDUpBzu9oA-RDbiAAKNFWsbCo_5VooRol6ikE8_AQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675861,
-  "message": {
-   "message_id": 1984,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHwGrfCfbs5qCHTL_-ngOi_PCeZEfVAAKOFWsbCo_5Vl1cqHzqTA7IAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675862,
-  "message": {
-   "message_id": 1985,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHwWrfCfblnrmAiupcx5OiL64AASeg2AACjxVrGwqP-VZhHIpIr_LW8wEAAwIAA3kAAz0E",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675863,
-  "message": {
-   "message_id": 1986,
-   "date": 1793001974,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHwmrfCfb7-Cudctewp9FAA1n4cnuLAAKQFWsbCo_5Vvc3Ysa2ozqRAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015797320725"
-  }
- },
- {
-  "update_id": 428675864,
-  "message": {
-   "message_id": 1987,
-   "date": 1793001976,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHw2rfCfgY5wcYhLjtDiw5w5VMTskrAAKRFWsbCo_5Vi1-ou2ren9KAQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015809340973"
-  }
- },
- {
-  "update_id": 428675865,
-  "message": {
-   "message_id": 1988,
-   "date": 1793001976,
-   "chat": {
-    "id": 8708345474
-   },
-   "text": "",
-   "photo": "AgACAgUAAxkBAAIHxGrfCfgEgvzxqzEOJ5ZMy0LWKUAgAAKSFWsbCo_5Vj-8X_VPOWI8AQADAgADeQADPQQ",
-   "caption": "",
-   "media_group_id": "14344015809340973"
-  }
- },
- {
   "update_id": 428675866,
   "message": {
    "message_id": 2005,
@@ -995,6 +827,17 @@
     "id": 8708345474
    },
    "text": "1,2,3,5,7,8"
+  }
+ },
+ {
+  "update_id": 428675932,
+  "message": {
+   "message_id": 2347,
+   "date": 1793263686,
+   "chat": {
+    "id": 8708345474
+   },
+   "text": "/fix 1 표정 살짝만 더 싱그럽게 미소+웃음기 넣어줘. 고개 살짝 까딱해도 돼. 살짝 애교있는 분위기 조금만 추기해줘. \n/fix 2 치마기장 좀 더 줄여주고, 좀더 h라인 만들어줘. 통이 너무 넓으니 통도 줄여줘. 손은 살짝 모아서 소매 속에 손 좀더 넣어줘. \n/fix 3 니트는 넣어입지 말고 살짝 빼서 입게 변경해줘. 살짝 비대칭으로. \n/fix 4 니트기장 조금더 길게해서 치마 허리쪽부분 조금 더 가려줘. \n/fix 6 코트 다 여며주고 고개 살짝 들어줘. 상체가 좀더 정면을 바라보게 해줘. 코트 오버핏인데 좀 작게 그려진거같아. 상세페이지랑 동일한 핏으로 그려줘."
   }
  }
 ]
