@@ -1,0 +1,142 @@
+{
+  "run": "2026-10-28-run386",
+  "fixes": [
+    {
+      "update_id": 428675922,
+      "looks": [
+        1
+      ],
+      "text": "원피스 https://s.zigzag.kr/abr/X5dCe7IDm8 이거로 변경해.",
+      "products": [
+        {
+          "id": "zigzag:167435675",
+          "category": "원피스",
+          "name": "[앙고라🤍] 아르엘 원숄더 여리핏 앙고라 퍼 니트 미니 원피스"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        3
+      ],
+      "text": "https://s.zigzag.kr/abr/3DkJAD7g8q 니트 이거로 바꿔. 신발은 https://s.zigzag.kr/abr/B1RUAK0r2S 로 변경. 바지는 https://s.zigzag.kr/abr/77UcLf40wR 로 변경.",
+      "products": [
+        {
+          "id": "zigzag:167198245",
+          "category": "상의",
+          "name": "(국내제작)1만5천장 돌파✨ (포인트룩추천♥/포근여리핏) 홀린 브러쉬 배색 스트라이프 카라넥 버튼 긴팔 겨울니트 출근룩 스트라이프니트 단가라니트 루즈핏 겨울옷 긴팔니트 캠퍼스룩 여친룩  nt5321"
+        },
+        {
+          "id": "zigzag:172200569",
+          "category": "신발",
+          "name": "[컴온슈] 말론니 소프트 스웨이드 셔링 플랫굽 롱부츠(3cm)"
+        },
+        {
+          "id": "zigzag:167454984",
+          "category": "하의",
+          "name": "드로우 스웨이드 치마바지"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        4
+      ],
+      "text": "https://s.zigzag.kr/abr/oti4KDyQPu 로 니트 변경, 벨트추가해",
+      "products": [
+        {
+          "id": "zigzag:167383374",
+          "category": "상의",
+          "name": "포슬릿 루즈핏 포슬 니트 -2COLOR"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        5
+      ],
+      "text": "이너는 끈나시로 변경해. 오프숄더로 이너 나시 끈 보이도록. 치마는 https://s.zigzag.kr/abr/g6LajxL90X 이거 화이트로 변경.",
+      "products": [
+        {
+          "id": "zigzag:148473326",
+          "category": "상의",
+          "name": "CanCan Ribbon Mini Skirt [2color]"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        7
+      ],
+      "text": "https://s.zigzag.kr/abr/Pm68AzLXBm 이거로 니트 변경. https://s.zigzag.kr/abr/dwMM7hpmaW 이거로 치마 변경.",
+      "products": [
+        {
+          "id": "zigzag:168770375",
+          "category": "상의",
+          "name": "[BIG SALE] 아이 당일 / 베르가못 헤일로 스프트 니트 코튼 모헤어 긴팔 라운드 루즈핏 부클 nt"
+        },
+        {
+          "id": "zigzag:132751467",
+          "category": "하의",
+          "name": "[무료배송][로우라이즈/속바지O] 골반핏 골지 니트 미니스커트 2컬러"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        8
+      ],
+      "text": "https://s.zigzag.kr/abr/pHba07dxoi 이거로 상의 코트로 변경. https://s.zigzag.kr/abr/sEEosLswd4 이거로 미니스커트 변경. https://s.zigzag.kr/abr/ZA7tPhkRaX 이거로 부츠 변경.",
+      "products": [
+        {
+          "id": "zigzag:167155870",
+          "category": "아우터",
+          "name": "멜란지 하이넥 코트"
+        },
+        {
+          "id": "zigzag:167155869",
+          "category": "하의",
+          "name": "블랙 미니 스커트"
+        }
+      ],
+      "link_errors": [
+        {
+          "url": "https://s.zigzag.kr/abr/ZA7tPhkRaX",
+          "why": "판매 중인 상품 페이지로 읽히지 않아요"
+        }
+      ]
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        9
+      ],
+      "text": "https://s.zigzag.kr/abr/s5o5byIG3X 이거로 머플러 변경.",
+      "products": [
+        {
+          "id": "zigzag:172601603",
+          "category": "소품",
+          "name": "[기프트박스]_샐리 램스울 100 머플러_5컬러_남녀공용"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 428675922,
+      "looks": [
+        10
+      ],
+      "text": "레그워머 추가해줘."
+    }
+  ]
+}
