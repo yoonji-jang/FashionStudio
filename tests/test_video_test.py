@@ -54,3 +54,12 @@ def test_image_config_skips_size_for_cheap_model():
     cfg = {"aspect_ratio": "9:16", "image_size": "2K"}
     assert _image_config({"image_size": None}, cfg) == {"aspect_ratio": "9:16"}
     assert _image_config({}, cfg) == {"aspect_ratio": "9:16", "image_size": "2K"}
+
+
+def test_first_frame_model_sends_frame_images():
+    model = {"id": "kwaivgi/kling-v3.0-pro", "inputs": "first_frame"}
+    body = video_test.payload(model, {"duration": 4}, "walk", [b"a", b"b"], b"frame")
+    assert "input_references" not in body
+    assert body["frame_images"][0]["frame_type"] == "first_frame"
+    ref = video_test.payload({"id": "x", "duration": 5, "resolution": "2K"}, {}, "walk", [b"a"])
+    assert ref["duration"] == 5 and ref["resolution"] == "2K" and len(ref["input_references"]) == 1

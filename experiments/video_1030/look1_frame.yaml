@@ -1,0 +1,18 @@
+# 2026-10-30 시험 3: 사용자 "옷 디테일이 뭉개지고 얼굴이 다르고 너무 웃는다. 살짝 도도하게.
+# 더 좋은 모델 써도 됨. 내가 만든 모델 얼굴을 최대한 쓰고 싶어."
+# → 고급 이미지 모델(Nano Banana Pro)로 첫 장면 한 장 (얼굴·옷 디테일 고정) → 그 장면을 움직이는 모델.
+#   비교로 Hailuo 3 (2K, 참고 사진).
+title: 퍼 코디 영상 LOOK 1 시험 3 (첫 장면 고정, 도도한 표정)
+refs:
+  - daily-results:flow/women/face.jpg                                  # 1 얼굴
+  - daily-results:2026-10-27-run380/looks/1/outfit/results/G_1.jpg     # 2 LOOK 1 정면컷
+background:                                                            # 3 빈 배경 (시험 2 것)
+  image: poc-results:video-2/background.jpg
+first_frame:
+  model: nano_banana_pro
+  prompt_file: experiments/video_1030/look1_frame_image.txt
+prompt_file: experiments/video_1030/look1_frame.txt
+duration: 4
+resolution: 720p
+aspect_ratio: '9:16'
+models: [kling_pro, veo_fast, hailuo_3]

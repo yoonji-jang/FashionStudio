@@ -72,4 +72,18 @@ video:
       name: Grok Imagine (xAI)              # 720p 초당 $0.07 + 사진당 $0.002
     happyhorse:
       id: alibaba/happyhorse-1.1
-      name: HappyHorse 1.1 (Alibaba)        # 720p 초당 약 $0.1
+      name: HappyHorse 1.1 (Alibaba)        # 720p 초당 약 $0.12. 시험 2 가장 좋음, 그래도 옷·얼굴이 뭉개짐
+    hailuo_3:
+      id: minimax/hailuo-3
+      name: Hailuo 3 (MiniMax)              # 2K 초당 $0.13 + 참고 사진당 $0.04, 5초부터
+      duration: 5
+      resolution: 2K
+    # 첫 장면 한 장을 움직이는 모델 (inputs: first_frame). 얼굴·옷 디테일이 첫 장면 그대로 남는다
+    kling_pro:
+      id: kwaivgi/kling-v3.0-pro
+      name: Kling 3.0 Pro (Kuaishou)        # 720p 초당 $0.112
+      inputs: first_frame
+    veo_fast:
+      id: google/veo-3.1-fast
+      name: Veo 3.1 Fast (Google)           # 720p 소리 없이 초당 $0.08
+      inputs: first_frame
