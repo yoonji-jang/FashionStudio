@@ -79,16 +79,4 @@ jobs:
         run: |
           url=$(grep -oP '\[pin-check:\K[^\]\s]+(?=\])' <<<"$MSG" || true)
           [ -z "$url" ] && exit 0
-          PIN_URL="$url" uv run python - <<'PY'
-          import os
-          from pathlib import Path
-          from tools import pinterest, scout
-          from tools.notify import Telegram
-          ref = pinterest.ref_of(os.environ["PIN_URL"])
-          with scout.client() as c:
-              print("핀 번호:", pinterest.pin_id(ref[len(pinterest.PIN_PHOTO):], c)
-                    if not ref[4:].isdigit() else ref[4:])
-          path = scout.ref_photo(ref, [], Path("/tmp/pin/photo.jpg"))
-          print("사진", path.stat().st_size, "바이트")
-          Telegram.from_env().send_photos([path], f"[핀 링크 시험] {os.environ['PIN_URL']} 사진을 받았어요")
-          PY
+          PIN_URL="$url" uv run python -m tools.pinterest check "$url"
