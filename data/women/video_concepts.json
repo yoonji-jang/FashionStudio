@@ -1,0 +1,182 @@
+{
+  "account": "women",
+  "date": "2026-10-28",
+  "run": "2026-10-28-run398/chosen",
+  "concepts": [
+    {
+      "title": "남친이 찍어 준 은행나무 길 산책",
+      "background": "노란 은행잎이 깔린 공원 산책길 한 곳, 같은 나무 앞 같은 자리",
+      "background_en": "A quiet park path lined with golden ginkgo trees, fallen yellow leaves on the ground, soft autumn afternoon light, no people, no signs.",
+      "framing": "세로, 눈높이, 조금 떨어진 거리에서 찍은 듯한 구도, 전신이 화면 높이의 약 75%, 카메라 고정",
+      "light": "오후 늦은 부드러운 햇살, 따뜻한 노란빛과 맑은 가을 하늘",
+      "motion": "걷기",
+      "music": "warm acoustic guitar pop with soft piano, gentle and cozy autumn walk, 96 BPM, instrumental, no vocals",
+      "music_mood": "포근하고 산뜻한 어쿠스틱 산책",
+      "hook": "쌀쌀한 날엔 니트 여친룩",
+      "why": "은행잎의 노란 톤이 아이보리·차콜·브라운 니트와 겹치지 않고 포근함을 살려 줌",
+      "shots": [
+        {
+          "look": 1,
+          "seconds": 3.0,
+          "action": "안쪽에서 카메라 쪽으로 몇 걸음 걸어오다 멈춤",
+          "pose": "멈춰 서서 머리를 넘기며 카메라 보고 웃기",
+          "text": "쌀쌀한 날엔 니트 여친룩"
+        },
+        {
+          "look": 2,
+          "seconds": 2.5,
+          "action": "옆으로 몇 걸음 걸어 지나가다 카메라 쪽으로 돌아봄",
+          "pose": "체인 숄더백 고쳐 들며 정면으로 돌아보기",
+          "text": ""
+        },
+        {
+          "look": 3,
+          "seconds": 2.5,
+          "action": "카메라 쪽으로 걸어오다 멈춤",
+          "pose": "모자 챙을 살짝 잡고 웃기",
+          "text": ""
+        },
+        {
+          "look": 4,
+          "seconds": 2.5,
+          "action": "등을 보이며 몇 걸음 걷다 어깨 너머로 돌아봄",
+          "pose": "어깨 너머로 돌아보는 순간 오프숄더 라인과 스커트 자락",
+          "text": ""
+        },
+        {
+          "look": 5,
+          "seconds": 2.5,
+          "action": "옆으로 걸어 지나가다 멈춰 카메라 쪽으로 돎",
+          "pose": "보스턴 백을 어깨에 고쳐 메며 정면 보기",
+          "text": ""
+        },
+        {
+          "look": 6,
+          "seconds": 2.5,
+          "action": "카메라 쪽으로 걸어오다 멈춤",
+          "pose": "코트 옷깃을 잡고 카메라 보며 웃기",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "title": "남친이 찍어 준 햇살 드는 연둣빛 담장 앞",
+      "background": "연한 세이지 그린 회벽 담장이 있는 작은 골목 한 곳, 담장 앞 같은 자리",
+      "background_en": "A small quiet lane beside a plain pale sage-green plaster wall, warm sunlight and soft shadows on the pavement, no people, no signs.",
+      "framing": "세로, 눈높이, 건너편에서 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정",
+      "light": "맑은 오전, 은은한 빛과 차분한 파스텔 색감",
+      "motion": "가볍게 춤추기",
+      "music": "light indie pop with soft synth and finger snaps, sweet and playful, 108 BPM, clear beat, instrumental, no vocals",
+      "music_mood": "산뜻하고 통통 튀는 인디팝",
+      "hook": "니트 입은 날, 괜히 신나요",
+      "why": "연한 세이지 톤 벽이 아이보리·차콜·블랙 옷을 모두 또렷하게 받쳐 주고 리듬 타는 동작이 발랄함을 줌",
+      "shots": [
+        {
+          "look": 1,
+          "seconds": 3.0,
+          "action": "제자리에서 리듬을 타다 한 바퀴 돎",
+          "pose": "정면으로 돌아 두 손으로 머리 넘기기",
+          "text": "니트 입은 날, 괜히 신나요"
+        },
+        {
+          "look": 2,
+          "seconds": 2.5,
+          "action": "어깨를 들썩이며 리듬 타다 천천히 돎",
+          "pose": "터틀넥 깃을 만지며 카메라 보고 웃기",
+          "text": ""
+        },
+        {
+          "look": 3,
+          "seconds": 2.5,
+          "action": "팔을 가볍게 흔들며 제자리에서 리듬 타기",
+          "pose": "한 바퀴 돌고 멈춰 모자 살짝 만지기",
+          "text": ""
+        },
+        {
+          "look": 4,
+          "seconds": 2.5,
+          "action": "제자리에서 리듬 타다 등을 보였다 돌아섬",
+          "pose": "정면이 되는 순간 스커트 자락 살짝 잡기",
+          "text": ""
+        },
+        {
+          "look": 5,
+          "seconds": 2.5,
+          "action": "어깨를 들썩이며 가볍게 리듬 타기",
+          "pose": "보스턴 백 고쳐 들며 카메라 보고 웃기",
+          "text": ""
+        },
+        {
+          "look": 6,
+          "seconds": 2.5,
+          "action": "제자리에서 리듬 타다 천천히 한 바퀴 돎",
+          "pose": "정면이 되어 코트 주머니에 손 넣고 웃기",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "title": "남친이 찍어 준 해 질 녘 옥상",
+      "background": "도심이 멀리 보이는 한적한 옥상 난간 앞 한 곳, 같은 자리",
+      "background_en": "A quiet empty rooftop terrace with a plain low railing, distant softly blurred city skyline at sunset, warm peach and dusty blue sky, no people, no signs.",
+      "framing": "세로, 눈높이, 조금 떨어진 거리, 전신이 화면 높이의 약 75%, 카메라 고정",
+      "light": "해 질 녘, 복숭아빛과 연한 푸른빛이 섞인 하늘, 부드러운 역광 없는 빛",
+      "motion": "걷기",
+      "music": "dreamy lo-fi pop with mellow electric piano and soft beat, romantic evening mood, 92 BPM, instrumental, no vocals",
+      "music_mood": "몽글몽글한 저녁 로파이",
+      "hook": "해 질 녘 니트, 더 예뻐요",
+      "why": "노을빛 하늘이 부드러운 핑크·아이보리 톤 무드와 어울리고 차분한 걸음이 니트의 포근함을 보여 줌",
+      "shots": [
+        {
+          "look": 1,
+          "seconds": 3.0,
+          "action": "옆에서 천천히 걸어 들어와 카메라 쪽으로 돌아서 멈춤",
+          "pose": "멈춰 서서 어깨 너머로 보다 정면 웃기",
+          "text": "해 질 녘 니트, 더 예뻐요"
+        },
+        {
+          "look": 2,
+          "seconds": 2.5,
+          "action": "카메라 쪽으로 몇 걸음 걸어오다 멈춤",
+          "pose": "허리 벨트가 보이게 한 손을 허리에 얹기",
+          "text": ""
+        },
+        {
+          "look": 3,
+          "seconds": 2.5,
+          "action": "옆으로 걸어 지나가다 카메라 쪽으로 돌아봄",
+          "pose": "숄더백 끈을 잡고 모자 아래로 웃기",
+          "text": ""
+        },
+        {
+          "look": 4,
+          "seconds": 2.5,
+          "action": "등을 보이며 몇 걸음 걷다 어깨 너머로 돌아봄",
+          "pose": "돌아보는 순간 오프숄더 어깨선",
+          "text": ""
+        },
+        {
+          "look": 5,
+          "seconds": 2.5,
+          "action": "카메라 쪽으로 걸어오다 멈춤",
+          "pose": "머리 넘기며 카메라 보고 웃기",
+          "text": ""
+        },
+        {
+          "look": 6,
+          "seconds": 2.5,
+          "action": "옆으로 걸어 지나가다 멈춰 정면으로 돎",
+          "pose": "코트 옷깃을 세우며 카메라 보기",
+          "text": ""
+        }
+      ]
+    }
+  ],
+  "feedback": "",
+  "sent_at": 1793321905,
+  "message_ids": [
+    2403
+  ],
+  "chosen": 0,
+  "chosen_at": 0
+}
