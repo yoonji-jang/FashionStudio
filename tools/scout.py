@@ -69,10 +69,13 @@ def og_image(page_html: str) -> str | None:
     return None
 
 
+IMAGE_EXT = (".jpg", ".jpeg", ".png", ".webp", ".gif")
+
+
 def _is_image_host(url: str) -> bool:
     host = urlsplit(url).hostname or ""
     path = url.lower().split("?")[0]
-    return "image" in host or path.endswith((".jpg", ".jpeg", ".png", ".webp", ".gif"))
+    return "image" in host or "pinimg" in host or path.endswith(IMAGE_EXT)
 
 
 def _wait_turn(url: str, sleep: Callable[[float], None] = time.sleep) -> None:
@@ -553,12 +556,30 @@ def ref_sheets(
 TELEGRAM_PHOTO = "tg:"  # 사용자가 텔레그램으로 보낸 참고 사진 (파일 번호만 저장, 2026-10-26)
 
 
+def user_ref(fid: str) -> str:
+    """사용자가 보낸 참고 사진의 주소. 텔레그램 파일 번호면 "tg:", 핀 링크("pin:…")는 그대로."""
+    return fid if fid.startswith(("pin:", TELEGRAM_PHOTO)) else TELEGRAM_PHOTO + fid
+
+
 def ref_photo(url: str, sites: list[str], dest: Path, any_host: bool = False) -> Path:
     """참고 코디 사진 한 장 받기 (후보 시트 옆에 붙임). 허용한 사이트·robots.txt 가 허용한 주소만.
     any_host 면 이미지 검색으로 찾은 사진(profile ref_search.image_search)이라
     다른 서버 사진도 받는다 (공식 검색 API 가 준 사진 주소, 페이지는 열지 않음).
     "tg:<파일 번호>" 는 사용자가 텔레그램으로 보낸 사진.
     dest 는 out/ 아래 (저장소·결과 브랜치에 올리지 않는 곳)."""
+    from tools import pinterest
+
+    if url.startswith(pinterest.PIN_PHOTO):
+        # 사용자가 텔레그램으로 보낸 핀 링크 (2026-10-30): 그 핀 사진 한 장만
+        if not dest.exists():
+            with client() as c:
+                try:
+                    data = pinterest.fetch(url, c)
+                except pinterest.PinUnavailable as e:
+                    raise ImageUnavailable(str(e)) from e
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(data)
+        return dest
     if url.startswith(TELEGRAM_PHOTO):
         if not dest.exists():
             from tools.notify import Telegram

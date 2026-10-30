@@ -421,7 +421,7 @@ def ref_photos(
     장면 사진과 나누려고 사진 설명이 "참고" 로 시작하는 것만
     (앨범은 설명이 한 장에만 붙으니 같은 앨범 사진 모두,
     그 뒤 REF_GAP 초 안에 설명 없이 이어 보낸 사진도: 앨범은 10장까지라 넘치면 따로 간다)."""
-    from tools import notify
+    from tools import notify, pinterest
 
     found = []
     for u in sorted(updates, key=lambda u: u.get("update_id", 0)):
@@ -429,6 +429,13 @@ def ref_photos(
         if str((msg.get("chat") or {}).get("id")) != str(chat_id) or msg.get("date", 0) <= since:
             continue
         fid = notify.photo_file_id(msg)
+        if not fid and caption_re is REF_CAPTION:
+            # 핀터레스트 핀 링크를 보낸 글 (2026-10-30 사용자): 링크마다 참고 사진 한 장
+            for url in pinterest.links(msg.get("text") or ""):
+                found.append(
+                    (u["update_id"], pinterest.ref_of(url), "", True, "참고", msg.get("date", 0))
+                )
+            continue
         if fid:
             caption = msg.get("caption") or ""
             ref = bool(caption_re.match(caption))
@@ -620,9 +627,9 @@ def _use_theme(
         return f"주제 정함: {chosen.title_hint}, 참고 코디 검색 요청"
     if st.user_refs and profile is not None:
         # 사용자가 보낸 참고 사진을 옮겨 적고 옷을 모았으면 그 코디로 바로 후보를 만든다
-        from tools.scout import TELEGRAM_PHOTO
+        from tools.scout import user_ref
 
-        wanted = {TELEGRAM_PHOTO + f for f in st.user_refs}
+        wanted = {user_ref(f) for f in st.user_refs}
         nums = [r.n for r in store.refs() if r.photo in wanted]
         st.user_refs = []
         if nums:

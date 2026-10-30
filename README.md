@@ -469,6 +469,17 @@ accounts:
 | `MEDIA_REPO_TOKEN` | 인스타가 가져갈 사진을 잠시 올려 둘 공개 저장소에 쓰는 토큰 (아래 참고) |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | 코디 고르기·미리보기·승인·알림 (@BotFather) |
 | `SECRETS_TOKEN` | (선택) 인스타 토큰을 연장했을 때 값이 바뀌면 `IG_<계정>_TOKEN` 을 자동으로 바꾸는 토큰 (아래 참고) |
+| `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN` | (선택) 텔레그램으로 보낸 핀터레스트 핀·보드 링크를 참고 코디로 읽기 (아래 참고) |
+
+#### 핀터레스트 링크 (참고 코디)
+
+참고 코디 묶음 단계에서 핀터레스트 핀 링크나 **내 보드** 링크(`pin.it/…`)를 텔레그램에 글로 보내면, 핀 사진(보드는 최근 30개)을
+참고 코디로 씁니다. 핀터레스트 웹 페이지는 robots.txt 가 막아서 열지 않고 **공식 API v5** 로 내 계정의 보드·핀만 읽습니다.
+
+1. 핀터레스트 계정을 비즈니스 계정으로 바꿉니다 (무료).
+2. [developers.pinterest.com](https://developers.pinterest.com/apps/) 에서 앱을 만들고 체험 접근(Trial access)을 신청합니다. 권한은 `boards:read`, `pins:read`. 승인에 1~4주 걸릴 수 있습니다.
+3. 승인되면 앱 ID·비밀 키와 갱신 토큰을 위 세 Secrets 에 넣습니다.
+4. 작업 브랜치에서 커밋 메시지에 `[telegram-check] [pin-check:<링크>]` 를 넣어 `.github/workflows/telegram-check.yml` 을 푸시하면 그 링크의 사진을 텔레그램으로 받아 봅니다.
 
 #### 인스타 계정 연결
 
