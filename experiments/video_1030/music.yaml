@@ -1,0 +1,9 @@
+# 2026-10-30 퍼 코디 영상 음악 (컨셉: 포근하고 반짝이는 겨울, 걷기 리듬). 가수·곡 이름은 쓰지 않는다
+title: 퍼 코디 영상 음악
+music:
+  model: lyria
+  format: mp3
+  prompt: >-
+    A 30-second instrumental track for a chic winter fashion walking video in a sunny snowfield.
+    Stylish, cool and slightly dreamy indie pop with a steady walking groove, soft electric piano, light
+    sparkling bells, warm bass and crisp light drums, 112 BPM, clean and modern. Instrumental only, no vocals.

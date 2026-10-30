@@ -63,3 +63,10 @@ def test_first_frame_model_sends_frame_images():
     assert body["frame_images"][0]["frame_type"] == "first_frame"
     ref = video_test.payload({"id": "x", "duration": 5, "resolution": "2K"}, {}, "walk", [b"a"])
     assert ref["duration"] == 5 and ref["resolution"] == "2K" and len(ref["input_references"]) == 1
+
+
+def test_music_only_spec(tmp_path):
+    spec = tmp_path / "m.yaml"
+    spec.write_text(yaml.safe_dump({"music": {"prompt": "winter pop"}}), encoding="utf-8")
+    rec = video_test.run(spec, tmp_path / "out", None, fake=True)
+    assert rec["results"][0]["ok"] and (tmp_path / "out" / "music.mp3").exists()

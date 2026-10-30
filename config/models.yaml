@@ -93,3 +93,10 @@ video:
       id: google/veo-3.1-fast
       name: Veo 3.1 Fast (Google)           # 720p 소리 없이 초당 $0.08
       inputs: first_frame
+
+# 음악 AI (2026-10-30 코디 영상 음악, 사용자: Lyria). 30초 연주곡 한 곡 $0.04
+music:
+  endpoint: https://openrouter.ai/api/v1/chat/completions
+  models:
+    lyria:
+      id: google/lyria-3-clip-preview

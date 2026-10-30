@@ -149,10 +149,58 @@ def first_frame(spec: dict, refs: list[bytes], out: Path, cfg: dict, fake: bool)
     return data
 
 
+def music(spec: dict, out: Path, cfg: dict, fake: bool) -> dict:
+    """음악 AI(Lyria)로 연주곡 한 곡. 소리는 스트리밍 조각(delta.audio.data, base64)으로 온다."""
+    m = spec["music"]
+    mcfg = cfg["music"]
+    if fake:
+        data, cost = b"fake-mp3", 0.0
+    else:
+        body = {
+            "model": mcfg["models"][m.get("model", "lyria")]["id"],
+            "messages": [{"role": "user", "content": m["prompt"]}],
+            "modalities": ["text", "audio"],
+            "audio": {"format": m.get("format", "mp3")},
+            "stream": True,
+            "usage": {"include": True},
+        }
+        key = os.environ["OPENROUTER_API_KEY"]
+        chunks: list[str] = []
+        cost = None
+        headers = {"Authorization": f"Bearer {key}"}
+        with httpx.stream("POST", mcfg["endpoint"], json=body, headers=headers, timeout=600) as res:
+            if res.status_code >= 400:
+                raise RuntimeError(f"HTTP {res.status_code}: {res.read()[:400]!r}")
+            for line in res.iter_lines():
+                if not line.startswith("data: ") or line.strip() == "data: [DONE]":
+                    continue
+                ev = json.loads(line[6:])
+                for ch in ev.get("choices") or []:
+                    audio = (ch.get("delta") or {}).get("audio") or {}
+                    if audio.get("data"):
+                        chunks.append(audio["data"])
+                cost = (ev.get("usage") or {}).get("cost", cost)
+        if not chunks:
+            raise RuntimeError("음악이 오지 않았어요")
+        data = b"".join(base64.b64decode(c) for c in chunks)
+    name = f"music.{m.get('format', 'mp3')}"
+    (out / name).write_bytes(data)
+    return {"model": "music", "ok": True, "cost": cost, "file": name}
+
+
 def run(spec_path: Path, out: Path, models: list[str] | None, fake: bool = False) -> dict:
     cfg = load_config()
     spec = yaml.safe_load(spec_path.read_text(encoding="utf-8"))
     out.mkdir(parents=True, exist_ok=True)
+    if "refs" not in spec:  # 음악만
+        try:
+            entry = music(spec, out, cfg, fake)
+        except Exception as e:
+            entry = {"model": "music", "ok": False, "error": str(e)[:400]}
+        print(json.dumps(entry, ensure_ascii=False), flush=True)
+        record = {"spec": str(spec_path), "results": [entry]}
+        (out / "run.json").write_text(json.dumps(record, ensure_ascii=False, indent=2), "utf-8")
+        return record
     refs = [jpeg(read_ref(r)) for r in spec["refs"]]
     refs.append(background(spec, out, cfg, fake))
     first = first_frame(spec, refs, out, cfg, fake)
