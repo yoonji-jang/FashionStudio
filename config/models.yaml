@@ -78,6 +78,12 @@ video:
       name: Hailuo 3 (MiniMax)              # 2K 초당 $0.13 + 참고 사진당 $0.04, 5초부터
       duration: 5
       resolution: 2K
+    hailuo_3_frame:
+      id: minimax/hailuo-3
+      name: Hailuo 3 첫 장면 (MiniMax)      # 2026-10-30 사용자: 걷는 방향·속도·구도가 가장 좋음
+      duration: 5
+      resolution: 2K
+      inputs: first_frame
     # 첫 장면 한 장을 움직이는 모델 (inputs: first_frame). 얼굴·옷 디테일이 첫 장면 그대로 남는다
     kling_pro:
       id: kwaivgi/kling-v3.0-pro

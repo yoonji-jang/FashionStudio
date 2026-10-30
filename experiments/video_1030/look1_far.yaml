@@ -1,0 +1,17 @@
+# 2026-10-30 시험 4 (04:49 사용자): Hailuo 의 걷는 방향·속도·구도 + Kling 의 얼굴·표정.
+# 인물 크기는 시험 3 Hailuo 첫 화면 그대로 (04:53 사용자), 배경은 Hailuo 영상의 눈밭과 길 (오두막 없어도 됨), 길을 따라 걷기,
+# 카메라는 다가가지 않고 같은 거리에서 옆으로 따라가기, 도도하되 아주 살짝 미소, 얼굴은 사용자 모델.
+title: 퍼 코디 영상 LOOK 1 시험 4 (멀리서, Hailuo 구도)
+refs:
+  - daily-results:flow/women/face.jpg                                  # 1 얼굴 (가장 중요)
+  - daily-results:2026-10-27-run380/looks/1/outfit/results/G_1.jpg     # 2 LOOK 1 정면컷
+background:                                                            # 3 배경·구도 기준 (시험 3 Hailuo 첫 화면)
+  image: experiments/video_1030/hailuo_frame.jpg
+first_frame:
+  model: nano_banana_pro
+  prompt_file: experiments/video_1030/look1_far_image.txt
+prompt_file: experiments/video_1030/look1_far.txt
+duration: 5
+resolution: 720p
+aspect_ratio: '9:16'
+models: [hailuo_3_frame, kling_pro]
