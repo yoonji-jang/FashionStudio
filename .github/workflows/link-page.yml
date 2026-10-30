@@ -4,6 +4,7 @@ name: link-page
 # 평소에는 publish 가 게시할 때마다 알아서 올리므로, 처음 한 번이나 profile link_page 를 바꿨을 때만 누른다.
 # 주소: https://<GitHub 아이디>.github.io/<사진 저장소>/<계정>/ (사진 저장소 Settings → Pages 를 켜야 함)
 # action: remove 는 올려 둔 페이지를 지운다 (profile link_page 를 끈 뒤 한 번).
+# action: privacy 는 개인정보처리방침 페이지(<계정>/privacy/)를 올린다 (핀터레스트 개발자 앱 등록용).
 # 필요한 Secret: MEDIA_REPO_TOKEN
 on:
   workflow_dispatch:
@@ -12,9 +13,9 @@ on:
         description: 계정
         default: women
       action:
-        description: push(올리기) / remove(내리기)
+        description: push(올리기) / remove(내리기) / privacy(개인정보처리방침 올리기)
         type: choice
-        options: [push, remove]
+        options: [push, remove, privacy]
         default: push
 
 permissions:
@@ -29,7 +30,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --no-dev
       - name: 상품 페이지 올리기
-        if: ${{ inputs.action != 'remove' }}
+        if: ${{ inputs.action == 'push' }}
         env:
           MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
           ACCOUNT: ${{ inputs.account || 'women' }}
@@ -44,3 +45,11 @@ jobs:
         run: |
           msg=$(uv run python -m tools.link_page remove --account "$ACCOUNT")
           echo "::notice::상품 페이지 $msg"
+      - name: 개인정보처리방침 올리기
+        if: ${{ inputs.action == 'privacy' }}
+        env:
+          MEDIA_REPO_TOKEN: ${{ secrets.MEDIA_REPO_TOKEN }}
+          ACCOUNT: ${{ inputs.account || 'women' }}
+        run: |
+          url=$(uv run python -m tools.link_page privacy --account "$ACCOUNT")
+          echo "::notice::개인정보처리방침 $url"

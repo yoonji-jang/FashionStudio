@@ -10,6 +10,7 @@ DM 을 고칠 필요가 없다. 설정은 profile `link_page`.
   python -m tools.link_page build --account women [--out out/link_page.html]   파일로 만들기
   python -m tools.link_page push --account women                               만들어서 올리기
   python -m tools.link_page remove --account women                             올려 둔 페이지 내리기
+  python -m tools.link_page privacy --account women        개인정보처리방침 올리기
 환경 변수(push, remove): MEDIA_REPO_TOKEN, GITHUB_REPOSITORY
 """
 
@@ -116,6 +117,61 @@ h2 {{ font-size: 18px; margin: 0 0 12px; }}
 """
 
 
+def privacy_path(profile: Profile) -> str:
+    return f"{profile.id}/privacy/index.html"
+
+
+def render_privacy(profile: Profile) -> str:
+    """핀터레스트 개발자 앱 등록용 개인정보처리방침 (2026-10-30 사용자). 심사가 영어라 영어."""
+    name = escape(profile.visual.logo_text or profile.id)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy - {name}</title>
+<style>
+body{{margin:0;background:#fff;color:#222;font:16px/1.6 -apple-system,system-ui,sans-serif}}
+main{{max-width:680px;margin:0 auto;padding:32px 16px}}
+h1{{font-size:24px}}h2{{font-size:18px;margin-top:28px}}
+</style>
+</head>
+<body><main>
+<h1>Privacy Policy - {name} outfit tool</h1>
+<p>This app is a private tool used only by the owner of the {name} account.
+It creates outfit posts for the owner's own Instagram account.</p>
+<h2>What we access</h2>
+<p>With the owner's permission (scopes boards:read and pins:read), the app reads the
+owner's own Pinterest boards and pins to use saved pins as outfit references.
+It does not access other users' accounts
+and does not post, edit or delete anything on Pinterest.</p>
+<h2>How data is used and stored</h2>
+<ul>
+<li>Pin images are used only temporarily while a post is being made
+and are not kept afterwards.</li>
+<li>Only pin IDs may be kept as references.
+No personal data of any Pinterest user is collected.</li>
+<li>Data is never sold, shared with third parties or used for advertising.</li>
+<li>Access tokens are kept in encrypted secret storage and are never shared.</li>
+</ul>
+<h2>Your choices</h2>
+<p>Access can be revoked at any time in Pinterest Settings &gt; Security and logins &gt; Apps.</p>
+<h2>Contact</h2>
+<p>Instagram: @{name}</p>
+</main></body>
+</html>
+"""
+
+
+def push_privacy(profile: Profile, host: GitHubHost | None = None) -> str:
+    """개인정보처리방침 페이지를 올리고 주소를 돌려준다."""
+    host = host or GitHubHost.from_config(notify.publish_config().get("image_host", {}))
+    host.put(
+        privacy_path(profile), render_privacy(profile).encode(), f"개인정보처리방침 {profile.id}"
+    )
+    return host.pages_url(f"{profile.id}/privacy/")
+
+
 def push(profile: Profile, store: Store, host: GitHubHost | None = None) -> str:
     """페이지를 만들어 올리고 주소를 돌려준다."""
     host = host or GitHubHost.from_config(notify.publish_config().get("image_host", {}))
@@ -134,7 +190,7 @@ def remove(profile: Profile, host: GitHubHost | None = None) -> bool:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("build", "push", "remove"):
+    for name in ("build", "push", "remove", "privacy"):
         s = sub.add_parser(name)
         s.add_argument("--account", required=True)
         if name == "build":
@@ -148,6 +204,9 @@ def main(argv: list[str] | None = None) -> int:
         print(args.out)
         return 0
     try:
+        if args.cmd == "privacy":
+            print(push_privacy(profile))
+            return 0
         if args.cmd == "remove":
             print("지웠어요" if remove(profile) else "올려 둔 페이지가 없어요")
             return 0
