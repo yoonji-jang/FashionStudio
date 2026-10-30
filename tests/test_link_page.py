@@ -127,3 +127,10 @@ def test_remove_deletes_page_once():
     assert link_page.remove(profile, host) is True
     assert link_page.remove(profile, host) is False
     assert deleted == ["s1"]
+
+
+def test_privacy_page():
+    profile = load_profile("women")
+    html = link_page.render_privacy(profile)
+    assert "boards:read" in html and "@" + profile.visual.logo_text in html
+    assert link_page.privacy_path(profile) == "women/privacy/index.html"
