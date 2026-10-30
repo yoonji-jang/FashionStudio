@@ -286,7 +286,7 @@ def send_theme_album(profile, store: Store, theme: Theme, tg, out: Path) -> list
     # 직접 보내는 길은 늘 안내한다 (2026-10-29 사용자: 메시지마다 쓸 수 있는 명령 안내)
     caption += (
         '. 마음에 드는 게 없으면 따라 할 코디 사진을 직접 보내 주세요 (사진 설명에 "참고", '
-        "여러 장이면 앨범으로). 핀터레스트 핀 링크(pin.it/…)를 글로 보내도 돼요"
+        "여러 장이면 앨범으로). 핀터레스트 핀·보드 링크(pin.it/…)를 글로 보내도 돼요"
         " (여러 개면 한 글에 줄을 바꿔서)"
     )
     tg.send_photos(sheets, caption)
