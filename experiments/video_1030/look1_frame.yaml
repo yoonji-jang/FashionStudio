@@ -2,12 +2,19 @@
 # 더 좋은 모델 써도 됨. 내가 만든 모델 얼굴을 최대한 쓰고 싶어."
 # → 고급 이미지 모델(Nano Banana Pro)로 첫 장면 한 장 (얼굴·옷 디테일 고정) → 그 장면을 움직이는 모델.
 #   비교로 Hailuo 3 (2K, 참고 사진).
-title: 퍼 코디 영상 LOOK 1 시험 3 (첫 장면 고정, 도도한 표정)
+title: 퍼 코디 영상 LOOK 1 시험 3 (첫 장면 고정, 도도한 표정, 눈밭 오두막)
 refs:
   - daily-results:flow/women/face.jpg                                  # 1 얼굴
   - daily-results:2026-10-27-run380/looks/1/outfit/results/G_1.jpg     # 2 LOOK 1 정면컷
-background:                                                            # 3 빈 배경 (시험 2 것)
-  image: poc-results:video-2/background.jpg
+background:                                                            # 3 빈 배경
+  # 사용자 04:27: "눈 쌓인 눈밭에 오두막 하나 있는 느낌으로"
+  model: nano_banana
+  prompt: >-
+    A vertical 9:16 photo of a wide open snowfield covered in deep fresh snow on a bright sunny winter day,
+    one small cozy wooden cabin with a snowy roof in the middle distance, a few snowy pine trees far behind,
+    soft blue sky, warm sunlight, snow sparkling as it drifts down. A flat snowy path runs across the frame
+    from right to left in the foreground. Eye-level view from a few meters away. No people, no animals,
+    no text, no signs.
 first_frame:
   model: nano_banana_pro
   prompt_file: experiments/video_1030/look1_frame_image.txt
