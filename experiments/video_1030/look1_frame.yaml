@@ -23,3 +23,5 @@ duration: 4
 resolution: 720p
 aspect_ratio: '9:16'
 models: [kling_pro, veo_fast, hailuo_3]
+# 장면 구상 (04:28 사용자 확인, 순서는 LOOK 1~6 그대로): 눈밭 오두막, 옆에서 따라가며 찍기, 오른쪽→왼쪽 걷기.
+# 장면 1 = LOOK 1: 걸어 들어오며 카메라를 무심하게 한 번 봄 (훅 문구는 편집 때 코드가 얹음)
