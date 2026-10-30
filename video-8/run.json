@@ -1,0 +1,11 @@
+{
+  "spec": "experiments/video_1030/music.yaml",
+  "results": [
+    {
+      "model": "music",
+      "ok": true,
+      "cost": 0.04,
+      "file": "music.mp3"
+    }
+  ]
+}
