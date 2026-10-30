@@ -185,6 +185,16 @@ def check(url: str) -> int:
     from tools.notify import Telegram
 
     with scout.client() as c:
+        hop = url
+        for _ in range(4):
+            r = c.get(hop, follow_redirects=False)
+            print("단계", r.status_code, hop, "→", r.headers.get("location", ""))
+            print("  robots", "허용" if scout.robots_allows(c, hop) else "막음")
+            if not r.headers.get("location"):
+                body = r.text[:3000]
+                print("  본문 단서:", re.findall(r"pinterest\.[a-z.]+/[^\"'<>\s]{0,120}", body)[:8])
+                break
+            hop = str(r.url.join(r.headers["location"]))
         full = expand(url, c)
         print("주소:", full)
         for probe in (
