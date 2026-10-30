@@ -12,6 +12,9 @@ on:
       queries:
         description: 검색어 (쉼표로)
         default: "롱스커트 가을 코디, 롱스커트 데일리룩 여자, 플리츠 롱스커트 코디"
+      engine:
+        description: 검색 (daum, naver). 비우면 profile image_search
+        default: ""
       telegram:
         description: 확인표를 텔레그램으로 보냄
         type: boolean
@@ -40,6 +43,8 @@ jobs:
           args=()
           IFS=',' read -ra qs <<< "$QUERIES"
           for q in "${qs[@]}"; do args+=(--query "$q"); done
+          IFS=',' read -ra es <<< "$ENGINE"
+          for e in "${es[@]}"; do e="${e// /}"; [ -n "$e" ] && args+=(--engine "$e"); done
           uv run python -m tools.ref_search sheets --account "$ACCOUNT" --out out/ref_search "${args[@]}" || true
       - name: 요약
         run: |

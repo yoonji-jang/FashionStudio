@@ -246,17 +246,24 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--query", action="append", required=True)
     s.add_argument("--out", type=Path, required=True)
     s.add_argument("--limit", type=int, default=320, help="확인표에 넣을 최대 사진 수")
+    s.add_argument(
+        "--engine",
+        action="append",
+        choices=["daum", "naver"],
+        help="profile image_search 대신 쓸 검색 (코디가 아닌 사진, 예: 영상 배경 예시)",
+    )
     args = ap.parse_args(argv)
 
     from core.profile import load_profile
 
     rs = load_profile(args.account).themes.ref_search
-    if rs is None or not rs.image_search:
+    engines = args.engine or (rs.image_search if rs else [])
+    if rs is None or not engines:
         print("profile themes.ref_search.image_search 가 비어 있다", file=sys.stderr)
         return 1
     queries = [q.strip() for q in args.query if q.strip()]
     hits, notes = search(
-        queries, rs.image_search, rs.search_per_query, rs.avoid_sites, rs.search_min_height
+        queries, engines, rs.search_per_query, rs.avoid_sites, rs.search_min_height
     )
     for n in notes:
         print(n, file=sys.stderr)
