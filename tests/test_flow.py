@@ -61,7 +61,12 @@ def theme(n: int) -> Theme:
 
 
 def _profile(
-    week: int, ref_pick: int = 0, review: bool = False, rules: bool = False, search: bool = False
+    week: int,
+    ref_pick: int = 0,
+    review: bool = False,
+    rules: bool = False,
+    search: bool = False,
+    video: bool = False,
 ):
     real = flow.load_profile
 
@@ -76,7 +81,9 @@ def _profile(
             update={"image_search": ["daum"] if search else [], "weekly_crawl": True}
         )
         themes = p.themes.model_copy(update={"ref_search": rs})
-        return p.model_copy(update={"flow": f, "themes": themes})
+        # 영상 컨셉 단계는 video 일 때만 (그 밖의 시험은 고르면 바로 만들기)
+        v = p.video.model_copy(update={"enabled": video})
+        return p.model_copy(update={"flow": f, "themes": themes, "video": v})
 
     return load
 
@@ -1015,3 +1022,109 @@ def test_face_photos_are_not_scenes():
     assert flow.face_photos(tg.ups, CHAT, T0) == [(2, "face_a"), (3, "face_b")]
     assert [p.file_id for p in flow.scene_photos(tg.ups, CHAT, T0, 0)] == ["scene_a"]
     assert flow.ref_photos(tg.ups, CHAT, T0) == []
+
+
+def _concepts(n: int = 2, looks: int = 2):
+    from tools import video_concept
+
+    shot = [{"look": i, "seconds": 2.5, "action": "걸어오기", "pose": "멈춰 웃기"}
+            for i in range(1, looks + 1)]  # fmt: skip
+    return [
+        video_concept.Concept(
+            title=f"컨셉 {k}",
+            background="눈 오는 골목",
+            background_en="A snowy alley.",
+            framing="세로 전신 고정",
+            light="저녁",
+            motion="걷기",
+            music="acoustic, 96 BPM, instrumental",
+            music_mood="잔잔한 어쿠스틱",
+            hook="연말 여행 코디",
+            shots=shot,
+        )  # fmt: skip
+        for k in range(1, n + 1)
+    ]
+
+
+def _picked_state(results, scene: bool = True):
+    st = flow.FlowState(
+        account="women", stage="pick_wait", date=date(2026, 10, 15), asked_at=T0 - 600,
+        theme_at=T0 - 900, pick="2026-10-15-run7/chosen",
+        scene="flow/women/2026-10-15/scene.jpg" if scene else "",
+        scenes=["flow/women/2026-10-15/scene.jpg"] if scene else [],
+    )  # fmt: skip
+    flow.save_state(results, st)
+
+
+def test_video_concept_pick_then_render(env, monkeypatch):
+    from tools import video_concept
+
+    monkeypatch.setattr(flow, "load_profile", _profile(0, video=True))
+    store, results, sent, _ = env
+    tg = FakeTg()
+    _picked_state(results)
+    # 코디와 장면 사진이 있어도 영상 컨셉을 먼저 요청하고 만들기는 기다린다
+    tick(env, tg, T0)
+    assert sent[-1] == (
+        "video-concept.yml",
+        {"account": "women", "date": "2026-10-15", "run": "2026-10-15-run7/chosen",
+         "feedback": ""},
+    )  # fmt: skip
+    tick(env, tg, T0 + 300)
+    assert len(sent) == 1
+    profile = flow.load_profile("women")
+    cs = video_concept.save(profile, store, date(2026, 10, 15), _concepts(), looks=2, tg=tg,
+                            sent_at=T0 + 600)  # fmt: skip
+    assert "1. 컨셉 1" in tg.sent[-1] and "LOOK 2 (2.5초)" in tg.sent[-1] and cs.message_ids
+    # 고칠 점 → 고친 후보 요청 (그 글을 그대로 넘김)
+    tg.text(1, "2번인데 배경은 겨울 바다로", T0 + 700)
+    tick(env, tg, T0 + 800)
+    assert sent[-1][0] == "video-concept.yml"
+    assert sent[-1][1]["feedback"] == "2번인데 배경은 겨울 바다로"
+    assert "고친 영상 컨셉" in tg.sent[-1]
+    # 고친 후보가 오기 전에는 기다림, 오면 번호로 고름 → 만들기
+    tick(env, tg, T0 + 900)
+    assert sent[-1][0] == "video-concept.yml"
+    video_concept.save(profile, store, date(2026, 10, 15), _concepts(), looks=2, tg=tg,
+                       sent_at=T0 + 1000)  # fmt: skip
+    tg.text(2, "2번", T0 + 1100)
+    tick(env, tg, T0 + 1200)
+    st = flow.load_state(results, "women")
+    assert st.concept == 2 and st.stage == "rendering"
+    assert sent[-1][1]["mode"] == "render"
+    assert video_concept.load(store).chosen == 2
+    assert any("2번 '컨셉 2'" in t for t in tg.sent)
+
+
+def test_video_concept_again_and_chosen_by_claude(env, monkeypatch):
+    from tools import video_concept
+
+    monkeypatch.setattr(flow, "load_profile", _profile(0, video=True))
+    store, results, sent, _ = env
+    tg = FakeTg()
+    _picked_state(results, scene=False)
+    tick(env, tg, T0)
+    profile = flow.load_profile("women")
+    video_concept.save(profile, store, date(2026, 10, 15), _concepts(), tg=tg, sent_at=T0 + 60)
+    tg.text(1, "다시", T0 + 100)
+    tick(env, tg, T0 + 200)
+    assert sent[-1][1]["feedback"] == "다시" and "새 영상 컨셉" in tg.sent[-1]
+    # 고칠 점에 번호까지 있어 Claude 가 고른 번호를 채워 오면 보내지 않고 바로 정함
+    n = len(tg.sent)
+    video_concept.save(profile, store, date(2026, 10, 15), _concepts(), chosen=1, tg=tg,
+                       sent_at=T0 + 300)  # fmt: skip
+    assert len(tg.sent) == n
+    tick(env, tg, T0 + 400)
+    st = flow.load_state(results, "women")
+    # 장면 사진이 아직 없으면 컨셉만 정하고 기다림
+    assert st.concept == 1 and st.stage == "pick_wait" and "장면 사진" in tg.sent[-1]
+
+
+def test_video_concept_reset_on_next_theme(env, monkeypatch):
+    monkeypatch.setattr(flow, "load_profile", _profile(0, video=True))
+    _, results, _, _ = env
+    st = flow.FlowState(account="women", stage="theme", concept=2, concept_at=T0, concept_upto=T0)
+    flow.save_state(results, st)
+    tick(env, FakeTg(), T0)
+    st = flow.load_state(results, "women")
+    assert (st.concept, st.concept_at, st.concept_upto) == (0, 0, 0)

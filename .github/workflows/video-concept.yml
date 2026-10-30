@@ -1,0 +1,118 @@
+name: video-concept
+
+# 움직이는 코디 영상의 컨셉 후보 (2026-10-30 사용자, profile video.enabled).
+# 차례 흐름(tools.flow)이 코디를 고르면 부른다. Claude(video-concept 스킬)가 주제·고른 벌·영상 기준(video.md)으로
+# 컨셉 후보를 쓰면 tools.video_concept 가 검사해 data/<계정>/video_concepts.json 에 저장·커밋하고 텔레그램으로 보낸다.
+# 사용자가 번호로 고르면 흐름이 정한다. feedback 은 후보에 답한 고칠 점·원하는 컨셉 ("다시" 면 새로 짬).
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      date:
+        description: 게시 날짜 YYYY-MM-DD
+        required: true
+      run:
+        description: 고른 코디 (daily-results 의 "<결과 폴더>/chosen" 또는 "/<번호>")
+        required: true
+      feedback:
+        description: 사용자 고칠 점 (빈칸이면 처음 후보, "다시" 면 새로)
+        default: ""
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  concept:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: video-concept-${{ inputs.account }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      DATE: ${{ inputs.date }}
+      RUN: ${{ inputs.run }}
+      FEEDBACK: ${{ inputs.feedback }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+
+      - name: 준비 (고른 벌, 재료)
+        run: |
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          mkdir -p out/video
+          git fetch -q origin daily-results
+          plan=$(uv run python -c "from pathlib import Path; from tools.video_concept import plan_file; print(plan_file(Path('.'), '$RUN'))")
+          git show "origin/daily-results:$plan" > out/video/looks.yaml
+          fb="$FEEDBACK"; [ "$fb" = "다시" ] && fb="다시 (앞 후보와 겹치지 않게 새로)"
+          uv run python -m tools.video_concept context --account "$ACCOUNT" --date "$DATE" \
+            --plan out/video/looks.yaml --feedback "$fb" > out/video/context.md
+          looks=$(uv run python -c "import yaml; from tools.video_concept import looks_of; print(len(looks_of(yaml.safe_load(open('out/video/looks.yaml', encoding='utf-8')) or {})))")
+          echo "LOOKS=$looks" >> "$GITHUB_ENV"
+
+      - name: Claude 컨셉 후보 (video-concept 스킬)
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          allowed_bots: "github-actions"
+          prompt: |
+            .claude/skills/video-concept/SKILL.md 대로 ${{ env.DATE }} 게시물의 영상 컨셉 후보를 짜서
+            out/video_concepts.yaml 에 써. 재료는 out/video/context.md (고른 벌 ${{ env.LOOKS }}벌).
+            ACCOUNT=${{ env.ACCOUNT }}
+            저장·텔레그램은 워크플로가 하니 git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 30
+            --allowedTools "Read,Write,Edit,Glob,Grep"
+
+      - name: 검사·저장·텔레그램으로 보내기
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          send=""; [ -n "$TELEGRAM_BOT_TOKEN" ] && send="--send"
+          python -m tools.video_concept save --account "$ACCOUNT" --date "$DATE" \
+            --file out/video_concepts.yaml --run "$RUN" --looks "$LOOKS" --feedback "$FEEDBACK" $send
+
+      # Claude 가 되풀이될 취향을 영상 기준(video.md "좋다 / 싫다")에 더했으면 같이 커밋한다
+      - name: 컨셉 후보 커밋
+        run: |
+          f="data/$ACCOUNT/video_concepts.json"; rules="accounts/$ACCOUNT/video.md"
+          cp "$f" /tmp/video_concepts.json
+          [ -f "$rules" ] && cp "$rules" /tmp/video_rules.md
+          for i in 1 2 3; do
+            git fetch origin "${{ github.ref_name }}"
+            git reset -q --hard "origin/${{ github.ref_name }}"
+            cp /tmp/video_concepts.json "$f"
+            [ -f /tmp/video_rules.md ] && cp /tmp/video_rules.md "$rules"
+            git add "$f" "$rules" 2>/dev/null || git add "$f"
+            git diff --cached --quiet && exit 0
+            git -c user.name="github-actions[bot]" \
+              -c user.email="41898279+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "영상 컨셉 후보 $ACCOUNT $DATE"
+            git push origin "HEAD:${{ github.ref_name }}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: 사용량 한도 기록 (한도가 풀리면 schedule 이 같은 입력으로 다시 돌림)
+        if: failure()
+        env:
+          WORKFLOW: video-concept.yml
+          INPUTS: ${{ toJSON(inputs) }}
+        run: KEY="video-concept:$ACCOUNT" .github/scripts/limit.sh
+
+      - name: 실패 알림
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "[${{ inputs.account }}] ${{ inputs.date }} 영상 컨셉 후보 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: |
+          [ -n "$LIMITED" ] && TEXT="$TEXT
+          Claude 사용량 한도로 멈췄어요. 한도가 풀리면 자동으로 다시 시작해요"
+          .github/scripts/alert.sh
