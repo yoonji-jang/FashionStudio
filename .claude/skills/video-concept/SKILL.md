@@ -44,19 +44,31 @@ description: 움직이는 코디 영상의 컨셉 후보를 짠다. 코디 주�
 ## 결과: out/video_concepts.yaml
 후보 수는 context 의 후보 수. 번호를 고를 필요가 없으면 목록만, 고를 번호가 정해졌으면 `{concepts: [...], chosen: 2}`.
 ```yaml
-- title: 남친이 찍어 준 눈 오는 여행지
-  background: 눈 내리는 여행지 골목 한 곳, 가로등 아래 같은 자리
-  background_en: A quiet snowy alley in a small travel town at dusk, warm street lamps, light snowfall, no people, no signs.
-  framing: 세로, 눈높이, 길 건너에서 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정
-  light: 해 질 무렵, 따뜻한 가로등 빛, 푸른 저녁 하늘
-  motion: 걷기
-  music: warm acoustic guitar pop, gentle and romantic, 96 BPM, instrumental, no vocals
-  music_mood: 잔잔하고 설레는 어쿠스틱
-  hook: 연말 여행 코디, 남친이 찍어 줬어요
-  why: 퍼 자켓과 니트가 많은 겨울 코디라 눈 오는 골목에서 포근함이 잘 보임
+- title: "남친이 찍어 준 눈 오는 여행지"
+  background: "눈 내리는 여행지 골목 한 곳, 가로등 아래 같은 자리"
+  background_en: "A quiet snowy alley in a small travel town at dusk, warm street lamps, light snowfall, no people, no signs."
+  framing: "세로, 눈높이, 길 건너에서 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정"
+  light: "해 질 무렵, 따뜻한 가로등 빛, 푸른 저녁 하늘"
+  motion: "걷기"
+  music: "warm acoustic guitar pop, gentle and romantic, 96 BPM, instrumental, no vocals"
+  music_mood: "잔잔하고 설레는 어쿠스틱"
+  hook: "연말 여행 코디, 남친이 찍어 줬어요"
+  why: "퍼 자켓과 니트가 많은 겨울 코디라 눈 오는 골목에서 포근함이 잘 보임"
   shots:
-    - {look: 1, seconds: 3, action: 안쪽에서 카메라 쪽으로 걸어오다 멈춤, pose: 멈춰 서서 카메라 보며 웃기, text: 연말 여행 코디, 남친이 찍어 줬어요}
-    - {look: 2, seconds: 2.5, action: 옆으로 걸어 지나가다 카메라 쪽으로 돌아봄, pose: 가방 고쳐 들며 돌아보기}
-    - {look: 3, seconds: 2.5, action: 등을 보이며 몇 걸음 걷다 어깨 너머로 돌아봄, pose: 어깨 너머로 돌아보는 순간 코트 자락}
+    - look: 1
+      seconds: 3
+      action: "안쪽에서 카메라 쪽으로 걸어오다 멈춤"
+      pose: "멈춰 서서 카메라 보며 웃기"
+      text: "연말 여행 코디, 남친이 찍어 줬어요"
+    - look: 2
+      seconds: 2.5
+      action: "옆으로 걸어 지나가다 카메라 쪽으로 돌아봄"
+      pose: "가방 고쳐 들며 돌아보기"
+    - look: 3
+      seconds: 2.5
+      action: "등을 보이며 몇 걸음 걷다 어깨 너머로 돌아봄"
+      pose: "어깨 너머로 돌아보는 순간 코트 자락"
 ```
-쓴 뒤 YAML 형식과 벌 번호(1부터 빠짐없이)를 다시 확인한다. 저장·텔레그램은 워크플로가 한다.
+글 값은 모두 큰따옴표로 감싼다 (`?`, `:`, `#` 가 들어가면 YAML 이 깨진다). `{...}` 한 줄 형식은 쓰지 않는다.
+쓴 뒤 `python -m tools.video_concept check --file out/video_concepts.yaml --looks <벌 수>` 로 검사하고
+"통과" 가 나올 때까지 고친다. 저장·텔레그램은 워크플로가 한다.

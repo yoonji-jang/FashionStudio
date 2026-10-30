@@ -14,6 +14,8 @@ Claude(video-concept 스킬)가 컨셉 후보를 쓰면 이 도구가 검사해 
       --file out/video_concepts.yaml --run 2026-10-28-run398/chosen --looks 6 \
       [--feedback …] [--send]
       Claude 가 쓴 후보를 검사·저장하고 (--send 면) 텔레그램으로 보낸다
+  python -m tools.video_concept check --file out/video_concepts.yaml --looks 6
+      형식만 검사 (Claude 가 쓴 뒤 스스로 확인)
   python -m tools.video_concept show --account women
 """
 
@@ -162,6 +164,15 @@ def reply(text: str, count: int) -> int | str | None:
     return None
 
 
+def check_looks(concepts: list[Concept], looks: int) -> None:
+    """후보마다 장면 수가 고른 벌 수와 같은지 (looks 가 0 이면 검사 안 함)."""
+    for c in concepts:
+        if looks and len(c.shots) != looks:
+            raise ValueError(
+                f"'{c.title}' 장면이 {len(c.shots)}개예요. 고른 벌 수({looks})와 같아야 합니다"
+            )
+
+
 def save(
     profile: Profile,
     store: Store,
@@ -177,11 +188,7 @@ def save(
     """Claude 가 쓴 후보를 검사해 저장하고 (보낼 수 있으면) 텔레그램으로 보낸다.
     고칠 점에 번호까지 있어 고른 번호(chosen)가 정해졌으면 보내지 않는다 (흐름이 정하고 알린다)."""
     concepts = concepts[: profile.video.concepts] if not chosen else concepts
-    for c in concepts:
-        if looks and len(c.shots) != looks:
-            raise ValueError(
-                f"'{c.title}' 장면이 {len(c.shots)}개예요. 고른 벌 수({looks})와 같아야 합니다"
-            )
+    check_looks(concepts, looks)
     if chosen and not 1 <= chosen <= len(concepts):
         raise ValueError(f"고른 번호가 잘못됐습니다: {chosen} (1~{len(concepts)})")
     cs = ConceptSet(
@@ -258,10 +265,18 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--looks", type=int, default=0, help="고른 벌 수 (장면 수 검사)")
     s.add_argument("--feedback", default="")
     s.add_argument("--send", action="store_true")
+    k = sub.add_parser("check", help="형식 검사만")
+    k.add_argument("--file", type=Path, required=True)
+    k.add_argument("--looks", type=int, default=0)
     w = sub.add_parser("show", help="저장된 후보")
     w.add_argument("--account", required=True)
     args = parser.parse_args(argv)
     try:
+        if args.cmd == "check":
+            concepts, chosen = _read_concepts(args.file)
+            check_looks(concepts, args.looks)
+            print(f"통과: 후보 {len(concepts)}개" + (f", 고른 번호 {chosen}" if chosen else ""))
+            return 0
         store = Store(args.account)
         if args.cmd == "context":
             plan = yaml.safe_load(args.plan.read_text(encoding="utf-8")) or {}
@@ -288,7 +303,7 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 print(concept_text(load_profile(args.account), cs))
         return 0
-    except (ValueError, FileNotFoundError, RuntimeError) as e:
+    except (ValueError, FileNotFoundError, RuntimeError, yaml.YAMLError) as e:
         print(f"오류: {e}", file=sys.stderr)
         return 1
 

@@ -64,10 +64,12 @@ jobs:
             .claude/skills/video-concept/SKILL.md 대로 ${{ env.DATE }} 게시물의 영상 컨셉 후보를 짜서
             out/video_concepts.yaml 에 써. 재료는 out/video/context.md (고른 벌 ${{ env.LOOKS }}벌).
             ACCOUNT=${{ env.ACCOUNT }}
+            다 쓰면 `python -m tools.video_concept check --file out/video_concepts.yaml --looks ${{ env.LOOKS }}` 로
+            검사하고 "통과" 가 나올 때까지 고쳐.
             저장·텔레그램은 워크플로가 하니 git 커밋·푸시, 게시, 외부 전송은 하지 마.
           claude_args: >-
             --max-turns 30
-            --allowedTools "Read,Write,Edit,Glob,Grep"
+            --allowedTools "Bash(python -m tools.video_concept check:*),Read,Write,Edit,Glob,Grep"
 
       - name: 검사·저장·텔레그램으로 보내기
         env:
