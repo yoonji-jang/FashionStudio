@@ -1,0 +1,23 @@
+{
+  "spec": "experiments/video_1030/look1_track.yaml",
+  "results": [
+    {
+      "model": "grok_video",
+      "id": "x-ai/grok-imagine-video",
+      "ok": true,
+      "cost": 0.286,
+      "job": "gen-vid-1793333981-6PGe8p4FWERALRJUPkij",
+      "file": "grok_video.mp4",
+      "sec": 48.8
+    },
+    {
+      "model": "happyhorse",
+      "id": "alibaba/happyhorse-1.1",
+      "ok": true,
+      "cost": 0.494,
+      "job": "gen-vid-1793334030-w3K4hXASxy0oCwOOrOB0",
+      "file": "happyhorse.mp4",
+      "sec": 97.7
+    }
+  ]
+}
