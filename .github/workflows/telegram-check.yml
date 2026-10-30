@@ -9,11 +9,13 @@ name: telegram-check
 # [pick-status:<결과 폴더>] 를 넣으면 그 코디 후보에 온 답장을 읽어 어떻게 정할지 보여 준다 (기록·실행 없음).
 # [pick-resend:<결과 폴더>] 를 넣으면 그 결과의 코디 후보(지금 p1.yaml) 시트를 텔레그램으로 다시 보낸다
 # (pick.json 은 저장하지 않아 번호로 고르면 되고, 시트 답장 /fix 는 벌 번호를 같이 적는다).
+# [pin-check:<핀 링크>] 를 넣으면 그 핀의 사진을 참고 사진처럼 받아 텔레그램으로 보내 본다 (저장 안 함).
 on:
   workflow_dispatch:
   push:
     branches: ["claude/**"]
-    paths: [".github/workflows/telegram-check.yml", "tools/notify.py", "tools/pick.py"]
+    paths: [".github/workflows/telegram-check.yml", "tools/notify.py", "tools/pick.py",
+            "tools/pinterest.py"]
 
 permissions:
   contents: read
@@ -69,3 +71,15 @@ jobs:
           account=$(jq -r .account "/tmp/results/$dir/run.json")
           uv run python -m tools.pick restore-user --account "$account" --prev /tmp/results --out /tmp/resend --run "$dir"
           uv run python -m tools.pick send /tmp/resend --run "$dir"
+      - name: 핀터레스트 핀 링크 시험
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
+          PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
+          PINTEREST_REFRESH_TOKEN: ${{ secrets.PINTEREST_REFRESH_TOKEN }}
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          url=$(grep -oP '\[pin-check:\K[^\]\s]+(?=\])' <<<"$MSG" || true)
+          [ -z "$url" ] && exit 0
+          uv run python -m tools.pinterest check "$url"

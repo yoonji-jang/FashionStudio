@@ -435,9 +435,9 @@ def main(argv: list[str] | None = None) -> int:
         wanted = store.refs()
         if args.ref_photos:
             # 2026-10-26: 사용자가 보낸 사진만 옮겼으면 그 코디 칸만 (전체를 찾으면 2시간)
-            from tools.scout import TELEGRAM_PHOTO
+            from tools.scout import user_ref
 
-            photos = {TELEGRAM_PHOTO + f for f in json.loads(args.ref_photos)}
+            photos = {user_ref(f) for f in json.loads(args.ref_photos)}
             wanted = [r for r in wanted if r.photo in photos]
         plan = refs_tool.missing_queries(wanted)
         print(f"참고 코디에서 찾을 검색어 {sum(map(len, plan.values()))}개")
