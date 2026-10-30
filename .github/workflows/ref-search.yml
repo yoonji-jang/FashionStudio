@@ -15,6 +15,9 @@ on:
       limit:
         description: 확인표에 넣을 최대 사진 수 (16장이 확인표 한 장)
         default: "320"
+      engine:
+        description: 검색 (daum, naver). 비우면 profile image_search
+        default: ""
       telegram:
         description: 확인표를 텔레그램으로 보냄
         type: boolean
@@ -31,6 +34,7 @@ jobs:
       ACCOUNT: ${{ inputs.account }}
       QUERIES: ${{ inputs.queries }}
       LIMIT: ${{ inputs.limit || '320' }}
+      ENGINE: ${{ inputs.engine }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -44,6 +48,8 @@ jobs:
           args=()
           IFS=',' read -ra qs <<< "$QUERIES"
           for q in "${qs[@]}"; do args+=(--query "$q"); done
+          IFS=',' read -ra es <<< "$ENGINE"
+          for e in "${es[@]}"; do e="${e// /}"; [ -n "$e" ] && args+=(--engine "$e"); done
           uv run python -m tools.ref_search sheets --account "$ACCOUNT" --out out/ref_search --limit "$LIMIT" "${args[@]}" || true
       - name: 요약
         run: |
