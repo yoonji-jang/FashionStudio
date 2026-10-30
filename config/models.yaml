@@ -66,4 +66,10 @@ video:
       name: Seedance 2.0 Mini (ByteDance)   # 토큰 요금, 720p 4초 약 $0.3
     wan_27:
       id: alibaba/wan-2.7
-      name: Wan 2.7 (Alibaba)               # 초당 $0.1
+      name: Wan 2.7 (Alibaba)               # 초당 $0.1. 2026-10-30 시험: 9:16 을 무시하고 가로로 나옴
+    grok_video:
+      id: x-ai/grok-imagine-video
+      name: Grok Imagine (xAI)              # 720p 초당 $0.07 + 사진당 $0.002
+    happyhorse:
+      id: alibaba/happyhorse-1.1
+      name: HappyHorse 1.1 (Alibaba)        # 720p 초당 약 $0.1
