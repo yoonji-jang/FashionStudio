@@ -1,0 +1,28 @@
+{
+  "spec": "experiments/video_1030/look1.yaml",
+  "results": [
+    {
+      "model": "grok_lite",
+      "id": "x-ai/grok-imagine-video-1.5-lite",
+      "ok": false,
+      "error": "HTTP 400: {\"error\":{\"message\":\"`input_references` is not supported for this model.\",\"code\":400}}",
+      "sec": 1.9
+    },
+    {
+      "model": "seedance_mini",
+      "id": "bytedance/seedance-2.0-mini",
+      "ok": false,
+      "error": "HTTP 400: {\"error\":{\"message\":\"HTTP 400: {\\\"error\\\":{\\\"code\\\":\\\"InputImageSensitiveContentDetected.PrivacyInformation\\\",\\\"message\\\":\\\"The request failed because the input image 'content[1]' 'content[2]' may contain real person. Request id: 021793332515427f2dfc9d17a425ad03ee233374d2636619a6a43\\\",\\\"param\\\":\\\"\\\",\\\"type\\\":\\\"BadRequest\\\"}}\",\"code\":400}}",
+      "sec": 10.1
+    },
+    {
+      "model": "wan_27",
+      "id": "alibaba/wan-2.7",
+      "ok": true,
+      "cost": 0.5,
+      "job": "gen-vid-1793332523-zKmOdSY1813Sm9DdjFXa",
+      "file": "wan_27.mp4",
+      "sec": 110.6
+    }
+  ]
+}
