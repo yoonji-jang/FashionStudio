@@ -62,3 +62,13 @@ def test_context_and_cli(tmp_path, monkeypatch):
     assert vc.main(["save", "--account", "women", "--date", "2026-10-15", "--file", str(f),
                     "--looks", "2"]) == 0  # fmt: skip
     assert vc.load(store).chosen == 2
+
+
+def test_check_cli(tmp_path):
+    f = tmp_path / "c.yaml"
+    f.write_text(yaml.safe_dump([c.model_dump(mode="json") for c in _concepts()],
+                                allow_unicode=True), encoding="utf-8")  # fmt: skip
+    assert vc.main(["check", "--file", str(f), "--looks", "2"]) == 0
+    assert vc.main(["check", "--file", str(f), "--looks", "6"]) == 1
+    f.write_text("- {look: 1, text: 뭐 입지? 니트}\n", encoding="utf-8")
+    assert vc.main(["check", "--file", str(f)]) == 1  # YAML 이 깨져도 오류로 끝남
