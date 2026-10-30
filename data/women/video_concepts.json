@@ -4,135 +4,23 @@
   "run": "2026-10-27-run374/chosen",
   "concepts": [
     {
-      "title": "눈 오는 온천 마을 골목",
-      "background": "눈 내리는 온천 마을의 돌길 골목 한 곳, 어두운 나무 건물 앞 같은 자리",
-      "background_en": "A quiet snowy stone-paved lane in a hot spring town at dusk, dark wooden buildings with warm paper lanterns, light snowfall, no people, no signs.",
-      "framing": "세로, 눈높이, 길 건너에서 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정, 모델 한 명",
-      "light": "해 질 무렵, 따뜻한 등불 빛, 푸른 저녁 하늘, 깊은 톤",
+      "title": "햇살 드는 눈 내리는 숲",
+      "background": "키 큰 나무가 곧게 선 눈 덮인 숲 속 같은 자리, 나무 사이로 햇살이 들고 반짝이는 눈이 내림",
+      "background_en": "A quiet snowy forest of tall straight trees on a bright sunny winter day, warm sunbeams falling through the branches, snow sparkling as it drifts down, soft snow on the ground, no people, no signs.",
+      "framing": "세로, 눈높이, 몇 걸음 떨어져 남친이 찍어 준 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정, 모델 한 명. 모델은 정해 둔 얼굴 사진의 모델, 이번엔 긴 흑발",
+      "light": "맑은 겨울 낮, 나무 사이로 드는 따뜻한 햇살, 얼굴과 머리에 닿는 빛, 반짝이는 눈, 밝고 포근한 톤",
       "motion": "걷기",
-      "music": "warm acoustic guitar pop, gentle and romantic, 96 BPM, instrumental, no vocals",
-      "music_mood": "잔잔하고 설레는 어쿠스틱",
-      "hook": "퍼 하나로 끝낸 여행룩",
-      "why": "퍼 질감이 포근해 보이는 눈 오는 마을, 어두운 나무 건물이 밝은 퍼와 화이트·아이보리 옷을 또렷하게 받쳐 줌",
+      "music": "dreamy acoustic pop with soft bells and light piano, warm and sparkling winter mood, 96 BPM, instrumental, no vocals",
+      "music_mood": "포근하고 반짝이는 겨울 어쿠스틱",
+      "hook": "퍼 하나로 끝낸 겨울 여행룩",
+      "why": "사용자가 고른 배경 예시 2 (햇살 드는 눈 숲, 2026-10-30). 사용자 참고 사진처럼 흩날리는 눈과 햇살, 전신",
       "shots": [
         {
           "look": 1,
           "seconds": 3.0,
           "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
           "pose": "가운데서 잠깐 멈춰 카메라 보며 웃기",
-          "text": "퍼 하나로 끝낸 여행룩"
-        },
-        {
-          "look": 2,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데를 지나며 숄더백 끈 고쳐 잡고 카메라 쪽 보기",
-          "text": ""
-        },
-        {
-          "look": 3,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 잠깐 멈춰 퍼 자켓 옷깃 잡고 고개 돌리기",
-          "text": ""
-        },
-        {
-          "look": 4,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 퍼 모자를 살짝 만지며 카메라 보기",
-          "text": ""
-        },
-        {
-          "look": 5,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 머리를 넘기며 카메라 보고 웃기",
-          "text": ""
-        },
-        {
-          "look": 6,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 주머니에 손 넣고 어깨 너머로 카메라 보기",
-          "text": ""
-        }
-      ]
-    },
-    {
-      "title": "눈 덮인 산골 기차역 플랫폼",
-      "background": "눈 내리는 작은 산골 기차역의 플랫폼 한 곳, 어두운 벽돌 역사 앞 같은 자리",
-      "background_en": "A small snowy mountain train station platform at blue hour, dark brick station building, soft lamp light, light snowfall, empty platform, no people, no signs or text.",
-      "framing": "세로, 눈높이, 선로 건너에서 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정, 모델 한 명",
-      "light": "새벽 푸른 빛, 플랫폼 조명의 은은한 노란 빛, 차분한 색감",
-      "motion": "걷기",
-      "music": "soft lo-fi piano with light strings, dreamy and nostalgic, 88 BPM, instrumental, no vocals",
-      "music_mood": "아련하고 포근한 로파이 피아노",
-      "hook": "눈 오는 역에서 퍼룩",
-      "why": "차분한 깊은 가을 톤 옷이라 푸른 새벽빛 플랫폼에서 퍼 질감과 부츠가 또렷하고, 길게 뻗은 플랫폼이 가로지르는 동선에 잘 맞음",
-      "shots": [
-        {
-          "look": 1,
-          "seconds": 3.0,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 잠깐 멈춰 카메라 보며 웃기",
-          "text": "눈 오는 역에서 퍼룩"
-        },
-        {
-          "look": 2,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데를 지나며 숄더백 끈 고쳐 잡고 카메라 쪽 보기",
-          "text": ""
-        },
-        {
-          "look": 3,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 잠깐 멈춰 퍼 자켓 옷깃 잡고 고개 돌리기",
-          "text": ""
-        },
-        {
-          "look": 4,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 퍼 모자를 살짝 만지며 카메라 보기",
-          "text": ""
-        },
-        {
-          "look": 5,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 머리를 넘기며 카메라 보고 웃기",
-          "text": ""
-        },
-        {
-          "look": 6,
-          "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 주머니에 손 넣고 어깨 너머로 카메라 보기",
-          "text": ""
-        }
-      ]
-    },
-    {
-      "title": "눈 내리는 유럽풍 크리스마스 마을",
-      "background": "눈 내리는 유럽풍 작은 마을의 광장 가장자리, 어두운 돌벽 건물 앞 같은 자리",
-      "background_en": "A snowy European-style small town square edge at twilight, dark stone buildings with warm window lights and soft string lights, gentle snowfall, no people, no signs or text.",
-      "framing": "세로, 눈높이, 광장 건너에서 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정, 모델 한 명",
-      "light": "해 진 직후 짙은 푸른 하늘, 창문과 전구의 따뜻한 빛",
-      "motion": "걷기",
-      "music": "cozy jazzy bossa nova with soft piano and light brushed drums, warm and festive, 104 BPM, instrumental, no vocals",
-      "music_mood": "포근하고 살랑이는 겨울 보사노바",
-      "hook": "퍼 입고 눈 속 산책",
-      "why": "눈 오는 마을의 따뜻한 불빛이 퍼의 포근함을 살리고, 짙은 돌벽 배경에서 밝은 퍼와 베이지·그레이 옷이 잘 드러남",
-      "shots": [
-        {
-          "look": 1,
-          "seconds": 3.0,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 잠깐 멈춰 카메라 보며 웃기",
-          "text": "퍼 입고 눈 속 산책"
+          "text": "퍼 하나로 끝낸 겨울 여행룩"
         },
         {
           "look": 2,
@@ -172,11 +60,9 @@
       ]
     }
   ],
-  "feedback": "1. 눈 오는 여행지를 배경으로 하고 싶어. 3개 후보 모두 눈 오는 여행지 안에서 장소만 다르게. 2. 각 장면이 통일성 있게: 어떤 건 옆으로 걷고 어떤 건 뒤돌고 이런 거 말고, 예를 들면 6벌 모두 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장, 퇴장 후 다음 벌 등장 이런 느낌으로.",
-  "sent_at": 1793326551,
-  "message_ids": [
-    2404
-  ],
-  "chosen": 0,
+  "feedback": "2026-10-30 사용자: 배경 예시 2(햇살 드는 눈 숲)로, 정해 둔 얼굴 모델, 이번엔 흑발",
+  "sent_at": 1793331256,
+  "message_ids": [],
+  "chosen": 1,
   "chosen_at": 0
 }
