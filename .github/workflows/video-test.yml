@@ -1,0 +1,80 @@
+name: video-test
+
+# 코디 영상 시험 (tools.video_test, 2026-10-30). OpenRouter 요금이 나가므로 사람이 켤 때만 돈다.
+# - Actions 탭에서 "Run workflow" (main 에 합쳐진 뒤)
+# - 또는 작업 브랜치 커밋 메시지에 [video-exp] 를 넣어 푸시 ([spec:경로] [models:a b])
+# 결과는 artifact 로 올리고, poc-results 브랜치의 video-<실행번호>/ 폴더에도 커밋한다.
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 시험 설정 파일
+        default: experiments/video_1030/look1.yaml
+      models:
+        description: 모델 (빈칸이면 spec 의 models, 예 "grok_lite")
+        default: ""
+  push:
+    branches: ["claude/**"]
+    paths: ["experiments/video_*/**", "tools/video_test.py", ".github/workflows/video-test.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-test
+  cancel-in-progress: false
+
+jobs:
+  video:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[video-exp]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SPEC: ${{ inputs.spec || 'experiments/video_1030/look1.yaml' }}
+      MODELS: ${{ inputs.models }}
+      OUT: out/video/video-${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - name: 얼굴·코디 사진이 있는 결과 브랜치 받기
+        run: git fetch origin daily-results poc-results || true
+
+      - name: 영상 만들기
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          re_m='\[models:([^]]+)\]'; re_p='\[spec:([^]]+)\]'
+          [[ "$COMMIT_MSG" =~ $re_p ]] && SPEC="${BASH_REMATCH[1]}"
+          [[ "$COMMIT_MSG" =~ $re_m ]] && MODELS="${BASH_REMATCH[1]}"
+          args=(--spec "$SPEC" --out "$OUT")
+          [ -n "$MODELS" ] && args+=(--models $MODELS)
+          uv run python -m tools.video_test "${args[@]}"
+
+      - name: 요약 표시
+        if: always()
+        run: '[ -f "$OUT/run.json" ] && cat "$OUT/run.json" >> "$GITHUB_STEP_SUMMARY" || true'
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: video-${{ github.run_number }}
+          path: ${{ env.OUT }}
+          if-no-files-found: ignore
+
+      - name: poc-results 브랜치에 결과 커밋
+        if: always()
+        run: |
+          [ -d "$OUT" ] || exit 0
+          dest="video-${{ github.run_number }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          git worktree add /tmp/results origin/poc-results
+          git -C /tmp/results checkout -B poc-results
+          mkdir -p "/tmp/results/$dest"
+          cp -r "$OUT"/. "/tmp/results/$dest/"
+          echo "source: ${{ github.sha }} ($SPEC)" > "/tmp/results/$dest/SOURCE.txt"
+          git -C /tmp/results add "$dest"
+          git -C /tmp/results commit -m "영상 시험 결과 $dest"
+          git -C /tmp/results push origin poc-results

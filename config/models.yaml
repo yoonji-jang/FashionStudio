@@ -30,6 +30,11 @@ generate:
       id: openai/gpt-5.4-image-2
       name: GPT Image 2 (OpenAI)
       modalities: [image, text]
+    nano_banana:
+      id: google/gemini-2.5-flash-image
+      name: Nano Banana (Google)
+      modalities: [image, text]
+      image_size: null   # 크기 옵션 없음. 장당 약 $0.04 라 배경·분위기 예시용 (2026-10-30)
     seedream_5_pro:
       id: bytedance-seed/seedream-5-0-pro
       name: Seedream 5.0 Pro (ByteDance)
@@ -44,3 +49,21 @@ generate:
     팔찌: one bracelet, about 7 cm across
     스카프: one scarf, about 70 cm long, soft and drapey
     소품: one small accessory at its real size, small next to the clothes
+
+# 영상 AI (2026-10-30 코디 영상). 같은 OpenRouter 키. 비동기: 요청 → 상태 확인 → 내려받기.
+# 참고 사진(얼굴, 코디 정면컷, 배경)을 함께 받는 모델만 둔다 (input_references).
+# frame_images(첫 장면)를 함께 보내면 참고 사진은 무시된다 (OpenRouter 문서).
+video:
+  endpoint: https://openrouter.ai/api/v1/videos
+  poll_sec: 15
+  timeout_sec: 1500
+  models:
+    grok_lite:
+      id: x-ai/grok-imagine-video-1.5-lite
+      name: Grok Imagine 1.5 Lite (xAI)     # 720p 초당 $0.03 + 사진당 $0.01
+    seedance_mini:
+      id: bytedance/seedance-2.0-mini
+      name: Seedance 2.0 Mini (ByteDance)   # 토큰 요금, 720p 4초 약 $0.3
+    wan_27:
+      id: alibaba/wan-2.7
+      name: Wan 2.7 (Alibaba)               # 초당 $0.1
