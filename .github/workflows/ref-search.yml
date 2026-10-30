@@ -12,6 +12,9 @@ on:
       queries:
         description: 검색어 (쉼표로)
         default: "롱스커트 가을 코디, 롱스커트 데일리룩 여자, 플리츠 롱스커트 코디"
+      limit:
+        description: 확인표에 넣을 최대 사진 수 (16장이 확인표 한 장)
+        default: "320"
       telegram:
         description: 확인표를 텔레그램으로 보냄
         type: boolean
@@ -27,6 +30,7 @@ jobs:
     env:
       ACCOUNT: ${{ inputs.account }}
       QUERIES: ${{ inputs.queries }}
+      LIMIT: ${{ inputs.limit || '320' }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -40,7 +44,7 @@ jobs:
           args=()
           IFS=',' read -ra qs <<< "$QUERIES"
           for q in "${qs[@]}"; do args+=(--query "$q"); done
-          uv run python -m tools.ref_search sheets --account "$ACCOUNT" --out out/ref_search "${args[@]}" || true
+          uv run python -m tools.ref_search sheets --account "$ACCOUNT" --out out/ref_search --limit "$LIMIT" "${args[@]}" || true
       - name: 요약
         run: |
           [ -f out/ref_search/summary.json ] || { echo "결과 없음" | tee -a "$GITHUB_STEP_SUMMARY"; exit 1; }
