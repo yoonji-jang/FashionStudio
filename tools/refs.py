@@ -283,11 +283,12 @@ def send_theme_album(profile, store: Store, theme: Theme, tg, out: Path) -> list
         "따라 할 코디 번호를 보내 주세요 (예: 141 203 250). 고른 게 모자라면 나머지는 제가 채워요. "
         '맡기시려면 "알아서", 주제에 맞는 게 모자라면 "더 모아줘 화사하게"처럼 보내 주세요'
     )
-    if rs is not None and rs.searched():
-        caption += (
-            '. 마음에 드는 게 없으면 따라 할 코디 사진을 직접 보내 주세요 (사진 설명에 "참고", '
-            "여러 장이면 앨범으로)"
-        )
+    # 직접 보내는 길은 늘 안내한다 (2026-10-29 사용자: 메시지마다 쓸 수 있는 명령 안내)
+    caption += (
+        '. 마음에 드는 게 없으면 따라 할 코디 사진을 직접 보내 주세요 (사진 설명에 "참고", '
+        "여러 장이면 앨범으로). 핀터레스트 핀 링크(pin.it/…)를 글로 보내도 돼요"
+        " (여러 개면 한 글에 줄을 바꿔서)"
+    )
     tg.send_photos(sheets, caption)
     return [r.n for r in picked]
 

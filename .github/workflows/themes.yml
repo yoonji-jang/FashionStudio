@@ -395,16 +395,16 @@ jobs:
           python - <<'PY'
           import json, os
           from pathlib import Path
-          from tools.notify import Telegram
-          from tools.scout import TELEGRAM_PHOTO
-          tg, out, rows = Telegram.from_env(), Path("out/user_refs"), []
+          from tools.scout import ref_photo, user_ref
+          out, rows = Path("out/user_refs"), []
+          # 텔레그램 사진 파일 번호 또는 핀터레스트 핀 링크("pin:…", 2026-10-30)
           for i, fid in enumerate(json.loads(os.environ["USER_PHOTOS"]), 1):
               try:
-                  path = tg.download(fid, out / f"photo_{i}.jpg")
+                  path = ref_photo(user_ref(fid), [], out / f"photo_{i}.jpg")
               except Exception as e:  # noqa: BLE001
                   print(f"{i}번 사진을 받지 못함: {e}")
                   continue
-              rows.append({"file": str(path), "photo": TELEGRAM_PHOTO + fid})
+              rows.append({"file": str(path), "photo": user_ref(fid)})
           (out / "list.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
           print(f"사진 {len(rows)}장")
           PY
