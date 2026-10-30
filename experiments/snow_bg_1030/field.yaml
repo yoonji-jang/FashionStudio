@@ -1,0 +1,9 @@
+# 2026-10-30 영상 배경 예시 (눈 덮인 넓은 설원, 멀리 외딴 전나무 한 그루). 사용자 참고: 설원 외딴 나무, 눈 내리는 숲, 햇살, 전신
+title: 영상 배경 예시 - 눈 덮인 넓은 설원, 멀리 외딴 전나무 한 그루
+account: women
+aspect_ratio: '9:16'
+canvas: [720, 1280]
+prompt_text: experiments/snow_bg_1030/field.txt
+items: []
+shots:
+  person: {}

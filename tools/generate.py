@@ -198,6 +198,12 @@ def data_url(jpeg: bytes) -> str:
     return "data:image/jpeg;base64," + base64.b64encode(jpeg).decode()
 
 
+def _image_config(model: dict, cfg: dict) -> dict:
+    """모델에 image_size: null 이면 크기 옵션을 보내지 않는다 (크기를 못 고르는 싼 모델)."""
+    size = model.get("image_size", cfg["image_size"])
+    return {"aspect_ratio": cfg["aspect_ratio"]} | ({"image_size": size} if size else {})
+
+
 def build_payload(model: dict, prompt: str, images: list[bytes], cfg: dict) -> dict:
     content = [{"type": "text", "text": prompt}]
     content += [{"type": "image_url", "image_url": {"url": data_url(b)}} for b in images]
@@ -205,7 +211,7 @@ def build_payload(model: dict, prompt: str, images: list[bytes], cfg: dict) -> d
         "model": model["id"],
         "messages": [{"role": "user", "content": content}],
         "modalities": model.get("modalities", ["image", "text"]),
-        "image_config": {"aspect_ratio": cfg["aspect_ratio"], "image_size": cfg["image_size"]},
+        "image_config": _image_config(model, cfg),
         "usage": {"include": True},
     }
 

@@ -30,6 +30,11 @@ generate:
       id: openai/gpt-5.4-image-2
       name: GPT Image 2 (OpenAI)
       modalities: [image, text]
+    nano_banana:
+      id: google/gemini-2.5-flash-image
+      name: Nano Banana (Google)
+      modalities: [image, text]
+      image_size: null   # 크기 옵션 없음. 장당 약 $0.04 라 분위기 예시용 (2026-10-30 영상 배경 예시)
     seedream_5_pro:
       id: bytedance-seed/seedream-5-0-pro
       name: Seedream 5.0 Pro (ByteDance)

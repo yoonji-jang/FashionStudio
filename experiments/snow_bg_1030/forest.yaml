@@ -1,0 +1,9 @@
+# 2026-10-30 영상 배경 예시 (햇살 드는 눈 내리는 숲). 사용자 참고: 설원 외딴 나무, 눈 내리는 숲, 햇살, 전신
+title: 영상 배경 예시 - 햇살 드는 눈 내리는 숲
+account: women
+aspect_ratio: '9:16'
+canvas: [720, 1280]
+prompt_text: experiments/snow_bg_1030/forest.txt
+items: []
+shots:
+  person: {}
