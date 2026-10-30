@@ -1,0 +1,14 @@
+{
+  "spec": "experiments/video_1030/full/look4.yaml",
+  "results": [
+    {
+      "model": "hailuo_3_frame",
+      "id": "minimax/hailuo-3",
+      "ok": true,
+      "cost": 0.65,
+      "job": "gen-vid-1793337808-pda7POQ0hfGD3Hu5pFQ1",
+      "file": "hailuo_3_frame.mp4",
+      "sec": 321.6
+    }
+  ]
+}
