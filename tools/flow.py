@@ -121,6 +121,10 @@ class FlowState(BaseModel):
     user_refs: list[str] = []
     rules_upto: int = 0  # 규칙 고치기 요청(/fix 규칙 …)을 여기(update_id)까지 처리했다
     face_update: int = 0  # 얼굴 사진(설명 "얼굴")을 여기(update_id)까지 받았다
+    # 영상 컨셉 (profile video.enabled, 2026-10-30): 코디를 고르면 후보를 요청하고 번호로 고른다
+    concept_at: int = 0  # 컨셉 후보(또는 고친 후보)를 마지막으로 요청한 시각 (0 이면 아직)
+    concept: int = 0  # 고른 컨셉 번호 (0 이면 아직)
+    concept_upto: int = 0  # 컨셉 후보에 온 답을 여기(보낸 시각)까지 읽었다
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -779,6 +783,59 @@ def _carry_scenes(results: Path, acc: str, st: FlowState, prev_day, dry_run: boo
     st.scene = st.scenes[0]
 
 
+CONCEPT_WF = "video-concept.yml"  # 영상 컨셉 후보 (Claude video-concept 스킬)
+
+
+def _concept(
+    profile: Profile, store: Store, st: FlowState, tg, send, ts: int, dry_run: bool, tag: str
+) -> str:
+    """영상 컨셉 (2026-10-30 사용자). 코디를 고르면 컨셉 후보를 요청하고, 온 후보에
+    번호 = 그 컨셉으로 정함, "다시" = 새로 짬,
+    그 밖의 글 = 고칠 점·원하는 컨셉 (Claude 가 고쳐 다시 보냄)."""
+    from tools import video_concept
+
+    if st.concept:
+        return ""
+    day = st.date
+    assert day is not None
+    if not st.concept_at:
+        send(CONCEPT_WF, account=st.account, date=day.isoformat(), run=st.pick, feedback="")
+        st.concept_at, st.concept_upto = ts, 0
+        return "영상 컨셉 후보 요청"
+    cs = video_concept.load(store)
+    if cs is None or cs.date != day or cs.sent_at < st.concept_at - 60:
+        if not st.alerted and tg is not None and ts - st.concept_at >= WAIT_ALERT.total_seconds():
+            tg.send(f"{tag} 영상 컨셉 후보가 아직 오지 않았어요 (컨셉 실행을 확인해 주세요)")
+            st.alerted = True
+        return ""  # 후보(또는 고친 후보)를 기다림
+    n = cs.chosen
+    if not n:
+        if tg is None:
+            return ""
+        since = max(st.concept_upto, cs.sent_at - 1)
+        replies = week_replies(tg.updates(), tg.chat_id, since)
+        if not replies:
+            return ""
+        st.concept_upto = replies[-1][0]
+        got = video_concept.reply(replies[-1][1], len(cs.concepts))
+        if not isinstance(got, int):
+            feedback = "" if got == "new" else "\n".join(t for _, t in replies)
+            send(CONCEPT_WF, account=st.account, date=day.isoformat(), run=st.pick,
+                 feedback=feedback or "다시")  # fmt: skip
+            st.concept_at, st.alerted = ts, False
+            what = "말씀하신 대로 고친" if feedback else "새"
+            tg.send(f"{tag} {what} 영상 컨셉 후보를 짜고 있어요. 다 되면 다시 보낼게요")
+            return f"영상 컨셉 다시 요청: {(feedback or '다시')[:60]}"
+        n = got
+        if not dry_run:
+            video_concept.write(store, cs.model_copy(update={"chosen": n, "chosen_at": ts}))
+    st.concept = n
+    if tg is not None:
+        more = "" if st.scene else " 장면 사진을 보내 주시면 코디컷을 만들게요."
+        tg.send(f"{tag} 영상 컨셉 {n}번 '{cs.concepts[n - 1].title}'(으)로 정했어요.{more}")
+    return f"영상 컨셉 {n}번 고름"
+
+
 def _step(
     profile: Profile,
     store: Store,
@@ -800,6 +857,7 @@ def _step(
         prev_day = st.date
         st.date = next_date(profile, store, now)
         st.pick, st.theme_at = "", 0
+        st.concept_at = st.concept = st.concept_upto = 0
         # 장면 사진과 설명은 새로 보낼 때까지 다음 주제에도 그대로 쓴다
         # (2026-10-27 사용자: 한 참고 사진으로 여러 주제를 만들고 싶다)
         _carry_scenes(results, acc, st, prev_day, dry_run)
@@ -1027,7 +1085,11 @@ def _step(
             elif act.action == "skip":
                 st.stage = "theme"
                 return "이 주제 건너뜀 (/skip)"
-        if st.pick and st.scene:
+        if st.pick and profile.video.enabled:
+            line = _concept(profile, store, st, tg, send, ts, dry_run, tag)
+            if line:
+                lines.append(line)
+        if st.pick and st.scene and (st.concept or not profile.video.enabled):
             send("daily.yml", account=acc, date=day.isoformat(), mode="render", pick=st.pick,
                  sandbox=False)  # fmt: skip
             st.asked_at, st.stage = ts, "rendering"

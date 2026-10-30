@@ -123,6 +123,7 @@ jobs:
           commit . "${{ github.ref_name }}" "댓글 DM 기록" ':(glob)data/*/dm.json'
           commit . "${{ github.ref_name }}" "공유리워드 링크" ':(glob)data/*/posts.json'
           commit . "${{ github.ref_name }}" "이미지 피드백 기록" ':(glob)data/*/feedback.jsonl'
+          commit . "${{ github.ref_name }}" "고른 영상 컨셉" ':(glob)data/*/video_concepts.json'
 
       - name: 실패 알림
         if: failure()

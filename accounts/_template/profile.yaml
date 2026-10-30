@@ -108,6 +108,10 @@ reels:  # 릴스 (README 19단계). 캐러셀 슬라이드로 세로 영상을 �
   enabled: false
   music_dir: null  # 상업 이용 가능한 음원 폴더 (저장소 기준). 없으면 소리 없음
 
+video:  # 움직이는 코디 영상 컨셉 (README "코디 영상"). 켜면 코디를 고른 뒤 컨셉 후보를 텔레그램으로
+  enabled: false
+  music: lyria  # lyria(음악 AI) / own(reels.music_dir) / none
+
 link_page:  # 최근 게시물 상품 링크 페이지 (ManyChat DM 에 넣는 주소)
   enabled: true
   title: 코디 상품 모음

@@ -447,6 +447,23 @@ class Reels(BaseModel):
     delivery: Literal["telegram", "instagram"] = "telegram"
 
 
+class Video(BaseModel):
+    """움직이는 코디 영상 (2026-10-29 사용자). 코디 주제 하나당 영상 한 편:
+    같은 배경·고정 카메라에서 같은 얼굴의 모델이 6벌을 차례로 입고 걷거나 가볍게 춤춘다.
+    영상은 사용자가 직접 올린다.
+    지금은 컨셉 단계만 있다: 코디를 고르면 Claude 가 컨셉 후보를 텔레그램으로 보내고
+    (video-concept 워크플로, tools.video_concept) 번호로 고르거나 고칠 점을 받는다.
+    영상 기준(공통 규칙·좋다/싫다)은 accounts/<id>/video.md."""
+
+    enabled: bool = False
+    concepts: int = Field(default=3, ge=1, le=5)  # 한 번에 보내는 컨셉 후보 수
+    look_seconds: float = Field(default=2.5, gt=1, le=10)  # 벌 하나가 나오는 길이 (초)
+    # 배경 음악. lyria: 컨셉마다 음악 AI(Lyria 3 Clip)로 새 연주곡 / own: 코드로 만든 우리 음원
+    # (reels.music_dir) / none: 소리 없는 영상 (사용자가 앱에서 음악을 붙임)
+    music: Literal["lyria", "own", "none"] = "lyria"
+    budget_usd_month: float = Field(default=50, gt=0)  # 한 달 영상 비용 상한 (달러)
+
+
 class ModelShot(BaseModel):
     """모델컷 (16단계). 전날 게시물의 벌들을 옷을 입은 얼굴 없는 AI 인물 사진으로 다시 그린다
     (tools.model_post, schedule.post_days 의 model 날). 얼굴은 자르지 않고 포즈·물건으로 가린다."""
@@ -669,6 +686,7 @@ class Profile(BaseModel):
     comments: Comments = Comments()
     link_page: LinkPage = LinkPage()
     reels: Reels = Reels()
+    video: Video = Video()
     monetize: Monetize = "none"
     approval: Approval = "required"
     instagram: Instagram
@@ -762,6 +780,12 @@ def load_voice(account: str, root: Path = ACCOUNTS_DIR) -> str:
     if not path.exists():
         raise FileNotFoundError(f"말투 파일이 없습니다: {path}")
     return path.read_text(encoding="utf-8")
+
+
+def load_video_rules(account: str, root: Path = ACCOUNTS_DIR) -> str:
+    """영상 기준 (accounts/<id>/video.md). 없으면 빈 글."""
+    path = account_dir(account, root) / "video.md"
+    return path.read_text(encoding="utf-8") if path.exists() else ""
 
 
 def load_index(root: Path = ACCOUNTS_DIR) -> AccountIndex:

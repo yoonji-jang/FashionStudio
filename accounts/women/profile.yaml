@@ -505,6 +505,16 @@ reels:
   # 2026-10-29 사용자 "이제 영상은 게시하지 마. 내가 직접 할 거야" → telegram
   delivery: telegram
 
+# 움직이는 코디 영상 (2026-10-29 사용자). 최종 목표는 코디 모음 대신 영상 한 편 (사용자가 직접 올림).
+# 지금은 컨셉 단계: 코디를 고르면 Claude 가 컨셉 후보를 텔레그램으로 보내고 번호로 고름 (tools.video_concept).
+# 영상 기준은 accounts/women/video.md
+video:
+  enabled: true
+  concepts: 3
+  look_seconds: 2.5        # 6벌 × 2.5초 ≈ 15초 + 앞뒤
+  music: lyria             # 컨셉 무드에 맞춘 연주곡을 음악 AI(Lyria 3 Clip, 30초 $0.04)로 (2026-10-30 사용자)
+  budget_usd_month: 50     # 조율 가능 (2026-10-29 사용자)
+
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)
 monetize: none

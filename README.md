@@ -1090,6 +1090,23 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 
 ---
 
+## 코디 영상 (컨셉 단계, 2026-10-30)
+
+목표는 코디 주제 하나당 움직이는 영상 한 편이에요. 같은 배경과 멈춰 있는 카메라 앞에서 같은 얼굴의 모델이
+고른 벌들을 차례로 입고 걷거나 가볍게 춤춰요. 영상은 사람이 직접 올려요. 지금은 **컨셉 단계**까지 있어요.
+
+1. profile `video.enabled: true` 면 차례 흐름에서 코디를 고른 뒤 Claude(video-concept 스킬)가 컨셉 후보
+   (profile `video.concepts` 개)를 텔레그램으로 보내요: 배경, 고정 구도, 분위기, 동작 컨셉, 벌마다 동작, 음악, 훅 문구.
+2. 번호(`2`)로 고르면 정해요. 고칠 점이나 원하는 배경·동작을 적으면(`2번인데 배경은 겨울 바다로`) 고친 후보가 다시 와요.
+   `다시` 면 새로 짜요. 컨셉과 장면 사진이 다 있어야 코디컷을 만들어요.
+3. 기준은 `accounts/<계정>/video.md` (공통 규칙, 좋다/싫다). 되풀이될 취향은 Claude 가 여기에 더해요.
+4. 음악은 profile `video.music` (lyria: 컨셉마다 음악 AI Lyria 3 Clip 연주곡, OpenRouter 키, 30초 $0.04).
+
+후보는 `data/<계정>/video_concepts.json`. 손으로 돌리기: Actions → video-concept (`run` 은 daily-results 의
+`<결과 폴더>/chosen`).
+
+---
+
 ## 새 계정 추가
 
 1. `accounts/_template/` 을 `accounts/<id>/` 로 복사
