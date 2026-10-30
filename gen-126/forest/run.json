@@ -1,0 +1,16 @@
+{
+  "spec": "experiments/snow_bg_1030/forest.yaml",
+  "started": "2026-10-30T02:44:51",
+  "results": [
+    {
+      "model": "nano_banana",
+      "shot": "person",
+      "repeat": 1,
+      "ok": true,
+      "cost": 0.0387513,
+      "file": "nano_banana/person_1.jpg",
+      "sec": 6.6
+    }
+  ],
+  "finished": "2026-10-30T02:44:57"
+}
