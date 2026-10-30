@@ -28,7 +28,7 @@ jobs:
   video:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[video-exp]')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
       SPEC: ${{ inputs.spec || 'experiments/video_1030/look1.yaml' }}
       MODELS: ${{ inputs.models }}
@@ -48,13 +48,20 @@ jobs:
           re_m='\[models:([^]]+)\]'; re_p='\[spec:([^]]+)\]'
           [[ "$COMMIT_MSG" =~ $re_p ]] && SPEC="${BASH_REMATCH[1]}"
           [[ "$COMMIT_MSG" =~ $re_m ]] && MODELS="${BASH_REMATCH[1]}"
-          args=(--spec "$SPEC" --out "$OUT")
-          [ -n "$MODELS" ] && args+=(--models $MODELS)
-          uv run python -m tools.video_test "${args[@]}"
+          # [spec:a.yaml b.yaml] 처럼 여러 개면 차례로 돌려 OUT/<이름>/ 에 둔다. 하나가 실패해도 나머지는 계속
+          read -ra specs <<<"$SPEC"
+          ok=0
+          for s in "${specs[@]}"; do
+            out="$OUT"; [ "${#specs[@]}" -gt 1 ] && out="$OUT/$(basename "$s" .yaml)"
+            args=(--spec "$s" --out "$out")
+            [ -n "$MODELS" ] && args+=(--models $MODELS)
+            uv run python -m tools.video_test "${args[@]}" && ok=1
+          done
+          [ "$ok" = 1 ]
 
       - name: 요약 표시
         if: always()
-        run: '[ -f "$OUT/run.json" ] && cat "$OUT/run.json" >> "$GITHUB_STEP_SUMMARY" || true'
+        run: 'find "$OUT" -name run.json -exec cat {} + >> "$GITHUB_STEP_SUMMARY" || true'
 
       - uses: actions/upload-artifact@v4
         if: always()
