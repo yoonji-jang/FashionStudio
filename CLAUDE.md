@@ -18,6 +18,8 @@ AI가 상품을 새로 그리므로 원본과 같은지 image-reviewer 검수를
 - 판매자·쇼핑몰 담당자 이름, 연락처, 사업자 정보 같은 개인정보는 읽어 저장하지 않는다. 조사용으로도 페이지 원본(HTML, API 응답)을 저장소나 결과 브랜치에 올리지 않는다.
 - 이미지 안의 글자는 AI가 그리지 않는다. 제목은 `tools.overlay` 가 합성한다.
 - 계정의 `schedule` 시각을 바꾸면 `python -m tools.schedule sync` 로 `.github/workflows/schedule.yml` cron 줄을 맞춘다.
+- `.github/workflows/schedule.yml` 은 승인된 판에서 바꾸면 매시 실행이 모두 승인 대기(action_required)로 멈춘다
+  (10/28 #180, 10/30 #202). 커밋할 파일을 늘려야 하면 그 파일을 만드는 워크플로가 직접 커밋하게 한다.
 - 이미지 API 설정은 `config/models.yaml`, 배치는 `config/layout.yaml` 에서 읽는다. 프롬프트는 `prompts/` 템플릿으로 분리한다.
 - 비밀값(API 키, 토큰)은 파일에 쓰지 않는다. 로컬은 `.env`, Actions는 Secrets. 프로필에는 Secret 이름만 둔다.
 - `monetize: manual_link` 이면 캡션 맨 앞 광고 고지와 첫 해시태그 `#광고` 가 필수다.

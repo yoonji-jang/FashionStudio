@@ -1240,6 +1240,8 @@ def _video_start(st: FlowState, run: str, send, ts: int) -> str:
 def _video_send(st: FlowState, send, ts: int, act: dict) -> str:
     assert st.date is not None
     inputs = {"account": st.account, "date": st.date.isoformat(), "run": st.video_run, **act}
+    if st.concept and act.get("step") == "frames":
+        inputs["concept"] = str(st.concept)  # 고른 번호는 schedule 이 커밋하지 않아 넘긴다
     send(VIDEO_WF, **inputs)
     st.video_last = json.dumps(inputs, ensure_ascii=False)
     st.asked_at, st.stage = ts, "video_making"

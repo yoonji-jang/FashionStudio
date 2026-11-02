@@ -78,6 +78,7 @@ class VideoRecord(BaseModel):
     flags: list[str] = []  # 자동 검사 표시 ("LOOK 3 다가옴")
     error: str = ""  # 마지막 실패 (차례 흐름이 /retry 를 안내)
     error_at: int = 0
+    concept: int = 0  # 고른 컨셉 번호 (0 이면 video_concepts.json 의 chosen)
 
     def total(self) -> float:
         return round(sum(self.costs.values()), 2)
@@ -136,11 +137,16 @@ def items_en(run: Path, n: int) -> str:
     return "; ".join(x for x in out if x)
 
 
-def concept_of(profile: Profile, day: dt.date) -> Concept:
+def concept_of(profile: Profile, day: dt.date, n: int = 0) -> Concept:
+    """고른 컨셉. n 은 차례 흐름이 아는 고른 번호 (video_concepts.json 의 chosen 은
+    schedule 이 커밋하지 않아 저장소에 없을 수 있다)."""
     cs = load_concepts(Store(profile.id))
-    if cs is None or cs.date != day or cs.picked() is None:
-        raise ValueError(f"{day} 에 고른 영상 컨셉이 없어요 (video_concepts.json)")
-    return cs.picked()  # type: ignore[return-value]
+    if cs is None or cs.date != day:
+        raise ValueError(f"{day} 영상 컨셉 후보가 없어요 (video_concepts.json)")
+    n = n or cs.chosen
+    if not 1 <= n <= len(cs.concepts):
+        raise ValueError(f"{day} 에 고른 영상 컨셉이 없어요 (번호 {n})")
+    return cs.concepts[n - 1]
 
 
 def notes_for(rec: VideoRecord, n: int) -> list[str]:
@@ -224,11 +230,13 @@ def frames(
     notes: list[str] | None = None,
     redo_background: bool = False,
     fake: bool = False,
+    concept: int = 0,
 ) -> VideoRecord:
     """② 얼굴 자르기 + 빈 배경 + 벌마다 첫 장면 (+ 얼굴만 고치기)."""
     m = manifest_of(run)
-    c = concept_of(profile, m.date)
     rec = load_record(run) or VideoRecord(account=profile.id, date=m.date, run=run.name)
+    rec.concept = concept or rec.concept
+    c = concept_of(profile, m.date, rec.concept)
     rec.looks = look_count(run)
     touched = add_notes(rec, notes or [])
     todo = looks or touched or list(range(1, rec.looks + 1))
@@ -286,11 +294,10 @@ def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: 
 
 def prompts(profile: Profile, run: Path, notes: list[str] | None = None) -> VideoRecord:
     """③ 벌마다 영상 지시문 (AI 요금 없음)."""
-    m = manifest_of(run)
-    c = concept_of(profile, m.date)
     rec = load_record(run)
     if rec is None:
         raise ValueError("첫 장면(frames)을 먼저 만들어 주세요")
+    c = concept_of(profile, rec.date, rec.concept)
     add_notes(rec, notes or [])
     out = {str(n): motion_prompt(profile, run, c, rec, n) for n in range(1, rec.looks + 1)}
     (vdir(run) / "prompts.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), "utf-8")
@@ -307,11 +314,10 @@ def clips(
     fake: bool = False,
 ) -> VideoRecord:
     """④ 벌마다 첫 장면을 영상으로 (없는 벌, 또는 고칠 벌만) + 음악이 없으면 음악."""
-    m = manifest_of(run)
-    c = concept_of(profile, m.date)
     rec = load_record(run)
     if rec is None:
         raise ValueError("첫 장면(frames)을 먼저 만들어 주세요")
+    c = concept_of(profile, rec.date, rec.concept)
     touched = add_notes(rec, notes or [])
     d = vdir(run)
     (d / "clips").mkdir(exist_ok=True)
@@ -354,7 +360,7 @@ def music(profile: Profile, run: Path, fake: bool = False) -> VideoRecord:
     rec = load_record(run)
     if rec is None:
         raise ValueError("영상을 먼저 만들어 주세요")
-    make_music(profile, run, rec, concept_of(profile, rec.date), fake)
+    make_music(profile, run, rec, concept_of(profile, rec.date, rec.concept), fake)
     save_record(run, rec)
     return edit(profile, run)
 
@@ -467,7 +473,7 @@ def edit(
     rec = load_record(run)
     if rec is None:
         raise ValueError("영상을 먼저 만들어 주세요")
-    c = concept_of(profile, rec.date)
+    c = concept_of(profile, rec.date, rec.concept)
     if speed:
         rec.speed = speed
     if hook is not None:
@@ -672,7 +678,7 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
         tg.send_photos(pics, f"{tag} 영상 첫 장면")
         tg.send(frames_guide(tag))
     elif rec.step == "prompts":
-        c = concept_of(profile, rec.date)
+        c = concept_of(profile, rec.date, rec.concept)
         data = json.loads((d / "prompts.json").read_text(encoding="utf-8"))
         txt = d / "prompts.txt"
         txt.write_text("\n\n".join(f"LOOK {n}\n{t}" for n, t in data.items()) + "\n", "utf-8")
@@ -700,7 +706,7 @@ def guide(tag: str, rec: VideoRecord, profile: Profile) -> str:
     if rec.step == "frames":
         return frames_guide(tag)
     if rec.step == "prompts":
-        return prompts_text(tag, profile, concept_of(profile, rec.date), rec)
+        return prompts_text(tag, profile, concept_of(profile, rec.date, rec.concept), rec)
     return final_guide(tag, rec, profile)
 
 
@@ -853,6 +859,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--speed", type=float)
     ap.add_argument("--hook")
     ap.add_argument("--order", type=int, nargs="*")
+    ap.add_argument("--concept", type=int, default=0, help="고른 컨셉 번호 (차례 흐름이 넘김)")
     ap.add_argument("--fake", action="store_true")
     ap.add_argument("--no-send", action="store_true")
     args = ap.parse_args(argv)
@@ -870,7 +877,8 @@ def main(argv: list[str] | None = None) -> int:
             if rec is not None and bg_notes:
                 rec.notes.setdefault("background", []).extend(bg_notes)
                 save_record(args.run, rec)
-            frames(profile, args.run, args.face, args.looks, notes, args.background, args.fake)
+            frames(profile, args.run, args.face, args.looks, notes, args.background, args.fake,
+                   args.concept)  # fmt: skip
             if args.step == "redo":  # /frame N: 첫 장면부터 그 벌 영상까지
                 clips(profile, args.run, args.looks, None, args.fake)
         elif args.step == "prompts":

@@ -39,6 +39,9 @@ on:
       order:
         description: 순서 (edit, 예 "3 1 2 4 5 6")
         default: ""
+      concept:
+        description: 고른 영상 컨셉 번호 (비면 video_concepts.json 의 chosen)
+        default: ""
       fake:
         description: API 없이 흐름만 (가짜 그림·영상)
         type: boolean
@@ -91,6 +94,7 @@ jobs:
           [ -n "$SPEED" ] && args+=(--speed "$SPEED")
           [ -n "$HOOK" ] && args+=(--hook "$HOOK")
           [ -n "$ORDER" ] && args+=(--order $ORDER)
+          [ -n "${{ inputs.concept }}" ] && args+=(--concept "${{ inputs.concept }}")
           [ "${{ inputs.fake }}" = "true" ] && args+=(--fake)
           [ -n "$TELEGRAM_BOT_TOKEN" ] || args+=(--no-send)
           uv run python -m tools.video "$STEP" "${args[@]}"
