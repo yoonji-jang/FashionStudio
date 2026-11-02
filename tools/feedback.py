@@ -99,6 +99,15 @@ def slide_map(manifest: Manifest) -> list[dict]:
     return out
 
 
+def fix_slides(manifest: Manifest, video: bool) -> list[dict]:
+    """/fix 번호가 가리키는 장 목록. 영상 모드(캐러셀 없음, 2026-11-02)면 벌 장만 LOOK 순서로
+    (그래서 /fix 3 = LOOK 3). 장 번호("no")는 원래 미리보기 슬라이드 번호 그대로."""
+    slides = slide_map(manifest)
+    if not video:
+        return slides
+    return sorted((s for s in slides if s["kind"] == "look"), key=lambda s: s["look"])
+
+
 def label(fix: dict) -> str:
     """ "1장 표지", "3장 상의", "캡션" """
     if fix.get("slide"):
@@ -130,6 +139,7 @@ def target(
     else:
         return {"slide": None, "kind": "all", "text": whole}
     s = slides[found["slide"] - 1]
+    found["slide"] = s.get("no", found["slide"])  # 영상 모드는 LOOK 번호 → 원래 장 번호
     found["kind"] = s["kind"]
     for key in ("product", "category", "look"):
         if key in s:
@@ -327,7 +337,8 @@ def check(
     assert record is not None
     known = store.feedback()
     seen = {e.update_id for e in known}
-    slides = slide_map(notify.load_manifest(run_dir))
+    video = profile.flow.enabled and notify.video_instead(profile)
+    slides = fix_slides(notify.load_manifest(run_dir), video)
     updates = tg.updates()
     fixes = [
         f for f in find_fixes(updates, record, tg.chat_id, slides) if f["update_id"] not in seen

@@ -310,6 +310,22 @@ def slide_paths(manifest: Manifest, out: Path) -> list[Path]:
     return paths
 
 
+def look_pictures(manifest: Manifest, out: Path) -> list[Path]:
+    """벌마다 확정 코디컷 (LOOK 1~, 글자 없는 원본). 영상 첫 장면에 그대로 쓰이는 그림.
+    원본을 못 찾으면 그 벌의 슬라이드."""
+    from tools import video
+    from tools.feedback import fix_slides
+
+    slides = slide_paths(manifest, out)
+    pics = []
+    for e in fix_slides(manifest, True):
+        try:
+            pics.append(video.look_image(out, e["look"]))
+        except (FileNotFoundError, ValueError):
+            pics.append(slides[e["no"] - 1])
+    return pics
+
+
 def full_caption(manifest: Manifest) -> str:
     return manifest.caption.rstrip() + "\n\n" + " ".join(manifest.hashtags)
 
@@ -358,9 +374,10 @@ def control_text(
     video = flow and video_instead(profile)
     when = "/ok 하면 바로 게시" if flow else f"{profile.schedule.publish_at} 게시 예정"
     if video:
-        when = "/ok 하면 이 코디컷으로 영상 만들기 (캐러셀은 올리지 않음)"
+        when = "영상에 쓸 코디컷이에요. /ok 하면 이 코디컷으로 영상 만들기 (캐러셀은 없음)"
     lines = [f"[{profile.id}] {day} {when}"]
-    lines.append("제목: " + " / ".join(manifest.title_lines))
+    if not video:
+        lines.append("제목: " + " / ".join(manifest.title_lines))
     if fix:
         lines.append("")
         lines.append(f"고친 점 ({fix.get('round', 1)}/{profile.feedback.max_fixes}회)")
@@ -385,7 +402,8 @@ def control_text(
     if video:
         lines.append(f"영상을 만들려면 /ok {label}, 이 주제를 건너뛰려면 /skip {label}")
         lines.append(
-            "한 시간 안에 확인해 영상 첫 장면을 그려 보내 드려요 (약 $1.8). 마감 없이 기다려요"
+            "/ok 를 확인하면 그리기 전에 영상 그림 계획(빈 배경·벌마다 첫 장면)을 먼저 보내 "
+            "드려요. 마감 없이 기다려요"
         )
     elif flow:
         lines.append(f"게시하려면 /ok {label}, 이 주제를 건너뛰려면 /skip {label}")
@@ -419,8 +437,24 @@ def control_text(
         lines.append(
             f"/skip {label} 을 보내지 않으면 {profile.schedule.publish_at} 에 자동 게시해요"
         )
-    lines += edit_guide(profile, fix, cover)
+    lines += video_edit_guide(profile, fix) if video else edit_guide(profile, fix, cover)
     return "\n".join(lines)
+
+
+def video_edit_guide(profile: Profile, fix: dict | None) -> list[str]:
+    """영상 모드 미리보기의 고치기 명령 (번호 = LOOK 번호, 사진 순서와 같음)."""
+    lines = ["", "[고치기] 번호는 LOOK 번호 (사진 순서와 같아요)"]
+    fb = profile.feedback
+    if fb.enabled:
+        left = fb.max_fixes - (fix or {}).get("round", 0)
+        lines += [
+            '• 그림 고치기: "/fix 3 신발 더 크게" (사진에 답장해도 돼요)',
+            '  한 상품만 다르게 그려졌으면: "/fix 6 이 그림에서 코트만 상세페이지와 똑같이"',
+            '• 고치기 전 그림으로: "/fix 2 고치기 전 이미지 사용"',
+            "• 여러 줄로 /fix 를 한 번에 보내도 돼요",
+            f"  남은 횟수 {left}번" if left > 0 else "  오늘 고치기 횟수를 다 썼어요",
+        ]
+    return lines
 
 
 def edit_guide(profile: Profile, fix: dict | None, cover: int | None) -> list[str]:
@@ -472,15 +506,23 @@ def preview(
     kind = (
         f"고친 미리보기 {fix.get('round', 1)}/{profile.feedback.max_fixes}회" if fix else "미리보기"
     )
-    head = f"[{profile.id}] {manifest.date} {kind} · {len(slides)}장"
-    ids = tg.send_photos(slides, head)
-    from tools import reels
+    video = None
+    if profile.flow.enabled and video_instead(profile):
+        # 캐러셀 없이 영상 한 편 (2026-11-02 사용자): 영상에 쓸 벌마다 코디컷만 보낸다.
+        # /fix 번호는 LOOK 번호 (feedback.fix_slides)
+        pics = look_pictures(manifest, out)
+        head = f"[{profile.id}] {manifest.date} 영상에 쓸 코디컷 {kind} · {len(pics)}벌"
+        ids = tg.send_photos(pics, head)
+    else:
+        head = f"[{profile.id}] {manifest.date} {kind} · {len(slides)}장"
+        ids = tg.send_photos(slides, head)
+        from tools import reels
 
-    video = reels.video_path(manifest, out) if profile.reels.enabled else None
-    if video is not None:
-        # 릴스도 같은 /ok 로 승인한다 (게시는 schedule.reels_at)
-        ids.append(tg.send_video(video, reel_caption(profile, manifest.reels)))
-    ids.append(tg.send(full_caption(manifest)))
+        video = reels.video_path(manifest, out) if profile.reels.enabled else None
+        if video is not None:
+            # 릴스도 같은 /ok 로 승인한다 (게시는 schedule.reels_at)
+            ids.append(tg.send_video(video, reel_caption(profile, manifest.reels)))
+        ids.append(tg.send(full_caption(manifest)))
     markup = None
     if not sandbox:
         label = command_label(profile, manifest.date)

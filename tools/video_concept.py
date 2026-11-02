@@ -55,8 +55,9 @@ class Concept(BaseModel):
     framing: str  # 고정 구도 (세로, 눈높이, 전신이 화면 높이의 약 75% …)
     light: str  # 시간·빛·색감
     motion: str  # 동작 컨셉 (모든 벌 통일, 예: "걷기")
-    music: str  # 음악 AI 지시 (영어: 장르, 분위기, BPM, instrumental)
-    music_mood: str  # 음악 분위기 (한국어, 텔레그램에 보임)
+    # 음악: profile video.music 이 lyria 일 때만. none 이면 비운다 (2026-11-02 사용자)
+    music: str = ""  # 음악 AI 지시 (영어: 장르, 분위기, BPM, instrumental)
+    music_mood: str = ""  # 음악 분위기 (한국어, 텔레그램에 보임)
     hook: str  # 첫 벌에 얹을 훅 문구
     why: str = ""  # 이 주제·코디에 이 컨셉인 이유
     # 인물·카메라·속도 (2026-11-02). 한국어는 텔레그램에 보이고,
@@ -152,7 +153,9 @@ def concept_text(profile: Profile, cs: ConceptSet) -> str:
         if person:
             lines.append(f"   인물: {person}")
         lines += [f"     LOOK {s.look} ({s.seconds:g}초) {s.action} → {s.pose}" for s in c.shots]
-        lines += [f"   음악: {c.music_mood}", f'   훅 문구: "{c.hook}"']
+        if c.music_mood and profile.video.music != "none":
+            lines.append(f"   음악: {c.music_mood}")
+        lines.append(f'   훅 문구: "{c.hook}"')
         if c.why:
             lines.append(f"   {c.why}")
         lines.append("")
