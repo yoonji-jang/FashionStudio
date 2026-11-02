@@ -451,8 +451,9 @@ class Video(BaseModel):
     """움직이는 코디 영상 (2026-10-29 사용자). 코디 주제 하나당 영상 한 편:
     같은 배경·고정 카메라에서 같은 얼굴의 모델이 6벌을 차례로 입고 걷거나 가볍게 춤춘다.
     영상은 사용자가 직접 올린다.
-    지금은 컨셉 단계만 있다: 코디를 고르면 Claude 가 컨셉 후보를 텔레그램으로 보내고
+    코디를 고르면 Claude 가 컨셉 후보를 텔레그램으로 보내고
     (video-concept 워크플로, tools.video_concept) 번호로 고르거나 고칠 점을 받는다.
+    make 면 코디컷이 확정된 뒤 영상을 만든다 (tools.video: 첫 장면 → 지시문 → 영상 → 편집).
     영상 기준(공통 규칙·좋다/싫다)은 accounts/<id>/video.md."""
 
     enabled: bool = False
@@ -462,6 +463,26 @@ class Video(BaseModel):
     # (reels.music_dir) / none: 소리 없는 영상 (사용자가 앱에서 음악을 붙임)
     music: Literal["lyria", "own", "none"] = "lyria"
     budget_usd_month: float = Field(default=50, gt=0)  # 한 달 영상 비용 상한 (달러)
+    # 영상 만들기 (2026-11-02, tools.video, video 워크플로). false 면 컨셉까지만
+    make: bool = False
+    # true: 영상이 캐러셀 게시를 대신한다 (미리보기 /ok 뒤 캐러셀은 올리지 않고 영상을 만들고,
+    # 영상 최종 /ok 면 사용자가 직접 올린 것으로 보고 다음 주제로)
+    # false: 미리보기 /ok 면 캐러셀을 올리고, 게시를 확인하면 같은 벌들로 영상을 만든다
+    replace_post: bool = True
+    # 쓰는 모델 (config/models.yaml 의 generate.models / video.models 이름)
+    background_model: str = "nano_banana_pro"  # 사람 없는 빈 배경 한 장
+    frame_model: str = "nano_banana_pro"  # 벌마다 첫 장면 (얼굴 + 코디컷 + 빈 배경)
+    face_edit: bool = True  # 첫 장면을 그린 뒤 얼굴만 얼굴 사진처럼 한 번 더 고친다
+    video_model: str = "hailuo_3_frame"  # 첫 장면을 움직이는 영상 모델
+    # 영상 지시문에 늘 넣는 말 (영어).
+    # 컨셉에 같은 칸(camera_en, pace_en, person_en)이 있으면 컨셉이 이긴다
+    camera_en: str = ""
+    pace_en: str = ""
+    person_en: str = ""
+    # 편집: 벌마다 영상의 clip_start 초부터 잘라 speed 배로 빠르게 (AI 가 걷는 속도를 약하게 따름).
+    # 벌 길이는 컨셉 장면의 seconds (최종 영상 기준)
+    clip_start: float = Field(default=0.2, ge=0, le=3)
+    speed: float = Field(default=1.25, ge=0.5, le=2)
 
 
 class ModelShot(BaseModel):

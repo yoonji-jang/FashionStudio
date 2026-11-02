@@ -336,6 +336,12 @@ def command_label(profile: Profile, day: date) -> str:
     return f"{profile.id} {day:%m-%d}"
 
 
+def video_instead(profile: Profile) -> bool:
+    """영상이 캐러셀 게시를 대신하는지 (profile video.enabled·make·replace_post)."""
+    v = profile.video
+    return v.enabled and v.make and v.replace_post
+
+
 def control_text(
     manifest: Manifest,
     profile: Profile,
@@ -347,7 +353,12 @@ def control_text(
     """미리보기 마지막 안내 글. cover 는 표지로 쓴 벌 번호 (tools.cover_look)."""
     day = manifest.date
     flow = profile.flow.enabled  # 차례 흐름 (tools.flow): /ok 를 받으면 바로 게시, 마감 없음
+    # 영상이 캐러셀 게시를 대신하면 (profile video.make·replace_post) /ok 는 영상 만들기
+    # (2026-11-02)
+    video = flow and video_instead(profile)
     when = "/ok 하면 바로 게시" if flow else f"{profile.schedule.publish_at} 게시 예정"
+    if video:
+        when = "/ok 하면 이 코디컷으로 영상 만들기 (캐러셀은 올리지 않음)"
     lines = [f"[{profile.id}] {day} {when}"]
     lines.append("제목: " + " / ".join(manifest.title_lines))
     if fix:
@@ -371,7 +382,12 @@ def control_text(
         lines.append("샌드박스(워터마크) 결과라 게시하지 않아요. 흐름 확인용이에요.")
         return "\n".join(lines)
     label = command_label(profile, day)
-    if flow:
+    if video:
+        lines.append(f"영상을 만들려면 /ok {label}, 이 주제를 건너뛰려면 /skip {label}")
+        lines.append(
+            "한 시간 안에 확인해 영상 첫 장면을 그려 보내 드려요 (약 $1.8). 마감 없이 기다려요"
+        )
+    elif flow:
         lines.append(f"게시하려면 /ok {label}, 이 주제를 건너뛰려면 /skip {label}")
         lines.append(
             "한 시간 안에 확인해 바로 게시하고 상품 링크를 보내 드려요. 마감 없이 기다려요"

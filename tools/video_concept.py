@@ -44,6 +44,8 @@ class Shot(BaseModel):
     action: str  # 동작 시작 → 끝 (한국어, 컨셉의 동작과 같은 종류)
     pose: str  # 옷이 가장 잘 보이는 순간의 포즈
     text: str = ""  # 화면 글자 (첫 벌의 훅 문구 등, 코드가 얹는다)
+    # 영상 AI 에 보낼 이 벌의 동작 (영어 한 문장, tools.video). 없으면 action·pose 를 그대로 씀
+    motion_en: str = ""
 
 
 class Concept(BaseModel):
@@ -57,6 +59,17 @@ class Concept(BaseModel):
     music_mood: str  # 음악 분위기 (한국어, 텔레그램에 보임)
     hook: str  # 첫 벌에 얹을 훅 문구
     why: str = ""  # 이 주제·코디에 이 컨셉인 이유
+    # 인물·카메라·속도 (2026-11-02). 한국어는 텔레그램에 보이고,
+    # 영어(_en)는 영상 만들 때 지시문에 들어간다.
+    # 영어 칸이 비면 profile video 의 같은 칸을 쓴다
+    expression: str = ""  # 표정 ("살짝 도도하게, 아주 옅은 미소까지")
+    hair: str = ""  # 머리 ("긴 흑발 생머리")
+    pace: str = ""  # 걷는 속도·리듬 ("1초에 약 2걸음, 보폭 살짝 크게")
+    person_en: str = ""  # 표정·머리 (영어)
+    camera_en: str = ""  # 카메라 (영어)
+    pace_en: str = ""  # 걷는 속도·리듬 (영어)
+    light_en: str = ""  # 시간·빛·색감 (영어, 비면 background_en)
+    direction_en: str = ""  # 걷는 방향·동선 (영어, 예 "heading slightly to the left")
     shots: list[Shot] = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -135,6 +148,9 @@ def concept_text(profile: Profile, cs: ConceptSet) -> str:
             f"   구도: {c.framing} · {c.light}",
             f"   동작: {c.motion}",
         ]
+        person = " · ".join(x for x in (c.expression, c.hair, c.pace) if x)
+        if person:
+            lines.append(f"   인물: {person}")
         lines += [f"     LOOK {s.look} ({s.seconds:g}초) {s.action} → {s.pose}" for s in c.shots]
         lines += [f"   음악: {c.music_mood}", f'   훅 문구: "{c.hook}"']
         if c.why:

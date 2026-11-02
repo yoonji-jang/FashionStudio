@@ -82,3 +82,14 @@ feed_fill:
   가방: 0.8
   신발: 0.74
   소품: 0.56
+# 코디 영상 편집 (tools.video, 2026-11-02). 크기는 1080x1920 기준 px, 위치는 화면 비율
+video_edit:
+  size: [1080, 1920]
+  fps: 30
+  hook_y: 0.13          # 첫 벌 훅 문구 가운데 높이
+  hook_size: 64         # 긴 문구는 화면 폭 86% 안에 들어가게 줄어듦
+  look_size: 34         # 오른쪽 위 "LOOK n"
+  look_margin: [48, 120]  # 오른쪽, 위 여백
+  music_fade_in: 0.3
+  music_fade_out: 1.2
+  zoom_flag: 1.3        # 벌 영상 앞뒤로 얼굴 크기가 이만큼 커지면 "다가옴" 표시

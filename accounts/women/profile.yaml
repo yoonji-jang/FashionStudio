@@ -514,6 +514,20 @@ video:
   look_seconds: 2.5        # 6벌 × 2.5초 ≈ 15초 + 앞뒤
   music: lyria             # 컨셉 무드에 맞춘 연주곡을 음악 AI(Lyria 3 Clip, 30초 $0.04)로 (2026-10-30 사용자)
   budget_usd_month: 50     # 조율 가능 (2026-10-29 사용자)
+  # 영상 만들기 (2026-11-02 사용자 "시작", 10/27 퍼 코디로 정한 방식): 첫 장면 → 지시문 → Hailuo 3 → 편집
+  make: true
+  replace_post: true       # 영상이 캐러셀 게시를 대신함. 영상은 사용자가 직접 올림
+  video_model: hailuo_3_frame   # 걷는 방향·속도·구도가 가장 좋았음 (2026-10-30 사용자)
+  camera_en: >-
+    The camera travels alongside her at a constant distance, like a boyfriend filming his girlfriend.
+    She stays exactly the same size in the frame from start to end: no push-in, no zoom-in, no dolly
+    toward her, no shake, no cuts. The background slides past naturally.
+  pace_en: >-
+    light, slightly quick, elegant strides, about two steps per second, a confident model walk
+    (not slow, not trudging)
+  person_en: >-
+    cool, chic and aloof expression, a calm confident model face, at most a very faint smile
+  speed: 1.25              # AI 가 빨리 걸으라는 말을 약하게 따라서 편집에서 1.25배 (2026-10-30)
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
 # (manual_link 면 게시 알림에 답장으로 붙인 공유리워드 링크가 상품 페이지에 들어감, tools.share)
