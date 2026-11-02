@@ -35,8 +35,8 @@ the kind of shot, place, light and mood from it, never that person's clothes, fa
 
 What decides what: the reference outfit photo (if attached) decides only how each piece is worn
 (tucked or loose, open or closed, how far a zip or buttons are done up, how the collar sits, what peeks
-out and by how much, asymmetric styling, a coat on the shoulders or slipping off one shoulder,
-pushed-up sleeves). The item sheets decide what each product is: its fit, volume and looseness, length,
+out and by how much, how far a top or knit hem covers the skirt or pants waist, one side tucked and the other out as asymmetric styling, a coat on the shoulders or slipping off one shoulder,
+pushed-up sleeves). The item sheets decide what each product is: its fit, volume and looseness (an oversized coat or jacket is drawn bigger than the body, with the bulk it has in its shop photos), length,
 fabric, color, pattern, details and thickness, exactly as in its shop photos. The scene photo decides only the place, light and
 pose. Apart from the user's requests at the top, the text only tells the items apart: where other
 text and the photos differ, follow the photos.
