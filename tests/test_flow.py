@@ -1128,3 +1128,17 @@ def test_video_concept_reset_on_next_theme(env, monkeypatch):
     tick(env, FakeTg(), T0)
     st = flow.load_state(results, "women")
     assert (st.concept, st.concept_at, st.concept_upto) == (0, 0, 0)
+
+
+def test_feedback_round_merged_by_hand_goes_to_theme(env, monkeypatch):
+    """2026-11-02: /merge 없이 feedback-round merge 를 직접 돌려 합쳐도 다음 주제로."""
+    monkeypatch.setattr(flow, "load_profile", _profile(0, rules=True))
+    store, results, sent, _ = env
+    st = flow.FlowState(account="women", stage="rules_pr", date=date(2026, 10, 16), asked_at=T0)
+    flow.save_state(results, st)
+    _round_sent(results, pr_at=T0 + 100, branch="b", pr_url="u")
+    tg = FakeTg()
+    assert tick(env, tg, T0 + 200) == []
+    _round_sent(results, merged_at=T0 + 300)
+    lines = tick(env, tg, T0 + 400)
+    assert lines[0] == "피드백 반영 마침 (PR 직접 합침)" and lines[1].startswith("주제 제안 요청")

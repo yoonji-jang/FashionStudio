@@ -1361,6 +1361,10 @@ def _rules_round(
         what = "반영 계획" if st.stage == "rules_plan" else "반영 PR"
         _late(st, now, tg, f"{tag} 피드백 {what}이 아직 오지 않았어요 (워크플로를 확인해 주세요)")
         return ""
+    if st.stage == "rules_pr" and rnd.merged_at >= sent_at:
+        # /merge 없이 feedback-round merge 를 직접 돌려 합친 경우 (2026-11-02)
+        st.stage = "theme"
+        return "피드백 반영 마침 (PR 직접 합침)"
     if tg is None:
         return ""
     replies = feedback.round_replies(tg.updates(), tg.chat_id, acc, sent_at)
