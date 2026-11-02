@@ -31,7 +31,8 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
   publishing    게시 기록이 생기면 theme 으로 (다음 주제).
                 profile video.make 이고 replace_post 가 아니면 먼저 같은 벌들로 영상을 만든다
   video_making  코디 영상 (2026-11-02, tools.video, video 워크플로). replace_post 면 미리보기 /ok 가
-                캐러셀 게시 대신 여기로 온다. 단계(첫 장면 → 지시문 → 최종본) 결과를 기다림
+                캐러셀 게시 대신 여기로 온다. 단계(그림 계획 → 빈 배경 → 첫 장면 → 지시문 → 최종본)
+                결과를 기다림. 그림은 그리기 전 계획과 그린 뒤 모두 /ok 를 받아야 다음으로
   video_wait    결과에 온 답: /ok = 다음 단계 (최종본이면 끝: 사용자가 직접 올린 것으로 보고
                 게시 기록을 남기고 다음 주제로), /fix·/frame·/speed·/제목·/order·/music = 고쳐 다시,
                 /retry = 실패한 요청 다시, /skip = 영상 없이 다음 주제
@@ -1159,8 +1160,8 @@ def _step(
         if feedback.waiting(updates, rec, tg.chat_id, out, profile, store):
             return ""  # /fix 로 고치는 중: 고친 미리보기에 /ok 가 오면 그때
         if notify.video_instead(profile):
-            tg.send(f"{tag} /ok 확인했어요. 캐러셀은 올리지 않고 이 코디컷으로 영상 첫 장면을 "
-                    "그려 보내 드릴게요")  # fmt: skip
+            tg.send(f"{tag} /ok 확인했어요. 이 코디컷으로 영상을 만들어요. "
+                    "그리기 전에 그림 계획을 먼저 보내 드릴게요")  # fmt: skip
             return _video_start(st, out.name, send, ts)
         send("publish.yml", account=acc, date=day.isoformat(), run=out.name, dry_run=False,
              force=True, scheduled=True)  # fmt: skip
@@ -1183,7 +1184,8 @@ def _step(
             # 캐러셀을 올린 뒤 같은 벌들로 영상 (영상은 사용자가 직접 올림)
             run = publish.find_run(results, acc, day).name
             if tg is not None:
-                tg.send(f"{tag} 게시를 확인했어요. 같은 코디로 영상 첫 장면을 그려 보내 드릴게요")
+                tg.send(f"{tag} 게시를 확인했어요. 같은 코디로 만들 영상의 그림 계획을 "
+                        "보내 드릴게요")  # fmt: skip
             return _video_start(st, run, send, ts)
         return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
 
@@ -1231,16 +1233,16 @@ RETRY_WORDS = {"/retry", "다시 시도", "재시도"}
 
 
 def _video_start(st: FlowState, run: str, send, ts: int) -> str:
-    """영상 첫 단계(첫 장면) 요청."""
+    """영상 첫 단계 요청: 그릴 그림 계획부터 (그리기 전에 확인받기, 2026-11-02 사용자)."""
     assert st.date is not None
     st.video_run, st.video_upto = run, 0
-    return _video_send(st, send, ts, {"step": "frames"})
+    return _video_send(st, send, ts, {"step": "plan"})
 
 
 def _video_send(st: FlowState, send, ts: int, act: dict) -> str:
     assert st.date is not None
     inputs = {"account": st.account, "date": st.date.isoformat(), "run": st.video_run, **act}
-    if st.concept and act.get("step") == "frames":
+    if st.concept and act.get("step") in ("plan", "background", "frames"):
         inputs["concept"] = str(st.concept)  # 고른 번호는 schedule 이 커밋하지 않아 넘긴다
     send(VIDEO_WF, **inputs)
     st.video_last = json.dumps(inputs, ensure_ascii=False)
@@ -1297,7 +1299,7 @@ def _video(
     replies = [r for _, t in got if (r := video.parse(t, rec.looks)) is not None]
     if not replies:
         tg.send(f"{tag} 영상 답을 알아듣지 못했어요. 아래 명령 중 하나로 보내 주세요\n\n"
-                + video.guide(tag, rec, profile))  # fmt: skip
+                + video.guide(tag, rec, profile, run))  # fmt: skip
         return ""
     r = replies[-1]
     if r.kind == "skip":
@@ -1312,11 +1314,14 @@ def _video(
         return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
     # 같은 단계의 고칠 점이 여러 개 오면 한 번에 (예: /fix 3 …, /fix 5 …)
     fixes = [x for x in replies if x.kind in ("fix", "frame") and x.kind == r.kind]
-    act = video.action(rec, r)
+    if rec.step == "plan":  # 계획 고치기는 배경·벌·모든 벌 고칠 점을 한 번에
+        fixes = [x for x in replies if x.kind in ("fix", "frame", "background")]
+    act = video.action(rec, r, music=video.has_music(profile))
     if act is None:
-        tg.send(f"{tag} 지금 단계에서는 쓸 수 없는 명령이에요\n\n" + video.guide(tag, rec, profile))
+        tg.send(f"{tag} 지금 단계에서는 쓸 수 없는 명령이에요\n\n"
+                + video.guide(tag, rec, profile, run))  # fmt: skip
         return ""
-    if len(fixes) > 1 and act.get("step") in ("frames", "prompts", "clips", "redo"):
+    if len(fixes) > 1 and act.get("step") in ("plan", "frames", "prompts", "clips", "redo"):
         acts = [video.action(rec, x) or {} for x in fixes]
         act["note"] = "\n".join(a["note"] for a in acts if a.get("note"))
         looks = sorted({int(x) for a in acts for x in str(a.get("looks", "")).split() if x})

@@ -2,20 +2,24 @@ r"""코디 영상 만들기 (2026-11-02 사용자 "시작", 10/27 퍼 코디 영
 
 코디 주제 하나당 영상 한 편. 고른 컨셉(data/<계정>/video_concepts.json)과 확정된 코디컷으로
 벌마다 첫 장면을 그리고, 그 장면을 영상 AI 로 움직여 이어 붙인다. 영상은 사용자가 직접 올린다.
-사람 확인은 텔레그램으로 세 번 (컨셉은 tools.video_concept):
-  ② frames   얼굴 자르기(코드) + 빈 배경 + 벌마다 첫 장면(얼굴·코디컷·배경)
-             + 얼굴만 고치기 → 사진 묶음
-  ③ prompts  벌마다 영상 지시문 (카메라·인물 크기·걷는 속도·표정·동작) → 한국어 요약과 원문
-  ④ clips    벌마다 영상(profile video.video_model) + 음악(Lyria) → 편집(edit)
-             → 최종본 2개·표지·캡션
-     edit    코드 편집만 다시 (속도·제목·순서, 무료)
-     music   음악만 새로 ($0.04) → 편집
+사람 확인은 텔레그램으로 단계마다 (컨셉은 tools.video_concept).
+그림은 그리기 전에 무엇을 그릴지 확인받고, 그린 뒤 /ok 를 받아야 다음으로 (2026-11-02 사용자):
+  ① plan       그릴 그림 계획 (빈 배경, 벌마다 첫 장면의 코디·동작·표정·크기) → 글 (요금 없음)
+  ② background 빈 배경 한 장 → 사진
+  ③ frames     얼굴 자르기(코드) + 벌마다 첫 장면(얼굴·코디컷·배경) + 얼굴만 고치기 → 사진 묶음
+  ④ prompts    벌마다 영상 지시문 (카메라·인물 크기·걷는 속도·표정·동작) → 한국어 요약과 원문
+  ⑤ clips      벌마다 영상(profile video.video_model) (+ 음악, video.music 이 lyria 일 때만)
+               → 편집(edit) → 최종본·표지·캡션
+     edit      코드 편집만 다시 (속도·제목·순서, 무료)
+     music     음악만 새로 ($0.04) → 편집 (video.music 이 lyria 일 때만)
 결과는 daily-results 의 <결과 폴더>/video/ (video.json 에 단계·비용·편집 값).
 기준: profile `video`, accounts/<계정>/video.md, 지시문 prompts/video/,
 편집 자리 config/layout.yaml video_edit.
 OpenRouter 요금이 나가므로 video 워크플로(차례 흐름이 부름)에서만 돈다.
 
 사용법:
+  python -m tools.video plan --account women --run … [--note "배경:눈이 더 많이"] [--concept 2]
+  python -m tools.video background --account women --run … [--note "배경:…"]
   python -m tools.video frames  --account women --run /tmp/results/2026-10-27-run380 \
       --face /tmp/results/flow/women/face.jpg [--looks 3 5] [--note "3:얼굴이 달라"] [--background]
   python -m tools.video prompts --account women --run … [--note "3:가방 고쳐 들기"]
@@ -58,7 +62,7 @@ FONTS = REPO_ROOT / "assets" / "fonts"
 FACE_PAD = 0.6  # 얼굴 상자 둘레에 더 넣는 비율 (머리·턱선까지, 모음 사진의 옆 컷은 덜 들어가게)
 FACE_MIN_PX = 512
 
-Step = Literal["frames", "prompts", "final"]
+Step = Literal["plan", "background", "frames", "prompts", "final"]
 
 
 class VideoRecord(BaseModel):
@@ -67,7 +71,7 @@ class VideoRecord(BaseModel):
     account: str
     date: dt.date
     run: str  # 결과 폴더 이름
-    step: Step = "frames"  # 마지막으로 보낸 확인 단계
+    step: Step = "plan"  # 마지막으로 보낸 확인 단계
     sent_at: int = 0  # 그 단계를 텔레그램으로 보낸 시각 (흐름이 이 뒤의 답을 읽는다)
     looks: int = 0
     costs: dict[str, float] = {}  # "frame_3", "clip_3", "background", "music" → 달러
@@ -79,6 +83,7 @@ class VideoRecord(BaseModel):
     error: str = ""  # 마지막 실패 (차례 흐름이 /retry 를 안내)
     error_at: int = 0
     concept: int = 0  # 고른 컨셉 번호 (0 이면 video_concepts.json 의 chosen)
+    stale: list[int] = []  # 영상을 만든 뒤 첫 장면을 다시 그린 벌 (다음 clips 때 영상도 다시)
 
     def total(self) -> float:
         return round(sum(self.costs.values()), 2)
@@ -135,6 +140,16 @@ def items_en(run: Path, n: int) -> str:
         m = re.findall(r"\(([^()]*[A-Za-z][^()]*)\)", desc)
         out.append(m[-1] if m else desc)
     return "; ".join(x for x in out if x)
+
+
+def items_ko(run: Path, n: int) -> str:
+    """그 벌 상품을 한국어로 (기획 desc 의 괄호 앞)."""
+    plan = yaml.safe_load((run / "looks" / str(n) / "plan.yaml").read_text(encoding="utf-8")) or {}
+    out = []
+    for item in plan.get("items") or []:
+        desc = item.get("desc") or item.get("name", "")
+        out.append(re.sub(r"\s*\([^()]*\)\s*$", "", desc).strip() or desc)
+    return ", ".join(x for x in out if x)
 
 
 def concept_of(profile: Profile, day: dt.date, n: int = 0) -> Concept:
@@ -222,6 +237,55 @@ def face_crop(face: Path) -> bytes:
     return buf.getvalue()
 
 
+def start_record(profile: Profile, run: Path, concept: int = 0) -> VideoRecord:
+    """video.json 을 읽거나 새로 만든다 (고른 컨셉 번호·벌 수를 채움)."""
+    m = manifest_of(run)
+    rec = load_record(run) or VideoRecord(account=profile.id, date=m.date, run=run.name)
+    rec.concept = concept or rec.concept
+    rec.looks = look_count(run)
+    return rec
+
+
+def plan(
+    profile: Profile, run: Path, notes: list[str] | None = None, concept: int = 0
+) -> VideoRecord:
+    """① 그릴 그림 계획 (요금 없음). 확인을 받아야 그린다 (2026-11-02 사용자)."""
+    rec = start_record(profile, run, concept)
+    concept_of(profile, rec.date, rec.concept)  # 고른 컨셉이 있는지 먼저 확인
+    add_notes(rec, notes or [])
+    rec.step, rec.error = "plan", ""
+    save_record(run, rec)
+    return rec
+
+
+def make_background(profile: Profile, run: Path, rec: VideoRecord, c: Concept, client, models):
+    direction = f"The walking path runs {c.direction_en}." if c.direction_en else ""
+    prompt = template(
+        "background", background_en=c.background_en, light=c.light, direction_line=direction
+    )
+    for note in rec.notes.get("background", []):
+        prompt += f"\nUser request: {note}"
+    data, cost = client.generate(models[profile.video.background_model], prompt, [])
+    vdir(run).mkdir(parents=True, exist_ok=True)
+    (vdir(run) / "background.jpg").write_bytes(video_test.jpeg(data, 1920))
+    rec.costs["background"] = round(cost or 0, 4)
+
+
+def background(
+    profile: Profile, run: Path, notes: list[str] | None = None, fake: bool = False,
+    concept: int = 0,
+) -> VideoRecord:  # fmt: skip
+    """② 빈 배경 한 장. /ok 를 받아야 첫 장면을 그린다."""
+    rec = start_record(profile, run, concept)
+    c = concept_of(profile, rec.date, rec.concept)
+    add_notes(rec, notes or [])
+    client, models = _gen_client(profile, fake)
+    make_background(profile, run, rec, c, client, models)
+    rec.step, rec.error = "background", ""
+    save_record(run, rec)
+    return rec
+
+
 def frames(
     profile: Profile,
     run: Path,
@@ -232,12 +296,9 @@ def frames(
     fake: bool = False,
     concept: int = 0,
 ) -> VideoRecord:
-    """② 얼굴 자르기 + 빈 배경 + 벌마다 첫 장면 (+ 얼굴만 고치기)."""
-    m = manifest_of(run)
-    rec = load_record(run) or VideoRecord(account=profile.id, date=m.date, run=run.name)
-    rec.concept = concept or rec.concept
-    c = concept_of(profile, m.date, rec.concept)
-    rec.looks = look_count(run)
+    """③ 얼굴 자르기 + 벌마다 첫 장면 (+ 얼굴만 고치기). 빈 배경이 없을 때만 배경도 그린다."""
+    rec = start_record(profile, run, concept)
+    c = concept_of(profile, rec.date, rec.concept)
     touched = add_notes(rec, notes or [])
     todo = looks or touched or list(range(1, rec.looks + 1))
     d = vdir(run)
@@ -249,15 +310,7 @@ def frames(
     v = profile.video
     bg_path = d / "background.jpg"
     if redo_background or not bg_path.exists():
-        direction = f"The walking path runs {c.direction_en}." if c.direction_en else ""
-        prompt = template(
-            "background", background_en=c.background_en, light=c.light, direction_line=direction
-        )
-        for note in rec.notes.get("background", []):
-            prompt += f"\nUser request: {note}"
-        data, cost = client.generate(models[v.background_model], prompt, [])
-        bg_path.write_bytes(video_test.jpeg(data, 1920))
-        rec.costs["background"] = round(cost or 0, 4)
+        make_background(profile, run, rec, c, client, models)
         todo = list(range(1, rec.looks + 1))  # 배경이 바뀌면 첫 장면도 모두 새로
     bg = bg_path.read_bytes()
     shots = {s.look: s for s in c.shots}
@@ -278,6 +331,8 @@ def frames(
             total += cost or 0
         (d / "frames" / f"look{n}.jpg").write_bytes(video_test.jpeg(data, 1920))
         rec.costs[f"frame_{n}"] = round(total, 4)
+        if (d / "clips" / f"look{n}.mp4").exists() and n not in rec.stale:
+            rec.stale.append(n)
     rec.step, rec.error = "frames", ""
     save_record(run, rec)
     return rec
@@ -324,7 +379,7 @@ def clips(
     cfg = video_test.load_config()
     vcfg = cfg["video"]
     model = vcfg["models"][profile.video.video_model]
-    redo = set(looks or touched)
+    redo = set(looks or touched) | set(rec.stale)
     client = (
         video_test.FakeVideoClient()
         if fake
@@ -341,6 +396,8 @@ def clips(
         video, cost, _ = client.make(body)
         clip.write_bytes(video if not fake else _fake_clip(first))
         rec.costs[f"clip_{n}"] = round(cost or 0, 4)
+        if n in rec.stale:
+            rec.stale.remove(n)
     (d / "prompts.json").write_text(json.dumps(texts, ensure_ascii=False, indent=2), "utf-8")
     if profile.video.music == "lyria" and not (d / "music.mp3").exists():
         make_music(profile, run, rec, c, fake)
@@ -591,15 +648,73 @@ def edit(
 # ---------- 텔레그램 ----------
 
 
+BG_COST, FRAME_COST = 0.14, 0.28  # 안내용 어림값 (빈 배경 한 장, 첫 장면 한 장 + 얼굴 고치기)
+
+
+def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Path) -> str:
+    """① 그리기 전에 확인받는 그림 계획 (2026-11-02 사용자)."""
+    bg_req = "; ".join(rec.notes.get("background", []))
+    lines = [
+        f"{tag} 영상에 쓸 그림 계획이에요. 확인해 주시면 그릴게요 (아직 요금 없음).",
+        "",
+        f"① 빈 배경 1장 (약 ${BG_COST:.2f}): 사람 없이 배경만",
+        f"• 장소: {c.background}",
+        f"• 빛·색감: {c.light}",
+    ]
+    if bg_req:
+        lines.append(f"• 요청: {bg_req}")
+    lines += [
+        "",
+        f"② 벌마다 첫 장면 {rec.looks}장 (장당 약 ${FRAME_COST:.2f}): "
+        "얼굴 사진 + 확정 코디컷 + 빈 배경으로 그리고, 얼굴만 한 번 더 맞춰요",
+        f"• 구도: {c.framing} (인물은 화면 세로의 70~80%)",
+        f"• 표정·머리: {' · '.join(x for x in (c.expression, c.hair) if x) or '살짝 도도하게'}",
+    ]
+    shots = {s.look: s for s in c.shots}
+    for n in range(1, rec.looks + 1):
+        s = shots.get(n)
+        try:
+            items = items_ko(run, n)
+        except FileNotFoundError:
+            items = ""
+        move = f"{s.action} → {s.pose}" if s else "걷는 중"
+        extra = "; ".join(notes_for(rec, n))
+        req = f" (요청: {extra})" if extra else ""
+        lines.append(f"• LOOK {n}: {items or '확정 코디컷'} / {move}{req}")
+    lines += [
+        "",
+        "빈 배경을 먼저 그려 보내 드리고, 배경에 /ok 를 받으면 첫 장면을 그려요.",
+        "• /ok → 빈 배경 그리기",
+        "• /fix 배경 바다가 보이게 → 배경 계획 고치기 (요금 없음)",
+        "• /fix 3 가방을 앞으로 들게 → LOOK 3 계획 고치기",
+        "• /fix 표정을 더 밝게 → 모든 벌 계획 고치기",
+        "• /skip → 이 영상은 만들지 않고 다음 주제로",
+        "답을 받을 때까지 기다려요",
+    ]
+    return "\n".join(lines)
+
+
+def background_guide(tag: str, rec: VideoRecord) -> str:
+    return "\n".join(
+        [
+            f"{tag} 영상 빈 배경이에요. 첫 장면은 모두 이 배경 위에 그려요.",
+            f"• /ok → 벌마다 첫 장면 {rec.looks}장 그리기 (약 ${FRAME_COST * rec.looks:.2f})",
+            f"• /fix 눈이 더 많이 → 빈 배경 다시 그리기 (약 ${BG_COST:.2f})",
+            "• /skip → 이 영상은 만들지 않고 다음 주제로",
+            "답을 받을 때까지 기다려요",
+        ]
+    )
+
+
 def frames_guide(tag: str) -> str:
     return "\n".join(
         [
-            f"{tag} 영상 첫 장면이에요 (첫 장은 빈 배경, 다음부터 LOOK 1~).\n"
-            "영상은 이 장면에서 시작해요.",
+            f"{tag} 영상 첫 장면이에요 (LOOK 1~ 순서). 영상은 이 장면에서 시작해요.",
             "• /ok → 영상 지시문을 보내 드려요 (요금 없음)",
-            "• /fix 3 얼굴이 달라 → LOOK 3 첫 장면만 다시 그려요 (약 $0.28)",
-            "• /fix 배경 눈이 더 많이 → 빈 배경과 첫 장면을 모두 다시 그려요 (약 $1.8)",
+            f"• /fix 3 얼굴이 달라 → LOOK 3 첫 장면만 다시 그려요 (약 ${FRAME_COST:.2f})",
             "• /fix 표정을 더 도도하게 → 모든 벌 첫 장면을 다시 그려요",
+            f"• /fix 배경 눈이 더 많이 → 빈 배경부터 다시 그려 보내 드려요 (약 ${BG_COST:.2f}, "
+            "배경에 /ok 하면 첫 장면도 모두 다시)",
             "• /skip → 이 영상은 만들지 않고 다음 주제로",
             "답을 받을 때까지 기다려요",
         ]
@@ -639,12 +754,16 @@ def prompts_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord) -> st
     return "\n".join(lines)
 
 
+def has_music(profile: Profile) -> bool:
+    return profile.video.music == "lyria"
+
+
 def final_guide(tag: str, rec: VideoRecord, profile: Profile) -> str:
     sp = rec.speed or profile.video.speed
     order = " ".join(map(str, rec.order or range(1, rec.looks + 1)))
+    files = "음악 있음·없음 원본 파일" if has_music(profile) else "원본 파일"
     lines = [
-        f"{tag} 영상 최종본이에요 (음악 있음·없음 원본 파일, 표지, 캡션).\n"
-        "게시는 직접 올려 주세요.",
+        f"{tag} 영상 최종본이에요 ({files}, 표지, 캡션).\n게시는 직접 올려 주세요.",
         f"지금: 속도 {sp:g}배 · 순서 {order} · 비용 ${rec.total():.2f}",
     ]
     lines += [f"⚠ {f}" for f in rec.flags]
@@ -653,8 +772,13 @@ def final_guide(tag: str, rec: VideoRecord, profile: Profile) -> str:
         "• /제목 새 문구 → 첫 화면 문구 바꾸기 (무료)",
         "• /order 3 1 2 4 5 6 → 순서 바꾸기 (무료)",
         "• /fix 3 더 빨리 걷게 → LOOK 3 영상만 다시 (약 $0.65)",
-        "• /frame 3 얼굴이 달라 → LOOK 3 첫 장면부터 다시 (약 $0.93)",
-        "• /music → 음악만 새로 (약 $0.04)",
+        f"• /frame 3 얼굴이 달라 → LOOK 3 첫 장면을 다시 그려 보내 드려요 (약 ${FRAME_COST:.2f}, "
+        "/ok 하면 그 벌 영상도 다시 약 $0.65)",
+    ]
+    if has_music(profile):
+        lines.append("• /music → 음악만 새로 (약 $0.04)")
+    lines += [
+        "• /skip → 그만두고 다음 주제로",
         "• /ok → 끝 (직접 올린 것으로 보고 다음 주제로)",
     ]
     return "\n".join(lines)
@@ -670,11 +794,14 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
     assert rec is not None
     d = vdir(run)
     tag = tag_of(profile, rec)
-    if rec.step == "frames":
-        pics = [
-            d / "background.jpg",
-            *[d / "frames" / f"look{n}.jpg" for n in range(1, rec.looks + 1)],
-        ]
+    if rec.step == "plan":
+        c = concept_of(profile, rec.date, rec.concept)
+        tg.send(plan_text(tag, profile, c, rec, run))
+    elif rec.step == "background":
+        tg.send_photos([d / "background.jpg"], f"{tag} 영상 빈 배경")
+        tg.send(background_guide(tag, rec))
+    elif rec.step == "frames":
+        pics = [d / "frames" / f"look{n}.jpg" for n in range(1, rec.looks + 1)]
         tg.send_photos(pics, f"{tag} 영상 첫 장면")
         tg.send(frames_guide(tag))
     elif rec.step == "prompts":
@@ -686,13 +813,15 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
         tg.send_document(txt, f"{tag} 영상 지시문 (영어 원문)")
     else:
         f = d / "final"
-        main_video = (
-            f / "video_music.mp4" if (f / "video_music.mp4").exists() else f / "video_silent.mp4"
-        )
+        music = has_music(profile) and (f / "video_music.mp4").exists()
+        main_video = f / "video_music.mp4" if music else f / "video_silent.mp4"
         tg.send_video(main_video, f"{tag} 영상 미리보기")
-        for name, label in (("video_music.mp4", "음악 있음"), ("video_silent.mp4", "음악 없음")):
-            if (f / name).exists():
+        if music:
+            for name, label in (("video_music.mp4", "음악 있음"),
+                                ("video_silent.mp4", "음악 없음")):  # fmt: skip
                 tg.send_document(f / name, f"{tag} 영상 원본 ({label})")
+        else:  # 결과 영상 하나 (2026-11-02 사용자 "음악은 없애줘")
+            tg.send_document(main_video, f"{tag} 영상 원본")
         tg.send_photos([f / "cover.jpg"], f"{tag} 표지 프레임")
         tg.send((f / "caption.txt").read_text(encoding="utf-8"))
         tg.send(final_guide(tag, rec, profile))
@@ -701,8 +830,13 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
     return rec
 
 
-def guide(tag: str, rec: VideoRecord, profile: Profile) -> str:
+def guide(tag: str, rec: VideoRecord, profile: Profile, run: Path | None = None) -> str:
     """지금 단계에서 쓸 수 있는 명령 (답을 못 알아들었을 때 다시 보낸다)."""
+    if rec.step == "plan":
+        c = concept_of(profile, rec.date, rec.concept)
+        return plan_text(tag, profile, c, rec, run or Path(rec.run))
+    if rec.step == "background":
+        return background_guide(tag, rec)
     if rec.step == "frames":
         return frames_guide(tag)
     if rec.step == "prompts":
@@ -714,9 +848,11 @@ def action_text(act: dict) -> str:
     """요청을 사용자에게 알리는 한 줄."""
     step = act.get("step")
     looks = f"LOOK {act['looks']} " if act.get("looks") else ""
+    again = "다시 " if act.get("note") or act.get("looks") else ""
     return {
-        "frames": f"{'빈 배경과 ' if act.get('background') else ''}{looks or '모든 벌 '}첫 장면을 "
-        "다시 그릴게요",
+        "plan": "그림 계획을 고쳐 다시 보낼게요",
+        "background": f"빈 배경을 {again}그려 보낼게요",
+        "frames": f"{looks or '모든 벌 '}첫 장면을 {again}그려 보낼게요",
         "prompts": "영상 지시문을 고쳐 다시 보낼게요"
         if act.get("note")
         else "영상 지시문을 보낼게요",
@@ -808,15 +944,29 @@ def replies(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, st
     return found
 
 
-def action(rec: VideoRecord, reply: Reply) -> dict | None:
-    """답 → video 워크플로 입력 (step, looks, note, …). ok·skip 는 흐름이 따로 다룬다."""
+def action(rec: VideoRecord, reply: Reply, music: bool = True) -> dict | None:
+    """답 → video 워크플로 입력 (step, looks, note, …). ok·skip 는 흐름이 따로 다룬다.
+    그림은 그리기 전(plan)과 그린 뒤(background, frames) 모두 /ok 를 받아야 다음으로 (2026-11-02).
+    music: 음악을 쓰는지 (profile video.music 이 none 이면 /music 은 없음)."""
     note = f"{reply.look}:{reply.text}" if reply.look and reply.text else reply.text
     looks = str(reply.look) if reply.look else ""
-    if rec.step == "frames":
+    if rec.step == "plan":
+        if reply.kind == "ok":
+            return {"step": "background"}
+        if reply.kind == "background":
+            return {"step": "plan", "note": f"배경:{reply.text}"} if reply.text else None
+        if reply.kind in ("fix", "frame") and reply.text:
+            return {"step": "plan", "note": note}
+    elif rec.step == "background":
+        if reply.kind == "ok":
+            return {"step": "frames"}
+        if reply.kind in ("background", "fix") and not reply.look:
+            return {"step": "background", "note": f"배경:{reply.text}" if reply.text else ""}
+    elif rec.step == "frames":
         if reply.kind == "ok":
             return {"step": "prompts"}
         if reply.kind == "background":
-            return {"step": "frames", "background": True, "note": f"배경:{reply.text}"}
+            return {"step": "background", "note": f"배경:{reply.text}" if reply.text else ""}
         if reply.kind in ("fix", "frame"):
             return {"step": "frames", "looks": looks, "note": note}
     elif rec.step == "prompts":
@@ -831,12 +981,13 @@ def action(rec: VideoRecord, reply: Reply) -> dict | None:
             return {"step": "edit", "hook": reply.text}
         if reply.kind == "order":
             return {"step": "edit", "order": " ".join(map(str, reply.order))}
-        if reply.kind == "music":
+        if reply.kind == "music" and music:
             return {"step": "music"}
         if reply.kind == "fix" and reply.look:
             return {"step": "clips", "looks": looks, "note": note}
         if reply.kind == "frame" and reply.look:
-            return {"step": "redo", "looks": looks, "note": note}
+            # 새 첫 장면도 보고 허락받은 뒤 영상으로 (2026-11-02 사용자)
+            return {"step": "frames", "looks": looks, "note": note}
     return None
 
 
@@ -845,7 +996,11 @@ def action(rec: VideoRecord, reply: Reply) -> dict | None:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    ap.add_argument("step", choices=["frames", "prompts", "clips", "redo", "edit", "music", "send"])
+    ap.add_argument(
+        "step",
+        choices=["plan", "background", "frames", "prompts", "clips", "redo", "edit", "music",
+                 "send"],
+    )  # fmt: skip
     ap.add_argument("--account", required=True)
     ap.add_argument(
         "--run", type=Path, required=True, help="결과 폴더 (daily-results 의 <날짜>-run<번호>)"
@@ -868,15 +1023,19 @@ def main(argv: list[str] | None = None) -> int:
     bg_notes = [n.partition(":")[2] for n in notes if n.startswith("배경:")]
     notes = [n for n in notes if not n.startswith("배경:")]
     try:
+        if bg_notes and args.step in ("plan", "background", "frames", "redo"):
+            rec = start_record(profile, args.run, args.concept)
+            rec.notes.setdefault("background", []).extend(bg_notes)
+            save_record(args.run, rec)
         if args.step == "send":
             pass
+        elif args.step == "plan":
+            plan(profile, args.run, notes, args.concept)
+        elif args.step == "background":
+            background(profile, args.run, notes, args.fake, args.concept)
         elif args.step in ("frames", "redo"):
             if args.face is None:
                 raise ValueError("--face 가 필요해요")
-            rec = load_record(args.run)
-            if rec is not None and bg_notes:
-                rec.notes.setdefault("background", []).extend(bg_notes)
-                save_record(args.run, rec)
             frames(profile, args.run, args.face, args.looks, notes, args.background, args.fake,
                    args.concept)  # fmt: skip
             if args.step == "redo":  # /frame N: 첫 장면부터 그 벌 영상까지

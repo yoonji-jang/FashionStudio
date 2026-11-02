@@ -1,7 +1,8 @@
 name: video
 
 # 코디 영상 만들기 (2026-11-02 사용자, tools.video, profile video.make). Claude 는 부르지 않는다.
-# 차례 흐름(tools.flow)이 단계마다 부른다: frames(첫 장면) → prompts(지시문) → clips(영상·음악·편집).
+# 차례 흐름(tools.flow)이 단계마다 부른다: plan(그림 계획, 무료) → background(빈 배경) → frames(첫 장면)
+# → prompts(지시문) → clips(영상·편집). 그림은 그리기 전과 그린 뒤 모두 사용자 /ok 를 받는다.
 # 텔레그램 답(/fix N, /speed, /제목, /order, /music, /frame N)도 같은 워크플로를 다른 입력으로 부른다.
 # 결과는 daily-results 의 <결과 폴더>/video/ 에 커밋한다. OpenRouter 요금이 나간다 (영상 한 편 약 $5.7).
 # 게시는 하지 않는다 (영상은 사용자가 직접 올린다).
@@ -18,7 +19,7 @@ on:
         description: 결과 폴더 (daily-results 의 <날짜>-run<번호>)
         required: true
       step:
-        description: frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music
+        description: plan / background / frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music
         required: true
       looks:
         description: 다시 만들 벌 번호 (빈칸이면 전부 또는 고칠 점의 벌)

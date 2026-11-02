@@ -1107,28 +1107,35 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 카메라는 구도를 지키며 옆에서 따라가요. 영상은 사람이 직접 올려요 (자동 게시 없음).
 전체 과정 문서: https://claude.ai/artifact/H3R1ceBSFYm5q3eS3dVi6p
 
-1. **컨셉 → 확인 ①** (profile `video.enabled`): 코디를 고르면 Claude(video-concept 스킬)가 컨셉 후보
+캐러셀은 만들지 않고 결과는 영상 한 편이에요 (2026-11-02). 그림은 **그리기 전에 무엇을 그릴지 확인받고, 그린 뒤
+`/ok` 를 받아야** 다음으로 가요. 다음 주제는 영상 최종본에 `/ok`(또는 `/skip`)가 온 뒤 시작해요.
+
+1. **컨셉 → 확인** (profile `video.enabled`): 코디를 고르면 Claude(video-concept 스킬)가 컨셉 후보
    (profile `video.concepts` 개)를 텔레그램으로 보내요: 배경, 구도, 분위기, 동작, 표정·머리·걷는 속도, 벌마다 동작,
-   음악, 훅 문구. 번호(`2`)로 고르고, 고칠 점을 적으면 고친 후보가 와요. `다시` 면 새로 짜요.
-2. 코디컷을 만들고 미리보기가 와요. profile `video.make` 와 `video.replace_post` 가 켜져 있으면
-   **미리보기 `/ok` 는 캐러셀 게시가 아니라 영상 만들기**예요.
-3. **첫 장면 → 확인 ②** (`tools.video frames`, 약 $1.8): 얼굴 사진(`flow/<계정>/face.jpg`)에서 가장 큰 얼굴을
-   코드로 잘라요. 빈 배경 한 장, 벌마다 첫 장면(얼굴 + 확정 코디컷 + 빈 배경, `video.frame_model`)을 그리고
-   얼굴만 한 번 더 고쳐요(`video.face_edit`). `/ok`, `/fix 3 …`(그 벌만), `/fix 배경 …`(배경부터), `/fix …`(모든 벌).
-4. **영상 지시문 → 확인 ③** (`tools.video prompts`, 요금 없음): 한국어 요약과 영어 원문. `/ok`, `/fix 3 …`, `/fix …`.
-5. **영상·음악·편집 → 확인 ④** (`tools.video clips`, 벌마다 약 $0.65): `video.video_model`(Hailuo 3)로 벌마다 5초,
-   음악 AI(Lyria) 한 곡, 코드 편집(벌마다 `clip_start` 초부터 컨셉 길이만큼, `video.speed` 배, 훅 문구·LOOK 번호,
-   음악 페이드). 음악 있음·없음 원본 파일, 표지 프레임, 캡션을 텔레그램으로 보내요.
-   무료: `/speed 1.3`, `/제목 …`, `/order 3 1 2 4 5 6`. 유료: `/fix 3 …`(그 벌 영상만), `/frame 3 …`(첫 장면부터),
-   `/music`. 카메라가 다가온 벌은 자동으로 표시해요.
-6. 최종본에 `/ok` 면 직접 올린 것으로 보고 게시 기록을 남기고 다음 주제로 가요. 어느 단계든 `/skip` 이면 영상 없이
+   훅 문구 (`video.music` 이 lyria 일 때만 음악). 번호(`2`)로 고르고, 고칠 점을 적으면 고친 후보가 와요. `다시` 면 새로 짜요.
+2. **영상에 쓸 코디컷 → 확인**: 고른 코디로 벌마다 코디컷을 그려 보내요. profile `video.make` 와 `video.replace_post` 가
+   켜져 있으면 캐러셀·캡션·릴스는 보내지 않고 벌 코디컷만 보내요. `/fix 3 …` 의 번호는 LOOK 번호예요.
+   **`/ok` 는 게시가 아니라 영상 만들기**예요.
+3. **그림 계획 → 확인** (`tools.video plan`, 요금 없음): 빈 배경(장소·빛)과 벌마다 첫 장면(코디, 동작·포즈, 구도, 표정)을
+   글로 보내요. `/ok` 면 그려요. `/fix 배경 …`, `/fix 3 …`, `/fix …`(모든 벌) 은 계획만 고쳐 다시 보내요.
+4. **빈 배경 → 확인** (`tools.video background`, 약 $0.14): 빈 배경 한 장. `/ok` 면 첫 장면으로, `/fix …` 면 배경만 다시.
+5. **첫 장면 → 확인** (`tools.video frames`, 장당 약 $0.28): 얼굴 사진(`flow/<계정>/face.jpg`)에서 가장 큰 얼굴을
+   코드로 잘라요. 벌마다 첫 장면(얼굴 + 확정 코디컷 + 빈 배경, `video.frame_model`)을 그리고 얼굴만 한 번 더 고쳐요
+   (`video.face_edit`). `/ok`, `/fix 3 …`(그 벌만), `/fix …`(모든 벌), `/fix 배경 …`(빈 배경부터 다시 보여 줌).
+6. **영상 지시문 → 확인** (`tools.video prompts`, 요금 없음): 한국어 요약과 영어 원문. `/ok`, `/fix 3 …`, `/fix …`.
+7. **영상·편집 → 확인** (`tools.video clips`, 벌마다 약 $0.65): `video.video_model`(Hailuo 3)로 벌마다 5초,
+   코드 편집(벌마다 `clip_start` 초부터 컨셉 길이만큼, `video.speed` 배, 훅 문구·LOOK 번호). 소리 없는 결과 영상 하나
+   (`video.music: none`, lyria 면 음악 있는 판도), 표지 프레임, 캡션을 텔레그램으로 보내요.
+   무료: `/speed 1.3`, `/제목 …`, `/order 3 1 2 4 5 6`. 유료: `/fix 3 …`(그 벌 영상만),
+   `/frame 3 …`(첫 장면을 다시 그려 보여 주고, 허락받은 뒤 그 벌 영상도 다시). 카메라가 다가온 벌은 자동으로 표시해요.
+8. 최종본에 `/ok` 면 직접 올린 것으로 보고 게시 기록을 남기고 다음 주제로 가요. 어느 단계든 `/skip` 이면 영상 없이
    다음으로, 실패하면 `/retry` 로 같은 요청을 다시 해요.
 
 기준: `accounts/<계정>/video.md`(공통 규칙, 좋다/싫다), profile `video`(모델, 카메라·속도·표정 기본 영어 문구,
 편집 값), 지시문 `prompts/video/`, 글자 자리 `config/layout.yaml` `video_edit`. 결과는 daily-results 의
 `<결과 폴더>/video/` (`video.json` 에 단계·비용). 컨셉 후보는 `data/<계정>/video_concepts.json`.
 손으로 돌리기: Actions → video-concept (`run` 은 `<결과 폴더>/chosen`), Actions → video (`run` 은 결과 폴더,
-`step` frames·prompts·clips·redo·edit·music, `fake` 면 요금 없이 흐름만). 모델 비교 시험은 Actions → video-test.
+`step` plan·background·frames·prompts·clips·redo·edit·music, `fake` 면 요금 없이 흐름만). 모델 비교 시험은 Actions → video-test.
 
 ---
 

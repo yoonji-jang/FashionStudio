@@ -506,13 +506,14 @@ reels:
   delivery: telegram
 
 # 움직이는 코디 영상 (2026-10-29 사용자). 최종 목표는 코디 모음 대신 영상 한 편 (사용자가 직접 올림).
-# 지금은 컨셉 단계: 코디를 고르면 Claude 가 컨셉 후보를 텔레그램으로 보내고 번호로 고름 (tools.video_concept).
+# 코디를 고르면 컨셉 → 미리보기(코디컷) → 그림 계획 → 빈 배경 → 첫 장면 → 지시문 → 영상 (tools.video).
+# 그림은 그리기 전에 계획을 확인받고, 그린 뒤 /ok 를 받아야 다음으로 (2026-11-02 사용자)
 # 영상 기준은 accounts/women/video.md
 video:
   enabled: true
   concepts: 3
   look_seconds: 2.5        # 6벌 × 2.5초 ≈ 15초 + 앞뒤
-  music: lyria             # 컨셉 무드에 맞춘 연주곡을 음악 AI(Lyria 3 Clip, 30초 $0.04)로 (2026-10-30 사용자)
+  music: none              # 소리 없는 영상 한 편만 (2026-11-02 사용자 "음악은 없애줘". 전에는 lyria)
   budget_usd_month: 50     # 조율 가능 (2026-10-29 사용자)
   # 영상 만들기 (2026-11-02 사용자 "시작", 10/27 퍼 코디로 정한 방식): 첫 장면 → 지시문 → Hailuo 3 → 편집
   make: true

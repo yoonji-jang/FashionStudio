@@ -58,7 +58,7 @@ def test_action_by_step():
         "note": "3:얼굴이 달라",
     }
     bg = video.action(rec("frames"), Reply(kind="background", text="눈 더"))
-    assert bg == {"step": "frames", "background": True, "note": "배경:눈 더"}
+    assert bg == {"step": "background", "note": "배경:눈 더"}  # 빈 배경부터 보고 허락받기
     assert video.action(rec("prompts"), Reply(kind="ok")) == {"step": "clips"}
     assert video.action(rec("prompts"), Reply(kind="fix", text="빨리"))["step"] == "prompts"
     assert video.action(rec("final"), Reply(kind="speed", number=1.3)) == {
@@ -66,9 +66,35 @@ def test_action_by_step():
         "speed": "1.3",
     }
     assert video.action(rec("final"), fix3)["step"] == "clips"
-    assert video.action(rec("final"), Reply(kind="frame", look=2, text="x"))["step"] == "redo"
+    # /frame N: 새 첫 장면도 먼저 보고 허락받는다 (2026-11-02)
+    assert video.action(rec("final"), Reply(kind="frame", look=2, text="x"))["step"] == "frames"
     assert video.action(rec("final"), Reply(kind="music")) == {"step": "music"}
+    assert video.action(rec("final"), Reply(kind="music"), music=False) is None
     assert video.action(rec("frames"), Reply(kind="speed", number=1.3)) is None  # 이 단계엔 없음
+
+
+def test_action_plan_and_background():
+    """2026-11-02 사용자: 그리기 전에 무엇을 그릴지 확인받고, 그린 뒤 허락받는다."""
+    ok = Reply(kind="ok")
+    assert video.action(rec("plan"), ok) == {"step": "background"}
+    assert video.action(rec("plan"), Reply(kind="fix", look=3, text="가방 앞으로")) == {
+        "step": "plan",
+        "note": "3:가방 앞으로",
+    }
+    assert video.action(rec("plan"), Reply(kind="background", text="바다")) == {
+        "step": "plan",
+        "note": "배경:바다",
+    }
+    assert video.action(rec("background"), ok) == {"step": "frames"}
+    assert video.action(rec("background"), Reply(kind="fix", text="눈 더")) == {
+        "step": "background",
+        "note": "배경:눈 더",
+    }
+    assert video.action(rec("background"), Reply(kind="fix", look=3, text="x")) is None
+    # 첫 장면에서 배경을 고치면 빈 배경부터 다시 보여 준다
+    assert video.action(rec("frames"), Reply(kind="background", text="눈 더"))["step"] == (
+        "background"
+    )
 
 
 def test_notes():
@@ -111,8 +137,36 @@ def test_guides_list_commands():
     p = load_profile("women")
     g = video.frames_guide("[women] 10-15")
     assert all(c in g for c in ("/ok", "/fix 3", "/fix 배경", "/skip"))
+    b = video.background_guide("[women] 10-15", rec("background"))
+    assert all(c in b for c in ("/ok", "/fix", "/skip"))
     f = video.final_guide("[women] 10-15", rec("final"), p)
-    assert all(c in f for c in ("/speed", "/제목", "/order", "/fix 3", "/frame 3", "/music", "/ok"))
+    assert all(c in f for c in ("/speed", "/제목", "/order", "/fix 3", "/frame 3", "/ok", "/skip"))
+    assert "/music" not in f  # 2026-11-02 사용자 "음악은 없애줘" (video.music: none)
+    lyria = p.model_copy(update={"video": p.video.model_copy(update={"music": "lyria"})})
+    assert "/music" in video.final_guide("[women] 10-15", rec("final"), lyria)
+
+
+def test_plan_text(tmp_path):
+    from core.profile import load_profile
+    from tools.video_concept import Concept, Shot
+
+    look = tmp_path / "looks" / "1"
+    look.mkdir(parents=True)
+    (look / "plan.yaml").write_text(
+        "items:\n- desc: 브라운 퍼 자켓 (brown faux-fur jacket)\n- desc: 블랙 쇼츠\n", "utf-8"
+    )
+    c = Concept(
+        title="t", background="눈 오는 골목", background_en="snowy alley", framing="세로 전신",
+        light="해 질 무렵", motion="걷기", hook="h",
+        shots=[Shot(look=1, seconds=2.5, action="걷기", pose="뒤돌기")],
+    )  # fmt: skip
+    r = rec("plan", looks=1)
+    video.add_notes(r, ["1:가방 앞으로"])
+    r.notes["background"] = ["눈 더"]
+    t = video.plan_text("[women] 10-15", load_profile("women"), c, r, tmp_path)
+    assert "눈 오는 골목" in t and "요청: 눈 더" in t
+    assert "LOOK 1: 브라운 퍼 자켓, 블랙 쇼츠 / 걷기 → 뒤돌기 (요청: 가방 앞으로)" in t
+    assert all(x in t for x in ("/ok", "/fix 배경", "/fix 3", "/skip"))
 
 
 def test_flow_video_instead_of_post(env, monkeypatch):  # noqa: F811
@@ -140,12 +194,28 @@ def test_flow_video_instead_of_post(env, monkeypatch):  # noqa: F811
     tg = FakeTg()
     tick(env, tg, T0 + 100)
     wf, inputs = sent[-1]
-    assert wf == "video.yml" and inputs["step"] == "frames" and inputs["run"] == out.name
+    assert wf == "video.yml" and inputs["step"] == "plan" and inputs["run"] == out.name
     assert flow.load_state(results, "women").stage == "video_making"
     assert not any(w == "publish.yml" for w, _ in sent)
 
     def arrive(step, at):
         video.save_record(out, rec(step, sent_at=at))
+
+    # 그리기 전 계획: 배경·벌 고칠 점을 한 번에 → 계획 다시 → /ok 면 빈 배경
+    arrive("plan", T0 + 110)
+    tick(env, tg, T0 + 120)
+    tg.text(11, "/fix 배경 바다", T0 + 130)
+    tg.text(12, "/fix 2 가방", T0 + 131)
+    tick(env, tg, T0 + 140)
+    assert sent[-1][1]["step"] == "plan" and sent[-1][1]["note"] == "배경:바다\n2:가방"
+    arrive("plan", T0 + 150)
+    tg.text(13, "/ok", T0 + 160)
+    tick(env, tg, T0 + 170)
+    assert sent[-1][1]["step"] == "background"
+    arrive("background", T0 + 180)
+    tg.text(14, "/ok", T0 + 190)
+    tick(env, tg, T0 + 195)
+    assert sent[-1][1]["step"] == "frames"
 
     arrive("frames", T0 + 200)
     tick(env, tg, T0 + 250)
@@ -196,3 +266,33 @@ def test_flow_video_retry(env, monkeypatch):  # noqa: F811
     tick(env, tg, T0 + 300)
     assert sent[-1] == ("video.yml", {"account": "women", "date": "2026-10-15", "run": out.name,
                                       "step": "clips"})  # fmt: skip
+
+
+def test_fix_numbers_are_look_numbers_in_video_mode():
+    """캐러셀 없이 영상만 (2026-11-02): 미리보기는 벌 코디컷만 보내고 /fix 3 = LOOK 3."""
+    from types import SimpleNamespace
+
+    from tools import feedback
+
+    imgs = ["out/d/slides/01_cover.jpg"]
+    imgs += [f"out/d/slides/0{n + 1}_look{n}.jpg" for n in range(1, 7)]
+    imgs += ["out/d/slides/08_comment.jpg"]
+    m = SimpleNamespace(images=imgs, plan=SimpleNamespace(items=[]))
+    looks = feedback.fix_slides(m, True)
+    assert [s["look"] for s in looks] == [1, 2, 3, 4, 5, 6]
+    assert len(feedback.fix_slides(m, False)) == 8
+    record = SimpleNamespace(message_ids=[])
+    found = feedback.target(["3", "신발", "크게"], None, record, looks)
+    assert found["look"] == 3 and found["slide"] == 4 and found["text"] == "신발 크게"
+
+
+def test_video_preview_control_text():
+    from types import SimpleNamespace
+
+    p = _profile(0, video=True)("women")
+    p = p.model_copy(update={"flow": p.flow.model_copy(update={"enabled": True})})
+    m = SimpleNamespace(date=date(2026, 10, 15), title_lines=["a", "b"], review=None,
+                        needs_human=False)  # fmt: skip
+    t = notify.control_text(m, p, False)
+    assert "캐러셀은 없음" in t and "그림 계획" in t and "제목:" not in t
+    assert "/fix 3" in t and "/cover" not in t and "/제목" not in t
