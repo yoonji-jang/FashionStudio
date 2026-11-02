@@ -29,6 +29,12 @@ profile `flow.enabled` 인 계정은 schedule 이 깨어날 때마다(매시, cr
   preview_wait  /fix 면 고쳐 만들기 (daily mode=fix), /cover 면 표지 바꾸기,
                 /ok 면 바로 게시 요청 (publish), /skip 이면 이 주제를 버리고 theme 으로
   publishing    게시 기록이 생기면 theme 으로 (다음 주제).
+                profile video.make 이고 replace_post 가 아니면 먼저 같은 벌들로 영상을 만든다
+  video_making  코디 영상 (2026-11-02, tools.video, video 워크플로). replace_post 면 미리보기 /ok 가
+                캐러셀 게시 대신 여기로 온다. 단계(첫 장면 → 지시문 → 최종본) 결과를 기다림
+  video_wait    결과에 온 답: /ok = 다음 단계 (최종본이면 끝: 사용자가 직접 올린 것으로 보고
+                게시 기록을 남기고 다음 주제로), /fix·/frame·/speed·/제목·/order·/music = 고쳐 다시,
+                /retry = 실패한 요청 다시, /skip = 영상 없이 다음 주제
                 flow.rules_after_post 이고 새 /fix 피드백이 있으면 먼저 피드백 반영 단계로
                 (feedback-round 워크플로, 2026-10-22 사용자):
   rules_plan    반영 계획을 보냄. /ok 면 PR 요청, /fix 면 계획 다시, /skip 이면 theme 으로
@@ -86,6 +92,8 @@ Stage = Literal[
     "rendering",
     "preview_wait",
     "publishing",
+    "video_making",  # 영상 단계(첫 장면·지시문·최종본)를 요청하고 결과를 기다림 (video.make)
+    "video_wait",  # 영상 단계 결과에 온 답을 기다림 (/ok·/fix·/speed·/제목·/order·/music·/skip)
     "rules_plan",  # 피드백 반영 계획을 보냈거나 기다림 (/ok·/fix·/skip)
     "rules_pr",  # 반영 PR 을 보냈거나 기다림 (/merge·/fix·/skip)
     "rules_merge",  # /merge 를 받고 합치기를 기다림
@@ -125,6 +133,10 @@ class FlowState(BaseModel):
     concept_at: int = 0  # 컨셉 후보(또는 고친 후보)를 마지막으로 요청한 시각 (0 이면 아직)
     concept: int = 0  # 고른 컨셉 번호 (0 이면 아직)
     concept_upto: int = 0  # 컨셉 후보에 온 답을 여기(보낸 시각)까지 읽었다
+    # 코디 영상 (profile video.make, 2026-11-02, tools.video)
+    video_run: str = ""  # 영상을 만드는 결과 폴더 (daily-results <날짜>-run<번호>)
+    video_upto: int = 0  # 영상 단계에 온 답을 여기(보낸 시각)까지 읽었다
+    video_last: str = ""  # 마지막으로 요청한 video 워크플로 입력 (JSON, /retry 로 다시)
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -1146,6 +1158,10 @@ def _step(
             return ""
         if feedback.waiting(updates, rec, tg.chat_id, out, profile, store):
             return ""  # /fix 로 고치는 중: 고친 미리보기에 /ok 가 오면 그때
+        if notify.video_instead(profile):
+            tg.send(f"{tag} /ok 확인했어요. 캐러셀은 올리지 않고 이 코디컷으로 영상 첫 장면을 "
+                    "그려 보내 드릴게요")  # fmt: skip
+            return _video_start(st, out.name, send, ts)
         send("publish.yml", account=acc, date=day.isoformat(), run=out.name, dry_run=False,
              force=True, scheduled=True)  # fmt: skip
         st.asked_at, st.stage = ts, "publishing"
@@ -1162,24 +1178,149 @@ def _step(
             mins = timedelta(minutes=profile.flow.publish_alert_minutes)
             _late(st, now, tg, f"{tag} 게시 기록이 아직 없어요 (게시 실행을 확인해 주세요)", mins)
             return ""
-        st.stage = "theme"
-        if profile.flow.rules_after_post and profile.feedback.enabled:
-            new = feedback.pending_entries(store)
-            if new:
-                # 피드백 반영 단계: 계획 → /ok → PR → /merge 가 끝나야 다음 주제 (2026-10-22 사용자)
-                if not dry_run:
-                    feedback.save_round(results, acc, feedback.RulesRound())
-                send(ROUND_WF, account=acc, step="plan")
-                st.asked_at, st.stage = ts, "rules_plan"
-                if tg is not None:
-                    tg.send(f"{tag} 게시를 확인했어요. 그동안 받은 /fix 피드백 {len(new)}개를 "
-                            "규칙에 어떻게 반영할지 계획을 보내 드릴게요")  # fmt: skip
-                return f"게시 확인, 피드백 반영 계획 요청 ({len(new)}개)"
-        return "게시 확인"
+        v = profile.video
+        if v.enabled and v.make and not v.replace_post and st.video_run != f"done:{day}":
+            # 캐러셀을 올린 뒤 같은 벌들로 영상 (영상은 사용자가 직접 올림)
+            run = publish.find_run(results, acc, day).name
+            if tg is not None:
+                tg.send(f"{tag} 게시를 확인했어요. 같은 코디로 영상 첫 장면을 그려 보내 드릴게요")
+            return _video_start(st, run, send, ts)
+        return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
+
+    if st.stage in ("video_making", "video_wait"):
+        return _video(profile, store, st, results, tg, send, now, dry_run, tag)
 
     if st.stage in ("rules_plan", "rules_pr", "rules_merge"):
         return _rules_round(profile, st, results, tg, send, now, dry_run)
     return ""
+
+
+def _after_post(
+    profile: Profile,
+    store: Store,
+    st: FlowState,
+    results: Path,
+    tg,
+    send,
+    ts: int,
+    dry_run: bool,
+    tag: str,
+) -> str:
+    """게시(또는 영상)를 마친 뒤: 피드백 반영 단계가 있으면 그리로, 없으면 다음 주제."""
+    from tools import feedback
+
+    acc = profile.id
+    st.stage = "theme"
+    if profile.flow.rules_after_post and profile.feedback.enabled:
+        new = feedback.pending_entries(store)
+        if new:
+            # 피드백 반영 단계: 계획 → /ok → PR → /merge 가 끝나야 다음 주제 (2026-10-22 사용자)
+            if not dry_run:
+                feedback.save_round(results, acc, feedback.RulesRound())
+            send(ROUND_WF, account=acc, step="plan")
+            st.asked_at, st.stage = ts, "rules_plan"
+            if tg is not None:
+                tg.send(f"{tag} 게시를 확인했어요. 그동안 받은 /fix 피드백 {len(new)}개를 "
+                        "규칙에 어떻게 반영할지 계획을 보내 드릴게요")  # fmt: skip
+            return f"게시 확인, 피드백 반영 계획 요청 ({len(new)}개)"
+    return "게시 확인"
+
+
+VIDEO_WF = "video.yml"  # 코디 영상 만들기 (tools.video)
+RETRY_WORDS = {"/retry", "다시 시도", "재시도"}
+
+
+def _video_start(st: FlowState, run: str, send, ts: int) -> str:
+    """영상 첫 단계(첫 장면) 요청."""
+    assert st.date is not None
+    st.video_run, st.video_upto = run, 0
+    return _video_send(st, send, ts, {"step": "frames"})
+
+
+def _video_send(st: FlowState, send, ts: int, act: dict) -> str:
+    assert st.date is not None
+    inputs = {"account": st.account, "date": st.date.isoformat(), "run": st.video_run, **act}
+    send(VIDEO_WF, **inputs)
+    st.video_last = json.dumps(inputs, ensure_ascii=False)
+    st.asked_at, st.stage = ts, "video_making"
+    return f"영상 요청 ({act.get('step')}, {st.video_run})"
+
+
+def _video(
+    profile: Profile,
+    store: Store,
+    st: FlowState,
+    results: Path,
+    tg,
+    send,
+    now: datetime,
+    dry_run: bool,
+    tag: str,
+) -> str:
+    """코디 영상 단계 (2026-11-02 사용자). 결과(video.json)가 오면 답을 읽고 다음으로 넘긴다."""
+    from tools import video
+
+    ts = int(now.timestamp())
+    run = results / st.video_run
+    rec = video.load_record(run) if st.video_run else None
+    if st.stage == "video_making":
+        if rec is not None and rec.error and rec.error_at >= st.asked_at - 60:
+            st.stage, st.video_upto = "video_wait", ts
+            if tg is not None:
+                tg.send(
+                    f"{tag} 영상 만들기가 실패했어요: {rec.error[:200]}\n"
+                    "/retry 를 보내면 같은 요청을 다시 해요. /skip 이면 영상 없이 다음 주제로"
+                )
+            return "영상 실패 (/retry 기다림)"
+        if rec is None or rec.sent_at < st.asked_at:
+            _late(st, now, tg, f"{tag} 영상이 아직 오지 않았어요 (video 실행을 확인해 주세요)")
+            return ""
+        st.stage = "video_wait"
+        return f"영상 {rec.step} 받음"
+    if tg is None:
+        return ""
+    since = max(st.video_upto, (rec.sent_at - 1) if rec else 0)
+    got = video.replies(tg.updates(), tg.chat_id, since)
+    if not got:
+        return ""
+    st.video_upto = got[-1][0]
+    text = got[-1][1]
+    if text.strip().lower() in RETRY_WORDS and st.video_last:
+        act = {k: v for k, v in json.loads(st.video_last).items()
+               if k not in ("account", "date", "run")}  # fmt: skip
+        tg.send(f"{tag} 영상 요청을 다시 할게요")
+        return _video_send(st, send, ts, act)
+    if rec is None or rec.error and not rec.sent_at:
+        return ""
+    replies = [r for _, t in got if (r := video.parse(t, rec.looks)) is not None]
+    if not replies:
+        tg.send(f"{tag} 영상 답을 알아듣지 못했어요. 아래 명령 중 하나로 보내 주세요\n\n"
+                + video.guide(tag, rec, profile))  # fmt: skip
+        return ""
+    r = replies[-1]
+    if r.kind == "skip":
+        st.video_run = f"done:{st.date}"
+        tg.send(f"{tag} 이 영상은 그만 만들고 다음으로 넘어갈게요")
+        return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
+    if r.kind == "ok" and rec.step == "final":
+        if profile.video.replace_post and not dry_run:
+            video.record_post(store, run)
+        st.video_run = f"done:{st.date}"
+        tg.send(f"{tag} 영상 /ok 확인했어요. 직접 올리신 것으로 보고 다음으로 넘어갈게요")
+        return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
+    # 같은 단계의 고칠 점이 여러 개 오면 한 번에 (예: /fix 3 …, /fix 5 …)
+    fixes = [x for x in replies if x.kind in ("fix", "frame") and x.kind == r.kind]
+    act = video.action(rec, r)
+    if act is None:
+        tg.send(f"{tag} 지금 단계에서는 쓸 수 없는 명령이에요\n\n" + video.guide(tag, rec, profile))
+        return ""
+    if len(fixes) > 1 and act.get("step") in ("frames", "prompts", "clips", "redo"):
+        acts = [video.action(rec, x) or {} for x in fixes]
+        act["note"] = "\n".join(a["note"] for a in acts if a.get("note"))
+        looks = sorted({int(x) for a in acts for x in str(a.get("looks", "")).split() if x})
+        act["looks"] = " ".join(map(str, looks)) if all(a.get("looks") for a in acts) else ""
+    tg.send(f"{tag} {video.action_text(act)}")
+    return _video_send(st, send, ts, act)
 
 
 def _rules_round(

@@ -1,0 +1,15 @@
+# 2026-10-30 퍼 코디 영상 본편 LOOK 3 (05:08 사용자: Hailuo, 길 따라 살짝 옆으로, 확대 없이,
+# 살짝 빠른 보폭, 지금보다 도도한 표정, LOOK 순서대로 전체)
+title: 퍼 코디 영상 LOOK 3
+refs:
+  - daily-results:flow/women/face.jpg
+  - daily-results:2026-10-27-run380/looks/3/outfit/results/G_1.jpg
+background:
+  image: experiments/video_1030/hailuo_frame.jpg
+first_frame:
+  model: nano_banana_pro
+  prompt_file: experiments/video_1030/full/look3_image.txt
+prompt_file: experiments/video_1030/full/look3.txt
+duration: 5
+aspect_ratio: '9:16'
+models: [hailuo_3_frame]

@@ -30,6 +30,11 @@ generate:
       id: openai/gpt-5.4-image-2
       name: GPT Image 2 (OpenAI)
       modalities: [image, text]
+    nano_banana:
+      id: google/gemini-2.5-flash-image
+      name: Nano Banana (Google)
+      modalities: [image, text]
+      image_size: null   # 크기 옵션 없음. 장당 약 $0.04 라 배경·분위기 예시용 (2026-10-30)
     seedream_5_pro:
       id: bytedance-seed/seedream-5-0-pro
       name: Seedream 5.0 Pro (ByteDance)
@@ -44,3 +49,54 @@ generate:
     팔찌: one bracelet, about 7 cm across
     스카프: one scarf, about 70 cm long, soft and drapey
     소품: one small accessory at its real size, small next to the clothes
+
+# 영상 AI (2026-10-30 코디 영상). 같은 OpenRouter 키. 비동기: 요청 → 상태 확인 → 내려받기.
+# 참고 사진(얼굴, 코디 정면컷, 배경)을 함께 받는 모델만 둔다 (input_references).
+# frame_images(첫 장면)를 함께 보내면 참고 사진은 무시된다 (OpenRouter 문서).
+video:
+  endpoint: https://openrouter.ai/api/v1/videos
+  poll_sec: 15
+  timeout_sec: 1500
+  models:
+    grok_lite:
+      id: x-ai/grok-imagine-video-1.5-lite
+      name: Grok Imagine 1.5 Lite (xAI)     # 720p 초당 $0.03 + 사진당 $0.01
+    seedance_mini:
+      id: bytedance/seedance-2.0-mini
+      name: Seedance 2.0 Mini (ByteDance)   # 토큰 요금, 720p 4초 약 $0.3
+    wan_27:
+      id: alibaba/wan-2.7
+      name: Wan 2.7 (Alibaba)               # 초당 $0.1. 2026-10-30 시험: 9:16 을 무시하고 가로로 나옴
+    grok_video:
+      id: x-ai/grok-imagine-video
+      name: Grok Imagine (xAI)              # 720p 초당 $0.07 + 사진당 $0.002
+    happyhorse:
+      id: alibaba/happyhorse-1.1
+      name: HappyHorse 1.1 (Alibaba)        # 720p 초당 약 $0.12. 시험 2 가장 좋음, 그래도 옷·얼굴이 뭉개짐
+    hailuo_3:
+      id: minimax/hailuo-3
+      name: Hailuo 3 (MiniMax)              # 2K 초당 $0.13 + 참고 사진당 $0.04, 5초부터
+      duration: 5
+      resolution: 2K
+    hailuo_3_frame:
+      id: minimax/hailuo-3
+      name: Hailuo 3 첫 장면 (MiniMax)      # 2026-10-30 사용자: 걷는 방향·속도·구도가 가장 좋음
+      duration: 5
+      resolution: 2K
+      inputs: first_frame
+    # 첫 장면 한 장을 움직이는 모델 (inputs: first_frame). 얼굴·옷 디테일이 첫 장면 그대로 남는다
+    kling_pro:
+      id: kwaivgi/kling-v3.0-pro
+      name: Kling 3.0 Pro (Kuaishou)        # 720p 초당 $0.112
+      inputs: first_frame
+    veo_fast:
+      id: google/veo-3.1-fast
+      name: Veo 3.1 Fast (Google)           # 720p 소리 없이 초당 $0.08
+      inputs: first_frame
+
+# 음악 AI (2026-10-30 코디 영상 음악, 사용자: Lyria). 30초 연주곡 한 곡 $0.04
+music:
+  endpoint: https://openrouter.ai/api/v1/chat/completions
+  models:
+    lyria:
+      id: google/lyria-3-clip-preview

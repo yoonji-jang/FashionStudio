@@ -1101,20 +1101,34 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 
 ---
 
-## 코디 영상 (컨셉 단계, 2026-10-30)
+## 코디 영상 (2026-11-02)
 
-목표는 코디 주제 하나당 움직이는 영상 한 편이에요. 같은 배경과 멈춰 있는 카메라 앞에서 같은 얼굴의 모델이
-고른 벌들을 차례로 입고 걷거나 가볍게 춤춰요. 영상은 사람이 직접 올려요. 지금은 **컨셉 단계**까지 있어요.
+코디 주제 하나당 움직이는 영상 한 편이에요. 같은 배경에서 같은 얼굴의 모델이 고른 벌들을 차례로 입고 걸어요.
+카메라는 구도를 지키며 옆에서 따라가요. 영상은 사람이 직접 올려요 (자동 게시 없음).
+전체 과정 문서: https://claude.ai/artifact/H3R1ceBSFYm5q3eS3dVi6p
 
-1. profile `video.enabled: true` 면 차례 흐름에서 코디를 고른 뒤 Claude(video-concept 스킬)가 컨셉 후보
-   (profile `video.concepts` 개)를 텔레그램으로 보내요: 배경, 고정 구도, 분위기, 동작 컨셉, 벌마다 동작, 음악, 훅 문구.
-2. 번호(`2`)로 고르면 정해요. 고칠 점이나 원하는 배경·동작을 적으면(`2번인데 배경은 겨울 바다로`) 고친 후보가 다시 와요.
-   `다시` 면 새로 짜요. 컨셉과 장면 사진이 다 있어야 코디컷을 만들어요.
-3. 기준은 `accounts/<계정>/video.md` (공통 규칙, 좋다/싫다). 되풀이될 취향은 Claude 가 여기에 더해요.
-4. 음악은 profile `video.music` (lyria: 컨셉마다 음악 AI Lyria 3 Clip 연주곡, OpenRouter 키, 30초 $0.04).
+1. **컨셉 → 확인 ①** (profile `video.enabled`): 코디를 고르면 Claude(video-concept 스킬)가 컨셉 후보
+   (profile `video.concepts` 개)를 텔레그램으로 보내요: 배경, 구도, 분위기, 동작, 표정·머리·걷는 속도, 벌마다 동작,
+   음악, 훅 문구. 번호(`2`)로 고르고, 고칠 점을 적으면 고친 후보가 와요. `다시` 면 새로 짜요.
+2. 코디컷을 만들고 미리보기가 와요. profile `video.make` 와 `video.replace_post` 가 켜져 있으면
+   **미리보기 `/ok` 는 캐러셀 게시가 아니라 영상 만들기**예요.
+3. **첫 장면 → 확인 ②** (`tools.video frames`, 약 $1.8): 얼굴 사진(`flow/<계정>/face.jpg`)에서 가장 큰 얼굴을
+   코드로 잘라요. 빈 배경 한 장, 벌마다 첫 장면(얼굴 + 확정 코디컷 + 빈 배경, `video.frame_model`)을 그리고
+   얼굴만 한 번 더 고쳐요(`video.face_edit`). `/ok`, `/fix 3 …`(그 벌만), `/fix 배경 …`(배경부터), `/fix …`(모든 벌).
+4. **영상 지시문 → 확인 ③** (`tools.video prompts`, 요금 없음): 한국어 요약과 영어 원문. `/ok`, `/fix 3 …`, `/fix …`.
+5. **영상·음악·편집 → 확인 ④** (`tools.video clips`, 벌마다 약 $0.65): `video.video_model`(Hailuo 3)로 벌마다 5초,
+   음악 AI(Lyria) 한 곡, 코드 편집(벌마다 `clip_start` 초부터 컨셉 길이만큼, `video.speed` 배, 훅 문구·LOOK 번호,
+   음악 페이드). 음악 있음·없음 원본 파일, 표지 프레임, 캡션을 텔레그램으로 보내요.
+   무료: `/speed 1.3`, `/제목 …`, `/order 3 1 2 4 5 6`. 유료: `/fix 3 …`(그 벌 영상만), `/frame 3 …`(첫 장면부터),
+   `/music`. 카메라가 다가온 벌은 자동으로 표시해요.
+6. 최종본에 `/ok` 면 직접 올린 것으로 보고 게시 기록을 남기고 다음 주제로 가요. 어느 단계든 `/skip` 이면 영상 없이
+   다음으로, 실패하면 `/retry` 로 같은 요청을 다시 해요.
 
-후보는 `data/<계정>/video_concepts.json`. 손으로 돌리기: Actions → video-concept (`run` 은 daily-results 의
-`<결과 폴더>/chosen`).
+기준: `accounts/<계정>/video.md`(공통 규칙, 좋다/싫다), profile `video`(모델, 카메라·속도·표정 기본 영어 문구,
+편집 값), 지시문 `prompts/video/`, 글자 자리 `config/layout.yaml` `video_edit`. 결과는 daily-results 의
+`<결과 폴더>/video/` (`video.json` 에 단계·비용). 컨셉 후보는 `data/<계정>/video_concepts.json`.
+손으로 돌리기: Actions → video-concept (`run` 은 `<결과 폴더>/chosen`), Actions → video (`run` 은 결과 폴더,
+`step` frames·prompts·clips·redo·edit·music, `fake` 면 요금 없이 흐름만). 모델 비교 시험은 Actions → video-test.
 
 ---
 

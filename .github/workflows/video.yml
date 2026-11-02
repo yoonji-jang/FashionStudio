@@ -1,0 +1,124 @@
+name: video
+
+# 코디 영상 만들기 (2026-11-02 사용자, tools.video, profile video.make). Claude 는 부르지 않는다.
+# 차례 흐름(tools.flow)이 단계마다 부른다: frames(첫 장면) → prompts(지시문) → clips(영상·음악·편집).
+# 텔레그램 답(/fix N, /speed, /제목, /order, /music, /frame N)도 같은 워크플로를 다른 입력으로 부른다.
+# 결과는 daily-results 의 <결과 폴더>/video/ 에 커밋한다. OpenRouter 요금이 나간다 (영상 한 편 약 $5.7).
+# 게시는 하지 않는다 (영상은 사용자가 직접 올린다).
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      date:
+        description: 게시 날짜 YYYY-MM-DD
+        required: true
+      run:
+        description: 결과 폴더 (daily-results 의 <날짜>-run<번호>)
+        required: true
+      step:
+        description: frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music
+        required: true
+      looks:
+        description: 다시 만들 벌 번호 (빈칸이면 전부 또는 고칠 점의 벌)
+        default: ""
+      note:
+        description: 고칠 점 ("3:얼굴이 달라" 또는 모든 벌에 "더 빨리 걷게", 배경은 "배경:…")
+        default: ""
+      background:
+        description: 빈 배경부터 다시 그리기
+        type: boolean
+        default: false
+      speed:
+        description: 편집 속도 (edit, 예 1.3)
+        default: ""
+      hook:
+        description: 첫 화면 문구 (edit)
+        default: ""
+      order:
+        description: 순서 (edit, 예 "3 1 2 4 5 6")
+        default: ""
+      fake:
+        description: API 없이 흐름만 (가짜 그림·영상)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    concurrency:
+      group: video-${{ inputs.account }}
+      cancel-in-progress: false
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      DATE: ${{ inputs.date }}
+      RUN: ${{ inputs.run }}
+      STEP: ${{ inputs.step }}
+      LOOKS: ${{ inputs.looks }}
+      NOTE: ${{ inputs.note }}
+      SPEED: ${{ inputs.speed }}
+      HOOK: ${{ inputs.hook }}
+      ORDER: ${{ inputs.order }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - name: ffmpeg 준비
+        run: command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+
+      - name: 결과 폴더 가져오기
+        run: |
+          git fetch -q origin daily-results
+          git worktree add /tmp/results origin/daily-results
+          git -C /tmp/results checkout -q -B daily-results
+          test -f "/tmp/results/$RUN/manifest.json" || { echo "결과 폴더가 없어요: $RUN"; exit 1; }
+
+      - name: 영상 만들기 (${{ inputs.step }})
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          args=(--account "$ACCOUNT" --run "/tmp/results/$RUN" --face "/tmp/results/flow/$ACCOUNT/face.jpg")
+          [ -n "$LOOKS" ] && args+=(--looks $LOOKS)
+          [ -n "$NOTE" ] && args+=(--note "$NOTE")
+          [ "${{ inputs.background }}" = "true" ] && args+=(--background)
+          [ -n "$SPEED" ] && args+=(--speed "$SPEED")
+          [ -n "$HOOK" ] && args+=(--hook "$HOOK")
+          [ -n "$ORDER" ] && args+=(--order $ORDER)
+          [ "${{ inputs.fake }}" = "true" ] && args+=(--fake)
+          [ -n "$TELEGRAM_BOT_TOKEN" ] || args+=(--no-send)
+          uv run python -m tools.video "$STEP" "${args[@]}"
+
+      - name: daily-results 브랜치에 커밋
+        if: always()
+        run: |
+          [ -d "/tmp/results/$RUN/video" ] || exit 0
+          cp -r "/tmp/results/$RUN/video" /tmp/video_out
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            git -C /tmp/results fetch -q origin daily-results
+            git -C /tmp/results reset -q --hard origin/daily-results
+            rm -rf "/tmp/results/$RUN/video" && cp -r /tmp/video_out "/tmp/results/$RUN/video"
+            git -C /tmp/results add "$RUN/video"
+            git -C /tmp/results diff --cached --quiet && exit 0
+            git -C /tmp/results commit -q -m "코디 영상 $RUN ($STEP)"
+            git -C /tmp/results push -q origin daily-results && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: 실패 알림
+        if: failure() || cancelled()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: "[${{ inputs.account }}] ${{ inputs.date }} 코디 영상(${{ inputs.step }}) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            /retry 를 보내면 다시 시도해요"
+        run: .github/scripts/alert.sh

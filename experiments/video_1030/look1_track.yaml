@@ -1,0 +1,19 @@
+# 2026-10-30 시험 2: 따라가며 찍기 (구도 고정, 카메라가 옆에서 따라감, 배경이 흐름).
+# 사용자 예시 릴스: 밤 횡단보도를 옆으로 걷는 모델을 카메라가 따라가며 가운데·전신으로 잡음.
+# 시험 1 (Wan 2.7): 가로로 나오고 허벅지까지만 보임, 숲 안쪽에서 걸어 나옴.
+title: 퍼 코디 영상 LOOK 1 시험 2 (따라가며 찍기, 햇살 드는 눈 숲)
+refs:
+  - daily-results:flow/women/face.jpg                                  # 1 얼굴
+  - daily-results:2026-10-27-run380/looks/1/outfit/results/G_1.jpg     # 2 LOOK 1 정면컷
+background:                                                            # 3 빈 배경
+  model: nano_banana
+  prompt: >-
+    A vertical 9:16 photo of a sunny snowy forest seen from the side: a flat snowy path runs straight
+    from the right edge to the left edge of the frame across the lower half, tall straight trees behind it,
+    warm sunbeams falling through the branches, snow sparkling as it drifts down. Eye-level view from a few
+    meters away, slightly above. No people, no animals, no text, no signs.
+prompt_file: experiments/video_1030/look1_track.txt
+duration: 4
+resolution: 720p
+aspect_ratio: '9:16'
+models: [grok_video, happyhorse]

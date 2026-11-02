@@ -50,7 +50,7 @@ def test_context_and_cli(tmp_path, monkeypatch):
     store = Store("women", root=tmp_path)
     text = vc.context("women", date(2026, 10, 15), plan, "춤 컨셉으로", store)
     assert "LOOK 1: 그레이 퍼 자켓" in text and "요청: 시스루 스타킹" in text
-    assert "카메라는 멈춰" in text and "춤 컨셉으로" in text
+    assert "구도 고정" in text and "춤 컨셉으로" in text
     assert len(vc.looks_of(plan)) == 2 and len(vc.looks_of({"items": [{"name": "a"}]})) == 1
     # save CLI: {concepts, chosen} 형식
     f = tmp_path / "c.yaml"
