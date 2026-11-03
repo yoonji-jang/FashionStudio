@@ -111,6 +111,16 @@ jobs:
       - run: uv sync ${{ inputs.collect && '--group scout' || '' }}
       - if: inputs.collect
         run: uv run playwright install --with-deps chromium
+      # 클로드 스레드에서 보낸 참고 사진은 잠가서 결과 브랜치에 둔다 (2026-11-03, tools.sealed).
+      # 러너 안에서만 풀어 ~/.cache 에 두고, 참고 코디 사진 주소 "sealed:<이름>" 이 그걸 쓴다
+      - name: 클로드 스레드 참고 사진 풀기
+        env:
+          REF_SEAL_SEED: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          git fetch -q origin daily-results 2>/dev/null || exit 0
+          mkdir -p /tmp/sealed
+          git archive origin/daily-results "flow/$ACCOUNT/user_refs" 2>/dev/null | tar -x -C /tmp/sealed 2>/dev/null || exit 0
+          uv run python -m tools.sealed open "/tmp/sealed/flow/$ACCOUNT/user_refs"
       - name: 준비 (날짜, 기획 파일, 코디컷 방식과 키)
         env:
           INPUT_DATE: ${{ inputs.date }}
