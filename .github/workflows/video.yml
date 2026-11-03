@@ -27,6 +27,9 @@ on:
       note:
         description: 고칠 점 ("3:얼굴이 달라" 또는 모든 벌에 "더 빨리 걷게", 배경은 "배경:…")
         default: ""
+      base:
+        description: 이 번째 빈 배경에서 고칠 점만 고치기 (background, 빈칸이면 새로 그림)
+        default: ""
       background:
         description: 빈 배경부터 다시 그리기
         type: boolean
@@ -92,6 +95,7 @@ jobs:
           [ -n "$LOOKS" ] && args+=(--looks $LOOKS)
           [ -n "$NOTE" ] && args+=(--note "$NOTE")
           [ "${{ inputs.background }}" = "true" ] && args+=(--background)
+          [ -n "${{ inputs.base }}" ] && args+=(--base "${{ inputs.base }}")
           [ -n "$SPEED" ] && args+=(--speed "$SPEED")
           [ -n "$HOOK" ] && args+=(--hook "$HOOK")
           [ -n "$ORDER" ] && args+=(--order $ORDER)
