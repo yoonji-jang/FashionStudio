@@ -65,6 +65,10 @@ on:
         description: 텔레그램으로 미리보기 보내기 (샌드박스 결과는 게시 버튼 없이)
         type: boolean
         default: true
+      telegram:
+        description: 텔레그램으로 보내기 (끄면 진행·결과·실패 알림을 하나도 안 보냄. 클로드 스레드에서 진행할 때)
+        type: boolean
+        default: true
   push:
     branches: ["claude/**"]
     paths: ["samples/**", "tools/plan.py", "tools/review.py", "tools/outfit_gen.py", ".claude/**", ".github/workflows/daily.yml"]
@@ -96,7 +100,7 @@ jobs:
       HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
       REVIEW: ${{ (github.event_name == 'push' || inputs.review) && '1' || '' }}
       PREVIEW: ${{ (github.event_name == 'push' || inputs.preview) && '1' || '' }}
-      HAS_TELEGRAM: ${{ secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
+      HAS_TELEGRAM: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != '' }}
       RUN: ${{ github.run_number }}
       # Claude 가 부르는 상품 수집은 한 번에 10분까지, 창고 전체 다시 확인은 collect 워크플로에서만
       COLLECT_MINUTES: "10"
@@ -245,7 +249,7 @@ jobs:
       - name: 진행 알림 (한 시간 넘게 걸리면 한 시간마다 텔레그램, tools.progress)
         if: env.HAS_TELEGRAM == 'true'
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -263,7 +267,7 @@ jobs:
         # 여기서 받아 두면 같은 러너의 캐시(/tmp)와 out/<날짜>/src/refs/ 를 Claude 단계가 쓴다
         if: (env.MODE == 'render' || env.MODE == 'fix') && env.HAS_TELEGRAM == 'true'
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -298,7 +302,7 @@ jobs:
       - name: 후보 검사·텔레그램으로 보내기
         if: env.MODE == 'candidates'
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -334,7 +338,7 @@ jobs:
       - name: 고친 후보 텔레그램으로 보내기
         if: env.MODE == 'edit'
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -470,7 +474,7 @@ jobs:
         if: env.PREVIEW == '1' && env.HAS_TELEGRAM == 'true'
         continue-on-error: true
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -579,7 +583,7 @@ jobs:
         # 시간 제한으로 끊긴 실행(cancelled)도 알린다 (2026-10-22 run337 은 알림 없이 멈춰 흐름이 기다리기만 함)
         if: failure() || cancelled()
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
