@@ -1317,6 +1317,8 @@ def _video_return(profile: Profile, st: FlowState, tg, ts: int) -> str:
     elif tg is not None:
         tg.send(f"[{profile.id}] 하던 주제 고르기로 돌아왔어요. 앞서 보낸 후보에 답해 주세요")
     return f"영상 마침, {st.stage} 로 돌아감"
+
+
 RETRY_WORDS = {"/retry", "다시 시도", "재시도"}
 
 
@@ -1408,13 +1410,13 @@ def _video(
     fixes = [x for x in replies if x.kind in ("fix", "frame") and x.kind == r.kind]
     if rec.step == "plan":  # 계획 고치기는 배경·벌·모든 벌 고칠 점을 한 번에
         fixes = [x for x in replies if x.kind in ("fix", "frame", "background")]
-    act = video.action(rec, r, music=video.has_music(profile))
+    act = video.action(rec, r, music=video.has_music(profile), frames=video.uses_frames(profile))
     if act is None:
         tg.send(f"{tag} 지금 단계에서는 쓸 수 없는 명령이에요\n\n"
                 + video.guide(tag, rec, profile, run))  # fmt: skip
         return ""
     if len(fixes) > 1 and act.get("step") in ("plan", "frames", "prompts", "clips", "redo"):
-        acts = [video.action(rec, x) or {} for x in fixes]
+        acts = [video.action(rec, x, frames=video.uses_frames(profile)) or {} for x in fixes]
         act["note"] = "\n".join(a["note"] for a in acts if a.get("note"))
         looks = sorted({int(x) for a in acts for x in str(a.get("looks", "")).split() if x})
         act["looks"] = " ".join(map(str, looks)) if all(a.get("looks") for a in acts) else ""

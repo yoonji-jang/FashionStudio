@@ -371,7 +371,10 @@ def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: 
     shot = next((s for s in c.shots if s.look == n), None)
     motion = (shot.motion_en or f"{shot.action}, {shot.pose}") if shot else "She walks naturally"
     text = template("motion", **common(profile, c), items=items_en(run, n), motion=motion)
-    for note in notes_for(rec, n, motion=True):
+    notes = notes_for(rec, n, motion=True)
+    if not uses_frames(profile):  # 첫 장면이 없으니 그림 고칠 점도 영상 지시문에
+        notes = notes_for(rec, n) + notes
+    for note in notes:
         text += f"\nUser request (most important): {note}"
     return text
 
@@ -640,7 +643,6 @@ def edit(
     d = vdir(run)
     final = d / "final"
     final.mkdir(exist_ok=True)
-    seconds = {s.look: s.seconds for s in c.shots}
     rec.flags = []
     total = 0.0
     with tempfile.TemporaryDirectory() as t:
@@ -649,8 +651,8 @@ def edit(
         for i, n in enumerate(seq):
             clip = d / "clips" / f"look{n}.mp4"
             start = profile.video.clip_start
-            # 컨셉에 길이가 없으면 영상 전부
-            want = seconds.get(n) or (_duration(clip) - start) / sp
+            # 영상 전부 (2026-11-03 사용자: 퇴장 장면이 잘리지 않게. 컨셉 seconds 는 지시문용)
+            want = (_duration(clip) - start) / sp
             src = min(want * sp, _duration(clip) - start)
             png = tmp / f"o{n}.png"
             overlay_png(profile, n, hook_text if i == 0 else "", png)
@@ -734,7 +736,12 @@ def edit(
         "-ss", "0.5", "-i", str(silent), "-frames:v", "1", "-q:v", "2", str(final / "cover.jpg")
     )
     m = manifest_of(run)
-    (final / "caption.txt").write_text(m.caption + "\n", encoding="utf-8")
+    # 영상이므로 AI 고지를 "영상은 …" 으로 (2026-11-03 사용자)
+    notice = profile.copy_rules.ai_notice
+    caption = m.caption.replace(notice, video_notice(notice))
+    if m.hashtags:  # 바로 붙여 넣을 수 있게 해시태그까지
+        caption += "\n\n" + " ".join(m.hashtags)
+    (final / "caption.txt").write_text(caption + "\n", encoding="utf-8")
     rec.step, rec.error = "final", ""
     save_record(run, rec)
     return rec
@@ -761,7 +768,9 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
     lines += [
         "",
         f"② 벌마다 첫 장면 {rec.looks}장 (장당 약 ${FRAME_COST:.2f}): "
-        "확정 코디컷의 인물(얼굴·머리·코디) 그대로 포즈만 바꿔 빈 배경에 그려요",
+        "확정 코디컷의 인물(얼굴·머리·코디) 그대로 포즈만 바꿔 빈 배경에 그려요"
+        if uses_frames(profile)
+        else "② 벌마다 영상: 확정 코디컷과 빈 배경을 영상 AI 에 바로 넣어요 (첫 장면 그림 없음)",
         f"• 구도: {c.framing}"
         + ("" if any(s.start for s in c.shots) else " (인물은 화면 세로의 70~80%)"),
     ]
@@ -780,7 +789,8 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
         lines.append(f"• LOOK {n}: {items or '확정 코디컷'} / {move}{req}")
     lines += [
         "",
-        "빈 배경을 먼저 그려 보내 드리고, 배경에 /ok 를 받으면 첫 장면을 그려요.",
+        "빈 배경을 먼저 그려 보내 드리고, 배경에 /ok 를 받으면 "
+        + ("첫 장면을 그려요." if uses_frames(profile) else "영상 지시문을 보내 드려요."),
         "• /ok → 빈 배경 그리기",
         "• /fix 배경 바다가 보이게 → 배경 계획 고치기 (요금 없음)",
         "• /fix 3 가방을 앞으로 들게 → LOOK 3 계획 고치기",
@@ -796,11 +806,13 @@ def bg_label(rec: VideoRecord) -> str:
     return f"{n}번째" + (f" ({rec.bg_base}번째를 고침)" if rec.bg_base else "")
 
 
-def background_guide(tag: str, rec: VideoRecord) -> str:
+def background_guide(tag: str, rec: VideoRecord, frames: bool = True) -> str:
     n = rec.bg_versions or 1
     lines = [
-        f"{tag} 영상 빈 배경 {bg_label(rec)}이에요. 첫 장면은 모두 이 배경 위에 그려요.",
-        f"• /ok → 벌마다 첫 장면 {rec.looks}장 그리기 (약 ${FRAME_COST * rec.looks:.2f})",
+        f"{tag} 영상 빈 배경 {bg_label(rec)}이에요. 영상은 모두 이 배경에서 찍어요.",
+        f"• /ok → 벌마다 첫 장면 {rec.looks}장 그리기 (약 ${FRAME_COST * rec.looks:.2f})"
+        if frames
+        else "• /ok → 영상 지시문을 보내 드려요 (요금 없음)",
         f"• /fix 문을 앞쪽으로 → 지금({n}번째) 배경에서 그 부분만 고쳐요 (약 ${BG_COST:.2f})",
     ]
     if n > 1:
@@ -860,6 +872,18 @@ def prompts_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord) -> st
     return "\n".join(lines)
 
 
+def uses_frames(profile: Profile) -> bool:
+    """영상 모델이 첫 장면 한 장으로 움직이는지. 아니면 코디컷·빈 배경을 바로 넣는다
+    (첫 장면 단계 없음, 2026-11-03 사용자: 중간 그림을 거치면 옷·얼굴이 틀어진다)."""
+    model = video_test.load_config()["video"]["models"].get(profile.video.video_model, {})
+    return model.get("inputs") == "first_frame"
+
+
+def video_notice(notice: str) -> str:
+    """AI 합성 고지를 영상용으로 ("이미지는 …" → "영상은 …")."""
+    return "영상은" + notice[len("이미지는") :] if notice.startswith("이미지는") else notice
+
+
 def has_music(profile: Profile) -> bool:
     return profile.video.music == "lyria"
 
@@ -878,9 +902,12 @@ def final_guide(tag: str, rec: VideoRecord, profile: Profile) -> str:
         "• /제목 새 문구 → 첫 화면 문구 바꾸기 (무료)",
         "• /order 3 1 2 4 5 6 → 순서 바꾸기 (무료)",
         "• /fix 3 더 빨리 걷게 → LOOK 3 영상만 다시 (약 $0.65)",
-        f"• /frame 3 얼굴이 달라 → LOOK 3 첫 장면을 다시 그려 보내 드려요 (약 ${FRAME_COST:.2f}, "
-        "/ok 하면 그 벌 영상도 다시 약 $0.65)",
     ]
+    if uses_frames(profile):
+        lines.append(
+            "• /frame 3 얼굴이 달라 → LOOK 3 첫 장면을 다시 그려 보내 드려요 "
+            f"(약 ${FRAME_COST:.2f}, /ok 하면 그 벌 영상도 다시 약 $0.65)"
+        )
     if has_music(profile):
         lines.append("• /music → 음악만 새로 (약 $0.04)")
     lines += [
@@ -905,7 +932,7 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
         tg.send(plan_text(tag, profile, c, rec, run))
     elif rec.step == "background":
         tg.send_photos([d / "background.jpg"], f"{tag} 영상 빈 배경 {bg_label(rec)}")
-        tg.send(background_guide(tag, rec))
+        tg.send(background_guide(tag, rec, uses_frames(profile)))
     elif rec.step == "frames":
         pics = [d / "frames" / f"look{n}.jpg" for n in range(1, rec.looks + 1)]
         tg.send_photos(pics, f"{tag} 영상 첫 장면")
@@ -942,7 +969,7 @@ def guide(tag: str, rec: VideoRecord, profile: Profile, run: Path | None = None)
         c = concept_of(profile, rec.date, rec.concept)
         return plan_text(tag, profile, c, rec, run or Path(rec.run))
     if rec.step == "background":
-        return background_guide(tag, rec)
+        return background_guide(tag, rec, uses_frames(profile))
     if rec.step == "frames":
         return frames_guide(tag)
     if rec.step == "prompts":
@@ -1063,10 +1090,11 @@ def bg_fix(rec: VideoRecord, text: str, base: int) -> dict:
     return {"step": "background", "note": f"배경:{t}", "base": str(base or -1)}  # -1 = 지금 배경
 
 
-def action(rec: VideoRecord, reply: Reply, music: bool = True) -> dict | None:
+def action(rec: VideoRecord, reply: Reply, music: bool = True, frames: bool = True) -> dict | None:
     """답 → video 워크플로 입력 (step, looks, note, …). ok·skip 는 흐름이 따로 다룬다.
     그림은 그리기 전(plan)과 그린 뒤(background, frames) 모두 /ok 를 받아야 다음으로 (2026-11-02).
-    music: 음악을 쓰는지 (profile video.music 이 none 이면 /music 은 없음)."""
+    music: 음악을 쓰는지 (profile video.music 이 none 이면 /music 은 없음).
+    frames: 첫 장면 단계가 있는지 (uses_frames). 없으면 배경 /ok 다음은 지시문."""
     note = f"{reply.look}:{reply.text}" if reply.look and reply.text else reply.text
     looks = str(reply.look) if reply.look else ""
     if rec.step == "plan":
@@ -1078,7 +1106,7 @@ def action(rec: VideoRecord, reply: Reply, music: bool = True) -> dict | None:
             return {"step": "plan", "note": note}
     elif rec.step == "background":
         if reply.kind == "ok":
-            return {"step": "frames"}
+            return {"step": "frames" if frames else "prompts"}
         if reply.kind in ("background", "fix") and reply.text:
             # 말한 곳만 고친다: 번호가 있으면 그 번째 배경, 없으면 지금 배경 ("새로 …" 면 새로 그림)
             return bg_fix(rec, reply.text, reply.look)
@@ -1106,8 +1134,8 @@ def action(rec: VideoRecord, reply: Reply, music: bool = True) -> dict | None:
         if reply.kind == "fix" and reply.look:
             return {"step": "clips", "looks": looks, "note": note}
         if reply.kind == "frame" and reply.look:
-            # 새 첫 장면도 보고 허락받은 뒤 영상으로 (2026-11-02 사용자)
-            return {"step": "frames", "looks": looks, "note": note}
+            # 새 첫 장면도 보고 허락받은 뒤 영상으로 (2026-11-02). 첫 장면이 없으면 영상만 다시
+            return {"step": "frames" if frames else "clips", "looks": looks, "note": note}
     return None
 
 
@@ -1158,6 +1186,8 @@ def main(argv: list[str] | None = None) -> int:
         elif args.step == "background":
             background(profile, args.run, notes, args.fake, args.concept, args.base,
                        "; ".join(bg_notes))  # fmt: skip
+        elif args.step == "redo" and not uses_frames(profile):  # 첫 장면이 없으면 영상만
+            clips(profile, args.run, args.looks, notes, args.fake)
         elif args.step in ("frames", "redo"):
             frames(profile, args.run, args.looks, notes, args.background, args.fake, args.concept,
                    args.face)  # fmt: skip
