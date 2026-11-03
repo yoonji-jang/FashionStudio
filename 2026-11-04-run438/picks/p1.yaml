@@ -1,0 +1,473 @@
+account: women
+date: '2026-11-04'
+edit_refs: []
+items: []
+looks:
+- edit_refs: []
+  items:
+  - color: 핑크
+    comment: ''
+    cutout_photo: 0
+    desc: 핑크 골드 버튼 트위드 자켓 (pink gold-button tweed jacket)
+    name: 골드 버튼 트위드 자켓
+    product: zigzag:167520621
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 헨리넥 레이어드 니트 (black henley layered knit top)
+    name: 헨리넥 니트
+    product: zigzag:168059454
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 미니 스커트 (black wool mini skirt)
+    name: 울 미니 스커트
+    product: zigzag:150110018
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 로퍼 (black suede loafers)
+    name: 왈라비 로퍼
+    product: zigzag:153677725
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 니치 숄더백
+    product: zigzag:168564549
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오버 니삭스 (black over-the-knee socks)
+    name: 오버 니삭스
+    product: zigzag:100673075
+  point: ''
+  reason: 핑크 부클 트위드 자켓에 블랙 미니로 연말 야경 무드를 내는 룩. 참고 핑크 부클 트위드 자켓/블랙 A라인 미니/청키 로퍼/블랙
+    숄더백/블랙 니삭스 → 맞춘 것 같은 칸 그대로 (로퍼는 청키 대신 스웨이드 로퍼) (따라 함, 참고 803)
+  ref: '803'
+  ref_photo: sealed:u1103_01
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 하이넥 퍼 자켓 (gray fluffy high-neck fur jacket)
+    name: 하이넥 퍼 자켓
+    product: zigzag:167995131
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 터틀넥 니트 조끼 (charcoal turtleneck knit vest)
+    name: 터틀넥 니트 조끼
+    product: zigzag:155379478
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 쇼츠 (black wool shorts)
+    name: 울 쇼츠
+    product: zigzag:166183665
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 메리제인 (black platform mary jane shoes)
+    name: 플랫폼 메리제인
+    product: zigzag:172014189
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스터드 미니 토트백 (black studded mini tote bag)
+    name: 스터드 미니 토트백
+    product: zigzag:170446634
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 골지 롱 삭스 (gray ribbed long socks)
+    name: 골지 롱 니삭스
+    product: zigzag:136839704
+  point: ''
+  reason: 그레이 퍼 오버핏 자켓에 블랙 울 숏팬츠로 스트리트하게 연말 약속룩. 참고 그레이 모헤어 자켓/블랙 터틀넥/블랙 울 숏팬츠/메리제인/버건디
+    숄더백/시스루 스타킹+그레이 양말 → 맞춘 것 퍼 자켓/터틀넥 니트 조끼/울 쇼츠/메리제인/블랙 숄더백(버건디 가방 없음)/골지 양말 (따라
+    함, 참고 804)
+  ref: '804'
+  ref_photo: sealed:u1103_02
+  requests: []
+- edit_refs: []
+  items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 하운드투스 수트 블레이저 (brown houndstooth suit blazer)
+    name: 하운드투스 블레이저
+    product: zigzag:172353027
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 폴라 티셔츠 (cream turtleneck top)
+    name: 크림 폴라티
+    product: zigzag:167444137
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 체크 A라인 모직 숏팬츠 (brown plaid wool A-line shorts)
+    name: 모직 숏팬츠
+    product: zigzag:167570379
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 모카신 (brown suede moccasins)
+    name: 스웨이드 모카신
+    product: zigzag:172198229
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 콘라드 숄더백
+    product: zigzag:130117567
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 골지 울니트 레그워머 (ivory ribbed wool knit leg warmers)
+    name: 골지 레그워머
+    product: zigzag:131020807
+  point: ''
+  reason: 브라운 하운드투스 블레이저와 숏팬츠 셋업에 아이보리 터틀넥과 레그워머로 따뜻하게 유럽 골목 무드. 참고 브라운 하운드투스 블레이저/아이보리
+    터틀넥/브라운 하운드투스 숏팬츠/스웨이드 스니커즈/브라운 숄더백/아이보리 레그워머 → 맞춘 것 브라운 하운드투스 블레이저/크림 폴라티/체크
+    모직 숏팬츠/스웨이드 모카신/스웨이드 숄더백/골지 레그워머 (따라 함, 참고 805)
+  ref: '805'
+  ref_photo: sealed:u1103_03
+  requests: []
+- edit_refs: []
+  items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 오프숄더 니트 (brown off-shoulder knit)
+    name: 오프숄더 니트
+    product: zigzag:167148190
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 스웨이드 A라인 미니 스커트 (beige suede A-line mini skirt)
+    name: 스웨이드 미니 스커트
+    product: zigzag:166211939
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 골지 니삭스 (ivory ribbed knee-high socks)
+    name: 골지 니삭스
+    product: zigzag:168887889
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 로퍼 (brown suede loafers)
+    name: 스웨이드 로퍼
+    product: zigzag:165725019
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 콘라드 숄더백
+    product: zigzag:130117567
+  point: ''
+  reason: 브라운 오프숄더 니트에 베이지 스웨이드 미니와 아이보리 니삭스로 카페 연말 무드. 참고 브라운 오프숄더 루즈 니트/베이지 스웨이드
+    H라인 미니/아이보리 골지 니하이+리본 핀 → 맞춘 것 오프숄더 니트/스웨이드 미니/골지 니삭스 (신발·가방은 사진에 없어 어울리게 추가)
+    (따라 함, 참고 806)
+  ref: '806'
+  ref_photo: sealed:u1103_04
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하이넥 시어링 퍼 집업 자켓 (ivory high-neck shearling fur zip jacket)
+    name: 시어링퍼 집업 자켓
+    product: zigzag:172201982
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 반폴라 티 (ivory mock-neck top)
+    name: 코지 반폴라
+    product: zigzag:151586371
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 플리츠 미니 스커트 (black wool pleated mini skirt)
+    name: 울 플리츠 미니
+    product: zigzag:155417168
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 로퍼 (black suede loafers)
+    name: 왈라비 로퍼
+    product: zigzag:153677725
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 숄더백 (black mini shoulder bag)
+    name: 포코 숄더백
+    product: zigzag:166194366
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 오버 니삭스 (black over-the-knee socks)
+    name: 오버 니삭스
+    product: zigzag:100673075
+  point: ''
+  reason: 아이보리 퍼 크롭 자켓에 블랙 플리츠 미니로 실내 연말 모임 무드. 참고 아이보리 퍼 크롭 자켓/아이보리 터틀넥/블랙 랩 플리츠
+    미니/체인 로퍼/벨벳 체인백/블랙 니삭스·베레모 → 맞춘 것 시어링 퍼 집업/반폴라/울 플리츠 미니/로퍼/미니 숄더백/오버 니삭스 (베레모·체인
+    로퍼 없음) (따라 함, 참고 807)
+  ref: '807'
+  ref_photo: sealed:u1103_05
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 시어링 칼라 집업 블루종 재킷 (taupe grey shearling collar zip bomber jacket)
+    name: 시어링 칼라 블루종
+    product: zigzag:171950682
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 멜란지 울 헨리넥 티셔츠 (white melange wool henley top)
+    name: 울 헨리넥 티
+    product: zigzag:171221132
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 쇼츠 (black wool shorts)
+    name: 노마 울 쇼츠
+    product: zigzag:131272324
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 스웨이드 폴딩 미들부츠 (beige suede folding mid boots)
+    name: 폴딩 워머 미들부츠
+    product: zigzag:165455974
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트 크로스백 (black tote crossbody bag)
+    name: 벤타 토트 크로스백
+    product: zigzag:159478154
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 골지 울니트 레그워머 (ivory ribbed wool knit leg warmers)
+    name: 골지 레그워머
+    product: zigzag:131020807
+  point: ''
+  reason: 그레이 시어링 칼라 숏자켓에 숏팬츠, 레그워머로 톤온톤 따뜻하게 카페 연말 룩. 참고 그레이 울 숏자켓(시어링 칼라)/그레이 울
+    숏팬츠/그레이 어그/그레이 레깅스+아이보리 레그워머 → 맞춘 것 자라 시어링 칼라 집업/울 쇼츠(그레이 없어 블랙)/폴딩 워머 부츠(어그 없음)/레그워머
+    (따라 함, 참고 808)
+  ref: '808'
+  ref_photo: sealed:u1103_06
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 퍼 소매 벨트 울 하프코트 (ivory wool half coat with fur sleeves and belt)
+    name: 퍼 소매 하프코트
+    product: zigzag:149405097
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 헨리넥 버튼 니트 (cream henley button knit)
+    name: 헨리넥 버튼 니트
+    product: zigzag:171757382
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 미니 스커트 (ivory mini skirt)
+    name: 리안 미니스커트
+    product: zigzag:154052552
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 스웨이드 니하이 롱부츠 (suede knee-high long boots)
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 토트백 (white tote bag)
+    name: 소피 토트백
+    product: zigzag:167741389
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 골지 롱 삭스 (ivory ribbed long socks)
+    name: 골지 롱 니삭스
+    product: zigzag:136839704
+  point: ''
+  reason: 아이보리 퍼 소매 코트를 원피스처럼 입고 올화이트로 맞춘 연말 약속룩. 참고 아이보리 퍼 소매 페플럼 코트/아이보리 미니(코트에
+    가려짐)/화이트 포인티드 롱부츠/화이트 토트백 → 맞춘 것 퍼 소매 하프코트/아이보리 미니/스웨이드 니하이 롱부츠(화이트 포인티드 없음)/화이트
+    토트 (따라 함, 참고 809)
+  ref: '809'
+  ref_photo: sealed:u1103_07
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 덤블 카라 뽀글이 숏코트 (ivory teddy shearling short coat with big collar)
+    name: 뽀글이 숏코트
+    product: zigzag:172599893
+  - color: 크림
+    comment: ''
+    cutout_photo: 0
+    desc: 크림 폴라 티셔츠 (cream turtleneck top)
+    name: 크림 폴라티
+    product: zigzag:167444137
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 플리츠 미니 스커트 (brown pleated mini skirt)
+    name: 플리츠 미니 스커트
+    product: zigzag:159666241
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 모카신 (brown suede moccasins)
+    name: 스웨이드 모카신
+    product: zigzag:172198229
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 위빙 숄더백 (brown woven shoulder bag)
+    name: 아렌 위빙 숄더백
+    product: zigzag:169369601
+  point: ''
+  reason: 아이보리 뽀글이 숏코트에 브라운 플리츠 미니로 포근하게 크리스마스 약속룩. 참고 아이보리 뽀글이 더블 숏코트/브라운 플리츠 미니/브라운
+    로퍼 → 맞춘 것 덤블 카라 뽀글이 숏코트/플리츠 미니/스웨이드 모카신 (이너·가방은 어울리게 추가) (따라 함, 참고 810)
+  ref: '810'
+  ref_photo: sealed:u1103_08
+  requests: []
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 박시핏 롱코트 (black wool boxy-fit long coat)
+    name: 울 박시 롱코트
+    product: zigzag:134882586
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 브이넥 루즈핏 니트 (black v-neck loose-fit knit)
+    name: 브이넥 니트
+    product: zigzag:172033289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 웜 울 미니 스커트 (black warm wool mini skirt)
+    name: 웜 울 미니 스커트
+    product: zigzag:172746329
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱부츠 (black long boots)
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 숄더백 (black mini shoulder bag)
+    name: 포코 숄더백
+    product: zigzag:166194366
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 울 니트 머플러 (ivory wool knit muffler)
+    name: 울 니트 머플러
+    product: zigzag:150956611
+  point: ''
+  reason: 블랙 롱코트에 아이보리 프린지 머플러만 길게 늘어뜨려 단정하게 겨울 약속룩. 참고 블랙 울 롱코트/아이보리 프린지 머플러/블랙 롱부츠
+    → 맞춘 것 블랙 울 롱코트/삼각 울 머플러(프린지 머플러 없음)/블랙 롱부츠, 안은 블랙 니트와 미니 (따라 함, 참고 811)
+  ref: '811'
+  ref_photo: sealed:u1103_09
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 후드 퍼 자켓 (gray hooded fluffy fur jacket)
+    name: 후드 퍼 자켓
+    product: zigzag:167511376
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 니트 뷔스티에 (ivory knit bustier vest top)
+    name: 니트 뷔스티에
+    product: zigzag:165977844
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 벨트 미니 스커트 (black belted mini skirt)
+    name: 블랙벨트 미니스커트
+    product: zigzag:133521354
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 메리제인 스니커즈 (silver mary jane sneakers)
+    name: 메리제인 스니커즈
+    product: zigzag:168827859
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 니치 숄더백
+    product: zigzag:168564549
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 잔골지 니삭스 (black fine-ribbed knee-high socks)
+    name: 잔골지 니삭스
+    product: zigzag:141916298
+  point: ''
+  reason: 그레이 퍼 크롭 자켓에 블랙 미니와 실버 스니커즈로 스포티하게 눈길 연말 룩. 참고 그레이 퍼 크롭 자켓/블랙 미니/실버 러닝 스니커즈/블랙
+    나일론 숄더백/그레이 레깅스+블랙 레그워머 → 맞춘 것 후드 퍼 자켓/블랙 미니/실버 메리제인 스니커즈/니치 숄더백/잔골지 니삭스 (따라 함,
+    참고 812)
+  ref: '812'
+  ref_photo: sealed:u1103_10
+  requests: []
+reason: 사용자가 고른 참고 코디 803~812 열 벌을 순서대로 따라 연말 약속룩으로 (퍼·트위드·코트 위주)
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-04'
+  mood: 블랙·버건디·아이보리·차콜 깊은 연말 톤에 벨벳·울·니트·새틴의 따뜻한 질감 (반짝이 파티룩보다 단정하게)
+  search_terms:
+    상의:
+    - 벨벳 블라우스
+    - 리본 니트
+    소품:
+    - 리본 머리핀
+    아우터:
+    - 울 롱코트
+    하의:
+    - 벨벳 스커트
+    - 새틴 롱스커트
+  slots:
+  - category: 아우터
+    desc: 롱 울코트 또는 퍼 칼라 코트
+  - category: 상의
+    desc: 벨벳 블라우스
+  - category: 하의
+    desc: 벨벳 스커트
+  - category: 가방
+    desc: 작은 미니백 또는 체인 숄더백
+  - category: 신발
+    desc: 앞코 뾰족한 펌프스
+  - category: 소품
+    desc: 리본 머리핀
+  title_hint: 연말 코디, 송년회와 크리스마스 약속에 입는 따뜻하고 분위기 있는 룩
+  type: 상황
+  why: 11월 들어 송년회·연말 약속을 미리 준비하는 시기. 10/23 파티룩은 반짝이 위주라 이번엔 코트·니트로 따뜻하게 꾸민 연말 약속룩
