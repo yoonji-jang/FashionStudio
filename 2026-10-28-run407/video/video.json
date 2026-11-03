@@ -2,8 +2,8 @@
   "account": "women",
   "date": "2026-10-28",
   "run": "2026-10-28-run407",
-  "step": "prompts",
-  "sent_at": 1793684081,
+  "step": "final",
+  "sent_at": 1793686488,
   "looks": 6,
   "costs": {
     "background": 0.1364,
@@ -14,7 +14,13 @@
     "frame_3": 0.1401,
     "frame_4": 0.1385,
     "frame_5": 0.1394,
-    "frame_6": 0.1396
+    "frame_6": 0.1396,
+    "clip_1": 0.65,
+    "clip_2": 0.65,
+    "clip_3": 0.65,
+    "clip_4": 0.65,
+    "clip_5": 0.65,
+    "clip_6": 0.65
   },
   "notes": {
     "background": [
@@ -31,7 +37,14 @@
   "speed": 0.0,
   "order": [],
   "hook": "",
-  "flags": [],
+  "flags": [
+    "LOOK 1 카메라가 다가와요 (얼굴 2.8배)",
+    "LOOK 2 카메라가 다가와요 (얼굴 1.9배)",
+    "LOOK 3 카메라가 다가와요 (얼굴 2.1배)",
+    "LOOK 4 카메라가 다가와요 (얼굴 2.5배)",
+    "LOOK 5 카메라가 다가와요 (얼굴 1.6배)",
+    "LOOK 6 카메라가 다가와요 (얼굴 1.9배)"
+  ],
   "error": "",
   "error_at": 0,
   "concept": 1,
