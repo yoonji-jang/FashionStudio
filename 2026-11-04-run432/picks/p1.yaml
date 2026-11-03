@@ -1,0 +1,355 @@
+account: women
+date: '2026-11-04'
+edit_refs: []
+items: []
+looks:
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 크롭 트위드 자켓 (black cropped tweed jacket)
+    name: 크롭 트위드 자켓
+    product: zigzag:165149023
+  - color: 화이트 멜란지
+    comment: ''
+    cutout_photo: 0
+    desc: 라이트 그레이 헨리넥 티셔츠 (light grey melange henley tee)
+    name: 헨리넥 티
+    product: zigzag:171221132
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 울 미니스커트 (dark navy wool mini skirt)
+    name: 울 미니스커트
+    product: zigzag:150110018
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 플랫폼 메리제인 (black platform mary jane shoes)
+    name: 플랫폼 메리제인
+    product: zigzag:172014189
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 잔골지 니삭스 (black fine-ribbed knee socks)
+    name: 잔골지 니삭스
+    product: zigzag:141916298
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+    name: 퀼팅 체인백
+    product: zigzag:105424126
+  point: ''
+  reason: '블랙 트위드 자켓이 주인공, 미니스커트와 메리제인으로 단정하고 귀엽게. 참고 코디 778 의 프릴 미니는 창고에 없어 울 미니로
+    맞춤, 도트 스타킹은 블랙 니삭스로, 이너는 그레이 헨리넥. 칸 맞춤 일부만 비슷함 (따라 함: 참고 778) [점수 7]'
+  ref: '778'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 롱코트 (black wool long coat)
+    name: 울 롱코트
+    product: zigzag:134882586
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 모카 브라운 브이넥 니트 (mocha brown v-neck knit)
+    name: 브이넥 니트
+    product: zigzag:172033289
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 머메이드 새틴 롱스커트 (black mermaid satin long skirt)
+    name: 새틴 롱스커트
+    product: zigzag:100742919
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 니치 숄더백
+    product: zigzag:168564549
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 발레리나 플랫 (black ribbon ballerina flats)
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  point: ''
+  reason: '블랙 울 롱코트가 주인공, 새틴 롱스커트로 길게 떨어지는 실루엣, 모카 브라운 니트로 한 끗. 참고 117 은 블랙 롱코트 +
+    롱스커트 + 숄더백인데 창고의 블랙 브이넥 니트 사진이 브라운이라 니트만 브라운 (따라 함: 참고 117) [점수 7]'
+  ref: '117'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 퍼플
+    comment: ''
+    cutout_photo: 0
+    desc: 퍼플 울 라운드 가디건 (purple wool round-neck cardigan)
+    name: 퍼플 울 가디건
+    product: zigzag:166133317
+  - color: 화이트 멜란지
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 멜란지 헨리넥 티셔츠 (white melange henley tee)
+    name: 헨리넥 티
+    product: zigzag:171221132
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 벨벳 미디스커트 (black velvet midi skirt)
+    name: 벨벳 미디스커트
+    product: zigzag:167522712
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 리본 발레리나 플랫 (black ribbon ballerina flats)
+    name: 리본 플랫슈즈
+    product: zigzag:171742629
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 롱 목걸이 (silver long drop pendant necklace)
+    name: 실버 롱 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 소가죽 미니멀 레더백 (black leather bag)
+    name: 레더 숄더백
+    product: zigzag:165200845
+  point: ''
+  reason: '퍼플 모헤어 니트가 주인공, 벨벳 미디스커트와 흰 이너로 포근하게. 참고 157 칸 그대로 (따라 함: 참고 157) [점수 8]'
+  ref: '157'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 네이비
+    comment: ''
+    cutout_photo: 0
+    desc: 네이비 라운드 카디건 (dark navy round-neck cardigan)
+    name: 라운드 카디건
+    product: zigzag:171262525
+  - color: 멜란지 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 멜란지 그레이 립 탱크 캐미솔 (melange grey ribbed tank camisole)
+    name: 립 탱크 캐미
+    product: zigzag:169072284
+    wear_with: 상의
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 에이라인 미니스커트 (charcoal wool a-line mini skirt)
+    name: 울 미니스커트
+    product: zigzag:149438922
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 앵클부츠 (black suede ankle boots)
+    name: 스웨이드 앵클부츠
+    product: zigzag:149181846
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 잔골지 니삭스 (black fine-ribbed knee socks)
+    name: 잔골지 니삭스
+    product: zigzag:141916298
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 니치 숄더백
+    product: zigzag:168564549
+  point: ''
+  reason: '네이비 카디건에 그레이 캐미를 받쳐 차콜 울 미니와 니삭스로 어두운 톤 약속룩. 참고 174 는 블랙 카디건 + 그레이 레이스
+    캐미 + 블랙 울 미니 (따라 함: 참고 174) [점수 7]'
+  ref: '174'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 리본 타이 퍼프 블라우스 (ivory ribbon-tie puff blouse)
+    name: 리본 타이 블라우스
+    product: zigzag:114317866
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 새틴 롱스커트 (black satin long skirt)
+    name: 새틴 롱스커트
+    product: zigzag:168778375
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 에나멜 슬링백 힐 (black patent slingback heels)
+    name: 에나멜 슬링백
+    product: zigzag:133601050
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 새틴 벨벳 리본 헤어핀 (black satin velvet ribbon hair clip)
+    name: 리본 헤어핀
+    product: zigzag:122341382
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+    name: 퀼팅 코코 체인백
+    product: zigzag:135922060
+  point: ''
+  reason: '아이보리 리본 블라우스가 주인공, 새틴 롱스커트와 슬링백으로 단정한 송년회룩. 참고 249 (따라 함: 참고 249) [점수 8]'
+  ref: '249'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 오프숄더 셔츠카라 니트 (charcoal off-shoulder knit with attached light-blue shirt
+      collar)
+    name: 오프숄더 니트
+    product: zigzag:172159068
+  - color: 차콜
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 울 미니스커트 (charcoal wool mini skirt)
+    name: 울 미니스커트
+    product: zigzag:166297956
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 버클 롱부츠 (black suede buckle long boots)
+    name: 버클 롱부츠
+    product: zigzag:165455974
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+    name: 퀼팅 체인백
+    product: zigzag:105424126
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 물방울 롱 목걸이 (silver long drop pendant necklace)
+    name: 실버 롱 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  point: ''
+  reason: '차콜 오프숄더 니트가 주인공, 블랙 울 미니와 부츠로 세련되게. 참고 256 (따라 함: 참고 256) [점수 7]'
+  ref: '256'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 라이트 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 라이트 그레이 아가일 카디건 (light grey argyle cardigan)
+    name: 아가일 카디건
+    product: zigzag:172478046
+  - color: 멜란지 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 멜란지 그레이 립 탱크 캐미솔 (melange grey ribbed tank camisole)
+    name: 립 탱크 캐미
+    product: zigzag:169072284
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 코듀로이 미디스커트 (black corduroy straight midi skirt with button front)
+    name: 코듀로이 미디스커트
+    product: zigzag:165129696
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 버클 롱부츠 (black suede buckle long boots)
+    name: 버클 롱부츠
+    product: zigzag:165455974
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 미니 숄더백 (black mini shoulder bag)
+    name: 포코 미니 숄더백
+    product: zigzag:166194366
+  point: ''
+  reason: '라이트 그레이 아가일 카디건이 주인공, 블랙 코듀로이 미디스커트와 롱부츠로 차분하게. 참고 158 의 차콜 벨벳 레이스 스커트는
+    창고에 같은 색이 없어 질감 비슷한 블랙 코듀로이로 대체 (따라 함: 참고 158) [점수 7]'
+  ref: '158'
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 스카프 리본 블라우스 (grey scarf-tie short-sleeve blouse)
+    name: 스카프 리본 블라우스
+    product: zigzag:169816064
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 새틴 맥시 플레어 스커트 (black satin maxi flared skirt)
+    name: 새틴 맥시 스커트
+    product: zigzag:169413555
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 앵클스트랩 플랫폼 펌프스 (black ankle-strap platform pumps)
+    name: 앵클스트랩 펌프스
+    product: zigzag:168504725
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 볼드 링 귀걸이 (silver bold hoop earrings)
+    name: 링 귀걸이
+    product: zigzag:142880069
+    slot: 귀걸이
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 미니 체인 백팩 (black quilted mini chain backpack worn as a small crossbody)
+    name: 퀼팅 미니 체인백
+    product: zigzag:155370993
+  point: ''
+  reason: 그레이 스카프 리본 블라우스에 블랙 새틴 맥시 스커트와 펌프스로 분위기 있게 (새틴 질감 하나로). 참고 없이 주제 기준으로 짠
+    예비 벌 [점수 7]
+  requests: []
+reason: 연말 약속룩을 트위드·롱코트·벨벳·새틴·니트로 여덟 가지 질감과 분위기로 (블랙·차콜 바탕에 퍼플·아이보리 포인트)
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-04'
+  mood: 블랙·버건디·아이보리·차콜 깊은 연말 톤에 벨벳·울·니트·새틴의 따뜻한 질감 (반짝이 파티룩보다 단정하게)
+  search_terms:
+    상의:
+    - 벨벳 블라우스
+    - 리본 니트
+    소품:
+    - 리본 머리핀
+    아우터:
+    - 울 롱코트
+    하의:
+    - 벨벳 스커트
+    - 새틴 롱스커트
+  slots:
+  - category: 아우터
+    desc: 롱 울코트 또는 퍼 칼라 코트
+  - category: 상의
+    desc: 벨벳 블라우스
+  - category: 하의
+    desc: 벨벳 스커트
+  - category: 가방
+    desc: 작은 미니백 또는 체인 숄더백
+  - category: 신발
+    desc: 앞코 뾰족한 펌프스
+  - category: 소품
+    desc: 리본 머리핀
+  title_hint: 연말 코디, 송년회와 크리스마스 약속에 입는 따뜻하고 분위기 있는 룩
+  type: 상황
+  why: 11월 들어 송년회·연말 약속을 미리 준비하는 시기. 10/23 파티룩은 반짝이 위주라 이번엔 코트·니트로 따뜻하게 꾸민 연말 약속룩
