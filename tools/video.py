@@ -73,6 +73,9 @@ class VideoRecord(BaseModel):
     looks: int = 0
     costs: dict[str, float] = {}  # "frame_3", "clip_3", "background", "music" → 달러
     notes: dict[str, list[str]] = {}  # 벌마다 사용자 고칠 점 ("3" → […], "all" → 모든 벌)
+    # 영상 지시문 단계 이후의 고칠 점. 그림 고칠 점(notes)은 첫 장면에 이미 반영되어
+    # 영상 지시문엔 넣지 않는다
+    motion_notes: dict[str, list[str]] = {}
     speed: float = 0  # 0 이면 profile video.speed
     order: list[int] = []  # 비면 LOOK 1, 2, …
     hook: str = ""  # 비면 컨셉 훅 문구
@@ -163,20 +166,24 @@ def concept_of(profile: Profile, day: dt.date, n: int = 0) -> Concept:
     return cs.concepts[n - 1]
 
 
-def notes_for(rec: VideoRecord, n: int) -> list[str]:
-    return [*rec.notes.get("all", []), *rec.notes.get(str(n), [])]
+def notes_for(rec: VideoRecord, n: int, motion: bool = False) -> list[str]:
+    d = rec.motion_notes if motion else rec.notes
+    return [*d.get("all", []), *d.get(str(n), [])]
 
 
-def add_notes(rec: VideoRecord, raw: list[str]) -> list[int]:
-    """'3:얼굴이 달라' (벌 번호:고칠 점) 또는 '고칠 점' (모든 벌). 고친 벌 번호를 돌려준다."""
+def add_notes(rec: VideoRecord, raw: list[str], motion: bool = False) -> list[int]:
+    """'3:얼굴이 달라' (벌 번호:고칠 점) 또는 '고칠 점' (모든 벌). 고친 벌 번호를 돌려준다.
+
+    motion 이면 영상 지시문 고칠 점 (첫 장면 그림 고칠 점과 따로 둔다)."""
+    d = rec.motion_notes if motion else rec.notes
     touched: list[int] = []
     for r in raw:
         head, sep, text = r.partition(":")
         if sep and head.strip().isdigit():
-            rec.notes.setdefault(head.strip(), []).append(text.strip())
+            d.setdefault(head.strip(), []).append(text.strip())
             touched.append(int(head))
         elif r.strip():
-            rec.notes.setdefault("all", []).append(r.strip())
+            d.setdefault("all", []).append(r.strip())
     return touched
 
 
@@ -372,7 +379,7 @@ def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: 
     shot = next((s for s in c.shots if s.look == n), None)
     motion = (shot.motion_en or f"{shot.action}, {shot.pose}") if shot else "She walks naturally"
     text = template("motion", **common(profile, c), items=items_en(run, n), motion=motion)
-    for note in notes_for(rec, n):
+    for note in notes_for(rec, n, motion=True):
         text += f"\nUser request (most important): {note}"
     return text
 
@@ -383,7 +390,7 @@ def prompts(profile: Profile, run: Path, notes: list[str] | None = None) -> Vide
     if rec is None:
         raise ValueError("첫 장면(frames)을 먼저 만들어 주세요")
     c = concept_of(profile, rec.date, rec.concept)
-    add_notes(rec, notes or [])
+    add_notes(rec, notes or [], motion=True)
     out = {str(n): motion_prompt(profile, run, c, rec, n) for n in range(1, rec.looks + 1)}
     (vdir(run) / "prompts.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), "utf-8")
     rec.step, rec.error = "prompts", ""
@@ -403,7 +410,7 @@ def clips(
     if rec is None:
         raise ValueError("첫 장면(frames)을 먼저 만들어 주세요")
     c = concept_of(profile, rec.date, rec.concept)
-    touched = add_notes(rec, notes or [])
+    touched = add_notes(rec, notes or [], motion=True)
     d = vdir(run)
     (d / "clips").mkdir(exist_ok=True)
     cfg = video_test.load_config()
@@ -779,7 +786,7 @@ def prompts_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord) -> st
         "벌마다",
     ]
     for s in c.shots:
-        extra = "; ".join(notes_for(rec, s.look))
+        extra = "; ".join(notes_for(rec, s.look, motion=True))
         lines.append(
             f"• LOOK {s.look} ({s.seconds:g}초): {s.action} → {s.pose}"
             + (f" (요청: {extra})" if extra else "")
