@@ -53,6 +53,10 @@ on:
         description: API 없이 흐름만 (가짜 그림·영상)
         type: boolean
         default: false
+      telegram:
+        description: 텔레그램으로 보내기 (끄면 진행·결과·실패 알림을 하나도 안 보냄. 클로드 스레드에서 진행할 때)
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -91,7 +95,7 @@ jobs:
       - name: 영상 만들기 (${{ inputs.step }})
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           args=(--account "$ACCOUNT" --run "/tmp/results/$RUN" --face "/tmp/results/flow/$ACCOUNT/face.jpg")
@@ -130,7 +134,7 @@ jobs:
       - name: 실패 알림
         if: failure() || cancelled()
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEXT: "[${{ inputs.account }}] ${{ inputs.date }} 코디 영상(${{ inputs.step }}) 실패: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             /retry 를 보내면 다시 시도해요"
