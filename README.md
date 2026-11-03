@@ -1116,12 +1116,11 @@ Claude 는 `tools.comments`, `tools.link_page push`/`remove` 를 부를 수 없�
 2. **영상에 쓸 코디컷 → 확인**: 고른 코디로 벌마다 코디컷을 그려 보내요. profile `video.make` 와 `video.replace_post` 가
    켜져 있으면 캐러셀·캡션·릴스는 보내지 않고 벌 코디컷만 보내요. `/fix 3 …` 의 번호는 LOOK 번호예요.
    **`/ok` 는 게시가 아니라 영상 만들기**예요.
-3. **그림 계획 → 확인** (`tools.video plan`, 요금 없음): 빈 배경(장소·빛)과 벌마다 첫 장면(코디, 동작·포즈, 구도, 표정)을
+3. **그림 계획 → 확인** (`tools.video plan`, 요금 없음): 빈 배경(장소·빛)과 벌마다 첫 장면(코디, 동작·포즈, 구도)을
    글로 보내요. `/ok` 면 그려요. `/fix 배경 …`, `/fix 3 …`, `/fix …`(모든 벌) 은 계획만 고쳐 다시 보내요.
 4. **빈 배경 → 확인** (`tools.video background`, 약 $0.14): 빈 배경 한 장. `/ok` 면 첫 장면으로, `/fix …` 면 배경만 다시.
-5. **첫 장면 → 확인** (`tools.video frames`, 장당 약 $0.28): 얼굴 사진(`flow/<계정>/face.jpg`)에서 가장 큰 얼굴을
-   코드로 잘라요. 벌마다 첫 장면(얼굴 + 확정 코디컷 + 빈 배경, `video.frame_model`)을 그리고 얼굴만 한 번 더 고쳐요
-   (`video.face_edit`). `/ok`, `/fix 3 …`(그 벌만), `/fix …`(모든 벌), `/fix 배경 …`(빈 배경부터 다시 보여 줌).
+5. **첫 장면 → 확인** (`tools.video frames`, 장당 약 $0.28): 벌마다 확정 코디컷과 빈 배경 두 장을 넣고, 코디컷의 인물
+   (얼굴·머리·코디) 그대로 포즈만 바꿔 배경에 그려요 (`video.frame_model`). `/ok`, `/fix 3 …`(그 벌만), `/fix …`(모든 벌), `/fix 배경 …`(빈 배경부터 다시 보여 줌).
 6. **영상 지시문 → 확인** (`tools.video prompts`, 요금 없음): 한국어 요약과 영어 원문. `/ok`, `/fix 3 …`, `/fix …`.
 7. **영상·편집 → 확인** (`tools.video clips`, 벌마다 약 $0.65): `video.video_model`(Hailuo 3)로 벌마다 5초,
    코드 편집(벌마다 `clip_start` 초부터 컨셉 길이만큼, `video.speed` 배, 훅 문구·LOOK 번호). 소리 없는 결과 영상 하나

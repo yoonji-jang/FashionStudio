@@ -472,7 +472,6 @@ class Video(BaseModel):
     # 쓰는 모델 (config/models.yaml 의 generate.models / video.models 이름)
     background_model: str = "nano_banana_pro"  # 사람 없는 빈 배경 한 장
     frame_model: str = "nano_banana_pro"  # 벌마다 첫 장면 (얼굴 + 코디컷 + 빈 배경)
-    face_edit: bool = True  # 첫 장면을 그린 뒤 얼굴만 얼굴 사진처럼 한 번 더 고친다
     video_model: str = "hailuo_3_frame"  # 첫 장면을 움직이는 영상 모델
     # 영상 지시문에 늘 넣는 말 (영어).
     # 컨셉에 같은 칸(camera_en, pace_en, person_en)이 있으면 컨셉이 이긴다
