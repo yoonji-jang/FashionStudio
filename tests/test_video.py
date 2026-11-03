@@ -413,3 +413,12 @@ def test_background_edit_from_version(tmp_path, monkeypatch):
     assert video.bg_path(run, 3).read_bytes() == (d / "background.jpg").read_bytes()
     assert "3번째 (1번째를 고침)" in video.background_guide("[women] 10-28", r)
 
+
+
+def test_frame_notes_stay_out_of_motion_prompt():
+    r = rec()
+    video.add_notes(r, ["2:코트를 코디컷처럼"])  # 첫 장면 그림 고칠 점
+    video.add_notes(r, ["3:더 빨리 걷게"], motion=True)  # 영상 지시문 고칠 점
+    assert video.notes_for(r, 2) == ["코트를 코디컷처럼"]
+    assert video.notes_for(r, 2, motion=True) == []
+    assert video.notes_for(r, 3, motion=True) == ["더 빨리 걷게"]
