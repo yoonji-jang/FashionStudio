@@ -45,6 +45,10 @@ description: 움직이는 코디 영상의 컨셉 후보를 짠다. 코디 주�
      "긴 흑발 생머리", "1초에 약 2걸음, 보폭 살짝 크게". 기본은 video.md 와 profile `video` 의 같은 값.
    - `person_en`(표정·머리), `pace_en`(걷는 속도는 "about two steps per second" 처럼 숫자로),
      `camera_en`(카메라), `light_en`(빛·색감), `direction_en`(걷는 방향) 은 영상 AI 지시문에 들어가는 영어. 기본값과 같으면 비워도 된다.
+   - 벌마다 `start`(한국어)·`start_en`(영어): 첫 장면에서 인물이 어디에 얼마나 크게 서 있는지 (2026-11-03 사용자
+     "첫 장면부터 인물이 크면 어떻게 걸어온다는 거야? 복도 끝에서 걸어와야지"). 걸어 들어오는 동선이면 멀리서 작게
+     (예 "far down the corridor, walking toward the camera mid-stride, full body about 35% of the frame height"),
+     제자리 동작이면 비워 둔다 (기본: 가운데 전신, 화면 세로의 70~80%). `camera_en`·`framing` 에 크기를 고정해 적지 않는다.
    - 벌마다 `motion_en`: 그 벌 영상의 동작 한 문장 (영어). 영상은 벌마다 첫 장면 한 장에서 5초를 만들고
      편집에서 앞 3초쯤만 쓴다. 그래서 한 컷 안에서 끝나는 동작이어야 한다 (첫 장면에서 이미 걷는 중,
      걷다가 가방 고쳐 들기 등). 옷이 바뀌는 전환은 편집의 컷으로 이어지게 짠다.
