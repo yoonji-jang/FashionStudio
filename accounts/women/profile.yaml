@@ -526,8 +526,7 @@ video:
   pace_en: >-
     light, slightly quick, elegant strides, about two steps per second, a confident model walk
     (not slow, not trudging)
-  person_en: >-
-    cool, chic and aloof expression, a calm confident model face, at most a very faint smile
+  # 표정·머리 모양은 정해 두지 않는다: 얼굴 사진·코디컷 그대로 (2026-11-03 사용자)
   speed: 1.25              # AI 가 빨리 걸으라는 말을 약하게 따라서 편집에서 1.25배 (2026-10-30)
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용

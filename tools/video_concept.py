@@ -67,10 +67,11 @@ class Concept(BaseModel):
     # 인물·카메라·속도 (2026-11-02). 한국어는 텔레그램에 보이고,
     # 영어(_en)는 영상 만들 때 지시문에 들어간다.
     # 영어 칸이 비면 profile video 의 같은 칸을 쓴다
-    expression: str = ""  # 표정 ("살짝 도도하게, 아주 옅은 미소까지")
-    hair: str = ""  # 머리 ("긴 흑발 생머리")
+    # 표정·머리는 정해 두지 않는다 (2026-11-03 사용자). 예전 파일을 읽으려고 칸만 남김
+    expression: str = ""
+    hair: str = ""
     pace: str = ""  # 걷는 속도·리듬 ("1초에 약 2걸음, 보폭 살짝 크게")
-    person_en: str = ""  # 표정·머리 (영어)
+    person_en: str = ""  # 쓰지 않음 (2026-11-03)
     camera_en: str = ""  # 카메라 (영어)
     pace_en: str = ""  # 걷는 속도·리듬 (영어)
     light_en: str = ""  # 시간·빛·색감 (영어, 비면 background_en)
@@ -156,7 +157,7 @@ def concept_text(profile: Profile, cs: ConceptSet) -> str:
             f"   구도: {c.framing} · {c.light}",
             f"   동작: {c.motion}",
         ]
-        person = " · ".join(x for x in (c.expression, c.hair, c.pace) if x)
+        person = c.pace
         if person:
             lines.append(f"   인물: {person}")
         lines += [f"     LOOK {s.look} ({s.seconds:g}초) {s.action} → {s.pose}" for s in c.shots]

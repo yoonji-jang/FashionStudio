@@ -412,3 +412,41 @@ def test_background_edit_from_version(tmp_path, monkeypatch):
     assert first[0] > 200 and first[2] < 60  # 1번째(빨강)를 넣었다
     assert video.bg_path(run, 3).read_bytes() == (d / "background.jpg").read_bytes()
     assert "3번째 (1번째를 고침)" in video.background_guide("[women] 10-28", r)
+
+
+def test_zoom_box_only_for_small_faces():
+    from tools.video import zoom_box
+
+    assert zoom_box((1080, 1920), (500, 300, 800, 700)) is None  # 큰 얼굴: 전체로 고침
+    box = zoom_box((1080, 1920), (520, 700, 560, 750))  # 작은 얼굴: 둘레만
+    assert box is not None
+    left, top, right, bottom = box
+    assert right - left == bottom - top == 200
+    assert left <= 520 and right >= 560 and top <= 700 and bottom >= 750
+
+
+def test_face_fix_pastes_zoomed_crop(monkeypatch):
+    import io
+
+    from PIL import Image
+
+    import tools.faces
+    from tools import video
+
+    im = Image.new("RGB", (1080, 1920), (10, 10, 10))
+    buf = io.BytesIO()
+    im.save(buf, "JPEG")
+    monkeypatch.setattr(tools.faces, "find_faces", lambda img: [(520.0, 700.0, 560.0, 750.0)])
+
+    class Client:
+        def generate(self, model, prompt, refs):
+            assert Image.open(io.BytesIO(refs[0])).size == (video.FACE_ZOOM_PX, video.FACE_ZOOM_PX)
+            out = io.BytesIO()
+            Image.new("RGB", (1024, 1024), (250, 250, 250)).save(out, "JPEG")
+            return out.getvalue(), 0.1
+
+    data, cost = video.face_fix(Client(), "m", "p", buf.getvalue(), buf.getvalue())
+    res = Image.open(io.BytesIO(data))
+    assert res.size == (1080, 1920) and cost == 0.1
+    assert res.getpixel((540, 725))[0] > 200  # 얼굴 자리는 고친 그림
+    assert res.getpixel((100, 100))[0] < 40  # 나머지는 그대로

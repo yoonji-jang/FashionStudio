@@ -41,9 +41,10 @@ description: 움직이는 코디 영상의 컨셉 후보를 짠다. 코디 주�
 8. **`background_en`**: 나중에 장면 사진을 그릴 때 그대로 쓰는 영어 한두 문장 (장소, 자리, 시간, 빛).
    사람·글자는 넣지 않는다. 걷는 컨셉이면 길이 어느 쪽으로 나 있는지도 적는다 (첫 장면의 방향이 된다).
 9. **인물·속도** (2026-11-02, 영상을 만들 때 그대로 쓰인다):
-   - `expression`, `hair`, `pace` 는 한국어 한 줄 (텔레그램에 보임). 예: "살짝 도도하게, 아주 옅은 미소까지",
-     "긴 흑발 생머리", "1초에 약 2걸음, 보폭 살짝 크게". 기본은 video.md 와 profile `video` 의 같은 값.
-   - `person_en`(표정·머리), `pace_en`(걷는 속도는 "about two steps per second" 처럼 숫자로),
+   - 머리 모양·표정은 정하지 않는다. `expression`, `hair`, `person_en` 은 쓰지 않는다 (2026-11-03 사용자
+     "머리모양을 정해두지 마". 얼굴 사진·코디컷 그대로 그린다).
+   - `pace` 는 한국어 한 줄 (텔레그램에 보임). 예: "1초에 약 2걸음, 보폭 살짝 크게". 기본은 profile `video` 의 같은 값.
+   - `pace_en`(걷는 속도는 "about two steps per second" 처럼 숫자로),
      `camera_en`(카메라), `light_en`(빛·색감), `direction_en`(걷는 방향) 은 영상 AI 지시문에 들어가는 영어. 기본값과 같으면 비워도 된다.
    - 벌마다 `start`(한국어)·`start_en`(영어): 첫 장면에서 인물이 어디에 얼마나 크게 서 있는지 (2026-11-03 사용자
      "첫 장면부터 인물이 크면 어떻게 걸어온다는 거야? 복도 끝에서 걸어와야지"). 걸어 들어오는 동선이면 멀리서 작게
@@ -73,10 +74,7 @@ description: 움직이는 코디 영상의 컨셉 후보를 짠다. 코디 주�
   music_mood: "잔잔하고 설레는 어쿠스틱"
   hook: "연말 여행 코디, 남친이 찍어 줬어요"
   why: "퍼 자켓과 니트가 많은 겨울 코디라 눈 오는 골목에서 포근함이 잘 보임"
-  expression: "살짝 도도하게, 아주 옅은 미소까지"
-  hair: "긴 흑발 생머리"
   pace: "1초에 약 2걸음, 보폭 살짝 크게"
-  person_en: "long straight jet-black hair, cool chic aloof expression, at most a very faint smile"
   pace_en: "light, slightly quick strides, about two steps per second"
   direction_en: "walking along the alley from right to left"
   shots:
