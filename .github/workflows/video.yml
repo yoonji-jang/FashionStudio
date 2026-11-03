@@ -46,6 +46,9 @@ on:
       concept:
         description: 고른 영상 컨셉 번호 (비면 video_concepts.json 의 chosen)
         default: ""
+      model:
+        description: 영상 모델 비교 시험 (clips, config video.models 키. 결과는 clips_<모델>/)
+        default: ""
       fake:
         description: API 없이 흐름만 (가짜 그림·영상)
         type: boolean
@@ -91,7 +94,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          args=(--account "$ACCOUNT" --run "/tmp/results/$RUN")
+          args=(--account "$ACCOUNT" --run "/tmp/results/$RUN" --face "/tmp/results/flow/$ACCOUNT/face.jpg")
           [ -n "$LOOKS" ] && args+=(--looks $LOOKS)
           [ -n "$NOTE" ] && args+=(--note "$NOTE")
           [ "${{ inputs.background }}" = "true" ] && args+=(--background)
@@ -100,6 +103,7 @@ jobs:
           [ -n "$HOOK" ] && args+=(--hook "$HOOK")
           [ -n "$ORDER" ] && args+=(--order $ORDER)
           [ -n "${{ inputs.concept }}" ] && args+=(--concept "${{ inputs.concept }}")
+          [ -n "${{ inputs.model }}" ] && args+=(--model "${{ inputs.model }}")
           [ "${{ inputs.fake }}" = "true" ] && args+=(--fake)
           [ -n "$TELEGRAM_BOT_TOKEN" ] || args+=(--no-send)
           uv run python -m tools.video "$STEP" "${args[@]}"

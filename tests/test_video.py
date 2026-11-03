@@ -422,3 +422,11 @@ def test_frame_notes_stay_out_of_motion_prompt():
     assert video.notes_for(r, 2) == ["코트를 코디컷처럼"]
     assert video.notes_for(r, 2, motion=True) == []
     assert video.notes_for(r, 3, motion=True) == ["더 빨리 걷게"]
+
+
+def test_first_frame_with_face_has_no_gesture():
+    text = video.template(
+        "first_frame_face", camera_short="x", start="s", items="i", light="l", pose=video.FIRST_POSE
+    )
+    assert "image 1" in text and "image 2" in text and "image 3" in text
+    assert "no gesture" in text
