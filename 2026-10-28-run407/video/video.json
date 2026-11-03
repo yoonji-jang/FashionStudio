@@ -3,18 +3,18 @@
   "date": "2026-10-28",
   "run": "2026-10-28-run407",
   "step": "frames",
-  "sent_at": 1793690936,
+  "sent_at": 1793695511,
   "looks": 6,
   "costs": {
     "background": 0.1364,
     "background_4": 0.1377,
     "background_5": 0.1374,
-    "frame_1": 0.1391,
-    "frame_2": 0.14,
+    "frame_1": 0.1394,
+    "frame_2": 0.1411,
     "frame_3": 0.1412,
-    "frame_4": 0.1385,
-    "frame_5": 0.1394,
-    "frame_6": 0.1396,
+    "frame_4": 0.1395,
+    "frame_5": 0.14,
+    "frame_6": 0.1431,
     "clip_1": 0.65,
     "clip_2": 0.65,
     "clip_3": 0.65,
@@ -54,6 +54,11 @@
   "bg_versions": 5,
   "bg_base": 4,
   "stale": [
-    3
+    3,
+    1,
+    2,
+    4,
+    5,
+    6
   ]
 }
