@@ -275,3 +275,24 @@ def test_candidate_edit_resend_repeats_the_guide():
     text = "\n".join(pick.guide_lines(profile, 1, 6, 6))
     for word in ("/fix 1", "/draw 1", "지그재그 링크", '"얼굴"', '"참고"', "/skip", "다시"):
         assert word in text
+
+
+def test_preview_and_choose_without_telegram(tmp_path, store):  # noqa: F811
+    """클로드 스레드에서 진행할 때 (2026-11-03): 시트는 picks/preview/, 고른 벌만 남기기."""
+    from core.models import Look
+
+    base = daily(text=None)
+    looks = [Look(items=list(base.items), reason=f"{n}번 벌. 이유") for n in (1, 2, 3)]
+    plan = base.model_copy(update={"looks": looks, "items": []})
+    o = tmp_path / "out"
+    write_candidates(o, [plan])
+    paths = pick.preview(o, store)
+    assert [p.name for p in paths] == ["p1.jpg", "p2.jpg", "p3.jpg"]
+    assert all(p.exists() for p in paths)
+
+    f = o / "picks" / "p1.yaml"
+    pick.choose_file(f, [3, 1])
+    got = yaml.safe_load(f.read_text(encoding="utf-8"))
+    assert [lk["reason"] for lk in got["looks"]] == ["3번 벌. 이유", "1번 벌. 이유"]
+    with pytest.raises(ValueError):
+        pick.choose_file(f, [5])

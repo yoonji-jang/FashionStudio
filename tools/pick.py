@@ -461,6 +461,29 @@ def send(
     return record
 
 
+def preview(out: Path, store: Store) -> list[Path]:
+    """텔레그램 없이 진행할 때(클로드 스레드, 2026-11-03) 후보 시트를 picks/preview/ 에 둔다.
+    결과 브랜치에 올라가니 참고 사진 칸은 넣지 않는다 (사용자 사진은 클로드가 따로 붙여 보여 줌)."""
+    plans = load_candidates(out)
+    if not plans:
+        raise FileNotFoundError(f"코디 후보가 없습니다: {picks_dir(out)}")
+    dest = picks_dir(out) / "preview"
+    dest.mkdir(parents=True, exist_ok=True)
+    if plans[0].looks:
+        plan = plans[0]
+        made = [
+            sheet(plan.look_plan(n - 1), n, store, out, title=look.reason.split(". ")[0] or None)
+            for n, look in enumerate(plan.looks, 1)
+        ]
+    else:
+        made = [sheet(p, n, store, out) for n, p in enumerate(plans, 1)]
+    paths = []
+    for n, src in enumerate(made, 1):
+        paths.append(dest / f"p{n}.jpg")
+        paths[-1].write_bytes(src.read_bytes())
+    return paths
+
+
 # ---------- 후보 고치기 (/fix N 내용) ----------
 
 
@@ -971,6 +994,19 @@ def write_chosen(run_dir: Path, nums: list[int]) -> Path:
     return path
 
 
+def choose_file(path: Path, nums: list[int]) -> Path:
+    """여러 벌 기획 파일에서 고른 벌만 그 순서대로 남긴다 (클로드 스레드, 2026-11-03)."""
+    plan = DailyPlan.model_validate(yaml.safe_load(path.read_text(encoding="utf-8")))
+    if not plan.looks or any(not 1 <= n <= len(plan.looks) for n in nums):
+        raise ValueError(f"고른 번호가 후보 {len(plan.looks)}벌 밖입니다: {nums}")
+    chosen = plan.model_copy(update={"looks": [plan.looks[n - 1] for n in nums]})
+    path.write_text(
+        yaml.safe_dump(chosen.model_dump(mode="json", exclude_none=True), allow_unicode=True),
+        encoding="utf-8",
+    )
+    return path
+
+
 def check(
     profile: Profile,
     day: date,
@@ -1144,6 +1180,13 @@ def main(argv: list[str] | None = None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("validate")
     s.add_argument("out", type=Path)
+    s = sub.add_parser("choose", help="기획 파일에서 고른 벌만 남기기 (예: choose plan.yaml 1,3,5)")
+    s.add_argument("plan", type=Path)
+    s.add_argument("nums")
+    s = sub.add_parser(
+        "preview", help="텔레그램 없이: 후보 시트를 picks/preview/ 에 (클로드 스레드)"
+    )
+    s.add_argument("out", type=Path)
     s = sub.add_parser("send")
     s.add_argument("out", type=Path)
     s.add_argument("--run", required=True, help="결과 폴더 이름 (daily-results 브랜치)")
@@ -1192,6 +1235,10 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{record.run} ({record.account} {record.date}) 후보 {record.count}개")
             print(f"읽은 결정: {d.choice if d else '아직 없음'}" + (f" / {note}" if note else ""))
             return 0
+        if args.cmd == "choose":
+            nums = [int(x) for x in args.nums.replace(" ", "").split(",") if x]
+            print(f"고른 벌 {nums} → {choose_file(args.plan, nums)}")
+            return 0
         if args.cmd == "themes":
             profile, store = load_profile(args.account), Store(args.account)
             rec = send_themes(
@@ -1207,6 +1254,10 @@ def main(argv: list[str] | None = None) -> int:
             for n in validate(args.out, profile, store):
                 print(f"뺀 후보: {n}")
             print(f"후보 {len(candidate_paths(args.out))}개")
+            return 0
+        if args.cmd == "preview":
+            for f in preview(args.out, store):
+                print(f)
             return 0
         if args.cmd == "links":
             for p in add_links(args.out, store, date.today()):
