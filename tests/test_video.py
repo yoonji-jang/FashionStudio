@@ -424,9 +424,11 @@ def test_frame_notes_stay_out_of_motion_prompt():
     assert video.notes_for(r, 3, motion=True) == ["더 빨리 걷게"]
 
 
-def test_first_frame_with_face_has_no_gesture():
-    text = video.template(
-        "first_frame_face", camera_short="x", start="s", items="i", light="l", pose=video.FIRST_POSE
-    )
-    assert "image 1" in text and "image 2" in text and "image 3" in text
-    assert "no gesture" in text
+def test_templates_have_no_fixed_values():
+    text = video.template("first_frame_face", start="", items="i", light="")
+    assert "Start:" not in text and "Light:" not in text  # 빈 칸 줄은 지움
+    assert "image 1" in text and "image 3" in text
+    for name in ("first_frame", "first_frame_face", "motion", "background"):
+        raw = (video.PROMPTS / f"{name}.md").read_text(encoding="utf-8").lower()
+        for fixed in ("boyfriend", "percent", "stride", "smile", "snow", "walking"):
+            assert fixed not in raw, (name, fixed)

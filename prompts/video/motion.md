@@ -1,5 +1,8 @@
-Vertical 9:16 video, {camera_short}. Start exactly from the first frame.
-{motion}. All of this happens within this one clip, in order: walking first, then a short pause for the pose, then leaving. Movement pace: {pace}. Direction: {direction}.
-{camera}.
-Keep her face, hair and every outfit detail exactly as in the first frame: {items}.
-{light}. Only one person. No text, no logos, no watermark.
+Vertical 9:16 video. Start exactly from the first frame.
+{motion}.
+Movement pace: {pace}.
+Direction: {direction}.
+Camera: {camera}.
+OUTFIT (most important): keep every outfit detail exactly as in the first frame for the whole video, nothing changes or morphs: {items}. Keep her face and hair the same too.
+Light: {light}.
+Only one person. No text, no logos, no watermark.

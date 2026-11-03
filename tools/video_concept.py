@@ -245,7 +245,7 @@ def context(account: str, day: dt.date, plan: dict, feedback: str, store: Store)
             lines.append(f"이유: {theme.why}")
     lines += [
         "",
-        f"후보 수: {v.concepts}, 벌마다 {v.look_seconds:g}초, 음악: {v.music}",
+        f"후보 수: {v.concepts}, 음악: {v.music}",
         "",
         "## 고른 벌",
         looks_text(plan),
