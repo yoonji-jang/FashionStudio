@@ -359,7 +359,8 @@ jobs:
           if [ "$HAS_TELEGRAM" = true ]; then
             python -m tools.pick send-edit "out/$DATE" --run "$DATE-run$RUN"
           else
-            echo "::warning::텔레그램 설정이 없어 고친 후보를 보내지 않았습니다"
+            # 클로드 스레드에서 진행 (2026-11-03): 고친 시트를 결과 폴더 picks/preview/ 에 남긴다
+            python -m tools.pick preview "out/$DATE" || echo "::warning::후보 시트를 만들지 못했습니다"
           fi
 
       - name: Claude 피드백 반영 (fix-feed 스킬)

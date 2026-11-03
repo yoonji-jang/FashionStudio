@@ -580,7 +580,8 @@ def prepare_edit(spec: dict, prev: Path, out: Path) -> Path:
     dst.mkdir(parents=True, exist_ok=True)
     shutil.copy(src / "p1.yaml", dst / "p1.yaml")
     shutil.copy(src / "p1.yaml", dst / "before.yaml")
-    shutil.copy(src / "pick.json", dst / "prev_pick.json")
+    if (src / "pick.json").exists():  # 텔레그램 없이 만든 후보(클로드 스레드)에는 없다
+        shutil.copy(src / "pick.json", dst / "prev_pick.json")
     if (src / "refused.txt").exists():
         shutil.copy(src / "refused.txt", dst / "refused.txt")
     # 고른 참고 코디로 짠 후보면 벌 수 검사가 그 요청(count)을 따른다
