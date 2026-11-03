@@ -2,8 +2,8 @@
   "account": "women",
   "date": "2026-10-28",
   "run": "2026-10-28-run407",
-  "step": "final",
-  "sent_at": 1793686488,
+  "step": "frames",
+  "sent_at": 1793689665,
   "looks": 6,
   "costs": {
     "background": 0.1364,
@@ -11,7 +11,7 @@
     "background_5": 0.1374,
     "frame_1": 0.1391,
     "frame_2": 0.14,
-    "frame_3": 0.1401,
+    "frame_3": 0.1412,
     "frame_4": 0.1385,
     "frame_5": 0.1394,
     "frame_6": 0.1396,
@@ -50,5 +50,7 @@
   "concept": 1,
   "bg_versions": 5,
   "bg_base": 4,
-  "stale": []
+  "stale": [
+    3
+  ]
 }
