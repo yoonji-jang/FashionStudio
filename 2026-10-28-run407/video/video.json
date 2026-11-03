@@ -2,8 +2,8 @@
   "account": "women",
   "date": "2026-10-28",
   "run": "2026-10-28-run407",
-  "step": "frames",
-  "sent_at": 1793682985,
+  "step": "prompts",
+  "sent_at": 1793683630,
   "looks": 6,
   "costs": {
     "background": 0.1364,
