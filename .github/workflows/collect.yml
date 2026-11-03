@@ -37,6 +37,10 @@ on:
       user_photos:
         description: from_refs 때 사용자가 보낸 이 사진(JSON 목록, 텔레그램 파일 번호)의 참고 코디만 모으고 묶음은 보내지 않음
         default: ""
+      telegram:
+        description: 텔레그램으로 보내기 (끄면 진행·묶음·실패 알림을 하나도 안 보냄. 클로드 스레드에서 진행할 때)
+        type: boolean
+        default: true
   push:
     branches: ["claude/**"]
     paths: ["sources/**", "tools/scout.py", "tools/collect.py", "tools/photo_pick.py", "accounts/**", ".github/workflows/collect.yml"]
@@ -65,7 +69,7 @@ jobs:
 
       - name: 진행 알림 (한 시간 넘게 걸리면 한 시간마다 텔레그램, tools.progress)
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -144,7 +148,7 @@ jobs:
       - name: 참고 코디 사진 묶음 텔레그램으로
         if: inputs.from_refs && inputs.user_photos == ''
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
@@ -189,7 +193,7 @@ jobs:
       - name: 실패 알림
         if: (failure() || cancelled()) && github.event_name == 'workflow_dispatch'
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PINTEREST_APP_ID: ${{ secrets.PINTEREST_APP_ID }}
           PINTEREST_APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}

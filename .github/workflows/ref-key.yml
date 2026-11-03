@@ -1,0 +1,23 @@
+name: ref-key
+# 클로드 스레드 참고 사진을 잠글 공개 키를 출력한다 (tools.sealed, 2026-11-03).
+# 비밀값에서 만든 공개 키라 로그에 보여도 된다. config/ref_seal.pub 에 옮겨 둔다.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pubkey:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - name: 공개 키
+        env:
+          REF_SEAL_SEED: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          key=$(uv run python -m tools.sealed pubkey)
+          echo "REF_SEAL_PUB=$key"
+          echo "공개 키: \`$key\`" >> "$GITHUB_STEP_SUMMARY"
