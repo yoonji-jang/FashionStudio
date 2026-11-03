@@ -2,10 +2,12 @@
   "account": "women",
   "date": "2026-10-28",
   "run": "2026-10-28-run407",
-  "step": "plan",
-  "sent_at": 1793673675,
+  "step": "background",
+  "sent_at": 1793674711,
   "looks": 6,
-  "costs": {},
+  "costs": {
+    "background": 0.1372
+  },
   "notes": {},
   "speed": 0.0,
   "order": [],
