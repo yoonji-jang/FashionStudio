@@ -1159,7 +1159,16 @@ def main(argv: list[str] | None = None) -> int:
         elif args.step == "prompts":
             prompts(profile, args.run, notes)
         elif args.step == "clips":
-            clips(profile, args.run, args.looks, notes, args.fake, args.model, args.face)
+            if not args.model:
+                clips(profile, args.run, args.looks, notes, args.fake, "", args.face)
+            for key in args.model.split():  # 비교 시험은 여러 모델을 차례로, 하나가 실패해도 계속
+                try:
+                    clips(profile, args.run, args.looks, notes, args.fake, key, args.face)
+                except Exception as e:  # noqa: BLE001
+                    print(f"{key} 실패: {e}", file=sys.stderr)
+                    out = vdir(args.run) / f"clips_{key}"
+                    out.mkdir(parents=True, exist_ok=True)
+                    (out / "error.txt").write_text(f"{type(e).__name__}: {e}"[:1000], "utf-8")
             if args.model:
                 args.no_send = True  # 비교 시험은 텔레그램 확인 단계가 아님
         elif args.step == "edit":

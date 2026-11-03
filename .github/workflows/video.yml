@@ -103,7 +103,7 @@ jobs:
           [ -n "$HOOK" ] && args+=(--hook "$HOOK")
           [ -n "$ORDER" ] && args+=(--order $ORDER)
           [ -n "${{ inputs.concept }}" ] && args+=(--concept "${{ inputs.concept }}")
-          [ -n "${{ inputs.model }}" ] && args+=(--model "${{ inputs.model }}")
+          [ -n "${{ inputs.model }}" ] && args+=(--model "${{ inputs.model }}")  # 여러 개면 띄어 써서
           [ "${{ inputs.fake }}" = "true" ] && args+=(--fake)
           [ -n "$TELEGRAM_BOT_TOKEN" ] || args+=(--no-send)
           uv run python -m tools.video "$STEP" "${args[@]}"
