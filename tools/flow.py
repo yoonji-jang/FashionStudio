@@ -93,6 +93,7 @@ Stage = Literal[
     "rendering",
     "preview_wait",
     "publishing",
+    "video_concept",  # 이미 올린 게시물로 영상 (/영상 MM-DD): 컨셉 후보에 온 답을 기다림
     "video_making",  # 영상 단계(첫 장면·지시문·최종본)를 요청하고 결과를 기다림 (video.make)
     "video_wait",  # 영상 단계 결과에 온 답을 기다림 (/ok·/fix·/speed·/제목·/order·/music·/skip)
     "rules_plan",  # 피드백 반영 계획을 보냈거나 기다림 (/ok·/fix·/skip)
@@ -138,6 +139,9 @@ class FlowState(BaseModel):
     video_run: str = ""  # 영상을 만드는 결과 폴더 (daily-results <날짜>-run<번호>)
     video_upto: int = 0  # 영상 단계에 온 답을 여기(보낸 시각)까지 읽었다
     video_last: str = ""  # 마지막으로 요청한 video 워크플로 입력 (JSON, /retry 로 다시)
+    # 이미 올린 게시물로 영상 만들기 (2026-11-03 사용자 "4일 전에 올린 니트 여친룩으로 영상")
+    video_back: str = ""  # 영상을 마치면 돌아갈 단계·날짜 (JSON). 비면 보통 흐름
+    video_req_at: int = 0  # 이 시각까지 온 영상 요청은 처리함
     log: list[str] = []  # 단계 기록 (최근 30줄)
 
     def note(self, now: datetime, text: str) -> None:
@@ -348,6 +352,10 @@ def review_text(profile: Profile, st: FlowState) -> str:
         '• 고칠 점은 편하게 적어 주세요: "2번은 겨울 니트 레이어드로", "하나 더 넣어줘" '
         "→ 고친 목록을 다시 보내요",
         '• 남은 주제를 버리고 주간 후보를 새로 받으려면 "새로"',
+    ]
+    if profile.video.make:
+        lines.append('• 이미 올린 게시물로 영상부터 만들려면 "/영상 10-28" (그 게시 날짜)')
+    lines += [
         "답을 받을 때까지 기다려요 (한 시간 안에 확인)",
     ]
     return "\n".join(lines)
@@ -490,6 +498,7 @@ def tick(
         for line in (
             _rules_fix(profile, st, tg, send, now, dry_run),
             _face(st, results, tg, dry_run),
+            _video_request(profile, store, st, results, tg, now, dry_run),
         ):
             if line:
                 done.append(line)
@@ -1189,6 +1198,12 @@ def _step(
             return _video_start(st, run, send, ts)
         return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
 
+    if st.stage == "video_concept":
+        line = _concept(profile, store, st, tg, send, ts, dry_run, tag)
+        if not st.concept:
+            return line
+        return _video_start(st, st.video_run, send, ts)
+
     if st.stage in ("video_making", "video_wait"):
         return _video(profile, store, st, results, tg, send, now, dry_run, tag)
 
@@ -1229,6 +1244,79 @@ def _after_post(
 
 
 VIDEO_WF = "video.yml"  # 코디 영상 만들기 (tools.video)
+VIDEO_CMD = re.compile(r"^/(?:영상|video)(?:@\w+)?\s+(?:(\d{4})-)?(\d{1,2})-(\d{1,2})\s*$")
+VIDEO_FROM = ("theme_review", "theme_wait")  # 이 단계에서만 받는다 (주제 고르기 전, 하던 일이 없음)
+
+
+def video_request_file(store: Store) -> Path:
+    """이미 올린 게시물로 영상을 만들어 달라는 요청 ({"date": "YYYY-MM-DD", "at": 초}).
+    Claude 가 사용자 요청을 받아 커밋한다. 텔레그램 /영상 MM-DD 와 같다."""
+    return store.dir / "video_request.json"
+
+
+def _video_request(
+    profile: Profile, store: Store, st: FlowState, results: Path, tg, now: datetime, dry_run: bool
+) -> str:
+    """이미 올린 게시물로 영상 만들기 (2026-11-03 사용자). 주제를 고르기 전 단계에서만 받는다.
+    지금 단계·날짜를 기억해 두고, 그 게시물의 컨셉 → 영상 단계를 거친 뒤 돌아온다."""
+    from tools import publish
+
+    if st.stage not in VIDEO_FROM or not profile.video.make:
+        return ""
+    day: date | None = None
+    at = 0
+    f = video_request_file(store)
+    if f.exists():
+        req = json.loads(f.read_text(encoding="utf-8"))
+        if int(req.get("at", 0)) > st.video_req_at:
+            day, at = date.fromisoformat(req["date"]), int(req["at"])
+    if day is None and tg is not None:
+        for u in sorted(tg.updates(), key=lambda u: u.get("update_id", 0)):
+            msg = u.get("message") or {}
+            if str((msg.get("chat") or {}).get("id")) != str(tg.chat_id):
+                continue
+            if msg.get("date", 0) <= st.video_req_at:
+                continue
+            m = VIDEO_CMD.match((msg.get("text") or "").strip())
+            if m:
+                year = int(m.group(1) or (st.date or now.date()).year)
+                day, at = date(year, int(m.group(2)), int(m.group(3))), msg["date"]
+    if day is None:
+        return ""
+    st.video_req_at = max(st.video_req_at, at)
+    runs = sorted(results.glob(f"{day}-run*"), key=lambda d: int(d.name.rpartition("run")[2] or 0))
+    posted = [d for d in runs if (d / "published.json").exists()]
+    try:
+        run = posted[-1] if posted else publish.find_run(results, profile.id, day)
+    except FileNotFoundError:
+        if tg is not None:
+            tg.send(f"[{profile.id}] {day:%m-%d} 게시물 결과가 없어 영상을 만들 수 없어요")
+        return f"영상 요청: {day} 결과 없음"
+    back = {"stage": st.stage, "date": st.date.isoformat() if st.date else ""}
+    st.video_back = json.dumps(back)
+    st.date, st.pick, st.video_run, st.video_upto = day, f"{run.name}/plan", run.name, 0
+    st.concept_at = st.concept = st.concept_upto = 0
+    st.stage, st.alerted = "video_concept", False
+    if tg is not None:
+        tg.send(f"[{profile.id}] {day:%m-%d} 올린 게시물({run.name})로 영상을 만들어요. "
+                "영상 컨셉 후보부터 보내 드릴게요. "
+                "영상을 마치면 하던 주제 확인으로 돌아와요")  # fmt: skip
+    return f"이미 올린 게시물로 영상 ({run.name})"
+
+
+def _video_return(profile: Profile, st: FlowState, tg, ts: int) -> str:
+    """이미 올린 게시물의 영상을 마치고 하던 단계·날짜로 돌아간다."""
+    back = json.loads(st.video_back)
+    st.video_back = ""
+    st.date = date.fromisoformat(back["date"]) if back.get("date") else None
+    st.stage = back.get("stage") or "theme"
+    st.pick, st.concept_at, st.concept, st.concept_upto = "", 0, 0, 0
+    st.asked_at = st.read_upto = ts
+    if st.stage == "theme_review" and st.week and tg is not None:
+        tg.send(review_text(profile, st))
+    elif tg is not None:
+        tg.send(f"[{profile.id}] 하던 주제 고르기로 돌아왔어요. 앞서 보낸 후보에 답해 주세요")
+    return f"영상 마침, {st.stage} 로 돌아감"
 RETRY_WORDS = {"/retry", "다시 시도", "재시도"}
 
 
@@ -1305,12 +1393,16 @@ def _video(
     if r.kind == "skip":
         st.video_run = f"done:{st.date}"
         tg.send(f"{tag} 이 영상은 그만 만들고 다음으로 넘어갈게요")
+        if st.video_back:
+            return _video_return(profile, st, tg, ts)
         return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
     if r.kind == "ok" and rec.step == "final":
-        if profile.video.replace_post and not dry_run:
-            video.record_post(store, run)
         st.video_run = f"done:{st.date}"
         tg.send(f"{tag} 영상 /ok 확인했어요. 직접 올리신 것으로 보고 다음으로 넘어갈게요")
+        if st.video_back:  # 이미 올린 게시물의 영상: 게시 기록은 그대로, 하던 단계로
+            return _video_return(profile, st, tg, ts)
+        if profile.video.replace_post and not dry_run:
+            video.record_post(store, run)
         return _after_post(profile, store, st, results, tg, send, ts, dry_run, tag)
     # 같은 단계의 고칠 점이 여러 개 오면 한 번에 (예: /fix 3 …, /fix 5 …)
     fixes = [x for x in replies if x.kind in ("fix", "frame") and x.kind == r.kind]

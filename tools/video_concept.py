@@ -117,8 +117,11 @@ def write(store: Store, cs: ConceptSet) -> None:
 
 
 def plan_file(results: Path, pick: str) -> Path:
-    """고른 코디("<결과 폴더>/chosen" 또는 "/<번호>")의 기획 파일."""
+    """고른 코디("<결과 폴더>/chosen" 또는 "/<번호>")의 기획 파일.
+    "<결과 폴더>/plan" 은 만든(올린) 게시물의 최종 기획 (이미 올린 게시물로 영상, 2026-11-03)."""
     run, _, choice = pick.partition("/")
+    if choice == "plan":
+        return results / run / "plan.yaml"
     name = "chosen.yaml" if choice in ("", "chosen") else f"p{choice}.yaml"
     return results / run / "picks" / name
 

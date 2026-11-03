@@ -296,3 +296,66 @@ def test_video_preview_control_text():
     t = notify.control_text(m, p, False)
     assert "캐러셀은 없음" in t and "그림 계획" in t and "제목:" not in t
     assert "/fix 3" in t and "/cover" not in t and "/제목" not in t
+
+
+def test_video_from_published_post(env, monkeypatch):  # noqa: F811
+    """2026-11-03 사용자: 이미 올린 게시물(니트 여친룩)로 영상. 주제 확인 중에 요청하면
+    컨셉 → 영상 단계를 거친 뒤 하던 주제 확인으로 돌아온다 (게시 기록은 그대로)."""
+    from tests.test_flow import _concepts, theme
+    from tools import video_concept
+
+    monkeypatch.setattr(flow, "load_profile", _profile(10, video=True, review=True))
+    store, results, sent, _ = env
+    for name in ("2026-10-28-run406", "2026-10-28-run407"):
+        (results / name).mkdir()
+    (results / "2026-10-28-run407" / "published.json").write_text("{}", "utf-8")
+    posted = []
+    monkeypatch.setattr(video, "record_post", lambda s, run: posted.append(run.name))
+    st = flow.FlowState(account="women", stage="theme_review", date=date(2026, 11, 2),
+                        week=[theme(1)], asked_at=T0, read_upto=T0)  # fmt: skip
+    flow.save_state(results, st)
+    tg = FakeTg()
+    tg.text(1, "/영상 10-28", T0 + 100)
+    tick(env, tg, T0 + 200)
+    st = flow.load_state(results, "women")
+    assert st.stage == "video_concept" and st.date == date(2026, 10, 28)
+    want = {"account": "women", "date": "2026-10-28", "run": "2026-10-28-run407/plan",
+            "feedback": ""}  # fmt: skip
+    assert sent[-1] == ("video-concept.yml", want)
+    profile = flow.load_profile("women")
+    video_concept.save(profile, store, date(2026, 10, 28), _concepts(), looks=2, tg=tg,
+                       sent_at=T0 + 300)  # fmt: skip
+    tg.text(2, "1", T0 + 400)
+    tick(env, tg, T0 + 500)
+    assert sent[-1][0] == "video.yml" and sent[-1][1]["step"] == "plan"
+    assert sent[-1][1]["run"] == "2026-10-28-run407" and sent[-1][1]["concept"] == "1"
+    out = results / "2026-10-28-run407"
+    r = rec("final", sent_at=T0 + 600)
+    r.date = date(2026, 10, 28)
+    video.save_record(out, r)
+    tick(env, tg, T0 + 650)
+    tg.text(3, "/ok", T0 + 700)
+    tick(env, tg, T0 + 800)
+    st = flow.load_state(results, "women")
+    assert st.stage == "theme_review" and st.date == date(2026, 11, 2) and not st.video_back
+    assert posted == []  # 이미 올린 게시물이라 게시 기록은 건드리지 않음
+    assert st.read_upto == T0 + 800  # 영상 중에 온 답을 주제 답으로 읽지 않음
+    # 같은 요청은 다시 받지 않는다
+    tick(env, tg, T0 + 900)
+    assert flow.load_state(results, "women").stage == "theme_review"
+
+
+def test_video_request_file(env, monkeypatch):  # noqa: F811
+    monkeypatch.setattr(flow, "load_profile", _profile(10, video=True, review=True))
+    store, results, sent, _ = env
+    (results / "2026-10-28-run407").mkdir()
+    (results / "2026-10-28-run407" / "published.json").write_text("{}", "utf-8")
+    store.dir.mkdir(parents=True, exist_ok=True)
+    flow.video_request_file(store).write_text(
+        json.dumps({"date": "2026-10-28", "at": T0 + 50}), "utf-8"
+    )
+    flow.save_state(results, flow.FlowState(account="women", stage="theme_wait",
+                                            date=date(2026, 11, 2)))  # fmt: skip
+    tick(env, FakeTg(), T0 + 100)
+    st = flow.load_state(results, "women")
+    assert st.stage == "video_concept" and st.video_req_at == T0 + 50
