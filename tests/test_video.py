@@ -58,7 +58,8 @@ def test_action_by_step():
         "note": "3:얼굴이 달라",
     }
     bg = video.action(rec("frames"), Reply(kind="background", text="눈 더"))
-    assert bg == {"step": "background", "note": "배경:눈 더"}  # 빈 배경부터 보고 허락받기
+    # 빈 배경부터 보고 허락받기 (지금 배경에서 그 부분만 고침)
+    assert bg == {"step": "background", "note": "배경:눈 더", "base": "-1"}
     assert video.action(rec("prompts"), Reply(kind="ok")) == {"step": "clips"}
     assert video.action(rec("prompts"), Reply(kind="fix", text="빨리"))["step"] == "prompts"
     assert video.action(rec("final"), Reply(kind="speed", number=1.3)) == {
@@ -86,11 +87,20 @@ def test_action_plan_and_background():
         "note": "배경:바다",
     }
     assert video.action(rec("background"), ok) == {"step": "frames"}
+    # 2026-11-03 사용자 "첫 번째 이미지에 문 위치만 앞쪽으로": 말한 곳만 고친다
     assert video.action(rec("background"), Reply(kind="fix", text="눈 더")) == {
         "step": "background",
         "note": "배경:눈 더",
+        "base": "-1",
     }
-    assert video.action(rec("background"), Reply(kind="fix", look=3, text="x")) is None
+    first = video.parse("/fix 1 문 위치만 앞쪽으로", 6)
+    assert video.action(rec("background"), first) == {
+        "step": "background",
+        "note": "배경:문 위치만 앞쪽으로",
+        "base": "1",
+    }
+    new = Reply(kind="fix", text="새로 해변으로")
+    assert video.action(rec("background"), new) == {"step": "background", "note": "배경:해변으로"}
     # 첫 장면에서 배경을 고치면 빈 배경부터 다시 보여 준다
     assert video.action(rec("frames"), Reply(kind="background", text="눈 더"))["step"] == (
         "background"
@@ -359,3 +369,46 @@ def test_video_request_file(env, monkeypatch):  # noqa: F811
     tick(env, FakeTg(), T0 + 100)
     st = flow.load_state(results, "women")
     assert st.stage == "video_concept" and st.video_req_at == T0 + 50
+
+
+def test_background_edit_from_version(tmp_path, monkeypatch):
+    """고칠 때는 그 번째 배경을 넣고 말한 곳만 고친다.
+    예전 배경은 git 기록에서 번호를 붙여 꺼낸다."""
+    import subprocess
+
+    from tools.video_concept import Concept, Shot
+
+    run = tmp_path / "2026-10-28-run407"
+    d = run / "video"
+    d.mkdir(parents=True)
+    git = ["git", "-C", str(tmp_path), "-c", "user.name=t", "-c", "user.email=t@t"]
+    subprocess.run([*git[:3], "init", "-q"], check=True)
+    for color in ("red", "blue"):
+        Image.new("RGB", (8, 8), color).save(d / "background.jpg")
+        subprocess.run([*git, "add", "-A"], check=True)
+        subprocess.run([*git, "commit", "-qm", color], check=True)
+    r = rec("background")
+    calls = []
+
+    class Client:
+        def generate(self, model, prompt, images):
+            calls.append((prompt, images))
+            buf = io.BytesIO()
+            Image.new("RGB", (8, 8), "green").save(buf, "JPEG")
+            return buf.getvalue(), 0.13
+
+    import io
+
+    from core.profile import load_profile
+
+    shots = [Shot(look=1, seconds=2.5, action="a", pose="p")]
+    c = Concept(title="t", background="복도", background_en="hall", framing="f", light="l",
+                motion="m", hook="h", shots=shots)  # fmt: skip
+    video.make_background(load_profile("women"), run, r, c, Client(), {"nano_banana_pro": "x"},
+                          1, "문만 앞으로")  # fmt: skip
+    assert r.bg_versions == 3 and r.bg_base == 1
+    assert "Change only this: 문만 앞으로" in calls[0][0] and len(calls[0][1]) == 1
+    first = Image.open(io.BytesIO(calls[0][1][0])).convert("RGB").getpixel((4, 4))
+    assert first[0] > 200 and first[2] < 60  # 1번째(빨강)를 넣었다
+    assert video.bg_path(run, 3).read_bytes() == (d / "background.jpg").read_bytes()
+    assert "3번째 (1번째를 고침)" in video.background_guide("[women] 10-28", r)

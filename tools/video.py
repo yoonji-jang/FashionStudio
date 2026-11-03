@@ -83,6 +83,8 @@ class VideoRecord(BaseModel):
     error: str = ""  # 마지막 실패 (차례 흐름이 /retry 를 안내)
     error_at: int = 0
     concept: int = 0  # 고른 컨셉 번호 (0 이면 video_concepts.json 의 chosen)
+    bg_versions: int = 0  # 그린 빈 배경 수 (video/backgrounds/<번호>.jpg, 마지막이 지금 배경)
+    bg_base: int = 0  # 지금 배경이 몇 번째 배경을 고친 것인지 (0 이면 새로 그림)
     stale: list[int] = []  # 영상을 만든 뒤 첫 장면을 다시 그린 벌 (다음 clips 때 영상도 다시)
 
     def total(self) -> float:
@@ -258,29 +260,80 @@ def plan(
     return rec
 
 
-def make_background(profile: Profile, run: Path, rec: VideoRecord, c: Concept, client, models):
-    direction = f"The walking path runs {c.direction_en}." if c.direction_en else ""
-    prompt = template(
-        "background", background_en=c.background_en, light=c.light, direction_line=direction
-    )
-    for note in rec.notes.get("background", []):
-        prompt += f"\nUser request: {note}"
-    data, cost = client.generate(models[profile.video.background_model], prompt, [])
+def bg_path(run: Path, n: int) -> Path:
+    return vdir(run) / "backgrounds" / f"{n}.jpg"
+
+
+def backfill_backgrounds(run: Path, rec: VideoRecord) -> None:
+    """번호 붙은 배경이 없던 때(2026-11-03 전) 그린 배경을 git 기록에서 꺼내 1, 2, … 로 둔다."""
+    cur = vdir(run) / "background.jpg"
+    if rec.bg_versions or not cur.exists():
+        return
+    rel = cur.resolve()
+    blobs: list[bytes] = []
+    try:
+        top = subprocess.run(["git", "-C", str(run), "rev-parse", "--show-toplevel"],
+                             capture_output=True, text=True, check=True).stdout.strip()  # fmt: skip
+        path = str(rel.relative_to(Path(top).resolve()))
+        log = subprocess.run(["git", "-C", top, "log", "--reverse", "--format=%H", "--", path],
+                             capture_output=True, text=True, check=True).stdout.split()  # fmt: skip
+        for h in log:
+            out = subprocess.run(["git", "-C", top, "show", f"{h}:{path}"], capture_output=True)
+            if out.returncode == 0 and out.stdout and (not blobs or blobs[-1] != out.stdout):
+                blobs.append(out.stdout)
+    except (subprocess.CalledProcessError, ValueError, FileNotFoundError):
+        blobs = []
+    if not blobs or blobs[-1] != cur.read_bytes():
+        blobs.append(cur.read_bytes())
+    for i, b in enumerate(blobs, 1):
+        bg_path(run, i).parent.mkdir(parents=True, exist_ok=True)
+        bg_path(run, i).write_bytes(b)
+    rec.bg_versions = len(blobs)
+
+
+def make_background(
+    profile: Profile, run: Path, rec: VideoRecord, c: Concept, client, models,
+    base: int = 0, request: str = "",
+) -> None:  # fmt: skip
+    """빈 배경. base 가 있으면 그 번째 배경을 넣고 말한 곳만 고친다 (2026-11-03 사용자:
+    "첫 번째 이미지에 문 위치만 앞쪽으로"). 없으면 처음부터 새로 그린다."""
+    backfill_backgrounds(run, rec)
+    model = models[profile.video.background_model]
+    if base < 0:  # 지금 배경
+        base = rec.bg_versions
+    if base and request and bg_path(run, base).exists():
+        prompt = template("background_edit", request=request)
+        src = video_test.jpeg(bg_path(run, base).read_bytes())
+        data, cost = client.generate(model, prompt, [src])
+    else:
+        base = 0
+        direction = f"The walking path runs {c.direction_en}." if c.direction_en else ""
+        prompt = template(
+            "background", background_en=c.background_en, light=c.light, direction_line=direction
+        )
+        for note in rec.notes.get("background", []):
+            prompt += f"\nUser request: {note}"
+        data, cost = client.generate(model, prompt, [])
     vdir(run).mkdir(parents=True, exist_ok=True)
-    (vdir(run) / "background.jpg").write_bytes(video_test.jpeg(data, 1920))
-    rec.costs["background"] = round(cost or 0, 4)
+    img = video_test.jpeg(data, 1920)
+    (vdir(run) / "background.jpg").write_bytes(img)
+    rec.bg_versions += 1
+    bg_path(run, rec.bg_versions).parent.mkdir(parents=True, exist_ok=True)
+    bg_path(run, rec.bg_versions).write_bytes(img)
+    rec.bg_base = base
+    rec.costs[f"background_{rec.bg_versions}"] = round(cost or 0, 4)
 
 
 def background(
     profile: Profile, run: Path, notes: list[str] | None = None, fake: bool = False,
-    concept: int = 0,
+    concept: int = 0, base: int = 0, request: str = "",
 ) -> VideoRecord:  # fmt: skip
-    """② 빈 배경 한 장. /ok 를 받아야 첫 장면을 그린다."""
+    """② 빈 배경 한 장. /ok 를 받아야 첫 장면을 그린다. base·request: 그 번째 배경을 고치기."""
     rec = start_record(profile, run, concept)
     c = concept_of(profile, rec.date, rec.concept)
     add_notes(rec, notes or [])
     client, models = _gen_client(profile, fake)
-    make_background(profile, run, rec, c, client, models)
+    make_background(profile, run, rec, c, client, models, base, request)
     rec.step, rec.error = "background", ""
     save_record(run, rec)
     return rec
@@ -694,16 +747,26 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
     return "\n".join(lines)
 
 
+def bg_label(rec: VideoRecord) -> str:
+    n = rec.bg_versions or 1
+    return f"{n}번째" + (f" ({rec.bg_base}번째를 고침)" if rec.bg_base else "")
+
+
 def background_guide(tag: str, rec: VideoRecord) -> str:
-    return "\n".join(
-        [
-            f"{tag} 영상 빈 배경이에요. 첫 장면은 모두 이 배경 위에 그려요.",
-            f"• /ok → 벌마다 첫 장면 {rec.looks}장 그리기 (약 ${FRAME_COST * rec.looks:.2f})",
-            f"• /fix 눈이 더 많이 → 빈 배경 다시 그리기 (약 ${BG_COST:.2f})",
-            "• /skip → 이 영상은 만들지 않고 다음 주제로",
-            "답을 받을 때까지 기다려요",
-        ]
-    )
+    n = rec.bg_versions or 1
+    lines = [
+        f"{tag} 영상 빈 배경 {bg_label(rec)}이에요. 첫 장면은 모두 이 배경 위에 그려요.",
+        f"• /ok → 벌마다 첫 장면 {rec.looks}장 그리기 (약 ${FRAME_COST * rec.looks:.2f})",
+        f"• /fix 문을 앞쪽으로 → 지금({n}번째) 배경에서 그 부분만 고쳐요 (약 ${BG_COST:.2f})",
+    ]
+    if n > 1:
+        lines.append("• /fix 1 문을 앞쪽으로 → 1번째 배경에서 그 부분만 고쳐요")
+    lines += [
+        "• /fix 새로 해변으로 → 처음부터 새로 그려요",
+        "• /skip → 이 영상은 만들지 않고 다음 주제로",
+        "답을 받을 때까지 기다려요",
+    ]
+    return "\n".join(lines)
 
 
 def frames_guide(tag: str) -> str:
@@ -798,7 +861,7 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
         c = concept_of(profile, rec.date, rec.concept)
         tg.send(plan_text(tag, profile, c, rec, run))
     elif rec.step == "background":
-        tg.send_photos([d / "background.jpg"], f"{tag} 영상 빈 배경")
+        tg.send_photos([d / "background.jpg"], f"{tag} 영상 빈 배경 {bg_label(rec)}")
         tg.send(background_guide(tag, rec))
     elif rec.step == "frames":
         pics = [d / "frames" / f"look{n}.jpg" for n in range(1, rec.looks + 1)]
@@ -944,6 +1007,19 @@ def replies(updates: list[dict], chat_id: str, since: int) -> list[tuple[int, st
     return found
 
 
+NEW_BG = ("새로", "처음부터")
+
+
+def bg_fix(rec: VideoRecord, text: str, base: int) -> dict:
+    """빈 배경 고치기 요청 → 워크플로 입력. 기본은 지금 배경에서 말한 곳만 고치기."""
+    t = text.strip()
+    for w in NEW_BG:
+        if t.startswith(w):
+            rest = t[len(w):].strip(" ,.")
+            return {"step": "background", "note": f"배경:{rest}" if rest else ""}
+    return {"step": "background", "note": f"배경:{t}", "base": str(base or -1)}  # -1 = 지금 배경
+
+
 def action(rec: VideoRecord, reply: Reply, music: bool = True) -> dict | None:
     """답 → video 워크플로 입력 (step, looks, note, …). ok·skip 는 흐름이 따로 다룬다.
     그림은 그리기 전(plan)과 그린 뒤(background, frames) 모두 /ok 를 받아야 다음으로 (2026-11-02).
@@ -960,13 +1036,14 @@ def action(rec: VideoRecord, reply: Reply, music: bool = True) -> dict | None:
     elif rec.step == "background":
         if reply.kind == "ok":
             return {"step": "frames"}
-        if reply.kind in ("background", "fix") and not reply.look:
-            return {"step": "background", "note": f"배경:{reply.text}" if reply.text else ""}
+        if reply.kind in ("background", "fix") and reply.text:
+            # 말한 곳만 고친다: 번호가 있으면 그 번째 배경, 없으면 지금 배경 ("새로 …" 면 새로 그림)
+            return bg_fix(rec, reply.text, reply.look)
     elif rec.step == "frames":
         if reply.kind == "ok":
             return {"step": "prompts"}
-        if reply.kind == "background":
-            return {"step": "background", "note": f"배경:{reply.text}" if reply.text else ""}
+        if reply.kind == "background" and reply.text:
+            return bg_fix(rec, reply.text, 0)
         if reply.kind in ("fix", "frame"):
             return {"step": "frames", "looks": looks, "note": note}
     elif rec.step == "prompts":
@@ -1011,6 +1088,9 @@ def main(argv: list[str] | None = None) -> int:
         "--note", action="append", default=[], help="'3:고칠 점' 또는 '고칠 점' (모든 벌)"
     )
     ap.add_argument("--background", action="store_true", help="빈 배경부터 다시")
+    ap.add_argument(
+        "--base", type=int, default=0, help="이 번째 빈 배경에서 말한 곳만 고치기 (-1 = 지금 배경)"
+    )
     ap.add_argument("--speed", type=float)
     ap.add_argument("--hook")
     ap.add_argument("--order", type=int, nargs="*")
@@ -1032,7 +1112,8 @@ def main(argv: list[str] | None = None) -> int:
         elif args.step == "plan":
             plan(profile, args.run, notes, args.concept)
         elif args.step == "background":
-            background(profile, args.run, notes, args.fake, args.concept)
+            background(profile, args.run, notes, args.fake, args.concept, args.base,
+                       "; ".join(bg_notes))  # fmt: skip
         elif args.step in ("frames", "redo"):
             if args.face is None:
                 raise ValueError("--face 가 필요해요")
