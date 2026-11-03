@@ -426,10 +426,9 @@ def clips(
         texts[str(n)] = motion_prompt(profile, run, c, rec, n)
         if clip.exists() and n not in redo:
             continue
-        first = (d / "frames" / f"look{n}.jpg").read_bytes()
-        body = video_test.payload(model, {"aspect_ratio": "9:16"}, texts[str(n)], [], first)
+        body, texts[str(n)] = clip_body(run, c, n, model, texts[str(n)])
         video, cost, _ = client.make(body)
-        clip.write_bytes(video if not fake else _fake_clip(first))
+        clip.write_bytes(video if not fake else _fake_clip(look_image(run, n).read_bytes()))
         rec.costs[f"clip_{n}"] = round(cost or 0, 4)
         if n in rec.stale:
             rec.stale.remove(n)
@@ -441,22 +440,45 @@ def clips(
 
 
 REF_ROLES = (
-    "OUTFIT (most important): she wears exactly the outfit in image 2, copied item by item: "
-    "the same garments, colors, patterns, knit textures, collars, necklines, lengths, fit, "
-    "layering, shoes, bag and accessories, worn the same way. "
-    "Do not redesign, simplify, recolor or add anything.\n"
-    "FACE: her face is exactly the face in image 1. Hair as in image 2.\n"
-    "PLACE: image 3, the same place, light and camera angle (it has no people). "
-    "Ignore the backgrounds and poses of images 1 and 2."
+    "PERSON AND OUTFIT (most important): the woman in image 1 is the only person, exactly as "
+    "she is in image 1: the same face, hair, and the same outfit copied item by item: the same "
+    "garments, colors, patterns, knit textures, collars, necklines, lengths, fit, layering, "
+    "shoes, bag and accessories, worn the same way. Do not redesign, simplify, recolor or add "
+    "anything. Her face and outfit stay exactly like image 1 for the whole video, "
+    "nothing changes or morphs. Ignore the plain backdrop and the standing pose of image 1.\n"
+    "PLACE: image 2, the same place, light and camera angle (it has no people)."
 )
+
+
+def ref_motion(text: str) -> str:
+    """첫 장면 기준 지시문을 참고 사진 방식으로 (첫 장면 → image 1)."""
+    text = text.replace("Start exactly from the first frame.", "")
+    return text.replace("as in the first frame", "as in image 1")
+
+
+def clip_body(run: Path, c: Concept, n: int, model: dict, text: str) -> tuple[dict, str]:
+    """영상 AI 요청: 첫 장면 모델은 첫 장면 한 장, 참고 사진 모델은 코디컷·빈 배경 두 장.
+
+    2026-11-03 사용자: 중간 그림(첫 장면) 없이 코디컷 인물 그대로 배경에서 동작만 지시."""
+    if model.get("inputs") == "first_frame":
+        first = (vdir(run) / "frames" / f"look{n}.jpg").read_bytes()
+        return video_test.payload(model, {"aspect_ratio": "9:16"}, text, [], first), text
+    shot = next((s for s in c.shots if s.look == n), None)
+    start = f"Start: {shot.start_en.rstrip('.')}." if shot and shot.start_en else ""
+    text = "\n".join([REF_ROLES, start, ref_motion(text)])
+    refs = [
+        video_test.jpeg(look_image(run, n).read_bytes()),
+        video_test.jpeg((vdir(run) / "background.jpg").read_bytes()),
+    ]
+    return video_test.payload(model, {"aspect_ratio": "9:16"}, text, refs), text
 
 
 def compare_clips(profile, run, rec, c, model: dict, key: str, looks: list[int], fake: bool,
                   face: Path | None = None):  # fmt: skip
     """같은 지시문으로 다른 영상 모델 시험 (clips_<모델>/lookN.mp4).
 
-    첫 장면 모델은 첫 장면 한 장, 참고 사진 모델은 얼굴 사진·코디컷·빈 배경 세 장
-    (2026-11-03 사용자 "코디컷이랑 얼굴 이미지도 같이 넣어줘")."""
+    첫 장면 모델은 첫 장면 한 장, 참고 사진 모델은 코디컷·빈 배경 두 장
+    (2026-11-03 사용자: 중간 그림 없이 코디컷 인물 그대로 배경에서 움직이게)."""
     vcfg = video_test.load_config()["video"]
     client = (
         video_test.FakeVideoClient()
@@ -466,25 +488,10 @@ def compare_clips(profile, run, rec, c, model: dict, key: str, looks: list[int],
     out = vdir(run) / f"clips_{key}"
     out.mkdir(exist_ok=True)
     for n in looks:
-        text = motion_prompt(profile, run, c, rec, n)
-        first = (vdir(run) / "frames" / f"look{n}.jpg").read_bytes()
-        refs: list[bytes] = []
-        if model.get("inputs") != "first_frame":
-            if not (face and face.exists()):
-                raise ValueError("참고 사진 모델은 얼굴 사진(--face)이 필요해요")
-            shot = next((s for s in c.shots if s.look == n), None)
-            start = f"Start: {shot.start_en.rstrip('.')}." if shot and shot.start_en else ""
-            text = "\n".join(
-                [REF_ROLES, start, text.replace("Start exactly from the first frame.", "")]
-            )
-            refs = [
-                video_test.jpeg(face.read_bytes()),
-                video_test.jpeg(look_image(run, n).read_bytes()),
-                video_test.jpeg((vdir(run) / "background.jpg").read_bytes()),
-            ]
-        body = video_test.payload(model, {"aspect_ratio": "9:16"}, text, refs, first)
+        body, text = clip_body(run, c, n, model, motion_prompt(profile, run, c, rec, n))
         video, cost, _ = client.make(body)
-        (out / f"look{n}.mp4").write_bytes(video if not fake else _fake_clip(first))
+        fake_src = look_image(run, n).read_bytes()
+        (out / f"look{n}.mp4").write_bytes(video if not fake else _fake_clip(fake_src))
         (out / f"look{n}.txt").write_text(text, encoding="utf-8")
         rec.costs[f"clip_{key}_{n}"] = round(cost or 0, 4)
     save_record(run, rec)
