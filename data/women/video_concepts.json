@@ -31,7 +31,7 @@
           "text": "이렇게만 입어줘, 니트 여친룩",
           "motion_en": "She is already walking steadily toward the camera, stops at the center, flips her hair once and glances at the lens",
           "start": "복도 끝 쪽에서 걸어오는 중, 전신이 화면 세로의 약 35%",
-          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body about 35 percent of the frame height, centered in the corridor, with floor visible below her shoes"
+          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body only about 35 percent of the frame height (small, with lots of corridor floor in front of her), centered in the corridor"
         },
         {
           "look": 2,
@@ -41,7 +41,7 @@
           "text": "",
           "motion_en": "She walks toward the camera, stops at the center and gives a small turn so the coat sways",
           "start": "복도 끝 쪽에서 걸어오는 중, 전신이 화면 세로의 약 35%",
-          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body about 35 percent of the frame height, centered in the corridor, with floor visible below her shoes"
+          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body only about 35 percent of the frame height (small, with lots of corridor floor in front of her), centered in the corridor"
         },
         {
           "look": 3,
@@ -51,7 +51,7 @@
           "text": "",
           "motion_en": "She walks toward the camera, stops and lightly touches her hat brim while looking at the lens",
           "start": "복도 끝 쪽에서 걸어오는 중, 전신이 화면 세로의 약 35%",
-          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body about 35 percent of the frame height, centered in the corridor, with floor visible below her shoes"
+          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body only about 35 percent of the frame height (small, with lots of corridor floor in front of her), centered in the corridor"
         },
         {
           "look": 4,
@@ -61,7 +61,7 @@
           "text": "",
           "motion_en": "She walks toward the camera, stops and adjusts the chain strap of her bag on her shoulder",
           "start": "복도 끝 쪽에서 걸어오는 중, 전신이 화면 세로의 약 35%",
-          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body about 35 percent of the frame height, centered in the corridor, with floor visible below her shoes"
+          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body only about 35 percent of the frame height (small, with lots of corridor floor in front of her), centered in the corridor"
         },
         {
           "look": 5,
@@ -71,7 +71,7 @@
           "text": "",
           "motion_en": "She walks toward the camera, stops and tucks a loose strand of hair behind her ear",
           "start": "복도 끝 쪽에서 걸어오는 중, 전신이 화면 세로의 약 35%",
-          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body about 35 percent of the frame height, centered in the corridor, with floor visible below her shoes"
+          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body only about 35 percent of the frame height (small, with lots of corridor floor in front of her), centered in the corridor"
         },
         {
           "look": 6,
@@ -81,7 +81,7 @@
           "text": "",
           "motion_en": "She walks toward the camera, stops, smooths her belt with both hands and glances at the lens",
           "start": "복도 끝 쪽에서 걸어오는 중, 전신이 화면 세로의 약 35%",
-          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body about 35 percent of the frame height, centered in the corridor, with floor visible below her shoes"
+          "start_en": "she is far down the corridor near the end, walking toward the camera mid-stride, her full body only about 35 percent of the frame height (small, with lots of corridor floor in front of her), centered in the corridor"
         }
       ]
     },
