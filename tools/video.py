@@ -4,10 +4,10 @@ r"""코디 영상 만들기 (2026-11-02 사용자 "시작", 10/27 퍼 코디 영
 벌마다 첫 장면을 그리고, 그 장면을 영상 AI 로 움직여 이어 붙인다. 영상은 사용자가 직접 올린다.
 사람 확인은 텔레그램으로 단계마다 (컨셉은 tools.video_concept).
 그림은 그리기 전에 무엇을 그릴지 확인받고, 그린 뒤 /ok 를 받아야 다음으로 (2026-11-02 사용자):
-  ① plan       그릴 그림 계획 (빈 배경, 벌마다 첫 장면의 코디·동작·표정·크기) → 글 (요금 없음)
+  ① plan       그릴 그림 계획 (빈 배경, 벌마다 첫 장면의 코디·동작·크기) → 글 (요금 없음)
   ② background 빈 배경 한 장 → 사진
   ③ frames     얼굴 자르기(코드) + 벌마다 첫 장면(얼굴·코디컷·배경) + 얼굴만 고치기 → 사진 묶음
-  ④ prompts    벌마다 영상 지시문 (카메라·인물 크기·걷는 속도·표정·동작) → 한국어 요약과 원문
+  ④ prompts    벌마다 영상 지시문 (카메라·인물 크기·걷는 속도·동작) → 한국어 요약과 원문
   ⑤ clips      벌마다 영상(profile video.video_model) (+ 음악, video.music 이 lyria 일 때만)
                → 편집(edit) → 최종본·표지·캡션
      edit      코드 편집만 다시 (속도·제목·순서, 무료)
@@ -61,6 +61,9 @@ LAYOUT = REPO_ROOT / "config" / "layout.yaml"
 FONTS = REPO_ROOT / "assets" / "fonts"
 FACE_PAD = 0.6  # 얼굴 상자 둘레에 더 넣는 비율 (머리·턱선까지, 모음 사진의 옆 컷은 덜 들어가게)
 FACE_MIN_PX = 512
+FACE_ZOOM_BELOW = 0.12  # 첫 장면의 얼굴 높이가 화면의 이보다 작으면 얼굴 둘레만 잘라 키워서 고친다
+FACE_ZOOM_SIDE = 4.0  # 잘라낼 정사각형 한 변 = 얼굴 높이 × 이 값 (머리카락·어깨까지)
+FACE_ZOOM_PX = 1024
 
 Step = Literal["plan", "background", "frames", "prompts", "final"]
 
@@ -190,13 +193,11 @@ def template(name: str, **kw: str) -> str:
 
 def common(profile: Profile, c: Concept) -> dict[str, str]:
     v = profile.video
-    person = c.person_en or v.person_en
+    # 머리 모양·표정은 정해 두지 않는다: 얼굴 사진·코디컷 그대로 (2026-11-03 사용자)
     return {
         "camera": c.camera_en or v.camera_en,
         "camera_short": "a fashion shot like a boyfriend filming his girlfriend",
         "pace": c.pace_en or v.pace_en,
-        "person": person,
-        "expression": person,
         "direction": c.direction_en or "along the path",
         "light": c.light_en or c.background_en,
         "size": "70 to 80 percent",
@@ -379,9 +380,8 @@ def frames(
         data, cost = client.generate(models[v.frame_model], prompt, refs)
         total = cost or 0
         if v.face_edit:
-            edit = template("face_edit", expression=kw["expression"])
-            refs = [video_test.jpeg(data, 1920), video_test.jpeg(face_b)]
-            data, cost = client.generate(models[v.frame_model], edit, refs)
+            edit = template("face_edit")
+            data, cost = face_fix(client, models[v.frame_model], edit, data, face_b, fake)
             total += cost or 0
         (d / "frames" / f"look{n}.jpg").write_bytes(video_test.jpeg(data, 1920))
         rec.costs[f"frame_{n}"] = round(total, 4)
@@ -390,6 +390,51 @@ def frames(
     rec.step, rec.error = "frames", ""
     save_record(run, rec)
     return rec
+
+
+def zoom_box(size: tuple[int, int], face) -> tuple[int, int, int, int] | None:
+    """작게 나온 얼굴 둘레의 정사각형 (얼굴이 충분히 크면 None: 전체 사진으로 고친다)."""
+    w, h = size
+    x0, y0, x1, y1 = face
+    fh = max(x1 - x0, y1 - y0)
+    if fh >= h * FACE_ZOOM_BELOW:
+        return None
+    side = min(round(fh * FACE_ZOOM_SIDE), w, h)
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    left = min(max(0, round(cx - side / 2)), w - side)
+    top = min(max(0, round(cy - side / 2)), h - side)
+    return left, top, left + side, top + side
+
+
+def face_fix(client, model: str, prompt: str, data: bytes, face_b: bytes, fake: bool = False):
+    """얼굴만 얼굴 사진처럼 고친다. 얼굴이 작으면 얼굴 둘레만 잘라 키워 고친 뒤 제자리에 붙인다.
+
+    인물이 작게 나오는 장면(복도 끝에서 걸어오기)에서는 사진 전체로 고치면 얼굴이 거의 안 바뀐다.
+    """
+    from tools.faces import find_faces
+
+    im = Image.open(io.BytesIO(data)).convert("RGB")
+    boxes = [] if fake else find_faces(im)
+    box = zoom_box(im.size, max(boxes, key=lambda b: b[3] - b[1])) if boxes else None
+    if box is None:
+        refs = [video_test.jpeg(data, 1920), video_test.jpeg(face_b)]
+        return client.generate(model, prompt, refs)
+    crop = im.crop(box).resize((FACE_ZOOM_PX, FACE_ZOOM_PX), Image.Resampling.LANCZOS)
+    buf = io.BytesIO()
+    crop.save(buf, "JPEG", quality=95)
+    out, cost = client.generate(model, prompt, [buf.getvalue(), video_test.jpeg(face_b)])
+    side = box[2] - box[0]
+    fixed = Image.open(io.BytesIO(out)).convert("RGB")
+    fixed = fixed.resize((side, side), Image.Resampling.LANCZOS)
+    # 가장자리는 부드럽게 섞어 붙인 자국이 안 보이게
+    mask = Image.new("L", (side, side), 0)
+    edge = max(4, side // 8)
+    ImageDraw.Draw(mask).rectangle((edge, edge, side - edge, side - edge), fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(edge / 2))
+    im.paste(fixed, box[:2], mask)
+    res = io.BytesIO()
+    im.save(res, "JPEG", quality=95)
+    return res.getvalue(), cost
 
 
 def start_of(shot, size: str) -> str:
@@ -733,7 +778,6 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
         "얼굴 사진 + 확정 코디컷 + 빈 배경으로 그리고, 얼굴만 한 번 더 맞춰요",
         f"• 구도: {c.framing}"
         + ("" if any(s.start for s in c.shots) else " (인물은 화면 세로의 70~80%)"),
-        f"• 표정·머리: {' · '.join(x for x in (c.expression, c.hair) if x) or '살짝 도도하게'}",
     ]
     shots = {s.look: s for s in c.shots}
     for n in range(1, rec.looks + 1):
@@ -754,7 +798,7 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
         "• /ok → 빈 배경 그리기",
         "• /fix 배경 바다가 보이게 → 배경 계획 고치기 (요금 없음)",
         "• /fix 3 가방을 앞으로 들게 → LOOK 3 계획 고치기",
-        "• /fix 표정을 더 밝게 → 모든 벌 계획 고치기",
+        "• /fix 모두 가방을 앞으로 들게 → 모든 벌 계획 고치기",
         "• /skip → 이 영상은 만들지 않고 다음 주제로",
         "답을 받을 때까지 기다려요",
     ]
@@ -789,7 +833,7 @@ def frames_guide(tag: str) -> str:
             f"{tag} 영상 첫 장면이에요 (LOOK 1~ 순서). 영상은 이 장면에서 시작해요.",
             "• /ok → 영상 지시문을 보내 드려요 (요금 없음)",
             f"• /fix 3 얼굴이 달라 → LOOK 3 첫 장면만 다시 그려요 (약 ${FRAME_COST:.2f})",
-            "• /fix 표정을 더 도도하게 → 모든 벌 첫 장면을 다시 그려요",
+            "• /fix 모두 조금 더 작게 → 모든 벌 첫 장면을 다시 그려요",
             f"• /fix 배경 눈이 더 많이 → 빈 배경부터 다시 그려 보내 드려요 (약 ${BG_COST:.2f}, "
             "배경에 /ok 하면 첫 장면도 모두 다시)",
             "• /skip → 이 영상은 만들지 않고 다음 주제로",
@@ -808,7 +852,6 @@ def prompts_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord) -> st
         "공통",
         f"• 카메라: {c.framing}",
         f"• 걷는 속도: {c.pace or '1초에 약 2걸음, 보폭 살짝 크게'} (편집에서 {sp:g}배 빠르게)",
-        f"• 표정·머리: {' · '.join(x for x in (c.expression, c.hair) if x) or '살짝 도도하게'}",
         f"• 빛: {c.light}",
         "• 금지: 다가가기·줌·흔들림, 다른 사람, 글자, 로고",
         "",
