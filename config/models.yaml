@@ -70,9 +70,11 @@ video:
     grok_video:
       id: x-ai/grok-imagine-video
       name: Grok Imagine (xAI)              # 720p 초당 $0.07 + 사진당 $0.002
+      duration: 5
     happyhorse:
       id: alibaba/happyhorse-1.1
       name: HappyHorse 1.1 (Alibaba)        # 720p 초당 약 $0.12. 시험 2 가장 좋음, 그래도 옷·얼굴이 뭉개짐
+      duration: 5
     hailuo_3:
       id: minimax/hailuo-3
       name: Hailuo 3 (MiniMax)              # 2K 초당 $0.13 + 참고 사진당 $0.04, 5초부터
@@ -99,7 +101,7 @@ video:
       inputs: first_frame
     seedance_25_ref:
       id: bytedance/seedance-2.5
-      name: Seedance 2.5 참고 사진 (ByteDance)   # 얼굴·코디컷·빈 배경 세 장 (첫 장면 없이)
+      name: Seedance 2.5 참고 사진 (ByteDance)   # 코디컷·빈 배경 두 장 (첫 장면 없이). 실제 사람 같은 사진은 거부
       duration: 5
       resolution: 720p   # 480p·720p 만 (2026-11-03 시험)
     seedance_25:
