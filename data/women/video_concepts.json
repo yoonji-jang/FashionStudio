@@ -1,68 +1,224 @@
 {
   "account": "women",
-  "date": "2026-10-27",
-  "run": "2026-10-27-run374/chosen",
+  "date": "2026-10-28",
+  "run": "2026-10-28-run407/plan",
   "concepts": [
     {
-      "title": "햇살 드는 눈 내리는 숲",
-      "background": "키 큰 나무가 곧게 선 눈 덮인 숲 속 같은 자리, 나무 사이로 햇살이 들고 반짝이는 눈이 내림",
-      "background_en": "A quiet snowy forest of tall straight trees on a bright sunny winter day, warm sunbeams falling through the branches, snow sparkling as it drifts down, soft snow on the ground, no people, no signs.",
-      "framing": "세로, 눈높이, 몇 걸음 떨어져 남친이 찍어 준 듯한 거리, 전신이 화면 높이의 약 75%, 카메라 고정, 모델 한 명. 모델은 정해 둔 얼굴 사진의 모델, 이번엔 긴 흑발",
-      "light": "맑은 겨울 낮, 나무 사이로 드는 따뜻한 햇살, 얼굴과 머리에 닿는 빛, 반짝이는 눈, 밝고 포근한 톤",
+      "title": "가을 은행나무 산책길",
+      "background": "노란 은행잎이 옅게 깔린 한적한 공원 산책길, 오후 낮은 햇살",
+      "background_en": "A quiet park walkway lined with soft golden ginkgo trees on a calm autumn afternoon, a few fallen leaves on a pale stone path, low warm sunlight, no people, no signs. The path runs from right to left.",
+      "framing": "세로, 눈높이, 옆에서 따라가며 찍은 듯한 거리, 전신이 화면 높이의 약 75%, 모델은 늘 가운데",
+      "light": "오후 늦은 따뜻한 햇살, 부드러운 크림빛 색감",
       "motion": "걷기",
-      "music": "dreamy acoustic pop with soft bells and light piano, warm and sparkling winter mood, 96 BPM, instrumental, no vocals",
-      "music_mood": "포근하고 반짝이는 겨울 어쿠스틱",
-      "hook": "퍼 하나로 끝낸 겨울 여행룩",
-      "why": "사용자가 고른 배경 예시 2 (햇살 드는 눈 숲, 2026-10-30). 사용자 참고 사진처럼 흩날리는 눈과 햇살, 전신",
+      "music": "",
+      "music_mood": "",
+      "hook": "쌀쌀한 날엔 포근 니트",
+      "why": "부드러운 톤의 니트 6벌이라 연한 노랑 낙엽 길에서도 옷 색이 묻히지 않고 포근한 가을 느낌이 살아남",
+      "expression": "살짝 도도하게, 아주 옅은 미소까지",
+      "hair": "긴 흑발 생머리",
+      "pace": "1초에 약 2걸음, 보폭 살짝 크게",
+      "person_en": "long straight jet-black hair, cool chic aloof expression, at most a very faint smile",
+      "camera_en": "side-tracking shot at eye level, full body about 75% of frame height, model stays centered, no zoom, no shake",
+      "pace_en": "light, slightly quick strides, about two steps per second",
+      "light_en": "late afternoon warm sunlight, soft cream tones",
+      "direction_en": "walking along the path from right to left",
       "shots": [
         {
           "look": 1,
           "seconds": 3.0,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 잠깐 멈춰 카메라 보며 웃기",
-          "text": "퍼 하나로 끝낸 겨울 여행룩"
+          "action": "이미 걷는 중, 가운데서 카메라를 한 번 보고 왼쪽으로 계속 걸어 화면 밖으로 퇴장",
+          "pose": "걸으며 카메라 쪽으로 고개 돌려 옅게 웃기",
+          "text": "쌀쌀한 날엔 포근 니트",
+          "motion_en": "She is already walking steadily from right to left, glances at the camera once, and keeps walking"
         },
         {
           "look": 2,
           "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데를 지나며 숄더백 끈 고쳐 잡고 카메라 쪽 보기",
-          "text": ""
+          "action": "오른쪽에서 등장해 걷다가 왼쪽으로 퇴장",
+          "pose": "가운데를 지나며 코트 옷깃 잡고 카메라 보기",
+          "text": "",
+          "motion_en": "She walks in steadily from right to left, touches the coat collar with one hand, and keeps walking"
         },
         {
           "look": 3,
           "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 잠깐 멈춰 퍼 자켓 옷깃 잡고 고개 돌리기",
-          "text": ""
+          "action": "오른쪽에서 등장해 걷다가 왼쪽으로 퇴장",
+          "pose": "걸으며 모자 챙을 살짝 만지기",
+          "text": "",
+          "motion_en": "She walks from right to left and lightly touches the brim of her hat"
         },
         {
           "look": 4,
           "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 퍼 모자를 살짝 만지며 카메라 보기",
-          "text": ""
+          "action": "오른쪽에서 등장해 걷다가 왼쪽으로 퇴장",
+          "pose": "가운데서 어깨 너머로 돌아보기",
+          "text": "",
+          "motion_en": "She walks from right to left and looks back over her shoulder once"
         },
         {
           "look": 5,
           "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 머리를 넘기며 카메라 보고 웃기",
-          "text": ""
+          "action": "오른쪽에서 등장해 걷다가 왼쪽으로 퇴장",
+          "pose": "걸으며 머리 쪽 잔머리 넘기기",
+          "text": "",
+          "motion_en": "She walks from right to left and tucks a loose strand of hair behind her ear"
         },
         {
           "look": 6,
           "seconds": 2.5,
-          "action": "화면 오른쪽에서 등장해 왼쪽으로 걸어가 퇴장",
-          "pose": "가운데서 주머니에 손 넣고 어깨 너머로 카메라 보기",
-          "text": ""
+          "action": "오른쪽에서 등장해 걷다가 가운데서 잠깐 멈추고 왼쪽으로 퇴장",
+          "pose": "가운데서 잠깐 멈춰 가방 끈 고쳐 들기",
+          "text": "",
+          "motion_en": "She walks from right to left, pauses briefly and adjusts the strap of her bag, then walks on"
+        }
+      ]
+    },
+    {
+      "title": "해 질 녘 호텔 복도",
+      "background": "따뜻한 조명이 길게 이어지는 크림색 호텔 복도, 옅은 베이지 벽",
+      "background_en": "A long quiet hotel corridor with pale beige walls and a soft neutral runner, warm wall lamps glowing at dusk, no people, no signs, no logos. The corridor extends from left to right.",
+      "framing": "세로, 눈높이, 조금 떨어진 거리에서 따라가며 촬영, 전신이 화면 높이의 약 75%, 모델은 늘 가운데",
+      "light": "해 질 무렵 따뜻한 간접 조명, 호박빛 색감",
+      "motion": "걷기",
+      "music": "",
+      "music_mood": "",
+      "hook": "니트 여친룩 6벌 연달아",
+      "why": "차분한 베이지 복도라 아이보리부터 차콜까지 니트 색이 또렷하게 보이고 단정한 여친룩 분위기와 어울림",
+      "expression": "살짝 도도하게, 아주 옅은 미소까지",
+      "hair": "긴 흑발 생머리",
+      "pace": "1초에 약 2걸음, 보폭 살짝 크게",
+      "person_en": "long straight jet-black hair, cool chic aloof expression, at most a very faint smile",
+      "camera_en": "side-tracking shot at eye level, full body about 75% of frame height, model stays centered, no zoom, no shake",
+      "pace_en": "light, slightly quick strides, about two steps per second",
+      "light_en": "warm amber indirect lamp light at dusk",
+      "direction_en": "walking along the corridor from left to right",
+      "shots": [
+        {
+          "look": 1,
+          "seconds": 3.0,
+          "action": "이미 걷는 중, 가운데서 카메라를 보고 오른쪽으로 계속 걷다 문 앞 기둥 뒤로 퇴장",
+          "pose": "걸으며 카메라 보고 옅게 웃기",
+          "text": "니트 여친룩 6벌 연달아",
+          "motion_en": "She is already walking steadily from left to right and glances at the camera once"
+        },
+        {
+          "look": 2,
+          "seconds": 2.5,
+          "action": "기둥 뒤에서 나와 오른쪽으로 걷다 퇴장",
+          "pose": "가운데서 코트 자락을 살짝 잡고 돌기",
+          "text": "",
+          "motion_en": "She walks from left to right and gives a small turn so the coat sways"
+        },
+        {
+          "look": 3,
+          "seconds": 2.5,
+          "action": "기둥 뒤에서 나와 오른쪽으로 걷다 퇴장",
+          "pose": "걸으며 한 손으로 모자 만지기",
+          "text": "",
+          "motion_en": "She walks from left to right and lightly touches her hat"
+        },
+        {
+          "look": 4,
+          "seconds": 2.5,
+          "action": "기둥 뒤에서 나와 오른쪽으로 걷다 퇴장",
+          "pose": "가운데서 가방 체인을 어깨에 고쳐 걸기",
+          "text": "",
+          "motion_en": "She walks from left to right and adjusts the chain strap of her bag on her shoulder"
+        },
+        {
+          "look": 5,
+          "seconds": 2.5,
+          "action": "기둥 뒤에서 나와 오른쪽으로 걷다 퇴장",
+          "pose": "걸으며 어깨 너머로 돌아보기",
+          "text": "",
+          "motion_en": "She walks from left to right and looks back over her shoulder once"
+        },
+        {
+          "look": 6,
+          "seconds": 2.5,
+          "action": "기둥 뒤에서 나와 가운데서 잠깐 멈추고 오른쪽으로 퇴장",
+          "pose": "가운데서 잠깐 멈춰 허리 벨트 정리하고 카메라 보기",
+          "text": "",
+          "motion_en": "She walks from left to right, pauses briefly to smooth her belt, glances at the camera, then walks on"
+        }
+      ]
+    },
+    {
+      "title": "흐린 아침 강변 산책로",
+      "background": "안개 낀 이른 아침의 강변 산책로, 옅은 회청색 하늘과 낮은 나무 난간",
+      "background_en": "A calm riverside promenade on a misty early autumn morning, a pale paved path with a low wooden railing, soft blue-grey sky and bare faint trees in the distance, no people, no signs. The path runs from right to left.",
+      "framing": "세로, 눈높이보다 조금 위, 옆에서 따라가며 촬영, 전신이 화면 높이의 약 75%, 모델은 늘 가운데",
+      "light": "흐린 아침의 부드러운 확산광, 차분한 회청색과 따뜻한 옷 색의 대비",
+      "motion": "걷기",
+      "music": "",
+      "music_mood": "",
+      "hook": "오늘 뭐 입지? 니트 정답",
+      "why": "흐린 아침의 은은한 회청색 배경이라 아이보리와 핑크 계열 포근한 톤이 부드럽게 살아나고 단정한 느낌을 줌",
+      "expression": "살짝 도도하게, 아주 옅은 미소까지",
+      "hair": "긴 흑발 생머리",
+      "pace": "1초에 약 2걸음, 보폭 살짝 크게",
+      "person_en": "long straight jet-black hair, cool chic aloof expression, at most a very faint smile",
+      "camera_en": "side-tracking shot at eye level or slightly above, full body about 75% of frame height, model stays centered, no zoom, no shake",
+      "pace_en": "light, slightly quick strides, about two steps per second",
+      "light_en": "soft diffused overcast morning light, calm blue-grey tones",
+      "direction_en": "walking along the promenade from right to left",
+      "shots": [
+        {
+          "look": 1,
+          "seconds": 3.0,
+          "action": "이미 걷는 중, 가운데서 카메라를 한 번 보고 왼쪽으로 가로수 뒤로 퇴장",
+          "pose": "걸으며 머리를 한 번 넘기고 카메라 보기",
+          "text": "오늘 뭐 입지? 니트 정답",
+          "motion_en": "She is already walking steadily from right to left, flips her hair once and glances at the camera"
+        },
+        {
+          "look": 2,
+          "seconds": 2.5,
+          "action": "가로수 뒤에서 나와 왼쪽으로 걷다 퇴장",
+          "pose": "가운데서 옷깃을 여미고 카메라 보기",
+          "text": "",
+          "motion_en": "She walks from right to left and pulls the coat collar closer with one hand"
+        },
+        {
+          "look": 3,
+          "seconds": 2.5,
+          "action": "가로수 뒤에서 나와 왼쪽으로 걷다 퇴장",
+          "pose": "걸으며 모자 챙 만지고 옅게 웃기",
+          "text": "",
+          "motion_en": "She walks from right to left and lightly touches her hat brim"
+        },
+        {
+          "look": 4,
+          "seconds": 2.5,
+          "action": "가로수 뒤에서 나와 왼쪽으로 걷다 퇴장",
+          "pose": "가운데서 한 바퀴 살짝 돌아 니트 원피스 실루엣 보이기",
+          "text": "",
+          "motion_en": "She walks from right to left and makes a small turn so the dress silhouette shows"
+        },
+        {
+          "look": 5,
+          "seconds": 2.5,
+          "action": "가로수 뒤에서 나와 왼쪽으로 걷다 퇴장",
+          "pose": "걸으며 어깨 너머로 돌아보기",
+          "text": "",
+          "motion_en": "She walks from right to left and looks back over her shoulder once"
+        },
+        {
+          "look": 6,
+          "seconds": 2.5,
+          "action": "가로수 뒤에서 나와 가운데서 잠깐 멈추고 왼쪽으로 퇴장",
+          "pose": "가운데서 잠깐 멈춰 가방 고쳐 들기",
+          "text": "",
+          "motion_en": "She walks from right to left, pauses briefly to shift her bag in her hand, then walks on"
         }
       ]
     }
   ],
-  "feedback": "2026-10-30 사용자: 배경 예시 2(햇살 드는 눈 숲)로, 정해 둔 얼굴 모델, 이번엔 흑발",
-  "sent_at": 1793331256,
-  "message_ids": [],
-  "chosen": 1,
+  "feedback": "",
+  "sent_at": 1793669263,
+  "message_ids": [
+    2411
+  ],
+  "chosen": 0,
   "chosen_at": 0
 }
