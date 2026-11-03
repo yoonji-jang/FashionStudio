@@ -185,7 +185,11 @@ jobs:
             if [ "$MODE" = render ]; then
               # 번호면 p<번호>.yaml, 여러 벌 게시물(20단계)이면 고른 벌만 담은 chosen.yaml
               n="${PICK##*/}"
-              if [ -f "$src/$n.yaml" ]; then cp "$src/$n.yaml" "out/$DATE/plan.yaml"
+              if [[ "$n" == looks=* ]]; then
+                # 클로드 스레드에서 고른 벌 (예: <결과 폴더>/looks=1,3,5, 2026-11-03)
+                cp "$src/p1.yaml" "out/$DATE/plan.yaml"
+                uv run python -m tools.pick choose "out/$DATE/plan.yaml" "${n#looks=}"
+              elif [ -f "$src/$n.yaml" ]; then cp "$src/$n.yaml" "out/$DATE/plan.yaml"
               else cp "$src/p$n.yaml" "out/$DATE/plan.yaml"; fi
             else
               mkdir -p "out/$DATE/previous"
@@ -318,7 +322,8 @@ jobs:
           if [ "$HAS_TELEGRAM" = true ]; then
             python -m tools.pick send "out/$DATE" --run "$DATE-run$RUN" --round "$ROUND"
           else
-            echo "::warning::텔레그램 설정이 없어 후보를 보내지 않았습니다"
+            # 클로드 스레드에서 진행 (2026-11-03): 시트를 결과 폴더 picks/preview/ 에 남긴다
+            python -m tools.pick preview "out/$DATE" || echo "::warning::후보 시트를 만들지 못했습니다"
           fi
 
       - name: Claude 후보 고치기 (outfit-candidates 스킬 "후보 고치기")
