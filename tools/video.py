@@ -21,7 +21,7 @@ OpenRouter 요금이 나가므로 video 워크플로(차례 흐름이 부름)에
   python -m tools.video plan --account women --run … [--note "배경:눈이 더 많이"] [--concept 2]
   python -m tools.video background --account women --run … [--note "배경:…"]
   python -m tools.video frames  --account women --run /tmp/results/2026-10-27-run380 \
-      --face /tmp/results/flow/women/face.jpg [--looks 3 5] [--note "3:얼굴이 달라"] [--background]
+      [--looks 3 5] [--note "3:얼굴이 달라"] [--background]
   python -m tools.video prompts --account women --run … [--note "3:가방 고쳐 들기"]
   python -m tools.video clips   --account women --run … [--looks 2] [--note "2:더 빨리"]
   python -m tools.video edit    --account women --run … [--speed 1.3] [--hook "…"]
@@ -34,7 +34,6 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import io
 import json
 import os
 import re
@@ -59,11 +58,6 @@ from tools.video_concept import load as load_concepts
 PROMPTS = REPO_ROOT / "prompts" / "video"
 LAYOUT = REPO_ROOT / "config" / "layout.yaml"
 FONTS = REPO_ROOT / "assets" / "fonts"
-FACE_PAD = 0.6  # 얼굴 상자 둘레에 더 넣는 비율 (머리·턱선까지, 모음 사진의 옆 컷은 덜 들어가게)
-FACE_MIN_PX = 512
-FACE_ZOOM_BELOW = 0.12  # 첫 장면의 얼굴 높이가 화면의 이보다 작으면 얼굴 둘레만 잘라 키워서 고친다
-FACE_ZOOM_SIDE = 4.0  # 잘라낼 정사각형 한 변 = 얼굴 높이 × 이 값 (머리카락·어깨까지)
-FACE_ZOOM_PX = 1024
 
 Step = Literal["plan", "background", "frames", "prompts", "final"]
 
@@ -216,30 +210,6 @@ def _gen_client(profile: Profile, fake: bool):
     return client, gcfg["models"]
 
 
-def face_crop(face: Path) -> bytes:
-    """얼굴 사진(여러 컷 모음일 수 있음)에서 가장 크게 나온 얼굴 하나를 넉넉히 자른다. AI 없음."""
-    from tools.faces import find_faces
-
-    im = Image.open(face).convert("RGB")
-    boxes = find_faces(im)
-    if boxes:
-        x0, y0, x1, y1 = max(boxes, key=lambda b: (b[2] - b[0]) * (b[3] - b[1]))
-        cx, cy, side = (x0 + x1) / 2, (y0 + y1) / 2, max(x1 - x0, y1 - y0) * (1 + 2 * FACE_PAD)
-        box = (
-            max(0, round(cx - side / 2)),
-            max(0, round(cy - side / 2)),
-            min(im.width, round(cx + side / 2)),
-            min(im.height, round(cy + side / 2)),
-        )
-        im = im.crop(box)
-    if max(im.size) < FACE_MIN_PX:
-        s = FACE_MIN_PX / max(im.size)
-        im = im.resize((round(im.width * s), round(im.height * s)), Image.Resampling.LANCZOS)
-    buf = io.BytesIO()
-    im.save(buf, "JPEG", quality=92)
-    return buf.getvalue()
-
-
 def start_record(profile: Profile, run: Path, concept: int = 0) -> VideoRecord:
     """video.json 을 읽거나 새로 만든다 (고른 컨셉 번호·벌 수를 채움)."""
     m = manifest_of(run)
@@ -343,22 +313,23 @@ def background(
 def frames(
     profile: Profile,
     run: Path,
-    face: Path,
     looks: list[int] | None = None,
     notes: list[str] | None = None,
     redo_background: bool = False,
     fake: bool = False,
     concept: int = 0,
 ) -> VideoRecord:
-    """③ 얼굴 자르기 + 벌마다 첫 장면 (+ 얼굴만 고치기). 빈 배경이 없을 때만 배경도 그린다."""
+    """③ 벌마다 첫 장면: 확정 코디컷의 인물(얼굴·머리·코디) 그대로, 포즈만 바꿔 빈 배경에 그린다.
+
+    2026-11-03 사용자: "그냥 코디컷 넣고 얼굴이랑 코디 이대로 하고 포즈만 바꿔서
+    배경에 그리면 되잖아".
+    얼굴 사진 따로 넣기·얼굴 잘라 고치기는 하지 않는다. 빈 배경이 없을 때만 배경도 그린다."""
     rec = start_record(profile, run, concept)
     c = concept_of(profile, rec.date, rec.concept)
     touched = add_notes(rec, notes or [])
     todo = looks or touched or list(range(1, rec.looks + 1))
     d = vdir(run)
     (d / "frames").mkdir(parents=True, exist_ok=True)
-    (d / "face.jpg").write_bytes(face_crop(face))
-    face_b = (d / "face.jpg").read_bytes()
     client, models = _gen_client(profile, fake)
     kw = common(profile, c)
     v = profile.video
@@ -376,13 +347,8 @@ def frames(
         for note in notes_for(rec, n):
             prompt += f"\nUser request (most important): {note}"
         outfit = video_test.jpeg(look_image(run, n).read_bytes())
-        refs = [video_test.jpeg(face_b), outfit, video_test.jpeg(bg)]
-        data, cost = client.generate(models[v.frame_model], prompt, refs)
+        data, cost = client.generate(models[v.frame_model], prompt, [outfit, video_test.jpeg(bg)])
         total = cost or 0
-        if v.face_edit:
-            edit = template("face_edit")
-            data, cost = face_fix(client, models[v.frame_model], edit, data, face_b, fake)
-            total += cost or 0
         (d / "frames" / f"look{n}.jpg").write_bytes(video_test.jpeg(data, 1920))
         rec.costs[f"frame_{n}"] = round(total, 4)
         if (d / "clips" / f"look{n}.mp4").exists() and n not in rec.stale:
@@ -390,51 +356,6 @@ def frames(
     rec.step, rec.error = "frames", ""
     save_record(run, rec)
     return rec
-
-
-def zoom_box(size: tuple[int, int], face) -> tuple[int, int, int, int] | None:
-    """작게 나온 얼굴 둘레의 정사각형 (얼굴이 충분히 크면 None: 전체 사진으로 고친다)."""
-    w, h = size
-    x0, y0, x1, y1 = face
-    fh = max(x1 - x0, y1 - y0)
-    if fh >= h * FACE_ZOOM_BELOW:
-        return None
-    side = min(round(fh * FACE_ZOOM_SIDE), w, h)
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    left = min(max(0, round(cx - side / 2)), w - side)
-    top = min(max(0, round(cy - side / 2)), h - side)
-    return left, top, left + side, top + side
-
-
-def face_fix(client, model: str, prompt: str, data: bytes, face_b: bytes, fake: bool = False):
-    """얼굴만 얼굴 사진처럼 고친다. 얼굴이 작으면 얼굴 둘레만 잘라 키워 고친 뒤 제자리에 붙인다.
-
-    인물이 작게 나오는 장면(복도 끝에서 걸어오기)에서는 사진 전체로 고치면 얼굴이 거의 안 바뀐다.
-    """
-    from tools.faces import find_faces
-
-    im = Image.open(io.BytesIO(data)).convert("RGB")
-    boxes = [] if fake else find_faces(im)
-    box = zoom_box(im.size, max(boxes, key=lambda b: b[3] - b[1])) if boxes else None
-    if box is None:
-        refs = [video_test.jpeg(data, 1920), video_test.jpeg(face_b)]
-        return client.generate(model, prompt, refs)
-    crop = im.crop(box).resize((FACE_ZOOM_PX, FACE_ZOOM_PX), Image.Resampling.LANCZOS)
-    buf = io.BytesIO()
-    crop.save(buf, "JPEG", quality=95)
-    out, cost = client.generate(model, prompt, [buf.getvalue(), video_test.jpeg(face_b)])
-    side = box[2] - box[0]
-    fixed = Image.open(io.BytesIO(out)).convert("RGB")
-    fixed = fixed.resize((side, side), Image.Resampling.LANCZOS)
-    # 가장자리는 부드럽게 섞어 붙인 자국이 안 보이게
-    mask = Image.new("L", (side, side), 0)
-    edge = max(4, side // 8)
-    ImageDraw.Draw(mask).rectangle((edge, edge, side - edge, side - edge), fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(edge / 2))
-    im.paste(fixed, box[:2], mask)
-    res = io.BytesIO()
-    im.save(res, "JPEG", quality=95)
-    return res.getvalue(), cost
 
 
 def start_of(shot, size: str) -> str:
@@ -775,7 +696,7 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
     lines += [
         "",
         f"② 벌마다 첫 장면 {rec.looks}장 (장당 약 ${FRAME_COST:.2f}): "
-        "얼굴 사진 + 확정 코디컷 + 빈 배경으로 그리고, 얼굴만 한 번 더 맞춰요",
+        "확정 코디컷의 인물(얼굴·머리·코디) 그대로 포즈만 바꿔 빈 배경에 그려요",
         f"• 구도: {c.framing}"
         + ("" if any(s.start for s in c.shots) else " (인물은 화면 세로의 70~80%)"),
     ]
@@ -1139,7 +1060,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument(
         "--run", type=Path, required=True, help="결과 폴더 (daily-results 의 <날짜>-run<번호>)"
     )
-    ap.add_argument("--face", type=Path, help="얼굴 사진 (frames)")
+    ap.add_argument("--face", type=Path, help="쓰지 않음 (예전 호출 호환)")
     ap.add_argument("--looks", type=int, nargs="*")
     ap.add_argument(
         "--note", action="append", default=[], help="'3:고칠 점' 또는 '고칠 점' (모든 벌)"
@@ -1172,10 +1093,7 @@ def main(argv: list[str] | None = None) -> int:
             background(profile, args.run, notes, args.fake, args.concept, args.base,
                        "; ".join(bg_notes))  # fmt: skip
         elif args.step in ("frames", "redo"):
-            if args.face is None:
-                raise ValueError("--face 가 필요해요")
-            frames(profile, args.run, args.face, args.looks, notes, args.background, args.fake,
-                   args.concept)  # fmt: skip
+            frames(profile, args.run, args.looks, notes, args.background, args.fake, args.concept)
             if args.step == "redo":  # /frame N: 첫 장면부터 그 벌 영상까지
                 clips(profile, args.run, args.looks, None, args.fake)
         elif args.step == "prompts":

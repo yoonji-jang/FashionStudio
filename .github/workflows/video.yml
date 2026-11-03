@@ -91,7 +91,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          args=(--account "$ACCOUNT" --run "/tmp/results/$RUN" --face "/tmp/results/flow/$ACCOUNT/face.jpg")
+          args=(--account "$ACCOUNT" --run "/tmp/results/$RUN")
           [ -n "$LOOKS" ] && args+=(--looks $LOOKS)
           [ -n "$NOTE" ] && args+=(--note "$NOTE")
           [ "${{ inputs.background }}" = "true" ] && args+=(--background)
