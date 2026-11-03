@@ -97,6 +97,11 @@ video:
       duration: 6
       resolution: 1080p
       inputs: first_frame
+    seedance_25_ref:
+      id: bytedance/seedance-2.5
+      name: Seedance 2.5 참고 사진 (ByteDance)   # 얼굴·코디컷·빈 배경 세 장 (첫 장면 없이)
+      duration: 5
+      resolution: 1080p
     seedance_25:
       id: bytedance/seedance-2.5
       name: Seedance 2.5 (ByteDance)        # 초당 약 $0.10 (2026-11 새 모델)

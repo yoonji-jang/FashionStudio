@@ -188,20 +188,22 @@ def add_notes(rec: VideoRecord, raw: list[str], motion: bool = False) -> list[in
 
 
 def template(name: str, **kw: str) -> str:
+    """지시문 틀 채우기. 빈 칸의 줄("Label: ." 처럼 내용 없는 줄)은 지운다."""
     text = (PROMPTS / f"{name}.md").read_text(encoding="utf-8")
-    return text.format_map({k: (v or "").strip().rstrip(".") for k, v in kw.items()}).strip()
+    text = text.format_map({k: (v or "").strip().rstrip(".") for k, v in kw.items()})
+    empty = re.compile(r"([A-Za-z ()]+:)?\s*\.\s*|[A-Za-z ()]+:\s*")  # "Light: ." / "."
+    out = [ln for ln in text.splitlines() if not ln or not empty.fullmatch(ln)]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
 
 
 def common(profile: Profile, c: Concept) -> dict[str, str]:
-    v = profile.video
-    # 머리 모양·표정은 정해 두지 않는다: 얼굴 사진·코디컷 그대로 (2026-11-03 사용자)
+    # 고정값 없음 (2026-11-03 사용자): 크기·카메라·걸음·자세·동작 순서·표정·머리는 영상마다
+    # 컨셉 지시문에만 적는다. 틀에는 이미지 역할과 9:16·글자 금지만.
     return {
-        "camera": c.camera_en or v.camera_en,
-        "camera_short": "a fashion shot like a boyfriend filming his girlfriend",
-        "pace": c.pace_en or v.pace_en,
-        "direction": c.direction_en or "along the path",
+        "camera": c.camera_en,
+        "pace": c.pace_en,
+        "direction": c.direction_en,
         "light": c.light_en or c.background_en,
-        "size": "70 to 80 percent",
     }
 
 
@@ -285,10 +287,7 @@ def make_background(
         data, cost = client.generate(model, prompt, [src])
     else:
         base = 0
-        direction = f"The walking path runs {c.direction_en}." if c.direction_en else ""
-        prompt = template(
-            "background", background_en=c.background_en, light=c.light, direction_line=direction
-        )
+        prompt = template("background", background_en=c.background_en, light=c.light_en or c.light)
         for note in rec.notes.get("background", []):
             prompt += f"\nUser request: {note}"
         data, cost = client.generate(model, prompt, [])
@@ -352,8 +351,7 @@ def frames(
     name = "first_frame_face" if face_b else "first_frame"
     for n in todo:
         shot = shots.get(n)
-        prompt = template(name, **kw, items=items_en(run, n), pose=FIRST_POSE,
-                          start=start_of(shot, kw["size"]))  # fmt: skip
+        prompt = template(name, **kw, items=items_en(run, n), start=shot.start_en if shot else "")
         for note in notes_for(rec, n):
             prompt += f"\nUser request (most important): {note}"
         outfit = video_test.jpeg(look_image(run, n).read_bytes())
@@ -367,22 +365,6 @@ def frames(
     rec.step, rec.error = "frames", ""
     save_record(run, rec)
     return rec
-
-
-FIRST_POSE = (
-    "simply walking mid-stride with a long natural step, arms relaxed and swinging, "
-    "hands free; no gesture yet (she does not touch her hair, hat, bag or clothes)"
-)
-
-
-def start_of(shot, size: str) -> str:
-    """첫 장면의 인물 위치·크기. 컨셉에 없으면 기본 (사용자 요청이 있으면 그것이 먼저)."""
-    if shot is not None and shot.start_en:
-        return shot.start_en.strip().rstrip(".") + "."
-    return (
-        f"full body visible, the body fills about {size} of the frame height, centered, "
-        "with ground visible below her shoes (unless a user request below says otherwise)."
-    )
 
 
 def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: int) -> str:
@@ -415,6 +397,7 @@ def clips(
     notes: list[str] | None = None,
     fake: bool = False,
     model_key: str = "",
+    face: Path | None = None,
 ) -> VideoRecord:
     """④ 벌마다 첫 장면을 영상으로 (없는 벌, 또는 고칠 벌만) + 음악이 없으면 음악.
 
@@ -430,7 +413,7 @@ def clips(
     vcfg = cfg["video"]
     model = vcfg["models"][model_key or profile.video.video_model]
     if model_key:
-        return compare_clips(profile, run, rec, c, model, model_key, looks or [1], fake)
+        return compare_clips(profile, run, rec, c, model, model_key, looks or [1], fake, face)
     redo = set(looks or touched) | set(rec.stale)
     client = (
         video_test.FakeVideoClient()
@@ -457,8 +440,23 @@ def clips(
     return edit(profile, run)
 
 
-def compare_clips(profile, run, rec, c, model: dict, key: str, looks: list[int], fake: bool):
-    """같은 첫 장면·지시문으로 다른 영상 모델 시험 (clips_<모델>/lookN.mp4)."""
+REF_ROLES = (
+    "OUTFIT (most important): she wears exactly the outfit in image 2, copied item by item: "
+    "the same garments, colors, patterns, knit textures, collars, necklines, lengths, fit, "
+    "layering, shoes, bag and accessories, worn the same way. "
+    "Do not redesign, simplify, recolor or add anything.\n"
+    "FACE: her face is exactly the face in image 1. Hair as in image 2.\n"
+    "PLACE: image 3, the same place, light and camera angle (it has no people). "
+    "Ignore the backgrounds and poses of images 1 and 2."
+)
+
+
+def compare_clips(profile, run, rec, c, model: dict, key: str, looks: list[int], fake: bool,
+                  face: Path | None = None):  # fmt: skip
+    """같은 지시문으로 다른 영상 모델 시험 (clips_<모델>/lookN.mp4).
+
+    첫 장면 모델은 첫 장면 한 장, 참고 사진 모델은 얼굴 사진·코디컷·빈 배경 세 장
+    (2026-11-03 사용자 "코디컷이랑 얼굴 이미지도 같이 넣어줘")."""
     vcfg = video_test.load_config()["video"]
     client = (
         video_test.FakeVideoClient()
@@ -470,9 +468,24 @@ def compare_clips(profile, run, rec, c, model: dict, key: str, looks: list[int],
     for n in looks:
         text = motion_prompt(profile, run, c, rec, n)
         first = (vdir(run) / "frames" / f"look{n}.jpg").read_bytes()
-        body = video_test.payload(model, {"aspect_ratio": "9:16"}, text, [], first)
+        refs: list[bytes] = []
+        if model.get("inputs") != "first_frame":
+            if not (face and face.exists()):
+                raise ValueError("참고 사진 모델은 얼굴 사진(--face)이 필요해요")
+            shot = next((s for s in c.shots if s.look == n), None)
+            start = f"Start: {shot.start_en.rstrip('.')}." if shot and shot.start_en else ""
+            text = "\n".join(
+                [REF_ROLES, start, text.replace("Start exactly from the first frame.", "")]
+            )
+            refs = [
+                video_test.jpeg(face.read_bytes()),
+                video_test.jpeg(look_image(run, n).read_bytes()),
+                video_test.jpeg((vdir(run) / "background.jpg").read_bytes()),
+            ]
+        body = video_test.payload(model, {"aspect_ratio": "9:16"}, text, refs, first)
         video, cost, _ = client.make(body)
         (out / f"look{n}.mp4").write_bytes(video if not fake else _fake_clip(first))
+        (out / f"look{n}.txt").write_text(text, encoding="utf-8")
         rec.costs[f"clip_{key}_{n}"] = round(cost or 0, 4)
     save_record(run, rec)
     return rec
@@ -629,7 +642,9 @@ def edit(
         for i, n in enumerate(seq):
             clip = d / "clips" / f"look{n}.mp4"
             start = profile.video.clip_start
-            src = min(seconds.get(n, profile.video.look_seconds) * sp, _duration(clip) - start)
+            # 컨셉에 길이가 없으면 영상 전부
+            want = seconds.get(n) or (_duration(clip) - start) / sp
+            src = min(want * sp, _duration(clip) - start)
             png = tmp / f"o{n}.png"
             overlay_png(profile, n, hook_text if i == 0 else "", png)
             seg = tmp / f"s{i}.mp4"
@@ -1036,7 +1051,7 @@ def bg_fix(rec: VideoRecord, text: str, base: int) -> dict:
     t = text.strip()
     for w in NEW_BG:
         if t.startswith(w):
-            rest = t[len(w):].strip(" ,.")
+            rest = t[len(w) :].strip(" ,.")
             return {"step": "background", "note": f"배경:{rest}" if rest else ""}
     return {"step": "background", "note": f"배경:{t}", "base": str(base or -1)}  # -1 = 지금 배경
 
@@ -1144,7 +1159,7 @@ def main(argv: list[str] | None = None) -> int:
         elif args.step == "prompts":
             prompts(profile, args.run, notes)
         elif args.step == "clips":
-            clips(profile, args.run, args.looks, notes, args.fake, args.model)
+            clips(profile, args.run, args.looks, notes, args.fake, args.model, args.face)
             if args.model:
                 args.no_send = True  # 비교 시험은 텔레그램 확인 단계가 아님
         elif args.step == "edit":

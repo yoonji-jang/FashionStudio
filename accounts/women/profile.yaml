@@ -512,21 +512,13 @@ reels:
 video:
   enabled: true
   concepts: 3
-  look_seconds: 2.5        # 6벌 × 2.5초 ≈ 15초 + 앞뒤
   music: none              # 소리 없는 영상 한 편만 (2026-11-02 사용자 "음악은 없애줘". 전에는 lyria)
   budget_usd_month: 50     # 조율 가능 (2026-10-29 사용자)
   # 영상 만들기 (2026-11-02 사용자 "시작", 10/27 퍼 코디로 정한 방식): 첫 장면 → 지시문 → Hailuo 3 → 편집
   make: true
   replace_post: true       # 영상이 캐러셀 게시를 대신함. 영상은 사용자가 직접 올림
   video_model: hailuo_3_frame   # 걷는 방향·속도·구도가 가장 좋았음 (2026-10-30 사용자)
-  camera_en: >-
-    The camera travels alongside her at a constant distance, like a boyfriend filming his girlfriend.
-    She stays exactly the same size in the frame from start to end: no push-in, no zoom-in, no dolly
-    toward her, no shake, no cuts. The background slides past naturally.
-  pace_en: >-
-    long confident runway strides, big steps with straight legs reaching forward, smooth and steady
-    with no bouncing, no waddling, no small shuffling steps, about one and a half steps per second
-  # 표정·머리 모양은 정해 두지 않는다: 얼굴 사진·코디컷 그대로 (2026-11-03 사용자)
+  # 크기·카메라·걸음·자세·동작 순서·표정·머리는 고정하지 않는다. 영상마다 컨셉 지시문에 자세히 적는다 (2026-11-03 사용자)
   speed: 1.0               # 2026-11-03 사용자 "보폭이 너무 작고 뒤뚱거려": 1.25배로 돌리면 종종걸음처럼 보여 배속 없앰
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용

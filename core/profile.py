@@ -458,7 +458,7 @@ class Video(BaseModel):
 
     enabled: bool = False
     concepts: int = Field(default=3, ge=1, le=5)  # 한 번에 보내는 컨셉 후보 수
-    look_seconds: float = Field(default=2.5, gt=1, le=10)  # 벌 하나가 나오는 길이 (초)
+    look_seconds: float = Field(default=2.5, gt=1, le=10)  # 쓰지 않음 (컨셉 seconds)
     # 배경 음악. lyria: 컨셉마다 음악 AI(Lyria 3 Clip)로 새 연주곡 / own: 코드로 만든 우리 음원
     # (reels.music_dir) / none: 소리 없는 영상 (사용자가 앱에서 음악을 붙임)
     music: Literal["lyria", "own", "none"] = "lyria"
@@ -480,7 +480,7 @@ class Video(BaseModel):
     person_en: str = ""
     # 편집: 벌마다 영상의 clip_start 초부터 잘라 speed 배로 빠르게 (AI 가 걷는 속도를 약하게 따름).
     # 벌 길이는 컨셉 장면의 seconds (최종 영상 기준)
-    clip_start: float = Field(default=0.2, ge=0, le=3)
+    clip_start: float = Field(default=0, ge=0, le=3)
     speed: float = Field(default=1.25, ge=0.5, le=2)
 
 
