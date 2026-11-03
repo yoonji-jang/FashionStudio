@@ -87,11 +87,21 @@ video:
     # 첫 장면 한 장을 움직이는 모델 (inputs: first_frame). 얼굴·옷 디테일이 첫 장면 그대로 남는다
     kling_pro:
       id: kwaivgi/kling-v3.0-pro
-      name: Kling 3.0 Pro (Kuaishou)        # 720p 초당 $0.112
+      name: Kling 3.0 Pro (Kuaishou)        # 초당 약 $0.168 (2026-11 OpenRouter)
+      duration: 5
+      resolution: 1080p
       inputs: first_frame
     veo_fast:
       id: google/veo-3.1-fast
-      name: Veo 3.1 Fast (Google)           # 720p 소리 없이 초당 $0.08
+      name: Veo 3.1 Fast (Google)           # 소리 없이 초당 약 $0.10, 4·6·8초
+      duration: 6
+      resolution: 1080p
+      inputs: first_frame
+    seedance_25:
+      id: bytedance/seedance-2.5
+      name: Seedance 2.5 (ByteDance)        # 초당 약 $0.10 (2026-11 새 모델)
+      duration: 5
+      resolution: 1080p
       inputs: first_frame
 
 # 음악 AI (2026-10-30 코디 영상 음악, 사용자: Lyria). 30초 연주곡 한 곡 $0.04

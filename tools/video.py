@@ -325,12 +325,14 @@ def frames(
     redo_background: bool = False,
     fake: bool = False,
     concept: int = 0,
+    face: Path | None = None,
 ) -> VideoRecord:
-    """③ 벌마다 첫 장면: 확정 코디컷의 인물(얼굴·머리·코디) 그대로, 포즈만 바꿔 빈 배경에 그린다.
+    """③ 벌마다 첫 장면: 얼굴 사진의 얼굴 + 확정 코디컷의 머리·코디로, 빈 배경에서 걷는 중인 모습.
 
-    2026-11-03 사용자: "그냥 코디컷 넣고 얼굴이랑 코디 이대로 하고 포즈만 바꿔서
-    배경에 그리면 되잖아".
-    얼굴 사진 따로 넣기·얼굴 잘라 고치기는 하지 않는다. 빈 배경이 없을 때만 배경도 그린다."""
+    2026-11-03 사용자: 코디컷 그대로 포즈만 바꿔 배경에 그린다 (잘라 붙이기 없음),
+    얼굴은 사용자가 만든 얼굴(flow/<계정>/face.jpg)로 모든 벌 통일.
+    첫 장면은 걷는 중일 뿐 포즈 동작(모자 잡기 등)은 하지 않는다: 포즈는 영상에서 멈춘 뒤에.
+    빈 배경이 없을 때만 배경도 그린다."""
     rec = start_record(profile, run, concept)
     c = concept_of(profile, rec.date, rec.concept)
     touched = add_notes(rec, notes or [])
@@ -346,15 +348,17 @@ def frames(
         todo = list(range(1, rec.looks + 1))  # 배경이 바뀌면 첫 장면도 모두 새로
     bg = bg_path.read_bytes()
     shots = {s.look: s for s in c.shots}
+    face_b = video_test.jpeg(face.read_bytes()) if face and face.exists() else None
+    name = "first_frame_face" if face_b else "first_frame"
     for n in todo:
         shot = shots.get(n)
-        pose = (shot.motion_en or f"{shot.action}, {shot.pose}") if shot else "walking mid-stride"
-        prompt = template("first_frame", **kw, items=items_en(run, n), pose=pose,
+        prompt = template(name, **kw, items=items_en(run, n), pose=FIRST_POSE,
                           start=start_of(shot, kw["size"]))  # fmt: skip
         for note in notes_for(rec, n):
             prompt += f"\nUser request (most important): {note}"
         outfit = video_test.jpeg(look_image(run, n).read_bytes())
-        data, cost = client.generate(models[v.frame_model], prompt, [outfit, video_test.jpeg(bg)])
+        refs = [face_b, outfit, video_test.jpeg(bg)] if face_b else [outfit, video_test.jpeg(bg)]
+        data, cost = client.generate(models[v.frame_model], prompt, refs)
         total = cost or 0
         (d / "frames" / f"look{n}.jpg").write_bytes(video_test.jpeg(data, 1920))
         rec.costs[f"frame_{n}"] = round(total, 4)
@@ -363,6 +367,12 @@ def frames(
     rec.step, rec.error = "frames", ""
     save_record(run, rec)
     return rec
+
+
+FIRST_POSE = (
+    "simply walking mid-stride with a long natural step, arms relaxed and swinging, "
+    "hands free; no gesture yet (she does not touch her hair, hat, bag or clothes)"
+)
 
 
 def start_of(shot, size: str) -> str:
@@ -404,8 +414,11 @@ def clips(
     looks: list[int] | None = None,
     notes: list[str] | None = None,
     fake: bool = False,
+    model_key: str = "",
 ) -> VideoRecord:
-    """④ 벌마다 첫 장면을 영상으로 (없는 벌, 또는 고칠 벌만) + 음악이 없으면 음악."""
+    """④ 벌마다 첫 장면을 영상으로 (없는 벌, 또는 고칠 벌만) + 음악이 없으면 음악.
+
+    model_key 를 주면 모델 비교 시험: clips_<모델>/ 에 그 벌들만 만들고 편집·단계는 그대로."""
     rec = load_record(run)
     if rec is None:
         raise ValueError("첫 장면(frames)을 먼저 만들어 주세요")
@@ -415,7 +428,9 @@ def clips(
     (d / "clips").mkdir(exist_ok=True)
     cfg = video_test.load_config()
     vcfg = cfg["video"]
-    model = vcfg["models"][profile.video.video_model]
+    model = vcfg["models"][model_key or profile.video.video_model]
+    if model_key:
+        return compare_clips(profile, run, rec, c, model, model_key, looks or [1], fake)
     redo = set(looks or touched) | set(rec.stale)
     client = (
         video_test.FakeVideoClient()
@@ -440,6 +455,27 @@ def clips(
         make_music(profile, run, rec, c, fake)
     save_record(run, rec)
     return edit(profile, run)
+
+
+def compare_clips(profile, run, rec, c, model: dict, key: str, looks: list[int], fake: bool):
+    """같은 첫 장면·지시문으로 다른 영상 모델 시험 (clips_<모델>/lookN.mp4)."""
+    vcfg = video_test.load_config()["video"]
+    client = (
+        video_test.FakeVideoClient()
+        if fake
+        else video_test.VideoClient(vcfg, os.environ["OPENROUTER_API_KEY"])
+    )
+    out = vdir(run) / f"clips_{key}"
+    out.mkdir(exist_ok=True)
+    for n in looks:
+        text = motion_prompt(profile, run, c, rec, n)
+        first = (vdir(run) / "frames" / f"look{n}.jpg").read_bytes()
+        body = video_test.payload(model, {"aspect_ratio": "9:16"}, text, [], first)
+        video, cost, _ = client.make(body)
+        (out / f"look{n}.mp4").write_bytes(video if not fake else _fake_clip(first))
+        rec.costs[f"clip_{key}_{n}"] = round(cost or 0, 4)
+    save_record(run, rec)
+    return rec
 
 
 def make_music(profile: Profile, run: Path, rec: VideoRecord, c: Concept, fake: bool) -> None:
@@ -1067,7 +1103,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument(
         "--run", type=Path, required=True, help="결과 폴더 (daily-results 의 <날짜>-run<번호>)"
     )
-    ap.add_argument("--face", type=Path, help="쓰지 않음 (예전 호출 호환)")
+    ap.add_argument("--face", type=Path, help="얼굴 사진 (frames, 모든 벌 같은 얼굴)")
+    ap.add_argument("--model", default="", help="영상 모델 비교 시험 (clips, video.models 키)")
     ap.add_argument("--looks", type=int, nargs="*")
     ap.add_argument(
         "--note", action="append", default=[], help="'3:고칠 점' 또는 '고칠 점' (모든 벌)"
@@ -1100,13 +1137,16 @@ def main(argv: list[str] | None = None) -> int:
             background(profile, args.run, notes, args.fake, args.concept, args.base,
                        "; ".join(bg_notes))  # fmt: skip
         elif args.step in ("frames", "redo"):
-            frames(profile, args.run, args.looks, notes, args.background, args.fake, args.concept)
+            frames(profile, args.run, args.looks, notes, args.background, args.fake, args.concept,
+                   args.face)  # fmt: skip
             if args.step == "redo":  # /frame N: 첫 장면부터 그 벌 영상까지
                 clips(profile, args.run, args.looks, None, args.fake)
         elif args.step == "prompts":
             prompts(profile, args.run, notes)
         elif args.step == "clips":
-            clips(profile, args.run, args.looks, notes, args.fake)
+            clips(profile, args.run, args.looks, notes, args.fake, args.model)
+            if args.model:
+                args.no_send = True  # 비교 시험은 텔레그램 확인 단계가 아님
         elif args.step == "edit":
             edit(profile, args.run, args.speed, args.hook, args.order)
         elif args.step == "music":
