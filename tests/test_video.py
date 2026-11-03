@@ -150,7 +150,12 @@ def test_guides_list_commands():
     b = video.background_guide("[women] 10-15", rec("background"))
     assert all(c in b for c in ("/ok", "/fix", "/skip"))
     f = video.final_guide("[women] 10-15", rec("final"), p)
-    assert all(c in f for c in ("/speed", "/제목", "/order", "/fix 3", "/frame 3", "/ok", "/skip"))
+    assert all(c in f for c in ("/speed", "/제목", "/order", "/fix 3", "/ok", "/skip"))
+    assert "/frame 3" not in f  # 2026-11-03: women 은 첫 장면 없이 (hailuo_3 참고 사진)
+    frame_model = p.model_copy(
+        update={"video": p.video.model_copy(update={"video_model": "hailuo_3_frame"})}
+    )
+    assert "/frame 3" in video.final_guide("[women] 10-15", rec("final"), frame_model)
     assert "/music" not in f  # 2026-11-02 사용자 "음악은 없애줘" (video.music: none)
     lyria = p.model_copy(update={"video": p.video.model_copy(update={"music": "lyria"})})
     assert "/music" in video.final_guide("[women] 10-15", rec("final"), lyria)
@@ -181,8 +186,11 @@ def test_plan_text(tmp_path):
 
 def test_flow_video_instead_of_post(env, monkeypatch):  # noqa: F811
     """2026-11-02 사용자: 영상이 캐러셀을 대신한다.
-    미리보기 /ok → 첫 장면 → 지시문 → 최종본 → /ok 면 다음 주제."""
+    미리보기 /ok → 첫 장면 → 지시문 → 최종본 → /ok 면 다음 주제.
+    첫 장면 모델일 때의 흐름 (women 은 2026-11-03 부터 첫 장면 없이: test_no_frames_stage…)."""
     from tools import feedback
+
+    monkeypatch.setattr(video, "uses_frames", lambda profile: True)
     from tools import schedule as sched
 
     monkeypatch.setattr(flow, "load_profile", _profile(0, video=True))
@@ -414,7 +422,6 @@ def test_background_edit_from_version(tmp_path, monkeypatch):
     assert "3번째 (1번째를 고침)" in video.background_guide("[women] 10-28", r)
 
 
-
 def test_frame_notes_stay_out_of_motion_prompt():
     r = rec()
     video.add_notes(r, ["2:코트를 코디컷처럼"])  # 첫 장면 그림 고칠 점
@@ -432,3 +439,20 @@ def test_templates_have_no_fixed_values():
         raw = (video.PROMPTS / f"{name}.md").read_text(encoding="utf-8").lower()
         for fixed in ("boyfriend", "percent", "stride", "smile", "snow", "walking"):
             assert fixed not in raw, (name, fixed)
+
+
+def test_no_frames_stage_for_reference_model():
+    """2026-11-03 사용자: 첫 장면 그림 없이 코디컷·빈 배경을 영상 AI 에 바로 넣는다."""
+    from core.profile import load_profile
+
+    assert not video.uses_frames(load_profile("women"))
+    ok = Reply(kind="ok")
+    assert video.action(rec("background"), ok, frames=False) == {"step": "prompts"}
+    assert video.action(rec("background"), ok) == {"step": "frames"}
+    redo = Reply(kind="frame", look=3, text="얼굴이 달라")
+    assert video.action(rec("final"), redo, frames=False)["step"] == "clips"
+
+
+def test_video_notice():
+    assert video.video_notice("이미지는 AI로 합성했으며") == "영상은 AI로 합성했으며"
+    assert video.video_notice("AI 합성") == "AI 합성"
