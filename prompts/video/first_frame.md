@@ -6,5 +6,6 @@ PERSON: {person}.
 OUTFIT: exactly the outfit in image 2, every item and detail the same: {items}. Same colors, lengths, textures, fit and way of wearing as image 2. Use image 2 only for the outfit: ignore its background and pose.
 
 LOCATION AND COMPOSITION: copy image 3 exactly: the same place, light, camera height and angle. Light: {light}.
-SIZE AND POSITION: full body visible, the body fills about {size} of the frame height, centered, with ground visible below her shoes. Pose at the start of this shot: {pose}.
+SIZE AND POSITION: {start}
+Pose at the start of this shot: {pose}.
 Only one person. No text, no logos, no watermark. Natural photo, sharp fabric texture.

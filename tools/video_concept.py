@@ -46,6 +46,10 @@ class Shot(BaseModel):
     text: str = ""  # 화면 글자 (첫 벌의 훅 문구 등, 코드가 얹는다)
     # 영상 AI 에 보낼 이 벌의 동작 (영어 한 문장, tools.video). 없으면 action·pose 를 그대로 씀
     motion_en: str = ""
+    # 첫 장면의 인물 위치·크기 (2026-11-03 사용자 "복도 끝에서 앞으로 걸어와야지").
+    # 비면 가운데 전신, 화면 세로의 70~80%. 걸어 들어오는 컨셉이면 멀리서 작게 시작
+    start: str = ""  # 한국어 (그림 계획에 보임), 예 "복도 끝 쪽, 전신이 화면 세로의 약 35%"
+    start_en: str = ""  # 영어 (첫 장면 지시문)
 
 
 class Concept(BaseModel):

@@ -370,7 +370,8 @@ def frames(
     for n in todo:
         shot = shots.get(n)
         pose = (shot.motion_en or f"{shot.action}, {shot.pose}") if shot else "walking mid-stride"
-        prompt = template("first_frame", **kw, items=items_en(run, n), pose=pose)
+        prompt = template("first_frame", **kw, items=items_en(run, n), pose=pose,
+                          start=start_of(shot, kw["size"]))  # fmt: skip
         for note in notes_for(rec, n):
             prompt += f"\nUser request (most important): {note}"
         outfit = video_test.jpeg(look_image(run, n).read_bytes())
@@ -389,6 +390,16 @@ def frames(
     rec.step, rec.error = "frames", ""
     save_record(run, rec)
     return rec
+
+
+def start_of(shot, size: str) -> str:
+    """첫 장면의 인물 위치·크기. 컨셉에 없으면 기본 (사용자 요청이 있으면 그것이 먼저)."""
+    if shot is not None and shot.start_en:
+        return shot.start_en.strip().rstrip(".") + "."
+    return (
+        f"full body visible, the body fills about {size} of the frame height, centered, "
+        "with ground visible below her shoes (unless a user request below says otherwise)."
+    )
 
 
 def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: int) -> str:
@@ -720,7 +731,8 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
         "",
         f"② 벌마다 첫 장면 {rec.looks}장 (장당 약 ${FRAME_COST:.2f}): "
         "얼굴 사진 + 확정 코디컷 + 빈 배경으로 그리고, 얼굴만 한 번 더 맞춰요",
-        f"• 구도: {c.framing} (인물은 화면 세로의 70~80%)",
+        f"• 구도: {c.framing}"
+        + ("" if any(s.start for s in c.shots) else " (인물은 화면 세로의 70~80%)"),
         f"• 표정·머리: {' · '.join(x for x in (c.expression, c.hair) if x) or '살짝 도도하게'}",
     ]
     shots = {s.look: s for s in c.shots}
@@ -731,6 +743,8 @@ def plan_text(tag: str, profile: Profile, c: Concept, rec: VideoRecord, run: Pat
         except FileNotFoundError:
             items = ""
         move = f"{s.action} → {s.pose}" if s else "걷는 중"
+        if s and s.start:
+            move = f"시작: {s.start} / {move}"
         extra = "; ".join(notes_for(rec, n))
         req = f" (요청: {extra})" if extra else ""
         lines.append(f"• LOOK {n}: {items or '확정 코디컷'} / {move}{req}")
