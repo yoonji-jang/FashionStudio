@@ -1,0 +1,125 @@
+account: women
+cover_look: 1
+date: '2026-11-04'
+edit_refs: []
+items:
+- cm: 120.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 5
+  desc: 블랙 울 박시 롱코트 (black wool long coat, double-breasted)
+  name: 울 롱코트
+  product: zigzag:134882586
+  ref_photos:
+  - 5
+  size: about 120 cm long from shoulder to hem, 48 cm across the shoulders, 60 cm
+    across the chest laid flat, 67 cm long sleeves
+- cm: 64.0
+  color: 아이보리
+  comment: ''
+  cutout_photo: 2
+  desc: 아이보리 울 텐셀 긴팔 티셔츠 (ivory wool-tencel long-sleeve tee)
+  name: 울 텐셀 티셔츠
+  product: zigzag:171549943
+  ref_photos:
+  - 2
+  size: about 64 cm long from shoulder to hem, 37 cm across the shoulders, 39 cm across
+    the chest laid flat, 62 cm long sleeves
+- cm: 35.0
+  color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 미니스커트 (black wool mini skirt)
+  name: 블랙 울 미니
+  product: zigzag:172746329
+  ref_photos:
+  - 0
+  size: about 35 cm long from waist to hem, 37 cm across the waist laid flat, 48 cm
+    across the hips laid flat, 53 cm across the hem laid flat
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 롱부츠 (black long boots)
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+  ref_photos:
+  - 0
+  - 2
+  - 4
+- color: 블랙
+  comment: ''
+  cutout_photo: 2
+  desc: 블랙 숄더백 (black shoulder bag)
+  name: 블랙 숄더백
+  product: zigzag:159313221
+  ref_photos:
+  - 2
+  - 0
+  - 1
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 니트 목도리 (ivory knit scarf)
+  name: 니트 목도리
+  product: zigzag:108860472
+  ref_photos:
+  - 0
+looks: []
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and floor, soft even diffused studio light with a faint soft shadow, cool neutral
+  muted colors, full-body shot with a professional camera at eye level
+pose: an exotic-looking woman with her dark hair in a sleek low bun with wispy loose
+  strands at the temples, standing straight but relaxed with one hand in her coat
+  pocket and the other holding her bag, her head tilted slightly and her eyes looking
+  at the camera, face visible, full body from head to shoes in frame
+reason: '블랙 울 롱코트가 주인공, 아이보리 목도리를 길게 두르고 블랙 롱부츠로 정리. 참고 811 (블랙 울 롱코트/아이보리 프린지 머플러/블랙
+  롱부츠 → 박시 울 롱코트/아이보리 니트 목도리/블랙 롱부츠, 이너·하의·가방 추가) (따라 함: 참고 811) [점수 7, 머플러가 프린지가
+  아님]'
+ref_photo: sealed:u1103_09
+requests: []
+scene_image: out/2026-11-04/src/scene_2.jpg
+shot: model
+text:
+  hashtags:
+  - '#연말룩'
+  - '#송년회룩'
+  - '#연말코디'
+  - '#퍼자켓'
+  - '#트위드자켓'
+  - '#하운드투스'
+  - '#겨울코디'
+  intro: 서울 흐리고 7~17도, 송년회 약속엔 퍼랑 트위드로 따뜻하게 입어요 🧥
+  points: []
+  title_lines:
+  - 송년회 앞두고 꺼낸
+  - 퍼·트위드 이렇게 입음
+theme:
+  date: '2026-11-04'
+  mood: 블랙·버건디·아이보리·차콜 깊은 연말 톤에 벨벳·울·니트·새틴의 따뜻한 질감 (반짝이 파티룩보다 단정하게)
+  search_terms:
+    상의:
+    - 벨벳 블라우스
+    - 리본 니트
+    소품:
+    - 리본 머리핀
+    아우터:
+    - 울 롱코트
+    하의:
+    - 벨벳 스커트
+    - 새틴 롱스커트
+  slots:
+  - category: 아우터
+    desc: 롱 울코트 또는 퍼 칼라 코트, 연말 무드의 깊은 색
+  - category: 상의
+    desc: 벨벳 블라우스, 리본·레이스 포인트 니트, 오프숄더 니트
+  - category: 하의
+    desc: 벨벳 스커트, 새틴 롱스커트, 울 미니스커트 또는 와이드 슬랙스
+  - category: 가방
+    desc: 작은 미니백 또는 체인 숄더백
+  - category: 신발
+    desc: 앞코 뾰족한 펌프스, 메리제인, 롱부츠
+  - category: 소품
+    desc: 리본 머리핀, 진주 귀걸이, 시스루 검은 스타킹
+  title_hint: 연말 코디, 송년회와 크리스마스 약속에 입는 따뜻하고 분위기 있는 룩
+  type: 상황
+  why: 11월 들어 송년회·연말 약속을 미리 준비하는 시기. 10/23 파티룩은 반짝이 위주라 이번엔 코트·니트로 따뜻하게 꾸민 연말 약속룩

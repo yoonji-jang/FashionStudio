@@ -1,0 +1,260 @@
+account: women
+cover: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/1/outfit_r2/results/G_1.jpg
+cover_collage: false
+cover_has_title: false
+items:
+- comment: ''
+  name: 부클 트위드 자켓
+  product: zigzag:130437947
+- comment: ''
+  name: 헨리넥 티셔츠
+  product: zigzag:165972153
+- comment: ''
+  name: 블랙 미니스커트
+  product: zigzag:133521354
+- comment: ''
+  name: 블랙 로퍼
+  product: zigzag:153677725
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:168564549
+- comment: ''
+  name: 골지 니삭스
+  product: zigzag:136839704
+- comment: ''
+  name: 그레이 퍼 코트
+  product: zigzag:167882132
+- comment: ''
+  name: 블랙 반폴라
+  product: zigzag:151586371
+- comment: ''
+  name: 블랙 울 쇼츠
+  product: zigzag:166183665
+- comment: ''
+  name: 메리제인
+  product: zigzag:172014189
+- comment: ''
+  name: 버건디 숄더백
+  product: zigzag:166194366
+- comment: ''
+  name: 오버 니삭스
+  product: zigzag:146969420
+- comment: ''
+  name: 하운드투스 블레이저
+  product: zigzag:172128312
+- comment: ''
+  name: 크림 폴라티
+  product: zigzag:167444137
+- comment: ''
+  name: 하운드투스 반바지
+  product: zigzag:172069619
+- comment: ''
+  name: 스웨이드 모카신
+  product: zigzag:172198229
+- comment: ''
+  name: 브라운 숄더백
+  product: zigzag:130117567
+- comment: ''
+  name: 골지 레그워머
+  product: zigzag:131020807
+- comment: ''
+  name: 시어링 칼라 자켓
+  product: zigzag:171950682
+- comment: ''
+  name: 보트넥 긴팔 티
+  product: zigzag:171318213
+- comment: ''
+  name: 울 쇼츠
+  product: zigzag:166908321
+- comment: ''
+  name: 폴딩 미들부츠
+  product: zigzag:144708955
+- comment: ''
+  name: 퍼 소매 코트
+  product: zigzag:149405097
+- comment: ''
+  name: 울 텐셀 티셔츠
+  product: zigzag:171549943
+- comment: ''
+  name: 아이보리 미니
+  product: zigzag:154052552
+- comment: ''
+  name: 롱부츠
+  product: zigzag:171452509
+- comment: ''
+  name: 토트백
+  product: zigzag:159478154
+- comment: ''
+  name: 울 롱코트
+  product: zigzag:134882586
+- comment: ''
+  name: 블랙 울 미니
+  product: zigzag:172746329
+- comment: ''
+  name: 블랙 롱부츠
+  product: zigzag:116422044
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:159313221
+- comment: ''
+  name: 니트 목도리
+  product: zigzag:108860472
+- comment: ''
+  name: 후드 퍼 자켓
+  product: zigzag:167511376
+- comment: ''
+  name: 피그먼트 티셔츠
+  product: zigzag:169315363
+- comment: ''
+  name: 울 미니스커트
+  product: zigzag:149438922
+- comment: ''
+  name: 실버 스니커즈
+  product: zigzag:135328879
+- comment: ''
+  name: 블랙 숄더백
+  product: zigzag:150848794
+- comment: ''
+  name: 골지 니삭스
+  product: zigzag:141916298
+looks:
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/1/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 부클 트위드 자켓
+    product: zigzag:130437947
+  - comment: ''
+    name: 헨리넥 티셔츠
+    product: zigzag:165972153
+  - comment: ''
+    name: 블랙 미니스커트
+    product: zigzag:133521354
+  - comment: ''
+    name: 블랙 로퍼
+    product: zigzag:153677725
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:168564549
+  - comment: ''
+    name: 골지 니삭스
+    product: zigzag:136839704
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/2/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 그레이 퍼 코트
+    product: zigzag:167882132
+  - comment: ''
+    name: 블랙 반폴라
+    product: zigzag:151586371
+  - comment: ''
+    name: 블랙 울 쇼츠
+    product: zigzag:166183665
+  - comment: ''
+    name: 메리제인
+    product: zigzag:172014189
+  - comment: ''
+    name: 버건디 숄더백
+    product: zigzag:166194366
+  - comment: ''
+    name: 오버 니삭스
+    product: zigzag:146969420
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/3/outfit_r2/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 하운드투스 블레이저
+    product: zigzag:172128312
+  - comment: ''
+    name: 크림 폴라티
+    product: zigzag:167444137
+  - comment: ''
+    name: 하운드투스 반바지
+    product: zigzag:172069619
+  - comment: ''
+    name: 스웨이드 모카신
+    product: zigzag:172198229
+  - comment: ''
+    name: 브라운 숄더백
+    product: zigzag:130117567
+  - comment: ''
+    name: 골지 레그워머
+    product: zigzag:131020807
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/4/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 시어링 칼라 자켓
+    product: zigzag:171950682
+  - comment: ''
+    name: 보트넥 긴팔 티
+    product: zigzag:171318213
+  - comment: ''
+    name: 울 쇼츠
+    product: zigzag:166908321
+  - comment: ''
+    name: 폴딩 미들부츠
+    product: zigzag:144708955
+  - comment: ''
+    name: 블랙 호보백
+    product: zigzag:166194366
+  - comment: ''
+    name: 골지 레그워머
+    product: zigzag:131020807
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/5/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 퍼 소매 코트
+    product: zigzag:149405097
+  - comment: ''
+    name: 울 텐셀 티셔츠
+    product: zigzag:171549943
+  - comment: ''
+    name: 아이보리 미니
+    product: zigzag:154052552
+  - comment: ''
+    name: 롱부츠
+    product: zigzag:171452509
+  - comment: ''
+    name: 토트백
+    product: zigzag:159478154
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/6/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 울 롱코트
+    product: zigzag:134882586
+  - comment: ''
+    name: 울 텐셀 티셔츠
+    product: zigzag:171549943
+  - comment: ''
+    name: 블랙 울 미니
+    product: zigzag:172746329
+  - comment: ''
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:159313221
+  - comment: ''
+    name: 니트 목도리
+    product: zigzag:108860472
+- image: /home/runner/work/FashionStudio/FashionStudio/out/2026-11-04/looks/7/outfit/results/G_1.jpg
+  items:
+  - comment: ''
+    name: 후드 퍼 자켓
+    product: zigzag:167511376
+  - comment: ''
+    name: 피그먼트 티셔츠
+    product: zigzag:169315363
+  - comment: ''
+    name: 울 미니스커트
+    product: zigzag:149438922
+  - comment: ''
+    name: 실버 스니커즈
+    product: zigzag:135328879
+  - comment: ''
+    name: 블랙 숄더백
+    product: zigzag:150848794
+  - comment: ''
+    name: 골지 니삭스
+    product: zigzag:141916298
+title_lines:
+- 송년회 앞두고 꺼낸
+- 퍼·트위드 이렇게 입음
