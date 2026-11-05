@@ -27,6 +27,8 @@ OpenRouter 요금이 나가므로 video 워크플로(차례 흐름이 부름)에
   python -m tools.video edit    --account women --run … [--speed 1.3] [--hook "…"]
       [--order 3 1 2 4 5 6]
   python -m tools.video music   --account women --run …
+  python -m tools.video subset  --account women --run … --looks 1 2 3 5 6 7
+      영상에 넣을 벌만 골라 새 결과 폴더(<결과 폴더>-l123567)로 (무료, 2026-11-05 클로드 스레드)
   --fake: API 없이 흐름만 (가짜 그림·영상), --no-send: 텔레그램으로 보내지 않음
 """
 
@@ -37,6 +39,7 @@ import datetime as dt
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -615,6 +618,39 @@ def _face_height(clip: Path, at: float) -> float:
     return max((b[3] - b[1] for b in boxes), default=0)
 
 
+def subset(run: Path, keep: list[int]) -> Path:
+    """영상에 넣을 벌만 골라 옆에 새 결과 폴더를 만든다 (2026-11-05 사용자 "1,2,3,5,6,7").
+    벌 번호는 고른 순서대로 1부터 다시 매기고, 기획(plan.yaml·manifest)의 벌도 같이 줄인다."""
+    total = look_count(run)
+    if not keep or len(set(keep)) != len(keep) or not all(1 <= n <= total for n in keep):
+        raise ValueError(f"벌 번호는 1~{total} 를 겹치지 않게: {keep}")
+    dest = run.parent / f"{run.name}-l{''.join(map(str, keep))}"
+    if dest.exists():
+        shutil.rmtree(dest)
+    (dest / "looks").mkdir(parents=True)
+    for new, old in enumerate(keep, 1):
+        shutil.copytree(run / "looks" / str(old), dest / "looks" / str(new))
+    for name in ("SOURCE.txt", "caption.txt"):
+        if (run / name).exists():
+            shutil.copy2(run / name, dest / name)
+    plan = yaml.safe_load((run / "plan.yaml").read_text(encoding="utf-8")) or {}
+    if plan.get("looks"):
+        plan["looks"] = [plan["looks"][n - 1] for n in keep]
+        plan.pop("cover_look", None)
+    (dest / "plan.yaml").write_text(
+        yaml.safe_dump(plan, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
+    m = json.loads((run / "manifest.json").read_text(encoding="utf-8"))
+    looks = m.get("plan", {}).get("looks") or []
+    if looks:
+        m["plan"]["looks"] = [looks[n - 1] for n in keep]
+        ids = {i for look in m["plan"]["looks"] for i in look}
+        m["plan"]["items"] = [p for p in m["plan"]["items"] if p.get("id") in ids]
+    Manifest.model_validate(m)
+    (dest / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2), "utf-8")
+    return dest
+
+
 def edit(
     profile: Profile,
     run: Path,
@@ -1147,7 +1183,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument(
         "step",
         choices=["plan", "background", "frames", "prompts", "clips", "redo", "edit", "music",
-                 "send"],
+                 "send", "subset"],
     )  # fmt: skip
     ap.add_argument("--account", required=True)
     ap.add_argument(
@@ -1179,6 +1215,9 @@ def main(argv: list[str] | None = None) -> int:
             rec = start_record(profile, args.run, args.concept)
             rec.notes.setdefault("background", []).extend(bg_notes)
             save_record(args.run, rec)
+        if args.step == "subset":  # 기록·텔레그램 없이 새 폴더 이름만 출력
+            print(subset(args.run, args.looks or []).name)
+            return 0
         if args.step == "send":
             pass
         elif args.step == "plan":

@@ -456,3 +456,34 @@ def test_no_frames_stage_for_reference_model():
 def test_video_notice():
     assert video.video_notice("이미지는 AI로 합성했으며") == "영상은 AI로 합성했으며"
     assert video.video_notice("AI 합성") == "AI 합성"
+
+
+def test_subset_keeps_chosen_looks(tmp_path):
+    from core.models import Manifest, OutfitPlan
+    from tests.test_models import product, theme
+
+    run = tmp_path / "2026-11-04-run444"
+    for n in (1, 2, 3):
+        (run / "looks" / str(n)).mkdir(parents=True)
+        (run / "looks" / str(n) / "plan.yaml").write_text(f"items:\n- desc: 옷 {n}\n", "utf-8")
+    (run / "plan.yaml").write_text("looks:\n- {n: 1}\n- {n: 2}\n- {n: 3}\ncover_look: 2\n", "utf-8")
+    plan = OutfitPlan(
+        theme=theme(), items=[product(i) for i in (1, 2, 3)], reason="r",
+        looks=[["zigzag:1"], ["zigzag:2"], ["zigzag:3"]],
+    )  # fmt: skip
+    m = Manifest(
+        account="women", date=date(2026, 11, 4), plan=plan, images=["x.jpg"], review_score=8,
+        title_lines=["t"], caption="c", hashtags=[], monetize="none",
+    )  # fmt: skip
+    (run / "manifest.json").write_text(m.model_dump_json(), "utf-8")
+
+    dest = video.subset(run, [3, 1])
+    assert dest.name == "2026-11-04-run444-l31"
+    assert video.look_count(dest) == 2
+    assert "옷 3" in (dest / "looks" / "1" / "plan.yaml").read_text("utf-8")
+    m2 = video.manifest_of(dest)
+    assert m2.plan.looks == [["zigzag:3"], ["zigzag:1"]]
+    assert [p.id for p in m2.plan.items] == ["zigzag:1", "zigzag:3"]
+    assert "cover_look" not in (dest / "plan.yaml").read_text("utf-8")
+    with pytest.raises(ValueError):
+        video.subset(run, [1, 4])

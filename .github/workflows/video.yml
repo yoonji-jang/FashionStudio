@@ -19,7 +19,7 @@ on:
         description: 결과 폴더 (daily-results 의 <날짜>-run<번호>)
         required: true
       step:
-        description: plan / background / frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music
+        description: plan / background / frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music / subset(looks 의 벌만 새 결과 폴더로)
         required: true
       looks:
         description: 다시 만들 벌 번호 (빈칸이면 전부 또는 고칠 점의 벌)
@@ -92,7 +92,29 @@ jobs:
           git -C /tmp/results checkout -q -B daily-results
           test -f "/tmp/results/$RUN/manifest.json" || { echo "결과 폴더가 없어요: $RUN"; exit 1; }
 
+      # 영상에 넣을 벌만 골라 <결과 폴더>-l<번호들> 로 (2026-11-05 클로드 스레드, 요금 없음)
+      - name: 벌 고르기 (subset)
+        if: inputs.step == 'subset'
+        run: |
+          name=$(uv run python -m tools.video subset --account "$ACCOUNT" --run "/tmp/results/$RUN" --looks $LOOKS | tail -1)
+          echo "새 결과 폴더: $name" >> "$GITHUB_STEP_SUMMARY"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          cp -r "/tmp/results/$name" /tmp/subset_out
+          for i in 1 2 3; do
+            git -C /tmp/results fetch -q origin daily-results
+            git -C /tmp/results reset -q --hard origin/daily-results
+            rm -rf "/tmp/results/$name" && cp -r /tmp/subset_out "/tmp/results/$name"
+            git -C /tmp/results add "$name"
+            git -C /tmp/results diff --cached --quiet && exit 0
+            git -C /tmp/results commit -q -m "영상용 벌 고르기 $name"
+            git -C /tmp/results push -q origin daily-results && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
       - name: 영상 만들기 (${{ inputs.step }})
+        if: inputs.step != 'subset'
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ (github.event_name != 'workflow_dispatch' || inputs.telegram) && secrets.TELEGRAM_BOT_TOKEN || '' }}
