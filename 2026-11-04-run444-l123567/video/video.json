@@ -11,9 +11,14 @@
     "background_3": 0.1372,
     "background_4": 0.1352,
     "background_5": 0.1379,
-    "background_6": 0.1367
+    "background_6": 0.1367,
+    "background_7": 0.1369
   },
-  "notes": {},
+  "notes": {
+    "background": [
+      "구도(카메라 위치, 횡단보도 줄무늬 방향·위치, 길, 건물 배치)는 그대로 두고 도시의 밤으로 바꿔줘. 어두운 밤하늘, 켜진 가로등과 건물 창 불빛, 젖은 아스팔트에 불빛 반사. 사람·차 없음"
+    ]
+  },
   "motion_notes": {},
   "speed": 0.0,
   "order": [],
@@ -21,8 +26,8 @@
   "flags": [],
   "error": "",
   "error_at": 0,
-  "concept": 3,
-  "bg_versions": 6,
-  "bg_base": 0,
+  "concept": 1,
+  "bg_versions": 7,
+  "bg_base": 4,
   "stale": []
 }
