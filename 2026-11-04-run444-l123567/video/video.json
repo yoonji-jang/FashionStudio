@@ -2,7 +2,7 @@
   "account": "women",
   "date": "2026-11-04",
   "run": "2026-11-04-run444-l123567",
-  "step": "background",
+  "step": "final",
   "sent_at": 0,
   "looks": 6,
   "costs": {
@@ -13,7 +13,13 @@
     "background_5": 0.1379,
     "background_6": 0.1367,
     "background_7": 0.1369,
-    "background_8": 0.1374
+    "background_8": 0.1374,
+    "clip_1": 0.65,
+    "clip_2": 0.65,
+    "clip_3": 0.65,
+    "clip_4": 0.65,
+    "clip_5": 0.65,
+    "clip_6": 0.65
   },
   "notes": {
     "background": [
@@ -26,7 +32,7 @@
   "order": [],
   "hook": "",
   "flags": [],
-  "error": "RuntimeError: failed: {\"id\": \"gen-vid-1793863416-PV9GHvbeeJEXPua8uKeW\", \"generation_id\": \"gen-vid-1793863416-PV9GHvbeeJEXPua8uKeW\", \"polling_url\": \"https://openrouter.ai/api/v1/videos/gen-vid-1793863416-PV9GHvbeeJEXPua8uKeW\", \"status\": \"failed\", \"error\": \"system error, MiniMax-H3 context ir (status_code=2000) (1033)\"}",
+  "error": "",
   "error_at": 1793863921,
   "concept": 1,
   "bg_versions": 8,
