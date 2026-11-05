@@ -29,7 +29,14 @@
   },
   "motion_notes": {},
   "speed": 0.0,
-  "order": [],
+  "order": [
+    4,
+    2,
+    5,
+    3,
+    1,
+    6
+  ],
   "hook": "",
   "flags": [],
   "error": "",
