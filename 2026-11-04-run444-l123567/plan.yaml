@@ -1,0 +1,497 @@
+account: women
+date: '2026-11-04'
+theme:
+  date: '2026-11-04'
+  title_hint: 연말 코디, 송년회와 크리스마스 약속에 입는 따뜻하고 분위기 있는 룩
+  mood: 블랙·버건디·아이보리·차콜 깊은 연말 톤에 벨벳·울·니트·새틴의 따뜻한 질감 (반짝이 파티룩보다 단정하게)
+  slots:
+  - category: 아우터
+    desc: 롱 울코트 또는 퍼 칼라 코트, 연말 무드의 깊은 색
+  - category: 상의
+    desc: 벨벳 블라우스, 리본·레이스 포인트 니트, 오프숄더 니트
+  - category: 하의
+    desc: 벨벳 스커트, 새틴 롱스커트, 울 미니스커트 또는 와이드 슬랙스
+  - category: 가방
+    desc: 작은 미니백 또는 체인 숄더백
+  - category: 신발
+    desc: 앞코 뾰족한 펌프스, 메리제인, 롱부츠
+  - category: 소품
+    desc: 리본 머리핀, 진주 귀걸이, 시스루 검은 스타킹
+  type: 상황
+  why: 11월 들어 송년회·연말 약속을 미리 준비하는 시기. 10/23 파티룩은 반짝이 위주라 이번엔 코트·니트로 따뜻하게 꾸민 연말 약속룩
+  search_terms:
+    상의:
+    - 벨벳 블라우스
+    - 리본 니트
+    소품:
+    - 리본 머리핀
+    아우터:
+    - 울 롱코트
+    하의:
+    - 벨벳 스커트
+    - 새틴 롱스커트
+items: []
+looks:
+- items:
+  - product: zigzag:130437947
+    color: 핑크
+    desc: 핑크 부클 트위드 자켓 (pink bouclé tweed jacket, gold buttons, round no-collar)
+    name: 부클 트위드 자켓
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 56 cm long from shoulder to hem, 39 cm across the shoulders, 51 cm
+      across the chest laid flat, 60 cm long sleeves
+    cm: 56.0
+  - product: zigzag:165972153
+    color: 화이트
+    desc: 화이트 헨리넥 긴팔 티셔츠 (white henley long-sleeve tee)
+    name: 헨리넥 티셔츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 49.5 cm long from shoulder to hem, 40 cm across the shoulders, 37
+      cm across the chest laid flat, 68 cm long sleeves
+    cm: 49.5
+  - product: zigzag:133521354
+    color: 블랙
+    desc: 블랙 미니스커트 (black mini skirt)
+    name: 블랙 미니스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 41 cm long from waist to hem, 34.5 cm across the waist laid flat,
+      46.5 cm across the hips laid flat, 51.5 cm across the hem laid flat
+    cm: 41.0
+  - product: zigzag:153677725
+    color: 블랙
+    desc: 블랙 스웨이드 로퍼 (black suede loafers)
+    name: 블랙 로퍼
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    - 2
+  - product: zigzag:168564549
+    color: 블랙
+    desc: 블랙 숄더백 (black leather shoulder bag)
+    name: 블랙 숄더백
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+  - product: zigzag:136839704
+    color: 블랙
+    desc: 블랙 골지 롱 니삭스 (black ribbed knee socks)
+    name: 골지 니삭스
+    comment: ''
+    cutout_photo: 1
+    ref_photos:
+    - 1
+    - 3
+  reason: '핑크 부클 트위드 자켓이 주인공, 블랙 미니와 니삭스로 연말 야경 무드. 참고 803 (핑크 부클 트위드 자켓/블랙 미니/청키
+    로퍼/블랙 숄더백/블랙 니삭스 → 핑크 부클 트위드 자켓/블랙 벨트 미니/블랙 스웨이드 로퍼/블랙 숄더백/블랙 골지 니삭스) (따라 함: 참고
+    803) [점수 8, 로퍼가 청키 페이턴트가 아님]'
+  point: 부클 트위드 자켓에 블랙 미니와 니삭스로 연말 분위기를 내요
+  pose: an exotic-looking woman with long loose wavy dark hair and wispy face-framing
+    strands, standing in a relaxed contrapposto with her weight on one leg and one
+    hand in her jacket pocket, her head turned in a slight side profile looking up
+    and away past the camera so her face and jaw line are visible, full body from
+    head to shoes in frame
+  scene_image: out/2026-11-04/src/scene_3.jpg
+  edit_refs: []
+  ref: '803'
+  ref_photo: sealed:u1103_01
+  requests: []
+- items:
+  - product: zigzag:167882132
+    color: 그레이
+    desc: 그레이 라쿤 퍼 패딩 무스탕 코트 (grey faux-suede mustang coat with shaggy fur collar
+      and fur lining)
+    name: 그레이 퍼 코트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 66 cm long from shoulder to hem, 59 cm across the shoulders, 62 cm
+      across the chest laid flat, 58 cm long sleeves
+    cm: 66.0
+  - product: zigzag:151586371
+    color: 블랙
+    desc: 블랙 반폴라 티 (black mock-neck top)
+    name: 블랙 반폴라
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 57 cm long from shoulder to hem, 45 cm across the chest laid flat,
+      19 cm long sleeves
+    cm: 57.0
+  - product: zigzag:166183665
+    color: 블랙
+    desc: 블랙 울 쇼츠 (black wool shorts)
+    name: 블랙 울 쇼츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    - 1
+    size: about 29.5 cm long from waist to hem, 40 cm across the waist laid flat,
+      51.5 cm across the hips laid flat, 33 cm across the hem laid flat
+    cm: 29.5
+  - product: zigzag:172014189
+    color: 블랙
+    desc: 블랙 플랫폼 메리제인 (black platform Mary Jane shoes)
+    name: 메리제인
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 1
+    - 0
+    - 5
+  - product: zigzag:166194366
+    color: 버건디
+    desc: 버건디 숄더백 (burgundy shoulder bag)
+    name: 버건디 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+  - product: zigzag:146969420
+    color: 블랙
+    desc: 블랙 오버 니삭스 (black over-the-knee socks)
+    name: 오버 니삭스
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 2
+    - 5
+  reason: '털 많은 그레이 퍼 코트가 주인공, 블랙 울 숏팬츠와 버건디 백으로 포인트. 참고 804 (그레이 모헤어 오버핏 자켓/블랙 터틀넥/블랙
+    울 숏팬츠/블랙 메리제인/버건디 숄더백/시스루 스타킹 → 털 많은 그레이 퍼 코트(사람 요청으로 교체)/블랙 반폴라/블랙 울 쇼츠/블랙 플랫폼
+    메리제인/버건디 숄더백/시스루 양말) (따라 함: 참고 804) [점수 7, 자켓이 모헤어 울이 아니라 무스탕 퍼]'
+  point: 털 풍성한 코트에 숄더백으로 연말 포인트를 줘요 🍷
+  pose: an exotic-looking woman with her dark hair in a low sleek bun with wispy loose
+    strands at the temples, standing with a casual hip pop and one hand tucked in
+    the coat pocket, her chin tilted slightly and her eyes looking at the camera,
+    face clearly visible, full body from head to shoes in frame
+  scene_image: out/2026-11-04/src/scene.jpg
+  edit_refs: []
+  ref: '804'
+  ref_photo: sealed:u1103_02
+  requests: []
+- items:
+  - product: zigzag:172128312
+    color: 브라운
+    desc: 브라운 하운드투스 더블 블레이저 (brown houndstooth double-breasted blazer)
+    name: 하운드투스 블레이저
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 1
+    - 0
+    - 2
+  - product: zigzag:167444137
+    color: 아이보리
+    desc: 크림 폴라 티셔츠 (cream turtleneck top)
+    name: 크림 폴라티
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 58 cm long from shoulder to hem, 38.5 cm across the shoulders, 35
+      cm across the chest laid flat, 68 cm long sleeves
+    cm: 58.0
+  - product: zigzag:172069619
+    color: 브라운
+    desc: 브라운 하운드투스 반바지 (brown houndstooth shorts)
+    name: 하운드투스 반바지
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 1
+  - product: zigzag:172198229
+    color: 브라운
+    desc: 브라운 스웨이드 모카신 (brown suede moccasins)
+    name: 스웨이드 모카신
+    comment: ''
+    cutout_photo: 3
+    ref_photos:
+    - 3
+    - 2
+    - 5
+  - product: zigzag:130117567
+    color: 브라운
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 브라운 숄더백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:131020807
+    color: 아이보리
+    desc: 아이보리 골지 레그워머 (ivory ribbed leg warmers)
+    name: 골지 레그워머
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 4
+    - 0
+    - 3
+  reason: '브라운 하운드투스 블레이저와 숏팬츠 셋업이 주인공, 아이보리 폴라와 레그워머로 따뜻하게. 참고 805 (브라운 하운드투스 더블
+    블레이저/아이보리 터틀넥/하운드투스 숏팬츠/스웨이드 신발/브라운 숄더백/아이보리 레그워머 → 자라 하운드투스 더블 블레이저/크림 폴라/하운드투스
+    와이드 반바지/스웨이드 모카신/브라운 숄더백/레그워머) (따라 함: 참고 805) [점수 7, 신발은 스니커즈 대신 모카신]'
+  point: 브라운 하운드투스 셋업에 아이보리 폴라로 따뜻하게 맞춰요
+  pose: an exotic-looking woman with long loose wavy dark hair and wispy strands,
+    walking mid-step toward the side with one hand in her blazer pocket, her head
+    turned in a slight side profile glancing over her shoulder toward the camera with
+    a calm expression, face visible, full body from head to shoes in frame
+  scene_image: out/2026-11-04/src/scene_3.jpg
+  edit_refs: []
+  ref: '805'
+  ref_photo: sealed:u1103_03
+  requests: []
+- items:
+  - product: zigzag:149405097
+    color: 아이보리
+    desc: 아이보리 퍼 소매 하프코트 (ivory half coat with faux-fur sleeves and belt)
+    name: 퍼 소매 코트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:171549943
+    color: 아이보리
+    desc: 아이보리 울 텐셀 긴팔 티셔츠 (ivory wool-tencel long-sleeve tee)
+    name: 울 텐셀 티셔츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 64 cm long from shoulder to hem, 37 cm across the shoulders, 39 cm
+      across the chest laid flat, 62 cm long sleeves
+    cm: 64.0
+  - product: zigzag:154052552
+    color: 아이보리
+    desc: 아이보리 미니스커트 (ivory mini skirt)
+    name: 아이보리 미니
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 1
+    size: about 40 cm long from waist to hem, 35 cm across the waist laid flat, 49
+      cm across the hips laid flat, 54 cm across the hem laid flat
+    cm: 40.0
+  - product: zigzag:171452509
+    color: 화이트
+    desc: 화이트 스틸레토 롱부츠 (white pointed stiletto long boots)
+    name: 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  - product: zigzag:159478154
+    color: 블랙
+    desc: 블랙 토트백 (black boston tote bag)
+    name: 토트백
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 3
+  reason: '아이보리 퍼 소매 코트가 주인공, 아이보리 미니와 화이트 부츠로 올화이트. 참고 809 (아이보리 퍼 소매 페플럼 코트/아이보리
+    미니/화이트 포인티드 롱부츠/화이트 토트 → 아이보리 퍼 소매 벨트 하프코트/아이보리 미니/스틸레토 롱부츠/토트백) (따라 함: 참고 809)
+    [점수 7, 부츠 색은 사진 확인 필요]'
+  point: 퍼 소매 코트에 아이보리 미니로 밝게 맞춰요 🤍
+  pose: an exotic-looking woman with long loose wavy dark hair and wispy strands,
+    standing turned slightly three-quarters with a relaxed pop of one hip, one hand
+    holding the bag at her side and the other lightly touching her hair, looking at
+    the camera with a soft expression, face visible, full body from head to shoes
+    in frame
+  scene_image: out/2026-11-04/src/scene_2.jpg
+  edit_refs: []
+  ref: '809'
+  ref_photo: sealed:u1103_07
+  requests: []
+- items:
+  - product: zigzag:134882586
+    color: 블랙
+    desc: 블랙 울 박시 롱코트 (black wool long coat, double-breasted)
+    name: 울 롱코트
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+    size: about 120 cm long from shoulder to hem, 48 cm across the shoulders, 60 cm
+      across the chest laid flat, 67 cm long sleeves
+    cm: 120.0
+  - product: zigzag:171549943
+    color: 아이보리
+    desc: 아이보리 울 텐셀 긴팔 티셔츠 (ivory wool-tencel long-sleeve tee)
+    name: 울 텐셀 티셔츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    size: about 64 cm long from shoulder to hem, 37 cm across the shoulders, 39 cm
+      across the chest laid flat, 62 cm long sleeves
+    cm: 64.0
+  - product: zigzag:172746329
+    color: 블랙
+    desc: 블랙 울 미니스커트 (black wool mini skirt)
+    name: 블랙 울 미니
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 35 cm long from waist to hem, 37 cm across the waist laid flat, 48
+      cm across the hips laid flat, 53 cm across the hem laid flat
+    cm: 35.0
+  - product: zigzag:116422044
+    color: 블랙
+    desc: 블랙 롱부츠 (black long boots)
+    name: 블랙 롱부츠
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 4
+  - product: zigzag:159313221
+    color: 블랙
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 블랙 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    - 1
+  - product: zigzag:108860472
+    color: 아이보리
+    desc: 아이보리 니트 목도리 (ivory knit scarf)
+    name: 니트 목도리
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+  reason: '블랙 울 롱코트가 주인공, 아이보리 목도리를 길게 두르고 블랙 롱부츠로 정리. 참고 811 (블랙 울 롱코트/아이보리 프린지 머플러/블랙
+    롱부츠 → 박시 울 롱코트/아이보리 니트 목도리/블랙 롱부츠, 이너·하의·가방 추가) (따라 함: 참고 811) [점수 7, 머플러가 프린지가
+    아님]'
+  point: 블랙 롱코트에 목도리를 길게 둘러 단정하게 마무리해요
+  pose: an exotic-looking woman with her dark hair in a sleek low bun with wispy loose
+    strands at the temples, standing straight but relaxed with one hand in her coat
+    pocket and the other holding her bag, her head tilted slightly and her eyes looking
+    at the camera, face visible, full body from head to shoes in frame
+  scene_image: out/2026-11-04/src/scene_2.jpg
+  edit_refs: []
+  ref: '811'
+  ref_photo: sealed:u1103_09
+  requests: []
+- items:
+  - product: zigzag:167511376
+    color: 그레이
+    desc: 그레이 후드 퍼 자켓 (grey hooded faux-fur jacket)
+    name: 후드 퍼 자켓
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+    size: about 59 cm long from shoulder to hem, 56 cm across the shoulders, 64 cm
+      across the chest laid flat, 59 cm long sleeves
+    cm: 59.0
+  - product: zigzag:169315363
+    color: 블랙
+    desc: 블랙 피그먼트 티셔츠 (black pigment-dyed tee)
+    name: 피그먼트 티셔츠
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 3
+    size: about 62.5 cm long from shoulder to hem, 45 cm across the shoulders, 51
+      cm across the chest laid flat, 17.5 cm long sleeves
+    cm: 62.5
+  - product: zigzag:149438922
+    color: 블랙
+    desc: 블랙 울 A라인 미니스커트 (black wool A-line mini skirt)
+    name: 울 미니스커트
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    size: about 39 cm long from waist to hem, 35 cm across the waist laid flat, 44
+      cm across the hips laid flat, 55 cm across the hem laid flat
+    cm: 39.0
+  - product: zigzag:135328879
+    color: 실버
+    desc: 화이트 실버 러닝 스니커즈 (white and metallic silver running sneakers)
+    name: 실버 스니커즈
+    comment: ''
+    cutout_photo: 0
+    ref_photos:
+    - 0
+    - 2
+    - 3
+  - product: zigzag:150848794
+    color: 블랙
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 블랙 숄더백
+    comment: ''
+    cutout_photo: 2
+    ref_photos:
+    - 2
+    - 0
+  - product: zigzag:141916298
+    color: 블랙
+    desc: 블랙 잔골지 니삭스 (black fine-ribbed knee socks)
+    name: 골지 니삭스
+    comment: ''
+    cutout_photo: 5
+    ref_photos:
+    - 5
+  reason: '그레이 퍼 자켓이 주인공, 블랙 미니와 실버 스니커즈로 스포티하게. 참고 812 (그레이 퍼 크롭 자켓/블랙 미니/실버 스니커즈/블랙
+    나일론 숄더백/레그워머 → 그레이 후드 퍼 자켓/블랙 울 미니/실버 런닝 스니커즈/블랙 숄더백/블랙 골지 삭스) (따라 함: 참고 812)
+    [점수 8]'
+  point: 그레이 퍼 자켓에 실버 스니커즈로 가볍게 풀어요
+  pose: an exotic-looking woman with her dark hair in a sleek high bun with wispy
+    loose strands, standing with a playful stance, knees slightly bent and one foot
+    turned in, both hands in the jacket pockets, her head tilted and her eyes looking
+    at the camera, face visible, full body from head to shoes in frame
+  scene_image: out/2026-11-04/src/scene.jpg
+  edit_refs: []
+  ref: '812'
+  ref_photo: sealed:u1103_10
+  requests: []
+reason: 사용자가 고른 참고 코디 803~812 일곱 벌을 그 순서대로 따라 짠 연말 약속룩
+edit_refs: []
+shot: model
+scene_image: out/2026-11-04/src/scene.jpg
+mood: a clean minimal studio lookbook shoot against a plain pale grey-white seamless
+  wall and floor, soft even diffused studio light with a faint soft shadow, cool neutral
+  muted colors, full-body shot with a professional camera at eye level
+requests: []
+text:
+  title_lines:
+  - 송년회 앞두고 꺼낸
+  - 퍼·트위드 이렇게 입음
+  intro: 서울 흐리고 7~17도, 송년회 약속엔 퍼랑 트위드로 따뜻하게 입어요 🧥
+  points: []
+  hashtags:
+  - '#연말룩'
+  - '#송년회룩'
+  - '#연말코디'
+  - '#퍼자켓'
+  - '#트위드자켓'
+  - '#하운드투스'
+  - '#겨울코디'
