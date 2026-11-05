@@ -10,7 +10,8 @@
     "background_2": 0.1369,
     "background_3": 0.1372,
     "background_4": 0.1352,
-    "background_5": 0.1379
+    "background_5": 0.1379,
+    "background_6": 0.1367
   },
   "notes": {},
   "motion_notes": {},
@@ -20,8 +21,8 @@
   "flags": [],
   "error": "",
   "error_at": 0,
-  "concept": 2,
-  "bg_versions": 5,
+  "concept": 3,
+  "bg_versions": 6,
   "bg_base": 0,
   "stale": []
 }
