@@ -6,7 +6,8 @@
   "sent_at": 0,
   "looks": 6,
   "costs": {
-    "background_1": 0.1373
+    "background_1": 0.1373,
+    "background_2": 0.1369
   },
   "notes": {},
   "motion_notes": {},
@@ -16,8 +17,8 @@
   "flags": [],
   "error": "",
   "error_at": 0,
-  "concept": 1,
-  "bg_versions": 1,
+  "concept": 2,
+  "bg_versions": 2,
   "bg_base": 0,
   "stale": []
 }
