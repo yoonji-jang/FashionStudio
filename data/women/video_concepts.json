@@ -7,7 +7,7 @@
       "title": "비 갠 밤 뉴욕 도심 횡단보도, 바쁜 출근길처럼 멈추지 않고 걷기",
       "background": "비 갠 밤, 차 없는 뉴욕 맨해튼 도심 사거리 횡단보도 한 곳, 뒤로 높은 석조·유리 빌딩과 불 켜진 창·쇼윈도, 건너편 인도에서 정면으로 본 같은 자리",
       "background_en": "A wide empty Manhattan-style city intersection crosswalk at night after rain, clean white stripes on wet dark asphalt reflecting warm lights, tall classic stone and glass buildings behind with lit windows and shop windows, warm street lamps, no cars, no people, no text, no logos.",
-      "framing": "세로 9:16, 눈높이, 건너편 인도에서 조금 떨어져 촬영, 전신이 화면 높이의 약 55%, 카메라 고정",
+      "framing": "세로 9:16, 눈높이, 가까이서 전신이 화면 높이의 약 80%, 카메라가 옆에서 천천히 따라가 인물은 화면 가운데 근처에 머묾 (LOOK 5 구도)",
       "light": "비 갠 밤, 따뜻한 가로등·쇼윈도 불빛과 젖은 길의 반사, 어두운 남색 하늘",
       "motion": "걷기 (왼쪽 끝에서 들어와 멈추지 않고 횡단보도를 건너 오른쪽으로 퇴장, 바쁜 현대인처럼, 커피·휴대폰 소품)",
       "music": "",
@@ -16,72 +16,72 @@
       "why": "멈추지 않고 걷는 바쁜 도시 사람의 걸음이라 옷이 걸음과 함께 자연스럽게 움직이고, 밤 불빛이 젖은 길에 비쳐 연말 도심 분위기가 남",
       "expression": "",
       "hair": "",
-      "pace": "바쁜 걸음, 보폭 크게, 1초에 약 2.5걸음, 끝까지 같은 속도",
+      "pace": "차분하고 일정한 도시 걸음, 1초에 약 2걸음, 5초 내내 같은 속도",
       "person_en": "",
-      "camera_en": "Fixed camera at eye level (about 1.5 m high), about 9 m from the crosswalk, facing it squarely from the opposite sidewalk, vertical 9:16, no zoom, no shake, no movement.",
-      "pace_en": "Busy city commuter pace: brisk long strides, about two and a half steps per second, the same speed from start to end, shoulders level, head up, no bouncing, no waddling.",
+      "camera_en": "Eye-level camera (about 1.5 m high) close to her on the opposite side of the crosswalk, tracking slowly sideways with her so she stays near the center of the frame; the background slides by slowly and smoothly, never fast. Vertical 9:16, no zoom, no shake.",
+      "pace_en": "Steady unhurried city walk, natural stride, about two steps per second, exactly the same speed for the whole 5 seconds, shoulders level, head up, no bouncing, no waddling.",
       "light_en": "Night after rain: warm street lamps and shop-window light, reflections on the wet asphalt, dark blue night sky; her face and outfit stay clearly lit and easy to see.",
-      "direction_en": "She walks along the crosswalk in one straight line from the left edge of the frame to the right edge and exits on the right, her body side-on to the camera, face in three-quarter view and clearly visible. She never stops, slows down, turns to the camera or poses.",
+      "direction_en": "She walks from left to right along the crosswalk, her body turned about three-quarters toward the camera so her face and the front of her outfit stay clearly visible. She drifts slowly from the left third of the frame to the right third over 5 seconds and leaves the frame on the right only at the very end. She never stops or poses.",
       "shots": [
         {
           "look": 1,
           "seconds": 5,
-          "action": "왼쪽 끝에서 들어와 멈추지 않고 바쁘게 걸어 오른쪽으로 퇴장",
+          "action": "왼쪽에서 오른쪽으로 일정한 속도로 걸으며 카메라가 천천히 따라감, 끝에 오른쪽으로 퇴장",
           "pose": "오른손에 테이크아웃 커피 컵을 들고, 걸으며 한 번 한 모금 마시기",
           "text": "바쁜 뉴욕 밤, 연말 코디 6벌",
-          "motion_en": "0-5s: one continuous brisk walk along the crosswalk from the left edge of the frame to the right edge, her body side-on to the camera with her face in a three-quarter view so it stays clearly visible, full body about 55% of the frame height, never stopping, slowing, turning her body to the camera or posing. She holds a plain white takeaway coffee cup with a lid (no logo) in her right hand and takes one quick sip while walking; the shoulder bag stays on her shoulder. At about 4.5s she walks out of frame on the right. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
-          "start": "화면 왼쪽 끝 횡단보도 위, 전신이 화면 세로의 약 55%, 걷는 중",
-          "start_en": "Full body at the left edge of the frame on the crosswalk, about 55% of the frame height, side-on to the camera, mid-stride, walking toward the right."
+          "motion_en": "0-5s: one continuous steady walk from left to right along the crosswalk, body turned about three-quarters toward the camera, full body about 80% of the frame height from head to shoes, starting in the left third of the frame and moving slowly to the right third, the camera tracking slowly with her so the background slides by slowly. She holds a plain white takeaway coffee cup with a lid (no logo) in her right hand at chest height and takes one small sip while walking; the shoulder bag stays on her shoulder. Only at about 4.8-5s does she step out of frame on the right. The same walking speed the whole time, never stopping, slowing down or posing. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
+          "start": "화면 왼쪽 1/3, 전신이 화면 세로의 약 80%, 걷는 중",
+          "start_en": "Full body in the left third of the frame, about 80% of the frame height, body three-quarters toward the camera, mid-stride, walking to the right."
         },
         {
           "look": 2,
           "seconds": 5,
-          "action": "왼쪽 끝에서 들어와 멈추지 않고 바쁘게 걸어 오른쪽으로 퇴장",
+          "action": "왼쪽에서 오른쪽으로 일정한 속도로 걸으며 카메라가 천천히 따라감, 끝에 오른쪽으로 퇴장",
           "pose": "오른손에 휴대폰을 들고 걸으며 화면을 한 번 내려다보기",
           "text": "",
-          "motion_en": "0-5s: one continuous brisk walk along the crosswalk from the left edge of the frame to the right edge, her body side-on to the camera with her face in a three-quarter view so it stays clearly visible, full body about 55% of the frame height, never stopping, slowing, turning her body to the camera or posing. She holds a black smartphone in her right hand and glances down at its screen once while walking, then looks ahead again. At about 4.5s she walks out of frame on the right. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
-          "start": "화면 왼쪽 끝 횡단보도 위, 전신이 화면 세로의 약 55%, 걷는 중",
-          "start_en": "Full body at the left edge of the frame on the crosswalk, about 55% of the frame height, side-on to the camera, mid-stride, walking toward the right."
+          "motion_en": "0-5s: one continuous steady walk from left to right along the crosswalk, body turned about three-quarters toward the camera, full body about 80% of the frame height from head to shoes, starting in the left third of the frame and moving slowly to the right third, the camera tracking slowly with her so the background slides by slowly. She holds a black smartphone in her right hand at chest height and glances down at its screen once while walking, then looks ahead again. Only at about 4.8-5s does she step out of frame on the right. The same walking speed the whole time, never stopping, slowing down or posing. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
+          "start": "화면 왼쪽 1/3, 전신이 화면 세로의 약 80%, 걷는 중",
+          "start_en": "Full body in the left third of the frame, about 80% of the frame height, body three-quarters toward the camera, mid-stride, walking to the right."
         },
         {
           "look": 3,
           "seconds": 5,
-          "action": "왼쪽 끝에서 들어와 멈추지 않고 바쁘게 걸어 오른쪽으로 퇴장",
+          "action": "왼쪽에서 오른쪽으로 일정한 속도로 걸으며 카메라가 천천히 따라감, 끝에 오른쪽으로 퇴장",
           "pose": "왼손에 테이크아웃 커피 컵, 오른손은 가방 끈을 잡고 걷기",
           "text": "",
-          "motion_en": "0-5s: one continuous brisk walk along the crosswalk from the left edge of the frame to the right edge, her body side-on to the camera with her face in a three-quarter view so it stays clearly visible, full body about 55% of the frame height, never stopping, slowing, turning her body to the camera or posing. She holds a plain white takeaway coffee cup with a lid (no logo) in her left hand and her right hand holds the bag strap while walking. At about 4.5s she walks out of frame on the right. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
-          "start": "화면 왼쪽 끝 횡단보도 위, 전신이 화면 세로의 약 55%, 걷는 중",
-          "start_en": "Full body at the left edge of the frame on the crosswalk, about 55% of the frame height, side-on to the camera, mid-stride, walking toward the right."
+          "motion_en": "0-5s: one continuous steady walk from left to right along the crosswalk, body turned about three-quarters toward the camera, full body about 80% of the frame height from head to shoes, starting in the left third of the frame and moving slowly to the right third, the camera tracking slowly with her so the background slides by slowly. She holds a plain white takeaway coffee cup with a lid (no logo) in her left hand at chest height and her right hand holds the bag strap while walking. Only at about 4.8-5s does she step out of frame on the right. The same walking speed the whole time, never stopping, slowing down or posing. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
+          "start": "화면 왼쪽 1/3, 전신이 화면 세로의 약 80%, 걷는 중",
+          "start_en": "Full body in the left third of the frame, about 80% of the frame height, body three-quarters toward the camera, mid-stride, walking to the right."
         },
         {
           "look": 4,
           "seconds": 5,
-          "action": "왼쪽 끝에서 들어와 멈추지 않고 바쁘게 걸어 오른쪽으로 퇴장",
+          "action": "왼쪽에서 오른쪽으로 일정한 속도로 걸으며 카메라가 천천히 따라감, 끝에 오른쪽으로 퇴장",
           "pose": "휴대폰을 오른쪽 귀에 대고 통화하며 걷기",
           "text": "",
-          "motion_en": "0-5s: one continuous brisk walk along the crosswalk from the left edge of the frame to the right edge, her body side-on to the camera with her face in a three-quarter view so it stays clearly visible, full body about 55% of the frame height, never stopping, slowing, turning her body to the camera or posing. She walks while talking on a black smartphone held to her right ear with her right hand, her left arm swinging naturally. At about 4.5s she walks out of frame on the right. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
-          "start": "화면 왼쪽 끝 횡단보도 위, 전신이 화면 세로의 약 55%, 걷는 중",
-          "start_en": "Full body at the left edge of the frame on the crosswalk, about 55% of the frame height, side-on to the camera, mid-stride, walking toward the right."
+          "motion_en": "0-5s: one continuous steady walk from left to right along the crosswalk, body turned about three-quarters toward the camera, full body about 80% of the frame height from head to shoes, starting in the left third of the frame and moving slowly to the right third, the camera tracking slowly with her so the background slides by slowly. She walks while talking on a black smartphone held to her right ear with her right hand, her left arm relaxed. Only at about 4.8-5s does she step out of frame on the right. The same walking speed the whole time, never stopping, slowing down or posing. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
+          "start": "화면 왼쪽 1/3, 전신이 화면 세로의 약 80%, 걷는 중",
+          "start_en": "Full body in the left third of the frame, about 80% of the frame height, body three-quarters toward the camera, mid-stride, walking to the right."
         },
         {
           "look": 5,
           "seconds": 5,
-          "action": "왼쪽 끝에서 들어와 멈추지 않고 바쁘게 걸어 오른쪽으로 퇴장",
+          "action": "왼쪽에서 오른쪽으로 일정한 속도로 걸으며 카메라가 천천히 따라감, 끝에 오른쪽으로 퇴장",
           "pose": "오른손에 테이크아웃 커피 컵을 들고, 걸으며 앞을 보다 살짝 옆을 보기",
           "text": "",
-          "motion_en": "0-5s: one continuous brisk walk along the crosswalk from the left edge of the frame to the right edge, her body side-on to the camera with her face in a three-quarter view so it stays clearly visible, full body about 55% of the frame height, never stopping, slowing, turning her body to the camera or posing. She holds a plain white takeaway coffee cup with a lid (no logo) in her right hand and glances briefly to the side once while walking. At about 4.5s she walks out of frame on the right. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
-          "start": "화면 왼쪽 끝 횡단보도 위, 전신이 화면 세로의 약 55%, 걷는 중",
-          "start_en": "Full body at the left edge of the frame on the crosswalk, about 55% of the frame height, side-on to the camera, mid-stride, walking toward the right."
+          "motion_en": "0-5s: one continuous steady walk from left to right along the crosswalk, body turned about three-quarters toward the camera, full body about 80% of the frame height from head to shoes, starting in the left third of the frame and moving slowly to the right third, the camera tracking slowly with her so the background slides by slowly. She holds a plain white takeaway coffee cup with a lid (no logo) in her right hand at chest height and glances briefly to the side once while walking. Only at about 4.8-5s does she step out of frame on the right. The same walking speed the whole time, never stopping, slowing down or posing. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
+          "start": "화면 왼쪽 1/3, 전신이 화면 세로의 약 80%, 걷는 중",
+          "start_en": "Full body in the left third of the frame, about 80% of the frame height, body three-quarters toward the camera, mid-stride, walking to the right."
         },
         {
           "look": 6,
           "seconds": 5,
-          "action": "왼쪽 끝에서 들어와 멈추지 않고 바쁘게 걸어 오른쪽으로 퇴장",
+          "action": "왼쪽에서 오른쪽으로 일정한 속도로 걸으며 카메라가 천천히 따라감, 끝에 오른쪽으로 퇴장",
           "pose": "오른손에 휴대폰을 들고 걸으며 화면을 보다 앞을 보기",
           "text": "",
-          "motion_en": "0-5s: one continuous brisk walk along the crosswalk from the left edge of the frame to the right edge, her body side-on to the camera with her face in a three-quarter view so it stays clearly visible, full body about 55% of the frame height, never stopping, slowing, turning her body to the camera or posing. She holds a black smartphone in her right hand, looks at the screen for a moment while walking, then looks ahead. At about 4.5s she walks out of frame on the right. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
-          "start": "화면 왼쪽 끝 횡단보도 위, 전신이 화면 세로의 약 55%, 걷는 중",
-          "start_en": "Full body at the left edge of the frame on the crosswalk, about 55% of the frame height, side-on to the camera, mid-stride, walking toward the right."
+          "motion_en": "0-5s: one continuous steady walk from left to right along the crosswalk, body turned about three-quarters toward the camera, full body about 80% of the frame height from head to shoes, starting in the left third of the frame and moving slowly to the right third, the camera tracking slowly with her so the background slides by slowly. She holds a black smartphone in her right hand at chest height, looks at the screen for a moment while walking, then looks ahead. Only at about 4.8-5s does she step out of frame on the right. The same walking speed the whole time, never stopping, slowing down or posing. One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps.",
+          "start": "화면 왼쪽 1/3, 전신이 화면 세로의 약 80%, 걷는 중",
+          "start_en": "Full body in the left third of the frame, about 80% of the frame height, body three-quarters toward the camera, mid-stride, walking to the right."
         }
       ]
     },
