@@ -4,11 +4,11 @@
   "run": "2026-11-04-run444-l123567/plan",
   "concepts": [
     {
-      "title": "흐린 낮 도심 사거리, 횡단보도 옆으로 건너기",
-      "background": "비 그친 흐린 낮, 차 없는 넓은 도심 사거리 횡단보도 한 곳, 건너편 인도에서 정면으로 본 같은 자리",
-      "background_en": "A wide empty city intersection crosswalk with clean white stripes on dark grey asphalt on an overcast daytime after rain, plain beige low-rise buildings far behind, no cars, no people, no signs, no text, no logos. The crosswalk runs left to right across the frame.",
+      "title": "비 갠 밤 뉴욕 도심 사거리, 횡단보도 옆으로 건너기",
+      "background": "비 갠 밤, 차 없는 뉴욕 맨해튼 도심 사거리 횡단보도 한 곳, 뒤로 높은 석조·유리 빌딩과 불 켜진 창·쇼윈도, 건너편 인도에서 정면으로 본 같은 자리",
+      "background_en": "A wide empty Manhattan-style city intersection crosswalk at night after rain, clean white stripes on wet dark asphalt reflecting warm lights, tall classic stone and glass buildings behind with lit windows and shop windows, warm street lamps, no cars, no people, no text, no logos.",
       "framing": "세로 9:16, 눈높이, 건너편 인도에서 조금 떨어져 촬영, 멈출 때 전신이 화면 높이의 약 60%, 카메라 고정",
-      "light": "흐린 낮, 그림자 없는 부드러운 빛, 차분한 회색과 베이지 색감",
+      "light": "비 갠 밤, 따뜻한 가로등·쇼윈도 불빛과 젖은 길의 반사, 어두운 남색 하늘",
       "motion": "걷기 (왼쪽 인도에서 횡단보도로 들어와 가운데서 잠깐 멈춰 포즈, 오른쪽으로 빠르게 건너 퇴장)",
       "music": "",
       "music_mood": "",
@@ -20,7 +20,7 @@
       "person_en": "",
       "camera_en": "Fixed camera at eye level (about 1.5 m high), about 9 m from the crosswalk, facing it squarely from the opposite sidewalk, vertical 9:16, no zoom, no shake, no movement.",
       "pace_en": "Brisk confident walk, long strides, about two and a half steps per second, arms swinging clearly, shoulders level, head up, no bouncing, no waddling.",
-      "light_en": "Soft overcast daylight, no hard shadows, calm grey and beige tones.",
+      "light_en": "Night after rain: warm street lamps and shop-window light, reflections on the wet asphalt, dark blue night sky; her face and outfit stay clearly lit and easy to see.",
       "direction_en": "She walks along the crosswalk from the left edge of the frame to the right edge, pausing briefly at the center, then continues to the right and exits the frame.",
       "shots": [
         {
@@ -253,6 +253,6 @@
   "feedback": "횡단보도를 빠른 보폭으로 걷는 컨셉으로 하자. 컨셉 구상해줘 (후보 모두 횡단보도 걷기, 배경·시간대·동선을 서로 다르게)",
   "sent_at": 1793850994,
   "message_ids": [],
-  "chosen": 0,
+  "chosen": 1,
   "chosen_at": 0
 }
