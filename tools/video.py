@@ -579,14 +579,34 @@ def overlay_png(profile: Profile, n: int, hook: str, path: Path) -> None:
             font = _font(profile.visual.font, size)
         tw = draw.textlength(hook, font=font)
         draw.text(((w - tw) / 2, h * lay["hook_y"] - size / 2), hook, font=font, fill=color)
-    font = _font(profile.visual.logo_font, lay["look_size"])
-    label = f"LOOK {n}"
-    right, top = lay["look_margin"]
-    draw.text((w - right - draw.textlength(label, font=font), top), label, font=font, fill=color)
+    bar = None
+    if lay.get("look_place") == "carousel":
+        # 캐러셀 릴스 판 벌 장과 같은 자리·글꼴·세로선 (2026-11-05 사용자 "캐러셀 글자 위치에")
+        from tools.feed import tall_profile
+
+        tp = tall_profile(profile)
+        lk, v, k = tp.looks, tp.visual, w / 1080
+        font = _font(v.font, round(lk.label_size * k))
+        x, y = round(w * tp.feed.margin_x), h * (1 - lk.bottom)
+        draw.text((x, y), (lk.label or "LOOK {n}").format(n=n), font=font, fill=lk.text_color,
+                  anchor="ls")  # fmt: skip
+        if v.accent_color:
+            x1 = x - round(v.accent_gap * k)
+            x0 = x1 - max(1, round(v.accent_width * k))
+            bar = ((x0, round(y - font.size * 0.8), x1 - 1, round(y + 2 * k)), v.accent_color)
+    else:
+        font = _font(profile.visual.logo_font, lay["look_size"])
+        label = f"LOOK {n}"
+        right, top = lay["look_margin"]
+        draw.text((w - right - draw.textlength(label, font=font), top), label, font=font,
+                  fill=color)  # fmt: skip
     shadow = Image.new("RGBA", im.size, (0, 0, 0, 0))
     shadow.paste((0, 0, 0, 110), mask=im.split()[3])
     shadow = shadow.filter(ImageFilter.GaussianBlur(4))
-    Image.alpha_composite(shadow, im).save(path)
+    out = Image.alpha_composite(shadow, im)
+    if bar:
+        ImageDraw.Draw(out).rectangle(bar[0], fill=bar[1])
+    out.save(path)
 
 
 def _duration(path: Path) -> float:
@@ -691,7 +711,7 @@ def edit(
             want = (_duration(clip) - start) / sp
             src = min(want * sp, _duration(clip) - start)
             png = tmp / f"o{n}.png"
-            overlay_png(profile, n, hook_text if i == 0 else "", png)
+            overlay_png(profile, i + 1, hook_text if i == 0 else "", png)  # 보이는 순서 번호
             seg = tmp / f"s{i}.mp4"
             vf = (
                 f"[0:v]setpts=(PTS-STARTPTS)/{sp},"

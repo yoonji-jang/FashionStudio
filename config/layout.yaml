@@ -88,7 +88,8 @@ video_edit:
   fps: 30
   hook_y: 0.13          # 첫 벌 훅 문구 가운데 높이
   hook_size: 64         # 긴 문구는 화면 폭 86% 안에 들어가게 줄어듦
-  look_size: 34         # 오른쪽 위 "LOOK n"
+  look_place: carousel  # "LOOK n" 을 캐러셀 벌 장 자리(왼쪽 아래, 세로선)에. 비우면 오른쪽 위 (2026-11-05 사용자)
+  look_size: 34         # 오른쪽 위 "LOOK n" (look_place 가 비었을 때)
   look_margin: [48, 120]  # 오른쪽, 위 여백
   music_fade_in: 0.3
   music_fade_out: 1.2
