@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw
 
 from core.models import Product
 from core.store import Store
-from sources import SearchFilters, zigzag
+from sources import PageUnreadable, SearchFilters, zigzag
 from tools import collect, photo_pick, scout
 
 TODAY = date(2026, 9, 26)
@@ -148,7 +148,10 @@ def test_parse_page_not_on_sale(kwargs, code, expected):
 
 
 def test_parse_page_without_data_is_hidden():
-    assert zigzag.parse_page(200, "<html>점검 중</html>").status == "hidden"
+    info = zigzag.parse_page(200, "<html>점검 중</html>")
+    assert info.status == "hidden" and not info.readable
+    assert zigzag.parse_page(404, "").readable  # 사라진 페이지는 판매 종료로 확인된 것
+    assert not zigzag.parse_page(400, "").readable
 
 
 def test_thumb_url():
@@ -211,6 +214,7 @@ class FakeSource(zigzag.Source):
     def __init__(self, cards: dict[str, list[dict]], pages: dict[str, str]):
         super().__init__(today=TODAY)
         self.cards, self.pages, self.detailed = cards, pages, []
+        self.unreadable: set[str] = set()  # 페이지를 못 읽는 상품 번호 ("*" 이면 전부)
 
     def search(self, queries, category, filters):
         return {
@@ -223,6 +227,8 @@ class FakeSource(zigzag.Source):
     def detail(self, product):
         pid = product.id.split(":")[1]
         self.detailed.append(pid)
+        if pid in self.unreadable or "*" in self.unreadable:
+            raise PageUnreadable(pid)
         info = zigzag.parse_page(
             200,
             page_html(
@@ -575,3 +581,66 @@ def test_women_has_no_rating_or_review_limit():
     new = Product(id="zigzag:1", name="미니 스커트", **base)
     hit = Product(id="zigzag:2", name="미니 스커트", rating=4.9, review_count=900, **base)
     assert quality(new, profile) == quality(hit, profile)
+
+
+# ---------- 창고가 한꺼번에 비지 않게 (2026-11-03 run 240) ----------
+
+
+def _shoes(n: int, checked: date) -> list[Product]:
+    return [
+        Product.model_validate({**_stored(100 + i, checked).model_dump(), "category": "신발"})
+        for i in range(n)
+    ]
+
+
+def test_unreadable_pages_keep_stock_and_stop(tmp_path: Path):
+    store = Store("women", root=tmp_path)
+    store.save_products(_shoes(8, TODAY - timedelta(days=5)))
+    source = FakeSource(cards={}, pages={})
+    source.unreadable = {"*"}
+    report = collect.collect(
+        "women", plan={}, source=source, store=store, fetch=fake_fetch, today=TODAY
+    )
+    assert len(store.products()) == 8
+    assert report.dropped == [] and report.unreadable == collect.UNREADABLE_STOP
+    assert report.stopped and "읽지 못함" in report.stopped
+    assert len(source.detailed) == collect.UNREADABLE_STOP
+
+
+def test_one_unreadable_page_is_kept_and_rest_checked(tmp_path: Path):
+    store = Store("women", root=tmp_path)
+    store.save_products(_shoes(3, TODAY - timedelta(days=5)))
+    source = FakeSource(cards={}, pages={"102": "SOLD_OUT"})
+    source.unreadable = {"101"}
+    report = collect.collect(
+        "women", plan={}, source=source, store=store, fetch=fake_fetch, today=TODAY
+    )
+    ids = {p.id for p in store.products()}
+    assert ids == {"zigzag:100", "zigzag:101"}
+    assert report.unreadable == 1 and report.stopped is None
+    assert [p.id for p, _ in report.dropped] == ["zigzag:102"]
+
+
+def test_mass_sold_out_in_one_category_is_held(tmp_path: Path):
+    store = Store("women", root=tmp_path)
+    shoes = _shoes(30, TODAY - timedelta(days=5))
+    store.save_products(shoes)
+    # 30개 중 11개(한도 10개 넘음)가 판매 종료로 나옴 → 믿지 않고 남김
+    source = FakeSource(cards={}, pages={str(100 + i): "SOLD_OUT" for i in range(11)})
+    report = collect.collect(
+        "women", plan={}, source=source, store=store, fetch=fake_fetch, today=TODAY
+    )
+    assert len(store.products()) == 30
+    assert report.held == {"신발": 11} and report.dropped == []
+    kept = {p.id: p for p in store.products()}
+    assert kept["zigzag:100"].checked_at == shoes[0].checked_at  # 예전 그대로
+
+
+def test_few_sold_out_are_dropped(tmp_path: Path):
+    store = Store("women", root=tmp_path)
+    store.save_products(_shoes(30, TODAY - timedelta(days=5)))
+    source = FakeSource(cards={}, pages={str(100 + i): "SOLD_OUT" for i in range(3)})
+    report = collect.collect(
+        "women", plan={}, source=source, store=store, fetch=fake_fetch, today=TODAY
+    )
+    assert len(store.products()) == 27 and report.held == {}

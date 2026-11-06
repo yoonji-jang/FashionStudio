@@ -17,7 +17,14 @@ from datetime import date
 from typing import Any
 
 from core.models import Category, Product, SaleStatus
-from sources.base import ProductSource, SearchFilters, cheap_floor, name_excluded, price_ok
+from sources.base import (
+    PageUnreadable,
+    ProductSource,
+    SearchFilters,
+    cheap_floor,
+    name_excluded,
+    price_ok,
+)
 from tools import scout
 
 PRODUCT_URL = "https://zigzag.kr/catalog/products/{id}"
@@ -138,7 +145,12 @@ class PageInfo:
     name: str | None = None
     shop: str | None = None
     price: int | None = None
+    # False: 사라졌다는 확인(404·410, 판매 상태)이 아니라 페이지를 못 읽음 (막힘·점검·구조 변경)
+    readable: bool = True
 
+
+# 판매 종료로 페이지가 사라졌을 때의 응답 코드. 그 밖의 오류나 내용 없는 200 은 "못 읽음"
+GONE_CODES = {404, 410}
 
 _PRICE_KEYS = ("final_price", "discount_price", "sales_price", "price")
 
@@ -189,10 +201,16 @@ def page_status(product: dict) -> SaleStatus:
 
 
 def parse_page(status_code: int, page_html: str) -> PageInfo:
-    """상품 페이지 HTML → 판매 상태·사진 목록. 사라졌거나 읽을 수 없으면 hidden."""
+    """상품 페이지 HTML → 판매 상태·사진 목록. 사라졌거나 읽을 수 없으면 hidden.
+    읽을 수 없는 경우(404·410 이 아닌데 상품 정보가 없음)는 readable=False 로 구분한다."""
     data = _page_data(page_html) if status_code == 200 else None
     if not data:
-        return PageInfo(status="hidden", image_urls=[], style_tags=[])
+        return PageInfo(
+            status="hidden",
+            image_urls=[],
+            style_tags=[],
+            readable=status_code in GONE_CODES,
+        )
     product = data["product"]
     images = []
     for im in product.get("product_image_list") or []:
@@ -290,6 +308,8 @@ class Source(ProductSource):
     def detail(self, product: Product) -> Product:
         code, text = scout.fetch_page(self.client, str(product.url))
         info = parse_page(code, text)
+        if not info.readable:
+            raise PageUnreadable(f"{code} 상품 페이지를 읽지 못함: {product.url}")
         update: dict[str, Any] = {"status": info.status, "checked_at": self.today}
         if info.image_urls:
             update["image_urls"] = info.image_urls
