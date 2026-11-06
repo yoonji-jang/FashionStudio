@@ -9,6 +9,12 @@ from pydantic import BaseModel
 from core.models import Category, Product
 
 
+class PageUnreadable(RuntimeError):
+    """상품 페이지를 읽지 못함 (막힘·점검·구조 변경). 판매 종료로 보지 않고 창고 상품은 그대로 둔다.
+    2026-11-03 run 240: 중간부터 페이지가 읽히지 않았는데 모두 '판매 종료'로 보고
+    신발·소품을 다 지웠다."""
+
+
 class SearchFilters(BaseModel):
     min_rating: float = 0
     min_reviews: int = 0
@@ -51,7 +57,8 @@ class ProductSource(ABC):
 
     @abstractmethod
     def detail(self, product: Product) -> Product:
-        """상품 페이지에서 판매 상태와 전체 사진을 채운다. 사라진 상품은 status 를 바꿔 돌려준다."""
+        """상품 페이지에서 판매 상태와 전체 사진을 채운다. 사라진 상품은 status 를 바꿔 돌려준다.
+        페이지를 읽지 못하면(사라졌다는 확인이 아니면) PageUnreadable 을 낸다."""
 
     def thumb_url(self, image_url: str, width: int = 240) -> str:
         """사진 고르기용 작은 사진 주소. 쇼핑몰이 크기 조절을 지원하면 덮어쓴다."""

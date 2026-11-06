@@ -1,8 +1,8 @@
 """상품 소스. 쇼핑몰마다 ProductSource 구현을 하나씩 둔다 (예: zigzag.py, 4단계)."""
 
-from sources.base import ProductSource, SearchFilters
+from sources.base import PageUnreadable, ProductSource, SearchFilters
 
-__all__ = ["ProductSource", "SearchFilters", "get_source"]
+__all__ = ["PageUnreadable", "ProductSource", "SearchFilters", "get_source"]
 
 
 def get_source(name: str) -> ProductSource:
