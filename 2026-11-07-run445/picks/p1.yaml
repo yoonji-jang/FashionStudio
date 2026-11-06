@@ -1,0 +1,94 @@
+account: women
+date: 2026-11-07
+theme:
+  date: 2026-11-07
+  title_hint: 겨울 하객룩, 겨울 결혼식에 하객으로 입는 단정하고 따뜻한 룩
+  mood: 블랙·그레이·브라운·네이비의 차분한 톤에 트위드·울·니트 소재로 단정하면서 포근한 하객룩
+  slots:
+    - {category: 아우터, desc: "트위드 재킷, 울 하프코트, 블레이저처럼 단정한 겨울 아우터"}
+    - {category: 상의, desc: "셔츠 레이어드 니트, 터틀넥, 타이 블라우스"}
+    - {category: 하의, desc: "와이드 슬랙스, 미니·롱·머메이드 스커트"}
+    - {category: 신발, desc: "포인티드 플랫, 펌프스, 롱부츠"}
+    - {category: 가방, desc: "작은 가죽 토트·숄더백"}
+  type: null
+  why: 11월 겨울 결혼식 시즌, 사용자가 고른 참고 코디 10벌
+  search_terms: {}
+reason: 사용자가 고른 참고 코디 10벌(813~822)을 따라 한 겨울 하객룩
+looks:
+  - reason: 블랙 가디건에 스트라이프 셔츠 깃을 빼 입고 와이드 슬랙스로 단정하게. 참고 블랙 브이넥 가디건/스트라이프 셔츠/블랙 와이드 슬랙스/블랙 숄더백 → 블랙 골지 가디건/네이비 스트라이프 셔츠/블랙 원턱 슬랙스/블랙 숄더백 (벨트·플랫슈즈는 창고에 없음) [점수 7] (따라 함:참고 813)
+    ref: "813"
+    ref_photo: "sealed:u1106_01"
+    items:
+      - {product: "zigzag:171665495", color: 블랙, desc: "블랙 골지 슬림 가디건 (black ribbed slim cardigan)", name: 골지 슬림 가디건}
+      - {product: "zigzag:172111578", color: 화이트, desc: "화이트 스트라이프 셔츠 (white striped shirt)", name: 스트라이프 셔츠}
+      - {product: "zigzag:148726754", color: 블랙, desc: "블랙 원턱 와이드 슬랙스 (black one-tuck wide slacks)", name: 원턱 와이드 슬랙스}
+      - {product: "zigzag:168564549", color: 블랙, desc: "블랙 숄더백 (black shoulder bag)", name: 니치 숄더백}
+  - reason: 블랙 트위드 크롭 재킷에 울 미니스커트로 셋업처럼 단정하게. 참고 블랙 트위드 크롭 재킷/트위드 미니스커트/롱부츠/토트백 → 트위드 크롭 자켓/블랙 울 미니/블랙 위빙 숄더백 (롱부츠는 창고에 없음, 스커트는 트위드 대신 울) [점수 7] (따라 함:참고 814)
+    ref: "814"
+    ref_photo: "sealed:u1106_02"
+    items:
+      - {product: "zigzag:165149023", color: 블랙, desc: "블랙 프린지 크롭 트위드 자켓 (black cropped tweed jacket)", name: 크롭 트위드 자켓}
+      - {product: "zigzag:171221132", color: 화이트, desc: "화이트 멜란지 헨리넥 티셔츠 (white melange henley tee)", name: 헨리넥 티셔츠, wear_with: 아우터}
+      - {product: "zigzag:150110018", color: 블랙, desc: "블랙 울 미니 스커트 (black wool mini skirt)", name: 울 미니 스커트}
+      - {product: "zigzag:168305853", color: 블랙, desc: "블랙 위빙 숄더백 (black woven shoulder bag)", name: 위빙 숄더백}
+  - reason: 그레이 하이넥 스트랩 울 코트에 블랙 미니로 포근하고 단정하게. 참고 그레이 하이넥 벨트 울 하프코트/블랙 미니/네이비 토트 → 차콜 하이넥 스트랩 울 하프코트/블랙 울 미니/블랙 숄더백 (네이비 가방은 창고에 없음) [점수 8] (따라 함:참고 815)
+    ref: "815"
+    ref_photo: "sealed:u1106_03"
+    items:
+      - {product: "zigzag:167292339", color: 차콜, desc: "차콜 하이넥 스트랩 울 하프 코트 (charcoal high-neck strap wool half coat)", name: 하이넥 울 하프코트}
+      - {product: "zigzag:172423241", color: 블랙, desc: "블랙 슬림 버튼 티셔츠 (black slim button tee)", name: 슬림 버튼 티셔츠, wear_with: 아우터}
+      - {product: "zigzag:172746329", color: 블랙, desc: "블랙 울 미니 스커트 (black wool mini skirt)", name: 웜 울 미니 스커트}
+      - {product: "zigzag:168564549", color: 블랙, desc: "블랙 숄더백 (black shoulder bag)", name: 니치 숄더백}
+  - reason: 차콜 울 블레이저에 니트 조끼와 화이트 셔츠, 아이보리 와이드 팬츠로 깔끔하게. 참고 차콜 블레이저/블랙 니트 조끼/화이트 셔츠/아이보리 와이드 팬츠/블랙 숄더백 → 차콜 오버사이즈 블레이저/블랙 터틀넥 니트 조끼/화이트 레이어드 셔츠/아이보리 코튼 와이드 팬츠/블랙 위빙 숄더백 [점수 7] (따라 함:참고 816)
+    ref: "816"
+    ref_photo: "sealed:u1106_04"
+    items:
+      - {product: "zigzag:165561309", color: 차콜, desc: "차콜 오버사이즈 울 블레이저 (charcoal oversized wool blazer)", name: 울 블레이저}
+      - {product: "zigzag:155379478", color: 블랙, desc: "블랙 니트 조끼 (black knit vest)", name: 니트 조끼}
+      - {product: "zigzag:149153580", color: 화이트, desc: "화이트 셔츠 (white shirt)", name: 화이트 셔츠, wear_with: 상의}
+      - {product: "zigzag:168504664", color: 아이보리, desc: "아이보리 투핀턱 와이드 코튼 팬츠 (ivory two-pleat wide cotton pants)", name: 투핀턱 와이드 팬츠}
+      - {product: "zigzag:168305853", color: 블랙, desc: "블랙 위빙 숄더백 (black woven shoulder bag)", name: 위빙 숄더백}
+  - reason: 아이보리 골지 가디건에 브라운 뷔스티에를 겹치고 블랙 롱스커트로 포근하게. 참고 아이보리 골지 가디건/브라운 니트 뷔스티에/블랙 롱스커트/아이보리 토트 → 크림 골지 가디건/브라운 니트 뷔스티에/블랙 새틴 롱스커트/아이보리 토트 [점수 7] (따라 함:참고 817)
+    ref: "817"
+    ref_photo: "sealed:u1106_05"
+    items:
+      - {product: "zigzag:171909916", color: 크림, desc: "크림 베이지 골지 슬림 가디건 (cream ribbed slim cardigan)", name: 골지 슬림 가디건}
+      - {product: "zigzag:165977844", color: 브라운, desc: "브라운 니트 뷔스티에 (brown knit bustier vest)", name: 니트 뷔스티에}
+      - {product: "zigzag:168778375", color: 블랙, desc: "블랙 새틴 롱 스커트 (black satin long skirt)", name: 새틴 롱스커트}
+      - {product: "zigzag:167741389", color: 아이보리, desc: "아이보리 토트백 (ivory tote bag)", name: 소피 토트백}
+  - reason: 브라운 벨트 재킷에 브라운 플리츠 롱스커트로 톤을 맞추고 블랙 이너로 단정하게. 참고 브라운 트위드 벨트 재킷/트위드 롱스커트/블랙 터틀넥/화이트 체인백 → 브라운 벨트 코트 자켓/브라운 플리츠 롱스커트/블랙 헨리넥 니트/마리백 (터틀넥·트위드는 가장 비슷한 것으로 대체) [점수 6] (따라 함:참고 818)
+    ref: "818"
+    ref_photo: "sealed:u1106_06"
+    items:
+      - {product: "zigzag:167292339", color: 브라운, desc: "브라운 하이넥 스트랩 울 하프 코트 (brown high-neck strap wool half coat)", name: 스트랩 울 하프코트}
+      - {product: "zigzag:168059454", color: 블랙, desc: "블랙 헨리넥 레이어드 니트 (black henley layered knit)", name: 헨리넥 니트, wear_with: 아우터}
+      - {product: "zigzag:131390735", color: 브라운, desc: "브라운 플리츠 롱스커트 (brown pleated long skirt)", name: 플리츠 롱스커트}
+      - {product: "zigzag:130366243", color: 화이트, desc: "화이트 숄더백 (white shoulder bag)", name: 마리백}
+  - reason: 브라운 클래식 블레이저에 블랙 이너로 차분하게 맞춘 룩. 참고 브라운 롱 블레이저/블랙 터틀넥/체인 벨트/레이스업 롱부츠/블랙 버클 숄더백 → 브라운 클래식 싱글 블레이저/블랙 헨리넥 니트/블랙 버클 호보백 (벨트·부츠는 창고에 없음) [점수 7] (따라 함:참고 819)
+    ref: "819"
+    ref_photo: "sealed:u1106_07"
+    items:
+      - {product: "zigzag:150129566", color: 브라운, desc: "브라운 클래식 모직 싱글 블레이저 (brown classic wool single blazer)", name: 모직 싱글 블레이저}
+      - {product: "zigzag:131379280", color: 블랙, desc: "블랙 브이넥 니트 (black v-neck knit)", name: 그로운 브이넥 니트, wear_with: 아우터}
+      - {product: "zigzag:133521354", color: 블랙, desc: "블랙 벨트 미니 스커트 (black mini skirt with belt)", name: 블랙 미니스커트}
+      - {product: "zigzag:147738628", color: 블랙, desc: "블랙 버클 호보백 (black buckle hobo bag)", name: 버클 호보백}
+  - reason: 그레이 크롭 재킷에 블랙 미니로 짧고 단정하게. 참고 그레이 울 크롭 재킷/베이지 퍼 머플러/블랙 미니/니하이 부츠/페이턴트 토트 → 그레이 소프트 자켓/블랙 미니/블랙 스퀘어 토트 (퍼 머플러·부츠는 창고에 없음) [점수 5] (따라 함:참고 820)
+    ref: "820"
+    ref_photo: "sealed:u1106_08"
+    items:
+      - {product: "zigzag:171067681", color: 그레이, desc: "그레이 소프트 라운드넥 자켓 (gray soft round-neck jacket)", name: 소프트 자켓}
+      - {product: "zigzag:172033289", color: 블랙, desc: "블랙 브이넥 루즈핏 니트 (black v-neck loose knit)", name: 브이넥 니트, wear_with: 아우터}
+      - {product: "zigzag:133521354", color: 블랙, desc: "블랙 벨트 미니 스커트 (black mini skirt with belt)", name: 블랙 미니스커트}
+      - {product: "zigzag:163046605", color: 블랙, desc: "블랙 스퀘어 토트 크로스백 (black square tote bag)", name: 스퀘어 토트백}
+  - reason: 그레이 타이 블라우스에 블랙 머메이드 롱스커트로 우아하게. 참고 그레이 시스루 타이 블라우스/블랙 머메이드 롱스커트 → 그레이스 타이 블라우스/블랙 머메이드 새틴 롱스커트 [점수 8] (따라 함:참고 821)
+    ref: "821"
+    ref_photo: "sealed:u1106_09"
+    items:
+      - {product: "zigzag:171437031", color: 그레이, desc: "그레이 타이 블라우스 (gray tie blouse)", name: 타이 블라우스}
+      - {product: "zigzag:100742919", color: 블랙, desc: "블랙 머메이드 새틴 롱스커트 (black mermaid satin long skirt)", name: 머메이드 스커트}
+  - reason: 네이비 트위드 원피스 한 벌로 단정한 하객룩. 참고 네이비 트위드 원피스(흰 프릴)/블랙 가죽 숄더백 → 네이비 트위드 원피스/블랙 버클 호보백 (프릴 디테일은 가장 비슷한 것으로 대체) [점수 8] (따라 함:참고 822)
+    ref: "822"
+    ref_photo: "sealed:u1106_10"
+    items:
+      - {product: "zigzag:171708608", color: 네이비, desc: "네이비 트위드 미니 원피스 (navy tweed mini dress)", name: 트위드 원피스}
+      - {product: "zigzag:147738628", color: 블랙, desc: "블랙 버클 호보백 (black buckle hobo bag)", name: 버클 호보백}
