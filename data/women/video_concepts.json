@@ -95,7 +95,7 @@
       "music": "",
       "music_mood": "",
       "hook": "입장 전 마지막 점검",
-      "why": "입장 전 마지막 점검하는 장면이라 하객룩 주제에 맞고, 제자리 동작이라 걷기 후보와 확실히 다름",
+      "why": "입장 전 마지막 점검하는 장면이라 하객룩 주제에 맞고, 제자리 동작이라 걷기 후보와 확실히 다름 (사용자 11/07: 퇴장 없이 끝까지 제자리)",
       "expression": "",
       "hair": "",
       "pace": "제자리에서 천천히 체중 옮기기, 손동작은 느리고 단정하게",
@@ -103,65 +103,65 @@
       "camera_en": "Fixed camera at eye level, about 5 meters in front of her, locked off on a tripod, no zoom, no shake, no push-in.",
       "pace_en": "Calm, unhurried movements in place, slow weight shifts from foot to foot, hand gestures slow and tidy, shoulders relaxed.",
       "light_en": "Soft cool-white winter daylight from the arched windows, gentle warm fill so her face and clothes stay clearly visible, consistent throughout.",
-      "direction_en": "She stays at the center facing the camera and finishes by walking out to the right.",
+      "direction_en": "She stays at the center facing the camera for the whole shot and never walks out of the frame.",
       "shots": [
         {
           "look": 1,
           "seconds": 5.5,
-          "action": "복도 가운데 서서 옷매무새 만진 뒤 오른쪽으로 퇴장",
+          "action": "복도 가운데 서서 옷매무새 만진 뒤 제자리에서 카메라 보며 마무리 (퇴장 없음)",
           "pose": "양손으로 롱스커트 아랫단을 쓸어내리고 오른손 끝으로 귀걸이 만지기",
           "text": "입장 전 마지막 점검",
-          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with both hands she gently smooths the flare of the long skirt downward once. 3-4.5s: with her right fingertips she touches the small drop earring, tilting her head slightly, then looks at the camera. 4.5-5.5s: she turns to her right and walks out of the frame to the right. She stays at the center, full body about 75% of the frame height, until she exits.",
+          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with both hands she gently smooths the flare of the long skirt downward once. 3-4.5s: with her right fingertips she touches the small drop earring, tilting her head slightly, then looks at the camera. 4.5-5.5s: she holds a calm, relaxed pose in place, facing the camera, with a slight natural sway. She stays in the same spot at the center, full body about 75% of the frame height, for the whole shot and never walks out of the frame.",
           "start": "화면 가운데에 정면으로 서 있음, 전신이 화면 세로의 약 75%, 두 발은 어깨너비보다 조금 좁게, 팔은 자연스럽게 내림, 포즈는 아직 없음",
           "start_en": "She stands still at the center of the frame facing the camera, full body about 75% of the frame height, feet slightly narrower than shoulder-width, arms relaxed at her sides. She has not started any gesture yet."
         },
         {
           "look": 2,
           "seconds": 5.0,
-          "action": "복도 가운데 서서 옷매무새 만진 뒤 오른쪽으로 퇴장",
+          "action": "복도 가운데 서서 옷매무새 만진 뒤 제자리에서 카메라 보며 마무리 (퇴장 없음)",
           "pose": "양손으로 트위드 재킷 밑단을 한 번 내려 정리하고 토트백을 팔에 걸기",
           "text": "",
-          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with both hands she tugs the hem of the closed tweed jacket downward once. 3-4.5s: she hooks the mini tote over her left forearm and looks at the camera. 4.5-5s: she turns to her right and walks out of the frame to the right. She stays at the center, full body about 75% of the frame height, until she exits.",
+          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with both hands she tugs the hem of the closed tweed jacket downward once. 3-4.5s: she hooks the mini tote over her left forearm and looks at the camera. 4.5-5s: she holds a calm, relaxed pose in place, facing the camera, with a slight natural sway. She stays in the same spot at the center, full body about 75% of the frame height, for the whole shot and never walks out of the frame.",
           "start": "화면 가운데에 정면으로 서 있음, 전신이 화면 세로의 약 75%, 두 발은 어깨너비보다 조금 좁게, 팔은 자연스럽게 내림, 포즈는 아직 없음",
           "start_en": "She stands still at the center of the frame facing the camera, full body about 75% of the frame height, feet slightly narrower than shoulder-width, arms relaxed at her sides. She has not started any gesture yet."
         },
         {
           "look": 3,
           "seconds": 5.0,
-          "action": "복도 가운데 서서 옷매무새 만진 뒤 오른쪽으로 퇴장",
+          "action": "복도 가운데 서서 옷매무새 만진 뒤 제자리에서 카메라 보며 마무리 (퇴장 없음)",
           "pose": "양손 끝으로 목 리본을 반듯하게 고치고 원피스 치맛단 쓸어내리기",
           "text": "",
-          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with the fingertips of both hands she straightens the ribbon bow at her neck. 3-4.5s: she smooths the skirt of the dress downward with both hands once, then looks at the camera. 4.5-5s: she turns to her right and walks out of the frame to the right. She stays at the center, full body about 75% of the frame height, until she exits.",
+          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with the fingertips of both hands she straightens the ribbon bow at her neck. 3-4.5s: she smooths the skirt of the dress downward with both hands once, then looks at the camera. 4.5-5s: she holds a calm, relaxed pose in place, facing the camera, with a slight natural sway. She stays in the same spot at the center, full body about 75% of the frame height, for the whole shot and never walks out of the frame.",
           "start": "화면 가운데에 정면으로 서 있음, 전신이 화면 세로의 약 75%, 두 발은 어깨너비보다 조금 좁게, 팔은 자연스럽게 내림, 포즈는 아직 없음",
           "start_en": "She stands still at the center of the frame facing the camera, full body about 75% of the frame height, feet slightly narrower than shoulder-width, arms relaxed at her sides. She has not started any gesture yet."
         },
         {
           "look": 4,
           "seconds": 5.0,
-          "action": "복도 가운데 서서 옷매무새 만진 뒤 오른쪽으로 퇴장",
+          "action": "복도 가운데 서서 옷매무새 만진 뒤 제자리에서 카메라 보며 마무리 (퇴장 없음)",
           "pose": "오른손으로 니트 뷔스티에 허리선을 쓸어내리고 왼손으로 토트백 들기",
           "text": "",
-          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: she slides her right hand down the knit bustier to the waist once. 3-4.5s: she lifts the ivory tote slightly with her left hand and looks at the camera. 4.5-5s: she turns to her right and walks out of the frame to the right. She stays at the center, full body about 75% of the frame height, until she exits.",
+          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: she slides her right hand down the knit bustier to the waist once. 3-4.5s: she lifts the ivory tote slightly with her left hand and looks at the camera. 4.5-5s: she holds a calm, relaxed pose in place, facing the camera, with a slight natural sway. She stays in the same spot at the center, full body about 75% of the frame height, for the whole shot and never walks out of the frame.",
           "start": "화면 가운데에 정면으로 서 있음, 전신이 화면 세로의 약 75%, 두 발은 어깨너비보다 조금 좁게, 팔은 자연스럽게 내림, 포즈는 아직 없음",
           "start_en": "She stands still at the center of the frame facing the camera, full body about 75% of the frame height, feet slightly narrower than shoulder-width, arms relaxed at her sides. She has not started any gesture yet."
         },
         {
           "look": 5,
           "seconds": 5.0,
-          "action": "복도 가운데 서서 옷매무새 만진 뒤 오른쪽으로 퇴장",
+          "action": "복도 가운데 서서 옷매무새 만진 뒤 제자리에서 카메라 보며 마무리 (퇴장 없음)",
           "pose": "몸을 3/4 옆으로 돌려 자켓 어깨선을 쓸어 정리하고 부츠 보이기",
           "text": "",
-          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: she turns her body three quarters to the left and brushes the shoulder of the wool jacket smooth with her right hand. 3-4.5s: she steps one foot slightly forward to show the long suede boots and looks at the camera. 4.5-5s: she turns to her right and walks out of the frame to the right. She stays at the center, full body about 75% of the frame height, until she exits.",
+          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: she turns her body three quarters to the left and brushes the shoulder of the wool jacket smooth with her right hand. 3-4.5s: she steps one foot slightly forward to show the long suede boots and looks at the camera. 4.5-5s: she holds a calm, relaxed pose in place, facing the camera, with a slight natural sway. She stays in the same spot at the center, full body about 75% of the frame height, for the whole shot and never walks out of the frame.",
           "start": "화면 가운데에 정면으로 서 있음, 전신이 화면 세로의 약 75%, 두 발은 어깨너비보다 조금 좁게, 팔은 자연스럽게 내림, 포즈는 아직 없음",
           "start_en": "She stands still at the center of the frame facing the camera, full body about 75% of the frame height, feet slightly narrower than shoulder-width, arms relaxed at her sides. She has not started any gesture yet."
         },
         {
           "look": 6,
           "seconds": 5.0,
-          "action": "복도 가운데 서서 옷매무새 만진 뒤 오른쪽으로 퇴장",
+          "action": "복도 가운데 서서 옷매무새 만진 뒤 제자리에서 카메라 보며 마무리 (퇴장 없음)",
           "pose": "양손으로 새틴 미니 스커트 옆선을 쓸어내리고 토트백 고쳐 들기",
           "text": "",
-          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with both hands she smooths the sides of the satin mini skirt downward once. 3-4.5s: she shifts the mini tote into her right hand and lifts it slightly, looking at the camera. 4.5-5s: she turns to her right and walks out of the frame to the right. She stays at the center, full body about 75% of the frame height, until she exits.",
+          "motion_en": "One continuous take: no cuts, no scene changes, no close-up inserts. There is no wind: hair and clothes move only with her steps and hands. Her clothes stay exactly as shown, nothing is opened or taken off. 0-1.5s: she shifts her weight slowly from one foot to the other and breathes out, relaxed. 1.5-3s: with both hands she smooths the sides of the satin mini skirt downward once. 3-4.5s: she shifts the mini tote into her right hand and lifts it slightly, looking at the camera. 4.5-5s: she holds a calm, relaxed pose in place, facing the camera, with a slight natural sway. She stays in the same spot at the center, full body about 75% of the frame height, for the whole shot and never walks out of the frame.",
           "start": "화면 가운데에 정면으로 서 있음, 전신이 화면 세로의 약 75%, 두 발은 어깨너비보다 조금 좁게, 팔은 자연스럽게 내림, 포즈는 아직 없음",
           "start_en": "She stands still at the center of the frame facing the camera, full body about 75% of the frame height, feet slightly narrower than shoulder-width, arms relaxed at her sides. She has not started any gesture yet."
         }
@@ -253,6 +253,6 @@
   "feedback": "주제는 '겨울 하객룩'(겨울 결혼식에 하객으로 입는 단정하고 따뜻한 룩)이다. 가을 말고 겨울, 훅 문구도 하객룩에 맞게. 배경은 결혼식 하객 동선에 어울리는 곳(예: 예식장·호텔 로비, 거울 있는 연회장 복도, 눈 오는 성당 앞 계단 등) 중 서로 다른 3개. 이번엔 첫 장면 이미지를 상품 사진에서 바로 그리므로 시작 크기는 모든 벌 같게 전신이 화면 세로의 약 75~80%(옷이 크게 보이게), 멀리서 작게 시작하는 동선은 피한다. 벌마다 실제 아이템(트위드 셋업, 오버니 부츠 등)에 맞는 포즈로.",
   "sent_at": 1794050166,
   "message_ids": [],
-  "chosen": 0,
-  "chosen_at": 0
+  "chosen": 2,
+  "chosen_at": 1794052713
 }
