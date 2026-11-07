@@ -473,6 +473,11 @@ class Video(BaseModel):
     background_model: str = "nano_banana_pro"  # 사람 없는 빈 배경 한 장
     frame_model: str = "nano_banana_pro"  # 벌마다 첫 장면 (얼굴 + 코디컷 + 빈 배경)
     video_model: str = "hailuo_3_frame"  # 첫 장면을 움직이는 영상 모델
+    # 영상 첫 장면을 상품 사진에서 바로 그릴 때 (2026-11-07 사용자, tools.video scene_frames):
+    # 그 첫 장면을 움직이는 모델 (first_frame 모델이어야 함, 참고 모드 다시 그리기 없음)
+    scene_video_model: str = "hailuo_3_frame"
+    # 컨셉 장면에 시작 모습(start_en)이 없을 때 첫 장면의 인물 위치·크기 (영어)
+    scene_start_en: str = ""
     # 영상 지시문에 늘 넣는 말 (영어).
     # 컨셉에 같은 칸(camera_en, pace_en, person_en)이 있으면 컨셉이 이긴다
     camera_en: str = ""

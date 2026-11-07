@@ -325,6 +325,21 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
             "그린 새 AI 인물이다. "
             "image-reviewer.md 의 장면 모델컷 기준도 본다 (장면 속 사람과 닮으면 안 됨).",
         ]
+    frame_bg = out / "outfit" / "originals" / "background.jpg"
+    if frame_bg.exists():
+        # 영상 첫 장면 (2026-11-07, tools.video scene_frames):
+        # 상품 사진에서 바로 빈 배경 속에 그린 사람
+        face = out / "outfit" / "originals" / "face.jpg"
+        start = out / "outfit" / "start.txt"
+        lines += [
+            "",
+            f"**영상 첫 장면**: 빈 배경 {_ref(out, frame_bg)} 속에 상품을 입은 인물을 그린"
+            " 영상 첫 프레임이다. image-reviewer.md 의 영상 첫 장면 기준을 본다.",
+        ]
+        if face.exists():
+            lines.append(f"얼굴 사진: {_ref(out, face)}")
+        if start.exists():
+            lines.append(f"시작 자세·위치·크기: {start.read_text(encoding='utf-8').strip()}")
     worn = out / "outfit" / "originals" / "worn_ref.jpg"
     if worn.exists():
         lines += ["", f"기준 코디 사진 (입는 모양을 이대로 따라야 함): {_ref(out, worn)}"]
@@ -367,7 +382,7 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
         + (
             # 얼굴 참고를 받은 게시물은 얼굴이 보여도 된다 (2026-10-26 사용자)
             " (얼굴 참고 게시물: 보여도 괜찮음, 흐리거나 뭉개졌으면 clean 0)"
-            if plan.face
+            if plan.face or frame_bg.exists()
             else " (열어 보고 정면 얼굴이 또렷하면 clean 0,"
             " 고개 숙임·돌림·가림으로 일부만 보이면 괜찮음)"
         )

@@ -19,7 +19,7 @@ on:
         description: 결과 폴더 (daily-results 의 <날짜>-run<번호>)
         required: true
       step:
-        description: plan / background / frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music / subset(looks 의 벌만 새 결과 폴더로, 후보 실행이면 picks/p<pick>.yaml 에서)
+        description: plan / background / frames / scene_frames(코디컷 없이 상품 사진에서 첫 장면, looks 로 한 벌씩) / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music / subset(looks 의 벌만 새 결과 폴더로, 후보 실행이면 picks/p<pick>.yaml 에서)
         required: true
       looks:
         description: 다시 만들 벌 번호 (빈칸이면 전부 또는 고칠 점의 벌)
@@ -63,6 +63,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write  # 첫 장면 검수 (Claude image-reviewer)
 
 jobs:
   video:
@@ -87,6 +88,13 @@ jobs:
       - run: uv sync --no-dev
       - name: ffmpeg 준비
         run: command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+
+      # 첫 장면을 상품 사진에서 바로 그릴 때 (scene_frames) 참고 코디 사진 "sealed:<이름>" 을 러너 안에서만 푼다
+      - name: 클로드 스레드 참고 사진 풀기
+        if: inputs.step == 'scene_frames'
+        env:
+          REF_SEAL_SEED: ${{ secrets.OPENROUTER_API_KEY }}
+        run: '[ -d "data/$ACCOUNT/user_refs" ] && uv run python -m tools.sealed open "data/$ACCOUNT/user_refs" || true'
 
       - name: 결과 폴더 가져오기
         run: |
@@ -140,11 +148,62 @@ jobs:
           [ -n "$TELEGRAM_BOT_TOKEN" ] || args+=(--no-send)
           uv run python -m tools.video "$STEP" "${args[@]}"
 
+      # 첫 장면 상품 검수 (2026-11-07): 그린 벌마다 tools.review prep → image-reviewer → apply.
+      # 결과는 video/scene/<n>/review/ (점수·메모). 떨어져도 다시 그리지 않는다 (사용자가 보고 /fix)
+      - name: 첫 장면 검수 준비
+        id: scene_review
+        if: inputs.step == 'scene_frames' && !inputs.fake
+        run: |
+          v="/tmp/results/$RUN/video"
+          looks=$(cat "$v/scene/drawn.txt" 2>/dev/null || true)
+          [ -n "$looks" ] || exit 0
+          mkdir -p out/scene_review
+          for n in $looks; do
+            rm -rf "out/scene_review/$n" && cp -r "$v/scene/$n" "out/scene_review/$n"
+            uv run python -m tools.review prep "out/scene_review/$n"
+          done
+          echo "looks=$looks" >> "$GITHUB_OUTPUT"
+
+      - name: Claude 첫 장면 검수 (image-reviewer)
+        if: steps.scene_review.outputs.looks != ''
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          allowed_bots: "github-actions"
+          prompt: |
+            영상 첫 장면 검수. 벌 번호: ${{ steps.scene_review.outputs.looks }}
+            벌마다 image-reviewer 에이전트를 run_in_background: false 로 불러 out/scene_review/<번호> 폴더와
+            out/scene_review/<번호>/review/input.md 를 넘기고 ("영상 첫 장면" 기준), 돌려준 YAML 을 그대로
+            out/scene_review/<번호>/review/scores.yaml 에 써. 점수를 고치지 마.
+            git 커밋·푸시, 게시, 외부 전송은 하지 마.
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Read,Write,Glob,Task,Agent"
+
+      - name: 첫 장면 검수 적용
+        if: steps.scene_review.outputs.looks != ''
+        run: |
+          v="/tmp/results/$RUN/video"
+          for n in ${{ steps.scene_review.outputs.looks }}; do
+            d="out/scene_review/$n"
+            if [ -f "$d/review/scores.yaml" ]; then
+              r=$(uv run python -m tools.review apply "$d" --scores "$d/review/scores.yaml" || true)
+              echo "LOOK $n 검수: $r" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "LOOK $n 검수 점수가 없어요" >> "$GITHUB_STEP_SUMMARY"
+            fi
+            rm -rf "$v/scene/$n/review" && cp -r "$d/review" "$v/scene/$n/review"
+            [ -f "$d/report.md" ] && cp "$d/report.md" "$v/scene/$n/report.md"
+          done
+
       - name: daily-results 브랜치에 커밋
         if: always()
         run: |
           [ -d "/tmp/results/$RUN/video" ] || exit 0
           cp -r "/tmp/results/$RUN/video" /tmp/video_out
+          # 첫 장면 검수 원본(쇼핑몰 사진·참고 코디 사진)은 올리지 않는다
+          find /tmp/video_out -type d -name originals -prune -exec rm -rf {} +
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898279+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3; do
