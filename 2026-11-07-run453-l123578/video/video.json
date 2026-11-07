@@ -7,9 +7,14 @@
   "looks": 6,
   "costs": {
     "background_1": 0.1381,
-    "scene_1_1": 0.1449
+    "scene_1_1": 0.1449,
+    "scene_1_2": 0.1416
   },
-  "notes": {},
+  "notes": {
+    "1": [
+      "옷: 블라우스 타이는 리본 매듭 없이 목에서 길게 늘어뜨린다 (untie the bow: the neck tie hangs loose and long down the front, no knot, like the reference outfit photo). 양말을 빼고 맨발에 슬링백 (remove the black socks, bare feet in the slingback heels). 자세: 차렷 말고 자연스러운 콘트라포스토, 한쪽 다리에 체중, 골반 살짝 틀고 어깨 기울기로 몸의 S라인 굴곡이 보이게 (relaxed contrapposto, weight on one leg, hips slightly angled, gentle S-curve, not stiff or straight like a log). 체형: 허리를 더 잘록하게, 어깨를 조금 더 넓게, 다리를 더 길게, 얼굴(머리) 크기는 더 작게 해서 비율 좋은 모델 체형 (slimmer defined waist, slightly broader shoulders, longer legs, a smaller head, fashion model proportions). 얼굴: 이목구비를 더 또렷하고 크게 해서 얼굴 안의 빈 피부 여백을 줄이고, 연예인처럼 보자마자 예쁜 느낌, 더 하얗고 뽀얗고 맑은 피부 (sharper, more defined and slightly larger eyes, nose and lips so there is less empty skin area on the face; celebrity-like instantly striking beauty; fairer, brighter, clear porcelain skin). 표정은 도도하면서 밝게, 살짝 미소 (chic, confident yet bright expression with a faint smile). 인물 전신 크기와 위치, 화면 구도는 지금 그림 그대로 (keep the same full-body framing, size and position in the frame as now). 같은 사람, 같은 옷·상품, 같은 배경과 빛 그대로 (same person, same products, same background and light)."
+    ]
+  },
   "motion_notes": {},
   "speed": 0.0,
   "order": [],

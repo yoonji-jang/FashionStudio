@@ -23,7 +23,7 @@
 
 ## 점수를 매길 코디컷 후보
 
-- c1: `outfit/results/S_1.jpg`
+- c1: `outfit/results/S_2.jpg`
 
 ## 캐러셀 상품 장
 
