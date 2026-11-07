@@ -19,7 +19,7 @@ on:
         description: 결과 폴더 (daily-results 의 <날짜>-run<번호>)
         required: true
       step:
-        description: plan / background / frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music / subset(looks 의 벌만 새 결과 폴더로)
+        description: plan / background / frames / prompts / clips / redo(첫 장면부터 그 벌 영상까지) / edit / music / subset(looks 의 벌만 새 결과 폴더로, 후보 실행이면 picks/p<pick>.yaml 에서)
         required: true
       looks:
         description: 다시 만들 벌 번호 (빈칸이면 전부 또는 고칠 점의 벌)
@@ -42,6 +42,9 @@ on:
         default: ""
       order:
         description: 순서 (edit, 예 "3 1 2 4 5 6")
+        default: ""
+      pick:
+        description: 후보 실행의 후보 번호 (subset, picks/p<번호>.yaml. 빈칸이면 코디컷 결과, 없으면 1)
         default: ""
       concept:
         description: 고른 영상 컨셉 번호 (비면 video_concepts.json 의 chosen)
@@ -90,13 +93,16 @@ jobs:
           git fetch -q origin daily-results
           git worktree add /tmp/results origin/daily-results
           git -C /tmp/results checkout -q -B daily-results
-          test -f "/tmp/results/$RUN/manifest.json" || { echo "결과 폴더가 없어요: $RUN"; exit 1; }
+          # render 결과(manifest), 후보 실행에서 고른 폴더(plan.yaml), 후보 실행(picks/) 모두 된다
+          r="/tmp/results/$RUN"
+          [ -f "$r/manifest.json" ] || [ -f "$r/plan.yaml" ] || [ -d "$r/picks" ] || { echo "결과 폴더가 없어요: $RUN"; exit 1; }
 
       # 영상에 넣을 벌만 골라 <결과 폴더>-l<번호들> 로 (2026-11-05 클로드 스레드, 요금 없음)
       - name: 벌 고르기 (subset)
         if: inputs.step == 'subset'
         run: |
-          name=$(uv run python -m tools.video subset --account "$ACCOUNT" --run "/tmp/results/$RUN" --looks $LOOKS | tail -1)
+          name=$(uv run python -m tools.video subset --account "$ACCOUNT" --run "/tmp/results/$RUN" --looks $LOOKS \
+            ${{ inputs.pick && format('--pick {0}', inputs.pick) || '' }} | tail -1)
           echo "새 결과 폴더: $name" >> "$GITHUB_STEP_SUMMARY"
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898279+github-actions[bot]@users.noreply.github.com"

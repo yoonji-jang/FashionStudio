@@ -29,6 +29,7 @@ OpenRouter 요금이 나가므로 video 워크플로(차례 흐름이 부름)에
   python -m tools.video music   --account women --run …
   python -m tools.video subset  --account women --run … --looks 1 2 3 5 6 7
       영상에 넣을 벌만 골라 새 결과 폴더(<결과 폴더>-l123567)로 (무료, 2026-11-05 클로드 스레드)
+      코디컷 없는 후보 실행(picks/p1.yaml 만 있음)도 된다 (--pick 2 면 p2.yaml, 2026-11-07)
   --fake: API 없이 흐름만 (가짜 그림·영상), --no-send: 텔레그램으로 보내지 않음
 """
 
@@ -51,7 +52,7 @@ import yaml
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from pydantic import BaseModel
 
-from core.models import Manifest
+from core.models import DailyPlan, Manifest
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
 from tools import video_test
@@ -222,10 +223,17 @@ def _gen_client(profile: Profile, fake: bool):
     return client, gcfg["models"]
 
 
+def run_date(run: Path) -> dt.date:
+    """게시 날짜: manifest, 없으면(후보 실행에서 고른 폴더, subset_picks) plan.yaml."""
+    if (run / "manifest.json").exists():
+        return manifest_of(run).date
+    plan = yaml.safe_load((run / "plan.yaml").read_text(encoding="utf-8")) or {}
+    return dt.date.fromisoformat(str(plan["date"]))
+
+
 def start_record(profile: Profile, run: Path, concept: int = 0) -> VideoRecord:
     """video.json 을 읽거나 새로 만든다 (고른 컨셉 번호·벌 수를 채움)."""
-    m = manifest_of(run)
-    rec = load_record(run) or VideoRecord(account=profile.id, date=m.date, run=run.name)
+    rec = load_record(run) or VideoRecord(account=profile.id, date=run_date(run), run=run.name)
     rec.concept = concept or rec.concept
     rec.looks = look_count(run)
     return rec
@@ -638,9 +646,54 @@ def _face_height(clip: Path, at: float) -> float:
     return max((b[3] - b[1] for b in boxes), default=0)
 
 
-def subset(run: Path, keep: list[int]) -> Path:
+def subset_picks(run: Path, keep: list[int], pick: int = 1) -> Path:
+    """코디컷을 그리기 전의 후보 실행(picks/p<번호>.yaml)에서 영상에 넣을 벌만 골라 새 결과 폴더로
+    (2026-11-07 사용자: 스튜디오 코디컷 없이 영상 첫 장면을 상품 사진에서 바로 그림).
+    벌마다 looks/<n>/plan.yaml (한 벌 기획) 과 plan.yaml (고른 벌만, 컨셉 재료)을 둔다.
+    manifest·코디컷은 없다. 컨셉(video-concept run "<새 폴더>/plan")·빈 배경·첫 장면이
+    이 폴더를 쓴다."""
+    src = run / "picks" / f"p{pick}.yaml"
+    if not src.exists():
+        raise FileNotFoundError(f"후보 기획이 없어요: {src}")
+    plan = DailyPlan.model_validate(yaml.safe_load(src.read_text(encoding="utf-8")))
+    total = len(plan.looks)
+    if not keep or len(set(keep)) != len(keep) or not all(1 <= n <= total for n in keep):
+        raise ValueError(f"벌 번호는 1~{total} 를 겹치지 않게: {keep}")
+    tag = "" if pick == 1 else f"-p{pick}"
+    dest = run.parent / f"{run.name}{tag}-l{''.join(map(str, keep))}"
+    if dest.exists():
+        shutil.rmtree(dest)
+    (dest / "looks").mkdir(parents=True)
+    for new, old in enumerate(keep, 1):
+        d = dest / "looks" / str(new)
+        d.mkdir()
+        sub = plan.look_plan(old - 1)
+        (d / "plan.yaml").write_text(
+            yaml.safe_dump(sub.model_dump(mode="json", exclude_none=True), allow_unicode=True),
+            encoding="utf-8",
+        )
+        prev = run / "picks" / "preview" / f"p{old}.jpg"  # 후보 시트 (이미 결과 브랜치에 있음)
+        if prev.exists():
+            shutil.copy2(prev, d / "preview.jpg")
+    if (run / "SOURCE.txt").exists():
+        shutil.copy2(run / "SOURCE.txt", dest / "SOURCE.txt")
+    picked = plan.model_copy(update={"looks": [plan.looks[n - 1] for n in keep]})
+    (dest / "plan.yaml").write_text(
+        yaml.safe_dump(picked.model_dump(mode="json", exclude_none=True), allow_unicode=True),
+        encoding="utf-8",
+    )
+    (dest / "source.json").write_text(
+        json.dumps({"run": run.name, "pick": pick, "looks": keep}, ensure_ascii=False), "utf-8"
+    )
+    return dest
+
+
+def subset(run: Path, keep: list[int], pick: int = 0) -> Path:
     """영상에 넣을 벌만 골라 옆에 새 결과 폴더를 만든다 (2026-11-05 사용자 "1,2,3,5,6,7").
-    벌 번호는 고른 순서대로 1부터 다시 매기고, 기획(plan.yaml·manifest)의 벌도 같이 줄인다."""
+    벌 번호는 고른 순서대로 1부터 다시 매기고, 기획(plan.yaml·manifest)의 벌도 같이 줄인다.
+    코디컷이 없는 후보 실행(picks/ 만 있음)이거나 pick 을 주면 subset_picks."""
+    if pick or not (run / "looks").is_dir():
+        return subset_picks(run, keep, pick or 1)
     total = look_count(run)
     if not keep or len(set(keep)) != len(keep) or not all(1 <= n <= total for n in keep):
         raise ValueError(f"벌 번호는 1~{total} 를 겹치지 않게: {keep}")
@@ -1223,6 +1276,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--hook")
     ap.add_argument("--order", type=int, nargs="*")
     ap.add_argument("--concept", type=int, default=0, help="고른 컨셉 번호 (차례 흐름이 넘김)")
+    ap.add_argument(
+        "--pick", type=int, default=0, help="후보 실행의 후보 번호 (subset, picks/p<번호>.yaml)"
+    )
     ap.add_argument("--fake", action="store_true")
     ap.add_argument("--no-send", action="store_true")
     args = ap.parse_args(argv)
@@ -1236,7 +1292,7 @@ def main(argv: list[str] | None = None) -> int:
             rec.notes.setdefault("background", []).extend(bg_notes)
             save_record(args.run, rec)
         if args.step == "subset":  # 기록·텔레그램 없이 새 폴더 이름만 출력
-            print(subset(args.run, args.looks or []).name)
+            print(subset(args.run, args.looks or [], args.pick).name)
             return 0
         if args.step == "send":
             pass
@@ -1285,9 +1341,13 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     except Exception as e:  # 어떤 실패든 기록해 두면 차례 흐름이 /retry 를 안내한다
         rec = load_record(args.run)
-        if rec is None and (args.run / "manifest.json").exists():
-            m = manifest_of(args.run)
-            rec = VideoRecord(account=profile.id, date=m.date, run=args.run.name)
+        if rec is None and (
+            (args.run / "manifest.json").exists() or (args.run / "plan.yaml").exists()
+        ):
+            try:
+                rec = VideoRecord(account=profile.id, date=run_date(args.run), run=args.run.name)
+            except (KeyError, ValueError, OSError):
+                rec = None
         if rec is not None:
             rec.error, rec.error_at = f"{type(e).__name__}: {e}"[:400], int(time.time())
             save_record(args.run, rec)

@@ -14,8 +14,11 @@ on:
         description: 게시 날짜 YYYY-MM-DD
         required: true
       run:
-        description: 고른 코디 (daily-results 의 "<결과 폴더>/chosen" 또는 "/<번호>")
+        description: 고른 코디 (daily-results 의 "<결과 폴더>/chosen", "/<번호>"(후보), "/plan"(만든 게시물·subset 폴더))
         required: true
+      looks:
+        description: 영상에 넣을 벌만 순서대로 (예 "1 2 3 5 7 8", 빈칸이면 전부. subset 폴더면 비워 둠)
+        default: ""
       feedback:
         description: 사용자 고칠 점 (빈칸이면 처음 후보, "다시" 면 새로)
         default: ""
@@ -52,6 +55,8 @@ jobs:
           git fetch -q origin daily-results
           plan=$(uv run python -c "from pathlib import Path; from tools.video_concept import plan_file; print(plan_file(Path('.'), '$RUN'))")
           git show "origin/daily-results:$plan" > out/video/looks.yaml
+          [ -n "${{ inputs.looks }}" ] && uv run python -m tools.video_concept keep \
+            --plan out/video/looks.yaml --looks ${{ inputs.looks }}
           fb="$FEEDBACK"; [ "$fb" = "다시" ] && fb="다시 (앞 후보와 겹치지 않게 새로)"
           uv run python -m tools.video_concept context --account "$ACCOUNT" --date "$DATE" \
             --plan out/video/looks.yaml --feedback "$fb" > out/video/context.md
