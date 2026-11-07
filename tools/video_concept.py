@@ -137,6 +137,14 @@ def looks_of(plan: dict) -> list[dict]:
     return looks or [{"items": plan.get("items") or [], "reason": plan.get("reason", "")}]
 
 
+def keep_looks(plan: dict, keep: list[int]) -> dict:
+    """기획의 벌을 영상에 넣을 벌만 순서대로 (후보 실행 picks/p1.yaml 에서 고를 때, 2026-11-07)."""
+    looks = plan.get("looks") or []
+    if not keep or len(set(keep)) != len(keep) or not all(1 <= n <= len(looks) for n in keep):
+        raise ValueError(f"벌 번호는 1~{len(looks)} 를 겹치지 않게: {keep}")
+    return {**plan, "looks": [looks[n - 1] for n in keep]}
+
+
 def looks_text(plan: dict) -> str:
     lines = []
     for n, look in enumerate(looks_of(plan), 1):
@@ -295,6 +303,9 @@ def main(argv: list[str] | None = None) -> int:
     k = sub.add_parser("check", help="형식 검사만")
     k.add_argument("--file", type=Path, required=True)
     k.add_argument("--looks", type=int, default=0)
+    p = sub.add_parser("keep", help="기획 파일의 벌을 고른 벌만 순서대로 (파일을 고쳐 씀)")
+    p.add_argument("--plan", type=Path, required=True)
+    p.add_argument("--looks", type=int, nargs="+", required=True)
     w = sub.add_parser("show", help="저장된 후보")
     w.add_argument("--account", required=True)
     args = parser.parse_args(argv)
@@ -303,6 +314,14 @@ def main(argv: list[str] | None = None) -> int:
             concepts, chosen = _read_concepts(args.file)
             check_looks(concepts, args.looks)
             print(f"통과: 후보 {len(concepts)}개" + (f", 고른 번호 {chosen}" if chosen else ""))
+            return 0
+        if args.cmd == "keep":
+            plan = yaml.safe_load(args.plan.read_text(encoding="utf-8")) or {}
+            plan = keep_looks(plan, args.looks)
+            args.plan.write_text(
+                yaml.safe_dump(plan, allow_unicode=True, sort_keys=False), encoding="utf-8"
+            )
+            print(f"벌 {len(plan['looks'])}개: {' '.join(map(str, args.looks))}")
             return 0
         store = Store(args.account)
         if args.cmd == "context":

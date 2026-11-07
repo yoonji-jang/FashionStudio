@@ -487,3 +487,44 @@ def test_subset_keeps_chosen_looks(tmp_path):
     assert "cover_look" not in (dest / "plan.yaml").read_text("utf-8")
     with pytest.raises(ValueError):
         video.subset(run, [1, 4])
+
+
+def test_subset_from_candidate_run(tmp_path):
+    """코디컷 없는 후보 실행(picks/p1.yaml)에서 고른 벌만 새 폴더로 (2026-11-07)."""
+    import yaml
+
+    from tests.test_models import theme
+
+    run = tmp_path / "2026-11-07-run453"
+    (run / "picks" / "preview").mkdir(parents=True)
+    looks = [
+        {
+            "items": [{"product": f"zigzag:{n}", "name": f"옷{n}", "desc": f"옷 {n} (cloth {n})"}],
+            "reason": f"r{n}",
+        }
+        for n in (1, 2, 3)
+    ]
+    plan = {"account": "women", "date": "2026-11-07", "theme": theme().model_dump(mode="json"),
+            "looks": looks, "reason": "r"}  # fmt: skip
+    (run / "picks" / "p1.yaml").write_text(yaml.safe_dump(plan, allow_unicode=True), "utf-8")
+    (run / "picks" / "preview" / "p3.jpg").write_bytes(b"x")
+
+    dest = video.subset(run, [3, 1])
+    assert dest.name == "2026-11-07-run453-l31"
+    assert video.look_count(dest) == 2
+    assert "cloth 3" in video.items_en(dest, 1)
+    assert (dest / "looks" / "1" / "preview.jpg").exists()
+    assert video.run_date(dest) == date(2026, 11, 7)
+    picked = yaml.safe_load((dest / "plan.yaml").read_text("utf-8"))
+    assert [x["reason"] for x in picked["looks"]] == ["r3", "r1"]
+    with pytest.raises(ValueError):
+        video.subset(run, [1, 4])
+
+
+def test_concept_keep_looks():
+    from tools.video_concept import keep_looks
+
+    plan = {"looks": [{"n": 1}, {"n": 2}, {"n": 3}]}
+    assert keep_looks(plan, [3, 1])["looks"] == [{"n": 3}, {"n": 1}]
+    with pytest.raises(ValueError):
+        keep_looks(plan, [1, 1])
