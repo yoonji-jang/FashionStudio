@@ -1,0 +1,7 @@
+{
+  "run": "2026-11-07-run453",
+  "account": "women",
+  "sandbox": false,
+  "mode": "edit",
+  "pick": "{\"run\":\"2026-11-07-run451\",\"fixes\":[{\"update_id\":0,\"looks\":[2],\"text\":\"이미 고친 상태 그대로 둔다. 아무것도 바꾸지 말고 검사만 통과시켜 시트를 만든다.\"}]}"
+}
