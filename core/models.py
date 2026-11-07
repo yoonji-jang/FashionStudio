@@ -115,6 +115,9 @@ class PlanItem(BaseModel):
     wear_with: Category | None = None  # 이 상품을 입힐 기준 상품 (셔츠 → 아우터, 벨트 → 하의)
     wear_how: str | None = None  # 입는 방법 (영어)
     wear_modes: list[str] | None = None  # direct, over, open, peek
+    # 셋업(세트·투피스) 상품이 자기 카테고리 말고 함께 채우는 칸. 자켓+스커트 셋업이 한 상품이면
+    # 아우터 상품에 covers: [하의]. 같은 상품을 두 번 넣지 않는다 (2026-11-07 사용자: 셋업 그대로)
+    covers: list[Category] | None = None
 
 
 class PlanText(BaseModel):

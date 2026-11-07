@@ -189,6 +189,8 @@ def sheet(
             print(f"사진을 받지 못함: {it.product} ({e})", file=sys.stderr)
             draw.text((x + 20, y + photo_h // 2), "사진 없음", font=body, fill="#8C867E")
         cat = p.category if p else "?"
+        if it.covers:  # 셋업 한 상품이 두 칸 (2026-11-07)
+            cat = "+".join([cat, *it.covers]) + " 셋업"
         label = f"{cat} · {it.color}" if it.color else cat
         draw.text((x, y + photo_h + 8), label, font=body, fill="#8C867E")
         name = feed.wrap(feed.drawable(short(it.desc)), body, tile, 1)

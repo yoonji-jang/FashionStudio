@@ -42,7 +42,16 @@ import yaml
 from PIL import Image, ImageDraw
 from pydantic import TypeAdapter, ValidationError
 
-from core.models import DailyPlan, FeedItem, FeedSpec, Manifest, OutfitPlan, Product, Theme
+from core.models import (
+    DailyPlan,
+    FeedItem,
+    FeedSpec,
+    Manifest,
+    OutfitPlan,
+    PlanItem,
+    Product,
+    Theme,
+)
 from core.profile import REPO_ROOT, Profile, load_profile
 from core.store import Store
 from sources.base import name_excluded
@@ -378,6 +387,15 @@ def busy_warnings(where: str, cats: list[str], items: list[Product], profile: Pr
     return out
 
 
+SET_WORDS = ("셋업", "세트", "투피스", "set", "two-piece", "two piece", "2piece", "2pc")
+
+
+def is_set(p: Product, it: PlanItem) -> bool:
+    """셋업(한 상품에 상·하의가 같이 오는) 상품인지 이름·설명으로 본다."""
+    text = f"{p.name} {it.desc}".lower()
+    return any(w in text for w in SET_WORDS)
+
+
 def check(
     plan: DailyPlan, profile: Profile, store: Store, draft: bool = False, wanted: int = 0
 ) -> tuple[list[str], list[str]]:
@@ -411,6 +429,8 @@ def check(
             span = f"{rules.items_min}~{rules.items_max}"
             errors.append(f"{where}상품은 {span}개여야 합니다 (지금 {len(group)})")
         cats = [products[it.product].category for it in group if it.product in products]
+        # 셋업 상품(covers)은 자기 칸과 함께 다른 칸(예: 하의)도 채운다
+        cats += [c for it in group if it.product in products for c in it.covers or []]
         for it in group:
             own = products[it.product].category if it.product in products else None
             # 상의 레이어드(wear_with: 상의)는 자기 말고 상의가 하나 더 있어야 한다
@@ -487,6 +507,11 @@ def check(
             errors.append(f"{label}: method 는 {methods} 중에서 고릅니다")
         if it.wear_modes and set(it.wear_modes) - modes:
             errors.append(f"{label}: wear_modes 는 {sorted(modes)} 중에서 고릅니다")
+        if it.covers:
+            if p.category in it.covers:
+                errors.append(f"{label}: covers 에 자기 카테고리({p.category})는 넣지 않습니다")
+            if not is_set(p, it):
+                warns.append(f"{label}: covers 는 셋업·세트·투피스 상품에만 씁니다 (이름 확인)")
         if p.category == "소품" and not it.slot and not it.wear_with:
             warns.append(
                 f"{label}: 소품은 slot(목걸이·귀걸이·팔찌)이나 wear_with 를 정하면 배치가 좋아요"
