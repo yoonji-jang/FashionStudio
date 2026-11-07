@@ -2,11 +2,12 @@
   "account": "women",
   "date": "2026-11-07",
   "run": "2026-11-07-run453-l123578",
-  "step": "background",
+  "step": "frames",
   "sent_at": 0,
   "looks": 6,
   "costs": {
-    "background_1": 0.1381
+    "background_1": 0.1381,
+    "scene_1_1": 0.1449
   },
   "notes": {},
   "motion_notes": {},
@@ -20,5 +21,7 @@
   "bg_versions": 1,
   "bg_base": 0,
   "stale": [],
-  "scene": []
+  "scene": [
+    1
+  ]
 }

@@ -1,0 +1,59 @@
+account: women
+date: '2026-11-07'
+edit_refs: []
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 타이 블라우스 (gray tie-neck blouse)
+  name: 리베나 타이 블라우스
+  product: zigzag:171290915
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 머메이드 롱스커트 (black mermaid long skirt)
+  name: 머메이드 롱스커트
+  product: zigzag:109044216
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 스틸레토 슬링백 힐 (black pointed-toe stiletto slingback heels)
+  name: 스틸레토 슬링백
+  product: zigzag:136665746
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 니치 숄더백 (black shoulder bag)
+  name: 니치 숄더백
+  product: zigzag:168564549
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 물방울 링 귀걸이 (small silver drop hoop earrings)
+  name: 실버 링 귀걸이
+  product: zigzag:139297257
+  slot: 귀걸이
+looks: []
+reason: 그레이 리베나 타이 블라우스에 블랙 머메이드 롱스커트와 스틸레토 힐로 단정하게. 참고 821 그레이 시스루 타이 블라우스/블랙 머메이드
+  롱스커트 → 맞춘 것 리베나 타이 블라우스(사용자 고른 상품)/머메이드 롱스커트, 구두·가방은 하객룩에 맞춰 스틸레토 슬링백/니치 숄더백 (따라
+  함 참고 821)
+ref_photo: sealed:u1106_09
+requests: []
+shot: model
+theme:
+  date: '2026-11-07'
+  mood: 블랙·그레이·브라운·네이비의 차분한 톤에 트위드·울·니트 소재로 단정하면서 포근한 하객룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 트위드 재킷, 울 하프코트, 블레이저처럼 단정한 겨울 아우터
+  - category: 상의
+    desc: 셔츠 레이어드 니트, 터틀넥, 타이 블라우스
+  - category: 하의
+    desc: 와이드 슬랙스, 미니·롱·머메이드 스커트
+  - category: 신발
+    desc: 포인티드 플랫, 펌프스, 롱부츠
+  - category: 가방
+    desc: 작은 가죽 토트·숄더백
+  title_hint: 겨울 하객룩, 겨울 결혼식에 하객으로 입는 단정하고 따뜻한 룩
+  why: 11월 겨울 결혼식 시즌, 사용자가 고른 참고 코디 10벌
