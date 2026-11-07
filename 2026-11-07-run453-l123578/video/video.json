@@ -1,0 +1,24 @@
+{
+  "account": "women",
+  "date": "2026-11-07",
+  "run": "2026-11-07-run453-l123578",
+  "step": "background",
+  "sent_at": 0,
+  "looks": 6,
+  "costs": {
+    "background_1": 0.1381
+  },
+  "notes": {},
+  "motion_notes": {},
+  "speed": 0.0,
+  "order": [],
+  "hook": "",
+  "flags": [],
+  "error": "",
+  "error_at": 0,
+  "concept": 2,
+  "bg_versions": 1,
+  "bg_base": 0,
+  "stale": [],
+  "scene": []
+}
