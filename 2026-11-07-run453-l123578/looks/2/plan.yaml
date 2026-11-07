@@ -1,0 +1,65 @@
+account: women
+date: '2026-11-07'
+edit_refs: []
+items:
+- color: 블랙
+  comment: ''
+  covers:
+  - 상의
+  - 하의
+  cutout_photo: 0
+  desc: 부클 트위드 셋업 (black boucle tweed two-piece set, buttoned cropped jacket worn
+    closed with the matching mini skirt)
+  name: 트위드 셋업
+  product: zigzag:150481692
+  ref_photos:
+  - 0
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 스웨이드 싸이하이 부츠 (black suede over-the-knee boots, reaching above the knee)
+  name: 오버니 부츠
+  product: zigzag:131281211
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 스터드 미니 토트백 (black mini tote bag)
+  name: 미니 토트백
+  product: zigzag:170446634
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 골드 미니 물방울 귀걸이 (small gold drop earrings)
+  name: 골드 미니 귀걸이
+  product: zigzag:169325375
+  slot: 귀걸이
+- color: 골드
+  comment: ''
+  cutout_photo: 0
+  desc: 골드 체인볼 하트 목걸이 (short gold chain necklace with a small heart charm)
+  name: 골드 하트 목걸이
+  product: zigzag:135593307
+  slot: 목걸이
+looks: []
+reason: 트위드 셋업 한 벌(자켓+스커트)에 오버니 부츠까지 블랙으로. 참고 814 블랙 트위드 재킷/트위드 미니스커트/롱부츠/토트백 → 맞춘
+  것 트위드 셋업(covers 상의·하의)/오버니 부츠/스터드 미니 토트 (따라 함 참고 814)
+ref_photo: sealed:u1106_02
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-07'
+  mood: 블랙·그레이·브라운·네이비의 차분한 톤에 트위드·울·니트 소재로 단정하면서 포근한 하객룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 트위드 재킷, 울 하프코트, 블레이저처럼 단정한 겨울 아우터
+  - category: 상의
+    desc: 셔츠 레이어드 니트, 터틀넥, 타이 블라우스
+  - category: 하의
+    desc: 와이드 슬랙스, 미니·롱·머메이드 스커트
+  - category: 신발
+    desc: 포인티드 플랫, 펌프스, 롱부츠
+  - category: 가방
+    desc: 작은 가죽 토트·숄더백
+  title_hint: 겨울 하객룩, 겨울 결혼식에 하객으로 입는 단정하고 따뜻한 룩
+  why: 11월 겨울 결혼식 시즌, 사용자가 고른 참고 코디 10벌

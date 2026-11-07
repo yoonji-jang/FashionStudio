@@ -1,0 +1,58 @@
+account: women
+date: '2026-11-07'
+edit_refs: []
+items:
+- color: 차콜
+  comment: ''
+  cutout_photo: 0
+  desc: 오브제 울 크롭 자켓 (gray wool cropped collarless jacket, hem at the waist)
+  name: 울 크롭 자켓
+  product: zigzag:168548471
+- color: 크림
+  comment: ''
+  cutout_photo: 0
+  desc: 폴라 티셔츠 (cream turtleneck tee)
+  name: 폴라 티셔츠
+  product: zigzag:167444137
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 새틴 미니 스커트 (black mini skirt)
+  name: 새틴 미니스커트
+  product: zigzag:170590267
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 스웨이드 싸이하이 부츠 (black suede over-the-knee boots, reaching above the knee)
+  name: 오버니 부츠
+  product: zigzag:146939237
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 스터드 미니 토트백 (black mini tote bag)
+  name: 미니 토트백
+  product: zigzag:170446634
+looks: []
+reason: 그레이 크롭 재킷에 크림 폴라 티, 블랙 미니와 니하이 부츠로 포근하게. 참고 820 그레이 울 크롭 재킷/퍼 머플러/블랙 미니/니하이
+  부츠/페이턴트 토트 → 맞춘 것 울 크롭 자켓/폴라 티셔츠/새틴 미니/오버니 부츠/미니 토트, 머플러는 뺌 (따라 함 참고 820)
+ref_photo: sealed:u1106_08
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-07'
+  mood: 블랙·그레이·브라운·네이비의 차분한 톤에 트위드·울·니트 소재로 단정하면서 포근한 하객룩
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 트위드 재킷, 울 하프코트, 블레이저처럼 단정한 겨울 아우터
+  - category: 상의
+    desc: 셔츠 레이어드 니트, 터틀넥, 타이 블라우스
+  - category: 하의
+    desc: 와이드 슬랙스, 미니·롱·머메이드 스커트
+  - category: 신발
+    desc: 포인티드 플랫, 펌프스, 롱부츠
+  - category: 가방
+    desc: 작은 가죽 토트·숄더백
+  title_hint: 겨울 하객룩, 겨울 결혼식에 하객으로 입는 단정하고 따뜻한 룩
+  why: 11월 겨울 결혼식 시즌, 사용자가 고른 참고 코디 10벌
