@@ -519,6 +519,9 @@ video:
   replace_post: true       # 영상이 캐러셀 게시를 대신함. 영상은 사용자가 직접 올림
   video_model: hailuo_3   # 2026-11-03 사용자: 첫 장면 없이 코디컷·빈 배경을 바로 넣고 동작만 지시 (Hailuo)
   # 크기·카메라·걸음·자세·동작 순서·표정·머리는 고정하지 않는다. 영상마다 컨셉 지시문에 자세히 적는다 (2026-11-03 사용자)
+  # 영상 첫 장면을 상품 사진에서 바로 그리기 (2026-11-07 사용자, video.yml step=scene_frames).
+  # 컨셉 장면에 start_en 이 없을 때의 시작 위치·크기 (연말 LOOK5 구도: 전신이 화면 세로의 약 80%)
+  scene_start_en: "standing in the middle of the frame, her whole body visible from head to shoes, filling about 80% of the frame height"
   speed: 1.0               # 2026-11-03 사용자 "보폭이 너무 작고 뒤뚱거려": 1.25배로 돌리면 종종걸음처럼 보여 배속 없앰
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용

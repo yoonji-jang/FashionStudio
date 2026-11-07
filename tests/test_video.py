@@ -528,3 +528,110 @@ def test_concept_keep_looks():
     assert keep_looks(plan, [3, 1])["looks"] == [{"n": 3}, {"n": 1}]
     with pytest.raises(ValueError):
         keep_looks(plan, [1, 1])
+
+
+def _jpg(color="#888888", size=(400, 600)) -> bytes:
+    import io
+
+    buf = io.BytesIO()
+    Image.new("RGB", size, color).save(buf, "JPEG")
+    return buf.getvalue()
+
+
+def test_scene_frames_draw_fix_review_and_clip(tmp_path, monkeypatch):
+    """코디컷 없이 첫 장면을 상품 사진에서 바로 그리고(검수 폴더), /fix 는 그 그림을 고치고,
+    clips 는 그 그림을 first_frame 으로 한 벌만 만든다 (2026-11-07)."""
+    import yaml
+
+    from core.profile import load_profile
+    from tests.test_models import product, theme
+    from tools import outfit_gen
+    from tools import review as review_tool
+    from tools.video_concept import Concept, Shot
+
+    profile = load_profile("women")
+    run = tmp_path / "2026-11-07-run453"
+    (run / "picks").mkdir(parents=True)
+    looks = [
+        {"items": [{"product": f"zigzag:{n}", "name": f"옷{n}", "desc": f"옷 {n} (cloth {n})"}],
+         "reason": f"r{n}", "requests": ["리본 (a ribbon)"] if n == 1 else []}
+        for n in (1, 2)
+    ]  # fmt: skip
+    plan = {"account": "women", "date": "2026-11-07", "theme": theme().model_dump(mode="json"),
+            "looks": looks, "reason": "r"}  # fmt: skip
+    (run / "picks" / "p1.yaml").write_text(yaml.safe_dump(plan, allow_unicode=True), "utf-8")
+    dest = video.subset(run, [1, 2])
+    (dest / "video").mkdir()
+    (dest / "video" / "background.jpg").write_bytes(_jpg("#334455"))
+    face = tmp_path / "face.jpg"
+    face.write_bytes(_jpg("#ffccaa"))
+
+    shots = [Shot(look=n, seconds=4, action="걷기", pose="서기") for n in (1, 2)]
+    shots[0].start_en = "far at the end of the hall, about 35% of the frame height"
+    c = Concept(title="t", background="b", background_en="a hall", framing="f", light="l",
+                motion="걷기", hook="h", shots=shots)  # fmt: skip
+    monkeypatch.setattr(video, "concept_of", lambda *a, **k: c)
+
+    class Store:
+        def __init__(self, _id):
+            pass
+
+        def products(self):
+            return [product(1, "원피스"), product(2)]
+
+    monkeypatch.setattr(video, "Store", Store)
+    monkeypatch.setattr(
+        outfit_gen, "reference_panels",
+        lambda plan, products, work, cfg, cache: [
+            (work / "originals").mkdir(parents=True, exist_ok=True)
+            or (work / "originals" / f"{i:02d}_top.jpg").write_bytes(_jpg()) and _jpg()
+            for i, _ in enumerate(plan.items, 1)
+        ],
+    )  # fmt: skip
+    monkeypatch.setattr(outfit_gen, "worn_ref_panel", lambda *a, **k: None)
+
+    calls = []
+
+    class Client:
+        def generate(self, model, prompt, images):
+            calls.append((prompt, len(images)))
+            return _jpg("#aabbcc", (900, 1600)), 0.1
+
+    rec = video.scene_frames(profile, dest, [1], [], face=face, client=Client())
+    prompt, n_images = calls[-1]
+    assert n_images == 3  # 상품 1 + 얼굴 + 빈 배경
+    assert "35% of the frame height" in prompt and "a ribbon" in prompt
+    assert "cm" not in prompt and "hair" not in prompt.lower()
+    assert rec.scene == [1]
+    assert (dest / "video" / "frames" / "look1.jpg").exists()
+    sd = video.scene_dir(dest, 1)
+    assert review_tool.load_review(sd).candidates[0].file == "outfit/results/S_1.jpg"
+    md = review_tool.prep(sd, profile).read_text("utf-8")
+    assert "영상 첫 장면" in md and "얼굴 사진" in md and "35%" in md
+
+    # 2번 벌은 컨셉에 시작 모습이 없어 profile 기본 (약 80%)
+    video.scene_frames(profile, dest, [2], [], face=face, client=Client())
+    assert profile.video.scene_start_en.rstrip(".") in calls[-1][0]
+
+    # /fix 1: 지금 첫 장면을 고친다 (첫 그림 = 지금 첫 장면)
+    rec = video.scene_frames(profile, dest, None, ["1:가방을 오른손에"], face=face, client=Client())
+    prompt, n_images = calls[-1]
+    assert prompt.startswith("Edit the first attached image") and "가방을 오른손에" in prompt
+    assert n_images == 3  # 지금 첫 장면 + 상품 1 + 얼굴
+    assert (sd / "outfit" / "results" / "S_2.jpg").exists()
+    assert (dest / "video" / "scene" / "drawn.txt").read_text().split() == ["1"]
+
+    # clips: 첫 장면을 first_frame 으로, 고른 벌만, 다 만들기 전에는 편집하지 않음
+    sent = []
+
+    class FakeVideo:
+        def make(self, body):
+            sent.append(body)
+            return b"", 0.5, ""
+
+    monkeypatch.setattr(video.video_test, "FakeVideoClient", lambda: FakeVideo())
+    monkeypatch.setattr(video, "_fake_clip", lambda first: b"mp4")
+    rec = video.clips(profile, dest, [1], None, fake=True)
+    assert len(sent) == 1 and (dest / "video" / "clips" / "look1.mp4").exists()
+    assert not (dest / "video" / "clips" / "look2.mp4").exists()
+    assert rec.step == "frames"

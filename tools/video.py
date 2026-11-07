@@ -22,6 +22,8 @@ OpenRouter 요금이 나가므로 video 워크플로(차례 흐름이 부름)에
   python -m tools.video background --account women --run … [--note "배경:…"]
   python -m tools.video frames  --account women --run /tmp/results/2026-10-27-run380 \
       [--looks 3 5] [--note "3:얼굴이 달라"] [--background]
+  python -m tools.video scene_frames --account women --run … --face face.jpg [--looks 1]
+      [--note "1:가방을 오른손에"]  코디컷 없이 첫 장면을 상품 사진에서 바로 (2026-11-07)
   python -m tools.video prompts --account women --run … [--note "3:가방 고쳐 들기"]
   python -m tools.video clips   --account women --run … [--looks 2] [--note "2:더 빨리"]
   python -m tools.video edit    --account women --run … [--speed 1.3] [--hook "…"]
@@ -90,6 +92,9 @@ class VideoRecord(BaseModel):
     bg_versions: int = 0  # 그린 빈 배경 수 (video/backgrounds/<번호>.jpg, 마지막이 지금 배경)
     bg_base: int = 0  # 지금 배경이 몇 번째 배경을 고친 것인지 (0 이면 새로 그림)
     stale: list[int] = []  # 영상을 만든 뒤 첫 장면을 다시 그린 벌 (다음 clips 때 영상도 다시)
+    # 첫 장면을 상품 사진에서 바로 그린 벌 (scene_frames, 2026-11-07). 있으면 clips 는
+    # profile video.scene_video_model 로 그 첫 장면을 first_frame 으로 넣는다
+    scene: list[int] = []
 
     def total(self) -> float:
         return round(sum(self.costs.values()), 2)
@@ -134,6 +139,9 @@ def look_image(run: Path, n: int) -> Path:
         files = sorted(d.glob("*.jpg"))
         if files:
             return files[0]
+    frame = vdir(run) / "frames" / f"look{n}.jpg"  # 코디컷 없이 그린 첫 장면 (scene_frames)
+    if frame.exists():
+        return frame
     raise FileNotFoundError(f"LOOK {n} 코디컷이 없어요: {look}")
 
 
@@ -378,12 +386,164 @@ def frames(
     return rec
 
 
+def scene_dir(run: Path, n: int) -> Path:
+    """n 번 벌 첫 장면의 그림·검수 폴더 (tools.review prep/apply 를 그대로 쓴다).
+    outfit/originals/ 는 쇼핑몰 사진이라 결과 브랜치에 올리지 않는다 (video 워크플로가 뺌)."""
+    return vdir(run) / "scene" / str(n)
+
+
+def _panel(data: bytes, px: int = 1536) -> bytes:
+    return video_test.jpeg(data, px)
+
+
+def scene_items(plan: DailyPlan, products: dict, cfg: dict) -> str:
+    """상품 참고판 설명 (tools.outfit_gen 장면 모델컷과 같은 말).
+    옷 기장은 cm 대신 착용컷을 따른다."""
+    from tools import outfit_gen
+
+    lines = []
+    for i, it in enumerate(plan.items, 1):
+        p = products[it.product]
+        size = outfit_gen.item_size(it, p, cfg, worn=True, ref=True)
+        line = (
+            f"The {outfit_gen.sheet_name(i)}: the {outfit_gen.item_label(it, p)},"
+            f" {outfit_gen.english(it.desc)}."
+        )
+        lines.append(line + (f" Real size: {size}." if size else ""))
+    return "\n".join(lines)
+
+
+def scene_frames(
+    profile: Profile,
+    run: Path,
+    looks: list[int] | None = None,
+    notes: list[str] | None = None,
+    fake: bool = False,
+    concept: int = 0,
+    face: Path | None = None,
+    client=None,
+) -> VideoRecord:
+    """③' 벌마다 영상 첫 장면을 상품 사진에서 바로 그린다 (2026-11-07 사용자: 스튜디오 코디컷 없이).
+
+    한 번에: 고른 빈 배경 + 얼굴 사진(flow/<계정>/face.jpg) + 상품 참고판(tools.outfit_gen 과 같은
+    쇼핑몰 사진, 기준 코디 사진)으로 컨셉의 시작 자세·위치·크기대로 사람을 배경 속에 그린다.
+    그린 그림은 검수 폴더(video/scene/<n>/)에 두고 video 워크플로가 image-reviewer 로 상품을 본다.
+    고칠 점("3:가방을 오른손에")이 오면 그 벌의 지금 첫 장면을 고친다
+    (말한 곳만 바꿈, 10/29 사용자).
+    "3:새로 …" 면 처음부터 다시 그린다. 머리·표정·길이 문구는 지시하지 않는다."""
+    from tools import generate, outfit_gen
+    from tools import looks as looks_tool
+    from tools import review as review_tool
+
+    rec = start_record(profile, run, concept)
+    c = concept_of(profile, rec.date, rec.concept)
+    asked: dict[int, list[str]] = {}
+    for r in notes or []:
+        head, sep, text = r.partition(":")
+        if sep and head.strip().isdigit():
+            asked.setdefault(int(head), []).append(text.strip())
+    add_notes(rec, notes or [])
+    todo = looks or sorted(asked) or list(range(1, rec.looks + 1))
+    d = vdir(run)
+    bg_file = d / "background.jpg"
+    if not bg_file.exists():
+        raise ValueError("빈 배경을 먼저 골라 주세요 (video.yml step=background)")
+    if not (face and face.exists()) and not fake:
+        raise ValueError(f"얼굴 사진이 없어요 (모든 벌 같은 얼굴): {face}")
+    face_b = _panel(face.read_bytes(), 1024) if face and face.exists() else None
+    bg = _panel(bg_file.read_bytes())
+    gcfg = generate.load_config()
+    if client is None:
+        client, models = _gen_client(profile, fake)
+    else:
+        models = gcfg["models"]
+    model = models[profile.video.frame_model]
+    products = {p.id: p for p in Store(profile.id).products()}
+    cache = generate.CACHE_DIR / profile.id
+    shots = {s.look: s for s in c.shots}
+    kw = common(profile, c)
+    (d / "frames").mkdir(parents=True, exist_ok=True)
+    drawn = []
+    for n in todo:
+        lp = DailyPlan.model_validate(
+            yaml.safe_load((run / "looks" / str(n) / "plan.yaml").read_text(encoding="utf-8"))
+        )
+        sd = scene_dir(run, n)
+        work = sd / "outfit"
+        if (work / "originals").exists():
+            shutil.rmtree(work / "originals")
+        sheets = outfit_gen.reference_panels(lp, products, work, gcfg, cache)
+        worn = outfit_gen.worn_ref_panel(lp, profile, cache)
+        if lp.ref_photo and not worn:
+            # 참고 코디(입는 모양)가 가장 중요하다 (PR #168). 없이 그리면 비용만 든다
+            raise RuntimeError(f"LOOK {n} 참고 코디 사진을 받지 못해 그리지 않습니다")
+        orig = work / "originals"
+        if worn:
+            (orig / "worn_ref.jpg").write_bytes(worn)
+        if face_b:
+            (orig / "face.jpg").write_bytes(face_b)
+        (orig / "background.jpg").write_bytes(bg)
+        shot = shots.get(n)
+        start = (shot.start_en if shot else "") or profile.video.scene_start_en
+        (work / "start.txt").write_text(
+            ((shot.start if shot else "") or start) + "\n", encoding="utf-8"
+        )
+        items = scene_items(lp, products, gcfg)
+        current = d / "frames" / f"look{n}.jpg"
+        fix = [x for x in asked.get(n, []) if not x.startswith("새로")]
+        if fix and current.exists() and n in rec.scene:
+            prompt = template("scene_frame_edit", request="; ".join(fix), items=items)
+            refs = [_panel(current.read_bytes()), *sheets, *([face_b] if face_b else [])]
+        else:
+            lp = lp.model_copy(
+                update={
+                    "requests": [
+                        *lp.requests,
+                        *[x.removeprefix("새로").strip() for x in notes_for(rec, n)],
+                    ][:6]
+                }
+            )
+            prompt = template(
+                "scene_frame",
+                must=outfit_gen.must_text(lp, bool(worn)),
+                worn=outfit_gen.WORN_REF_MODEL if worn else "",
+                sheets=outfit_gen.SHEETS_AFTER_REF if worn else outfit_gen.SHEETS_FIRST,
+                items=items,
+                start=start,
+                light=kw["light"],
+            )
+            refs = [*([worn] if worn else []), *sheets, *([face_b] if face_b else []), bg]
+        data, cost = client.generate(model, prompt, refs)
+        (work / "results").mkdir(parents=True, exist_ok=True)
+        k = len(list((work / "results").glob("S_*.jpg"))) + 1
+        out = work / "results" / f"S_{k}.jpg"
+        out.write_bytes(video_test.jpeg(data, 1920))
+        (work / "prompt.txt").write_text(prompt, encoding="utf-8")
+        (work / f"prompt_{k}.txt").write_text(prompt, encoding="utf-8")
+        looks_tool.write_plan(lp.model_copy(update={"shot": "model"}), sd / "plan.yaml")
+        if review_tool.review_path(sd).exists():
+            review_tool.review_path(sd).unlink()
+        review_tool.start(sd, [out])
+        shutil.copy2(out, current)
+        rec.costs[f"scene_{n}_{k}"] = round(cost or 0, 4)
+        if n not in rec.scene:
+            rec.scene = sorted([*rec.scene, n])
+        if (d / "clips" / f"look{n}.mp4").exists() and n not in rec.stale:
+            rec.stale.append(n)
+        drawn.append(n)
+    (d / "scene").mkdir(exist_ok=True)
+    (d / "scene" / "drawn.txt").write_text(" ".join(map(str, drawn)) + "\n", encoding="utf-8")
+    rec.step, rec.error = "frames", ""
+    save_record(run, rec)
+    return rec
+
+
 def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: int) -> str:
     shot = next((s for s in c.shots if s.look == n), None)
     motion = (shot.motion_en or f"{shot.action}, {shot.pose}") if shot else "She walks naturally"
     text = template("motion", **common(profile, c), items=items_en(run, n), motion=motion)
     notes = notes_for(rec, n, motion=True)
-    if not uses_frames(profile):  # 첫 장면이 없으니 그림 고칠 점도 영상 지시문에
+    if not (uses_frames(profile) or rec.scene):  # 첫 장면이 없으니 그림 고칠 점도 영상 지시문에
         notes = notes_for(rec, n) + notes
     for note in notes:
         text += f"\nUser request (most important): {note}"
@@ -425,9 +585,13 @@ def clips(
     (d / "clips").mkdir(exist_ok=True)
     cfg = video_test.load_config()
     vcfg = cfg["video"]
-    model = vcfg["models"][model_key or profile.video.video_model]
+    # 첫 장면을 상품 사진에서 바로 그렸으면(scene_frames) 그 그림을 first_frame 으로 (2026-11-07)
+    key = model_key or (profile.video.scene_video_model if rec.scene else profile.video.video_model)
+    model = vcfg["models"][key]
     if model_key:
         return compare_clips(profile, run, rec, c, model, model_key, looks or [1], fake, face)
+    if rec.scene and model.get("inputs") != "first_frame":
+        raise ValueError(f"video.scene_video_model '{key}' 은 첫 장면(first_frame) 모델이어야 해요")
     redo = set(looks or touched) | set(rec.stale)
     client = (
         video_test.FakeVideoClient()
@@ -440,6 +604,10 @@ def clips(
         texts[str(n)] = motion_prompt(profile, run, c, rec, n)
         if clip.exists() and n not in redo:
             continue
+        if rec.scene and (
+            (looks and n not in looks) or not (d / "frames" / f"look{n}.jpg").exists()
+        ):  # 첫 장면 방식: 한 벌씩 시험할 수 있게 고른 벌·첫 장면이 있는 벌만
+            continue
         body, texts[str(n)] = clip_body(run, c, n, model, texts[str(n)])
         video, cost, _ = client.make(body)
         clip.write_bytes(video if not fake else _fake_clip(look_image(run, n).read_bytes()))
@@ -450,6 +618,10 @@ def clips(
     if profile.video.music == "lyria" and not (d / "music.mp3").exists():
         make_music(profile, run, rec, c, fake)
     save_record(run, rec)
+    missing = [n for n in range(1, rec.looks + 1) if not (d / "clips" / f"look{n}.mp4").exists()]
+    if missing:  # 한 벌 시험 등: 모든 벌 영상이 생긴 뒤에 편집
+        print(f"아직 영상이 없는 벌: {' '.join(map(str, missing))} (편집은 모두 만든 뒤에)")
+        return rec
     return edit(profile, run)
 
 
@@ -844,13 +1016,14 @@ def edit(
     _ffmpeg(
         "-ss", "0.5", "-i", str(silent), "-frames:v", "1", "-q:v", "2", str(final / "cover.jpg")
     )
-    m = manifest_of(run)
-    # 영상이므로 AI 고지를 "영상은 …" 으로 (2026-11-03 사용자)
-    notice = profile.copy_rules.ai_notice
-    caption = m.caption.replace(notice, video_notice(notice))
-    if m.hashtags:  # 바로 붙여 넣을 수 있게 해시태그까지
-        caption += "\n\n" + " ".join(m.hashtags)
-    (final / "caption.txt").write_text(caption + "\n", encoding="utf-8")
+    if (run / "manifest.json").exists():  # 후보 실행에서 고른 폴더는 캡션이 없다 (따로 씀)
+        m = manifest_of(run)
+        # 영상이므로 AI 고지를 "영상은 …" 으로 (2026-11-03 사용자)
+        notice = profile.copy_rules.ai_notice
+        caption = m.caption.replace(notice, video_notice(notice))
+        if m.hashtags:  # 바로 붙여 넣을 수 있게 해시태그까지
+            caption += "\n\n" + " ".join(m.hashtags)
+        (final / "caption.txt").write_text(caption + "\n", encoding="utf-8")
     rec.step, rec.error = "final", ""
     save_record(run, rec)
     return rec
@@ -1255,8 +1428,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument(
         "step",
-        choices=["plan", "background", "frames", "prompts", "clips", "redo", "edit", "music",
-                 "send", "subset"],
+        choices=["plan", "background", "frames", "scene_frames", "prompts", "clips", "redo",
+                 "edit", "music", "send", "subset"],
     )  # fmt: skip
     ap.add_argument("--account", required=True)
     ap.add_argument(
@@ -1308,6 +1481,8 @@ def main(argv: list[str] | None = None) -> int:
                    args.face)  # fmt: skip
             if args.step == "redo":  # /frame N: 첫 장면부터 그 벌 영상까지
                 clips(profile, args.run, args.looks, None, args.fake)
+        elif args.step == "scene_frames":
+            scene_frames(profile, args.run, args.looks, notes, args.fake, args.concept, args.face)
         elif args.step == "prompts":
             prompts(profile, args.run, notes)
         elif args.step == "clips":
