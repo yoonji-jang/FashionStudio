@@ -621,6 +621,19 @@ def test_scene_frames_draw_fix_review_and_clip(tmp_path, monkeypatch):
     assert (sd / "outfit" / "results" / "S_2.jpg").exists()
     assert (dest / "video" / "scene" / "drawn.txt").read_text().split() == ["1"]
 
+    # /fix 1 판1: 지금 첫 장면 대신 1번째 그림(S_1)을 고친다
+    seen = []
+    orig_panel = video._panel
+    monkeypatch.setattr(video, "_panel", lambda b, *a: seen.append(b) or orig_panel(b, *a))
+    (sd / "outfit" / "results" / "S_1.jpg").write_bytes(_jpg("#112233", (900, 1600)))
+    video.scene_frames(profile, dest, None, ["1:판1 양말 빼기"], face=face, client=Client())
+    prompt, _ = calls[-1]
+    assert "양말 빼기" in prompt and "판1" not in prompt
+    assert (sd / "outfit" / "results" / "S_1.jpg").read_bytes() in seen
+    assert (sd / "outfit" / "results" / "S_3.jpg").exists()
+    with pytest.raises(ValueError):
+        video.scene_frames(profile, dest, None, ["1:판9 x"], face=face, client=Client())
+
     # clips: 첫 장면을 first_frame 으로, 고른 벌만, 다 만들기 전에는 편집하지 않음
     sent = []
 

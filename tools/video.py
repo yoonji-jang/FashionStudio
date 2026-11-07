@@ -491,9 +491,19 @@ def scene_frames(
         items = scene_items(lp, products, gcfg)
         current = d / "frames" / f"look{n}.jpg"
         fix = [x for x in asked.get(n, []) if not x.startswith("새로")]
-        if fix and current.exists() and n in rec.scene:
+        # "3:판1 …" 이면 지금 첫 장면 대신 그 벌의 1번째 그림(results/S_1.jpg)을 고친다
+        # (2026-11-07 사용자: "얼굴은 첫번째 사진을 쓰고 …")
+        base = current
+        for i, x in enumerate(fix):
+            m = re.match(r"판\s*(\d+)\s*", x)
+            if m:
+                base = work / "results" / f"S_{m.group(1)}.jpg"
+                if not base.exists():
+                    raise ValueError(f"LOOK {n} {m.group(1)}번째 그림이 없어요: {base.name}")
+                fix[i] = x[m.end():]
+        if fix and base.exists() and n in rec.scene:
             prompt = template("scene_frame_edit", request="; ".join(fix), items=items)
-            refs = [_panel(current.read_bytes()), *sheets, *([face_b] if face_b else [])]
+            refs = [_panel(base.read_bytes()), *sheets, *([face_b] if face_b else [])]
         else:
             lp = lp.model_copy(
                 update={
