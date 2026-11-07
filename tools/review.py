@@ -263,13 +263,14 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     (out / "review").mkdir(parents=True, exist_ok=True)
     refs = reference_photos(plan, out)
     cats = categories(plan)
+    labels = sheet_labels(plan)
 
     todo = [c for c in review.candidates if c.score is None]
     if review.candidates:
         compare.contact_sheet(
             [
-                (f"{i} {CATEGORY_EN.get(cat, 'item')}", p)
-                for i, (cat, p) in enumerate(zip(cats, refs, strict=True), 1)
+                (f"{i} {label}", p)
+                for i, (label, p) in enumerate(zip(labels, refs, strict=True), 1)
                 if p is not None
             ],
             [(f"{c.id} (round {c.round})", cand_path(out, c)) for c in review.candidates],
@@ -309,8 +310,11 @@ def prep(out: Path, profile: Profile | None = None) -> Path:
     sizes = real_sizes(plan)
     for i, (it, ref) in enumerate(zip(plan.items, refs, strict=True), 1):
         how = f"{it.wear_with}에 입힘" if it.wear_with else "-"
+        cat = cats[i - 1]
+        if it.covers:
+            cat = "+".join([cat, *it.covers]) + " 셋업 (한 상품)"
         lines.append(
-            f"| {i} | {cats[i - 1]} | {it.desc} | {it.color or '-'} | {how} | {sizes[i - 1]} | "
+            f"| {i} | {cat} | {it.desc} | {it.color or '-'} | {how} | {sizes[i - 1]} | "
             f"{_ref(out, ref) if ref else '없음'} |"
         )
     scene = out / "outfit" / "originals" / "scene.jpg"
@@ -403,6 +407,16 @@ def categories(plan: DailyPlan) -> list[str]:
     return [
         products[it.product].category if it.product in products else "상품" for it in plan.items
     ]
+
+
+def sheet_labels(plan: DailyPlan) -> list[str]:
+    """검수 대조표의 원본 상품 이름 (영어). 셋업(covers)은 한 상품이 두 칸을 채우므로
+    "outer+bottoms set" 처럼 적어 검수에서 두 벌 모두 이 상품과 같은지 보게 한다."""
+    labels = []
+    for it, cat in zip(plan.items, categories(plan), strict=True):
+        en = [CATEGORY_EN.get(c, "item") for c in [cat, *(it.covers or [])]]
+        labels.append("+".join(en) + (" set" if it.covers else ""))
+    return labels
 
 
 def _manifest(out: Path) -> Manifest | None:

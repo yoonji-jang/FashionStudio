@@ -79,7 +79,11 @@ def item_size(
         layout = load_layout()
         cm = plan_tool.item_length(it, product, layout) or layout["slots"][cat]["cm"]
         where = "from waist to hem" if cat == "하의" else "from shoulder to hem"
-        return f"about {cm:g} cm long {where}"
+        size = f"about {cm:g} cm long {where}"
+        if it.covers:
+            # 셋업의 다른 한 벌(예: 스커트)은 cm 를 따로 모르니 상품 사진 기장을 따른다
+            size += "; the other set pieces are as long as in the shop photos"
+        return size
     # 스카프를 목걸이 칸에 넣으면 목걸이 크기가 붙어 체인처럼 그려질 수 있다 (2026-10-14 run246)
     text = f"{product.name} {it.desc}".lower()
     if "스카프" in text or "scarf" in text:
@@ -178,6 +182,20 @@ def sheet_name(i: int) -> str:
     return f"{ORDINALS[i - 1]} sheet" if 0 < i <= len(ORDINALS) else f"sheet {i}"
 
 
+def item_label(it: PlanItem, product: Product) -> str:
+    """지시문에서 상품을 부르는 이름. 셋업(covers)은 두 벌을 한 상품으로 그리게 한다
+    (2026-11-07 사용자: 자켓·스커트 모두 세트 제품으로)."""
+    cat = generate.CATEGORY_EN.get(product.category, "item")
+    if not it.covers:
+        return cat
+    extra = [generate.CATEGORY_EN.get(c, "item") for c in it.covers if c != product.category]
+    pieces = " and matching ".join([cat, *extra])
+    return (
+        f"{pieces} (one matching set sold together: draw every piece of the set from this"
+        " sheet, in the same fabric, color and details, never another product for them)"
+    )
+
+
 def item_lines(
     plan: DailyPlan, products: dict[str, Product], cfg: dict, start: int = 1, ref: bool = False
 ) -> str:
@@ -185,9 +203,8 @@ def item_lines(
     worn = plan.shot == "model" and bool(plan.scene_image)
     for i, it in enumerate(plan.items, start):
         p = products[it.product]
-        cat = generate.CATEGORY_EN.get(p.category, "item")
         size = item_size(it, p, cfg, worn, ref and worn)
-        line = f"The {sheet_name(i)}: the {cat}, {english(it.desc)}."
+        line = f"The {sheet_name(i)}: the {item_label(it, p)}, {english(it.desc)}."
         lines.append(line + (f" Real size: {size}." if size else ""))
     return "\n".join(lines)
 
@@ -312,11 +329,15 @@ def prompt_parts(
     2026-10-12: 모든 규칙을 한 지시문에 넣으면 길어져 이미지 AI 가 지시를 놓쳐서,
     하의·신발·겹쳐 입기 규칙은 해당할 때만 붙인다."""
     rules = yaml.safe_load((parts_dir / "parts.yaml").read_text(encoding="utf-8")) or {}
+    # 셋업(covers)은 함께 채우는 칸의 조각도 붙인다 (자켓+스커트 셋업이면 하의 규칙도)
     items = [
-        (products[it.product], f"{it.name} {products[it.product].name} {it.desc}".lower())
+        (
+            {products[it.product].category, *(it.covers or [])},
+            f"{it.name} {products[it.product].name} {it.desc}".lower(),
+        )
         for it in plan.items
     ]
-    cats = [p.category for p, _ in items]
+    cats = [c for own, _ in items for c in own]
     texts = []
     for name, rule in rules.items():
         if rule.get("styling_words") and not any(
@@ -327,8 +348,8 @@ def prompt_parts(
         if cat:
             hit = [
                 text
-                for p, text in items
-                if p.category == cat
+                for own, text in items
+                if cat in own
                 and (not rule.get("words") or any(w.lower() in text for w in rule["words"]))
                 and not any(w.lower() in text for w in rule.get("not_words", []))
             ]

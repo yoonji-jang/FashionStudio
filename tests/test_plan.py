@@ -198,6 +198,37 @@ def test_dress_fills_top_and_bottom(store):
     assert not any("필수 카테고리 상의" in e or "필수 카테고리 하의" in e for e in errors)
 
 
+def test_set_product_fills_outer_and_bottom(store):
+    """2026-11-07 사용자: 자켓+스커트 셋업 한 상품을 아우터·하의 칸에 같이 쓴다 (covers)."""
+    from tools import outfit_gen
+
+    products = store.products()
+    products[0].name = "[MADE] 트위드 자켓 스커트 셋업"
+    store.save_products(products)
+    p = daily()
+    p.items = [it for it in p.items if it.product != "zigzag:3"]  # 하의 빼기
+    errors, warns = plan.check(p, load_profile("women"), store)
+    assert any("필수 카테고리 하의" in e for e in errors)
+
+    p.items[0].covers = ["하의"]
+    errors, warns = plan.check(p, load_profile("women"), store)
+    assert not any("필수 카테고리" in e or "두 번" in e for e in errors)
+    assert not any("covers" in w for w in warns)
+    by_id = {x.id: x for x in store.products()}
+    lines = outfit_gen.item_lines(p, by_id, {})
+    assert "outer and matching bottoms (one matching set" in lines
+
+    p.items[0].covers = ["아우터"]
+    errors, _ = plan.check(p, load_profile("women"), store)
+    assert any("자기 카테고리" in e for e in errors)
+
+    products[0].name = "[MADE] 트위드 자켓"
+    store.save_products(products)
+    p.items[0].covers = ["하의"]
+    _, warns = plan.check(p, load_profile("women"), store)
+    assert any("셋업" in w for w in warns)
+
+
 def test_candidates_skip_used_and_sold_out(store):
     profile = load_profile("women")
     products = store.products()
