@@ -599,9 +599,16 @@ def test_scene_frames_draw_fix_review_and_clip(tmp_path, monkeypatch):
 
     rec = video.scene_frames(profile, dest, [1], [], face=face, client=Client())
     prompt, n_images = calls[-1]
-    assert n_images == 3  # 상품 1 + 얼굴 + 빈 배경
+    assert n_images == 3  # 얼굴 + 상품 1 + 빈 배경
     assert "35% of the frame height" in prompt and "a ribbon" in prompt
-    assert "cm" not in prompt and "hair" not in prompt.lower()
+    assert "cm" not in prompt
+    # 2026-11-10: 얼굴 사진이 1번 그림, 미모 문구·망원 카메라, "Do not beautify" 없음
+    assert "The first attached image is the face photo" in prompt
+    assert profile.video.face_en[:40] in prompt and "telephoto" in prompt
+    assert "beautify" not in prompt
+    n_cand = profile.video.scene_candidates
+    assert len(calls) == n_cand  # 새로 그릴 때 여러 장
+    assert len(list((video.scene_dir(dest, 1) / "outfit" / "results").glob("S_*.jpg"))) == n_cand
     assert rec.scene == [1]
     assert (dest / "video" / "frames" / "look1.jpg").exists()
     sd = video.scene_dir(dest, 1)
@@ -617,8 +624,11 @@ def test_scene_frames_draw_fix_review_and_clip(tmp_path, monkeypatch):
     rec = video.scene_frames(profile, dest, None, ["1:가방을 오른손에"], face=face, client=Client())
     prompt, n_images = calls[-1]
     assert prompt.startswith("Edit the first attached image") and "가방을 오른손에" in prompt
-    assert n_images == 3  # 지금 첫 장면 + 상품 1 + 얼굴
-    assert (sd / "outfit" / "results" / "S_2.jpg").exists()
+    assert n_images == 3  # 지금 첫 장면 + 얼굴 + 상품 1
+    assert "second attached image is the face photo" in prompt
+    k = n_cand + 1  # 고치기는 한 장
+    assert (sd / "outfit" / "results" / f"S_{k}.jpg").exists()
+    assert not (sd / "outfit" / "results" / f"S_{k + 1}.jpg").exists()
     assert (dest / "video" / "scene" / "drawn.txt").read_text().split() == ["1"]
 
     # /fix 1 판1: 지금 첫 장면 대신 1번째 그림(S_1)을 고친다
@@ -630,7 +640,15 @@ def test_scene_frames_draw_fix_review_and_clip(tmp_path, monkeypatch):
     prompt, _ = calls[-1]
     assert "양말 빼기" in prompt and "판1" not in prompt
     assert (sd / "outfit" / "results" / "S_1.jpg").read_bytes() in seen
-    assert (sd / "outfit" / "results" / "S_3.jpg").exists()
+    assert (sd / "outfit" / "results" / f"S_{k + 1}.jpg").exists()
+
+    # "1:판2" (고칠 말 없음): 2번째 그림을 첫 장면으로 고르기만 (그리지 않음)
+    before = len(calls)
+    (sd / "outfit" / "results" / "S_2.jpg").write_bytes(_jpg("#445566", (900, 1600)))
+    video.scene_frames(profile, dest, None, ["1:판2"], face=face, client=Client())
+    assert len(calls) == before
+    frame = dest / "video" / "frames" / "look1.jpg"
+    assert frame.read_bytes() == (sd / "outfit" / "results" / "S_2.jpg").read_bytes()
     with pytest.raises(ValueError):
         video.scene_frames(profile, dest, None, ["1:판9 x"], face=face, client=Client())
 

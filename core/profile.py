@@ -478,6 +478,17 @@ class Video(BaseModel):
     scene_video_model: str = "hailuo_3_frame"
     # 컨셉 장면에 시작 모습(start_en)이 없을 때 첫 장면의 인물 위치·크기 (영어)
     scene_start_en: str = ""
+    # 첫 장면 얼굴 (2026-11-10 사용자, 스레드 "이미지 생성 프롬프트 개선하기"): 얼굴 사진의
+    # 사람을 지키면서 늘 넣는 미모·화장·빛·머리 문구 (영어). 얼굴 사진은 1번 그림으로 보낸다.
+    # 영상(움직임) 지시문에는 넣지 않는다 (머리·표정 고정 금지 PR #219 는 영상 지시문 규칙)
+    face_en: str = ""
+    # 첫 장면 카메라 (영어). 망원 느낌이면 얼굴이 넓게 퍼지지 않는다
+    frame_camera_en: str = ""
+    # 영상(움직임) 지시문에 늘 넣는 얼굴 지키기 문구 (영어): 고개 돌림·손·카메라 접근 등
+    motion_face_en: str = ""
+    # 첫 장면을 새로 그릴 때 한 벌에 몇 장 그릴지. 2 이상이면 1번 그림이 첫 장면이 되고
+    # "N:판K" (뒤에 고칠 말 없이) 로 K번째 그림을 첫 장면으로 고른다
+    scene_candidates: int = Field(default=1, ge=1, le=4)
     # 영상 지시문에 늘 넣는 말 (영어).
     # 컨셉에 같은 칸(camera_en, pace_en, person_en)이 있으면 컨셉이 이긴다
     camera_en: str = ""

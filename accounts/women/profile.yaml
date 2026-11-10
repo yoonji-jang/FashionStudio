@@ -522,6 +522,28 @@ video:
   # 영상 첫 장면을 상품 사진에서 바로 그리기 (2026-11-07 사용자, video.yml step=scene_frames).
   # 컨셉 장면에 start_en 이 없을 때의 시작 위치·크기 (연말 LOOK5 구도: 전신이 화면 세로의 약 80%)
   scene_start_en: "standing in the middle of the frame, her whole body visible from head to shoes, filling about 80% of the frame height"
+  # 첫 장면 얼굴 (2026-11-10 사용자: 얼굴이 자꾸 바뀌고 덜 예쁨 → 갸름한 얼굴, 큰 눈, 진한 화장, 은은한 미소.
+  # 외부 뷰티 화보 지시문 두 개에서 화장·빛 말을 가져옴. 머리는 얼굴 사진처럼(시스루뱅) — 첫 장면만)
+  face_en: >-
+    She is exactly the woman in the face photo: the same identity, face shape, eyes, brows, nose and lips,
+    and the same hairstyle with the same see-through bangs and face-framing strands, only restyled for
+    this outfit if the user asks. Draw her at her prettiest, like a high-end beauty editorial: a small
+    slim face with a narrow V-line jaw and slim cheeks (never round, wide or chubby), large bright doe
+    eyes with aegyo-sal, softly defined lashes and soft brown liner, expertly blended taupe and mauve
+    eye makeup, feathered brows, soft rosy-beige blush, lightly glossed rose gradient lips, and a
+    flawless luminous dewy porcelain complexion with real skin texture. A soft, subtle closed-lip smile
+    or a calm chic look, never a big grin. Her face is lit by soft, even frontal light with gentle
+    highlights on the cheekbones and brow and clear catchlights in the eyes, never shadowed, flat or dull,
+    and it stays sharp and detailed even though she is small in the frame
+  frame_camera_en: >-
+    shot at her eye level with a medium telephoto lens (about 85 mm) from a few metres away, so her face
+    and body keep natural slim proportions and are not widened
+  # 영상에서 얼굴이 흔들리지 않게 (2026-11-10 사용자 승인)
+  motion_face_en: >-
+    Her face stays exactly the same person as in the first frame for the whole video, sharp and
+    unchanged. No big head turns, she never turns her back, her hands never pass in front of her face,
+    and the camera does not move closer to her
+  scene_candidates: 2
   speed: 1.0               # 2026-11-03 사용자 "보폭이 너무 작고 뒤뚱거려": 1.25배로 돌리면 종종걸음처럼 보여 배속 없앰
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
