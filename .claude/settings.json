@@ -26,6 +26,7 @@
       "Bash(python -m tools.ig_publish:*)",
       "Bash(python -m tools.publish:*)",
       "Bash(python -m tools.notify:*)",
+      "Bash(python -m tools.tg_send:*)",
       "Bash(python -m tools.prompt_share:*)",
       "Bash(python -m tools.media_host:*)",
       "Bash(python -m tools.pick:*)",
