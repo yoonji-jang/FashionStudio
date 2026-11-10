@@ -413,6 +413,14 @@ def scene_items(plan: DailyPlan, products: dict, cfg: dict) -> str:
     return "\n".join(lines)
 
 
+# 첫 장면: 얼굴 사진이 1번 그림이라 outfit_gen 의 "첫 그림" 문구를 순서에 맞게 (2026-11-10)
+SHEETS_AFTER_FACE = (
+    "Then come, in order, reference sheets of the exact items. Each sheet shows shop photos of"
+    " one item: worn photos show how long it is and how it sits on a body, close-ups show its"
+    " fabric"
+)
+
+
 def scene_frames(
     profile: Profile,
     run: Path,
@@ -430,7 +438,10 @@ def scene_frames(
     그린 그림은 검수 폴더(video/scene/<n>/)에 두고 video 워크플로가 image-reviewer 로 상품을 본다.
     고칠 점("3:가방을 오른손에")이 오면 그 벌의 지금 첫 장면을 고친다
     (말한 곳만 바꿈, 10/29 사용자).
-    "3:새로 …" 면 처음부터 다시 그린다. 머리·표정·길이 문구는 지시하지 않는다."""
+    "3:새로 …" 면 처음부터 다시 그린다. 길이 문구는 지시하지 않는다.
+    얼굴 사진을 1번 그림으로 보내고 profile video.face_en(미모·화장·빛·머리)을 붙인다
+    (2026-11-10 사용자). 새로 그릴 때 video.scene_candidates 장을 그리고,
+    "3:판2" 처럼 고칠 말 없이 오면 2번째 그림을 첫 장면으로 고른다."""
     from tools import generate, outfit_gen
     from tools import looks as looks_tool
     from tools import review as review_tool
@@ -450,7 +461,7 @@ def scene_frames(
         raise ValueError("빈 배경을 먼저 골라 주세요 (video.yml step=background)")
     if not (face and face.exists()) and not fake:
         raise ValueError(f"얼굴 사진이 없어요 (모든 벌 같은 얼굴): {face}")
-    face_b = _panel(face.read_bytes(), 1024) if face and face.exists() else None
+    face_b = _panel(face.read_bytes()) if face and face.exists() else None
     bg = _panel(bg_file.read_bytes())
     gcfg = generate.load_config()
     if client is None:
@@ -500,10 +511,19 @@ def scene_frames(
                 base = work / "results" / f"S_{m.group(1)}.jpg"
                 if not base.exists():
                     raise ValueError(f"LOOK {n} {m.group(1)}번째 그림이 없어요: {base.name}")
-                fix[i] = x[m.end():]
+                fix[i] = x[m.end() :]
+        fix = [x for x in fix if x.strip()]
+        if not fix and base != current and n in rec.scene:
+            # "3:판2" (고칠 말 없음): 그 그림을 첫 장면으로 고르기만 한다 (그리지 않음)
+            shutil.copy2(base, current)
+            if (d / "clips" / f"look{n}.mp4").exists() and n not in rec.stale:
+                rec.stale.append(n)
+            drawn.append(n)
+            continue
+        count = 1
         if fix and base.exists() and n in rec.scene:
             prompt = template("scene_frame_edit", request="; ".join(fix), items=items)
-            refs = [_panel(base.read_bytes()), *sheets, *([face_b] if face_b else [])]
+            refs = [_panel(base.read_bytes()), *([face_b] if face_b else []), *sheets]
         else:
             lp = lp.model_copy(
                 update={
@@ -516,26 +536,37 @@ def scene_frames(
             prompt = template(
                 "scene_frame",
                 must=outfit_gen.must_text(lp, bool(worn)),
-                worn=outfit_gen.WORN_REF_MODEL if worn else "",
-                sheets=outfit_gen.SHEETS_AFTER_REF if worn else outfit_gen.SHEETS_FIRST,
+                # 얼굴 사진이 1번 그림이라 참고 코디 사진은 2번째, 상품판은 그 뒤 (2026-11-10)
+                worn=outfit_gen.WORN_REF_MODEL.replace(
+                    "The first attached image", "The second attached image"
+                )
+                if worn
+                else "",
+                sheets=outfit_gen.SHEETS_AFTER_REF if worn else SHEETS_AFTER_FACE,
                 items=items,
                 start=start,
+                lens=profile.video.frame_camera_en,
+                face=profile.video.face_en or "Do not change her face",
                 light=kw["light"],
             )
-            refs = [*([worn] if worn else []), *sheets, *([face_b] if face_b else []), bg]
-        data, cost = client.generate(model, prompt, refs)
+            refs = [*([face_b] if face_b else []), *([worn] if worn else []), *sheets, bg]
+            count = profile.video.scene_candidates
         (work / "results").mkdir(parents=True, exist_ok=True)
-        k = len(list((work / "results").glob("S_*.jpg"))) + 1
-        out = work / "results" / f"S_{k}.jpg"
-        out.write_bytes(video_test.jpeg(data, 1920))
+        made = []
+        for _ in range(count):
+            data, cost = client.generate(model, prompt, refs)
+            k = len(list((work / "results").glob("S_*.jpg"))) + 1
+            out = work / "results" / f"S_{k}.jpg"
+            out.write_bytes(video_test.jpeg(data, 1920))
+            (work / f"prompt_{k}.txt").write_text(prompt, encoding="utf-8")
+            rec.costs[f"scene_{n}_{k}"] = round(cost or 0, 4)
+            made.append(out)
         (work / "prompt.txt").write_text(prompt, encoding="utf-8")
-        (work / f"prompt_{k}.txt").write_text(prompt, encoding="utf-8")
         looks_tool.write_plan(lp.model_copy(update={"shot": "model"}), sd / "plan.yaml")
         if review_tool.review_path(sd).exists():
             review_tool.review_path(sd).unlink()
-        review_tool.start(sd, [out])
-        shutil.copy2(out, current)
-        rec.costs[f"scene_{n}_{k}"] = round(cost or 0, 4)
+        review_tool.start(sd, made)
+        shutil.copy2(made[0], current)
         if n not in rec.scene:
             rec.scene = sorted([*rec.scene, n])
         if (d / "clips" / f"look{n}.mp4").exists() and n not in rec.stale:
@@ -551,7 +582,10 @@ def scene_frames(
 def motion_prompt(profile: Profile, run: Path, c: Concept, rec: VideoRecord, n: int) -> str:
     shot = next((s for s in c.shots if s.look == n), None)
     motion = (shot.motion_en or f"{shot.action}, {shot.pose}") if shot else "She walks naturally"
-    text = template("motion", **common(profile, c), items=items_en(run, n), motion=motion)
+    text = template(
+        "motion", **common(profile, c), items=items_en(run, n), motion=motion,
+        face=profile.video.motion_face_en,
+    )  # fmt: skip
     notes = notes_for(rec, n, motion=True)
     if not (uses_frames(profile) or rec.scene):  # 첫 장면이 없으니 그림 고칠 점도 영상 지시문에
         notes = notes_for(rec, n) + notes
