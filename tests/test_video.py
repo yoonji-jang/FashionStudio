@@ -666,3 +666,44 @@ def test_scene_frames_draw_fix_review_and_clip(tmp_path, monkeypatch):
     assert len(sent) == 1 and (dest / "video" / "clips" / "look1.mp4").exists()
     assert not (dest / "video" / "clips" / "look2.mp4").exists()
     assert rec.step == "frames"
+
+
+def test_hook_and_look_overlay(tmp_path):
+    """제목 두 줄은 가운데 위, LOOK 번호는 왼쪽 아래 (2026-11-10 사용자)."""
+    from core.profile import load_profile
+
+    prof = load_profile("women")
+    hp = tmp_path / "h.png"
+    video.hook_png(prof, "축의금보다 더 고민되는 / 가을 겨울 하객룩 코디", hp)
+    x0, y0, x1, y1 = Image.open(hp).getbbox()
+    assert y1 < 1920 * 0.25 and abs((x0 + x1) / 2 - 540) < 40
+    lp = tmp_path / "l.png"
+    video.overlay_png(prof, 3, "", lp)
+    x0, y0, x1, y1 = Image.open(lp).getbbox()
+    assert x1 < 540 and 1920 * 0.6 < y0 and y1 < 1920 * 0.75
+
+
+def test_product_list(tmp_path, monkeypatch):
+    from core.profile import load_profile
+
+    prof = load_profile("women")
+
+    class P:
+        def __init__(self, i):
+            self.id, self.url = i, f"https://zigzag.kr/catalog/products/{i.split(':')[1]}"
+
+    monkeypatch.setattr(
+        video,
+        "Store",
+        lambda _a: type("S", (), {"products": lambda s: [P("zigzag:1"), P("zigzag:2")]})(),
+    )
+    for n, pid, name in ((1, "zigzag:1", "트위드 원피스"), (2, "zigzag:2", "블랙 부츠")):
+        d = tmp_path / "looks" / str(n)
+        d.mkdir(parents=True)
+        (d / "plan.yaml").write_text(
+            f"items:\n- product: {pid}\n  color: 블랙\n  desc: x (x)\n  name: {name}\n",
+            encoding="utf-8",
+        )
+    t = video.product_list(prof, tmp_path, [2, 1])
+    assert t.startswith("LOOK 01\n- 블랙 부츠: https://zigzag.kr/catalog/products/2")
+    assert "LOOK 02\n- 블랙 트위드 원피스" in t
