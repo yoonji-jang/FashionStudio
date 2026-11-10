@@ -1,0 +1,37 @@
+name: tg-send
+
+# 클로드 스레드(힉스필드)에서 만든 이미지·영상을 텔레그램으로 보낸다 (tools.tg_send).
+# 컨테이너에는 봇 토큰이 없어서 공개 주소를 받아 여기서 보낸다. 저장소에는 아무것도 남기지 않는다.
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "먼저 보낼 글 (없어도 됨)"
+        required: false
+        default: ""
+      items:
+        description: 'JSON 목록 [{"url": "https://…", "caption": "…"}]'
+        required: false
+        default: "[]"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tg-send
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEXT: ${{ inputs.text }}
+          ITEMS: ${{ inputs.items }}
+        run: uv run python -m tools.tg_send --text "$TEXT" --items "$ITEMS"
