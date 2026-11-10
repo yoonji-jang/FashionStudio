@@ -86,11 +86,17 @@ feed_fill:
 video_edit:
   size: [1080, 1920]
   fps: 30
-  hook_y: 0.13          # 첫 벌 훅 문구 가운데 높이
-  hook_size: 64         # 긴 문구는 화면 폭 86% 안에 들어가게 줄어듦
-  look_place: carousel  # "LOOK n" 을 캐러셀 벌 장 자리(왼쪽 아래, 세로선)에. 비우면 오른쪽 위 (2026-11-05 사용자)
-  look_size: 34         # 오른쪽 위 "LOOK n" (look_place 가 비었을 때)
-  look_margin: [48, 120]  # 오른쪽, 위 여백
+  # 글자 배치 (2026-11-10 사용자, 겨울 하객룩 최종본): 릴스 화면 UI(위 14% 메뉴, 아래 약 25% 캡션,
+  # 오른쪽 버튼)에 가려지지 않게. 제목은 가운데 위 흰 글씨 두 줄("/" 로 나눔), 그늘 없이 그림자만
+  hook_lines_y: [318, 404]  # 제목 1줄·2줄 글자 바닥선 높이 (px). 한 줄이면 2줄 자리에
+  hook_size: [50, 70]       # 1줄(작게)·2줄(크게) 글자 크기. 긴 줄은 화면 폭 86% 안으로 줄어듦
+  hook_seconds: 2.7         # 제목이 보이는 시간 (첫 벌 앞부분, 앞뒤로 살짝 흐려짐)
+  hook_color: "#FFFFFF"
+  look_place: bottom_left   # "LOOK 01" 을 왼쪽 아래(캡션 영역 바로 위)에. carousel 이면 캐러셀 벌 장 자리
+  look_label: "LOOK {n:02d}"  # 보이는 순서 번호
+  look_xy: [72, 1400]       # 글자 왼쪽 끝(세로선 오른쪽), 바닥선 (px)
+  look_size: 40
+  look_color: "#FFFFFF"
   music_fade_in: 0.3
   music_fade_out: 1.2
   zoom_flag: 1.3        # 벌 영상 앞뒤로 얼굴 크기가 이만큼 커지면 "다가옴" 표시

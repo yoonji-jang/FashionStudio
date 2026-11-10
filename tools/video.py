@@ -409,6 +409,13 @@ def scene_items(plan: DailyPlan, products: dict, cfg: dict) -> str:
             f"The {outfit_gen.sheet_name(i)}: the {outfit_gen.item_label(it, p)},"
             f" {outfit_gen.english(it.desc)}."
         )
+        if it.color and not (it.ref_photos or it.photo is not None):
+            # 사진 확인을 거치지 않은 벌은 쇼핑몰 첫 사진이 다른 색 옵션일 수 있다
+            # (2026-11-10 사용자 "상품사진 색을 계획에 맞춰야지"): 모양은 사진대로, 색은 기획 색
+            line += (
+                " Its color must be exactly the color named here, even if the product photo shows"
+                " another color option: keep the photo's shape and details, recolor only."
+            )
         lines.append(line + (f" Real size: {size}." if size else ""))
     return "\n".join(lines)
 
@@ -788,21 +795,58 @@ def _font(name: str, size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(FONTS / name), size)
 
 
-def overlay_png(profile: Profile, n: int, hook: str, path: Path) -> None:
-    """한 벌 화면 글자 (첫 벌 훅 문구 + 오른쪽 위 LOOK 번호). AI 가 그리지 않는다."""
+def _shadowed(im: Image.Image) -> Image.Image:
+    """밝은 배경에서도 흰 글자가 읽히게 넓고 옅은 그림자 + 좁은 그림자 (색 상자·그늘 없이)."""
+    mask = im.split()[3]
+    wide = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    wide.paste((30, 22, 18, 150), mask=mask.filter(ImageFilter.MaxFilter(5)))
+    tight = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    tight.paste((30, 22, 18, 110), mask=mask)
+    return Image.alpha_composite(
+        Image.alpha_composite(
+            wide.filter(ImageFilter.GaussianBlur(10)), tight.filter(ImageFilter.GaussianBlur(2))
+        ),
+        im,
+    )
+
+
+def _tracked(draw: ImageDraw.ImageDraw, x: float, y: float, text: str, font, fill, track: float,
+             center: bool = False) -> None:  # fmt: skip
+    """글자 사이를 track px 띄워 바닥선 y 에 쓴다 (center 면 x 가 가운데)."""
+    widths = [draw.textlength(ch, font=font) for ch in text]
+    if center:
+        x -= (sum(widths) + track * (len(text) - 1)) / 2
+    for ch, cw in zip(text, widths, strict=True):
+        draw.text((x, y), ch, font=font, fill=fill, anchor="ls")
+        x += cw + track
+
+
+def hook_png(profile: Profile, hook: str, path: Path) -> None:
+    """제목: 가운데 위 흰 글씨 두 줄 ("/" 로 나눔, 1줄 작게 2줄 크게). AI 가 그리지 않는다."""
     lay = layout()
     w, h = lay["size"]
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
-    color = profile.visual.title_color
-    if hook:
-        size = lay["hook_size"]
+    lines = [x.strip() for x in re.split(r"\s*/\s*|\n", hook) if x.strip()][:2]
+    ys, sizes = lay["hook_lines_y"], lay["hook_size"]
+    if len(lines) == 1:
+        ys, sizes = ys[1:], sizes[1:]
+    for line, y, size in zip(lines, ys, sizes, strict=False):
         font = _font(profile.visual.font, size)
-        while draw.textlength(hook, font=font) > w * 0.86 and size > 30:
+        while draw.textlength(line, font=font) > w * 0.86 and size > 30:
             size -= 2
             font = _font(profile.visual.font, size)
-        tw = draw.textlength(hook, font=font)
-        draw.text(((w - tw) / 2, h * lay["hook_y"] - size / 2), hook, font=font, fill=color)
+        _tracked(draw, w / 2, y, line, font, lay["hook_color"], 1, center=True)
+    _shadowed(im).save(path)
+
+
+def overlay_png(profile: Profile, n: int, hook: str, path: Path) -> None:
+    """한 벌 화면 글자 (LOOK 번호, hook 이 있으면 제목도 함께). AI 가 그리지 않는다.
+    영상 편집은 제목을 따로(hook_png) 앞부분에만 얹는다."""
+    lay = layout()
+    w, h = lay["size"]
+    im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(im)
     bar = None
     if lay.get("look_place") == "carousel":
         # 캐러셀 릴스 판 벌 장과 같은 자리·글꼴·세로선 (2026-11-05 사용자 "캐러셀 글자 위치에")
@@ -814,20 +858,22 @@ def overlay_png(profile: Profile, n: int, hook: str, path: Path) -> None:
         x, y = round(w * tp.feed.margin_x), h * (1 - lk.bottom)
         draw.text((x, y), (lk.label or "LOOK {n}").format(n=n), font=font, fill=lk.text_color,
                   anchor="ls")  # fmt: skip
-        if v.accent_color:
-            x1 = x - round(v.accent_gap * k)
-            x0 = x1 - max(1, round(v.accent_width * k))
-            bar = ((x0, round(y - font.size * 0.8), x1 - 1, round(y + 2 * k)), v.accent_color)
-    else:
-        font = _font(profile.visual.logo_font, lay["look_size"])
-        label = f"LOOK {n}"
-        right, top = lay["look_margin"]
-        draw.text((w - right - draw.textlength(label, font=font), top), label, font=font,
-                  fill=color)  # fmt: skip
-    shadow = Image.new("RGBA", im.size, (0, 0, 0, 0))
-    shadow.paste((0, 0, 0, 110), mask=im.split()[3])
-    shadow = shadow.filter(ImageFilter.GaussianBlur(4))
-    out = Image.alpha_composite(shadow, im)
+        gap, width = v.accent_gap * k, v.accent_width * k
+    else:  # bottom_left (2026-11-10): 릴스 캡션 영역 바로 위, 흰 글씨 + 버건디 세로선
+        font = _font(profile.visual.font, lay["look_size"])
+        x, y = lay["look_xy"]
+        _tracked(draw, x, y, lay["look_label"].format(n=n), font, lay["look_color"], 3)
+        gap, width = 16, 4
+    v = profile.visual
+    if v.accent_color:
+        x1 = x - round(gap)
+        x0 = x1 - max(1, round(width))
+        bar = ((x0, round(y - font.size * 0.9), x1 - 1, round(y + 4)), v.accent_color)
+    out = _shadowed(im)
+    if hook:
+        hp = path.with_name(path.stem + "_hook.png")
+        hook_png(profile, hook, hp)
+        out = Image.alpha_composite(out, Image.open(hp).convert("RGBA"))
     if bar:
         ImageDraw.Draw(out).rectangle(bar[0], fill=bar[1])
     out.save(path)
@@ -980,13 +1026,27 @@ def edit(
             want = (_duration(clip) - start) / sp
             src = min(want * sp, _duration(clip) - start)
             png = tmp / f"o{n}.png"
-            overlay_png(profile, i + 1, hook_text if i == 0 else "", png)  # 보이는 순서 번호
+            overlay_png(profile, i + 1, "", png)  # 보이는 순서 번호
             seg = tmp / f"s{i}.mp4"
             vf = (
                 f"[0:v]setpts=(PTS-STARTPTS)/{sp},"
                 f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},"
-                f"fps={lay['fps']}[v];[v][1:v]overlay=0:0,format=yuv420p"
+                f"fps={lay['fps']}[v];[v][1:v]overlay=0:0[l]"
             )
+            extra: list[str] = []
+            if i == 0 and hook_text:
+                # 제목은 첫 벌 앞부분에만, 살짝 나타났다 사라짐 (2026-11-10 사용자 최종본)
+                hp = tmp / "hook.png"
+                hook_png(profile, hook_text, hp)
+                hs = lay["hook_seconds"]
+                extra = ["-loop", "1", "-t", f"{hs:.2f}", "-i", str(hp)]
+                vf += (
+                    f";[2:v]format=rgba,fade=t=in:st=0.15:d=0.3:alpha=1,"
+                    f"fade=t=out:st={max(0.5, hs - 0.4):.2f}:d=0.4:alpha=1[t];"
+                    "[l][t]overlay=0:0:eof_action=pass[l2];[l2]format=yuv420p"
+                )
+            else:
+                vf += ";[l]format=yuv420p"
             _ffmpeg(
                 "-ss",
                 f"{start:.2f}",
@@ -996,6 +1056,7 @@ def edit(
                 str(clip),
                 "-i",
                 str(png),
+                *extra,
                 "-filter_complex",
                 vf,
                 "-an",
@@ -1068,6 +1129,7 @@ def edit(
         if m.hashtags:  # 바로 붙여 넣을 수 있게 해시태그까지
             caption += "\n\n" + " ".join(m.hashtags)
         (final / "caption.txt").write_text(caption + "\n", encoding="utf-8")
+    (final / "products.txt").write_text(product_list(profile, run, seq), encoding="utf-8")
     rec.step, rec.error = "final", ""
     save_record(run, rec)
     return rec
@@ -1205,6 +1267,25 @@ def uses_frames(profile: Profile) -> bool:
     return model.get("inputs") == "first_frame"
 
 
+def product_list(profile: Profile, run: Path, seq: list[int]) -> str:
+    """상품 링크 목록 (2026-11-10 사용자: 게시글 문구·해시태그와 함께). 영상에 보이는 순서대로
+    LOOK 01~, 기획 색을 붙인다. 벌 plan.yaml 에서 뺀 상품은 나오지 않는다."""
+    products = {p.id: p for p in Store(profile.id).products()}
+    lines = []
+    for i, n in enumerate(seq, 1):
+        f = run / "looks" / str(n) / "plan.yaml"
+        if not f.exists():
+            continue
+        items = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("items") or []
+        lines.append(("\n" if lines else "") + layout()["look_label"].format(n=i))
+        for it in items:
+            p = products.get(it["product"])
+            name, color = it.get("name", ""), it.get("color") or ""
+            name = name if not color or name.startswith(color) else f"{color} {name}"
+            lines.append(f"- {name}: {p.url if p else it['product']}")
+    return "\n".join(lines) + "\n"
+
+
 def video_notice(notice: str) -> str:
     """AI 합성 고지를 영상용으로 ("이미지는 …" → "영상은 …")."""
     return "영상은" + notice[len("이미지는") :] if notice.startswith("이미지는") else notice
@@ -1283,6 +1364,11 @@ def send(profile: Profile, run: Path, tg) -> VideoRecord:
             tg.send_document(main_video, f"{tag} 영상 원본")
         tg.send_photos([f / "cover.jpg"], f"{tag} 표지 프레임")
         tg.send((f / "caption.txt").read_text(encoding="utf-8"))
+        if (f / "products.txt").exists():
+            tg.send(
+                "상품 링크 (영상 순서, 기획 색)\n"
+                + (f / "products.txt").read_text(encoding="utf-8")
+            )
         tg.send(final_guide(tag, rec, profile))
     rec.sent_at = int(time.time())
     save_record(run, rec)
