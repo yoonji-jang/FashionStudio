@@ -1,0 +1,7 @@
+{
+  "run": "2026-11-12-run459",
+  "account": "women",
+  "sandbox": false,
+  "mode": "edit",
+  "pick": "{\"run\": \"2026-11-12-run458\", \"fixes\": [{\"update_id\": 1, \"looks\": [1], \"text\": \"1번 자켓(아우터) 이걸로 바꿔줘 https://s.zigzag.kr/abr/wVtvBStGTm\"}, {\"update_id\": 2, \"looks\": [1], \"text\": \"1번 치마(하의) 이걸로 바꿔줘 https://s.zigzag.kr/abr/mpmVfZIjcO\"}, {\"update_id\": 3, \"looks\": [1], \"text\": \"1번 신발 이걸로 바꿔줘, 색은 브라운 https://s.zigzag.kr/abr/mItSoHUmbl\"}, {\"update_id\": 4, \"looks\": [3], \"text\": \"3번 상의 하의 세트상품 이걸로 바꿔줘 (상의와 하의를 이 세트 한 벌로) https://s.zigzag.kr/abr/H7JAbOCcX4\"}, {\"update_id\": 5, \"looks\": [3], \"text\": \"3번 신발 이걸로 바꿔줘 https://s.zigzag.kr/abr/zJVTcAMuQc\"}, {\"update_id\": 6, \"looks\": [4], \"text\": \"4번 원피스 이걸로 바꿔줘, 색은 올리브 https://s.zigzag.kr/abr/hmgSVonTpA\"}, {\"update_id\": 7, \"looks\": [4], \"text\": \"4번 신발 이걸로 바꿔줘 https://s.zigzag.kr/abr/FVksH3EAog\"}, {\"update_id\": 8, \"looks\": [5], \"text\": \"5번 퍼자켓(아우터) 이걸로 바꿔줘 https://s.zigzag.kr/abr/U3ta4sKrRI\"}, {\"update_id\": 9, \"looks\": [6], \"text\": \"6번 아우터를 지금 것보다 가격대가 높은 블랙 무스탕으로 바꿔줘. 신발은 스웨이드 소재로 무릎 위까지 올라오는 롱부츠로 바꿔줘\"}, {\"update_id\": 10, \"looks\": [7], \"text\": \"7번 코트를 기장이 무릎 위까지 오는 코트로 바꿔줘. 비니(모자)는 빼줘\"}]}"
+}

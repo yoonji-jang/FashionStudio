@@ -1,0 +1,138 @@
+{
+  "run": "2026-11-12-run458",
+  "fixes": [
+    {
+      "update_id": 1,
+      "looks": [
+        1
+      ],
+      "text": "1번 자켓(아우터) 이걸로 바꿔줘 https://s.zigzag.kr/abr/wVtvBStGTm",
+      "products": [],
+      "link_errors": [
+        {
+          "url": "https://s.zigzag.kr/abr/wVtvBStGTm",
+          "why": "판매 중인 상품 페이지로 읽히지 않아요"
+        }
+      ]
+    },
+    {
+      "update_id": 2,
+      "looks": [
+        1
+      ],
+      "text": "1번 치마(하의) 이걸로 바꿔줘 https://s.zigzag.kr/abr/mpmVfZIjcO",
+      "products": [
+        {
+          "id": "zigzag:148406524",
+          "category": "하의",
+          "name": "가을 투피스 치마 세무 미니멀 심플 다잉 스웨이드 미니스커트 (2col)"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 3,
+      "looks": [
+        1
+      ],
+      "text": "1번 신발 이걸로 바꿔줘, 색은 브라운 https://s.zigzag.kr/abr/mItSoHUmbl",
+      "products": [
+        {
+          "id": "zigzag:144708955",
+          "category": "신발",
+          "name": "푸딩 와이드 셔링 워머 삭스 폴딩 미들 롱부츠 (3cm)"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 4,
+      "looks": [
+        3
+      ],
+      "text": "3번 상의 하의 세트상품 이걸로 바꿔줘 (상의와 하의를 이 세트 한 벌로) https://s.zigzag.kr/abr/H7JAbOCcX4",
+      "products": [
+        {
+          "id": "zigzag:173020708",
+          "category": "하의",
+          "name": "(코디세트)(동영상)하이넥 7부 니트 가디건+미디스커트 투피스 우메야1550"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 5,
+      "looks": [
+        3
+      ],
+      "text": "3번 신발 이걸로 바꿔줘 https://s.zigzag.kr/abr/zJVTcAMuQc",
+      "products": [
+        {
+          "id": "zigzag:171545983",
+          "category": "신발",
+          "name": "스웨이드 버클 스트랩 롱부츠 - CD-2456 [G/BT]"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 6,
+      "looks": [
+        4
+      ],
+      "text": "4번 원피스 이걸로 바꿔줘, 색은 올리브 https://s.zigzag.kr/abr/hmgSVonTpA",
+      "products": [
+        {
+          "id": "zigzag:169490306",
+          "category": "원피스",
+          "name": "[캡내장] 올리브 플라워 나시 원피스 - ops"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 7,
+      "looks": [
+        4
+      ],
+      "text": "4번 신발 이걸로 바꿔줘 https://s.zigzag.kr/abr/FVksH3EAog",
+      "products": [
+        {
+          "id": "zigzag:155850372",
+          "category": "신발",
+          "name": "털부츠 기모 스틸레토 부츠 힐"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 8,
+      "looks": [
+        5
+      ],
+      "text": "5번 퍼자켓(아우터) 이걸로 바꿔줘 https://s.zigzag.kr/abr/U3ta4sKrRI",
+      "products": [
+        {
+          "id": "zigzag:172700199",
+          "category": "아우터",
+          "name": "Faux fur high neck jacket [TIWT05JK01]_Gray"
+        }
+      ],
+      "link_errors": []
+    },
+    {
+      "update_id": 9,
+      "looks": [
+        6
+      ],
+      "text": "6번 아우터를 지금 것보다 가격대가 높은 블랙 무스탕으로 바꿔줘. 신발은 스웨이드 소재로 무릎 위까지 올라오는 롱부츠로 바꿔줘"
+    },
+    {
+      "update_id": 10,
+      "looks": [
+        7
+      ],
+      "text": "7번 코트를 기장이 무릎 위까지 오는 코트로 바꿔줘. 비니(모자)는 빼줘"
+    }
+  ]
+}
