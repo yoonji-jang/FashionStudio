@@ -253,6 +253,25 @@ def test_add_links_puts_products_in_store(tmp_path, store):  # noqa: F811
     assert {"zigzag:555", "zigzag:801", "zigzag:802"} <= {p.id for p in fresh.products()}
 
 
+def test_link_product_trusts_user_link_with_other_display_status():
+    """판매 상태 표시가 달라도 이름·사진이 있으면 사람이 보낸 링크는 넣는다 (2026-11-11)."""
+    html = page_html("999", "울 블렌드 크롭 자켓", "ON_SALE").replace(
+        '"sales_status"', '"is_purchasable": false, "sales_status"'
+    )
+
+    def fetch(url):
+        return 200, url, html
+
+    p = pick.link_product("https://zigzag.kr/catalog/products/999", "", DAY, fetch)
+    assert p.id == "zigzag:999" and p.category == "아우터"
+
+    def empty(url):
+        return 403, url, ""
+
+    with pytest.raises(ValueError, match="응답 403"):
+        pick.link_product("https://zigzag.kr/catalog/products/999", "", DAY, empty)
+
+
 def test_add_links_unreadable(tmp_path, store):  # noqa: F811
     out = tmp_path / "out"
     (out / "picks").mkdir(parents=True)
