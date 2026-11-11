@@ -1,0 +1,59 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items:
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 시어링 울 집업 무스탕 (black shearling zip-up mustang jacket)
+  name: 시어링 집업 무스탕
+  product: zigzag:153380949
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 벨트 미니스커트 (black mini skirt with belt)
+  name: 블랙 미니스커트
+  product: zigzag:133521354
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 오버니 롱부츠 (black suede over-the-knee boots, shaft reaches above the
+    knee)
+  name: 스웨이드 오버니 부츠
+  product: zigzag:131281211
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+  name: 체인 크로스백
+  product: zigzag:105424126
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 보트넥 긴팔 티 (plain black boat-neck long-sleeve tee)
+  name: 보트넥 긴팔 티
+  product: zigzag:165495453
+  wear_with: 아우터
+looks: []
+reason: 올블랙 시어링 집업 무스탕에 미니스커트와 스웨이드 오버니 부츠로 시크하게. 참고 블랙 무스탕 숏 자켓+블랙 미니+블랙 롱부츠+블랙 체인
+  크로스백 → 블랙 시어링 울 집업 무스탕(193,000원, 이전 136,600원보다 비쌈)+블랙 벨트 미니+블랙 스웨이드 오버니 롱부츠(무릎 위까지)+블랙
+  퀼팅 체인백. (따라 함, 참고 828)
+ref_photo: sealed:u1111_06
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제

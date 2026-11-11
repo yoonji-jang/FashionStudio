@@ -1,0 +1,63 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items:
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 페이크 퍼 하이넥 자켓 (gray faux fur high-neck jacket)
+  name: 퍼 하이넥 자켓
+  product: zigzag:172700199
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 셔링 숏팬츠 (black ruched shorts)
+  name: 블랙 숏팬츠
+  product: zigzag:158913245
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 그레이 니삭스 (gray knee socks, exactly one pair)
+  name: 그레이 니삭스
+  product: zigzag:161559034
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 퀼팅 미니 백팩 (black quilted mini backpack)
+  name: 퀼팅 미니 백팩
+  product: zigzag:155370993
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬림 워머 티 (plain black slim long-sleeve base-layer tee)
+  name: 슬림 워머 티
+  product: zigzag:155290768
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 워커 부츠 (black buckled ankle boots)
+  name: 워커 부츠
+  product: zigzag:162245530
+looks: []
+reason: 그레이 페이크 퍼 하이넥 자켓에 블랙 숏팬츠와 니삭스로 귀엽게. 참고 화이트·그레이 폭스 퍼 숏 자켓+블랙 니트 미니 쇼츠+그레이 니삭스+블랙
+  백팩 → 사람이 고른 그레이 페이크 퍼 하이넥 자켓+블랙 셔링 숏팬츠+그레이 시스루 니삭스+블랙 퀼팅 백팩. (따라 함, 참고 827)
+ref_photo: sealed:u1111_05
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제

@@ -1,0 +1,63 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items:
+- color: 브라운
+  comment: ''
+  covers:
+  - 상의
+  cutout_photo: 0
+  desc: 브라운 베이지 니트 가디건 투피스 세트 (brown-beige marled knit button cardigan with matching
+    tiered tulle-hem skirt, worn as one set)
+  name: 니트 가디건 투피스
+  product: zigzag:173020708
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 스웨이드 버클 스트랩 롱부츠 (brown suede buckle-strap long boots)
+  name: 버클 롱부츠
+  product: zigzag:171545983
+- color: 핑크
+  comment: ''
+  cutout_photo: 0
+  desc: 핑크 숄더백 (pink shoulder bag)
+  name: 핑크 숄더백
+  product: zigzag:162894023
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 드롭 목걸이 (one silver long drop necklace)
+  name: 실버 목걸이
+  product: zigzag:162967207
+  slot: 목걸이
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 꼬임 레더 벨트 (thin brown twisted leather belt worn over the cardigan at the
+    waist)
+  name: 꼬임 레더 벨트
+  product: zigzag:162624969
+  wear_with: 상의
+looks: []
+reason: 니트 가디건 투피스 한 벌에 브라운 버클 롱부츠와 핑크 숄더백으로 포근하게. 참고 브라운 하이넥 니트 재킷+베이지 레이스 티어드 미니+브라운
+  레이스업 부츠+연핑크 숄더백 → 사람이 고른 하이넥 니트 가디건+미디스커트 세트(상의·하의 한 상품)+사람이 고른 스웨이드 버클 롱부츠+핑크 숄더백.
+  (따라 함, 참고 825)
+ref_photo: sealed:u1111_03
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제

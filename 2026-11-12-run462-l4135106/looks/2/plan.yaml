@@ -1,0 +1,59 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items:
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 하프 트렌치 스웨이드 자켓 (brown half-length double-breasted trench-style suede jacket
+    with belt)
+  name: 트렌치 스웨이드 자켓
+  product: zigzag:166089436
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 다잉 스웨이드 미니 스커트 (brown dyed suede mini skirt)
+  name: 스웨이드 미니
+  product: zigzag:148406524
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 토트백 (black structured tote bag)
+  name: 블랙 토트백
+  product: zigzag:159478154
+- color: 브라운
+  comment: ''
+  cutout_photo: 0
+  desc: 브라운 와이드 셔링 워머 롱부츠 (brown wide-shaft ruched slouchy warmer boots)
+  name: 셔링 워머 롱부츠
+  product: zigzag:144708955
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 슬림 워머 티 (plain black slim long-sleeve base-layer tee)
+  name: 슬림 워머 티
+  product: zigzag:155290768
+  wear_with: 아우터
+looks: []
+reason: 브라운 하프 트렌치 스웨이드 자켓에 브라운 스웨이드 미니와 브라운 워머 롱부츠로 따뜻하게. 참고 카멜 스웨이드 숏 트렌치+브라운 플리츠
+  미니+블랙 토트 → 브라운 하프 트렌치 스웨이드 자켓(사람이 고른 상품)+브라운 다잉 스웨이드 미니(사람이 고른 상품)+블랙 토트백+브라운 셔링
+  워머 롱부츠(사람이 고른 상품, 신발은 참고에 안 보임). (따라 함, 참고 823)
+ref_photo: sealed:u1111_01
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제

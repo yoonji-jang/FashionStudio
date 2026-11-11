@@ -1,0 +1,65 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items:
+- color: 베이지
+  comment: ''
+  cutout_photo: 0
+  desc: 베이지 롱 트렌치코트 (beige long trench coat with belt)
+  name: 롱 트렌치코트
+  product: zigzag:110627490
+- color: 그레이
+  comment: ''
+  cutout_photo: 0
+  desc: 차콜 그레이 새틴 블라우스 (charcoal satin blouse)
+  name: 새틴 블라우스
+  product: zigzag:121896211
+  wear_with: 아우터
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 울 미니 스커트 (black wool mini skirt)
+  name: 울 미니 스커트
+  product: zigzag:150110018
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 스웨이드 사이하이 부츠 (black suede thigh-high boots)
+  name: 사이하이 부츠
+  product: zigzag:146939237
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 드롭 목걸이 (one silver long drop necklace)
+  name: 실버 목걸이
+  product: zigzag:162967207
+  slot: 목걸이
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 숄더백 (black small shoulder bag)
+  name: 블랙 숄더백
+  product: zigzag:166194366
+looks: []
+reason: 베이지 롱 트렌치에 차콜 새틴 블라우스와 사이하이 부츠로 도회적으로. 참고 베이지 오버핏 롱 트렌치+차콜 새틴 셔츠+블랙 미니+블랙
+  사이하이 부츠+실버 크로스 목걸이 → 베이지 클래식 롱 트렌치+그레이 새틴 블라우스+블랙 울 미니+블랙 스웨이드 사이하이 부츠+실버 롱 목걸이.
+  (따라 함, 참고 832)
+ref_photo: sealed:u1111_10
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제

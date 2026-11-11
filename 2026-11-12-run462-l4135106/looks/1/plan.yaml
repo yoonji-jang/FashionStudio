@@ -1,0 +1,58 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items:
+- color: 아이보리
+  comment: ''
+  cutout_photo: 0
+  desc: 아이보리 소프트 퍼 가디건 (ivory fluffy angora-look cardigan)
+  name: 소프트 퍼 가디건
+  product: zigzag:166904471
+- color: 올리브
+  comment: ''
+  cutout_photo: 0
+  desc: 올리브 플라워 나시 원피스 (olive floral sleeveless dress with built-in cups)
+  name: 올리브 플라워 원피스
+  product: zigzag:169490306
+- color: 블랙
+  comment: ''
+  cutout_photo: 0
+  desc: 블랙 털 안감 스틸레토 힐 부츠 (black fleece-lined stiletto heel boots)
+  name: 스틸레토 힐 부츠
+  product: zigzag:155850372
+- color: 라벤더
+  comment: ''
+  cutout_photo: 0
+  desc: 라벤더 호보 숄더백 (lavender hobo shoulder bag)
+  name: 라벤더 호보백
+  product: zigzag:161873462
+- color: 실버
+  comment: ''
+  cutout_photo: 0
+  desc: 실버 롱 드롭 목걸이 (one silver long drop necklace)
+  name: 실버 롱 목걸이
+  product: zigzag:159636703
+  slot: 목걸이
+looks: []
+reason: 아이보리 앙고라 가디건에 올리브 플라워 원피스와 스틸레토 부츠로 사랑스럽게. 참고 아이보리 앙고라 퍼 카디건+하늘색 자카드 미니+아이보리
+  퍼 롱부츠+라벤더 진주 체인 백 → 아이보리 퍼 가디건+사람이 고른 올리브 플라워 나시 원피스(상의·하의 대신)+사람이 고른 스틸레토 힐 부츠+라벤더
+  호보백. (따라 함, 참고 826)
+ref_photo: sealed:u1111_04
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제
