@@ -1,0 +1,436 @@
+account: women
+date: '2026-11-12'
+edit_refs: []
+items: []
+looks:
+- edit_refs: []
+  items:
+  - color: 카멜
+    comment: ''
+    cutout_photo: 0
+    desc: 카멜 스웨이드 자켓 (camel suede jacket)
+    name: 스웨이드 자켓
+    product: zigzag:172153532
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 다잉 스웨이드 미니 스커트 (brown dyed suede mini skirt)
+    name: 스웨이드 미니
+    product: zigzag:148406524
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 토트백 (black structured tote bag)
+    name: 블랙 토트백
+    product: zigzag:159478154
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 와이드 셔링 워머 롱부츠 (brown wide-shaft ruched slouchy warmer boots)
+    name: 셔링 워머 롱부츠
+    product: zigzag:144708955
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬림 워머 티 (plain black slim long-sleeve base-layer tee)
+    name: 슬림 워머 티
+    product: zigzag:155290768
+    wear_with: 아우터
+  point: ''
+  reason: 카멜 스웨이드 자켓에 브라운 스웨이드 미니와 브라운 워머 롱부츠로 따뜻하게. 참고 카멜 스웨이드 숏 트렌치+브라운 플리츠 미니+블랙 토트
+    → 카멜 스웨이드 자켓+브라운 다잉 스웨이드 미니(사람이 고른 상품)+블랙 토트백+브라운 셔링 워머 롱부츠(사람이 고른 상품, 신발은 참고에 안 보임).
+    (따라 함, 참고 823)
+  ref: '823'
+  ref_photo: sealed:u1111_01
+  requests: []
+- edit_refs: []
+  items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 퍼 소매 벨트 울 코트 (beige wool belted coat with faux fur cuffs)
+    name: 퍼 소매 울 코트
+    product: zigzag:115884483
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 미니 스커트 (black wool mini skirt)
+    name: 울 미니 스커트
+    product: zigzag:172746329
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱부츠 (black knee-high boots)
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain shoulder bag)
+    name: 퀼팅 체인백
+    product: zigzag:135922060
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 보트넥 긴팔 티 (plain ivory boat-neck long-sleeve tee)
+    name: 보트넥 긴팔 티
+    product: zigzag:165495453
+    wear_with: 아우터
+  point: ''
+  reason: 베이지 퍼 소매 울 코트에 블랙 롱부츠와 퀼팅백으로 단정하게. 참고 베이지 퍼 커프스 더블 코트+블랙 니하이 부츠+블랙 퀼팅 체인백
+    → 베이지 폭스 소매 벨트 울 코트+블랙 롱부츠+블랙 퀼팅 체인백(코트 아래 하의는 참고에 안 보여 블랙 울 미니). (따라 함, 참고 824)
+  ref: '824'
+  ref_photo: sealed:u1111_02
+  requests: []
+- edit_refs: []
+  items:
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    covers:
+    - 상의
+    desc: 브라운 베이지 니트 가디건 투피스 세트 (brown-beige marled knit button cardigan with matching tiered tulle-hem skirt, worn as one set)
+    name: 니트 가디건 투피스
+    product: zigzag:173020708
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 버클 스트랩 롱부츠 (brown suede buckle-strap long boots)
+    name: 버클 롱부츠
+    product: zigzag:171545983
+  - color: 핑크
+    comment: ''
+    cutout_photo: 0
+    desc: 핑크 숄더백 (pink shoulder bag)
+    name: 핑크 숄더백
+    product: zigzag:162894023
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 드롭 목걸이 (one silver long drop necklace)
+    name: 실버 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 꼬임 레더 벨트 (thin brown twisted leather belt worn over the cardigan at the waist)
+    name: 꼬임 레더 벨트
+    product: zigzag:162624969
+    wear_with: 상의
+  point: ''
+  reason: 니트 가디건 투피스 한 벌에 브라운 버클 롱부츠와 핑크 숄더백으로 포근하게. 참고 브라운 하이넥 니트 재킷+베이지 레이스 티어드 미니+브라운
+    레이스업 부츠+연핑크 숄더백 → 사람이 고른 하이넥 니트 가디건+미디스커트 세트(상의·하의 한 상품)+사람이 고른 스웨이드 버클 롱부츠+핑크 숄더백.
+    (따라 함, 참고 825)
+  ref: '825'
+  ref_photo: sealed:u1111_03
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 소프트 퍼 가디건 (ivory fluffy angora-look cardigan)
+    name: 소프트 퍼 가디건
+    product: zigzag:166904471
+  - color: 올리브
+    comment: ''
+    cutout_photo: 0
+    desc: 올리브 플라워 나시 원피스 (olive floral sleeveless dress with built-in cups)
+    name: 올리브 플라워 원피스
+    product: zigzag:169490306
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 털 안감 스틸레토 힐 부츠 (black fleece-lined stiletto heel boots)
+    name: 스틸레토 힐 부츠
+    product: zigzag:155850372
+  - color: 라벤더
+    comment: ''
+    cutout_photo: 0
+    desc: 라벤더 호보 숄더백 (lavender hobo shoulder bag)
+    name: 라벤더 호보백
+    product: zigzag:161873462
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 드롭 목걸이 (one silver long drop necklace)
+    name: 실버 롱 목걸이
+    product: zigzag:159636703
+    slot: 목걸이
+  point: ''
+  reason: 아이보리 앙고라 가디건에 올리브 플라워 원피스와 스틸레토 부츠로 사랑스럽게. 참고 아이보리 앙고라 퍼 카디건+하늘색 자카드 미니+아이보리 퍼 롱부츠+라벤더
+    진주 체인 백 → 아이보리 퍼 가디건+사람이 고른 올리브 플라워 나시 원피스(상의·하의 대신)+사람이 고른 스틸레토 힐 부츠+라벤더 호보백.
+    (따라 함, 참고 826)
+  ref: '826'
+  ref_photo: sealed:u1111_04
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 페이크 퍼 하이넥 자켓 (gray faux fur high-neck jacket)
+    name: 퍼 하이넥 자켓
+    product: zigzag:172700199
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 셔링 숏팬츠 (black ruched shorts)
+    name: 블랙 숏팬츠
+    product: zigzag:158913245
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 니삭스 (gray knee socks, exactly one pair)
+    name: 그레이 니삭스
+    product: zigzag:161559034
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 미니 백팩 (black quilted mini backpack)
+    name: 퀼팅 미니 백팩
+    product: zigzag:155370993
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬림 워머 티 (plain black slim long-sleeve base-layer tee)
+    name: 슬림 워머 티
+    product: zigzag:155290768
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 워커 부츠 (black buckled ankle boots)
+    name: 워커 부츠
+    product: zigzag:162245530
+  point: ''
+  reason: 그레이 페이크 퍼 하이넥 자켓에 블랙 숏팬츠와 니삭스로 귀엽게. 참고 화이트·그레이 폭스 퍼 숏 자켓+블랙 니트 미니 쇼츠+그레이 니삭스+블랙
+    백팩 → 사람이 고른 그레이 페이크 퍼 하이넥 자켓+블랙 셔링 숏팬츠+그레이 시스루 니삭스+블랙 퀼팅 백팩. (따라 함, 참고 827)
+  ref: '827'
+  ref_photo: sealed:u1111_05
+  requests: []
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 시어링 울 집업 무스탕 (black shearling zip-up mustang jacket)
+    name: 시어링 집업 무스탕
+    product: zigzag:153380949
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 벨트 미니스커트 (black mini skirt with belt)
+    name: 블랙 미니스커트
+    product: zigzag:133521354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 오버니 롱부츠 (black suede over-the-knee boots, shaft reaches above the knee)
+    name: 스웨이드 오버니 부츠
+    product: zigzag:131281211
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퀼팅 체인백 (black quilted chain bag)
+    name: 체인 크로스백
+    product: zigzag:105424126
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 보트넥 긴팔 티 (plain black boat-neck long-sleeve tee)
+    name: 보트넥 긴팔 티
+    product: zigzag:165495453
+    wear_with: 아우터
+  point: ''
+  reason: 올블랙 시어링 집업 무스탕에 미니스커트와 스웨이드 오버니 부츠로 시크하게. 참고 블랙 무스탕 숏 자켓+블랙 미니+블랙 롱부츠+블랙 체인 크로스백 →
+    블랙 시어링 울 집업 무스탕(193,000원, 이전 136,600원보다 비쌈)+블랙 벨트 미니+블랙 스웨이드 오버니 롱부츠(무릎 위까지)+블랙 퀼팅 체인백. (따라 함, 참고 828)
+  ref: '828'
+  ref_photo: sealed:u1111_06
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 핸드메이드 숏코트 (ivory handmade wool short coat, short boxy fit, hem ends at the upper thigh, well above the knee)
+    name: 핸드메이드 숏코트
+    product: zigzag:108534388
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 H라인 스커트 (brown H-line skirt)
+    name: H라인 스커트
+    product: zigzag:115691423
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 위빙 토트 숄더백 (silver woven leather tote shoulder bag)
+    name: 실버 숄더백
+    product: zigzag:124180070
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 U헨리넥 긴팔 티 (plain gray henley long-sleeve tee)
+    name: 헨리넥 긴팔 티
+    product: zigzag:165972153
+    wear_with: 아우터
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 니하이 롱부츠 (brown suede knee-high boots)
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  point: ''
+  reason: 아이보리 울 숏코트에 브라운 H라인 스커트와 실버 백으로 우아하게. 참고 화이트 롱 울 랩코트+브라운 H라인 스커트+그레이 트위드
+    뉴스보이캡+실버 숄더백 → 아이보리 핸드메이드 숏코트(무릎 위 기장, 사람이 고름)+브라운 H라인 스커트+실버 위빙 토트(비니는 사람이 빼 달라 함).
+    (따라 함, 참고 829)
+  ref: '829'
+  ref_photo: sealed:u1111_07
+  requests: []
+- edit_refs: []
+  items:
+  - color: 카키브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 카키브라운 헤링본 하프 자켓 (khaki-brown herringbone wool blazer jacket)
+    name: 헤링본 자켓
+    product: zigzag:168489751
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하이넥 레이스 블라우스 (ivory high-neck lace blouse)
+    name: 레이스 블라우스
+    product: zigzag:172755789
+    wear_with: 아우터
+  - color: 카키
+    comment: ''
+    cutout_photo: 0
+    desc: 카키 헤링본 미니스커트 (khaki herringbone mini skirt)
+    name: 헤링본 미니
+    product: zigzag:168504467
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 미들부츠 (brown suede mid-calf boots)
+    name: 스웨이드 부츠
+    product: zigzag:167025946
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 호보백 (brown suede hobo shoulder bag)
+    name: 스웨이드 호보백
+    product: zigzag:150024149
+  point: ''
+  reason: 카키 헤링본 블레이저에 같은 원단 미니와 레이스 블라우스로 단정하게. 참고 카키 헤링본 블레이저+아이보리 레이스 하이넥 블라우스+카키
+    헤링본 미니+브라운 롱부츠+브라운 스웨이드 숄더백 → 헤링본 하프 자켓(카키브라운)+헤링본 미니+아이보리 레이스 블라우스+브라운 스웨이드 부츠+브라운
+    스웨이드 호보백. (따라 함, 참고 830)
+  ref: '830'
+  ref_photo: sealed:u1111_08
+  requests: []
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 퍼 하이넥 무스탕 하프 코트 (black faux shearling half coat with curly fur collar)
+    name: 퍼 무스탕 코트
+    product: zigzag:167429418
+  - color: 연청
+    comment: ''
+    cutout_photo: 0
+    desc: 연청 와이드 데님 팬츠 (light wash wide-leg denim pants)
+    name: 연청 와이드 데님
+    product: zigzag:109956120
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 가죽 미들부츠 (black leather ankle boots)
+    name: 블랙 앵클부츠
+    product: zigzag:148873148
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 숄더백
+    product: zigzag:164580854
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 보트넥 긴팔 티 (plain black boat-neck long-sleeve tee)
+    name: 보트넥 긴팔 티
+    product: zigzag:171318213
+    wear_with: 아우터
+  point: ''
+  reason: 블랙 퍼 무스탕 코트에 연청 와이드 데님과 앵클부츠로 편하게. 참고 블랙 스웨이드 퍼 칼라 하프 코트+연청 와이드 데님+블랙 앵클부츠+브라운
+    숄더백 → 블랙 퍼 하이넥 무스탕 하프 코트+연청 와이드 데님+블랙 앵클부츠+브라운 스웨이드 숄더백. (따라 함, 참고 831)
+  ref: '831'
+  ref_photo: sealed:u1111_09
+  requests: []
+- edit_refs: []
+  items:
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 롱 트렌치코트 (beige long trench coat with belt)
+    name: 롱 트렌치코트
+    product: zigzag:110627490
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 차콜 그레이 새틴 블라우스 (charcoal satin blouse)
+    name: 새틴 블라우스
+    product: zigzag:121896211
+    wear_with: 아우터
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 미니 스커트 (black wool mini skirt)
+    name: 울 미니 스커트
+    product: zigzag:150110018
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 사이하이 부츠 (black suede thigh-high boots)
+    name: 사이하이 부츠
+    product: zigzag:146939237
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 드롭 목걸이 (one silver long drop necklace)
+    name: 실버 목걸이
+    product: zigzag:162967207
+    slot: 목걸이
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black small shoulder bag)
+    name: 블랙 숄더백
+    product: zigzag:166194366
+  point: ''
+  reason: 베이지 롱 트렌치에 차콜 새틴 블라우스와 사이하이 부츠로 도회적으로. 참고 베이지 오버핏 롱 트렌치+차콜 새틴 셔츠+블랙 미니+블랙
+    사이하이 부츠+실버 크로스 목걸이 → 베이지 클래식 롱 트렌치+그레이 새틴 블라우스+블랙 울 미니+블랙 스웨이드 사이하이 부츠+실버 롱 목걸이.
+    (따라 함, 참고 832)
+  ref: '832'
+  ref_photo: sealed:u1111_10
+  requests: []
+reason: 사용자가 고른 참고 코디 10벌(823~832)을 순서대로 따라, 스웨이드·울 코트·퍼·무스탕·트렌치 겨울 아우터가 주인공인 겨울룩
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-12'
+  mood: 코트·퍼자켓·무스탕 같은 겨울 아우터가 주인공인 여성스럽고 세련된 겨울 스트리트룩, 미니스커트와 롱부츠
+  search_terms: {}
+  slots:
+  - category: 아우터
+    desc: 울 코트, 트렌치, 페이크 퍼 자켓, 무스탕 같은 겨울 아우터
+  - category: 하의
+    desc: 미니스커트나 와이드 데님
+  - category: 가방
+    desc: 숄더백이나 토트백
+  - category: 신발
+    desc: 롱부츠나 앵클부츠
+  title_hint: 겨울 아우터 코디, 코트·퍼자켓 하나로 완성하는 겨울룩
+  type: 상황
+  why: 11월 중순 본격 추위, 사용자가 고른 아우터 주제

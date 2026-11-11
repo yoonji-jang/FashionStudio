@@ -1,0 +1,20 @@
+{
+  "run": "2026-11-12-run459",
+  "fixes": [
+    {
+      "update_id": 13,
+      "looks": [
+        1
+      ],
+      "text": "1번 자켓(아우터) 이걸로 바꿔줘. 판매 중인 상품이야 https://s.zigzag.kr/abr/wVtvBStGTm",
+      "products": [
+        {
+          "id": "zigzag:166089436",
+          "category": "아우터",
+          "name": "[ 고급🍂/하이퀄리티 ] 하프 트렌치 스웨이드 자켓"
+        }
+      ],
+      "link_errors": []
+    }
+  ]
+}
