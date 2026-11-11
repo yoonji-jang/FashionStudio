@@ -1,0 +1,7 @@
+{
+  "run": "2026-11-12-run460",
+  "account": "women",
+  "sandbox": false,
+  "mode": "edit",
+  "pick": "{\"run\": \"2026-11-12-run459\", \"fixes\": [{\"update_id\": 11, \"looks\": [1], \"text\": \"1번 자켓(아우터) 이걸로 바꿔줘. 판매 중인 상품이야 https://s.zigzag.kr/abr/wVtvBStGTm\"}]}"
+}
