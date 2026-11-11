@@ -522,19 +522,18 @@ video:
   # 영상 첫 장면을 상품 사진에서 바로 그리기 (2026-11-07 사용자, video.yml step=scene_frames).
   # 컨셉 장면에 start_en 이 없을 때의 시작 위치·크기 (연말 LOOK5 구도: 전신이 화면 세로의 약 80%)
   scene_start_en: "standing in the middle of the frame, her whole body visible from head to shoes, filling about 80% of the frame height"
-  # 첫 장면 얼굴 (2026-11-10 사용자: 얼굴이 자꾸 바뀌고 덜 예쁨 → 갸름한 얼굴, 큰 눈, 진한 화장, 은은한 미소.
-  # 외부 뷰티 화보 지시문 두 개에서 화장·빛 말을 가져옴. 11/10 06:36 사용자: 눈꼬리가 처짐 → 공식 얼굴처럼 고양이상(눈꼬리 올라감). 머리는 얼굴 사진처럼(시스루뱅) — 첫 장면만)
+  # 첫 장면 얼굴 (2026-11-10~11 사용자, 스레드 "이미지 생성 프롬프트 개선하기"). 11/11 공식 얼굴을 스냅 분위기
+  # 얼굴판으로 바꿈. 미모 문구(갸름·큰 눈 등)는 AI 가 얼굴 사진보다 그 말을 따라 사람이 바뀌어서 뺌:
+  # 얼굴은 얼굴 사진을 그대로 따르고, 분위기(물광·블러셔·자연스러운 표정)만 적는다. 머리는 얼굴 사진처럼 — 첫 장면만
   face_en: >-
-    She is exactly the woman in the face photo: the same identity, face shape, eyes, brows, nose and lips,
-    and the same hairstyle with the same see-through bangs and face-framing strands, only restyled for
-    this outfit if the user asks. Draw her at her prettiest, like a high-end beauty editorial: a small
-    slim face with a narrow V-line jaw and slim cheeks (never round, wide or chubby), large bright
-    slightly upturned cat-like eyes with lifted outer corners (never droopy or downturned) and aegyo-sal, softly defined lashes and soft brown liner, expertly blended taupe and mauve
-    eye makeup, feathered brows, soft rosy-beige blush, lightly glossed rose gradient lips, and a
-    flawless luminous dewy porcelain complexion with real skin texture. A soft, subtle closed-lip smile
-    or a calm chic look, never a big grin. Her face is lit by soft, even frontal light with gentle
-    highlights on the cheekbones and brow and clear catchlights in the eyes, never shadowed, flat or dull,
-    and it stays sharp and detailed even though she is small in the frame
+    Copy her face exactly from the face photo, feature by feature, at any size: the same face shape,
+    upturned cat-like eyes, eyelids, brows, nose, full glossy lips, blush and skin. Do not redesign,
+    slim, retouch or idealize her face; the face photo is already how she should look. The same
+    long dark wavy hair with see-through bangs and loose face-framing strands. Her look is a candid,
+    effortlessly pretty snapshot: soft glowing dewy skin, soft pink blush high on the cheeks, glossy rose
+    lips, softly sparkling eyes, a relaxed natural expression (a faint soft closed-lip smile or calm
+    chic look, never a big grin, never a stiff passport-photo face). Her face is softly and evenly lit,
+    never shadowed or dull, and stays sharp and detailed even though she is small in the frame
   frame_camera_en: >-
     shot at her eye level with a medium telephoto lens (about 85 mm) from a few metres away, so her face
     and body keep natural slim proportions and are not widened
