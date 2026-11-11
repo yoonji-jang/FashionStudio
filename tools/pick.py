@@ -684,8 +684,10 @@ def link_product(
     info = zigzag.parse_page(code, text)
     if info.status == "sold_out":
         raise ValueError("품절이에요")
-    if info.status != "on_sale" or not info.image_urls or not info.name:
-        raise ValueError("판매 중인 상품 페이지로 읽히지 않아요")
+    if not info.image_urls or not info.name:
+        raise ValueError(f"상품 페이지를 읽지 못했어요 (응답 {code})")
+    # 판매 상태가 ON_SALE·VISIBLE 이 아니어도 (노출·구매 표시가 다른 상품) 사람이 직접 고른
+    # 링크는 판매 중으로 본다. 2026-11-11 판매 중인 자켓 링크가 "판매 중으로 안 읽힘"으로 두 번 빠짐
     old = (known or {}).get(f"zigzag:{pid}")
     return Product(
         id=f"zigzag:{pid}",
