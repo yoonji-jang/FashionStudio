@@ -60,13 +60,17 @@ def normalize_image_url(url: str) -> str:
     return _S3_IMAGE.sub(r"https://cf.\1/", url)
 
 
-def og_image(page_html: str) -> str | None:
+def og_meta(page_html: str, keys: tuple[str, ...]) -> str | None:
     for tag in _META.findall(page_html):
         attrs = {m[0].lower(): (m[2] or m[3]) for m in _ATTR.findall(tag)}
         key = attrs.get("property") or attrs.get("name")
-        if key in ("og:image", "og:image:url") and attrs.get("content"):
+        if key in keys and attrs.get("content"):
             return html.unescape(attrs["content"])
     return None
+
+
+def og_image(page_html: str) -> str | None:
+    return og_meta(page_html, ("og:image", "og:image:url"))
 
 
 IMAGE_EXT = (".jpg", ".jpeg", ".png", ".webp", ".gif")

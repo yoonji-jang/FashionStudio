@@ -685,7 +685,21 @@ def link_product(
     if info.status == "sold_out":
         raise ValueError("품절이에요")
     if not info.image_urls or not info.name:
-        raise ValueError(f"상품 페이지를 읽지 못했어요 (응답 {code})")
+        # 페이지 데이터(__NEXT_DATA__)에 상품이 없는 페이지 (2026-11-11 판매 중인 자켓이 응답 200
+        # 인데 비어 있었음): 공유용 대표 이름·사진(og:title, og:image)으로 넣는다
+        title = scout.og_meta(text, ("og:title",)) if code == 200 else None
+        image = scout.og_image(text) if code == 200 else None
+        if not title or not image:
+            raise ValueError(f"상품 페이지를 읽지 못했어요 (상품 {pid}, 응답 {code})")
+        name = re.sub(r"\s*[-|]\s*(지그재그|ZIGZAG).*$", "", title.strip(), flags=re.I)
+        info = zigzag.PageInfo(
+            status="on_sale",
+            image_urls=[scout.normalize_image_url(image)],
+            style_tags=[],
+            name=info.name or name,
+            shop=info.shop,
+            price=info.price,
+        )
     # 판매 상태가 ON_SALE·VISIBLE 이 아니어도 (노출·구매 표시가 다른 상품) 사람이 직접 고른
     # 링크는 판매 중으로 본다. 2026-11-11 판매 중인 자켓 링크가 "판매 중으로 안 읽힘"으로 두 번 빠짐
     old = (known or {}).get(f"zigzag:{pid}")
