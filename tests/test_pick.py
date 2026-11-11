@@ -268,8 +268,23 @@ def test_link_product_trusts_user_link_with_other_display_status():
     def empty(url):
         return 403, url, ""
 
-    with pytest.raises(ValueError, match="응답 403"):
+    with pytest.raises(ValueError, match="상품 999, 응답 403"):
         pick.link_product("https://zigzag.kr/catalog/products/999", "", DAY, empty)
+
+    # 페이지 데이터에 상품이 없으면 og:title·og:image 로
+    og = (
+        '<meta property="og:title" content="하프 울 트위드 자켓 - 지그재그">'
+        '<meta property="og:image" content="https://cf.example.com/999.jpg">'
+    )
+
+    def only_og(url):
+        return 200, url, og
+
+    p = pick.link_product("https://zigzag.kr/catalog/products/999", "", DAY, only_og)
+    assert p.name == "하프 울 트위드 자켓" and [str(u) for u in p.image_urls] == [
+        "https://cf.example.com/999.jpg"
+    ]
+    assert p.category == "아우터"
 
 
 def test_add_links_unreadable(tmp_path, store):  # noqa: F811
