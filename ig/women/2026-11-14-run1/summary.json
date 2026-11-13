@@ -1,0 +1,11 @@
+{
+ "tags": [
+  "크리스마스코디",
+  "연말데이트룩"
+ ],
+ "found": 0,
+ "sheets": 0,
+ "images": 0,
+ "notes": [],
+ "refused": "graph.facebook.com: HTTP 400 code=190 type=OAuthException Invalid OAuth access token - Cannot parse access token / graph.instagram.com: HTTP 400 code=190 error_subcode=0 type=OAuthException Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons. → 해시태그 검색은 'Instagram API with Facebook Login' 에서만 됩니다. 필요한 것: ① 인스타 계정을 페이스북 페이지에 연결(비즈니스·크리에이터 계정) ② developers.facebook.com 앱에 'Instagram Public Content Access' 기능 추가 ③ instagram_basic·pages_show_list 권한으로 받은 Facebook 사용자 토큰(장기) ④ 그 토큰과 페이스북 쪽 인스타 사용자 id 를 Secrets 에 넣고 profile instagram.hashtag 의 token_secret·user_id_secret 에 그 이름을 적기"
+}
