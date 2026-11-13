@@ -80,7 +80,7 @@ description: 움직이는 코디 영상의 컨셉 후보를 짠다. 코디 주�
     - look: 1
       seconds: 3
       action: "오른쪽에서 등장해 왼쪽으로 걸어가 퇴장"
-      pose: "가운데서 잠깐 멈춰 카메라 보며 웃기"
+      pose: "가운데서 잠깐 멈춰 카메라를 도도하게 보기"
       text: "연말 여행 코디, 남친이 찍어 줬어요"
       motion_en: "She walks in from the right and glances at the camera once"
     - look: 2
