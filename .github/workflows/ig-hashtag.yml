@@ -1,0 +1,112 @@
+name: ig-hashtag
+
+# 인스타 해시태그로 참고 코디 사진 찾기 (2026-11-13 사용자 "인스타검색 만들어").
+# Claude 없이 코드만 돈다: tools.ig_hashtag 가 공식 Graph API(해시태그 검색)로 사진만 모아 확인표를 만든다.
+# 사용자 규칙: 해시태그는 검색 전에 사용자 승인을 받은 것만 넣는다 (주제마다 굵직한 것 두 개 정도).
+# 계정마다 7일에 서로 다른 해시태그 30개까지.
+# 저장소가 공개라 사진·게시물 주소·계정 이름은 커밋하지 않는다. 확인표와 사진은 config/ig_view.pub 로 잠가
+# daily-results 브랜치 ig/<계정>/<날짜>-run<번호>/ 에 두고 (클로드 스레드가 개인 키로 풂), 텔레그램으로 보낸다.
+on:
+  workflow_dispatch:
+    inputs:
+      account:
+        description: 계정
+        default: women
+      tags:
+        description: 사용자가 승인한 해시태그 (쉼표로, # 없이)
+        required: true
+      limit:
+        description: 확인표에 넣을 최대 사진 수 (16장이 확인표 한 장)
+        default: "160"
+      telegram:
+        description: 확인표를 텔레그램으로 보냄
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ACCOUNT: ${{ inputs.account }}
+      TAGS: ${{ inputs.tags }}
+      LIMIT: ${{ inputs.limit || '160' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --no-dev
+      - name: 토큰 Secret 이름 읽기
+        id: cfg
+        run: |
+          uv run python - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          from core.profile import load_profile
+          ig = load_profile(os.environ["ACCOUNT"]).instagram
+          print(f"token={ig.hashtag.token_secret or ig.token_secret}")
+          print(f"user_id={ig.hashtag.user_id_secret or ig.user_id_secret}")
+          PY
+      - name: 해시태그 검색하고 확인표 만들기
+        env:
+          TOKEN_NAME: ${{ steps.cfg.outputs.token }}
+          USER_ID_NAME: ${{ steps.cfg.outputs.user_id }}
+          TOKEN_VALUE: ${{ secrets[steps.cfg.outputs.token] }}
+          USER_ID_VALUE: ${{ secrets[steps.cfg.outputs.user_id] }}
+        run: |
+          args=()
+          IFS=',' read -ra ts <<< "$TAGS"
+          for t in "${ts[@]}"; do t="${t// /}"; [ -n "$t" ] && args+=(--tag "$t"); done
+          export "$TOKEN_NAME=$TOKEN_VALUE" "$USER_ID_NAME=$USER_ID_VALUE"
+          uv run python -m tools.ig_hashtag sheets --account "$ACCOUNT" --out out/ig_hashtag --limit "$LIMIT" "${args[@]}" || true
+      - name: 요약
+        run: |
+          s=out/ig_hashtag/summary.json
+          [ -f "$s" ] || { echo "결과 없음" | tee -a "$GITHUB_STEP_SUMMARY"; exit 1; }
+          jq -r '"해시태그: \(.tags | map("#" + .) | join(", "))\n\n찾은 사진 \(.found)장, 확인표 \(.sheets)장에 \(.images)장 (\(.api // "-"))\n\n\(.notes | map("- " + .) | join("\n"))\n\n\(if .refused then "검색 거절: " + .refused else "" end)"' \
+            "$s" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: 잠가서 결과 브랜치에 올리기
+        run: |
+          stamp="$(TZ=Asia/Seoul date +%F)-run${{ github.run_number }}"
+          uv run python -m tools.ig_hashtag seal out/ig_hashtag out/ig_sealed || true
+          mkdir -p out/ig_sealed
+          [ -f out/ig_sealed/summary.json ] || cp out/ig_hashtag/summary.json out/ig_sealed/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4; do
+            rm -rf /tmp/res; git fetch -q origin daily-results
+            git worktree add -q /tmp/res origin/daily-results
+            dest="/tmp/res/ig/$ACCOUNT/$stamp"; mkdir -p "$dest"; cp out/ig_sealed/* "$dest/"
+            git -C /tmp/res add "ig/$ACCOUNT/$stamp"
+            git -C /tmp/res commit -q -m "인스타 해시태그 확인표 $ACCOUNT $stamp (잠금)"
+            git -C /tmp/res push -q origin HEAD:daily-results && { echo "daily-results ig/$ACCOUNT/$stamp" | tee -a "$GITHUB_STEP_SUMMARY"; exit 0; }
+            git worktree remove --force /tmp/res; sleep $((i * 5))
+          done
+          exit 1
+      - name: 텔레그램으로 확인표 보내기
+        if: inputs.telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          uv run python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from tools.notify import Telegram
+          s = json.loads(Path("out/ig_hashtag/summary.json").read_text())
+          tg = Telegram.from_env()
+          tags = ", ".join("#" + t for t in s["tags"])
+          if s.get("refused"):
+              tg.send(f"[{os.environ['ACCOUNT']}] 인스타 해시태그 검색이 거절됐어요 ({tags})\n{s['refused']}")
+          else:
+              paths = sorted(Path("out/ig_hashtag").glob("sheet_*.jpg"), key=lambda p: int(p.stem.split("_")[1]))
+              head = f"[{os.environ['ACCOUNT']}] 인스타 참고 코디 {tags}\n사진 {s['images']}장, 확인표 {len(paths)}장"
+              if paths:
+                  tg.send_photos(paths, head)
+              else:
+                  tg.send(head)
+          PY
+      - name: 거절이면 실패로 표시
+        run: |
+          jq -e '.refused | not' out/ig_hashtag/summary.json >/dev/null || { echo "Meta 가 검색을 거절함 (요약 참고)"; exit 1; }

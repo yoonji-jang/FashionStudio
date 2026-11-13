@@ -13,6 +13,7 @@
   python -m tools.sealed pubkey                       # 비밀값이 있는 곳(워크플로)에서 공개 키 출력
   python -m tools.sealed seal 사진.jpg 이름.sealed      # 공개 키로 잠금 (클로드 스레드)
   python -m tools.sealed open <폴더> [--dest <폴더>]    # *.sealed 를 모두 풀어 <이름>.jpg 로
+  python -m tools.sealed open <폴더> --dest <폴더> --key-file <개인 키>  # 인스타 확인표
 """
 
 from __future__ import annotations
@@ -49,11 +50,17 @@ def seal(data: bytes, pub: PublicKey | None = None) -> bytes:
     return SealedBox(pub or public_key()).encrypt(data)
 
 
-def unseal(data: bytes, seed: str) -> bytes:
-    return SealedBox(private_key(seed)).decrypt(data)
+def unseal(data: bytes, seed: str | PrivateKey) -> bytes:
+    key = seed if isinstance(seed, PrivateKey) else private_key(seed)
+    return SealedBox(key).decrypt(data)
 
 
-def open_dir(src: Path, dest: Path, seed: str) -> int:
+def key_file(path: Path) -> PrivateKey:
+    """base64 개인 키 파일 (인스타 확인표 보기 열쇠처럼 저장소 밖에 둔 것)."""
+    return PrivateKey(base64.b64decode(path.read_text().strip()))
+
+
+def open_dir(src: Path, dest: Path, seed: str | PrivateKey) -> int:
     """src 의 *.sealed 를 모두 풀어 dest/<이름>.jpg 로. 푼 개수."""
     dest.mkdir(parents=True, exist_ok=True)
     n = 0
@@ -84,11 +91,21 @@ def main(argv: list[str] | None = None) -> int:
     o = sub.add_parser("open")
     o.add_argument("src", type=Path)
     o.add_argument("--dest", type=Path, default=None)
+    o.add_argument(
+        "--key-file",
+        type=Path,
+        default=None,
+        help="비밀값 대신 이 개인 키로 (tools.ig_hashtag 확인표)",
+    )
     args = ap.parse_args(argv)
 
     if args.cmd == "seal":
         args.dest.parent.mkdir(parents=True, exist_ok=True)
         args.dest.write_bytes(seal(args.src.read_bytes()))
+        return 0
+    if args.cmd == "open" and args.key_file:
+        n = open_dir(args.src, args.dest or cache_dir(), key_file(args.key_file))
+        print(f"사진 {n}장 풂")
         return 0
     seed = os.environ.get(SEED_ENV, "")
     if not seed:

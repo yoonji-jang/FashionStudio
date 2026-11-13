@@ -189,10 +189,16 @@ def fetch(c: httpx.Client, url: str) -> bytes | None:
 
 
 def sheets(
-    hits: list[Hit], out: Path, limit: int = 320, client: httpx.Client | None = None
+    hits: list[Hit],
+    out: Path,
+    limit: int = 320,
+    client: httpx.Client | None = None,
+    keep: Path | None = None,
 ) -> list[dict]:
     """번호 붙인 확인표(out/sheet_N.jpg)와 out/refs.json (칸 번호 순 사진 주소·출처).
-    refs.json 은 tools.scout crawl 확인표와 같은 꼴이라 plan-themes 스킬이 그대로 읽는다."""
+    refs.json 은 tools.scout crawl 확인표와 같은 꼴이라 plan-themes 스킬이 그대로 읽는다.
+    keep 이면 확인표에 넣은 사진 원본을 keep/s<확인표>_<칸>.jpg 로도 둔다
+    (tools.ig_hashtag 가 잠가서 넘김)."""
     out.mkdir(parents=True, exist_ok=True)
     report: list[dict] = []
     data: list[bytes] = []
@@ -214,6 +220,7 @@ def sheets(
                     "images": [h.image for h in kept],
                     "sites": [h.site for h in kept],
                     "queries": [h.query for h in kept],
+                    "engines": [h.engine for h in kept],
                 }
             )
         data.clear()
@@ -230,6 +237,9 @@ def sheets(
             hashes.add(key)
             data.append(b)
             kept.append(h)
+            if keep is not None:
+                keep.mkdir(parents=True, exist_ok=True)
+                (keep / f"s{len(report) + 1}_{len(data):02d}.jpg").write_bytes(b)
             if len(data) == PER_SHEET:
                 flush()
         flush()
