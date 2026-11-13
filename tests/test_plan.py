@@ -121,11 +121,17 @@ def test_busy_warnings():
         for i, (c, n) in enumerate(zip(cats, names, strict=False), 1)
     ]
     warns = plan.busy_warnings("1번 벌: ", cats, items, profile)
+    # women 은 소품 개수 상한이 없다 (2026-11-13 사용자)
     assert [w.split(" (")[0] for w in warns] == [
         "1번 벌: 아우터·상의가 4겹입니다",
         "1번 벌: 무늬 있는 상품이 2개입니다",
-        "1번 벌: 소품이 3개입니다",
     ]
+    # 상한을 둔 계정이면 경고
+    capped = profile.model_copy(
+        update={"style": profile.style.model_copy(update={"max_accessories": 2})}
+    )
+    warns = plan.busy_warnings("1번 벌: ", cats, items, capped)
+    assert warns[-1].split(" (")[0] == "1번 벌: 소품이 3개입니다"
     # 세 겹(안에 얇은 이너)까지는 괜찮다
     assert plan.busy_warnings("", cats[:3], items[:2] + items[3:4], profile) == []
 
