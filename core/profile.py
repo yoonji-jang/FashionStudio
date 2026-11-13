@@ -690,9 +690,26 @@ class LinkPage(BaseModel):
     send_links: bool = False
 
 
+class HashtagSearch(BaseModel):
+    """인스타 해시태그로 참고 코디 찾기 (tools.ig_hashtag, 2026-11-13 사용자).
+    공식 Graph API 의 해시태그 검색. 계정마다 7일에 서로 다른 해시태그 30개까지."""
+
+    # 해시태그 검색은 Facebook 로그인 토큰(graph.facebook.com)에서 된다.
+    # 인스타 로그인 토큰(graph.instagram.com)이면 Meta 가 거절할 수 있다
+    # (도구가 다른 주소로 한 번 더 해 보고, 그래도 안 되면 거절 이유를 그대로 보여 준다)
+    api_base: str = "https://graph.facebook.com/v23.0"
+    # 비우면 위 token_secret·user_id_secret 을 쓴다
+    token_secret: str = ""
+    user_id_secret: str = ""
+    edges: list[Literal["top_media", "recent_media"]] = ["top_media", "recent_media"]
+    per_tag: int = Field(default=100, ge=1, le=500)  # 해시태그·목록마다 볼 게시물 수
+    children: int = Field(default=3, ge=1, le=10)  # 여러 장 게시물에서 넣을 사진 수 (앞에서부터)
+
+
 class Instagram(BaseModel):
     token_secret: str  # GitHub Secret 이름 (값이 아님)
     user_id_secret: str
+    hashtag: HashtagSearch = HashtagSearch()
 
 
 class Profile(BaseModel):

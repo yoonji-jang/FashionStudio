@@ -24,6 +24,7 @@
     ],
     "deny": [
       "Bash(python -m tools.ig_publish:*)",
+      "Bash(python -m tools.ig_hashtag sheets:*)",
       "Bash(python -m tools.publish:*)",
       "Bash(python -m tools.notify:*)",
       "Bash(python -m tools.tg_send:*)",
