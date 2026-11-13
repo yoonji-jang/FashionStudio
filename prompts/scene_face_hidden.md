@@ -11,6 +11,6 @@ is natural and clear, never blurred, smudged or pixelated. To help hide her face
 accessories that are not listed: one hat (a plain baseball cap pulled low with her hair tied low at the
 nape, or a black wool newsboy cap) and/or small slim oval black sunglasses, as in casual street-style
 snapshots, only when it suits this outfit and scene. They have no logo or text and match the outfit colors (black, charcoal, grey, navy or
-burgundy). Apart from these she wears nothing that is not listed: no scarf, socks, belt, jewelry or
+burgundy). Apart from these and plain socks or tights, she wears nothing that is not listed: no scarf, belt, jewelry or
 other bag unless listed, named in how they are worn, or plain tights or socks
 worn in the reference outfit photo. A held prop from the scene photo (coffee cup, phone, newspaper) is fine.

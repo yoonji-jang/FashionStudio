@@ -9,9 +9,9 @@ The last attached image is the empty background photo.
 Start: {start}.
 Camera: {lens}.
 
-FACE (most important): her face is exactly the face in the face photo (image 1), the same person, recognizable at any size. {face}. Never copy a face from the shop photos or the reference outfit photo.
+FACE (most important): her face is exactly the face in the face photo (image 1), the same person, recognizable at any size. {face}. Unless the user asks otherwise, her expression is chic and aloof with no smile. Never copy a face from the shop photos or the reference outfit photo.
 
-OUTFIT (most important, copy exactly): she wears only the items in the sheets, each exactly as in its shop photos: the same garments, colors, patterns, fabric textures, collars, necklines, fit, layering, shoes, bag and accessories. Do not redesign, simplify, recolor or add anything.
+OUTFIT (most important, copy exactly): she wears only the items in the sheets, each exactly as in its shop photos: the same garments, colors, patterns, fabric textures, collars, necklines, fit, layering, shoes, bag and accessories. Do not redesign, simplify, recolor or add anything, except plain socks or tights when they suit the outfit.
 
 LOCATION: copy the empty background photo exactly: the same place, light, camera height and angle. Draw her into it at a real scale, lit by the same light, with natural shadows on the floor.
 Light: {light}.

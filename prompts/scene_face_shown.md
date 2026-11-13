@@ -11,7 +11,7 @@ small and slim: a narrow oval face with a slender V-line jaw and slim cheeks, ne
 She is a new
 person: never copy the face or identity of the person in the scene photo or in the item sheets. Her face
 is visible and natural (she may look at the camera, look aside or glance down), with real skin texture,
-never blurred, smudged or pixelated. Apart from the listed items she wears nothing else: no hat,
-sunglasses, scarf, socks, belt, jewelry or other bag unless listed, named in how they are worn, or plain tights or socks
+never blurred, smudged or pixelated. Apart from the listed items and plain socks or tights she wears nothing else: no hat,
+sunglasses, scarf, belt, jewelry or other bag unless listed, named in how they are worn, or plain tights or socks
 worn in the reference outfit photo. A held prop from the scene photo
 (coffee cup, phone, newspaper) is fine.

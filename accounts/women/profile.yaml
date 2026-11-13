@@ -251,7 +251,7 @@ comment_tags:
 # 이미지 검수 (tools.review, 7단계). 코디컷 후보를 여러 장 만들고 검수 에이전트가 원본 상품과 비교해 점수를 매긴다.
 # 항목 5개(색, 모양, 빠진 상품, 삐져나온 조각, 겹침·잘림) × 0~2점 = 10점 만점
 review:
-  candidates: 3      # 한 번에 만드는 코디컷 후보 수 (생성 1장 약 $0.15, 후보 수만큼 늘어남)
+  candidates: 1      # 한 번에 만드는 코디컷 후보 수 (2026-11-13 사용자: 여러 장 그리지 않음, 크레딧 절약)
   max_rounds: 2      # 모두 기준 미달이면 다시 만드는 횟수 (첫 회 포함). 넘으면 사람 확인으로 표시
   min_score: 8       # 이 점수 이상이고 0점 항목이 없어야 통과
   check_slides: true # 상품 장 사진 색·모델 얼굴·글자 잘림도 본다
@@ -525,14 +525,15 @@ video:
   # 첫 장면 얼굴 (2026-11-10~11 사용자, 스레드 "이미지 생성 프롬프트 개선하기"). 11/11 공식 얼굴을 스냅 분위기
   # 얼굴판으로 바꿈. 미모 문구(갸름·큰 눈 등)는 AI 가 얼굴 사진보다 그 말을 따라 사람이 바뀌어서 뺌:
   # 얼굴은 얼굴 사진을 그대로 따르고, 분위기(물광·블러셔·자연스러운 표정)만 적는다. 머리는 얼굴 사진처럼 — 첫 장면만
+  # 표정 기본은 도도 (2026-11-13 사용자). 장면마다 사용자가 요청하면 그 요청(notes)이 이긴다
   face_en: >-
     Copy her face exactly from the face photo, feature by feature, at any size: the same face shape,
     upturned cat-like eyes, eyelids, brows, nose, full glossy lips, blush and skin. Do not redesign,
     slim, retouch or idealize her face; the face photo is already how she should look. The same
     long dark wavy hair with see-through bangs and loose face-framing strands. Her look is a candid,
     effortlessly pretty snapshot: soft glowing dewy skin, soft pink blush high on the cheeks, glossy rose
-    lips, softly sparkling eyes, a relaxed natural expression (a faint soft closed-lip smile or calm
-    chic look, never a big grin, never a stiff passport-photo face). Her face is softly and evenly lit,
+    lips, softly sparkling eyes, a chic, aloof, confident expression with relaxed closed lips and no smile
+    (never a grin, never a stiff passport-photo face). Her face is softly and evenly lit,
     never shadowed or dull, and stays sharp and detailed even though she is small in the frame
   frame_camera_en: >-
     shot at her eye level with a medium telephoto lens (about 85 mm) from a few metres away, so her face
@@ -542,7 +543,7 @@ video:
     Her face stays exactly the same person as in the first frame for the whole video, sharp and
     unchanged. No big head turns, she never turns her back, her hands never pass in front of her face,
     and the camera does not move closer to her
-  scene_candidates: 2
+  scene_candidates: 1     # 2026-11-13 사용자: 벌마다 여러 장 그리지 않음 (크레딧 절약). 마음에 안 들면 그때 다시
   speed: 1.0               # 2026-11-03 사용자 "보폭이 너무 작고 뒤뚱거려": 1.25배로 돌리면 종종걸음처럼 보여 배속 없앰
 
 # none: 상품 링크만, 광고 표기 없음 / manual_link: 공유리워드 링크, 광고 표기 자동 적용
