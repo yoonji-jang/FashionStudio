@@ -31,4 +31,7 @@
 | gen_20261102_bright_walk.m4a | 코드로 직접 만든 곡 (2026-11-02, bright_walk, tools.music_gen) | 이 계정 소유, 상업 이용 가능 |
 | gen_20261102_calm_ambient.m4a | 코드로 직접 만든 곡 (2026-11-02, calm_ambient, tools.music_gen) | 이 계정 소유, 상업 이용 가능 |
 | gen_20261102_jazz_hop.m4a | 코드로 직접 만든 곡 (2026-11-02, jazz_hop, tools.music_gen) | 이 계정 소유, 상업 이용 가능 |
+| gen_20261116_bossa_cafe.m4a | 코드로 직접 만든 곡 (2026-11-16, bossa_cafe, tools.music_gen) | 이 계정 소유, 상업 이용 가능 |
+| gen_20261116_chill_house.m4a | 코드로 직접 만든 곡 (2026-11-16, chill_house, tools.music_gen) | 이 계정 소유, 상업 이용 가능 |
+| gen_20261116_rnb_night.m4a | 코드로 직접 만든 곡 (2026-11-16, rnb_night, tools.music_gen) | 이 계정 소유, 상업 이용 가능 |
 <!-- /music_gen -->
