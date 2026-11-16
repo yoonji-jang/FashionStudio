@@ -298,7 +298,9 @@ def collect(
 
     # 기준이 바뀌면(가격대·제외어) 창고에 있던 상품도 같이 거른다
     report.floors = dict(getattr(source, "floors", {}))
-    unfit = [p for p in stock.values() if not fits(p, cfg, report.floors)]
+    # 참고 사진이 있던 상품(지그재그 착용컷)은 가격대·제외어와 상관없이 남긴다
+    own = {r.product for r in store.refs() if r.product}
+    unfit = [p for p in stock.values() if p.id not in own and not fits(p, cfg, report.floors)]
     for p in unfit:
         stock.pop(p.id)
     report.unfit = len(unfit)
@@ -457,6 +459,32 @@ def product_sheet(
     return out
 
 
+def add_own_products(store: Store, refs: list, fetch=None) -> list[Product]:
+    """참고 사진이 있던 지그재그 상품(RefLook.product)이 창고에 없으면
+    그 상품 페이지를 한 번 읽어 넣는다. 못 읽은 상품은 건너뛴다
+    (2026-11-16 사용자: "참고컷 찾을때 본 상품을 써주면 좋겠어")."""
+    from sources import zigzag
+    from tools import pick
+    from tools import refs as refs_tool
+
+    products = {p.id: p for p in store.products()}
+    added: list[Product] = []
+    for pid in refs_tool.own_products(refs, set(products)):
+        url = zigzag.PRODUCT_URL.format(id=pid.split(":", 1)[-1])
+        try:
+            p = pick.link_product(url, "", date.today(), **({"fetch": fetch} if fetch else {}))
+        except Exception as e:  # noqa: BLE001 - 한 상품 실패해도 계속
+            print(f"참고 원본 상품을 읽지 못함 {pid}: {e}", file=sys.stderr)
+            continue
+        p = p.model_copy(update={"query": "참고 원본 상품"})
+        products[p.id] = p
+        added.append(p)
+    if added:
+        store.save_products(list(products.values()))
+        print(f"참고 원본 상품 {len(added)}개 창고에 넣음")
+    return added
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--account", required=True)
@@ -490,6 +518,7 @@ def main(argv: list[str] | None = None) -> int:
     store = Store(args.account)
     plan: dict = dict(profile.product_source.queries)
     if args.from_refs:
+        add_own_products(store, store.refs())
         store.save_refs(refs_tool.match(store.refs(), store.products()))
         wanted = store.refs()
         if args.ref_photos:
@@ -499,6 +528,9 @@ def main(argv: list[str] | None = None) -> int:
             photos = {user_ref(f) for f in json.loads(args.ref_photos)}
             wanted = [r for r in wanted if r.photo in photos]
         plan = refs_tool.missing_queries(wanted)
+        # 지그재그 착용컷 참고: 그 쇼핑몰 상품을 먼저 쓰도록 쇼핑몰 이름으로도 찾는다 (2026-11-16)
+        for cat, qs in refs_tool.shop_queries(wanted).items():
+            plan.setdefault(cat, []).extend(q for q in qs if q not in plan.get(cat, []))
         print(f"참고 코디에서 찾을 검색어 {sum(map(len, plan.values()))}개")
         if args.per_query is None:
             args.per_query = 8  # 칸마다 고를 거리가 넉넉하도록 (사용자 2026-10-13 "넉넉하게")

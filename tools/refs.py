@@ -93,18 +93,73 @@ def match_slot(slot: RefSlot, products: list[Product]) -> list[str]:
             continue
         scored.append((searched, k, p.rating or 0, p.id))
     scored.sort(reverse=True)
-    return [s[-1] for s in scored[:MAX_MATCHES]]
+    return [s[-1] for s in scored]
+
+
+def pin_slot(r: RefLook, p: Product) -> int | None:
+    """참고 사진이 있던 상품이 들어갈 칸: 같은 카테고리의 첫 칸
+    (원피스·상의는 서로 대신할 수 있음)."""
+    for cats in ({p.category}, {"원피스", "상의"} if p.category in ("원피스", "상의") else set()):
+        for i, s in enumerate(r.slots):
+            if s.category in cats:
+                return i
+    return None
 
 
 def match(refs: list[RefLook], products: list[Product]) -> list[RefLook]:
+    """칸마다 창고에서 맞을 만한 상품. 지그재그 착용컷 참고는 그 사진이 있던 상품을
+    칸에 고정(pinned)하고, 다른 칸도 같은 쇼핑몰 상품을 먼저 둔다
+    (2026-11-16 사용자: 참고컷에서 본 상품을 써 달라)."""
+    by_id = {p.id: p for p in products}
     out = []
     for r in refs:
-        found = {str(i): match_slot(s, products) for i, s in enumerate(r.slots)}
+        own = by_id.get(r.product or "")
+        shop = r.shop or (own.shop if own else "")
+        found: dict[str, list[str]] = {}
+        for i, s in enumerate(r.slots):
+            ids = match_slot(s, products)
+            if shop:  # 같은 쇼핑몰 먼저 (정렬은 안정적이라 나머지 순서는 그대로)
+                ids.sort(key=lambda pid: by_id[pid].shop != shop)
+            found[str(i)] = ids[:MAX_MATCHES]
+        pinned: dict[str, str] = {}
+        if own and own.status == "on_sale":
+            i = pin_slot(r, own)
+            if i is not None:
+                found[str(i)] = [own.id] + [x for x in found[str(i)] if x != own.id][
+                    : MAX_MATCHES - 1
+                ]
+                pinned[str(i)] = own.id
         ready = all(found[str(i)] for i, s in enumerate(r.slots) if s.category in REQUIRED)
         out.append(
-            r.model_copy(update={"matches": {k: v for k, v in found.items() if v}, "ready": ready})
+            r.model_copy(
+                update={
+                    "matches": {k: v for k, v in found.items() if v},
+                    "pinned": pinned,
+                    "ready": ready,
+                }
+            )
         )
     return out
+
+
+def shop_queries(refs: list[RefLook]) -> dict[Category, list[str]]:
+    """지그재그 착용컷 참고의 옷 칸을 쇼핑몰 이름과 함께 찾는 검색어 (같은 쇼핑몰 먼저)."""
+    plan: dict[Category, list[str]] = {}
+    for r in refs:
+        if not r.shop:
+            continue
+        for i, s in enumerate(r.slots):
+            if s.category not in REQUIRED or str(i) in r.pinned:
+                continue
+            q = f"{r.shop} {s.query}".strip()
+            if q not in plan.setdefault(s.category, []):
+                plan[s.category].append(q)
+    return plan
+
+
+def own_products(refs: list[RefLook], have: set[str]) -> list[str]:
+    """창고에 아직 없는, 참고 사진이 있던 상품 id."""
+    return list(dict.fromkeys(r.product for r in refs if r.product and r.product not in have))
 
 
 def missing_queries(refs: list[RefLook]) -> dict[Category, list[str]]:
@@ -129,6 +184,8 @@ def ref_queries(refs: list[RefLook]) -> set[str]:
     for r in refs:
         for s in r.slots:
             out.add(f"{s.color} {s.query}".strip())
+            if r.shop:
+                out.add(f"{r.shop} {s.query}".strip())
             if s.query.split():
                 out.add(f"{s.color} {s.query.split()[-1]}".strip())
     return out
@@ -454,7 +511,10 @@ def main(argv: list[str] | None = None) -> int:
     for r in refs:
         if (args.ready and not r.ready) or (args.tag and args.tag not in r.tags):
             continue
-        slots = " + ".join(f"{s.color} {s.query}" for s in r.slots)
+        slots = " + ".join(
+            f"{s.color} {s.query}" + (" [참고 원본 상품]" if str(i) in r.pinned else "")
+            for i, s in enumerate(r.slots)
+        )
         print(f"{r.n}\t{'준비' if r.ready else '모자람'}\t{','.join(r.tags)}\t{r.name}\t{slots}")
     return 0
 

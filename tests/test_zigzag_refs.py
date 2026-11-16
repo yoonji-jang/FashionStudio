@@ -117,3 +117,15 @@ def test_readd_renumbers_and_keeps_existing():
     again, out = zr.readd(added, other)
     assert [a["n"] for a in out] == [901, 900]
     assert again[-1].tags[:2] == ["크리스마스 데이트룩", "레드 니트"]
+
+
+def test_add_and_readd_keep_source_product():
+    refs, added, _ = zr.add(
+        [_item("https://cf.zigzag.kr/3_1.jpg")], _index(), [], [], "", 3, 3, DAY
+    )
+    assert refs[0].product == "zigzag:3" and refs[0].shop == "B"
+    # 예전 실행: refs.json 에 상품 없이 들어간 같은 사진 → 상품·쇼핑몰만 채움
+    old = [ref(n=840, photo="https://cf.zigzag.kr/3_1.jpg")]
+    again, out = zr.readd(added, old)
+    assert len(again) == 1 and again[0].n == 840 and again[0].product == "zigzag:3"
+    assert out[0]["n"] == 840

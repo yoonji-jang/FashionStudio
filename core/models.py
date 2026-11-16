@@ -60,8 +60,15 @@ class RefLook(BaseModel):
     tags: list[str] = []  # 어울리는 주제 (출근룩, 데이트룩, 하객룩, 롱스커트, 올블랙 …)
     note: str = ""  # 한 끗·실루엣·입는 방식
     slots: list[RefSlot] = Field(min_length=2)
-    # tools.refs match 가 채움: 칸 번호(0부터, 문자열) → 창고에서 맞을 만한 상품 id (좋은 순)
+    # 지그재그 착용컷이면 그 사진이 있던 상품과 쇼핑몰. 후보는 이 상품을 그 칸에 꼭 쓴다
+    # (2026-11-16 사용자: "참고컷 찾을때 본 상품을 써주면 좋겠어.
+    # 코디컷은 예쁘고 개성있는데 너가고른 제품들은 다 무난하거든")
+    product: str | None = None  # "zigzag:<번호>"
+    shop: str = ""
+    # tools.refs match 가 채움: 칸 번호(0부터, 문자열) → 창고에서 맞을 만한 상품 id
+    # (좋은 순, 같은 쇼핑몰 먼저)
     matches: dict[str, list[str]] = {}
+    pinned: dict[str, str] = {}  # 칸 번호 → 꼭 쓸 상품 (참고 사진이 있던 바로 그 상품)
     ready: bool = False  # 꼭 맞춰야 하는 칸(아우터·상의·하의·원피스·신발)이 모두 창고에 있음
 
 
