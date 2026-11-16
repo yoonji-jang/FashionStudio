@@ -17,6 +17,7 @@ import argparse
 import json
 import math
 import os
+import re
 import shutil
 import sys
 import time
@@ -298,14 +299,15 @@ def collect(
 
     # 기준이 바뀌면(가격대·제외어) 창고에 있던 상품도 같이 거른다
     report.floors = dict(getattr(source, "floors", {}))
-    # 참고 사진이 있던 상품(지그재그 착용컷)은 가격대·제외어와 상관없이 남긴다
-    own = {r.product for r in store.refs() if r.product}
+    # 참고 사진 속 상품(지그재그 착용컷)은 가격대·제외어와 상관없이 남긴다
+    from tools import refs as refs_tool
+
+    own = {pid for r in store.refs() for pid in refs_tool.worn_ids(r)}
     unfit = [p for p in stock.values() if p.id not in own and not fits(p, cfg, report.floors)]
     for p in unfit:
         stock.pop(p.id)
     report.unfit = len(unfit)
     # 참고 코디 칸의 검색어로 모았거나 칸에 맞춰진 상품은 창고 한도와 상관없이 남긴다 (2026-10-13)
-    from tools import refs as refs_tool
 
     pinned = refs_tool.ref_queries(store.refs())
     # 이미 참고 코디 칸에 맞춰진 상품도 남긴다 (다른 검색어로 모였어도)
@@ -459,30 +461,65 @@ def product_sheet(
     return out
 
 
-def add_own_products(store: Store, refs: list, fetch=None) -> list[Product]:
-    """참고 사진이 있던 지그재그 상품(RefLook.product)이 창고에 없으면
-    그 상품 페이지를 한 번 읽어 넣는다. 못 읽은 상품은 건너뛴다
-    (2026-11-16 사용자: "참고컷 찾을때 본 상품을 써주면 좋겠어")."""
-    from sources import zigzag
+def parse_items(text: str) -> dict[Category, list[str]]:
+    """ "상의=캐럴 헤어리 니트;하의=헤더 숏팬츠,모직 숏팬츠" → {카테고리: [검색어]} (줄바꿈도 ;)."""
+    plan: dict = {}
+    for part in text.replace("\n", ";").split(";"):
+        cat, _, qs = part.partition("=")
+        cat = cat.strip()
+        if cat not in ("아우터", "상의", "하의", "원피스", "가방", "신발", "소품"):
+            if part.strip():
+                print(f"카테고리를 모름, 건너뜀: {part.strip()}", file=sys.stderr)
+            continue
+        for q in (x.strip() for x in qs.split(",")):
+            if q and q not in plan.setdefault(cat, []):
+                plan[cat].append(q)
+    return plan
+
+
+def add_products(
+    store: Store, items: list[tuple[str, Category | None]], query: str, fetch=None
+) -> list[Product]:
+    """지그재그 상품 링크를 한 번씩 읽어 창고에 넣는다 (검색·창고 다시 확인 없이, 2026-11-16).
+    items: (링크, 아는 종류). 이미 창고에 있으면 건너뛰고, 못 읽은 상품도 건너뛴다."""
     from tools import pick
-    from tools import refs as refs_tool
 
     products = {p.id: p for p in store.products()}
     added: list[Product] = []
-    for pid in refs_tool.own_products(refs, set(products)):
-        url = zigzag.PRODUCT_URL.format(id=pid.split(":", 1)[-1])
+    for url, category in items:
+        m = pick.LINK_ID.search(url)
+        if m and f"zigzag:{m.group(1)}" in products:
+            continue
         try:
             p = pick.link_product(url, "", date.today(), **({"fetch": fetch} if fetch else {}))
         except Exception as e:  # noqa: BLE001 - 한 상품 실패해도 계속
-            print(f"참고 원본 상품을 읽지 못함 {pid}: {e}", file=sys.stderr)
+            print(f"상품을 읽지 못함 {url}: {e}", file=sys.stderr)
             continue
-        p = p.model_copy(update={"query": "참고 원본 상품"})
+        update: dict = {"query": query}
+        if category:
+            update["category"] = category
+        p = p.model_copy(update=update)
         products[p.id] = p
         added.append(p)
     if added:
         store.save_products(list(products.values()))
-        print(f"참고 원본 상품 {len(added)}개 창고에 넣음")
+    print(f"{query} {len(added)}개 창고에 넣음")
     return added
+
+
+def add_own_products(store: Store, refs: list, fetch=None) -> list[Product]:
+    """참고 사진 속 지그재그 상품(사진이 있던 상품, 함께 코디한 상품)이 창고에 없으면 넣는다
+    (2026-11-16 사용자: "참고컷 찾을때 본 상품을 써주면 좋겠어", "제품링크들도 기억해놔")."""
+    from sources import zigzag
+    from tools import refs as refs_tool
+
+    have = {p.id for p in store.products()}
+    known = {x.id: x.category for r in refs for x in r.products}
+    items = [
+        (zigzag.PRODUCT_URL.format(id=pid.split(":", 1)[-1]), known.get(pid))
+        for pid in refs_tool.own_products(refs, have)
+    ]
+    return add_products(store, items, "참고 원본 상품", fetch) if items else []
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -504,6 +541,17 @@ def main(argv: list[str] | None = None) -> int:
         "--ref-photos",
         help="--from-refs 때 이 사진(JSON 목록, 텔레그램 파일 번호)의 참고 코디 칸만 모음",
     )
+    ap.add_argument("--refs", help="--from-refs 때 이 참고 번호만 (쉼표로, 빠른 수집)")
+    ap.add_argument(
+        "--link",
+        action="append",
+        default=[],
+        help="이 지그재그 상품 링크만 바로 창고에 넣음 (여러 번, 검색·다시 확인 없음)",
+    )
+    ap.add_argument(
+        "--items",
+        help='여러 카테고리 검색어를 한 번에 "상의=검색어,검색어;하의=검색어" (다시 확인 없음)',
+    )
     args = ap.parse_args(argv)
     # 게시물 만들기(daily) 안의 수집은 시간을 정해 둔다: 창고 전체 다시 확인과 긴 검색으로
     # 90분 제한을 넘겨 후보 없이 끝났다 (2026-10-22 run337). 워크플로가 환경 변수로 기본값을 준다
@@ -516,11 +564,24 @@ def main(argv: list[str] | None = None) -> int:
 
     profile = load_profile(args.account)
     store = Store(args.account)
+    if args.link:
+        # 빠른 수집 (2026-11-16 사용자: 한 번 수집에 2시간 가까이): 링크만 읽어 넣고 끝낸다
+        add_products(store, [(u, None) for u in args.link], "사람이 보낸 링크")
+        refs = refs_tool.match(store.refs(), store.products())
+        store.save_refs(refs)
+        return 0
+    if args.items:
+        args.no_recheck = True
+        args.category = None
     plan: dict = dict(profile.product_source.queries)
     if args.from_refs:
-        add_own_products(store, store.refs())
+        only = {int(x) for x in re.findall(r"\d+", args.refs or "")}
+        if only:
+            args.no_recheck = True
+        targets = [r for r in store.refs() if not only or r.n in only]
+        add_own_products(store, targets)
         store.save_refs(refs_tool.match(store.refs(), store.products()))
-        wanted = store.refs()
+        wanted = [r for r in store.refs() if not only or r.n in only]
         if args.ref_photos:
             # 2026-10-26: 사용자가 보낸 사진만 옮겼으면 그 코디 칸만 (전체를 찾으면 2시간)
             from tools.scout import user_ref
@@ -534,6 +595,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"참고 코디에서 찾을 검색어 {sum(map(len, plan.values()))}개")
         if args.per_query is None:
             args.per_query = 8  # 칸마다 고를 거리가 넉넉하도록 (사용자 2026-10-13 "넉넉하게")
+    elif args.items:
+        plan = parse_items(args.items)
     elif args.category:
         plan = {args.category: args.query or plan.get(args.category, [])}
     elif args.query:

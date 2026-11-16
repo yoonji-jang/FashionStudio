@@ -80,6 +80,7 @@ def sheets(
     """검색어마다 인기 상품 per_term 개의 상세 사진 확인표를 만든다. 반환: summary."""
     from sources import zigzag
     from tools import scout
+    from tools.pick import guess_category
 
     out.mkdir(parents=True, exist_ok=True)
     terms = [t for _, ts in styles for t in ts]
@@ -87,6 +88,8 @@ def sheets(
     index: list[dict] = []
     notes: list[str] = []
     seen: set[str] = set()
+    page_keys: list[str] = []
+    with_together = 0
     with scout.client() as c:
         for si, (style, ts) in enumerate(styles, 1):
             folder = out / f"s{si}"
@@ -102,7 +105,8 @@ def sheets(
                     seen.add(pid)
                     url = zigzag.PRODUCT_URL.format(id=pid)
                     try:
-                        info = zigzag.parse_page(*scout.fetch_page(c, url))
+                        code, text = scout.fetch_page(c, url)
+                        info = zigzag.parse_page(code, text)
                     except Exception as e:  # noqa: BLE001 - 한 상품 실패해도 계속
                         notes.append(f"{term}: 상품 {pid} 페이지 못 읽음 ({type(e).__name__})")
                         continue
@@ -121,6 +125,20 @@ def sheets(
                         continue
                     n += 1
                     made += 1
+                    if not page_keys:
+                        page_keys = zigzag.page_queries(text)
+                    together = zigzag.together_products(text, pid)
+                    if together:
+                        with_together += 1
+                    own = {"id": f"zigzag:{pid}", "name": info.name or card.get("title") or ""}
+                    worn = [
+                        {
+                            **x,
+                            "url": zigzag.PRODUCT_URL.format(id=x["id"].split(":")[1]),
+                            "category": guess_category(x["name"]) if x["name"] else None,
+                        }
+                        for x in [own, *together]
+                    ]
                     path = folder / f"sheet_{n}.jpg"
                     sheet.save(path, quality=80)
                     index.append(
@@ -136,6 +154,7 @@ def sheets(
                                 card.get("display_review_count", card.get("review_count"))
                             ),
                             "images": kept,
+                            "worn": worn,
                         }
                     )
                 notes.append(f"{term}: 상품 {len(picked)}개 중 확인표 {made}장")
@@ -145,6 +164,8 @@ def sheets(
             {"style": s, "folder": f"s{i}", "terms": ts} for i, (s, ts) in enumerate(styles, 1)
         ],
         "sheets": len(index),
+        "with_together": with_together,  # 함께 코디한 상품을 찾은 확인표 수
+        "page_queries": page_keys,  # 상품 페이지 조회 이름 (함께 코디한 상품 찾기 확인용)
         "notes": notes,
     }
     (out / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), "utf-8")
@@ -200,6 +221,7 @@ def add(
             "source": SOURCE,
             "product": row["product"],
             "shop": row["shop"],
+            "products": row.get("worn") or [{"id": row["product"]}],
             "added": today.isoformat(),
             "tags": tags,
         }
@@ -234,6 +256,8 @@ def readd(added: list[dict], refs: list[RefLook]) -> tuple[list[RefLook], list[d
     out: list[dict] = []
     for a in added:
         own = {"product": a.get("product"), "shop": a.get("shop") or ""}
+        if a["ref"].get("products"):
+            own["products"] = a["ref"]["products"]
         k = where.get(a["photo"])
         if k is not None:
             refs[k] = refs[k].model_copy(update=own)

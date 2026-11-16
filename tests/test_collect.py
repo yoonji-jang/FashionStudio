@@ -670,3 +670,29 @@ def test_add_own_products_reads_ref_source_page(tmp_path, monkeypatch):
     ]
     assert s.products()[0].query == "참고 원본 상품"
     assert col.add_own_products(s, [r]) == []  # 이미 창고에 있음
+
+
+def test_parse_items():
+    from tools.collect import parse_items
+
+    assert parse_items("상의=캐럴 니트, 헤어리 니트;하의=모직 숏팬츠\n이상=x") == {
+        "상의": ["캐럴 니트", "헤어리 니트"],
+        "하의": ["모직 숏팬츠"],
+    }
+
+
+def test_link_mode_adds_products_without_search(tmp_path, monkeypatch):
+    from core.store import Store
+    from tests.test_plan import product
+    from tools import collect as col
+    from tools import pick
+
+    s = Store("women", root=tmp_path / "data")
+    s.save_products([])
+    s.save_refs([])
+    monkeypatch.setattr(col, "Store", lambda acct: s)
+    monkeypatch.setattr(pick, "link_product", lambda url, hint, today, **kw: product(8, "하의"))
+    monkeypatch.setattr(col, "collect", lambda *a, **k: (_ for _ in ()).throw(AssertionError))
+    url = "https://zigzag.kr/catalog/products/8"
+    assert col.main(["--account", "women", "--link", url]) == 0
+    assert [p.id for p in s.products()] == ["zigzag:8"]

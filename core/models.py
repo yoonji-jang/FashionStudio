@@ -49,6 +49,18 @@ class RefSlot(BaseModel):
     query: str  # 지그재그 검색어 "모크넥 니트베스트" (색은 빼고 종류만)
 
 
+class RefProduct(BaseModel):
+    """참고 사진 속 한 벌을 이루는 지그재그 상품 (사진이 있던 상품 + 함께 코디한 상품).
+    2026-11-16 사용자: "참고코디컷 찾을때 제품링크들도 기억해놔.
+    그래야 선택 됐을때 따로 검색 안해도 되니까".
+    판매자 정보는 넣지 않는다."""
+
+    id: str  # "zigzag:<번호>"
+    url: str = ""
+    name: str = ""
+    category: Category | None = None
+
+
 class RefLook(BaseModel):
     """참고 코디 한 벌. data/<계정>/refs.json. 쇼핑몰 착용컷을 칸별로 옮긴 것 (사진은 주소만)."""
 
@@ -65,6 +77,7 @@ class RefLook(BaseModel):
     # 코디컷은 예쁘고 개성있는데 너가고른 제품들은 다 무난하거든")
     product: str | None = None  # "zigzag:<번호>"
     shop: str = ""
+    products: list[RefProduct] = []  # 사진 속 옷 상품 링크 (첫 번째가 사진이 있던 상품)
     # tools.refs match 가 채움: 칸 번호(0부터, 문자열) → 창고에서 맞을 만한 상품 id
     # (좋은 순, 같은 쇼핑몰 먼저)
     matches: dict[str, list[str]] = {}
