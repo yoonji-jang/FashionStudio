@@ -84,6 +84,15 @@ jobs:
           claude_args: >-
             --max-turns 60
             --allowedTools "Bash(python -m tools.feedback summary:*),Bash(python -m core.profile:*),Bash(python -m pytest:*),Read,Write,Edit,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 계획 보내기 (plan)
         if: inputs.step == 'plan'
