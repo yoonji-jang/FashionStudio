@@ -140,6 +140,24 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
    `out/user_refs/list.json` 의 사진마다 한 벌씩, `photo` 는 list.json 의 `photo`(`tg:` 로 시작) 그대로, `source` 는 "사용자 사진",
    `tags` 첫 번째는 주제 제목. 사용자가 고른 코디라 주제와 덜 맞아도 빼지 않는다. 흐름이 이 코디들로 바로 후보를 만든다.
 
+## 지그재그 착용컷 검색 (주제마다, zigzag-refs 워크플로)
+2026-11-16 사용자: "주제별로 지그재그에서 코디를 검색해봐. 내가 매번 참고코디 보내는게 너무 번거로워. 후보를 여러개 줘. 고르는 기준도 정하고".
+주제를 스타일 몇 개(예: 레드 니트, 벨벳, 퍼)로 나누고, 스타일마다 지그재그 상품 상세의 모델 착용컷에서 쇼핑몰이 직접 입힌 한 벌을 고른다.
+
+1. **검색어** (클로드 스레드): 스타일마다 굵직한 검색어 1~2개 (예 "레드 니트", "벨벳 원피스"). 고르는 기준과 함께
+   **검색하기 전에 사용자 승인**을 받고, 승인받은 것만 워크플로 `terms` 로 넘긴다 ("스타일=검색어,검색어;…").
+   코드(`tools.zigzag_refs sheets`)가 검색어마다 판매 중인 상품을 리뷰 많은 순으로 20개쯤 열어 상세 사진 확인표
+   `out/zigzag_refs/s<번호>/sheet_N.jpg`(칸 왼쪽 위 번호)와 `index.json`(확인표마다 style·product·shop·칸 번호 순 `images`)을 만든다.
+2. **고르기** (워크플로의 Claude): 맡은 스타일 폴더의 모든 확인표를 보고 `out/zigzag_refs/criteria.md` 기준에 맞는 착용컷을 고른다.
+   - 스타일마다 `per_style` 벌(보통 3), 한 쇼핑몰 `per_shop` 벌까지, 한 상품에서 한 벌. 서로 다른 실루엣으로.
+   - 한 벌 형식은 위 "참고 코디 모으기" 3번과 같다. `photo` 는 index.json 의 `images[칸 번호-1]` 그대로.
+     `source`·`added`·`tags` 첫 두 개(주제 제목, 스타일)는 명령이 채운다. `tags` 에는 상황·아이템·분위기만 더 적는다.
+   - 사진에 보이는 옷을 칸마다 옮긴다 (그 상품 자체도 한 칸). 신발·가방·소품이 안 보이면 어울리게 정하고 desc 에 "(안 보임, 어울리게)".
+   - `python -m tools.zigzag_refs add --account $ACCOUNT --new out/zigzag_refs_new_<폴더>.json --theme <주제>` 로 더한다.
+     확인표에 없는 사진, 개수 초과는 명령이 빼고 "뺌:" 으로 알려 준다. 그러면 다른 사진으로 다시 고른다.
+3. 워크플로가 refs.json 을 커밋하고 collect(from_refs, 텔레그램 끔)로 옷을 모은 뒤, `candidates_date`·`pick_theme` 이 있으면
+   이번에 더한 참고 번호로 daily candidates 를 부른다 (후보 확인표 왼쪽에 참고 사진).
+
 ## 제안 (차례 흐름, profile `flow.enabled`, theme-options 워크플로)
 한 게시물이 게시되면 다음 게시물 주제를 사용자에게 허락받는다 (2026-10-14 사용자: "주제 정하는거도 허락 받아줘").
 게시물 하나의 주제를 `flow.theme_options` 개(보통 3개) 제안한다. 위 "정하는 방법"을 그날 하루 기준으로 따른다.

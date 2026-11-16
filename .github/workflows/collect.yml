@@ -34,6 +34,9 @@ on:
       then_candidates:
         description: 수집 뒤 이 게시 날짜의 코디 후보를 보냄 (주간 주제가 씀)
         default: ""
+      candidates_pick:
+        description: then_candidates 때 daily candidates 에 넘길 pick JSON (zigzag-refs 가 씀, 텔레그램 설정도 따라감)
+        default: ""
       user_photos:
         description: from_refs 때 사용자가 보낸 이 사진(JSON 목록, 텔레그램 파일 번호)의 참고 코디만 모으고 묶음은 보내지 않음
         default: ""
@@ -164,9 +167,12 @@ jobs:
         if: inputs.then_candidates != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PICK: ${{ inputs.candidates_pick }}
         run: |
-          gh workflow run daily.yml --ref "${{ github.ref_name }}" -f account="$ACCOUNT" \
-            -f date="${{ inputs.then_candidates }}" -f mode=candidates -f sandbox=false
+          args=(-f account="$ACCOUNT" -f date="${{ inputs.then_candidates }}" -f mode=candidates -f sandbox=false)
+          # zigzag-refs: 이번에 찾은 참고 코디로 후보 ({"theme": …, "refs": […], "count": N}), 텔레그램 설정도 그대로
+          [ -n "$PICK" ] && args+=(-f pick="$PICK" -f telegram="${{ inputs.telegram }}")
+          gh workflow run daily.yml --ref "${{ github.ref_name }}" "${args[@]}"
 
       - name: scout-results 브랜치에 보고서 커밋
         if: always()
