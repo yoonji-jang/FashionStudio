@@ -215,9 +215,27 @@ def add(
                 "shop": row["shop"],
                 "product": row["product"],
                 "photo": photo,
+                # 다시 돌릴 때(readd) 같은 고르기를 그대로 쓰려고 한 벌 전체를 남긴다
+                "ref": ref.model_dump(mode="json", exclude={"matches", "ready"}),
             }
         )
     return refs + new, added, skipped
+
+
+def readd(added: list[dict], refs: list[RefLook]) -> tuple[list[RefLook], list[dict]]:
+    """지난 실행이 고른 착용컷(added.json 의 ref)을 번호를 새로 매겨 다시 더한다 (검색·고르기 없이).
+    이미 refs.json 에 있는 사진은 그 번호를 그대로 쓴다."""
+    by_photo = {r.photo: r for r in refs}
+    start = max((r.n for r in refs), default=100) + 1
+    new: list[RefLook] = []
+    out: list[dict] = []
+    for a in added:
+        have = by_photo.get(a["photo"])
+        if have is None:
+            have = RefLook.model_validate({**a["ref"], "n": start + len(new)})
+            new.append(have)
+        out.append({**a, "n": have.n, "ref": {**a["ref"], "n": have.n}})
+    return refs + new, out
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -235,6 +253,9 @@ def main(argv: list[str] | None = None) -> int:
     a.add_argument("--per-style", type=int, default=3)
     a.add_argument("--per-shop", type=int, default=3)
     a.add_argument("--out", type=Path, default=OUT)
+    r = sub.add_parser("readd", help="지난 실행의 added.json 을 refs.json 에 다시 더함")
+    r.add_argument("--account", required=True)
+    r.add_argument("--out", type=Path, default=OUT)
     nb = sub.add_parser("numbers", help="이번에 더한 참고 번호 (JSON 목록)")
     nb.add_argument("--out", type=Path, default=OUT)
     args = ap.parse_args(argv)
@@ -254,8 +275,18 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     store = Store(args.account)
-    index = _load(args.out / "index.json", [])
     added_path = args.out / "added.json"
+    if args.cmd == "readd":
+        old = _load(added_path, [])
+        if not old or any("ref" not in a for a in old):
+            print("다시 더할 고른 코디가 없음 (added.json 에 ref 가 없음)", file=sys.stderr)
+            return 1
+        refs, added = readd(old, store.refs())
+        store.save_refs(refs)
+        added_path.write_text(json.dumps(added, ensure_ascii=False, indent=1), "utf-8")
+        print(f"지난 실행의 참고 코디 {len(added)}벌 다시 더함: {[a['n'] for a in added]}")
+        return 0
+    index = _load(args.out / "index.json", [])
     items = json.loads(args.new.read_text("utf-8"))
     refs, added, skipped = add(
         items,
