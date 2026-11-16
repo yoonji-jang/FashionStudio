@@ -98,3 +98,22 @@ def test_add_cli_writes_numbers(tmp_path, monkeypatch):
     monkeypatch.setattr(zr, "Store", lambda acct: store_mod.Store(acct, tmp_path / "data"))
     assert zr.main(["add", "--account", "women", "--new", str(new), "--out", str(out)]) == 0
     assert json.loads((out / "added.json").read_text())[0]["n"] == 101
+
+
+def test_readd_renumbers_and_keeps_existing():
+    refs, added, _ = zr.add(
+        [_item("https://cf.zigzag.kr/1_1.jpg"), _item("https://cf.zigzag.kr/3_1.jpg")],
+        _index(),
+        [],
+        [ref(n=830)],
+        "크리스마스 데이트룩",
+        3,
+        3,
+        DAY,
+    )
+    assert all("ref" in a for a in added)
+    # 커밋이 안 된 새 실행: refs.json 에 없음 → 새 번호로
+    other = [ref(n=900, photo="https://cf.zigzag.kr/3_1.jpg")]
+    again, out = zr.readd(added, other)
+    assert [a["n"] for a in out] == [901, 900]
+    assert again[-1].tags[:2] == ["크리스마스 데이트룩", "레드 니트"]
