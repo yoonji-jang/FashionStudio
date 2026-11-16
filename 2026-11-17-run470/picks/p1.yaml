@@ -1,0 +1,282 @@
+account: women
+date: '2026-11-17'
+edit_refs: []
+items: []
+looks:
+- edit_refs: []
+  items:
+  - color: 레드
+    comment: ''
+    cutout_photo: 0
+    desc: 레드 앙고라 크롭 니트 (red angora cropped knit top, round neck, short sleeves)
+    name: 레드 앙고라 니트
+    product: zigzag:167353698
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 벨트 미니스커트 (black belted mini skirt)
+    name: 블랙 벨트 미니스커트
+    product: zigzag:133521354
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 롱부츠 (black long boots)
+    name: 블랙 롱부츠
+    product: zigzag:116422044
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black small shoulder bag)
+    name: 니치 숄더백
+    product: zigzag:168564549
+  - color: 실버
+    comment: ''
+    cutout_photo: 0
+    desc: 실버 롱 목걸이 (silver long drop pendant necklace)
+    name: 롱 목걸이
+    product: zigzag:162967207
+  point: ''
+  reason: 레드 앙고라 니트가 주인공, 블랙 가죽 미니와 롱부츠로 시크하게. 참고 홀터 폴라 + 암워머 → 맞춘 것 - 레드 앙고라 크롭 니트(홀터
+    없음, 창고에 같은 상품 없음), 가죽 미니 → 블랙 벨트 미니스커트(가죽 아님, 창고에 맞는 가죽 미니 사진 없음), 롱부츠, 블랙 숄더백.
+    (따라 함 - 참고 835) [점수 7]
+  ref: '835'
+  ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2024/11/5/21411_202411050047200425_24331.jpeg
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 오프숄더 골지 니트 (grey off-the-shoulder ribbed knit)
+    name: 오프숄더 니트
+    product: zigzag:131421251
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 베이직 홀터 나시 (plain white halter tank top)
+    name: 홀터 나시
+    product: zigzag:169324070
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 쇼츠 (black wool shorts)
+    name: 울 쇼츠
+    product: zigzag:131272324
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 스웨이드 싸이하이 부츠 (black suede thigh-high boots)
+    name: 싸이하이 부츠
+    product: zigzag:146939237
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 숄더백 (black shoulder bag)
+    name: 니치 숄더백
+    product: zigzag:168564549
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 니삭스 (one pair of white over-the-knee socks)
+    name: 화이트 니삭스
+    product: zigzag:100673075
+  point: ''
+  reason: 그레이 오프숄더 니트가 주인공, 블랙 울 쇼츠와 싸이하이 부츠로 시크하게. 참고 그레이 오프숄더 니트 + 흰 끈 나시 + 블랙 울
+    쇼츠 + 싸이하이 부츠 + 블랙 숄더백 → 같은 칸으로 맞춤. (따라 함 - 참고 837) [점수 8]
+  ref: '837'
+  ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2025/9/26/517_202509260934170065_63184.jpeg
+  requests: []
+- edit_refs: []
+  items:
+  - color: 레드
+    comment: ''
+    cutout_photo: 0
+    desc: 레드 앙고라 브이넥 니트 (red angora v-neck knit, can be worn off one shoulder)
+    name: 앙고라 브이넥 니트
+    product: zigzag:135314770
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 홀터넥 나시 (plain black halter tank top)
+    name: 홀터 나시
+    product: zigzag:153225273
+    wear_with: 상의
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 울 미니스커트 (black wool mini skirt)
+    name: 울 미니스커트
+    product: zigzag:150110018
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 슬라우치 부츠 (black slouchy long boots)
+    name: 슬라우치 부츠
+    product: zigzag:165705028
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 니삭스 (one pair of black knee socks)
+    name: 골지 니삭스
+    product: zigzag:168887889
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:168305853
+  point: ''
+  reason: 레드 브이넥 니트를 한쪽 어깨 내려 입는 게 주인공, 블랙 홀터 나시와 블랙 미니로 정리. 참고 레드 브이넥 니트 + 블랙 홀터
+    나시 + 블랙 미니 + 롱부츠 → 같은 칸으로 맞춤. (따라 함 - 참고 838) [점수 8]
+  ref: '838'
+  ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2026/3/11/4600_202603111441020688_78582.jpeg
+  requests: []
+- edit_refs: []
+  items:
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 브이넥 니트 가디건 (grey v-neck knit cardigan)
+    name: 브이넥 가디건
+    product: zigzag:148542208
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 하프넥 티 (ivory half-neck top)
+    name: 하프넥 티
+    product: zigzag:167444137
+    wear_with: 상의
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 체크 플리츠 스커트 (brown check pleated skirt)
+    name: 체크 롱스커트
+    product: zigzag:169381559
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레이스업 로퍼 (black lace-up loafers)
+    name: 레이스업 로퍼
+    product: zigzag:111145203
+  - color: 레드
+    comment: ''
+    cutout_photo: 0
+    desc: 레드 울 머플러 (red knit wool muffler)
+    name: 레드 머플러
+    product: zigzag:108860472
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 백
+    product: zigzag:165406385
+  point: ''
+  reason: 브라운 체크 플리츠 스커트가 주인공, 그레이 가디건과 레드 머플러로 크리스마스 느낌. 참고 그레이 브이넥 가디건 + 아이보리 하프넥
+    티 + 브라운 체크 플리츠 미디 + 블랙 레이스업 로퍼 + 레드 머플러 + 브라운 스웨이드 백 → 같은 칸으로 맞춤. (따라 함 - 참고 840)
+    [점수 7]
+  ref: '840'
+  ref_photo: https://grace-muse.com/web/product/extra/big/202601/ff3e74bfdfb9cc7e2c1efe6cfacb8eda.jpg
+  requests: []
+- edit_refs: []
+  items:
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 레더 벨티드 하프 자켓 (black synthetic leather belted jacket)
+    name: 레더 자켓
+    product: zigzag:171989033
+  - color: 아이보리
+    comment: ''
+    covers:
+    - 하의
+    cutout_photo: 0
+    desc: 아이보리 레이스 레이어드 슬립 원피스 (ivory lace layered slip dress)
+    name: 레이스 슬립 원피스
+    product: zigzag:157335607
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 버클 롱부츠 (black buckle long boots)
+    name: 버클 롱부츠
+    product: zigzag:171985452
+  - color: 그레이
+    comment: ''
+    cutout_photo: 0
+    desc: 그레이 니삭스 (one pair of grey knee socks)
+    name: 그레이 니삭스
+    product: zigzag:161559034
+  - color: 블랙
+    comment: ''
+    cutout_photo: 0
+    desc: 블랙 위빙 숄더백 (black woven shoulder bag)
+    name: 위빙 숄더백
+    product: zigzag:168305853
+  point: ''
+  reason: 아이보리 레이스 슬립 원피스가 주인공, 블랙 가죽 자켓과 그레이 니삭스를 겹쳐 겨울 차림으로. 참고 아이보리 레이스 슬립 원피스
+    + 블랙 가죽 자켓 + 그레이 니삭스 + 블랙 버클 부츠 → 같은 칸으로 맞춤. (따라 함 - 참고 848) [점수 8]
+  ref: '848'
+  ref_photo: https://cf.product-image.s.zigzag.kr/original/d/2026/3/26/55187_202603261030000560_12170.jpeg
+  requests: []
+- edit_refs: []
+  items:
+  - color: 아이보리
+    comment: ''
+    cutout_photo: 0
+    desc: 아이보리 헤어리 루즈핏 오프숄더 니트 (ivory hairy loose off-the-shoulder knit)
+    name: 헤어리 니트
+    product: zigzag:166080055
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 베이직 홀터 나시 (plain white halter tank top)
+    name: 화이트 나시
+    product: zigzag:169324070
+    wear_with: 상의
+  - color: 베이지
+    comment: ''
+    cutout_photo: 0
+    desc: 베이지 헤링본 모직 숏팬츠 (beige herringbone wool shorts)
+    name: 모직 숏팬츠
+    product: zigzag:172648588
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 롱부츠 (brown suede long boots)
+    name: 스웨이드 롱부츠
+    product: zigzag:147005253
+  - color: 화이트
+    comment: ''
+    cutout_photo: 0
+    desc: 화이트 니삭스 (one pair of white knee socks)
+    name: 골지 니삭스
+    product: zigzag:136839704
+  - color: 브라운
+    comment: ''
+    cutout_photo: 0
+    desc: 브라운 스웨이드 숄더백 (brown suede shoulder bag)
+    name: 스웨이드 백
+    product: zigzag:165406385
+  point: ''
+  reason: 아이보리 헤어리 니트를 오프숄더로 입는 게 주인공, 베이지 모직 숏팬츠와 브라운 롱부츠로 포근하게. 참고 아이보리 헤어리 루즈핏
+    니트 + 화이트 끈나시 + 베이지 모직 숏팬츠 + 흰 니삭스 + 브라운 롱부츠 → 같은 칸으로 맞춤. (따라 함 - 참고 850) [점수 8]
+  ref: '850'
+  ref_photo: sealed:u1116_01
+  requests: []
+reason: 사용자가 고른 참고 코디 여섯 벌(835·837·838·840·848·850)을 그대로 따라 크리스마스 데이트룩으로
+requests: []
+shot: flatlay
+theme:
+  date: '2026-11-17'
+  mood: 크리스마스 데이트에 어울리는 여성스럽고 예쁜 겨울 데이트룩. 레드·버건디·블랙·아이보리 포인트, 앙고라·퍼·체크·레이스 레이어드, 코스튬
+    없음
+  search_terms: {}
+  slots:
+  - category: 상의
+    desc: 포인트 니트
+  - category: 하의
+    desc: 미니·플리츠 스커트
+  - category: 신발
+    desc: 롱부츠
+  title_hint: 크리스마스 데이트룩
+  why: ''
