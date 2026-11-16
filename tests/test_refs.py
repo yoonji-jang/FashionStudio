@@ -270,3 +270,19 @@ def test_match_pins_ref_own_product_and_prefers_same_shop():
     assert m.matches["1"] == ["zigzag:12", "zigzag:11"]  # 같은 쇼핑몰 먼저
     assert refs.shop_queries([m]) == {"하의": ["로즈 미디 스커트"]}
     assert refs.own_products([m], {"zigzag:1"}) == ["zigzag:10"]
+
+
+def test_match_pins_together_products_to_other_slots():
+    from core.models import RefProduct
+
+    knit = product(20, "상의", shop="로즈").model_copy(update={"name": "앙고라 니트"})
+    skirt = product(21, "하의", shop="로즈").model_copy(update={"name": "벨벳 스커트"})
+    r = ref().model_copy(
+        update={
+            "product": "zigzag:20",
+            "products": [RefProduct(id="zigzag:20"), RefProduct(id="zigzag:21")],
+        }
+    )
+    [m] = refs.match([r], [knit, skirt])
+    assert m.pinned == {"0": "zigzag:20", "1": "zigzag:21"} and m.ready
+    assert refs.own_products([r], {"zigzag:20"}) == ["zigzag:21"]

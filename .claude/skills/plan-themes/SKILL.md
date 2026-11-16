@@ -151,7 +151,7 @@ no_repeat_days, avoid), `audience`, `style`, `accounts/$ACCOUNT/styling.md` (코
 2. **고르기** (워크플로의 Claude): 맡은 스타일 폴더의 모든 확인표를 보고 `out/zigzag_refs/criteria.md` 기준에 맞는 착용컷을 고른다.
    - 스타일마다 `per_style` 벌(보통 3), 한 쇼핑몰 `per_shop` 벌까지, 한 상품에서 한 벌. 서로 다른 실루엣으로.
    - 한 벌 형식은 위 "참고 코디 모으기" 3번과 같다. `photo` 는 index.json 의 `images[칸 번호-1]` 그대로.
-     `source`·`added`·`product`(사진이 있던 상품)·`shop`·`tags` 첫 두 개(주제 제목, 스타일)는 명령이 채운다.
+     `source`·`added`·`product`(사진이 있던 상품)·`shop`·`products`(사진 속 상품 링크: 그 상품 + 페이지의 함께 코디한 상품)·`tags` 첫 두 개(주제 제목, 스타일)는 명령이 채운다.
      그 상품은 후보에서 그 칸에 꼭 쓰이니(`pinned`), 그 상품이 들어갈 칸의 색·종류를 사진 그대로 적는다. `tags` 에는 상황·아이템·분위기만 더 적는다.
    - 사진에 보이는 옷을 칸마다 옮긴다 (그 상품 자체도 한 칸). 신발·가방·소품이 안 보이면 어울리게 정하고 desc 에 "(안 보임, 어울리게)".
    - `python -m tools.zigzag_refs add --account $ACCOUNT --new out/zigzag_refs_new_<폴더>.json --theme <주제>` 로 더한다.

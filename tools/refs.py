@@ -96,14 +96,19 @@ def match_slot(slot: RefSlot, products: list[Product]) -> list[str]:
     return [s[-1] for s in scored]
 
 
-def pin_slot(r: RefLook, p: Product) -> int | None:
-    """참고 사진이 있던 상품이 들어갈 칸: 같은 카테고리의 첫 칸
+def pin_slot(r: RefLook, p: Product, taken: set[str] | frozenset = frozenset()) -> int | None:
+    """참고 사진 속 상품이 들어갈 칸: 아직 고정 안 된 같은 카테고리의 첫 칸
     (원피스·상의는 서로 대신할 수 있음)."""
     for cats in ({p.category}, {"원피스", "상의"} if p.category in ("원피스", "상의") else set()):
         for i, s in enumerate(r.slots):
-            if s.category in cats:
+            if s.category in cats and str(i) not in taken:
                 return i
     return None
+
+
+def worn_ids(r: RefLook) -> list[str]:
+    """참고 사진 속 상품 id (사진이 있던 상품 먼저, 함께 코디한 상품)."""
+    return list(dict.fromkeys([*([r.product] if r.product else []), *(x.id for x in r.products)]))
 
 
 def match(refs: list[RefLook], products: list[Product]) -> list[RefLook]:
@@ -122,13 +127,16 @@ def match(refs: list[RefLook], products: list[Product]) -> list[RefLook]:
                 ids.sort(key=lambda pid: by_id[pid].shop != shop)
             found[str(i)] = ids[:MAX_MATCHES]
         pinned: dict[str, str] = {}
-        if own and own.status == "on_sale":
-            i = pin_slot(r, own)
-            if i is not None:
-                found[str(i)] = [own.id] + [x for x in found[str(i)] if x != own.id][
-                    : MAX_MATCHES - 1
-                ]
-                pinned[str(i)] = own.id
+        # 사진 속 상품(사진이 있던 상품, 함께 코디한 상품)을 그 칸에 고정 (2026-11-16 사용자)
+        for pid in worn_ids(r):
+            p = by_id.get(pid)
+            if p is None or p.status != "on_sale":
+                continue
+            i = pin_slot(r, p, set(pinned))
+            if i is None:
+                continue
+            found[str(i)] = [p.id] + [x for x in found[str(i)] if x != p.id][: MAX_MATCHES - 1]
+            pinned[str(i)] = p.id
         ready = all(found[str(i)] for i, s in enumerate(r.slots) if s.category in REQUIRED)
         out.append(
             r.model_copy(
@@ -158,8 +166,8 @@ def shop_queries(refs: list[RefLook]) -> dict[Category, list[str]]:
 
 
 def own_products(refs: list[RefLook], have: set[str]) -> list[str]:
-    """창고에 아직 없는, 참고 사진이 있던 상품 id."""
-    return list(dict.fromkeys(r.product for r in refs if r.product and r.product not in have))
+    """창고에 아직 없는, 참고 사진 속 상품 id (사진이 있던 상품, 함께 코디한 상품)."""
+    return list(dict.fromkeys(pid for r in refs for pid in worn_ids(r) if pid not in have))
 
 
 def missing_queries(refs: list[RefLook]) -> dict[Category, list[str]]:

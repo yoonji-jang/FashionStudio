@@ -282,7 +282,8 @@ jobs:
           DATE: ${{ inputs.candidates_date }}
           PICK_THEME: ${{ inputs.pick_theme }}
         run: |
-          args=(-f account="$ACCOUNT" -f from_refs=true -f commit=true -f telegram=false)
+          # 이번 참고 번호만 빠르게 (사진 속 상품 링크를 바로 넣고 모자란 칸만 찾음)
+          args=(-f account="$ACCOUNT" -f from_refs=true -f commit=true -f telegram=false -f refs="$(jq -r 'join(",")' <<< "$NUMS")")
           if [ -n "$DATE" ] && [ -n "$PICK_THEME" ]; then
             pick=$(jq -cn --argjson t "$PICK_THEME" --argjson r "$NUMS" '{theme: $t, refs: $r, count: ($r | length)}')
             args+=(-f then_candidates="$DATE" -f candidates_pick="$pick")

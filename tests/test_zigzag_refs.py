@@ -129,3 +129,54 @@ def test_add_and_readd_keep_source_product():
     again, out = zr.readd(added, old)
     assert len(again) == 1 and again[0].n == 840 and again[0].product == "zigzag:3"
     assert out[0]["n"] == 840
+
+
+def test_together_products_reads_coordi_cards_only():
+    import json
+
+    from sources import zigzag
+
+    data = {
+        "props": {
+            "pageProps": {
+                "dehydratedState": {
+                    "queries": [
+                        {
+                            "queryKey": ["getPdpBaseInfo"],
+                            "state": {
+                                "data": {
+                                    "product": {
+                                        "catalog_product_id": 1,
+                                        "name": "본상품",
+                                        "coordi_product_list": [
+                                            {"catalog_product_id": 2, "title": "스커트"}
+                                        ],
+                                    }
+                                }
+                            },
+                        },
+                        {
+                            "queryKey": ["GetRecommendProducts"],
+                            "state": {
+                                "data": {"items": [{"catalog_product_id": 3, "title": "추천"}]}
+                            },
+                        },
+                        {
+                            "queryKey": ["GetCoordinateProducts"],
+                            "state": {
+                                "data": {"items": [{"catalog_product_id": 4, "title": "부츠"}]}
+                            },
+                        },
+                    ]
+                }
+            }
+        }
+    }
+    html = f'<script id="__NEXT_DATA__" type="application/json">{json.dumps(data)}</script>'
+    got = zigzag.together_products(html, "1")
+    assert {g["id"] for g in got} == {"zigzag:2", "zigzag:4"}
+    assert zigzag.page_queries(html) == [
+        "getPdpBaseInfo",
+        "GetRecommendProducts",
+        "GetCoordinateProducts",
+    ]

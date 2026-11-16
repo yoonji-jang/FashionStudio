@@ -231,6 +231,72 @@ def parse_page(status_code: int, page_html: str) -> PageInfo:
     )
 
 
+# 상품 페이지 안의 "함께 코디한 상품" 묶음을 찾을 이름
+# (페이지 구조를 모르는 채로 만들어, 키 이름으로 찾는다)
+_TOGETHER = re.compile(r"coordi|coordinate|styling|together|outfit|wear_with|코디", re.I)
+
+
+def page_queries(page_html: str) -> list[str]:
+    """페이지 데이터의 조회 이름 목록 (구조 확인용, 값은 담지 않음)."""
+    m = _NEXT_DATA.search(page_html)
+    if not m:
+        return []
+    try:
+        queries = json.loads(m.group(1))["props"]["pageProps"]["dehydratedState"]["queries"]
+    except (ValueError, KeyError, TypeError):
+        return []
+    out = []
+    for q in queries:
+        key = q.get("queryKey")
+        head = key[0] if isinstance(key, list) and key else key
+        if isinstance(head, str):
+            out.append(head[:60])
+    return out
+
+
+def together_products(page_html: str, main_id: str) -> list[dict]:
+    """상품 페이지에서 쇼핑몰이 함께 코디한 상품 [{id, name}] (사진 속 다른 옷).
+    2026-11-16 사용자: "참고코디컷 찾을때 제품링크들도 기억해놔".
+    이름에 코디·함께 같은 말이 든 조회나 칸 안의 상품 카드만 본다
+    (추천·같은 쇼핑몰 인기 상품은 빼려고). 판매자 정보는 읽지 않는다."""
+    m = _NEXT_DATA.search(page_html)
+    if not m:
+        return []
+    try:
+        queries = json.loads(m.group(1))["props"]["pageProps"]["dehydratedState"]["queries"]
+    except (ValueError, KeyError, TypeError):
+        return []
+    found: dict[str, dict] = {}
+
+    def take(obj: Any) -> None:
+        for c in iter_cards(obj):
+            pid = str(c.get("catalog_product_id"))
+            name = c.get("title") or c.get("name") or ""
+            if pid and pid != main_id and pid not in found:
+                found[pid] = {"id": f"zigzag:{pid}", "name": str(name)}
+
+    def walk(obj: Any, depth: int) -> None:
+        if depth > 8:
+            return
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if isinstance(k, str) and _TOGETHER.search(k):
+                    take(v)
+                else:
+                    walk(v, depth + 1)
+        elif isinstance(obj, list):
+            for v in obj:
+                walk(v, depth + 1)
+
+    for q in queries:
+        data = (q.get("state") or {}).get("data")
+        if _TOGETHER.search(json.dumps(q.get("queryKey"), ensure_ascii=False)):
+            take(data)
+        else:
+            walk(data, 0)
+    return list(found.values())
+
+
 _IMG_SRC = re.compile(r"""<img[^>]+?(?:data-src|ec-data-src|src)\s*=\s*["']([^"']+)["']""", re.I)
 _SIZE_WORDS = re.compile(
     r"총장|기장|어깨|가슴|소매|암홀|허리|엉덩이|힙|밑위|허벅지|밑단|화장|단면|실측"
