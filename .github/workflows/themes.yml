@@ -111,6 +111,15 @@ jobs:
           claude_args: >-
             --max-turns 90
             --allowedTools "Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.scout refs:*),Bash(uv run python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       # 쇼핑몰마다 메뉴 → 상품 페이지를 코드가 돌며 확인표를 만든다 (Claude 는 확인표만 본다, 2026-10-13)
       - name: 지난 실행의 확인표 받기
@@ -183,6 +192,15 @@ jobs:
           claude_args: >-
             --max-turns 300
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 참고 코디 모으기 2/6 (plan-themes "참고 코디 모으기")
         if: env.REFS_GROUP_2 != ''
@@ -213,6 +231,15 @@ jobs:
           claude_args: >-
             --max-turns 300
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 참고 코디 모으기 3/6 (plan-themes "참고 코디 모으기")
         if: env.REFS_GROUP_3 != ''
@@ -243,6 +270,15 @@ jobs:
           claude_args: >-
             --max-turns 300
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 참고 코디 모으기 4/6 (plan-themes "참고 코디 모으기")
         if: env.REFS_GROUP_4 != ''
@@ -273,6 +309,15 @@ jobs:
           claude_args: >-
             --max-turns 300
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 참고 코디 모으기 5/6 (plan-themes "참고 코디 모으기")
         if: env.REFS_GROUP_5 != ''
@@ -303,6 +348,15 @@ jobs:
           claude_args: >-
             --max-turns 300
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 참고 코디 모으기 6/6 (plan-themes "참고 코디 모으기")
         if: env.REFS_GROUP_6 != ''
@@ -333,6 +387,15 @@ jobs:
           claude_args: >-
             --max-turns 300
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       # 2026-10-26 사용자: 주제 직전에 그 주제로 이미지를 검색해서 참고 코디를 고른다 (다음·네이버 공식 API).
       # Claude 는 검색어만 정하고, 검색·확인표는 코드가 키를 써서 만든다 (Claude 에게 키를 주지 않음)
@@ -350,6 +413,15 @@ jobs:
           claude_args: >-
             --max-turns 15
             --allowedTools "Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 이미지 검색 확인표 만들기 (tools.ref_search)
         if: env.REF_SEARCH == '1' && inputs.refs_only && inputs.user_photos == ''
@@ -386,6 +458,15 @@ jobs:
           claude_args: >-
             --max-turns 250
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       # 사용자가 텔레그램으로 보낸 참고 사진 (차례 흐름이 파일 번호를 넘김). 사진은 out/ 에만 받고 저장소에 올리지 않는다
       - name: 보낸 참고 사진 받기
@@ -439,6 +520,15 @@ jobs:
           claude_args: >-
             --max-turns 60
             --allowedTools "Bash(python -m tools.refs list:*),Bash(python -m tools.refs add:*),Read,Write,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       # 쇼핑몰 접속 시험 (ref_test): 새 쇼핑몰 주소를 찾아 확인표를 만들어 본다
       - name: Claude 쇼핑몰 접속 시험
@@ -457,6 +547,15 @@ jobs:
           claude_args: >-
             --max-turns 80
             --allowedTools "Bash(python -m tools.scout refs:*),Bash(python -m tools.scout links:*),Read,Write,Glob,Grep,WebSearch,WebFetch"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 참고 코디 검사·보고 합치기
         if: always()

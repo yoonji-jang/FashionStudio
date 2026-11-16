@@ -319,6 +319,15 @@ jobs:
           claude_args: >-
             --max-turns 150
             --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.plan themes:*),Bash(python -m tools.collect:*),Bash(python -m tools.scout refphoto:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 후보 검사·텔레그램으로 보내기
         if: env.MODE == 'candidates'
@@ -356,6 +365,15 @@ jobs:
           claude_args: >-
             --max-turns 80
             --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan context:*),Bash(python -m tools.plan candidates:*),Bash(python -m tools.plan photos:*),Bash(python -m tools.plan check:*),Bash(python -m tools.scout refphoto:*),Bash(python -m tools.refs list:*),Read,Write,Edit,Glob,Grep"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 고친 후보 텔레그램으로 보내기
         if: env.MODE == 'edit'
@@ -398,6 +416,15 @@ jobs:
           claude_args: >-
             --max-turns 180
             --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Bash(python -m tools.feedback summary:*),Bash(python -m tools.feedback ref-photos:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 모델컷 게시물 (model-feed 스킬)
         if: env.MODE == 'model'
@@ -422,6 +449,15 @@ jobs:
           claude_args: >-
             --max-turns 200
             --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: Claude 기획 (daily-feed 스킬, 고른 후보가 있으면 사진 확인부터)
         if: env.PLAN == '' && env.MODE != 'candidates' && env.MODE != 'edit' && env.MODE != 'fix' && env.MODE != 'model'
@@ -450,6 +486,15 @@ jobs:
           claude_args: >-
             --max-turns 250
             --allowedTools "Bash(python -m tools.progress note:*),Bash(python -m tools.plan:*),Bash(python -m tools.collect:*),Bash(python -m tools.review:*),Read,Write,Edit,Glob,Grep,Task,Agent"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 기획 파일로 만들기
         if: env.PLAN != ''
@@ -483,6 +528,15 @@ jobs:
           claude_args: >-
             --max-turns 120
             --allowedTools "Bash(python -m tools.review:*),Read,Write,Glob,Task,Agent"
+      # claude-code-action 이 끝나며 git 인증을 지운다 (11/16 push 실패) → 뒤 단계 push 를 위해 토큰을 다시 건다
+      - name: git 인증 다시 걸기
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
 
       - name: 릴스 만들기 (19단계, profile reels)
         if: env.MODE != 'candidates' && env.MODE != 'edit'
