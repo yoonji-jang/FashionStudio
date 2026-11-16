@@ -644,3 +644,29 @@ def test_few_sold_out_are_dropped(tmp_path: Path):
         "women", plan={}, source=source, store=store, fetch=fake_fetch, today=TODAY
     )
     assert len(store.products()) == 27 and report.held == {}
+
+
+def test_add_own_products_reads_ref_source_page(tmp_path, monkeypatch):
+    from core.store import Store
+    from tests.test_refs import ref
+    from tools import collect as col
+    from tools import pick
+
+    s = Store("women", root=tmp_path / "data")
+    s.save_products([])
+    seen = []
+
+    def fake(url, hint, today, **kw):
+        seen.append(url)
+        from tests.test_plan import product
+
+        return product(7, "상의")
+
+    monkeypatch.setattr(pick, "link_product", fake)
+    r = ref().model_copy(update={"product": "zigzag:7"})
+    added = col.add_own_products(s, [r, ref(n=102)])
+    assert [p.id for p in added] == ["zigzag:7"] and seen == [
+        "https://zigzag.kr/catalog/products/7"
+    ]
+    assert s.products()[0].query == "참고 원본 상품"
+    assert col.add_own_products(s, [r]) == []  # 이미 창고에 있음

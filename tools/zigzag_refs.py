@@ -198,6 +198,8 @@ def add(
             **{k: v for k, v in item.items() if k not in ("n", "matches", "ready")},
             "n": start + len(new),
             "source": SOURCE,
+            "product": row["product"],
+            "shop": row["shop"],
             "added": today.isoformat(),
             "tags": tags,
         }
@@ -224,18 +226,25 @@ def add(
 
 def readd(added: list[dict], refs: list[RefLook]) -> tuple[list[RefLook], list[dict]]:
     """지난 실행이 고른 착용컷(added.json 의 ref)을 번호를 새로 매겨 다시 더한다 (검색·고르기 없이).
-    이미 refs.json 에 있는 사진은 그 번호를 그대로 쓴다."""
-    by_photo = {r.photo: r for r in refs}
+    이미 refs.json 에 있는 사진은 그 번호를 그대로 쓰고, 사진이 있던 상품·쇼핑몰만 채운다."""
+    refs = list(refs)
+    where = {r.photo: k for k, r in enumerate(refs)}
     start = max((r.n for r in refs), default=100) + 1
-    new: list[RefLook] = []
+    count = 0
     out: list[dict] = []
     for a in added:
-        have = by_photo.get(a["photo"])
-        if have is None:
-            have = RefLook.model_validate({**a["ref"], "n": start + len(new)})
-            new.append(have)
-        out.append({**a, "n": have.n, "ref": {**a["ref"], "n": have.n}})
-    return refs + new, out
+        own = {"product": a.get("product"), "shop": a.get("shop") or ""}
+        k = where.get(a["photo"])
+        if k is not None:
+            refs[k] = refs[k].model_copy(update=own)
+            have = refs[k]
+        else:
+            have = RefLook.model_validate({**a["ref"], **own, "n": start + count})
+            count += 1
+            refs.append(have)
+            where[have.photo] = len(refs) - 1
+        out.append({**a, "n": have.n, "ref": {**a["ref"], **own, "n": have.n}})
+    return refs, out
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -254,3 +254,19 @@ def test_send_album_skipped_under_flow_and_ready_only(monkeypatch, tmp_path, cap
     monkeypatch.setattr(refs, "load_profile", with_flow(False))
     assert refs.main(["send", "--account", "women"]) == 0
     assert [r.n for r in albums[0]] == [101] and "1벌" in sent[0]
+
+
+def test_match_pins_ref_own_product_and_prefers_same_shop():
+    own = product(10, "상의", shop="로즈").model_copy(update={"name": "헤어리 니트"})
+    skirt_other = product(11, "하의", shop="남", colors=["블랙"]).model_copy(
+        update={"name": "미디 스커트", "rating": 5.0}
+    )
+    skirt_same = product(12, "하의", shop="로즈", colors=["블랙"]).model_copy(
+        update={"name": "미디 스커트", "rating": 4.0}
+    )
+    r = ref().model_copy(update={"product": "zigzag:10", "shop": "로즈"})
+    [m] = refs.match([r], [own, skirt_other, skirt_same])
+    assert m.pinned == {"0": "zigzag:10"} and m.matches["0"][0] == "zigzag:10"
+    assert m.matches["1"] == ["zigzag:12", "zigzag:11"]  # 같은 쇼핑몰 먼저
+    assert refs.shop_queries([m]) == {"하의": ["로즈 미디 스커트"]}
+    assert refs.own_products([m], {"zigzag:1"}) == ["zigzag:10"]
