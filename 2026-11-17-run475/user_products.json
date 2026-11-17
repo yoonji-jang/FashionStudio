@@ -1,0 +1,77 @@
+[
+  {
+    "id": "zigzag:118543755",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/118543755",
+    "shop": "메이블",
+    "name": "메리 폴라 홀터넥 크롭 나시 볼레로 가디건 세트",
+    "price": 33800,
+    "category": "아우터",
+    "colors": [],
+    "image_urls": [
+      "https://mayble.co.kr/web/product/extra/big/202212/66ea1cab1dfa701201005814f0184379.jpg",
+      "https://mayble.co.kr/web/product/extra/big/202212/5658cdbb07992e35a5a4aef22fdb601f.jpg",
+      "https://mayble.co.kr/web/product/extra/big/202212/65bdd215dc3fdc8564a4591bdccbbfd8.jpg",
+      "https://mayble.co.kr/web/product/extra/big/202212/b9c90b82d3e8ee1c56457faf9d8dd9e5.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": null,
+    "review_count": null,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "모던시크"
+    ],
+    "query": "사람이 보낸 링크",
+    "collected_at": "2026-11-17",
+    "checked_at": "2026-11-17"
+  },
+  {
+    "id": "zigzag:117826631",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/117826631",
+    "shop": "트윈메이트",
+    "name": "잘록핏 레더 숏팬츠 / 반바지 핫팬츠 가죽바지",
+    "price": 31500,
+    "category": "하의",
+    "colors": [],
+    "image_urls": [
+      "https://cf.product-image.s.zigzag.kr/original/c/11/782/663/117826631-2085264491794195640.gif?width=720&height=720&quality=80&format=jpeg"
+    ],
+    "has_flat_shot": false,
+    "rating": null,
+    "review_count": null,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [],
+    "query": "사람이 보낸 링크",
+    "collected_at": "2026-11-17",
+    "checked_at": "2026-11-17"
+  },
+  {
+    "id": "zigzag:172429909",
+    "source": "zigzag",
+    "url": "https://zigzag.kr/catalog/products/172429909",
+    "shop": "시옷이네",
+    "name": "FSS2917 여성 포인티토 멀티 버클 5cm 싸이하이 부츠",
+    "price": 106900,
+    "category": "신발",
+    "colors": [],
+    "image_urls": [
+      "https://siooot.com/web/product/big/202610/b83ed588559528f1dc2031b8858cd2db.jpg"
+    ],
+    "has_flat_shot": false,
+    "rating": null,
+    "review_count": null,
+    "last_used": null,
+    "status": "on_sale",
+    "style_tags": [
+      "캐주얼",
+      "러블리"
+    ],
+    "query": "사람이 보낸 링크",
+    "collected_at": "2026-11-17",
+    "checked_at": "2026-11-17"
+  }
+]
